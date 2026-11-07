@@ -97,14 +97,14 @@ export default function PlacementCalendar() {
 
   const loadCalendar = useCallback(async () => {
     try {
-      const res = await api.companyDirectory.getCalendar();
+      const res = await (api as any).companyDirectory.getCalendar();
       setCalendar(res.calendar || {});
     } catch {}
   }, []);
 
   const loadFilters = useCallback(async () => {
     try {
-      const res = await api.companyDirectory.getFilters();
+      const res = await (api as any).companyDirectory.getFilters();
       setFilters({ types: res.types || [], tiers: res.tiers || [], months: res.months || [] });
     } catch {}
   }, []);
@@ -112,7 +112,7 @@ export default function PlacementCalendar() {
   const loadCompanies = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await api.companyDirectory.getCompanies({ q, type, tier, month });
+      const res = await (api as any).companyDirectory.getCompanies({ q, type, tier, month });
       setCompanies(res.companies || []);
     } catch {}
     setLoading(false);
@@ -122,31 +122,31 @@ export default function PlacementCalendar() {
     setLoading(true);
     let id = idOrName;
     try {
-      const res = await api.companyDirectory.getCompany(idOrName);
+      const res = await (api as any).companyDirectory.getCompany(idOrName);
       if (res && res.id) {
         id = res.id;
       } else {
-        const sres = await api.companyDirectory.search(idOrName);
+        const sres = await (api as any).companyDirectory.search(idOrName);
         const hit = (sres.companies || [])[0];
         if (!hit) { setLoading(false); return; }
         id = hit.id;
       }
     } catch {
       try {
-        const sres = await api.companyDirectory.search(idOrName);
+        const sres = await (api as any).companyDirectory.search(idOrName);
         const hit = (sres.companies || [])[0];
         if (!hit) { setLoading(false); return; }
         id = hit.id;
       } catch { setLoading(false); return; }
     }
     try {
-      const full = await api.companyDirectory.getCompany(id);
+      const full = await (api as any).companyDirectory.getCompany(id);
       if (!full || !full.id) { setLoading(false); return; }
       setSelected(full);
       setSearchParams({ company: full.id });
       let progress: string[] = [];
       try {
-        const p = await api.companyDirectory.getProgress(full.id);
+        const p = await (api as any).companyDirectory.getProgress(full.id);
         progress = p.completed || [];
       } catch {}
       const init: Record<string, boolean> = {};
@@ -352,7 +352,7 @@ export default function PlacementCalendar() {
                         onChange={() => setChecked((c) => {
                           const next = { ...c, [key]: !c[key] };
                           const completed = (selected.focus_areas || []).filter((fa: string) => next[`${selected.id}:${fa}`]);
-                          api.companyDirectory.saveProgress(selected.id, completed).catch(() => {});
+                          (api as any).companyDirectory.saveProgress(selected.id, completed).catch(() => {});
                           return next;
                         })} className="accent-cyber-blue" />
                       <span className={checked[key] ? "line-through text-gray-500" : ""}>{f} →</span>

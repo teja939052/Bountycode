@@ -191,7 +191,7 @@ export default function ScrimPlayer({ scrim, onBack, onLike }) {
         final_code: timeline[lastIdx]?.code || editorCode,
         tags: scrim.tags || [],
       };
-      const data = await api.createScrim(payload);
+      const data = await (api as any).createScrim(payload);
       setSavedFork(data.id || "saved");
     } catch (e) {
       console.error("Failed to save fork:", e);

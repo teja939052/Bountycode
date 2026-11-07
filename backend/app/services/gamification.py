@@ -16,6 +16,7 @@ Intended modular split (follow-up refactor):
 from datetime import datetime, timezone, timedelta
 from app.database import users_collection, gamification_collection, get_client
 from bson import ObjectId
+from pymongo import ReturnDocument
 import math
 import logging
 from app.services.usage import can_use_feature, mark_feature_used
@@ -586,6 +587,9 @@ async def initialize_gamification(user_id: str):
         "total_aptitude": 0,
         "total_coding": 0,
         "total_system_design": 0,
+        # Lesson engine bridge (lesson XP lives in lesson_progress, mirrored here)
+        "lesson_xp": 0,
+        "lesson_xp_awards": [],
         # Tower fields
         "stars_total": 0,
         "stars_per_problem": {},
@@ -1242,11 +1246,64 @@ async def ensure_tower_fields(user_id: str):
     return profile
 
 
+async def award_lesson_xp(user_id: str, lesson_id: str, xp: int) -> int:
+    """Credit verified lesson XP to the gamification profile exactly once.
+
+    Lesson rewards are persisted in ``lesson_progress`` while the dashboard
+    reads the ``gamification`` collection. Without this bridge a learner's
+    level/XP would never reflect completed lessons. The lesson id is recorded
+    in ``lesson_xp_awards``, so a replay (or a concurrent double submission)
+    can never credit the same lesson twice.
+
+    Args:
+        user_id: Owner of the profile.
+        lesson_id: Lesson whose reward is being credited.
+        xp: Reward amount from the lesson definition.
+
+    Returns:
+        int: XP actually credited (0 when it was already credited).
+    """
+    amount = int(xp or 0)
+    if amount <= 0 or not lesson_id:
+        return 0
+
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        profile = await initialize_gamification(user_id)
+
+    if lesson_id in (profile.get("lesson_xp_awards") or []):
+        return 0
+
+    now = datetime.now(timezone.utc)
+    updated = await gamification_collection.find_one_and_update(
+        {"user_id": user_id, "lesson_xp_awards": {"$ne": lesson_id}},
+        {
+            "$inc": {"xp": amount, "lesson_xp": amount},
+            "$addToSet": {"lesson_xp_awards": lesson_id},
+            "$set": {"updated_at": now},
+        },
+        return_document=ReturnDocument.AFTER,
+    )
+    if not updated:
+        # A concurrent request already credited this lesson.
+        return 0
+
+    new_level = _calculate_level(int(updated.get("xp", 0) or 0))
+    if new_level != updated.get("level"):
+        await gamification_collection.update_one(
+            {"user_id": user_id}, {"$set": {"level": new_level}}
+        )
+    return amount
+
+
 async def get_gamification_profile(user_id: str) -> dict:
     """Get the full gamification profile with tower data."""
     profile = await gamification_collection.find_one({"user_id": user_id})
     if not profile:
         profile = await initialize_gamification(user_id)
+
+    profile.setdefault("lesson_xp", 0)
+    profile.setdefault("lesson_xp_awards", [])
 
     level = _calculate_level(profile.get("xp", 0))
     title, emoji = get_title_for_level(level)

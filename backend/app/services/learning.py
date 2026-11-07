@@ -261,6 +261,46 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
     }
 
 
+async def record_quiz_pass(
+    user_id: str, language_id: str, lesson_id: str, quiz_index: int
+) -> None:
+    """Record a server-verified quiz pass for a language-path lesson.
+
+    Quiz correctness is decided by the route from the raw content; only the
+    resulting pass is persisted here.
+    """
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+    await learning_progress_collection.update_one(
+        {"user_id": user_id},
+        {
+            "$setOnInsert": {
+                "user_id": user_id,
+                "daily_completed": [],
+                "daily_date": today,
+                "daily_goal_bonus_date": None,
+                "total_xp": 0,
+                "created_at": now.isoformat(),
+            },
+            "$addToSet": {
+                f"languages.{language_id}.quiz_passed": f"{lesson_id}:{quiz_index}",
+            },
+            "$set": {"updated_at": now.isoformat()},
+        },
+        upsert=True,
+    )
+
+
+async def get_quiz_passes(user_id: str, language_id: str) -> set:
+    """Return the set of ``"<lesson_id>:<quiz_index>"`` passes for a language."""
+    doc = await learning_progress_collection.find_one(
+        {"user_id": user_id},
+        {f"languages.{language_id}.quiz_passed": 1},
+    )
+    lang = ((doc or {}).get("languages") or {}).get(language_id) or {}
+    return set(lang.get("quiz_passed") or [])
+
+
 async def is_lesson_unlocked(user_id: str, language_id: str, lesson_id: str, level_lessons: list):
     """Check if a lesson is unlocked. First lesson is always unlocked.
     Others require the previous lesson to be completed."""

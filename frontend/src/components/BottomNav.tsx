@@ -52,7 +52,7 @@ export default function BottomNav() {
   if (hideOn.includes(location.pathname)) return null;
   if (!user) return null;
 
-  const tier = startup?.tier;
+  const tier = startup?.tier as { color?: string; name?: string } | undefined;
   const showLeague = tier && startup?.of;
 
   return (

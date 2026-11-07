@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { ArrowRight, RefreshCw, Play, Stop } from "lucide-react";
+import { ArrowRight, RefreshCw, Play, StopCircle } from "lucide-react";
 import { Card, Button } from "../../design-system";
 
 export interface LoopCounterProps {
@@ -74,7 +74,7 @@ export default function LoopCounter({ limit, onComplete }: LoopCounterProps) {
               onClick={() => setRunning((r) => !r)}
               size="sm"
             >
-              {running ? <Stop className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              {running ? <StopCircle className="w-4 h-4" /> : <Play className="w-4 h-4" />}
               {running ? "Pause" : "Step"}
             </Button>
             <Button variant="ghost" onClick={tick} size="sm" disabled={running}>

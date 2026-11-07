@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Leaf, CheckCircle, Play, Trophy, Clock, Zap } from "lucide-react";
+import { Leaf, CheckCircle, Play, Trophy, Clock, Zap, BookOpen } from "lucide-react";
 
 type GuideState = {
   state: "welcome" | "learning" | "practice" | "quiz" | "complete";

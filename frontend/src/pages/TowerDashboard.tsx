@@ -61,7 +61,7 @@ export default function TowerDashboard() {
 
   const handleClaimBonus = () => {
     claimBonus.mutate(undefined, {
-      onSuccess: (res) => {
+      onSuccess: (res: any) => {
         const xp = res.xp_bonus ?? 0;
         if (xp) window.dispatchEvent(new CustomEvent("xp-gained", { detail: { xp } }));
         if (toast) toast.success(`+${res.xp_bonus} XP${res.coins_bonus ? `, +${res.coins_bonus} 🪙` : ""}`);
@@ -72,7 +72,7 @@ export default function TowerDashboard() {
 
   const handleBuyPowerUp = (powerUpId: string) => {
     buyPowerUp.mutate(powerUpId, {
-      onSuccess: (res) => {
+      onSuccess: (res: any) => {
         if (res.success === false) toast.warning(res.message || "Not enough coins");
         else toast.success("Power-up purchased!");
       },
@@ -82,7 +82,7 @@ export default function TowerDashboard() {
 
   const handleUsePowerUp = (powerUpId: string) => {
     usePowerUp.mutate(powerUpId, {
-      onSuccess: (res) => {
+      onSuccess: (res: any) => {
         if (res.success === false) toast.warning(res.message || "No power-ups left");
         else {
           toast.success(`Used ${res.power_up?.name || 'power-up'}!`);
@@ -97,7 +97,7 @@ export default function TowerDashboard() {
 
   const handleClaimChallenge = (type: string, id: string) => {
     claimChallenge.mutate({ type, id }, {
-      onSuccess: (res) => {
+      onSuccess: (res: any) => {
         if (res.success) {
           const xp = res.xp_earned ?? 0;
           if (xp) window.dispatchEvent(new CustomEvent("xp-gained", { detail: { xp } }));
@@ -132,7 +132,7 @@ export default function TowerDashboard() {
   const zoneColors = TOWER_COLORS[currentZone.stage];
 
   const xpProgress = tower.xp_to_next > 0
-    ? Math.round(((tower.xp - tower.xp_for_current_level) / (tower.xp_to_next)) * 100)
+    ? Math.round((tower.xp / (tower.xp + tower.xp_to_next)) * 100)
     : 0;
 
   return (
@@ -179,10 +179,10 @@ export default function TowerDashboard() {
             {/* Quick Stats */}
             <div className="hidden md:flex items-center gap-3 shrink-0">
               {[
-                { icon: Flame, value: `${tower.streak}d`, color: 'text-orange-400', label: 'Streak' },
+                { icon: Flame, value: `${tower.streak_freezes ?? 0}d`, color: 'text-orange-400', label: 'Streak' },
                 { icon: Coins, value: tower.coins, color: 'text-yellow-300', label: 'Coins' },
-                { icon: Zap, value: `${tower.streak_multiplier}x`, color: 'text-emerald-400', label: 'Multi' },
-                { icon: Swords, value: `${tower.bosses_defeated?.length || 0}/10`, color: 'text-red-400', label: 'Bosses' },
+                { icon: Zap, value: `1x`, color: 'text-emerald-400', label: 'Multi' },
+                { icon: Swords, value: `${tower.bosses_beaten}/10`, color: 'text-red-400', label: 'Bosses' },
               ].map((s) => (
                 <div key={s.label} className="text-center px-2">
                   <s.icon size={14} className={`${s.color} mx-auto mb-0.5`} />
@@ -219,12 +219,12 @@ export default function TowerDashboard() {
           {activeTab === 'tower' && (
             <motion.div key="tower" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
               {/* Boss Battle Alert */}
-              {tower.current_boss && !tower.bosses_defeated?.includes(tower.boss_level) && (
+              {false && (
                 <BossBattle
-                  boss={tower.current_boss}
-                  level={tower.boss_level}
+                  boss={null as any}
+                  level={0}
                   onFight={() => {}}
-                  canSkip={(tower.power_ups?.skip_boss || 0) > 0}
+                  canSkip={Boolean(tower.power_ups?.find(p => p.id === "skip_boss")?.owned)}
                   onSkip={() => handleUsePowerUp('skip_boss')}
                 />
               )}
@@ -275,7 +275,7 @@ export default function TowerDashboard() {
                       const floorLevel = (i + 1) * 10;
                       const y = 580 - floorLevel * 5.3;
                       const isBossLevel = BOSS_LEVELS.includes(floorLevel);
-                      const isDefeated = tower.bosses_defeated?.includes(floorLevel);
+                      const isDefeated = tower.bosses_beaten >= floorLevel;
                       const isCurrent = tower.level >= floorLevel - 9 && tower.level <= floorLevel;
                       const boss = BOSS_DATA[floorLevel];
                       const xLeft = 70 + (1 - floorLevel / 100) * 5;
@@ -420,7 +420,7 @@ export default function TowerDashboard() {
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                   {BOSS_LEVELS.map((lvl) => {
                     const boss = BOSS_DATA[lvl];
-                    const defeated = tower.bosses_defeated?.includes(lvl);
+                    const defeated = tower.bosses_beaten >= lvl;
                     const available = tower.level >= lvl - 9;
                     return (
                       <div key={lvl} className={`rounded-xl border p-3 text-center transition-all ${
@@ -483,10 +483,10 @@ export default function TowerDashboard() {
                 <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5">
                   <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">Weekly Challenges</h3>
                   <div className="space-y-2">
-                    {challenges.weekly?.map((ch: any) => (
+                    {tower.challenges?.filter((ch: any) => ch.type === 'weekly')?.map((ch: any) => (
                       <ChallengeRow key={ch.id} challenge={ch} type="weekly" onClaim={handleClaimChallenge} />
                     ))}
-                    {(!challenges.weekly || challenges.weekly.length === 0) && (
+                    {!tower.challenges?.some((c: any) => c.type === 'weekly') && (
                       <p className="text-xs text-gray-500 text-center py-4 font-mono">No weekly challenges yet</p>
                     )}
                   </div>
@@ -494,10 +494,10 @@ export default function TowerDashboard() {
                 <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5">
                   <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">Monthly Challenges</h3>
                   <div className="space-y-2">
-                    {challenges.monthly?.map((ch: any) => (
+                    {tower.challenges?.filter((ch: any) => ch.type === 'monthly')?.map((ch: any) => (
                       <ChallengeRow key={ch.id} challenge={ch} type="monthly" onClaim={handleClaimChallenge} />
                     ))}
-                    {(!challenges.monthly || challenges.monthly.length === 0) && (
+                    {!tower.challenges?.some((c: any) => c.type === 'monthly') && (
                       <p className="text-xs text-gray-500 text-center py-4 font-mono">No monthly challenges yet</p>
                     )}
                   </div>

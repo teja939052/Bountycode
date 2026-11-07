@@ -65,7 +65,7 @@ export function ProgressBar({
           ${sizeStyles[size]}
           ${rounded ? `rounded-${radii.full}` : `rounded-${radii.md}`}
           ${className}
-        `}
+        ` as string}
         role="progressbar"
         aria-valuenow={percentage}
         aria-valuemin={0}
@@ -85,7 +85,7 @@ export function ProgressBar({
           }}
         />
       </div>
-      <style jsx>{`
+      <style jsx={true as any}>{`
         @keyframes stripe {
           from { background-position: 0 0; }
           to { background-position: 40px 0; }

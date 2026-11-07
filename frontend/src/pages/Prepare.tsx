@@ -44,7 +44,7 @@ export default function Prepare() {
   useEffect(() => {
     (async () => {
       try {
-        const data = await api.gamification.getSkills().catch(() => null);
+        const data = await (api.gamification as any).getSkills().catch(() => null);
         if (data) setSkills(data);
       } catch {
         // Use defaults
@@ -142,7 +142,7 @@ function JourneyRegion({
   items: Array<{
     id: string;
     label: string;
-    icon: React.ReactNode;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     progress: number;
     completed: boolean;
     locked?: boolean;

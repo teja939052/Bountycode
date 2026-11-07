@@ -187,9 +187,9 @@ export default function Pricing() {
   useEffect(() => {
     let active = true;
     api.getPlans().then((res) => {
-      if (!active || !res?.plans) return;
+      if (!active || !res) return;
       const map: Record<string, any> = {};
-      res.plans.forEach((p) => { map[p.id] = p; });
+      res.forEach((p) => { map[p.id] = p; });
       setServerPrices(map);
     }).catch(() => {});
     return () => { active = false; };
@@ -277,7 +277,7 @@ export default function Pricing() {
     setStudentLoading(true);
     setStudentMessage("");
     try {
-      const data = await api.verifyStudentDiscount(studentEmail.trim());
+      const data = await (api as any).verifyStudentDiscount(studentEmail.trim());
       if (data.eligible) {
         setStudentVerified(true);
         setStudentMessage(data.message);

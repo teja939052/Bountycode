@@ -43,6 +43,13 @@ SKILL_CATEGORIES = {
             "formatting", "impact_statements", "tailoring",
         ],
     },
+    "programming": {
+        "name": "Programming & CS Fundamentals",
+        "skills": [
+            "python", "java", "cpp", "oop",
+            "dbms", "operating_systems", "computer_networks",
+        ],
+    },
 }
 
 
@@ -71,13 +78,42 @@ async def initialize_skill_graph(user_id: str):
 
 
 async def update_skill_score(user_id: str, category: str, skill: str, score: float, is_correct: bool):
-    """Update a specific skill score based on practice results."""
+    """Update a specific skill score based on practice results.
+
+    Only skills declared in ``SKILL_CATEGORIES`` may be written, so evidence
+    can never land in an ad-hoc Mongo path.
+    """
     now = datetime.now(timezone.utc)
+
+    category_info = SKILL_CATEGORIES.get(category)
+    if not category_info:
+        raise ValueError(f"Unknown skill category {category!r}")
+    if skill not in category_info["skills"]:
+        raise ValueError(f"Unknown skill {skill!r} in category {category!r}")
 
     # Get or create skill graph
     skill_graph = await skill_graph_collection.find_one({"user_id": user_id})
     if not skill_graph:
         skill_graph = await initialize_skill_graph(user_id)
+
+    # Older graphs predate newer categories; add the missing subtree without
+    # touching existing evidence.
+    if category not in (skill_graph.get("categories") or {}):
+        await skill_graph_collection.update_one(
+            {"user_id": user_id, f"categories.{category}": {"$exists": False}},
+            {
+                "$set": {
+                    f"categories.{category}": {
+                        "name": category_info["name"],
+                        "score": 0,
+                        "skills": {
+                            name: {"score": 0, "attempts": 0, "last_practiced": None}
+                            for name in category_info["skills"]
+                        },
+                    }
+                }
+            },
+        )
 
     # Update the specific skill
     update_path = f"categories.{category}.skills.{skill}"

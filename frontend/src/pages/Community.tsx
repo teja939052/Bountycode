@@ -19,6 +19,7 @@ import {
   Trophy,
   Crown,
   Star,
+  Sparkles,
   Target,
   Globe,
    Trees,

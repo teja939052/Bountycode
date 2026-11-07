@@ -1,489 +1,469 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {
+  ArrowLeft,
   ArrowRight,
   CheckCircle2,
-  Play,
-  Trophy,
-  ListChecks,
+  Lightbulb,
   Loader2,
-  Lock,
+  Trophy,
+  XCircle,
 } from "lucide-react";
 import api from "../services/api";
-import { Card } from "../design-system/Card";
+import { Card, SectionHeader } from "../design-system/Card";
 import { Button } from "../design-system/Button";
 import { PageShell } from "../design-system/PageShell";
 import Markdown from "../components/learning/Markdown";
+import PracticeConsole from "../components/learning/PracticeConsole";
 
-type StepStatus = "locked" | "current" | "completed";
+interface QuizContent {
+  question: string;
+  options: string[];
+}
 
-function StepBadge({ status }: { status: StepStatus }) {
-  const variants: Record<string, string> = {
-    locked: "text-brand-muted",
-    current: "text-cyber-green",
-    completed: "text-brand-primary",
-  };
-  const icons: Record<string, JSX.Element> = {
-    locked: <Lock size={14} />,
-    current: <Play size={14} />,
-    completed: <CheckCircle2 size={14} />,
-  };
+interface SectionContent {
+  heading?: string;
+  body?: string;
+  code?: string;
+  pro_tip?: string;
+}
+
+interface MistakeContent {
+  mistake?: string;
+  fix?: string;
+  code?: string;
+  fixed_code?: string;
+}
+
+interface ExerciseContent {
+  description?: string;
+  starter_code?: string;
+  hints?: string[];
+  expected_output?: string;
+}
+
+interface LessonContent {
+  theory?: string;
+  analogy?: string;
+  sections?: SectionContent[];
+  code_example?: { code?: string; annotations?: { line: number; text: string }[] };
+  common_mistakes?: MistakeContent[];
+  exercise?: ExerciseContent;
+  quiz?: QuizContent;
+  quizzes?: QuizContent[];
+  key_takeaways?: string[];
+  next_steps?: string;
+}
+
+interface LessonMeta {
+  id: string;
+  title: string;
+  type?: string;
+  xp?: number;
+}
+
+interface LessonPayload {
+  lesson: LessonMeta;
+  completed: boolean;
+  next_lesson: LessonMeta | null;
+  level: { id: string; name: string; emoji?: string; color?: string };
+  content: LessonContent;
+  quiz_progress: { required: string[]; passed: number[] };
+}
+
+interface QuizVerdict {
+  is_correct: boolean;
+  explanation: string | null;
+}
+
+interface CompletionResult {
+  xp_gained?: number;
+  bonus_xp?: number;
+  total_xp?: number;
+  already_completed?: boolean;
+}
+
+/** Every quiz the lesson presents, in the same order the API grades them. */
+function quizzesOf(content: LessonContent): QuizContent[] {
+  const list: QuizContent[] = [];
+  if (content.quiz) list.push(content.quiz);
+  for (const quiz of content.quizzes || []) {
+    if (!list.includes(quiz)) list.push(quiz);
+  }
+  return list;
+}
+
+function CodeBlock({ code }: { code?: string }) {
+  if (!code) return null;
   return (
-    <span className={`flex items-center gap-1 text-xs font-medium ${variants[status]}`}>
-      {icons[status]}
-    </span>
+    <pre className="my-3 overflow-x-auto rounded-xl border border-border bg-[#F6F8F3] p-4 font-mono text-[13px] leading-relaxed text-[#2F3E2F]">
+      <code>{code}</code>
+    </pre>
   );
 }
 
-export default function LessonPlayer() {
-  const { lessonId } = useParams<{ lessonId: string }>();
-  const navigate = useNavigate();
-  const [lesson, setLesson] = useState<any>(null);
-  const [progress, setProgress] = useState<any>(null);
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [code, setCode] = useState("");
-  const [output, setOutput] = useState("");
-  const [running, setRunning] = useState(false);
-  const [feedback, setFeedback] = useState<any>(null);
-  const [celebrating, setCelebrating] = useState(false);
+export default function LessonView() {
+  const { languageId = "", levelId = "", lessonId = "" } = useParams<{
+    languageId: string;
+    levelId: string;
+    lessonId: string;
+  }>();
+
+  const [data, setData] = useState<LessonPayload | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    if (!lessonId) return;
-    loadLesson();
-    loadProgress();
-  }, [lessonId]);
+  const [choices, setChoices] = useState<Record<number, number>>({});
+  const [verdicts, setVerdicts] = useState<Record<number, QuizVerdict>>({});
+  const [passed, setPassed] = useState<number[]>([]);
+  const [grading, setGrading] = useState<number | null>(null);
 
-  const loadLesson = async () => {
-    if (!lessonId) return;
+  const [completing, setCompleting] = useState(false);
+  const [completion, setCompletion] = useState<CompletionResult | null>(null);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    setError("");
     try {
-      const data = await api.lessons.get(lessonId);
-      setLesson(data);
-      const completedKeys = Object.keys(data?.completed || {});
-      const firstIncomplete = data.steps.findIndex(
-        (s: any) => !completedKeys.includes(`${lessonId}:${String(s.id)}`)
-      );
-      setCurrentStepIndex(firstIncomplete === -1 ? data.steps.length - 1 : firstIncomplete);
-      if (data.steps[0]?.starterCode) setCode(data.steps[0].starterCode);
-    } catch (e: any) {
-      setError(e?.detail || "Failed to load lesson");
+      const payload = (await api.get(
+        `/api/v1/learning/${languageId}/${levelId}/${lessonId}`
+      )) as LessonPayload;
+      setData(payload);
+      setPassed(payload.quiz_progress?.passed || []);
+      setChoices({});
+      setVerdicts({});
+      setCompletion(null);
+    } catch (err) {
+      const detail = (err as { detail?: string })?.detail;
+      setError(detail || "Could not load this lesson.");
     } finally {
       setLoading(false);
     }
-  };
+  }, [languageId, levelId, lessonId]);
 
-  const loadProgress = async () => {
-    try {
-      const data = await api.lessons.progress();
-      setProgress(data);
-    } catch {}
-  };
+  useEffect(() => {
+    void load();
+  }, [load]);
 
-  const currentStep = lesson?.steps?.[currentStepIndex];
-  const stepStatus = (step: any): string => {
-    if (!progress) return "locked";
-    const key = `${lessonId}:${step.id}`;
-    if (progress.completed?.[key]) return "completed";
-    if (step.id === currentStep?.id) return "current";
-    return "locked";
-  };
+  const quizzes = useMemo(() => (data ? quizzesOf(data.content) : []), [data]);
+  const allQuizzesPassed = quizzes.every((_, index) => passed.includes(index));
 
-  const isLastStep = currentStepIndex >= (lesson?.steps.length || 0) - 1;
-
-  const runCode = async () => {
-    if (!currentStep) return;
-    setRunning(true);
-    setOutput("");
-    try {
-      const result = await api.compiler.executeCode({
-        code,
-        language: "python",
-      });
-      setOutput(result.output || "");
-      if (result.error) setOutput((prev) => prev + "\n" + result.error);
-    } catch (e: any) {
-      setOutput("Error: " + (e?.detail || e?.message || "Unknown error"));
-    } finally {
-      setRunning(false);
-    }
-  };
-
-  const submitStep = async () => {
-    if (!currentStep) return;
-    setFeedback(null);
+  const submitQuiz = async (index: number) => {
+    const choice = choices[index];
+    if (choice === undefined) return;
+    setGrading(index);
     setError("");
     try {
-      if (currentStep.type === "quiz") {
-        if (selectedOption === null) {
-          setError("Please select an answer.");
-          return;
-        }
-        const correct = selectedOption === (currentStep.correctIndex ?? -1);
-        setFeedback(result);
-        if (correct) {
-          await markStepComplete(currentStep.id, code);
-        }
-        return;
+      // The server owns the answer key; the client only sends the choice.
+      const verdict = (await api.post(
+        `/api/v1/learning/${languageId}/${levelId}/${lessonId}/quiz`,
+        { quiz_index: index, choice }
+      )) as QuizVerdict;
+      setVerdicts((prev) => ({ ...prev, [index]: verdict }));
+      if (verdict.is_correct) {
+        setPassed((prev) => (prev.includes(index) ? prev : [...prev, index]));
       }
-      const result = await api.lessons.completeStep({
-        lesson_id: lessonId || "",
-        step_id: currentStep.id,
-        code,
-      });
-      setFeedback(result);
-      if (result.is_correct) {
-        const nextIndex = currentStepIndex + 1;
-        if (nextIndex < (lesson?.steps.length || 0)) {
-          setCurrentStepIndex(nextIndex);
-          setCode(lesson.steps[nextIndex].starterCode || "");
-          setOutput("");
-          setSelectedOption(null);
-        } else if (result.lesson_complete) {
-          setCelebrating(true);
-          try {
-            const prog = await api.lessons.progress();
-            setProgress(prog);
-          } catch {}
-        }
-      }
-    } catch (e: any) {
-      setError(e?.detail || "Failed to submit");
+    } catch (err) {
+      const detail = (err as { detail?: string })?.detail;
+      setError(detail || "Could not grade that answer.");
+    } finally {
+      setGrading(null);
     }
   };
 
-  const markStepComplete = async (stepId: string, code: string) => {
+  const completeLesson = async () => {
+    setCompleting(true);
+    setError("");
     try {
-      await api.lessons.completeStep({
-        lesson_id: lessonId || "",
-        step_id: stepId,
-        code,
-      });
-      const nextIndex = currentStepIndex + 1;
-      if (nextIndex < (lesson?.steps.length || 0)) {
-        setCurrentStepIndex(nextIndex);
-        setCode(lesson.steps[nextIndex].starterCode || "");
-        setOutput("");
-        setSelectedOption(null);
-      } else {
-        setCelebrating(true);
-        try {
-          const prog = await api.lessons.progress();
-          setProgress(prog);
-        } catch {}
-      }
-    } catch {}
+      const result = (await api.post(
+        `/api/v1/learning/${languageId}/${levelId}/${lessonId}/complete`,
+        {}
+      )) as CompletionResult;
+      setCompletion(result);
+      setData((prev) => (prev ? { ...prev, completed: true } : prev));
+    } catch (err) {
+      const detail = (err as { detail?: string })?.detail;
+      setError(detail || "Could not complete this lesson.");
+    } finally {
+      setCompleting(false);
+    }
   };
 
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-
-  const goToNextLesson = async () => {
-    try {
-      const data = await api.lessons.next();
-      if (data.lesson) {
-        navigate(`/coding-academy/${data.lesson.id}`);
-      }
-    } catch {}
-  };
-
-  if (loading || !lesson) {
+  if (loading) {
     return (
-      <PageShell theme="focus" className="max-w-4xl mx-auto py-20">
-        <div className="flex items-center justify-center gap-2">
-          <Loader2 className="w-6 h-6 animate-spin" />
-          <span className="text-text-muted">Loading lesson…</span>
+      <PageShell theme="nature" className="max-w-4xl mx-auto px-4 py-10">
+        <div className="flex items-center gap-3 text-text-muted">
+          <Loader2 size={18} className="animate-spin" /> Loading lesson…
         </div>
       </PageShell>
     );
   }
 
-  if (error) {
+  if (!data) {
     return (
-      <PageShell theme="focus" className="max-w-4xl mx-auto py-20">
-        <Card pad="md" className="text-center">
-          <div className="text-red-400 mb-4">{error}</div>
-          <Button variant="outline" onClick={() => navigate("/lessons")}>
-            Back to lessons
-          </Button>
+      <PageShell theme="nature" className="max-w-4xl mx-auto px-4 py-10">
+        <Card>
+          <p className="mb-4 text-sm text-red-500">{error || "Lesson not found."}</p>
+          <Link to={`/learn/${languageId}`}>
+            <Button variant="outline" size="sm">
+              <ArrowLeft size={16} className="mr-2" /> Back to path
+            </Button>
+          </Link>
         </Card>
       </PageShell>
     );
   }
 
-  const progressPct = lesson.steps.length
-    ? Math.round(
-        ((progress?.completed
-          ? Object.keys(progress.completed).filter((k) =>
-              k.startsWith(`${lessonId}:`),
-            ).length : 0) /
-            lesson.steps.length) *
-            100,
-        )
-      : 0;
+  const { lesson, content, level, next_lesson: nextLesson } = data;
+  const completed = data.completed || Boolean(completion && !completion.already_completed);
 
   return (
-    <PageShell theme="focus" className="max-w-5xl mx-auto">
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <Link to="/lessons">
+    <PageShell theme="nature" className="max-w-4xl mx-auto px-4 py-8">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <Link to={`/learn/${languageId}`}>
           <Button variant="ghost" size="sm">
-            <ArrowRight size={16} className="mr-2 rotate-180" /> Back to lessons
+            <ArrowLeft size={16} className="mr-2" /> {level.emoji} {level.name}
           </Button>
         </Link>
-        <div className="flex items-center gap-3 text-sm font-medium text-text-muted">
-          <ListChecks className="w-4 h-4" />
-          <span>{progressPct}% complete</span>
-        </div>
+        <span className="text-xs font-semibold uppercase tracking-wide text-text-muted">
+          {lesson.type || "lesson"} · {lesson.xp ?? 0} XP
+        </span>
       </div>
 
-      {celebrating && (
-        <Card pad="md" className="text-center">
-          <Trophy className="w-12 h-12 text-green-500 mx-auto mb-4" />
-          <h3 className="font-bold text-text mb-2">Lesson complete!</h3>
-          <p className="text-text-muted mb-4">
-            You mastered {lesson.title}. Earned {lesson.xpReward} XP.
+      <SectionHeader eyebrow={level.name} title={lesson.title} />
+
+      {error && (
+        <div className="mb-4 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
+
+      {completed && (
+        <Card tone="mint" className="mb-6 flex items-center gap-3">
+          <CheckCircle2 size={20} className="text-primary" />
+          <p className="text-sm text-text">
+            {completion?.xp_gained
+              ? `Lesson complete — earned ${completion.xp_gained} XP.`
+              : "You already completed this lesson."}
           </p>
-          <div className="flex gap-3 justify-center">
-            <Button variant="primary" onClick={goToNextLesson}>
-              Next lesson
-            </Button>
-            <Button variant="outline" onClick={() => navigate("/lessons")}>
-              Back to lessons
-            </Button>
+        </Card>
+      )}
+
+      {content.theory && (
+        <Card className="mb-6">
+          <Markdown>{content.theory}</Markdown>
+        </Card>
+      )}
+
+      {content.analogy && (
+        <Card tone="sand" className="mb-6 flex gap-3">
+          <Lightbulb size={20} className="mt-0.5 shrink-0 text-reward" />
+          <p className="text-sm italic text-text">{content.analogy}</p>
+        </Card>
+      )}
+
+      {(content.sections || []).map((section, index) => (
+        <Card key={index} className="mb-6">
+          {section.heading && (
+            <h3 className="mb-2 font-display text-lg font-bold text-text">
+              {section.heading}
+            </h3>
+          )}
+          {section.body && <Markdown>{section.body}</Markdown>}
+          <CodeBlock code={section.code} />
+          {section.pro_tip && (
+            <p className="mt-3 rounded-lg bg-[#F4FAEF] px-3 py-2 text-xs text-text-secondary">
+              <span className="font-semibold text-primary">Pro tip: </span>
+              {section.pro_tip}
+            </p>
+          )}
+        </Card>
+      ))}
+
+      {content.code_example?.code && (
+        <Card className="mb-6">
+          <h3 className="mb-2 font-display text-lg font-bold text-text">Example</h3>
+          <CodeBlock code={content.code_example.code} />
+          {content.code_example.annotations && content.code_example.annotations.length > 0 && (
+            <ul className="mt-3 space-y-1 text-sm text-text-secondary">
+              {content.code_example.annotations.map((note, index) => (
+                <li key={index}>
+                  <span className="font-mono text-xs text-text-muted">line {note.line}:</span>{" "}
+                  {note.text}
+                </li>
+              ))}
+            </ul>
+          )}
+        </Card>
+      )}
+
+      {(content.common_mistakes || []).length > 0 && (
+        <Card className="mb-6">
+          <h3 className="mb-3 font-display text-lg font-bold text-text">Common mistakes</h3>
+          <div className="space-y-4">
+            {(content.common_mistakes || []).map((mistake, index) => (
+              <div key={index} className="rounded-lg border border-border p-3">
+                {mistake.mistake && (
+                  <p className="flex items-start gap-2 text-sm text-red-600">
+                    <XCircle size={16} className="mt-0.5 shrink-0" /> {mistake.mistake}
+                  </p>
+                )}
+                <CodeBlock code={mistake.code} />
+                {mistake.fix && (
+                  <p className="flex items-start gap-2 text-sm text-primary">
+                    <CheckCircle2 size={16} className="mt-0.5 shrink-0" /> {mistake.fix}
+                  </p>
+                )}
+                <CodeBlock code={mistake.fixed_code} />
+              </div>
+            ))}
           </div>
         </Card>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-7 space-y-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-text text-xl">{lesson.title}</h2>
-            <span className="text-xs font-mono text-brand-500">{lesson.track}</span>
-          </div>
-          <p className="text-text-muted">{lesson.description}</p>
+      {content.exercise?.description && (
+        <Card className="mb-6">
+          <h3 className="mb-2 font-display text-lg font-bold text-text">Practice</h3>
+          <p className="mb-2 text-sm text-text-secondary">{content.exercise.description}</p>
+          {content.exercise.expected_output && (
+            <p className="mb-2 text-xs text-text-muted">
+              Expected output: <span className="font-mono">{content.exercise.expected_output}</span>
+            </p>
+          )}
+          {(content.exercise.hints || []).length > 0 && (
+            <ul className="mb-4 list-disc space-y-1 pl-5 text-xs text-text-muted">
+              {(content.exercise.hints || []).map((hint, index) => (
+                <li key={index}>{hint}</li>
+              ))}
+            </ul>
+          )}
+          <PracticeConsole
+            language={languageId}
+            initialCode={content.exercise.starter_code || ""}
+            height={260}
+            title="Try it yourself"
+          />
+        </Card>
+      )}
 
-          <div className="space-y-4">
-            {lesson.steps.map((step: any, idx: number) => {
-              const status = stepStatus(step);
-              const isCurrent = idx === currentStepIndex;
+      {quizzes.length > 0 && (
+        <Card className="mb-6">
+          <h3 className="mb-3 font-display text-lg font-bold text-text">Check your understanding</h3>
+          <div className="space-y-6">
+            {quizzes.map((quiz, index) => {
+              const verdict = verdicts[index];
+              const isPassed = passed.includes(index);
               return (
-                <Card pad="md" className={`cursor-pointer transition-all ${isCurrent ? "ring-2 ring-cyber-green bg-[#0f0f0f]" : "hover:border-white/10"}`} key={step.id} pad="md" interactive={status !== "completed"} onClick={() => setCurrentStepIndex(idx)}>
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <StepBadge status={status} />
-                        <span className="font-bold text-text">{step.title}</span>
-                      </div>
-                      {status === "completed" && (
-                        <p className="text-xs text-[#4ade80]">Completed</p>
-                      )}
-                      {status === "current" && (
-                        <p className="text-xs text-cyber-green">Current step</p>
-                      )}
-                      {status === "locked" && (
-                        <p className="text-xs text-[#9a9a9a]">Complete previous steps to unlock</p>
-                      )}
-                    </div>
-                    <div className="text-xs font-mono text-slate-500">{idx + 1} / {lesson.steps.length}</div>
+                <div key={index}>
+                  <p className="mb-3 text-sm font-semibold text-text">{quiz.question}</p>
+                  <div className="space-y-2">
+                    {quiz.options.map((option, optionIndex) => {
+                      const selected = choices[index] === optionIndex;
+                      const tone = !verdict || !verdict.is_correct
+                        ? selected
+                          ? "border-primary bg-[#F4FAEF]"
+                          : "border-border hover:border-primary/50"
+                        : selected
+                        ? "border-primary bg-[#EAF7E1]"
+                        : "border-border";
+                      return (
+                        <button
+                          key={optionIndex}
+                          type="button"
+                          onClick={() =>
+                            setChoices((prev) => ({ ...prev, [index]: optionIndex }))
+                          }
+                          className={`w-full rounded-lg border px-4 py-2.5 text-left text-sm text-text transition-colors ${tone}`}
+                        >
+                          <span className="mr-2 font-mono text-xs text-text-muted">
+                            {String.fromCharCode(65 + optionIndex)}
+                          </span>
+                          {option}
+                        </button>
+                      );
+                    })}
                   </div>
-                </Card>
-              </div>
-            )}
-          </div>
 
-          {currentStep && (
-            <Card pad="md" className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl p-4">
-              {currentStep.type === "explain" && (
-                <div className="space-y-4">
-                  <div className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl p-4 font-mono text-sm text-[#e9e9e9] mb-4">
-                    {currentStep.question || currentStep.code || ""}
-                  </div>
-                  {currentStep.code && (
-                    <div className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg p-4 mt-4">
-                      <div className="font-mono text-sm text-[#e9e9e9]">{currentStep.code}</div>
-                    </div>
-                    {currentStep.explanation && (
-                      <p className="text-xs text-[#4ade80] mt-2">{currentStep.explanation}</p>
+                  <div className="mt-3 flex items-center gap-3">
+                    <Button
+                      size="sm"
+                      disabled={choices[index] === undefined || grading === index}
+                      onClick={() => void submitQuiz(index)}
+                    >
+                      {grading === index ? (
+                        <Loader2 size={14} className="mr-2 animate-spin" />
+                      ) : null}
+                      {verdict?.is_correct ? "Check again" : "Submit answer"}
+                    </Button>
+                    {isPassed && (
+                      <span className="flex items-center gap-1 text-xs font-semibold text-primary">
+                        <CheckCircle2 size={14} /> Passed
+                      </span>
                     )}
                   </div>
-                  <Button variant="primary" disabled={running} onClick={() => submitStep()}>
-                    {running ? <Loader2 size={14} className="mr-2 animate-spin" /> : null} Mark complete &rarr;
-                  </Button>
-                </div>
-              )}
-              {currentStep.type === "predict" && (
-                <div className="space-y-4">
-                  <div className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl p-4 mb-4">
-                    <div className="font-mono text-sm text-[#e9e9e9]">{currentStep.question}</div>
-                    <input type="text" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Predict the output..." className="w-full rounded-lg border border-[#2a2a2a] bg-[#0f0f0f] px-3 py-2 text-sm text-[#e9e9e9] focus:border-[#ffa116] outline-none" />
-                    <div className="mt-3 flex gap-3">
-                      <Button variant="outline" disabled={!answer.trim()} onClick={() => setPhase("practice")}>
-                        Back
-                      </Button>
-                      <Button variant="primary" onClick={() => setPhase("test")}>
-                        Clock icon
-                        Lock prediction
-                      </Button>
-                    </div>
-                  </div>
-                  {feedback && (
-                    <div className={`mt-3 p-3 rounded bg-[#16161a] border border-green-500/20 text-green-400 text-sm`}>
-                      {feedback.message}
+
+                  {verdict && (
+                    <div
+                      className={`mt-3 rounded-lg border px-3 py-2 text-sm ${
+                        verdict.is_correct
+                          ? "border-primary/30 bg-[#F4FAEF] text-primary"
+                          : "border-red-200 bg-red-50 text-red-600"
+                      }`}
+                    >
+                      {verdict.is_correct
+                        ? verdict.explanation || "Correct!"
+                        : "Not quite — try again."}
                     </div>
                   )}
-                </Card>
-              )}
-
-              {/* PHASE: TEST */}
-              {phase === "test" && (
-                <Card pad="md">
-                  <SectionHeader eyebrow="Test" title="Timed topic test" description="5 questions, 10 minutes. Independent assessment." />
-                  {loading && <div className="text-center py-8 text-text-muted">Loading questions…</div>}
-                  {error && <div className="p-3 rounded bg-red-500/10 border border-red-500/30 text-red-400 text-sm">{error}</div>}
-                  {!loading && currentQuestion && attemptId && (
-                    <div className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl p-4 mb-4">
-                      <div className="font-mono text-sm text-[#e9e9e9] mb-2">{currentQuestion.question}</div>
-                      {currentQuestion.options && (
-                        <div className="space-y-2">
-                          {currentQuestion.options.map((opt: string, i: number) => (
-                            <button
-                              key={i}
-                              onClick={() => setAnswer(opt)}
-                              className={`w-full text-left px-3 py-2 rounded border text-sm ${answer === opt ? "border-[#ffa116] bg-[#16161a]" : "border-[#2a2a2a] bg-[#0f0f0f]"} text-[#e9e9e9]`}
-                            >
-                              {opt}
-                            </button>
-                          ))}
-                        </div>
-                        {!currentQuestion.options && (
-                          <input
-                            value={answer}
-                            onChange={(e) => setAnswer(e.target.value)}
-                            placeholder="Your answer"
-                            className="w-full rounded-lg border border-[#2a2a2a] bg-[#0f0f0f] px-3 py-2 text-sm text-[#e9e9e9] focus:border-[#ffa116] outline-none"
-                          />
-                        )}
-                        <div className="mt-4 flex justify-between">
-                          <Button variant="outline" onClick={() => setPhase("practice")}>Back</Button>
-                          <Button variant="primary" disabled={!answer.trim() || loading} onClick={submitAnswer}>
-                            {loading ? "Saving…" : "Next question &rarr;"}
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-                )}
-              }
-
-              {/* PHASE: DIAGNOSE */}
-              {phase === "diagnose" && (
-                <Card pad="md">
-                  <SectionHeader eyebrow="Diagnose" title="Where did the model break?" description="Evidence-based misconception diagnosis." />
-                  {diagnostics.length === 0 && <div className="text-center py-8 text-text-muted">No diagnostics yet.</div>}
-                  <div className="space-y-3">
-                    {diagnostics.map((d) => (
-                      <Card key={d.pattern} pad="sm" tone="sand">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="font-bold text-text">{d.pattern}</span>
-                          <span className={`text-xs font-bold px-2 py-1 rounded ${d.weakness_tier === "critical" ? "bg-red-500/20 text-red-400" : d.weakness_tier === "weak" ? "bg-amber-50 text-amber-400" : "bg-green-500/20 text-green-400"}`}>{d.weakness_tier}</span>
-                        </div>
-                        <div className="text-sm text-text-muted mb-3">Score: {(d.exam_score ?? 0) * 100}% ({d.questions_correct}/{d.questions_seen})</div>
-                        <div className="flex gap-3">
-                          <Button variant="outline" size="sm" onClick={() => goToRepair(d.pattern)}>
-                            Targeted repair
-                          </Button>
-                          <Button variant="primary" size="sm" onClick={() => goToReassess(d.pattern)}>
-                            Reassess
-                          </Button>
-                        </div>
-                        <div className="mt-2 text-xs text-[#ffa116]">
-                          Next action: {d.next_action?.action} — {d.next_action?.reason}
-                        </div>
-                      </Card>
-                    ))}
-                  </div>
-                  <div className="mt-6 flex gap-3">
-                    <Button variant="outline" onClick={() => setPhase("test")}>Retake test</Button>
-                    {!xpClaimed && (
-                      <Button variant="gold" onClick={claimXp} disabled={loading}>
-                        Claim {selectedTopic.key} XP
-                      </Button>
-                    )}
-                  </div>
-                </Card>
-              )}
-            </Card>
+                </div>
+              );
+            })}
           </div>
+        </Card>
+      )}
 
-          {/* PHASE: REPAIR */}
-          {phase === "repair" && (
-            <Card pad="md">
-              <SectionHeader eyebrow="Repair" title="Targeted drill" description="Practice the diagnosed misconception." />
-              <div className="space-y-4">
-                {repairQuestions.map((q, i) => (
-                  <div key={i} className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl p-4 mb-3">
-                    <div className="font-mono text-sm text-[#e9e9e9] mb-2">{q.question}</div>
-                    <input
-                      placeholder="Answer"
-                      className="w-full rounded-lg border border-[#2a2a2a] bg-[#0f0f0f] px-3 py-2 text-sm text-[#e9e9e9] focus:border-[#ffa116] outline-none"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex gap-3">
-                <Button variant="outline" onClick={() => setPhase("diagnose")}>Back to diagnosis</Button>
-                <Button variant="primary" onClick={() => goToReassess(selectedTopic.key)}>
-                  <Clock className="w-4 h-4 mr-2" /> Reassess with new questions
-                </Button>
-              </div>
-            </Card>
-          )}
-
-          {/* PHASE: REASSESS */}
-          {phase === "reassess" && (
-            <Card pad="md">
-              <SectionHeader eyebrow="Reassess" title="Unseen questions" description="Prove improvement with different questions." />
-              <div className="bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl p-4 mb-4">
-                <div className="font-mono text-sm text-[#e9e9e9] mb-2">{reassessQuestions[reassessIndex]?.question}</div>
-                <input
-                  value={reassessAnswers[reassessQuestions[reassessIndex]?.id] || ""}
-                  onChange={(e) => setReassessAnswers({ ...reassessAnswers, [reassessQuestions[reassessIndex]?.id]: e.target.value })}
-                  placeholder="Your answer"
-                  className="w-full rounded-lg border border-[#2a2a2a] bg-[#0f0f0f] px-3 py-2 text-sm text-[#e9e9e9] focus:border-[#ffa116] outline-none"
-                />
-              </div>
-              <div className="flex gap-3">
-                <Button variant="outline" onClick={() => setPhase("diagnose")}>Back</Button>
-                <Button variant="primary" disabled={reassessIndex >= reassessQuestions.length - 1} onClick={() => setReassessIndex((i) => i + 1)}>
-                  Next &rarr;
-                </Button>
-                {reassessIndex >= reassessQuestions.length - 1 && (
-                  <Button variant="gold" onClick={() => setPhase("done")}>
-                    Finish &rarr;
-                  </Button>
-                )}
-              </div>
-            </Card>
-          )}
-
-          {/* PHASE: DONE */}
-          {phase === "done" && (
-            <Card pad="md" className="text-center py-12">
-              <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
-              <h3 className="font-bold text-text mb-2">Topic mastered</h3>
-              <p className="text-text-muted mb-6">You traced, predicted, practiced, tested, diagnosed, repaired, and reassessed.</p>
-              {!xpClaimed && (
-                <Button variant="gold" onClick={claimXp} disabled={loading}>
-                  Claim {selectedTopic.key} mastery XP
-                </Button>
-              )}
-              <div className="mt-6 flex gap-3 justify-center">
-                <Button variant="outline" onClick={() => setSelectedTopic(null)}>Back to topics</Button>
-                <Button variant="primary" onClick={() => navigate("/coding-academy")}>Start another topic</Button>
-              </div>
-            </Card>
+      {(content.key_takeaways || []).length > 0 && (
+        <Card className="mb-6">
+          <h3 className="mb-2 font-display text-lg font-bold text-text">Key takeaways</h3>
+          <ul className="list-disc space-y-1 pl-5 text-sm text-text-secondary">
+            {(content.key_takeaways || []).map((takeaway, index) => (
+              <li key={index}>{takeaway}</li>
+            ))}
+          </ul>
+          {content.next_steps && (
+            <p className="mt-3 text-xs text-text-muted">{content.next_steps}</p>
           )}
         </Card>
-      </div>
+      )}
+
+      {!completed && (
+        <Card className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-text-muted">
+            {quizzes.length === 0
+              ? "Finished reading? Mark this lesson complete."
+              : allQuizzesPassed
+              ? "All quizzes passed. Mark this lesson complete."
+              : "Pass every quiz above to complete this lesson."}
+          </p>
+          <Button
+            disabled={completing || !allQuizzesPassed}
+            onClick={() => void completeLesson()}
+          >
+            {completing ? <Loader2 size={14} className="mr-2 animate-spin" /> : <Trophy size={14} className="mr-2" />}
+            Complete lesson
+          </Button>
+        </Card>
+      )}
+
+      {nextLesson && (
+        <div className="flex justify-end">
+          <Link to={`/learn/${languageId}/${levelId}/${nextLesson.id}`}>
+            <Button variant="outline" size="sm">
+              Next: {nextLesson.title} <ArrowRight size={16} className="ml-2" />
+            </Button>
+          </Link>
+        </div>
+      )}
     </PageShell>
   );
 }

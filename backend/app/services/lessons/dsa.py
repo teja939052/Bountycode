@@ -1,11 +1,11 @@
-"""DSA track â€” Data Structures & Algorithms lessons for placement prep."""
+"""DSA track — Data Structures & Algorithms lessons for placement prep."""
 
 DSA_LESSONS = [
     {
         "id": "dsa-arrays-intro",
         "title": "Introduction to Arrays",
         "track": "dsa",
-        "description": "Learn arrays â€” the most fundamental data structure.",
+        "description": "Learn arrays — the most fundamental data structure.",
         "difficulty": "beginner",
         "xpReward": 60,
         "steps": [
@@ -42,7 +42,7 @@ DSA_LESSONS = [
                 "type": "quiz",
                 "title": "Array access time",
                 "question": "What is the time complexity of accessing an element by index in an array?",
-                "options": ["O(1)", "O(n)", "O(log n)", "O(nÂ²)"],
+                "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
                 "correctIndex": 0,
                 "explanation": "Array access by index is O(1) because elements are stored contiguously and we can compute the address directly.",
             },
@@ -52,7 +52,7 @@ DSA_LESSONS = [
         "id": "dsa-strings",
         "title": "Strings",
         "track": "dsa",
-        "description": "String manipulation â€” reverse, palindrome, substrings.",
+        "description": "String manipulation — reverse, palindrome, substrings.",
         "difficulty": "beginner",
         "prerequisites": ["dsa-arrays-intro"],
         "xpReward": 70,
@@ -90,7 +90,7 @@ DSA_LESSONS = [
                 "type": "quiz",
                 "title": "String time complexity",
                 "question": "What is the time complexity to reverse a string of length n?",
-                "options": ["O(n)", "O(1)", "O(nÂ²)", "O(log n)"],
+                "options": ["O(n)", "O(1)", "O(n²)", "O(log n)"],
                 "correctIndex": 0,
                 "explanation": "We iterate through half the string, doing constant work each iteration - O(n/2) = O(n).",
             },
@@ -100,7 +100,7 @@ DSA_LESSONS = [
         "id": "dsa-linked-list",
         "title": "Linked Lists",
         "track": "dsa",
-        "description": "Singly linked list â€” creation, traversal, insertion, deletion.",
+        "description": "Singly linked list — creation, traversal, insertion, deletion.",
         "difficulty": "medium",
         "prerequisites": ["dsa-arrays-intro"],
         "xpReward": 80,
@@ -139,7 +139,7 @@ DSA_LESSONS = [
         "id": "dsa-stack",
         "title": "Stacks",
         "track": "dsa",
-        "description": "LIFO data structure â€” push, pop, peek.",
+        "description": "LIFO data structure — push, pop, peek.",
         "difficulty": "beginner",
         "prerequisites": ["dsa-arrays-intro"],
         "xpReward": 60,
@@ -169,7 +169,7 @@ DSA_LESSONS = [
         "id": "dsa-queue",
         "title": "Queues",
         "track": "dsa",
-        "description": "FIFO data structure â€” enqueue, dequeue, front.",
+        "description": "FIFO data structure — enqueue, dequeue, front.",
         "difficulty": "beginner",
         "prerequisites": ["dsa-arrays-intro"],
         "xpReward": 60,

@@ -1,5 +1,6 @@
-import { useState, useEffect, useParams, useNavigate } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useParams, useNavigate } from "react-router-dom";
 import { BookOpen, Flag, Zap, Star, Target, Shield, Check, X, Clock, Code2, Palette, Globe, MapPin, Users, Calendar, } from "lucide-react";
 import { useToast } from "../components/Toast";
 import api from "../services/api";
@@ -47,10 +48,12 @@ export default function LanguageLearning() {
   const [streak, setStreak] = useState({ days: 0, bonus: "0%" });
   const [dailyGoal, setDailyGoal] = useState({ target: 1, completed: 0 });
   const { user } = useAuthStore();
-  const { xp, streak: gamestreak, coins } = useGamificationData();
+  const { tower } = useGamificationData();
   const toast = useToast();
 
   const language = LANGUAGES.find(l => l.id === activeLanguage) || LANGUAGES[0];
+  const xp = tower?.xp ?? 0;
+  const coins = tower?.coins ?? 0;
   const level = LEVELS.find(l => l.id === currentLevel) || LEVELS[0];
 
   useEffect(() => {
@@ -61,7 +64,7 @@ export default function LanguageLearning() {
 
   const handleCompleteLesson = async (lessonId: string) => {
     try {
-      const res = await api.post(`/api/v1/languages/${activeLanguage}/modules/${lessonId}/complete`);
+      const res = await (api as any).post(`/api/v1/languages/${activeLanguage}/modules/${lessonId}/complete`);
       setProgress(prev => ({
         completed: Math.min(prev.completed + 1, progress.total),
         total: progress.total,
@@ -188,18 +191,12 @@ export default function LanguageLearning() {
           <PracticeConsole
             language={activeLanguage}
             initialCode={lessonContent.code}
-            onCodeChange={(code: string) => setLessonContent(prev => ({ ...prev, code }))}
-            onRun={() => toast.info("Running code...")}
-            onExecute={(code: string) => {
-              api.post('/api/compiler/execute', { code, language: activeLanguage }).then((d: any) => {
-                setLessonContent(prev => ({ ...prev, code: d?.output || d?.error || code }));
-              }).catch(() => setLessonContent(prev => ({ ...prev, code: "// Execution failed" })));
+            onResult={(r) => {
+              if (r.success) {
+                setLessonContent(prev => ({ ...prev, code: r.stdout || prev.code }));
+              }
             }}
-            onComplete={() => {
-              handleCompleteLesson(currentLevel);
-              setShowLessonModal(false);
-              setShowLessonModal(true);
-            }}
+            title={lessonContent.title || "Practice"}
           />
         </motion.div>
 

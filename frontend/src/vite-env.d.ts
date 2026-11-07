@@ -1,5 +1,10 @@
 /// <reference types="vite/client" />
 
+declare module "*.svg" {
+  const content: string;
+  export default content;
+}
+
 declare module "html2canvas" {
   export interface Html2CanvasOptions {
     backgroundColor?: string;

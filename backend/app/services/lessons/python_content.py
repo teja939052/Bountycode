@@ -553,15 +553,19 @@ def create_lesson(topic, content, difficulty="beginner", xp=50, prerequisites=No
         ]
     }
 
-# Build real lessons from content library
-real_lessons = []
+# Build real lessons from content library.
+# Topics already authored as beginner lessons in python.py (same lesson id)
+# are skipped here: the beginner chain (python-hello -> ... -> python-modules)
+# is the canonical progression for those ids, and duplicates are never
+# silently overwritten (see the audit test for catalog uniqueness).
+_SKIPPED_OVERLAPS = ["variables", "strings", "lists", "dictionaries", "functions", "loops", "conditionals"]
+PYTHON_CONTENT_LESSONS = []
 for topic, content in PYTHON_CONTENT.items():
+    if topic in _SKIPPED_OVERLAPS:
+        continue
     lesson = create_lesson(topic, content)
-    real_lessons.append(lesson)
+    PYTHON_CONTENT_LESSONS.append(lesson)
 
 # Add project lessons
 for project in PYTHON_PROJECTS:
-    real_lessons.append(project)
-
-print("Created " + str(len(real_lessons)) + " real Python lessons from content library")
-print("Topics:", [l["id"] for l in real_lessons])
+    PYTHON_CONTENT_LESSONS.append(project)

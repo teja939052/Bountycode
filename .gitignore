@@ -112,3 +112,6 @@ test_bank.py
 # OS files
 Thumbs.db
 Desktop.ini
+
+# Large audit artifacts (exceed GitHub file size limit)
+docs/audits/

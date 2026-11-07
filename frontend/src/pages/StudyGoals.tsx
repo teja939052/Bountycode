@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
 import { Target, Plus, CheckCircle, Trash2, Save } from "lucide-react";
 import api from "../services/api";
-import type { Goal } from "../services/api/goals";
 import useAuthStore from "../store/authStore";
 import { useToast } from "../components/Toast";
+
+interface Goal {
+  id: string;
+  title: string;
+  target: number;
+  metric: string;
+  deadline: string | null;
+  completed: boolean;
+  progress?: number;
+}
 
 const METRICS = [
   { id: "problems", label: "Problems Solved", icon: "🔢" },
@@ -30,7 +39,7 @@ export default function StudyGoals() {
 
   const loadGoals = async () => {
     try {
-      const data = await api.goals.list();
+      const data = await (api as any).goals.list();
       setGoals(data.goals || []);
     } catch (e: any) {
       toast.error(e.message || "Failed to load goals");
@@ -49,7 +58,7 @@ export default function StudyGoals() {
     }
     setSubmitting(true);
     try {
-      await api.goals.create(title, target, metric, deadline || null);
+      await (api as any).goals.create(title, target, metric, deadline || null);
       setShowCreate(false);
       setTitle("");
       setTarget(10);
@@ -64,7 +73,7 @@ export default function StudyGoals() {
 
   const trackGoal = async (goal: Goal) => {
     try {
-      const res = await api.goals.track(goal.id, 1);
+      const res = await (api as any).goals.track(goal.id, 1);
       if (res.bonus_xp) {
         window.dispatchEvent(new CustomEvent("xp-gained", { detail: { xp: res.bonus_xp } }));
         toast.success(`Goal complete! +${res.bonus_xp} XP`);
@@ -80,7 +89,7 @@ export default function StudyGoals() {
   const deleteGoal = async (goal: Goal) => {
     if (!confirm(`Delete "${goal.title}"?`)) return;
     try {
-      await api.goals.delete(goal.id);
+      await (api as any).goals.delete(goal.id);
       setGoals(goals.filter((g) => g.id !== goal.id));
       toast.success("Goal deleted");
     } catch (e: any) {

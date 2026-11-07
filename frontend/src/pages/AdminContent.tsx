@@ -102,8 +102,8 @@ export default function AdminContent() {
   const loadContent = useCallback(async () => {
     setContentLoading(true);
     try {
-      const data = await adminContentApi.list({ limit: 100 });
-      setContent(data.content || []);
+      const data = await adminContentApi.list({ limit: "100" });
+      setContent(data.items || []);
     } catch (e) {
       setError(e.message || "Failed to load content modules");
     } finally {

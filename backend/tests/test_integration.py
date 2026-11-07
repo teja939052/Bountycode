@@ -392,19 +392,19 @@ class TestRouteRegistration:
         from app.routes import (
             auth, interview, resume, billing, aptitude, cover_letter,
             system_design, salary, company_prep, coding, gamification,
-            free_practice, predictor, real_features, questions,
+            free_practice, predictor, questions,
             career_profile, practice, analytics, ai_feedback,
             profile_stats, compiler, problems,
             daily_challenge, playlists,
-            cards, submissions, progress, features,
-            battles, aptitude_tests,
+            submissions, progress, features,
+            aptitude_tests,
             indian_placement, placement_questions,
-            dsa_fingerprint, learning, analytics_admin,
+            dsa_fingerprint, learning, analytics_admin, lessons,
         )
 
     def test_extended_route_modules_importable(self):
         """Verify extended routes (may have deeper dependency chains)."""
-        from app.routes import hook_model, enhanced, student_features, enterprise, trial
+        from app.routes import enhanced, student_features, enterprise, trial
         from app.routes import discussions, company_mocks, personal_dashboard, readiness
         from app.routes import ai_debugger, concepts, company_conversion
         from app.routes import visualizations, distributions, mock_interview

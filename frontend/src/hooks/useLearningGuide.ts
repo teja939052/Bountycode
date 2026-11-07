@@ -11,52 +11,52 @@ export function useLearningGuide(userId: string) {
     refetchOnWindowFocus: true,
   });
 
-  const advanceToLearning = useMutation({
-    mutationFn: () => api.post(`/api/v1/learning-guide/welcome/${userId}`),
+  const advanceToLearning = (useMutation as any)({
+    mutationFn: () => (api as any).post(`/api/v1/learning-guide/welcome/${userId}`),
     onSuccess: () => {
       refetch();
     },
   });
 
-  const advanceToPractice = useMutation({
-    mutationFn: () => api.post(`/api/v1/learning-guide/practice/${userId}`),
+  const advanceToPractice = (useMutation as any)({
+    mutationFn: () => (api as any).post(`/api/v1/learning-guide/practice/${userId}`),
     onSuccess: () => {
       refetch();
     },
   });
 
-  const advanceToQuiz = useMutation({
-    mutationFn: () => api.post(`/api/v1/learning-guide/quiz/${userId}`),
+  const advanceToQuiz = (useMutation as any)({
+    mutationFn: () => (api as any).post(`/api/v1/learning-guide/quiz/${userId}`),
     onSuccess: () => {
       refetch();
     },
   });
 
-  const markComplete = useMutation({
+  const markComplete = (useMutation as any)({
     mutationFn: (moduleId: string) =>
-      api.post(`/api/v1/learning-guide/complete/${userId}?moduleId=${moduleId}`),
+      (api as any).post(`/api/v1/learning-guide/complete/${userId}?moduleId=${moduleId}`),
     onSuccess: () => {
       refetch();
     },
   });
 
-  const claimBounty = useMutation({
+  const claimBounty = (useMutation as any)({
     mutationFn: (bountyId: string) =>
-      api.post(`/api/v1/learning-guide/bounty/${userId}/${bountyId}`),
+      (api as any).post(`/api/v1/learning-guide/bounty/${userId}/${bountyId}`),
     onSuccess: () => {
       refetch();
     },
   });
 
-  const updateStreak = useMutation({
-    mutationFn: () => api.post(`/api/v1/learning-guide/streak/${userId}`),
+  const updateStreak = (useMutation as any)({
+    mutationFn: () => (api as any).post(`/api/v1/learning-guide/streak/${userId}`),
     onSuccess: () => {
       refetch();
     },
   });
 
-  const awardXP = useMutation({
-    mutationFn: (amount: number) => api.post(`/api/v1/learning-guide/xp/${userId}`),
+  const awardXP = (useMutation as any)({
+    mutationFn: (amount: number) => (api as any).post(`/api/v1/learning-guide/xp/${userId}`),
     onSuccess: () => {
       refetch();
     },

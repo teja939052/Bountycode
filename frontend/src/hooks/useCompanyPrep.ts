@@ -41,7 +41,7 @@ export function useCompanyPrep() {
   const useBehavioral = (company: string | null, role: string) =>
     useQuery({
       queryKey: companyBehavioralKey(company || "", role),
-      queryFn: () => api.getBehavioralQuestion(company, role),
+      queryFn: () => (api as any).getBehavioralQuestion(company, role),
       enabled: Boolean(company),
       retry: 1,
       staleTime: 60_000,

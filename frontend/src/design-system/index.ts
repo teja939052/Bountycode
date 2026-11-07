@@ -16,6 +16,8 @@ export type { MentorMood } from "./Mentor";
 export { MasteryBar, ReadinessRing, TreasureBadge } from "./Progress";
 export { IslandNode, PathConnector, BountyCard } from "./JourneyMap";
 export type { NodeState, IslandNodeProps, BountyCardProps } from "./JourneyMap";
+export { Button } from "./Button";
+export { Card, SectionHeader } from "./Card";
 
 import { colors } from "./colors";
 import { typography } from "./typography";

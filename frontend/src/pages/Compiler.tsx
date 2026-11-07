@@ -8,13 +8,75 @@ import { playSound } from "../utils/soundEffects";
 import { useCompilerQueue } from "../hooks/useCompilerQueue";
 import {
   Play, RotateCcw, Plus, Trash2, CheckCircle, XCircle,
-  AlertTriangle, Clock, Terminal, Settings2, Send, ChevronDown,
-  ChevronUp, Save, Cloud, History, X, Fullscreen, Minimize2,
-  Code2, Zap, Timer, Eye, EyeOff, Copy, Download, Upload,
-  Cpu, HardDrive, ChevronLeft, ChevronRight, FileCode, RefreshCw,
-  Loader, Sparkles, Bookmark, Share2, Flag, MessageSquare, BookOpen,
-  WandSparkles, Keyboard
+  AlertTriangle, Terminal, Settings2, Send,
+  Cloud, History, X, Fullscreen, Minimize2,
+  Code2, Timer, Eye, EyeOff, Copy, Download, Cpu, HardDrive,
+  ChevronLeft, ChevronRight, Loader, Sparkles,
+  WandSparkles, Keyboard, BookOpen
 } from "lucide-react";
+
+interface ExecutionData {
+  success: boolean;
+  stdout?: string;
+  summary?: string;
+  results?: any[];
+  execution_time?: number;
+  memory_usage?: number;
+  stderr?: string;
+  compile_error?: string;
+  exit_code?: number;
+  hint?: string;
+  all_passed?: boolean;
+  passed_count?: number;
+  total_count?: number;
+  source?: string;
+}
+
+interface ErrorInfo {
+  message: string;
+  type: string;
+  isCompileError?: boolean;
+  isRuntimeError?: boolean;
+  isTimeout?: boolean;
+  stderr?: string;
+  hint?: string;
+  line?: number;
+  explanation?: string;
+}
+
+interface SubmissionResultData {
+  solved?: boolean;
+  summary?: string;
+  score?: number;
+  xp_gained?: number;
+  results?: any[];
+}
+
+interface CreativeResultData {
+  title?: string;
+  mission?: string;
+  analogy?: string;
+  first_move?: string;
+  micro_challenge?: string;
+  edge_case_watch?: string;
+  pep_talk?: string;
+}
+
+interface TraceData {
+  source?: string;
+}
+
+interface Submission {
+  id?: string;
+  language: string;
+  passed?: boolean;
+  all_passed?: boolean;
+  passed_count?: number;
+  total_count?: number;
+  created_at?: string;
+  execution_time?: number;
+  score?: number;
+}
 
 const LANGUAGES = [
   { id: "python", name: "Python", version: "3.10.0", icon: "🐍" },
@@ -53,7 +115,7 @@ const DEFAULT_CODE_PROBLEM = {
   python: `import sys\n\n# Read all input from stdin\ndata = sys.stdin.read().strip().splitlines()\n# TODO: parse the input and print the answer\nprint("")`,
 };
 
-function getDefaultCode(language, isProblemMode) {
+function getDefaultCode(language: string, isProblemMode: boolean) {
   if (isProblemMode && DEFAULT_CODE_PROBLEM[language]) return DEFAULT_CODE_PROBLEM[language];
   return DEFAULT_CODE[language] || "";
 }
@@ -164,26 +226,26 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
   });
   const [stdin, setStdin] = useState("");
   const [testCases, setTestCases] = useState([{ id: 1, input: "", expected: "", isHidden: false }]);
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState<ExecutionData | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [executionTime, setExecutionTime] = useState(null);
-  const [memoryUsage, setMemoryUsage] = useState(null);
-  const [submissionResult, setSubmissionResult] = useState(null);
+  const [error, setError] = useState<ErrorInfo | null>(null);
+  const [executionTime, setExecutionTime] = useState<number | null>(null);
+  const [memoryUsage, setMemoryUsage] = useState<number | null>(null);
+  const [submissionResult, setSubmissionResult] = useState<SubmissionResultData | null>(null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [savedIndicator, setSavedIndicator] = useState(false);
   const [boilerplateLoading, setBoilerplateLoading] = useState(false);
   const [statusNote, setStatusNote] = useState("");
   const [creativeLoading, setCreativeLoading] = useState(false);
   const [creativeMode, setCreativeMode] = useState("mentor");
-  const [creativeResult, setCreativeResult] = useState(null);
+  const [creativeResult, setCreativeResult] = useState<CreativeResultData | null>(null);
   const [creativeError, setCreativeError] = useState("");
   const [activeTestCase, setActiveTestCase] = useState(0);
   const [showExpected, setShowExpected] = useState(true);
 
   // Trace & Visualizer State
   const [viewMode, setViewMode] = useState("editor"); // "editor" | "visualizer"
-  const [traceData, setTraceData] = useState(null);
+  const [traceData, setTraceData] = useState<TraceData | null>(null);
   const [traceLoading, setTraceLoading] = useState(false);
 
   // Editor settings
@@ -202,16 +264,15 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
   // Timer
   const [timerRunning, setTimerRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const timerRef = useRef(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Submission history
-  const [submissions, setSubmissions] = useState([]);
+  const [submissions, setSubmissions] = useState<Submission[]>([]);
 
   // Run history (for this session)
-  const [runHistory, setRunHistory] = useState([]);
 
-  const editorRef = useRef(null);
-  const splitRef = useRef(null);
+  const editorRef = useRef<any>(null);
+  const splitRef = useRef<HTMLDivElement | null>(null);
   const isDragging = useRef(false);
   const problemTopics = normalizeTopics(problem);
   const starterProblemType = getStarterProblemType(problemTopics);
@@ -330,7 +391,6 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
         setResults(data);
         setExecutionTime(data.execution_time);
         setMemoryUsage(data.memory_usage);
-        setRunHistory(prev => [{ ...data, timestamp: Date.now() }, ...prev].slice(0, 20));
         setActiveTab("console");
         setStatusNote(`Run finished in ${typeof data.execution_time === "number" ? data.execution_time.toFixed(3) : "?"}s`);
         playSound.success();

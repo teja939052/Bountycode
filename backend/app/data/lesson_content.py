@@ -7,8 +7,9 @@ Lesson ID format: {lang}-l{level:02d}-{lesson:02d}
 Example: c-l01-01 = C, level 1, lesson 1
 """
 
-from typing import Any
+import copy
 import re
+from typing import Any
 
 
 HAND_CRAFTED_LESSONS: dict[str, dict[str, Any]] = {}
@@ -3306,3 +3307,32 @@ def get_lesson_content(
         ],
         "next_steps": f"Continue practicing {lesson_title} in your own projects.",
     }
+
+
+# ═════════════════════════════════════════════════════════════════════
+# Public (answer-key-free) view of lesson content
+# ═════════════════════════════════════════════════════════════════════
+
+def lesson_quizzes(content: dict) -> list:
+    """Return every quiz a lesson presents, in display order."""
+    quizzes = []
+    first = content.get("quiz")
+    if isinstance(first, dict):
+        quizzes.append(first)
+    for quiz in content.get("quizzes") or []:
+        if isinstance(quiz, dict) and all(quiz is not known for known in quizzes):
+            quizzes.append(quiz)
+    return quizzes
+
+
+def public_lesson_content(content: dict) -> dict:
+    """Deep copy content with quiz answer keys removed.
+
+    Quizzes carry ``correct`` (option index) and an ``explanation`` that states
+    the answer. Grading happens server-side, so neither may reach a client.
+    """
+    clean = copy.deepcopy(content)
+    for quiz in lesson_quizzes(clean):
+        quiz.pop("correct", None)
+        quiz.pop("explanation", None)
+    return clean

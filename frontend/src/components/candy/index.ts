@@ -8,4 +8,4 @@ export { default as AmbientParticles } from "./AmbientParticles";
 export { default as CinematicReveal, CinematicSection } from "./CinematicReveal";
 export { CANDY, candyGradient, candyRadial, candyGlow } from "./palette";
 export type { CandyColor } from "./palette";
-export type { LevelNode, LevelStatus, LevelMapProps } from "./LevelMap";
+export type { LevelNode, LevelStatus } from "./LevelMap";

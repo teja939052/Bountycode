@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
 import { Upload, FileText, Download, Wand2, Copy, Check, BarChart3, Target, Search, RefreshCw, FileDown } from "lucide-react";
@@ -27,7 +28,7 @@ export default function ResumeStudio() {
     if (!resumeText.trim()) return;
     setLoading(true);
     try {
-      const data = await api.resume.semanticScore({ resume: resumeText, jd: jobDesc });
+      const data = await (api.resume as any).semanticScore({ resume: resumeText, jd: jobDesc });
       setAnalysis(data);
       setStep("analyze");
     } catch (e) {

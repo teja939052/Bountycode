@@ -1,0 +1,21 @@
+{
+  "total_lesson_rows": 1112,
+  "unique_ids": 1112,
+  "silently_overwritten_ids": 60,
+  "template_filler_lessons": 1023,
+  "broken_prerequisite_links": 1013,
+  "track_counts": {
+    "python": 17,
+    "java": 12,
+    "cpp": 13,
+    "dsa": 1031,
+    "aptitude": 7,
+    "logical": 5,
+    "verbal": 4,
+    "dbms": 5,
+    "os": 3,
+    "networks": 3,
+    "oop": 4,
+    "company_prep": 8
+  }
+}

@@ -21,7 +21,7 @@ export interface AptitudeTestResult {
 export function useAptitudeStats() {
   return useQuery({
     queryKey: ["aptitude", "stats"],
-    queryFn: () => api.aptitude.getStats(),
+    queryFn: () => (api.aptitude as any).getStats(),
     retry: 1,
     staleTime: 300_000,
     refetchOnWindowFocus: false,
@@ -32,7 +32,7 @@ export function useAptitudeStart(testType: string) {
   const queryClient = useQueryClient();
 
   return useMutation<{ test_id: string }, Error, { test_type: string }>({
-    mutationFn: ({ test_type }) => api.aptitude.start(test_type),
+    mutationFn: ({ test_type }) => (api.aptitude as any).startTest(test_type),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["aptitude"] });
     },
@@ -47,7 +47,7 @@ export function useAptitudeSubmit(questionId: string) {
     explanation: string;
   }, Error, { answer: string; time_taken?: number }>({
     mutationFn: (params) =>
-      api.aptitude.submit(questionId, params.answer, params.time_taken),
+      (api.aptitude as any).submitAnswer(questionId, params.answer, params.time_taken),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["aptitude"] });
     },
@@ -58,7 +58,7 @@ export function useAptitudeComplete(testId: string) {
   const queryClient = useQueryClient();
 
   return useMutation<AptitudeTestResult, Error, { test_id: string }>({
-    mutationFn: ({ test_id }) => api.aptitude.complete(test_id),
+    mutationFn: ({ test_id }) => (api.aptitude as any).completeTest(test_id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["aptitude"] });
     },

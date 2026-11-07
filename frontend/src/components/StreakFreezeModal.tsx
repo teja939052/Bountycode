@@ -42,7 +42,7 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
     setMessage(null);
     setError(null);
     try {
-      const res = await api.gamification.buyStreakFreeze();
+      const res = await (api.gamification as any).buyStreakFreeze();
       if (res?.success) {
         setMessage(`❄️ Freeze added! You now have ${(status?.streak_freezes || 0) + 1}.`);
         setStatus((prev) => ({ ...prev, streak_freezes: (prev?.streak_freezes || 0) + 1 }));

@@ -8,7 +8,7 @@ export const hrApi = {
     return request(`/api/v1/hr/question/${encodeURIComponent(questionId)}`);
   },
 
-  getRandom(params = {}) {
+  getRandom(params: { category?: string; difficulty?: string; company?: string } = {}) {
     const qs = new URLSearchParams();
     if (params.category) qs.set("category", params.category);
     if (params.difficulty) qs.set("difficulty", params.difficulty);
