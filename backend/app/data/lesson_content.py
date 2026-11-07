@@ -3131,6 +3131,24 @@ def generate_template_content(
 
     config = lang_configs.get(language_id, lang_configs["c"])
     lang_label = language_id.upper() if language_id != "cpp" else "C++"
+    if language_id == "c":
+        from app.data.lesson_content_c_core import get_c_core_lesson
+        authored_core = get_c_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
+    if language_id == "cpp":
+        from app.data.lesson_content_cpp_core import get_cpp_core_lesson
+        authored_core = get_cpp_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
+    if language_id == "java":
+        from app.data.lesson_content_java_core import get_java_core_lesson
+        authored_core = get_java_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
     if language_id == "python":
         lang_label = "Python"
     elif language_id == "java":
@@ -3441,6 +3459,12 @@ def get_lesson_content(
         return HAND_CRAFTED_JAVA_LESSONS[lesson_id]
     if lesson_id in HAND_CRAFTED_PYTHON_LESSONS:
         return HAND_CRAFTED_PYTHON_LESSONS[lesson_id]
+
+    if language_id == "python":
+        from app.data.lesson_content_python_core import get_python_core_lesson
+        authored_core = get_python_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
 
     if language_id in {"c", "cpp", "java", "python"}:
         return generate_template_content(language_id, lesson_title, lesson_type, lesson_id)

@@ -51,3 +51,71 @@ def test_composer_does_not_exhaust_one_skill_when_other_skills_are_available():
 
     assert len(result["questions"]) == 4
     assert len(result["skill_distribution"]) >= 2
+
+
+
+def test_company_program_aliases_match_question_company_tags():
+    question = _question("tcs-nqt", "sql", companies=["TCS NQT"])
+    result = compose_quiz(
+        [question],
+        num_questions=1,
+        seed="tcs-alias",
+        company="TCS",
+    )
+
+    assert result["selection_evidence"][0]["company_match"] is True
+
+
+def test_due_question_id_is_not_required_when_due_skill_matches():
+    questions = [
+        _question("sql-q1", "sql"),
+        _question("arrays-q1", "arrays"),
+    ]
+    result = compose_quiz(
+        questions,
+        num_questions=1,
+        seed="due-sql",
+        evidence={"due_skills": ["sql-q1", "sql"]},
+    )
+
+    assert result["questions"][0]["id"] == "sql-q1"
+    assert result["selection_evidence"][0]["due_review"] is True
+
+
+
+def test_question_difficulty_adapts_to_each_skill_score():
+    questions = [
+        _question("arrays-easy", "arrays", difficulty="easy"),
+        _question("sql-hard", "sql", difficulty="hard"),
+    ]
+    result = compose_quiz(
+        questions,
+        num_questions=2,
+        seed="skill-difficulty",
+        evidence={"skill_scores": {"arrays": 0.2, "sql": 0.9}},
+    )
+
+    by_id = {item["question_id"]: item for item in result["selection_evidence"]}
+    assert by_id["arrays-easy"]["recommended_difficulty"] == "easy"
+    assert by_id["arrays-easy"]["difficulty_match"] is True
+    assert by_id["sql-hard"]["recommended_difficulty"] == "hard"
+    assert by_id["sql-hard"]["difficulty_match"] is True
+
+
+def test_explicit_difficulty_overrides_adaptive_skill_difficulty():
+    questions = [
+        _question("arrays-easy", "arrays", difficulty="easy"),
+        _question("arrays-medium", "arrays", difficulty="medium"),
+    ]
+    result = compose_quiz(
+        questions,
+        num_questions=2,
+        seed="explicit-difficulty",
+        evidence={"skill_scores": {"arrays": 0.1}},
+        difficulty="medium",
+    )
+
+    assert all(
+        item["recommended_difficulty"] == "medium"
+        for item in result["selection_evidence"]
+    )

@@ -9,6 +9,7 @@ from app.data.study_materials import (
     get_article,
     get_related_articles,
     search_articles,
+    get_company_learning_path,
 )
 
 router = APIRouter(prefix="/api/v1/study", tags=["study"])
@@ -44,6 +45,18 @@ async def related_articles(
     """Suggest related study articles for a lesson (connect-the-dots)."""
     results = get_related_articles(language_id=language, query=q, limit=limit)
     return {"articles": results, "total": len(results)}
+
+
+@router.get("/company-path/{company}")
+async def company_study_path(
+    company: str,
+    user=Depends(get_current_user),
+):
+    """Return a company-aware, evidence-adjustable study sequence."""
+    path = get_company_learning_path(company)
+    if not path:
+        raise HTTPException(status_code=404, detail="Company study path not found")
+    return {"path": path}
 
 
 @router.get("/articles/{article_id}")

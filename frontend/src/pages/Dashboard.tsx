@@ -106,6 +106,19 @@ export default function Dashboard() {
     [skills],
   );
 
+  const assessedDomains = Number(
+    skillsPayload.assessed_domains ?? skillsPayload.assessment?.assessed_domains ?? 0,
+  );
+  const domainCoverage = Math.max(
+    0,
+    Math.min(
+      100,
+      Number(skillsPayload.domain_coverage_pct ?? skillsPayload.assessment?.domain_coverage_pct ?? 0),
+    ),
+  );
+  const gradedAttempts = Number(
+    skillsPayload.total_attempts ?? skillsPayload.assessment?.total_attempts ?? 0,
+  );
   const readiness = readinessScore?.score ?? plan.overall_score ?? skillsPayload.overall_score ?? null;
   const streak = streakStatus?.current_streak ?? gamification?.streak ?? plan.streak ?? storeUser?.streak ?? 0;
   const level = gamification?.level ?? plan.level ?? storeUser?.level ?? 1;
@@ -268,6 +281,32 @@ export default function Dashboard() {
               <div className="flex items-center gap-2 mb-4">
                 <BarChart3 size={18} className="text-rose-500" />
                 <h3 className="font-bold">Skills that need attention</h3>
+              </div>
+              <div className="mb-4 rounded-xl border border-slate-100 bg-slate-50 p-3.5">
+                <div className="flex items-center justify-between gap-3 text-xs">
+                  <span className="font-semibold text-slate-700">Assessment coverage</span>
+                  <span className="font-bold tabular-nums text-slate-900">
+                    {assessedDomains} skill areas · {Math.round(domainCoverage)}%
+                  </span>
+                </div>
+                <div
+                  className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"
+                  role="progressbar"
+                  aria-label="Assessment coverage"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round(domainCoverage)}
+                >
+                  <div
+                    className="h-full rounded-full bg-indigo-600 transition-all"
+                    style={{ width: `${domainCoverage}%` }}
+                  />
+                </div>
+                <p className="mt-2 text-xs text-slate-500">
+                  {gradedAttempts > 0
+                    ? `${gradedAttempts} server-graded outcomes contribute to your skill evidence. Coverage shows how broadly your skills have been assessed.`
+                    : "Complete a baseline assessment to start building reliable skill evidence. XP and lesson completion do not count as mastery."}
+                </p>
               </div>
               {weakSkills.length === 0 ? (
                 <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">

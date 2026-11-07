@@ -110,13 +110,21 @@ def _find_exercises_for_skills(skills: List[str]) -> List[str]:
 
 
 def _find_quizzes_for_skills(skills: List[str]) -> List[str]:
-    """Find quizzes that test the given skills."""
+    """Find quizzes that actually test the requested skills."""
     from app.content.role_content import ALL_QUIZZES
+
+    targets = {str(skill).strip().lower() for skill in skills if str(skill).strip()}
     quiz_ids = []
     for role_quizzes in ALL_QUIZZES.values():
         for quiz in role_quizzes:
-            quiz_ids.append(quiz.id)
-    return quiz_ids[:3]
+            quiz_skills = {
+                str(skill).strip().lower()
+                for skill in (getattr(quiz, "skills_tested", []) or [])
+                if str(skill).strip()
+            }
+            if targets.intersection(quiz_skills):
+                quiz_ids.append(quiz.id)
+    return list(dict.fromkeys(quiz_ids))[:3]
 
 
 async def get_active_repair_missions(user_id: str) -> List[RepairMission]:
@@ -205,11 +213,19 @@ async def create_repair_mission_from_misconception(
         if existing:
             return None
 
+        target_skills = [
+            str(interactive_drill.get("skill_id") or "").strip(),
+            str(misconception_tag or "").strip(),
+        ]
+        target_skills = list(dict.fromkeys(skill for skill in target_skills if skill))
         mission = RepairMission(
             id=f"repair:{user_id}:{misconception_tag}:{int(datetime.now(timezone.utc).timestamp())}",
             user_id=user_id,
             title=repair_title,
-            weaknesses=[misconception_tag],
+            weaknesses=[str(interactive_drill.get("skill_id") or misconception_tag)],
+            recommended_lessons=_find_lessons_for_skills(target_skills),
+            recommended_exercises=_find_exercises_for_skills(target_skills),
+            recommended_quizzes=_find_quizzes_for_skills(target_skills),
             misconception_tag=misconception_tag,
             remediation_steps=remediation_steps,
             interactive_drill=interactive_drill,
