@@ -51,3 +51,32 @@ def test_composer_does_not_exhaust_one_skill_when_other_skills_are_available():
 
     assert len(result["questions"]) == 4
     assert len(result["skill_distribution"]) >= 2
+
+
+
+def test_company_program_aliases_match_question_company_tags():
+    question = _question("tcs-nqt", "sql", companies=["TCS NQT"])
+    result = compose_quiz(
+        [question],
+        num_questions=1,
+        seed="tcs-alias",
+        company="TCS",
+    )
+
+    assert result["selection_evidence"][0]["company_match"] is True
+
+
+def test_due_question_id_is_not_required_when_due_skill_matches():
+    questions = [
+        _question("sql-q1", "sql"),
+        _question("arrays-q1", "arrays"),
+    ]
+    result = compose_quiz(
+        questions,
+        num_questions=1,
+        seed="due-sql",
+        evidence={"due_skills": ["sql-q1", "sql"]},
+    )
+
+    assert result["questions"][0]["id"] == "sql-q1"
+    assert result["selection_evidence"][0]["due_review"] is True
