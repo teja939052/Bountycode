@@ -234,6 +234,22 @@ _PYTHON_CORE: Dict[str, Dict[str, Any]] = {
             ("What happens with values[2:100] when the list is shorter than 100 elements?", ["It always raises IndexError", "The slice ends at the available boundary", "It pads the list", "It deletes elements"], 1, "Slicing clips out-of-range boundaries rather than raising the indexing error used by direct access."),
         ],
     },
+    "String Slicing": {
+        "concept": "string slicing",
+        "purpose": "extract parts of text using character positions",
+        "how": "Strings support the same start:stop:step slicing syntax as lists. The start position is included and stop is excluded. Negative indexes count from the end, and a negative step can reverse the characters. Because strings are immutable, slicing returns a new string.",
+        "why": "String slicing is useful for extracting prefixes, suffixes, file extensions, identifiers and fixed-width fields. It is common in coding exercises involving palindromes, parsing and text transformations.",
+        "pitfall": "The stop index is exclusive. Slicing beyond the end is safe and returns the available characters, but direct indexing beyond the end raises IndexError. Remember that slicing does not alter the original string.",
+        "code": "code = 'BOUNTYCODE'\nprint(code[:6])\nprint(code[-4:])\nprint(code[::2])\nprint(code[::-1])",
+        "output": "BOUNTY\nCODE\nBUTC D\nEDOCYTNUOB",
+        "exercise": "Read a word and print its first three characters, last two characters, and reversed form. Handle words shorter than three characters without crashing.",
+        "expected": "For Python, the outputs are Pyt, on and nohtyP; short words return the available slice without an indexing error.",
+        "quiz": [
+            ("What does text[:3] select?", ["Characters at indexes 0, 1 and 2", "Indexes 1, 2 and 3", "The final three characters", "The entire string"], 0, "The start defaults to zero and the stop is exclusive, so indexes zero through two are selected."),
+            ("What does text[::-1] return?", ["The original text", "The reversed text", "The first character", "An empty string"], 1, "A step of negative one traverses the string from the last character to the first."),
+            ("Does slicing change the original string?", ["Yes, strings are mutable", "No, strings are immutable and slicing returns a new string", "Only for uppercase text", "Only when the step is one"], 1, "Python strings are immutable, so slicing creates a new string value rather than modifying the original."),
+        ],
+    },
     "dict Basics": {
         "concept": "Python dictionaries",
         "purpose": "map unique keys to associated values for fast lookup",
@@ -400,10 +416,12 @@ _PYTHON_CORE: Dict[str, Dict[str, Any]] = {
 def get_python_core_lesson(lesson_title: str) -> Dict[str, Any] | None:
     """Return authored content for selected high-frequency Python concepts."""
     title = str(lesson_title or "").strip().lower()
-    profile = next(
-        (value for key, value in _PYTHON_CORE.items() if key.lower() in title),
-        None,
-    )
+    matching_profiles = [
+        (len(key), value)
+        for key, value in _PYTHON_CORE.items()
+        if key.lower() in title
+    ]
+    profile = max(matching_profiles, key=lambda item: item[0])[1] if matching_profiles else None
     if profile is None:
         return None
 
