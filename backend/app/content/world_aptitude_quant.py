@@ -17,7 +17,7 @@ from app.content.lesson_definitions import (
 
 
 # ───────────────────────────────────────────────────────────────────
-# TOWN 1 — PERCENTAGES (highest frequency in every service-company test)
+# TOWN 1 — PERCENTAGES
 # ───────────────────────────────────────────────────────────────────
 
 PERCENTAGES_TOWN = TownDefinition(
@@ -38,7 +38,6 @@ PERCENTAGES_TOWN = TownDefinition(
         "percentage_comparison",
     ],
     lessons=[
-        # ─── Lesson 1: What % really means ───
         LessonDefinition(
             id="pct-1",
             title="What Percentage Means",
@@ -59,8 +58,8 @@ PERCENTAGES_TOWN = TownDefinition(
                 LessonStep(
                     step_type="discover",
                     title="The Price Board",
-                    content="A shirt costs ₹1000. The board says '20% off'. What does 20% actually mean?",
-                    visual="1000 ÷ 100 = 10  →  each 1% is ₹10  →  20% = 20 × 10 = ₹200 off",
+                    content="A shirt costs \u20b91000. The board says '20% off'. What does 20% actually mean?",
+                    visual="1000 \u00f7 100 = 10  \u2192  each 1% is \u20b910  \u2192  20% = 20 \u00d7 10 = \u20b9200 off",
                     interaction="select-value",
                     prompt="20% of 1000 is equal to:",
                     values=["20", "200", "0.20", "1000/20"],
@@ -85,7 +84,7 @@ PERCENTAGES_TOWN = TownDefinition(
                         {"id": "c", "text": "15%", "correct": True},
                         {"id": "d", "text": "150%", "correct": False},
                     ],
-                    explanation="Multiply the decimal by 100 to convert to percentage: 0.15 × 100 = 15%.",
+                    explanation="Multiply the decimal by 100 to convert to percentage: 0.15 \u00d7 100 = 15%.",
                 ),
                 LessonStep(
                     step_type="build",
@@ -93,23 +92,21 @@ PERCENTAGES_TOWN = TownDefinition(
                     content="Write a function that returns x percent of n.",
                     function_name="percent_of",
                     signature="def percent_of(x: float, n: float) -> float:",
-                    description="Return x% of n. Example: percent_of(20, 150) → 30.0",
+                    description="Return x% of n. Example: percent_of(20, 150) \u2192 30.0",
                     test_cases=[
                         {"input": [20, 150], "expected": 30.0},
                         {"input": [25, 200], "expected": 50.0},
                         {"input": [12.5, 80], "expected": 10.0},
                     ],
                     hidden_tests=3,
-                    repair_steps=[
-                        {"trigger": "wrong_answer", "hint": "x% of n = (x / 100) * n. Do not forget the division by 100."}
-                    ],
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "x% of n = (x / 100) * n. Do not forget the division by 100."}],
                     passing_score=70,
                     max_attempts=3,
                 ),
                 LessonStep(
                     step_type="break",
                     title="The classic trap",
-                    content="A student calculates 25% of 80 as 25 × 80 = 2000.",
+                    content="A student calculates 25% of 80 as 25 \u00d7 80 = 2000.",
                     question="What did the student forget?",
                     options=[
                         {"id": "a", "text": "They forgot to divide by 100", "correct": True},
@@ -183,15 +180,13 @@ PERCENTAGES_TOWN = TownDefinition(
             ],
             unlocks="pct-2",
         ),
-
-        # ─── Lesson 2: Percentage increase & decrease ───
         LessonDefinition(
             id="pct-2",
             title="Increase and Decrease",
             icon="2",
             order=2,
             concept="percentage_change",
-            mental_model="The original value is the base. Increase multiplies by (1 + x/100). Decrease multiplies by (1 − x/100).",
+            mental_model="The original value is the base. Increase multiplies by (1 + x/100). Decrease multiplies by (1 \u2212 x/100).",
             canonical_skill="aptitude.percentages",
             location="Market Square — Discount Counter",
             npc="Ravi the Shopkeeper",
@@ -204,8 +199,8 @@ PERCENTAGES_TOWN = TownDefinition(
                 LessonStep(
                     step_type="discover",
                     title="Salary hike",
-                    content="Salary is ₹50,000. It increases by 10%. What is the new salary?",
-                    visual="50,000 × (1 + 10/100) = 50,000 × 1.10 = 55,000",
+                    content="Salary is \u20b950,000. It increases by 10%. What is the new salary?",
+                    visual="50,000 \u00d7 (1 + 10/100) = 50,000 \u00d7 1.10 = 55,000",
                     interaction="select-value",
                     prompt="The multiplier for a 10% increase is:",
                     values=["1.10", "0.10", "10", "1.01"],
@@ -214,15 +209,15 @@ PERCENTAGES_TOWN = TownDefinition(
                 LessonStep(
                     step_type="predict",
                     title="Price drop",
-                    content="A phone costs ₹20,000. It falls by 15%. New price?",
+                    content="A phone costs \u20b920,000. It falls by 15%. New price?",
                     question="New price after 15% decrease:",
                     options=[
-                        {"id": "a", "text": "₹17,000", "correct": True},
-                        {"id": "b", "text": "₹18,000", "correct": False},
-                        {"id": "c", "text": "₹15,000", "correct": False},
-                        {"id": "d", "text": "₹23,000", "correct": False},
+                        {"id": "a", "text": "\u20b917,000", "correct": True},
+                        {"id": "b", "text": "\u20b918,000", "correct": False},
+                        {"id": "c", "text": "\u20b915,000", "correct": False},
+                        {"id": "d", "text": "\u20b923,000", "correct": False},
                     ],
-                    explanation="20,000 × 0.85 = 17,000. Multiplier for 15% decrease is 1 − 0.15 = 0.85.",
+                    explanation="20,000 \u00d7 0.85 = 17,000. Multiplier for 15% decrease is 1 \u2212 0.15 = 0.85.",
                 ),
                 LessonStep(
                     step_type="build",
@@ -236,9 +231,7 @@ PERCENTAGES_TOWN = TownDefinition(
                         {"input": [50, 10, True], "expected": 55.0},
                     ],
                     hidden_tests=3,
-                    repair_steps=[
-                        {"trigger": "wrong_answer", "hint": "increase → original * (1 + percent/100); decrease → original * (1 - percent/100)"}
-                    ],
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "increase \u2192 original * (1 + percent/100); decrease \u2192 original * (1 - percent/100)"}],
                     passing_score=70,
                     max_attempts=3,
                 ),
@@ -252,7 +245,7 @@ PERCENTAGES_TOWN = TownDefinition(
                         {"id": "b", "text": "They should have used 100 as base", "correct": False},
                         {"id": "c", "text": "20% is actually correct", "correct": False},
                     ],
-                    explanation="Percentage change is always measured against the original value: (100−80)/80 × 100 = 25%.",
+                    explanation="Percentage change is always measured against the original value: (100\u221280)/80 \u00d7 100 = 25%.",
                 ),
                 LessonStep(
                     step_type="retrieve",
@@ -303,8 +296,6 @@ PERCENTAGES_TOWN = TownDefinition(
             ],
             unlocks="pct-3",
         ),
-
-        # ─── Lesson 3: Successive percentage change ───
         LessonDefinition(
             id="pct-3",
             title="Successive Changes",
@@ -325,11 +316,11 @@ PERCENTAGES_TOWN = TownDefinition(
                     step_type="discover",
                     title="Double discount",
                     content="Price 100. First 20% off, then another 10% off. Final price?",
-                    visual="100 × 0.80 = 80  →  80 × 0.90 = 72  (net 28% off, not 30%)",
+                    visual="100 \u00d7 0.80 = 80  \u2192  80 \u00d7 0.90 = 72  (net 28% off, not 30%)",
                     interaction="select-value",
-                    prompt="Net effect of +20% then −10% on 100 is:",
-                    values=["+10%", "−8%", "−10%", "no change"],
-                    answer="−8%",
+                    prompt="Net effect of +20% then \u221210% on 100 is:",
+                    values=["+10%", "\u22128%", "\u221210%", "no change"],
+                    answer="\u22128%",
                 ),
                 LessonStep(
                     step_type="predict",
@@ -342,7 +333,7 @@ PERCENTAGES_TOWN = TownDefinition(
                         {"id": "c", "text": "1% increase", "correct": False},
                         {"id": "d", "text": "10% decrease", "correct": False},
                     ],
-                    explanation="100 × 1.10 × 0.90 = 99. Net = 1% decrease. The two 10%s do not cancel.",
+                    explanation="100 \u00d7 1.10 \u00d7 0.90 = 99. Net = 1% decrease. The two 10%s do not cancel.",
                 ),
                 LessonStep(
                     step_type="build",
@@ -356,9 +347,7 @@ PERCENTAGES_TOWN = TownDefinition(
                         {"input": [100, [-20, -10]], "expected": 72.0},
                     ],
                     hidden_tests=3,
-                    repair_steps=[
-                        {"trigger": "wrong_answer", "hint": "For each change c: original = original * (1 + c/100). Do not add the percentages."}
-                    ],
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "For each change c: original = original * (1 + c/100). Do not add the percentages."}],
                     passing_score=70,
                     max_attempts=3,
                 ),
@@ -372,7 +361,7 @@ PERCENTAGES_TOWN = TownDefinition(
                         {"id": "b", "text": "72", "correct": True},
                         {"id": "c", "text": "80", "correct": False},
                     ],
-                    explanation="100 × 0.8 × 0.9 = 72. Adding percentages ignores that the second discount acts on a smaller base.",
+                    explanation="100 \u00d7 0.8 \u00d7 0.9 = 72. Adding percentages ignores that the second discount acts on a smaller base.",
                 ),
                 LessonStep(
                     step_type="retrieve",
@@ -384,13 +373,11 @@ PERCENTAGES_TOWN = TownDefinition(
                 LessonStep(
                     step_type="transfer",
                     title="Marked price story",
-                    content="Cost price 100. Marked 50% above cost. Then two successive discounts of 10% and 10%. Final selling price and profit %?",
+                    content="Cost price 100. Marked 50% above cost. Then two successive discounts of 10% and 10%. Final selling price?",
                     function_name="final_sp",
                     signature="def final_sp(cp: float, markup: float, d1: float, d2: float) -> float:",
                     description="Return the final selling price after markup and two discounts.",
-                    test_cases=[
-                        {"input": [100, 50, 10, 10], "expected": 121.5},
-                    ],
+                    test_cases=[{"input": [100, 50, 10, 10], "expected": 121.5}],
                     hidden_tests=2,
                     repair_steps=[],
                     passing_score=70,
@@ -421,8 +408,6 @@ PERCENTAGES_TOWN = TownDefinition(
             ],
             unlocks="pct-4",
         ),
-
-        # ─── Lesson 4: Reverse percentage ───
         LessonDefinition(
             id="pct-4",
             title="Reverse Percentage",
@@ -443,7 +428,7 @@ PERCENTAGES_TOWN = TownDefinition(
                     step_type="discover",
                     title="After the increase",
                     content="After a 20% increase the price is 120. What was the original?",
-                    visual="Original × 1.20 = 120  →  Original = 120 / 1.20 = 100",
+                    visual="Original \u00d7 1.20 = 120  \u2192  Original = 120 / 1.20 = 100",
                     interaction="select-value",
                     prompt="Original price is:",
                     values=["100", "96", "140", "110"],
@@ -474,16 +459,14 @@ PERCENTAGES_TOWN = TownDefinition(
                         {"input": [90, 10, False], "expected": 100.0},
                     ],
                     hidden_tests=3,
-                    repair_steps=[
-                        {"trigger": "wrong_answer", "hint": "If it was an increase: final / (1 + percent/100). If decrease: final / (1 - percent/100)."}
-                    ],
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "If it was an increase: final / (1 + percent/100). If decrease: final / (1 - percent/100)."}],
                     passing_score=70,
                     max_attempts=3,
                 ),
                 LessonStep(
                     step_type="break",
                     title="Subtraction trap",
-                    content="Student does 120 − 20 = 100 and gets lucky on one question, then fails the next.",
+                    content="Student does 120 \u2212 20 = 100 and gets lucky on one question, then fails the next.",
                     question="Why is subtracting the percentage dangerous?",
                     options=[
                         {"id": "a", "text": "It only works when the original is 100; otherwise it is wrong", "correct": True},
@@ -496,8 +479,8 @@ PERCENTAGES_TOWN = TownDefinition(
                     step_type="retrieve",
                     title="One-line rule",
                     content="How do you recover the original after a percentage change?",
-                    prompt="Original = Final ÷ ...",
-                    answer="the multiplier that was applied (1 ± percent/100)",
+                    prompt="Original = Final \u00f7 ...",
+                    answer="the multiplier that was applied (1 \u00b1 percent/100)",
                 ),
                 LessonStep(
                     step_type="transfer",
@@ -540,8 +523,6 @@ PERCENTAGES_TOWN = TownDefinition(
             ],
             unlocks="pct-boss",
         ),
-
-        # ─── Boss: mixed percentages ───
         LessonDefinition(
             id="pct-boss",
             title="Percentages Boss",
@@ -590,20 +571,430 @@ PERCENTAGES_TOWN = TownDefinition(
 
 
 # ───────────────────────────────────────────────────────────────────
+# TOWN 2 — PROFIT & LOSS
+# ───────────────────────────────────────────────────────────────────
+
+PROFIT_LOSS_TOWN = TownDefinition(
+    id="profit_loss",
+    name="Profit & Loss",
+    icon="\u20b9",
+    description="Every shopkeeper lives by CP, SP and profit%. So does every service-company test.",
+    order=2,
+    mental_model="Profit and loss are always measured against Cost Price. Discount is measured against Marked Price.",
+    canonical_skills=["aptitude.profit_loss"],
+    competencies=[
+        "cost_selling_price",
+        "profit_loss_percent",
+        "discount",
+        "marked_price",
+        "successive_discount",
+        "false_weight",
+    ],
+    lessons=[
+        LessonDefinition(
+            id="pl-1",
+            title="CP, SP and Profit %",
+            icon="1",
+            order=1,
+            concept="cost_selling_price",
+            mental_model="Cost Price (CP) is what you paid. Selling Price (SP) is what you received. Profit % is always (Profit / CP) \u00d7 100.",
+            canonical_skill="aptitude.profit_loss",
+            location="Market Square — Ledger Desk",
+            npc="Meena the Trader",
+            npc_line="Students keep dividing by SP instead of CP. That is the #1 way to lose marks in this topic.",
+            tutor_discover="Profit and loss percentage is always calculated on the cost price, never on the selling price.",
+            why_this_matters="This is the foundation of every profit-loss question in TCS, Infosys and Wipro. Get the base wrong and every subsequent step fails.",
+            engineering_context="In commerce systems, margin is (SP \u2212 CP) / CP. The same definition is used in pricing engines and financial reports.",
+            builds_toward="NQT Numerical Ability — Profit & Loss",
+            steps=[
+                LessonStep(
+                    step_type="discover",
+                    title="Simple profit",
+                    content="Bought for \u20b9800, sold for \u20b91000. What is the profit percentage?",
+                    visual="Profit = 1000 \u2212 800 = 200.  Profit % = (200 / 800) \u00d7 100 = 25%",
+                    interaction="select-value",
+                    prompt="Profit % is:",
+                    values=["20%", "25%", "30%", "12.5%"],
+                    answer="25%",
+                ),
+                LessonStep(
+                    step_type="predict",
+                    title="Loss case",
+                    content="Bought for \u20b9500, sold for \u20b9400. Loss percentage?",
+                    question="Loss %:",
+                    options=[
+                        {"id": "a", "text": "20%", "correct": True},
+                        {"id": "b", "text": "25%", "correct": False},
+                        {"id": "c", "text": "10%", "correct": False},
+                        {"id": "d", "text": "80%", "correct": False},
+                    ],
+                    explanation="Loss = 100. Loss % = (100 / 500) \u00d7 100 = 20%. Always divide by CP.",
+                ),
+                LessonStep(
+                    step_type="build",
+                    title="Profit or loss percent",
+                    function_name="profit_loss_percent",
+                    signature="def profit_loss_percent(cp: float, sp: float) -> float:",
+                    description="Return profit % if SP > CP, or negative loss % if SP < CP. Always relative to CP.",
+                    test_cases=[
+                        {"input": [800, 1000], "expected": 25.0},
+                        {"input": [500, 400], "expected": -20.0},
+                        {"input": [200, 200], "expected": 0.0},
+                    ],
+                    hidden_tests=3,
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "(SP - CP) / CP * 100. Positive = profit, negative = loss."}],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="break",
+                    title="Wrong base trap",
+                    content="Student calculates profit % as (200 / 1000) \u00d7 100 = 20% instead of 25%.",
+                    question="What did they use as the base?",
+                    options=[
+                        {"id": "a", "text": "Selling price instead of cost price", "correct": True},
+                        {"id": "b", "text": "Cost price correctly", "correct": False},
+                        {"id": "c", "text": "They added instead of dividing", "correct": False},
+                    ],
+                    explanation="Profit % must be on CP. Using SP gives a smaller (wrong) percentage.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Write the two formulas",
+                    content="Without looking: Profit % = ?   Loss % = ?",
+                    prompt="Profit % = ___   Loss % = ___",
+                    answer="(SP-CP)/CP \u00d7 100    and    (CP-SP)/CP \u00d7 100",
+                ),
+                LessonStep(
+                    step_type="transfer",
+                    title="Find SP from profit %",
+                    content="CP = 1200. Profit = 15%. What is SP?",
+                    function_name="selling_price",
+                    signature="def selling_price(cp: float, profit_percent: float) -> float:",
+                    description="Return SP given CP and desired profit percentage.",
+                    test_cases=[
+                        {"input": [1200, 15], "expected": 1380.0},
+                        {"input": [500, 20], "expected": 600.0},
+                    ],
+                    hidden_tests=2,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="mastery",
+                    title="CP / SP mastery",
+                    function_name="profit_loss_percent",
+                    signature="def profit_loss_percent(cp: float, sp: float) -> float:",
+                    description="Correct profit or loss percentage relative to CP.",
+                    test_cases=[
+                        {"input": [400, 500], "expected": 25.0},
+                        {"input": [250, 200], "expected": -20.0},
+                        {"input": [1000, 1150], "expected": 15.0},
+                    ],
+                    hidden_tests=4,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Calculate profit % on CP",
+                "Calculate loss % on CP",
+                "Never use SP as the base",
+                "Find SP from CP and profit %",
+            ],
+            unlocks="pl-2",
+        ),
+        LessonDefinition(
+            id="pl-2",
+            title="Discount and Marked Price",
+            icon="2",
+            order=2,
+            concept="discount_marked_price",
+            mental_model="Discount is always calculated on Marked Price (MP). SP = MP \u00d7 (1 \u2212 discount/100).",
+            canonical_skill="aptitude.profit_loss",
+            location="Market Square — Discount Board",
+            npc="Meena the Trader",
+            npc_line="Customers only look at the discount number. They forget that the discount is taken from the marked price, not the cost.",
+            tutor_discover="Marked Price is the price written on the tag. Discount reduces the marked price to the selling price.",
+            why_this_matters="Almost every 'discount' question in service-company papers uses this relationship. Confusing MP with CP is a common error.",
+            engineering_context="E-commerce pricing engines store list price (MP) and apply promotional discounts to reach the final payable amount (SP).",
+            builds_toward="NQT Numerical — Discount questions",
+            steps=[
+                LessonStep(
+                    step_type="discover",
+                    title="Simple discount",
+                    content="Marked price \u20b9800. Discount 20%. What is the selling price?",
+                    visual="SP = 800 \u00d7 0.80 = 640",
+                    interaction="select-value",
+                    prompt="Selling price after 20% discount:",
+                    values=["640", "160", "720", "600"],
+                    answer="640",
+                ),
+                LessonStep(
+                    step_type="predict",
+                    title="Find the discount %",
+                    content="MP = 500, SP = 400. What is the discount percentage?",
+                    question="Discount %:",
+                    options=[
+                        {"id": "a", "text": "20%", "correct": True},
+                        {"id": "b", "text": "25%", "correct": False},
+                        {"id": "c", "text": "10%", "correct": False},
+                        {"id": "d", "text": "80%", "correct": False},
+                    ],
+                    explanation="Discount = 100. Discount % = (100 / 500) \u00d7 100 = 20%. Base is always MP.",
+                ),
+                LessonStep(
+                    step_type="build",
+                    title="SP after discount",
+                    function_name="sp_after_discount",
+                    signature="def sp_after_discount(mp: float, discount_percent: float) -> float:",
+                    description="Return selling price after applying the given discount on marked price.",
+                    test_cases=[
+                        {"input": [800, 20], "expected": 640.0},
+                        {"input": [500, 10], "expected": 450.0},
+                        {"input": [1000, 25], "expected": 750.0},
+                    ],
+                    hidden_tests=3,
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "SP = MP * (1 - discount_percent/100)"}],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="break",
+                    title="Confusing MP and CP",
+                    content="Student uses cost price as the base for discount percentage.",
+                    question="Why is that wrong?",
+                    options=[
+                        {"id": "a", "text": "Discount is defined on the marked price, not the cost price", "correct": True},
+                        {"id": "b", "text": "Discount and profit use the same base", "correct": False},
+                        {"id": "c", "text": "It does not matter which base is used", "correct": False},
+                    ],
+                    explanation="Discount % = (Discount / MP) \u00d7 100. Profit % = (Profit / CP) \u00d7 100. Different bases.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Two different bases",
+                    content="Profit % is calculated on ___. Discount % is calculated on ___.",
+                    prompt="Profit on ___   Discount on ___",
+                    answer="Cost Price    Marked Price",
+                ),
+                LessonStep(
+                    step_type="transfer",
+                    title="Find MP from SP and discount",
+                    content="SP = 720 after 10% discount. What was the marked price?",
+                    function_name="marked_price",
+                    signature="def marked_price(sp: float, discount_percent: float) -> float:",
+                    description="Recover marked price given selling price and discount percentage.",
+                    test_cases=[
+                        {"input": [720, 10], "expected": 800.0},
+                        {"input": [450, 10], "expected": 500.0},
+                    ],
+                    hidden_tests=2,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="mastery",
+                    title="Discount mastery",
+                    function_name="sp_after_discount",
+                    signature="def sp_after_discount(mp: float, discount_percent: float) -> float:",
+                    description="Correct selling price after discount on marked price.",
+                    test_cases=[
+                        {"input": [1200, 15], "expected": 1020.0},
+                        {"input": [900, 20], "expected": 720.0},
+                        {"input": [250, 8], "expected": 230.0},
+                    ],
+                    hidden_tests=4,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Apply discount on marked price",
+                "Find discount % from MP and SP",
+                "Recover MP from SP and discount",
+                "Never confuse CP and MP bases",
+            ],
+            unlocks="pl-3",
+        ),
+        LessonDefinition(
+            id="pl-3",
+            title="Markup + Discount together",
+            icon="3",
+            order=3,
+            concept="markup_and_discount",
+            mental_model="Shopkeeper marks up from CP to MP, then gives discount from MP to SP. Profit is still measured from CP to SP.",
+            canonical_skill="aptitude.profit_loss",
+            location="Market Square — Full Transaction",
+            npc="Meena the Trader",
+            npc_line="This is the pattern that appears in almost every medium and hard profit-loss question. Master it once and you will recognise it instantly.",
+            tutor_discover="CP \u2192 (markup) \u2192 MP \u2192 (discount) \u2192 SP. Profit % compares SP with CP.",
+            why_this_matters="The classic 'marked x% above cost and then y% discount' question is a staple of TCS and Infosys papers.",
+            engineering_context="Retail pricing pipelines do exactly this: list price is derived from cost with a target margin, then promotions are applied.",
+            builds_toward="NQT medium/hard Profit & Loss",
+            steps=[
+                LessonStep(
+                    step_type="discover",
+                    title="The classic pattern",
+                    content="CP = 100. Marked 50% above cost. Then 20% discount. What is SP and profit %?",
+                    visual="MP = 150.  SP = 150 \u00d7 0.80 = 120.  Profit = 20 \u2192 20%",
+                    interaction="select-value",
+                    prompt="Final profit percentage:",
+                    values=["20%", "30%", "50%", "10%"],
+                    answer="20%",
+                ),
+                LessonStep(
+                    step_type="predict",
+                    title="Still a profit?",
+                    content="CP = 200. Markup 25%. Discount 10%. Is there still a profit?",
+                    question="Profit or loss?",
+                    options=[
+                        {"id": "a", "text": "Profit of 12.5%", "correct": True},
+                        {"id": "b", "text": "Loss of 10%", "correct": False},
+                        {"id": "c", "text": "No profit no loss", "correct": False},
+                        {"id": "d", "text": "Profit of 15%", "correct": False},
+                    ],
+                    explanation="MP = 250. SP = 225. Profit = 25 on CP 200 = 12.5%.",
+                ),
+                LessonStep(
+                    step_type="build",
+                    title="Full calculation",
+                    function_name="final_profit_percent",
+                    signature="def final_profit_percent(cp: float, markup: float, discount: float) -> float:",
+                    description="Return the true profit (or negative loss) percentage after markup and discount.",
+                    test_cases=[
+                        {"input": [100, 50, 20], "expected": 20.0},
+                        {"input": [200, 25, 10], "expected": 12.5},
+                        {"input": [100, 20, 20], "expected": -4.0},
+                    ],
+                    hidden_tests=3,
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "MP = CP*(1+markup/100); SP = MP*(1-discount/100); then (SP-CP)/CP*100"}],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="break",
+                    title="Adding the percentages",
+                    content="Student says: markup 50% minus discount 20% = 30% profit.",
+                    question="Why is that wrong?",
+                    options=[
+                        {"id": "a", "text": "The discount acts on the marked price, not on the cost", "correct": True},
+                        {"id": "b", "text": "You should add them instead", "correct": False},
+                        {"id": "c", "text": "30% is actually correct", "correct": False},
+                    ],
+                    explanation="Discount is applied to MP, which is already higher than CP. Simple subtraction of percentages is never valid.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="One-line pipeline",
+                    content="Write the three steps from CP to final profit %.",
+                    prompt="CP \u2192 ___ \u2192 ___ \u2192 profit %",
+                    answer="MP (after markup) \u2192 SP (after discount) \u2192 (SP-CP)/CP \u00d7 100",
+                ),
+                LessonStep(
+                    step_type="transfer",
+                    title="Find the required markup",
+                    content="A trader wants 20% profit after giving 10% discount. By what % above cost should he mark the goods?",
+                    function_name="required_markup",
+                    signature="def required_markup(desired_profit: float, discount: float) -> float:",
+                    description="Return the markup % needed so that after the given discount the profit equals desired_profit %.",
+                    test_cases=[
+                        {"input": [20, 10], "expected": 33.33333333333333},
+                    ],
+                    hidden_tests=2,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="mastery",
+                    title="Markup + discount mastery",
+                    function_name="final_profit_percent",
+                    signature="def final_profit_percent(cp: float, markup: float, discount: float) -> float:",
+                    description="True profit/loss % after both markup and discount.",
+                    test_cases=[
+                        {"input": [100, 40, 10], "expected": 26.0},
+                        {"input": [500, 30, 20], "expected": 4.0},
+                        {"input": [200, 10, 15], "expected": -6.5},
+                    ],
+                    hidden_tests=4,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Compute SP after markup and discount",
+                "Find true profit % from CP",
+                "Never subtract markup and discount percentages",
+                "Solve for required markup given target profit and discount",
+            ],
+            unlocks="pl-boss",
+        ),
+        LessonDefinition(
+            id="pl-boss",
+            title="Profit & Loss Boss",
+            icon="B",
+            kind="boss",
+            order=4,
+            concept="profit_loss_mastery",
+            mental_model="Combine CP/SP, discount, markup and successive discounts into one realistic problem.",
+            canonical_skill="aptitude.profit_loss",
+            diamonds=120,
+            estimated_minutes=20,
+            why_this_matters="This is the exact shape of the harder profit-loss questions that decide Ninja vs Digital cut-offs.",
+            engineering_context="A complete pricing pipeline: cost \u2192 target margin \u2192 list price \u2192 promotional discounts \u2192 final margin check.",
+            builds_toward="Full NQT Numerical readiness",
+            steps=[
+                LessonStep(
+                    step_type="mastery",
+                    title="Full shopkeeper challenge",
+                    function_name="shopkeeper_result",
+                    signature="def shopkeeper_result(cp: float, markup: float, d1: float, d2: float) -> dict:",
+                    description=(
+                        "CP given. Marked up by markup%. Then successive discounts d1% and d2%. "
+                        "Return dict: marked_price, selling_price, profit_percent."
+                    ),
+                    test_cases=[
+                        {
+                            "input": [100, 50, 10, 10],
+                            "expected": {"marked_price": 150.0, "selling_price": 121.5, "profit_percent": 21.5},
+                        },
+                    ],
+                    hidden_tests=5,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Handle markup + successive discounts",
+                "Report true profit percentage",
+                "Combine all profit-loss skills in one problem",
+            ],
+        ),
+    ],
+)
+
+
+# ───────────────────────────────────────────────────────────────────
 # WORLD DEFINITION
 # ───────────────────────────────────────────────────────────────────
 
 WORLD_APTITUDE_QUANT = WorldDefinition(
     id="aptitude_quant",
     name="Quantitative Aptitude",
-    icon="%
-",
+    icon="%",
     subtitle="Numerical Ability for service-company placements",
     description=(
         "Master the quantitative topics that appear in TCS NQT, Infosys, Wipro, "
         "Accenture and every major service-company test. Starts from absolute zero."
     ),
-    order=20,  # can be reordered when integrated into the main journey
+    order=20,
     theme="aptitude",
-    towns=[PERCENTAGES_TOWN],
+    towns=[PERCENTAGES_TOWN, PROFIT_LOSS_TOWN],
 )
