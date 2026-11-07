@@ -973,9 +973,10 @@ def _load_expansion() -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
     from app.data.study_content_typescript_react import NEW_ARTICLES as TR, INTERACTIVES as TI
     from app.data.study_content_node import NEW_ARTICLES as NN, INTERACTIVES as NI
     from app.data.study_content_sql_c_fullstack import NEW_ARTICLES as SF, INTERACTIVES as SI
+    from app.data.study_content_sql_placement import NEW_ARTICLES as SP
 
     new_articles = []
-    for group in (HC, JN, TR, NN, SF):
+    for group in (HC, JN, TR, NN, SF, SP):
         new_articles.extend(group)
     interactives: dict[str, dict[str, Any]] = {}
     for group in (HI, JI, TI, NI, SI):
