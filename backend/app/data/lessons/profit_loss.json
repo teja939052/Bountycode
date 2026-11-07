@@ -160,7 +160,9 @@
       "hints": [
         "Recall the standard definition of profit percentage.",
         "Check which amount is in the denominator."
-      ]
+      ],
+      "code": "cost_price = 800\nselling_price = 1000\n\nprofit = selling_price - cost_price\n\n# Bug: profit percentage uses selling price as the denominator.\nwrong_percentage = profit / selling_price * 100\nprint(wrong_percentage)  # 20%\n\n# Correct: profit percentage is based on cost price.\ncorrect_percentage = profit / cost_price * 100\nprint(correct_percentage)  # 25%",
+      "language": "python"
     }
   ],
   "assessment": {
