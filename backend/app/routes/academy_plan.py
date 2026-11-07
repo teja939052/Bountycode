@@ -9,19 +9,21 @@ from app.middleware.auth import get_current_user
 from app.services.learning_paths import get_all_company_tracks
 from app.services.adaptive_learning import assess_user_skills
 from app.services.spaced_repetition import deserialize_state, get_due_cards
+from app.services.service_company_sprint import DOMAIN_ENTRY_LESSON, daily_focus_plan
 
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
 _profiles = lambda: get_collection("academy_learner_profiles")
 _diagnostics = lambda: get_collection("academy_diagnostic_sessions")
 _plans = lambda: get_collection("academy_learning_plans")
 
+# Prefer sprint entry lessons so Academy plan and Study Engine stay aligned.
 LESSON_BY_DOMAIN = {
-    # Each recommendation starts at the first teachable lesson in its pathway.
+    **DOMAIN_ENTRY_LESSON,
     "programming_fundamentals": "variables_basics",
     "arrays_hashing": "arrays_basics",
-    "quantitative_aptitude": "number_systems",
+    "quantitative_aptitude": "percentages",
     "logical_reasoning": "number_series",
-    "verbal_ability": "vocabulary_cloze",
+    "verbal_ability": "reading_comprehension",
     "computer_science": "oops_basics",
     "sql": "dbms_basics",
 }
@@ -39,7 +41,8 @@ ROLE_SKILLS = {
     "data_analyst": ["sql", "quantitative_aptitude", "programming_fundamentals"],
     "devops_engineer": ["programming_fundamentals", "computer_science", "logical_reasoning"],
     "support_engineer": ["programming_fundamentals", "logical_reasoning", "verbal_ability"],
-    "undecided": ["programming_fundamentals", "arrays_hashing", "quantitative_aptitude", "logical_reasoning"],
+    # Service-company default spine for campus placement aspirants.
+    "undecided": ["programming_fundamentals", "quantitative_aptitude", "logical_reasoning", "verbal_ability", "arrays_hashing"],
 }
 
 
@@ -66,9 +69,6 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         key=lambda domain: (scores.get(domain, -1), desired.index(domain)),
     )
 
-    # Weak prerequisites must be learned before dependent topics. Keep the
-    # score-based order whenever a prerequisite is already developing (60+).
-    # This is a stable topological pass: unrelated skills retain their ranking.
     ordered: List[str] = []
     remaining = list(prioritized)
     while remaining:
@@ -87,7 +87,6 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
             progressed = True
             break
         if not progressed:
-            # Defensive fallback for an accidental cycle in prerequisite data.
             ordered.extend(remaining)
             break
     prioritized = ordered
@@ -145,49 +144,27 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         if used + task["estimated_minutes"] <= budget or not selected:
             selected.append(task)
             used += task["estimated_minutes"]
+
+    # Sprint overlay: ordered focus tasks for service-company learners.
+    weak_domains = [
+        t["domain"] for t in selected
+        if t.get("skill_level") in {"foundation_needed", "not_assessed", "beginner", "developing"}
+    ]
+    sprint_focus = daily_focus_plan(weak_domains=weak_domains, mock_ready=False)
+
     learning_preference = str(profile.get("learning_preference", "mixed") or "mixed").lower()
     routine_labels = {
-        "mixed": [
-            "Review previous mistakes",
-            "Learn the next concept",
-            "Solve guided and independent problems",
-            "Check understanding and revise",
-        ],
-        "examples_first": [
-            "Recall one previous example",
-            "Study a worked example",
-            "Solve a similar problem independently",
-            "Compare your reasoning and revise",
-        ],
-        "hands_on": [
-            "Warm up with a recall prompt",
-            "Attempt a guided exercise",
-            "Build or debug a small solution",
-            "Review feedback and note the lesson",
-        ],
-        "visual": [
-            "Recall the last concept",
-            "Trace a diagram, state or code path",
-            "Practise with a visual trace",
-            "Summarize the pattern you observed",
-        ],
-        "reading": [
-            "Review notes and revision cards",
-            "Read the concept explanation",
-            "Work through examples and exercises",
-            "Write a short summary from memory",
-        ],
+        "mixed": ["Review previous mistakes", "Learn the next concept", "Solve guided and independent problems", "Check understanding and revise"],
+        "examples_first": ["Recall one previous example", "Study a worked example", "Solve a similar problem independently", "Compare your reasoning and revise"],
+        "hands_on": ["Warm up with a recall prompt", "Attempt a guided exercise", "Build or debug a small solution", "Review feedback and note the lesson"],
+        "visual": ["Recall the last concept", "Trace a diagram, state or code path", "Practise with a visual trace", "Summarize the pattern you observed"],
+        "reading": ["Review notes and revision cards", "Read the concept explanation", "Work through examples and exercises", "Write a short summary from memory"],
     }
     routine = routine_labels.get(learning_preference, routine_labels["mixed"])
     review_minutes = min(10, max(5, budget // 6))
     concept_minutes = max(5, budget // 3)
     practice_minutes = max(5, budget // 3)
-    routine_minutes = [
-        review_minutes,
-        concept_minutes,
-        practice_minutes,
-        max(0, budget - review_minutes - concept_minutes - practice_minutes),
-    ]
+    routine_minutes = [review_minutes, concept_minutes, practice_minutes, max(0, budget - review_minutes - concept_minutes - practice_minutes)]
     learning_strategy = {
         "mixed": "Combine clear explanations, worked examples and independent practice.",
         "examples_first": "Start with a solved example, understand each decision, then solve a similar problem yourself.",
@@ -209,6 +186,7 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "overall_diagnostic_score": (diagnostic or {}).get("overall_score"),
         "daily_tasks": selected,
         "curriculum": tasks,
+        "sprint_focus": sprint_focus,
         "study_routine": [
             {"label": label, "minutes": minutes}
             for label, minutes in zip(routine, routine_minutes)
@@ -216,8 +194,8 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "personalization_note": (
             "Complete the baseline diagnostic to replace self-reported levels with skill evidence."
             if not diagnostic else
-            "Tasks are prioritized using your diagnostic results and selected role. " +
-            "Your learning preference shapes how concepts and practice are presented; skill order follows assessed evidence."
+            "Tasks follow diagnostic evidence and the service-company sprint order. "
+            "Your learning preference shapes presentation; skill order follows assessed evidence."
         ),
     }
 
