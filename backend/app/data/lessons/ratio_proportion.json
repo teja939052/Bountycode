@@ -5,51 +5,45 @@
   "domain": "Quantitative Aptitude",
   "pattern": "Ratio and Proportion",
   "difficulty": "easy",
-  "duration_min": 18,
-  "xp_reward": 90,
+  "duration_min": 28,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
   "steps": [
     {
       "step_number": 1,
       "step_type": "explain",
       "title": "What a ratio tells you",
-      "content": "A ratio compares quantities using the same unit. A:B = 2:3 means for every 2 equal parts of A there are 3 equal parts of B. The total is 5 parts.",
+      "content": "A ratio compares quantities of the same kind using equal parts. A:B = 2:3 means for every 2 equal parts of A there are 3 equal parts of B. The total is 5 parts. Convert quantities to the same unit before forming a ratio.",
       "example": "If boys:girls = 2:3 and there are 25 students, one part is 25/5 = 5. Boys = 10, girls = 15.",
-      "tip": "Convert quantities to the same unit before forming a ratio."
+      "tip": "Always state the unit and reduce the ratio to lowest terms before solving."
     },
     {
       "step_number": 2,
       "step_type": "interactive",
       "title": "Simplify a ratio",
       "prompt": "Simplify 24:36 to its lowest form.",
-      "options": [
-        "2:3",
-        "3:2",
-        "4:5",
-        "6:9"
-      ],
+      "options": ["2:3", "3:2", "4:5", "6:9"],
       "correct_index": 0,
-      "explanation": "The greatest common divisor is 12. Divide both terms: 24:36 = 2:3."
+      "explanation": "The greatest common divisor is 12. Divide both terms: 24:36 = 2:3.",
+      "hints": ["Find the largest number that divides both terms.", "Divide 24 and 36 by that number."]
     },
     {
       "step_number": 3,
       "step_type": "explain",
       "title": "Divide a quantity in a ratio",
       "content": "To split total T in ratio a:b, add the parts (a+b). First share = T×a/(a+b), second share = T×b/(a+b).",
-      "example": "₹720 in ratio 5:3. Total parts = 8. Shares = ₹450 and ₹270."
+      "example": "₹720 in ratio 5:3. Total parts = 8. Shares = ₹450 and ₹270.",
+      "tip": "Check that the two shares add back to the original total."
     },
     {
       "step_number": 4,
       "step_type": "practice",
       "title": "Share the amount",
       "prompt": "₹840 is divided between A and B in the ratio 4:3. How much does A receive?",
-      "options": [
-        "₹360",
-        "₹420",
-        "₹480",
-        "₹560"
-      ],
+      "options": ["₹360", "₹420", "₹480", "₹560"],
       "correct_index": 2,
-      "explanation": "Total parts = 7. A gets 4/7 × 840 = ₹480."
+      "explanation": "Total parts = 7. A gets 4/7 × 840 = ₹480.",
+      "hints": ["Add the ratio parts first.", "Multiply the total by A's share of the parts."]
     },
     {
       "step_number": 5,
@@ -58,67 +52,206 @@
       "content": "a:b = c:d is a proportion when a/b = c/d. Cross multiplication gives a×d = b×c. Use this to find an unknown quantity.",
       "formula": "a:b = c:d  ⇔  a × d = b × c",
       "example": "3:5 = x:20. 3×20 = 5x, so x = 12."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Solve a proportion",
+      "content": "Cross-multiply carefully and keep the unknown on one side.",
+      "prompt": "If 4:7 = 20:x, what is x?",
+      "code": "# 4/7 = 20/x\n# 4 * x = 7 * 20\n# x = 140 / 4",
+      "language": "python",
+      "answer_placeholder": "Enter x",
+      "expected_answer": "35",
+      "explanation": "Cross multiply: 4x = 140, so x = 35.",
+      "hints": ["Write the equality of two fractions.", "Cross-multiply and solve for x."]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Combine two ratios",
+      "content": "To form A:B:C from A:B and B:C, make the B terms equal first.",
+      "prompt": "Arrange the steps for A:B = 3:2 and B:C = 4:5.",
+      "options": [
+        "Write the combined ratio 6:4:5",
+        "Scale 3:2 to 6:4 so B matches 4",
+        "Keep B:C as 4:5",
+        "Identify that B appears in both ratios"
+      ],
+      "correct_order": [3, 1, 2, 0],
+      "explanation": "Match the common term B, then write A:B:C together.",
+      "hints": ["The linking quantity is B.", "Scale the first ratio so its B equals the second ratio's B."]
+    },
+    {
+      "step_number": 8,
+      "step_type": "practice",
+      "title": "Three-term ratio",
+      "prompt": "If A:B = 3:2 and B:C = 4:5, what is A:B:C?",
+      "options": ["6:4:5", "6:4:10", "12:8:5", "3:4:5"],
+      "correct_index": 0,
+      "explanation": "Make B equal: 3:2 → 6:4, keep 4:5. A:B:C = 6:4:5.",
+      "hints": ["Scale so the middle term matches.", "Do not multiply the outer terms without aligning B."]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Catch a unit mistake",
+      "content": "A student forms a ratio of 2 hours to 30 minutes as 2:30 and simplifies to 1:15.",
+      "prompt": "What is the correct ratio of 2 hours to 30 minutes?",
+      "options": [
+        "4:1 after converting both to minutes",
+        "2:30 is already simplified",
+        "1:15 is correct",
+        "Hours and minutes cannot form a ratio"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "Correct. 2 hours = 120 minutes, so 120:30 = 4:1.",
+        "2": "2:30 mixes units that were not converted.",
+        "3": "1:15 comes from treating 2 and 30 as comparable without conversion.",
+        "4": "Any quantities of the same kind can form a ratio after unit alignment."
+      },
+      "explanation": "Convert to the same unit before simplifying.",
+      "hints": ["Convert hours to minutes.", "Then simplify the resulting ratio."]
     }
   ],
   "assessment": {
     "mastery_threshold": 0.7,
-    "duration_sec": 240,
+    "duration_sec": 300,
     "questions": [
       {
         "prompt": "Simplify 45:60.",
-        "options": [
-          "2:3",
-          "3:4",
-          "4:5",
-          "5:6"
-        ],
+        "options": ["2:3", "3:4", "4:5", "5:6"],
         "correct_index": 1,
         "explanation": "Divide both terms by 15 to get 3:4."
       },
       {
         "prompt": "A:B = 7:5 and the total is 96. Find A.",
-        "options": [
-          "40",
-          "48",
-          "56",
-          "60"
-        ],
+        "options": ["40", "48", "56", "60"],
         "correct_index": 2,
         "explanation": "Total parts = 12. A = 7/12 × 96 = 56."
       },
       {
         "prompt": "If 4:7 = 20:x, what is x?",
-        "options": [
-          "28",
-          "30",
-          "35",
-          "40"
-        ],
+        "options": ["28", "30", "35", "40"],
         "correct_index": 2,
-        "explanation": "4/7 = 20/x. Cross multiply: 4x = 140, x = 35."
+        "explanation": "4x = 140, x = 35."
       },
       {
         "prompt": "The ratio of 2 hours to 30 minutes is:",
-        "options": [
-          "2:30",
-          "4:1",
-          "1:4",
-          "3:1"
-        ],
+        "options": ["2:30", "4:1", "1:4", "3:1"],
         "correct_index": 1,
-        "explanation": "2 hours = 120 minutes. 120:30 simplifies to 4:1."
+        "explanation": "2 hours = 120 minutes. 120:30 = 4:1."
       },
       {
         "prompt": "If A:B = 3:2 and B:C = 4:5, what is A:B:C?",
-        "options": [
-          "6:4:5",
-          "6:4:10",
-          "12:8:5",
-          "3:4:5"
-        ],
+        "options": ["6:4:5", "6:4:10", "12:8:5", "3:4:5"],
         "correct_index": 0,
-        "explanation": "Make B equal: 3:2 becomes 6:4, and 4:5 stays 4:5. Thus A:B:C = 6:4:5."
+        "explanation": "Align B: 6:4 and 4:5 give 6:4:5."
+      },
+      {
+        "prompt": "₹900 is split in the ratio 2:3:4 among A, B and C. How much does C get?",
+        "options": ["₹200", "₹300", "₹400", "₹450"],
+        "correct_index": 2,
+        "explanation": "Total parts = 9. C gets 4/9 × 900 = ₹400."
       }
+    ]
+  },
+  "learning_objectives": [
+    "Simplify ratios to lowest terms after aligning units.",
+    "Divide a total in a given ratio and verify the shares.",
+    "Solve proportions using cross multiplication.",
+    "Combine two-term ratios into a three-term ratio.",
+    "Avoid unit and base mistakes common in placement papers."
+  ],
+  "prerequisites": ["arithmetic_algebra"],
+  "concepts": ["ratio", "proportion", "parts", "cross multiplication", "compound ratio", "unit alignment"],
+  "common_misconceptions": [
+    {
+      "misconception": "Ratios can mix hours and minutes without conversion.",
+      "correction": "Convert both quantities to the same unit before writing the ratio."
+    },
+    {
+      "misconception": "A:B and B:C can be written as A:B:C without matching B.",
+      "correction": "Scale the ratios so the common term is equal first."
+    },
+    {
+      "misconception": "Cross multiplication is optional in a proportion.",
+      "correction": "If a/b = c/d then a×d = b×c; use that equality to solve for the unknown."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Split a total",
+      "input": "₹720 in ratio 5:3",
+      "trace": ["Total parts = 8.", "One part = 720/8 = 90.", "Shares = 450 and 270."],
+      "output": "450 and 270",
+      "explanation": "Shares must add back to the original total."
+    },
+    {
+      "title": "Solve a proportion",
+      "input": "3:5 = x:20",
+      "trace": ["3/5 = x/20.", "3×20 = 5x.", "x = 12."],
+      "output": "x = 12",
+      "explanation": "Cross multiplication isolates the unknown."
+    },
+    {
+      "title": "Combine ratios",
+      "input": "A:B = 3:2, B:C = 4:5",
+      "trace": ["Scale 3:2 to 6:4.", "Keep 4:5.", "Write 6:4:5."],
+      "output": "A:B:C = 6:4:5",
+      "explanation": "The linking term must match before joining."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "ratio and proportion arithmetic",
+      "practice": "Reduce ratios and check units before calculating shares."
+    },
+    {
+      "company": "Infosys",
+      "skill": "quantitative aptitude",
+      "practice": "Combine multi-term ratios under time pressure."
+    },
+    {
+      "company": "Wipro",
+      "skill": "numerical ability",
+      "practice": "Use cross multiplication for missing-value proportion questions."
+    },
+    {
+      "company": "Accenture",
+      "skill": "logical numerical reasoning",
+      "practice": "Verify that shares sum to the given total."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "method",
+      "question": "How do you divide total T in ratio a:b?",
+      "answer": "Shares are T×a/(a+b) and T×b/(a+b)."
+    },
+    {
+      "type": "method",
+      "question": "How do you solve a:b = c:d for an unknown?",
+      "answer": "Use cross multiplication: a×d = b×c."
+    },
+    {
+      "type": "method",
+      "question": "How do you form A:B:C from A:B and B:C?",
+      "answer": "Scale the ratios so B is equal, then write the three terms together."
+    }
+  ],
+  "quest": {
+    "chapter": "The Balance Scales",
+    "rank": "Proportion Analyst",
+    "story": "Service-company papers constantly test fair division, missing values and multi-term ratios. Your job is to keep parts equal and units consistent.",
+    "mission": "Master ratio simplification, fair division, proportions and three-term combinations.",
+    "success_criteria": [
+      "Simplify ratios after unit alignment.",
+      "Divide a total in a given ratio.",
+      "Solve proportions by cross multiplication.",
+      "Combine linked ratios into A:B:C."
     ]
   },
   "next_lesson_slug": "averages",
