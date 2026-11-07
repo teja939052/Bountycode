@@ -168,3 +168,25 @@ def test_python_beginner_setup_input_and_data_type_lessons_are_authored():
         assert len(lesson["quizzes"]) == 3, title
         assert len(lesson["exercises"]) == 2, title
         assert score_lesson_content(lesson)["status"] == "ready", title
+
+
+
+def test_python_variables_booleans_and_operator_lessons_are_authored():
+    cases = [
+        ("python-l02-03", "Booleans", "bool('False')"),
+        ("python-l02-04", "Variable Naming Rules", "student_name = 'Asha'"),
+        ("python-l02-05", "Multiple Assignment", "first, second = second, first"),
+        ("python-l02-06", "type() & isinstance()", "isinstance(value, int)"),
+        ("python-l03-01", "Arithmetic Operators", "a // b"),
+        ("python-l03-02", "Comparison Operators", "0 <= score <= 100"),
+        ("python-l03-03", "Logical Operators", "age >= 18 and has_id"),
+        ("python-l03-05", "Identity & Membership", "'active' in student"),
+        ("python-l03-06", "Operator Precedence", "2 ** 3 ** 2"),
+    ]
+
+    for lesson_id, title, expected_code in cases:
+        lesson = get_lesson_content("python", lesson_id, title, "theory")
+        assert expected_code in lesson["code_example"]["code"], title
+        assert len(lesson["quizzes"]) == 3, title
+        assert len(lesson["exercises"]) == 2, title
+        assert score_lesson_content(lesson)["status"] == "ready", title
