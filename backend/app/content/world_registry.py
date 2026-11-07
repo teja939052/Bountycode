@@ -19,11 +19,14 @@ from app.content.worlds_10_to_12 import WORLD_10_PRODUCTION, WORLD_11_PROJECTS, 
 from app.content.world_aptitude_quant import WORLD_APTITUDE_QUANT
 from app.content.world_aptitude_reasoning import WORLD_APTITUDE_REASONING
 from app.content.world_aptitude_blood_relations import BLOOD_RELATIONS_TOWN
+from app.content.world_aptitude_direction_sense import DIRECTION_SENSE_TOWN
 
-# Attach Blood Relations town if not already present (keeps reasoning module size manageable)
+# Attach extra reasoning towns (keeps main reasoning module size manageable)
 _reasoning_town_ids = {t.id for t in WORLD_APTITUDE_REASONING.towns}
-if BLOOD_RELATIONS_TOWN.id not in _reasoning_town_ids:
-    WORLD_APTITUDE_REASONING.towns = list(WORLD_APTITUDE_REASONING.towns) + [BLOOD_RELATIONS_TOWN]
+for _extra_town in (BLOOD_RELATIONS_TOWN, DIRECTION_SENSE_TOWN):
+    if _extra_town.id not in _reasoning_town_ids:
+        WORLD_APTITUDE_REASONING.towns = list(WORLD_APTITUDE_REASONING.towns) + [_extra_town]
+        _reasoning_town_ids.add(_extra_town.id)
 
 # ─── World registry ─────────────────────────────────────────────────────────────
 # Order matters — worlds are presented to students in this order.
