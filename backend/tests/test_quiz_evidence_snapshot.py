@@ -121,3 +121,42 @@ def test_failed_quiz_answer_schedules_a_short_srs_retry(monkeypatch):
     assert collection.saved["repetitions"] == 0
     assert collection.saved["interval"] == 0
     assert collection.saved["next_review"] is not None
+
+
+
+def test_due_question_card_contributes_its_skill_to_adaptive_evidence(monkeypatch):
+    monkeypatch.setattr(
+        quiz_routes,
+        "skill_graph_collection",
+        _Collection(document={"user_id": "learner-1", "skills": {}}),
+    )
+    monkeypatch.setattr(
+        quiz_routes,
+        "learning_events_collection",
+        _Collection(documents=[]),
+    )
+    monkeypatch.setattr(
+        quiz_routes,
+        "srs_cards_collection",
+        _Collection(documents=[{
+            "user_id": "learner-1",
+            "concept_id": "sql-question-1",
+            "next_review": "2000-01-01T00:00:00+00:00",
+        }]),
+    )
+    monkeypatch.setattr(
+        quiz_routes,
+        "get_question_by_id",
+        lambda question_id: {
+            "id": question_id,
+            "topic": "SQL",
+            "sub_topic": "joins",
+            "difficulty": "easy",
+        },
+    )
+
+    evidence = asyncio.run(quiz_routes._load_quiz_evidence("learner-1"))
+
+    assert "sql-question-1" in evidence["due_skills"]
+    assert "sql" in evidence["due_skills"]
+    assert "joins" in evidence["due_skills"]
