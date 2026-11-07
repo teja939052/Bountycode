@@ -113,7 +113,8 @@ def compose_quiz(
         if not question_id:
             continue
         skills = question_skills(question)
-        skill_score = min((skill_scores.get(skill, 0.5) for skill in skills), default=0.5)
+        known_skill_scores = [skill_scores[skill] for skill in skills if skill in skill_scores]
+        skill_score = min(known_skill_scores) if known_skill_scores else 0.5
         weakness = max((1.0 - skill_scores.get(skill, 0.5) for skill in skills), default=0.5)
         skill_difficulty = (
             explicit_difficulty or
