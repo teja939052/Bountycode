@@ -51,14 +51,15 @@ def test_mastery_requires_repeated_question_level_evidence():
 
     assert one_lucky_answer < 10
     assert five_correct_answers < 50
-    assert ten_correct_answers == 96
-    assert _calculate_mastery_score(0, 10) == 16
+    assert ten_correct_answers == 45
+    assert _calculate_mastery_score(20, 20) == 100
+    assert _calculate_mastery_score(0, 10) == 5
     assert _calculate_mastery_score(0, 0) == 0
 
 
 def test_mastery_score_clamps_invalid_counts():
-    assert _calculate_mastery_score(12, 10) == 96
-    assert _calculate_mastery_score(-3, 10) == 16
+    assert _calculate_mastery_score(12, 10) == 45
+    assert _calculate_mastery_score(-3, 10) == 5
     assert _calculate_mastery_score(0, -1) == 0
 
 
@@ -201,5 +202,5 @@ def test_assess_user_skills_counts_server_graded_assessment_questions(monkeypatc
     assert skill["total_attempts"] == 10
     assert skill["correct_count"] == 8
     assert skill["accuracy"] == 80
-    assert skill["score"] == 80
+    assert skill["score"] == 37
     assert result["assessed_domains"] == 1
