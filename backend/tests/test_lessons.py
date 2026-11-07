@@ -430,3 +430,29 @@ async def test_explain_only_lesson_is_unverified(env, monkeypatch):
     assert result["lesson_verified"] is False
     assert result["xp_earned"] == 0
     assert env.evidence == []
+
+
+def test_new_debugging_system_design_and_behavioral_tracks_are_registered():
+    expected = {
+        "debugging": {
+            "debugging-workflow",
+            "debugging-trace-and-edge-cases",
+        },
+        "system_design": {
+            "system-design-requirements",
+            "system-design-scalability",
+        },
+        "behavioral": {
+            "behavioral-star-method",
+            "behavioral-teamwork-conflict",
+        },
+    }
+    for track, lesson_ids in expected.items():
+        actual = {
+            lesson_id
+            for lesson_id, lesson in _LESSONS.items()
+            if lesson.get("track") == track
+        }
+        assert lesson_ids <= actual
+        for lesson_id in lesson_ids:
+            assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) is not None
