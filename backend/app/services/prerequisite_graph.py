@@ -240,7 +240,7 @@ async def get_user_prerequisite_learning_step(
         "activity_type": "practice",
         "question_id": {"$exists": True, "$nin": ["", None]},
         "skill_id": {"$exists": True, "$nin": ["", None]},
-    }).to_list(5000)
+    }).sort("timestamp", -1).to_list(5000)
 
     grouped: Dict[str, Dict[str, Any]] = defaultdict(
         lambda: {"question_scores": {}, "attempts": 0}
@@ -252,8 +252,8 @@ async def get_user_prerequisite_learning_step(
             continue
         # Count one outcome per distinct question so repeated retries of one
         # item cannot satisfy the independent-evidence requirement.
-        grouped[skill_id]["question_scores"][question_id] = float(
-            event.get("score", 0) or 0
+        grouped[skill_id]["question_scores"].setdefault(
+            question_id, float(event.get("score", 0) or 0)
         )
 
     evidence: Dict[str, Dict[str, Any]] = {}
