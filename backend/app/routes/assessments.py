@@ -1,15 +1,19 @@
-from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
-from typing import Optional, List, Dict, Any
+from pydantic import BaseModel, Field
+from typing import Any, Dict, Optional
 
-from app.services.assessment_engine import AssessmentEngine, AssessmentSession, AssessmentDefinition
+from app.services.assessment_engine import AssessmentEngine, engine as assessment_engine
 
 router = APIRouter(prefix="/api/v1/assessments", tags=["assessments"])
 
 
 def get_engine() -> AssessmentEngine:
-    """Dependency injection for the assessment engine."""
-    return engine
+    return assessment_engine
+
+
+class StageAnswerBody(BaseModel):
+    session_id: str = Field(..., min_length=4)
+    answer: Dict[str, Any] = Field(default_factory=dict)
 
 
 @router.post("/start/{definition_id}")
@@ -18,7 +22,6 @@ async def start_assessment(
     ai_mode: str = Query("prohibited", description="AI mode: prohibited or allowed"),
     engine: AssessmentEngine = Depends(get_engine),
 ):
-    """Start a new assessment session."""
     result = engine.create_session(definition_id, ai_mode=ai_mode)
     if result is None:
         raise HTTPException(status_code=404, detail="Assessment definition not found")
@@ -28,33 +31,30 @@ async def start_assessment(
 @router.post("/submit/{stage_name}")
 async def submit_stage_answer(
     stage_name: str,
-    answer: dict,
+    body: StageAnswerBody,
     engine: AssessmentEngine = Depends(get_engine),
 ):
-    """Submit an answer for a stage."""
-    result = engine.submit_answer("stub_session", stage_name, answer)
-    if result is None:
-        raise HTTPException(status_code=400, detail="Failed to submit stage answer")
+    result = engine.submit_answer(body.session_id, stage_name, body.answer)
+    if result.get("status") == "error":
+        raise HTTPException(status_code=404, detail=result.get("message") or "Session not found")
     return result
 
 
 @router.get("/report")
 async def get_assessment_report(
+    session_id: str = Query(..., min_length=4),
     engine: AssessmentEngine = Depends(get_engine),
 ):
-    """Get final evidence report for a completed assessment."""
-    # In real app, would look up session by ID from request
-    report = engine.get_session_report("stub_session")
-    if report.get("status") == "stub":
-        raise HTTPException(
-            status_code=400, detail="No completed session found - start an assessment first"
-        )
+    report = engine.end_session(session_id)
+    if report is None:
+        raise HTTPException(status_code=404, detail="Session not found")
+    if report.get("status") == "assessment not completed":
+        raise HTTPException(status_code=400, detail="Assessment not completed yet")
     return report
 
 
 @router.get("/definitions")
 async def list_definitions(engine: AssessmentEngine = Depends(get_engine)):
-    """List all available assessment definitions."""
     definitions = []
     for def_id, def_obj in engine.definitions.items():
         definitions.append(
@@ -75,7 +75,6 @@ async def get_definition(
     definition_id: str,
     engine: AssessmentEngine = Depends(get_engine),
 ):
-    """Get a specific assessment definition."""
     definition = engine.get_definition(definition_id)
     if not definition:
         raise HTTPException(status_code=404, detail="Assessment definition not found")
