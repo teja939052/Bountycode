@@ -160,3 +160,17 @@ def test_due_question_card_contributes_its_skill_to_adaptive_evidence(monkeypatc
     assert "sql-question-1" in evidence["due_skills"]
     assert "sql" in evidence["due_skills"]
     assert "joins" in evidence["due_skills"]
+
+
+def test_unknown_quiz_metadata_stays_unclassified():
+    assert quiz_routes._quiz_skill_domain({
+        "topic": "Unmapped vendor category",
+        "sub_topic": "miscellaneous",
+    }) is None
+
+
+def test_known_quiz_metadata_maps_to_a_supported_skill_domain():
+    assert quiz_routes._quiz_skill_domain({
+        "topic": "SQL",
+        "sub_topic": "joins",
+    }) == "sql"
