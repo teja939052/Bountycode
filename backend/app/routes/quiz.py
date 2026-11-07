@@ -542,6 +542,9 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     result["hints_used"] = server_hints_used
     result["xp_earned"] = xp_earned
     result["reward"] = reward
+    result["diagnosis_codes"] = diagnosis_codes
+    result["repair_id"] = repair_id
+    result["srs_updated"] = srs_updated
     return {"success": True, "result": result}
 
 
