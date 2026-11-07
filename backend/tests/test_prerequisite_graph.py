@@ -85,3 +85,15 @@ def test_unknown_target_does_not_claim_it_is_ready():
 
     assert plan["status"] == "unknown_skill"
     assert plan["next_action"] == "map_curriculum_skill"
+
+
+def test_graph_validator_reports_unknown_prerequisites_and_cycles():
+    invalid_graph = {
+        "skill.a": {"prerequisites": ["skill.b"]},
+        "skill.b": {"prerequisites": ["skill.a", "skill.missing"]},
+    }
+
+    errors = validate_prerequisite_graph(invalid_graph)
+
+    assert any("unknown prerequisite skill.missing" in error for error in errors)
+    assert any("dependency cycle" in error for error in errors)
