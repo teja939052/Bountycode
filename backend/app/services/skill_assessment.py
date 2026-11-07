@@ -13,6 +13,13 @@ SKILL_CATEGORIES = {
             "dynamic_programming", "recursion", "greedy", "binary_search",
         ],
     },
+    "debugging": {
+        "name": "Debugging & Testing",
+        "skills": [
+            "debugging_workflow", "error_classification", "execution_tracing",
+            "edge_case_testing", "root_cause_analysis",
+        ],
+    },
     "system_design": {
         "name": "System Design",
         "skills": [
