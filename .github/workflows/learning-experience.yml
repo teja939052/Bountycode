@@ -67,6 +67,8 @@ jobs:
         run: python -m compileall app/routes/company_lessons.py app/routes/academy_profile.py app/routes/academy_diagnostic.py app/routes/academy_plan.py app/routes/quiz.py -q
       - name: Audit registered lesson catalog
         run: python app/scripts/audit_lesson_catalog.py
+      - name: Test registered lesson catalog and answer safety
+        run: python -m pytest tests/test_lessons.py -q --tb=short
       - name: Test lesson integrity, mastery and content quality
         run: >
           python -m pytest
