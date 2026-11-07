@@ -430,3 +430,117 @@ async def test_explain_only_lesson_is_unverified(env, monkeypatch):
     assert result["lesson_verified"] is False
     assert result["xp_earned"] == 0
     assert env.evidence == []
+
+
+def test_new_debugging_system_design_and_behavioral_tracks_are_registered():
+    expected = {
+        "debugging": {
+            "debugging-workflow",
+            "debugging-trace-and-edge-cases",
+        },
+        "system_design": {
+            "system-design-requirements",
+            "system-design-scalability",
+        },
+        "behavioral": {
+            "behavioral-star-method",
+            "behavioral-teamwork-conflict",
+        },
+    }
+    for track, lesson_ids in expected.items():
+        actual = {
+            lesson_id
+            for lesson_id, lesson in _LESSONS.items()
+            if lesson.get("track") == track
+        }
+        assert lesson_ids <= actual
+        for lesson_id in lesson_ids:
+            assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) is not None
+
+
+def test_c_track_is_registered_and_mapped_to_programming_skill():
+    expected = {
+        "c-hello-world",
+        "c-variables-and-types",
+        "c-conditions-and-loops",
+        "c-arrays-functions-pointers",
+    }
+    actual = {
+        lesson_id
+        for lesson_id, lesson in _LESSONS.items()
+        if lesson.get("track") == "c"
+    }
+    assert expected <= actual
+    for lesson_id in expected:
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("programming", "c")
+
+
+def test_java_lessons_do_not_contain_cpp_output_syntax():
+    for lesson_id, lesson in _LESSONS.items():
+        if lesson.get("track") != "java":
+            continue
+        for step in lesson.get("steps", []):
+            source = " ".join(
+                str(step.get(field, ""))
+                for field in ("content", "code", "solution", "explanation")
+            )
+            assert "cout <<" not in source, f"{lesson_id}/{step.get('id')} contains C++ output syntax"
+            assert "endl" not in source, f"{lesson_id}/{step.get('id')} contains C++ endl"
+
+
+def test_expanded_dsa_topics_map_to_canonical_skills():
+    expected = {
+        "dsa-hashing-basics": "hashing",
+        "dsa-recursion-basics": "recursion",
+        "dsa-graph-traversal": "graphs",
+        "dsa-dynamic-programming-intro": "dynamic_programming",
+    }
+    for lesson_id, skill in expected.items():
+        assert lesson_id in _LESSONS
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("dsa", skill)
+
+
+def test_sql_and_dbms_extension_is_registered():
+    expected = {
+        "dbms-sql-joins-aggregation",
+        "dbms-sql-subqueries-cte",
+        "dbms-indexing-and-query-plans",
+        "dbms-transactions-and-isolation",
+    }
+    for lesson_id in expected:
+        assert lesson_id in _LESSONS
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("programming", "dbms")
+
+
+def test_os_and_networking_expansions_are_registered():
+    expected = {
+        "os-threads-synchronization": ("programming", "operating_systems"),
+        "os-deadlock-handling": ("programming", "operating_systems"),
+        "os-page-replacement": ("programming", "operating_systems"),
+        "net-ip-addressing-subnetting": ("programming", "computer_networks"),
+        "net-dns-tls": ("programming", "computer_networks"),
+        "net-tcp-udp-handshake": ("programming", "computer_networks"),
+    }
+    for lesson_id, mapping in expected.items():
+        assert lesson_id in _LESSONS
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == mapping
+
+
+def test_computer_architecture_track_is_registered_and_mapped():
+    expected = {
+        "arch-computer-organization",
+        "arch-number-systems",
+        "arch-memory-hierarchy",
+        "arch-pipelining",
+    }
+    actual = {
+        lesson_id
+        for lesson_id, lesson in _LESSONS.items()
+        if lesson.get("track") == "architecture"
+    }
+    assert expected <= actual
+    for lesson_id in expected:
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == (
+            "programming",
+            "computer_architecture",
+        )

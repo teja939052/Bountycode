@@ -271,4 +271,196 @@ DBMS_LESSONS = [
             },
         ],
     },
+    {
+        "id": "dbms-sql-joins-aggregation",
+        "title": "SQL Joins and Grouped Reports",
+        "track": "dbms",
+        "description": "Combine related tables and summarize rows with GROUP BY and HAVING.",
+        "difficulty": "intermediate",
+        "prerequisites": ["dbms-sql-basics"],
+        "xpReward": 90,
+        "steps": [
+            {
+                "id": "sj1",
+                "type": "explain",
+                "title": "Combine tables with JOIN",
+                "content": "A JOIN combines rows from related tables using a matching condition. INNER JOIN returns matching pairs. LEFT JOIN keeps every row from the left table and fills missing right-side values with NULL. Choose the join type based on which unmatched rows must remain.",
+                "code": "SELECT s.name, e.course_id\nFROM students AS s\nINNER JOIN enrollments AS e\n  ON s.id = e.student_id;",
+                "output": "One row for each matching student enrollment",
+                "explanation": "The ON condition matches a student's id with the enrollment's student_id."
+            },
+            {
+                "id": "sj2",
+                "type": "explain",
+                "title": "Summarize rows with GROUP BY",
+                "content": "GROUP BY collects rows that share the same grouping value. Aggregate functions such as COUNT, SUM, AVG, MIN, and MAX calculate a value for each group. HAVING filters groups after aggregation; WHERE filters individual rows before grouping.",
+                "code": "SELECT department, COUNT(*) AS employee_count\nFROM employees\nWHERE active = TRUE\nGROUP BY department\nHAVING COUNT(*) >= 3;",
+                "output": "One result row per department with at least three active employees",
+                "explanation": "WHERE filters active employees first. GROUP BY forms department groups. HAVING keeps groups whose count is at least three."
+            },
+            {
+                "id": "sj3",
+                "type": "exercise",
+                "title": "Count orders per customer",
+                "instruction": "Write a query that returns each customer_id and the number of orders for that customer from an orders table. Name the count order_count.",
+                "starterCode": "SELECT customer_id,\n       -- add an aggregate\nFROM orders\n-- group the rows by customer",
+                "solution": "SELECT customer_id, COUNT(*) AS order_count\nFROM orders\nGROUP BY customer_id;",
+                "tests": [{"input": None, "expected": None, "check": "groups_orders_by_customer_and_counts"}],
+                "explanation": "COUNT(*) counts rows in each customer group."
+            },
+            {
+                "id": "sj4",
+                "type": "quiz",
+                "title": "WHERE or HAVING?",
+                "question": "Which clause filters groups after GROUP BY has calculated aggregates?",
+                "options": ["WHERE", "HAVING", "ORDER BY", "FROM"],
+                "correctIndex": 1,
+                "explanation": "HAVING filters grouped results, often using aggregate expressions."
+            }
+        ]
+    },
+    {
+        "id": "dbms-sql-subqueries-cte",
+        "title": "SQL Subqueries and CTEs",
+        "track": "dbms",
+        "description": "Break complex queries into readable parts and compare rows with derived results.",
+        "difficulty": "intermediate",
+        "prerequisites": ["dbms-sql-joins-aggregation"],
+        "xpReward": 95,
+        "steps": [
+            {
+                "id": "sc1",
+                "type": "explain",
+                "title": "Use a subquery",
+                "content": "A subquery is a query nested inside another SQL statement. A scalar subquery returns one value, while a table subquery can return multiple rows. The outer query uses the result of the inner query. Ensure the subquery returns the number of columns and rows expected by its operator.",
+                "code": "SELECT name, salary\nFROM employees\nWHERE salary > (\n  SELECT AVG(salary) FROM employees\n);",
+                "output": "Employees whose salary is above the company average",
+                "explanation": "The inner query calculates one average value. The outer query compares each salary with it."
+            },
+            {
+                "id": "sc2",
+                "type": "explain",
+                "title": "Use a common table expression",
+                "content": "A common table expression (CTE) gives a named result to a query using WITH. It can make multi-step queries easier to read and reuse within one statement. A recursive CTE can express hierarchical traversal when the database supports it.",
+                "code": "WITH department_totals AS (\n  SELECT department, AVG(salary) AS avg_salary\n  FROM employees\n  GROUP BY department\n)\nSELECT department, avg_salary\nFROM department_totals\nWHERE avg_salary > 50000;",
+                "output": "Departments whose average salary exceeds 50000",
+                "explanation": "The CTE calculates one average per department, then the outer query filters those results."
+            },
+            {
+                "id": "sc3",
+                "type": "exercise",
+                "title": "Find above-average products",
+                "instruction": "Write a query that returns product_id and price for products whose price is greater than the average price in the products table.",
+                "starterCode": "SELECT product_id, price\nFROM products\nWHERE price > (\n  -- calculate the average price\n);",
+                "solution": "SELECT product_id, price\nFROM products\nWHERE price > (SELECT AVG(price) FROM products);",
+                "tests": [{"input": None, "expected": None, "check": "uses_average_price_subquery"}],
+                "explanation": "The scalar subquery returns the average product price for the comparison."
+            },
+            {
+                "id": "sc4",
+                "type": "quiz",
+                "title": "Choose a CTE",
+                "question": "Which keyword begins a common table expression?",
+                "options": ["WITH", "GROUP", "TABLE", "DECLARE"],
+                "correctIndex": 0,
+                "explanation": "A CTE is introduced with WITH before the main SELECT, INSERT, UPDATE, or DELETE statement."
+            }
+        ]
+    },
+    {
+        "id": "dbms-indexing-and-query-plans",
+        "title": "Database Indexes and Query Plans",
+        "track": "dbms",
+        "description": "Understand how indexes speed up reads and why query plans matter.",
+        "difficulty": "intermediate",
+        "prerequisites": ["dbms-sql-joins-aggregation"],
+        "xpReward": 100,
+        "steps": [
+            {
+                "id": "di1",
+                "type": "explain",
+                "title": "Why indexes exist",
+                "content": "An index is an auxiliary data structure that helps a database locate rows without scanning the entire table. B-tree indexes are common for equality and range lookups. Indexes use storage and add work to inserts, updates, and deletes, so indexing every column is not automatically a good idea.",
+                "code": "CREATE INDEX idx_orders_customer\nON orders(customer_id);",
+                "output": "An index is created for customer_id lookups",
+                "explanation": "The database may use the index to find matching order rows more efficiently."
+            },
+            {
+                "id": "di2",
+                "type": "explain",
+                "title": "Read an execution plan",
+                "content": "An execution plan describes how the database intends to run a query. Look for table scans, index scans, join methods, estimated row counts, and expensive sorts. Compare estimated and actual row counts when the database provides both; large differences can indicate stale statistics or estimation problems.",
+                "code": "EXPLAIN\nSELECT * FROM orders\nWHERE customer_id = 42;",
+                "output": "A database-specific plan showing the chosen access path",
+                "explanation": "EXPLAIN helps you investigate performance rather than guessing which index is used."
+            },
+            {
+                "id": "di3",
+                "type": "exercise",
+                "title": "Choose an index candidate",
+                "instruction": "An orders table is frequently queried by customer_id, and the query filters with WHERE customer_id = ?. Write a statement to create an index on customer_id.",
+                "starterCode": "-- Create an index for customer_id",
+                "solution": "CREATE INDEX idx_orders_customer ON orders(customer_id);",
+                "tests": [{"input": None, "expected": None, "check": "creates_customer_id_index"}],
+                "explanation": "This index may improve the repeated customer_id lookup, but its impact should be checked with the actual query plan and workload."
+            },
+            {
+                "id": "di4",
+                "type": "quiz",
+                "title": "Recognize the trade-off",
+                "question": "What is a common cost of adding an index?",
+                "options": ["It always makes writes faster", "It uses storage and adds write-maintenance work", "It removes the need for primary keys", "It guarantees every query uses the index"],
+                "correctIndex": 1,
+                "explanation": "Indexes occupy storage and must be maintained when indexed data changes."
+            }
+        ]
+    },
+    {
+        "id": "dbms-transactions-and-isolation",
+        "title": "Transactions and Isolation Levels",
+        "track": "dbms",
+        "description": "Group SQL operations into transactions and understand common concurrency anomalies.",
+        "difficulty": "advanced",
+        "prerequisites": ["dbms-acid-properties"],
+        "xpReward": 110,
+        "steps": [
+            {
+                "id": "dt1",
+                "type": "explain",
+                "title": "Commit or roll back",
+                "content": "A transaction groups database operations into one logical unit. COMMIT makes the transaction's changes permanent according to the database's guarantees. ROLLBACK abandons uncommitted changes. Use transactions when multiple changes must succeed or fail together.",
+                "code": "BEGIN;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;",
+                "output": "Both updates are committed together if the transaction succeeds",
+                "explanation": "The transfer is treated as one unit rather than two unrelated updates."
+            },
+            {
+                "id": "dt2",
+                "type": "explain",
+                "title": "Understand isolation",
+                "content": "Isolation controls how concurrent transactions can observe each other's work. Common anomalies include dirty reads, non-repeatable reads, and phantom reads. SQL isolation levels define which anomalies are prevented, but exact behaviour and implementation details can vary by database engine.",
+                "code": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;",
+                "output": "The transaction requests the REPEATABLE READ isolation level",
+                "explanation": "Always check the target database's documentation because isolation behaviour and syntax differ."
+            },
+            {
+                "id": "dt3",
+                "type": "exercise",
+                "title": "Protect a multi-step update",
+                "instruction": "Write the transaction boundary statements that begin a transaction, perform two related updates, and commit only after both updates succeed.",
+                "starterCode": "-- Begin transaction\n-- Update both related rows\n-- Commit",
+                "solution": "BEGIN;\nUPDATE inventory SET quantity = quantity - 1 WHERE product_id = 10;\nINSERT INTO order_items(order_id, product_id) VALUES (500, 10);\nCOMMIT;",
+                "tests": [{"input": None, "expected": None, "check": "wraps_related_updates_in_transaction"}],
+                "explanation": "The related inventory and order-item changes belong in one transaction. Production code must also handle errors and roll back when needed."
+            },
+            {
+                "id": "dt4",
+                "type": "quiz",
+                "title": "Identify a dirty read",
+                "question": "What is a dirty read?",
+                "options": ["Reading data committed by another transaction", "Reading an uncommitted change that may later be rolled back", "Reading the same row twice", "Reading rows in sorted order"],
+                "correctIndex": 1,
+                "explanation": "A dirty read observes another transaction's uncommitted data."
+            }
+        ]
+    }
 ]
