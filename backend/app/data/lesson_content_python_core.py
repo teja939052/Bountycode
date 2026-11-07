@@ -1,8 +1,9 @@
-"""Authored Python fundamentals lessons for the placement-preparation core.
+"""Authored Python lessons for the placement-preparation curriculum.
 
-These lessons deliberately replace title-only template filler for high-frequency
-control-flow and function concepts. Content is structured for the existing
-lesson renderer and includes examples, misconceptions, exercises and checks.
+The profiles cover beginner foundations, control flow, functions, collections,
+text processing, files, exceptions, OOP, algorithms and advanced iteration.
+Content is structured for the existing lesson renderer and includes examples,
+misconceptions, exercises and explained assessment checks.
 """
 from __future__ import annotations
 
@@ -974,7 +975,7 @@ _PYTHON_CORE: Dict[str, Dict[str, Any]] = {
 
 
 def get_python_core_lesson(lesson_title: str) -> Dict[str, Any] | None:
-    """Return authored content for selected high-frequency Python concepts."""
+    """Return authored content when a curriculum title matches a curated profile."""
     title = str(lesson_title or "").strip().lower()
     matching_profiles = [
         (len(key), value)
