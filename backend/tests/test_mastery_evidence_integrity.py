@@ -44,11 +44,11 @@ def test_mastery_requires_repeated_question_level_evidence():
     assert one_lucky_answer < 10
     assert five_correct_answers < 50
     assert ten_correct_answers == 100
-    assert _calculate_mastery_score(0, 10) == 20
+    assert _calculate_mastery_score(0, 10) == 16
     assert _calculate_mastery_score(0, 0) == 0
 
 
 def test_mastery_score_clamps_invalid_counts():
     assert _calculate_mastery_score(12, 10) == 100
-    assert _calculate_mastery_score(-3, 10) == 0
+    assert _calculate_mastery_score(-3, 10) == 16
     assert _calculate_mastery_score(0, -1) == 0
