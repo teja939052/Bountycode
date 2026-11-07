@@ -21,6 +21,10 @@ export const studyApi = {
     return request(`/api/v1/study/categories/${categoryId}/articles`);
   },
 
+  getCompanyLearningPath(company: string) {
+    return request(`/api/v1/study/company-path/${encodeURIComponent(company)}`);
+  },
+
   getRelatedArticles(params: { language?: string; q?: string; limit?: number } = {}) {
     const query = new URLSearchParams();
     if (params.language) query.append("language", params.language);
