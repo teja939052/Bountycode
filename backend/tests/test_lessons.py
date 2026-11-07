@@ -486,3 +486,15 @@ def test_java_lessons_do_not_contain_cpp_output_syntax():
             )
             assert "cout <<" not in source, f"{lesson_id}/{step.get('id')} contains C++ output syntax"
             assert "endl" not in source, f"{lesson_id}/{step.get('id')} contains C++ endl"
+
+
+def test_expanded_dsa_topics_map_to_canonical_skills():
+    expected = {
+        "dsa-hashing-basics": "hashing",
+        "dsa-recursion-basics": "recursion",
+        "dsa-graph-traversal": "graphs",
+        "dsa-dynamic-programming-intro": "dynamic_programming",
+    }
+    for lesson_id, skill in expected.items():
+        assert lesson_id in _LESSONS
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("dsa", skill)
