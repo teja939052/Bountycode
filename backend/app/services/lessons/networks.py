@@ -173,7 +173,6 @@ NETWORKS_LESSONS = [
             },
         ],
     },
-,
     {
         "id": "net-ip-addressing-subnetting",
         "title": "IP Addressing and Subnetting",
