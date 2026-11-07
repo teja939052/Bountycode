@@ -35,9 +35,9 @@ def test_complete_authored_lesson_can_pass_quality_gate():
             {"description": "Count even values", "expected_output": "Input [2, 3, 6] returns 2."},
         ],
         "quizzes": [
-            {"options": ["0", "1"], "explanation": "The first array index is zero." * 3},
-            {"options": ["O(1)", "O(n)"], "explanation": "Indexed lookup is constant time." * 3},
-            {"options": ["O(n)", "O(1)"], "explanation": "A full traversal visits each element." * 3},
+            {"question": "What is the first index?", "options": ["0", "1"], "correct": 0, "explanation": "The first array index is zero." * 3},
+            {"question": "What is indexed lookup complexity?", "options": ["O(1)", "O(n)"], "correct": 0, "explanation": "Indexed lookup is constant time." * 3},
+            {"question": "What is traversal complexity?", "options": ["O(n)", "O(1)"], "correct": 0, "explanation": "A full traversal visits each element." * 3},
         ],
         "common_mistakes": [
             {"mistake": "Reading past the last index", "fix": "Stop at length minus one."},
