@@ -42,6 +42,8 @@ export interface OASession {
   negative_marking?: boolean;
   back_navigation?: boolean;
   section_switching?: boolean;
+  engine_version?: string;
+  blueprint_version?: string;
 }
 
 export interface OAResult {
@@ -58,6 +60,15 @@ export interface OAResult {
   skill_diagnostics: Record<string, unknown>;
   readiness_after: number;
   next_missions: unknown[];
+  engine_version?: string;
+  blueprint_version?: string;
+  review_metadata?: Record<string, unknown>;
+}
+
+export interface CompleteOAMetadata {
+  flagged_question_ids?: string[];
+  client_resume_used?: boolean;
+  autosave_available?: boolean;
 }
 
 export const oaApi = {
@@ -82,9 +93,10 @@ export const oaApi = {
     });
   },
 
-  async complete(sessionId: string): Promise<OAResult> {
+  async complete(sessionId: string, metadata: CompleteOAMetadata = {}): Promise<OAResult> {
     return request(`/api/v1/oa/${encodeURIComponent(sessionId)}/complete`, {
       method: "POST",
+      body: JSON.stringify(metadata),
     });
   },
 

@@ -161,12 +161,14 @@ function QuestionPalette({
   current,
   answers,
   submittedAnswers,
+  flaggedQuestionIds,
   onNavigate,
 }: {
   total: number;
   current: number;
   answers: Record<number, unknown>;
   submittedAnswers: Record<number, { is_correct?: boolean }>;
+  flaggedQuestionIds: string[];
   onNavigate: (idx: number) => void;
 }) {
   return (
@@ -180,9 +182,10 @@ function QuestionPalette({
           const isAnswered = answers[i] !== undefined;
           const isSubmitted = submittedAnswers[i] !== undefined;
           const isCorrect = submittedAnswers[i]?.is_correct;
+          const isFlagged = flaggedQuestionIds.includes(String(i));
 
           let btnClass =
-            "w-9 h-9 rounded-lg font-mono text-xs font-bold transition-all duration-200 border ";
+            "relative w-9 h-9 rounded-lg font-mono text-xs font-bold transition-all duration-200 border ";
           if (isCurrent) {
             btnClass += "bg-cyber-blue text-space-void border-cyber-blue shadow-cyber-blue scale-110";
           } else if (isSubmitted && isCorrect) {
@@ -194,6 +197,7 @@ function QuestionPalette({
           } else {
             btnClass += "bg-white text-text-muted border-black/5 hover:border-gray-500 hover:text-text-primary";
           }
+          if (isFlagged) btnClass += " ring-2 ring-cyber-amber/70";
 
           return (
             <button
@@ -202,6 +206,7 @@ function QuestionPalette({
               className={btnClass}
             >
               {i + 1}
+              {isFlagged && <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-cyber-amber" aria-label="Flagged for review" />}
             </button>
           );
         })}
@@ -320,15 +325,27 @@ interface AnswerResult {
   answer?: unknown;
 }
 
+function readPersistedMockRuntime(): { sessionId: string; companyId: string; questions: OAQuestion[]; sections: Section[]; startedAt: number } | null {
+  try {
+    const raw = sessionStorage.getItem("bountycode:active-mock-runtime");
+    const parsed = raw ? JSON.parse(raw) : null;
+    if (parsed?.sessionId && Array.isArray(parsed.questions) && Array.isArray(parsed.sections)) return parsed;
+  } catch {
+    // Storage can be unavailable in private browsing; the normal flow still works.
+  }
+  return null;
+}
+
 export default function MockOA() {
   const [searchParams] = useSearchParams();
   const requestedCompany = searchParams.get("company");
   const initialCompany = COMPANIES.some((company) => company.id === requestedCompany) ? requestedCompany : null;
-  const [step, setStep] = useState<"select" | "test" | "results">("select");
-  const [selectedCompany, setSelectedCompany] = useState<string | null>(initialCompany);
+  const [runtimeSeed] = useState(readPersistedMockRuntime);
+  const [step, setStep] = useState<"select" | "test" | "results">(runtimeSeed ? "test" : "select");
+  const [selectedCompany, setSelectedCompany] = useState<string | null>(runtimeSeed?.companyId || initialCompany);
   const [customDuration, setCustomDuration] = useState(45);
-  const [sessionId, setSessionId] = useState<string>("");
-  const [questions, setQuestions] = useState<OAQuestion[]>([]);
+  const [sessionId, setSessionId] = useState<string>(runtimeSeed?.sessionId || "");
+  const [questions, setQuestions] = useState<OAQuestion[]>(runtimeSeed?.questions || []);
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, unknown>>({});
   const [submittedAnswers, setSubmittedAnswers] = useState<Record<number, AnswerResult>>({});
@@ -336,14 +353,16 @@ export default function MockOA() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [timeTaken, setTimeTaken] = useState(0);
-  const [startTime, setStartTime] = useState<number | null>(null);
+  const [startTime, setStartTime] = useState<number | null>(runtimeSeed?.startedAt || null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
   const [reviewMode, setReviewMode] = useState(false);
   const [showExplanation, setShowExplanation] = useState<Record<number, boolean>>({});
-  const [sections, setSections] = useState<Section[]>([]);
+  const [sections, setSections] = useState<Section[]>(runtimeSeed?.sections || []);
   const [resultLoading, setResultLoading] = useState(false);
   const timerRef = useRef(null);
+  const hydratedSessionRef = useRef("");
+  const resumedSessionRef = useRef(false);
 
   const mockSession = useMockSession({
     mockId: sessionId,
@@ -368,8 +387,13 @@ export default function MockOA() {
           isExamComplete: true,
           unreachable: true,
         });
+      try { sessionStorage.removeItem("bountycode:active-mock-runtime"); } catch { /* ignore storage failures */ }
       api
-        .oa.complete(sessionId)
+        .oa.complete(sessionId, {
+          flagged_question_ids: mockSession.state.flaggedQuestionIds,
+          client_resume_used: resumedSessionRef.current,
+          autosave_available: true,
+        })
         .then((data: any) => {
           // Reconcile real per-question correctness from the server scorecard
           // so section breakdown + review rings reflect actual grading.
@@ -416,6 +440,21 @@ export default function MockOA() {
         .finally(() => setResultLoading(false));
     },
   });
+
+  useEffect(() => {
+    if (step !== "test" || !sessionId || !questions.length || !mockSession.state.lastSavedAt || hydratedSessionRef.current === sessionId) return;
+    const restoredAnswers = Object.fromEntries(
+      Object.entries(mockSession.state.answers).map(([key, value]) => [Number(key), value])
+    ) as Record<number, unknown>;
+    setAnswers(restoredAnswers);
+    resumedSessionRef.current = Object.keys(restoredAnswers).length > 0;
+    const sectionSize = Math.ceil(questions.length / Math.max(1, company.sections.length));
+    const sectionStart = mockSession.state.currentSectionIndex * sectionSize;
+    const nextUnanswered = questions.findIndex((_, index) => index >= sectionStart && restoredAnswers[index] === undefined);
+    if (nextUnanswered >= 0) setCurrentQ(nextUnanswered);
+    else setCurrentQ(Math.min(sectionStart, questions.length - 1));
+    hydratedSessionRef.current = sessionId;
+  }, [step, sessionId, questions.length, mockSession.state.lastSavedAt, mockSession.state.answers]);
 
   const company = useMemo(
     () => COMPANIES.find((c) => c.id === selectedCompany) || COMPANIES[0],
@@ -496,6 +535,8 @@ export default function MockOA() {
       }));
 
       setSessionId(String(data.session_id));
+      hydratedSessionRef.current = "";
+      resumedSessionRef.current = false;
       setQuestions(loadedQuestions);
       setSections(builtSections);
       setCurrentQ(0);
@@ -508,6 +549,15 @@ export default function MockOA() {
       setResult(null);
       setResultLoading(false);
       setStep("test");
+      try {
+        sessionStorage.setItem("bountycode:active-mock-runtime", JSON.stringify({
+          sessionId: String(data.session_id),
+          companyId: selectedCompany || "general",
+          questions: loadedQuestions,
+          sections: builtSections,
+          startedAt: Date.now(),
+        }));
+      } catch { /* local autosave remains best-effort */ }
       mockSession.triggerFullscreen().catch(() => {});
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to start test");
@@ -529,6 +579,7 @@ export default function MockOA() {
       };
       await api.oa.submitAnswer(sessionId, [item]);
       setAnswers((prev) => ({ ...prev, [currentQ]: answer }));
+      mockSession.handleAnswerSelection(String(currentQ), String(answer));
       setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: { is_correct: null, answer } as unknown as AnswerResult }));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to submit answer");
@@ -744,6 +795,9 @@ export default function MockOA() {
               <span className="font-mono text-xs text-gray-500">
                 {answeredCount}/{questions.length} answered
               </span>
+              <span className="hidden font-mono text-[10px] text-emerald-700 sm:inline">
+                {mockSession.state.lastSavedAt ? "Autosaved" : "Saving…"}
+              </span>
               <div className="flex flex-col items-center">
                 <span className="font-display font-black text-lg text-text-primary leading-none">
                   {formatTime(remainingSeconds)}
@@ -787,19 +841,29 @@ export default function MockOA() {
                         </span>
                       )}
                     </span>
-                    {submittedAnswers[currentQ] && (
-                      <span
-                        className={`font-mono text-[10px] px-2 py-0.5 rounded-full ${
-                          submittedAnswers[currentQ].is_correct
-                            ? "bg-cyber-green/10 text-cyber-green border border-cyber-green/20"
-                            : "bg-cyber-red/10 text-cyber-red border border-cyber-red/20"
-                        }`}
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => mockSession.toggleFlag(String(currentQ))}
+                        className={`inline-flex items-center gap-1 rounded-full border px-2 py-1 font-mono text-[10px] transition ${mockSession.state.flaggedQuestionIds.includes(String(currentQ)) ? "border-cyber-amber/60 bg-cyber-amber/10 text-cyber-amber" : "border-black/10 text-gray-500 hover:border-cyber-amber/50 hover:text-cyber-amber"}`}
+                        aria-label={mockSession.state.flaggedQuestionIds.includes(String(currentQ)) ? "Remove review flag" : "Flag question for review"}
                       >
-                        {submittedAnswers[currentQ].is_correct
-                          ? "Correct"
-                          : "Wrong"}
-                      </span>
-                    )}
+                        <AlertTriangle size={12} /> {mockSession.state.flaggedQuestionIds.includes(String(currentQ)) ? "Flagged" : "Review"}
+                      </button>
+                      {submittedAnswers[currentQ] && (
+                        <span
+                          className={`font-mono text-[10px] px-2 py-0.5 rounded-full ${
+                            submittedAnswers[currentQ].is_correct
+                              ? "bg-cyber-green/10 text-cyber-green border border-cyber-green/20"
+                              : "bg-cyber-red/10 text-cyber-red border border-cyber-red/20"
+                          }`}
+                        >
+                          {submittedAnswers[currentQ].is_correct
+                            ? "Correct"
+                            : "Wrong"}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <p className="font-display font-bold text-text-primary text-lg leading-relaxed mt-3">
                     {q.question}
@@ -951,6 +1015,7 @@ export default function MockOA() {
                 current={currentQ}
                 answers={answers}
                 submittedAnswers={submittedAnswers}
+                flaggedQuestionIds={mockSession.state.flaggedQuestionIds}
                 onNavigate={navigateQuestion}
               />
 
@@ -976,6 +1041,10 @@ export default function MockOA() {
                     <span className="text-gray-400">
                       {unattemptedCount}
                     </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">For review</span>
+                    <span className="text-cyber-amber">{mockSession.state.flaggedQuestionIds.length}</span>
                   </div>
                 </div>
               </div>

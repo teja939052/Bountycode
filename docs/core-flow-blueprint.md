@@ -40,3 +40,7 @@ Retrieval practice, actionable feedback, formative assessment, and aligned outco
 - [10]: https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/feedback "Education Endowment Foundation feedback evidence"
 - [11]: https://teaching.cornell.edu/teaching-resources/assessment-evaluation/measuring-student-learning "Cornell formative assessment guidance"
 - [12]: https://research-portal.uu.nl/ws/portalfiles/portal/277804433/1-s2.0-S0747563225003097-main.pdf "2026 adaptive retrieval and gamification study"
+
+## Assessment runtime implemented in the next tranche
+
+The OA runtime now versions every attempt with an engine and blueprint version, keeps server-side answer persistence, and returns section-level deterministic evidence. The browser additionally stores an active attempt envelope and per-session state so a reload can restore questions, section position, answers, timing state, and review flags when storage is available. Learners can flag questions for review, see an autosave indicator, and send review/resume metadata with completion. The server stores this metadata with the result and continues to emit section and overall learning events for readiness and repair missions.

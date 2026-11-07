@@ -13,7 +13,7 @@ Key design principles (from the research doc):
 - Time Intelligence: per-question timing produces actionable test-taking strategy advice.
 """
 from datetime import datetime, timezone, timedelta
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Body
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional, Any
@@ -508,6 +508,7 @@ def _marking_for(company: str) -> dict:
     return scheme
 
 OA_FREE_LIMIT = 1  # mirrors FREE_TIER_COMPANY_MOCK_LIMIT
+OA_ENGINE_VERSION = "2026.11"
 
 
 # ---------------------------------------------------------------------------
@@ -534,6 +535,12 @@ class SubmitOAItem(BaseModel):
 class SubmitOABatch(BaseModel):
     session_id: str
     items: List[SubmitOAItem] = Field(default_factory=list)
+
+
+class CompleteOABody(BaseModel):
+    flagged_question_ids: List[str] = Field(default_factory=list, max_length=100)
+    client_resume_used: bool = False
+    autosave_available: bool = False
 
 
 class IntegritySignal(BaseModel):
@@ -1247,6 +1254,8 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
         "user_id": user["id"],
         "company": company.lower(),
         "role": req.role,
+        "engine_version": OA_ENGINE_VERSION,
+        "blueprint_version": f"{company.lower()}:{OA_ENGINE_VERSION}",
         "blueprint": blueprint,
         "mode": req.mode,
         "integrity_enabled": req.integrity,
@@ -1263,6 +1272,7 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
         "ends_at": now + timedelta(minutes=req.duration_minutes),
         "created_at": now,
         "score_breakdown": {},
+        "review_metadata": {},
     }
     res = await oa_sessions_collection.insert_one(session_doc)
     session_id = str(res.inserted_id)
@@ -1303,6 +1313,8 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
     return {
         "session_id": session_id,
         "company": company.lower(),
+        "engine_version": OA_ENGINE_VERSION,
+        "blueprint_version": session_doc["blueprint_version"],
         "mode": req.mode,
         "blueprint": blueprint,
         "marking_scheme": scheme,
@@ -1433,7 +1445,7 @@ async def record_integrity_signal(req: IntegritySignal, user=Depends(get_current
 
 
 @router.post("/{session_id}/complete")
-async def complete_oa(session_id: str, user=Depends(get_current_user)):
+async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(default=None), user=Depends(get_current_user)):
     """Grade the OA, produce the scorecard, update readiness, and surface next missions."""
     try:
         sess = await oa_sessions_collection.find_one({"_id": ObjectId(session_id)})
@@ -1546,9 +1558,18 @@ async def complete_oa(session_id: str, user=Depends(get_current_user)):
     for s in signals:
         integrity_summary[s.get("event", "unknown")] = integrity_summary.get(s.get("event", "unknown"), 0) + 1
 
+    body = body or CompleteOABody()
+    review_metadata = {
+        "flagged_question_count": len(body.flagged_question_ids),
+        "flagged_question_ids": body.flagged_question_ids,
+        "client_resume_used": body.client_resume_used,
+        "autosave_available": body.autosave_available,
+    }
     result = {
         "session_id": session_id,
         "company": sess.get("company"),
+        "engine_version": sess.get("engine_version", OA_ENGINE_VERSION),
+        "blueprint_version": sess.get("blueprint_version", f"{sess.get('company', 'general')}:{OA_ENGINE_VERSION}"),
         "mode": sess.get("mode"),
         "overall_readiness": overall,
         "verdict": verdict,
@@ -1579,11 +1600,12 @@ async def complete_oa(session_id: str, user=Depends(get_current_user)):
         "fullscreen_exits": sess.get("fullscreen_exits", 0),
         "scorecard": per_question,
         "next_missions": _next_missions(weak, topic_times),
+        "review_metadata": review_metadata,
     }
 
     await oa_sessions_collection.update_one(
         {"_id": ObjectId(session_id)},
-        {"$set": {"status": "completed", "result": result, "completed_at": datetime.now(timezone.utc)}},
+        {"$set": {"status": "completed", "result": result, "review_metadata": review_metadata, "completed_at": datetime.now(timezone.utc)}},
     )
 
     # Feed readiness (best-effort, non-blocking)
