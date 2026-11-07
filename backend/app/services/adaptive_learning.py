@@ -94,7 +94,7 @@ def _is_mastery_evidence_activity(activity: Dict[str, Any]) -> bool:
     return (
         isinstance(activity, dict)
         and activity.get("type") in MASTERY_EVIDENCE_TYPES
-        and activity.get("source") != "client_self_reported"
+        and activity.get("source") in {"server", "system"}
     )
 
 
