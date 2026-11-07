@@ -1,4 +1,7 @@
-from app.routes.academy_plan import build_plan
+from pathlib import Path
+
+from app.routes.academy_plan import DOMAIN_ENTRY_LESSON, build_plan
+from app.services.service_company_sprint import load_sprint
 
 
 def test_plan_prioritizes_lowest_diagnostic_skills():
@@ -149,3 +152,15 @@ def test_personalized_plan_starts_each_subject_at_a_foundation_lesson():
     assert LESSON_BY_DOMAIN["verbal_ability"] == "vocabulary_cloze"
     assert LESSON_BY_DOMAIN["computer_science"] == "oops_basics"
     assert LESSON_BY_DOMAIN["sql"] == "dbms_basics"
+
+
+def test_all_personalized_lesson_links_exist_in_catalog():
+    lesson_dir = Path(__file__).parents[1] / "app" / "data" / "lessons"
+    available = {path.stem for path in lesson_dir.glob("*.json")}
+    sprint_slugs = {
+        slug
+        for sprint in load_sprint().get("sprints", [])
+        for slug in sprint.get("lessons", [])
+    }
+    assert not (sprint_slugs - available)
+    assert not ({*DOMAIN_ENTRY_LESSON.values()} - available)
