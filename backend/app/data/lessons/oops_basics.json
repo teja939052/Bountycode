@@ -5,8 +5,8 @@
   "domain": "Computer Science Fundamentals",
   "pattern": "OOP",
   "difficulty": "easy",
-  "duration_min": 24,
-  "xp_reward": 105,
+  "duration_min": 30,
+  "xp_reward": 120,
   "steps": [
     {
       "step_number": 1,
@@ -27,7 +27,11 @@
         "Compilation"
       ],
       "correct_index": 1,
-      "explanation": "Encapsulation groups state and behaviour and exposes a controlled interface."
+      "explanation": "Encapsulation groups state and behaviour and exposes a controlled interface.",
+      "hints": [
+        "Identify the key concept or constraint in the prompt before looking at the options.",
+        "Work through the example one step at a time and eliminate choices that contradict the rule."
+      ]
     },
     {
       "step_number": 3,
@@ -48,7 +52,11 @@
         "Normalization"
       ],
       "correct_index": 1,
-      "explanation": "The same interface, draw(), has type-specific behaviour: polymorphism."
+      "explanation": "The same interface, draw(), has type-specific behaviour: polymorphism.",
+      "hints": [
+        "Identify the key concept or constraint in the prompt before looking at the options.",
+        "Work through the example one step at a time and eliminate choices that contradict the rule."
+      ]
     },
     {
       "step_number": 5,
@@ -56,6 +64,63 @@
       "title": "Prefer clear composition",
       "content": "Inheritance models an 'is-a' relationship. Composition models a 'has-a' relationship. Use inheritance for genuine specialisation; use composition when one object uses another as a component.",
       "example": "A Car has an Engine (composition). A SavingsAccount is a kind of BankAccount (inheritance)."
+    },
+    {
+      "step_type": "interactive",
+      "title": "Choose inheritance or composition",
+      "prompt": "A SavingsAccount is a specialized kind of BankAccount. Which relationship best models this?",
+      "options": [
+        "Inheritance",
+        "Composition",
+        "Unrelated objects",
+        "Database normalization"
+      ],
+      "correct_index": 0,
+      "explanation": "A SavingsAccount is a kind of BankAccount, an is-a relationship. Inheritance can model that specialization when the subtype truly preserves the base contract.",
+      "hints": [
+        "Ask whether the relationship is 'is-a' or 'has-a'.",
+        "A SavingsAccount is a type of BankAccount, not a component stored inside one."
+      ],
+      "step_number": 6
+    },
+    {
+      "step_type": "practice",
+      "title": "Identify a composition relationship",
+      "prompt": "A Car contains an Engine object and delegates engine operations to it. Which design relationship is this?",
+      "options": [
+        "Composition",
+        "Inheritance",
+        "Method overloading",
+        "Polymorphic casting"
+      ],
+      "correct_index": 0,
+      "explanation": "A car has an engine. This is a has-a relationship, commonly represented through composition.",
+      "hints": [
+        "Ask whether Engine is a kind of Car or a component of Car.",
+        "A component that another object owns or uses suggests composition."
+      ],
+      "step_number": 7
+    },
+    {
+      "step_type": "order_steps",
+      "title": "Trace an object method call",
+      "prompt": "Arrange what happens when code calls account.deposit(500).",
+      "options": [
+        "The method updates the account's state according to its rules",
+        "The account object receives the method call",
+        "The caller can inspect the updated balance through the public interface"
+      ],
+      "correct_order": [
+        1,
+        0,
+        2
+      ],
+      "explanation": "The caller sends the message to the object, the method applies the state change, and the caller can then read the updated state through the supported interface.",
+      "hints": [
+        "A method call must reach an object before its implementation runs.",
+        "The state update happens inside the method before the caller observes the new value."
+      ],
+      "step_number": 8
     }
   ],
   "assessment": {
@@ -118,5 +183,121 @@
         "explanation": "A battery is a component of a laptop, a has-a relationship."
       }
     ]
-  }
+  },
+  "quest": {
+    "chapter": "The Object Workshop",
+    "rank": "Design Apprentice",
+    "story": "A software team is modelling accounts, vehicles and reusable components. Good design depends on choosing the right object relationships and protecting state.",
+    "mission": "Model classes and objects, distinguish the four OOP pillars, and choose inheritance or composition deliberately.",
+    "success_criteria": [
+      "Distinguish classes from objects.",
+      "Explain encapsulation and abstraction.",
+      "Recognize inheritance and polymorphism.",
+      "Choose composition for has-a relationships."
+    ]
+  },
+  "worked_examples": [
+    {
+      "title": "Encapsulation in an account",
+      "input": "Account.balance is private; deposit(amount) validates and updates it.",
+      "trace": [
+        "The object stores its internal balance.",
+        "Callers use deposit() rather than editing the balance directly.",
+        "The method enforces rules before changing state."
+      ],
+      "output": "Encapsulation protects state through a controlled interface",
+      "explanation": "Encapsulation groups data and behavior while limiting uncontrolled access to internal state."
+    },
+    {
+      "title": "Choose inheritance for a true subtype",
+      "input": "SavingsAccount extends BankAccount",
+      "trace": [
+        "A savings account is a kind of bank account.",
+        "It can reuse common account behavior.",
+        "It can add interest rules while preserving the base contract."
+      ],
+      "output": "Inheritance models an is-a relationship",
+      "explanation": "Inheritance is useful for genuine specialization, not merely to reuse any available code."
+    },
+    {
+      "title": "Choose composition for a component",
+      "input": "Car contains Engine",
+      "trace": [
+        "An engine is not a kind of car.",
+        "The car uses an engine as one of its components.",
+        "The engine can be modelled as a separate collaborator."
+      ],
+      "output": "Composition models a has-a relationship",
+      "explanation": "Composition often keeps designs more flexible than forcing unrelated types into an inheritance hierarchy."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "OOP fundamentals",
+      "practice": "Explain the four pillars with small examples."
+    },
+    {
+      "company": "Infosys",
+      "skill": "object-oriented design",
+      "practice": "Distinguish inheritance from composition and abstraction from encapsulation."
+    },
+    {
+      "company": "Accenture",
+      "skill": "technical interview",
+      "practice": "Model a practical class and explain its responsibilities."
+    }
+  ],
+  "concepts": [
+    "class",
+    "object",
+    "state",
+    "behavior",
+    "encapsulation",
+    "abstraction",
+    "inheritance",
+    "polymorphism",
+    "composition"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Abstraction and encapsulation mean exactly the same thing.",
+      "correction": "Abstraction hides implementation complexity; encapsulation bundles state and behavior and controls access."
+    },
+    {
+      "misconception": "Inheritance should be used whenever it avoids duplicated code.",
+      "correction": "Use inheritance for a genuine is-a subtype; composition is often better for has-a relationships."
+    },
+    {
+      "misconception": "Polymorphism means only method overloading.",
+      "correction": "Polymorphism means using a shared interface with different type-specific behavior; implementations vary by language."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "distinction",
+      "question": "How do abstraction and encapsulation differ?",
+      "answer": "Abstraction exposes essential behavior while hiding details; encapsulation bundles state and methods and controls access."
+    },
+    {
+      "type": "relationship",
+      "question": "What is the difference between inheritance and composition?",
+      "answer": "Inheritance models is-a; composition models has-a."
+    },
+    {
+      "type": "concept",
+      "question": "What is polymorphism?",
+      "answer": "A shared interface can produce different type-specific behavior."
+    }
+  ],
+  "learning_objectives": [
+    "Distinguish classes, objects, state and behavior.",
+    "Explain encapsulation and abstraction with examples.",
+    "Recognize inheritance and polymorphism.",
+    "Choose composition for has-a relationships and inheritance for genuine is-a relationships."
+  ],
+  "mastery_threshold": 0.7,
+  "prerequisites": [],
+  "next_lesson_slug": "os_basics",
+  "next_lesson_title": "Operating Systems Fundamentals"
 }

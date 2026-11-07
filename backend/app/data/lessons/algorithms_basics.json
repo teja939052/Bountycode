@@ -118,5 +118,103 @@
         "explanation": "Edge cases expose incorrect assumptions about boundaries and unusual inputs."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Describe an algorithm as finite, precise steps.",
+    "Trace an algorithm on a small input.",
+    "Check correctness with invariants and edge cases.",
+    "Compare alternative approaches by time and space."
+  ],
+  "prerequisites": [
+    "programming_languages",
+    "time_complexity"
+  ],
+  "concepts": [
+    "input",
+    "output",
+    "finite steps",
+    "correctness",
+    "invariant",
+    "edge case"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A program that compiles must be correct.",
+      "correction": "Compilation checks syntax and types; logic can still be wrong."
+    },
+    {
+      "misconception": "Passing one example proves correctness.",
+      "correction": "Test boundaries and reason about why the algorithm works for all valid inputs."
+    },
+    {
+      "misconception": "Optimization should come before a working solution.",
+      "correction": "Establish correctness first, then optimize based on constraints."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Find maximum",
+      "input": "[4, 9, 2, 7]",
+      "trace": [
+        "Set max=4.",
+        "Compare 9; update max=9.",
+        "Compare 2 and 7; max remains 9."
+      ],
+      "output": "9",
+      "explanation": "The invariant is that max stores the largest value seen so far."
+    },
+    {
+      "title": "Check an empty input",
+      "input": "Find maximum of []",
+      "trace": [
+        "There is no first element to initialize max.",
+        "The algorithm needs a defined empty-input policy.",
+        "Return an optional result or report invalid input."
+      ],
+      "output": "Handle empty input explicitly",
+      "explanation": "Edge cases must be part of the problem contract."
+    },
+    {
+      "title": "Compare approaches",
+      "input": "Find whether any duplicate exists",
+      "trace": [
+        "Nested loops compare pairs: O(n²).",
+        "A set checks whether each value was seen: expected O(n).",
+        "Choose extra memory to reduce repeated comparisons."
+      ],
+      "output": "Hash-set approach: expected O(n) time",
+      "explanation": "Algorithm design balances time, space and constraints."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "logic and algorithm design",
+      "practice": "State the invariant and handle boundary inputs."
+    },
+    {
+      "company": "Infosys",
+      "skill": "problem solving",
+      "practice": "Explain correctness before complexity."
+    },
+    {
+      "company": "Accenture",
+      "skill": "coding assessment",
+      "practice": "Test duplicates, empty input and single-element input."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Algorithm Design Basics?",
+      "answer": "Describe an algorithm as finite, precise steps. Trace an algorithm on a small input. Check correctness with invariants and edge cases. Compare alternative approaches by time and space."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Algorithm Design Basics?",
+      "answer": "Compilation checks syntax and types; logic can still be wrong."
+    }
+  ],
+  "next_lesson_slug": "collections_framework",
+  "next_lesson_title": "Collections Framework"
 }

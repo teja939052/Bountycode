@@ -119,5 +119,101 @@
         "explanation": "2×3² = 2×9 = 18."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Translate word problems into equations.",
+    "Work with ratios, percentages and averages.",
+    "Solve linear equations and verify results.",
+    "Estimate answers and check units."
+  ],
+  "prerequisites": [
+    "hcf_lcm"
+  ],
+  "concepts": [
+    "ratio",
+    "percentage",
+    "average",
+    "linear equation",
+    "unit conversion",
+    "estimation"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A 20% increase followed by a 20% decrease returns to the original value.",
+      "correction": "Percentage changes use different bases; the final value is 96% of the starting value."
+    },
+    {
+      "misconception": "An average is always one of the observed values.",
+      "correction": "An average is total divided by count and may be between observed values."
+    },
+    {
+      "misconception": "Cross multiplication is valid without checking the equation structure.",
+      "correction": "Use equivalent ratios and preserve the equality when multiplying both sides."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Successive percentage change",
+      "input": "Start = 100; increase 20%; then decrease 20%",
+      "trace": [
+        "After increase: 100 × 1.20 = 120.",
+        "Decrease 20% of 120: 120 × 0.80 = 96."
+      ],
+      "output": "96",
+      "explanation": "The second percentage applies to 120, not the original 100."
+    },
+    {
+      "title": "Find an average",
+      "input": "Marks = 60, 70, 80",
+      "trace": [
+        "Add values: 60 + 70 + 80 = 210.",
+        "There are 3 values.",
+        "Divide 210 by 3."
+      ],
+      "output": "Average = 70",
+      "explanation": "The arithmetic mean is the sum divided by the number of observations."
+    },
+    {
+      "title": "Solve a linear equation",
+      "input": "3x + 5 = 20",
+      "trace": [
+        "Subtract 5 from both sides: 3x = 15.",
+        "Divide both sides by 3.",
+        "Substitute x=5 to verify."
+      ],
+      "output": "x = 5",
+      "explanation": "Perform the same valid operation on both sides to preserve equality."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "quantitative aptitude and arithmetic",
+      "practice": "Show each step and keep units consistent."
+    },
+    {
+      "company": "Infosys",
+      "skill": "quantitative aptitude",
+      "practice": "Practice percentages, ratios and data interpretation."
+    },
+    {
+      "company": "Accenture",
+      "skill": "numerical reasoning",
+      "practice": "Estimate first, then verify exact calculations."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Arithmetic and Algebra Foundations?",
+      "answer": "Translate word problems into equations. Work with ratios, percentages and averages. Solve linear equations and verify results. Estimate answers and check units."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Arithmetic and Algebra Foundations.",
+      "answer": "Percentage changes use different bases; the final value is 96% of the starting value."
+    }
+  ],
+  "next_lesson_slug": "successive_percentage_change",
+  "next_lesson_title": "Successive Percentage Change"
 }

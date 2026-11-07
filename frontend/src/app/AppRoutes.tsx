@@ -45,7 +45,6 @@ import {
   DSAVisualizer,
   ResumeATS,
   MockOA,
-  LearningHub,
   RoleSelect,
   JourneyPage,
   LevelMap,
@@ -62,9 +61,6 @@ import {
   Concepts,
   LessonPage,
   LessonPlayer,
-  LearningPaths,
-  CompanyTracks,
-  PrepHub,
   Terms,
   Privacy,
   FreeTrial,
@@ -211,10 +207,11 @@ export function AnimatedRoutes() {
         <Route path="/company-mocks/:testId" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/practice" element={<Practice />} />
         <Route path="/analytics" element={<Navigate to="/skills" replace />} />
-        <Route path="/learning" element={<Navigate to="/learn" replace />} />
-        <Route path="/learning-paths" element={<LearningPaths />} />
-        <Route path="/company-tracks" element={<CompanyTracks />} />
-        <Route path="/prep-hub" element={<PrepHub />} />
+        {/* One canonical learning home; legacy destinations remain safe aliases. */}
+        <Route path="/learning" element={<Navigate to="/academy" replace />} />
+        <Route path="/learning-paths" element={<Navigate to="/academy" replace />} />
+        <Route path="/company-tracks" element={<Navigate to="/academy" replace />} />
+        <Route path="/prep-hub" element={<Navigate to="/academy" replace />} />
         <Route path="/concepts" element={<Concepts />} />
 
         {/* Interview Routes */}
@@ -543,31 +540,18 @@ export function AnimatedRoutes() {
         />
 
         {/* Learning Routes */}
-        <Route
-          path="/learn"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <LearningHub />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route path="/learn/modules" element={<Navigate to="/learn" replace />} />
-        <Route path="/adaptive" element={<Navigate to="/learn" replace />} />
-        <Route path="/languages" element={<Navigate to="/learn" replace />} />
-        <Route
-          path="/languages/:languageId"
-          element={<Navigate to="/learn" replace />}
-        />
-        <Route path="/curriculum" element={<Navigate to="/learn" replace />} />
-        <Route
-          path="/curriculum/:trackId"
-          element={<Navigate to="/learn" replace />}
-        />
-        <Route
-          path="/curriculum/:trackId/:lessonId"
-          element={<Navigate to="/learn" replace />}
-        />
-        <Route path="/study" element={<Navigate to="/learn" replace />} />
+        {/* The Academy is the single learning destination. Lesson URLs stay
+            explicit so existing bookmarks and company-track lessons continue to work. */}
+        <Route path="/learn" element={<Navigate to="/academy" replace />} />
+        <Route path="/learn/:languageId" element={<Navigate to="/academy" replace />} />
+        <Route path="/learn/modules" element={<Navigate to="/academy" replace />} />
+        <Route path="/adaptive" element={<Navigate to="/academy" replace />} />
+        <Route path="/languages" element={<Navigate to="/academy" replace />} />
+        <Route path="/languages/:languageId" element={<Navigate to="/academy" replace />} />
+        <Route path="/curriculum" element={<Navigate to="/academy" replace />} />
+        <Route path="/curriculum/:trackId" element={<Navigate to="/academy" replace />} />
+        <Route path="/curriculum/:trackId/:lessonId" element={<Navigate to="/academy" replace />} />
+        <Route path="/study" element={<Navigate to="/academy" replace />} />
 
         {/* Study Tools */}
         <Route

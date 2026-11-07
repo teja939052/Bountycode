@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
@@ -28,107 +28,38 @@ import {
   Database,
 } from "lucide-react";
 
-const COMPANIES = [
-  {
-    id: "general",
-    name: "General OA",
-    logo: "📋",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Mixed placement OA covering all sections",
-    color: "cyber-blue",
-  },
-  {
-    id: "tcs",
-    name: "TCS",
-    logo: "🔷",
-    duration: 60,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "TCS National Qualifier Test pattern",
-    color: "cyber-blue",
-  },
-  {
-    id: "infosys",
-    name: "Infosys",
-    logo: "🔹",
-    duration: 45,
-    questionCount: 15,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "Infosys SPRT / Mysore training pattern",
-    color: "cyber-purple",
-  },
-  {
-    id: "wipro",
-    name: "Wipro",
-    logo: "💎",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Wipro TopGear assessment pattern",
-    color: "cyber-green",
-  },
-  {
-    id: "cognizant",
-    name: "Cognizant",
-    logo: "🔶",
-    duration: 30,
-    questionCount: 15,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "Cognizant GenC Next assessment",
-    color: "cyber-amber",
-  },
-  {
-    id: "capgemini",
-    name: "Capgemini",
-    logo: "🔆",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Capgemini online assessment pattern",
-    color: "cyber-amber",
-  },
-  {
-    id: "ibm",
-    name: "IBM",
-    logo: "🔷",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "IBM entry-level Cognitive Ability round",
-    color: "cyber-blue",
-  },
-  {
-    id: "hcl",
-    name: "HCL Tech",
-    logo: "🟢",
-    duration: 30,
-    questionCount: 15,
-    difficulty: "easy",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "HCL TalentConnect pattern",
-    color: "cyber-green",
-  },
-  {
-    id: "tech_mahindra",
-    name: "Tech Mahindra",
-    logo: "⚡",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Tech Mahindra SMART assessment",
-    color: "cyber-purple",
-  },
+type CompanyPreset = {
+  id: string;
+  backendCompany: string;
+  track?: string;
+  name: string;
+  logo: string;
+  duration: number;
+  questionCount: number;
+  difficulty: string;
+  sections: string[];
+  description: string;
+  sourceLabel: string;
+  sourceUrl: string | null;
+  color: string;
+};
+
+export const COMPANY_PRESETS: CompanyPreset[] = [
+  { id: "general", backendCompany: "swe", name: "General OA", logo: "📋", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Mixed placement OA covering all sections", sourceLabel: "Product recommendation", sourceUrl: null, color: "cyber-blue" },
+  { id: "tcs", backendCompany: "tcs", name: "TCS Foundation + Advanced", logo: "🔷", duration: 190, questionCount: 30, difficulty: "medium", sections: ["Foundation", "Advanced"], description: "Full two-stage TCS NQT-style practice", sourceLabel: "Official drive structure; verify current hall ticket", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
+  { id: "tcs_foundation", backendCompany: "tcs", track: "foundation", name: "TCS Foundation", logo: "🔷", duration: 75, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal"], description: "Numerical, verbal and reasoning practice", sourceLabel: "Official cited TCS drive: 75 minutes", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
+  { id: "tcs_advanced", backendCompany: "tcs", track: "advanced", name: "TCS Advanced", logo: "🔷", duration: 115, questionCount: 15, difficulty: "hard", sections: ["Advanced Quant", "Coding"], description: "Advanced aptitude, reasoning and coding practice", sourceLabel: "Official cited TCS drive: 115 minutes", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
+  { id: "infosys", backendCompany: "infytq", name: "Infosys InfyTQ", logo: "🔹", duration: 180, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Programming, DBMS/SQL, aptitude and OOP/DSA practice", sourceLabel: "Edition-dependent practice", sourceUrl: "https://www.infosys.com/insights/human-potential/industry-grade-certification.html", color: "cyber-purple" },
+  { id: "wipro", backendCompany: "wipro", name: "Wipro WILP / NTH", logo: "💎", duration: 80, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Verbal, analytical, quantitative and writing practice", sourceLabel: "Official cited WILP cohort: 80-minute assessment", sourceUrl: "https://app.joinsuperset.com/company/wipro/wilp.html", color: "cyber-green" },
+  { id: "accenture", backendCompany: "accenture", name: "Accenture Campus", logo: "🟣", duration: 90, questionCount: 20, difficulty: "medium", sections: ["Cognitive", "Technical", "Coding", "Communication"], description: "Role-aware cognitive, technical, coding and communication practice", sourceLabel: "Invitation-dependent; official guidance", sourceUrl: "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture", color: "cyber-purple" },
+  { id: "cognizant", backendCompany: "cognizant", name: "Cognizant GenC", logo: "🔶", duration: 90, questionCount: 15, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Communication, aptitude and role-based technical practice", sourceLabel: "Role-dependent practice", sourceUrl: "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program/", color: "cyber-amber" },
+  { id: "capgemini", backendCompany: "capgemini", name: "Capgemini", logo: "🔆", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Capgemini online assessment pattern", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-amber" },
+  { id: "ibm", backendCompany: "ibm", name: "IBM", logo: "🔷", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "IBM entry-level Cognitive Ability round", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-blue" },
+  { id: "hcl", backendCompany: "hcl", name: "HCL Tech", logo: "🟢", duration: 30, questionCount: 15, difficulty: "easy", sections: ["Quant", "Logical", "Verbal"], description: "HCL TalentConnect pattern", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-green" },
+  { id: "tech_mahindra", backendCompany: "tech_mahindra", name: "Tech Mahindra", logo: "⚡", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Tech Mahindra SMART assessment", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-purple" },
 ];
+
+const COMPANIES = COMPANY_PRESETS;
 
 const SECTION_CATEGORIES = {
   Quant: "quantitative",
@@ -139,6 +70,8 @@ const SECTION_CATEGORIES = {
 
 const OA_TO_MEMORY_EXAM: Record<string, string> = {
   tcs: "tcs_nqt",
+  tcs_foundation: "tcs_nqt",
+  tcs_advanced: "tcs_nqt",
   infosys: "infytq",
   wipro: "wipro_nlth",
   cognizant: "cognizant_genc",
@@ -154,6 +87,10 @@ const DURATION_OPTIONS = [
   { value: 30, label: "30 min" },
   { value: 45, label: "45 min" },
   { value: 60, label: "60 min" },
+  { value: 75, label: "75 min" },
+  { value: 90, label: "90 min" },
+  { value: 115, label: "115 min" },
+  { value: 190, label: "190 min" },
 ];
 
 function QuestionPalette({
@@ -161,12 +98,14 @@ function QuestionPalette({
   current,
   answers,
   submittedAnswers,
+  flaggedQuestionIds,
   onNavigate,
 }: {
   total: number;
   current: number;
   answers: Record<number, unknown>;
   submittedAnswers: Record<number, { is_correct?: boolean }>;
+  flaggedQuestionIds: string[];
   onNavigate: (idx: number) => void;
 }) {
   return (
@@ -180,9 +119,10 @@ function QuestionPalette({
           const isAnswered = answers[i] !== undefined;
           const isSubmitted = submittedAnswers[i] !== undefined;
           const isCorrect = submittedAnswers[i]?.is_correct;
+          const isFlagged = flaggedQuestionIds.includes(String(i));
 
           let btnClass =
-            "w-9 h-9 rounded-lg font-mono text-xs font-bold transition-all duration-200 border ";
+            "relative w-9 h-9 rounded-lg font-mono text-xs font-bold transition-all duration-200 border ";
           if (isCurrent) {
             btnClass += "bg-cyber-blue text-space-void border-cyber-blue shadow-cyber-blue scale-110";
           } else if (isSubmitted && isCorrect) {
@@ -194,6 +134,7 @@ function QuestionPalette({
           } else {
             btnClass += "bg-white text-text-muted border-black/5 hover:border-gray-500 hover:text-text-primary";
           }
+          if (isFlagged) btnClass += " ring-2 ring-cyber-amber/70";
 
           return (
             <button
@@ -202,6 +143,7 @@ function QuestionPalette({
               className={btnClass}
             >
               {i + 1}
+              {isFlagged && <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-cyber-amber" aria-label="Flagged for review" />}
             </button>
           );
         })}
@@ -320,12 +262,27 @@ interface AnswerResult {
   answer?: unknown;
 }
 
+function readPersistedMockRuntime(): { sessionId: string; companyId: string; questions: OAQuestion[]; sections: Section[]; startedAt: number } | null {
+  try {
+    const raw = sessionStorage.getItem("bountycode:active-mock-runtime");
+    const parsed = raw ? JSON.parse(raw) : null;
+    if (parsed?.sessionId && Array.isArray(parsed.questions) && Array.isArray(parsed.sections)) return parsed;
+  } catch {
+    // Storage can be unavailable in private browsing; the normal flow still works.
+  }
+  return null;
+}
+
 export default function MockOA() {
-  const [step, setStep] = useState<"select" | "test" | "results">("select");
-  const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
-  const [customDuration, setCustomDuration] = useState(45);
-  const [sessionId, setSessionId] = useState<string>("");
-  const [questions, setQuestions] = useState<OAQuestion[]>([]);
+  const [searchParams] = useSearchParams();
+  const requestedCompany = searchParams.get("company");
+  const initialCompany = COMPANIES.some((company) => company.id === requestedCompany) ? requestedCompany : null;
+  const [runtimeSeed] = useState(readPersistedMockRuntime);
+  const [step, setStep] = useState<"select" | "test" | "results">(runtimeSeed ? "test" : "select");
+  const [selectedCompany, setSelectedCompany] = useState<string | null>(runtimeSeed?.companyId || initialCompany);
+  const [customDuration, setCustomDuration] = useState(() => COMPANIES.find((company) => company.id === initialCompany)?.duration || 45);
+  const [sessionId, setSessionId] = useState<string>(runtimeSeed?.sessionId || "");
+  const [questions, setQuestions] = useState<OAQuestion[]>(runtimeSeed?.questions || []);
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, unknown>>({});
   const [submittedAnswers, setSubmittedAnswers] = useState<Record<number, AnswerResult>>({});
@@ -333,14 +290,16 @@ export default function MockOA() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [timeTaken, setTimeTaken] = useState(0);
-  const [startTime, setStartTime] = useState<number | null>(null);
+  const [startTime, setStartTime] = useState<number | null>(runtimeSeed?.startedAt || null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
   const [reviewMode, setReviewMode] = useState(false);
   const [showExplanation, setShowExplanation] = useState<Record<number, boolean>>({});
-  const [sections, setSections] = useState<Section[]>([]);
+  const [sections, setSections] = useState<Section[]>(runtimeSeed?.sections || []);
   const [resultLoading, setResultLoading] = useState(false);
   const timerRef = useRef(null);
+  const hydratedSessionRef = useRef("");
+  const resumedSessionRef = useRef(false);
 
   const mockSession = useMockSession({
     mockId: sessionId,
@@ -365,8 +324,13 @@ export default function MockOA() {
           isExamComplete: true,
           unreachable: true,
         });
+      try { sessionStorage.removeItem("bountycode:active-mock-runtime"); } catch { /* ignore storage failures */ }
       api
-        .oa.complete(sessionId)
+        .oa.complete(sessionId, {
+          flagged_question_ids: mockSession.state.flaggedQuestionIds,
+          client_resume_used: resumedSessionRef.current,
+          autosave_available: true,
+        })
         .then((data: any) => {
           // Reconcile real per-question correctness from the server scorecard
           // so section breakdown + review rings reflect actual grading.
@@ -413,6 +377,21 @@ export default function MockOA() {
         .finally(() => setResultLoading(false));
     },
   });
+
+  useEffect(() => {
+    if (step !== "test" || !sessionId || !questions.length || !mockSession.state.lastSavedAt || hydratedSessionRef.current === sessionId) return;
+    const restoredAnswers = Object.fromEntries(
+      Object.entries(mockSession.state.answers).map(([key, value]) => [Number(key), value])
+    ) as Record<number, unknown>;
+    setAnswers(restoredAnswers);
+    resumedSessionRef.current = Object.keys(restoredAnswers).length > 0;
+    const sectionSize = Math.ceil(questions.length / Math.max(1, company.sections.length));
+    const sectionStart = mockSession.state.currentSectionIndex * sectionSize;
+    const nextUnanswered = questions.findIndex((_, index) => index >= sectionStart && restoredAnswers[index] === undefined);
+    if (nextUnanswered >= 0) setCurrentQ(nextUnanswered);
+    else setCurrentQ(Math.min(sectionStart, questions.length - 1));
+    hydratedSessionRef.current = sessionId;
+  }, [step, sessionId, questions.length, mockSession.state.lastSavedAt, mockSession.state.answers]);
 
   const company = useMemo(
     () => COMPANIES.find((c) => c.id === selectedCompany) || COMPANIES[0],
@@ -474,9 +453,10 @@ export default function MockOA() {
     setLoading(true);
     setError("");
     try {
-      const companyId = (selectedCompany === "general" ? "swe" : selectedCompany) as string;
+      const companyId = company.backendCompany;
       const data = (await api.oa.start({
         company: companyId,
+        track: company.track,
         role: "swe",
         total_questions: company.questionCount,
         duration_minutes: customDuration || company.duration,
@@ -493,6 +473,8 @@ export default function MockOA() {
       }));
 
       setSessionId(String(data.session_id));
+      hydratedSessionRef.current = "";
+      resumedSessionRef.current = false;
       setQuestions(loadedQuestions);
       setSections(builtSections);
       setCurrentQ(0);
@@ -505,6 +487,15 @@ export default function MockOA() {
       setResult(null);
       setResultLoading(false);
       setStep("test");
+      try {
+        sessionStorage.setItem("bountycode:active-mock-runtime", JSON.stringify({
+          sessionId: String(data.session_id),
+          companyId: selectedCompany || "general",
+          questions: loadedQuestions,
+          sections: builtSections,
+          startedAt: Date.now(),
+        }));
+      } catch { /* local autosave remains best-effort */ }
       mockSession.triggerFullscreen().catch(() => {});
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to start test");
@@ -526,6 +517,7 @@ export default function MockOA() {
       };
       await api.oa.submitAnswer(sessionId, [item]);
       setAnswers((prev) => ({ ...prev, [currentQ]: answer }));
+      mockSession.handleAnswerSelection(String(currentQ), String(answer));
       setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: { is_correct: null, answer } as unknown as AnswerResult }));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to submit answer");
@@ -621,6 +613,7 @@ export default function MockOA() {
                     <p className="text-[10px] font-mono text-gray-500">
                       {c.description}
                     </p>
+                    <p className="mt-1 text-[9px] font-mono text-cyber-blue/80">{c.sourceLabel}</p>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -660,6 +653,7 @@ export default function MockOA() {
                     {company.questionCount} questions across{" "}
                     {company.sections.length} sections
                   </p>
+                  <p className="mt-2 max-w-xl text-[10px] font-mono leading-4 text-amber-700">Practice simulation only. {company.sourceLabel}. Verify your current employer invitation for exact rules.</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
@@ -741,6 +735,9 @@ export default function MockOA() {
               <span className="font-mono text-xs text-gray-500">
                 {answeredCount}/{questions.length} answered
               </span>
+              <span className="hidden font-mono text-[10px] text-emerald-700 sm:inline">
+                {mockSession.state.lastSavedAt ? "Autosaved" : "Saving…"}
+              </span>
               <div className="flex flex-col items-center">
                 <span className="font-display font-black text-lg text-text-primary leading-none">
                   {formatTime(remainingSeconds)}
@@ -784,19 +781,29 @@ export default function MockOA() {
                         </span>
                       )}
                     </span>
-                    {submittedAnswers[currentQ] && (
-                      <span
-                        className={`font-mono text-[10px] px-2 py-0.5 rounded-full ${
-                          submittedAnswers[currentQ].is_correct
-                            ? "bg-cyber-green/10 text-cyber-green border border-cyber-green/20"
-                            : "bg-cyber-red/10 text-cyber-red border border-cyber-red/20"
-                        }`}
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => mockSession.toggleFlag(String(currentQ))}
+                        className={`inline-flex items-center gap-1 rounded-full border px-2 py-1 font-mono text-[10px] transition ${mockSession.state.flaggedQuestionIds.includes(String(currentQ)) ? "border-cyber-amber/60 bg-cyber-amber/10 text-cyber-amber" : "border-black/10 text-gray-500 hover:border-cyber-amber/50 hover:text-cyber-amber"}`}
+                        aria-label={mockSession.state.flaggedQuestionIds.includes(String(currentQ)) ? "Remove review flag" : "Flag question for review"}
                       >
-                        {submittedAnswers[currentQ].is_correct
-                          ? "Correct"
-                          : "Wrong"}
-                      </span>
-                    )}
+                        <AlertTriangle size={12} /> {mockSession.state.flaggedQuestionIds.includes(String(currentQ)) ? "Flagged" : "Review"}
+                      </button>
+                      {submittedAnswers[currentQ] && (
+                        <span
+                          className={`font-mono text-[10px] px-2 py-0.5 rounded-full ${
+                            submittedAnswers[currentQ].is_correct
+                              ? "bg-cyber-green/10 text-cyber-green border border-cyber-green/20"
+                              : "bg-cyber-red/10 text-cyber-red border border-cyber-red/20"
+                          }`}
+                        >
+                          {submittedAnswers[currentQ].is_correct
+                            ? "Correct"
+                            : "Wrong"}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <p className="font-display font-bold text-text-primary text-lg leading-relaxed mt-3">
                     {q.question}
@@ -948,6 +955,7 @@ export default function MockOA() {
                 current={currentQ}
                 answers={answers}
                 submittedAnswers={submittedAnswers}
+                flaggedQuestionIds={mockSession.state.flaggedQuestionIds}
                 onNavigate={navigateQuestion}
               />
 
@@ -973,6 +981,10 @@ export default function MockOA() {
                     <span className="text-gray-400">
                       {unattemptedCount}
                     </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">For review</span>
+                    <span className="text-cyber-amber">{mockSession.state.flaggedQuestionIds.length}</span>
                   </div>
                 </div>
               </div>

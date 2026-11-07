@@ -5,13 +5,15 @@ Piston-shaped dict. No app imports, no database, no AI. The main backend
 calls POST /execute with a shared bearer secret and falls through to its
 existing chain (Piston → Judge0 → local sandbox) on any failure.
 
-Deploy: `gcloud run deploy compiler --source . --region us-central1 \
+Deploy only after configuring network egress isolation (including metadata endpoints):
+`gcloud run deploy compiler --source . --region us-central1 \
   --allow-unauthenticated --max-instances 4 --concurrency 4 \
   --memory 512Mi --cpu 1 --timeout 60s --no-cpu-throttling=False \
-  --set-env-vars COMPILER_KEY=<secret>`
-Free tier covers this comfortably (2M req/mo, scale-to-zero, us-central1).
-Harden further in Cloud Run: run as non-root (Dockerfile), read-only
-root filesystem + no VPC egress for the service, min-instances 0.
+  --set-env-vars COMPILER_KEY=<secret>,COMPILER_NETWORK_ISOLATION_CONFIRMED=true`
+The confirmation flag is a fail-closed deployment guard; it does not itself
+block network access. Verify no outbound route and no sensitive service identity
+before setting it. The child process receives only a small runtime environment
+allowlist, never the compiler key or application credentials.
 """
 from __future__ import annotations
 
@@ -65,14 +67,26 @@ def _authorized(authorization: Optional[str]) -> bool:
 
 
 def _sandbox_env() -> Dict[str, str]:
-    """Child env: inherit the container, drop proxy signalling (defense in
-    depth alongside no-egress at the platform layer), enforce interpreter
-    safety flags. Full inherit (not a minimal allowlist) because runtimes
-    need platform vars like SYSTEMROOT/TEMP to start at all."""
-    env = {k: v for k, v in os.environ.items()
-           if "proxy" not in k.lower()}
-    env.update({"PYTHONDONTWRITEBYTECODE": "1", "PYTHONNOUSERSITE": "1",
-                "NODE_NO_READLINE": "1"})
+    """Expose only the minimum runtime environment to untrusted child code.
+
+    This prevents accidental disclosure of COMPILER_KEY and cloud/application
+    credentials through os.environ. It is not network isolation: the deployment
+    must separately block outbound access before execution is enabled.
+    """
+    allowed = {
+        "PATH", "HOME", "LANG", "LC_ALL", "LC_CTYPE", "TZ",
+        "TMPDIR", "TMP", "TEMP", "SYSTEMROOT", "WINDIR", "PATHEXT", "COMSPEC",
+    }
+    env = {
+        key: value
+        for key, value in os.environ.items()
+        if key.upper() in allowed and "proxy" not in key.lower()
+    }
+    env.update({
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+        "NODE_NO_READLINE": "1",
+    })
     return env
 
 
@@ -123,8 +137,13 @@ def _run_once(code: str, language: str, stdin: str, timeout: int) -> Dict[str, A
 
 
 @app.get("/health")
-async def health() -> Dict[str, str]:
-    return {"status": "ok", "languages": ",".join(sorted(RUNNERS))}
+async def health() -> Dict[str, Any]:
+    enabled = os.getenv("COMPILER_NETWORK_ISOLATION_CONFIRMED", "false").lower() == "true"
+    return {
+        "status": "ok",
+        "languages": ",".join(sorted(RUNNERS)),
+        "execution_enabled": enabled,
+    }
 
 
 @app.post("/execute")
@@ -132,6 +151,11 @@ async def execute(req: ExecuteRequest,
                   authorization: Optional[str] = Header(default=None)) -> Dict[str, Any]:
     if not _authorized(authorization):
         raise HTTPException(status_code=401, detail="Unauthorized")
+    if os.getenv("COMPILER_NETWORK_ISOLATION_CONFIRMED", "false").lower() != "true":
+        raise HTTPException(
+            status_code=503,
+            detail="Execution is disabled until outbound network isolation is configured and verified.",
+        )
     language = (req.language or "").lower()
     if language not in RUNNERS:
         raise HTTPException(status_code=400,

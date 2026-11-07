@@ -105,5 +105,7 @@
       "question": "What are the 4 main flowchart symbols and their meanings?",
       "answer": "Oval = Start/End, Rectangle = Process, Diamond = Decision, Parallelogram = Input/Output."
     }
-  ]
+  ],
+  "next_lesson_slug": "pattern_matching_basics",
+  "next_lesson_title": "Pattern Matching and Recognition"
 }

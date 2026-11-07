@@ -118,5 +118,7 @@
         "explanation": "Group by customer_id and sum amount for each group."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "sql_subqueries",
+  "next_lesson_title": "SQL Subqueries"
 }

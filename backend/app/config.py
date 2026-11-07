@@ -164,10 +164,10 @@ class Settings(BaseSettings):
     PISTON_API_URL: str = os.getenv("PISTON_API_URL", "https://emkc.org/api/v2/piston/execute")
     PISTON_API_KEY: str = os.getenv("PISTON_API_KEY", "")
     PISTON_TIMEOUT: int = 30
-    # Local sandboxed fallback for code execution when Piston is rate-limited/down.
-    # Self-hosted, zero egress: runs code in a restricted subprocess with resource limits.
-    # Defaults ON so Python/JS code execution works out-of-the-box without a Piston key.
-    USE_LOCAL_SANDBOX: bool = os.getenv("USE_LOCAL_SANDBOX", "true").lower() == "true"
+    # Local subprocess runner is a trusted-development convenience, not a public
+    # security boundary. Opt in explicitly for local testing only; public execution
+    # should use an isolated external provider or the Docker sandbox.
+    USE_LOCAL_SANDBOX: bool = os.getenv("USE_LOCAL_SANDBOX", "false").lower() == "true"
     SANDBOX_TIMEOUT: int = int(os.getenv("SANDBOX_TIMEOUT", "5"))
     # Free remote fallbacks (Wandbox + Glot.io) tried after Piston and before the
     # local sandbox. Best-effort public APIs with per-IP limits — not a security boundary.

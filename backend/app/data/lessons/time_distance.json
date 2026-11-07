@@ -5,8 +5,9 @@
   "domain": "Quantitative Aptitude",
   "pattern": "Time Speed Distance",
   "difficulty": "easy",
-  "duration_min": 20,
-  "xp_reward": 95,
+  "duration_min": 30,
+  "xp_reward": 115,
+  "mastery_threshold": 0.7,
   "steps": [
     {
       "step_number": 1,
@@ -14,21 +15,18 @@
       "title": "The three-variable relationship",
       "content": "Distance, speed and time are linked: distance = speed × time. Rearrange to find speed or time. Keep units consistent before calculating.",
       "formula": "Distance = Speed × Time\nSpeed = Distance ÷ Time\nTime = Distance ÷ Speed",
-      "example": "A car travels at 60 km/h for 2.5 hours. Distance = 60×2.5 = 150 km."
+      "example": "A car travels at 60 km/h for 2.5 hours. Distance = 60×2.5 = 150 km.",
+      "tip": "Write the known values with units before substituting."
     },
     {
       "step_number": 2,
       "step_type": "interactive",
       "title": "Find the distance",
       "prompt": "A bus travels at 45 km/h for 4 hours. How far does it travel?",
-      "options": [
-        "160 km",
-        "170 km",
-        "180 km",
-        "190 km"
-      ],
+      "options": ["160 km", "170 km", "180 km", "190 km"],
       "correct_index": 2,
-      "explanation": "Distance = 45×4 = 180 km."
+      "explanation": "Distance = 45×4 = 180 km.",
+      "hints": ["Use distance = speed × time.", "Units are already consistent in km and hours."]
     },
     {
       "step_number": 3,
@@ -43,14 +41,10 @@
       "step_type": "practice",
       "title": "Convert speed",
       "prompt": "Convert 54 km/h into metres per second.",
-      "options": [
-        "12 m/s",
-        "15 m/s",
-        "18 m/s",
-        "20 m/s"
-      ],
+      "options": ["12 m/s", "15 m/s", "18 m/s", "20 m/s"],
       "correct_index": 1,
-      "explanation": "54×5/18 = 15 m/s."
+      "explanation": "54×5/18 = 15 m/s.",
+      "hints": ["Multiply by 5/18.", "Simplify 54/18 first if helpful."]
     },
     {
       "step_number": 5,
@@ -58,67 +52,208 @@
       "title": "Relative speed",
       "content": "When two objects move in opposite directions, relative speed is the sum of their speeds. When they move in the same direction, relative speed is the difference.",
       "example": "Two trains at 50 and 40 km/h in opposite directions approach each other at 90 km/h."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Trace a short-time distance",
+      "content": "Convert minutes to hours before using km/h.",
+      "prompt": "A train moves at 72 km/h. How far does it travel in 25 minutes?",
+      "code": "# 25 min = 25/60 = 5/12 hour\n# distance = 72 * 5/12",
+      "language": "python",
+      "answer_placeholder": "Enter km",
+      "expected_answer": "30",
+      "explanation": "72 × 5/12 = 30 km.",
+      "hints": ["Convert 25 minutes to a fraction of an hour.", "Then multiply by the speed in km/h."]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Solve a relative-speed meeting",
+      "content": "Direction decides whether speeds add or subtract.",
+      "prompt": "Arrange the steps when two cars move toward each other.",
+      "options": [
+        "Divide distance by relative speed to get meeting time",
+        "Identify opposite directions",
+        "Add the two speeds",
+        "Read the two speeds and the gap"
+      ],
+      "correct_order": [3, 1, 2, 0],
+      "explanation": "Opposite directions → add speeds → time = distance / relative speed.",
+      "hints": ["Direction comes before the arithmetic.", "Meeting time uses the relative speed as the divisor."]
+    },
+    {
+      "step_number": 8,
+      "step_type": "practice",
+      "title": "Relative speed",
+      "prompt": "Two cars travel in opposite directions at 55 and 65 km/h. Relative speed is:",
+      "options": ["10 km/h", "55 km/h", "65 km/h", "120 km/h"],
+      "correct_index": 3,
+      "explanation": "Opposite directions: add speeds = 120 km/h.",
+      "hints": ["Opposite directions mean the gap closes faster.", "Add the speeds."]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Catch the average-speed trap",
+      "content": "A student averages 30 km/h and 60 km/h as 45 km/h for equal distances.",
+      "prompt": "Why is 45 wrong for equal 60 km legs?",
+      "options": [
+        "Average speed is total distance over total time, which is 40 km/h",
+        "Average speed is always the larger speed",
+        "Average speed is always the smaller speed",
+        "Equal distances always give the arithmetic mean"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "Correct. Times are 2 h and 1 h; total 120 km in 3 h → 40 km/h.",
+        "2": "The larger speed alone is not the average.",
+        "3": "The smaller speed alone is not the average.",
+        "4": "Equal distances do not make the arithmetic mean of speeds correct; times differ."
+      },
+      "explanation": "Average speed = total distance ÷ total time = 40 km/h.",
+      "hints": ["Compute time for each leg separately.", "Add distances and times before dividing."]
     }
   ],
   "assessment": {
     "mastery_threshold": 0.7,
-    "duration_sec": 240,
+    "duration_sec": 300,
     "questions": [
       {
         "prompt": "A 150 km trip takes 3 hours. Find average speed.",
-        "options": [
-          "40 km/h",
-          "45 km/h",
-          "50 km/h",
-          "60 km/h"
-        ],
+        "options": ["40 km/h", "45 km/h", "50 km/h", "60 km/h"],
         "correct_index": 2,
         "explanation": "Speed = 150/3 = 50 km/h."
       },
       {
         "prompt": "Convert 90 km/h to m/s.",
-        "options": [
-          "20",
-          "22.5",
-          "25",
-          "27"
-        ],
+        "options": ["20", "22.5", "25", "27"],
         "correct_index": 2,
         "explanation": "90×5/18 = 25 m/s."
       },
       {
-        "prompt": "A train moves at 72 km/h. How far does it travel in 25 minutes?",
-        "options": [
-          "20 km",
-          "25 km",
-          "30 km",
-          "36 km"
-        ],
+        "prompt": "A train moves at 72 km/h. Distance in 25 minutes?",
+        "options": ["20 km", "25 km", "30 km", "36 km"],
         "correct_index": 2,
-        "explanation": "25 minutes = 5/12 hour. Distance = 72×5/12 = 30 km."
+        "explanation": "25 min = 5/12 h; 72×5/12 = 30 km."
       },
       {
-        "prompt": "Two cars travel in opposite directions at 55 and 65 km/h. Relative speed is:",
-        "options": [
-          "10 km/h",
-          "55 km/h",
-          "65 km/h",
-          "120 km/h"
-        ],
+        "prompt": "Two cars travel opposite ways at 55 and 65 km/h. Relative speed?",
+        "options": ["10 km/h", "55 km/h", "65 km/h", "120 km/h"],
         "correct_index": 3,
-        "explanation": "Opposite directions: add speeds = 120 km/h."
+        "explanation": "Opposite directions: add speeds."
       },
       {
-        "prompt": "A 120 m train crosses a pole in 6 seconds. Find its speed.",
-        "options": [
-          "15 m/s",
-          "18 m/s",
-          "20 m/s",
-          "24 m/s"
-        ],
+        "prompt": "A 120 m train crosses a pole in 6 seconds. Speed?",
+        "options": ["15 m/s", "18 m/s", "20 m/s", "24 m/s"],
         "correct_index": 2,
-        "explanation": "Distance = train length = 120 m. Speed = 120/6 = 20 m/s."
+        "explanation": "Speed = 120/6 = 20 m/s."
+      },
+      {
+        "prompt": "Equal 60 km legs at 30 and 60 km/h. Average speed?",
+        "options": ["40 km/h", "45 km/h", "50 km/h", "90 km/h"],
+        "correct_index": 0,
+        "explanation": "Total 120 km in 3 hours → 40 km/h."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Use speed, distance and time relationships.",
+    "Convert units consistently.",
+    "Solve relative-speed problems by direction.",
+    "Compute average speed as total distance over total time.",
+    "Avoid the arithmetic-mean trap on equal distances."
+  ],
+  "prerequisites": ["arithmetic_algebra"],
+  "concepts": ["speed", "distance", "time", "relative speed", "unit conversion", "average speed"],
+  "common_misconceptions": [
+    {
+      "misconception": "Average speed is always the average of two speeds.",
+      "correction": "Average speed is total distance divided by total time."
+    },
+    {
+      "misconception": "Opposite-direction relative speed is the difference.",
+      "correction": "For opposite directions, add speeds; for same direction, subtract."
+    },
+    {
+      "misconception": "Minutes and hours can be mixed without conversion.",
+      "correction": "Convert units before substituting into formulas."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Find distance",
+      "input": "Speed 60 km/h; time 2.5 h",
+      "trace": ["Distance = speed × time.", "60 × 2.5 = 150."],
+      "output": "150 km",
+      "explanation": "Use consistent units."
+    },
+    {
+      "title": "Relative speed",
+      "input": "Cars toward each other at 40 and 50 km/h",
+      "trace": ["Opposite directions.", "Relative speed 90 km/h."],
+      "output": "90 km/h",
+      "explanation": "Add speeds when objects move toward each other."
+    },
+    {
+      "title": "Average speed",
+      "input": "60 km at 30 km/h and 60 km at 60 km/h",
+      "trace": ["Times 2 h and 1 h.", "Total 120 km in 3 h."],
+      "output": "40 km/h",
+      "explanation": "Total distance over total time, not the mean of speeds."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "time-distance aptitude",
+      "practice": "Convert units and calculate relative speed carefully."
+    },
+    {
+      "company": "Infosys",
+      "skill": "numerical reasoning",
+      "practice": "Draw a timeline for trains and meeting problems."
+    },
+    {
+      "company": "Wipro",
+      "skill": "quantitative aptitude",
+      "practice": "Use total distance over total time for averages."
+    },
+    {
+      "company": "Accenture",
+      "skill": "numerical ability",
+      "practice": "Watch for equal-distance average-speed traps."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "formula",
+      "question": "What is the relation between distance, speed and time?",
+      "answer": "Distance = speed × time."
+    },
+    {
+      "type": "formula",
+      "question": "How do you convert km/h to m/s?",
+      "answer": "Multiply by 5/18."
+    },
+    {
+      "type": "misconception",
+      "question": "Why is average speed not the mean of two speeds on equal distances?",
+      "answer": "Because the times spent at each speed differ; use total distance over total time."
+    }
+  ],
+  "quest": {
+    "chapter": "The Motion Lab",
+    "rank": "Speed Analyst",
+    "story": "Service-company papers mix unit conversion, relative motion and average-speed traps. Keep distance = speed × time as your anchor.",
+    "mission": "Master distance-speed-time, unit conversion, relative speed and true average speed.",
+    "success_criteria": [
+      "Apply distance = speed × time.",
+      "Convert km/h and m/s correctly.",
+      "Choose add or subtract for relative speed by direction.",
+      "Compute average speed from total distance and total time."
+    ]
+  },
+  "next_lesson_slug": "advanced_time_work",
+  "next_lesson_title": "Advanced Time and Work"
 }

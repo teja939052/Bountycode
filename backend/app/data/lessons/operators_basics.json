@@ -1,0 +1,355 @@
+{
+  "id": "lesson_operators_basics_001",
+  "slug": "operators_basics",
+  "title": "Operators, Expressions and Evaluation Order",
+  "domain": "Programming Fundamentals",
+  "pattern": "Operators and Expressions",
+  "difficulty": "easy",
+  "duration_min": 34,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Operators perform work on values",
+      "content": "An operator is a symbol or keyword that performs an operation on one or more values. The values it works on are called operands. Expressions combine operators and operands to produce a result. Understanding an expression means knowing both the operation and the order in which operations are evaluated.",
+      "example": "total = price * quantity\nis_pass = marks >= 40",
+      "tip": "When tracing a long expression, identify the operands and group the operations before calculating."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose the arithmetic operator",
+      "content": "Arithmetic operators calculate numeric results.",
+      "prompt": "Which operator gives the remainder after integer division in Python?",
+      "options": [
+        "%",
+        "/",
+        "*",
+        "//"
+      ],
+      "correct_index": 0,
+      "explanation": "The modulo operator % returns the remainder. / performs division, * multiplication and // floor division.",
+      "hints": [
+        "Think about what remains after making complete groups.",
+        "The operator is often used to test divisibility."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand the arithmetic family",
+      "content": "Common arithmetic operators include + for addition, - for subtraction, * for multiplication, / for division, // for floor division in Python, % for remainder, and ** for exponentiation in Python. Similar concepts exist across languages, though exact symbols and semantics can vary.",
+      "example": "17 // 5 = 3\n17 % 5 = 2\n2 ** 3 = 8",
+      "tip": "Do not confuse quotient and remainder: together they describe how a dividend is divided into whole groups plus what is left over."
+    },
+    {
+      "step_number": 4,
+      "step_type": "predict_output",
+      "title": "Trace precedence and parentheses",
+      "content": "Parentheses make grouping explicit. Multiplication and division are evaluated before addition and subtraction, with equal-precedence operations evaluated according to the language's rules.",
+      "prompt": "What exact value is printed?",
+      "code": "result = 4 + 3 * 2\nprint(result)",
+      "language": "python",
+      "expected_answer": "10",
+      "answer_placeholder": "Enter the numeric result",
+      "explanation": "Multiplication happens first: 3 * 2 = 6. Then 4 + 6 = 10.",
+      "hints": [
+        "Do not simply calculate from left to right when operators have different precedence.",
+        "Evaluate the multiplication before the addition."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Comparison operators produce Boolean values",
+      "content": "Comparison operators check a relationship between values. Common examples are == equal, != not equal, > greater than, < less than, >= greater than or equal, and <= less than or equal. A comparison returns a Boolean result; it does not modify either operand.",
+      "example": "marks = 72\npassed = marks >= 40  # True",
+      "tip": "A comparison can be stored in a variable or used directly in an if condition."
+    },
+    {
+      "step_number": 6,
+      "step_type": "practice",
+      "title": "Evaluate a remainder expression",
+      "content": "The remainder can help detect even and odd integers.",
+      "prompt": "What is 14 % 4 in Python?",
+      "options": [
+        "2",
+        "3",
+        "3.5",
+        "4"
+      ],
+      "correct_index": 0,
+      "explanation": "Four fits into 14 three times (12), leaving a remainder of 2.",
+      "hints": [
+        "Find the largest multiple of 4 that does not exceed 14.",
+        "Subtract that multiple from 14 to get the remainder."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "explain",
+      "title": "Combine conditions with logical operators",
+      "content": "and combines conditions that must all be true. or combines alternatives where at least one can be true. not reverses a Boolean value. Parentheses are useful when a condition combines several operators or when the intended grouping should be obvious to a reader.",
+      "example": "eligible = age >= 18 and has_id\nneeds_help = not completed",
+      "tip": "Name intermediate Boolean values when a compound expression becomes difficult to read."
+    },
+    {
+      "step_number": 8,
+      "step_type": "order_steps",
+      "title": "Evaluate an expression safely",
+      "content": "An expression is evaluated according to grouping and precedence before its result is assigned to a variable.",
+      "prompt": "Arrange the reasoning steps for total = 5 + 2 * 3.",
+      "options": [
+        "Add 5 to the multiplication result",
+        "Evaluate 2 * 3",
+        "Store the final result in total"
+      ],
+      "correct_order": [
+        1,
+        0,
+        2
+      ],
+      "explanation": "The multiplication is evaluated first, then added to 5, and the final value is assigned to total.",
+      "hints": [
+        "Look for the operation with higher precedence.",
+        "Assignment stores the final expression value after it has been evaluated."
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "code_lab",
+      "title": "Calculate a placement score",
+      "content": "Combine arithmetic and a comparison to produce a simple result. The browser lab uses JavaScript.",
+      "prompt": "Complete the expression so the output is 85.",
+      "language": "javascript",
+      "starter_code": "const coding = 40;\nconst aptitude = 30;\nconst bonus = 15;\n\n// TODO: calculate the combined score and print it\n",
+      "expected_output": "85",
+      "hints": [
+        "The score is the sum of the three values.",
+        "Use + to combine coding, aptitude and bonus.",
+        "Print coding + aptitude + bonus."
+      ]
+    },
+    {
+      "step_number": 10,
+      "step_type": "debug_choice",
+      "title": "Fix assignment versus comparison",
+      "content": "A programmer wants to check whether score is exactly 100, but the code changes the variable instead.",
+      "prompt": "Which expression should be used to compare score with 100 in Python?",
+      "code": "score = 100\nif score = 100:\n    print('Perfect')",
+      "options": [
+        "score == 100",
+        "score >= 100",
+        "score != 100",
+        "score += 100"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "== compares whether the values are equal. A single = is assignment and is not valid as the condition syntax here.",
+        "2": ">= checks whether score is at least 100, which is broader than exact equality.",
+        "3": "!= checks whether the values are different, the opposite of the intended test.",
+        "4": "+= updates score by adding 100; it does not compare the value."
+      },
+      "explanation": "Use == for equality comparison in Python. A single = is assignment; += is a compound assignment operator.",
+      "hints": [
+        "The requirement is exact equality, not a threshold or inequality.",
+        "Choose the comparison operator rather than an operator that changes the variable."
+      ]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 450,
+    "questions": [
+      {
+        "prompt": "What is the result of 18 % 5 in Python?",
+        "options": [
+          "3",
+          "2",
+          "3.6",
+          "5"
+        ],
+        "correct_index": 0,
+        "explanation": "Five fits into 18 three times (15), leaving a remainder of 3. The first option is therefore the correct result."
+      },
+      {
+        "prompt": "What is the value of 6 + 2 * 4 in Python?",
+        "options": [
+          "32",
+          "14",
+          "20",
+          "24"
+        ],
+        "correct_index": 1,
+        "explanation": "Multiplication occurs before addition: 2 * 4 = 8, then 6 + 8 = 14."
+      },
+      {
+        "prompt": "Which operator checks exact equality in Python?",
+        "options": [
+          "==",
+          "=",
+          "!=",
+          "<="
+        ],
+        "correct_index": 0,
+        "explanation": "== compares two values for equality. = performs assignment."
+      },
+      {
+        "prompt": "When is the expression A and B true?",
+        "options": [
+          "When both A and B are true",
+          "When either A or B is true",
+          "Only when A is false",
+          "Whenever A and B are different"
+        ],
+        "correct_index": 0,
+        "explanation": "Logical and requires both operands to be true."
+      },
+      {
+        "prompt": "What does the expression 17 // 5 evaluate to in Python?",
+        "options": [
+          "3",
+          "2",
+          "3.4",
+          "4"
+        ],
+        "correct_index": 0,
+        "explanation": "Floor division returns the whole-number quotient. 17 divided by 5 is 3 remainder 2, so 17 // 5 is 3."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Identify operators and operands in an expression.",
+    "Use arithmetic operators including division, floor division, modulo and exponentiation.",
+    "Apply operator precedence and parentheses when tracing expressions.",
+    "Distinguish assignment from comparison operators.",
+    "Combine Boolean expressions using and, or and not."
+  ],
+  "prerequisites": [
+    "variables_basics",
+    "input_output_basics"
+  ],
+  "concepts": [
+    "operator",
+    "operand",
+    "expression",
+    "addition",
+    "subtraction",
+    "multiplication",
+    "division",
+    "floor division",
+    "modulo",
+    "precedence",
+    "comparison",
+    "logical operators"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "All operators in an expression are evaluated strictly from left to right.",
+      "correction": "Operator precedence determines grouping; parentheses can make the intended grouping explicit."
+    },
+    {
+      "misconception": "The modulo operator returns the quotient.",
+      "correction": "Modulo returns the remainder; floor division returns the whole-number quotient in Python."
+    },
+    {
+      "misconception": "The assignment operator = compares two values.",
+      "correction": "In Python, = assigns a value and == checks equality."
+    },
+    {
+      "misconception": "A comparison changes the values being compared.",
+      "correction": "A comparison produces a Boolean result; it does not update its operands."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Separate quotient and remainder",
+      "input": "17 // 5\n17 % 5",
+      "trace": [
+        "Find the largest whole multiple of 5 not exceeding 17: 15.",
+        "17 divided into groups of 5 gives 3 complete groups.",
+        "17 - 15 leaves 2."
+      ],
+      "output": "quotient = 3; remainder = 2",
+      "explanation": "Floor division and modulo describe the quotient and remainder for this positive-integer example."
+    },
+    {
+      "title": "Apply precedence",
+      "input": "score = 10 + 4 * 3 - 2",
+      "trace": [
+        "Evaluate multiplication: 4 * 3 = 12.",
+        "Evaluate addition: 10 + 12 = 22.",
+        "Subtract 2 from 22."
+      ],
+      "output": "score = 20",
+      "explanation": "Higher-precedence multiplication is evaluated before addition and subtraction."
+    },
+    {
+      "title": "Build an eligibility expression",
+      "input": "age = 20\nhas_id = True\neligible = age >= 18 and has_id",
+      "trace": [
+        "Evaluate age >= 18 as true.",
+        "Read has_id as true.",
+        "Combine both values with and."
+      ],
+      "output": "eligible = True",
+      "explanation": "Logical operators combine Boolean results without changing the original age or has_id values."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "output prediction and operator precedence",
+      "practice": "Trace arithmetic expressions carefully and calculate quotient/remainder pairs."
+    },
+    {
+      "company": "Infosys",
+      "skill": "programming logic",
+      "practice": "Translate conditions into Boolean expressions and distinguish equality from assignment."
+    },
+    {
+      "company": "Accenture",
+      "skill": "logical reasoning and pseudocode",
+      "practice": "Evaluate compound conditions and explain each operator's role."
+    },
+    {
+      "company": "Wipro",
+      "skill": "coding fundamentals",
+      "practice": "Use arithmetic and comparison operators to solve small score and eligibility tasks."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What does modulo (%) return?",
+      "answer": "The remainder after division."
+    },
+    {
+      "type": "distinction",
+      "question": "How do = and == differ in Python?",
+      "answer": "= assigns a value; == compares two values for equality."
+    },
+    {
+      "type": "precedence",
+      "question": "Why does 6 + 2 * 4 evaluate to 14?",
+      "answer": "Multiplication has higher precedence than addition, so 2 * 4 is evaluated first."
+    }
+  ],
+  "quest": {
+    "chapter": "The Operator Arena",
+    "rank": "Expression Apprentice",
+    "story": "The academy can now collect information and remember it. Next, it must calculate scores, check boundaries and combine rules without confusing assignment, arithmetic and comparison.",
+    "mission": "Use arithmetic, comparison and logical operators to build expressions that produce correct results.",
+    "success_criteria": [
+      "Choose the correct arithmetic operator.",
+      "Trace precedence and parentheses.",
+      "Calculate quotient and remainder.",
+      "Distinguish assignment from equality comparison.",
+      "Combine Boolean conditions."
+    ]
+  },
+  "next_lesson_slug": "conditions_basics",
+  "next_lesson_title": "Conditions, Decisions and Boolean Logic"
+}

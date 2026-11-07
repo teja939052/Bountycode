@@ -1,0 +1,348 @@
+{
+  "id": "lesson_functions_basics_001",
+  "slug": "functions_basics",
+  "title": "Functions, Parameters and Return Values",
+  "domain": "Programming Fundamentals",
+  "pattern": "Functions",
+  "difficulty": "easy",
+  "duration_min": 34,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Why functions exist",
+      "content": "A function is a named, reusable block of logic. It lets you give a task a clear name, use it from multiple places and keep a large program organized. A good function usually has one clear responsibility.",
+      "example": "def calculate_total(price, quantity):\n    return price * quantity",
+      "tip": "When code repeats, ask whether the repeated task deserves a function with a meaningful name."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Recognize a function call",
+      "content": "A function definition creates the reusable operation. Calling it asks the program to run it.",
+      "prompt": "In result = add(3, 4), what is add(3, 4)?",
+      "options": [
+        "A function call",
+        "A variable declaration",
+        "A loop condition",
+        "A data type"
+      ],
+      "correct_index": 0,
+      "explanation": "The parentheses with arguments invoke the function named add and pass it the values 3 and 4.",
+      "hints": [
+        "Look for a function name followed by parentheses.",
+        "The values inside the parentheses are supplied when the operation is invoked."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Parameters and arguments",
+      "content": "A parameter is a named input in a function definition. An argument is the actual value supplied when the function is called. The function uses the parameter names to work with those supplied values.",
+      "example": "def greet(name):       # name is a parameter\n    print('Hello', name)\n\ngreet('Asha')           # 'Asha' is an argument"
+    },
+    {
+      "step_number": 4,
+      "step_type": "predict_output",
+      "title": "Trace a return value",
+      "content": "return sends a value back to the caller. The caller can store that value and use it in another expression.",
+      "prompt": "What exact value is printed?",
+      "code": "def double(number):\n    return number * 2\n\nresult = double(6)\nprint(result + 1)",
+      "language": "python",
+      "answer_placeholder": "Enter the output",
+      "expected_answer": "13",
+      "explanation": "double(6) returns 12. The caller stores 12 in result, then prints 12 + 1, which is 13.",
+      "hints": [
+        "Substitute the supplied argument into the function's parameter.",
+        "Complete the function's calculation before evaluating the caller's print expression."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Print is different from return",
+      "content": "print displays information to an output stream. return gives a value back to the code that called the function. A function that only prints a result does not automatically return that displayed text or number.",
+      "example": "def show_total():\n    print(10)       # displays 10\n\ndef get_total():\n    return 10      # gives 10 back to the caller",
+      "tip": "Ask whether the caller needs to use the result later. If it does, return the value."
+    },
+    {
+      "step_number": 6,
+      "step_type": "practice",
+      "title": "Choose the reusable design",
+      "prompt": "A program calculates the area of many rectangles. Which function design is easiest to reuse?",
+      "options": [
+        "area(width, height) returns width * height",
+        "area() prints one fixed rectangle size",
+        "Copy the multiplication at every call site",
+        "Store width and height in unrelated global variables"
+      ],
+      "correct_index": 0,
+      "explanation": "A function with parameters accepts different dimensions and returns the computed area, so callers can reuse it with different inputs.",
+      "hints": [
+        "A reusable function should work for more than one set of dimensions.",
+        "Consider which design accepts inputs and makes the computed result available to its caller."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Follow a function call",
+      "content": "A simple function call binds arguments to parameters, executes the body, returns a result, and then continues at the caller.",
+      "prompt": "Arrange the events in a call to add(2, 3).",
+      "options": [
+        "Execute the function body",
+        "Bind 2 and 3 to the parameters",
+        "Return the computed value to the caller",
+        "Continue with the caller's next statement"
+      ],
+      "correct_order": [
+        1,
+        0,
+        2,
+        3
+      ],
+      "explanation": "Arguments are associated with parameters before the body runs. The function returns a value, then the caller resumes.",
+      "hints": [
+        "Arguments are associated with parameters before the function body runs.",
+        "The caller continues only after the function returns."
+      ]
+    },
+    {
+      "step_number": 8,
+      "step_type": "code_lab",
+      "title": "Write a reusable points function",
+      "content": "Make the calculation reusable instead of hard-coding a single result. This lab checks the program's output.",
+      "prompt": "Complete the function so totalPoints(3, 20) prints 60.",
+      "language": "javascript",
+      "starter_code": "function totalPoints(lessons, pointsPerLesson) {\n  // TODO: return the product of the two inputs\n}\n\nconsole.log(totalPoints(3, 20));",
+      "expected_output": "60",
+      "hints": [
+        "The parameters represent the lesson count and the points for each lesson.",
+        "Calculate lessons multiplied by pointsPerLesson.",
+        "Return lessons * pointsPerLesson; do not only print from inside the function."
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Find the missing return",
+      "content": "The caller expects a numeric result, but the function only displays it. The variable total becomes None in Python.",
+      "prompt": "What change makes the calculated value available to the caller?",
+      "code": "def add(a, b):\n    print(a + b)\n\ntotal = add(2, 3)",
+      "options": [
+        "Replace print(a + b) with return a + b",
+        "Rename total to result",
+        "Add another print(total)",
+        "Change a and b into strings"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "return sends the sum back to the caller, allowing total to receive 5.",
+        "2": "Renaming the receiving variable does not create a returned value.",
+        "3": "Printing total only displays the missing value; it does not change what the function returns.",
+        "4": "String inputs do not solve the missing return and would change the operation."
+      },
+      "explanation": "A Python function that reaches the end without returning a value returns None. Use return a + b so the caller receives the sum.",
+      "hints": [
+        "Printing and returning have different effects.",
+        "Look for the statement that sends the computed value back to the calling code."
+      ]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 450,
+    "questions": [
+      {
+        "prompt": "In def greet(name), what is name?",
+        "options": [
+          "A parameter",
+          "An argument",
+          "A function call",
+          "A return value"
+        ],
+        "correct_index": 0,
+        "explanation": "name is the parameter declared in the function definition. The value supplied during a call is an argument."
+      },
+      {
+        "prompt": "What does return do in a function?",
+        "options": [
+          "Sends a value back to the caller",
+          "Always prints a value on screen",
+          "Repeats the function body",
+          "Declares a global variable"
+        ],
+        "correct_index": 0,
+        "explanation": "return ends the current function call and provides a value to the caller."
+      },
+      {
+        "prompt": "What is printed by a Python function that executes print(5) but has no explicit return, when its call result is printed?",
+        "options": [
+          "5 followed by None",
+          "Only 5",
+          "Only None",
+          "A syntax error"
+        ],
+        "correct_index": 0,
+        "explanation": "The function first prints 5. Its implicit return value is None, which the outer print then displays."
+      },
+      {
+        "prompt": "Why are parameters useful in a reusable function?",
+        "options": [
+          "They let the caller provide different input values",
+          "They make every variable global",
+          "They prevent the function from returning",
+          "They automatically sort all inputs"
+        ],
+        "correct_index": 0,
+        "explanation": "Parameters let one function operate on different supplied values without hard-coding one case."
+      },
+      {
+        "prompt": "A function should calculate a student's average so another part of the program can compare it with a pass mark. What should the function do?",
+        "options": [
+          "Return the average",
+          "Only print the average",
+          "Change the pass mark globally",
+          "Start a loop that never ends"
+        ],
+        "correct_index": 0,
+        "explanation": "Returning the average makes it available for a later comparison or calculation in the caller."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Explain why functions improve reuse and code organization.",
+    "Distinguish function definitions, calls, parameters and arguments.",
+    "Trace a function call and its return value.",
+    "Choose between printing a value and returning it to the caller.",
+    "Write small functions with clear inputs, outputs and responsibilities."
+  ],
+  "prerequisites": [
+    "variables_basics",
+    "conditions_basics",
+    "operators_basics"
+  ],
+  "concepts": [
+    "function definition",
+    "function call",
+    "parameter",
+    "argument",
+    "return value",
+    "local scope",
+    "caller",
+    "reusability",
+    "single responsibility",
+    "side effect"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A parameter and an argument are the same term.",
+      "correction": "A parameter is named in the function definition; an argument is the actual value passed at the call site."
+    },
+    {
+      "misconception": "print and return do the same job.",
+      "correction": "print displays output; return supplies a value to the caller."
+    },
+    {
+      "misconception": "A function without an explicit return automatically returns the last printed value.",
+      "correction": "In Python, a function without an explicit return returns None, even if it printed something."
+    },
+    {
+      "misconception": "A function must use global variables to share its result.",
+      "correction": "A return value gives the caller the result without relying on shared global state."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Pass arguments into parameters",
+      "input": "def multiply(a, b):\n    return a * b\nanswer = multiply(4, 5)",
+      "trace": [
+        "The call supplies arguments 4 and 5.",
+        "The function binds a = 4 and b = 5.",
+        "The body computes 4 * 5.",
+        "The function returns 20 to the caller."
+      ],
+      "output": "answer = 20",
+      "explanation": "Parameters are local names for the values supplied by the call."
+    },
+    {
+      "title": "Print versus return",
+      "input": "def get_double(n):\n    return n * 2\nvalue = get_double(7)",
+      "trace": [
+        "Call get_double with n = 7.",
+        "Compute 7 * 2 as 14.",
+        "Return 14 to the caller.",
+        "Store 14 in value."
+      ],
+      "output": "value = 14",
+      "explanation": "A returned value can be stored and used later; displaying output alone does not provide that value to the caller."
+    },
+    {
+      "title": "Keep a function focused",
+      "input": "def is_even(number):\n    return number % 2 == 0",
+      "trace": [
+        "Receive one number as input.",
+        "Calculate the remainder after division by 2.",
+        "Compare the remainder with zero.",
+        "Return true when the remainder is zero."
+      ],
+      "output": "is_even(8) returns True",
+      "explanation": "The function has one clear responsibility and returns a Boolean that other code can use."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "modular programming and tracing",
+      "practice": "Trace arguments, parameter values and returned results in short snippets."
+    },
+    {
+      "company": "Infosys",
+      "skill": "functions and problem decomposition",
+      "practice": "Split a problem into small named functions with clear inputs and outputs."
+    },
+    {
+      "company": "Accenture",
+      "skill": "logic and pseudocode",
+      "practice": "Explain how a function's output is used by a later decision."
+    },
+    {
+      "company": "Wipro",
+      "skill": "code readability",
+      "practice": "Refactor repeated calculations into reusable functions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "definition",
+      "question": "What is a parameter?",
+      "answer": "A named input declared in a function definition."
+    },
+    {
+      "type": "definition",
+      "question": "What is an argument?",
+      "answer": "The actual value supplied to a function call."
+    },
+    {
+      "type": "distinction",
+      "question": "Why is return different from print?",
+      "answer": "return supplies a value to the caller; print displays information."
+    }
+  ],
+  "next_lesson_slug": "programming_languages",
+  "next_lesson_title": "Programming Fundamentals Across Languages",
+  "quest": {
+    "chapter": "The Function Workshop",
+    "rank": "Junior Systems Builder",
+    "story": "The academy keeps repeating the same calculations in different places. Your job is to turn those repeated operations into reusable tools that return reliable results.",
+    "mission": "Design small functions with clear parameters, return values and responsibilities.",
+    "success_criteria": [
+      "Distinguish parameters from arguments.",
+      "Trace a function call.",
+      "Return values to the caller.",
+      "Repair a function that only prints."
+    ]
+  }
+}

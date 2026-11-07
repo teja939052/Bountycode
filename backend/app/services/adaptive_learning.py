@@ -440,6 +440,19 @@ def _create_warmup(user_id: str, assessment: dict) -> Optional[Dict]:
 
 # ─── Progress Tracking ───
 
+def _activity_score_delta(activity_type: str, success: bool, score_impact: Any) -> int:
+    """Return the existing skill-graph increment, honoring zero-impact events."""
+    if not success:
+        return 0
+    try:
+        impact_enabled = math.isfinite(float(score_impact)) and float(score_impact) > 0
+    except (TypeError, ValueError):
+        impact_enabled = False
+    if not impact_enabled:
+        return 0
+    return 8 if activity_type in ("challenge", "project") else 5
+
+
 async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Dict[str, Any]:
     """Record a learning activity and update skill scores."""
     domain_id = activity.get("domain_id")
@@ -485,10 +498,9 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
         {"$push": {"activities": activity_entry}}
     )
 
-    # Update skill_graph
-    delta = 5 if success else 0
-    if activity_type == "challenge" or activity_type == "project":
-        delta = 8 if success else 0
+    # Update skill_graph. Baseline diagnostics pass score_impact=0 so they
+    # are recorded as observations without changing demonstrated ability.
+    delta = _activity_score_delta(activity_type, success, score_impact)
 
     await skill_graph_collection.update_one(
         {"user_id": user_id},

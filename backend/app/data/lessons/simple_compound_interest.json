@@ -120,5 +120,7 @@
         "explanation": "The second year's compound interest is earned on the increased amount, so CI exceeds SI."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "mixture_alligation",
+  "next_lesson_title": "Mixtures and Alligation"
 }

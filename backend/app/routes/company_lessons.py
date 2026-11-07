@@ -6,6 +6,9 @@ Routes (all under /api/v1/company-lessons, auth required):
   GET  /api/v1/company-lessons/{slug}        → full lesson content
   POST /api/v1/company-lessons/{slug}/complete → record completion + rewards
 """
+import hashlib
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from typing import Dict, Any, List, Optional
@@ -14,6 +17,7 @@ import json
 import logging
 
 from app.middleware.auth import get_current_user
+from app.database import learning_progress_collection
 from app.services.gamification import record_practice
 from app.services.learning_paths import record_track_topic_mastery
 from app.services.adaptive_learning import record_learning_activity
@@ -28,9 +32,40 @@ _LESSONS_DIR = os.path.join(_APP_DIR, "data", "lessons")
 # In-memory cache so we don't hit disk on every request.
 _LESSON_CACHE: Dict[str, Dict[str, Any]] = {}
 
+# Only server-graded step types can satisfy the lesson evidence gate.
+# code_lab is intentionally excluded: its current browser worker submits
+# output text to this API, so the server cannot prove which code produced it.
+ANSWERABLE_STEP_TYPES = frozenset({
+    "interactive", "practice", "quiz", "predict_output", "fill_blank",
+    "order_steps", "code_lab", "sql_lab", "debug_choice", "api_scenario",
+})
+STEP_EVIDENCE_TYPES = ANSWERABLE_STEP_TYPES - {"code_lab"}
+
+
+def _step_fingerprint(step: Dict[str, Any]) -> str:
+    """Bind a passed step to the exact authored content that was graded."""
+    canonical = json.dumps(
+        step, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def _required_step_indices(data: Dict[str, Any]) -> List[int]:
+    """Return authored, answerable steps that require persisted server evidence."""
+    return [
+        index
+        for index, step in enumerate(data.get("steps") or [])
+        if str(step.get("step_type") or "").strip().lower() in STEP_EVIDENCE_TYPES
+    ]
+
 # A guided lesson can only certify a module whose authored topic overlaps the
 # skill it teaches. Query-string IDs from the browser are not proof of coverage.
 LESSON_MODULE_TOPICS = {
+    "input_output_basics": {"input_output", "input", "output", "input_output_basics", "type_conversion"},
+    "operators_basics": {"operators", "operator", "expressions", "operator_precedence", "arithmetic_operators", "logical_operators"},
+    "variables_basics": {"variables", "variables_basics", "data_types", "types", "assignment"},
+    "conditions_basics": {"conditions", "conditional_logic", "boolean_logic", "branching"},
+    "functions_basics": {"functions", "functions_basics", "parameters", "return_values"},
     "arrays_basics": {"arrays", "array", "basic_arrays"},
     "blood_relations": {"blood_relation", "blood_relations"},
     "flowchart_basics": {"flowchart", "flowcharts", "flowchart_basics", "pseudocode"},
@@ -98,6 +133,11 @@ LESSON_MODULE_TOPICS = {
 
 
 LESSON_SKILL_DOMAINS = {
+    "input_output_basics": "programming_fundamentals",
+    "operators_basics": "programming_fundamentals",
+    "variables_basics": "programming_fundamentals",
+    "conditions_basics": "programming_fundamentals",
+    "functions_basics": "programming_fundamentals",
     "successive_percentage_change": "quantitative_aptitude",
     "profit_loss": "quantitative_aptitude",
     "ratio_proportion": "quantitative_aptitude",
@@ -207,7 +247,13 @@ def _load_lesson(slug: str) -> Optional[Dict[str, Any]]:
 
 
 class StepAnswerRequest(BaseModel):
-    answer_index: int = Field(..., ge=0)
+    answer_index: Optional[int] = Field(default=None, ge=0)
+    answer_text: Optional[str] = Field(default=None, min_length=1, max_length=8000)
+    answer_order: Optional[List[int]] = Field(default=None, min_length=1, max_length=20)
+
+
+class LessonProgressRequest(BaseModel):
+    current_step: int = Field(..., ge=0, le=100)
 
 
 class CompleteRequest(BaseModel):
@@ -242,6 +288,22 @@ async def list_lessons(user=Depends(get_current_user)):
                 "difficulty": data.get("difficulty") or "medium",
                 "duration_min": data.get("duration_min") or data.get("estimated_minutes") or 15,
                 "step_count": len(data.get("steps") or []),
+                # Public catalog metadata helps learners choose a path without
+                # exposing answers, SQL grading keys, or hidden assessment data.
+                "learning_objectives": (data.get("learning_objectives") or [])[:3],
+                "prerequisites": data.get("prerequisites") or [],
+                "concept_count": len(data.get("concepts") or []),
+                "worked_example_count": len(data.get("worked_examples") or data.get("examples") or []),
+                "assessment_count": len((data.get("assessment") or {}).get("questions") or []),
+                "company_count": len(data.get("company_applications") or data.get("company") or []),
+                "revision_card_count": len(data.get("srs_cards") or data.get("srs") or []),
+                "exercise_types": sorted({
+                    str(step.get("step_type") or "").strip().lower()
+                    for step in (data.get("steps") or [])
+                    if str(step.get("step_type") or "").strip().lower() not in {"", "explain"}
+                }),
+                "quest_chapter": (data.get("quest") or {}).get("chapter"),
+                "mission_preview": (data.get("quest") or {}).get("mission"),
             })
     return {"success": True, "data": lessons}
 
@@ -255,14 +317,24 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     # Do not send final-assessment answer keys to the browser. The server grades
     # them in /complete and only returns explanations after submission.
     public_data = {**data}
+    # Normalize legacy lesson authoring keys into the canonical player schema.
+    # Existing lesson files use both old and new names for the same deep-dive data.
+    public_data["worked_examples"] = data.get("worked_examples") or data.get("examples") or []
+    public_data["company_applications"] = data.get("company_applications") or data.get("company") or []
+    public_data["srs_cards"] = data.get("srs_cards") or data.get("srs") or []
     # Never ship answer keys to the learner before they submit an attempt.
+    answer_key_fields = {
+        "correct_index", "correct_answer", "answer", "correct_order",
+        "expected_answer", "accepted_answers", "expected_output",
+        "schema_ddl", "seed_inserts", "expected_query", "feedback_by_option",
+    }
     public_data["steps"] = [
         {
             key: value for key, value in step.items()
             if key not in (
-                {"correct_index", "correct_answer", "answer", "explanation"}
-                if step.get("step_type") in {"interactive", "practice", "quiz"}
-                else {"correct_index", "correct_answer", "answer"}
+                answer_key_fields | {"explanation"}
+                if str(step.get("step_type") or "").strip().lower() in ANSWERABLE_STEP_TYPES
+                else answer_key_fields
             )
         }
         for step in data.get("steps", [])
@@ -279,6 +351,69 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     return {"success": True, "data": public_data}
 
 
+@router.get("/{slug}/progress", response_model=None)
+async def get_lesson_progress(slug: str, user=Depends(get_current_user)):
+    """Return the learner's saved position without exposing lesson answer keys."""
+    data = _load_lesson(slug)
+    steps = (data or {}).get("steps") or []
+    if not data or not steps:
+        raise HTTPException(status_code=404, detail=f"Step-based lesson not found: {slug}")
+
+    progress_doc = await learning_progress_collection.find_one({"user_id": user["id"]}) or {}
+    saved = (progress_doc.get("lesson_progress") or {}).get(slug) or {}
+    try:
+        current_step = int(saved.get("current_step", 0))
+    except (TypeError, ValueError):
+        current_step = 0
+    current_step = max(0, min(current_step, len(steps) - 1))
+
+    return {
+        "success": True,
+        "data": {
+            "lesson_slug": slug,
+            "current_step": current_step,
+            "step_count": len(steps),
+            "updated_at": saved.get("updated_at"),
+            "has_progress": bool(saved),
+        },
+    }
+
+
+@router.put("/{slug}/progress", response_model=None)
+async def save_lesson_progress(
+    slug: str,
+    req: LessonProgressRequest,
+    user=Depends(get_current_user),
+):
+    """Persist a learner's last visited step so a lesson can be resumed."""
+    data = _load_lesson(slug)
+    steps = (data or {}).get("steps") or []
+    if not data or not steps:
+        raise HTTPException(status_code=404, detail=f"Step-based lesson not found: {slug}")
+    if req.current_step >= len(steps):
+        raise HTTPException(status_code=422, detail="The requested lesson step does not exist.")
+
+    updated_at = datetime.now(timezone.utc).isoformat()
+    await learning_progress_collection.update_one(
+        {"user_id": user["id"]},
+        {
+            "$set": {
+                f"lesson_progress.{slug}.current_step": req.current_step,
+                f"lesson_progress.{slug}.updated_at": updated_at,
+            }
+        },
+        upsert=True,
+    )
+    return {
+        "success": True,
+        "data": {
+            "lesson_slug": slug,
+            "current_step": req.current_step,
+            "updated_at": updated_at,
+        },
+    }
+
+
 @router.post("/{slug}/steps/{step_index}/answer", response_model=None)
 async def answer_lesson_step(
     slug: str,
@@ -293,14 +428,90 @@ async def answer_lesson_step(
         raise HTTPException(status_code=404, detail="Lesson step not found")
 
     step = steps[step_index]
-    options = step.get("options") or []
-    expected = step.get("correct_index")
-    if step.get("step_type") not in {"interactive", "practice", "quiz"} or expected is None:
-        raise HTTPException(status_code=400, detail="This lesson step is not answerable.")
-    if req.answer_index >= len(options):
-        raise HTTPException(status_code=422, detail="Selected answer is outside the available options.")
+    step_type = str(step.get("step_type") or "").strip().lower()
+    selected_index = None
+    correct_index = None
+    correct_answer = None
+    correct_order = None
+    feedback = None
+    student_results = None
 
-    correct = req.answer_index == int(expected)
+    if step_type == "code_lab":
+        if req.answer_text is None or req.answer_index is not None or req.answer_order is not None:
+            raise HTTPException(status_code=422, detail="Run the code before checking its output.")
+        expected_output = step.get("expected_output")
+        if expected_output is None:
+            raise HTTPException(status_code=500, detail="This code lab has no expected output.")
+        normalize = lambda value: "\\n".join(line.rstrip() for line in str(value).replace("\\r\\n", "\\n").strip().splitlines())
+        accepted_outputs = step.get("accepted_outputs") or [expected_output]
+        if not isinstance(accepted_outputs, list):
+            accepted_outputs = [accepted_outputs]
+        correct = normalize(req.answer_text) in {normalize(value) for value in accepted_outputs}
+        feedback = "Your program produced the expected output." if correct else "Your program ran, but the output does not match yet. Compare the loop condition, update and printed value."
+    elif step_type == "sql_lab":
+        if req.answer_text is None or req.answer_index is not None or req.answer_order is not None:
+            raise HTTPException(status_code=422, detail="Write a SQL query before checking it.")
+        schema_ddl = step.get("schema_ddl")
+        seed_inserts = step.get("seed_inserts")
+        expected_query = step.get("expected_query")
+        if not all(isinstance(value, str) and value.strip() for value in (schema_ddl, seed_inserts, expected_query)):
+            raise HTTPException(status_code=500, detail="This SQL lab is missing its grading data.")
+        from app.services.sql_engine import SQLEngine
+        validation = SQLEngine.verify_read_only_query(
+            schema_ddl=schema_ddl,
+            seed_inserts=seed_inserts,
+            expected_query=expected_query,
+            student_query=req.answer_text,
+            enforce_order=bool(step.get("enforce_order", False)),
+        )
+        correct = validation.is_correct
+        feedback = "Your query returned the required result." if correct else validation.error_message or "Your query needs another revision."
+        student_results = validation.student_results
+    elif step_type == "order_steps":
+        options = step.get("options") or []
+        expected = step.get("correct_order")
+        if not isinstance(expected, list) or len(expected) != len(options) or sorted(expected) != list(range(len(options))):
+            raise HTTPException(status_code=500, detail="This lesson has an invalid ordering key.")
+        if req.answer_order is None or req.answer_index is not None or req.answer_text is not None:
+            raise HTTPException(status_code=422, detail="Reorder every step before checking.")
+        if len(req.answer_order) != len(options) or sorted(req.answer_order) != list(range(len(options))):
+            raise HTTPException(status_code=422, detail="The submitted sequence must include every step exactly once.")
+        correct_order = list(expected)
+        correct = req.answer_order == expected
+        correct_answer = " → ".join(str(options[index]) for index in expected)
+    elif step_type in {"interactive", "practice", "quiz", "debug_choice", "api_scenario"}:
+        options = step.get("options") or []
+        expected = step.get("correct_index")
+        if expected is None or req.answer_index is None or req.answer_text is not None:
+            raise HTTPException(status_code=422, detail="Choose one of the available options.")
+        if req.answer_index >= len(options):
+            raise HTTPException(status_code=422, detail="Selected answer is outside the available options.")
+        selected_index = req.answer_index
+        correct_index = int(expected)
+        correct_answer = str(options[correct_index])
+        correct = selected_index == correct_index
+        feedback_by_option = step.get("feedback_by_option") or {}
+        feedback = feedback_by_option.get(str(selected_index))
+    elif step_type in {"predict_output", "fill_blank"}:
+        expected = step.get("expected_answer")
+        if expected is None or req.answer_text is None or req.answer_index is not None:
+            raise HTTPException(status_code=422, detail="Enter an answer before checking it.")
+        submitted = " ".join(req.answer_text.strip().split())
+        accepted = step.get("accepted_answers") or [expected]
+        if not isinstance(accepted, list):
+            accepted = [accepted]
+        normalized_submitted = submitted if step.get("case_sensitive", True) else submitted.casefold()
+        normalized_accepted = [
+            " ".join(str(item).strip().split())
+            if step.get("case_sensitive", True)
+            else " ".join(str(item).strip().split()).casefold()
+            for item in accepted
+        ]
+        correct = normalized_submitted in normalized_accepted
+        correct_answer = str(expected)
+    else:
+        raise HTTPException(status_code=400, detail="This lesson step is not answerable.")
+
     domain = str(data.get("domain") or data.get("pattern") or "general").lower()
     domain_id = LESSON_SKILL_DOMAINS.get(
         slug,
@@ -315,30 +526,66 @@ async def answer_lesson_step(
         }.get(domain, domain.replace(" ", "_")),
     )
 
-    # Record evidence, but do not mint XP for every retryable in-lesson choice.
-    try:
-        await record_learning_activity(
-            user["id"],
-            {
-                "domain_id": domain_id,
-                "type": "lesson_step",
-                "success": correct,
-                "score_impact": 1,
-                "lesson_slug": slug,
-                "step_index": step_index,
-            },
-        )
-    except Exception as exc:
-        logger.warning("Could not update adaptive evidence for %s step %s: %s", slug, step_index, exc)
+    # Persist server-graded evidence before reporting a step as completed.
+    # Attempts are counted, but a prior pass is never erased by a later retry.
+    evidence_recorded = step_type in STEP_EVIDENCE_TYPES
+    if evidence_recorded:
+        evidence_path = f"lesson_progress.{slug}.step_evidence.{step_index}"
+        evidence_update: Dict[str, Any] = {
+            "$inc": {f"{evidence_path}.attempts": 1},
+        }
+        if correct:
+            evidence_update["$set"] = {
+                f"{evidence_path}.passed": True,
+                f"{evidence_path}.passed_at": datetime.now(timezone.utc).isoformat(),
+                f"{evidence_path}.fingerprint": _step_fingerprint(step),
+            }
+        try:
+            await learning_progress_collection.update_one(
+                {"user_id": user["id"]},
+                evidence_update,
+                upsert=True,
+            )
+        except Exception as exc:
+            logger.exception(
+                "Could not persist lesson evidence for %s step %s: %s",
+                slug, step_index, exc,
+            )
+            raise HTTPException(
+                status_code=503,
+                detail="Your answer was checked, but its learning evidence could not be saved. Please retry.",
+            )
+
+        # Adaptive telemetry is secondary to the persisted evidence record.
+        try:
+            await record_learning_activity(
+                user["id"],
+                {
+                    "domain_id": domain_id,
+                    "type": "lesson_step",
+                    "success": correct,
+                    "score_impact": 1,
+                    "lesson_slug": slug,
+                    "step_index": step_index,
+                },
+            )
+        except Exception as exc:
+            logger.warning("Could not update adaptive evidence for %s step %s: %s", slug, step_index, exc)
 
     return {
         "success": True,
         "data": {
             "correct": correct,
-            "selected_index": req.answer_index,
-            "correct_index": int(expected),
+            "selected_index": selected_index,
+            "correct_index": correct_index,
+            "correct_answer": correct_answer,
+            "correct_order": correct_order,
+            "feedback": feedback,
+            "student_results": student_results,
             "explanation": step.get("explanation", ""),
             "attempt_recorded": True,
+            "evidence_recorded": evidence_recorded,
+            "formative_only": step_type == "code_lab",
         },
     }
 
@@ -357,6 +604,35 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         raise HTTPException(status_code=422, detail="Answer every final-assessment question before submitting.")
     if bool(req.track_id) != bool(req.module_id):
         raise HTTPException(status_code=400, detail="track_id and module_id must be supplied together.")
+
+    required_indices = _required_step_indices(data)
+    if required_indices:
+        progress_doc = await learning_progress_collection.find_one(
+            {"user_id": user["id"]}
+        ) or {}
+        saved_lesson = (progress_doc.get("lesson_progress") or {}).get(slug) or {}
+        step_evidence = saved_lesson.get("step_evidence") or {}
+        missing_steps = []
+        for index in required_indices:
+            step = data["steps"][index]
+            evidence = step_evidence.get(str(index)) or step_evidence.get(index) or {}
+            if (
+                evidence.get("passed") is not True
+                or evidence.get("fingerprint") != _step_fingerprint(step)
+            ):
+                missing_steps.append({
+                    "step_index": index,
+                    "step_number": step.get("step_number", index + 1),
+                    "title": step.get("title") or f"Step {index + 1}",
+                })
+        if missing_steps:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "message": "Complete the required interactive steps before submitting the final assessment.",
+                    "missing_steps": missing_steps,
+                },
+            )
 
     # Validate the company mapping before recording any result. This prevents
     # a malformed target/module pair from creating misleading learner evidence.

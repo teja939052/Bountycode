@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -78,7 +78,9 @@ export default function QuizPractice() {
   const [topic, setTopic] = useState("");
   const [trackId, setTrackId] = useState("");
   const [difficulty, setDifficulty] = useState("all");
+  const [mode, setMode] = useState("practice");
   const [questionCount, setQuestionCount] = useState(10);
+  const [timeRemaining, setTimeRemaining] = useState(0);
   const [session, setSession] = useState<QuizSession | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answerValue, setAnswerValue] = useState("");
@@ -92,6 +94,7 @@ export default function QuizPractice() {
   const [weakTopics, setWeakTopics] = useState<any[]>([]);
   const startedAt = useRef<number>(0);
   const questionStartedAt = useRef<number>(0);
+  const timerExpired = useRef(false);
 
   const selectedTrack = tracks.find((item: any) => item.id === trackId);
   const questions = session?.questions || [];
@@ -107,11 +110,12 @@ export default function QuizPractice() {
     setWeakTopics([]);
     try {
       const response: any = await api.quiz.buildQuiz({
-        mode: "practice",
+        mode,
         ...(topic ? { topics: [topic] } : {}),
         ...(difficulty !== "all" ? { difficulty } : {}),
         ...(selectedTrack?.company_id ? { company: selectedTrack.company_id } : {}),
         num_questions: questionCount,
+        time_limit_seconds: mode === "quiz" ? questionCount * 60 : 0,
       });
       const built = response?.quiz;
       if (!built?.questions?.length) throw new Error("No questions match these filters. Try a broader topic or company selection.");
@@ -121,6 +125,8 @@ export default function QuizPractice() {
       setGraded(null);
       setHintText("");
       setHintsUsed(0);
+      timerExpired.current = false;
+      setTimeRemaining(Number(built.time_limit_seconds || 0));
       startedAt.current = Date.now();
       questionStartedAt.current = Date.now();
     } catch (err: any) {
@@ -205,6 +211,24 @@ export default function QuizPractice() {
       setFinishing(false);
     }
   };
+
+  useEffect(() => {
+    if (!session?.time_limit_seconds) return;
+    const deadline = startedAt.current + session.time_limit_seconds * 1000;
+    const tick = () => {
+      const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      setTimeRemaining(remaining);
+      if (remaining === 0 && !timerExpired.current) {
+        timerExpired.current = true;
+        void finishQuiz();
+      }
+    };
+    tick();
+    const timer = window.setInterval(tick, 1000);
+    return () => window.clearInterval(timer);
+    // The timer belongs to one immutable quiz session; finishQuiz reads that session.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.quiz_id]);
 
   const goNext = async () => {
     if (!session || !graded) return;
@@ -294,7 +318,10 @@ export default function QuizPractice() {
       <div className="mx-auto max-w-4xl space-y-5 px-4 py-6 pb-20">
         <div className="flex items-center justify-between gap-3">
           <button type="button" onClick={restart} className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600"><ArrowLeft size={15} /> Exit practice</button>
-          <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-600"><Clock size={12} /> Question {currentIndex + 1} of {questions.length}</span>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-600"><Clock size={12} /> Question {currentIndex + 1} of {questions.length}</span>
+            {session.time_limit_seconds > 0 && <span className={`rounded-full px-3 py-1 text-[11px] font-bold tabular-nums ${timeRemaining <= 60 ? "bg-rose-100 text-rose-700" : "bg-amber-50 text-amber-800"}`}>{Math.floor(timeRemaining / 60)}:{String(timeRemaining % 60).padStart(2, "0")} left</span>}
+          </div>
         </div>
         <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
           <div className="mb-5 flex items-center justify-between gap-3">
@@ -394,6 +421,15 @@ export default function QuizPractice() {
               {topicNames.map(name => <option key={name} value={name}>{name} ({stats.by_topic[name]})</option>)}
             </select>
           </label>
+          <label className="block"><span className="mb-2 block text-xs font-bold text-slate-700">Assessment mode</span>
+            <select value={mode} onChange={(event) => setMode(event.target.value)} disabled={loading} className="min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm">
+              <option value="practice">Guided practice · hints and explanations</option>
+              <option value="quiz">Assessment quiz · no time limit</option>
+              <option value="mock_interview">Company mock · no hints</option>
+              <option value="speed_run">Speed run · bonus XP</option>
+              <option value="boss_battle">Boss battle · challenge mode</option>
+            </select>
+          </label>
           <label className="block"><span className="mb-2 block text-xs font-bold text-slate-700">Difficulty</span>
             <select value={difficulty} onChange={(event) => setDifficulty(event.target.value)} disabled={loading} className="min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm">
               <option value="all">Mixed</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option>
@@ -406,7 +442,7 @@ export default function QuizPractice() {
           </label>
         </div>
         {error && <p role="alert" className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">{error}</p>}
-        <button type="button" onClick={startQuiz} disabled={loading || statsLoading} className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-xl bg-emerald-700 px-5 text-sm font-bold text-white disabled:opacity-50">{loading ? <Spinner size={15} /> : <Play size={15} />} Start practice</button>
+        <button type="button" onClick={startQuiz} disabled={loading || statsLoading} className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-xl bg-emerald-700 px-5 text-sm font-bold text-white disabled:opacity-50">{loading ? <Spinner size={15} /> : <Play size={15} />} {mode === "quiz" ? "Start assessment" : mode === "mock_interview" ? "Start mock interview" : mode === "speed_run" ? "Start speed run" : mode === "boss_battle" ? "Start boss battle" : "Start practice"}</button>
       </section>
       <section className="grid gap-3 sm:grid-cols-3">
         <div className="rounded-2xl border border-slate-200 bg-white p-4"><Lightbulb className="text-amber-600" size={18} /><h3 className="mt-2 font-bold text-slate-900">Progressive hints</h3><p className="mt-1 text-xs leading-5 text-slate-500">Use a small nudge before revealing more. Hint usage is recorded with your attempt.</p></div>

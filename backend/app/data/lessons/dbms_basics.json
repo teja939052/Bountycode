@@ -5,8 +5,8 @@
   "domain": "Computer Science Fundamentals",
   "pattern": "DBMS",
   "difficulty": "easy",
-  "duration_min": 24,
-  "xp_reward": 105,
+  "duration_min": 30,
+  "xp_reward": 120,
   "steps": [
     {
       "step_number": 1,
@@ -27,7 +27,11 @@
         "Encrypt the table"
       ],
       "correct_index": 1,
-      "explanation": "A primary key uniquely identifies a row and cannot be NULL."
+      "explanation": "A primary key uniquely identifies a row and cannot be NULL.",
+      "hints": [
+        "Identify the key concept or constraint in the prompt before looking at the options.",
+        "Work through the example one step at a time and eliminate choices that contradict the rule."
+      ]
     },
     {
       "step_number": 3,
@@ -48,7 +52,11 @@
         "An aggregate function"
       ],
       "correct_index": 1,
-      "explanation": "It references the primary key of the Student table, so it is a foreign key."
+      "explanation": "It references the primary key of the Student table, so it is a foreign key.",
+      "hints": [
+        "Identify the key concept or constraint in the prompt before looking at the options.",
+        "Work through the example one step at a time and eliminate choices that contradict the rule."
+      ]
     },
     {
       "step_number": 5,
@@ -56,6 +64,65 @@
       "title": "Transactions and ACID",
       "content": "A transaction is a logical unit of work. ACID means Atomicity, Consistency, Isolation and Durability. It protects data when multiple operations succeed or fail together.",
       "example": "A bank transfer must debit one account and credit another as one atomic transaction."
+    },
+    {
+      "step_type": "interactive",
+      "title": "Understand referential integrity",
+      "prompt": "A row in Enrolment references Student(id). What should happen if the referenced student does not exist?",
+      "options": [
+        "The database should reject the invalid foreign-key reference",
+        "The database should silently create a student",
+        "The foreign key should become a primary key",
+        "The row should always be duplicated"
+      ],
+      "correct_index": 0,
+      "explanation": "A foreign-key constraint enforces referential integrity: a non-null reference must match a key in the referenced table, subject to the configured constraint rules.",
+      "hints": [
+        "A foreign key protects relationships between tables.",
+        "Ask whether the referenced parent row exists before accepting the child reference."
+      ],
+      "step_number": 6
+    },
+    {
+      "step_type": "practice",
+      "title": "Apply transaction atomicity",
+      "prompt": "A bank transfer debits ₹500 from A but the credit to B fails. What should an atomic transaction ensure?",
+      "options": [
+        "The debit is rolled back so neither half of the transfer remains",
+        "The debit stays and the credit is ignored",
+        "Both accounts are deleted",
+        "The transfer is retried without checking its state"
+      ],
+      "correct_index": 0,
+      "explanation": "Atomicity means all operations in the transaction succeed together or the transaction is rolled back. A half-completed transfer must not be committed.",
+      "hints": [
+        "Think of a transaction as one logical unit of work.",
+        "If the second operation fails, the first operation must not remain committed on its own."
+      ],
+      "step_number": 7
+    },
+    {
+      "step_type": "order_steps",
+      "title": "Trace a safe transaction",
+      "prompt": "Arrange the high-level steps for a transfer that must be atomic.",
+      "options": [
+        "Commit only after all required operations succeed",
+        "Begin the transaction",
+        "Apply the debit and credit operations",
+        "Roll back if any required operation fails"
+      ],
+      "correct_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "explanation": "Begin the transaction, perform the operations, roll back on failure, and commit only after the complete transfer succeeds.",
+      "hints": [
+        "The database must know the operations belong to one transaction before applying them.",
+        "Commit is the final success path; rollback is the failure path."
+      ],
+      "step_number": 8
     }
   ],
   "assessment": {
@@ -118,5 +185,122 @@
         "explanation": "Durability means committed changes persist even after failure."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain the role of a DBMS and relational tables.",
+    "Distinguish primary keys and foreign keys.",
+    "Describe normalization and common data anomalies.",
+    "Apply referential integrity and ACID transaction concepts."
+  ],
+  "prerequisites": [],
+  "concepts": [
+    "DBMS",
+    "relational model",
+    "primary key",
+    "foreign key",
+    "referential integrity",
+    "normalization",
+    "anomalies",
+    "transaction",
+    "ACID"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A foreign key must always be unique.",
+      "correction": "A foreign key can repeat; it references a candidate or primary key in another table."
+    },
+    {
+      "misconception": "Normalization simply means creating as many tables as possible.",
+      "correction": "Normalization organizes facts around dependencies to reduce redundancy and anomalies."
+    },
+    {
+      "misconception": "A transaction is safe as long as each SQL statement runs successfully.",
+      "correction": "Related statements may need one transaction so partial work is rolled back if a later operation fails."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Primary and foreign keys",
+      "input": "Student(id, name); Enrolment(student_id, course_id)",
+      "trace": [
+        "Student.id uniquely identifies each student.",
+        "Enrolment.student_id stores which student is enrolled.",
+        "A foreign-key constraint references Student.id."
+      ],
+      "output": "Student.id is a primary key; Enrolment.student_id is a foreign key",
+      "explanation": "Keys let the database identify rows and enforce relationships between tables."
+    },
+    {
+      "title": "Recognize an update anomaly",
+      "input": "A table repeats a student's address in every course enrolment row.",
+      "trace": [
+        "The same address is stored multiple times.",
+        "Changing the address requires updating several rows.",
+        "Missing one update leaves inconsistent data."
+      ],
+      "output": "This is an update anomaly caused by redundant data",
+      "explanation": "Normalization separates facts according to their dependencies to reduce insertion, update and deletion anomalies."
+    },
+    {
+      "title": "Apply ACID to a transfer",
+      "input": "Debit account A and credit account B in one transaction.",
+      "trace": [
+        "Atomicity: both changes succeed or neither does.",
+        "Consistency: constraints remain valid.",
+        "Isolation: concurrent transfers do not interfere incorrectly.",
+        "Durability: a committed transfer survives a crash."
+      ],
+      "output": "ACID protects reliable transaction processing",
+      "explanation": "The four properties address all-or-nothing behavior, valid states, concurrent work and persistence."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "DBMS fundamentals",
+      "practice": "Explain keys, normalization and ACID with examples."
+    },
+    {
+      "company": "Infosys",
+      "skill": "database concepts",
+      "practice": "Reason about referential integrity and transaction behavior."
+    },
+    {
+      "company": "Accenture",
+      "skill": "data management",
+      "practice": "Identify anomalies and explain how relational constraints prevent invalid data."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "definition",
+      "question": "What is a primary key?",
+      "answer": "A column or set of columns that uniquely identifies each row and cannot be NULL."
+    },
+    {
+      "type": "definition",
+      "question": "What is a foreign key?",
+      "answer": "A column or set of columns that references a candidate key in another or the same table."
+    },
+    {
+      "type": "acronym",
+      "question": "What does ACID stand for?",
+      "answer": "Atomicity, Consistency, Isolation and Durability."
+    }
+  ],
+  "quest": {
+    "chapter": "The Data Integrity Vault",
+    "rank": "Database Apprentice",
+    "story": "A placement platform must keep student, course and payment records consistent even when several users act at once.",
+    "mission": "Model keys and relationships, reduce anomalies with normalization, and protect multi-step work with ACID transactions.",
+    "success_criteria": [
+      "Explain primary and foreign keys.",
+      "Recognize normalization goals.",
+      "Apply referential integrity.",
+      "Explain all four ACID properties."
+    ]
+  },
+  "mastery_threshold": 0.7,
+  "next_lesson_slug": "sql_select_basics",
+  "next_lesson_title": "SQL SELECT Fundamentals"
 }

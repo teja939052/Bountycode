@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
   ArrowRight,
@@ -19,6 +19,9 @@ import {
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import { useJourneyState } from "../hooks/useJourneyState";
+import AcademyProfileSetup from "../components/academy/AcademyProfileSetup";
+import AcademyDiagnostic from "../components/academy/AcademyDiagnostic";
+import AcademyPersonalPlan from "../components/academy/AcademyPersonalPlan";
 
 type Lesson = {
   id: string;
@@ -28,6 +31,15 @@ type Lesson = {
   difficulty: string;
   duration_min: number;
   step_count: number;
+  learning_objectives?: string[];
+  prerequisites?: string[];
+  concept_count?: number;
+  worked_example_count?: number;
+  assessment_count?: number;
+  company_count?: number;
+  exercise_types?: string[];
+  quest_chapter?: string;
+  mission_preview?: string;
 };
 
 type SkillEvidence = {
@@ -60,6 +72,34 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   sentence_correction: "sentence_correction",
   grammar: "sentence_correction",
   para_jumbles: "para_jumbles",
+  variable: "variables_basics",
+  variables: "variables_basics",
+  types: "variables_basics",
+  data_types: "variables_basics",
+  assignment: "variables_basics",
+  assignments: "variables_basics",
+  input: "input_output_basics",
+  inputs: "input_output_basics",
+  output: "input_output_basics",
+  outputs: "input_output_basics",
+  input_output: "input_output_basics",
+  type_conversion: "input_output_basics",
+  operators: "operators_basics",
+  operator: "operators_basics",
+  expressions: "operators_basics",
+  operator_precedence: "operators_basics",
+  arithmetic_operators: "operators_basics",
+  logical_operators: "operators_basics",
+  conditions: "conditions_basics",
+  conditionals: "conditions_basics",
+  if_else: "conditions_basics",
+  conditional_logic: "conditions_basics",
+  boolean_logic: "conditions_basics",
+  branching: "conditions_basics",
+  function: "functions_basics",
+  functions: "functions_basics",
+  parameters: "functions_basics",
+  return_values: "functions_basics",
   arrays: "arrays_basics",
   strings: "strings_basics",
   loops: "loops_basics",
@@ -81,6 +121,7 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   hcf_lcm: "hcf_lcm",
   hcf: "hcf_lcm",
   lcm: "hcf_lcm",
+  basic_math: "arithmetic_algebra",
   simple_interest: "simple_compound_interest",
   compound_interest: "simple_compound_interest",
   interest: "simple_compound_interest",
@@ -99,6 +140,7 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   linked_list: "linked_lists",
   linked_lists: "linked_lists",
   trees: "trees_basics",
+  trees_basics: "trees_basics",
   binary_trees: "trees_basics",
   bst: "trees_basics",
   stacks_queues: "stacks_queues",
@@ -162,15 +204,32 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   social_issues: "essay_writing",
   essay: "essay_writing",
   advanced_mixtures: "mixture_alligation",
-  conditions: "loops_basics",
+  loop_control: "loops_basics",
+  iteration: "loops_basics",
   reading: "reading_comprehension",
   sentence_rearrangement: "para_jumbles",
   advanced_probability: "advanced_probability",
   advanced_time_work: "advanced_time_work",
-  simple_compound_interest: "simple_compound_interest",
+  graph_traversal: "data_structures_intro",
+  advanced_recursion: "recursion_basics",
   critical_reasoning: "logical_puzzles",
   dynamic_programming_basics: "dynamic_programming",
-
+  programming_fundamentals: "variables_basics",
+  arrays_hashing: "arrays_basics",
+  two_pointers: "arrays_basics",
+  sliding_window: "sliding_window",
+  binary_search: "searching_basics",
+  heap: "data_structures_intro",
+  graph: "data_structures_intro",
+  greedy: "algorithms_basics",
+  backtracking: "recursion_basics",
+  math_geometry: "geometry_basics",
+  quantitative_aptitude: "number_systems",
+  logical_reasoning: "number_series",
+  verbal_ability: "vocabulary_cloze",
+  computer_science: "oops_basics",
+  aptitude: "number_systems",
+  behavioral: "essay_writing",
 };
 
 function normalizeTopic(value: string) {
@@ -195,11 +254,102 @@ function percent(value: unknown) {
   return Number.isFinite(n) ? Math.max(0, Math.min(100, Math.round(n))) : 0;
 }
 
+function learningTrackForDomain(domain: string): string {
+  const value = String(domain || "").toLowerCase();
+  if (value.includes("sql") || value.includes("database")) return "SQL & Databases";
+  if (value.includes("aptitude") || value.includes("quantitative") || value.includes("arithmetic") || value.includes("math")) return "Quantitative Aptitude";
+  if (value.includes("reason") || value.includes("logical") || value.includes("puzzle")) return "Logical Reasoning";
+  if (value.includes("verbal") || value.includes("grammar") || value.includes("vocabulary") || value.includes("english")) return "Verbal & Communication";
+  if (value.includes("computer science") || value.includes("operating system") || value === "os" || value.includes("network") || value.includes("dbms") || value.includes("oop")) return "Core Computer Science";
+  if (value.includes("dsa") || value.includes("data structure") || value.includes("algorithm") || value.includes("programming") || value.includes("coding") || value.includes("code")) return "Programming & DSA";
+  return "General Foundations";
+}
+
+const LEARNING_TRACK_ORDER = [
+  "Programming & DSA",
+  "Quantitative Aptitude",
+  "Logical Reasoning",
+  "Verbal & Communication",
+  "SQL & Databases",
+  "Core Computer Science",
+  "General Foundations",
+];
+
+const LESSON_SEQUENCE_BY_TRACK: Record<string, string[]> = {
+  "Programming & DSA": [
+    "variables_basics", "input_output_basics", "operators_basics",
+    "conditions_basics", "functions_basics",
+    "programming_languages", "loops_basics", "pattern_printing", "arrays_basics",
+    "strings_basics", "data_structures_intro", "time_complexity", "searching_basics",
+    "sorting_basics", "hashing_basics", "recursion_basics", "linked_lists",
+    "stacks_queues", "trees_basics", "dynamic_programming", "sliding_window",
+    "algorithms_basics", "collections_framework", "exception_handling", "file_io",
+    "matrix_operations",
+  ],
+  "Quantitative Aptitude": [
+    "number_systems", "hcf_lcm", "arithmetic_algebra", "successive_percentage_change",
+    "profit_loss", "ratio_proportion", "averages", "time_work", "time_distance",
+    "advanced_time_work", "simple_compound_interest", "mixture_alligation",
+    "pipes_cisterns", "permutations_combinations", "probability_basics",
+    "advanced_probability", "geometry_basics", "clocks_calendars",
+  ],
+  "Logical Reasoning": [
+    "number_series", "coding_decoding", "blood_relations", "direction_sense",
+    "syllogisms", "analogies_odd_one_out", "logical_puzzles", "flowchart_basics",
+    "pattern_matching_basics",
+  ],
+  "Verbal & Communication": [
+    "vocabulary_cloze", "sentence_correction", "grammar_transformations",
+    "error_spotting", "para_jumbles", "reading_comprehension", "essay_writing",
+  ],
+  "SQL & Databases": [
+    "dbms_basics", "sql_select_basics", "sql_joins", "sql_group_by",
+    "sql_subqueries", "sql_indexes_triggers",
+  ],
+  "Core Computer Science": [
+    "oops_basics", "os_basics", "computer_networks_basics",
+  ],
+};
+
+function orderTrackLessons(track: string, lessons: Lesson[]): Lesson[] {
+  const sequence = LESSON_SEQUENCE_BY_TRACK[track] || [];
+  return [...lessons].sort((left, right) => {
+    const leftIndex = sequence.indexOf(left.slug);
+    const rightIndex = sequence.indexOf(right.slug);
+    if (leftIndex < 0 && rightIndex < 0) return left.title.localeCompare(right.title);
+    if (leftIndex < 0) return 1;
+    if (rightIndex < 0) return -1;
+    return leftIndex - rightIndex;
+  });
+}
+
 export default function PlacementAcademy() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const focusSkill = (searchParams.get("focus") || "").trim().toLowerCase();
   const { data: journey, isLoading: journeyLoading } = useJourneyState();
   const [lessonQuery, setLessonQuery] = useState("");
   const [domainFilter, setDomainFilter] = useState("all");
+  const [focusApplied, setFocusApplied] = useState(false);
+
+  const focusLessonSlug = focusSkill
+    ? (LESSON_BY_TOPIC[normalizeTopic(focusSkill)] || LESSON_BY_TOPIC[focusSkill] || null)
+    : null;
+
+  useEffect(() => {
+    if (!focusSkill || focusApplied) return;
+    const slug = LESSON_BY_TOPIC[normalizeTopic(focusSkill)] || LESSON_BY_TOPIC[focusSkill];
+    if (slug) {
+      setLessonQuery(slug.replace(/_/g, " "));
+      const progSkills = ["programming_fundamentals", "arrays", "loops", "variables", "functions", "strings", "sorting", "searching", "hashing", "recursion", "trees", "dp", "linked_list", "stack"];
+      if (progSkills.some((s) => focusSkill.includes(s))) {
+        setDomainFilter("Programming & DSA");
+      }
+    } else {
+      setLessonQuery(focusSkill.replace(/_/g, " "));
+    }
+    setFocusApplied(true);
+  }, [focusSkill, focusApplied]);
 
   const { data: tracksResult, isLoading: tracksLoading } = useQuery({
     queryKey: ["company-tracks", "list"],
@@ -221,7 +371,6 @@ export default function PlacementAcademy() {
   });
 
   const { data: dailyResult, isLoading: dailyLoading } = useQuery({
-    // Journey and Academy now consume the same authoritative Study Engine plan.
     queryKey: ["study", "today"],
     queryFn: () => api.journey.getToday(),
     staleTime: 30_000,
@@ -242,8 +391,6 @@ export default function PlacementAcademy() {
   });
 
   const daily = (dailyResult as any)?.data ?? dailyResult ?? {};
-  // The Study Engine publishes company work as company_mission. Prefer that
-  // canonical target-aware mission over generic daily tasks.
   const mission = daily?.company_mission || daily?.company_focus || daily?.tasks?.[0] || null;
   const skillData = (skillResult as any)?.data ?? skillResult ?? {};
   const skills = (skillData.skills ?? skillData.assessment?.skills ?? {}) as Record<string, SkillEvidence>;
@@ -258,7 +405,11 @@ export default function PlacementAcademy() {
 
   const allLessons = ((lessonResult as any)?.data ?? []) as Lesson[];
   const domains = useMemo(
-    () => ["all", ...Array.from(new Set(allLessons.map((lesson) => lesson.domain))).sort()],
+    () => [
+      "all",
+      ...Array.from(new Set(allLessons.map((lesson) => learningTrackForDomain(lesson.domain))))
+        .sort((a, b) => LEARNING_TRACK_ORDER.indexOf(a) - LEARNING_TRACK_ORDER.indexOf(b)),
+    ],
     [allLessons],
   );
   const lessons = useMemo(() => {
@@ -269,7 +420,7 @@ export default function PlacementAcademy() {
         lesson.title.toLowerCase().includes(q) ||
         lesson.domain.toLowerCase().includes(q) ||
         lesson.slug.toLowerCase().includes(q);
-      const matchesDomain = domainFilter === "all" || lesson.domain === domainFilter;
+      const matchesDomain = domainFilter === "all" || learningTrackForDomain(lesson.domain) === domainFilter;
       return matchesQuery && matchesDomain;
     });
   }, [allLessons, lessonQuery, domainFilter]);
@@ -321,6 +472,81 @@ export default function PlacementAcademy() {
         </div>
       </header>
 
+      {focusSkill && (
+        <section
+          aria-label="Focused skill remediation"
+          className="rounded-2xl border border-rose-200 bg-gradient-to-r from-rose-50 to-white p-4 shadow-sm sm:p-5"
+        >
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-rose-700">Focused practice</p>
+              <h2 className="mt-1 text-lg font-black text-slate-900">
+                Improve: {focusSkill.replace(/_/g, " ")}
+              </h2>
+              <p className="mt-1 text-sm text-slate-600">
+                This skill was flagged from your assessment evidence. Start the recommended lesson, then take the mastery check.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2 shrink-0">
+              {focusLessonSlug ? (
+                <Link
+                  to={`/learn/lesson/${focusLessonSlug}`}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-rose-700 px-4 text-sm font-semibold text-white"
+                >
+                  Start lesson <ArrowRight size={15} />
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-rose-700 px-4 text-sm font-semibold text-white"
+                  onClick={() => setLessonQuery(focusSkill.replace(/_/g, " "))}
+                >
+                  Browse related lessons
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchParams({});
+                  setFocusApplied(false);
+                  setLessonQuery("");
+                  setDomainFilter("all");
+                }}
+                className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700"
+              >
+                Clear focus
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section aria-label="Your personalized learning setup" className="space-y-4">
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">Your learning system</p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">Start with your goal. Then follow your plan.</h2>
+            <p className="mt-1 text-sm text-slate-600">Three connected steps turn your placement goal into a practical daily routine.</p>
+          </div>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-3">
+          {[
+            { number: "01", title: "Set your direction", detail: "Role, companies and available time" },
+            { number: "02", title: "Find your starting point", detail: "A server-graded skill diagnostic" },
+            { number: "03", title: "Follow your next action", detail: "A plan based on your evidence" },
+          ].map((step) => (
+            <div key={step.number} className="rounded-xl border border-slate-200 bg-white p-3">
+              <p className="text-[10px] font-black tracking-widest text-emerald-700">STEP {step.number}</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{step.title}</p>
+              <p className="mt-1 text-xs text-slate-500">{step.detail}</p>
+            </div>
+          ))}
+        </div>
+        <div id="academy-profile"><AcademyProfileSetup /></div>
+        <AcademyDiagnostic />
+        <AcademyPersonalPlan />
+      </section>
+
       {!activeTrackId ? (
         <section className="rounded-2xl border border-dashed border-emerald-300 bg-emerald-50/60 p-6">
           <div className="flex items-start gap-3">
@@ -340,186 +566,109 @@ export default function PlacementAcademy() {
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-2xl">{(trackDetail as any)?.icon || "🏢"}</div>
             <div className="min-w-0 flex-1">
               <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Active placement target</p>
-              <h2 className="mt-1 text-xl font-bold text-slate-900">{(trackDetail as any)?.name || activeTrackId}</h2>
-              <p className="mt-1 text-xs text-slate-500">{(trackDetail as any)?.description || "Your company-specific preparation track."}</p>
+              <h2 className="mt-1 text-xl font-black text-slate-900">{(trackDetail as any)?.name || activeTrackId}</h2>
+              <p className="mt-1 text-sm text-slate-600">
+                {completedModules}/{modules.length || 0} modules · {masteredTopicTotal}/{topicTotal || 0} topics mastered · {trackProgress}%
+              </p>
             </div>
-            <Link to={`/company-tracks?track=${encodeURIComponent(activeTrackId)}`} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-700">
-              Open full track <ArrowRight size={14} />
-            </Link>
-          </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl bg-slate-50 p-3">
-              <p className="text-2xl font-black text-slate-900">{completedModules}/{modules.length}</p>
-              <p className="text-xs text-slate-500">Modules mastered</p>
-            </div>
-            <div className="rounded-xl bg-slate-50 p-3">
-              <p className="text-2xl font-black text-slate-900">{masteredTopicTotal}/{topicTotal}</p>
-              <p className="text-xs text-slate-500">Topic skills mastered</p>
-            </div>
-            <div className="rounded-xl bg-slate-50 p-3">
-              <p className="text-2xl font-black text-slate-900">{trackProgress}%</p>
-              <p className="text-xs text-slate-500">Module completion</p>
-            </div>
-          </div>
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
-            <div className="h-full rounded-full bg-emerald-600 transition-all" style={{ width: `${trackProgress}%` }} />
-          </div>
-          {trackLoading && <p className="mt-3 text-xs text-slate-500">Loading your company syllabus…</p>}
-        </section>
-      )}
-
-      <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5">
-          <div className="flex items-center gap-2 text-emerald-800">
-            <Zap size={17} /> <p className="text-[10px] font-bold uppercase tracking-widest">Your next adaptive mission</p>
-          </div>
-          {dailyLoading ? (
-            <div className="py-7"><Spinner /></div>
-          ) : mission ? (
-            <>
-              <h2 className="mt-3 text-xl font-bold text-slate-900">{mission.title || "Continue your learning path"}</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{mission.description || "Continue the next skill in your learning plan."}</p>
-              <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                {mission.estimated_minutes && <span className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1"><Clock size={12} /> {mission.estimated_minutes} min</span>}
-                {mission.difficulty && <span className="rounded-full bg-white px-3 py-1 capitalize">{mission.difficulty}</span>}
-                {mission.domain_id && <span className="rounded-full bg-white px-3 py-1">{String(mission.domain_id).replace(/_/g, " ")}</span>}
-              </div>
-              <button
-                type="button"
-                onClick={() => navigate(missionLessonUrl || mission.action_url || (mission.track_id ? `/company-tracks?track=${encodeURIComponent(mission.track_id)}` : "/learn"))}
-                className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-emerald-800 px-4 text-sm font-bold text-white"
-              >
-                {missionLessonUrl ? "Start next lesson" : "Open company module"} <ArrowRight size={15} />
-              </button>
-            </>
-          ) : (
-            <p className="mt-3 text-sm text-slate-600">Complete a skill assessment or choose a company track to generate your next mission.</p>
-          )}
-        </div>
-
-        <div className="rounded-2xl border border-slate-200 bg-white p-5">
-          <div className="flex items-center gap-2">
-            <Brain size={17} className="text-violet-700" />
-            <h2 className="font-bold text-slate-900">Your current skill evidence</h2>
-          </div>
-          {skillsLoading ? <div className="py-6"><Spinner /></div> : skillRows.length ? (
-            <div className="mt-4 space-y-3">
-              {skillRows.map((skill) => (
-                <div key={skill.id}>
-                  <div className="mb-1 flex items-center justify-between gap-2 text-xs">
-                    <span className="font-medium capitalize text-slate-700">{skill.id.replace(/_/g, " ")}</span>
-                    <span className="text-slate-500">{percent(skill.score)}% · {skill.total_attempts} attempts</span>
-                  </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
-                    <div className="h-full rounded-full bg-violet-600" style={{ width: `${percent(skill.score)}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-3 text-sm text-slate-500">No quiz or coding evidence yet. Your first lesson will start building a skill profile.</p>
-          )}
-          <Link to="/skills" className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-violet-700">
-            View skill map <ArrowRight size={13} />
-          </Link>
-        </div>
-      </section>
-
-      {activeTrackId && modules.length > 0 && (
-        <section className="space-y-3">
-          <div className="flex items-end justify-between gap-3">
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Your employer syllabus</p>
-              <h2 className="mt-1 text-xl font-bold text-slate-900">Continue by topic</h2>
-            </div>
-            <Link to={`/company-tracks?track=${encodeURIComponent(activeTrackId)}`} className="text-xs font-semibold text-emerald-700">View all modules</Link>
-          </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            {prioritizedModules.slice(0, 6).map((module: any) => {
-              const nextUrl = nextTopicLesson(module, activeTrackId);
-              const done = Boolean(module.completed);
-              const mastered = module.mastered_topic_count || 0;
-              const total = module.required_topic_count || module.topics?.length || 0;
-              return (
-                <article key={module.id} className="rounded-2xl border border-slate-200 bg-white p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="font-semibold text-slate-900">{module.title}</h3>
-                      <p className="mt-1 text-xs text-slate-500">{module.description}</p>
-                    </div>
-                    {done && <CheckCircle2 className="shrink-0 text-emerald-600" size={19} />}
-                  </div>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {(module.topics || []).map((topic: string) => {
-                      const key = normalizeTopic(topic);
-                      const isMastered = Boolean(module.topic_mastery?.[key]?.mastered);
-                      return <span key={topic} className={`rounded-full px-2 py-1 text-[10px] ${isMastered ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-slate-600"}`}>{isMastered ? "✓ " : ""}{topic.replace(/_/g, " ")}</span>;
-                    })}
-                  </div>
-                  <p className="mt-3 text-[11px] text-slate-500">{mastered}/{total} topic skills mastered</p>
-                  <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                    <div className="h-full rounded-full bg-emerald-600" style={{ width: `${total ? percent(mastered / total * 100) : done ? 100 : 0}%` }} />
-                  </div>
-                  {nextUrl ? (
-                    <Link to={nextUrl} className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg bg-slate-900 px-3 text-xs font-semibold text-white">
-                      Learn next topic <ArrowRight size={13} />
-                    </Link>
-                  ) : (
-                    <Link to={`/company-tracks?track=${encodeURIComponent(activeTrackId)}`} className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg border border-slate-200 px-3 text-xs font-semibold text-slate-700">
-                      Open module practice <ArrowRight size={13} />
-                    </Link>
-                  )}
-                </article>
-              );
-            })}
+            {missionLessonUrl && (
+              <Link to={missionLessonUrl} className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-slate-900 px-4 text-sm font-semibold text-white">
+                Continue track <ArrowRight size={15} />
+              </Link>
+            )}
           </div>
         </section>
       )}
 
-      <section className="space-y-3">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <section className="space-y-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Guided lesson library</p>
-            <h2 className="mt-1 text-xl font-bold text-slate-900">Choose a skill to learn</h2>
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">Lesson library</p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">Guided lessons with practice and mastery checks</h2>
           </div>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <label className="relative">
-              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input value={lessonQuery} onChange={(event) => setLessonQuery(event.target.value)} placeholder="Search topics…" className="min-h-10 w-full rounded-xl border border-slate-200 bg-white pl-9 pr-3 text-sm outline-none focus:border-emerald-500 sm:w-56" />
-            </label>
-            <select value={domainFilter} onChange={(event) => setDomainFilter(event.target.value)} className="min-h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
-              {domains.map((domain) => <option key={domain} value={domain}>{domain === "all" ? "All subjects" : domain}</option>)}
+          <div className="flex flex-wrap gap-2">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
+              <input
+                value={lessonQuery}
+                onChange={(e) => setLessonQuery(e.target.value)}
+                placeholder="Search lessons…"
+                className="min-h-10 rounded-xl border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm"
+              />
+            </div>
+            <select
+              value={domainFilter}
+              onChange={(e) => setDomainFilter(e.target.value)}
+              className="min-h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700"
+            >
+              {domains.map((d) => (
+                <option key={d} value={d}>{d === "all" ? "All tracks" : d}</option>
+              ))}
             </select>
           </div>
         </div>
-        {lessonsLoading ? <div className="py-8"><Spinner /></div> : lessons.length ? (
+
+        {lessonsLoading ? (
+          <div className="flex justify-center py-12"><Spinner /></div>
+        ) : lessons.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-sm text-slate-600">
+            No lessons match this filter. Clear focus or search to see the full catalog.
+          </div>
+        ) : (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {lessons.map((lesson) => (
-              <Link key={lesson.slug} to={`/learn/lesson/${lesson.slug}`} className="group rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-sm">
+            {orderTrackLessons(domainFilter === "all" ? "Programming & DSA" : domainFilter, lessons).slice(0, 24).map((lesson) => (
+              <Link
+                key={lesson.id || lesson.slug}
+                to={`/learn/lesson/${lesson.slug}`}
+                className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-emerald-400 hover:shadow-sm"
+              >
                 <div className="flex items-start justify-between gap-2">
-                  <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-semibold text-slate-600">{lesson.domain}</span>
-                  <BookOpen size={16} className="text-emerald-700" />
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{learningTrackForDomain(lesson.domain)}</p>
+                    <h3 className="mt-1 font-bold text-slate-900">{lesson.title}</h3>
+                  </div>
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">{lesson.difficulty}</span>
                 </div>
-                <h3 className="mt-3 font-semibold text-slate-900 group-hover:text-emerald-700">{lesson.title}</h3>
-                <p className="mt-1 text-xs text-slate-500">{lesson.step_count} guided steps · {lesson.duration_min} min · {lesson.difficulty}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-emerald-700">Start lesson <ArrowRight size={13} /></span>
+                <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-500">
+                  <span className="inline-flex items-center gap-1"><Clock size={12} /> {lesson.duration_min || 15} min</span>
+                  <span className="inline-flex items-center gap-1"><BookOpen size={12} /> {lesson.step_count || 0} steps</span>
+                  {(lesson.assessment_count || 0) > 0 && (
+                    <span className="inline-flex items-center gap-1"><ShieldCheck size={12} /> mastery check</span>
+                  )}
+                </div>
               </Link>
             ))}
           </div>
-        ) : (
-          <div className="rounded-2xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500">No lessons match this filter.</div>
         )}
       </section>
 
-      <footer className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-slate-900 p-5 text-white">
-        <div className="flex items-center gap-3">
-          <ShieldCheck size={22} className="text-emerald-300" />
-          <div>
-            <h2 className="font-semibold">Mastery comes from evidence</h2>
-            <p className="mt-1 text-xs text-slate-300">A topic is recorded only after a server-graded assessment; a mixed module needs every required skill.</p>
+      {skillRows.length > 0 && (
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="flex items-center gap-2 mb-3">
+            <TrendingUp size={16} className="text-rose-500" />
+            <h3 className="font-bold text-slate-900">Skills with evidence (weakest first)</h3>
           </div>
-        </div>
-        <Link to="/mock-oa" className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-white px-4 text-xs font-bold text-slate-900">Take a timed mock <TrendingUp size={14} /></Link>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {skillRows.map((skill) => (
+              <Link
+                key={skill.id}
+                to={`/academy?focus=${encodeURIComponent(skill.id)}`}
+                className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2.5 hover:border-rose-200"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-sm font-semibold text-slate-900">{skill.id.replace(/_/g, " ")}</span>
+                  <span className="text-sm font-bold text-slate-700">{Math.round(skill.score)}%</span>
+                </div>
+                <p className="mt-0.5 text-xs text-slate-500">{skill.mastery_label} · {skill.total_attempts} attempts</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <footer className="rounded-2xl border border-slate-200 bg-white p-4 text-center text-sm text-slate-600">
+        Mastery comes from server-graded assessments, not time spent or XP alone.{" "}
+        <Link to="/dashboard" className="font-semibold text-emerald-700 hover:underline">Back to today's plan</Link>
       </footer>
     </div>
   );

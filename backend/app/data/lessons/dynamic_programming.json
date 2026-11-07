@@ -118,5 +118,103 @@
         "explanation": "A precise state definition makes the recurrence and base cases understandable."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Recognize overlapping subproblems and optimal substructure.",
+    "Define a state and recurrence before coding.",
+    "Choose memoization or tabulation.",
+    "Set base cases and verify transition dependencies."
+  ],
+  "prerequisites": [
+    "recursion_basics",
+    "arrays_basics"
+  ],
+  "concepts": [
+    "state",
+    "recurrence",
+    "base case",
+    "memoization",
+    "tabulation",
+    "transition"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Dynamic programming is just recursion.",
+      "correction": "DP stores results of overlapping subproblems to avoid recomputation."
+    },
+    {
+      "misconception": "A recurrence alone is a complete solution.",
+      "correction": "You also need correct base cases, evaluation order and state boundaries."
+    },
+    {
+      "misconception": "Memoization and tabulation are identical implementations.",
+      "correction": "Memoization is top-down; tabulation fills states bottom-up."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Fibonacci with memoization",
+      "input": "fib(n)=fib(n-1)+fib(n-2)",
+      "trace": [
+        "Base: fib(0)=0, fib(1)=1.",
+        "Compute fib(2)=1 and store it.",
+        "Later requests reuse stored values instead of recalculating."
+      ],
+      "output": "O(n) time and O(n) storage",
+      "explanation": "Caching removes the repeated exponential recursion tree."
+    },
+    {
+      "title": "Climbing stairs",
+      "input": "1 or 2 steps at a time; reach step n",
+      "trace": [
+        "Ways(0)=1 and Ways(1)=1.",
+        "Ways(n)=Ways(n-1)+Ways(n-2).",
+        "For n=4: 1,1,2,3,5."
+      ],
+      "output": "5 ways for n=4",
+      "explanation": "The final step comes from either n-1 or n-2."
+    },
+    {
+      "title": "Choose DP state",
+      "input": "Minimum coins to make amount x",
+      "trace": [
+        "State dp[x] = fewest coins for amount x.",
+        "Base dp[0]=0; other amounts start unreachable.",
+        "Try each coin c: dp[x]=min(dp[x],1+dp[x-c]) when valid."
+      ],
+      "output": "A one-dimensional bottom-up DP",
+      "explanation": "A precise state definition makes the transition and boundaries easier to verify."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "problem solving and optimization",
+      "practice": "Explain state, transition and base case before code."
+    },
+    {
+      "company": "TCS",
+      "skill": "dynamic programming fundamentals",
+      "practice": "Start with small n and trace the table."
+    },
+    {
+      "company": "Product companies",
+      "skill": "algorithmic coding",
+      "practice": "Analyze time and memory in terms of states and transitions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Dynamic Programming Basics?",
+      "answer": "Recognize overlapping subproblems and optimal substructure. Define a state and recurrence before coding. Choose memoization or tabulation. Set base cases and verify transition dependencies."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Dynamic Programming Basics?",
+      "answer": "DP stores results of overlapping subproblems to avoid recomputation."
+    }
+  ],
+  "next_lesson_slug": "sliding_window",
+  "next_lesson_title": "Sliding Window Technique"
 }

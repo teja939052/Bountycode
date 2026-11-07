@@ -4,6 +4,7 @@ export type OAMode = "calm" | "pressure" | "boss";
 
 export interface StartOARequest {
   company: string;
+  track?: string;
   role?: string;
   total_questions?: number;
   duration_minutes?: number;
@@ -28,6 +29,7 @@ export interface SubmitOABatch {
 export interface OASession {
   session_id: string;
   company: string;
+  track?: string;
   mode: string;
   blueprint: Record<string, number>;
   marking_scheme?: unknown;
@@ -42,6 +44,8 @@ export interface OASession {
   negative_marking?: boolean;
   back_navigation?: boolean;
   section_switching?: boolean;
+  engine_version?: string;
+  blueprint_version?: string;
 }
 
 export interface OAResult {
@@ -58,6 +62,15 @@ export interface OAResult {
   skill_diagnostics: Record<string, unknown>;
   readiness_after: number;
   next_missions: unknown[];
+  engine_version?: string;
+  blueprint_version?: string;
+  review_metadata?: Record<string, unknown>;
+}
+
+export interface CompleteOAMetadata {
+  flagged_question_ids?: string[];
+  client_resume_used?: boolean;
+  autosave_available?: boolean;
 }
 
 export const oaApi = {
@@ -66,6 +79,7 @@ export const oaApi = {
       method: "POST",
       body: JSON.stringify({
         role: req.role || "swe",
+        track: req.track,
         total_questions: req.total_questions ?? 20,
         duration_minutes: req.duration_minutes ?? 90,
         mode: req.mode || "calm",
@@ -82,9 +96,10 @@ export const oaApi = {
     });
   },
 
-  async complete(sessionId: string): Promise<OAResult> {
+  async complete(sessionId: string, metadata: CompleteOAMetadata = {}): Promise<OAResult> {
     return request(`/api/v1/oa/${encodeURIComponent(sessionId)}/complete`, {
       method: "POST",
+      body: JSON.stringify(metadata),
     });
   },
 

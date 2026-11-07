@@ -5,8 +5,9 @@
   "domain": "Programming Fundamentals",
   "pattern": "Strings",
   "difficulty": "easy",
-  "duration_min": 22,
-  "xp_reward": 100,
+  "duration_min": 30,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
   "steps": [
     {
       "step_number": 1,
@@ -21,14 +22,10 @@
       "step_type": "interactive",
       "title": "Index a string",
       "prompt": "What is 'CODING'[3] in Python?",
-      "options": [
-        "D",
-        "I",
-        "N",
-        "G"
-      ],
+      "options": ["D", "I", "N", "G"],
       "correct_index": 1,
-      "explanation": "C=0, O=1, D=2, I=3. The character at index 3 is I."
+      "explanation": "C=0, O=1, D=2, I=3. The character at index 3 is I.",
+      "hints": ["Count from zero.", "Index 3 is the fourth character."]
     },
     {
       "step_number": 3,
@@ -43,14 +40,10 @@
       "step_type": "practice",
       "title": "Predict a slice",
       "prompt": "What is 'PYTHON'[1:4]?",
-      "options": [
-        "PYT",
-        "YTH",
-        "THO",
-        "YTHO"
-      ],
+      "options": ["PYT", "YTH", "THO", "YTHO"],
       "correct_index": 1,
-      "explanation": "Indices 1,2,3 are Y,T,H. The end index 4 is excluded, so the result is YTH."
+      "explanation": "Indices 1,2,3 are Y,T,H. End index 4 is excluded, so YTH.",
+      "hints": ["Include start, exclude end.", "List the characters at 1, 2 and 3."]
     },
     {
       "step_number": 5,
@@ -58,67 +51,208 @@
       "title": "Common string operations",
       "content": "Useful operations include lower(), upper(), strip(), split(), join(), replace() and membership with 'in'. Be careful: split() returns a list, not a string.",
       "example": "'a,b,c'.split(',') gives ['a','b','c']."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Trace a string slice",
+      "content": "A slice includes its start index and stops before its end index.",
+      "code": "word = \"code\"\nprint(word[1:3])",
+      "language": "python",
+      "prompt": "What exact text is printed?",
+      "answer_placeholder": "Type the output",
+      "expected_answer": "od",
+      "explanation": "Index 1 is 'o' and index 2 is 'd'. Index 3 is excluded.",
+      "hints": ["List characters with indices.", "Stop before the end index."]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Check a palindrome",
+      "content": "Compare mirrored positions until the middle.",
+      "prompt": "Arrange the steps to test whether a word is a palindrome.",
+      "options": [
+        "Stop when indices meet or cross",
+        "Compare characters at left and right indices",
+        "Set left = 0 and right = length - 1",
+        "Move left forward and right backward when they match"
+      ],
+      "correct_order": [2, 1, 3, 0],
+      "explanation": "Two pointers move inward while characters match.",
+      "hints": ["Start at both ends.", "A mismatch ends the check early."]
+    },
+    {
+      "step_number": 8,
+      "step_type": "code_lab",
+      "title": "Reverse a greeting token",
+      "content": "Build a new string from the end toward the start. The browser lab uses JavaScript.",
+      "prompt": "Complete the code so it prints edoc.",
+      "language": "javascript",
+      "starter_code": "const word = 'code';\nlet reversed = '';\n// TODO: build reversed from the end of word\nconsole.log(reversed);",
+      "expected_output": "edoc",
+      "hints": [
+        "Loop index from word.length - 1 down to 0.",
+        "Append word[i] to reversed each time.",
+        "for (let i = word.length - 1; i >= 0; i--) reversed += word[i];"
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Catch an off-by-one index",
+      "content": "A student thinks the last character of a length-5 string is at index 5.",
+      "prompt": "What is the last valid index of a string with length 5?",
+      "options": ["4", "5", "6", "0"],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "Correct. Zero-based indices run 0 through 4.",
+        "2": "Index 5 is out of range for length 5.",
+        "3": "Index 6 is also out of range.",
+        "4": "0 is the first index, not the last."
+      },
+      "explanation": "Last valid index = length − 1.",
+      "hints": ["Indexing starts at zero.", "Count five positions: 0,1,2,3,4."]
     }
   ],
   "assessment": {
     "mastery_threshold": 0.7,
-    "duration_sec": 240,
+    "duration_sec": 300,
     "questions": [
       {
         "prompt": "What is the length of 'JAVA'?",
-        "options": [
-          "3",
-          "4",
-          "5",
-          "6"
-        ],
+        "options": ["3", "4", "5", "6"],
         "correct_index": 1,
         "explanation": "JAVA has four characters."
       },
       {
-        "prompt": "What does 'HELLO'[-1] return?",
-        "options": [
-          "H",
-          "E",
-          "L",
-          "O"
-        ],
+        "prompt": "What does 'HELLO'[-1] return in Python?",
+        "options": ["H", "E", "L", "O"],
         "correct_index": 3,
-        "explanation": "Index -1 refers to the final character."
+        "explanation": "Index -1 is the final character."
       },
       {
         "prompt": "What is 'COMPUTER'[2:5]?",
-        "options": [
-          "COM",
-          "MPU",
-          "PUT",
-          "UTE"
-        ],
+        "options": ["COM", "MPU", "PUT", "UTE"],
         "correct_index": 1,
         "explanation": "Indices 2,3,4 are M,P,U."
       },
       {
         "prompt": "Which statement about Python strings is true?",
-        "options": [
-          "Strings are mutable",
-          "Strings are immutable",
-          "Strings cannot be sliced",
-          "Strings contain only letters"
-        ],
+        "options": ["Strings are mutable", "Strings are immutable", "Strings cannot be sliced", "Strings contain only letters"],
         "correct_index": 1,
-        "explanation": "Python strings are immutable; operations return new strings."
+        "explanation": "Python strings are immutable."
       },
       {
         "prompt": "What does 'red,blue'.split(',') return?",
-        "options": [
-          "'redblue'",
-          "['red','blue']",
-          "('red','blue')",
-          "'red,blue'"
-        ],
+        "options": ["'redblue'", "['red','blue']", "('red','blue')", "'red,blue'"],
         "correct_index": 1,
-        "explanation": "split(',') divides the string into a list using comma as the separator."
+        "explanation": "split returns a list of parts."
+      },
+      {
+        "prompt": "Last valid index of a length-5 string?",
+        "options": ["4", "5", "6", "0"],
+        "correct_index": 0,
+        "explanation": "length − 1 = 4."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Treat a string as an ordered sequence of characters.",
+    "Use indexing and slicing safely with inclusive start and exclusive end.",
+    "Apply common string operations and know split returns a list.",
+    "Check palindromes with two pointers.",
+    "Avoid off-by-one index errors."
+  ],
+  "prerequisites": ["arrays_basics", "loops_basics"],
+  "concepts": ["index", "length", "substring", "slice", "immutability", "palindrome", "split"],
+  "common_misconceptions": [
+    {
+      "misconception": "The last valid index equals the string length.",
+      "correction": "For zero-based indexing, the last valid index is length − 1."
+    },
+    {
+      "misconception": "A string can always be modified in place.",
+      "correction": "Python strings are immutable; operations return new strings."
+    },
+    {
+      "misconception": "A slice includes the end index.",
+      "correction": "The end index is exclusive."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace indexing",
+      "input": "s = 'Bounty'; s[0], s[5]",
+      "trace": ["s[0] is B.", "length is 6.", "s[5] is y."],
+      "output": "B and y",
+      "explanation": "Valid indices are 0 through length − 1."
+    },
+    {
+      "title": "Check a palindrome",
+      "input": "'level'",
+      "trace": ["Compare 0 and 4.", "Compare 1 and 3.", "Middle needs no pair."],
+      "output": "Palindrome",
+      "explanation": "Mirrored comparisons need at most floor(n/2) checks."
+    },
+    {
+      "title": "Slice boundaries",
+      "input": "'code'[1:3]",
+      "trace": ["Index 1 = o.", "Index 2 = d.", "Index 3 excluded."],
+      "output": "od",
+      "explanation": "Start inclusive, end exclusive."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "string coding and output tracing",
+      "practice": "Test empty, one-character and repeated-character inputs."
+    },
+    {
+      "company": "Infosys",
+      "skill": "string manipulation",
+      "practice": "Explain O(n) traversal and avoid costly repeated concatenation."
+    },
+    {
+      "company": "Accenture",
+      "skill": "pattern and text processing",
+      "practice": "Use frequency maps and two-pointer palindrome checks."
+    },
+    {
+      "company": "Wipro",
+      "skill": "basic coding",
+      "practice": "Trace slices carefully under time pressure."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What is the last valid index of a string of length n?",
+      "answer": "n − 1 with zero-based indexing."
+    },
+    {
+      "type": "concept",
+      "question": "Does a Python slice include the end index?",
+      "answer": "No. Start is inclusive and end is exclusive."
+    },
+    {
+      "type": "method",
+      "question": "How do you check a palindrome efficiently?",
+      "answer": "Compare characters from both ends until the indices meet."
+    }
+  ],
+  "quest": {
+    "chapter": "The Text Workshop",
+    "rank": "String Apprentice",
+    "story": "Service-company coding rounds love index and slice traps. Master boundaries before tackling harder string problems.",
+    "mission": "Index, slice, reverse and validate strings without off-by-one mistakes.",
+    "success_criteria": [
+      "Read characters by index.",
+      "Trace inclusive-start exclusive-end slices.",
+      "Reverse a string safely.",
+      "Explain immutability in Python."
+    ]
+  },
+  "next_lesson_slug": "data_structures_intro",
+  "next_lesson_title": "Choosing the Right Data Structure"
 }

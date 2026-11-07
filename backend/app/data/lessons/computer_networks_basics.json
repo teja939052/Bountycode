@@ -56,6 +56,32 @@
       "title": "What HTTPS adds",
       "content": "HTTPS is HTTP protected by TLS. TLS helps provide encryption, integrity and server authentication for the connection.",
       "example": "The browser validates a certificate before trusting the server identity for a secure HTTPS connection."
+    },
+    {
+      "step_number": 6,
+      "step_type": "api_scenario",
+      "title": "Choose the correct API response",
+      "content": "A request can be authenticated and still fail because the requested resource does not exist. Separate authentication failures from resource lookup failures.",
+      "request_preview": "GET /api/v1/orders/42\nAuthorization: Bearer valid-token\n\nDatabase lookup: no order exists with id 42",
+      "prompt": "Which HTTP status should the API return for this authenticated request?",
+      "options": [
+        "200 OK with an empty list",
+        "201 Created",
+        "401 Unauthorized",
+        "404 Not Found"
+      ],
+      "correct_index": 3,
+      "feedback_by_option": {
+        "0": "An empty list is usually used for a collection query that found no matching items. This request asks for one specific order.",
+        "1": "201 Created is for a successful resource creation. The client sent a GET request.",
+        "2": "401 Unauthorized is for missing or invalid authentication. The request has a valid token; the resource lookup failed."
+      },
+      "hints": [
+        "First decide whether the request is authenticated. The prompt says the token is valid.",
+        "Next ask whether order 42 exists. It does not.",
+        "Choose the status for a missing specific resource, not a login failure."
+      ],
+      "explanation": "404 Not Found is appropriate because authentication succeeded but the requested order does not exist. A 401 would incorrectly blame the credentials."
     }
   ],
   "assessment": {
@@ -118,5 +144,104 @@
         "explanation": "Routers forward IP packets between networks."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain the purpose of layered network models.",
+    "Distinguish TCP and UDP.",
+    "Describe IP addresses, ports and DNS.",
+    "Trace a basic HTTP request.",
+    "Understand latency, bandwidth and packet delivery."
+  ],
+  "prerequisites": [
+    "os_basics"
+  ],
+  "concepts": [
+    "TCP",
+    "UDP",
+    "IP address",
+    "port",
+    "DNS",
+    "HTTP",
+    "client-server",
+    "latency"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "DNS is the same as HTTP.",
+      "correction": "DNS resolves names to records such as IP addresses; HTTP carries application requests and responses."
+    },
+    {
+      "misconception": "TCP and IP are interchangeable.",
+      "correction": "IP routes packets between hosts; TCP provides a reliable ordered byte stream over IP."
+    },
+    {
+      "misconception": "A port identifies a computer on the internet.",
+      "correction": "An IP address identifies a host/interface; a port identifies a service endpoint on that host."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace a web request",
+      "input": "Browser opens https://example.com",
+      "trace": [
+        "DNS resolves example.com to an IP address.",
+        "The browser establishes a transport connection.",
+        "It sends an HTTP request to the server.",
+        "The server returns an HTTP response."
+      ],
+      "output": "DNS → connection → HTTP request → response",
+      "explanation": "Separating the steps makes network debugging easier."
+    },
+    {
+      "title": "Choose TCP or UDP",
+      "input": "Reliable file transfer versus live voice",
+      "trace": [
+        "File transfer needs ordered, reliable delivery.",
+        "Live voice often values low latency and can tolerate some packet loss.",
+        "TCP and UDP make different delivery trade-offs."
+      ],
+      "output": "TCP for reliable transfer; UDP is common for real-time media",
+      "explanation": "Choose based on the application's requirements, not on one protocol being universally better."
+    },
+    {
+      "title": "Understand a port",
+      "input": "A server IP hosts HTTPS and SSH",
+      "trace": [
+        "The IP identifies the destination host.",
+        "Port 443 commonly serves HTTPS.",
+        "Port 22 commonly serves SSH."
+      ],
+      "output": "IP address + port identifies the service endpoint",
+      "explanation": "Ports allow multiple services to share a host address."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "computer networks and web basics",
+      "practice": "Explain DNS, TCP, HTTP and port numbers."
+    },
+    {
+      "company": "Infosys",
+      "skill": "networking fundamentals",
+      "practice": "Trace a request from browser to server."
+    },
+    {
+      "company": "Accenture",
+      "skill": "technical support and networking",
+      "practice": "Differentiate connectivity, name-resolution and application errors."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Computer Networks Fundamentals?",
+      "answer": "Explain the purpose of layered network models. Distinguish TCP and UDP. Describe IP addresses, ports and DNS. Trace a basic HTTP request. Understand latency, bandwidth and packet delivery."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Computer Networks Fundamentals.",
+      "answer": "DNS resolves names to records such as IP addresses; HTTP carries application requests and responses."
+    }
+  ]
 }

@@ -5,8 +5,8 @@
   "domain": "Logical Reasoning",
   "pattern": "Number Series",
   "difficulty": "easy",
-  "duration_min": 18,
-  "xp_reward": 85,
+  "duration_min": 30,
+  "xp_reward": 120,
   "steps": [
     {
       "step_number": 1,
@@ -28,7 +28,11 @@
         "24"
       ],
       "correct_index": 2,
-      "explanation": "Each term increases by 5. Next = 18+5 = 23."
+      "explanation": "Each term increases by 5. Next = 18+5 = 23.",
+      "hints": [
+        "Identify the key concept or constraint in the prompt before looking at the options.",
+        "Work through the example one step at a time and eliminate choices that contradict the rule."
+      ]
     },
     {
       "step_number": 3,
@@ -49,7 +53,11 @@
         "11"
       ],
       "correct_index": 1,
-      "explanation": "Odd positions: 2,4,6,8. Even positions: 5,7,9. Next is 8."
+      "explanation": "Odd positions: 2,4,6,8. Even positions: 5,7,9. Next is 8.",
+      "hints": [
+        "Identify the key concept or constraint in the prompt before looking at the options.",
+        "Work through the example one step at a time and eliminate choices that contradict the rule."
+      ]
     },
     {
       "step_number": 5,
@@ -57,6 +65,60 @@
       "title": "Squares and cubes",
       "content": "Compare terms with nearby perfect squares or cubes. For example, 1, 8, 27, 64 are 1³, 2³, 3³, 4³.",
       "example": "1, 4, 9, 16, 25 are consecutive squares. The next term is 36."
+    },
+    {
+      "step_type": "interactive",
+      "title": "Recognize changing differences",
+      "prompt": "What is the next term: 2, 5, 10, 17, 26, __?",
+      "options": [
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "correct_index": 2,
+      "explanation": "The differences are 3, 5, 7 and 9. The next difference is 11, so 26+11=37.",
+      "hints": [
+        "Subtract each term from the next to reveal the difference sequence.",
+        "The differences increase by 2 each time."
+      ],
+      "step_number": 6
+    },
+    {
+      "step_type": "fill_blank",
+      "title": "Solve an alternating series",
+      "prompt": "Find the next term: 4, 12, 6, 18, 8, 24, __.",
+      "expected_answer": "10",
+      "answer_placeholder": "Next number",
+      "explanation": "Separate odd and even positions. Odd positions are 4, 6, 8, so the next odd-position term is 10. Even positions are 12, 18, 24.",
+      "hints": [
+        "Do not apply one difference to the whole sequence immediately.",
+        "Split the terms into odd-position and even-position subsequences."
+      ],
+      "step_number": 7
+    },
+    {
+      "step_type": "order_steps",
+      "title": "Use a reliable series-solving method",
+      "prompt": "Arrange the checks you should make when a series is unfamiliar.",
+      "options": [
+        "Test whether the rule fits every given term",
+        "Check consecutive differences",
+        "Check ratios or multiplication patterns",
+        "Look for alternating positions or familiar powers"
+      ],
+      "correct_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "explanation": "Start with differences and ratios, then test alternating or special-number patterns. Always verify the rule against every term.",
+      "hints": [
+        "Start with the simplest common patterns before inventing a complicated rule.",
+        "A candidate rule is not valid until it explains all the supplied terms."
+      ],
+      "step_number": 8
     }
   ],
   "assessment": {
@@ -119,5 +181,122 @@
         "explanation": "Differences are 3,5,7,9; next difference is 11, so 27+11=38."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Calculate first and second differences.",
+    "Recognize arithmetic and geometric progressions.",
+    "Identify alternating and interleaved patterns.",
+    "Validate a proposed rule against every term."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "arithmetic progression",
+    "geometric progression",
+    "first differences",
+    "second differences",
+    "alternating series",
+    "square numbers",
+    "cube numbers",
+    "pattern validation"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Any two terms are enough to identify the intended rule.",
+      "correction": "Many rules can fit two terms; check the complete sequence and prefer a simple consistent explanation."
+    },
+    {
+      "misconception": "Every series uses one constant difference.",
+      "correction": "Some series use ratios, changing differences, alternating subsequences or powers."
+    },
+    {
+      "misconception": "A plausible next number is automatically correct.",
+      "correction": "The proposed rule must explain every supplied term, not only the final pair."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Use first differences",
+      "input": "5, 9, 13, 17, ?",
+      "trace": [
+        "9−5 = 4.",
+        "13−9 = 4 and 17−13 = 4.",
+        "Add 4 to the final term."
+      ],
+      "output": "21",
+      "explanation": "A constant first difference identifies an arithmetic progression."
+    },
+    {
+      "title": "Use second differences",
+      "input": "1, 4, 9, 16, 25, ?",
+      "trace": [
+        "First differences are 3, 5, 7 and 9.",
+        "Second differences are 2, 2 and 2.",
+        "The next first difference is 11."
+      ],
+      "output": "36",
+      "explanation": "Constant second differences are a useful clue for a quadratic sequence; here the terms are consecutive squares."
+    },
+    {
+      "title": "Split an alternating series",
+      "input": "2, 10, 4, 20, 6, 30, ?",
+      "trace": [
+        "Odd positions: 2, 4, 6.",
+        "Even positions: 10, 20, 30.",
+        "The next odd-position term is 8."
+      ],
+      "output": "8",
+      "explanation": "Interleaved sequences can hide two simple patterns in one list."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "number-series reasoning",
+      "practice": "Write differences and verify a rule across every term."
+    },
+    {
+      "company": "Accenture",
+      "skill": "pattern recognition",
+      "practice": "Test alternating and interleaved patterns systematically."
+    },
+    {
+      "company": "Wipro",
+      "skill": "logical reasoning",
+      "practice": "Explain why a pattern fits all given terms."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "method",
+      "question": "What should you check first in a number series?",
+      "answer": "Calculate consecutive differences, then check ratios, alternating positions and familiar powers."
+    },
+    {
+      "type": "concept",
+      "question": "What do constant second differences suggest?",
+      "answer": "A quadratic pattern, often involving square-number behavior."
+    },
+    {
+      "type": "quality",
+      "question": "How do you validate a proposed series rule?",
+      "answer": "Check that it explains every given term, not just the last two."
+    }
+  ],
+  "quest": {
+    "chapter": "The Pattern Observatory",
+    "rank": "Pattern Analyst",
+    "story": "A signal tower sends number sequences with hidden rules. Your team must identify the simplest rule that explains every signal.",
+    "mission": "Use differences, ratios, alternating subsequences and powers to predict the next term and justify the rule.",
+    "success_criteria": [
+      "Calculate consecutive differences.",
+      "Recognize arithmetic and geometric patterns.",
+      "Separate alternating subsequences.",
+      "Verify a rule against all supplied terms."
+    ]
+  },
+  "mastery_threshold": 0.7,
+  "next_lesson_slug": "coding_decoding",
+  "next_lesson_title": "Coding and Decoding"
 }

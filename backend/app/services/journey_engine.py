@@ -155,19 +155,28 @@ def _unlocked_evidence_based(world_id: str, town_id: str, level_id: str,
 
 
 async def _get_srs_due(user_id: str) -> list:
-    """Get due SRS cards for the user."""
+    """Get due SRS cards for the user.
+
+    Persisted cards may contain Mongo metadata and legacy problem-card fields.
+    Always restore them through the shared deserializer so those documents are
+    not silently discarded by the Journey priority engine.
+    """
     try:
         from app.database import srs_cards_collection
-        from app.services.spaced_repetition import SRSState, get_due_cards
+        from app.services.spaced_repetition import deserialize_state, get_due_cards
+
         col = srs_cards_collection()
         cards = []
         async for doc in col.find({"user_id": user_id}).limit(50):
             try:
-                cards.append(SRSState(**doc))
-            except Exception:
+                state = deserialize_state(doc, user_id=user_id)
+                if state.concept_id:
+                    cards.append(state)
+            except (TypeError, ValueError, KeyError):
                 continue
         return get_due_cards(cards, limit=5)
     except Exception:
+        logger.exception("Could not load due SRS cards for Journey user %s", user_id)
         return []
 
 

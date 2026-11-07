@@ -119,5 +119,7 @@
         "explanation": "Alligation directly gives the ratio of quantities needed for a target mean."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "pipes_cisterns",
+  "next_lesson_title": "Pipes and Cisterns"
 }
