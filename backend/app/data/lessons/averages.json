@@ -97,6 +97,7 @@
       "step_type": "debug_choice",
       "title": "Catch the equal-weight error",
       "content": "A student averages two class averages of 60 and 80 as 70 even though the classes have 10 and 30 students.",
+      "code": "class_a_average = 60\nclass_a_size = 10\nclass_b_average = 80\nclass_b_size = 30\ncombined = (class_a_average + class_b_average) / 2\nprint(combined)",
       "prompt": "Why is 70 wrong?",
       "options": [
         "The larger class must pull the combined average closer to 80",

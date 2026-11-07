@@ -97,6 +97,7 @@
       "step_type": "debug_choice",
       "title": "Catch the average-speed trap",
       "content": "A student averages 30 km/h and 60 km/h as 45 km/h for equal distances.",
+      "code": "distance = 1\ntotal_time = distance / 30 + distance / 60\naverage_speed = 2 * distance / total_time\nprint(average_speed)",
       "prompt": "Why is 45 wrong for equal 60 km legs?",
       "options": [
         "Average speed is total distance over total time, which is 40 km/h",

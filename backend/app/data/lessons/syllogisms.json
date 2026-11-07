@@ -81,6 +81,7 @@
       "step_type": "debug_choice",
       "title": "Catch the some-to-all error",
       "content": "A student concludes 'All students are athletes' from 'Some students are athletes'.",
+      "code": "students = {'A', 'B', 'C'}\nathletes = {'A'}\nconclusion_is_all = students <= athletes\nprint(conclusion_is_all)",
       "prompt": "Why is that invalid?",
       "options": [
         "'Some' only guarantees at least one shared case, not every student",

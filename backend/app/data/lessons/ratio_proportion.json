@@ -97,6 +97,7 @@
       "step_type": "debug_choice",
       "title": "Catch a unit mistake",
       "content": "A student forms a ratio of 2 hours to 30 minutes as 2:30 and simplifies to 1:15.",
+      "code": "hours = 2 * 60\nminutes = 30\nprint(hours / minutes)",
       "prompt": "What is the correct ratio of 2 hours to 30 minutes?",
       "options": [
         "4:1 after converting both to minutes",

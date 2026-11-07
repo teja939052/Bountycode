@@ -96,6 +96,7 @@
       "step_type": "debug_choice",
       "title": "Catch a partial-rule error",
       "content": "A student codes only the first letter of TRAIN with +1 and leaves the rest unchanged.",
+      "code": "word = 'TRAIN'\nencoded = ''.join(chr(ord(letter) + 1) for letter in word)\nprint(encoded)",
       "prompt": "What is wrong with that approach for a uniform +1 code?",
       "options": [
         "Every letter must receive the same stated shift",

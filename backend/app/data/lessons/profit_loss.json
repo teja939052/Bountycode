@@ -142,6 +142,7 @@
       "step_type": "debug_choice",
       "title": "Find the wrong base",
       "content": "A student calculates profit percentage using selling price as the base and gets a different answer from the official key.",
+      "code": "cost_price = 100\nselling_price = 120\nprofit_percent = (selling_price - cost_price) / cost_price * 100\nprint(profit_percent)",
       "prompt": "CP = ₹500, SP = ₹600. A student computes 600 − 500 = 100 and then 100/600 × 100 ≈ 16.7%. Why is this wrong for a standard profit-% question?",
       "options": [
         "Profit percentage should use cost price as the base: 100/500 × 100 = 20%",
