@@ -110,9 +110,9 @@ def _calculate_mastery_score(correct: int, total: int) -> float:
     safe_total = max(1, int(total))
     safe_correct = min(safe_total, max(0, int(correct)))
     accuracy = safe_correct / safe_total * 100
-    coverage = min(100.0, safe_total * 8.0)
+    coverage = min(100.0, safe_total * 5.0)
     evidence_score = (accuracy * 0.8) + (coverage * 0.2)
-    confidence = min(1.0, safe_total / 10.0)
+    confidence = min(1.0, safe_total / 20.0)
     return round(max(0.0, min(100.0, evidence_score * confidence)), 1)
 
 
