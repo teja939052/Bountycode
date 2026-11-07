@@ -107,6 +107,10 @@ STUDY_CATEGORIES = [
      "description": "End-to-end builds that tie the whole path together."},
     {"id": "placement", "name": "Placement Prep", "icon": "🎯", "color": "#F59E0B",
      "description": "Company-wise exam patterns, band logic, and prep plans — TCS NQT, Infosys, Wipro."},
+    {"id": "dbms", "name": "DBMS", "icon": "🗄️", "color": "#0F766E", "description": "Database design, normalization, transactions and query concepts."},
+    {"id": "operating-systems", "name": "Operating Systems", "icon": "⚙️", "color": "#64748B", "description": "Processes, scheduling, memory, synchronization and deadlocks."},
+    {"id": "computer-networks", "name": "Computer Networks", "icon": "🌐", "color": "#2563EB", "description": "TCP/IP, DNS, HTTP, subnetting, routing and transport protocols."},
+    {"id": "aptitude", "name": "Aptitude & Reasoning", "icon": "🧠", "color": "#7C3AED", "description": "Quantitative aptitude, logical reasoning and verbal ability."},
 ]
 
 
@@ -974,9 +978,10 @@ def _load_expansion() -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
     from app.data.study_content_node import NEW_ARTICLES as NN, INTERACTIVES as NI
     from app.data.study_content_sql_c_fullstack import NEW_ARTICLES as SF, INTERACTIVES as SI
     from app.data.study_content_sql_placement import NEW_ARTICLES as SP
+    from app.data.study_content_placement_core import NEW_ARTICLES as PC
 
     new_articles = []
-    for group in (HC, JN, TR, NN, SF, SP):
+    for group in (HC, JN, TR, NN, SF, SP, PC):
         new_articles.extend(group)
     interactives: dict[str, dict[str, Any]] = {}
     for group in (HI, JI, TI, NI, SI):
