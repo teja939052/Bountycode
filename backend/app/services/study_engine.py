@@ -324,9 +324,10 @@ async def _get_practice_tasks(
                 hay_l = [str(h).lower() for h in hay if h]
                 return any(t in hay_l for t in lowered)
 
-            company_pool = [q for q in pool if _tagged(q)]
-            if company_pool:
-                pool = company_pool
+            # Company-track practice is a strict filter. If the bank has no
+            # matching question, do not silently substitute an unrelated one.
+            # The caller will receive a non-question weak-area task instead.
+            pool = [q for q in pool if _tagged(q)]
 
         if not pool:
             tasks.append({
