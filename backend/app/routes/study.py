@@ -21,7 +21,10 @@ Legacy endpoints:
 """
 
 import asyncio
-from fastapi import APIRouter, Depends, Query
+import random
+import time
+from datetime import datetime, timezone
+from fastapi import APIRouter, Depends, Query, HTTPException
 
 from app.middleware.auth import get_current_user
 from app.services.study_engine import get_today, record_activity
