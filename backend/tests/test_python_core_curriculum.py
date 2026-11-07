@@ -127,3 +127,23 @@ def test_python_functions_tuples_files_and_json_lessons_are_authored():
         assert len(lesson["quizzes"]) == 3, title
         assert len(lesson["exercises"]) == 2, title
         assert score_lesson_content(lesson)["status"] == "ready", title
+
+
+
+def test_python_algorithms_regex_and_advanced_iteration_lessons_are_authored():
+    cases = [
+        ("python-l07-04", "Nested Lists", "grid[row][column]"),
+        ("python-l07-07", "Sorting & Searching", "sorted(scores, reverse=True)"),
+        ("python-l08-04", "Regular Expressions", "re.findall"),
+        ("python-l09-07", "Raising Exceptions", "raise ValueError"),
+        ("python-l11-01", "Generators & yield", "yield number"),
+        ("python-l11-02", "Iterators", "iterator = iter(names)"),
+        ("python-l11-03", "Decorators with Parameters", "@wraps(function)"),
+    ]
+
+    for lesson_id, title, expected_code in cases:
+        lesson = get_lesson_content("python", lesson_id, title, "theory")
+        assert expected_code in lesson["code_example"]["code"], title
+        assert len(lesson["quizzes"]) == 3, title
+        assert len(lesson["exercises"]) == 2, title
+        assert score_lesson_content(lesson)["status"] == "ready", title
