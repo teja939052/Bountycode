@@ -1,4 +1,4 @@
-"""Master registry — all 12 BountyCode worlds.
+"""Master registry — all BountyCode worlds.
 
 This is the single source of truth for the game's content. The Study Engine
 and Journey State both pull from here.
@@ -16,8 +16,9 @@ from app.content.world2_problem_solver import WORLD_2_PROBLEM_SOLVER
 from app.content.worlds_3_to_6 import WORLD_3_BUILD_SYSTEMS, WORLD_4_WORK_WITH_DATA, WORLD_5_SOFTWARE_ENGINEERING, WORLD_6_UNDER_PRESSURE
 from app.content.worlds_7_to_9 import WORLD_7_HIRING_ARENA, WORLD_8_COMPANY_MISSIONS, WORLD_9_AI_ENGINEERING
 from app.content.worlds_10_to_12 import WORLD_10_PRODUCTION, WORLD_11_PROJECTS, WORLD_12_CREATIVE
+from app.content.world_aptitude_quant import WORLD_APTITUDE_QUANT
 
-# ─── World registry ────────────────────────────────────────────────
+# ─── World registry ─────────────────────────────────────────────────────────────
 # Order matters — worlds are presented to students in this order.
 
 ALL_WORLDS: Dict[str, WorldDefinition] = {
@@ -33,6 +34,8 @@ ALL_WORLDS: Dict[str, WorldDefinition] = {
     WORLD_10_PRODUCTION.id: WORLD_10_PRODUCTION,
     WORLD_11_PROJECTS.id: WORLD_11_PROJECTS,
     WORLD_12_CREATIVE.id: WORLD_12_CREATIVE,
+    # Service-company Numerical Ability (Phase D of SERVICE_COMPANY_CURRICULUM)
+    WORLD_APTITUDE_QUANT.id: WORLD_APTITUDE_QUANT,
 }
 
 
