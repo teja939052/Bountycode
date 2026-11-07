@@ -31,6 +31,9 @@ def test_only_server_graded_assessments_count_toward_mastery():
 
 def test_engagement_and_client_telemetry_never_certify_mastery():
     assert not _is_mastery_evidence_activity({"type": "lesson_step", "success": True})
+    # Legacy events without an explicit server provenance marker are not
+    # silently trusted: older clients could write arbitrary event types.
+    assert not _is_mastery_evidence_activity({"type": "quiz_answer", "success": True})
     assert not _is_mastery_evidence_activity({"type": "lesson_complete", "success": True})
     assert not _is_mastery_evidence_activity({
         "type": "quiz_answer",
