@@ -101,5 +101,5 @@ def test_string_slicing_uses_the_specific_string_lesson_not_list_slicing():
 
     assert "string slicing" in lesson["theory"].lower()
     assert "code = 'BOUNTYCODE'" in lesson["code_example"]["code"]
-    assert "BUTCD" in lesson["output"] if "output" in lesson else True
+    assert "code[::2]" in lesson["code_example"]["code"]
     assert score_lesson_content(lesson)["status"] == "ready"
