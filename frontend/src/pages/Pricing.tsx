@@ -309,9 +309,8 @@ export default function Pricing() {
           </div>
         )}
 
-        {/* V3 §7 — ONE tier ₹99/mo. Student code STUDENT50 → ₹49/mo with .edu.in/.ac.in email. Coupon box below applies it. */}
-        <div className="text-center mb-4 text-xs font-mono text-text-muted">
-          Job Seeker — ₹99/mo · Students: enter <span className="font-bold text-primary">STUDENT50</span> below with your college email → ₹49/mo
+        <div className="mb-4 text-center text-sm text-slate-600">
+          Have a promo code? Apply it here before choosing your plan.
         </div>
         {/* Coupon code input */}
         <div className="mx-auto mb-8 flex w-full max-w-md justify-center">
@@ -325,7 +324,6 @@ export default function Pricing() {
             />
             <button
               onClick={() => {
-                const plan = plans.find((p) => p.id === "pro");
                 const price = isIndia ? 99 : 19;
                 handleValidateCoupon("pro", price);
               }}
