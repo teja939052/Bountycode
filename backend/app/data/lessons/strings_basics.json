@@ -22,10 +22,18 @@
       "step_type": "interactive",
       "title": "Index a string",
       "prompt": "What is 'CODING'[3] in Python?",
-      "options": ["D", "I", "N", "G"],
+      "options": [
+        "D",
+        "I",
+        "N",
+        "G"
+      ],
       "correct_index": 1,
       "explanation": "C=0, O=1, D=2, I=3. The character at index 3 is I.",
-      "hints": ["Count from zero.", "Index 3 is the fourth character."]
+      "hints": [
+        "Count from zero.",
+        "Index 3 is the fourth character."
+      ]
     },
     {
       "step_number": 3,
@@ -40,10 +48,18 @@
       "step_type": "practice",
       "title": "Predict a slice",
       "prompt": "What is 'PYTHON'[1:4]?",
-      "options": ["PYT", "YTH", "THO", "YTHO"],
+      "options": [
+        "PYT",
+        "YTH",
+        "THO",
+        "YTHO"
+      ],
       "correct_index": 1,
       "explanation": "Indices 1,2,3 are Y,T,H. End index 4 is excluded, so YTH.",
-      "hints": ["Include start, exclude end.", "List the characters at 1, 2 and 3."]
+      "hints": [
+        "Include start, exclude end.",
+        "List the characters at 1, 2 and 3."
+      ]
     },
     {
       "step_number": 5,
@@ -63,7 +79,10 @@
       "answer_placeholder": "Type the output",
       "expected_answer": "od",
       "explanation": "Index 1 is 'o' and index 2 is 'd'. Index 3 is excluded.",
-      "hints": ["List characters with indices.", "Stop before the end index."]
+      "hints": [
+        "List characters with indices.",
+        "Stop before the end index."
+      ]
     },
     {
       "step_number": 7,
@@ -77,9 +96,17 @@
         "Set left = 0 and right = length - 1",
         "Move left forward and right backward when they match"
       ],
-      "correct_order": [2, 1, 3, 0],
+      "correct_order": [
+        2,
+        1,
+        3,
+        0
+      ],
       "explanation": "Two pointers move inward while characters match.",
-      "hints": ["Start at both ends.", "A mismatch ends the check early."]
+      "hints": [
+        "Start at both ends.",
+        "A mismatch ends the check early."
+      ]
     },
     {
       "step_number": 8,
@@ -102,7 +129,12 @@
       "title": "Catch an off-by-one index",
       "content": "A student thinks the last character of a length-5 string is at index 5.",
       "prompt": "What is the last valid index of a string with length 5?",
-      "options": ["4", "5", "6", "0"],
+      "options": [
+        "4",
+        "5",
+        "6",
+        "0"
+      ],
       "correct_index": 0,
       "feedback_by_option": {
         "1": "Correct. Zero-based indices run 0 through 4.",
@@ -111,7 +143,12 @@
         "4": "0 is the first index, not the last."
       },
       "explanation": "Last valid index = length − 1.",
-      "hints": ["Indexing starts at zero.", "Count five positions: 0,1,2,3,4."]
+      "hints": [
+        "Indexing starts at zero.",
+        "Count five positions: 0,1,2,3,4."
+      ],
+      "code": "word = \"hello\"\n\n# Bug: strings use zero-based indexing.\nwrong_last_index = len(word)\nprint(word[wrong_last_index])  # IndexError\n\n# Correct: the final valid index is length - 1.\nlast_index = len(word) - 1\nprint(word[last_index])  # o",
+      "language": "python"
     }
   ],
   "assessment": {
@@ -120,37 +157,67 @@
     "questions": [
       {
         "prompt": "What is the length of 'JAVA'?",
-        "options": ["3", "4", "5", "6"],
+        "options": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
         "correct_index": 1,
         "explanation": "JAVA has four characters."
       },
       {
         "prompt": "What does 'HELLO'[-1] return in Python?",
-        "options": ["H", "E", "L", "O"],
+        "options": [
+          "H",
+          "E",
+          "L",
+          "O"
+        ],
         "correct_index": 3,
         "explanation": "Index -1 is the final character."
       },
       {
         "prompt": "What is 'COMPUTER'[2:5]?",
-        "options": ["COM", "MPU", "PUT", "UTE"],
+        "options": [
+          "COM",
+          "MPU",
+          "PUT",
+          "UTE"
+        ],
         "correct_index": 1,
         "explanation": "Indices 2,3,4 are M,P,U."
       },
       {
         "prompt": "Which statement about Python strings is true?",
-        "options": ["Strings are mutable", "Strings are immutable", "Strings cannot be sliced", "Strings contain only letters"],
+        "options": [
+          "Strings are mutable",
+          "Strings are immutable",
+          "Strings cannot be sliced",
+          "Strings contain only letters"
+        ],
         "correct_index": 1,
         "explanation": "Python strings are immutable."
       },
       {
         "prompt": "What does 'red,blue'.split(',') return?",
-        "options": ["'redblue'", "['red','blue']", "('red','blue')", "'red,blue'"],
+        "options": [
+          "'redblue'",
+          "['red','blue']",
+          "('red','blue')",
+          "'red,blue'"
+        ],
         "correct_index": 1,
         "explanation": "split returns a list of parts."
       },
       {
         "prompt": "Last valid index of a length-5 string?",
-        "options": ["4", "5", "6", "0"],
+        "options": [
+          "4",
+          "5",
+          "6",
+          "0"
+        ],
         "correct_index": 0,
         "explanation": "length − 1 = 4."
       }
@@ -163,8 +230,19 @@
     "Check palindromes with two pointers.",
     "Avoid off-by-one index errors."
   ],
-  "prerequisites": ["arrays_basics", "loops_basics"],
-  "concepts": ["index", "length", "substring", "slice", "immutability", "palindrome", "split"],
+  "prerequisites": [
+    "arrays_basics",
+    "loops_basics"
+  ],
+  "concepts": [
+    "index",
+    "length",
+    "substring",
+    "slice",
+    "immutability",
+    "palindrome",
+    "split"
+  ],
   "common_misconceptions": [
     {
       "misconception": "The last valid index equals the string length.",
@@ -183,21 +261,33 @@
     {
       "title": "Trace indexing",
       "input": "s = 'Bounty'; s[0], s[5]",
-      "trace": ["s[0] is B.", "length is 6.", "s[5] is y."],
+      "trace": [
+        "s[0] is B.",
+        "length is 6.",
+        "s[5] is y."
+      ],
       "output": "B and y",
       "explanation": "Valid indices are 0 through length − 1."
     },
     {
       "title": "Check a palindrome",
       "input": "'level'",
-      "trace": ["Compare 0 and 4.", "Compare 1 and 3.", "Middle needs no pair."],
+      "trace": [
+        "Compare 0 and 4.",
+        "Compare 1 and 3.",
+        "Middle needs no pair."
+      ],
       "output": "Palindrome",
       "explanation": "Mirrored comparisons need at most floor(n/2) checks."
     },
     {
       "title": "Slice boundaries",
       "input": "'code'[1:3]",
-      "trace": ["Index 1 = o.", "Index 2 = d.", "Index 3 excluded."],
+      "trace": [
+        "Index 1 = o.",
+        "Index 2 = d.",
+        "Index 3 excluded."
+      ],
       "output": "od",
       "explanation": "Start inclusive, end exclusive."
     }
