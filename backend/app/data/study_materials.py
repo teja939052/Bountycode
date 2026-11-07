@@ -1052,6 +1052,8 @@ COMPANY_STUDY_PATHS: dict[str, dict[str, Any]] = {
 }
 _COMPANY_ALIASES = {
     "tcs nqt": "tcs", "tata consultancy services": "tcs",
+    "tcs_nqt": "tcs", "infosys_sp": "infosys", "wipro_turbo": "wipro",
+    "infosys specialist programmer": "infosys", "infosys specialist programmer sp": "infosys",
     "infosys sp": "infosys", "specialist programmer": "infosys",
     "wipro turbo": "wipro", "techm": "tech_mahindra", "tech mahindra": "tech_mahindra",
     "lti": "lti_mindtree", "ltimindtree": "lti_mindtree",
