@@ -1,0 +1,101 @@
+{
+  "id": "service_company_sprint",
+  "title": "Service Company Placement Sprint",
+  "audience": ["tcs", "infosys", "wipro", "accenture", "cognizant"],
+  "philosophy": "One ordered journey. Diagnose, learn, practice, assess, remediate. Mastery is server-graded only.",
+  "mastery_threshold": 0.7,
+  "sprints": [
+    {
+      "id": "sprint_0_diagnose",
+      "name": "Sprint 0 — Map your gaps",
+      "goal": "Complete diagnostic so the plan is evidence-based",
+      "lessons": [],
+      "actions": ["diagnostic_assessment", "set_target_company"]
+    },
+    {
+      "id": "sprint_1_foundations",
+      "name": "Sprint 1 — Programming foundations",
+      "goal": "Variables through loops and strings",
+      "lessons": [
+        "variables_basics",
+        "conditions_basics",
+        "loops_basics",
+        "functions_basics",
+        "arrays_basics",
+        "strings_basics"
+      ]
+    },
+    {
+      "id": "sprint_2_quant_core",
+      "name": "Sprint 2 — Quant core (NQT-heavy)",
+      "goal": "High-frequency aptitude topics for service OA",
+      "lessons": [
+        "percentages",
+        "successive_percentage_change",
+        "profit_loss",
+        "ratio_proportion",
+        "averages",
+        "time_work",
+        "time_distance",
+        "hcf_lcm",
+        "simple_compound_interest",
+        "number_system"
+      ]
+    },
+    {
+      "id": "sprint_3_reasoning",
+      "name": "Sprint 3 — Reasoning core",
+      "goal": "Series, coding-decoding, relations, direction, syllogisms",
+      "lessons": [
+        "number_series",
+        "coding_decoding",
+        "blood_relations",
+        "direction_sense",
+        "syllogisms",
+        "analogies_odd_one_out",
+        "seating_arrangement",
+        "puzzles_basics"
+      ]
+    },
+    {
+      "id": "sprint_4_verbal",
+      "name": "Sprint 4 — Verbal essentials",
+      "goal": "Grammar and comprehension used in service papers",
+      "lessons": [
+        "reading_comprehension",
+        "error_spotting",
+        "sentence_completion",
+        "grammar_transformations"
+      ]
+    },
+    {
+      "id": "sprint_5_coding_oa",
+      "name": "Sprint 5 — Coding for service OA",
+      "goal": "Pattern problems and basic DSA used in InfyTQ / NQT coding",
+      "lessons": [
+        "data_structures_intro",
+        "hashing_basics",
+        "algorithms_basics",
+        "searching_sorting",
+        "recursion_basics"
+      ]
+    },
+    {
+      "id": "sprint_6_mocks",
+      "name": "Sprint 6 — Company mocks + remediation",
+      "goal": "Timed mocks feed readiness; weak skills loop back to lessons",
+      "lessons": [],
+      "actions": ["company_mock", "remediate_weak_skills", "retest"]
+    }
+  ],
+  "daily_scrum": {
+    "max_focus_tasks": 3,
+    "order": ["remediate_weak", "next_curriculum_lesson", "spaced_review", "company_mock_if_ready"],
+    "lesson_flow": ["explain", "guided_practice", "interactive", "assessment"],
+    "hint_policy": {
+      "progressive": true,
+      "max_hints_before_reveal": 2,
+      "hints_never_award_mastery": true
+    }
+  }
+}
