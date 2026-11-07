@@ -21,7 +21,7 @@ export default function ShipJourney({ forest, level }: { forest: any; level: num
   const currentZone = VOYAGE_ZONES[zoneIndex];
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 mt-6 overflow-hidden relative">
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 mt-6 overflow-hidden relative">
       {/* Background ambient glow */}
       <div className="absolute inset-0 pointer-events-none opacity-30"
         style={{
@@ -31,7 +31,7 @@ export default function ShipJourney({ forest, level }: { forest: any; level: num
 
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400">⛵ Ship’s Journey</h3>
+          <h3 className="text-xs font-mono uppercase tracking-widest text-gray-500">⛵ Ship’s Journey</h3>
           <span className="text-[10px] font-mono text-gray-500">Level {level}</span>
         </div>
 
@@ -65,8 +65,8 @@ export default function ShipJourney({ forest, level }: { forest: any; level: num
               {currentZone.emoji}
             </motion.div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-bold text-gray-200">{currentZone.name}</div>
-              <div className="text-xs text-gray-400 mt-0.5">{currentZone.description}</div>
+              <div className="text-sm font-bold text-gray-700">{currentZone.name}</div>
+              <div className="text-xs text-gray-500 mt-0.5">{currentZone.description}</div>
               <div className="mt-2.5 h-2 w-full rounded-full bg-black/30 overflow-hidden">
                 <motion.div
                   className="h-full rounded-full relative"
@@ -117,8 +117,8 @@ export default function ShipJourney({ forest, level }: { forest: any; level: num
               {forest.current_storm.emoji ?? '⛈️'}
             </motion.span>
             <div>
-              <div className="text-xs font-bold text-red-300">Sea Battle: {forest.current_storm.name ?? 'Boss Battle'}</div>
-              <div className="text-[10px] text-red-400 mt-0.5">Defeat this boss to clear the storm and grow stronger.</div>
+              <div className="text-xs font-bold text-red-600">Sea Battle: {forest.current_storm.name ?? 'Boss Battle'}</div>
+              <div className="text-[10px] text-red-600 mt-0.5">Defeat this boss to clear the storm and grow stronger.</div>
             </div>
           </motion.div>
         )}
@@ -135,10 +135,10 @@ export default function ShipJourney({ forest, level }: { forest: any; level: num
                   key={zone.index}
                   className={`shrink-0 w-11 h-11 rounded-xl flex items-center justify-center text-xl border transition-all ${
                     current
-                      ? 'border-white/40 bg-white/10 scale-110 shadow-lg'
+                      ? 'border-slate-200 bg-slate-100 scale-110 shadow-lg'
                       : visited
-                        ? 'border-white/10 bg-white/5 opacity-60'
-                        : 'border-white/5 bg-white/[0.02] opacity-25'
+                        ? 'border-slate-200 bg-slate-100 opacity-60'
+                        : 'border-slate-200 bg-slate-50 opacity-25'
                   }`}
                   title={zone.name}
                   whileHover={visited || current ? { scale: 1.15 } : {}}
@@ -157,12 +157,12 @@ export default function ShipJourney({ forest, level }: { forest: any; level: num
 function Stat({ icon, label, value, unit }: { icon: string; label: string; value: number; unit: string; color: string }) {
   return (
     <motion.div
-      className="rounded-xl bg-white/[0.03] border border-white/5 p-3"
+      className="rounded-xl bg-slate-50 border border-slate-200 p-3"
       whileHover={{ scale: 1.05 }}
     >
       <div className="text-lg">{icon}</div>
       <div className="text-[10px] font-mono text-gray-500 mt-1">{label}</div>
-      <div className="text-sm font-bold text-gray-200">
+      <div className="text-sm font-bold text-gray-700">
         {value.toLocaleString()} <span className="text-[10px] font-mono text-gray-500">{unit}</span>
       </div>
     </motion.div>

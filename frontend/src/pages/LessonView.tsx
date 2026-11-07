@@ -36,8 +36,8 @@ function AnnotatedCodeBlock({ code, languageId, annotations, runnable = false, o
   };
 
   return (
-    <div className="relative group rounded-xl overflow-hidden border border-white/5">
-      <div className="flex items-center justify-between px-4 py-2 bg-[#0d1117] border-b border-white/5">
+    <div className="relative group rounded-xl overflow-hidden border border-slate-200">
+      <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-slate-200">
         <span className="text-xs font-mono text-brand-muted">{lang}</span>
         <div className="flex items-center gap-2">
           {runnable && (
@@ -51,19 +51,19 @@ function AnnotatedCodeBlock({ code, languageId, annotations, runnable = false, o
             </button>
           )}
           <button onClick={handleCopy} className="flex items-center gap-1 text-xs text-brand-muted hover:text-brand-secondary transition-colors">
-            {copied ? <Check size={12} className="text-green-400" /> : <Copy size={12} />}
+            {copied ? <Check size={12} className="text-green-600" /> : <Copy size={12} />}
             {copied ? "Copied!" : "Copy"}
           </button>
         </div>
       </div>
       <div className="flex">
-        <pre className="p-4 overflow-x-auto text-sm font-mono leading-relaxed flex-1" style={{ background: "#0d1117" }}>
-          <code className="text-brand-secondary">
+        <pre className="p-4 overflow-x-auto text-sm font-mono leading-relaxed flex-1 bg-slate-50 border-t border-slate-200">
+          <code className="text-slate-800">
             {lines.map((line, i) => {
               const annot = annotations?.find(a => a.line === i + 1);
               return (
                 <div key={i} className="flex items-start gap-3 min-h-[1.4em]">
-                  <span className="text-brand-secondary text-xs select-none w-6 text-right shrink-0 leading-[1.4em]">{i + 1}</span>
+                  <span className="text-slate-500 text-xs select-none w-6 text-right shrink-0 leading-[1.4em]">{i + 1}</span>
                   <span className="whitespace-pre-wrap leading-[1.4em]">{line || " "}</span>
                   {annot && (
                     <span className="text-xs text-cyber-blue ml-2 shrink-0 leading-[1.4em] opacity-0 group-hover:opacity-100 transition-opacity">
@@ -76,7 +76,7 @@ function AnnotatedCodeBlock({ code, languageId, annotations, runnable = false, o
           </code>
         </pre>
         {annotations && annotations.length > 0 && (
-          <div className="hidden md:block w-64 shrink-0 border-l border-white/5 p-4 bg-[#0d1117]">
+          <div className="hidden md:block w-64 shrink-0 border-l border-slate-200 p-4 bg-white">
             <p className="text-xs font-mono text-brand-muted mb-3 uppercase tracking-wider">Annotations</p>
             <div className="space-y-3">
               {annotations.map((a, i) => (
@@ -116,15 +116,15 @@ function QuizCard({ quiz, onAnswer, answered }) {
   return (
     <div className="glass rounded-xl p-6">
       <h3 className="text-md font-display font-bold text-text-primary mb-4 flex items-center gap-2">
-        <Brain size={16} className="text-purple-400" /> Quick Quiz
+        <Brain size={16} className="text-purple-600" /> Quick Quiz
       </h3>
       <p className="text-sm font-mono text-brand-secondary mb-4">{quiz.question}</p>
       <div className="space-y-2">
         {quiz.options.map((opt, i) => {
           let btnStyle = "bg-surface-card/30 border-brand-primary/10 text-brand-secondary hover:bg-white border-border/10";
           if (showResult) {
-            if (i === quiz.correct) btnStyle = "bg-green-500/20 border-green-500/30 text-green-400";
-            else if (i === selected && !isCorrect) btnStyle = "bg-red-500/20 border-red-500/30 text-red-400";
+            if (i === quiz.correct) btnStyle = "bg-green-500/20 border-green-500/30 text-green-600";
+            else if (i === selected && !isCorrect) btnStyle = "bg-red-500/20 border-red-500/30 text-red-600";
             else btnStyle = "bg-surface-card/30 border-brand-primary/10 text-brand-muted";
           } else if (selected === i) {
             btnStyle = "bg-cyber-blue/20 border-cyber-blue/30 text-cyber-blue";
@@ -139,7 +139,7 @@ function QuizCard({ quiz, onAnswer, answered }) {
       </div>
       {showResult && (
         <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}
-          className={`mt-4 p-3 rounded-lg text-sm font-mono ${isCorrect ? "bg-green-500/10 text-green-400 border border-green-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"}`}>
+          className={`mt-4 p-3 rounded-lg text-sm font-mono ${isCorrect ? "bg-green-500/10 text-green-600 border border-green-500/20" : "bg-red-500/10 text-red-600 border border-red-500/20"}`}>
           {isCorrect ? "Correct!" : "Not quite."} {quiz.explanation}
         </motion.div>
       )}
@@ -333,19 +333,19 @@ export default function LessonView() {
         </Link>
         <div className="flex items-center gap-2 mt-2 flex-wrap">
           <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${
-            isBoss ? "bg-red-500/10 text-red-400 border-red-500/30" :
-            isChallenge ? "bg-orange-500/10 text-orange-400 border-orange-500/30" :
-            isProject ? "bg-yellow-500/10 text-yellow-400 border-yellow-500/30" :
-            isQuiz ? "bg-purple-500/10 text-purple-400 border-purple-500/30" :
-            lesson.type === "practice" ? "bg-green-500/10 text-green-400 border-green-500/30" :
-            "bg-blue-500/10 text-blue-400 border-blue-500/30"
+            isBoss ? "bg-red-500/10 text-red-600 border-red-500/30" :
+            isChallenge ? "bg-orange-500/10 text-orange-600 border-orange-500/30" :
+            isProject ? "bg-yellow-500/10 text-yellow-600 border-yellow-500/30" :
+            isQuiz ? "bg-purple-500/10 text-purple-600 border-purple-500/30" :
+            lesson.type === "practice" ? "bg-green-500/10 text-green-600 border-green-500/30" :
+            "bg-blue-500/10 text-blue-600 border-blue-500/30"
           }`}>
             {isBoss ? "BOSS BATTLE" : isChallenge ? "CHALLENGE" : isProject ? "PROJECT" : isQuiz ? "QUIZ" : lesson.type === "practice" ? "PRACTICE" : "LESSON"}
           </span>
-          <span className="text-xs font-mono text-yellow-400/80">+{lesson.xp} XP</span>
+          <span className="text-xs font-mono text-yellow-600">+{lesson.xp} XP</span>
           <span className="flex gap-0.5">
             {[1, 2, 3].map(d => (
-              <Star key={d} size={10} className={d <= (lesson.difficulty || 1) ? "text-yellow-400 fill-yellow-400" : "text-brand-secondary"} />
+              <Star key={d} size={10} className={d <= (lesson.difficulty || 1) ? "text-yellow-600 fill-yellow-400" : "text-brand-secondary"} />
             ))}
           </span>
         </div>
@@ -353,8 +353,8 @@ export default function LessonView() {
 
       <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.05 }}
-        className={`text-2xl md:text-3xl font-display font-black mb-6 ${isBoss ? "text-red-300" : "text-text-primary"}`}>
-        {isBoss && <Crown className="inline mr-2 text-red-400" size={24} />}
+        className={`text-2xl md:text-3xl font-display font-black mb-6 ${isBoss ? "text-red-600" : "text-text-primary"}`}>
+        {isBoss && <Crown className="inline mr-2 text-red-600" size={24} />}
         {lesson.title}
       </motion.h1>
 
@@ -365,7 +365,7 @@ export default function LessonView() {
           background: `linear-gradient(120deg, ${level.color && level.color !== "#fff" ? level.color : "#7A3FC4"}, ${level.color && level.color !== "#fff" ? level.color : "#FF5E8A"} 70%, #FFB703)`,
         }}
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-slate-200 to-transparent" />
         <div className="relative z-10 flex flex-wrap items-center gap-3">
           <span className="text-2xl">{level.emoji || "🍬"}</span>
           <div className="min-w-0 flex-1">
@@ -393,14 +393,14 @@ export default function LessonView() {
           {/* Boss/Challenge intro */}
           {isBoss && (
             <div className="glass rounded-xl p-6 border border-red-500/20 bg-red-500/5">
-              <p className="text-sm font-mono text-red-300 flex items-center gap-2">
+              <p className="text-sm font-mono text-red-600 flex items-center gap-2">
                 <Crown size={16} /> Boss battle! This tests everything you've learned.
               </p>
             </div>
           )}
           {isChallenge && (
             <div className="glass rounded-xl p-6 border border-orange-500/20 bg-orange-500/5">
-              <p className="text-sm font-mono text-orange-300 flex items-center gap-2">
+              <p className="text-sm font-mono text-orange-600 flex items-center gap-2">
                 <Target size={16} /> Solve this challenge using what you've learned.
               </p>
             </div>
@@ -448,7 +448,7 @@ export default function LessonView() {
           {sections.length > 0 && sections.map((section, i) => (
             <div key={i} className="glass rounded-xl p-6">
               <h2 className="text-lg font-display font-bold text-text-primary mb-3 flex items-center gap-2">
-                {i === 0 ? <Lightbulb size={18} className="text-yellow-400" /> : <ChevronRight size={18} className="text-cyber-green" />}
+                {i === 0 ? <Lightbulb size={18} className="text-yellow-600" /> : <ChevronRight size={18} className="text-cyber-green" />}
                 {section.heading}
               </h2>
               <p className="text-sm font-mono text-brand-secondary leading-relaxed mb-3">{section.body}</p>
@@ -459,8 +459,8 @@ export default function LessonView() {
               )}
               {section.pro_tip && (
                 <div className="bg-yellow-500/5 border border-yellow-500/10 rounded-lg p-3 flex items-start gap-2">
-                  <Zap size={14} className="text-yellow-400 mt-0.5 shrink-0" />
-                  <p className="text-xs font-mono text-yellow-300">{section.pro_tip}</p>
+                  <Zap size={14} className="text-yellow-600 mt-0.5 shrink-0" />
+                  <p className="text-xs font-mono text-yellow-600">{section.pro_tip}</p>
                 </div>
               )}
             </div>
@@ -487,25 +487,25 @@ export default function LessonView() {
           {commonMistakes.length > 0 && (
             <div className="glass rounded-xl p-6">
               <h2 className="text-lg font-display font-bold text-text-primary mb-3 flex items-center gap-2">
-                <AlertTriangle size={18} className="text-red-400" /> Common Mistakes
+                <AlertTriangle size={18} className="text-red-600" /> Common Mistakes
               </h2>
               <div className="space-y-4">
                 {commonMistakes.map((m, i) => (
-                  <div key={i} className="border border-white/5 rounded-lg p-4 space-y-2">
-                    <p className="text-sm font-mono text-red-300">❌ {m.mistake}</p>
-                    <p className="text-sm font-mono text-green-400">✅ {m.fix}</p>
+                  <div key={i} className="border border-slate-200 rounded-lg p-4 space-y-2">
+                    <p className="text-sm font-mono text-red-600">❌ {m.mistake}</p>
+                    <p className="text-sm font-mono text-green-600">✅ {m.fix}</p>
                     {(m.code || m.fixed_code) && (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
                         {m.code && (
                           <div className="bg-red-500/5 rounded p-2">
-                            <p className="text-xs text-red-400 mb-1 font-mono">Wrong</p>
-                            <pre className="text-xs font-mono text-red-300 whitespace-pre-wrap">{m.code}</pre>
+                            <p className="text-xs text-red-600 mb-1 font-mono">Wrong</p>
+                            <pre className="text-xs font-mono text-red-600 whitespace-pre-wrap">{m.code}</pre>
                           </div>
                         )}
                         {m.fixed_code && (
                           <div className="bg-green-500/5 rounded p-2">
-                            <p className="text-xs text-green-400 mb-1 font-mono">Fixed</p>
-                            <pre className="text-xs font-mono text-green-300 whitespace-pre-wrap">{m.fixed_code}</pre>
+                            <p className="text-xs text-green-600 mb-1 font-mono">Fixed</p>
+                            <pre className="text-xs font-mono text-green-600 whitespace-pre-wrap">{m.fixed_code}</pre>
                           </div>
                         )}
                       </div>
@@ -528,7 +528,7 @@ export default function LessonView() {
                   <p className="text-sm font-mono text-brand-secondary leading-relaxed mb-4">{exercise.description}</p>
 
                   {exercise.expected_output && (
-                    <div className="bg-[#0d1117] rounded-lg p-3 mb-4 border border-white/5">
+                    <div className="bg-white rounded-lg p-3 mb-4 border border-slate-200">
                       <p className="text-xs text-brand-muted font-mono mb-1">Expected Output:</p>
                       <pre className="text-xs font-mono text-brand-secondary whitespace-pre-wrap">{exercise.expected_output}</pre>
                     </div>
@@ -537,7 +537,7 @@ export default function LessonView() {
                   {exercise.hints && exercise.hints.length > 0 && (
                     <div className="mb-4">
                       <button onClick={() => toggleHints(exIdx)}
-                        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono hover:bg-purple-500/20 transition-all">
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-600 text-xs font-mono hover:bg-purple-500/20 transition-all">
                         <Lightbulb size={12} /> {hintsOpen[exIdx] ? "Hide Hints" : `Show Hints (${exercise.hints.length})`}
                       </button>
                       <AnimatePresence>
@@ -545,7 +545,7 @@ export default function LessonView() {
                           <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}
                             className="mt-2 space-y-1">
                             {exercise.hints.map((hint, i) => (
-                              <p key={i} className="text-xs font-mono text-purple-300 flex items-start gap-2">
+                              <p key={i} className="text-xs font-mono text-purple-600 flex items-start gap-2">
                                 <span className="text-purple-500 mt-0.5">💡</span> {hint}
                               </p>
                             ))}
@@ -574,8 +574,8 @@ export default function LessonView() {
                       <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }}
                         className={`mt-3 p-3 rounded-lg text-sm font-mono flex items-center gap-2 ${
                           checkResult === "pass"
-                            ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                            : "bg-red-500/10 text-red-400 border border-red-500/20"
+                            ? "bg-green-500/10 text-green-600 border border-green-500/20"
+                            : "bg-red-500/10 text-red-600 border border-red-500/20"
                         }`}>
                         {checkResult === "pass" ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
                         {checkResult === "pass"
@@ -593,14 +593,14 @@ export default function LessonView() {
           {content?.project && (
             <div className="glass rounded-xl p-6 border border-yellow-500/20 bg-yellow-500/5">
               <h2 className="text-lg font-display font-bold text-text-primary mb-3 flex items-center gap-2">
-                <Rocket size={18} className="text-yellow-400" /> Project Build Plan
+                <Rocket size={18} className="text-yellow-600" /> Project Build Plan
               </h2>
               <p className="text-sm font-mono text-brand-secondary leading-relaxed mb-4">{content.project.brief}</p>
 
               <div className="space-y-4">
                 {content.project.phases?.map((phase, i) => (
-                  <div key={i} className="border border-white/5 rounded-lg p-4 bg-surface-card/10">
-                    <h3 className="text-sm font-display font-bold text-yellow-300 mb-2">{phase.title}</h3>
+                  <div key={i} className="border border-slate-200 rounded-lg p-4 bg-surface-card/10">
+                    <h3 className="text-sm font-display font-bold text-yellow-600 mb-2">{phase.title}</h3>
                     <ul className="space-y-1.5">
                       {phase.tasks?.map((task, j) => (
                         <li key={j} className="flex items-start gap-2 text-sm font-mono text-brand-secondary">
@@ -614,7 +614,7 @@ export default function LessonView() {
 
               {content.project.checklist?.length > 0 && (
                 <div className="mt-4">
-                  <h3 className="text-xs text-yellow-400/70 font-semibold uppercase tracking-wider mb-2">Completion Checklist</h3>
+                  <h3 className="text-xs text-yellow-600 font-semibold uppercase tracking-wider mb-2">Completion Checklist</h3>
                   <ul className="space-y-1.5">
                     {content.project.checklist.map((item, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm font-mono text-brand-secondary">
@@ -627,11 +627,11 @@ export default function LessonView() {
 
               {content.project.deliverables?.length > 0 && (
                 <div className="mt-4">
-                  <h3 className="text-xs text-yellow-400/70 font-semibold uppercase tracking-wider mb-2">Deliverables</h3>
+                  <h3 className="text-xs text-yellow-600 font-semibold uppercase tracking-wider mb-2">Deliverables</h3>
                   <ul className="space-y-1.5">
                     {content.project.deliverables.map((item, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm font-mono text-brand-secondary">
-                        <Package size={14} className="text-yellow-400 mt-0.5 shrink-0" /> {item}
+                        <Package size={14} className="text-yellow-600 mt-0.5 shrink-0" /> {item}
                       </li>
                     ))}
                   </ul>
@@ -653,12 +653,12 @@ export default function LessonView() {
           {lesson.interview?.length > 0 && (
             <div className="glass rounded-xl p-6 border border-purple-500/20 bg-purple-500/5">
               <h2 className="text-lg font-display font-bold text-text-primary mb-3 flex items-center gap-2">
-                <Brain size={18} className="text-purple-400" /> Interview Prep
+                <Brain size={18} className="text-purple-600" /> Interview Prep
               </h2>
               <ul className="space-y-2.5">
                 {lesson.interview.map((q: string, i: number) => (
                   <li key={i} className="flex items-start gap-2 text-sm font-mono text-brand-secondary">
-                    <span className="text-purple-400 mt-0.5 shrink-0">Q{i + 1}.</span> {q}
+                    <span className="text-purple-600 mt-0.5 shrink-0">Q{i + 1}.</span> {q}
                   </li>
                 ))}
               </ul>
@@ -669,7 +669,7 @@ export default function LessonView() {
           {lesson.build && (
             <div className="glass rounded-xl p-6 border border-yellow-500/20 bg-yellow-500/5">
               <h2 className="text-lg font-display font-bold text-text-primary mb-3 flex items-center gap-2">
-                <Hammer size={18} className="text-yellow-400" /> Build Something
+                <Hammer size={18} className="text-yellow-600" /> Build Something
               </h2>
               <p className="text-sm font-mono text-brand-secondary leading-relaxed">{lesson.build}</p>
             </div>
@@ -709,7 +709,7 @@ export default function LessonView() {
           {(level.interview_prep?.length > 0 || level.career_mapping?.length > 0 || level.capstone_challenge) && (
             <div className="glass rounded-xl p-6 border border-cyber-blue/20">
               <h2 className="text-lg font-display font-bold text-text-primary mb-3 flex items-center gap-2">
-                <Trophy size={18} className="text-yellow-400" /> This Level's Goals
+                <Trophy size={18} className="text-yellow-600" /> This Level's Goals
               </h2>
               {level.capstone_challenge && (
                 <div className="mb-3">
@@ -723,7 +723,7 @@ export default function LessonView() {
                   <ul className="space-y-1.5">
                     {level.interview_prep.map((tip: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-sm font-mono text-brand-secondary">
-                        <span className="text-purple-400 mt-0.5 shrink-0">▸</span> {tip}
+                        <span className="text-purple-600 mt-0.5 shrink-0">▸</span> {tip}
                       </li>
                     ))}
                   </ul>
@@ -753,7 +753,7 @@ export default function LessonView() {
               <ul className="space-y-2">
                 {keyTakeaways.map((t, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm font-mono text-brand-secondary">
-                    <Sparkles size={12} className="text-yellow-400 mt-0.5 shrink-0" />
+                    <Sparkles size={12} className="text-yellow-600 mt-0.5 shrink-0" />
                     {t}
                   </li>
                 ))}
@@ -774,34 +774,34 @@ export default function LessonView() {
           {relatedArticles.length > 0 && (
             <div className="glass rounded-xl p-6 border border-purple-500/20 bg-purple-500/5">
               <h2 className="text-lg font-display font-bold text-text-primary mb-4 flex items-center gap-2">
-                <BookOpen size={18} className="text-purple-400" /> Go deeper — study articles
+                <BookOpen size={18} className="text-purple-600" /> Go deeper — study articles
               </h2>
               <div className="space-y-3">
                 {relatedArticles.map(art => (
                   <Link
                     key={art.id}
                     to={`/study?article=${art.id}`}
-                    className="block rounded-lg border border-white/5 bg-surface-card/10 p-4 transition-all hover:border-purple-400/30 hover:bg-purple-500/5"
+                    className="block rounded-lg border border-slate-200 bg-surface-card/10 p-4 transition-all hover:border-purple-400/30 hover:bg-purple-500/5"
                   >
                     <div className="flex items-center gap-2">
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${
-                        art.category === "javascript" ? "text-[#F7DF1E] border-[#F7DF1E]/30" :
+                        art.category === "javascript" ? "text-slate-700 border-[#F7DF1E]/30" :
                         art.category === "react" ? "text-[#61DAFB] border-[#61DAFB]/30" :
-                        art.category === "typescript" ? "text-[#3178C6] border-[#3178C6]/30" :
+                        art.category === "typescript" ? "text-[#3178C6] border-slate-200" :
                         art.category === "node" ? "text-[#339933] border-[#339933]/30" :
-                        art.category === "sql" ? "text-[#4479A1] border-[#4479A1]/30" :
-                        "text-purple-300 border-purple-400/30"
+                        art.category === "sql" ? "text-[#4479A1] border-slate-200" :
+                        "text-purple-600 border-purple-400/30"
                       }`}>
                         {art.category.replace("-", " & ")}
                       </span>
                       <span className="text-[10px] font-mono text-brand-muted">{art.read_time_min} min · {art.level}</span>
                     </div>
-                    <p className="mt-2 text-sm font-medium text-gray-200">{art.title}</p>
+                    <p className="mt-2 text-sm font-medium text-gray-700">{art.title}</p>
                     <p className="mt-1 text-xs font-mono text-brand-muted line-clamp-2">{art.summary}</p>
                   </Link>
                 ))}
               </div>
-              <Link to="/study" className="mt-3 inline-flex items-center gap-1 text-xs font-mono text-purple-400 hover:text-purple-300 transition-colors">
+              <Link to="/study" className="mt-3 inline-flex items-center gap-1 text-xs font-mono text-purple-600 hover:text-purple-600 transition-colors">
                 Browse full study library <ArrowRight size={12} />
               </Link>
             </div>
@@ -812,7 +812,7 @@ export default function LessonView() {
             <button onClick={handleComplete} disabled={completed || completing}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-sm transition-all ${
                 completed
-                  ? "bg-green-500/20 border border-green-500/30 text-green-400 cursor-default"
+                  ? "bg-green-500/20 border border-green-500/30 text-green-600 cursor-default"
                   : "bg-cyber-blue/20 border border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/30 hover:shadow-lg hover:shadow-cyber-blue/10"
               }`}>
               {completed ? (
@@ -834,7 +834,7 @@ export default function LessonView() {
 
             {!next_lesson && completed && (
               <Link to={`/learn/${languageId}`}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 font-mono text-sm hover:bg-yellow-500/30 transition-all">
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-yellow-500/20 border border-yellow-500/30 text-yellow-600 font-mono text-sm hover:bg-yellow-500/30 transition-all">
                 <Trophy size={16} /> Level Complete!
               </Link>
             )}
@@ -857,7 +857,7 @@ export default function LessonView() {
               <Editor
                 height="100%"
                 language={getLangId()}
-                theme="vs-dark"
+                theme="vs-light"
                 value={code}
                 onChange={val => setCode(val || "")}
                 options={{
@@ -885,12 +885,12 @@ export default function LessonView() {
               </button>
               {exercises[0]?.expected_output && (
                 <button onClick={() => checkAnswer(exercises[0])} disabled={running}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-sm font-mono hover:bg-emerald-500/30 transition-all disabled:opacity-50">
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-600 text-sm font-mono hover:bg-emerald-500/30 transition-all disabled:opacity-50">
                   <ShieldCheck size={14} /> Check Answer
                 </button>
               )}
               <button onClick={handleVisualize} disabled={tracing}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-400 text-sm font-mono hover:bg-purple-500/30 transition-all disabled:opacity-50">
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-600 text-sm font-mono hover:bg-purple-500/30 transition-all disabled:opacity-50">
                 {tracing ? <Loader2 size={14} className="animate-spin" /> : <Eye size={14} />}
                 {tracing ? "Tracing..." : "Visualize"}
               </button>
@@ -901,12 +901,12 @@ export default function LessonView() {
             </div>
 
             {(output || runError) && (
-              <div className="mt-4 rounded-lg overflow-hidden border border-white/5">
-                <div className="px-3 py-1.5 bg-[#0d1117] border-b border-white/5 text-xs font-mono text-brand-muted">
+              <div className="mt-4 rounded-lg overflow-hidden border border-slate-200">
+                <div className="px-3 py-1.5 bg-white border-b border-slate-200 text-xs font-mono text-brand-muted">
                   Output
                 </div>
-                <pre className={`p-4 bg-[#0d1117] text-sm font-mono whitespace-pre-wrap ${
-                  runError ? "text-red-400" : "text-green-400"
+                <pre className={`p-4 bg-slate-100 text-sm font-mono whitespace-pre-wrap ${
+                  runError ? "text-red-600" : "text-green-600"
                 }`}>
                   {runError || output}
                 </pre>
@@ -944,18 +944,18 @@ export default function LessonView() {
               <p className="text-brand-muted text-sm font-mono mb-4">{lesson.title}</p>
               <div className="flex justify-center gap-6 mb-6">
                 <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
-                  <p className="text-2xl font-bold text-green-400">+{xpResult?.xp_gained || lesson.xp}</p>
+                  <p className="text-2xl font-bold text-green-600">+{xpResult?.xp_gained || lesson.xp}</p>
                   <p className="text-xs text-brand-muted font-mono">XP EARNED</p>
                 </motion.div>
                 {xpResult?.bonus_xp > 0 && (
                   <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }}>
-                    <p className="text-2xl font-bold text-yellow-400">+{xpResult.bonus_xp}</p>
+                    <p className="text-2xl font-bold text-yellow-600">+{xpResult.bonus_xp}</p>
                     <p className="text-xs text-brand-muted font-mono">DAILY BONUS</p>
                   </motion.div>
                 )}
                 {xpResult?.daily_goal_reached && (
                   <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }}>
-                    <p className="text-2xl font-bold text-orange-400">🔥</p>
+                    <p className="text-2xl font-bold text-orange-600">🔥</p>
                     <p className="text-xs text-brand-muted font-mono">GOAL DONE</p>
                   </motion.div>
                 )}
@@ -969,7 +969,7 @@ export default function LessonView() {
               )}
               {!next_lesson && (
                 <Link to={`/learn/${languageId}`} onClick={() => setShowCelebrate(false)}
-                  className="block w-full py-3 rounded-xl bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 font-mono text-sm hover:bg-yellow-500/30 transition-all">
+                  className="block w-full py-3 rounded-xl bg-yellow-500/20 border border-yellow-500/30 text-yellow-600 font-mono text-sm hover:bg-yellow-500/30 transition-all">
                   🏆 Level Complete!
                 </Link>
               )}

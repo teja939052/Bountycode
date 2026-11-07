@@ -107,14 +107,14 @@ export default function PatternQuiz({
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-surface-elevated">
         <div className="flex items-center gap-2">
-          <Zap size={18} className="text-amber-400" />
+          <Zap size={18} className="text-amber-600" />
           <span className="font-bold text-sm text-text-primary">
             Pattern Recognition
           </span>
         </div>
         <div className="flex items-center gap-3">
           {streak >= 2 && (
-            <span className="text-xs font-bold text-amber-400">
+            <span className="text-xs font-bold text-amber-600">
               🔥 {streak} streak
             </span>
           )}
@@ -124,10 +124,10 @@ export default function PatternQuiz({
           <div
             className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold ${
               timeLeft > 5
-                ? "border-emerald-400 text-emerald-400"
+                ? "border-emerald-400 text-emerald-600"
                 : timeLeft > 0
-                ? "border-amber-400 text-amber-400"
-                : "border-rose-400 text-rose-400"
+                ? "border-amber-400 text-amber-600"
+                : "border-rose-400 text-rose-600"
             }`}
           >
             {timeLeft}
@@ -183,11 +183,11 @@ export default function PatternQuiz({
                     {answered && isCorrect && (
                       <CheckCircle
                         size={16}
-                        className="inline ml-2 text-emerald-400"
+                        className="inline ml-2 text-emerald-600"
                       />
                     )}
                     {answered && isSelected && !isCorrect && (
-                      <XCircle size={16} className="inline ml-2 text-rose-400" />
+                      <XCircle size={16} className="inline ml-2 text-rose-600" />
                     )}
                   </button>
                 );

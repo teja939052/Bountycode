@@ -80,7 +80,7 @@ export function MissionStepRenderer({
       {/* Nova Guide Panel */}
       <div className="rounded-2xl bg-gradient-to-r from-[#EEF5E7] to-[#F0FDF4] border border-[#D1FAE5] p-6">
         <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/80 flex items-center justify-center text-2xl">
+          <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-2xl">
             {moodEmojis[guideMood] || "🌱"}
           </div>
           <div className="flex-1 space-y-2">
@@ -196,7 +196,7 @@ export function MissionStepRenderer({
         {canGoNext && (
           <button
             onClick={onNextStep}
-            className="px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium text-sm transition-all hover:bg-primary-dark"
+            className="px-6 py-3 rounded-[10px] bg-primary text-white font-medium text-sm transition-all hover:bg-primary-dark"
           >
             Next →
           </button>
@@ -222,7 +222,7 @@ function DiscoverStep({ step, code, setCode, runOutput, isRunning, onRunCode }: 
         <button
           onClick={onRunCode}
           disabled={isRunning}
-          className="rounded-full bg-[#1F2937] px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-[#374151] disabled:opacity-60"
+          className="rounded-full bg-slate-100 px-5 py-2 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-100 disabled:opacity-60"
         >
           {isRunning ? "Running…" : "Run Code"}
         </button>
@@ -270,7 +270,7 @@ function PredictStep({ step, state, onSubmitPrediction, checkResult }: any) {
                   ? "border-red-300 bg-red-50 text-red-700"
                   : "border-[#E5E7EB] bg-white text-text-secondary"
                 : option.id === selectedAnswer
-                ? "border-[#4F8F57] bg-[#EEF5E7] text-text-primary"
+                ? "border-slate-200 bg-[#EEF5E7] text-text-primary"
                 : "border-[#E5E7EB] bg-white text-text-secondary hover:bg-[#F9FAFB]"
             }`}
           >
@@ -317,7 +317,7 @@ function BuildStep({
         <button
           onClick={onRunCode}
           disabled={isRunning}
-          className="rounded-full bg-[#1F2937] px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-[#374151] disabled:opacity-60"
+          className="rounded-full bg-slate-100 px-5 py-2 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-100 disabled:opacity-60"
         >
           {isRunning ? "Running…" : "Run Tests"}
         </button>
@@ -416,7 +416,7 @@ function DebugStep({
         <button
           onClick={onSubmitDebugFix}
           disabled={isRunning}
-          className="rounded-full bg-[#1F2937] px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-[#374151] disabled:opacity-60"
+          className="rounded-full bg-slate-100 px-5 py-2 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-100 disabled:opacity-60"
         >
           {isRunning ? "Testing Fix…" : "Test Fix"}
         </button>
@@ -509,7 +509,7 @@ function RewardStep({ step }: any) {
       <div className="text-6xl">🏆</div>
       <h3 className="font-display text-2xl font-bold text-text-primary">Mission Complete!</h3>
       <p className="text-text-secondary">{step.content}</p>
-      <div className="rounded-xl bg-gradient-to-r from-primary to-primary-dark px-6 py-4 text-text-primary">
+      <div className="rounded-xl bg-gradient-to-r from-primary to-primary-dark px-6 py-4 text-white">
         <p className="font-bold">+{step.diamonds} Diamonds</p>
         <p className="text-sm opacity-80">Mastery unlocked</p>
       </div>

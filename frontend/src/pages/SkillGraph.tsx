@@ -58,13 +58,13 @@ function LevelBadge({ attempts, score }: { attempts: number; score: number }) {
 function TrendIcon({ value }: { value: number }) {
   if (value > 0) return <TrendingUp size={12} className="text-emerald-500" />;
   if (value < 0) return <TrendingDown size={12} className="text-red-500" />;
-  return <Minus size={12} className="text-gray-400" />;
+  return <Minus size={12} className="text-gray-500" />;
 }
 
 function MiniBar({ value, max = 100, color = "#3b82f6" }: { value: number; max?: number; color?: string }) {
   const pct = Math.min(100, Math.max(0, (value / max) * 100));
   return (
-    <div className="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
+    <div className="h-1.5 w-full rounded-full bg-slate-100 overflow-hidden">
       <motion.div
         className="h-full rounded-full"
         style={{ background: color }}
@@ -226,11 +226,11 @@ function SkillGraphCanvas({ categoryId, category, onBack }: { categoryId: string
         />
         {tooltip && (
           <div
-            className="absolute pointer-events-none rounded-lg bg-gray-900/90 text-white px-2 py-1.5 text-[10px] leading-tight"
+            className="absolute pointer-events-none rounded-lg bg-slate-100 text-slate-900 px-2 py-1.5 text-[10px] leading-tight"
             style={{ left: tooltip.left, top: tooltip.top }}
           >
             <div className="font-semibold capitalize">{tooltip.label}</div>
-            <div className="text-gray-300">{Math.round(tooltip.score * 100)}% · {tooltip.attempts} attempts</div>
+            <div className="text-gray-600">{Math.round(tooltip.score * 100)}% · {tooltip.attempts} attempts</div>
           </div>
         )}
       </div>
@@ -283,7 +283,7 @@ export default function SkillGraph() {
       <div className="page-surface min-h-screen py-12 px-4">
         <div className="max-w-5xl mx-auto space-y-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-24 bg-white/5 rounded-2xl animate-pulse border border-white/10" />
+            <div key={i} className="h-24 bg-slate-100 rounded-2xl animate-pulse border border-slate-200" />
           ))}
         </div>
       </div>
@@ -296,10 +296,10 @@ export default function SkillGraph() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-              <Network size={22} className="text-indigo-400" /> Capability Graph
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+              <Network size={22} className="text-indigo-600" /> Capability Graph
             </h1>
-            <p className="text-xs sm:text-sm text-gray-400 mt-1">Your skill ontology, mastery, and readiness in one view.</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">Your skill ontology, mastery, and readiness in one view.</p>
           </div>
           <div className="flex gap-2">
             {["overview", "skill", "graph"].map((v) => (
@@ -307,7 +307,7 @@ export default function SkillGraph() {
                 key={v}
                 onClick={() => { setView(v as any); if (v !== "skill") setSelectedCategory(null); }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-colors ${
-                  view === v ? "glass-button text-white" : "bg-white/5 text-gray-400 hover:text-white"
+                  view === v ? "glass-button text-slate-900" : "bg-slate-100 text-gray-500 hover:text-slate-900"
                 }`}
               >
                 {v === "skill" ? "Skill Detail" : v}
@@ -349,11 +349,11 @@ export default function SkillGraph() {
               )}
 
               <div className="gamification-card rounded-2xl overflow-hidden">
-                <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2">
-                  <BarChart3 size={14} className="text-gray-400" />
-                  <span className="text-xs font-semibold text-white uppercase tracking-wide">Capability Overview</span>
+                <div className="px-4 py-3 border-b border-slate-200 flex items-center gap-2">
+                  <BarChart3 size={14} className="text-gray-500" />
+                  <span className="text-xs font-semibold text-slate-900 uppercase tracking-wide">Capability Overview</span>
                 </div>
-                <div className="divide-y divide-white/10">
+                <div className="divide-y divide-slate-200">
                   {catEntries.map(([catId, cat], idx) => {
                     const score = readiness?.category_scores?.[catId] ?? cat.score * 10;
                     const trend = score - 50;
@@ -364,11 +364,11 @@ export default function SkillGraph() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.03 }}
                         onClick={() => openSkillDetail(catId)}
-                        className="w-full px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-colors text-left"
+                        className="w-full px-4 py-3 flex items-center gap-3 hover:bg-slate-100 transition-colors text-left"
                       >
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="text-sm font-medium text-white truncate">{cat.name}</span>
+                            <span className="text-sm font-medium text-slate-900 truncate">{cat.name}</span>
                             <div className="flex items-center gap-2">
                               <span className="text-xs font-mono font-semibold" style={{ color: score >= 70 ? "#34d399" : score >= 40 ? "#fbbf24" : "#f87171" }}>
                                 {Math.round(score)}%
@@ -378,7 +378,7 @@ export default function SkillGraph() {
                           </div>
                           <MiniBar value={score} max={100} color={score >= 70 ? "#34d399" : score >= 40 ? "#fbbf24" : "#f87171"} />
                         </div>
-                        <ChevronRight size={14} className="text-gray-400 flex-shrink-0" />
+                        <ChevronRight size={14} className="text-gray-500 flex-shrink-0" />
                       </motion.button>
                     );
                   })}
@@ -387,21 +387,21 @@ export default function SkillGraph() {
 
               {readiness?.recommendations && readiness.recommendations.length > 0 && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="gamification-card rounded-2xl overflow-hidden">
-                  <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2">
-                    <Target size={14} className="text-gray-400" />
-                    <span className="text-xs font-semibold text-white uppercase tracking-wide">Recommendations</span>
+                  <div className="px-4 py-3 border-b border-slate-200 flex items-center gap-2">
+                    <Target size={14} className="text-gray-500" />
+                    <span className="text-xs font-semibold text-slate-900 uppercase tracking-wide">Recommendations</span>
                   </div>
-                  <div className="divide-y divide-white/10">
+                  <div className="divide-y divide-slate-200">
                     {readiness.recommendations.slice(0, 5).map((rec, i) => (
                       <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }} className="px-4 py-3 flex items-start gap-2">
                         <span className={`mt-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase ${
-                          rec.priority === "high" ? "bg-red-500/20 text-red-300" :
-                          rec.priority === "medium" ? "bg-amber-500/20 text-amber-200" :
-                          "bg-indigo-500/20 text-indigo-200"
+                          rec.priority === "high" ? "bg-red-500/20 text-red-600" :
+                          rec.priority === "medium" ? "bg-amber-500/20 text-amber-700" :
+                          "bg-indigo-500/20 text-indigo-700"
                         }`}>
                           {rec.priority}
                         </span>
-                        <p className="text-xs text-gray-300 leading-relaxed">{rec.message}</p>
+                        <p className="text-xs text-gray-600 leading-relaxed">{rec.message}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -420,10 +420,10 @@ export default function SkillGraph() {
             >
               {!selectedCat ? (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="gamification-card rounded-2xl overflow-hidden">
-                  <div className="px-4 py-3 border-b border-white/10">
-                    <span className="text-xs font-semibold text-white uppercase tracking-wide">Select a Category</span>
+                  <div className="px-4 py-3 border-b border-slate-200">
+                    <span className="text-xs font-semibold text-slate-900 uppercase tracking-wide">Select a Category</span>
                   </div>
-                  <div className="divide-y divide-white/10">
+                  <div className="divide-y divide-slate-200">
                     {catEntries.map(([catId, cat], idx) => {
                       const score = readiness?.category_scores?.[catId] ?? cat.score * 10;
                       return (
@@ -433,18 +433,18 @@ export default function SkillGraph() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: idx * 0.03 }}
                           onClick={() => openSkillDetail(catId)}
-                          className="w-full px-4 py-3 flex items-center gap-3 hover:bg-white/5 transition-colors text-left"
+                          className="w-full px-4 py-3 flex items-center gap-3 hover:bg-slate-100 transition-colors text-left"
                         >
                           <div className="flex-1">
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-sm font-medium text-white">{cat.name}</span>
+                              <span className="text-sm font-medium text-slate-900">{cat.name}</span>
                               <span className="text-xs font-mono font-semibold" style={{ color: score >= 70 ? "#34d399" : score >= 40 ? "#fbbf24" : "#f87171" }}>
                                 {Math.round(score)}%
                               </span>
                             </div>
-                            <p className="text-[10px] text-gray-400">{Object.keys(cat.skills || {}).length} skills tracked</p>
+                            <p className="text-[10px] text-gray-500">{Object.keys(cat.skills || {}).length} skills tracked</p>
                           </div>
-                          <ChevronRight size={14} className="text-gray-400" />
+                          <ChevronRight size={14} className="text-gray-500" />
                         </motion.button>
                       );
                     })}
@@ -453,16 +453,16 @@ export default function SkillGraph() {
               ) : (
                 <div className="space-y-3">
                   <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-2">
-                    <button onClick={() => setSelectedCategory(null)} className="text-xs text-gray-400 hover:text-white flex items-center gap-1 transition-colors">
+                    <button onClick={() => setSelectedCategory(null)} className="text-xs text-gray-500 hover:text-slate-900 flex items-center gap-1 transition-colors">
                       <ChevronRight size={12} className="rotate-180" /> Back
                     </button>
                   </motion.div>
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="gamification-card rounded-2xl overflow-hidden">
-                    <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
-                      <span className="text-xs font-semibold text-white uppercase tracking-wide">{selectedCat.name} — Skills</span>
-                      <span className="text-[10px] text-gray-400">{Object.keys(selectedCat.skills || {}).length} skills</span>
+                    <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
+                      <span className="text-xs font-semibold text-slate-900 uppercase tracking-wide">{selectedCat.name} — Skills</span>
+                      <span className="text-[10px] text-gray-500">{Object.keys(selectedCat.skills || {}).length} skills</span>
                     </div>
-                    <div className="divide-y divide-white/10">
+                    <div className="divide-y divide-slate-200">
                       {Object.entries(selectedCat.skills || {}).map(([skillId, skill], idx) => {
                         const lvl = masteryLevel(skill.attempts, skill.score);
                         const pct = Math.round(skill.score * 100);
@@ -476,13 +476,13 @@ export default function SkillGraph() {
                             className="px-4 py-3"
                           >
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-xs font-medium text-white capitalize">{skillId.replace(/_/g, " ")}</span>
+                              <span className="text-xs font-medium text-slate-900 capitalize">{skillId.replace(/_/g, " ")}</span>
                               <LevelBadge attempts={skill.attempts} score={skill.score} />
                             </div>
                             <MiniBar value={pct} max={100} color={color} />
                             <div className="flex items-center justify-between mt-1">
-                              <span className="text-[10px] text-gray-400 font-mono">{pct}%</span>
-                              <span className="text-[10px] text-gray-400">{skill.attempts} attempts</span>
+                              <span className="text-[10px] text-gray-500 font-mono">{pct}%</span>
+                              <span className="text-[10px] text-gray-500">{skill.attempts} attempts</span>
                             </div>
                           </motion.div>
                         );
@@ -495,7 +495,7 @@ export default function SkillGraph() {
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.99 }}
                     onClick={() => openGraph(selectedCategory!)}
-                    className="w-full py-2.5 rounded-xl glass-button text-white text-xs font-semibold flex items-center justify-center gap-2"
+                    className="w-full py-2.5 rounded-xl glass-button text-slate-900 text-xs font-semibold flex items-center justify-center gap-2"
                   >
                     <Network size={14} /> Open Graph View
                   </motion.button>

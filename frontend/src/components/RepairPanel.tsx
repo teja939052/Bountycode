@@ -120,19 +120,19 @@ export default function RepairPanel() {
       transition={{ delay: 0.15 }}
     >
       <div className="flex items-center gap-2 px-5 pt-5 pb-3">
-        <Wrench size={20} className="text-indigo-400" />
-        <h2 className="text-base font-bold text-white uppercase tracking-wide">Repair Missions</h2>
-        <span className="ml-auto rounded bg-indigo-500/15 px-2 py-0.5 font-mono text-[10px] text-indigo-300">
+        <Wrench size={20} className="text-indigo-600" />
+        <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">Repair Missions</h2>
+        <span className="ml-auto rounded bg-indigo-500/15 px-2 py-0.5 font-mono text-[10px] text-indigo-600">
           {missions.length} pending
         </span>
       </div>
-      <p className="px-5 pb-3 font-mono text-xs text-gray-400">
+      <p className="px-5 pb-3 font-mono text-xs text-gray-500">
         Close the loop: focused lessons + a verified retest prove you&apos;ve repaired
         the weakness.
       </p>
 
       {error && (
-        <div className="mx-5 mb-3 flex items-center gap-2 rounded bg-red-500/10 px-3 py-2 text-xs text-red-300">
+        <div className="mx-5 mb-3 flex items-center gap-2 rounded bg-red-500/10 px-3 py-2 text-xs text-red-600">
           <AlertTriangle size={14} /> {error}
         </div>
       )}
@@ -144,14 +144,14 @@ export default function RepairPanel() {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: idx * 0.04 }}
-            className="rounded-xl border border-white/10 bg-white/5 p-3"
+            className="rounded-xl border border-slate-200 bg-slate-100 p-3"
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="font-bold text-sm text-white">
+                <p className="font-bold text-sm text-slate-900">
                   {m.title}
                 </p>
-                <p className="font-mono text-[10px] text-gray-400">
+                <p className="font-mono text-[10px] text-gray-500">
                   {(m.weaknesses ?? []).join(", ")}
                   {m.recommended_lessons?.length
                     ? ` · ${m.recommended_lessons.length} lesson(s)`
@@ -172,13 +172,13 @@ export default function RepairPanel() {
       <AnimatePresence>
         {activeMission && retest && (
           <motion.div
-            className="border-t border-white/10 px-5 py-5"
+            className="border-t border-slate-200 px-5 py-5"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
           >
             {retestLoading ? (
-              <p className="font-mono text-xs text-gray-400">Loading retest…</p>
+              <p className="font-mono text-xs text-gray-500">Loading retest…</p>
             ) : result ? (
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
@@ -189,27 +189,27 @@ export default function RepairPanel() {
                     : "border-red-500/30 bg-red-500/10"
                 }`}
               >
-                <p className="flex items-center gap-2 font-bold text-white">
+                <p className="flex items-center gap-2 font-bold text-slate-900">
                   {result.passed ? (
-                    <CheckCircle size={18} className="text-emerald-400" />
+                    <CheckCircle size={18} className="text-emerald-600" />
                   ) : (
-                    <XCircle size={18} className="text-red-400" />
+                    <XCircle size={18} className="text-red-600" />
                   )}
                   {result.passed ? "Weakness repaired — ready to advance!" : "Keep going — deeper repair scheduled."}
                 </p>
-                <p className="mt-1 font-mono text-xs text-gray-400">
+                <p className="mt-1 font-mono text-xs text-gray-500">
                   {result.correct}/{result.total} correct ({result.pct}%)
                 </p>
               </motion.div>
             ) : (
               <div className="space-y-4">
-                <p className="font-mono text-xs text-gray-400">
-                  Verified retest for <span className="text-indigo-300">{retest.skill}</span> —
+                <p className="font-mono text-xs text-gray-500">
+                  Verified retest for <span className="text-indigo-600">{retest.skill}</span> —
                   pass ≥80% to advance.
                 </p>
                 {mcqQs.map((q, i) => (
                   <div key={q.id}>
-                    <p className="mb-2 text-sm text-white">
+                    <p className="mb-2 text-sm text-slate-900">
                       {i + 1}. {q.question}
                     </p>
                     <div className="space-y-1">
@@ -219,7 +219,7 @@ export default function RepairPanel() {
                           className={`flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 text-sm transition-colors ${
                             answers[q.id] === oi
                               ? "border-indigo-500/50 bg-indigo-500/10"
-                              : "border-white/10 hover:bg-white/5"
+                              : "border-slate-200 hover:bg-slate-100"
                           }`}
                         >
                           <input
@@ -231,7 +231,7 @@ export default function RepairPanel() {
                             }
                             className="accent-indigo-400"
                           />
-                          <span className="text-gray-200">{opt}</span>
+                          <span className="text-gray-700">{opt}</span>
                         </label>
                       ))}
                     </div>
@@ -239,13 +239,13 @@ export default function RepairPanel() {
                 ))}
                 {codingQs.length > 0 && (
                   <div className="space-y-3">
-                    <p className="font-mono text-[10px] text-gray-400">
+                    <p className="font-mono text-[10px] text-gray-500">
                       {codingQs.length} coding question(s) — the retest invokes
                       your function against the verified test cases.
                     </p>
                     {codingQs.map((q: any, ci: number) => (
                       <div key={q.id}>
-                        <p className="mb-2 text-sm text-white">
+                        <p className="mb-2 text-sm text-slate-900">
                           {mcqQs.length + ci + 1}. {q.question}
                         </p>
                         {Array.isArray(q.test_cases) &&
@@ -274,7 +274,7 @@ export default function RepairPanel() {
                           }
                           spellCheck={false}
                           rows={8}
-                          className="w-full rounded-xl border border-white/10 bg-black/30 p-3 font-mono text-xs text-gray-200 outline-none focus:border-indigo-500/50"
+                          className="w-full rounded-xl border border-slate-200 bg-black/30 p-3 font-mono text-xs text-gray-700 outline-none focus:border-indigo-500/50"
                         />
                       </div>
                     ))}
@@ -290,7 +290,7 @@ export default function RepairPanel() {
                   {submitLoading ? "Grading…" : "Submit Retest"}
                 </motion.button>
                 {!allAnswered && (
-                  <p className="font-mono text-[10px] text-amber-300/80">
+                  <p className="font-mono text-[10px] text-amber-600">
                     Answer every question to submit the retest.
                   </p>
                 )}

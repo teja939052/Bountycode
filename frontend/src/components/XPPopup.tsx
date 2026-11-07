@@ -70,13 +70,13 @@ export default function DiamondsPopup({ show, xpGained, level, streak, newBadges
               {critical ? (
                 <span className="text-4xl">⚡</span>
               ) : (
-                <Zap size={34} className="text-yellow-200" />
+                <Zap size={34} className="text-yellow-700" />
               )}
             </motion.div>
 
             <div className="flex-1 min-w-0">
               <motion.p
-                className="text-2xl font-black text-white tracking-tight"
+                className="text-2xl font-black text-slate-900 tracking-tight"
                 initial={reduced ? {} : { scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.25 }}
@@ -84,9 +84,9 @@ export default function DiamondsPopup({ show, xpGained, level, streak, newBadges
                 {critical ? 'CRITICAL HIT!' : `+${xpGained} Diamonds`}
               </motion.p>
               {critical && criticalBonus && (
-                <div className="text-sm text-yellow-100 font-semibold tick-up">+{criticalBonus} bonus Diamonds</div>
+                <div className="text-sm text-yellow-700 font-semibold tick-up">+{criticalBonus} bonus Diamonds</div>
               )}
-              <div className="flex items-center gap-3 text-sm text-white/80 mt-0.5">
+              <div className="flex items-center gap-3 text-sm text-slate-900 mt-0.5">
                 {level && !critical && (
                   <span className="flex items-center gap-1 font-medium">
                     <ArrowUp size={12} /> Level {level}
@@ -102,7 +102,7 @@ export default function DiamondsPopup({ show, xpGained, level, streak, newBadges
 
             {badges.length > 0 && (
               <motion.div
-                className="flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full px-3 py-1.5"
+                className="flex items-center gap-1.5 bg-slate-100 backdrop-blur-md border border-slate-200 rounded-full px-3 py-1.5"
                 initial={reduced ? {} : { scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.45 }}
@@ -122,7 +122,7 @@ export default function DiamondsPopup({ show, xpGained, level, streak, newBadges
                     );
                   })}
                 </div>
-                <span className="text-sm font-bold text-white">
+                <span className="text-sm font-bold text-slate-900">
                   {badges.length === 1 ? "New Badge!" : `${badges.length} Badges!`}
                 </span>
               </motion.div>

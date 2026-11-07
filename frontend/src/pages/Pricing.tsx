@@ -243,7 +243,7 @@ export default function Pricing() {
         >
           <span className="section-subheader mb-3 block">Mission Tiers</span>
           <h1 className="section-header text-4xl mb-4">Command <span className="text-cyber-blue">Clearance</span></h1>
-          <p className="text-gray-400 font-mono text-sm">
+          <p className="text-gray-500 font-mono text-sm">
             Start free. Upgrade when ready. Cancel anytime.
           </p>
           <div className="flex items-center justify-center gap-4 mt-4 text-xs font-mono text-gray-500 flex-wrap">
@@ -270,13 +270,13 @@ export default function Pricing() {
             <button
               onClick={handleStartTrial}
               disabled={trialLoading}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-text-primary rounded-xl font-semibold hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all"
             >
               {trialLoading ? "Starting..." : <><Zap size={18} /> Start 7-Day Free Trial</>}
             </button>
           )}
           {trialMessage && (
-            <p className={`text-sm mt-2 ${trialMessage.includes("activated") ? "text-green-400" : "text-red-400"}`}>
+            <p className={`text-sm mt-2 ${trialMessage.includes("activated") ? "text-green-600" : "text-red-600"}`}>
               {trialMessage}
             </p>
           )}
@@ -285,13 +285,13 @@ export default function Pricing() {
         {!isIndia && (
           <div className="text-center mb-8">
             <form onSubmit={handleStudentVerify} className="flex flex-col sm:inline-flex sm:items-center gap-2 max-w-xs sm:max-w-none mx-auto">
-              <GraduationCap size={16} className="text-gray-400" />
+              <GraduationCap size={16} className="text-gray-500" />
               <input
                 type="email"
                 placeholder="College email for 50% off Lifetime"
                 value={studentEmail}
                 onChange={(e) => setStudentEmail(e.target.value)}
-                className="px-4 py-2 bg-space-panel border border-space-border rounded-lg text-sm text-gray-200 focus:border-cyber-blue focus:outline-none"
+                className="px-4 py-2 bg-space-panel border border-space-border rounded-lg text-sm text-gray-700 focus:border-cyber-blue focus:outline-none"
                 disabled={studentVerified}
               />
               <button
@@ -303,7 +303,7 @@ export default function Pricing() {
               </button>
             </form>
             {studentMessage && (
-              <p className={`text-xs mt-1 ${studentVerified ? "text-green-400" : "text-orange-400"}`}>
+              <p className={`text-xs mt-1 ${studentVerified ? "text-green-600" : "text-orange-600"}`}>
                 {studentMessage}
               </p>
             )}
@@ -323,7 +323,7 @@ export default function Pricing() {
               placeholder="Promo code"
               value={couponCode}
               onChange={(e) => setCouponCode(e.target.value)}
-              className="flex-1 px-4 py-2 bg-space-panel border border-space-border rounded-lg text-sm text-gray-200 focus:border-cyber-blue focus:outline-none font-mono"
+              className="flex-1 px-4 py-2 bg-space-panel border border-space-border rounded-lg text-sm text-gray-700 focus:border-cyber-blue focus:outline-none font-mono"
             />
             <button
               onClick={() => {
@@ -338,20 +338,20 @@ export default function Pricing() {
           </div>
         </div>
         {couponError && (
-          <div className="text-center mb-4 text-red-400 text-xs font-mono">{couponError}</div>
+          <div className="text-center mb-4 text-red-600 text-xs font-mono">{couponError}</div>
         )}
         {couponApplied && (
-          <div className="text-center mb-4 text-green-400 text-xs font-mono">✓ Coupon applied — discount active</div>
+          <div className="text-center mb-4 text-green-600 text-xs font-mono">✓ Coupon applied — discount active</div>
         )}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
-              className={`${plan.className} flex flex-col`}
+              className={`${plan.className} flex flex-col p-6 shadow-lg border border-border/60 rounded-2xl bg-white`}
             >
               {plan.badge && (
                 <div className={`absolute -top-3 left-1/2 -translate-x-1/2 text-space-void px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-wider flex items-center gap-1 ${
@@ -369,7 +369,7 @@ export default function Pricing() {
               )}
               <h3 className="font-display font-bold text-text-primary text-sm mb-2">{plan.name}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-2xl font-display font-black text-text-primary">
+                <span className="text-[32px] font-display font-black text-text-primary">
                   {plan.price}
                 </span>
                 {plan.period.startsWith("/") && (
@@ -385,7 +385,7 @@ export default function Pricing() {
               <p className="text-gray-500 text-xs font-mono mb-4">{plan.desc}</p>
               <ul className="space-y-2 mb-6 flex-1">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-gray-400 text-xs">
+                  <li key={f} className="flex items-start gap-2 text-gray-500 text-xs">
                     <Check size={12} className="text-cyber-green mt-0.5 shrink-0" />
                     <span className="font-mono">{f}</span>
                   </li>
@@ -413,7 +413,7 @@ export default function Pricing() {
         {isIndia && (
           <div className="text-center mt-6 bg-space-panel/80 border border-space-border rounded-xl p-4 max-w-md mx-auto">
             <p className="text-xs font-mono text-cyber-blue mb-1">🇮🇳 India Student Special</p>
-            <p className="text-xs font-mono text-gray-400">
+            <p className="text-xs font-mono text-gray-500">
               Lifetime plan at just <span className="text-text-primary font-bold">₹1,499 one-time</span> — less than 2 months of coffee!
             </p>
           </div>

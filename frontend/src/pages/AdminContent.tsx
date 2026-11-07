@@ -12,16 +12,16 @@ const DIFFICULTIES = ["beginner", "intermediate", "advanced"];
 
 const CATEGORY_COLORS = {
   dsa: "bg-surface-card text-nature-blossom border-nature-leaf/30",
-  aptitude: "bg-sky-500/10 text-sky-400 border-sky-500/30",
-  "soft-skills": "bg-amber-500/10 text-amber-400 border-amber-500/30",
+  aptitude: "bg-sky-500/10 text-sky-600 border-sky-500/30",
+  "soft-skills": "bg-amber-500/10 text-amber-600 border-amber-500/30",
   "system-design": "bg-surface-card text-nature-blossom border-nature-leaf/30",
-  behavioral: "bg-rose-500/10 text-rose-400 border-rose-500/30",
+  behavioral: "bg-rose-500/10 text-rose-600 border-rose-500/30",
 };
 
 const DIFFICULTY_COLORS = {
   beginner: "bg-brand-primary/10 text-brand-primary border-brand-primary/20",
-  intermediate: "bg-amber-500/10 text-amber-400 border-amber-500/30",
-  advanced: "bg-rose-500/10 text-rose-400 border-rose-500/30",
+  intermediate: "bg-amber-500/10 text-amber-600 border-amber-500/30",
+  advanced: "bg-rose-500/10 text-rose-600 border-rose-500/30",
 };
 
 const inputCls = "w-full px-3.5 py-2.5 rounded-xl bg-surface-base border border-nature-leaf/20 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-nature-leaf focus:ring-1 focus:ring-nature-leaf/30 transition-all";
@@ -70,8 +70,8 @@ function Modal({ title, onClose, children, wide = false }: {
 
 function StatusBadge({ status }) {
   const config = {
-    pending: { label: "Pending", cls: "bg-amber-500/10 text-amber-400 border-amber-500/30", icon: Clock },
-    submitted: { label: "Submitted", cls: "bg-sky-500/10 text-sky-400 border-sky-500/30", icon: Send },
+    pending: { label: "Pending", cls: "bg-amber-500/10 text-amber-600 border-amber-500/30", icon: Clock },
+    submitted: { label: "Submitted", cls: "bg-sky-500/10 text-sky-600 border-sky-500/30", icon: Send },
     graded: { label: "Graded", cls: "bg-brand-primary/10 text-brand-primary border-brand-primary/20", icon: CheckCircle2 },
   };
   const c = config[status] || config.pending;
@@ -205,8 +205,8 @@ export default function AdminContent() {
         <div className="flex items-center justify-between">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-3">
-              <ClipboardList size={14} className="text-red-400" />
-              <span className="text-xs font-mono text-red-400">ADMIN</span>
+              <ClipboardList size={14} className="text-red-600" />
+              <span className="text-xs font-mono text-red-600">ADMIN</span>
             </div>
             <h1 className="text-3xl font-display font-black text-text-primary">Content & Assignments</h1>
           </div>
@@ -348,15 +348,15 @@ export default function AdminContent() {
                           {a.assigned_to === "all" ? "All users" : `${a.assigned_to.length} user${a.assigned_to.length === 1 ? "" : "s"}`}
                         </span>
                         <span className="flex items-center gap-1.5">
-                          <Calendar size={12} className="text-sky-400" />
+                          <Calendar size={12} className="text-sky-600" />
                           Due {formatDate(a.due_date)}
                         </span>
                         <span className="flex items-center gap-1.5">
-                          <Award size={12} className="text-amber-400" />
+                          <Award size={12} className="text-amber-600" />
                           Max {a.max_score}
                         </span>
                         <span className="flex items-center gap-1.5">
-                          <Send size={12} className="text-sky-400" />
+                          <Send size={12} className="text-sky-600" />
                           {a.submission_count || 0} submitted
                         </span>
                         <span className="flex items-center gap-1.5">
@@ -474,7 +474,7 @@ export default function AdminContent() {
                         </div>
                         <button
                           onClick={() => handleGrade(s)}
-                          className="mt-6 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-text-primary text-sm font-semibold transition-all">
+                          className="mt-6 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-white text-sm font-semibold transition-all">
                           <CheckCircle2 size={15} />
                           Grade
                         </button>
@@ -634,7 +634,7 @@ function AssignmentForm({ contentOptions, onSave, onCancel }: any) {
         <button type="button" onClick={onCancel} className="px-4 py-2.5 rounded-xl bg-surface-card border border-nature-leaf/20 text-text-secondary text-sm font-mono hover:text-text-primary transition-all">
           Cancel
         </button>
-        <button type="submit" disabled={saving} className="px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-text-primary text-sm font-semibold transition-all disabled:opacity-50">
+        <button type="submit" disabled={saving} className="px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-white text-sm font-semibold transition-all disabled:opacity-50">
           {saving ? "Creating..." : "Create Assignment"}
         </button>
       </div>

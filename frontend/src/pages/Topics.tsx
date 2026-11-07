@@ -181,7 +181,7 @@ export default function Topics() {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="mb-2 flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#4F8F57] to-[#7BB661]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-[#7BB661]">
               <BookOpen size={24} className="text-text-primary" />
             </div>
             <div>
@@ -203,7 +203,7 @@ export default function Topics() {
               </div>
               <div className="flex items-center gap-2">
                 <Flame size={16} className="text-orange-500" />
-                <span className="text-sm font-medium text-brand-secondary dark:text-gray-400">
+                <span className="text-sm font-medium text-brand-secondary">
                   {progress.total_solved}/{progress.total_problems} solved
                 </span>
               </div>
@@ -235,7 +235,7 @@ export default function Topics() {
               onClick={() => setActiveGroup(key)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all border ${
                 activeGroup === key
-                ? "bg-primary-600 text-text-primary border-primary-600 shadow-lg shadow-primary-600/25"
+                ? "bg-primary-600 text-white border-primary-600 shadow-lg shadow-primary-600/25"
                   : "bg-white text-brand-secondary border-black/5 hover:border-primary-400"
               }`}
             >
@@ -272,7 +272,7 @@ export default function Topics() {
                     <p className="text-sm text-text-muted">{meta.description}</p>
                   </div>
                   <div className="text-right shrink-0">
-                    <div className="text-lg font-bold text-primary-600 dark:text-primary-400">{stats.pct}%</div>
+                    <div className="text-lg font-bold text-primary-600">{stats.pct}%</div>
                     <div className="text-xs text-text-muted">{stats.solved}/{stats.total} solved</div>
                   </div>
                 </div>
@@ -313,10 +313,10 @@ export default function Topics() {
                               </div>
                               <ChevronRight
                                 size={20}
-                                className="text-gray-400 group-hover:text-primary-600 transition-colors"
+                                className="text-gray-500 group-hover:text-primary-600 transition-colors"
                               />
                             </div>
-                            <h3 className="text-lg font-bold dark:text-white mb-1">{topic.topic}</h3>
+                            <h3 className="text-lg font-bold mb-1">{topic.topic}</h3>
                               <p className="mb-2 text-xs leading-relaxed text-text-muted">
                               {TOPIC_DESCRIPTIONS[topic.topic] || "Practice problems"}
                             </p>

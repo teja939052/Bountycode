@@ -81,7 +81,7 @@ function mapAction(action) {
 
 function Bar({ value = 0, color = "bg-cyber-blue" }) {
   return (
-    <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+    <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
       <div
         className={`h-full rounded-full transition-all duration-500 ${color}`}
         style={{ width: `${Math.min(100, Math.max(0, value || 0))}%` }}
@@ -94,7 +94,7 @@ function SectionHeader({ icon, title, subtitle, action }: { icon?: React.ReactNo
   return (
     <div className="flex items-center justify-between mb-4">
       <div className="min-w-0">
-        <h2 className="text-sm font-semibold text-gray-300 flex items-center gap-2">
+        <h2 className="text-sm font-semibold text-gray-600 flex items-center gap-2">
           {icon} {title}
         </h2>
         {subtitle && <p className="text-[10px] text-gray-500 mt-0.5">{subtitle}</p>}
@@ -106,12 +106,12 @@ function SectionHeader({ icon, title, subtitle, action }: { icon?: React.ReactNo
 
 function DiffChip({ difficulty }) {
   const map = {
-    easy: "bg-green-500/10 text-green-400 border-green-500/20",
-    medium: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
-    hard: "bg-red-500/10 text-red-400 border-red-500/20",
+    easy: "bg-green-500/10 text-green-600 border-green-500/20",
+    medium: "bg-yellow-500/10 text-yellow-600 border-yellow-500/20",
+    hard: "bg-red-500/10 text-red-600 border-red-500/20",
   };
   return (
-    <span className={`px-2 py-0.5 rounded-full text-[10px] border ${map[difficulty] || "bg-gray-700/40 text-gray-400 border-gray-600/30"}`}>
+    <span className={`px-2 py-0.5 rounded-full text-[10px] border ${map[difficulty] || "bg-white text-gray-500 border-slate-100"}`}>
       {difficulty || "unknown"}
     </span>
   );
@@ -322,7 +322,7 @@ export default function PersonalDashboard() {
             <span className="text-xs sm:text-sm font-medium text-text-primary capitalize">{firstName}</span>
             <span className={`ml-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-medium capitalize ${
               planBadge === "pro" || planBadge === "lifetime"
-                ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                ? "bg-amber-500/10 text-amber-600 border border-amber-500/20"
                 : "bg-surface-2 text-brand-secondary border border-black/10"
             }`}>
               {planBadge}
@@ -332,7 +332,7 @@ export default function PersonalDashboard() {
 
         {/* ── Hero Level Card ── */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
-          className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-4 sm:p-6 text-text-primary relative overflow-hidden"
+          className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-2xl p-4 sm:p-6 text-white relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDJ2LTJoMzRtMC00SDJ2MmgzNHptMC00SDJ2MmgzNHptMC00SDJ2MmgzNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
           <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -404,7 +404,7 @@ export default function PersonalDashboard() {
               {skillList.length === 0 && <p className="text-xs text-brand-muted text-center py-6">Complete activities to build your skill graph.</p>}
               {skillList.slice(0, 5).map((s) => (
                 <div key={s.key} className="flex items-center gap-3">
-                  <div className="w-24 sm:w-28 text-xs text-gray-400 truncate shrink-0">{s.name}</div>
+                  <div className="w-24 sm:w-28 text-xs text-gray-500 truncate shrink-0">{s.name}</div>
                   <div className="flex-1"><Bar value={(s.score / 10) * 100} color={s.score >= 7 ? "bg-green-500" : s.score >= 4 ? "bg-yellow-500" : "bg-red-500"} /></div>
                   <div className="w-8 text-right text-[10px] text-brand-muted shrink-0">{s.score}</div>
                 </div>
@@ -413,7 +413,7 @@ export default function PersonalDashboard() {
             {readinessRecs.length > 0 && (
               <div className="mt-4 pt-3 border-t border-black/10 space-y-1.5">
                 {readinessRecs.slice(0, 3).map((r, i) => (
-                  <p key={i} className="text-[10px] text-gray-400">• {r}</p>
+                  <p key={i} className="text-[10px] text-gray-500">• {r}</p>
                 ))}
               </div>
             )}
@@ -445,10 +445,10 @@ export default function PersonalDashboard() {
         {/* ── Stat Cards ── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {[
-            { label: "Solved", value: overview?.total_solved || pd?.total_solved || 0, icon: <CheckCircle size={18} />, color: "text-green-400", bg: "bg-green-500/10" },
-            { label: "Acceptance", value: `${overview?.acceptance_rate || 0}%`, icon: <Percent size={18} />, color: "text-blue-400", bg: "bg-blue-500/10" },
-            { label: "Submissions", value: overview?.total_submissions || 0, icon: <Code2 size={18} />, color: "text-purple-400", bg: "bg-purple-500/10" },
-            { label: "Badges", value: `${earnedBadgeCount}/${totalBadges}`, icon: <Award size={18} />, color: "text-orange-400", bg: "bg-orange-500/10" },
+            { label: "Solved", value: overview?.total_solved || pd?.total_solved || 0, icon: <CheckCircle size={18} />, color: "text-green-600", bg: "bg-green-500/10" },
+            { label: "Acceptance", value: `${overview?.acceptance_rate || 0}%`, icon: <Percent size={18} />, color: "text-blue-600", bg: "bg-blue-500/10" },
+            { label: "Submissions", value: overview?.total_submissions || 0, icon: <Code2 size={18} />, color: "text-purple-600", bg: "bg-purple-500/10" },
+            { label: "Badges", value: `${earnedBadgeCount}/${totalBadges}`, icon: <Award size={18} />, color: "text-orange-600", bg: "bg-orange-500/10" },
           ].map((stat, i) => (
             <motion.div key={stat.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 + i * 0.05 }}
               className={`${cardCls} text-center`}
@@ -490,7 +490,7 @@ export default function PersonalDashboard() {
                         <div className="text-xs font-medium text-text-primary truncate">{t.title}</div>
                         <div className="text-[10px] text-gray-500 flex items-center gap-2 mt-0.5">
                           <span className="flex items-center gap-1"><Timer size={10} />{t.estimated_minutes}m</span>
-                          <span className="flex items-center gap-1"><Zap size={10} className="text-amber-400" />{t.xp_reward} XP</span>
+                          <span className="flex items-center gap-1"><Zap size={10} className="text-amber-600" />{t.xp_reward} XP</span>
                           {t.difficulty && <DiffChip difficulty={t.difficulty} />}
                         </div>
                       </div>
@@ -523,7 +523,7 @@ export default function PersonalDashboard() {
                   <div className="mt-3 pt-3 border-t border-black/10 flex flex-wrap gap-2">
                     {weakTopics.map((t, i) => (
                       <Link key={i} to={`/question-bank?topic=${encodeURIComponent(t.topic)}`}
-                        className="px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-xs text-red-400 hover:bg-red-500/20 transition-colors"
+                        className="px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-xs text-red-600 hover:bg-red-500/20 transition-colors"
                       >
                         {t.topic} ({t.percentage}%)
                       </Link>
@@ -540,7 +540,7 @@ export default function PersonalDashboard() {
                 <div className="space-y-2">
                   {pdActivity.slice(0, 5).map((a, i) => (
                     <div key={i} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-surface-2 transition-colors">
-                      <span className={`shrink-0 ${a.is_correct ? "text-green-400" : "text-red-400"}`}>
+                      <span className={`shrink-0 ${a.is_correct ? "text-green-600" : "text-red-600"}`}>
                         {a.is_correct ? <CheckCircle size={14} /> : <FileText size={14} />}
                       </span>
                       <div className="flex-1 min-w-0">
@@ -562,7 +562,7 @@ export default function PersonalDashboard() {
                 <div className="flex flex-wrap gap-2">
                   {weakSkills.map((w, i) => (
                     <Link key={i} to={`/question-bank?topic=${encodeURIComponent(w.category || w.skill)}`}
-                      className="px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-xs text-red-400 hover:bg-red-500/20 transition-colors"
+                      className="px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-xs text-red-600 hover:bg-red-500/20 transition-colors"
                     >
                       {w.category_name || humanize(w.category)} · {humanize(w.skill)} ({w.score}/10)
                     </Link>
@@ -592,10 +592,10 @@ export default function PersonalDashboard() {
                   </div>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {league?.promoted_next_week && (
-                      <span className="px-2 py-0.5 rounded-full text-[10px] bg-green-500/10 text-green-400 border border-green-500/20">⬆ Promoting</span>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] bg-green-500/10 text-green-600 border border-green-500/20">⬆ Promoting</span>
                     )}
                     {league?.relegated_next_week && (
-                      <span className="px-2 py-0.5 rounded-full text-[10px] bg-red-500/10 text-red-400 border border-red-500/20">⬇ Relegating</span>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] bg-red-500/10 text-red-600 border border-red-500/20">⬇ Relegating</span>
                     )}
                     <Link to="/rank" className="px-2 py-0.5 rounded-full text-[10px] bg-cyber-blue/10 text-cyber-blue border border-cyber-blue/20 hover:bg-cyber-blue/20 transition-colors">
                       Rank ladder →
@@ -621,7 +621,7 @@ export default function PersonalDashboard() {
                         : "All bosses defeated — max level!"}
                   </div>
                   {bossesDefeated.length > 0 && (
-                    <div className="text-[10px] text-amber-400 mt-1">💀 {bossesDefeated.length} boss{bossesDefeated.length === 1 ? "" : "es"} defeated</div>
+                    <div className="text-[10px] text-amber-600 mt-1">💀 {bossesDefeated.length} boss{bossesDefeated.length === 1 ? "" : "es"} defeated</div>
                   )}
                 </div>
                 <Link to="/tower" className="shrink-0 px-3 py-2 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 text-cyber-blue text-xs font-medium hover:bg-cyber-blue/20 transition-colors flex items-center gap-1">
@@ -636,22 +636,22 @@ export default function PersonalDashboard() {
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs text-gray-300 flex items-center gap-1"><Calendar size={12} /> Daily</span>
+                    <span className="text-xs text-gray-600 flex items-center gap-1"><Calendar size={12} /> Daily</span>
                     <span className="text-[10px] text-gray-500 font-mono">{dailyGoalCount}/{dailyGoalTarget}</span>
                   </div>
                   <Bar value={dailyGoalPct} color={dailyGoalMet ? "bg-green-500" : "bg-blue-500"} />
                   {dailyGoalMet && (
-                    <div className="flex items-center gap-1 mt-1.5 text-[10px] text-green-400"><CheckCircle size={11} /> Goal met!</div>
+                    <div className="flex items-center gap-1 mt-1.5 text-[10px] text-green-600"><CheckCircle size={11} /> Goal met!</div>
                   )}
                 </div>
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs text-gray-300 flex items-center gap-1"><Calendar size={12} /> Weekly</span>
+                    <span className="text-xs text-gray-600 flex items-center gap-1"><Calendar size={12} /> Weekly</span>
                     <span className="text-[10px] text-gray-500 font-mono">{weeklyGoal?.solved_this_week || 0}/{weeklyGoal?.weekly_goal || 7}</span>
                   </div>
                   <Bar value={weeklyGoal?.percentage || 0} color={weeklyGoal?.goal_met ? "bg-green-500" : "bg-yellow-500"} />
                   {weeklyGoal?.goal_met && (
-                    <div className="flex items-center gap-1 mt-1.5 text-[10px] text-green-400"><CheckCircle size={11} /> Weekly goal crushed!</div>
+                    <div className="flex items-center gap-1 mt-1.5 text-[10px] text-green-600"><CheckCircle size={11} /> Weekly goal crushed!</div>
                   )}
                 </div>
               </div>
@@ -662,15 +662,15 @@ export default function PersonalDashboard() {
               <SectionHeader icon={<Layers size={14} />} title="Difficulty Breakdown" />
               <div className="grid grid-cols-3 gap-2">
                 {[
-                  { key: "easy", label: "Easy", color: "text-green-400", bg: "bg-green-500/15" },
-                  { key: "medium", label: "Medium", color: "text-yellow-400", bg: "bg-yellow-500/15" },
-                  { key: "hard", label: "Hard", color: "text-red-400", bg: "bg-red-500/15" },
+                  { key: "easy", label: "Easy", color: "text-green-600", bg: "bg-green-500/15" },
+                  { key: "medium", label: "Medium", color: "text-yellow-600", bg: "bg-yellow-500/15" },
+                  { key: "hard", label: "Hard", color: "text-red-600", bg: "bg-red-500/15" },
                 ].map((d) => {
                   const solved = overview?.difficulty_breakdown?.[d.key] || 0;
                   return (
                     <div key={d.key} className={`rounded-xl p-3 text-center ${d.bg}`}>
                       <div className={`text-lg sm:text-xl font-bold ${d.color}`}>{solved}</div>
-                      <div className="text-[9px] text-gray-400 uppercase tracking-wide">{d.label}</div>
+                      <div className="text-[9px] text-gray-500 uppercase tracking-wide">{d.label}</div>
                     </div>
                   );
                 })}
@@ -685,7 +685,7 @@ export default function PersonalDashboard() {
             className={`${cardCls} overflow-x-auto`}
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-semibold text-gray-300 flex items-center gap-2">
+              <h2 className="text-sm font-semibold text-gray-600 flex items-center gap-2">
                 <BarChart3 size={14} /> Activity Heatmap
               </h2>
               <div className="flex items-center gap-2 text-[10px] text-gray-500">
@@ -694,7 +694,7 @@ export default function PersonalDashboard() {
                   <span>Less</span>
                   {[0, 1, 2, 3, 4].map((l) => (
                     <div key={l} className={`w-2.5 h-2.5 rounded-sm ${
-                      l === 0 ? "bg-gray-700" :
+                      l === 0 ? "bg-slate-100" :
                       l === 1 ? "bg-green-900" :
                       l === 2 ? "bg-green-700" :
                       l === 3 ? "bg-green-500" :
@@ -716,7 +716,7 @@ export default function PersonalDashboard() {
             <div className="space-y-3">
               {topTopics.map((t, i) => (
                 <div key={t.topic || i} className="flex items-center gap-3">
-                  <div className="w-24 sm:w-32 text-xs text-gray-400 truncate shrink-0">{t.topic}</div>
+                  <div className="w-24 sm:w-32 text-xs text-gray-500 truncate shrink-0">{t.topic}</div>
                   <div className="flex-1">
                     <Bar value={t.percentage} color={t.percentage >= 80 ? "bg-green-500" : t.percentage >= 50 ? "bg-yellow-500" : "bg-red-500"} />
                   </div>
@@ -728,13 +728,13 @@ export default function PersonalDashboard() {
             </div>
             {weakAreasPd.length > 0 && (
               <div className="mt-4 pt-4 border-t border-black/10">
-                <h3 className="text-xs font-medium text-red-400 mb-2 flex items-center gap-1">
+                <h3 className="text-xs font-medium text-red-600 mb-2 flex items-center gap-1">
                   <TrendingUp size={12} /> Weak Areas — Practice These
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {weakAreasPd.slice(0, 3).map((t, i) => (
                     <Link key={i} to={`/question-bank?topic=${encodeURIComponent(t.topic)}`}
-                      className="px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-xs text-red-400 hover:bg-red-500/20 transition-colors"
+                      className="px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-full text-xs text-red-600 hover:bg-red-500/20 transition-colors"
                     >
                       {t.topic} ({t.percentage}%)
                     </Link>
@@ -779,7 +779,7 @@ export default function PersonalDashboard() {
                       }`}
                     >
                       <div className="text-2xl mb-1">{badge.icon}</div>
-                      <div className="text-[10px] font-medium text-gray-300">{badge.name}</div>
+                      <div className="text-[10px] font-medium text-gray-600">{badge.name}</div>
                       <div className="text-[9px] text-gray-500 mt-0.5 line-clamp-2">{badge.description}</div>
                     </motion.div>
                   );
@@ -797,7 +797,7 @@ export default function PersonalDashboard() {
                 const isMe = entry.user_id === user?.id;
                 return (
                   <div key={i} className={`flex items-center gap-3 p-2.5 rounded-lg ${isMe ? "bg-cyber-blue/10 border border-cyber-blue/20" : "hover:bg-surface-2"}`}>
-                    <div className={`w-6 text-center text-xs font-bold ${i === 0 ? "text-yellow-400" : i === 1 ? "text-gray-400" : i === 2 ? "text-amber-500" : "text-gray-500"}`}>
+                    <div className={`w-6 text-center text-xs font-bold ${i === 0 ? "text-yellow-600" : i === 1 ? "text-gray-500" : i === 2 ? "text-amber-500" : "text-gray-500"}`}>
                       {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `#${i + 1}`}
                     </div>
                     <div className="flex-1 min-w-0">

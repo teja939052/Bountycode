@@ -116,26 +116,26 @@ export function LeaderboardRowSkeleton({ count = 5 }: { count?: number }) {
       {Array.from({ length: count }).map((_, i) => (
         <div
           key={i}
-          className="flex items-center gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-700/20 bg-gray-900/20 animate-pulse"
+          className="flex items-center gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-slate-100 bg-white animate-pulse"
         >
           <div className="w-8 text-center shrink-0">
-            <div className="h-4 w-5 bg-gray-700/40 rounded mx-auto" />
+            <div className="h-4 w-5 bg-slate-100 rounded mx-auto" />
           </div>
-          <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-gray-700/30 shrink-0" />
+          <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-slate-100 shrink-0" />
           <div className="flex-1 min-w-0 space-y-1.5">
-            <div className="h-3.5 bg-gray-700/40 rounded-full w-1/3" />
-            <div className="h-2.5 bg-gray-700/30 rounded-full w-1/5" />
+            <div className="h-3.5 bg-slate-100 rounded-full w-1/3" />
+            <div className="h-2.5 bg-slate-100 rounded-full w-1/5" />
           </div>
           <div className="hidden sm:block text-center w-14 shrink-0">
-            <div className="h-4 w-6 bg-gray-700/40 rounded mx-auto mb-1" />
-            <div className="h-2 w-8 bg-gray-700/30 rounded mx-auto" />
+            <div className="h-4 w-6 bg-slate-100 rounded mx-auto mb-1" />
+            <div className="h-2 w-8 bg-slate-100 rounded mx-auto" />
           </div>
           <div className="hidden sm:block text-center w-16 shrink-0">
-            <div className="h-4 w-10 bg-gray-700/40 rounded mx-auto mb-1" />
-            <div className="h-2 w-6 bg-gray-700/30 rounded mx-auto" />
+            <div className="h-4 w-10 bg-slate-100 rounded mx-auto mb-1" />
+            <div className="h-2 w-6 bg-slate-100 rounded mx-auto" />
           </div>
           <div className="hidden md:flex text-center w-12 shrink-0 items-center justify-center gap-1">
-            <div className="h-4 w-8 bg-gray-700/40 rounded" />
+            <div className="h-4 w-8 bg-slate-100 rounded" />
           </div>
         </div>
       ))}

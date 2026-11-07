@@ -6,7 +6,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.setAttribute("data-theme", mode);
+    // Single bright theme: ignore any persisted dark/night mode.
+    root.classList.remove("dark");
+    root.setAttribute("data-theme", "light");
+    root.style.colorScheme = "light";
     const vars = getThemeVars(mode);
     Object.entries(vars).forEach(([key, value]) => root.style.setProperty(key, value));
   }, [mode]);

@@ -26,7 +26,7 @@ export default function StreakFlame({ streak, freezeActive, size = 28 }: StreakF
         animate={{ rotate: [0, -6, 6, 0] }}
         transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
       >
-        <Snowflake size={size} className="text-sky-300" />
+        <Snowflake size={size} className="text-sky-600" />
         {isMilestone && (
           <motion.span
             className="absolute -top-1 -right-1 text-[10px]"

@@ -38,8 +38,8 @@ export default function StreakCeremony({ days, onDismiss }) {
           🔥
         </div>
 
-        <div className="text-3xl font-bold text-amber-400 mb-2">{title}</div>
-        <div className="text-lg text-amber-200/80 mb-6">{msg}</div>
+        <div className="text-3xl font-bold text-amber-600 mb-2">{title}</div>
+        <div className="text-lg text-amber-700 mb-6">{msg}</div>
 
         <div className="flex justify-center gap-1">
           {Array.from({ length: 7 }, (_, i) => (

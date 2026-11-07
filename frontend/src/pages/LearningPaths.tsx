@@ -12,9 +12,9 @@ import {
 import StaggerContainer, { StaggerItem } from "../components/motion/StaggerContainer";
 
 const DIFFICULTY_COLORS = {
-  easy: "text-green-400 bg-green-500/10 border-green-500/20",
-  medium: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
-  hard: "text-red-400 bg-red-500/10 border-red-500/20",
+  easy: "text-green-600 bg-green-500/10 border-green-500/20",
+  medium: "text-yellow-600 bg-yellow-500/10 border-yellow-500/20",
+  hard: "text-red-600 bg-red-500/10 border-red-500/20",
 };
 
 export default function LearningPaths() {
@@ -103,10 +103,10 @@ export default function LearningPaths() {
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 animate-pulse">
-                <div className="h-6 bg-gray-700 rounded w-1/2 mb-3" />
-                <div className="h-4 bg-gray-700 rounded w-full mb-2" />
-                <div className="h-4 bg-gray-700 rounded w-2/3" />
+              <div key={i} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 animate-pulse">
+                <div className="h-6 bg-slate-100 rounded w-1/2 mb-3" />
+                <div className="h-4 bg-slate-100 rounded w-full mb-2" />
+                <div className="h-4 bg-slate-100 rounded w-2/3" />
               </div>
             ))}
           </div>
@@ -143,10 +143,10 @@ function RoleCard({ roleId, compact, recommended, onClick }: { roleId: string; c
     <motion.div
       whileHover={{ y: -4, scale: 1.01 }}
       onClick={onClick}
-      className={`rounded-2xl border border-white/10 bg-white/[0.03] p-5 cursor-pointer hover:border-primary-500/30 hover:shadow-lg hover:shadow-primary-500/5 transition-all ${compact ? "flex flex-col h-full" : ""}`}
+      className={`rounded-2xl border border-slate-200 bg-slate-50 p-5 cursor-pointer hover:border-primary-500/30 hover:shadow-lg hover:shadow-primary-500/5 transition-all ${compact ? "flex flex-col h-full" : ""}`}
     >
       {recommended && (
-        <div className="flex items-center gap-1 mb-2 text-xs text-yellow-400">
+        <div className="flex items-center gap-1 mb-2 text-xs text-yellow-600">
           <Sparkles className="w-3 h-3" />
           <span>{recommended.match_score}% match</span>
         </div>
@@ -159,13 +159,13 @@ function RoleCard({ roleId, compact, recommended, onClick }: { roleId: string; c
         </div>
       </div>
       <div className="flex flex-wrap gap-2 mb-3">
-        <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-500/10 text-gray-400 border border-gray-500/20">
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-50 text-gray-500 border border-slate-100">
           {role.duration_weeks} weeks
         </span>
         <span className={`text-[10px] px-2 py-0.5 rounded-full border ${DIFFICULTY_COLORS[role.difficulty as keyof typeof DIFFICULTY_COLORS] || DIFFICULTY_COLORS.easy}`}>
           {role.difficulty}
         </span>
-        <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-600 border border-green-500/20">
           {role.total_modules} modules
         </span>
       </div>
@@ -181,7 +181,7 @@ function RoleCard({ roleId, compact, recommended, onClick }: { roleId: string; c
       </div>
       {role.enrolled && (
         <div className="mt-3">
-          <div className="h-1.5 rounded-full bg-gray-800 overflow-hidden">
+          <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
             <div className="h-full rounded-full bg-primary-500 transition-all" style={{ width: `${role.progress_pct || 0}%` }} />
           </div>
           <p className="text-[10px] text-gray-500 mt-1">{role.progress_pct || 0}% complete</p>
@@ -234,20 +234,20 @@ function RoleDetail({ roleId, onBack }: { roleId: string; onBack: () => void }) 
       className="space-y-6"
     >
       {/* Role Header */}
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
         <div className="flex items-start gap-4">
           <div className="text-5xl">{roleData.icon}</div>
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-900">{roleData.name}</h2>
             <p className="text-sm text-gray-500 mt-1">{roleData.description}</p>
             <div className="flex flex-wrap gap-2 mt-3">
-              <span className="text-xs px-2 py-1 rounded-full bg-gray-500/10 text-gray-400 border border-gray-500/20">
+              <span className="text-xs px-2 py-1 rounded-full bg-slate-50 text-gray-500 border border-slate-100">
                 {roleData.duration_weeks} weeks
               </span>
               <span className={`text-xs px-2 py-1 rounded-full border ${DIFFICULTY_COLORS[roleData.difficulty as keyof typeof DIFFICULTY_COLORS] || ""}`}>
                 {roleData.difficulty}
               </span>
-              <span className="text-xs px-2 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
+              <span className="text-xs px-2 py-1 rounded-full bg-green-500/10 text-green-600 border border-green-500/20">
                 {roleData.total_xp_earned || 0} / {roleData.total_xp} Diamonds
               </span>
             </div>
@@ -276,7 +276,7 @@ function RoleDetail({ roleId, onBack }: { roleId: string; onBack: () => void }) 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.05 }}
-            className={`rounded-xl border p-4 ${mod.completed ? "border-green-500/20 bg-green-500/5" : mod.locked ? "border-gray-500/10 bg-gray-500/5 opacity-60" : "border-white/10 bg-white/[0.02]"}`}
+            className={`rounded-xl border p-4 ${mod.completed ? "border-green-500/20 bg-green-500/5" : mod.locked ? "border-slate-50 bg-slate-50 opacity-60" : "border-slate-200 bg-slate-50"}`}
           >
             <div className="flex items-start gap-3">
               <div className="text-2xl">{mod.icon}</div>
@@ -289,7 +289,7 @@ function RoleDetail({ roleId, onBack }: { roleId: string; onBack: () => void }) 
                 <p className="text-xs text-gray-500 mb-2">{mod.description}</p>
                 <div className="flex flex-wrap gap-1 mb-2">
                   {mod.topics.slice(0, 4).map(t => (
-                    <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-gray-500/10 text-gray-400">{t}</span>
+                    <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-slate-50 text-gray-500">{t}</span>
                   ))}
                 </div>
                 <div className="flex items-center gap-3 text-xs text-gray-500">

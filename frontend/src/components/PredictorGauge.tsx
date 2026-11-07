@@ -96,9 +96,9 @@ export default function PredictorGauge({
         >
           {probability}%
         </motion.p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">Placement Probability</p>
+        <p className="text-xs text-gray-500">Placement Probability</p>
         {band && (
-          <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">
+          <p className="text-[11px] text-gray-500 mt-0.5">
             Range {band.range}
           </p>
         )}

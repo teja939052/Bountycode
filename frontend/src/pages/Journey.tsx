@@ -41,18 +41,18 @@ import CelebrationOverlay from "../components/CelebrationOverlay";
 import useReducedMotion from "../hooks/useReducedMotion";
 
 const DIFFICULTY_COLORS = {
-  easy: { bg: "bg-green-500/10", text: "text-green-400", border: "border-green-500/30" },
-  medium: { bg: "bg-yellow-500/10", text: "text-yellow-400", border: "border-yellow-500/30" },
-  hard: { bg: "bg-red-500/10", text: "text-red-400", border: "border-red-500/30" },
-  expert: { bg: "bg-purple-500/10", text: "text-purple-400", border: "border-purple-500/30" },
+  easy: { bg: "bg-green-500/10", text: "text-green-600", border: "border-green-500/30" },
+  medium: { bg: "bg-yellow-500/10", text: "text-yellow-600", border: "border-yellow-500/30" },
+  hard: { bg: "bg-red-500/10", text: "text-red-600", border: "border-red-500/30" },
+  expert: { bg: "bg-purple-500/10", text: "text-purple-600", border: "border-purple-500/30" },
 };
 
 const PROVENANCE_LABELS = {
-  official: { label: "Official", color: "text-emerald-400" },
-  candidate_reported: { label: "Candidate-reported", color: "text-amber-400" },
-  pattern_relevant: { label: "Pattern-relevant", color: "text-blue-400" },
-  canonical: { label: "Canonical", color: "text-purple-400" },
-  synthetic: { label: "Synthetic", color: "text-gray-400" },
+  official: { label: "Official", color: "text-emerald-600" },
+  candidate_reported: { label: "Candidate-reported", color: "text-amber-600" },
+  pattern_relevant: { label: "Pattern-relevant", color: "text-blue-600" },
+  canonical: { label: "Canonical", color: "text-purple-600" },
+  synthetic: { label: "Synthetic", color: "text-gray-500" },
 };
 
 // Mastery Ring
@@ -105,7 +105,7 @@ function MissionCard({ mission, onClick }) {
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="flex items-center gap-2">
           {mission.is_boss ? (
-            <Crown size={16} className="text-red-400" />
+            <Crown size={16} className="text-red-600" />
           ) : (
             <Play size={14} className="text-brand-sky" />
           )}
@@ -122,7 +122,7 @@ function MissionCard({ mission, onClick }) {
         <span className={`px-1.5 py-0.5 rounded text-[9px] font-mono uppercase border ${diff.bg} ${diff.text} ${diff.border}`}>
           {mission.difficulty}
         </span>
-        <span className="text-[10px] font-mono text-amber-400">+{mission.xp_reward || 0} XP</span>
+        <span className="text-[10px] font-mono text-amber-600">+{mission.xp_reward || 0} XP</span>
       </div>
       {mission.unlocked && mission.my_mastery > 0 && (
         <div className="mt-2 h-1 rounded-full bg-surface-base overflow-hidden">
@@ -179,7 +179,7 @@ function WorldMap({ data, onSelectMission, progress }) {
           <div className="mt-6 grid grid-cols-3 gap-3">
             <div className="bg-surface-base/40 rounded-xl p-3">
               <div className="flex items-center gap-2 mb-1">
-                <Zap size={14} className="text-amber-400" />
+                <Zap size={14} className="text-amber-600" />
                 <span className="text-[10px] font-mono uppercase tracking-widest text-brand-secondary">Adventure</span>
               </div>
               <div className="text-xl font-black text-text-primary">{progress.xp.total} XP</div>
@@ -187,7 +187,7 @@ function WorldMap({ data, onSelectMission, progress }) {
             </div>
             <div className="bg-surface-base/40 rounded-xl p-3">
               <div className="flex items-center gap-2 mb-1">
-                <GraduationCap size={14} className="text-green-400" />
+                <GraduationCap size={14} className="text-green-600" />
                 <span className="text-[10px] font-mono uppercase tracking-widest text-brand-secondary">Mastery</span>
               </div>
               <div className="text-xl font-black text-text-primary">
@@ -197,7 +197,7 @@ function WorldMap({ data, onSelectMission, progress }) {
             </div>
             <div className="bg-surface-base/40 rounded-xl p-3">
               <div className="flex items-center gap-2 mb-1">
-                <Target size={14} className="text-purple-400" />
+                <Target size={14} className="text-purple-600" />
                 <span className="text-[10px] font-mono uppercase tracking-widest text-brand-secondary">Readiness</span>
               </div>
               <div className="text-xl font-black text-text-primary">{progress.readiness.score}</div>
@@ -289,14 +289,14 @@ function MissionView({ mission, onComplete, onBack }) {
             <span className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase border ${diff.bg} ${diff.text} ${diff.border}`}>
               {lo.assessment?.difficulty}
             </span>
-            <span className="text-[10px] font-mono text-amber-400">+{lo.progression?.xp_reward} XP</span>
+            <span className="text-[10px] font-mono text-amber-600">+{lo.progression?.xp_reward} XP</span>
           </div>
         </div>
 
         {/* Provenance badge */}
         {lo.career?.provenance && (
           <div className="mb-4 inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-surface-base/40">
-            <span className={`text-[10px] font-mono uppercase ${PROVENANCE_LABELS[lo.career.provenance.level]?.color || "text-gray-400"}`}>
+            <span className={`text-[10px] font-mono uppercase ${PROVENANCE_LABELS[lo.career.provenance.level]?.color || "text-gray-500"}`}>
               {PROVENANCE_LABELS[lo.career.provenance.level]?.label || lo.career.provenance.level}
             </span>
             <span className="text-[10px] text-brand-secondary">— {lo.career.provenance.note?.slice(0, 70)}...</span>
@@ -313,8 +313,8 @@ function MissionView({ mission, onComplete, onBack }) {
             {lo.learning?.mental_model && (
               <div className="bg-blue-500/5 border border-blue-500/15 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <Brain size={14} className="text-blue-400" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-blue-400">Mental model</span>
+                  <Brain size={14} className="text-blue-600" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-blue-600">Mental model</span>
                 </div>
                 <p className="text-sm text-text-primary leading-relaxed">{lo.learning.mental_model}</p>
               </div>
@@ -323,8 +323,8 @@ function MissionView({ mission, onComplete, onBack }) {
             {lo.learning?.why_this_matters && (
               <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <Lightbulb size={14} className="text-amber-400" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400">Why this matters</span>
+                  <Lightbulb size={14} className="text-amber-600" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-amber-600">Why this matters</span>
                 </div>
                 <p className="text-sm text-text-primary leading-relaxed">{lo.learning.why_this_matters}</p>
               </div>
@@ -332,13 +332,13 @@ function MissionView({ mission, onComplete, onBack }) {
 
             {lo.learning?.real_world && lo.learning.real_world.length > 0 && (
               <details className="bg-green-500/5 border border-green-500/15 rounded-xl p-4">
-                <summary className="text-[10px] font-mono uppercase tracking-widest text-green-400 cursor-pointer">
+                <summary className="text-[10px] font-mono uppercase tracking-widest text-green-600 cursor-pointer">
                   Real-world use ({lo.learning.real_world.length})
                 </summary>
                 <ul className="mt-2 space-y-1.5 text-sm text-text-primary">
                   {lo.learning.real_world.map((u, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <ChevronRight size={12} className="text-green-400 mt-1 shrink-0" />
+                      <ChevronRight size={12} className="text-green-600 mt-1 shrink-0" />
                       <span>{u}</span>
                     </li>
                   ))}
@@ -368,9 +368,9 @@ function MissionView({ mission, onComplete, onBack }) {
               {lo.assessment.test_cases.map((tc, i) => (
                 <div key={i} className="bg-surface-base/40 rounded-lg p-2 text-[11px] font-mono">
                   <span className="text-brand-sky">Input:</span> {tc.input}
-                  {tc.edge && <span className="ml-2 text-amber-400">[{tc.edge}]</span>}
+                  {tc.edge && <span className="ml-2 text-amber-600">[{tc.edge}]</span>}
                   <br />
-                  <span className="text-green-400">Expected:</span> {tc.expected}
+                  <span className="text-green-600">Expected:</span> {tc.expected}
                 </div>
               ))}
             </div>
@@ -390,7 +390,7 @@ function MissionView({ mission, onComplete, onBack }) {
                   animate={{ opacity: 1, x: 0 }}
                   className="bg-purple-500/5 border border-purple-500/20 rounded-xl p-3"
                 >
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-purple-400 mb-1">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-purple-600 mb-1">
                     Hint {i + 1}
                   </div>
                   <p className="text-sm text-text-primary">{hintText}</p>
@@ -407,7 +407,7 @@ function MissionView({ mission, onComplete, onBack }) {
             animate={{ opacity: 1, y: 0 }}
             className="bg-surface-base/50 rounded-xl p-4 mb-4"
           >
-            <div className="text-[10px] font-mono uppercase tracking-widest text-green-400 mb-2">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-green-600 mb-2">
               Solution
             </div>
             <pre className="bg-surface-base text-text-primary rounded-lg p-3 text-xs font-mono overflow-x-auto">
@@ -429,13 +429,13 @@ function MissionView({ mission, onComplete, onBack }) {
         {/* Common mistakes */}
         {lo.assistance?.common_mistakes && lo.assistance.common_mistakes.length > 0 && (
           <details className="mb-4">
-            <summary className="text-[10px] font-mono uppercase tracking-widest text-orange-400 cursor-pointer">
+            <summary className="text-[10px] font-mono uppercase tracking-widest text-orange-600 cursor-pointer">
               Common mistakes ({lo.assistance.common_mistakes.length})
             </summary>
             <ul className="mt-2 space-y-1 text-sm text-text-primary">
               {lo.assistance.common_mistakes.map((m, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <AlertTriangle size={12} className="text-orange-400 mt-1 shrink-0" />
+                  <AlertTriangle size={12} className="text-orange-600 mt-1 shrink-0" />
                   <span>{m}</span>
                 </li>
               ))}
@@ -448,7 +448,7 @@ function MissionView({ mission, onComplete, onBack }) {
           {hintLevel < 3 && !showSolution && (
             <button
               onClick={requestHint}
-              className="px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 text-sm font-medium hover:bg-purple-500/20 transition-colors"
+              className="px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-600 text-sm font-medium hover:bg-purple-500/20 transition-colors"
             >
               <Lightbulb size={14} className="inline mr-1" />
               Get hint ({hintLevel}/3)
@@ -457,7 +457,7 @@ function MissionView({ mission, onComplete, onBack }) {
           {!showSolution && (
             <button
               onClick={() => setShowSolution(true)}
-              className="px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm font-medium hover:bg-red-500/20 transition-colors"
+              className="px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 text-sm font-medium hover:bg-red-500/20 transition-colors"
             >
               <Eye size={14} className="inline mr-1" />
               Show solution
@@ -537,9 +537,9 @@ function BossView({ boss, onAttempt, onBack }) {
 
       <div className="bg-gradient-to-br from-red-500/10 to-amber-500/5 border border-red-500/30 rounded-2xl p-5 sm:p-6">
         <div className="flex items-center gap-3 mb-4">
-          <Crown size={32} className="text-red-400" />
+          <Crown size={32} className="text-red-600" />
           <div>
-            <div className="text-[10px] font-mono uppercase tracking-widest text-red-400">Boss Battle</div>
+            <div className="text-[10px] font-mono uppercase tracking-widest text-red-600">Boss Battle</div>
             <h2 className="font-display font-black text-xl text-text-primary">{lo.title}</h2>
           </div>
         </div>
@@ -562,7 +562,7 @@ function BossView({ boss, onAttempt, onBack }) {
         {/* Story */}
         {lo.learning?.mental_model && (
           <div className="bg-blue-500/5 border border-blue-500/15 rounded-xl p-4 mb-4">
-            <div className="text-[10px] font-mono uppercase tracking-widest text-blue-400 mb-1">The Story</div>
+            <div className="text-[10px] font-mono uppercase tracking-widest text-blue-600 mb-1">The Story</div>
             <p className="text-sm text-text-primary leading-relaxed">{lo.learning.mental_model}</p>
           </div>
         )}
@@ -584,7 +584,7 @@ function BossView({ boss, onAttempt, onBack }) {
             if (!hintText) return null;
             return (
               <div key={n} className="bg-purple-500/5 border border-purple-500/20 rounded-xl p-3">
-                <div className="text-[10px] font-mono uppercase tracking-widest text-purple-400 mb-1">
+                <div className="text-[10px] font-mono uppercase tracking-widest text-purple-600 mb-1">
                   Hint {n}
                 </div>
                 <p className="text-sm text-text-primary">{hintText}</p>
@@ -596,7 +596,7 @@ function BossView({ boss, onAttempt, onBack }) {
         {hintLevel < 3 && (
           <button
             onClick={() => setHintLevel(hintLevel + 1)}
-            className="px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 text-sm font-medium hover:bg-purple-500/20 transition-colors mb-4"
+            className="px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-600 text-sm font-medium hover:bg-purple-500/20 transition-colors mb-4"
           >
             <Lightbulb size={14} className="inline mr-1" />
             Get hint ({hintLevel}/3)
@@ -718,7 +718,7 @@ export default function Journey() {
   if (error) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-surface-base px-6 text-center">
-        <AlertTriangle size={48} className="text-red-400 mb-3" />
+        <AlertTriangle size={48} className="text-red-600 mb-3" />
         <h2 className="text-xl font-bold text-text-primary">Journey unavailable</h2>
         <p className="text-sm text-brand-secondary mt-2">{error}</p>
       </div>

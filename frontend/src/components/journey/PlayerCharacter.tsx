@@ -74,7 +74,7 @@ function PlayerCharacterImpl({
     >
       <motion.div
         animate={bodyAnimation[state]}
-        className={`${sizeClass} rounded-full bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center shadow-lg ring-2 ring-white/30`}
+        className={`${sizeClass} rounded-full bg-gradient-to-br from-sky-500 to-blue-50 flex items-center justify-center shadow-lg ring-2 ring-slate-200`}
       >
         <span className="leading-none">{titleEmoji ?? "🏴‍☠️"}</span>
       </motion.div>

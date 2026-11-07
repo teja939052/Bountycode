@@ -82,7 +82,7 @@ export function IslandNode({
         {/* In-progress pulse */}
         {state === "in_progress" && (
           <span
-            className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-white"
+            className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-slate-200"
             style={{ backgroundColor: "#5BA7A0" }}
           />
         )}
@@ -196,7 +196,7 @@ export function BountyCard({
             <span>Mastery</span>
             <span>{Math.round(mastery)}%</span>
           </div>
-          <div className="h-1.5 overflow-hidden rounded-full bg-white/70">
+          <div className="h-1.5 overflow-hidden rounded-full bg-white">
             <div
               className="h-full rounded-full bg-primary transition-all duration-500"
               style={{ width: `${mastery}%` }}

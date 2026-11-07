@@ -199,7 +199,7 @@ export function MiniProjectLesson({
             <button
               onClick={submitProject}
               disabled={!allTestsPass}
-              className="flex-1 px-4 py-2 rounded-xl bg-success text-white text-sm font-medium hover:bg-success/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-4 py-2 rounded-xl bg-success text-slate-900 text-sm font-medium hover:bg-success/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               ✅ Submit Project
             </button>

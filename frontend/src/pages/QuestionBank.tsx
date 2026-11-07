@@ -34,10 +34,10 @@ interface QuestionFilters {
 }
 
 const DIFFICULTY_COLORS = {
-  easy: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  medium: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400",
-  hard: "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400",
-  expert: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
+  easy: "bg-green-100 text-green-700",
+  medium: "bg-yellow-100 text-yellow-700",
+  hard: "bg-red-100 text-red-700",
+  expert: "bg-purple-100 text-purple-700",
 };
 
 const DIFFICULTY_DOT = {
@@ -48,11 +48,11 @@ const DIFFICULTY_DOT = {
 };
 
 const TYPE_COLORS = {
-  coding: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400",
-  aptitude: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
-  behavioral: "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400",
-  system_design: "bg-indigo-100 dark:bg-indigo-900/30 text-brand-primary dark:text-indigo-400",
-  hr: "bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400",
+  coding: "bg-emerald-100 text-emerald-700",
+  aptitude: "bg-purple-100 text-purple-700",
+  behavioral: "bg-blue-100 text-blue-700",
+  system_design: "bg-indigo-100 text-brand-primary",
+  hr: "bg-pink-100 text-pink-700",
 };
 
 const TYPE_LABELS = {
@@ -65,10 +65,10 @@ const TYPE_LABELS = {
 
 const QUICK_FILTERS = [
   { key: "all", label: "All Problems", icon: <Hash size={13} /> },
-  { key: "solved", label: "Solved", icon: <CheckCircle size={13} />, color: "text-green-400" },
-  { key: "easy", label: "Easy", icon: <Target size={13} />, color: "text-green-400" },
-  { key: "medium", label: "Medium", icon: <Target size={13} />, color: "text-yellow-400" },
-  { key: "hard", label: "Hard", icon: <Target size={13} />, color: "text-red-400" },
+  { key: "solved", label: "Solved", icon: <CheckCircle size={13} />, color: "text-green-600" },
+  { key: "easy", label: "Easy", icon: <Target size={13} />, color: "text-green-600" },
+  { key: "medium", label: "Medium", icon: <Target size={13} />, color: "text-yellow-600" },
+  { key: "hard", label: "Hard", icon: <Target size={13} />, color: "text-red-600" },
 ];
 
 const CATEGORY_FILTERS = [
@@ -311,8 +311,7 @@ export default function QuestionBank() {
                     Random solve
                   </button>
                 <button onClick={() => setShowFilters(true)} 
-className="inline-flex items-center gap-2 rounded-xl border border-brand-primary/20 bg-surface-card px-4 py-2.5 text-sm font-semibold 
-text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-brand-sky">
+className="inline-flex items-center gap-2 rounded-xl border border-brand-primary/20 bg-surface-card px-4 py-2.5 text-sm font-semibold text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-brand-sky">
                     <Filter size={14} />
                     Filters
                   </button>
@@ -346,7 +345,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
 
         {dailyChallenge?.problem && (
           <motion.div
-            className="mb-6 overflow-hidden rounded-2xl border border-indigo-200/60 dark:border-indigo-900/50 bg-gradient-to-r from-indigo-600 via-cyan-600 to-emerald-500 text-text-primary shadow-lg"
+            className="mb-6 overflow-hidden rounded-2xl border border-indigo-200/60 bg-gradient-to-r from-indigo-600 via-cyan-600 to-emerald-500 text-white shadow-lg"
             initial={reduced ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -372,7 +371,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   <ArrowRight size={14} />
                 </Link>
                 {dailyChallenge.problem?.id && (
-                  <Link to={`/solve/${dailyChallenge.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/30 text-text-primary font-semibold text-sm hover:bg-surface-card/10 transition-colors">
+                  <Link to={`/solve/${dailyChallenge.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 text-text-primary font-semibold text-sm hover:bg-surface-card/10 transition-colors">
                     Solve Now
                   </Link>
                 )}
@@ -447,12 +446,12 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
         {/* Submit Form */}
         {showSubmit && (
           <AnimatedCard className="card mb-6">
-            <h2 className="text-xl font-bold mb-4 dark:text-white">Submit a Question</h2>
+            <h2 className="text-xl font-bold mb-4">Submit a Question</h2>
             {submitted && <p className="text-sm text-green-600 mb-2">Submitted! ID: {submitted}</p>}
             <form onSubmit={handleSubmitQuestion} className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Type</label>
-                <select name="type" className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm" required>
+                <select name="type" className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm" required>
                   <option value="aptitude">Aptitude</option>
                   <option value="coding">Coding</option>
                   <option value="behavioral">Behavioral</option>
@@ -470,7 +469,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Difficulty</label>
-                <select name="difficulty" className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select name="difficulty" className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="easy">Easy</option>
                   <option value="medium">Medium</option>
                   <option value="hard">Hard</option>
@@ -523,8 +522,8 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                 onClick={() => setCategory(f.key)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap border ${
                   category === f.key
-                    ? "bg-primary-600 text-text-primary border-primary-600 shadow-sm"
-                    : `border-brand-primary/10 bg-surface-card text-brand-muted hover:bg-surface-card/70 dark:hover:bg-gray-700 ${meta?.tag || ""}`
+                    ? "bg-primary-600 text-white border-primary-600 shadow-sm"
+                    : `border-brand-primary/10 bg-surface-card text-brand-muted hover:bg-surface-card/70 ${meta?.tag || ""}`
                 }`}
               >
                 {meta && f.key !== category ? meta.label : f.label}
@@ -539,7 +538,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               onClick={() => handleQuickFilter(f.key)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
                 quickFilter === f.key
-                  ? "bg-primary-600 text-text-primary shadow-sm"
+                  ? "bg-primary-600 text-white shadow-sm"
                   : "bg-white text-brand-muted hover:bg-surface-2"
               }`}
             >
@@ -551,13 +550,13 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
         {/* Search + Filter + Sort */}
         <div className="flex gap-3 mb-6">
           <div className="relative flex-1">
-            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
             <input
               type="text"
               placeholder="Search questions by name, topic, or company..."
               value={selected.search}
               onChange={(e) => handleFilterChange("search", e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-brand-primary/20 border-brand-primary/15 rounded-lg focus:ring-2 focus:ring-primary-500 bg-surface-card bg-surface-card dark:text-white"
+              className="w-full pl-10 pr-4 py-3 border border-brand-primary/20 border-brand-primary/15 rounded-lg focus:ring-2 focus:ring-primary-500 bg-surface-card bg-surface-card"
             />
           </div>
           {/* Sort Dropdown */}
@@ -582,8 +581,8 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                       onClick={() => { setSortBy(opt.key); setSortMenuOpen(false); }}
                       className={`flex items-center justify-between gap-2 w-full px-3 py-2.5 text-xs transition-colors ${
                         sortBy === opt.key
-                          ? "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-semibold"
-                          : "text-brand-secondary text-brand-muted hover:bg-surface-card dark:hover:bg-gray-700"
+                          ? "bg-primary-50 text-primary-600 font-semibold"
+                          : "text-brand-secondary text-brand-muted hover:bg-surface-card"
                       }`}
                     >
                       <span className="flex items-center gap-1.5">{opt.icon} {opt.label}</span>
@@ -602,7 +601,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-colors ${
               showFilters || activeFilters > 0
-                ? "bg-primary-600 text-text-primary"
+                ? "bg-primary-600 text-white"
                 : "bg-white text-brand-secondary text-brand-muted hover:bg-surface-2"
             }`}
           >
@@ -617,49 +616,49 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
             <div className="grid md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Company</label>
-                <select value={selected.company} onChange={(e) => handleFilterChange("company", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.company} onChange={(e) => handleFilterChange("company", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Companies</option>
                   {filters.companies.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Role</label>
-                <select value={selected.role} onChange={(e) => handleFilterChange("role", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.role} onChange={(e) => handleFilterChange("role", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Roles</option>
                   {filters.roles.map((r) => <option key={r} value={r}>{r}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Type</label>
-                <select value={selected.type} onChange={(e) => handleFilterChange("type", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.type} onChange={(e) => handleFilterChange("type", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Types</option>
                   {filters.types.map((t) => <option key={t} value={t}>{TYPE_LABELS[t] || t}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Difficulty</label>
-                <select value={selected.difficulty} onChange={(e) => handleFilterChange("difficulty", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.difficulty} onChange={(e) => handleFilterChange("difficulty", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Levels</option>
                   {filters.difficulties.map((d) => <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Topic</label>
-                <select value={selected.topic} onChange={(e) => handleFilterChange("topic", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.topic} onChange={(e) => handleFilterChange("topic", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Topics</option>
                   {filters.topics.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Pattern (Striver)</label>
-                <select value={selected.pattern} onChange={(e) => handleFilterChange("pattern", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.pattern} onChange={(e) => handleFilterChange("pattern", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Patterns</option>
                   {filters.patterns.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Source (Curated)</label>
-                <select value={selected.source} onChange={(e) => handleFilterChange("source", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.source} onChange={(e) => handleFilterChange("source", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Sources</option>
                   {filters.sources.map((s) => (
                     <option key={s} value={s}>{s === "blind75" ? "Blind 75" : s === "neetcode150" ? "NeetCode 150" : s === "striver" ? "Striver A2Z" : s.charAt(0).toUpperCase() + s.slice(1)}</option>
@@ -668,7 +667,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Sub Topic</label>
-                <select value={selected.sub_topic} onChange={(e) => handleFilterChange("sub_topic", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
+                <select value={selected.sub_topic} onChange={(e) => handleFilterChange("sub_topic", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card text-sm">
                   <option value="">All Sub Topics</option>
                   {filters.sub_topics.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
@@ -677,7 +676,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
             {activeFilters > 0 && (
               <div className="mt-4 flex items-center gap-3">
                 <button onClick={clearFilters} className="text-sm text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1"><RotateCcw size={12} /> Clear all filters</button>
-                <span className="text-sm text-gray-400">{total} questions found</span>
+                <span className="text-sm text-gray-500">{total} questions found</span>
               </div>
             )}
           </motion.div>
@@ -687,7 +686,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
         {!showFilters && (
           <div className="flex flex-wrap gap-2 mb-6">
             {["TCS", "Infosys", "Google", "Amazon", "Microsoft", "Meta", "Wipro", "Uber"].map((c) => (
-              <button key={c} onClick={() => handleFilterChange("company", selected.company === c ? "" : c)} className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${selected.company === c ? "bg-primary-600 text-text-primary" : "bg-white text-brand-secondary text-brand-muted hover:bg-surface-2"}`}>
+              <button key={c} onClick={() => handleFilterChange("company", selected.company === c ? "" : c)} className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${selected.company === c ? "bg-primary-600 text-white" : "bg-white text-brand-secondary text-brand-muted hover:bg-surface-2"}`}>
                 {c}
               </button>
             ))}
@@ -710,13 +709,13 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                 Retry
               </button>
             </div>
-            <p className="text-sm text-gray-400 dark:text-brand-muted">Try adjusting your filters</p>
+            <p className="text-sm text-gray-500">Try adjusting your filters</p>
           </div>
         ) : filteredQuestions.length === 0 ? (
           <div className="card text-center py-12">
-            <BookOpen size={48} className="mx-auto text-gray-300 dark:text-brand-secondary mb-4" />
+            <BookOpen size={48} className="mx-auto text-gray-600 mb-4" />
             <p className="text-brand-muted text-brand-muted mb-2">No questions found</p>
-            <p className="text-sm text-gray-400 dark:text-brand-muted">Try adjusting your filters</p>
+            <p className="text-sm text-gray-500">Try adjusting your filters</p>
           </div>
         ) : (
           <div className="space-y-2">
@@ -733,13 +732,13 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   <div
                     className={`group flex items-center gap-3 rounded-2xl border px-4 py-3 transition-all cursor-pointer ${
                       isSolved
-                        ? "border-emerald-200 bg-emerald-50/70 dark:border-emerald-800/50 dark:bg-emerald-900/5"
-                        : "border-brand-primary/10 bg-surface-card hover:border-brand-sky/30 hover:shadow-sm dark:border-gray-800 bg-surface-base dark:hover:border-brand-sky/50"
+                        ? "border-emerald-200 bg-emerald-50/70"
+                        : "border-brand-primary/10 bg-surface-card hover:border-brand-sky/30 hover:shadow-sm bg-surface-base"
                     }`}
                     onClick={() => handlePracticeClick(q.id)}
                   >
                     <div className="flex w-12 shrink-0 flex-col items-center justify-center text-center">
-                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-400">#{rank}</span>
+                      <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-gray-500">#{rank}</span>
                       <div className="mt-1">
                         {isSolved ? (
                           <CheckCircle size={18} className="text-emerald-500" />
@@ -769,11 +768,11 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                           {q.difficulty}
                         </span>
                         {companyList.slice(0, 2).map((co) => (
-                          <span key={co} className="rounded-full bg-blue-50 px-1.5 py-0.5 text-[10px] text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
+                          <span key={co} className="rounded-full bg-blue-50 px-1.5 py-0.5 text-[10px] text-blue-600">
                             {co}
                           </span>
                         ))}
-                        <span className="text-[10px] text-gray-400">{q.topic}{q.sub_topic ? ` · ${q.sub_topic}` : ""}</span>
+                        <span className="text-[10px] text-gray-500">{q.topic}{q.sub_topic ? ` · ${q.sub_topic}` : ""}</span>
                         {q.type === "coding" && (
                           <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${GROUP_META[gk].tag}`}>
                             {GROUP_META[gk].label}
@@ -787,7 +786,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                       <div className="flex items-center gap-1 md:hidden">
                         {renderAcceptanceBar(q)}
                       </div>
-                      <div className="hidden min-w-[44px] items-center gap-1 text-[10px] text-gray-400 md:flex">
+                      <div className="hidden min-w-[44px] items-center gap-1 text-[10px] text-gray-500 md:flex">
                         <ThumbsUp size={10} />
                         <span className="tabular-nums">{q.upvotes || 0}</span>
                       </div>
@@ -797,7 +796,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                     </div>
 
                     {/* Arrow */}
-                    <ArrowRight size={14} className="shrink-0 text-gray-300 transition-colors group-hover:text-brand-sky" />
+                    <ArrowRight size={14} className="shrink-0 text-gray-600 transition-colors group-hover:text-brand-sky" />
                   </div>
                 );
               }}
@@ -832,7 +831,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   onClick={() => setPage(pageNum)}
                    className={`h-9 w-8 rounded-lg text-xs font-medium transition-colors ${
                      page === pageNum
-                       ? "bg-primary-600 text-text-primary"
+                       ? "bg-primary-600 text-white"
                        : "text-brand-muted hover:bg-surface-2"
                    }`}
                 >
@@ -870,16 +869,16 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
           {showPaywall && (
             <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowPaywall(false)}>
               <motion.div className="w-full max-w-md rounded-2xl bg-white p-8 text-center shadow-2xl" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
-                <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4"><Lock size={32} className="text-primary-600" /></div>
-                <h2 className="text-2xl font-bold mb-2 dark:text-white">Free Limit Reached</h2>
+                <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4"><Lock size={32} className="text-primary-600" /></div>
+                <h2 className="text-2xl font-bold mb-2">Free Limit Reached</h2>
                 <p className="text-brand-secondary text-brand-muted mb-6">You've used all {FREE_LIMIT} free practice questions this month. Upgrade to Pro for unlimited access to {total}+ curated questions.</p>
-                <div className="bg-primary-50 dark:bg-primary-900/20 rounded-xl p-4 mb-6">
-                  <div className="flex items-center justify-center gap-2 mb-2"><Zap size={18} className="text-primary-600" /><span className="font-bold text-primary-700 dark:text-primary-400">Pro — $9/mo</span></div>
+                <div className="bg-primary-50 rounded-xl p-4 mb-6">
+                  <div className="flex items-center justify-center gap-2 mb-2"><Zap size={18} className="text-primary-600" /><span className="font-bold text-primary-700">Pro — $9/mo</span></div>
                   <p className="text-sm text-brand-secondary text-brand-muted">Unlimited questions · Full solutions · Company filters · Mock tests</p>
                 </div>
                 <div className="flex gap-3">
                   <button onClick={() => setShowPaywall(false)} className="flex-1 rounded-lg bg-surface-2 px-4 py-3 font-medium text-brand-secondary hover:bg-surface-2">Later</button>
-                  <Link to="/pricing" className="flex-1 px-4 py-3 rounded-lg bg-primary-600 text-text-primary font-medium hover:bg-primary-700 text-center" onClick={() => setShowPaywall(false)}>Upgrade to Pro</Link>
+                  <Link to="/pricing" className="flex-1 px-4 py-3 rounded-lg bg-primary-600 text-white font-medium hover:bg-primary-700 text-center" onClick={() => setShowPaywall(false)}>Upgrade to Pro</Link>
                 </div>
               </motion.div>
             </motion.div>

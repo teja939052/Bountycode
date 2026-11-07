@@ -80,11 +80,11 @@ export default function DailyDrill() {
           initial={reduced ? {} : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CalendarCheck size={32} className="text-orange-600" />
           </div>
-          <h1 className="text-3xl font-bold dark:text-white">Daily Drill</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">5 quick questions to keep your skills sharp</p>
+          <h1 className="text-3xl font-bold">Daily Drill</h1>
+          <p className="text-gray-600 mt-2">5 quick questions to keep your skills sharp</p>
         </motion.div>
 
         {/* Stats */}
@@ -96,8 +96,8 @@ export default function DailyDrill() {
           ].map((stat, i) => (
             <AnimatedCard key={stat.label} delay={i * 0.05} className="card text-center">
               <stat.icon size={24} className={`mx-auto ${stat.color} mb-2`} />
-              <p className="text-2xl font-bold dark:text-white">{stat.value}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
+              <p className="text-2xl font-bold">{stat.value}</p>
+              <p className="text-sm text-gray-500">{stat.label}</p>
             </AnimatedCard>
           ))}
         </div>
@@ -109,10 +109,10 @@ export default function DailyDrill() {
               <StaggerItem key={i}>
                 <AnimatedCard className="card">
                   <div className="flex items-start gap-3 mb-4">
-                    <span className="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-sm shrink-0">
+                    <span className="w-8 h-8 bg-primary-100 text-primary-700 rounded-full flex items-center justify-center font-bold text-sm shrink-0">
                       {i + 1}
                     </span>
-                    <p className="font-semibold text-lg dark:text-white">{q.question}</p>
+                    <p className="font-semibold text-lg">{q.question}</p>
                   </div>
                   {q.options && (
                     <div className="space-y-2 ml-11">
@@ -122,8 +122,8 @@ export default function DailyDrill() {
                           onClick={() => handleAnswer(i, j)}
                           className={`w-full text-left p-3 rounded-lg border-2 transition-colors ${
                             answers[i] === j
-                              ? "border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400"
-                              : "border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 dark:text-gray-300"
+                              ? "border-primary-500 bg-primary-50 text-primary-700"
+                              : "border-gray-200 hover:border-gray-300"
                           }`}
                           whileTap={reduced ? {} : { scale: 0.98 }}
                         >
@@ -140,12 +140,12 @@ export default function DailyDrill() {
             <motion.button
               onClick={handleSubmit}
               disabled={!allAnswered || submitting}
-              className="w-full bg-primary-600 text-text-primary py-4 rounded-xl font-bold text-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
               whileHover={reduced ? {} : { scale: 1.01 }}
               whileTap={reduced ? {} : { scale: 0.99 }}
             >
               {submitting ? (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-slate-200" />
               ) : (
                 <>
                   Submit Drill
@@ -167,7 +167,7 @@ export default function DailyDrill() {
               <div className="card text-center py-10">
                 <motion.div
                   className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ${
-                    result.percentage >= 80 ? "bg-green-100 dark:bg-green-900/30" : result.percentage >= 50 ? "bg-yellow-100 dark:bg-yellow-900/30" : "bg-red-100 dark:bg-red-900/30"
+                    result.percentage >= 80 ? "bg-green-100" : result.percentage >= 50 ? "bg-yellow-100" : "bg-red-100"
                   }`}
                   initial={reduced ? {} : { rotate: -180, scale: 0 }}
                   animate={{ rotate: 0, scale: 1 }}
@@ -181,11 +181,11 @@ export default function DailyDrill() {
                     <XCircle size={40} className="text-red-600" />
                   )}
                 </motion.div>
-                <h2 className="text-3xl font-bold mb-2 dark:text-white">
+                <h2 className="text-3xl font-bold mb-2">
                   {result.percentage >= 80 ? "Excellent!" : result.percentage >= 50 ? "Good effort!" : "Keep practicing!"}
                 </h2>
                 <p className="text-6xl font-bold text-primary-600 mb-4">{result.percentage || 0}%</p>
-                <p className="text-gray-600 dark:text-gray-400 mb-2">
+                <p className="text-gray-600 mb-2">
                   {result.correct || 0} out of {result.total || 5} correct
                 </p>
                 {result.xp_gained && (
@@ -193,7 +193,7 @@ export default function DailyDrill() {
                 )}
                 <button
                   onClick={loadDrill}
-                  className="inline-flex items-center gap-2 bg-primary-600 text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+                  className="inline-flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
                 >
                   <RotateCcw size={18} />
                   Try Another Drill
@@ -204,7 +204,7 @@ export default function DailyDrill() {
         </AnimatePresence>
 
         {drill && !submitted && (
-          <div className="mt-6 text-center text-sm text-gray-400 dark:text-gray-500">
+          <div className="mt-6 text-center text-sm text-gray-500">
             {Object.keys(answers).length} of {drill.questions?.length || 0} answered
           </div>
         )}

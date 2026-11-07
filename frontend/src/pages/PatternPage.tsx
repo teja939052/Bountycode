@@ -424,16 +424,16 @@ const DEFAULT_META: PatternMeta = {
 };
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  easy: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  medium: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400",
-  hard: "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400",
+  easy: "bg-green-100 text-green-700",
+  medium: "bg-yellow-100 text-yellow-700",
+  hard: "bg-red-100 text-red-700",
 };
 
 const STATUS_STYLES: Record<string, string> = {
-  not_started: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400",
-  attempted: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400",
-  solved: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  mastered: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400",
+  not_started: "bg-gray-100 text-gray-500",
+  attempted: "bg-amber-100 text-amber-700",
+  solved: "bg-green-100 text-green-700",
+  mastered: "bg-indigo-100 text-indigo-700",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -456,21 +456,21 @@ const DEFAULT_CHECKLIST = [
 function CodeBlock({ code, label }: { code: string; label: string }) {
   const [copied, setCopied] = useState(false);
   return (
-    <div className="relative rounded-xl overflow-hidden border border-border dark:border-gray-700 bg-gray-950">
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-800">
-        <span className="text-xs font-mono text-gray-400">{label}</span>
+    <div className="relative rounded-xl overflow-hidden border border-border bg-white">
+      <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-slate-200">
+        <span className="text-xs font-mono text-gray-500">{label}</span>
         <button
           onClick={() => {
             navigator.clipboard?.writeText(code);
             setCopied(true);
             setTimeout(() => setCopied(false), 1200);
           }}
-          className="text-xs text-gray-500 hover:text-white transition-colors"
+          className="text-xs text-gray-500 hover:text-slate-900 transition-colors"
         >
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre className="p-4 text-[13px] leading-relaxed text-cyan-300 font-mono overflow-x-auto">
+      <pre className="p-4 text-[13px] leading-relaxed text-cyan-600 font-mono overflow-x-auto">
         <code>{code}</code>
       </pre>
     </div>
@@ -619,11 +619,11 @@ export default function PatternPage() {
     return (
       <div className="min-h-screen py-12 px-4">
         <div className="max-w-4xl mx-auto space-y-4">
-          <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3 animate-pulse" />
+          <div className="h-8 bg-gray-200 rounded w-1/3 animate-pulse" />
           {Array.from({ length: 7 }).map((_, i) => (
             <div key={i} className="card animate-pulse">
-              <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-2/3 mb-2" />
-              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+              <div className="h-5 bg-gray-200 rounded w-2/3 mb-2" />
+              <div className="h-4 bg-gray-200 rounded w-1/3" />
             </div>
           ))}
         </div>
@@ -649,28 +649,28 @@ export default function PatternPage() {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="flex flex-wrap items-center gap-3 mb-2">
-            <h1 className="text-3xl font-bold dark:text-white">
+            <h1 className="text-3xl font-bold">
               {data?.pattern || "Pattern"}
             </h1>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-100 border border-emerald-200">
               <Sparkles size={12} />
               Pattern
             </span>
           </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-3xl">{meta.subtitle}</p>
+          <p className="text-gray-600 max-w-3xl">{meta.subtitle}</p>
 
-          <div className="mt-4 flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800">
+          <div className="mt-4 flex flex-wrap gap-3 text-sm text-gray-600">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100">
               <TrendingUp size={14} /> {meta.difficulty_range}
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100">
               <Clock size={14} /> ~{meta.estimated_days} day{meta.estimated_days > 1 ? "s" : ""} to master
             </span>
             {data && data.companies.length > 0 && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100">
                 <Building2 size={14} />
                 {data.companies.slice(0, 4).map((c) => c.name).join(", ")}
-                <span className="text-xs text-gray-400">(pattern relevance)</span>
+                <span className="text-xs text-gray-500">(pattern relevance)</span>
               </span>
             )}
           </div>
@@ -681,7 +681,7 @@ export default function PatternPage() {
               <div className="card p-4">
                 <div className="text-2xl font-bold text-primary-600">{data.mastery_percent}%</div>
                 <div className="text-xs text-gray-500">Pattern Mastery</div>
-                <div className="mt-2 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div className="mt-2 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-gradient-to-r from-primary-500 to-primary-600 rounded-full"
                     initial={{ width: 0 }}
@@ -703,7 +703,7 @@ export default function PatternPage() {
                 <div className="text-xs text-gray-500">Attempted</div>
               </div>
               <div className="card p-4">
-                <div className="text-2xl font-bold text-gray-400">{data.remaining}</div>
+                <div className="text-2xl font-bold text-gray-500">{data.remaining}</div>
                 <div className="text-xs text-gray-500">Remaining</div>
               </div>
             </div>
@@ -711,7 +711,7 @@ export default function PatternPage() {
         </motion.div>
 
         {error ? (
-          <div className="card text-center py-12 text-gray-500 dark:text-gray-400">{error}</div>
+          <div className="card text-center py-12 text-gray-500">{error}</div>
         ) : (
           <div className="space-y-8">
             {/* Overview */}
@@ -721,10 +721,10 @@ export default function PatternPage() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white mb-3">
+                <h2 className="flex items-center gap-2 text-lg font-bold mb-3">
                   <BookOpen size={18} className="text-primary-500" /> Pattern Overview
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{meta.overview}</p>
+                <p className="text-gray-600 leading-relaxed">{meta.overview}</p>
               </motion.section>
             )}
 
@@ -735,12 +735,12 @@ export default function PatternPage() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white mb-3">
+                <h2 className="flex items-center gap-2 text-lg font-bold mb-3">
                   <Lightbulb size={18} className="text-amber-500" /> Core Intuition
                 </h2>
                 <ul className="space-y-2">
                   {meta.intuition.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                    <li key={i} className="flex items-start gap-2 text-gray-600">
                       <Target size={15} className="mt-1 shrink-0 text-amber-500" />
                       <span>{item}</span>
                     </li>
@@ -756,7 +756,7 @@ export default function PatternPage() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white mb-3">
+                <h2 className="flex items-center gap-2 text-lg font-bold mb-3">
                   <Code2 size={18} className="text-cyan-500" /> Template Code
                 </h2>
                 <div className="flex gap-2 mb-4">
@@ -764,8 +764,8 @@ export default function PatternPage() {
                     onClick={() => setTemplate("fixed")}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                       template === "fixed"
-                        ? "bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                        ? "bg-primary-100 text-primary-700"
+                        : "bg-gray-100 text-gray-500"
                     }`}
                   >
                     Fixed Window
@@ -774,21 +774,21 @@ export default function PatternPage() {
                     onClick={() => setTemplate("variable")}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                       template === "variable"
-                        ? "bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                        ? "bg-primary-100 text-primary-700"
+                        : "bg-gray-100 text-gray-500"
                     }`}
                   >
                     Variable Window
                   </button>
                   <div className="flex-1" />
-                  <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                  <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
                     {(["python", "java"] as const).map((lang) => (
                       <button
                         key={lang}
                         onClick={() => setTab(lang)}
                         className={`px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wide transition-colors ${
                           tab === lang
-                            ? "bg-white dark:bg-gray-700 text-primary-600 shadow"
+                            ? "bg-white text-primary-600 shadow"
                             : "text-gray-500"
                         }`}
                       >
@@ -811,17 +811,17 @@ export default function PatternPage() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white mb-1">
+                <h2 className="flex items-center gap-2 text-lg font-bold mb-1">
                   <Target size={18} className="text-emerald-500" /> Active Recall
                 </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+                <p className="text-xs text-gray-500 mb-4">
                   Manipulate the window, predict the shrink step, then explain why it stays O(n).
                   Each interaction records evidence to the existing study pipeline (skill dsa.sliding_window).
                   Want it guided? Take the 18-minute mission: Discover → Manipulate → Predict → Build → Break → Debug → Transfer → Prove.
                 </p>
                 <Link
                   to="/mission/sliding-window"
-                  className="mb-4 inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 text-sm font-bold text-white"
+                  className="mb-4 inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 text-sm font-bold text-slate-900"
                 >
                   <ChevronRight size={15} /> Start the guided Sliding Window mission →
                 </Link>
@@ -888,7 +888,7 @@ export default function PatternPage() {
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="flex items-center justify-between mb-4">
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white">
+                <h2 className="flex items-center gap-2 text-lg font-bold">
                   <Terminal size={18} className="text-primary-500" /> Progressive Practice
                 </h2>
                 <span className="text-xs text-gray-500">
@@ -905,17 +905,17 @@ export default function PatternPage() {
                     return (
                       <div
                         key={problem.id}
-                        className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-border dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700 transition-colors"
+                        className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 rounded-xl border border-border hover:border-primary-300 transition-colors"
                       >
                         <div className="flex items-center gap-3 sm:w-64 shrink-0">
-                          <div className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-sm font-bold text-gray-500 dark:text-gray-400 shrink-0">
+                          <div className="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-sm font-bold text-gray-500 shrink-0">
                             {problem.ladder_order && problem.ladder_order < 999 ? problem.ladder_order : index + 1}
                           </div>
                           <Link
                             to={href}
                             target={isExternal ? "_blank" : undefined}
                             rel={isExternal ? "noopener noreferrer" : undefined}
-                            className="font-semibold text-sm dark:text-white hover:text-primary-600 transition-colors underline-offset-2 hover:underline"
+                            className="font-semibold text-sm hover:text-primary-600 transition-colors underline-offset-2 hover:underline"
                           >
                             {problem.title}
                           </Link>
@@ -924,15 +924,15 @@ export default function PatternPage() {
                           <span className={`px-2 py-0.5 rounded-full text-xs ${DIFFICULTY_COLORS[problem.difficulty] || ""}`}>
                             {problem.difficulty}
                           </span>
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 border border-gray-700 rounded-full px-2 py-0.5">
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500 border border-slate-200 rounded-full px-2 py-0.5">
                             {platformLabel}
                           </span>
                           {problem.companies.slice(0, 2).map((c) => (
-                            <span key={c} className="text-xs text-gray-400 flex items-center gap-1">
+                            <span key={c} className="text-xs text-gray-500 flex items-center gap-1">
                               <Building2 size={10} /> {c}
                             </span>
                           ))}
-                          <span className="text-xs text-gray-500 dark:text-gray-400 hidden lg:inline">
+                          <span className="text-xs text-gray-500 hidden lg:inline">
                             {problem.complexity?.time ? `O(${problem.complexity.time})` : ""}
                           </span>
                         </div>
@@ -950,8 +950,8 @@ export default function PatternPage() {
                           </Link>
                         </div>
                         {problem.approach && (
-                          <div className="sm:w-full text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/50 rounded-lg p-2.5">
-                            <span className="font-semibold text-gray-600 dark:text-gray-300">Why this problem: </span>
+                          <div className="sm:w-full text-xs text-gray-500 bg-gray-50 rounded-lg p-2.5">
+                            <span className="font-semibold text-gray-600">Why this problem: </span>
                             {problem.approach}
                           </div>
                         )}
@@ -960,7 +960,7 @@ export default function PatternPage() {
                   })}
                 </div>
               ) : (
-                <div className="text-center py-10 text-gray-500 dark:text-gray-400">
+                <div className="text-center py-10 text-gray-500">
                   No verified problems in this pattern yet.
                 </div>
               )}
@@ -973,7 +973,7 @@ export default function PatternPage() {
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="flex items-center justify-between mb-3">
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white">
+                <h2 className="flex items-center gap-2 text-lg font-bold">
                   <CheckCircle size={18} className="text-green-500" /> Mastery Checklist
                 </h2>
                 <span className="text-xs text-gray-500">{checklistDone}/{checklist.length} done</span>
@@ -988,7 +988,7 @@ export default function PatternPage() {
                         onChange={() => toggleCheck(i)}
                         className="mt-0.5 w-4 h-4 accent-emerald-500"
                       />
-                      <span className={`text-sm ${checked[i] ? "text-gray-400 line-through" : "text-gray-600 dark:text-gray-400"}`}>
+                      <span className={`text-sm ${checked[i] ? "text-gray-500 line-through" : "text-gray-600"}`}>
                         {item}
                       </span>
                     </label>
@@ -1003,7 +1003,7 @@ export default function PatternPage() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white mb-3">
+                <h2 className="flex items-center gap-2 text-lg font-bold mb-3">
                   <Sparkles size={18} className="text-primary-500" /> Related Patterns
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -1011,19 +1011,19 @@ export default function PatternPage() {
                       const published = PUBLISHED_PATTERN_SLUGS.has(r.slug);
                       const body = (
                         <>
-                          <h3 className="font-bold text-sm dark:text-white group-hover:text-primary-600 transition-colors mb-1">
+                          <h3 className="font-bold text-sm group-hover:text-primary-600 transition-colors mb-1">
                             {r.name}
                             {!published && (
-                              <span className="ml-2 text-[10px] font-mono uppercase tracking-wide text-gray-400">coming soon</span>
+                              <span className="ml-2 text-[10px] font-mono uppercase tracking-wide text-gray-500">coming soon</span>
                             )}
                           </h3>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">{r.why}</p>
+                          <p className="text-xs text-gray-500">{r.why}</p>
                           {published ? (
                             <span className="inline-flex items-center gap-1 text-xs text-primary-600 mt-2">
                               Open pattern <ChevronRight size={12} />
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 text-xs text-gray-400 mt-2">
+                            <span className="inline-flex items-center gap-1 text-xs text-gray-500 mt-2">
                               More verified problems coming
                             </span>
                           )}
@@ -1033,7 +1033,7 @@ export default function PatternPage() {
                         <Link
                           key={r.slug}
                           to={`/pattern/${r.slug}`}
-                          className="card p-4 group hover:border-primary-300 dark:hover:border-primary-700 transition-colors"
+                          className="card p-4 group hover:border-primary-300 transition-colors"
                         >
                           {body}
                         </Link>

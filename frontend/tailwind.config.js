@@ -12,25 +12,113 @@ export default {
           DEFAULT: "#FFFFFF",
           2: "#F0F7F1",
           hover: "#F0EDE6",
+          // Sub-tokens referenced by pages/design-system components.
+          base: "#FAFAF6",
+          card: "#FFFFFF",
+          elevated: "#FFFFFF",
+          raised: "#FFFFFF",
+          muted: "#F0F7F1",
+          100: "#F0F7F1",
+          border: "#DCE8DE",
         },
         border: {
           DEFAULT: "#DCE8DE",
+          primary: "#DCE8DE",
+          muted: "#E6EDE7",
         },
         text: {
           DEFAULT: "#17211B",
           primary: "#17211B",
+          secondary: "#3F4A43",
           muted: "#68736B",
           light: "#68736B",
+          dim: "#8A948D",
           inverse: "#FFFFFF",
         },
 
         // ============ PRIMARY GREEN (ACCENT, NOT BACKGROUND) ============
         primary: {
           DEFAULT: "#22C55E",
+          50: "#F0FDF4",
+          100: "#DCFCE7",
+          400: "#4ADE80",
+          500: "#22C55E",
+          600: "#16A34A",
+          700: "#15803D",
+          900: "#14532D",
           dark: "#16A34A",
           soft: "#DCFCE7",
           hover: "#16A34A",
         },
+
+        // ============ LEGACY ALIASES ============
+        // `brand-*`, `surface-card`, `nature-*`, `cyber-*` and `space-*` are
+        // referenced across the app. They are aliases onto the light system
+        // above so every usage renders with the front-page palette.
+        brand: {
+          50: "#EAF7ED", 200: "#BFE6C9", 500: "#22C55E", 600: "#16A34A",
+          700: "#15803D", 900: "#14532D",
+          DEFAULT: "#22C55E", primary: "#22C55E", secondary: "#5BA7A0",
+          tertiary: "#EAB74D", accent: "#8BC9D5", deep: "#15803D",
+          dim: "#68736B", muted: "#68736B", mint: "#EAF7ED",
+          sky: "#8BC9D5", gold: "#EAB74D", emerald: "#22C55E",
+          lavender: "#E8A9B8", teal: "#5BA7A0",
+          amber: "#EAB74D", coral: "#E96A5B", rose: "#D4839A",
+          bg: "#FAFAF6", vibe: "#E8A9B8",
+          "vibe-accent": "#E8A9B8",
+          "sky-pale": "#E8F5FA",
+          "coral-pale": "#FDEDEC", "gold-pale": "#FFF3D0",
+          "emerald-dark": "#16A34A", "gold-dark": "#C9992F",
+          "lavender-dark": "#D4839A", "rose-dark": "#B96A80",
+        },
+        cyber: {
+          blue: "#4A90E2", green: "#22C55E", purple: "#8B6BD9",
+          red: "#E96A5B", amber: "#EAB74D", yellow: "#EAB74D",
+          orange: "#E96A5B",
+        },
+        // Kept light on purpose: the app ships a single bright theme.
+        space: {
+          void: "#F7FAF7", panel: "#FFFFFF", border: "#DCE8DE",
+          titanium: "#F0F0EB", cosmos: "#F7FAF7", nebula: "#F3F0FA",
+        },
+        nature: {
+          blossom: { DEFAULT: "#E8A9B8", soft: "#FBE4EC", deep: "#D4839A" },
+          moss: { DEFAULT: "#6E9E78", soft: "#E4EFE6", deep: "#4F7D5A" },
+          leaf: { DEFAULT: "#8FBF7F", soft: "#EDF6EA" },
+          bark: { DEFAULT: "#8B6B4F", soft: "#F3EDE6" },
+          stone: { DEFAULT: "#A8A29A", soft: "#F2F1EF" },
+          sand: { DEFAULT: "#D9C9A3", soft: "#FAF6EC" },
+          sun: { DEFAULT: "#E8B04D", soft: "#FDF3DC" },
+          sky: { DEFAULT: "#9CC7D9", soft: "#EAF4F8" },
+          ink: { DEFAULT: "#1C2A22" },
+          glow: { DEFAULT: "#E8A9B8" },
+        },
+        background: {
+          surface: "#FFFFFF",
+          secondary: "#F0F7F1",
+          base: "#F7FAF7",
+          card: "#FFFFFF",
+        },
+        accent: {
+          DEFAULT: "#22C55E",
+          primary: "#22C55E",
+          secondary: "#5BA7A0",
+          warm: "#EAB74D",
+          coral: "#E96A5B",
+          light: "#DCFCE7",
+          hover: "#16A34A",
+        },
+        // Bare aliases some call sites use (`text-muted`, `border-default`).
+        muted: "#68736B",
+        secondary: "#3F4A43",
+        default: "#DCE8DE",
+        base: "#F7FAF7",
+        card: "#FFFFFF",
+        mint: "#EAF7ED",
+        diamonds: "#5BA7A0",
+        achievement: "#EAB74D",
+        boss: "#E96A5B",
+        "vibe-accent": "#E8A9B8",
 
         // ============ ADVENTURE PALETTE ============
         ocean: {
@@ -217,6 +305,7 @@ export default {
     { pattern: /bg-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse|900|800))?(\/\d+)?/ },
     { pattern: /text-(canvas|surface|border|text|navy|smoke|pearl|cream)(-(DEFAULT|2|primary|muted|light|inverse|900|100))?/ },
     { pattern: /border-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse))?(\/\d+)?/ },
+    { pattern: /(bg|text|border|from|via|to|ring|shadow)-(brand|nature|cyber|space|surface|background|accent)(-[a-zA-Z0-9]+)*(\/\d+)?/ },
   ],
   plugins: [],
 };

@@ -22,7 +22,6 @@ import {
 } from "../components/leetcode/Kit";
 
 const QUICK_START = [
-  { to: "/academy", icon: BookOpen, title: "Placement Academy", desc: "Company-aligned learning missions, guided lessons, quizzes and mastery." },
   { to: "/curriculum", icon: BookOpen, title: "Structured Courses", desc: "7 languages, 105 hands-on lessons with live previews and quizzes." },
   { to: "/compiler", icon: Code2, title: "Full Compiler", desc: "8 languages, test cases and a step-by-step visualizer." },
   { to: "/question-bank", icon: ListChecks, title: "Question Bank", desc: "100+ curated interview problems by company, topic, difficulty." },
@@ -36,45 +35,45 @@ function LanguageCard({ lang }: { lang: any }) {
     <Link to={`/learn/${lang.id}`} className="group block">
       <LCard className="h-full transition-colors hover:border-[#ffa11655]">
         <div className="flex items-start justify-between gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#242424] text-3xl border border-[#2a2a2a]">
+          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-3xl border border-slate-200">
             {lang.icon}
           </div>
           {inProgress && (
-            <span className="rounded-full bg-[#242424] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[#9a9a9a]">
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-slate-500">
               In progress
             </span>
           )}
         </div>
         <h3 className="mt-3 text-lg font-bold">{lang.name}</h3>
-        <p className="mt-1 text-sm text-[#9a9a9a] line-clamp-2 min-h-[2.5rem]">
+        <p className="mt-1 text-sm text-slate-500 line-clamp-2 min-h-[2.5rem]">
           {lang.description}
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
-          <span className="rounded-full bg-[#242424] px-2.5 py-0.5 text-[10px] font-mono text-[#9a9a9a]">
+          <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono text-slate-500">
             {lang.practice_lessons} practice
           </span>
-          <span className="rounded-full bg-[#242424] px-2.5 py-0.5 text-[10px] font-mono text-[#9a9a9a]">
+          <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono text-slate-500">
             {lang.challenge_lessons} challenges
           </span>
-          <span className="rounded-full bg-[#242424] px-2.5 py-0.5 text-[10px] font-mono text-[#9a9a9a]">
+          <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono text-slate-500">
             {lang.project_lessons} projects
           </span>
         </div>
         <div className="mt-4">
-          <div className="flex justify-between text-[11px] font-mono text-[#9a9a9a] mb-1">
+          <div className="flex justify-between text-[11px] font-mono text-slate-500 mb-1">
             <span>
               {lang.lessons_completed} / {lang.total_lessons} lessons
             </span>
             <span>{pct}%</span>
           </div>
-          <div className="h-1.5 rounded-full bg-[#2a2a2a] overflow-hidden">
+          <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
             <div
               className="h-full rounded-full bg-[#ffa116]"
               style={{ width: `${pct}%` }}
             />
           </div>
         </div>
-        <div className="mt-3 flex items-center justify-between text-[11px] text-[#9a9a9a]">
+        <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
           <span className="font-mono">{lang.total_xp} Diamonds</span>
           <ChevronRight
             size={16}
@@ -100,7 +99,7 @@ export default function LearningHub() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f]">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <Spinner />
       </div>
     );
@@ -108,7 +107,7 @@ export default function LearningHub() {
 
   if (isError || !data) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#0f0f0f] text-[#9a9a9a]">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-slate-50 text-slate-500">
         <div className="text-sm">Failed to load learning hub</div>
         <button
           onClick={() => refetch()}
@@ -127,12 +126,12 @@ export default function LearningHub() {
     ) || 0;
 
   return (
-    <div className="flex min-h-screen bg-[#0f0f0f] text-[#e9e9e9]">
+    <div className="flex min-h-screen bg-slate-50 text-slate-700">
       <LNav />
 
       <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Hero */}
-        <div className="rounded-xl border border-[#2a2a2a] bg-gradient-to-br from-[#1c1c1c] to-[#141414] p-6 md:p-8">
+        <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-6 md:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-[#ffa11655] px-3 py-1 text-[11px] font-medium text-[#ffa116]">
@@ -141,42 +140,42 @@ export default function LearningHub() {
               <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
                 Master <span className="text-[#ffa116]">13 coding campaigns</span>
               </h1>
-              <p className="mt-3 text-sm text-[#9a9a9a] leading-7">
+              <p className="mt-3 text-sm text-slate-500 leading-7">
                 Lessons, challenges, projects and boss battles in one progression
                 loop — from C and Python to HTML, CSS, SQL, TypeScript, React and
                 Node. Pick a track, climb the ladder, keep the streak alive.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <div className="rounded-xl bg-[#1f1f1f] px-3 py-3 text-center">
-                <div className="text-xl font-bold text-[#e9e9e9]">
+              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
+                <div className="text-xl font-bold text-slate-700">
                   {data.total_xp}
                 </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-[#9a9a9a]">
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
                   Diamonds
                 </div>
               </div>
-              <div className="rounded-xl bg-[#1f1f1f] px-3 py-3 text-center">
-                <div className="text-xl font-bold text-[#e9e9e9]">
+              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
+                <div className="text-xl font-bold text-slate-700">
                   {data.total_lessons}
                 </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-[#9a9a9a]">
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
                   Lessons
                 </div>
               </div>
-              <div className="rounded-xl bg-[#1f1f1f] px-3 py-3 text-center">
+              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
                 <div className="text-xl font-bold text-[#ffa116]">
                   {data.streak?.streak || 0}
                 </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-[#9a9a9a]">
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
                   Streak
                 </div>
               </div>
-              <div className="rounded-xl bg-[#1f1f1f] px-3 py-3 text-center">
-                <div className="text-xl font-bold text-[#e9e9e9]">
+              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
+                <div className="text-xl font-bold text-slate-700">
                   {totalProjects}
                 </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-[#9a9a9a]">
+                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
                   Projects
                 </div>
               </div>
@@ -189,11 +188,11 @@ export default function LearningHub() {
           {QUICK_START.map((q) => (
             <Link key={q.to} to={q.to} className="group block">
               <LCard className="h-full transition-colors hover:border-[#ffa11655]">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#242424] text-[#ffa116] border border-[#2a2a2a]">
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#ffa116] border border-slate-200">
                   <q.icon size={20} />
                 </div>
                 <h3 className="mt-3 font-bold">{q.title}</h3>
-                <p className="mt-1.5 text-sm text-[#9a9a9a] leading-6">
+                <p className="mt-1.5 text-sm text-slate-500 leading-6">
                   {q.desc}
                 </p>
                 <span className="mt-3 inline-flex items-center gap-1 text-xs font-mono text-[#ffa116]">
@@ -217,7 +216,7 @@ export default function LearningHub() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Filter languages…"
-                className="w-full sm:w-64 rounded-lg border border-[#2a2a2a] bg-[#0f0f0f] py-2 pl-9 pr-3 text-sm text-[#e9e9e9] placeholder:text-[#6b6b6b] focus:border-[#ffa116] focus:outline-none"
+                className="w-full sm:w-64 rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 placeholder:text-[#6b6b6b] focus:border-[#ffa116] focus:outline-none"
               />
             </div>
           </div>
@@ -249,7 +248,7 @@ export default function LearningHub() {
                   <h2 className="mt-1 text-xl font-bold">
                     In-depth guides that go deeper than W3Schools
                   </h2>
-                  <p className="mt-2 text-sm text-[#9a9a9a] leading-6">
+                  <p className="mt-2 text-sm text-slate-500 leading-6">
                     The why behind the syntax — theory, analogies, real code and
                     common mistakes for HTML, CSS, JS, TS, React, Node, SQL and
                     full-stack architecture.
@@ -276,17 +275,17 @@ export default function LearningHub() {
                 {leaderboard.slice(0, 5).map((entry: any, i: number) => (
                   <div
                     key={entry.user_id}
-                    className="flex items-center gap-3 rounded-lg bg-[#1f1f1f] px-3 py-2"
+                    className="flex items-center gap-3 rounded-lg bg-slate-100 px-3 py-2"
                   >
                     <span
                       className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
                         i === 0
-                          ? "bg-yellow-500/20 text-yellow-400"
+                          ? "bg-yellow-500/20 text-yellow-600"
                           : i === 1
-                          ? "bg-[#9a9a9a]/20 text-[#cfcfcf]"
+                          ? "bg-[#9a9a9a]/20 text-slate-700"
                           : i === 2
-                          ? "bg-orange-500/20 text-orange-400"
-                          : "bg-[#2a2a2a] text-[#9a9a9a]"
+                          ? "bg-orange-500/20 text-orange-600"
+                          : "bg-slate-100 text-slate-500"
                       }`}
                     >
                       {i + 1}
@@ -312,7 +311,7 @@ export default function LearningHub() {
             </div>
             <div>
               <div className="text-2xl font-bold">{data.streak.streak}</div>
-              <div className="text-xs uppercase tracking-[0.2em] text-[#9a9a9a]">
+              <div className="text-xs uppercase tracking-[0.2em] text-slate-500">
                 days in a row
               </div>
             </div>

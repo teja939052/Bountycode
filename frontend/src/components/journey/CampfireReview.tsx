@@ -86,7 +86,7 @@ export default function CampfireReview({ reviews, onClose }: Props) {
         animate={{ y: 0, scale: 1 }}
         exit={{ y: 60, opacity: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 28 }}
-        className="w-full max-w-md rounded-3xl border border-orange-200/30 bg-gradient-to-b from-[#2a1608] to-[#120a04] p-6 text-amber-50"
+        className="w-full max-w-md rounded-3xl border border-orange-200/30 bg-gradient-to-b from-white to-slate-50 p-6 text-amber-700"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-center text-4xl" aria-hidden>🔥</div>
@@ -111,7 +111,7 @@ export default function CampfireReview({ reviews, onClose }: Props) {
               <p className="mt-2 text-center text-xs opacity-60">
                 Ember {index + 1} of {reviews.length}
               </p>
-              <p className="mt-1 text-center font-mono text-sm text-amber-200">
+              <p className="mt-1 text-center font-mono text-sm text-amber-700">
                 {String(card?.concept_name ?? card?.title ?? card?.skill_id ?? card?.concept_id ?? "a past lesson")}
               </p>
               <p className="mt-1 text-center text-xs opacity-60">
@@ -121,7 +121,7 @@ export default function CampfireReview({ reviews, onClose }: Props) {
                 <button
                   onClick={() => void grade(false)}
                   disabled={busy}
-                  className="min-h-[52px] rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-bold disabled:opacity-50"
+                  className="min-h-[52px] rounded-xl border border-slate-200 bg-slate-100 py-3 text-sm font-bold disabled:opacity-50"
                 >
                   🌫️ Still shaky
                 </button>

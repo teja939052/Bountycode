@@ -64,7 +64,7 @@ function getIcon(status: QuestCardProps["status"], icon?: ReactNode) {
 function getIconBg(status: QuestCardProps["status"]) {
   switch (status) {
     case "completed":
-      return "bg-success text-white";
+      return "bg-success text-slate-900";
     case "active":
       return "bg-brand-primary text-white animate-pulse";
     case "locked":

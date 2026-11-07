@@ -167,7 +167,7 @@ function StepList({ steps, currentStep, completedSteps, onStepClick }) {
               {isCompleted ? (
                 <CheckCircle2 size={16} className="text-green-500" />
               ) : isLocked ? (
-                <Lock size={14} className="text-gray-400" />
+                <Lock size={14} className="text-gray-500" />
               ) : (
                 <span className="text-xs font-mono font-bold">{stepNum}</span>
               )}
@@ -376,7 +376,7 @@ export default function LearningModules() {
             {/* Module Grid */}
             {modules.length === 0 ? (
               <div className="text-center py-16">
-                <GraduationCap size={48} className="mx-auto text-gray-300 mb-4" />
+                <GraduationCap size={48} className="mx-auto text-gray-600 mb-4" />
                 <p className="text-brand-secondary">No modules found for this filter.</p>
               </div>
             ) : (

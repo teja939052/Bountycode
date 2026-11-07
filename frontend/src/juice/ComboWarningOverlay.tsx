@@ -38,7 +38,7 @@ export default function ComboWarningOverlay({ seconds = 0, visible = true }) {
               <div className="text-xs font-mono uppercase tracking-widest" style={{ color: c.text }}>
                 Combo Decay in {seconds}s
               </div>
-              <div className="text-sm font-bold text-white">
+              <div className="text-sm font-bold text-slate-900">
                 Keep the streak alive!
               </div>
             </div>

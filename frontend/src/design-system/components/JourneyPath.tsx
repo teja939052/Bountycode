@@ -245,9 +245,7 @@ export function SkillNode({
   return (
     <div
       className={`
-        group relative rounded-${radii.card} border border-border-primary
-        bg-background-surface p-4 transition-all duration-300
-        hover:border-brand-primary hover:shadow-glow cursor-pointer
+        group relative rounded-${radii.card} border border-border-primary bg-background-surface p-4 transition-all duration-300 hover:border-brand-primary hover:shadow-glow cursor-pointer
         ${className}
       `}
       onClick={onClick}

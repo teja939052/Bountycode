@@ -48,7 +48,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0f0d] flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 relative overflow-hidden">
       <NeuralNetworkBackground reducedMotion={reducedMotion} />
 
       <div className="w-full max-w-md relative z-10">
@@ -56,29 +56,29 @@ export default function Login() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-[#111a15]/80 backdrop-blur-xl border border-green-500/20 rounded-2xl shadow-2xl shadow-green-500/5 overflow-hidden"
+          className="bg-white backdrop-blur-xl border border-green-500/20 rounded-2xl shadow-2xl shadow-green-500/5 overflow-hidden"
         >
           <div className="text-center px-6 pt-8 pb-6">
             <div className="relative mx-auto mb-4 w-14 h-14">
               <div className="absolute -inset-1 rounded-2xl bg-green-500/20 blur-lg" />
               <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg shadow-green-500/25">
-                <Zap size={26} className="text-white" />
+                <Zap size={26} className="text-slate-900" />
               </div>
             </div>
-            <h1 className="text-2xl font-bold text-white">Welcome Back</h1>
-            <p className="text-gray-400 text-sm mt-1 font-mono">Sign in to your account</p>
+            <h1 className="text-2xl font-bold text-slate-900">Welcome Back</h1>
+            <p className="text-gray-500 text-sm mt-1 font-mono">Sign in to your account</p>
           </div>
 
           <div className="px-6 pb-8">
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
-                <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl text-sm font-mono">
+                <div className="bg-red-500/10 border border-red-500/20 text-red-600 px-4 py-3 rounded-xl text-sm font-mono">
                   {error}
                 </div>
               )}
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1.5">Email</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1.5">Email</label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
@@ -86,15 +86,15 @@ export default function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@email.com"
-                    className="w-full pl-12 pr-4 py-3 bg-[#0d1510] border border-green-500/20 rounded-xl text-white placeholder-gray-500 focus:border-green-500/50 focus:ring-1 focus:ring-green-500/30 transition-all outline-none font-mono text-sm"
+                    className="w-full pl-12 pr-4 py-3 bg-white border border-green-500/20 rounded-xl text-slate-900 placeholder-gray-500 focus:border-green-500/50 focus:ring-1 focus:ring-green-500/30 transition-all outline-none font-mono text-sm"
                     required
                   />
                 </div>
-                {fieldErrors.email && <p className="text-red-400 text-xs mt-1">{fieldErrors.email}</p>}
+                {fieldErrors.email && <p className="text-red-600 text-xs mt-1">{fieldErrors.email}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1.5">Password</label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
@@ -102,22 +102,22 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="w-full pl-12 pr-12 py-3 bg-[#0d1510] border border-green-500/20 rounded-xl text-white placeholder-gray-500 focus:border-green-500/50 focus:ring-1 focus:ring-green-500/30 transition-all outline-none font-mono text-sm"
+                    className="w-full pl-12 pr-12 py-3 bg-white border border-green-500/20 rounded-xl text-slate-900 placeholder-gray-500 focus:border-green-500/50 focus:ring-1 focus:ring-green-500/30 transition-all outline-none font-mono text-sm"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 transition-colors"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
-                {fieldErrors.password && <p className="text-red-400 text-xs mt-1">{fieldErrors.password}</p>}
+                {fieldErrors.password && <p className="text-red-600 text-xs mt-1">{fieldErrors.password}</p>}
               </div>
 
               <div className="text-right">
-                <Link to="/forgot-password" className="text-xs text-green-400 hover:text-green-300 font-mono transition-colors">
+                <Link to="/forgot-password" className="text-xs text-green-600 hover:text-green-600 font-mono transition-colors">
                   Forgot password?
                 </Link>
               </div>
@@ -130,7 +130,7 @@ export default function Login() {
                 whileTap={{ scale: 0.98 }}
               >
                 {loading ? (
-                  <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <span className="w-5 h-5 border-2 border-slate-200 border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <LogIn className="w-5 h-5" />
                 )}
@@ -143,13 +143,13 @@ export default function Login() {
                 <div className="w-full border-t border-green-500/10" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-[#111a15]/80 text-gray-500 font-mono text-xs">or</span>
+                <span className="px-4 bg-slate-100 text-gray-500 font-mono text-xs">or</span>
               </div>
             </div>
 
             <a
               href="/api/auth/google"
-              className="w-full flex items-center justify-center gap-3 border border-green-500/20 rounded-xl py-3 text-gray-300 hover:bg-green-500/5 transition-all font-mono text-sm"
+              className="w-full flex items-center justify-center gap-3 border border-green-500/20 rounded-xl py-3 text-gray-600 hover:bg-green-500/5 transition-all font-mono text-sm"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -162,7 +162,7 @@ export default function Login() {
 
             <p className="text-center mt-6 text-sm text-gray-500 font-mono">
               No account?{" "}
-              <Link to="/register" className="text-green-400 font-semibold hover:text-green-300 transition-colors">
+              <Link to="/register" className="text-green-600 font-semibold hover:text-green-600 transition-colors">
                 Register
               </Link>
             </p>

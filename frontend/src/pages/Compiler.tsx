@@ -60,8 +60,8 @@ function getDefaultCode(language, isProblemMode) {
 }
 
 const THEMES = [
-  { id: "vs-dark", name: "Dark" },
   { id: "vs", name: "Light" },
+  { id: "vs-dark", name: "Dark" },
   { id: "hc-black", name: "High Contrast" },
   { id: "hc-blue", name: "High Contrast Blue" },
 ];
@@ -674,7 +674,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
   const currentLang = LANGUAGES.find((l) => l.id === language) || langs[0];
   const showBrowserNativeBadge = isBrowserNative(language);
   const browserNativeLabel = language === "python"
-    ? (pyodideReady ? "Pyodide ready" : pyodideError || "Loads on first Python run")
+    ? (pyodideReady ? "Pyodide ready" : pyodideError || "Loading Pyodide...")
     : "Browser-native";
 
   const passedCount = results?.results?.filter(r => r.passed).length || 0;
@@ -739,7 +739,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
             <button
               onClick={() => setViewMode("editor")}
               className={`px-2 py-0.5 text-xs font-medium rounded-md transition-colors ${
-                viewMode === "editor" ? "bg-brand-primary text-text-primary font-bold" : "text-brand-dim hover:text-brand-primary"
+                viewMode === "editor" ? "bg-brand-primary text-white font-bold" : "text-brand-dim hover:text-brand-primary"
               }`}
             >
               Code Editor
@@ -750,7 +750,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
                 else setViewMode("visualizer");
               }}
               className={`px-2 py-0.5 text-xs font-medium rounded-md transition-colors flex items-center gap-1 ${
-                viewMode === "visualizer" ? "bg-brand-primary text-text-primary font-bold" : "text-brand-dim hover:text-brand-primary"
+                viewMode === "visualizer" ? "bg-brand-primary text-white font-bold" : "text-brand-dim hover:text-brand-primary"
               }`}
             >
               <Sparkles size={11} className="text-brand-lavender animate-pulse" />
@@ -761,25 +761,25 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
           <select value={language} onChange={(e) => setLanguage(e.target.value)} className="max-w-[100px] rounded border border-black/5 bg-white px-2 py-1 text-xs text-brand-secondary focus:outline-none sm:max-w-none">
             {langs.map((l) => <option key={l.id} value={l.id}>{l.icon} {l.name}</option>)}
           </select>
-          <button onClick={handleRun} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors">
+          <button onClick={handleRun} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors">
             {loading ? <Loader size={11} className="animate-spin" /> : <><Play size={11} /> <span className="hidden sm:inline">Run</span></>}
           </button>
           <button onClick={handleTraceCode} disabled={traceLoading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-lavender hover:bg-brand-lavender-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors shadow-brand-lavender/30">
             {traceLoading ? <Loader size={11} className="animate-spin" /> : <><Sparkles size={11} /> <span className="hidden sm:inline">Visualize</span></>}
           </button>
-          <button onClick={handleCreativeMind} disabled={creativeLoading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors shadow-brand-rose/30">
+          <button onClick={handleCreativeMind} disabled={creativeLoading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors shadow-brand-rose/30">
             {creativeLoading ? <Loader size={11} className="animate-spin" /> : <><WandSparkles size={11} /> <span className="hidden sm:inline">Creative</span></>}
           </button>
           <button
             onClick={handleLoadBoilerplate}
              disabled={boilerplateLoading}
-             className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-gold hover:bg-brand-gold-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors"
+             className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-gold hover:bg-brand-gold-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors"
              title={problemTopics.length > 0 ? `Load starter for ${starterProblemType}` : "Load default starter code"}
            >
              {boilerplateLoading ? <Loader size={11} className="animate-spin" /> : <><BookOpen size={11} /> <span className="hidden sm:inline">Starter</span></>}
            </button>
            {problemId && (
-             <button onClick={handleSubmit} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-primary hover:brand-primary-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors">
+             <button onClick={handleSubmit} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-primary hover:brand-primary-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors">
               {loading ? <Loader size={11} className="animate-spin" /> : <><Send size={11} /> <span className="hidden sm:inline">Submit</span></>}
             </button>
           )}
@@ -794,13 +794,12 @@ className="hidden sm:block p-1.5 text-brand-dim hover:text-brand-primary" title=
           )}
           <button
             onClick={() => setShowLeftPanel((prev) => !prev)}
-            className="hidden md:block p-1.5 text-gray-400 hover:text-text-primary"
+            className="hidden md:block p-1.5 text-gray-500 hover:text-text-primary"
             title={showLeftPanel ? "Hide editor panel" : "Show editor panel"}
           >
             {showLeftPanel ? <ChevronLeft size={13} /> : <ChevronRight size={13} />}
           </button>
-          <button onClick={() => setIsFullscreen(!isFullscreen)} className="p-1.5 
-text-brand-dim hover:text-brand-primary" title="Fullscreen">
+          <button onClick={() => setIsFullscreen(!isFullscreen)} className="p-1.5 text-brand-dim hover:text-brand-primary" title="Fullscreen">
             {isFullscreen ? <Minimize2 size={13} /> : <Fullscreen size={13} />}
           </button>
         </div>
@@ -952,7 +951,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
             )}
             <div className="flex-1" />
             {activeTab === "testcases" && (
-               <button onClick={handleRunTestCases} disabled={loading} className="mr-2 px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-text-primary text-[11px] font-medium rounded transition-colors flex items-center gap-1">
+               <button onClick={handleRunTestCases} disabled={loading} className="mr-2 px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-white text-[11px] font-medium rounded transition-colors flex items-center gap-1">
                 {loading ? <Loader size={10} className="animate-spin" /> : <Play size={10} />} Run All
               </button>
             )}
@@ -971,7 +970,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
                    <button
                      onClick={handleCreativeMind}
                      disabled={creativeLoading}
-                     className="px-3 py-1.5 rounded-lg bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-text-primary text-xs font-medium flex items-center gap-2"
+                     className="px-3 py-1.5 rounded-lg bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-white text-xs font-medium flex items-center gap-2"
                   >
                     {creativeLoading ? <Loader size={11} className="animate-spin" /> : <WandSparkles size={11} />}
                     Refresh coach
@@ -989,7 +988,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
                       onClick={() => setCreativeMode(mode.id)}
                        className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                          creativeMode === mode.id
-                           ? "bg-brand-rose text-text-primary"
+                           ? "bg-brand-rose text-white"
                            : "bg-brand-primary/5 text-brand-dim hover:text-brand-primary border border-brand-primary/10"
                        }`}
                     >
@@ -1089,8 +1088,8 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
                       >
                         {tcResult && (
                           tcResult.passed
-                            ? <CheckCircle size={10} className="text-green-400" />
-                            : <XCircle size={10} className="text-red-400" />
+                            ? <CheckCircle size={10} className="text-green-600" />
+                            : <XCircle size={10} className="text-red-600" />
                         )}
                         Case {idx + 1}
                       </button>

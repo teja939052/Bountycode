@@ -29,12 +29,12 @@ type NodeStatus = "completed" | "current" | "unlocked" | "locked";
 
 function nodeColors(status: NodeStatus, isBoss: boolean) {
   if (status === "locked") {
-    return { bg: "bg-[#E5E5E5]", edge: "border-[#CFCFCF]", icon: "text-[#AFAFAF]" };
+    return { bg: "bg-[#E5E5E5]", edge: "border-[#CFCFCF]", icon: "text-slate-500" };
   }
   if (isBoss) {
-    return { bg: "bg-[#E96A5B]", edge: "border-[#C4503F]", icon: "text-white" };
+    return { bg: "bg-[#E96A5B]", edge: "border-slate-200", icon: "text-slate-900" };
   }
-  return { bg: "bg-[#1E6091]", edge: "border-[#154c7a]", icon: "text-white" };
+  return { bg: "bg-slate-100", edge: "border-slate-200", icon: "text-slate-900" };
 }
 
 function LevelNode({
@@ -65,11 +65,11 @@ function LevelNode({
         >
           <button
             onClick={onSelect}
-            className="rounded-2xl border-2 border-[#1E6091] bg-white px-4 py-2 font-round text-sm font-extrabold tracking-wide text-[#1E6091] shadow-md"
+            className="rounded-2xl border-2 border-slate-200 bg-white px-4 py-2 font-round text-sm font-extrabold tracking-wide text-[#1E6091] shadow-md"
           >
             BOARD
           </button>
-          <div className="mx-auto h-3 w-3 rotate-45 border-r-2 border-b-2 border-[#1E6091] bg-white" style={{ marginTop: -8 }} />
+          <div className="mx-auto h-3 w-3 rotate-45 border-r-2 border-b-2 border-slate-200 bg-white" style={{ marginTop: -8 }} />
         </motion.div>
       )}
       <motion.button
@@ -168,7 +168,7 @@ export default function LevelMap() {
       <div className="mx-auto flex min-h-[60vh] max-w-xl flex-col items-center justify-center gap-3 px-6 text-center">
         <p className="font-round text-2xl font-extrabold text-[#4B4B4B]">Chart unavailable</p>
         <p className="text-sm text-gray-500">Your voyage is saved — open the map instead.</p>
-        <Link to="/journey" className="font-round rounded-2xl bg-[#1E6091] px-6 py-3 font-extrabold text-white border-b-4 border-[#154c7a]">
+        <Link to="/journey" className="font-round rounded-2xl bg-white px-6 py-3 font-extrabold text-slate-900 border-b-4 border-slate-200">
           Open chart
         </Link>
       </div>
@@ -182,7 +182,7 @@ export default function LevelMap() {
   return (
     <div className="min-h-screen bg-white">
       {/* ═══ Top stat bar ═══ */}
-      <div className="sticky top-0 z-30 border-b-2 border-[#E5E5E5] bg-white/95 backdrop-blur">
+      <div className="sticky top-0 z-30 border-b-2 border-[#E5E5E5] bg-white backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-center gap-6 px-4 py-3 sm:gap-10">
           <span className="flex items-center gap-1.5 font-round text-lg font-extrabold text-[#FF9600]" title="Day streak">
             <Flame size={22} className="fill-[#FF9600] text-[#FF9600]" />{streak}
@@ -212,10 +212,10 @@ export default function LevelMap() {
                 onClick={() => setWorldId(w.id)}
                 className={`flex shrink-0 items-center gap-1.5 rounded-2xl border-2 px-4 py-2 font-round text-sm font-extrabold ${
                   selected
-                    ? "border-[#1E6091] bg-[#E8F4FD] text-[#154c7a]"
+                    ? "border-slate-200 bg-[#E8F4FD] text-[#154c7a]"
                     : locked
-                    ? "border-[#E5E5E5] bg-white text-[#AFAFAF]"
-                    : "border-[#E5E5E5] bg-white text-[#777]"
+                    ? "border-[#E5E5E5] bg-white text-slate-500"
+                    : "border-[#E5E5E5] bg-white text-slate-500"
                 }`}
               >
                 <span aria-hidden="true">{locked ? "🔒" : w.icon}</span>
@@ -235,12 +235,12 @@ export default function LevelMap() {
             .sort((a, b) => a.order - b.order)
             .map((town, ti) => (
               <section key={town.id} aria-label={town.title} className="relative mb-10">
-                <div className="relative z-10 mx-auto mb-8 max-w-md overflow-hidden rounded-2xl bg-[#1E6091] p-4 text-white shadow-md">
+                <div className="relative z-10 mx-auto mb-8 max-w-md overflow-hidden rounded-2xl bg-white p-4 text-slate-900 shadow-md">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <ChevronLeft className="text-white/70" />
+                      <ChevronLeft className="text-slate-900" />
                       <div>
-                        <p className="font-round text-xs font-bold uppercase tracking-wider text-white/80">
+                        <p className="font-round text-xs font-bold uppercase tracking-wider text-slate-900">
                           Port {ti + 1}, Anchor {town.order}
                         </p>
                         <h2 className="font-round text-xl font-extrabold leading-tight">
@@ -248,7 +248,7 @@ export default function LevelMap() {
                         </h2>
                       </div>
                     </div>
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2 border-white/40">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2 border-slate-200">
                       <Anchor size={22} />
                     </span>
                   </div>
@@ -281,12 +281,12 @@ export default function LevelMap() {
         <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
           <Link
             to="/leaderboard"
-            className="flex items-center gap-4 rounded-2xl border-2 border-[#E5E5E5] bg-white p-4 transition hover:border-[#1E6091]"
+            className="flex items-center gap-4 rounded-2xl border-2 border-[#E5E5E5] bg-white p-4 transition hover:border-slate-200"
           >
             <Trophy size={34} className="shrink-0 text-[#CE82FF]" />
             <span>
               <span className="block font-round text-base font-extrabold text-[#4B4B4B]">Crew Leaderboard</span>
-              <span className="block text-sm text-[#777]">
+              <span className="block text-sm text-slate-500">
                 {myRank && myRank.rank ? `You are #${myRank.rank} this week` : "Climb the weekly board"}
               </span>
             </span>
@@ -300,18 +300,18 @@ export default function LevelMap() {
               </Link>
             </div>
             {entries.length === 0 && (
-              <p className="text-sm text-[#777]">No rankings yet — sail a stage to appear.</p>
+              <p className="text-sm text-slate-500">No rankings yet — sail a stage to appear.</p>
             )}
             <div className="space-y-3">
               {entries.slice(0, 5).map((entry, i) => (
                 <div key={entry.user_id || i} className="flex items-center gap-3">
-                  <span className="font-round text-sm font-extrabold text-[#999]">#{i + 1}</span>
+                  <span className="font-round text-sm font-extrabold text-slate-500">#{i + 1}</span>
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F5F5F5] text-sm">
                     {entry.avatar || "🏴‍☠️"}
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-semibold text-[#4B4B4B]">{entry.name}</p>
-                    <p className="text-xs text-[#999]">{entry.diamonds?.toLocaleString?.() ?? 0} Diamonds</p>
+                    <p className="text-xs text-slate-500">{entry.diamonds?.toLocaleString?.() ?? 0} Diamonds</p>
                   </div>
                 </div>
               ))}

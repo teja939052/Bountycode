@@ -92,7 +92,7 @@ export default function ChallengePacks() {
           <Sword className="w-7 h-7 text-nature-blossom" />
             </div>
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#2E6B35] via-[#4F8F57] to-[#7BB661] bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-100 via-slate-100 to-[#7BB661] bg-clip-text text-transparent">
                 Challenge Packs
               </h1>
               <p className="text-text-muted text-sm mt-1">
@@ -127,7 +127,7 @@ export default function ChallengePacks() {
                 onClick={() => setDifficultyFilter(d)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   difficultyFilter === d
-                    ? "bg-amber-600 text-text-primary shadow-lg shadow-amber-600/20"
+                    ? "bg-amber-600 text-white shadow-lg shadow-amber-600/20"
                     : "text-text-muted hover:text-text-primary"
                 }`}
               >
@@ -242,7 +242,7 @@ export default function ChallengePacks() {
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-<Sword className="w-12 h-12 mx-auto text-[#C5C0B2] mb-4" />
+<Sword className="w-12 h-12 mx-auto text-slate-500 mb-4" />
           <p className="text-text-muted text-sm">No challenges match your filters.</p>
           <button
             onClick={() => { setRarityFilter("all"); setDifficultyFilter("all"); setSearchQuery(""); }}
@@ -314,7 +314,7 @@ export default function ChallengePacks() {
             <div className="flex items-center gap-3">
               <Link
                 to={selectedChallenge.id ? `/solve/${selectedChallenge.id}` : "/compiler"}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#4F8F57] to-[#7BB661] hover:from-[#3F7A47] hover:to-[#4F8F57] text-text-primary rounded-xl font-medium text-sm transition-all shadow-lg shadow-[#4F8F57]/20"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-white to-[#7BB661] hover:from-white hover:to-slate-50 text-text-primary rounded-xl font-medium text-sm transition-all shadow-lg shadow-[#4F8F57]/20"
                 onClick={() => setSelectedChallenge(null)}
               >
                 <Sparkles className="w-4 h-4" /> Solve Challenge

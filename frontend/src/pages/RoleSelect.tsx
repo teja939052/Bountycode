@@ -92,7 +92,7 @@ export default function RoleSelect() {
                   animate={{ scale: 1 }}
                   className="absolute top-3 right-3 h-6 w-6 rounded-full bg-primary flex items-center justify-center"
                 >
-                  <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <svg className="w-3.5 h-3.5 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </motion.div>

@@ -77,9 +77,9 @@ export default function PatternTracer() {
   };
 
   return (
-    <div className="rounded-xl border border-border dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900/50">
-      <h3 className="font-bold text-sm dark:text-white mb-1">Tracer: fixed window, k={K}</h3>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+    <div className="rounded-xl border border-border p-4 bg-gray-50">
+      <h3 className="font-bold text-sm mb-1">Tracer: fixed window, k={K}</h3>
+      <p className="text-xs text-gray-500 mb-3">
         Step through. Each element enters once and leaves once — that is why the total work stays O(n).
       </p>
       <div className="flex gap-1.5 mb-3 flex-wrap" role="group" aria-label="Array values">
@@ -92,8 +92,8 @@ export default function PatternTracer() {
               animate={{ scale: inWindow ? 1.08 : 1 }}
               className={`w-10 h-10 flex items-center justify-center rounded-lg font-mono text-sm font-bold border-2 ${
                 inWindow
-                  ? "bg-emerald-100 dark:bg-emerald-900/40 border-emerald-500 text-emerald-700 dark:text-emerald-300"
-                  : "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-500"
+                  ? "bg-emerald-100 border-emerald-500 text-emerald-700"
+                  : "bg-white border-gray-200 text-gray-500"
               }`}
             >
               {v}
@@ -101,15 +101,15 @@ export default function PatternTracer() {
           );
         })}
       </div>
-      <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
+      <p className="text-sm text-gray-600 mb-1">
         left={step.left}, right={step.right}, sum={step.sum}
       </p>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{step.note}</p>
+      <p className="text-xs text-gray-500 mb-3">{step.note}</p>
       <div className="flex gap-2">
         <button
           onClick={() => setIdx((i) => Math.max(0, i - 1))}
           disabled={idx === 0}
-          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-200 dark:bg-gray-700 disabled:opacity-40"
+          className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-200 disabled:opacity-40"
         >
           Prev
         </button>

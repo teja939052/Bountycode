@@ -163,10 +163,10 @@ export default function AlgorithmTracer({
                         <span
                           className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
                             pointerEntry[0] === "left"
-                              ? "bg-emerald-500/30 text-emerald-300 border border-emerald-500/40"
+                              ? "bg-emerald-500/30 text-emerald-600 border border-emerald-500/40"
                               : pointerEntry[0] === "right"
-                              ? "bg-rose-500/30 text-rose-300 border border-rose-500/40"
-                              : "bg-indigo-500/30 text-indigo-300 border border-indigo-500/40"
+                              ? "bg-rose-500/30 text-rose-600 border border-rose-500/40"
+                              : "bg-indigo-500/30 text-indigo-600 border border-indigo-500/40"
                           }`}
                         >
                           {pointerEntry[0]}
@@ -177,10 +177,10 @@ export default function AlgorithmTracer({
                         animate={{ scale: isActive ? 1.1 : 1 }}
                         className={`w-11 rounded-lg border flex items-center justify-center font-mono font-bold text-xs shadow-lg transition-colors ${
                           isActive
-                            ? "bg-amber-500/25 border-amber-400 text-amber-200"
+                            ? "bg-amber-500/25 border-amber-400 text-amber-700"
                             : inWindow
                             ? "bg-primary/10 border-primary/30 text-primary"
-                            : "bg-slate-900 border-slate-700 text-slate-200"
+                            : "bg-white border-slate-200 text-slate-700"
                         }`}
                         style={{ height: `${height}px` }}
                       >
@@ -223,7 +223,7 @@ export default function AlgorithmTracer({
             className="mt-4 p-4 rounded-xl bg-primary/5 border border-primary/20 w-full max-w-md"
           >
             <div className="flex items-center gap-2 mb-2">
-              <Lightbulb size={16} className="text-amber-400" />
+              <Lightbulb size={16} className="text-amber-600" />
               <span className="text-sm font-bold text-text-primary">
                 Trace Question
               </span>
@@ -259,8 +259,8 @@ export default function AlgorithmTracer({
             <span
               className={`text-sm font-medium ${
                 String(userAnswer).toLowerCase() === String(correctAnswer).toLowerCase()
-                  ? "text-emerald-400"
-                  : "text-rose-400"
+                  ? "text-emerald-600"
+                  : "text-rose-600"
               }`}
             >
               {String(userAnswer).toLowerCase() === String(correctAnswer).toLowerCase()

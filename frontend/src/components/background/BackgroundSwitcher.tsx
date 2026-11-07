@@ -6,11 +6,6 @@ const THEME_META: Record<BackgroundTheme, { label: string; emoji: string; classN
     emoji: "🌊",
     className: "bg-gradient-to-br from-sky-50 via-white to-sky-100",
   },
-  night: {
-    label: "Night",
-    emoji: "🌙",
-    className: "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900",
-  },
   sunset: {
     label: "Sunset",
     emoji: "🌅",
@@ -33,7 +28,7 @@ export default function BackgroundSwitcher() {
 
   return (
     <div className="flex items-center gap-2">
-      <div className="flex items-center gap-1.5 rounded-full border border-black/5 bg-white/80 p-1 shadow-sm backdrop-blur">
+      <div className="flex items-center gap-1.5 rounded-full border border-black/5 bg-white p-1 shadow-sm backdrop-blur">
         {(Object.keys(THEME_META) as BackgroundTheme[]).map((key) => {
           const meta = THEME_META[key];
           const isActive = autoRotate ? key === "auto" : theme === key;
@@ -50,7 +45,7 @@ export default function BackgroundSwitcher() {
               }}
               className={`flex items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-semibold transition ${
                 isActive
-                  ? "bg-gray-900 text-white shadow"
+                  ? "bg-white text-slate-900 shadow"
                   : "text-gray-600 hover:bg-gray-100"
               }`}
               aria-pressed={isActive}
@@ -65,7 +60,7 @@ export default function BackgroundSwitcher() {
 
       <button
         onClick={toggle}
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-black/5 bg-white/80 text-sm shadow-sm backdrop-blur transition hover:rotate-180"
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-black/5 bg-white text-sm shadow-sm backdrop-blur transition hover:rotate-180"
         aria-label="Next background theme"
         title="Next theme"
       >

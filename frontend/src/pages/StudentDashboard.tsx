@@ -206,12 +206,12 @@ export default function StudentDashboard() {
     return (
       <div className="min-h-screen px-4 py-6 md:py-8 flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle size={48} className="mx-auto text-red-400 mb-4" />
+          <AlertCircle size={48} className="mx-auto text-red-600 mb-4" />
           <h2 className="text-xl font-bold text-text-primary mb-2">Failed to Load Dashboard</h2>
           <p className="text-sm text-text-muted mb-4">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="px-6 py-2 rounded-[10px] bg-primary text-text-primary text-sm font-medium hover:bg-primary-dark transition-colors"
+            className="px-6 py-2 rounded-[10px] bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
           >
             <RotateCw size={14} className="inline mr-2" />
             Retry

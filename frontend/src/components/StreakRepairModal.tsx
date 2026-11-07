@@ -86,7 +86,7 @@ export default function StreakRepairModal({ open, onClose }: StreakRepairModalPr
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-lg border border-white/60"
+            className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-lg border border-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-4">
@@ -106,7 +106,7 @@ export default function StreakRepairModal({ open, onClose }: StreakRepairModalPr
 
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="rounded-2xl border border-gray-200 bg-gray-50 p-3 text-center">
-                <Flame size={16} className={`mx-auto mb-1 ${inDanger ? "text-red-500" : "text-orange-400"}`} />
+                <Flame size={16} className={`mx-auto mb-1 ${inDanger ? "text-red-500" : "text-orange-600"}`} />
                 <div className="text-2xl font-bold text-gray-800">{streak}</div>
                 <div className="text-[10px] font-mono text-gray-500">day streak</div>
               </div>
@@ -147,18 +147,18 @@ export default function StreakRepairModal({ open, onClose }: StreakRepairModalPr
             <button
               onClick={handleBuy}
               disabled={buying}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-red-600 text-text-primary font-bold text-sm disabled:opacity-50 shadow-md"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-sm disabled:opacity-50 shadow-md"
             >
               {buying ? (
                 <span className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-slate-200 border-t-white rounded-full animate-spin" />
                   Repairing...
                 </span>
               ) : (
                 <>
                   <Flame size={16} />
                   Repair Streak
-                  <Coins size={14} className="text-yellow-300" />
+                  <Coins size={14} className="text-yellow-600" />
                   {cost}
                 </>
               )}

@@ -182,7 +182,7 @@ export default function Terms() {
               </ul>
             </section>
 
-            <div className="border-t border-gray-200 pt-6 mt-8 text-xs text-gray-400">
+            <div className="border-t border-gray-200 pt-6 mt-8 text-xs text-gray-500">
               <p>By using BountyCode, you agree to these Terms & Conditions.</p>
               <p className="mt-1">Last Updated: August 2026 • Version: 2.0</p>
             </div>

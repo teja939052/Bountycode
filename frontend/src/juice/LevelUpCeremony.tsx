@@ -29,12 +29,12 @@ export default function LevelUpCeremony({ level, onDismiss }) {
           {level}
         </div>
 
-        <div className="text-4xl font-bold text-white mb-2 tracking-wider"
+        <div className="text-4xl font-bold text-slate-900 mb-2 tracking-wider"
              style={{ animation: 'floatUp 0.6s ease-out 0.3s both' }}>
           LEVEL UP!
         </div>
 
-        <div className="text-lg text-indigo-300" style={{ animation: 'floatUp 0.6s ease-out 0.6s both' }}>
+        <div className="text-lg text-indigo-600" style={{ animation: 'floatUp 0.6s ease-out 0.6s both' }}>
           You're getting stronger, adventurer.
         </div>
 

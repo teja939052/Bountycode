@@ -145,7 +145,7 @@ export default function BadgeCard({
                 <span className="text-[10px] font-mono text-text-dim">{pct}%</span>
                 <span className="text-[10px] font-mono text-text-dim">{progress}/{maxProgress}</span>
               </div>
-              <div className="h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+              <div className="h-1.5 rounded-full bg-gray-200 overflow-hidden">
                 <motion.div className="h-full rounded-full" style={{ background: style.border }} initial={{ width: 0 }} animate={{ width: `${pct}%` }} transition={{ duration: 0.8, ease: "easeOut" }} />
               </div>
             </div>

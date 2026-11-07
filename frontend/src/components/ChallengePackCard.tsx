@@ -3,44 +3,44 @@ import { Sparkles, Lock, Star, CheckCircle2, Zap, Clock, Code2 } from "lucide-re
 
 const RARITY_STYLES = {
   common: {
-    border: "border-slate-600/50",
-    glow: "shadow-slate-600/20",
-    bg: "from-slate-900 to-slate-800",
-    accent: "text-slate-400",
+    border: "border-slate-200",
+    glow: "shadow-slate-100",
+    bg: "from-slate-100 to-slate-100",
+    accent: "text-slate-500",
     label: "COMMON",
-    labelColor: "bg-slate-700 text-slate-300",
+    labelColor: "bg-slate-100 text-slate-600",
   },
   uncommon: {
     border: "border-emerald-600/50",
     glow: "shadow-emerald-600/20",
-    bg: "from-slate-900 to-emerald-950/30",
-    accent: "text-emerald-400",
+    bg: "from-slate-100 to-emerald-50",
+    accent: "text-emerald-600",
     label: "UNCOMMON",
-    labelColor: "bg-emerald-700/50 text-emerald-300",
+    labelColor: "bg-emerald-700/50 text-emerald-600",
   },
   rare: {
     border: "border-blue-600/50",
     glow: "shadow-blue-600/20",
-    bg: "from-slate-900 to-blue-950/30",
-    accent: "text-blue-400",
+    bg: "from-slate-100 to-blue-50",
+    accent: "text-blue-600",
     label: "RARE",
-    labelColor: "bg-blue-700/50 text-blue-300",
+    labelColor: "bg-blue-700/50 text-blue-600",
   },
   epic: {
     border: "border-purple-600/50",
     glow: "shadow-purple-600/30",
-    bg: "from-slate-900 to-purple-950/30",
-    accent: "text-purple-400",
+    bg: "from-slate-100 to-purple-50",
+    accent: "text-purple-600",
     label: "EPIC",
-    labelColor: "bg-purple-700/50 text-purple-300",
+    labelColor: "bg-purple-700/50 text-purple-600",
   },
   legendary: {
     border: "border-amber-500/50",
     glow: "shadow-amber-500/30",
-    bg: "from-slate-900 to-amber-950/20",
-    accent: "text-amber-400",
+    bg: "from-slate-100 to-amber-50",
+    accent: "text-amber-600",
     label: "LEGENDARY",
-    labelColor: "bg-amber-700/50 text-amber-300",
+    labelColor: "bg-amber-700/50 text-amber-600",
   },
 };
 
@@ -90,7 +90,7 @@ export default function ChallengePackCard({
               {style.label}
             </div>
             {solved && (
-              <div className="flex items-center gap-1 text-[10px] text-emerald-400 font-medium">
+              <div className="flex items-center gap-1 text-[10px] text-emerald-600 font-medium">
                 <CheckCircle2 className="w-3 h-3" /> Solved
               </div>
             )}
@@ -99,7 +99,7 @@ export default function ChallengePackCard({
 
           {/* Icon / Emoji */}
           <div className="flex justify-center py-1">
-            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${rarity === "legendary" ? "from-amber-500/20 to-yellow-500/20" : rarity === "epic" ? "from-purple-500/20 to-pink-500/20" : rarity === "rare" ? "from-blue-500/20 to-cyan-500/20" : "from-slate-700/30 to-slate-600/30"} flex items-center justify-center text-2xl`}>
+            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${rarity === "legendary" ? "from-amber-500/20 to-yellow-500/20" : rarity === "epic" ? "from-purple-500/20 to-pink-500/20" : rarity === "rare" ? "from-blue-500/20 to-cyan-500/20" : "from-slate-100 to-slate-100"} flex items-center justify-center text-2xl`}>
               {challenge.icon || "⚔️"}
             </div>
           </div>
@@ -118,11 +118,11 @@ export default function ChallengePackCard({
           <div className="flex items-center justify-center gap-2 text-[10px] text-slate-500">
             <span className="flex items-center gap-1">
               {Array.from({ length: 3 }).map((_, i) => (
-                <Star key={i} className={`w-2.5 h-2.5 ${i < stars ? "text-amber-400 fill-amber-400" : "text-slate-700"}`} />
+                <Star key={i} className={`w-2.5 h-2.5 ${i < stars ? "text-amber-600 fill-amber-400" : "text-slate-700"}`} />
               ))}
             </span>
             {challenge.xp_reward && (
-              <span className="flex items-center gap-1 text-indigo-400">
+              <span className="flex items-center gap-1 text-indigo-600">
                 <Zap className="w-3 h-3" /> +{challenge.xp_reward}
               </span>
             )}
@@ -132,7 +132,7 @@ export default function ChallengePackCard({
           {challenge.tags && challenge.tags.length > 0 && (
             <div className="flex flex-wrap gap-1 justify-center">
               {challenge.tags.slice(0, 2).map((tag) => (
-                <span key={tag} className="px-1.5 py-0.5 rounded bg-slate-800 text-[8px] text-slate-400 font-mono">
+                <span key={tag} className="px-1.5 py-0.5 rounded bg-slate-100 text-[8px] text-slate-500 font-mono">
                   {tag}
                 </span>
               ))}
@@ -147,8 +147,8 @@ export default function ChallengePackCard({
               className={`
                 w-full py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition-all duration-200
                 ${solved
-                  ? "bg-emerald-600/20 text-emerald-400 border border-emerald-600/30"
-                  : "bg-indigo-600 hover:bg-indigo-500 text-text-primary shadow-lg shadow-indigo-600/20"
+                  ? "bg-emerald-600/20 text-emerald-600 border border-emerald-600/30"
+                  : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/20"
                 }
               `}
             >
@@ -160,7 +160,7 @@ export default function ChallengePackCard({
         {/* Solved overlay */}
         {solved && (
           <div className="absolute top-2 right-2">
-            <CheckCircle2 className="w-5 h-5 text-emerald-400 drop-shadow-lg" />
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 drop-shadow-lg" />
           </div>
         )}
       </div>
