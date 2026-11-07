@@ -96,9 +96,16 @@ def compose_quiz(
         for value in (evidence.get("due_skills") or []) if _text(value)
     }
     seen_ids = {str(value) for value in (evidence.get("seen_question_ids") or [])}
-    target_difficulty = _text(difficulty).lower() or _text(evidence.get("recommended_difficulty")).lower()
+    explicit_difficulty = _text(difficulty).lower()
+    known_scores = list(skill_scores.values())
+    average_score = sum(known_scores) / len(known_scores) if known_scores else 0.5
+    target_difficulty = explicit_difficulty or _text(evidence.get("recommended_difficulty")).lower()
     if target_difficulty not in {"easy", "medium", "hard"}:
-        target_difficulty = "medium"
+        target_difficulty = (
+            "easy" if average_score < 0.35
+            else "hard" if average_score >= 0.75
+            else "medium"
+        )
 
     candidates: list[tuple[float, str, dict[str, Any], dict[str, Any]]] = []
     for question in questions:
@@ -106,8 +113,12 @@ def compose_quiz(
         if not question_id:
             continue
         skills = question_skills(question)
-        skill_score = max((skill_scores.get(skill, 0.5) for skill in skills), default=0.5)
+        skill_score = min((skill_scores.get(skill, 0.5) for skill in skills), default=0.5)
         weakness = max((1.0 - skill_scores.get(skill, 0.5) for skill in skills), default=0.5)
+        skill_difficulty = (
+            explicit_difficulty or
+            ("easy" if skill_score < 0.35 else "hard" if skill_score >= 0.75 else "medium")
+        )
         if any(skill in weak for skill in skills):
             weakness = max(weakness, 0.9)
         due_bonus = 0.35 if any(skill in due for skill in skills) else 0.0
@@ -120,11 +131,13 @@ def compose_quiz(
         company_bonus = 1.6 if company_key and any(_normalise_company(str(item)) == company_key for item in q_companies) else 0.0
         unseen_bonus = 0.18 if question_id not in seen_ids else -0.08
         q_difficulty = _text(question.get("difficulty")).lower() or "medium"
-        difficulty_bonus = 0.25 if q_difficulty == target_difficulty else 0.0
+        difficulty_bonus = 0.25 if q_difficulty == skill_difficulty else 0.0
         score = (weakness * 1.6) + due_bonus + target_bonus + company_bonus + unseen_bonus + difficulty_bonus
         reason = {
             "weakness": round(weakness, 3),
             "skill_score": round(skill_score, 3),
+            "recommended_difficulty": skill_difficulty,
+            "difficulty_match": q_difficulty == skill_difficulty,
             "due_review": bool(due_bonus),
             "company_match": bool(company_bonus),
             "unseen": question_id not in seen_ids,
