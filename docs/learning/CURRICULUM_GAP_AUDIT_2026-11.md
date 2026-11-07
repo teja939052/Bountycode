@@ -156,3 +156,23 @@ The blueprint includes computer architecture, but the interactive lesson catalog
 - Instruction pipelining, throughput and hazards
 
 Registered the track, added a computer-architecture skill to the programming skill graph, mapped lesson completion to that skill, and added a regression test. Advanced architecture topics such as cache mapping, instruction formats, virtualisation, and detailed pipeline performance calculations remain future work.
+
+
+## Content quality tooling
+
+Added `backend/app/scripts/audit_lesson_catalog.py`, a command-line audit for the registered interactive lesson catalog. It reports lesson counts by track and flags:
+- Missing lesson metadata or steps
+- Broken prerequisite references
+- Explanation steps without teaching content, explanation, or worked example
+- Exercises missing instructions, solutions, or tests
+- Invalid quiz questions or answer-key indexes
+- Unsupported step types and common placeholder markers
+- Duplicate lesson IDs dropped by catalog registration
+
+Run it from the backend folder with:
+
+```bash
+python app/scripts/audit_lesson_catalog.py
+```
+
+The Learning Experience workflow now runs this report as part of its backend checks. The report is diagnostic: warnings are surfaced for content review rather than making every legacy lesson fail CI immediately.
