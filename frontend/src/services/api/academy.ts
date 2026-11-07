@@ -3,9 +3,15 @@ import { requestWithRetry as request } from "./request.ts";
 export type AcademyLearnerProfile = {
   target_role: string;
   target_companies: string[];
+  assessment_track: string;
+  assessment_date: string | null;
   experience_level: string;
   preferred_language: string;
   daily_minutes: number;
+  weekly_days: number;
+  device_type: string;
+  local_runtime_available: boolean;
+  accessibility_needs: string;
   placement_date: string | null;
   learning_preference: string;
   timezone: string;

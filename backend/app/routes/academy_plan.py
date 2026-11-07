@@ -44,6 +44,35 @@ ROLE_SKILLS = {
     # Service-company default spine for campus placement aspirants.
     "undecided": ["programming_fundamentals", "quantitative_aptitude", "logical_reasoning", "verbal_ability", "arrays_hashing"],
 }
+ASSESSMENT_TRACK_LABELS = {
+    "service_company_core": "Service-company core",
+    "tcs_foundation": "TCS Foundation",
+    "tcs_advanced": "TCS Advanced",
+    "infosys_infytq": "Infosys InfyTQ",
+    "hackwithinfy": "HackWithInfy",
+    "wipro": "Wipro WILP / NTH",
+    "accenture": "Accenture campus",
+    "cognizant": "Cognizant GenC",
+}
+LEVEL_PATH = [
+    {"id": 0, "title": "Orientation", "focus": "Profile, diagnostic and exam readiness", "unlock": "Start here"},
+    {"id": 1, "title": "Foundations", "focus": "Numerical, verbal, reasoning and programming basics", "unlock": "Build reliable fundamentals"},
+    {"id": 2, "title": "Core skills", "focus": "DSA, SQL, OOP, CS concepts and debugging", "unlock": "Apply concepts to varied problems"},
+    {"id": 3, "title": "Applied readiness", "focus": "Mixed practice, edge cases and role-specific tasks", "unlock": "Transfer skills across formats"},
+    {"id": 4, "title": "Timed performance", "focus": "Sectional drills and employer-style online assessments", "unlock": "Prove speed and accuracy"},
+    {"id": 5, "title": "Interview ready", "focus": "Communication, projects, behavioural and technical interviews", "unlock": "Explain and defend your work"},
+]
+
+
+def _level_path(diagnostic: Dict[str, Any] | None, scores: Dict[str, int]) -> tuple[int, List[dict]]:
+    observed = [score for score in scores.values() if score >= 0]
+    overall = (diagnostic or {}).get("overall_score")
+    average = int(overall) if overall is not None else (sum(observed) // len(observed) if observed else -1)
+    current = 0 if average < 0 else 1 if average < 35 else 2 if average < 60 else 3 if average < 75 else 4 if average < 85 else 5
+    return current, [
+        {**level, "status": "complete" if level["id"] < current else "current" if level["id"] == current else "locked"}
+        for level in LEVEL_PATH
+    ]
 
 
 def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, company_tracks: List[dict] | None = None, adaptive_skills: Dict[str, Any] | None = None) -> Dict[str, Any]:
@@ -172,6 +201,8 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "visual": "Follow concrete traces, state changes and step-by-step examples before generalizing the rule.",
         "reading": "Read the concept guide, key terms and common misconceptions, then recall and apply the idea.",
     }.get(learning_preference, "Combine clear explanations, worked examples and independent practice.")
+    current_level, level_path = _level_path(diagnostic, scores)
+    assessment_track = str(profile.get("assessment_track", "service_company_core") or "service_company_core").lower()
 
     return {
         "target_role": role,
@@ -179,12 +210,18 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "learning_preference": learning_preference,
         "learning_strategy": learning_strategy,
         "target_companies": profile.get("target_companies", []),
+        "assessment_track": assessment_track,
+        "assessment_track_label": ASSESSMENT_TRACK_LABELS.get(assessment_track, ASSESSMENT_TRACK_LABELS["service_company_core"]),
+        "assessment_date": profile.get("assessment_date"),
+        "current_level": current_level,
+        "level_path": level_path,
         "company_preparation": matched_tracks,
         "preferred_language": profile.get("preferred_language", "cpp"),
         "daily_minutes": daily_minutes,
         "diagnostic_completed": bool(diagnostic),
         "overall_diagnostic_score": (diagnostic or {}).get("overall_score"),
         "daily_tasks": selected,
+        "next_action": selected[0] if selected else {"title": "Complete your diagnostic", "to": "/academy", "reason": "We need evidence before choosing the next level."},
         "curriculum": tasks,
         "sprint_focus": sprint_focus,
         "study_routine": [

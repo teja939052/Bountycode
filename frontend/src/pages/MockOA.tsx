@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
@@ -321,8 +321,11 @@ interface AnswerResult {
 }
 
 export default function MockOA() {
+  const [searchParams] = useSearchParams();
+  const requestedCompany = searchParams.get("company");
+  const initialCompany = COMPANIES.some((company) => company.id === requestedCompany) ? requestedCompany : null;
   const [step, setStep] = useState<"select" | "test" | "results">("select");
-  const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
+  const [selectedCompany, setSelectedCompany] = useState<string | null>(initialCompany);
   const [customDuration, setCustomDuration] = useState(45);
   const [sessionId, setSessionId] = useState<string>("");
   const [questions, setQuestions] = useState<OAQuestion[]>([]);

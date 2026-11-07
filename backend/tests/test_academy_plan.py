@@ -115,6 +115,21 @@ def test_learning_preference_shapes_the_daily_study_routine():
     assert sum(step["minutes"] for step in plan["study_routine"]) <= 60
 
 
+def test_plan_exposes_a_transparent_level_path_and_assessment_track():
+    plan = build_plan({
+        "target_role": "software_engineer",
+        "assessment_track": "tcs_foundation",
+        "daily_minutes": 60,
+    }, {"overall_score": 72, "skills": [{"domain": "programming_fundamentals", "score": 72}]})
+
+    assert plan["assessment_track"] == "tcs_foundation"
+    assert plan["assessment_track_label"] == "TCS Foundation"
+    assert plan["current_level"] == 3
+    assert len(plan["level_path"]) == 6
+    assert plan["level_path"][3]["status"] == "current"
+    assert plan["next_action"] == plan["daily_tasks"][0]
+
+
 def test_reading_preference_creates_a_reading_first_routine():
     plan = build_plan({
         "target_role": "undecided",

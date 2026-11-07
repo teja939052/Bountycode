@@ -13,6 +13,9 @@ def test_profile_defaults_are_beginner_friendly():
     assert profile.preferred_language == "cpp"
     assert profile.daily_minutes == 60
     assert profile.target_role == "undecided"
+    assert profile.assessment_track == "service_company_core"
+    assert profile.weekly_days == 5
+    assert profile.device_type == "laptop"
 
 
 def test_profile_normalizes_and_deduplicates_company_ids():
@@ -36,6 +39,13 @@ def test_profile_rejects_unsupported_values(field, value):
 def test_profile_rejects_past_placement_date():
     with pytest.raises(ValidationError):
         LearnerProfileInput(placement_date=date.today() - timedelta(days=1))
+
+
+def test_profile_rejects_unknown_assessment_track_and_device():
+    with pytest.raises(ValidationError):
+        LearnerProfileInput(assessment_track="random_exam")
+    with pytest.raises(ValidationError):
+        LearnerProfileInput(device_type="tablet")
 
 
 def test_profile_serialization_never_exposes_user_id():
