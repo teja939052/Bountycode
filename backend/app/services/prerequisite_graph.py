@@ -218,3 +218,122 @@ def build_prerequisite_plan(
         "prerequisites": items,
         "blockers": [item["skill_id"] for item in blockers],
     }
+
+
+async def get_user_prerequisite_learning_step(
+    user_id: str,
+    target_skill_id: str,
+) -> Dict[str, Any]:
+    """Build the next teach/diagnose/reassess step from persisted quiz evidence.
+
+    Only distinct, persisted question-bank events count as independent
+    attempts. Client lesson completion, XP and broad subject scores are not
+    accepted as prerequisite mastery evidence.
+    """
+    from collections import defaultdict
+
+    from app.database import learning_events_collection
+
+    evidence_rows = await learning_events_collection().find({
+        "user_id": user_id,
+        "source": "question_bank",
+        "activity_type": "practice",
+        "question_id": {"$exists": True, "$nin": ["", None]},
+        "skill_id": {"$exists": True, "$nin": ["", None]},
+    }).to_list(5000)
+
+    grouped: Dict[str, Dict[str, Any]] = defaultdict(
+        lambda: {"question_scores": {}, "attempts": 0}
+    )
+    for event in evidence_rows:
+        skill_id = str(event.get("skill_id") or "")
+        question_id = str(event.get("question_id") or "")
+        if not skill_id or not question_id:
+            continue
+        # Count one outcome per distinct question so repeated retries of one
+        # item cannot satisfy the independent-evidence requirement.
+        grouped[skill_id]["question_scores"][question_id] = float(
+            event.get("score", 0) or 0
+        )
+
+    evidence: Dict[str, Dict[str, Any]] = {}
+    for skill_id, data in grouped.items():
+        scores = list(data["question_scores"].values())
+        evidence[skill_id] = {
+            "score": sum(scores) / len(scores) if scores else 0,
+            "total_attempts": len(scores),
+        }
+
+    plan = build_prerequisite_plan(target_skill_id, evidence)
+    if plan.get("status") in {"unknown_skill", "invalid_graph"}:
+        return {"plan": plan, "next_step": None}
+
+    blocker = next(
+        (item for item in plan.get("prerequisites", []) if item["status"] != "ready"),
+        None,
+    )
+    if blocker is None:
+        return {
+            "plan": plan,
+            "next_step": {
+                "kind": "teach_target",
+                "skill_id": target_skill_id,
+                "title": plan["target_title"],
+                "content_status": "find_curriculum_lesson",
+            },
+        }
+
+    step_kind = (
+        "teach_and_reassess"
+        if blocker["status"] == "needs_review"
+        else "diagnostic_assessment"
+    )
+    lesson = None
+    lesson_id = None
+    try:
+        from app.data.worlds_data import WORLD_REGISTRY
+        from app.services.curriculum_quality import score_lesson_content
+        from app.services.study_engine import _get_lesson_content
+
+        for world in WORLD_REGISTRY.values():
+            for town in world.towns:
+                for level in town.lessons:
+                    canonical = str(getattr(level, "canonical_skill", "") or "")
+                    from app.services.skill_taxonomy import canonical_skill_id
+                    if canonical_skill_id(canonical) != blocker["skill_id"]:
+                        continue
+                    candidate = _get_lesson_content(level.id)
+                    if not candidate:
+                        continue
+                    quality = score_lesson_content(candidate)
+                    if quality["status"] == "ready":
+                        lesson = candidate
+                        lesson_id = level.id
+                    break
+                if lesson:
+                    break
+            if lesson:
+                break
+    except Exception:
+        lesson = None
+
+    next_step: Dict[str, Any] = {
+        "kind": step_kind,
+        "skill_id": blocker["skill_id"],
+        "title": blocker["title"],
+        "reason": (
+            "Your persisted results show this prerequisite needs reinforcement."
+            if blocker["status"] == "needs_review"
+            else "We need to check this prerequisite before moving ahead."
+        ),
+        "required_evidence": {
+            "minimum_distinct_questions": MIN_INDEPENDENT_ATTEMPTS,
+            "mastery_score": MASTERY_THRESHOLD,
+        },
+        "content_status": "ready" if lesson else "lesson_authoring_required",
+    }
+    if lesson:
+        next_step["lesson_id"] = lesson_id
+        next_step["lesson"] = lesson
+
+    return {"plan": plan, "next_step": next_step}
