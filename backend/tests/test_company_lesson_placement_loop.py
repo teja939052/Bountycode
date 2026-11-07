@@ -253,6 +253,15 @@ class _FakeLearningProgressCollection:
 def fake_learning_progress(monkeypatch):
     collection = _FakeLearningProgressCollection()
     monkeypatch.setattr(company_lessons, "learning_progress_collection", collection)
+
+    # Lesson-route tests isolate the HTTP flow. A focused test below verifies
+    # that final-assessment evidence is handed to the canonical Study Engine.
+    from app.services import study_engine
+
+    async def no_op_study_activity(*_args, **_kwargs):
+        return {"recorded": True, "xp_awarded": 0}
+
+    monkeypatch.setattr(study_engine, "record_activity", no_op_study_activity)
     return collection
 
 
@@ -812,3 +821,38 @@ async def test_standalone_lesson_reward_is_claimed_only_once(monkeypatch):
     assert replay["data"]["reward_already_claimed"] is True
     assert len(reward_calls) == 1
     assert reward_calls[0]["activity_id"] == f"lesson:{lesson['slug']}:first_mastery"
+
+
+@pytest.mark.asyncio
+async def test_failed_lesson_assessment_fans_out_to_canonical_study_engine_without_xp(monkeypatch, fake_learning_progress):
+    lesson = _lesson()
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    _seed_passed_required_steps(fake_learning_progress, lesson)
+    monkeypatch.setattr(company_lessons, "record_learning_activity", _fake_record_learning_activity)
+
+    from app.services import study_engine
+    calls = []
+
+    async def fake_record_study_activity(user_id, activity, role="sde", award_reward=True):
+        calls.append((user_id, activity, role, award_reward))
+        return {"recorded": True, "xp_awarded": 0, "repair_id": "repair-1"}
+
+    monkeypatch.setattr(study_engine, "record_activity", fake_record_study_activity)
+
+    result = await company_lessons.complete_lesson(
+        lesson["slug"],
+        company_lessons.CompleteRequest(answers={"0": 0, "1": 0}, time_spent_seconds=120),
+        user={"id": "test-user", "target_role": "sde"},
+    )
+
+    assert result["data"]["passed"] is False
+    assert len(calls) == 1
+    user_id, activity, role, award_reward = calls[0]
+    assert user_id == "test-user"
+    assert activity["type"] == "learn"
+    assert activity["source"] == "company_lesson_assessment"
+    assert activity["skill_id"] == "aptitude.quantitative"
+    assert activity["passed"] is False
+    assert activity["score"] == 0.0
+    assert role == "sde"
+    assert award_reward is False
