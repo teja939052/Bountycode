@@ -36,7 +36,7 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
     visible: { transition: { staggerChildren: 0.06 } },
   };
 
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, scale: 0.7, rotate: -8 },
     visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] } },
   };

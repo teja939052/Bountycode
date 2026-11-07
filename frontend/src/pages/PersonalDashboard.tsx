@@ -187,8 +187,8 @@ export default function PersonalDashboard() {
       if (fast[4]?.status === "fulfilled") setWeeklyGoal(fast[4].value);
       if (fast[5]?.status === "fulfilled") setDailyGoalProgress(fast[5].value);
       if (fast[6]?.status === "fulfilled") setGamProfile(fast[6].value);
-      if (fast[7]?.status === "fulfilled") setBadges(fast[7].value?.badges || []);
-      if (fast[8]?.status === "fulfilled") setLeaderboard(fast[8].value || []);
+      if (fast[7]?.status === "fulfilled") setBadges((fast[7].value as any)?.badges || []);
+      if (fast[8]?.status === "fulfilled") setLeaderboard((fast[8].value as any) || []);
       if (fast[9]?.status === "fulfilled") setStartup(fast[9].value);
       if (fast[10]?.status === "fulfilled") setLeague(fast[10].value);
       if (fast[11]?.status === "fulfilled") setSkillGraph(fast[11].value);

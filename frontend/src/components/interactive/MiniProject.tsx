@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useLearningGuide } from "../hooks/useLearningGuide";
 import { Play, Check, Trophy, Zap } from "lucide-react";
 import api from "../services/api";

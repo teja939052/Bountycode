@@ -1,11 +1,18 @@
 import { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { getLevelForXP, getLevelColor } from './XPBar';
+import { getLevelForXP } from './XPBar';
 
 export default function ShareCard({ user, stats, onClose }) {
   const cardRef = useRef(null);
   const level = getLevelForXP(user?.xp || 0);
-  const levelColor = getLevelColor(level);
+  const LEVEL_COLORS: Record<number, { from: string; to: string; label: string }> = {
+    1: { from: "#8B5CF6", to: "#3B82F6", label: "Novice" },
+    5: { from: "#3B82F6", to: "#10B981", label: "Learner" },
+    10: { from: "#10B981", to: "#F59E0B", label: "Coder" },
+    15: { from: "#F59E0B", to: "#EF4444", label: "Engineer" },
+    20: { from: "#EF4444", to: "#8B5CF6", label: "Architect" },
+  };
+  const levelColor = LEVEL_COLORS[level] || LEVEL_COLORS[1];
 
   const handleDownload = useCallback(async () => {
     if (!cardRef.current) return;

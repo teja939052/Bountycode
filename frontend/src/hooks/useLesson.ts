@@ -3,7 +3,38 @@ import { useCallback, useEffect, useState } from "react";
 const CACHE_PREFIX = "pp_curriculum_v1";
 const CACHE_TTL = 60 * 60 * 24; // 24h in seconds
 
-function readCache(key) {
+export interface Lesson {
+  id: string;
+  title: string;
+  type?: string;
+  xp?: number;
+  section?: string;
+  duration?: string;
+  content?: {
+    theory?: string;
+    codeSnippets?: Array<{ code: string; output?: string }>;
+    exercise?: {
+      instruction: string;
+      code?: string;
+      language?: string;
+      expected?: string;
+      stdin?: string;
+      hints?: string[];
+      required?: string[];
+      starterCode?: string;
+    };
+    quiz?: Array<{
+      question: string;
+      options: string[];
+      correct: number;
+    }>;
+  };
+  completion?: {
+    nextLesson?: string;
+  };
+}
+
+function readCache(key: string) {
   try {
     const raw = localStorage.getItem(`${CACHE_PREFIX}:${key}`);
     if (!raw) return null;
@@ -15,7 +46,7 @@ function readCache(key) {
   }
 }
 
-function writeCache(key, data) {
+function writeCache(key: string, data: unknown) {
   try {
     localStorage.setItem(
       `${CACHE_PREFIX}:${key}`,
@@ -27,9 +58,9 @@ function writeCache(key, data) {
 }
 
 export function useCurriculumIndex() {
-  const [index, setIndex] = useState(null);
+  const [index, setIndex] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -52,7 +83,7 @@ export function useCurriculumIndex() {
       .catch((err) => {
         if (!active) return;
         if (!cached) {
-          setError(err.message || "Failed to load curriculum");
+          setError(err instanceof Error ? err.message : "Failed to load curriculum");
           setLoading(false);
         }
       });
@@ -64,10 +95,10 @@ export function useCurriculumIndex() {
   return { index, loading, error };
 }
 
-export function useLesson(trackId, lessonId) {
-  const [lesson, setLesson] = useState(null);
+export function useLesson(trackId: string, lessonId: string) {
+  const [lesson, setLesson] = useState<Lesson | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const cacheKey = `${trackId}/${lessonId}`;
 
@@ -77,7 +108,7 @@ export function useLesson(trackId, lessonId) {
     setLoading(true);
     const cached = readCache(cacheKey);
     if (cached) {
-      setLesson(cached);
+      setLesson(cached as Lesson);
       setLoading(false);
     }
     fetch(`/curriculum/languages/${trackId}/${lessonId}.json`)
@@ -88,13 +119,13 @@ export function useLesson(trackId, lessonId) {
       .then((data) => {
         if (!active) return;
         writeCache(cacheKey, data);
-        setLesson(data);
+        setLesson(data as Lesson);
         setLoading(false);
       })
       .catch((err) => {
         if (!active) return;
         if (!cached) {
-          setError(err.message || "Failed to load lesson");
+          setError(err instanceof Error ? err.message : "Failed to load lesson");
           setLoading(false);
         }
       });
@@ -104,7 +135,7 @@ export function useLesson(trackId, lessonId) {
   }, [trackId, lessonId, cacheKey]);
 
   const preload = useCallback(
-    (nextId) => {
+    (nextId: string) => {
       if (!trackId || !nextId) return;
       const key = `${trackId}/${nextId}`;
       if (readCache(key)) return;

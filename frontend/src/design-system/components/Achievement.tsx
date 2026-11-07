@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { colors, radii, shadows, motion, spacing, typography } from "..";
+import { ProgressBar } from "./ProgressBar";
 
 interface AchievementProps {
   title: string;
@@ -17,7 +18,7 @@ interface AchievementProps {
 
 const rarityStyles: Record<AchievementProps["rarity"], { bg: string; border: string; glow: string; text: string }> = {
   common: {
-    bg: colors.background.surfaceSecondary,
+    bg: colors.background.surface2,
     border: colors.border.primary,
     glow: "none",
     text: colors.text.primary,
@@ -88,7 +89,7 @@ export function Achievement({
           style={{
             background: isUnlocked
               ? `linear-gradient(135deg, ${style.border}15 0%, ${style.border}05 100%)`
-              : colors.background.surfaceSecondary,
+              : colors.background.surface2,
             border: `1px solid ${style.border}`,
           }}
         >

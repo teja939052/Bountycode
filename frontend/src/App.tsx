@@ -136,6 +136,7 @@ import {
   LoopsVertical,
   GamificationDashboard,
   ContentBundles,
+  SkillMap,
 } from "./pages/lazy";
 
 function AnimatedRoutes() {
@@ -211,6 +212,7 @@ function AnimatedRoutes() {
         <Route path="/career" element={<Career />} />
         <Route path="/lessons" element={<Lessons />} />
         <Route path="/lessons/:lessonId" element={<LessonPlayer />} />
+        <Route path="/skills" element={<SkillMap />} />
         <Route
           path="/analytics"
           element={<Navigate to="/dashboard" replace />}

@@ -13,17 +13,29 @@ import {
   Sparkles,
   XCircle,
 } from "lucide-react";
-import { useLesson } from "../hooks/useLesson";
+import { useLesson, type Lesson } from "../hooks/useLesson";
 import { gamificationApi } from "../services/api/gamification";
 import { compilerApi } from "../services/api/coding";
 import Spinner from "../components/ui/Spinner";
 import Markdown from "../components/learning/Markdown";
+import type { ExecutionResult } from "../services/api/types";
 
 const PROGRESS_KEY = "pp_curriculum_progress_v1";
 const WEB_TRACKS = ["html", "css", "javascript"];
 const RUNNABLE_TRACKS = ["python", "java", "cpp"];
 
-function readProgress() {
+interface RunOutput {
+  ok: boolean;
+  text: string;
+  expected?: string;
+  actualStderr?: string;
+  mismatch?: string;
+  stderr?: string;
+  compileError?: string;
+  language?: string;
+}
+
+function readProgress(): Record<string, unknown> {
   try {
     return JSON.parse(localStorage.getItem(PROGRESS_KEY) || "{}");
   } catch {
@@ -31,13 +43,16 @@ function readProgress() {
   }
 }
 
-function writeProgress(map) {
+function writeProgress(map: Record<string, unknown>) {
   try {
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(map));
   } catch {}
 }
 
-function buildPreviewDoc(language, exercise) {
+function buildPreviewDoc(
+  language: string,
+  exercise: NonNullable<Lesson["content"]>["exercise"] | undefined
+) {
   const code = exercise?.code || "";
   if (language === "html") return code;
   if (language === "css") {
@@ -80,27 +95,27 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 export default function LearnLesson() {
-  const { trackId, lessonId } = useParams();
+  const { trackId, lessonId } = useParams<{ trackId: string; lessonId: string }>();
   const navigate = useNavigate();
-  const { lesson, loading, error, preload } = useLesson(trackId, lessonId);
+  const { lesson, loading, error, preload } = useLesson(trackId ?? "", lessonId ?? "");
 
   const [code, setCode] = useState("");
   const [showHints, setShowHints] = useState(false);
   const [hintCount, setHintCount] = useState(1);
-  const [checkResult, setCheckResult] = useState(null);
-  const [quizAnswers, setQuizAnswers] = useState({});
-  const [quizResult, setQuizResult] = useState(null);
+  const [checkResult, setCheckResult] = useState<boolean | null>(null);
+  const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
+  const [quizResult, setQuizResult] = useState<{ correct: number; total: number; passed: boolean } | null>(null);
   const [completed, setCompleted] = useState(false);
   const [justCompleted, setJustCompleted] = useState(false);
   const [showPreview, setShowPreview] = useState(true);
-  const [runOutput, setRunOutput] = useState(null);
+  const [runOutput, setRunOutput] = useState<RunOutput | null>(null);
   const [running, setRunning] = useState(false);
 
   const isProject = lesson?.type === "project";
   const exercise = lesson?.content?.exercise;
   const quiz = lesson?.content?.quiz || [];
-  const isWebTrack = WEB_TRACKS.includes(trackId);
-  const exerciseLanguage = exercise?.language || (trackId === "javascript" ? "javascript" : trackId);
+  const isWebTrack = WEB_TRACKS.includes(trackId ?? "");
+  const exerciseLanguage = exercise?.language || (trackId === "javascript" ? "javascript" : trackId ?? "");
 
   useEffect(() => {
     if (!lesson?.id) return;
@@ -123,8 +138,8 @@ export default function LearnLesson() {
   }, [lesson?.completion?.nextLesson, preload]);
 
   const previewDoc = useMemo(
-    () => buildPreviewDoc(trackId, { code }),
-    [trackId, code]
+    () => buildPreviewDoc(trackId ?? "", exercise),
+    [trackId, exercise]
   );
 
   if (loading) {
@@ -154,22 +169,22 @@ export default function LearnLesson() {
     return exercise.required.every((needle) => normalized.includes(needle.replace(/\s+/g, " ")));
   };
 
-const handleCheck = async () => {
+  const handleCheck = async () => {
     // Runnable tracks with an expected output get REAL output grading.
-    if (RUNNABLE_TRACKS.includes(trackId) && exercise?.expected) {
+    if (RUNNABLE_TRACKS.includes(trackId ?? "") && exercise?.expected) {
       setRunning(true);
       setCheckResult(null);
       try {
-        const res = await compilerApi.executeCode({
+        const res: ExecutionResult = await compilerApi.executeCode({
           code,
           language: exerciseLanguage,
           stdin: exercise?.stdin || "",
           timeout: 5,
         });
-        const actual = (res?.stdout || res?.output || "").trim();
-        const actualStderr = (res?.stderr || "").trim();
+        const actual = (res.output || "").trim();
+        const actualStderr = (res.error || "").trim();
         const expected = String(exercise.expected).trim();
-        const normalized = (s) => s.replace(/\s+/g, " ").trim();
+        const normalized = (s: string) => s.replace(/\s+/g, " ").trim();
         const ok = normalized(actual) === normalized(expected);
         setCheckResult(ok);
         setRunOutput({
@@ -181,7 +196,7 @@ const handleCheck = async () => {
         });
       } catch (err) {
         setCheckResult(false);
-        setRunOutput({ ok: false, text: err?.message || "Run failed", expected: String(exercise.expected), actualStderr: "", mismatch: "" });
+        setRunOutput({ ok: false, text: err instanceof Error ? err.message : "Run failed", expected: String(exercise.expected), actualStderr: "", mismatch: "" });
       }
     } else {
       const ok = allRequiredPassed();
@@ -198,30 +213,30 @@ const handleCheck = async () => {
     setRunning(true);
     setRunOutput(null);
     try {
-      const res = await compilerApi.executeCode({
+      const res: ExecutionResult = await compilerApi.executeCode({
         code,
         language: exerciseLanguage,
         stdin: exercise?.stdin || "",
         timeout: 5,
       });
-      const output = res?.output || res?.stdout || "";
-      const stderr = (res?.stderr || "").trim();
-      const compileError = res?.compile?.output || "";
+      const output = res.output || "";
+      const stderr = (res.error || "").trim();
+      const compileError = "";
       setRunOutput({
-        ok: !(stderr || (res?.error && res?.error !== "Compilation failed")),
+        ok: !(stderr || (res.error && res.error !== "Compilation failed")),
         text: output || (compileError ? `Compilation error: ${compileError}` : "No output"),
         stderr,
         compileError,
         language: exerciseLanguage,
       });
     } catch (err) {
-      setRunOutput({ ok: false, text: err?.message || "Run failed", stderr: "", compileError: "" });
+      setRunOutput({ ok: false, text: err instanceof Error ? err.message : "Run failed", stderr: "", compileError: "" });
     } finally {
       setRunning(false);
     }
   };
 
-  const handleQuizAnswer = (qIndex, optIndex) => {
+  const handleQuizAnswer = (qIndex: number, optIndex: number) => {
     const next = { ...quizAnswers, [qIndex]: optIndex };
     setQuizAnswers(next);
     if (quiz.length && Object.keys(next).length === quiz.length) {
@@ -239,22 +254,23 @@ const handleCheck = async () => {
     progress[lesson.id] = {
       completedAt: Date.now(),
       xp: lesson.xp,
-      track: trackId,
+      track: trackId ?? "",
     };
     writeProgress(progress);
     setCompleted(true);
     setJustCompleted(true);
     try {
-      await gamificationApi.recordActivity("learning", lesson.xp, "curriculum", trackId);
+      await gamificationApi.recordActivity("learning", lesson.xp ?? 0, "curriculum", trackId ?? "");
     } catch {}
     if (lesson.completion?.nextLesson) {
-      setTimeout(() => navigate(`/curriculum/${trackId}/${lesson.completion.nextLesson}`), 1200);
+      const next = lesson.completion.nextLesson;
+      setTimeout(() => navigate(`/curriculum/${trackId}/${next}`), 1200);
     }
   };
 
   const resetCode = () => setCode(exercise?.starterCode || "");
 
-  const sectionLabel = lesson.section || "Lesson";
+  const sectionLabel = lesson.section ?? "Lesson";
 
   return (
     <div className="min-h-screen bg-surface-base text-text-primary">
@@ -295,13 +311,13 @@ const handleCheck = async () => {
             <Markdown>{lesson.content?.theory}</Markdown>
           </section>
 
-          {lesson.content?.codeSnippets?.length > 0 && (
+          {(lesson.content?.codeSnippets?.length ?? 0) > 0 && (
             <section className="rounded-3xl border border-[#E5E7EB] bg-white p-6">
               <h3 className="mb-3 flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-nature-blossom">
                 <Sparkles size={15} /> Walkthrough
               </h3>
               <div className="space-y-4">
-                {lesson.content.codeSnippets.map((s, i) => (
+                {lesson.content?.codeSnippets?.map((s, i) => (
                   <div key={i}>
                     <pre className="overflow-x-auto rounded-xl border border-[#E5E7EB] bg-[#F9FAFB] p-4 font-mono text-[13px] leading-relaxed">
                       <code>{s.code}</code>
@@ -358,7 +374,7 @@ const handleCheck = async () => {
                 >
                   Check answer
                 </button>
-                {RUNNABLE_TRACKS.includes(trackId) && (
+                {RUNNABLE_TRACKS.includes(trackId ?? "") && (
                   <button
                     onClick={handleRun}
                     disabled={running}
@@ -367,7 +383,7 @@ const handleCheck = async () => {
                     {running ? "Running…" : "Run code"}
                   </button>
                 )}
-                {exercise.hints?.length > 0 && (
+                {(exercise.hints?.length ?? 0) > 0 && (
                   <button
                     onClick={handleHint}
                     className="flex items-center gap-1.5 rounded-full border border-[#EAB308]/40 bg-[#FEFCE8] px-4 py-2 text-sm font-semibold text-[#854D0E] hover:bg-[#FEF9C3]"
@@ -377,9 +393,9 @@ const handleCheck = async () => {
                 )}
               </div>
 
-              {showHints && exercise.hints?.length > 0 && (
+              {showHints && (exercise.hints?.length ?? 0) > 0 && (
                 <div className="mt-3 space-y-2 rounded-xl border border-[#EAB308]/30 bg-[#FEFCE8] p-4">
-                  {exercise.hints.slice(0, hintCount).map((h, i) => (
+                  {exercise.hints?.slice(0, hintCount)?.map((h, i) => (
                     <p key={i} className="text-sm text-[#854D0E]">
                       {h}
                     </p>
@@ -491,7 +507,7 @@ const handleCheck = async () => {
         </div>
 
         {/* Right: live preview / run output */}
-        {showPreview && (isWebTrack || RUNNABLE_TRACKS.includes(trackId)) && (
+        {showPreview && (isWebTrack || RUNNABLE_TRACKS.includes(trackId ?? "")) && (
           <div className="lg:sticky lg:top-[65px] lg:h-[calc(100vh-85px)]">
             <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white">
               <div className="flex items-center justify-between border-b border-[#E5E7EB] bg-[#F9FAFB] px-4 py-2.5">

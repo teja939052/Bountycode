@@ -39,8 +39,8 @@ export default function ATSOptimizer() {
     setError("");
     try {
       const [optData, semData] = await Promise.all([
-        api.optimizeResume(resumeId, jobDescription),
-        api.getSemanticAtsScore(resumeText, jobDescription).catch(() => null),
+        (api as any).optimizeResume(resumeId, jobDescription),
+        (api as any).getSemanticAtsScore(resumeText, jobDescription).catch(() => null),
       ]);
       setOptimization(optData);
       setSemanticScore(semData);
@@ -54,7 +54,7 @@ export default function ATSOptimizer() {
   const handleExport = async (format) => {
     if (!resumeId) return;
     try {
-      const blob = await api.exportResume(resumeId, format);
+      const blob = await (api as any).exportResume(resumeId, format);
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;

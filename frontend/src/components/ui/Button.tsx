@@ -1,4 +1,4 @@
-export default function Button({ children, variant = "primary", className = "", disabled, ...props }) {
+export default function Button({ children, variant = "primary", className = "", disabled, ...props }: { children?: React.ReactNode; variant?: string; className?: string; disabled?: boolean; [key: string]: any }) {
   const variants = {
     primary: "btn-primary",
     secondary: "btn-secondary",

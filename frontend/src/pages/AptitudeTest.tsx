@@ -92,7 +92,7 @@ export default function AptitudeTest() {
     setLoading(true);
     setError("");
     try {
-      const data = await api.startAptitudeTest(category, difficulty, QUESTION_COUNT);
+      const data = await (api as any).startAptitudeTest(category, difficulty, QUESTION_COUNT);
       setTestId(data.test_id);
       setQuestions(data.questions);
       setCurrentQ(0);
@@ -110,7 +110,7 @@ export default function AptitudeTest() {
     setLoading(true);
     setError("");
     try {
-      const data = await api.submitAptitudeAnswer(testId, currentQ, answer);
+      const data = await (api as any).submitAptitudeAnswer(testId, currentQ, answer);
       setAnswers({ ...answers, [currentQ]: answer });
       setAnswerFeedback(data);
       setTimeout(() => {
@@ -130,7 +130,7 @@ export default function AptitudeTest() {
   const completeTest = async () => {
     setLoading(true);
     try {
-      const data = await api.completeAptitudeTest(testId, timeTaken);
+      const data = await (api as any).completeAptitudeTest(testId, timeTaken);
       setResult(data);
       setStep("results");
       if (data.percentage >= 80) {

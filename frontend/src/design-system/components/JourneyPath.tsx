@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { colors, radii, shadows, motion, spacing } from "..";
+import { ProgressBar } from "./ProgressBar";
 
 interface JourneyNode {
   id: string;

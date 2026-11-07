@@ -36,7 +36,7 @@ export default function CurriculumHub() {
     );
   }
 
-  const totalLessons = index.tracks.reduce(
+  const totalLessons = (index as any).tracks.reduce(
     (n, t) => n + t.sections.reduce((m, s) => m + s.lessons.length, 0),
     0
   );
@@ -52,11 +52,11 @@ export default function CurriculumHub() {
         </h1>
         <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-text-muted">
           Hands-on lessons with a live preview, hints when you're stuck, and a quick quiz to lock it
-          in. {totalLessons} lessons across {index.tracks.length} tracks so far — more on the way.
+          in. {totalLessons} lessons across {(index as any).tracks.length} tracks so far — more on the way.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {index.tracks.map((track) => {
+          {(index as any).tracks.map((track) => {
             const Icon = ICONS[track.icon] || Code2;
             const lessons = track.sections.flatMap((s) => s.lessons);
             const done = lessons.filter((l) => progress[l.id]).length;

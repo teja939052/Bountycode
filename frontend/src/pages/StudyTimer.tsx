@@ -35,7 +35,7 @@ export default function StudyTimer() {
 
   const loadStats = useCallback(async () => {
     try {
-      const data = await api.studyTimer.getStats();
+      const data = await (api as any).studyTimer.getStats();
       setStats(data);
     } catch {
       setStats({ total_sessions: 0, total_minutes: 0, streak_days: 0, focus_rank: "Novice" });
@@ -50,7 +50,7 @@ export default function StudyTimer() {
   const startSession = async () => {
     const minutes = workSeconds() / 60;
     try {
-      const res = await api.studyTimer.createSession(workSeconds(), `${minutes} min focus`, mode);
+      const res = await (api as any).studyTimer.createSession(workSeconds(), `${minutes} min focus`, mode);
       setActiveSession(res);
       setIsRunning(true);
       setIsBreak(false);
@@ -74,7 +74,7 @@ export default function StudyTimer() {
     const completed = workSeconds() - secondsLeft;
     const minutes = Math.max(1, Math.ceil(completed / 60));
     try {
-      const res = await api.studyTimer.completeSession(activeSession.session_id, minutes);
+      const res = await (api as any).studyTimer.completeSession(activeSession.session_id, minutes);
       window.dispatchEvent(new CustomEvent("xp-gained", { detail: { xp: res.score } }));
       toast.success(`+${res.score} XP • ${minutes} min focused`);
       loadStats();

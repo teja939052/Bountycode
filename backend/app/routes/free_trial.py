@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from fastapi import APIRouter, Request
 from app.data.curriculum import get_level, get_lesson
-from app.data.lesson_content import get_lesson_content
+from app.data.lesson_content import get_lesson_content, public_lesson_content
 
 router = APIRouter(prefix="/api/v1/free-trial", tags=["free-trial"])
 
@@ -47,7 +47,7 @@ async def get_free_trial_lessons():
             "title": fl["title"],
             "type": fl["type"],
             "xp": fl["xp"],
-            "content": content,
+            "content": public_lesson_content(content),
         })
     return {"lessons": lessons, "total_lessons": len(lessons)}
 

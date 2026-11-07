@@ -83,7 +83,6 @@ export * from './completeMockRequest';
 export * from './completeMockRequestAnswers';
 export * from './completeMockRequestAnswersAnyOf';
 export * from './completeStepRequest';
-export * from './consumeApiV1EnergyConsumePostBody';
 export * from './contributeGuildXpApiV1GuildsContributeXpPostBody';
 export * from './contributeRequest';
 export * from './contributeTeamXpApiV1TeamsContributeXpPostBody';

@@ -34,6 +34,16 @@ function StepBadge({ status }: { status: StepStatus }) {
   );
 }
 
+function feedbackClass(result: any): string {
+  if (result?.is_correct === true) {
+    return "bg-[#4ade80]/10 border border-[#4ade80]/30 text-[#4ade80]";
+  }
+  if (result?.is_correct === false) {
+    return "bg-red-500/10 border border-red-500/30 text-red-400";
+  }
+  return "bg-amber-500/10 border border-amber-500/30 text-amber-300";
+}
+
 export default function LessonPlayer() {
   const { lessonId } = useParams<{ lessonId: string }>();
   const navigate = useNavigate();
@@ -96,7 +106,7 @@ export default function LessonPlayer() {
     try {
       const result = await api.compiler.executeCode({
         code,
-        language: "python",
+        language: lesson?.track === "java" || lesson?.track === "cpp" ? lesson.track : "python",
       });
       setOutput(result.output || "");
       if (result.error) setOutput((prev) => prev + "\n" + result.error);
@@ -107,79 +117,56 @@ export default function LessonPlayer() {
     }
   };
 
+  const advanceAfter = async (result: any) => {
+    const nextIndex = currentStepIndex + 1;
+    if (nextIndex < (lesson?.steps.length || 0)) {
+      setFeedback(null);
+      setCurrentStepIndex(nextIndex);
+      setCode(lesson.steps[nextIndex].starterCode || "");
+      setOutput("");
+      setSelectedOption(null);
+      setRunning(false);
+      await loadProgress();
+    } else if (result.lesson_complete) {
+      setCelebrating(true);
+      setRunning(false);
+      await loadProgress();
+    } else {
+      setFeedback(null);
+      setRunning(false);
+    }
+  };
+
   const submitStep = async () => {
     if (!currentStep) return;
     setFeedback(null);
     setError("");
+    if (currentStep.type === "quiz" && selectedOption === null) {
+      setError("Please select an answer.");
+      return;
+    }
+    setRunning(true);
     try {
-      if (currentStep.type === "quiz") {
-        if (selectedOption === null) {
-          setError("Please select an answer.");
-          return;
-        }
-        const correct = selectedOption === (currentStep.correctIndex ?? -1);
-        const result = {
-          is_correct: correct,
-          feedback: correct
-            ? "Correct!"
-            : `Not quite. ${currentStep.explanation}`,
-          lesson_complete: false,
-          xp_earned: 0,
-        };
-        setFeedback(result);
-        if (correct) {
-          await markStepComplete(currentStep.id, code);
-        }
-        return;
-      }
-
+      // Correctness is decided by the server; the client only sends the answer.
       const result = await api.lessons.completeStep({
         lesson_id: lessonId || "",
         step_id: currentStep.id,
-        code,
+        code: currentStep.type === "exercise" ? code : "",
+        answer:
+          currentStep.type === "quiz" && selectedOption !== null
+            ? String(selectedOption)
+            : undefined,
       });
       setFeedback(result);
-      if (result.is_correct) {
-        const nextIndex = currentStepIndex + 1;
-        if (nextIndex < (lesson?.steps.length || 0)) {
-          setCurrentStepIndex(nextIndex);
-          setCode(lesson.steps[nextIndex].starterCode || "");
-          setOutput("");
-          setSelectedOption(null);
-        } else if (result.lesson_complete) {
-          setCelebrating(true);
-          try {
-            const prog = await api.lessons.progress();
-            setProgress(prog);
-          } catch {}
-        }
+      if (result.step_completed) {
+        await advanceAfter(result);
+      } else {
+        setRunning(false);
       }
     } catch (e: any) {
       setError(e?.detail || "Failed to submit");
+      setRunning(false);
     }
-  };
-
-  const markStepComplete = async (stepId: string, code: string) => {
-    try {
-      await api.lessons.completeStep({
-        lesson_id: lessonId || "",
-        step_id: stepId,
-        code,
-      });
-      const nextIndex = currentStepIndex + 1;
-      if (nextIndex < (lesson?.steps.length || 0)) {
-        setCurrentStepIndex(nextIndex);
-        setCode(lesson.steps[nextIndex].starterCode || "");
-        setOutput("");
-        setSelectedOption(null);
-      } else {
-        setCelebrating(true);
-        try {
-          const prog = await api.lessons.progress();
-          setProgress(prog);
-        } catch {}
-      }
-    } catch {}
   };
 
   const goToNextLesson = async () => {
@@ -245,7 +232,11 @@ export default function LessonPlayer() {
           <Trophy className="w-10 h-10 text-amber-500 mx-auto mb-3" />
           <h3 className="font-bold text-text mb-2">Lesson complete!</h3>
           <p className="text-text-muted mb-4">
-            You mastered {lesson.title}. Earned {lesson.xpReward} XP.
+            {feedback?.lesson_verified
+              ? `Verified completion of ${lesson.title}. Earned ${
+                  feedback?.xp_earned || 0
+                } XP.`
+              : `${lesson.title} is complete, but it has no automatically verified check yet, so no XP or mastery was awarded.`}
           </p>
           <div className="flex gap-3 justify-center">
             <Button variant="primary" onClick={goToNextLesson}>
@@ -406,13 +397,9 @@ export default function LessonPlayer() {
                   </div>
                   {feedback && (
                     <div
-                      className={`mt-3 p-3 rounded ${
-                        feedback.is_correct
-                          ? "bg-[#4ade80]/10 border border-[#4ade80]/30 text-[#4ade80]"
-                          : "bg-red-500/10 border border-red-500/30 text-red-400"
-                      }`}
+                      className={`mt-3 p-3 rounded text-sm ${feedbackClass(feedback)}`}
                     >
-                      {feedback.feedback || feedback.message}
+                      {feedback.feedback}
                     </div>
                   )}
                   {error && (
@@ -429,21 +416,19 @@ export default function LessonPlayer() {
                   <div className="space-y-2">
                     {(currentStep.options || []).map((opt: string, i: number) => {
                       const isSelected = selectedOption === i;
-                      const isCorrect = i === (currentStep.correctIndex ?? -1);
-                      const showResult = feedback && feedback.feedback;
+                      const answered = feedback && feedback.graded;
+                      const tone = !answered
+                        ? "border-[#2a2a2a] bg-[#0a0a0a] text-[#e9e9e9] hover:border-white/30"
+                        : isSelected
+                        ? feedback.is_correct
+                          ? "bg-[#4ade80]/20 border-[#4ade80]/50 text-[#4ade80]"
+                          : "bg-red-500/20 border-red-500/50 text-red-400"
+                        : "border-[#2a2a2a] bg-[#0a0a0a] text-[#e9e9e9] hover:border-white/30";
                       return (
                         <button
                           key={i}
                           onClick={() => setSelectedOption(i)}
-                          className={`w-full text-left px-4 py-3 rounded-lg border text-sm font-mono transition-all ${
-                            showResult
-                              ? isCorrect
-                                ? "bg-[#4ade80]/20 border-[#4ade80]/50 text-[#4ade80]"
-                                : isSelected
-                                ? "bg-red-500/20 border-red-500/50 text-red-400"
-                                : "border-[#2a2a2a] bg-[#0a0a0a] text-[#e9e9e9] hover:border-white/30"
-                              : "border-[#2a2a2a] bg-[#0a0a0a] text-[#e9e9e9] hover:border-white/30"
-                          }`}
+                          className={`w-full text-left px-4 py-3 rounded-lg border text-sm font-mono transition-all ${tone}`}
                         >
                           {i}. {opt}
                         </button>
@@ -462,13 +447,9 @@ export default function LessonPlayer() {
                   </div>
                   {feedback && (
                     <div
-                      className={`mt-3 p-3 rounded ${
-                        feedback.is_correct
-                          ? "bg-[#4ade80]/20 border border-[#4ade80]/50 text-[#4ade80] font-bold"
-                          : "bg-red-500/20 border border-red-500/50 text-red-400 font-bold"
-                      }`}
+                      className={`mt-3 p-3 rounded font-bold ${feedbackClass(feedback)}`}
                     >
-                      {feedback.feedback || feedback.message}
+                      {feedback.feedback}
                     </div>
                   )}
                   {error && (

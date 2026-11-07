@@ -96,8 +96,8 @@ const routeImportFns = {
   GamificationDashboard: () => import("./GamificationDashboard"),
 };
 
-const preload = {};
-const preloaded = new Set();
+const preload: Record<string, () => void> = {};
+const preloaded = new Set<string>();
 for (const [name, importFn] of Object.entries(routeImportFns)) {
   preload[name] = () => {
     if (preloaded.has(name)) return;
@@ -238,6 +238,7 @@ const TargetPage = lazy(() => import('./TargetPage'));
 const LoopsVertical = lazy(() => import('./LoopsVertical'));
 const GamificationDashboard = lazy(() => import('./GamificationDashboard'));
 const ContentBundles = lazy(() => import('./ContentBundles'));
+const SkillMap = lazy(() => import('./SkillMap'));
 export {
   CurriculumHub,
   LearnTrack,
@@ -337,4 +338,5 @@ export {
   LoopsVertical,
   GamificationDashboard,
   ContentBundles,
+  SkillMap,
 };

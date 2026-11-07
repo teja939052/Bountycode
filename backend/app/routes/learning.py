@@ -2,6 +2,8 @@
 Learning Hub routes — languages, levels, lessons, progress, daily goals, quick practice.
 """
 from fastapi import APIRouter, Depends, HTTPException, Path
+from pydantic import BaseModel
+
 from app.middleware.auth import get_current_user
 from app.services.learning import (
     get_user_progress,
@@ -12,6 +14,8 @@ from app.services.learning import (
     get_quick_practice,
     get_leaderboard,
     get_streak,
+    record_quiz_pass,
+    get_quiz_passes,
 )
 from app.data.curriculum import (
     get_language,
@@ -22,11 +26,25 @@ from app.data.curriculum import (
     LANGUAGES,
     LEVEL_THEMES,
 )
-from app.data.lesson_content import get_lesson_content
+from app.data.lesson_content import (
+    get_lesson_content,
+    lesson_quizzes,
+    public_lesson_content,
+)
 # Enrich curriculum with JavaScript track and extra content
 import app.data.curriculum_enrichment  # noqa: F401
 
 router = APIRouter(prefix="/api/v1/learning", tags=["learning"])
+
+
+class QuizAnswer(BaseModel):
+    quiz_index: int = 0
+    choice: int
+
+
+def _quiz_keys(lesson_id: str, content: dict) -> list:
+    """Stable identifiers for each quiz in a lesson."""
+    return [f"{lesson_id}:{i}" for i in range(len(lesson_quizzes(content)))]
 
 
 @router.get("/languages")
@@ -226,6 +244,9 @@ async def get_lesson_detail(
 
     content = get_lesson_content(language_id, lesson_id, lesson["title"], lesson["type"])
 
+    passes = await get_quiz_passes(user["id"], language_id)
+    keys = _quiz_keys(lesson_id, content)
+
     return {
         "lesson": lesson,
         "completed": is_completed,
@@ -240,7 +261,50 @@ async def get_lesson_detail(
             "career_mapping": level.get("career_mapping", []),
             "capstone_challenge": level.get("capstone_challenge", ""),
         },
-        "content": content,
+        # Answer keys are stripped: quizzes are graded by the API, not the UI.
+        "content": public_lesson_content(content),
+        "quiz_progress": {
+            "required": keys,
+            "passed": [i for i, key in enumerate(keys) if key in passes],
+        },
+    }
+
+
+@router.post("/{language_id}/{level_id}/{lesson_id}/quiz")
+async def grade_lesson_quiz(
+    payload: QuizAnswer,
+    language_id: str = VALID_LANG_ID,
+    level_id: str = VALID_LEVEL_ID,
+    lesson_id: str = VALID_LESSON_ID,
+    user=Depends(get_current_user),
+):
+    """Grade one quiz answer server-side and record a pass on success."""
+    lesson = get_lesson(language_id, level_id, lesson_id)
+    if not lesson:
+        raise HTTPException(status_code=404, detail="Lesson not found")
+
+    content = get_lesson_content(language_id, lesson_id, lesson["title"], lesson["type"])
+    quizzes = lesson_quizzes(content)
+    if not quizzes:
+        raise HTTPException(status_code=400, detail="This lesson has no quiz")
+    if not 0 <= payload.quiz_index < len(quizzes):
+        raise HTTPException(status_code=400, detail="Quiz index out of range")
+
+    quiz = quizzes[payload.quiz_index]
+    correct = quiz.get("correct")
+    options = quiz.get("options") or []
+    if not isinstance(correct, int) or not 0 <= correct < len(options):
+        raise HTTPException(status_code=400, detail="This quiz has no answer key")
+
+    is_correct = payload.choice == correct
+    if is_correct:
+        await record_quiz_pass(user["id"], language_id, lesson_id, payload.quiz_index)
+
+    return {
+        "quiz_index": payload.quiz_index,
+        "is_correct": is_correct,
+        # The explanation states the answer, so it is only revealed on success.
+        "explanation": quiz.get("explanation") if is_correct else None,
     }
 
 
@@ -264,6 +328,17 @@ async def complete_lesson_route(
     progress = await get_language_progress(user["id"], language_id)
     if lesson_id in progress.get("completed_lessons", []):
         return {"message": "Already completed", "xp_gained": 0, "already_completed": True}
+
+    content = get_lesson_content(language_id, lesson_id, lesson["title"], lesson["type"])
+    keys = _quiz_keys(lesson_id, content)
+    if keys:
+        passes = await get_quiz_passes(user["id"], language_id)
+        missing = [key for key in keys if key not in passes]
+        if missing:
+            raise HTTPException(
+                status_code=400,
+                detail="Pass every quiz in this lesson before completing it.",
+            )
 
     result = await complete_lesson(user["id"], language_id, lesson_id, lesson["xp"])
     return result

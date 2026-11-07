@@ -27,7 +27,7 @@ const variantStyles: Record<ButtonProps["variant"], string> = {
     }
   `,
   secondary: `
-    background: ${colors.background.surfaceSecondary};
+    background: ${colors.background.surface2};
     color: ${colors.text.primary};
     border: 1px solid ${colors.border.primary};
     &:hover:not(:disabled) {
@@ -48,7 +48,7 @@ const variantStyles: Record<ButtonProps["variant"], string> = {
     color: ${colors.text.primary};
     border: 1px solid ${colors.border.primary};
     &:hover:not(:disabled) {
-      background: ${colors.background.surfaceSecondary};
+      background: ${colors.background.surface2};
       border-color: ${colors.border.secondary};
     }
   `,

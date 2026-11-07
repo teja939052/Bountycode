@@ -393,7 +393,7 @@ export default function MockOA() {
     setLoading(true);
     setError("");
     try {
-      const data = await api.startAptitudeTest(
+      const data = await (api as any).startAptitudeTest(
         "mixed",
         company.difficulty,
         company.questionCount
@@ -420,7 +420,7 @@ export default function MockOA() {
     setLoading(true);
     setError("");
     try {
-      const data = await api.submitAptitudeAnswer(testId, currentQ, answer);
+      const data = await (api as any).submitAptitudeAnswer(testId, currentQ, answer);
       setAnswers((prev) => ({ ...prev, [currentQ]: answer }));
       setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: data }));
     } catch (err) {
@@ -433,7 +433,7 @@ export default function MockOA() {
     setLoading(true);
     try {
       const answersArray = questions.map((_, i) => answers[i] ?? null);
-      const data = await api.completeAptitudeTest(testId, timeTaken);
+      const data = await (api as any).completeAptitudeTest(testId, timeTaken);
       setResult({
         ...data,
         answers: submittedAnswers,

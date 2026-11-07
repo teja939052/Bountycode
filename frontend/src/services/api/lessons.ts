@@ -17,11 +17,29 @@ export type LessonStep = {
   title: string;
   content?: string;
   code?: string;
+  output?: string;
   explanation?: string;
   instruction?: string;
   starterCode?: string;
-  solution?: string;
-  tests?: any[];
+  hints?: string[];
+  question?: string;
+  options?: string[];
+};
+
+export type StepResult = {
+  is_correct: boolean | null;
+  graded: boolean;
+  verified: boolean;
+  feedback: string;
+  test_results?:
+    | { index: number; passed: boolean; expected: string; actual: string }[]
+    | null;
+  step_completed: boolean;
+  lesson_complete: boolean;
+  lesson_verified: boolean;
+  xp_earned: number;
+  total_xp: number;
+  next_action?: Record<string, unknown>;
 };
 
 export type LessonProgress = {
@@ -51,7 +69,8 @@ export const lessonsApi = {
   completeStep: (body: {
     lesson_id: string;
     step_id: string;
-    code: string;
+    code?: string;
+    answer?: string;
   }) =>
     requestWithRetry("/api/v1/lessons/step", {
       method: "POST",
@@ -62,7 +81,7 @@ export const lessonsApi = {
   submitExercise: (body: {
     lesson_id: string;
     step_id: string;
-    code: string;
+    code?: string;
   }) =>
     requestWithRetry("/api/v1/lessons/exercise", {
       method: "POST",

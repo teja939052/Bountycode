@@ -8,7 +8,7 @@ export default function LoopsVertical() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [report, setReport] = useState<any>(null);
   const startTest = async () => {
-    const r = await api.exam.start({ topic: "loops", count: 5, duration_minutes: 10 });
+    const r = await (api as any).exam.start({ topic: "loops", count: 5, duration_minutes: 10 });
     setAttemptId(r.attempt_id);
     setQuestions(r.questions);
     setStep("test");
@@ -17,10 +17,10 @@ export default function LoopsVertical() {
     if (!attemptId) return;
     for (const q of questions) {
       if (answers[q.id]) {
-        await api.exam.answer({ attempt_id: attemptId, question_id: q.id, answer: answers[q.id] });
+        await (api as any).exam.answer({ attempt_id: attemptId, question_id: q.id, answer: answers[q.id] });
       }
     }
-    const r = await api.exam.complete(attemptId);
+    const r = await (api as any).exam.complete(attemptId);
     setReport(r);
     setStep("result");
   };

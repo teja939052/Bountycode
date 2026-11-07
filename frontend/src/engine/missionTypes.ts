@@ -56,9 +56,9 @@ export interface StepConfig {
 
   // Break
   inputsToTry?: string[];
-  question?: string;
+  breakQuestion?: string;
   correctSet?: string[];
-  explanation?: string;
+  breakExplanation?: string;
 
   // Debug
   buggyCode?: string;

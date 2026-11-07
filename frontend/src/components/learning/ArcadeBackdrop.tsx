@@ -50,7 +50,7 @@ const SHAPES = [
 
 export type ArcadeVariant = "arcade" | "dojo" | "candy";
 
-export default function ArcadeBackdrop({ variant = "arcade", className = "" }: { variant?: ArcadeVariant; className?: string }) {
+export default function ArcadeBackdrop({ variant = "arcade", className = "", children }: { variant?: ArcadeVariant; className?: string; children?: React.ReactNode }) {
   const reduced = useReducedMotion();
   const theme = THEMES[variant] || THEMES.arcade;
 
@@ -92,6 +92,7 @@ export default function ArcadeBackdrop({ variant = "arcade", className = "" }: {
 
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/20 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent" />
+      {children}
     </div>
   );
 }

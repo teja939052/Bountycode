@@ -19,6 +19,8 @@ import {
   Briefcase,
   Castle,
   Brain,
+  List,
+  Lightbulb,
 } from "lucide-react";
 
 /* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
@@ -143,7 +145,7 @@ export default function Navbar() {
                   <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
                     {user.plan}
                   </span>
-                  <GamificationWidget xp={user.xp ?? 0} level={user.level ?? 1} streak={user.streak ?? 0} league={user.leagueRank ?? 5} badges={user.badgesCount ?? 0} />
+                  <GamificationWidget xp={user.xp ?? 0} level={user.level ?? 1} streak={user.streak ?? 0} league={(user as any).leagueRank ?? 5} badges={(user as any).badgesCount ?? 0} />
                   <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
                     <Settings size={17} />
                   </Link>

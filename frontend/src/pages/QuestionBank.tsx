@@ -96,6 +96,8 @@ export default function QuestionBank() {
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
   const [randomLoading, setRandomLoading] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [showSubmit, setShowSubmit] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState("");
@@ -146,7 +148,7 @@ export default function QuestionBank() {
       if (selected.difficulty) params.difficulty = selected.difficulty;
       if (selected.source) params.source = selected.source;
       const data = await api.questions.getRandom(params);
-      const targetId = data?.id || data?.question_id || data?.problem?.id;
+      const targetId = (data as any)?.id || (data as any)?.question_id || (data as any)?.problem?.id;
       if (targetId) {
         navigate(`/solve/${targetId}`);
       } else {
@@ -162,13 +164,13 @@ export default function QuestionBank() {
   useEffect(() => {
     refetchFilters();
     refetchStats();
-    refetchBrowse({ companies: selected.company, roles: selected.role, topics: selected.topics, sub_topics: selected.sub_topics, types: selected.types, difficulties: selected.difficulties, patterns: selected.patterns, sources: selected.sources });
+    refetchBrowse({ companies: selected.company, roles: selected.role, topics: selected.topic, sub_topics: selected.sub_topic, types: selected.type, difficulties: selected.difficulty, patterns: selected.pattern, sources: selected.source } as any);
   }, [selected, refetchFilters, refetchStats, refetchBrowse]);
 
   const handleFilterChange = (key: keyof QuestionFilters, value: string) => {
     setSelected((prev) => ({ ...prev, [key]: value }));
     setPage(1);
-    refetchBrowse({ companies: selected.company, roles: selected.role, topics: selected.topics, sub_topics: selected.sub_topics, types: selected.types, difficulties: selected.difficulties, patterns: selected.patterns, sources: selected.sources });
+    refetchBrowse({ companies: selected.company, roles: selected.role, topics: selected.topic, sub_topics: selected.sub_topic, types: selected.type, difficulties: selected.difficulty, patterns: selected.pattern, sources: selected.source } as any);
   };
 
   const activeFilters = Object.values(selected).filter(Boolean).length;
@@ -209,7 +211,7 @@ export default function QuestionBank() {
       setSubmitted(data.id);
       setShowSubmit(false);
       form.reset();
-      loadQuestions();
+    refetchBrowse({ companies: selected.company, roles: selected.role, topics: selected.topic, sub_topics: selected.sub_topic, types: selected.type, difficulties: selected.difficulty, patterns: selected.pattern, sources: selected.source } as any);
     } catch {} finally {
       setSubmitting(false);
     }
@@ -219,13 +221,12 @@ export default function QuestionBank() {
     e.stopPropagation();
     try {
       await api.upvoteQuestion(questionId, 1);
-      setQuestions((qs) => qs.map((q) => q.id === questionId ? { ...q, upvotes: (q.upvotes || 0) + 1 } : q));
     } catch {}
   };
 
   const filteredQuestions = useMemo(() => {
     let list = quickFilter === "solved"
-      ? questions.filter(q => solvedStatuses[q.id])
+      ? questions.filter(q => solvedMap[q.id])
       : [...questions];
 
     if (category !== "all") {
@@ -254,7 +255,7 @@ export default function QuestionBank() {
         break;
     }
     return list;
-  }, [questions, quickFilter, solvedStatuses, sortBy, acceptanceRates, category]);
+  }, [questions, quickFilter, solvedMap, sortBy, category]);
 
   const difficultyDistribution = useMemo(() => {
     if (!stats?.by_difficulty) return null;
@@ -339,7 +340,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
           </div>
         </motion.div>
 
-        {dailyChallenge?.problem && (
+        {dailyChallengeData?.problem && (
           <motion.div
             className="mb-6 overflow-hidden rounded-2xl border border-indigo-200/60 dark:border-indigo-900/50 bg-gradient-to-r from-indigo-600 via-cyan-600 to-emerald-500 text-text-primary shadow-lg"
             initial={reduced ? {} : { opacity: 0, y: 16 }}
@@ -352,22 +353,22 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                 </div>
                 <div className="min-w-0">
                   <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-primary/70">Featured today</div>
-                  <h2 className="mt-1 text-xl sm:text-2xl font-bold truncate">{dailyChallenge.problem.question_title || dailyChallenge.problem.question || "Today's Problem"}</h2>
+                  <h2 className="mt-1 text-xl sm:text-2xl font-bold truncate">{dailyChallengeData.problem.question_title || dailyChallengeData.problem.question || "Today's Problem"}</h2>
                   <p className="mt-2 text-sm text-text-primary/85">
-                    {dailyChallenge.config?.category} · {dailyChallenge.config?.focus} · {dailyChallenge.streak_bonus || 0} XP bonus
+                    {dailyChallengeData.config?.category} · {dailyChallengeData.config?.focus} · {dailyChallengeData.streak_bonus || 0} XP bonus
                   </p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-2 lg:justify-end shrink-0">
                 <span className="px-3 py-1 rounded-full bg-brand-primary/15 text-xs font-semibold uppercase tracking-wide">
-                  {dailyChallenge.config?.difficulty || "medium"}
+                  {dailyChallengeData.config?.difficulty || "medium"}
                 </span>
                 <Link to="/daily-challenge" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-card text-brand-primary font-semibold text-sm hover:bg-surface-card/90 transition-colors">
                   Open Daily Challenge
                   <ArrowRight size={14} />
                 </Link>
-                {dailyChallenge.problem?.id && (
-                  <Link to={`/solve/${dailyChallenge.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/30 text-text-primary font-semibold text-sm hover:bg-surface-card/10 transition-colors">
+                {dailyChallengeData.problem?.id && (
+                  <Link to={`/solve/${dailyChallengeData.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/30 text-text-primary font-semibold text-sm hover:bg-surface-card/10 transition-colors">
                     Solve Now
                   </Link>
                 )}
@@ -614,49 +615,49 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Company</label>
                 <select value={selected.company} onChange={(e) => handleFilterChange("company", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Companies</option>
-                  {filters.companies.map((c) => <option key={c} value={c}>{c}</option>)}
+                  {filtersData.companies.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Role</label>
                 <select value={selected.role} onChange={(e) => handleFilterChange("role", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Roles</option>
-                  {filters.roles.map((r) => <option key={r} value={r}>{r}</option>)}
+                  {filtersData.roles.map((r) => <option key={r} value={r}>{r}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Type</label>
                 <select value={selected.type} onChange={(e) => handleFilterChange("type", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Types</option>
-                  {filters.types.map((t) => <option key={t} value={t}>{TYPE_LABELS[t] || t}</option>)}
+                  {filtersData.types.map((t) => <option key={t} value={t}>{TYPE_LABELS[t] || t}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Difficulty</label>
                 <select value={selected.difficulty} onChange={(e) => handleFilterChange("difficulty", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Levels</option>
-                  {filters.difficulties.map((d) => <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>)}
+                  {filtersData.difficulties.map((d) => <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Topic</label>
                 <select value={selected.topic} onChange={(e) => handleFilterChange("topic", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Topics</option>
-                  {filters.topics.map((t) => <option key={t} value={t}>{t}</option>)}
+                  {filtersData.topics.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Pattern (Striver)</label>
                 <select value={selected.pattern} onChange={(e) => handleFilterChange("pattern", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Patterns</option>
-                  {filters.patterns.map((t) => <option key={t} value={t}>{t}</option>)}
+                  {filtersData.patterns.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Source (Curated)</label>
                 <select value={selected.source} onChange={(e) => handleFilterChange("source", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Sources</option>
-                  {filters.sources.map((s) => (
+                  {filtersData.sources.map((s) => (
                     <option key={s} value={s}>{s === "blind75" ? "Blind 75" : s === "neetcode150" ? "NeetCode 150" : s === "striver" ? "Striver A2Z" : s.charAt(0).toUpperCase() + s.slice(1)}</option>
                   ))}
                 </select>
@@ -665,13 +666,13 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                 <label className="block text-sm font-medium text-brand-primary text-brand-secondary mb-1">Sub Topic</label>
                 <select value={selected.sub_topic} onChange={(e) => handleFilterChange("sub_topic", e.target.value)} className="w-full px-3 py-2 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm">
                   <option value="">All Sub Topics</option>
-                  {filters.sub_topics.map((t) => <option key={t} value={t}>{t}</option>)}
+                  {filtersData.sub_topics.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
               </div>
             </div>
             {activeFilters > 0 && (
               <div className="mt-4 flex items-center gap-3">
-                <button onClick={clearFilters} className="text-sm text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1"><RotateCcw size={12} /> Clear all filters</button>
+                <button onClick={() => setSelected({ company: "", role: "", type: "", difficulty: "", topic: "", sub_topic: "", pattern: "", source: "", search: "" })} className="text-sm text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1"><RotateCcw size={12} /> Clear all filters</button>
                 <span className="text-sm text-gray-400">{total} questions found</span>
               </div>
             )}
@@ -693,20 +694,6 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
         {/* Loading */}
         {loading ? (
           <QuestionCardSkeleton count={5} />
-        ) : browseData?.isError ? (
-          <div className="card text-center py-12">
-            <div className="bg-brand-accent/10 border border-brand-accent/20 text-brand-accent px-6 py-6 rounded-lg mb-4">
-              <h3 className="text-brand-accent font-medium mb-2">Couldn't load questions</h3>
-              <p className="text-brand-accent/80 text-sm mb-4">Failed to fetch questions. Please check your connection.</p>
-              <button
-                onClick={() => refetchBrowse({ companies: selected.company, roles: selected.role, topics: selected.topics, sub_topics: selected.sub_topics, types: selected.types, difficulties: selected.difficulties, patterns: selected.patterns, sources: selected.sources })}
-                className="btn-primary mt-4"
-              >
-                Retry
-              </button>
-            </div>
-            <p className="text-sm text-gray-400 dark:text-brand-muted">Try adjusting your filters</p>
-          </div>
         ) : filteredQuestions.length === 0 ? (
           <div className="card text-center py-12">
             <BookOpen size={48} className="mx-auto text-gray-300 dark:text-brand-secondary mb-4" />
@@ -720,7 +707,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               height={Math.min(600, filteredQuestions.length * 76)}
               itemHeight={76}
               renderItem={(q, index) => {
-                const isSolved = solvedStatuses[q.id];
+                const isSolved = solvedMap[q.id];
                 const companyList = Array.isArray(q.company) ? q.company : [q.company].filter(Boolean);
                 const rank = (page - 1) * 80 + index + 1;
                 const gk = topicGroup(q.topic);

@@ -4,7 +4,10 @@
 // Every entry is { base, light } so components can safely read .base/.light.
 // Wrapped in a Proxy so any undefined key falls back to Coddy Blue —
 // the app never crashes on a missing CODDY entry.
-const _CODDY = {
+type CoddyEntry = { base: string; light: string };
+type CoddyRecord = { [key: string]: CoddyEntry | string[] };
+
+const _CODDY: CoddyRecord = {
   // Brand
   blue: { base: "#29ABE2", light: "#DBEAFE" },             // Logo, Bit, links, accents
   blueDark: { base: "#34B4E4", light: "#DBEAFE" },         // Same blue lifted for dark backgrounds
@@ -42,26 +45,26 @@ export const CODDY = new Proxy(_CODDY, {
   get(target, prop) {
     const value = target[prop as keyof typeof target];
     if (value === undefined) {
-      return target.blue; // fallback to brand blue
+      return target.blue as CoddyEntry; // fallback to brand blue
     }
-    return value;
+    return value as CoddyEntry;
   },
-});
+}) as Record<string, CoddyEntry>;
 
 export type CoddyColor = keyof typeof _CODDY;
 
 export function coddyGradient(color: keyof typeof _CODDY, angle = 135): string {
-  const c = CODDY[color];
+  const c = CODDY[color] as CoddyEntry;
   return `linear-gradient(${angle}deg, ${c.base} 0%, ${c.base} 55%, ${c.light} 110%)`;
 }
 
 export function coddyRadial(color: keyof typeof _CODDY): string {
-  const c = CODDY[color];
+  const c = CODDY[color] as CoddyEntry;
   return `radial-gradient(circle at 30% 30%, ${c.light}, ${c.base} 60%)`;
 }
 
 export function coddyGlow(color: keyof typeof _CODDY, alpha = "80"): string {
-  const c = CODDY[color];
+  const c = CODDY[color] as CoddyEntry;
   return `0 0 24px -6px ${c.base}${alpha}`;
 }
 
@@ -97,7 +100,7 @@ export function getXPForLevel(level: number): number {
 }
 
 export function getLevelLabel(level: number) {
-  let entry = LEVEL_LABELS[0];
+  let entry: typeof LEVEL_LABELS[number] = LEVEL_LABELS[0];
   for (const e of LEVEL_LABELS) {
     if (level >= e.level) entry = e;
   }
