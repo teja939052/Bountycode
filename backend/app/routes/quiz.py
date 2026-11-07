@@ -221,7 +221,17 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
                 if due_at.tzinfo is None:
                     due_at = due_at.replace(tzinfo=timezone.utc)
                 if due_at <= now and card.get("concept_id"):
-                    evidence["due_skills"].append(str(card["concept_id"]))
+                    concept_id = str(card["concept_id"])
+                    evidence["due_skills"].append(concept_id)
+                    # Quiz-created SRS cards are keyed by question ID; map
+                    # them back to the question's skill tags so the composer
+                    # can prioritise due concepts instead of comparing an ID
+                    # against a skill label.
+                    due_question = get_question_by_id(concept_id)
+                    if due_question:
+                        from app.services.adaptive_quiz_composer import question_skills
+                        evidence["due_skills"].extend(question_skills(due_question))
+                        evidence["due_skills"].append(_quiz_skill_domain(due_question))
     except Exception:
         # Practice remains available if evidence storage is temporarily down.
         logger.exception("Could not load quiz evidence for %s", user_id)
