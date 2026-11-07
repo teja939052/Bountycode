@@ -103,7 +103,7 @@ class BossBattleRequest(BaseModel):
 # Quiz Endpoints
 # =============================================================
 
-def _quiz_skill_domain(question: Dict[str, Any]) -> str:
+def _quiz_skill_domain(question: Dict[str, Any]) -> Optional[str]:
     """Map a bank question to the adaptive engine's canonical skill domain."""
     from app.services.adaptive_learning import SKILL_DOMAINS, COMPANY_TOPIC_DOMAINS
 
@@ -139,10 +139,7 @@ def _quiz_skill_domain(question: Dict[str, Any]) -> str:
         mapped = COMPANY_TOPIC_DOMAINS.get(normalized)
         if mapped in SKILL_DOMAINS:
             return mapped
-    return "programming_fundamentals"
-
-
-def _quiz_time_expired(session: Dict[str, Any], now: Optional[datetime] = None) -> bool:
+    # Unknown metadata must remain unclassified; assigning it to programming\n    # fundamentals would corrupt mastery and company-readiness evidence.\n    return None\n\n\ndef _quiz_time_expired(session: Dict[str, Any], now: Optional[datetime] = None) -> bool:
     """Return whether a server-timed quiz has passed its deadline."""
     limit = int(session.get("time_limit_seconds", 0) or 0)
     created_at = session.get("created_at")
@@ -231,7 +228,7 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
                     if due_question:
                         from app.services.adaptive_quiz_composer import question_skills
                         evidence["due_skills"].extend(question_skills(due_question))
-                        evidence["due_skills"].append(_quiz_skill_domain(due_question))
+                        due_domain = _quiz_skill_domain(due_question)\n                        if due_domain:\n                            evidence["due_skills"].append(due_domain)
     except Exception:
         # Practice remains available if evidence storage is temporarily down.
         logger.exception("Could not load quiz evidence for %s", user_id)
@@ -430,30 +427,32 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     # Adaptive evidence is recorded for correct and incorrect answers. XP is
     # only awarded for server-graded correct answers through the canonical
     # gamification service, not by trusting the client.
-    try:
-        await record_learning_activity(
-            user["id"],
-            {
-                "domain_id": _quiz_skill_domain(question),
-                "type": "quiz_answer",
-                "success": bool(result.get("is_correct")),
-                "score_impact": 1,
-                "question_id": submission.question_id,
-                "assessment_id": submission.quiz_id,
-                "time_spent_seconds": answer_record["time_taken_seconds"],
-                "hints_used": answer_record["hints_used"],
-                "company": primary_company,
-            },
-        )
-    except Exception:
-        logger.exception("Could not record adaptive evidence for quiz %s", submission.quiz_id)
+    domain_id = _quiz_skill_domain(question)
+    if domain_id:
+        try:
+            await record_learning_activity(
+                user["id"],
+                {
+                    "domain_id": domain_id,
+                    "type": "quiz_answer",
+                    "success": bool(result.get("is_correct")),
+                    "score_impact": 1,
+                    "question_id": submission.question_id,
+                    "assessment_id": submission.quiz_id,
+                    "time_spent_seconds": answer_record["time_taken_seconds"],
+                    "hints_used": answer_record["hints_used"],
+                    "company": primary_company,
+                },
+            )
+        except Exception:
+            logger.exception("Could not record adaptive evidence for quiz %s", submission.quiz_id)
 
     # Turn a failed, server-graded answer into an explainable repair loop.
     # The misconception tag is deduplicated per learner while an active repair
     # exists, so repeated retries do not flood the learner with duplicate cards.
     diagnosis_codes = []
     repair_id = None
-    if not result.get("is_correct"):
+    if not result.get("is_correct") and domain_id:
         try:
             from app.services.diagnosis import diagnose_question_failure, DIAGNOSIS_LABELS
             from app.services.repair_service import create_repair_mission_from_misconception
@@ -467,7 +466,6 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
             )
             diagnosis_codes = diagnosis.get("codes") or []
             if diagnosis_codes:
-                domain_id = _quiz_skill_domain(question)
                 primary_code = diagnosis_codes[0]
                 label = DIAGNOSIS_LABELS.get(primary_code, primary_code.replace("_", " ").title())
                 mission = await create_repair_mission_from_misconception(
@@ -504,26 +502,27 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     # Persist every graded quiz answer into the canonical longitudinal
     # evidence stream. This event is separate from XP and is useful for
     # readiness, retention and future recommendation explanations.
-    try:
-        from app.services.study_engine import emit_learning_event
+    if domain_id:
+        try:
+            from app.services.study_engine import emit_learning_event
 
-        await emit_learning_event(user["id"], {
-            "activity_type": "practice",
-            "source": "question_bank",
-            "skill_id": _quiz_skill_domain(question),
-            "question_id": submission.question_id,
-            "assessment_id": submission.quiz_id,
-            "company": primary_company,
-            "passed": bool(result.get("is_correct")),
-            "score": 100 if result.get("is_correct") else 0,
-            "time_spent_seconds": int(answer_record["time_taken_seconds"]),
-            "hints_used": answer_record["hints_used"],
-            "attempt_number": 1,
-            "diagnosis_codes": diagnosis_codes,
-            "repair_id": repair_id,
-        })
-    except Exception:
-        logger.exception("Could not emit canonical quiz evidence for %s", submission.question_id)
+            await emit_learning_event(user["id"], {
+                "activity_type": "practice",
+                "source": "question_bank",
+                "skill_id": domain_id,
+                "question_id": submission.question_id,
+                "assessment_id": submission.quiz_id,
+                "company": primary_company,
+                "passed": bool(result.get("is_correct")),
+                "score": 100 if result.get("is_correct") else 0,
+                "time_spent_seconds": int(answer_record["time_taken_seconds"]),
+                "hints_used": answer_record["hints_used"],
+                "attempt_number": 1,
+                "diagnosis_codes": diagnosis_codes,
+                "repair_id": repair_id,
+            })
+        except Exception:
+            logger.exception("Could not emit canonical quiz evidence for %s", submission.question_id)
 
     reward = None
     if result.get("is_correct"):
