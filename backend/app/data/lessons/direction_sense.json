@@ -1,0 +1,123 @@
+{
+  "slug": "direction_sense",
+  "id": "lesson_direction_sense_001",
+  "title": "Direction Sense",
+  "domain": "Logical Reasoning",
+  "pattern": "Direction Sense",
+  "difficulty": "easy",
+  "duration_min": 18,
+  "xp_reward": 85,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Set your compass",
+      "content": "Use a fixed compass: North is up, East right, South down and West left. A right turn changes direction clockwise; a left turn changes it anticlockwise.",
+      "example": "Facing North, a right turn means East. Facing East, a left turn means North."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Track a turn",
+      "prompt": "A person faces North and turns right. Which direction are they facing?",
+      "options": [
+        "West",
+        "South",
+        "East",
+        "North"
+      ],
+      "correct_index": 2,
+      "explanation": "A clockwise quarter-turn from North points East."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Track movement with coordinates",
+      "content": "Represent East as +x, West as −x, North as +y and South as −y. Add each movement to find the final position.",
+      "example": "5 km North and 3 km East gives position (3,5). Straight-line distance from start is √(3²+5²) = √34 km."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find the final direction",
+      "prompt": "A person walks 4 km East, then 4 km North, then 4 km West. Where are they relative to the start?",
+      "options": [
+        "North",
+        "South",
+        "East",
+        "West"
+      ],
+      "correct_index": 0,
+      "explanation": "The east and west movements cancel. The person is 4 km North of the start."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Find shortest distance",
+      "content": "For perpendicular movements, use the Pythagorean theorem: distance = √(horizontal² + vertical²). First cancel opposite movements on the same axis.",
+      "formula": "Distance = √(x² + y²)",
+      "example": "6 km East and 8 km North gives distance √(36+64) = 10 km."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Facing West, a person turns left. Which way are they facing?",
+        "options": [
+          "North",
+          "South",
+          "East",
+          "West"
+        ],
+        "correct_index": 1,
+        "explanation": "A left turn from West points South."
+      },
+      {
+        "prompt": "A person walks 5 km North and 5 km South. Where are they?",
+        "options": [
+          "5 km North",
+          "5 km South",
+          "At the starting point",
+          "5 km East"
+        ],
+        "correct_index": 2,
+        "explanation": "Opposite equal movements cancel."
+      },
+      {
+        "prompt": "A person walks 3 km East and 4 km North. What is the shortest distance from the start?",
+        "options": [
+          "4 km",
+          "5 km",
+          "6 km",
+          "7 km"
+        ],
+        "correct_index": 1,
+        "explanation": "√(3²+4²) = √25 = 5 km."
+      },
+      {
+        "prompt": "Facing South, a right turn points:",
+        "options": [
+          "East",
+          "West",
+          "North",
+          "South"
+        ],
+        "correct_index": 1,
+        "explanation": "Turning right from South points West."
+      },
+      {
+        "prompt": "A person walks 2 km West and 6 km East. What is the net displacement?",
+        "options": [
+          "4 km East",
+          "4 km West",
+          "8 km East",
+          "8 km West"
+        ],
+        "correct_index": 0,
+        "explanation": "6 km East − 2 km West = 4 km East."
+      }
+    ]
+  }
+}

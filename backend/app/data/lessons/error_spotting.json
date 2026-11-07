@@ -1,0 +1,122 @@
+{
+  "slug": "error_spotting",
+  "id": "lesson_error_spotting_001",
+  "title": "Error Spotting",
+  "domain": "Verbal Ability",
+  "pattern": "Error Spotting",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 90,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Check subject–verb agreement",
+      "content": "The verb must agree with the grammatical subject. Phrases between subject and verb do not usually change the subject's number.",
+      "example": "Correct: The bouquet of roses is on the table. 'Bouquet' is singular."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Find the correct sentence",
+      "prompt": "Which sentence is grammatically correct?",
+      "options": [
+        "Each of the students have a book.",
+        "Each of the students has a book.",
+        "Each students has a book.",
+        "Each of students have a book."
+      ],
+      "correct_index": 1,
+      "explanation": "Each is singular, so the verb is has."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Check articles and prepositions",
+      "content": "Use a before a consonant sound and an before a vowel sound. Prepositions depend on standard usage and the relationship being expressed.",
+      "example": "An honest person; a university (the word university begins with a /y/ sound)."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Spot the tense error",
+      "prompt": "Choose the correct sentence.",
+      "options": [
+        "She has went to class.",
+        "She have gone to class.",
+        "She has gone to class.",
+        "She going to class."
+      ],
+      "correct_index": 2,
+      "explanation": "Present perfect uses has/have + past participle. The past participle of go is gone."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Check parallel structure",
+      "content": "Items in a series should use matching grammatical forms. Also check pronouns for clear references and avoid unnecessary shifts in tense.",
+      "example": "Parallel: The role requires planning, writing and presenting."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Choose the correct sentence.",
+        "options": [
+          "Neither of the answers are correct.",
+          "Neither of the answers is correct.",
+          "Neither answers is correct.",
+          "Neither of answers are correct."
+        ],
+        "correct_index": 1,
+        "explanation": "Neither is singular in this construction, so use is."
+      },
+      {
+        "prompt": "Choose the correct article: He waited for ___ hour.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correct_index": 1,
+        "explanation": "Hour begins with a vowel sound because h is silent; use an."
+      },
+      {
+        "prompt": "Choose the correct sentence.",
+        "options": [
+          "The news are surprising.",
+          "The news is surprising.",
+          "The news were surprise.",
+          "The news be surprising."
+        ],
+        "correct_index": 1,
+        "explanation": "News is grammatically singular, so use is."
+      },
+      {
+        "prompt": "Choose the correct verb: By the time we arrived, the show ___.",
+        "options": [
+          "begins",
+          "has begin",
+          "had begun",
+          "begin"
+        ],
+        "correct_index": 2,
+        "explanation": "Past perfect shows the show began before another past event; begun is the past participle."
+      },
+      {
+        "prompt": "Choose the parallel sentence.",
+        "options": [
+          "He enjoys reading, to swim and cycling.",
+          "He enjoys read, swim and cycle.",
+          "He enjoys reading, swimming and cycling.",
+          "He enjoys to reading, swim and cycling."
+        ],
+        "correct_index": 2,
+        "explanation": "All three activities use the same gerund form."
+      }
+    ]
+  }
+}

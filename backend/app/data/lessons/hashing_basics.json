@@ -1,0 +1,122 @@
+{
+  "slug": "hashing_basics",
+  "id": "lesson_hashing_basics_001",
+  "title": "Hashing Fundamentals",
+  "domain": "Data Structures",
+  "pattern": "Hashing",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Store and find by key",
+      "content": "A hash table stores key-value pairs. A hash function maps a key to an array index, making lookup and insertion O(1) on average.",
+      "example": "A student ID can be the key and the student's record the value."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Why collisions happen",
+      "prompt": "What is a hash collision?",
+      "options": [
+        "Two keys map to the same table index",
+        "A key is missing",
+        "The table is sorted",
+        "A value is duplicated"
+      ],
+      "correct_index": 0,
+      "explanation": "Different keys can produce the same hash-table index. The table must handle the collision."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Handle collisions",
+      "content": "Separate chaining stores multiple entries in a bucket, often as a list. Open addressing searches for another available slot using probing.",
+      "example": "If keys 12 and 22 both hash to index 2, chaining keeps both entries in bucket 2."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Average lookup",
+      "prompt": "What is the average lookup time in a well-sized hash table?",
+      "options": [
+        "O(log n)",
+        "O(n)",
+        "O(1)",
+        "O(n log n)"
+      ],
+      "correct_index": 2,
+      "explanation": "With a good hash function and controlled load factor, lookup is O(1) on average."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Understand the worst case",
+      "content": "If many keys collide, a bucket can become long and operations may degrade to O(n). A good hash function distributes keys, and resizing helps keep the load factor controlled.",
+      "tip": "Hash table operations are average O(1), not guaranteed O(1) in every case."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "What does a hash function do?",
+        "options": [
+          "Sorts keys",
+          "Maps a key to a hash value/index",
+          "Encrypts all values",
+          "Deletes duplicates"
+        ],
+        "correct_index": 1,
+        "explanation": "A hash function maps a key to a location in the table."
+      },
+      {
+        "prompt": "What is a collision?",
+        "options": [
+          "Two keys map to the same index",
+          "The table becomes empty",
+          "A value is null",
+          "The array is sorted"
+        ],
+        "correct_index": 0,
+        "explanation": "A collision occurs when distinct keys map to the same table index."
+      },
+      {
+        "prompt": "Which is a collision-resolution strategy?",
+        "options": [
+          "Binary search",
+          "Separate chaining",
+          "Merge sort",
+          "Two pointers"
+        ],
+        "correct_index": 1,
+        "explanation": "Separate chaining stores collided entries together in a bucket."
+      },
+      {
+        "prompt": "What is average lookup time in a well-designed hash table?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n²)"
+        ],
+        "correct_index": 0,
+        "explanation": "Expected lookup is O(1) under a suitable distribution and load factor."
+      },
+      {
+        "prompt": "What can happen in the worst case with many collisions?",
+        "options": [
+          "O(1) always",
+          "O(log n) always",
+          "O(n) operations",
+          "The keys disappear"
+        ],
+        "correct_index": 2,
+        "explanation": "If entries accumulate in one bucket or probe sequence, lookup can degrade to linear time."
+      }
+    ]
+  }
+}

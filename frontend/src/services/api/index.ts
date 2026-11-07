@@ -54,6 +54,7 @@ import { metricsApi } from "./metrics.ts";
 import { tracksApi } from "./tracks.ts";
 import { tcsNqtApi } from "./tcsNqt.ts";
 import { companyLessonsApi } from "./companyLessons.ts";
+import { quizApi } from "./quiz.ts";
 import { flatApi } from "./flat.ts";
 import { flatOverrides } from "./flatOverrides.ts";
 import { examMemoriesApi } from "./examMemories.ts";
@@ -73,6 +74,7 @@ const api = {
   tools: toolsApi,
   companyMocks: companyMocksApi,
   companyLessons: companyLessonsApi,
+  quiz: quizApi,
   gamification: gamificationApi,
   oa: oaApi,
   enhanced: enhancedApi,

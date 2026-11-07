@@ -7,7 +7,6 @@ from app.services.learning_paths import (
     get_all_company_tracks,
     get_company_track,
     enroll_in_track,
-    complete_track_module,
     get_user_track_progress,
     get_all_user_tracks,
 )
@@ -48,15 +47,39 @@ async def get_track(track_id: str, user=Depends(get_current_user)):
     sections_with_status = []
     for section in track.get("sections", []):
         modules_with_status = []
-        for m in section.get("modules", []):
+        modules = section.get("modules", [])
+        for m in modules:
             section_data = progress.get("sections", {}).get(section["id"], {})
             mod_progress = section_data.get("modules", {}).get(m["id"], {})
+            topics = m.get("topics") or []
+            # Normalize legacy curriculum fields for the frontend contract.
+            module_minutes = m.get("duration_minutes") or max(
+                10, round(section.get("duration_minutes", 30) / max(len(modules), 1))
+            )
             modules_with_status.append({
                 **m,
+                "description": m.get("description") or (
+                    "Learn and practice: " + ", ".join(topics[:5])
+                    if topics else "Work through the concepts in this module."
+                ),
+                "topics": topics,
+                "duration_minutes": module_minutes,
+                "questions_count": m.get("questions_count", m.get("questions", 0)),
+                "xp_reward": m.get("xp_reward", m.get("diamonds", 0)),
                 "completed": mod_progress.get("completed", False),
                 "locked": mod_progress.get("locked", False),
                 "score": mod_progress.get("score"),
                 "xp_earned": mod_progress.get("xp_earned", 0),
+                "topic_mastery": mod_progress.get("topic_mastery", {}),
+                "mastered_topics": [
+                    topic for topic in topics
+                    if (mod_progress.get("topic_mastery", {}).get(str(topic).strip().lower().replace("-", "_").replace(" ", "_"), {}) or {}).get("mastered")
+                ],
+                "mastered_topic_count": sum(
+                    1 for topic in topics
+                    if (mod_progress.get("topic_mastery", {}).get(str(topic).strip().lower().replace("-", "_").replace(" ", "_"), {}) or {}).get("mastered")
+                ),
+                "required_topic_count": len(topics),
             })
         sections_with_status.append({
             **section,
@@ -108,15 +131,11 @@ async def complete_track_module_endpoint(
     score: Optional[float] = Query(None, ge=0, le=100),
     user=Depends(get_current_user),
 ):
-    """Mark a track module as completed."""
-    try:
-        result = await complete_track_module(user["id"], track_id, module_id, score)
-        return result
-    except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
-    except Exception as e:
-        logger.error(f"Track module completion failed: {e}")
-        raise HTTPException(status_code=500, detail="Failed to complete module")
+    """Direct score submission is disabled; assessments must be server-graded."""
+    raise HTTPException(
+        status_code=409,
+        detail="Complete the module's authored lesson assessment. Client-supplied scores cannot unlock mastery.",
+    )
 
 
 @router.get("/my-tracks")

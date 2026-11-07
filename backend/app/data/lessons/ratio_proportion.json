@@ -1,0 +1,124 @@
+{
+  "slug": "ratio_proportion",
+  "id": "lesson_ratio_proportion_001",
+  "title": "Ratios and Proportions",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Ratio and Proportion",
+  "difficulty": "easy",
+  "duration_min": 18,
+  "xp_reward": 90,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "What a ratio tells you",
+      "content": "A ratio compares quantities using the same unit. A:B = 2:3 means for every 2 equal parts of A there are 3 equal parts of B. The total is 5 parts.",
+      "example": "If boys:girls = 2:3 and there are 25 students, one part is 25/5 = 5. Boys = 10, girls = 15.",
+      "tip": "Convert quantities to the same unit before forming a ratio."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Simplify a ratio",
+      "prompt": "Simplify 24:36 to its lowest form.",
+      "options": [
+        "2:3",
+        "3:2",
+        "4:5",
+        "6:9"
+      ],
+      "correct_index": 0,
+      "explanation": "The greatest common divisor is 12. Divide both terms: 24:36 = 2:3."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Divide a quantity in a ratio",
+      "content": "To split total T in ratio a:b, add the parts (a+b). First share = T×a/(a+b), second share = T×b/(a+b).",
+      "example": "₹720 in ratio 5:3. Total parts = 8. Shares = ₹450 and ₹270."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Share the amount",
+      "prompt": "₹840 is divided between A and B in the ratio 4:3. How much does A receive?",
+      "options": [
+        "₹360",
+        "₹420",
+        "₹480",
+        "₹560"
+      ],
+      "correct_index": 2,
+      "explanation": "Total parts = 7. A gets 4/7 × 840 = ₹480."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Understand proportion",
+      "content": "a:b = c:d is a proportion when a/b = c/d. Cross multiplication gives a×d = b×c. Use this to find an unknown quantity.",
+      "formula": "a:b = c:d  ⇔  a × d = b × c",
+      "example": "3:5 = x:20. 3×20 = 5x, so x = 12."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Simplify 45:60.",
+        "options": [
+          "2:3",
+          "3:4",
+          "4:5",
+          "5:6"
+        ],
+        "correct_index": 1,
+        "explanation": "Divide both terms by 15 to get 3:4."
+      },
+      {
+        "prompt": "A:B = 7:5 and the total is 96. Find A.",
+        "options": [
+          "40",
+          "48",
+          "56",
+          "60"
+        ],
+        "correct_index": 2,
+        "explanation": "Total parts = 12. A = 7/12 × 96 = 56."
+      },
+      {
+        "prompt": "If 4:7 = 20:x, what is x?",
+        "options": [
+          "28",
+          "30",
+          "35",
+          "40"
+        ],
+        "correct_index": 2,
+        "explanation": "4/7 = 20/x. Cross multiply: 4x = 140, x = 35."
+      },
+      {
+        "prompt": "The ratio of 2 hours to 30 minutes is:",
+        "options": [
+          "2:30",
+          "4:1",
+          "1:4",
+          "3:1"
+        ],
+        "correct_index": 1,
+        "explanation": "2 hours = 120 minutes. 120:30 simplifies to 4:1."
+      },
+      {
+        "prompt": "If A:B = 3:2 and B:C = 4:5, what is A:B:C?",
+        "options": [
+          "6:4:5",
+          "6:4:10",
+          "12:8:5",
+          "3:4:5"
+        ],
+        "correct_index": 0,
+        "explanation": "Make B equal: 3:2 becomes 6:4, and 4:5 stays 4:5. Thus A:B:C = 6:4:5."
+      }
+    ]
+  }
+}

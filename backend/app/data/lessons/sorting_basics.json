@@ -1,0 +1,121 @@
+{
+  "slug": "sorting_basics",
+  "id": "lesson_sorting_basics_001",
+  "title": "Sorting Fundamentals",
+  "domain": "Programming Fundamentals",
+  "pattern": "Sorting",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "What sorting does",
+      "content": "Sorting arranges data in a chosen order, usually ascending or descending. A good algorithm also considers input size, memory and whether equal items keep their relative order.",
+      "example": "[7,2,5,2] sorted ascending becomes [2,2,5,7]."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Understand bubble sort",
+      "prompt": "In one left-to-right pass of bubble sort on [4,1,3,2], which value is guaranteed to reach the final position?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_index": 3,
+      "explanation": "The largest value moves right whenever an adjacent pair is swapped, so 4 reaches the final position after one full pass."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Compare common algorithms",
+      "content": "Bubble, selection and insertion sort are O(n²) in average/worst cases. Merge sort is O(n log n) and uses extra memory. Quicksort is O(n log n) on average but O(n²) in the worst case.",
+      "tip": "For small or nearly sorted arrays, insertion sort can perform well despite O(n²) worst-case complexity."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose the complexity",
+      "prompt": "What is the average time complexity of merge sort?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correct_index": 3,
+      "explanation": "Merge sort splits the input into log n levels and processes n elements per level: O(n log n)."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Stability and in-place sorting",
+      "content": "A stable sort keeps equal-key items in their original relative order. An in-place algorithm uses little extra memory beyond the input array. These are separate properties."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which algorithm repeatedly swaps adjacent out-of-order items?",
+        "options": [
+          "Merge sort",
+          "Bubble sort",
+          "Binary search",
+          "Hashing"
+        ],
+        "correct_index": 1,
+        "explanation": "Bubble sort compares adjacent values and swaps when they are out of order."
+      },
+      {
+        "prompt": "What is the average time complexity of merge sort?",
+        "options": [
+          "O(n²)",
+          "O(n log n)",
+          "O(log n)",
+          "O(n)"
+        ],
+        "correct_index": 1,
+        "explanation": "Merge sort has O(n log n) time in best, average and worst cases."
+      },
+      {
+        "prompt": "Which algorithm is usually efficient on small, nearly sorted arrays?",
+        "options": [
+          "Insertion sort",
+          "Heap sort",
+          "Breadth-first search",
+          "Hash lookup"
+        ],
+        "correct_index": 0,
+        "explanation": "Insertion sort can run close to O(n) on nearly sorted input."
+      },
+      {
+        "prompt": "What does a stable sort guarantee?",
+        "options": [
+          "No extra memory",
+          "O(n) time",
+          "Equal keys preserve relative order",
+          "The array is reversed"
+        ],
+        "correct_index": 2,
+        "explanation": "Stability preserves the original order of records with equal keys."
+      },
+      {
+        "prompt": "Worst-case quicksort time can be:",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n log n)",
+          "O(n²)"
+        ],
+        "correct_index": 3,
+        "explanation": "Poor pivots can create highly unbalanced partitions, giving O(n²) worst-case time."
+      }
+    ]
+  }
+}

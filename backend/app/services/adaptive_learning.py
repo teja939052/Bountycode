@@ -14,7 +14,7 @@ from app.database import (
     users_collection, progress_collection, submissions_collection,
     solved_problems_collection, question_answers_collection,
     learning_progress_collection, skill_graph_collection,
-    gamification_collection
+    gamification_collection, user_company_tracks_collection,
 )
 from app.services.ai_core import chat_completion, parse_json
 from app.services.cache import cache
@@ -41,6 +41,11 @@ SKILL_DOMAINS = {
     "system_design": {"name": "System Design", "emoji": "🏗️", "color": "#0EA5E9"},
     "behavioral": {"name": "Behavioral", "emoji": "💬", "color": "#84CC16"},
     "aptitude": {"name": "Aptitude", "emoji": "🧮", "color": "#D946EF"},
+    "quantitative_aptitude": {"name": "Quantitative Aptitude", "emoji": "📐", "color": "#D946EF"},
+    "logical_reasoning": {"name": "Logical Reasoning", "emoji": "🧩", "color": "#8B5CF6"},
+    "verbal_ability": {"name": "Verbal Ability", "emoji": "📚", "color": "#0D9488"},
+    "programming_fundamentals": {"name": "Programming Fundamentals", "emoji": "💻", "color": "#2563EB"},
+    "computer_science": {"name": "Computer Science Fundamentals", "emoji": "🖥️", "color": "#0284C7"},
     "sql": {"name": "SQL & Databases", "emoji": "🗄️", "color": "#0284C7"},
     "language_c": {"name": "C Programming", "emoji": "⚙️", "color": "#64748B"},
     "language_cpp": {"name": "C++", "emoji": "🔷", "color": "#2563EB"},
@@ -90,73 +95,96 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
     learning = await learning_progress_collection.find({"user_id": user_id}).to_list(100)
     skill_graph = await skill_graph_collection.find_one({"user_id": user_id})
 
-    # Build skill scores
+    # Build skill scores from all evidence sources. Lesson interactions are
+    # stored as events in learning_progress.activities; they count as evidence
+    # alongside coding submissions and aptitude answers.
     skills = {}
     for domain_id, domain_info in SKILL_DOMAINS.items():
-        domain_solved = [s for s in solved if s.get("topic", "").lower().replace(" ", "_") == domain_id or s.get("domain", "") == domain_id]
-        domain_submissions = [s for s in submissions if s.get("topic", "").lower().replace(" ", "_") == domain_id or s.get("domain", "") == domain_id]
-        domain_answers = [a for a in answers if a.get("topic", "").lower().replace(" ", "_") == domain_id or a.get("domain", "") == domain_id]
+        domain_solved = [
+            item for item in solved
+            if item.get("topic", "").lower().replace(" ", "_") == domain_id
+            or item.get("domain", "") == domain_id
+        ]
+        domain_submissions = [
+            item for item in submissions
+            if item.get("topic", "").lower().replace(" ", "_") == domain_id
+            or item.get("domain", "") == domain_id
+        ]
+        domain_answers = [
+            item for item in answers
+            if item.get("topic", "").lower().replace(" ", "_") == domain_id
+            or item.get("domain", "") == domain_id
+        ]
+        domain_activities = [
+            activity
+            for document in learning
+            for activity in (document.get("activities") or [])
+            if activity.get("domain_id") == domain_id
+        ]
 
-        total_attempts = len(domain_solved) + len(domain_submissions) + len(domain_answers)
-        correct_count = 0
-        weighted_score = 0
+        # A final quiz carries its question-level score, so count each
+        # question rather than treating a five-question quiz as one attempt.
+        activity_attempts = sum(
+            max(1, int(activity.get("question_count") or 1))
+            for activity in domain_activities
+        )
+        activity_correct = sum(
+            min(
+                max(0, int(activity.get("correct_count") or 0)),
+                max(1, int(activity.get("question_count") or 1)),
+            )
+            if activity.get("correct_count") is not None
+            else int(bool(activity.get("success")))
+            for activity in domain_activities
+        )
+        total_attempts = (
+            len(domain_solved)
+            + len(domain_submissions)
+            + len(domain_answers)
+            + activity_attempts
+        )
+        correct_count = sum(
+            1 for item in domain_solved
+            if item.get("status") == "accepted" or item.get("passed", False)
+        )
+        correct_count += sum(1 for item in domain_submissions if item.get("passed", False))
+        correct_count += sum(1 for item in domain_answers if item.get("is_correct", False))
+        correct_count += activity_correct
 
-        for s in domain_solved:
-            if s.get("status") == "accepted" or s.get("passed", False):
-                correct_count += 1
-                diff = s.get("difficulty", "easy")
-                weighted_score += DIFFICULTY_SCORE.get(diff, 1) * 20
+        graph_skill = (skill_graph or {}).get("skills", {}).get(domain_id, {})
+        existing_score = float(graph_skill.get("score", 0) or 0)
 
-        for s in domain_submissions:
-            if s.get("passed", False):
-                correct_count += 1
-                diff = s.get("difficulty", "easy")
-                weighted_score += DIFFICULTY_SCORE.get(diff, 1) * 15
-
-        for a in domain_answers:
-            if a.get("is_correct", False):
-                correct_count += 1
-                weighted_score += 10
-
-        # Add learning progress
-        domain_learning = [l for l in learning if l.get("language", "") == domain_id or l.get("domain", "") == domain_id]
-        for l in domain_learning:
-            completed = len(l.get("completed_lessons", []))
-            weighted_score += completed * 5
-
-        # Merge existing skill graph data
-        existing_score = 0
-        if skill_graph and domain_id in skill_graph.get("skills", {}):
-            existing_score = skill_graph["skills"][domain_id].get("score", 0)
-
-        # Combine scores (existing graph data + new evidence)
         if total_attempts > 0:
             accuracy = correct_count / total_attempts * 100
-            new_score = min(100, weighted_score / max(1, total_attempts))
-            combined = max(existing_score, new_score)
+            coverage = min(100.0, total_attempts * 8.0)
+            evidence_score = (accuracy * 0.8) + (coverage * 0.2)
+            # Let recent evidence move mastery both up and down. Do not preserve
+            # a stale high score forever with max(existing_score, new_score).
+            combined = (evidence_score * 0.75) + (existing_score * 0.25)
         else:
-            combined = existing_score if existing_score > 0 else 0
+            accuracy = 0.0
+            combined = existing_score
 
+        combined = round(max(0.0, min(100.0, combined)), 1)
         mastery = _get_mastery_label(combined)
-        next_milestone = None
-        for ml in MASTERY_LEVELS:
-            if ml["min_score"] > combined:
-                next_milestone = ml
-                break
+        next_milestone = next(
+            (level for level in MASTERY_LEVELS if level["min_score"] > combined),
+            None,
+        )
 
         skills[domain_id] = {
-            "score": round(combined, 1),
+            "score": combined,
             "mastery": mastery["id"],
             "mastery_label": mastery["label"],
             "mastery_color": mastery["color"],
             "total_attempts": total_attempts,
             "correct_count": correct_count,
-            "accuracy": _score_to_percent(correct_count, max(1, total_attempts)),
+            "accuracy": round(accuracy, 1),
             "next_milestone": {
                 "label": next_milestone["label"] if next_milestone else "Max",
-                "needed": next_milestone["min_score"] - combined if next_milestone else 0,
+                "needed": round(next_milestone["min_score"] - combined, 1) if next_milestone else 0,
                 "color": next_milestone["color"] if next_milestone else mastery["color"],
-            } if next_milestone and next_milestone["min_score"] > combined else None,
+            } if next_milestone else None,
         }
 
     # Overall stats
@@ -220,7 +248,7 @@ async def detect_weak_areas(user_id: str, min_attempts: int = 2) -> List[Dict[st
                 "priority": _calculate_priority(domain_id, skill),
             })
 
-    weak.sort(key=lambda x: (x["priority"], x["score"]))
+    weak.sort(key=lambda item: (-item["priority"], item["score"], item["domain_id"]))
     return weak
 
 
@@ -235,7 +263,7 @@ def _calculate_priority(domain_id: str, skill: dict) -> int:
         priority = 3
 
     # Bonus priority for foundational domains
-    foundational = ["arrays_hashing", "language_python", "language_java"]
+    foundational = ["arrays_hashing", "language_python", "language_java", "quantitative_aptitude", "logical_reasoning", "programming_fundamentals"]
     if domain_id in foundational:
         priority += 2
 
@@ -260,6 +288,7 @@ async def generate_daily_plan(user_id: str, force_refresh: bool = False) -> Dict
 
     weak_areas = await detect_weak_areas(user_id)
     assessment = await assess_user_skills(user_id)
+    company_focus = await _get_company_focus_task(user_id, assessment=assessment)
     gamification = await gamification_collection.find_one({"user_id": user_id})
     streak = gamification.get("streak", 0) if gamification else 0
     level = gamification.get("level", 1) if gamification else 1
@@ -332,7 +361,17 @@ async def generate_daily_plan(user_id: str, force_refresh: bool = False) -> Dict
         plan["tasks"].insert(0, warm_up)
         total_estimated_minutes += warm_up.get("estimated_minutes", 5)
 
-    plan["total_estimated_minutes"] = total_estimated_minutes
+    if company_focus:
+        # The target-company syllabus is the learner's primary daily mission.
+        plan["tasks"] = [company_focus] + plan["tasks"][:2]
+        plan["company_focus"] = company_focus
+        plan["target_company"] = company_focus.get("company")
+        plan["total_estimated_minutes"] = company_focus["estimated_minutes"] + sum(
+            task.get("estimated_minutes", 15) for task in plan["tasks"][1:]
+        )
+        plan["message"] = f"Your next mission is aligned to {company_focus.get('company', 'your target company')}."
+    else:
+        plan["total_estimated_minutes"] = total_estimated_minutes
     plan["task_count"] = len(plan["tasks"])
 
     await cache.set("adaptive", cache_key, json.dumps(plan), ttl=3600)
@@ -361,12 +400,12 @@ def _create_learning_task(area: dict, domain_info: dict, user_id: str) -> Option
     }
 
     tasks = tasks_by_mastery.get(area["mastery"], tasks_by_mastery["learning"])
-    chosen = random.choice(tasks) if tasks else None
+    chosen = tasks[0] if tasks else None
     if not chosen:
         return None
 
     return {
-        "id": f"{area['domain_id']}_{area['mastery']}_{random.randint(1000, 9999)}",
+        "id": f"{area['domain_id']}_{area['mastery']}",
         "domain_id": area["domain_id"],
         "emoji": domain_info.get("emoji", "📌"),
         "color": domain_info.get("color", "#6B7280"),
@@ -383,10 +422,10 @@ def _create_warmup(user_id: str, assessment: dict) -> Optional[Dict]:
     if not practiced_skills:
         return None
 
-    domain_id, skill = random.choice(practiced_skills)
+    domain_id, skill = sorted(practiced_skills, key=lambda item: (item[1]["score"], item[0]))[0]
     domain_info = SKILL_DOMAINS.get(domain_id, {})
     return {
-        "id": f"warmup_{domain_id}_{random.randint(1000, 9999)}",
+        "id": f"warmup_{domain_id}",
         "type": "warmup",
         "domain_id": domain_id,
         "title": f"Warm-up: Quick {domain_info.get('name', domain_id)} Review",
@@ -427,18 +466,29 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
     activity_entry = {
         "domain_id": domain_id,
         "type": activity_type,
-        "success": success,
+        "success": bool(success),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
+    # Keep enough context to explain an adaptive recommendation later. Only
+    # copy a small, explicit allowlist of scalar/JSON fields into the evidence.
+    for key in (
+        "lesson_slug", "step_index", "question_index", "question_id",
+        "score_percent", "correct_count", "question_count",
+        "time_spent_seconds", "hints_used", "topic_id", "track_id", "module_id",
+        "company", "assessment_id",
+    ):
+        value = activity.get(key)
+        if value is not None:
+            activity_entry[key] = value
     await learning_progress_collection.update_one(
         {"user_id": user_id},
         {"$push": {"activities": activity_entry}}
     )
 
     # Update skill_graph
-    delta = 5 if success else 1
+    delta = 5 if success else 0
     if activity_type == "challenge" or activity_type == "project":
-        delta = 8 if success else 2
+        delta = 8 if success else 0
 
     await skill_graph_collection.update_one(
         {"user_id": user_id},
@@ -451,12 +501,401 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
 
     # Invalidate cache
     await cache.delete("adaptive", f"skills:{user_id}")
+    today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    await cache.delete("adaptive", f"daily_plan:{user_id}:{today_key}")
+    # A lesson or quiz attempt also changes the canonical Study Engine's
+    # next recommendation. Invalidate it so the Journey does not repeat stale work.
+    try:
+        from app.services.study_engine import invalidate_daily_plan
+        await invalidate_daily_plan(user_id)
+    except Exception as exc:
+        logger.warning("Study plan invalidation failed after adaptive activity: %s", exc)
 
     return {
         "status": "success",
         "score_delta": delta,
         "domain_id": domain_id,
     }
+
+async def _get_user_profile(user_id: str) -> Dict[str, Any]:
+    """Read the authenticated profile by Mongo _id, with legacy fallback."""
+    user = None
+    try:
+        if ObjectId.is_valid(user_id):
+            user = await users_collection.find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        user = None
+    if user is None:
+        user = await users_collection.find_one({"user_id": user_id})
+    return user or {}
+
+
+COMPANY_TOPIC_LESSONS = {
+    "percentages": "successive_percentage_change",
+    "profit_loss": "profit_loss",
+    "ratio_proportion": "ratio_proportion",
+    "ratio": "ratio_proportion",
+    "averages": "averages",
+    "time_work": "time_work",
+    "time_distance": "time_distance",
+    "speed_time_distance": "time_distance",
+    "probability": "probability_basics",
+    "permutations": "permutations_combinations",
+    "permutation": "permutations_combinations",
+    "series": "number_series",
+    "number_series": "number_series",
+    "coding_decoding": "coding_decoding",
+    "blood_relation": "blood_relations",
+    "blood_relations": "blood_relations",
+    "reading_comprehension": "reading_comprehension",
+    "sentence_correction": "sentence_correction",
+    "grammar": "sentence_correction",
+    "para_jumbles": "para_jumbles",
+    "arrays": "arrays_basics",
+    "strings": "strings_basics",
+    "loops": "loops_basics",
+    "recursion": "recursion_basics",
+    "sorting": "sorting_basics",
+    "searching": "searching_basics",
+    "hashing": "hashing_basics",
+    "hashmaps": "hashing_basics",
+    "joins": "sql_joins",
+    "oop": "oops_basics",
+    "normalization": "dbms_basics",
+    "os": "os_basics",
+    "computer_networks": "computer_networks_basics",
+    "number_system": "number_systems",
+    "number_systems": "number_systems",
+    "hcf_lcm": "hcf_lcm",
+    "hcf": "hcf_lcm",
+    "lcm": "hcf_lcm",
+    "simple_interest": "simple_compound_interest",
+    "compound_interest": "simple_compound_interest",
+    "interest": "simple_compound_interest",
+    "mixture_alligation": "mixture_alligation",
+    "mixtures": "mixture_alligation",
+    "alligation": "mixture_alligation",
+    "advanced_mixtures": "mixture_alligation",
+    "syllogisms": "syllogisms",
+    "direction_sense": "direction_sense",
+    "directions": "direction_sense",
+    "puzzles": "logical_puzzles",
+    "arrangements": "logical_puzzles",
+    "seating_arrangement": "logical_puzzles",
+    "venn_diagrams": "logical_puzzles",
+    "clocks": "clocks_calendars",
+    "calendars": "clocks_calendars",
+    "clock_calendar": "clocks_calendars",
+    "linked_list": "linked_lists",
+    "linked_lists": "linked_lists",
+    "trees": "trees_basics",
+    "binary_trees": "trees_basics",
+    "bst": "trees_basics",
+    "stacks_queues": "stacks_queues",
+    "stack": "stacks_queues",
+    "queue": "stacks_queues",
+    "dynamic_programming": "dynamic_programming",
+    "dp": "dynamic_programming",
+    "basic_dp": "dynamic_programming",
+    "exception_handling": "exception_handling",
+    "exceptions": "exception_handling",
+    "file_io": "file_io",
+    "files": "file_io",
+    "time_complexity": "time_complexity",
+    "complexity_analysis": "time_complexity",
+    "big_o": "time_complexity",
+    "subqueries": "sql_subqueries",
+    "exists": "sql_subqueries",
+    "not_exists": "sql_subqueries",
+    "in": "sql_subqueries",
+    "any_all": "sql_subqueries",
+    "group_by": "sql_group_by",
+    "having": "sql_group_by",
+    "aggregation": "sql_group_by",
+    "matrix": "matrix_operations",
+    "matrices": "matrix_operations",
+    "matrix_operations": "matrix_operations",
+    "pipes_cisterns": "pipes_cisterns",
+    "number_analogies": "analogies_odd_one_out",
+    "odd_one_out": "analogies_odd_one_out",
+    "word_relationships": "analogies_odd_one_out",
+    "word_analogy": "analogies_odd_one_out",
+    "active_passive_voice": "grammar_transformations",
+    "direct_indirect_speech": "grammar_transformations",
+    "error_spotting": "error_spotting",
+    "cloze_test": "vocabulary_cloze",
+    "fill_in_blanks": "vocabulary_cloze",
+    "synonyms_antonyms": "vocabulary_cloze",
+    "vocabulary": "vocabulary_cloze",
+    "one_word_substitution": "vocabulary_cloze",
+    "java_python_basics": "programming_languages",
+    "c_java_python_basics": "programming_languages",
+    "collections": "collections_framework",
+    "pattern_printing": "pattern_printing",
+    "pattern_matching": "pattern_matching_basics",
+    "basic_pattern_matching": "pattern_matching_basics",
+    "pattern_recognition": "pattern_matching_basics",
+    "indexing": "sql_indexes_triggers",
+    "triggers": "sql_indexes_triggers",
+    "basic_algorithms": "algorithms_basics",
+    "mathematical": "algorithms_basics",
+    "math": "algorithms_basics",
+    "arithmetic": "arithmetic_algebra",
+    "algebra": "arithmetic_algebra",
+    "geometry": "geometry_basics",
+    "basic_ds": "data_structures_intro",
+    "technology_topics": "essay_writing",
+    "current_affairs": "essay_writing",
+    "opinion_essays": "essay_writing",
+    "technology": "essay_writing",
+    "business": "essay_writing",
+    "social_issues": "essay_writing",
+    "essay": "essay_writing",
+    "advanced_probability": "advanced_probability",
+    "advanced_time_work": "advanced_time_work",
+    "simple_compound_interest": "simple_compound_interest",
+    "conditions": "loops_basics",
+    "critical_reasoning": "logical_puzzles",
+    "dynamic_programming_basics": "dynamic_programming",
+    "reading": "reading_comprehension",
+    "sentence_rearrangement": "para_jumbles",
+}
+
+
+COMPANY_TOPIC_DOMAINS = {
+    "percentages": "quantitative_aptitude",
+    "profit_loss": "quantitative_aptitude",
+    "ratio_proportion": "quantitative_aptitude",
+    "ratio": "quantitative_aptitude",
+    "averages": "quantitative_aptitude",
+    "time_work": "quantitative_aptitude",
+    "time_distance": "quantitative_aptitude",
+    "speed_time_distance": "quantitative_aptitude",
+    "probability": "quantitative_aptitude",
+    "permutations": "quantitative_aptitude",
+    "permutation": "quantitative_aptitude",
+    "series": "logical_reasoning",
+    "number_series": "logical_reasoning",
+    "coding_decoding": "logical_reasoning",
+    "blood_relation": "logical_reasoning",
+    "blood_relations": "logical_reasoning",
+    "direction_sense": "logical_reasoning",
+    "syllogisms": "logical_reasoning",
+    "puzzles": "logical_reasoning",
+    "arrangements": "logical_reasoning",
+    "reading_comprehension": "verbal_ability",
+    "sentence_correction": "verbal_ability",
+    "grammar": "verbal_ability",
+    "para_jumbles": "verbal_ability",
+    "arrays": "arrays_hashing",
+    "strings": "programming_fundamentals",
+    "loops": "programming_fundamentals",
+    "recursion": "programming_fundamentals",
+    "sorting": "programming_fundamentals",
+    "searching": "programming_fundamentals",
+    "hashing": "arrays_hashing",
+    "hashmaps": "arrays_hashing",
+    "linked_lists": "linked_list",
+    "trees": "trees",
+    "dynamic_programming": "dp",
+    "basic_dp": "dp",
+    "joins": "sql",
+    "subqueries": "sql",
+    "group_by": "sql",
+    "having": "sql",
+    "indexing": "sql",
+    "oop": "computer_science",
+    "normalization": "computer_science",
+    "os": "computer_science",
+    "operating_systems": "computer_science",
+    "computer_networks": "computer_science",
+    "networking": "computer_science",
+    "number_system": "quantitative_aptitude",
+    "number_systems": "quantitative_aptitude",
+    "hcf_lcm": "quantitative_aptitude",
+    "hcf": "quantitative_aptitude",
+    "lcm": "quantitative_aptitude",
+    "simple_interest": "quantitative_aptitude",
+    "compound_interest": "quantitative_aptitude",
+    "interest": "quantitative_aptitude",
+    "mixture_alligation": "quantitative_aptitude",
+    "mixtures": "quantitative_aptitude",
+    "alligation": "quantitative_aptitude",
+    "advanced_mixtures": "quantitative_aptitude",
+    "syllogisms": "logical_reasoning",
+    "direction_sense": "logical_reasoning",
+    "directions": "logical_reasoning",
+    "puzzles": "logical_reasoning",
+    "arrangements": "logical_reasoning",
+    "seating_arrangement": "logical_reasoning",
+    "venn_diagrams": "logical_reasoning",
+    "clocks": "quantitative_aptitude",
+    "calendars": "quantitative_aptitude",
+    "clock_calendar": "quantitative_aptitude",
+    "linked_list": "linked_list",
+    "linked_lists": "linked_list",
+    "trees_basics": "trees",
+    "binary_trees": "trees",
+    "bst": "trees",
+    "stacks_queues": "stack",
+    "stack": "stack",
+    "queue": "stack",
+    "dynamic_programming": "dp",
+    "basic_dp": "dp",
+    "exception_handling": "programming_fundamentals",
+    "exceptions": "programming_fundamentals",
+    "file_io": "programming_fundamentals",
+    "files": "programming_fundamentals",
+    "time_complexity": "programming_fundamentals",
+    "complexity_analysis": "programming_fundamentals",
+    "big_o": "programming_fundamentals",
+    "subqueries": "sql",
+    "exists": "sql",
+    "not_exists": "sql",
+    "in": "sql",
+    "any_all": "sql",
+    "group_by": "sql",
+    "having": "sql",
+    "aggregation": "sql",
+    "matrix": "programming_fundamentals",
+    "matrices": "programming_fundamentals",
+    "matrix_operations": "programming_fundamentals",
+    "pipes_cisterns": "quantitative_aptitude",
+    "number_analogies": "logical_reasoning",
+    "odd_one_out": "logical_reasoning",
+    "word_relationships": "logical_reasoning",
+    "word_analogy": "logical_reasoning",
+    "active_passive_voice": "verbal_ability",
+    "direct_indirect_speech": "verbal_ability",
+    "error_spotting": "verbal_ability",
+    "cloze_test": "verbal_ability",
+    "fill_in_blanks": "verbal_ability",
+    "synonyms_antonyms": "verbal_ability",
+    "vocabulary": "verbal_ability",
+    "one_word_substitution": "verbal_ability",
+    "java_python_basics": "programming_fundamentals",
+    "c_java_python_basics": "programming_fundamentals",
+    "collections": "programming_fundamentals",
+    "pattern_printing": "programming_fundamentals",
+    "pattern_matching": "programming_fundamentals",
+    "basic_pattern_matching": "programming_fundamentals",
+    "pattern_recognition": "programming_fundamentals",
+    "indexing": "sql",
+    "triggers": "sql",
+    "basic_algorithms": "programming_fundamentals",
+    "mathematical": "programming_fundamentals",
+    "math": "programming_fundamentals",
+    "arithmetic": "quantitative_aptitude",
+    "algebra": "quantitative_aptitude",
+    "geometry": "quantitative_aptitude",
+    "basic_ds": "arrays_hashing",
+    "technology_topics": "verbal_ability",
+    "current_affairs": "verbal_ability",
+    "opinion_essays": "verbal_ability",
+    "technology": "verbal_ability",
+    "business": "verbal_ability",
+    "social_issues": "verbal_ability",
+    "essay": "verbal_ability",
+    "advanced_probability": "quantitative_aptitude",
+    "advanced_time_work": "quantitative_aptitude",
+    "simple_compound_interest": "quantitative_aptitude",
+    "conditions": "programming_fundamentals",
+    "critical_reasoning": "logical_reasoning",
+    "dynamic_programming_basics": "dp",
+    "reading": "verbal_ability",
+    "sentence_rearrangement": "verbal_ability",
+}
+
+
+async def _get_company_focus_task(
+    user_id: str,
+    assessment: Optional[Dict[str, Any]] = None,
+) -> Optional[Dict[str, Any]]:
+    """Return the next unfinished, topic-aware company mission."""
+    user = await _get_user_profile(user_id)
+    track_id = user.get("company_track") or user.get("target_pack")
+    if not track_id:
+        return None
+
+    from app.data.learning_paths import COMPANY_TRACKS
+    track = COMPANY_TRACKS.get(track_id)
+    if not track:
+        return None
+
+    progress = await user_company_tracks_collection.find_one(
+        {"user_id": user_id, "track_id": track_id}
+    )
+    if not progress:
+        return None
+
+    progress_sections = progress.get("sections") or {}
+
+    # Prefer the evidence-derived assessment already computed by the daily
+    # plan. The legacy skill_graph is an increment-only cache and can be
+    # positively biased by retries; use it only as a migration fallback.
+    skill_scores = {}
+    assessed_skills = (assessment or {}).get("skills") or {}
+    if assessed_skills:
+        skill_scores = assessed_skills
+    else:
+        skill_graph = await skill_graph_collection.find_one({"user_id": user_id}) or {}
+        skill_scores = skill_graph.get("skills") or {}
+    for section in track.get("sections", []):
+        section_state = progress_sections.get(section.get("id"), {})
+        modules_state = section_state.get("modules") or {}
+        for module in section.get("modules", []):
+            module_id = module.get("id")
+            module_state = modules_state.get(module_id, {})
+            if module_state.get("completed"):
+                continue
+            required_topics = [
+                str(topic).strip().lower().replace("-", "_").replace(" ", "_")
+                for topic in (module.get("topics") or [])
+            ]
+            topic_mastery = module_state.get("topic_mastery") or {}
+            unfinished_topics = [
+                (index, topic)
+                for index, topic in enumerate(required_topics)
+                if not (topic_mastery.get(topic) or {}).get("mastered")
+            ]
+            if not unfinished_topics:
+                continue
+
+            # Among unfinished skills in this module, work on the weakest
+            # evidenced area first. Untouched skills stay in syllabus order.
+            def topic_priority(item):
+                index, topic = item
+                domain_id = COMPANY_TOPIC_DOMAINS.get(topic, topic)
+                score = float((skill_scores.get(domain_id) or {}).get("score", 0) or 0)
+                return (score, index)
+
+            _, topic = min(unfinished_topics, key=topic_priority)
+            lesson_slug = COMPANY_TOPIC_LESSONS.get(topic)
+            domain_id = COMPANY_TOPIC_DOMAINS.get(topic, topic)
+            topic_score = float((skill_scores.get(domain_id) or {}).get("score", 0) or 0)
+            return {
+                "id": f"company:{track_id}:{module_id}:{topic}",
+                "type": "company_module",
+                "title": f"{track.get('name', track_id)} · {module.get('title', module_id)}",
+                "description": f"Next skill: {topic.replace('_', ' ')}. Learn the concept, practise it, then pass the mastery quiz.",
+                "domain_id": domain_id,
+                "topic_id": topic,
+                "skill_score": topic_score,
+                "focus_reason": "Lowest current evidence among the unfinished skills in this module.",
+                "difficulty": "medium",
+                "estimated_minutes": 20,
+                "xp_reward": module.get("diamonds", 50),
+                "company": track.get("company_id", track_id),
+                "track_id": track_id,
+                "module_id": module_id,
+                "lesson_slug": lesson_slug,
+                "action_url": (
+                    f"/learn/lesson/{lesson_slug}?track_id={track_id}&module_id={module_id}&topic_id={topic}"
+                    if lesson_slug else f"/company-tracks?track={track_id}"
+                ),
+            }
+    return None
+
 
 
 # ─── AI-Powered Recommendations ───

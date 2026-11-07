@@ -55,18 +55,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node 20
+      - name: Set up Node 22
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: frontend/package-lock.json
+
+      # Reconcile the lock before clean installation. The checked-in lockfile
+      # predates the current package manifest and npm ci currently rejects it.
+      - name: Reconcile frontend lockfile
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
+
+      - name: Upload resolved frontend lockfile
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-lockfile
+          path: frontend/package-lock.json
 
   curate-questions:
     runs-on: ubuntu-latest

@@ -1,0 +1,124 @@
+{
+  "slug": "coding_decoding",
+  "id": "lesson_coding_decoding_001",
+  "title": "Coding and Decoding",
+  "domain": "Logical Reasoning",
+  "pattern": "Coding Decoding",
+  "difficulty": "easy",
+  "duration_min": 18,
+  "xp_reward": 85,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Treat letters as positions",
+      "content": "In alphabet coding, map A=1, B=2, …, Z=26. A code may shift every letter forward or backward by a fixed number.",
+      "example": "CAT shifted +1 becomes DBU: C→D, A→B, T→U.",
+      "tip": "Check whether the shift wraps around after Z."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Apply a forward shift",
+      "prompt": "If each letter is replaced by the next letter, how is DOG coded?",
+      "options": [
+        "EPH",
+        "CNG",
+        "FQI",
+        "EOG"
+      ],
+      "correct_index": 0,
+      "explanation": "D→E, O→P, G→H. Therefore DOG becomes EPH."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Look for position rules",
+      "content": "Some questions add or subtract a number from each letter's position. Others reverse the word, swap pairs or use alternating shifts.",
+      "example": "A=1, B=2. If each position is doubled, BAD becomes 4,2,8.",
+      "tip": "Test the same rule on every letter before choosing an answer."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Decode a backward shift",
+      "prompt": "A code shifts every letter one step backward. What does DBU represent?",
+      "options": [
+        "CAT",
+        "DOG",
+        "BAT",
+        "CAR"
+      ],
+      "correct_index": 0,
+      "explanation": "D→C, B→A, U→T. The original word is CAT."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Compare letter distances",
+      "content": "For analogy-style coding, compare the shift for each letter rather than the word's appearance. A shift pattern can be +1,+2,+3 or alternating +1,−1.",
+      "example": "ACE → BDF uses +1 for all three positions."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Using a +1 shift, what is BAT?",
+        "options": [
+          "CBU",
+          "AZS",
+          "DBU",
+          "CAT"
+        ],
+        "correct_index": 0,
+        "explanation": "B→C, A→B, T→U: CBU."
+      },
+      {
+        "prompt": "If PEN is coded as QFO, what rule is used?",
+        "options": [
+          "Each letter −1",
+          "Each letter +1",
+          "Reverse the word",
+          "Swap first and last"
+        ],
+        "correct_index": 1,
+        "explanation": "P→Q, E→F, N→O: each letter moves forward one."
+      },
+      {
+        "prompt": "Using a −1 shift, what is DOG?",
+        "options": [
+          "EPH",
+          "CNF",
+          "CNG",
+          "DNG"
+        ],
+        "correct_index": 1,
+        "explanation": "Shift each letter one step backward: D→C, O→N, G→F. The code is CNF."
+      },
+      {
+        "prompt": "If A=1 and Z=26, what is the position value of M?",
+        "options": [
+          "11",
+          "12",
+          "13",
+          "14"
+        ],
+        "correct_index": 2,
+        "explanation": "M is the 13th letter."
+      },
+      {
+        "prompt": "A word is reversed before coding. What is the reverse of TRAIN?",
+        "options": [
+          "NIART",
+          "NIRAT",
+          "TNIAR",
+          "RAINT"
+        ],
+        "correct_index": 0,
+        "explanation": "Reading TRAIN backward gives NIART."
+      }
+    ]
+  }
+}
