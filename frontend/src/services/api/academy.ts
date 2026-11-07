@@ -41,10 +41,10 @@ export const academyApi = {
       body: JSON.stringify({ questions_per_domain: questionsPerDomain }),
     });
   },
-  answerDiagnostic(diagnosticId: string, questionId: string, answer: string) {
+  answerDiagnostic(diagnosticId: string, questionId: string, answer: string, evidence: { time_taken_seconds?: number; confidence?: number } = {}) {
     return request(
       `/api/v1/academy/diagnostic/${encodeURIComponent(diagnosticId)}/answer`,
-      { method: "POST", body: JSON.stringify({ question_id: questionId, answer }) },
+      { method: "POST", body: JSON.stringify({ question_id: questionId, answer, ...evidence }) },
     );
   },
   completeDiagnostic(diagnosticId: string) {

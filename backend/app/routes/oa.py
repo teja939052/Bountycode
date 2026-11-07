@@ -516,6 +516,7 @@ OA_ENGINE_VERSION = "2026.11"
 # ---------------------------------------------------------------------------
 class StartOARequest(BaseModel):
     company: str = Field("general", description="Company blueprint key (amazon/google/tcs/...)")
+    track: Optional[str] = Field(None, description="Optional edition track, e.g. foundation or advanced")
     role: str = Field("swe", description="Target role key (swe/...); currently drives blueprint selection")
     total_questions: int = Field(20, ge=5, le=40, description="Total number of questions")
     duration_minutes: int = Field(90, ge=10, le=200, description="Total OA duration in minutes (e.g. 190 for TCS NQT Foundation+Advanced)")
@@ -587,6 +588,30 @@ def _distribute(total: int, blueprint: Dict[str, float]) -> Dict[str, int]:
         i += 1
     # drop zero-count sections
     return {sec: n for sec, n in floor.items() if n > 0}
+
+
+def _scope_distribution(dist: Dict[str, int], track: Optional[str], total: int) -> Dict[str, int]:
+    """Restrict a blueprint to a named stage and deterministically rescale it."""
+    allowed = {
+        "foundation": {"aptitude", "logical", "verbal"},
+        "advanced": {"cs_fundamentals", "coding", "dsa"},
+    }.get((track or "").strip().lower())
+    if not allowed:
+        return dist
+    scoped = {section: count for section, count in dist.items() if section in allowed}
+    if not scoped:
+        return dist
+    source_total = sum(scoped.values())
+    if source_total == total:
+        return scoped
+    scaled = {section: max(1, round(count / source_total * total)) for section, count in scoped.items()}
+    while sum(scaled.values()) > total and len(scaled) > 1:
+        largest = max(scaled, key=scaled.get)
+        scaled[largest] -= 1
+    while sum(scaled.values()) < total:
+        largest = max(scoped, key=scoped.get)
+        scaled[largest] += 1
+    return scaled
 
 
 # Map OA sections to verified question-store types (Content Trust).
@@ -1209,6 +1234,8 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
             dist = exact_dist
     else:
         dist = _distribute(req.total_questions, blueprint)
+    track_key = (req.track or "").strip().lower()
+    dist = _scope_distribution(dist, track_key, req.total_questions)
     questions = await _build_questions(dist, verified_only=req.verified_only, company=company, section_durations=section_durations)
 
     if req.verified_only and not questions:
@@ -1253,6 +1280,7 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
     session_doc = {
         "user_id": user["id"],
         "company": company.lower(),
+        "track": track_key or None,
         "role": req.role,
         "engine_version": OA_ENGINE_VERSION,
         "blueprint_version": f"{company.lower()}:{OA_ENGINE_VERSION}",
@@ -1313,6 +1341,7 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
     return {
         "session_id": session_id,
         "company": company.lower(),
+        "track": track_key or None,
         "engine_version": OA_ENGINE_VERSION,
         "blueprint_version": session_doc["blueprint_version"],
         "mode": req.mode,
@@ -1568,6 +1597,7 @@ async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(def
     result = {
         "session_id": session_id,
         "company": sess.get("company"),
+        "track": sess.get("track"),
         "engine_version": sess.get("engine_version", OA_ENGINE_VERSION),
         "blueprint_version": sess.get("blueprint_version", f"{sess.get('company', 'general')}:{OA_ENGINE_VERSION}"),
         "mode": sess.get("mode"),

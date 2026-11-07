@@ -28,106 +28,35 @@ import {
   Database,
 } from "lucide-react";
 
-const COMPANIES = [
-  {
-    id: "general",
-    name: "General OA",
-    logo: "📋",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Mixed placement OA covering all sections",
-    color: "cyber-blue",
-  },
-  {
-    id: "tcs",
-    name: "TCS",
-    logo: "🔷",
-    duration: 60,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "TCS National Qualifier Test pattern",
-    color: "cyber-blue",
-  },
-  {
-    id: "infosys",
-    name: "Infosys",
-    logo: "🔹",
-    duration: 45,
-    questionCount: 15,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "Infosys SPRT / Mysore training pattern",
-    color: "cyber-purple",
-  },
-  {
-    id: "wipro",
-    name: "Wipro",
-    logo: "💎",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Wipro TopGear assessment pattern",
-    color: "cyber-green",
-  },
-  {
-    id: "cognizant",
-    name: "Cognizant",
-    logo: "🔶",
-    duration: 30,
-    questionCount: 15,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "Cognizant GenC Next assessment",
-    color: "cyber-amber",
-  },
-  {
-    id: "capgemini",
-    name: "Capgemini",
-    logo: "🔆",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Capgemini online assessment pattern",
-    color: "cyber-amber",
-  },
-  {
-    id: "ibm",
-    name: "IBM",
-    logo: "🔷",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "IBM entry-level Cognitive Ability round",
-    color: "cyber-blue",
-  },
-  {
-    id: "hcl",
-    name: "HCL Tech",
-    logo: "🟢",
-    duration: 30,
-    questionCount: 15,
-    difficulty: "easy",
-    sections: ["Quant", "Logical", "Verbal"],
-    description: "HCL TalentConnect pattern",
-    color: "cyber-green",
-  },
-  {
-    id: "tech_mahindra",
-    name: "Tech Mahindra",
-    logo: "⚡",
-    duration: 45,
-    questionCount: 20,
-    difficulty: "medium",
-    sections: ["Quant", "Logical", "Verbal", "Technical"],
-    description: "Tech Mahindra SMART assessment",
-    color: "cyber-purple",
-  },
+type CompanyPreset = {
+  id: string;
+  backendCompany: string;
+  track?: string;
+  name: string;
+  logo: string;
+  duration: number;
+  questionCount: number;
+  difficulty: string;
+  sections: string[];
+  description: string;
+  sourceLabel: string;
+  sourceUrl: string | null;
+  color: string;
+};
+
+const COMPANIES: CompanyPreset[] = [
+  { id: "general", backendCompany: "swe", name: "General OA", logo: "📋", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Mixed placement OA covering all sections", sourceLabel: "Product recommendation", sourceUrl: null, color: "cyber-blue" },
+  { id: "tcs", backendCompany: "tcs", name: "TCS Foundation + Advanced", logo: "🔷", duration: 190, questionCount: 30, difficulty: "medium", sections: ["Foundation", "Advanced"], description: "Full two-stage TCS NQT-style practice", sourceLabel: "Official drive structure; verify current hall ticket", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
+  { id: "tcs_foundation", backendCompany: "tcs", track: "foundation", name: "TCS Foundation", logo: "🔷", duration: 75, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal"], description: "Numerical, verbal and reasoning practice", sourceLabel: "Official cited TCS drive: 75 minutes", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
+  { id: "tcs_advanced", backendCompany: "tcs", track: "advanced", name: "TCS Advanced", logo: "🔷", duration: 115, questionCount: 15, difficulty: "hard", sections: ["Advanced Quant", "Coding"], description: "Advanced aptitude, reasoning and coding practice", sourceLabel: "Official cited TCS drive: 115 minutes", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
+  { id: "infosys", backendCompany: "infytq", name: "Infosys InfyTQ", logo: "🔹", duration: 180, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Programming, DBMS/SQL, aptitude and OOP/DSA practice", sourceLabel: "Edition-dependent practice", sourceUrl: "https://www.infosys.com/insights/human-potential/industry-grade-certification.html", color: "cyber-purple" },
+  { id: "wipro", backendCompany: "wipro", name: "Wipro WILP / NTH", logo: "💎", duration: 80, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Verbal, analytical, quantitative and writing practice", sourceLabel: "Official cited WILP cohort: 80-minute assessment", sourceUrl: "https://app.joinsuperset.com/company/wipro/wilp.html", color: "cyber-green" },
+  { id: "accenture", backendCompany: "accenture", name: "Accenture Campus", logo: "🟣", duration: 90, questionCount: 20, difficulty: "medium", sections: ["Cognitive", "Technical", "Coding", "Communication"], description: "Role-aware cognitive, technical, coding and communication practice", sourceLabel: "Invitation-dependent; official guidance", sourceUrl: "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture", color: "cyber-purple" },
+  { id: "cognizant", backendCompany: "cognizant", name: "Cognizant GenC", logo: "🔶", duration: 90, questionCount: 15, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Communication, aptitude and role-based technical practice", sourceLabel: "Role-dependent practice", sourceUrl: "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program/", color: "cyber-amber" },
+  { id: "capgemini", backendCompany: "capgemini", name: "Capgemini", logo: "🔆", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Capgemini online assessment pattern", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-amber" },
+  { id: "ibm", backendCompany: "ibm", name: "IBM", logo: "🔷", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "IBM entry-level Cognitive Ability round", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-blue" },
+  { id: "hcl", backendCompany: "hcl", name: "HCL Tech", logo: "🟢", duration: 30, questionCount: 15, difficulty: "easy", sections: ["Quant", "Logical", "Verbal"], description: "HCL TalentConnect pattern", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-green" },
+  { id: "tech_mahindra", backendCompany: "tech_mahindra", name: "Tech Mahindra", logo: "⚡", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Tech Mahindra SMART assessment", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-purple" },
 ];
 
 const SECTION_CATEGORIES = {
@@ -139,6 +68,8 @@ const SECTION_CATEGORIES = {
 
 const OA_TO_MEMORY_EXAM: Record<string, string> = {
   tcs: "tcs_nqt",
+  tcs_foundation: "tcs_nqt",
+  tcs_advanced: "tcs_nqt",
   infosys: "infytq",
   wipro: "wipro_nlth",
   cognizant: "cognizant_genc",
@@ -154,6 +85,10 @@ const DURATION_OPTIONS = [
   { value: 30, label: "30 min" },
   { value: 45, label: "45 min" },
   { value: 60, label: "60 min" },
+  { value: 75, label: "75 min" },
+  { value: 90, label: "90 min" },
+  { value: 115, label: "115 min" },
+  { value: 190, label: "190 min" },
 ];
 
 function QuestionPalette({
@@ -343,7 +278,7 @@ export default function MockOA() {
   const [runtimeSeed] = useState(readPersistedMockRuntime);
   const [step, setStep] = useState<"select" | "test" | "results">(runtimeSeed ? "test" : "select");
   const [selectedCompany, setSelectedCompany] = useState<string | null>(runtimeSeed?.companyId || initialCompany);
-  const [customDuration, setCustomDuration] = useState(45);
+  const [customDuration, setCustomDuration] = useState(() => COMPANIES.find((company) => company.id === initialCompany)?.duration || 45);
   const [sessionId, setSessionId] = useState<string>(runtimeSeed?.sessionId || "");
   const [questions, setQuestions] = useState<OAQuestion[]>(runtimeSeed?.questions || []);
   const [currentQ, setCurrentQ] = useState(0);
@@ -516,9 +451,10 @@ export default function MockOA() {
     setLoading(true);
     setError("");
     try {
-      const companyId = (selectedCompany === "general" ? "swe" : selectedCompany) as string;
+      const companyId = company.backendCompany;
       const data = (await api.oa.start({
         company: companyId,
+        track: company.track,
         role: "swe",
         total_questions: company.questionCount,
         duration_minutes: customDuration || company.duration,
@@ -675,6 +611,7 @@ export default function MockOA() {
                     <p className="text-[10px] font-mono text-gray-500">
                       {c.description}
                     </p>
+                    <p className="mt-1 text-[9px] font-mono text-cyber-blue/80">{c.sourceLabel}</p>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -714,6 +651,7 @@ export default function MockOA() {
                     {company.questionCount} questions across{" "}
                     {company.sections.length} sections
                   </p>
+                  <p className="mt-2 max-w-xl text-[10px] font-mono leading-4 text-amber-700">Practice simulation only. {company.sourceLabel}. Verify your current employer invitation for exact rules.</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">

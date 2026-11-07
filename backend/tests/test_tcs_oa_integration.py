@@ -13,6 +13,17 @@ from httpx import AsyncClient, ASGITransport
 from app.main import app
 from app.database import oa_sessions_collection, users_collection
 from app.middleware.rate_limiter import clear_login_attempts
+from app.routes.oa import _scope_distribution
+
+
+def test_tcs_track_distribution_is_scoped_and_deterministic():
+    blueprint = {"aptitude": 10, "logical": 8, "verbal": 7, "cs_fundamentals": 3, "coding": 2}
+    foundation = _scope_distribution(blueprint, "foundation", 20)
+    advanced = _scope_distribution(blueprint, "advanced", 10)
+    assert set(foundation) == {"aptitude", "logical", "verbal"}
+    assert sum(foundation.values()) == 20
+    assert set(advanced) == {"cs_fundamentals", "coding"}
+    assert sum(advanced.values()) == 10
 
 
 @pytest.fixture

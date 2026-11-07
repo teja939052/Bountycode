@@ -4,6 +4,7 @@ export type OAMode = "calm" | "pressure" | "boss";
 
 export interface StartOARequest {
   company: string;
+  track?: string;
   role?: string;
   total_questions?: number;
   duration_minutes?: number;
@@ -28,6 +29,7 @@ export interface SubmitOABatch {
 export interface OASession {
   session_id: string;
   company: string;
+  track?: string;
   mode: string;
   blueprint: Record<string, number>;
   marking_scheme?: unknown;
@@ -77,6 +79,7 @@ export const oaApi = {
       method: "POST",
       body: JSON.stringify({
         role: req.role || "swe",
+        track: req.track,
         total_questions: req.total_questions ?? 20,
         duration_minutes: req.duration_minutes ?? 90,
         mode: req.mode || "calm",

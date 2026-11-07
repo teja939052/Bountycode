@@ -111,6 +111,8 @@ class DiagnosticStart(BaseModel):
 class DiagnosticAnswer(BaseModel):
     question_id: str = Field(min_length=1, max_length=160)
     answer: str = Field(max_length=2000)
+    time_taken_seconds: int = Field(default=0, ge=0, le=3600)
+    confidence: int | None = Field(default=None, ge=1, le=5)
 
 
 @router.post("/start")
@@ -188,6 +190,8 @@ async def answer_diagnostic(
         "answer": payload.answer,
         "is_correct": correct,
         "domain_id": canonical_domain(question),
+        "time_taken_seconds": payload.time_taken_seconds,
+        "confidence": payload.confidence,
         "answered_at": datetime.now(timezone.utc).isoformat(),
     }
     await _sessions().update_one(
@@ -221,6 +225,10 @@ async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)
     breakdown = []
     for domain, counts in grouped.items():
         score = round(counts["correct"] / counts["total"] * 100)
+        domain_answers = [answer for answer in answers if (answer.get("domain_id") or canonical_domain(questions.get(answer["question_id"], {}))) == domain]
+        timed = [int(answer.get("time_taken_seconds") or 0) for answer in domain_answers if int(answer.get("time_taken_seconds") or 0) > 0]
+        confidence_values = [int(answer["confidence"]) for answer in domain_answers if answer.get("confidence") is not None]
+        confidence_score = round(sum((value - 1) / 4 * 100 for value in confidence_values) / len(confidence_values)) if confidence_values else None
         breakdown.append({
             "domain": domain,
             "label": DOMAIN_LABELS.get(domain, domain.replace("_", " ").title()),
@@ -228,6 +236,9 @@ async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)
             "total": counts["total"],
             "score": score,
             "level": skill_level(score, counts["total"]),
+            "average_time_seconds": round(sum(timed) / len(timed)) if timed else None,
+            "confidence_score": confidence_score,
+            "calibration_gap": confidence_score - score if confidence_score is not None else None,
         })
         await record_learning_activity(user["id"], {
             "domain_id": domain,
@@ -241,12 +252,23 @@ async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)
         })
 
     overall = round(sum(a["is_correct"] for a in answers) / len(answers) * 100) if answers else 0
+    timed_answers = [int(answer.get("time_taken_seconds") or 0) for answer in answers if int(answer.get("time_taken_seconds") or 0) > 0]
+    confidence_values = [int(answer["confidence"]) for answer in answers if answer.get("confidence") is not None]
+    confidence_score = round(sum((value - 1) / 4 * 100 for value in confidence_values) / len(confidence_values)) if confidence_values else None
+    weakest = min(breakdown, key=lambda item: (item["score"], -(item.get("calibration_gap") or 0))) if breakdown else None
     result = {
         "diagnostic_id": diagnostic_id,
         "overall_score": overall,
         "total_questions": len(answers),
         "correct_answers": sum(int(a["is_correct"]) for a in answers),
         "skills": sorted(breakdown, key=lambda item: item["score"]),
+        "evidence": {
+            "average_time_seconds": round(sum(timed_answers) / len(timed_answers)) if timed_answers else None,
+            "confidence_score": confidence_score,
+            "calibration_gap": confidence_score - overall if confidence_score is not None else None,
+            "weakest_skill": weakest["domain"] if weakest else None,
+            "recommended_action": f"Start with {weakest['label']} and repeat varied practice." if weakest else "Complete another diagnostic after your first study cycle.",
+        },
         "completed_at": datetime.now(timezone.utc).isoformat(),
         "disclaimer": "This is a baseline estimate from a short diagnostic, not a hiring prediction.",
     }
