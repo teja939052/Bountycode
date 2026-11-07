@@ -30,7 +30,7 @@
       "name": "Sprint 2 — Quant core (NQT-heavy)",
       "goal": "High-frequency aptitude topics for service OA",
       "lessons": [
-        "percentages",
+        "number_systems",
         "successive_percentage_change",
         "profit_loss",
         "ratio_proportion",
@@ -39,7 +39,7 @@
         "time_distance",
         "hcf_lcm",
         "simple_compound_interest",
-        "number_system"
+        "arithmetic_algebra"
       ]
     },
     {
@@ -53,8 +53,8 @@
         "direction_sense",
         "syllogisms",
         "analogies_odd_one_out",
-        "seating_arrangement",
-        "puzzles_basics"
+        "logical_puzzles",
+        "pattern_matching_basics"
       ]
     },
     {
@@ -64,7 +64,7 @@
       "lessons": [
         "reading_comprehension",
         "error_spotting",
-        "sentence_completion",
+        "vocabulary_cloze",
         "grammar_transformations"
       ]
     },
@@ -76,7 +76,7 @@
         "data_structures_intro",
         "hashing_basics",
         "algorithms_basics",
-        "searching_sorting",
+        "sorting_basics",
         "recursion_basics"
       ]
     },
