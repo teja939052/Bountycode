@@ -53,7 +53,7 @@ SKILL_CATEGORIES = {
     "programming": {
         "name": "Programming & CS Fundamentals",
         "skills": [
-            "python", "java", "cpp", "oop",
+            "python", "c", "cpp", "java", "oop",
             "dbms", "operating_systems", "computer_networks",
         ],
     },
