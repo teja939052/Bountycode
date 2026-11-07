@@ -1,8 +1,8 @@
 """Deterministic quality checks for authored and generated curriculum content.
 
-This is an authoring gate, not an AI grader: it flags generic placeholders and
-missing learning artifacts so generated lesson shells are never mistaken for
-finished instruction.
+The audit understands the repository's real lesson schema (singular exercise/
+quiz fields, language-specific authored lesson banks, and code embedded in
+sections). It is an authoring gate, not an AI grader.
 """
 from __future__ import annotations
 
@@ -16,15 +16,32 @@ _PLACEHOLDER_MARKERS = (
     "implement the concept",
     "your program should",
     "a working program demonstrating",
+    "your code here",
+    "implement ",
+    "add the actual implementation",
+    "demonstrate the concept",
 )
 
 
-def _items(content: Dict[str, Any], plural: str, singular: str) -> List[Dict[str, Any]]:
+def _as_items(content: Dict[str, Any], plural: str, singular: str) -> List[Dict[str, Any]]:
+    """Accept both the singular hand-authored and plural generated schemas."""
     values = content.get(plural)
-    if isinstance(values, list):
+    if isinstance(values, list) and values:
         return [item for item in values if isinstance(item, dict)]
     value = content.get(singular)
-    return [value] if isinstance(value, dict) else []
+    if isinstance(value, dict):
+        return [value]
+    return []
+
+
+def _contains_placeholder(value: Any) -> bool:
+    return any(marker in str(value or "").lower() for marker in _PLACEHOLDER_MARKERS)
+
+
+def _mistake_is_complete(item: Dict[str, Any]) -> bool:
+    mistake = item.get("mistake") or item.get("wrong")
+    fix = item.get("fix") or item.get("fixed") or item.get("why")
+    return bool(str(mistake or "").strip() and str(fix or "").strip())
 
 
 def score_lesson_content(content: Dict[str, Any]) -> Dict[str, Any]:
@@ -35,68 +52,74 @@ def score_lesson_content(content: Dict[str, Any]) -> Dict[str, Any]:
     section_bodies = [str(s.get("body") or "").strip() for s in sections]
     code_example = content.get("code_example") or {}
     code = str(code_example.get("code") or "") if isinstance(code_example, dict) else str(code_example)
-    exercises = _items(content, "exercises", "exercise")
-    quizzes = _items(content, "quizzes", "quiz")
+    section_code = "\n".join(str(s.get("code") or "") for s in sections)
+    all_code = "\n".join(part for part in (code, section_code) if part.strip())
+    exercises = _as_items(content, "exercises", "exercise")
+    quizzes = _as_items(content, "quizzes", "quiz")
     mistakes = [m for m in (content.get("common_mistakes") or []) if isinstance(m, dict)]
 
-    if len(theory) < 160:
+    if len(theory) < 240:
         warnings.append("thin_theory")
-    if len(sections) < 3 or sum(len(body) >= 100 for body in section_bodies) < 3:
+    if len(sections) < 2 or sum(len(body) >= 100 for body in section_bodies) < 2:
         warnings.append("thin_explanatory_sections")
-    if not code.strip() or any(marker in code.lower() for marker in _PLACEHOLDER_MARKERS):
+    if not all_code.strip() or _contains_placeholder(all_code):
         warnings.append("placeholder_or_missing_code")
-    if len(exercises) < 2:
-        warnings.append("insufficient_exercises")
-    exercise_text = " ".join(
-        str(ex.get("description") or "") + " " + str(ex.get("expected_output") or "")
+    if not exercises:
+        warnings.append("missing_exercise")
+    elif any(
+        _contains_placeholder(ex.get("description")) or
+        _contains_placeholder(ex.get("expected_output")) or
+        not str(ex.get("description") or "").strip()
         for ex in exercises
-    ).lower()
-    if any(marker in exercise_text for marker in _PLACEHOLDER_MARKERS):
+    ):
         warnings.append("generic_exercise_expectations")
-    if len(quizzes) < 3 or any(
-        len(q.get("options") or []) < 2 or len(str(q.get("explanation") or "").strip()) < 35
+    if not quizzes or any(
+        not str(q.get("question") or "").strip()
+        or len(q.get("options") or []) < 2
+        or q.get("correct") is None
+        or len(str(q.get("explanation") or "").strip()) < 35
         for q in quizzes
     ):
         warnings.append("insufficient_assessment_depth")
-    if len(mistakes) < 2 or any(
-        not str(m.get("mistake") or "").strip()
-        or not str(m.get("fix") or "").strip()
-        for m in mistakes
-    ):
+    if len(mistakes) < 2 or any(not _mistake_is_complete(m) for m in mistakes):
         warnings.append("missing_misconception_guidance")
 
-    score = 100
     penalties = {
         "thin_theory": 15,
         "thin_explanatory_sections": 15,
         "placeholder_or_missing_code": 20,
-        "insufficient_exercises": 15,
+        "missing_exercise": 15,
         "generic_exercise_expectations": 10,
         "insufficient_assessment_depth": 15,
         "missing_misconception_guidance": 10,
     }
-    score -= sum(penalties[warning] for warning in warnings)
-    score = max(0, score)
+    score = max(0, 100 - sum(penalties[warning] for warning in warnings))
     return {
         "score": score,
-        "status": "ready" if score >= 85 and not warnings else "needs_authoring",
+        "status": "ready" if not warnings else "needs_authoring",
         "warnings": warnings,
         "counts": {
             "sections": len(sections),
             "exercises": len(exercises),
             "quiz_questions": len(quizzes),
             "common_mistakes": len(mistakes),
+            "code_examples": int(bool(all_code.strip())),
         },
     }
 
 
 def audit_curriculum(language_ids: Iterable[str] | None = None) -> Dict[str, Any]:
-    """Audit all lessons in the selected language tracks."""
+    """Audit every configured lesson against the actual language lesson banks."""
     from app.data.curriculum import get_all_languages
     from app.data.lesson_content import get_lesson_content
 
     selected = set(language_ids or [])
-    report: Dict[str, Any] = {"total_lessons": 0, "ready_lessons": 0, "by_language": {}, "flagged": []}
+    report: Dict[str, Any] = {
+        "total_lessons": 0,
+        "ready_lessons": 0,
+        "by_language": {},
+        "flagged": [],
+    }
     for language in get_all_languages():
         language_id = language.get("id")
         if selected and language_id not in selected:
@@ -118,9 +141,10 @@ def audit_curriculum(language_ids: Iterable[str] | None = None) -> Dict[str, Any
                 if quality["status"] == "ready":
                     summary["ready"] += 1
                     report["ready_lessons"] += 1
-                elif len(report["flagged"]) < 200:
+                elif len(report["flagged"]) < 500:
                     report["flagged"].append({
                         "language": language_id,
+                        "level_id": level.get("id"),
                         "lesson_id": lesson.get("id"),
                         "title": lesson.get("title"),
                         **quality,
@@ -130,4 +154,7 @@ def audit_curriculum(language_ids: Iterable[str] | None = None) -> Dict[str, Any
     report["ready_pct"] = round(
         report["ready_lessons"] / report["total_lessons"] * 100, 1
     ) if report["total_lessons"] else 0.0
+    report["flagged_truncated"] = (
+        report["total_lessons"] - report["ready_lessons"] > len(report["flagged"])
+    )
     return report
