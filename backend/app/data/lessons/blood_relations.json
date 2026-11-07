@@ -22,20 +22,36 @@
       "step_type": "interactive",
       "title": "Identify the relationship",
       "prompt": "A man points to a girl and says: “She is the daughter of my father's only son.” How is the girl related to the man?",
-      "options": ["Daughter", "Niece", "Sister", "Cousin"],
+      "options": [
+        "Daughter",
+        "Niece",
+        "Sister",
+        "Cousin"
+      ],
       "correct_index": 0,
       "explanation": "The man's father's only son is the man himself. The girl is his daughter.",
-      "hints": ["Start from the person named after 'my'.", "Do not jump generations."]
+      "hints": [
+        "Start from the person named after 'my'.",
+        "Do not jump generations."
+      ]
     },
     {
       "step_number": 3,
       "step_type": "practice",
       "title": "Follow a short chain",
       "prompt": "A is B's brother. C is A's father. D is C's father. How is D related to B?",
-      "options": ["Grandfather", "Father", "Uncle", "Brother"],
+      "options": [
+        "Grandfather",
+        "Father",
+        "Uncle",
+        "Brother"
+      ],
       "correct_index": 0,
       "explanation": "C is B's father. D is C's father, so D is B's grandfather.",
-      "hints": ["Draw the tree from the youngest generation upward.", "Name each link before answering."]
+      "hints": [
+        "Draw the tree from the youngest generation upward.",
+        "Name each link before answering."
+      ]
     },
     {
       "step_number": 4,
@@ -49,10 +65,18 @@
       "step_type": "interactive",
       "title": "Complex chain",
       "prompt": "A's mother is the sister of B. B's father is the son of C. Assuming the siblings share both parents, how is C related to A?",
-      "options": ["Great-grandparent", "Grandparent", "Aunt or uncle", "Cousin"],
+      "options": [
+        "Great-grandparent",
+        "Grandparent",
+        "Aunt or uncle",
+        "Cousin"
+      ],
       "correct_index": 0,
       "explanation": "B's father is also A's mother's father. That man is C's son, so C is one generation above A's maternal grandfather: A's great-grandparent.",
-      "hints": ["Mark gender only when stated.", "Trace from the final named person back to the asked person."]
+      "hints": [
+        "Mark gender only when stated.",
+        "Trace from the final named person back to the asked person."
+      ]
     },
     {
       "step_number": 6,
@@ -66,19 +90,35 @@
         "Add each stated link to a tree",
         "Read the full sentence once"
       ],
-      "correct_order": [3, 1, 2, 0],
+      "correct_order": [
+        3,
+        1,
+        2,
+        0
+      ],
       "explanation": "Read, anchor the reference person, draw links, then answer.",
-      "hints": ["Never answer before the tree is complete.", "The reference person is usually introduced by my/his/her."]
+      "hints": [
+        "Never answer before the tree is complete.",
+        "The reference person is usually introduced by my/his/her."
+      ]
     },
     {
       "step_number": 7,
       "step_type": "practice",
       "title": "Gender-neutral answer",
       "prompt": "A is the father of B. B is the sister of C. C is the brother of D. How is D related to A?",
-      "options": ["Son", "Daughter", "Child", "Cannot be determined"],
+      "options": [
+        "Son",
+        "Daughter",
+        "Child",
+        "Cannot be determined"
+      ],
       "correct_index": 2,
       "explanation": "B, C and D are children of A. D's gender is not specified, so D is A's child.",
-      "hints": ["Do not invent a gender for D.", "Choose the most precise answer supported by the facts."]
+      "hints": [
+        "Do not invent a gender for D.",
+        "Choose the most precise answer supported by the facts."
+      ]
     },
     {
       "step_number": 8,
@@ -100,57 +140,103 @@
         "4": "Aunts are valid and common in these questions."
       },
       "explanation": "Track gender and generation separately.",
-      "hints": ["Ask whether the sentence states brother or sister.", "Do not default every parental sibling to uncle."]
+      "hints": [
+        "Ask whether the sentence states brother or sister.",
+        "Do not default every parental sibling to uncle."
+      ],
+      "code": "def label_parent_sibling(gender):\n    if gender == \"male\":\n        return \"uncle\"\n    if gender == \"female\":\n        return \"aunt\"\n    return \"parent's sibling\"\n\n# Bug: assumes every sibling is an uncle.\nprint(label_parent_sibling(\"female\"))  # should be aunt",
+      "language": "python"
     },
     {
       "step_number": 9,
       "step_type": "interactive",
       "title": "Maternal vs paternal",
       "prompt": "Ravi is Sita's brother. Sita is Mohan's mother. How is Ravi related to Mohan?",
-      "options": ["Father", "Maternal uncle", "Paternal grandfather", "Brother"],
+      "options": [
+        "Father",
+        "Maternal uncle",
+        "Paternal grandfather",
+        "Brother"
+      ],
       "correct_index": 1,
       "explanation": "Sita is Mohan's mother. Her brother Ravi is Mohan's maternal uncle.",
-      "hints": ["Identify the parent first.", "The parent's brother on the mother's side is the maternal uncle."]
+      "hints": [
+        "Identify the parent first.",
+        "The parent's brother on the mother's side is the maternal uncle."
+      ]
     }
   ],
-  "practice_questions": ["tcs_nqt_reasoning_0001", "tcs_nqt_reasoning_0002"],
+  "practice_questions": [
+    "tcs_nqt_reasoning_0001",
+    "tcs_nqt_reasoning_0002"
+  ],
   "assessment": {
     "mastery_threshold": 0.7,
     "duration_sec": 300,
     "questions": [
       {
         "prompt": "A man says: “The lady is the daughter of my father's only son.” How is the lady related to the man?",
-        "options": ["Daughter", "Niece", "Sister", "Granddaughter"],
+        "options": [
+          "Daughter",
+          "Niece",
+          "Sister",
+          "Granddaughter"
+        ],
         "correct_index": 0,
         "explanation": "Father's only son is the man himself; the lady is his daughter."
       },
       {
         "prompt": "A is the father of B. B is the sister of C. C is the brother of D. How is D related to A?",
-        "options": ["Son", "Daughter", "Child", "Cannot be determined"],
+        "options": [
+          "Son",
+          "Daughter",
+          "Child",
+          "Cannot be determined"
+        ],
         "correct_index": 2,
         "explanation": "D's gender is not specified; D is A's child."
       },
       {
         "prompt": "Anu is Bala's mother. Bala is Charan's father. How is Anu related to Charan?",
-        "options": ["Mother", "Paternal grandmother", "Maternal aunt", "Sister"],
+        "options": [
+          "Mother",
+          "Paternal grandmother",
+          "Maternal aunt",
+          "Sister"
+        ],
         "correct_index": 1,
         "explanation": "Anu is Charan's paternal grandmother."
       },
       {
         "prompt": "Ravi is Sita's brother. Sita is Mohan's mother. How is Ravi related to Mohan?",
-        "options": ["Father", "Maternal uncle", "Paternal grandfather", "Brother"],
+        "options": [
+          "Father",
+          "Maternal uncle",
+          "Paternal grandfather",
+          "Brother"
+        ],
         "correct_index": 1,
         "explanation": "Ravi is Mohan's maternal uncle."
       },
       {
         "prompt": "P is Q's daughter. Q is R's son. What is P's relation to R?",
-        "options": ["Granddaughter", "Aunt", "Sister", "Mother"],
+        "options": [
+          "Granddaughter",
+          "Aunt",
+          "Sister",
+          "Mother"
+        ],
         "correct_index": 0,
         "explanation": "P is R's granddaughter."
       },
       {
         "prompt": "A is B's brother. C is A's father. D is C's father. How is D related to B?",
-        "options": ["Grandfather", "Father", "Uncle", "Brother"],
+        "options": [
+          "Grandfather",
+          "Father",
+          "Uncle",
+          "Brother"
+        ],
         "correct_index": 0,
         "explanation": "D is B's grandfather."
       }
@@ -179,8 +265,19 @@
     "Use gender information without assuming unstated facts.",
     "Solve multi-step family relationship questions accurately."
   ],
-  "prerequisites": ["coding_decoding"],
-  "concepts": ["generation", "parent", "child", "sibling", "maternal", "paternal", "family tree", "reference person"],
+  "prerequisites": [
+    "coding_decoding"
+  ],
+  "concepts": [
+    "generation",
+    "parent",
+    "child",
+    "sibling",
+    "maternal",
+    "paternal",
+    "family tree",
+    "reference person"
+  ],
   "common_misconceptions": [
     {
       "misconception": "A sibling of a parent is always an uncle regardless of gender.",
@@ -199,21 +296,32 @@
     {
       "title": "Follow two relationships",
       "input": "A is B's mother. B is C's brother.",
-      "trace": ["A is one generation above B.", "B and C are siblings.", "A is also C's mother."],
+      "trace": [
+        "A is one generation above B.",
+        "B and C are siblings.",
+        "A is also C's mother."
+      ],
       "output": "A is C's mother",
       "explanation": "Represent each relation as an edge in a small family tree."
     },
     {
       "title": "Track paternal relation",
       "input": "P is the father of Q. Q is the sister of R.",
-      "trace": ["P is parent of Q.", "Q and R are siblings.", "P is also father of R."],
+      "trace": [
+        "P is parent of Q.",
+        "Q and R are siblings.",
+        "P is also father of R."
+      ],
       "output": "P is R's father",
       "explanation": "Sibling relationships connect the same parent group when established."
     },
     {
       "title": "Avoid unsupported assumptions",
       "input": "M is N's cousin.",
-      "trace": ["Cousin is stated.", "Side and gender are not stated."],
+      "trace": [
+        "Cousin is stated.",
+        "Side and gender are not stated."
+      ],
       "output": "Do not infer more than cousin",
       "explanation": "A correct answer uses only the facts provided."
     }
