@@ -145,7 +145,9 @@
       "hints": [
         "Compute the intermediate value after the increase.",
         "Apply the decrease to that intermediate value."
-      ]
+      ],
+      "code": "price = 100\n\n# Bug: this adds +20% and -20% as if both use the original base.\nnaive_change = 20 - 20\nprint(naive_change)  # 0% (incorrect)\n\n# Correct: apply each percentage to the current value.\nprice *= 1.20\nprice *= 0.80\nnet_change = (price - 100) / 100 * 100\nprint(price)       # 96\nprint(net_change)  # -4.0%",
+      "language": "python"
     },
     {
       "step_number": 9,
