@@ -1,5 +1,6 @@
 from app.services.prerequisite_graph import (
     SKILL_PREREQUISITES,
+    aggregate_prerequisite_evidence,
     build_prerequisite_plan,
     validate_prerequisite_graph,
 )
@@ -97,3 +98,26 @@ def test_graph_validator_reports_unknown_prerequisites_and_cycles():
 
     assert any("unknown prerequisite skill.missing" in error for error in errors)
     assert any("dependency cycle" in error for error in errors)
+
+
+def test_prerequisite_evidence_counts_distinct_questions_not_retries():
+    evidence = aggregate_prerequisite_evidence([
+        {"skill_id": "coding.functions", "question_id": "q-1", "score": 100},
+        {"skill_id": "coding.functions", "question_id": "q-1", "score": 0},
+        {"skill_id": "coding.functions", "question_id": "q-2", "score": 80},
+        {"skill_id": "coding.functions", "question_id": "q-3", "score": 60},
+    ])
+
+    # Input is newest-first: q-1's latest result is retained, not counted twice.
+    assert evidence["coding.functions"]["total_attempts"] == 3
+    assert evidence["coding.functions"]["score"] == 80
+
+
+def test_prerequisite_evidence_ignores_events_without_question_identity():
+    evidence = aggregate_prerequisite_evidence([
+        {"skill_id": "coding.functions", "score": 100},
+        {"question_id": "q-1", "score": 100},
+        {"skill_id": "", "question_id": "q-2", "score": 100},
+    ])
+
+    assert evidence == {}
