@@ -1,3 +1,4 @@
+from app.data.lesson_content_python_core import _PYTHON_CORE, get_python_core_lesson
 from app.data.lesson_content import get_lesson_content
 from app.services.curriculum_quality import score_lesson_content
 
@@ -187,6 +188,19 @@ def test_python_variables_booleans_and_operator_lessons_are_authored():
     for lesson_id, title, expected_code in cases:
         lesson = get_lesson_content("python", lesson_id, title, "theory")
         assert expected_code in lesson["code_example"]["code"], title
+        assert len(lesson["quizzes"]) == 3, title
+        assert len(lesson["exercises"]) == 2, title
+        assert score_lesson_content(lesson)["status"] == "ready", title
+
+
+
+def test_every_python_core_profile_renders_and_passes_the_authoring_gate():
+    assert len(_PYTHON_CORE) == 60
+
+    for title in _PYTHON_CORE:
+        lesson = get_python_core_lesson(title)
+        assert lesson is not None, title
+        assert len(lesson["sections"]) >= 3, title
         assert len(lesson["quizzes"]) == 3, title
         assert len(lesson["exercises"]) == 2, title
         assert score_lesson_content(lesson)["status"] == "ready", title
