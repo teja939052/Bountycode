@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import useAuthStore from "../store/authStore";
 import { useThemeStore } from "../store/themeStore";
@@ -19,8 +19,6 @@ import {
   Compass,
   ClipboardList,
   User,
-  Sun,
-  Moon,
   CalendarDays,
   Trophy,
 } from "lucide-react";
@@ -44,17 +42,14 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const [themeOpen, setThemeOpen] = useState(false);
+  const accountRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const isLanding = location.pathname === "/";
-  const { mode, setMode } = useThemeStore();
+  const { setMode } = useThemeStore();
 
   const isAdmin = user?.is_admin || user?.role === "admin" || user?.plan === "pro" || user?.plan === "lifetime";
-
-  const cycleTheme = () => {
-    if (mode === "crystal-light") setMode("crystal-dark");
-    else if (mode === "crystal-dark") setMode("crystal-light");
-    else setMode("crystal-light");
-  };
 
   const MORE_GROUPS: NavGroup[] = [
     {
@@ -98,6 +93,14 @@ export default function Navbar() {
     await logout();
     navigate("/");
   };
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (accountRef.current && !accountRef.current.contains(e.target as Node)) setAccountOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <nav className={`sticky top-0 z-50 border-b ${isLanding ? "bg-white/90 border-white/40 backdrop-blur-md" : "border-transparent bg-transparent"}`} role="navigation" aria-label="Main navigation">
@@ -167,25 +170,43 @@ export default function Navbar() {
                       Quick Practice
                     </Link>
 
-                    <div className="ml-3 flex items-center gap-3 rounded-full border border-gray-200 bg-white border-border/80 px-3 py-1.5 shadow-sm" aria-label="User menu">
-                  <div className="hidden xl:flex flex-col text-right">
-                    <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">Signed in as</span>
-                    <span className="max-w-[140px] truncate text-sm font-medium text-text-primary">{user.name}</span>
-                  </div>
-                  <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
-                    {user.plan}
-                  </span>
-                   <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
-                     <Settings size={17} />
-                   </Link>
-                    <button onClick={cycleTheme} className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Toggle theme">
-                      {mode === "crystal-dark" ? <Sun size={17} /> : <Moon size={17} />}
-                    </button>
-                    <BackgroundSwitcher />
-                    <button onClick={handleLogout} className="text-text-muted transition-colors hover:text-error" aria-label="Logout">
-                      <LogOut size={17} />
-                    </button>
-                </div>
+                    <div className="ml-3 relative" ref={accountRef}>
+                      <button onClick={() => setAccountOpen((p) => !p)} className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white border-border/80 px-3 py-1.5 text-sm font-medium text-text-primary shadow-sm transition-all hover:border-brand-primary/40">
+                        {user.name}
+                        <ChevronDown size={12} className={`transition-transform ${accountOpen ? "rotate-180" : ""}`} />
+                      </button>
+                      {accountOpen && (
+                        <>
+                          <div className="fixed inset-0 z-10" onClick={() => setAccountOpen(false)} aria-hidden="true" />
+                          <div className="absolute right-0 mt-3 w-72 rounded-2xl border border-gray-200 bg-white border-border/95 p-4 shadow-lg z-20 backdrop-blur">
+                            <div className="mb-3">
+                              <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">Signed in as</div>
+                              <div className="mt-1 text-base font-display font-bold text-text-primary">{user.name}</div>
+                              <div className="mt-1 text-xs text-text-muted">{user.email}</div>
+                              <span className="mt-2 inline-block rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary">{user.plan}</span>
+                            </div>
+                            <div className="border-t border-border/60 pt-3 space-y-1">
+                              <Link to="/settings" onClick={() => setAccountOpen(false)} className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-text-primary hover:bg-brand-primary/10"><Settings size={16} /> Settings</Link>
+                              <button onClick={() => setThemeOpen((p)=>!p)} className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm text-text-primary hover:bg-brand-primary/10">Theme <ChevronDown size={12} className={`transition-transform ${themeOpen ? "rotate-180" : ""}`} /></button>
+                              {themeOpen && (
+                                <div className="ml-3 space-y-1">
+                                  {[
+                                    { id: "ocean", label: "Ocean" },
+                                    { id: "sunset", label: "Sunset" },
+                                    { id: "forest", label: "Forest" },
+                                    { id: "auto", label: "Auto" },
+                                  ].map((t) => (
+                                    <button key={t.id} onClick={() => { setMode(t.id as any); setThemeOpen(false); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-text-primary hover:bg-brand-primary/10">{t.label}</button>
+                                  ))}
+                                </div>
+                              )}
+                              <BackgroundSwitcher />
+                              <button onClick={() => { setAccountOpen(false); handleLogout(); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-error hover:bg-error/10"><LogOut size={16} /> Logout</button>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </div>
               </>
              ) : (
               <>
