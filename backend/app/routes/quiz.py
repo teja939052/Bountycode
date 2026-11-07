@@ -139,7 +139,12 @@ def _quiz_skill_domain(question: Dict[str, Any]) -> Optional[str]:
         mapped = COMPANY_TOPIC_DOMAINS.get(normalized)
         if mapped in SKILL_DOMAINS:
             return mapped
-    # Unknown metadata must remain unclassified; assigning it to programming\n    # fundamentals would corrupt mastery and company-readiness evidence.\n    return None\n\n\ndef _quiz_time_expired(session: Dict[str, Any], now: Optional[datetime] = None) -> bool:
+    # Unknown metadata must remain unclassified; assigning it to programming
+    # fundamentals would corrupt mastery and company-readiness evidence.
+    return None
+
+
+def _quiz_time_expired(session: Dict[str, Any], now: Optional[datetime] = None) -> bool:
     """Return whether a server-timed quiz has passed its deadline."""
     limit = int(session.get("time_limit_seconds", 0) or 0)
     created_at = session.get("created_at")
@@ -228,7 +233,9 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
                     if due_question:
                         from app.services.adaptive_quiz_composer import question_skills
                         evidence["due_skills"].extend(question_skills(due_question))
-                        due_domain = _quiz_skill_domain(due_question)\n                        if due_domain:\n                            evidence["due_skills"].append(due_domain)
+                        due_domain = _quiz_skill_domain(due_question)
+                        if due_domain:
+                            evidence["due_skills"].append(due_domain)
     except Exception:
         # Practice remains available if evidence storage is temporarily down.
         logger.exception("Could not load quiz evidence for %s", user_id)
