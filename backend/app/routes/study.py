@@ -1,3 +1,5 @@
+import asyncio
+
 """Study Engine routes — the single canonical daily-learning API.
 
 Per the canonical architecture:
