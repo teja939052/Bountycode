@@ -430,7 +430,7 @@ export default function PlacementAcademy() {
     ? nextTopicLesson(missionModule, activeTrackId)
     : null;
   const prioritizedModules = missionModule
-    ? [missionModule, ...modules.filter((module: any) => module.id !== missionModule.id)] deb
+    ? [missionModule, ...modules.filter((module: any) => module.id !== missionModule.id)]
     : modules;
   const completedModules = modules.filter((module: any) => module.completed).length;
   const topicTotal = modules.reduce((sum: number, module: any) => sum + (module.topics?.length || 0), 0);
