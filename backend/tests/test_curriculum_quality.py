@@ -101,3 +101,16 @@ def test_code_embedded_in_sections_is_checked_for_placeholders():
     })
 
     assert "placeholder_or_missing_code" in result["warnings"]
+
+
+
+def test_curriculum_audit_uses_real_python_language_track():
+    from app.services.curriculum_quality import audit_curriculum
+
+    report = audit_curriculum(["python"])
+
+    assert report["total_lessons"] > 0
+    assert "python" in report["by_language"]
+    assert report["by_language"]["python"]["total"] == report["total_lessons"]
+    assert 0 <= report["ready_pct"] <= 100
+    assert report["flagged"]
