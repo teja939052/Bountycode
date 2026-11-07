@@ -59,6 +59,7 @@ import { quizApi } from "./quiz.ts";
 import { flatApi } from "./flat.ts";
 import { flatOverrides } from "./flatOverrides.ts";
 import { examMemoriesApi } from "./examMemories.ts";
+import { sprintApi } from "./sprint.ts";
 
 const api = {
   auth: authApi,
@@ -122,6 +123,7 @@ const api = {
   tracks: tracksApi,
   tcsNqt: tcsNqtApi,
   examMemories: examMemoriesApi,
+  sprint: sprintApi,
   getMe: () => authApi.getMe(),
   register: (...args: Parameters<typeof authApi.register>) =>
     authApi.register.apply(authApi, args),
@@ -195,4 +197,6 @@ export {
   mapApi,
   onboardingApi,
   examMemoriesApi,
+  sprintApi,
+  companyLessonsApi,
 };
