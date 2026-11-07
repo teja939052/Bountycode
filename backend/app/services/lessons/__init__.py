@@ -21,6 +21,9 @@ from .os import OS_LESSONS
 from .networks import NETWORKS_LESSONS
 from .oop import OOP_LESSONS
 from .company_prep import COMPANY_PREP_LESSONS
+from .debugging import DEBUGGING_LESSONS
+from .system_design import SYSTEM_DESIGN_LESSONS
+from .behavioral import BEHAVIORAL_LESSONS
 
 import logging
 
@@ -46,6 +49,9 @@ _TRACK_MODULES: List[Tuple[str, List[dict]]] = [
     ("networks", NETWORKS_LESSONS),
     ("oop", OOP_LESSONS),
     ("company_prep", COMPANY_PREP_LESSONS),
+    ("debugging", DEBUGGING_LESSONS),
+    ("system_design", SYSTEM_DESIGN_LESSONS),
+    ("behavioral", BEHAVIORAL_LESSONS),
 ]
 
 for _module_name, _lessons in _TRACK_MODULES:
@@ -78,4 +84,7 @@ __all__ = [
     "NETWORKS_LESSONS",
     "OOP_LESSONS",
     "COMPANY_PREP_LESSONS",
+    "DEBUGGING_LESSONS",
+    "SYSTEM_DESIGN_LESSONS",
+    "BEHAVIORAL_LESSONS",
 ]
