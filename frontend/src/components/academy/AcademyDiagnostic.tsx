@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowRight, Brain, Clock3, RefreshCw, Target } from "lucide-react";
+import { ArrowRight, Brain, Clock3, Gauge, RefreshCw, Target } from "lucide-react";
 import api from "../../services/api";
 
 type DiagnosticQuestion = {
@@ -21,6 +21,8 @@ export default function AcademyDiagnostic() {
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState("");
   const [answered, setAnswered] = useState<string[]>([]);
+  const [confidence, setConfidence] = useState<number | null>(null);
+  const [questionStartedAt, setQuestionStartedAt] = useState<number | null>(null);
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -39,6 +41,8 @@ export default function AcademyDiagnostic() {
       setIndex(0);
       setAnswer("");
       setAnswered([]);
+      setConfidence(null);
+      setQuestionStartedAt(Date.now());
       setResult(null);
       setError("");
     },
@@ -47,15 +51,22 @@ export default function AcademyDiagnostic() {
   const progress = questions.length ? Math.round(answered.length / questions.length * 100) : 0;
 
   const submit = async () => {
-    if (!session || !question || !answer || answered.includes(question.id)) return;
+    if (!session || !question || !answer || !confidence || answered.includes(question.id)) return;
     setError("");
     setSubmitting(true);
     try {
-      await api.academy.answerDiagnostic(session.diagnostic_id, question.id, answer);
+      await api.academy.answerDiagnostic(session.diagnostic_id, question.id, answer, {
+        time_taken_seconds: questionStartedAt ? Math.round((Date.now() - questionStartedAt) / 1000) : undefined,
+        confidence,
+      });
       const next = [...answered, question.id];
       setAnswered(next);
       setAnswer("");
-      if (index < questions.length - 1) setIndex(index + 1);
+      setConfidence(null);
+      if (index < questions.length - 1) {
+        setIndex(index + 1);
+        setQuestionStartedAt(Date.now());
+      }
       else {
         const response: any = await api.academy.completeDiagnostic(session.diagnostic_id);
         setResult(response.result);
@@ -108,8 +119,12 @@ export default function AcademyDiagnostic() {
               <input value={answer} onChange={(event) => setAnswer(event.target.value)} placeholder="Type your answer" className="mt-4 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm"/>
             )}
           </div>
+          <div className="mt-4 rounded-xl border border-slate-200 bg-white p-3">
+            <p className="text-xs font-semibold text-slate-700">How confident are you? <span className="font-normal text-slate-500">This calibrates the next recommendation.</span></p>
+            <div className="mt-2 flex flex-wrap gap-2">{[1, 2, 3, 4, 5].map((value) => <button key={value} type="button" onClick={() => setConfidence(value)} className={`rounded-lg border px-3 py-2 text-xs font-bold transition ${confidence === value ? "border-indigo-600 bg-indigo-600 text-white" : "border-slate-200 text-slate-600 hover:border-indigo-400"}`}>{value} <span className="font-normal">{value === 1 ? "guessing" : value === 5 ? "certain" : ""}</span></button>)}</div>
+          </div>
           {error && <p role="alert" className="mt-3 text-sm text-red-600">{error}</p>}
-          <button type="button" disabled={!answer || start.isPending || submitting} onClick={submit} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white disabled:opacity-50">
+          <button type="button" disabled={!answer || !confidence || start.isPending || submitting} onClick={submit} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white disabled:opacity-50">
             {submitting ? "Saving answer…" : index === questions.length - 1 ? "Finish diagnostic" : "Submit and continue"} <ArrowRight size={15}/>
           </button>
         </div>
@@ -128,6 +143,17 @@ export default function AcademyDiagnostic() {
               </div>
             ))}
           </div>
+          {displayResult.evidence && (
+            <div className="mt-4 rounded-2xl border border-indigo-200 bg-indigo-50 p-4">
+              <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-indigo-800"><Gauge size={14} /> Evidence beyond correctness</p>
+              <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                <div><p className="text-[10px] font-bold uppercase text-indigo-700">Average time</p><p className="mt-1 text-sm font-black text-slate-900">{displayResult.evidence.average_time_seconds ? `${displayResult.evidence.average_time_seconds}s` : "Not recorded"}</p></div>
+                <div><p className="text-[10px] font-bold uppercase text-indigo-700">Confidence</p><p className="mt-1 text-sm font-black text-slate-900">{displayResult.evidence.confidence_score !== null && displayResult.evidence.confidence_score !== undefined ? `${displayResult.evidence.confidence_score}%` : "Not recorded"}</p></div>
+                <div><p className="text-[10px] font-bold uppercase text-indigo-700">Weakest area</p><p className="mt-1 text-sm font-black capitalize text-slate-900">{String(displayResult.evidence.weakest_skill || "mixed practice").replaceAll("_", " ")}</p></div>
+              </div>
+              <p className="mt-3 text-xs font-semibold leading-5 text-indigo-900">{displayResult.evidence.recommended_action || "Use this baseline to choose your first learning level."}</p>
+            </div>
+          )}
           <button type="button" onClick={() => start.mutate()} className="mt-4 inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700"><RefreshCw size={14}/> Retake diagnostic</button>
         </div>
       ) : (
