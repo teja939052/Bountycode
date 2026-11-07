@@ -107,3 +107,23 @@ A source-level inventory of the registered lesson modules found **120 lesson obj
 ## Validation update
 
 The changed files have been re-fetched from the feature branch. GitHub Actions CI was observed queued/in progress during this pass; no successful test result is claimed yet. The compiler and full learner flow still need verification before merge.
+
+
+## Third audit pass — SQL and DBMS
+
+The existing interactive DBMS module had lessons for introductory SQL, joins, normalization, and ACID, but it did not provide a clear progression into grouped reporting, subqueries/CTEs, indexing/query plans, and transaction isolation. Added four lessons to cover those topics:
+
+- SQL joins and grouped reports (JOIN, GROUP BY, HAVING)
+- SQL subqueries and CTEs
+- Database indexes and query plans
+- Transactions and isolation levels
+
+Each lesson includes explanations, code/query examples, an exercise, and a quiz. Added a regression test to confirm these lessons are registered and mapped to the existing DBMS skill.
+
+The SQL examples are general relational SQL. Exact syntax and isolation semantics can vary between database engines; the lessons call this out rather than claiming all engines behave identically.
+
+## CI findings
+
+The targeted Learning Experience workflow ran, but its backend test collection failed before running the lesson tests. The reported import errors are in existing learning-engine dependencies: `adaptive_learning.py`, `learning_paths.py`, and `quiz.py` import collection names that are not exported by `app.database` (`user_company_tracks_collection`, `user_learning_paths_collection`, and `learning_events_collection`). Those files were not changed in this curriculum pass, so this is recorded as a pre-existing integration blocker rather than silently changed as part of content authoring.
+
+The full CI workflow was still running when this audit note was updated. No passing full-suite result is claimed.
