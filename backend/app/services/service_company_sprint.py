@@ -58,9 +58,9 @@ LESSON_DOMAIN = {
 DOMAIN_ENTRY_LESSON = {
     "programming_fundamentals": "variables_basics",
     "arrays_hashing": "arrays_basics",
-    "quantitative_aptitude": "percentages",
+    "quantitative_aptitude": "number_systems",
     "logical_reasoning": "number_series",
-    "verbal_ability": "reading_comprehension",
+    "verbal_ability": "vocabulary_cloze",
     "sql": "dbms_basics",
     "computer_science": "oops_basics",
 }
