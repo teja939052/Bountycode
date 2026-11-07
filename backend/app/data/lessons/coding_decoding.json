@@ -5,14 +5,15 @@
   "domain": "Logical Reasoning",
   "pattern": "Coding Decoding",
   "difficulty": "easy",
-  "duration_min": 18,
-  "xp_reward": 85,
+  "duration_min": 28,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
   "steps": [
     {
       "step_number": 1,
       "step_type": "explain",
       "title": "Treat letters as positions",
-      "content": "In alphabet coding, map A=1, B=2, …, Z=26. A code may shift every letter forward or backward by a fixed number.",
+      "content": "In alphabet coding, map A=1, B=2, …, Z=26. A code may shift every letter forward or backward by a fixed number. Always test the rule on every letter, not only the first.",
       "example": "CAT shifted +1 becomes DBU: C→D, A→B, T→U.",
       "tip": "Check whether the shift wraps around after Z."
     },
@@ -21,25 +22,17 @@
       "step_type": "interactive",
       "title": "Apply a forward shift",
       "prompt": "If each letter is replaced by the next letter, how is DOG coded?",
-      "options": [
-        "EPH",
-        "CNG",
-        "FQI",
-        "EOG"
-      ],
+      "options": ["EPH", "CNG", "FQI", "EOG"],
       "correct_index": 0,
       "explanation": "D→E, O→P, G→H. Therefore DOG becomes EPH.",
-      "hints": [
-        "Compare the first original letter with the first coded letter.",
-        "Apply the same shift separately to every letter; do not shift the whole word as one unit."
-      ]
+      "hints": ["Compare the first original letter with the first coded letter.", "Apply the same shift to every letter."]
     },
     {
       "step_number": 3,
       "step_type": "explain",
       "title": "Look for position rules",
       "content": "Some questions add or subtract a number from each letter's position. Others reverse the word, swap pairs or use alternating shifts.",
-      "example": "A=1, B=2. If each position is doubled, BAD becomes 4,2,8.",
+      "example": "A=1, B=2. If each position is doubled, BAD becomes 2,1,8 after mapping then doubling carefully.",
       "tip": "Test the same rule on every letter before choosing an answer."
     },
     {
@@ -47,18 +40,10 @@
       "step_type": "practice",
       "title": "Decode a backward shift",
       "prompt": "A code shifts every letter one step backward. What does DBU represent?",
-      "options": [
-        "CAT",
-        "DOG",
-        "BAT",
-        "CAR"
-      ],
+      "options": ["CAT", "DOG", "BAT", "CAR"],
       "correct_index": 0,
       "explanation": "D→C, B→A, U→T. The original word is CAT.",
-      "hints": [
-        "Undo the encoding by moving in the opposite direction.",
-        "Check each letter position independently before combining the decoded word."
-      ]
+      "hints": ["Undo the encoding by moving in the opposite direction.", "Check each letter independently."]
     },
     {
       "step_number": 5,
@@ -66,66 +51,108 @@
       "title": "Compare letter distances",
       "content": "For analogy-style coding, compare the shift for each letter rather than the word's appearance. A shift pattern can be +1,+2,+3 or alternating +1,−1.",
       "example": "ACE → BDF uses +1 for all three positions."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Trace a uniform +1 code",
+      "content": "Apply the rule letter by letter.",
+      "prompt": "Using a +1 shift, what is BAT?",
+      "code": "# B->C, A->B, T->U",
+      "language": "python",
+      "answer_placeholder": "Enter the code",
+      "expected_answer": "CBU",
+      "explanation": "B→C, A→B, T→U produces CBU.",
+      "hints": ["Shift each letter one step forward in the alphabet.", "Do not rearrange the letters."]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Decode systematically",
+      "content": "A safe method avoids guessing from the first letter alone.",
+      "prompt": "Arrange the steps to decode a fixed-shift code.",
+      "options": [
+        "Apply the inverse shift to every letter",
+        "Identify the shift from one clear pair",
+        "Verify the rule on the remaining letters",
+        "Read the coded word"
+      ],
+      "correct_order": [3, 1, 2, 0],
+      "explanation": "Find the shift, confirm it, then invert it across the whole word.",
+      "hints": ["Never trust a rule tested on only one letter.", "Decoding uses the opposite of the encoding shift."]
+    },
+    {
+      "step_number": 8,
+      "step_type": "practice",
+      "title": "Identify the rule",
+      "prompt": "If PEN is coded as QFO, what rule is used?",
+      "options": ["Each letter −1", "Each letter +1", "Reverse the word", "Swap first and last"],
+      "correct_index": 1,
+      "explanation": "P→Q, E→F, N→O: each letter moves forward one.",
+      "hints": ["Compare corresponding positions.", "Check whether every letter moves the same way."]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Catch a partial-rule error",
+      "content": "A student codes only the first letter of TRAIN with +1 and leaves the rest unchanged.",
+      "prompt": "What is wrong with that approach for a uniform +1 code?",
+      "options": [
+        "Every letter must receive the same stated shift",
+        "Only vowels are shifted in coding questions",
+        "The word must be reversed first always",
+        "Codes never change consonants"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "Correct. A uniform shift applies to each character unless the question specifies otherwise.",
+        "2": "There is no default rule that only vowels change.",
+        "3": "Reversal is a separate pattern, not required for every code.",
+        "4": "Consonants are shifted whenever the rule says so."
+      },
+      "explanation": "Apply the stated transformation to every letter.",
+      "hints": ["Re-read whether the rule is uniform.", "Test the rule on the last letter as well as the first."]
     }
   ],
   "assessment": {
     "mastery_threshold": 0.7,
-    "duration_sec": 240,
+    "duration_sec": 300,
     "questions": [
       {
         "prompt": "Using a +1 shift, what is BAT?",
-        "options": [
-          "CBU",
-          "AZS",
-          "DBU",
-          "CAT"
-        ],
+        "options": ["CBU", "AZS", "DBU", "CAT"],
         "correct_index": 0,
         "explanation": "B→C, A→B, T→U: CBU."
       },
       {
         "prompt": "If PEN is coded as QFO, what rule is used?",
-        "options": [
-          "Each letter −1",
-          "Each letter +1",
-          "Reverse the word",
-          "Swap first and last"
-        ],
+        "options": ["Each letter −1", "Each letter +1", "Reverse the word", "Swap first and last"],
         "correct_index": 1,
-        "explanation": "P→Q, E→F, N→O: each letter moves forward one."
+        "explanation": "Each letter moves forward one."
       },
       {
         "prompt": "Using a −1 shift, what is DOG?",
-        "options": [
-          "EPH",
-          "CNF",
-          "CNG",
-          "DNG"
-        ],
+        "options": ["EPH", "CNF", "CNG", "DNG"],
         "correct_index": 1,
-        "explanation": "Shift each letter one step backward: D→C, O→N, G→F. The code is CNF."
+        "explanation": "D→C, O→N, G→F → CNF."
       },
       {
         "prompt": "If A=1 and Z=26, what is the position value of M?",
-        "options": [
-          "11",
-          "12",
-          "13",
-          "14"
-        ],
+        "options": ["11", "12", "13", "14"],
         "correct_index": 2,
         "explanation": "M is the 13th letter."
       },
       {
         "prompt": "A word is reversed before coding. What is the reverse of TRAIN?",
-        "options": [
-          "NIART",
-          "NIRAT",
-          "TNIAR",
-          "RAINT"
-        ],
+        "options": ["NIART", "NIRAT", "TNIAR", "RAINT"],
         "correct_index": 0,
-        "explanation": "Reading TRAIN backward gives NIART."
+        "explanation": "TRAIN backward is NIART."
+      },
+      {
+        "prompt": "If each letter is replaced by the next letter, how is DOG coded?",
+        "options": ["EPH", "CNG", "FQI", "EOG"],
+        "correct_index": 0,
+        "explanation": "D→E, O→P, G→H."
       }
     ]
   },
@@ -133,16 +160,10 @@
     "Represent letters using alphabet positions.",
     "Apply fixed forward and backward shifts.",
     "Detect reversal and position-based coding rules.",
-    "Verify a proposed code by applying the rule to every character."
+    "Verify a proposed code by applying the rule to every character.",
+    "Reject partial-rule mistakes."
   ],
-  "concepts": [
-    "alphabet position",
-    "forward shift",
-    "backward shift",
-    "letter analogy",
-    "reversal",
-    "alternating shift"
-  ],
+  "concepts": ["alphabet position", "forward shift", "backward shift", "letter analogy", "reversal", "alternating shift"],
   "common_misconceptions": [
     {
       "misconception": "A one-letter shift applies only to the first character.",
@@ -157,7 +178,29 @@
       "correction": "Some coding rules wrap Z to A or A to Z; check the stated convention."
     }
   ],
-  "worked_examples": [],
+  "worked_examples": [
+    {
+      "title": "Uniform +1",
+      "input": "CAT",
+      "trace": ["C→D", "A→B", "T→U"],
+      "output": "DBU",
+      "explanation": "Same shift on every letter."
+    },
+    {
+      "title": "Decode −1",
+      "input": "DBU with −1 encoding",
+      "trace": ["D→C", "B→A", "U→T"],
+      "output": "CAT",
+      "explanation": "Invert the encoding shift."
+    },
+    {
+      "title": "Reverse pattern",
+      "input": "TRAIN",
+      "trace": ["Read backward letter by letter."],
+      "output": "NIART",
+      "explanation": "Reversal is a separate coding family from shifts."
+    }
+  ],
   "company_applications": [
     {
       "company": "TCS NQT",
@@ -173,6 +216,11 @@
       "company": "Accenture",
       "skill": "reasoning under time pressure",
       "practice": "Eliminate options by checking one or two decisive positions."
+    },
+    {
+      "company": "Wipro",
+      "skill": "logical reasoning",
+      "practice": "Separate shift rules from reversal rules before answering."
     }
   ],
   "srs_cards": [
@@ -185,15 +233,18 @@
       "type": "method",
       "question": "How do you decode a fixed shift?",
       "answer": "Apply the inverse shift to each encoded character."
+    },
+    {
+      "type": "misconception",
+      "question": "Why must a uniform rule be tested on every letter?",
+      "answer": "A rule that fits only the first letter may fail on later letters and is therefore wrong."
     }
   ],
-  "prerequisites": [
-    "number_series"
-  ],
+  "prerequisites": ["number_series"],
   "quest": {
     "chapter": "The Cipher Bureau",
     "rank": "Code Breaker",
-    "story": "The hiring arena sends coded instructions. You must infer the transformation rule from examples and reverse it without guessing.",
+    "story": "Service-company reasoning rounds send coded instructions. Infer the transformation from examples and reverse it without guessing.",
     "mission": "Decode letter shifts, position patterns and word transformations systematically.",
     "success_criteria": [
       "Map letters to alphabet positions.",
