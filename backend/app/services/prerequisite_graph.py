@@ -122,14 +122,22 @@ def validate_prerequisite_graph(
 def _ordered_prerequisites(target_skill_id: str) -> List[str]:
     ordered: List[str] = []
     visited: Set[str] = set()
+    visiting: Set[str] = set()
 
     def visit(skill: str) -> None:
+        if skill in visiting:
+            raise ValueError(f"Prerequisite cycle detected at {skill}")
+        if skill in visited:
+            return
+        visiting.add(skill)
         for prerequisite in SKILL_PREREQUISITES.get(skill, {}).get("prerequisites", []):
-            if prerequisite in visited:
-                continue
+            if prerequisite not in SKILL_PREREQUISITES:
+                raise ValueError(f"Unknown prerequisite {prerequisite} for {skill}")
             visit(prerequisite)
-            visited.add(prerequisite)
-            ordered.append(prerequisite)
+            if prerequisite not in ordered:
+                ordered.append(prerequisite)
+        visiting.remove(skill)
+        visited.add(skill)
 
     visit(target_skill_id)
     return ordered
@@ -156,6 +164,17 @@ def build_prerequisite_plan(
             "status": "unknown_skill",
             "prerequisites": [],
             "next_action": "map_curriculum_skill",
+        }
+
+    graph_errors = validate_prerequisite_graph()
+    if graph_errors:
+        return {
+            "target_skill_id": target_skill_id,
+            "target_title": definition["title"],
+            "status": "invalid_graph",
+            "next_action": "repair_curriculum_graph",
+            "graph_errors": graph_errors,
+            "prerequisites": [],
         }
 
     evidence = evidence or {}
