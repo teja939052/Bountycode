@@ -25,6 +25,7 @@ from .company_prep import COMPANY_PREP_LESSONS
 from .debugging import DEBUGGING_LESSONS
 from .system_design import SYSTEM_DESIGN_LESSONS
 from .behavioral import BEHAVIORAL_LESSONS
+from .architecture import ARCHITECTURE_LESSONS
 
 import logging
 
@@ -54,6 +55,7 @@ _TRACK_MODULES: List[Tuple[str, List[dict]]] = [
     ("debugging", DEBUGGING_LESSONS),
     ("system_design", SYSTEM_DESIGN_LESSONS),
     ("behavioral", BEHAVIORAL_LESSONS),
+    ("architecture", ARCHITECTURE_LESSONS),
 ]
 
 for _module_name, _lessons in _TRACK_MODULES:
@@ -90,4 +92,5 @@ __all__ = [
     "DEBUGGING_LESSONS",
     "SYSTEM_DESIGN_LESSONS",
     "BEHAVIORAL_LESSONS",
+    "ARCHITECTURE_LESSONS",
 ]
