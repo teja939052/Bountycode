@@ -23,10 +23,18 @@
       "step_type": "interactive",
       "title": "Combine two workers",
       "prompt": "A finishes a job in 10 days and B in 15 days. How long do they take together?",
-      "options": ["5 days", "6 days", "7.5 days", "12 days"],
+      "options": [
+        "5 days",
+        "6 days",
+        "7.5 days",
+        "12 days"
+      ],
       "correct_index": 1,
       "explanation": "Combined rate = 1/10+1/15 = 1/6 job/day. Time = 6 days.",
-      "hints": ["Convert each completion time into one-day work.", "Add the rates, then take the reciprocal."]
+      "hints": [
+        "Convert each completion time into one-day work.",
+        "Add the rates, then take the reciprocal."
+      ]
     },
     {
       "step_number": 3,
@@ -41,10 +49,18 @@
       "step_type": "practice",
       "title": "Find the missing worker",
       "prompt": "A and B together finish a job in 6 days. A alone takes 10 days. How long does B alone take?",
-      "options": ["10 days", "12 days", "15 days", "18 days"],
+      "options": [
+        "10 days",
+        "12 days",
+        "15 days",
+        "18 days"
+      ],
       "correct_index": 2,
       "explanation": "B's rate = 1/6 − 1/10 = 1/15. B takes 15 days.",
-      "hints": ["Combined rate minus A's rate isolates B.", "Take the reciprocal of B's rate to get days."]
+      "hints": [
+        "Combined rate minus A's rate isolates B.",
+        "Take the reciprocal of B's rate to get days."
+      ]
     },
     {
       "step_number": 5,
@@ -64,7 +80,10 @@
       "answer_placeholder": "Enter days",
       "expected_answer": "4",
       "explanation": "Combined rate is 1/4 job per day, so they finish in 4 days.",
-      "hints": ["Convert both times to fractions of work per day.", "Add the fractions before taking the reciprocal."]
+      "hints": [
+        "Convert both times to fractions of work per day.",
+        "Add the fractions before taking the reciprocal."
+      ]
     },
     {
       "step_number": 7,
@@ -78,19 +97,35 @@
         "Add rates to get 1/6",
         "Read the individual completion times"
       ],
-      "correct_order": [3, 1, 2, 0],
+      "correct_order": [
+        3,
+        1,
+        2,
+        0
+      ],
       "explanation": "Times → rates → sum of rates → reciprocal time.",
-      "hints": ["Rates come before combining.", "The answer is a time, so invert the combined rate at the end."]
+      "hints": [
+        "Rates come before combining.",
+        "The answer is a time, so invert the combined rate at the end."
+      ]
     },
     {
       "step_number": 8,
       "step_type": "practice",
       "title": "Efficiency ratio",
       "prompt": "If A is 3 times as efficient as B, and B takes 18 days, A takes:",
-      "options": ["3 days", "6 days", "9 days", "54 days"],
+      "options": [
+        "3 days",
+        "6 days",
+        "9 days",
+        "54 days"
+      ],
       "correct_index": 1,
       "explanation": "Time is inversely proportional to efficiency. A takes 18/3 = 6 days.",
-      "hints": ["Higher efficiency means less time.", "Divide B's time by the efficiency ratio."]
+      "hints": [
+        "Higher efficiency means less time.",
+        "Divide B's time by the efficiency ratio."
+      ]
     },
     {
       "step_number": 9,
@@ -112,7 +147,12 @@
         "4": "Working together is faster than the faster worker alone as well."
       },
       "explanation": "Always convert to rates before combining workers.",
-      "hints": ["Ask what fraction of the job each person finishes per day.", "Add those fractions, not the day counts."]
+      "hints": [
+        "Ask what fraction of the job each person finishes per day.",
+        "Add those fractions, not the day counts."
+      ],
+      "code": "# A can finish a job in 6 days; B can finish it in 3 days.\na_days = 6\nb_days = 3\n\n# Bug: adding completion times assumes the workers are sequential.\nwrong_days = a_days + b_days\nprint(wrong_days)  # 9 days (incorrect)\n\n# Correct: add work rates, then take the reciprocal.\ncombined_rate = 1 / a_days + 1 / b_days\ncombined_days = 1 / combined_rate\nprint(combined_days)  # 2 days",
+      "language": "python"
     }
   ],
   "assessment": {
@@ -121,37 +161,67 @@
     "questions": [
       {
         "prompt": "A completes a job in 8 days. What fraction of work does A do per day?",
-        "options": ["1/4", "1/6", "1/8", "8"],
+        "options": [
+          "1/4",
+          "1/6",
+          "1/8",
+          "8"
+        ],
         "correct_index": 2,
         "explanation": "One-day work = 1/8."
       },
       {
         "prompt": "A takes 12 days and B takes 12 days. Together they finish in:",
-        "options": ["4 days", "6 days", "8 days", "12 days"],
+        "options": [
+          "4 days",
+          "6 days",
+          "8 days",
+          "12 days"
+        ],
         "correct_index": 1,
         "explanation": "Combined rate = 1/6, so 6 days."
       },
       {
         "prompt": "A takes 5 days and B takes 20 days. Together they take:",
-        "options": ["3 days", "4 days", "5 days", "10 days"],
+        "options": [
+          "3 days",
+          "4 days",
+          "5 days",
+          "10 days"
+        ],
         "correct_index": 1,
         "explanation": "Rate = 1/4, so 4 days."
       },
       {
         "prompt": "A and B together take 8 days. A alone takes 12 days. B alone takes:",
-        "options": ["18 days", "20 days", "24 days", "30 days"],
+        "options": [
+          "18 days",
+          "20 days",
+          "24 days",
+          "30 days"
+        ],
         "correct_index": 2,
         "explanation": "B rate = 1/8 − 1/12 = 1/24."
       },
       {
         "prompt": "If A is 3 times as efficient as B, and B takes 18 days, A takes:",
-        "options": ["3 days", "6 days", "9 days", "54 days"],
+        "options": [
+          "3 days",
+          "6 days",
+          "9 days",
+          "54 days"
+        ],
         "correct_index": 1,
         "explanation": "A takes 18/3 = 6 days."
       },
       {
         "prompt": "A finishes in 10 days, B in 15 days. Together they take:",
-        "options": ["5 days", "6 days", "7.5 days", "12 days"],
+        "options": [
+          "5 days",
+          "6 days",
+          "7.5 days",
+          "12 days"
+        ],
         "correct_index": 1,
         "explanation": "Combined rate 1/6 → 6 days."
       }
@@ -164,8 +234,16 @@
     "Relate efficiency ratios to completion times.",
     "Reject the add-the-days mistake."
   ],
-  "prerequisites": ["arithmetic_algebra"],
-  "concepts": ["work rate", "one-day work", "combined rate", "efficiency", "remaining work"],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "work rate",
+    "one-day work",
+    "combined rate",
+    "efficiency",
+    "remaining work"
+  ],
   "common_misconceptions": [
     {
       "misconception": "Add the number of days to combine workers.",
@@ -184,21 +262,32 @@
     {
       "title": "Combine two workers",
       "input": "A = 6 days; B = 3 days",
-      "trace": ["Rates 1/6 and 1/3.", "Combined 1/2.", "Time 2 days."],
+      "trace": [
+        "Rates 1/6 and 1/3.",
+        "Combined 1/2.",
+        "Time 2 days."
+      ],
       "output": "2 days",
       "explanation": "Add rates because both contribute work at the same time."
     },
     {
       "title": "Find one worker's rate",
       "input": "Together 4 days; A alone 6 days",
-      "trace": ["Combined 1/4.", "A = 1/6.", "B = 1/12."],
+      "trace": [
+        "Combined 1/4.",
+        "A = 1/6.",
+        "B = 1/12."
+      ],
       "output": "B alone takes 12 days",
       "explanation": "Subtract known rates to isolate the unknown worker."
     },
     {
       "title": "Efficiency ratio",
       "input": "A:B efficiency = 2:3",
-      "trace": ["Time is inverse of efficiency.", "Time ratio A:B = 3:2."],
+      "trace": [
+        "Time is inverse of efficiency.",
+        "Time ratio A:B = 3:2."
+      ],
       "output": "Time ratio 3:2",
       "explanation": "Higher efficiency means less time for the same work."
     }
