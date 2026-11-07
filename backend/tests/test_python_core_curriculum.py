@@ -31,3 +31,21 @@ def test_python_loop_and_function_lessons_are_authored_not_generic_shells():
         assert len(lesson["quizzes"]) == 3
         assert len(lesson["exercises"]) == 2
         assert score_lesson_content(lesson)["status"] == "ready"
+
+
+
+def test_python_decision_and_collection_lessons_use_authored_content():
+    cases = [
+        ("python-l04-04", "Nested Conditionals", "logged_in = True"),
+        ("python-l04-05", "Ternary Expression", "status = 'Adult'"),
+        ("python-l04-06", "Match-Case (3.10)", "match command:"),
+        ("python-l05-03", "for...in with Lists", "for price in prices:"),
+        ("python-l05-06", "List Comprehensions Deep", "squares_of_evens"),
+    ]
+
+    for lesson_id, title, expected_code in cases:
+        lesson = get_lesson_content("python", lesson_id, title, "theory")
+        assert expected_code in lesson["code_example"]["code"]
+        assert len(lesson["quizzes"]) == 3
+        assert len(lesson["exercises"]) == 2
+        assert score_lesson_content(lesson)["status"] == "ready"
