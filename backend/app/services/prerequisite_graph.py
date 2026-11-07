@@ -220,6 +220,7 @@ def build_prerequisite_plan(
     }
 
 
+
 def aggregate_prerequisite_evidence(
     events: List[Mapping[str, Any]],
 ) -> Dict[str, Dict[str, Any]]:
@@ -229,6 +230,45 @@ def aggregate_prerequisite_evidence(
     """
     from collections import defaultdict
 
+    grouped: Dict[str, Dict[str, float]] = defaultdict(dict)
+    for event in events:
+        skill_id = str(event.get("skill_id") or "")
+        question_id = str(event.get("question_id") or "")
+        if not skill_id or not question_id:
+            continue
+        grouped[skill_id].setdefault(
+            question_id, float(event.get("score", 0) or 0)
+        )
+
+    evidence: Dict[str, Dict[str, Any]] = {}
+    for skill_id, question_scores in grouped.items():
+        scores = list(question_scores.values())
+        evidence[skill_id] = {
+            "score": sum(scores) / len(scores) if scores else 0,
+            "total_attempts": len(scores),
+        }
+    return evidence
+
+
+async def get_user_prerequisite_learning_step(
+    user_id: str,
+    target_skill_id: str,
+) -> Dict[str, Any]:
+    """Build the next teach/diagnose/reassess step from persisted quiz evidence.
+
+    Only distinct, persisted question-bank events count as independent
+    attempts. Lesson completion, XP and broad subject scores cannot certify
+    prerequisite mastery.
+    """
+    from app.database import learning_events_collection
+
+    evidence_rows = await learning_events_collection().find({
+        "user_id": user_id,
+        "source": "question_bank",
+        "activity_type": "practice",
+        "question_id": {"$exists": True, "$nin": ["", None]},
+        "skill_id": {"$exists": True, "$nin": ["", None]},
+    }).sort("timestamp", -1).to_list(5000)
     evidence = aggregate_prerequisite_evidence(evidence_rows)
 
     plan = build_prerequisite_plan(target_skill_id, evidence)
@@ -260,13 +300,13 @@ def aggregate_prerequisite_evidence(
     try:
         from app.data.worlds_data import WORLD_REGISTRY
         from app.services.curriculum_quality import score_lesson_content
+        from app.services.skill_taxonomy import canonical_skill_id
         from app.services.study_engine import _get_lesson_content
 
         for world in WORLD_REGISTRY.values():
             for town in world.towns:
-                for level in town.lessons:
+                for level in town.levels:
                     canonical = str(getattr(level, "canonical_skill", "") or "")
-                    from app.services.skill_taxonomy import canonical_skill_id
                     if canonical_skill_id(canonical) != blocker["skill_id"]:
                         continue
                     candidate = _get_lesson_content(level.id)
@@ -276,7 +316,7 @@ def aggregate_prerequisite_evidence(
                     if quality["status"] == "ready":
                         lesson = candidate
                         lesson_id = level.id
-                    break
+                        break
                 if lesson:
                     break
             if lesson:
