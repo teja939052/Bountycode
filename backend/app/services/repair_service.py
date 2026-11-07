@@ -213,11 +213,19 @@ async def create_repair_mission_from_misconception(
         if existing:
             return None
 
+        target_skills = [
+            str(interactive_drill.get("skill_id") or "").strip(),
+            str(misconception_tag or "").strip(),
+        ]
+        target_skills = list(dict.fromkeys(skill for skill in target_skills if skill))
         mission = RepairMission(
             id=f"repair:{user_id}:{misconception_tag}:{int(datetime.now(timezone.utc).timestamp())}",
             user_id=user_id,
             title=repair_title,
-            weaknesses=[misconception_tag],
+            weaknesses=[str(interactive_drill.get("skill_id") or misconception_tag)],
+            recommended_lessons=_find_lessons_for_skills(target_skills),
+            recommended_exercises=_find_exercises_for_skills(target_skills),
+            recommended_quizzes=_find_quizzes_for_skills(target_skills),
             misconception_tag=misconception_tag,
             remediation_steps=remediation_steps,
             interactive_drill=interactive_drill,
