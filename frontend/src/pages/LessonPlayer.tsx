@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useParams, Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -78,10 +78,12 @@ export default function LessonPlayer() {
   const [saving, setSaving] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [attemptedCount, setAttemptedCount] = useState(0);
+  const lessonStartedAt = useRef<number>(Date.now());
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    lessonStartedAt.current = Date.now();
     setCurrentStep(0);
     setPhase("learn");
     setAssessmentAnswers({});
@@ -144,7 +146,7 @@ export default function LessonPlayer() {
         setSaving(false);
       }
     },
-    [lesson, lessonSlug, currentStep, answerResult, saving]
+    [lesson, lessonSlug, currentStep, answerResult, saving, queryClient]
   );
 
   const goNext = useCallback(() => {
@@ -182,7 +184,7 @@ export default function LessonPlayer() {
     try {
       const res: any = await api.companyLessons.complete(lessonSlug, {
         answers: assessmentAnswers,
-        time_spent_seconds: 0,
+        time_spent_seconds: Math.max(0, Math.floor((Date.now() - lessonStartedAt.current) / 1000)),
         ...(trackId && moduleId ? { track_id: trackId, module_id: moduleId, topic_id: topicId } : {}),
       });
       const result = res?.data || null;
