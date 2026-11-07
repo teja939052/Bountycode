@@ -3442,6 +3442,12 @@ def get_lesson_content(
     if lesson_id in HAND_CRAFTED_PYTHON_LESSONS:
         return HAND_CRAFTED_PYTHON_LESSONS[lesson_id]
 
+    if language_id == "python":
+        from app.data.lesson_content_python_core import get_python_core_lesson
+        authored_core = get_python_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
     if language_id in {"c", "cpp", "java", "python"}:
         return generate_template_content(language_id, lesson_title, lesson_type, lesson_id)
 
