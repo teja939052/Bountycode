@@ -576,6 +576,49 @@ async def _get_company_mission(
 
 # â”€â”€â”€ Orchestrator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
+def _build_prerequisite_guidance(
+    assessment: Dict[str, Any],
+    weak_areas: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    """Attach prerequisite diagnostics only where canonical skill IDs exist.
+
+    The graph consumes canonical, independently assessed skill evidence.
+    Broad domain scores are not copied onto individual concepts because that
+    would falsely certify prerequisites the learner may not know.
+    """
+    from app.services.prerequisite_graph import build_prerequisite_plan
+
+    evidence = (
+        assessment.get("canonical_skills")
+        or assessment.get("skill_graph")
+        or {}
+    )
+    if not isinstance(evidence, dict):
+        evidence = {}
+
+    guidance: List[Dict[str, Any]] = []
+    for area in weak_areas:
+        raw_skill = (
+            area.get("canonical_skill_id")
+            or area.get("skill_id")
+            or area.get("skill")
+            or area.get("domain_id")
+        )
+        skill_id = canonical_skill_id(str(raw_skill or ""))
+        if not skill_id:
+            continue
+        plan = build_prerequisite_plan(skill_id, evidence)
+        if plan.get("status") == "unknown_skill" or not plan.get("prerequisites"):
+            continue
+        guidance.append({
+            **plan,
+            "reason": area.get("reason") or "Prioritized from your demonstrated skill evidence.",
+        })
+        if len(guidance) >= 3:
+            break
+    return guidance
+
+
 async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]:
     """Return the canonical daily learning plan for *user_id*.
 
@@ -611,6 +654,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     # â”€â”€ Inputs from the canonical subsystems â”€â”€
     assessment = await assess_user_skills(user_id)
     weak_areas = await detect_weak_areas(user_id)
+    prerequisite_guidance = _build_prerequisite_guidance(assessment, weak_areas)
 
     next_mission = await _get_next_mission(user_id)
     reviews = await _get_due_reviews(user_id)
@@ -646,6 +690,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
         "challenge": challenge,
         "role_activity": role_activity,
         "company_mission": company_mission,
+        "prerequisite_guidance": prerequisite_guidance,
     }
 
     est = 0
