@@ -2,6 +2,7 @@ import asyncio
 
 from app.routes import adaptive_learning as adaptive_routes
 from app.services.adaptive_learning import (
+    _assessment_summary,
     _calculate_mastery_score,
     _is_mastery_evidence_activity,
     record_learning_activity,
@@ -94,3 +95,28 @@ def test_activity_writer_rejects_untrusted_domain_paths():
         {"domain_id": "skills.$set.score", "type": "quiz_answer", "success": True},
     ))
     assert result["status"] == "error"
+
+
+
+def test_assessment_summary_separates_skill_score_from_domain_coverage():
+    summary = _assessment_summary({
+        "arrays_hashing": {"score": 70, "total_attempts": 10, "correct_count": 8},
+        "sql": {"score": 0, "total_attempts": 0, "correct_count": 0},
+    })
+
+    assert summary["overall_score"] == 70
+    assert summary["assessed_domains"] == 1
+    assert summary["domain_coverage_pct"] == 50
+    assert summary["total_attempts"] == 10
+    assert summary["overall_accuracy"] == 80
+
+
+def test_assessment_summary_handles_a_new_learner_without_evidence():
+    summary = _assessment_summary({
+        "arrays_hashing": {"score": 0, "total_attempts": 0, "correct_count": 0},
+        "sql": {"score": 0, "total_attempts": 0, "correct_count": 0},
+    })
+
+    assert summary["overall_score"] == 0
+    assert summary["assessed_domains"] == 0
+    assert summary["domain_coverage_pct"] == 0
