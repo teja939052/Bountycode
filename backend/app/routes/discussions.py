@@ -8,10 +8,11 @@ from typing import Optional, List
 from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, discussions_collection,
+    discussions_collection,
     users_collection
 )
 from app.services.ai import chat_completion, parse_json
+from app.services import question_store
 
 router = APIRouter(prefix="/api/v1/discussions", tags=["discussions"])
 
@@ -39,13 +40,8 @@ async def create_discussion(
     from app.database import get_db
     db = get_db()
 
-    # Verify question exists
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await curated_questions_collection().find_one({"_id": q_oid})
+    # Verify question exists (in-memory question store — residency rule)
+    question = question_store.find_one({"id": question_id}, allow_unverified=True)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
@@ -212,9 +208,8 @@ async def get_ai_summary(question_id: str, user=Depends(get_current_user)):
 
     # Get question details
     try:
-        q_oid = ObjectId(question_id)
-        question = await curated_questions_collection().find_one({"_id": q_oid})
-        question_title = question.get("question_title", "Unknown") if question else "Unknown"
+        question = question_store.find_one({"id": question_id}, allow_unverified=True)
+        question_title = question.get("question_title", question.get("title", "Unknown")) if question else "Unknown"
     except Exception:
         question_title = "Unknown"
 

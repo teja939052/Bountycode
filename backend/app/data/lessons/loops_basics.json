@@ -1,0 +1,317 @@
+{
+  "slug": "loops_basics",
+  "id": "lesson_loops_basics_001",
+  "title": "Loops and Iteration",
+  "domain": "Programming Fundamentals",
+  "pattern": "Loops",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Why loops exist",
+      "content": "A loop repeats a block of code. Use a for loop when iterating over a known sequence or range. Use a while loop when repetition depends on a condition.",
+      "example": "for i in range(3): print(i) prints 0, 1, 2.",
+      "tip": "Before tracing a loop, write the initial value, condition and update."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Trace a for loop",
+      "prompt": "What does for i in range(1, 4): print(i) print?",
+      "options": [
+        "1 2 3",
+        "1 2 3 4",
+        "0 1 2 3",
+        "2 3 4"
+      ],
+      "correct_index": 0,
+      "explanation": "In Python, range(1,4) includes 1 and stops before 4: 1, 2, 3."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand while loops",
+      "content": "A while loop checks its condition before each iteration. The loop body must eventually change something that makes the condition false, or it can run forever.",
+      "example": "n=3; while n>0: print(n); n-=1 prints 3,2,1 and stops.",
+      "tip": "Check that every loop has a reachable exit condition."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Count iterations",
+      "prompt": "x starts at 2. While x < 10, add 2 to x. How many times does the loop body run?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct_index": 1,
+      "explanation": "x values at the start are 2,4,6,8. Four iterations; then x becomes 10 and the condition is false."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Break, continue and nested loops",
+      "content": "break exits the nearest loop. continue skips the rest of the current iteration. A nested loop runs the inner loop for each outer iteration; n×m iterations when the bounds are fixed.",
+      "example": "Two loops each running 3 times produce 3×3 = 9 inner executions."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Trace code and predict the output",
+      "content": "Do not guess from the final line. Trace the variable after each iteration, then predict exactly what the program prints.",
+      "code": "total = 0\nfor number in range(1, 4):\n    total += number\nprint(total)",
+      "language": "python",
+      "prompt": "What does this program print?",
+      "answer_placeholder": "Type the output",
+      "expected_answer": "6",
+      "explanation": "The loop visits 1, 2 and 3. The running total becomes 1, then 3, then 6. The print statement outputs 6."
+    },
+    {
+      "step_number": 7,
+      "step_type": "fill_blank",
+      "title": "Repair an off-by-one loop bound",
+      "content": "A loop over an array must visit each valid index once. The final valid index is length minus one, but range stops before its upper bound.",
+      "code": "scores = [72, 81, 90]\nfor index in range(____):\n    print(scores[index])",
+      "language": "python",
+      "prompt": "What number should replace ____ so every item is visited exactly once?",
+      "answer_placeholder": "Enter the loop bound",
+      "expected_answer": "3",
+      "explanation": "The list has three items at indices 0, 1 and 2. range(3) produces exactly those indices."
+    },
+    {
+      "step_number": 8,
+      "step_type": "order_steps",
+      "title": "Put a counted loop in execution order",
+      "content": "A counted loop follows a predictable cycle. Put these operations in the order the computer performs them for one successful iteration.",
+      "prompt": "Arrange the loop operations from initialization through the end of one iteration.",
+      "options": [
+        "Run the loop body",
+        "Initialize the loop variable",
+        "Update the loop variable",
+        "Check the loop condition"
+      ],
+      "correct_order": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "explanation": "The loop initializes its counter, checks the condition, runs the body, and updates the counter. It then checks the condition again before the next iteration."
+    },
+    {
+      "step_number": 9,
+      "step_type": "code_lab",
+      "title": "Build a running total with a condition",
+      "content": "Combine iteration and a condition to add only values that meet a rule. Keep the loop; complete the condition so only even values are added.",
+      "prompt": "Finish the loop so the program prints the sum of the even values: 12.",
+      "language": "javascript",
+      "starter_code": "const values = [1, 2, 3, 4, 5, 6];\nlet total = 0;\n\nfor (const value of values) {\n  // TODO: add even values only\n}\n\nconsole.log(total);",
+      "expected_output": "12",
+      "hints": [
+        "Use the remainder operator (%) to test divisibility by 2.",
+        "An even number has a remainder of 0 when divided by 2.",
+        "Add value to total only inside the even-number condition."
+      ]
+    },
+    {
+      "step_number": 10,
+      "step_type": "debug_choice",
+      "title": "Diagnose a loop that skips the first item",
+      "content": "A developer writes this loop to calculate the sum of every score. The expected total is 20, but the program prints 16.",
+      "code": "scores = [4, 7, 9]\ntotal = 0\nfor index in range(1, len(scores)):\n    total += scores[index]\nprint(total)",
+      "log_output": "Observed output: 16\nExpected output: 20",
+      "prompt": "What is the most direct cause of the bug?",
+      "options": [
+        "The loop starts at index 1, so it skips scores[0].",
+        "range() always includes its final value.",
+        "total must start at 1 instead of 0.",
+        "print() must be placed inside the loop."
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "range() stops before its upper bound. That is not the issue here: the loop starts at 1, so it never visits index 0.",
+        "2": "The accumulator should start at 0 for a sum. Changing it to 1 would add an unrelated error.",
+        "3": "Printing once after the loop is correct when you want the final total. The missing value is caused by the starting index."
+      },
+      "hints": [
+        "Write down the first index produced by range(1, len(scores)).",
+        "Check whether index 0 is included.",
+        "Start the loop at 0 when every list item must be summed."
+      ],
+      "explanation": "The first list element is skipped because the loop starts at index 1. Use range(0, len(scores)) or simply range(len(scores))."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "In Python, how many values are generated by range(5)?",
+        "options": [
+          "4",
+          "5",
+          "6",
+          "It is infinite"
+        ],
+        "correct_index": 1,
+        "explanation": "range(5) generates 0,1,2,3,4: five values."
+      },
+      {
+        "prompt": "What is the purpose of break?",
+        "options": [
+          "Skip one iteration",
+          "Exit the nearest loop",
+          "Restart the program",
+          "Pause for input"
+        ],
+        "correct_index": 1,
+        "explanation": "break exits the nearest enclosing loop immediately."
+      },
+      {
+        "prompt": "How many times does this run: for i in range(2): for j in range(3): print(i,j)?",
+        "options": [
+          "2",
+          "3",
+          "5",
+          "6"
+        ],
+        "correct_index": 3,
+        "explanation": "Two outer iterations, each with three inner iterations: 2×3 = 6."
+      },
+      {
+        "prompt": "When is a while loop usually appropriate?",
+        "options": [
+          "When a condition controls repetition",
+          "Only when the count is exactly 10",
+          "Only for arrays",
+          "When no condition exists"
+        ],
+        "correct_index": 0,
+        "explanation": "A while loop continues while its condition is true."
+      },
+      {
+        "prompt": "What causes an infinite loop?",
+        "options": [
+          "Using print",
+          "The loop condition never becomes false",
+          "Using a variable",
+          "Using range"
+        ],
+        "correct_index": 1,
+        "explanation": "If the condition remains true forever, the loop never exits."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Choose for, while and do-while loops based on the problem.",
+    "Trace initialization, condition, body and update in order.",
+    "Prevent infinite loops by ensuring progress toward termination.",
+    "Use nested loops and estimate their iteration counts."
+  ],
+  "prerequisites": [
+    "programming_languages"
+  ],
+  "concepts": [
+    "initialization",
+    "condition",
+    "iteration",
+    "update",
+    "nested loop",
+    "off-by-one"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "The loop condition is checked after every body execution in all loops.",
+      "correction": "A while/for condition is checked before each iteration; do-while checks after the body."
+    },
+    {
+      "misconception": "A loop runs exactly n times because its counter starts at 1.",
+      "correction": "The condition and update determine the count; trace the first and last values."
+    },
+    {
+      "misconception": "Changing a counter inside the body is harmless.",
+      "correction": "Multiple updates can skip values or create an infinite loop."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace a for loop",
+      "input": "for i = 1 to 4: print(i)",
+      "trace": [
+        "Initialize i=1; condition true; print 1; increment.",
+        "Repeat for i=2, then 3, then 4.",
+        "Increment to 5; condition false; stop."
+      ],
+      "output": "1 2 3 4",
+      "explanation": "The condition is checked before each iteration."
+    },
+    {
+      "title": "Count iterations",
+      "input": "i=0; while i<10: i=i+2",
+      "trace": [
+        "Values at body entry: 0, 2, 4, 6, 8.",
+        "After the fifth update i becomes 10.",
+        "10<10 is false, so stop."
+      ],
+      "output": "5 iterations",
+      "explanation": "Count body executions, not condition checks."
+    },
+    {
+      "title": "Nested loops",
+      "input": "for i=1..3, for j=1..2: print(i,j)",
+      "trace": [
+        "Each of 3 outer iterations runs the inner loop twice.",
+        "Total pairs = 3 × 2.",
+        "The inner counter restarts for each outer iteration."
+      ],
+      "output": "6 prints",
+      "explanation": "For independent nested loops, multiply iteration counts."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "output prediction and loops",
+      "practice": "Trace initialization, condition and update without skipping the final check."
+    },
+    {
+      "company": "Infosys",
+      "skill": "coding fundamentals",
+      "practice": "Calculate nested-loop counts and identify O(n²)."
+    },
+    {
+      "company": "Wipro",
+      "skill": "debugging",
+      "practice": "Find off-by-one and non-terminating loop conditions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Loops and Iteration?",
+      "answer": "Choose for and while loops appropriately. Trace initialization, condition, body and update. Avoid off-by-one errors. Use break and continue deliberately. Estimate the number of loop iterations."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Loops and Iteration.",
+      "answer": "For while and for loops, the condition is checked before each iteration."
+    },
+    {
+      "type": "concept",
+      "question": "What should you remember about Loops and Iteration?",
+      "answer": "Choose for, while and do-while loops based on the problem. Trace initialization, condition, body and update in order. Prevent infinite loops by ensuring progress toward termination. Use nested loops and estimate their iteration counts."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Loops and Iteration?",
+      "answer": "A while/for condition is checked before each iteration; do-while checks after the body."
+    }
+  ],
+  "next_lesson_slug": "pattern_printing",
+  "next_lesson_title": "Pattern Printing with Loops"
+}

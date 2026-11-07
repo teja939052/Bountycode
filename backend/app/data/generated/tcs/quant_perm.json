@@ -1,0 +1,51 @@
+[
+  {
+    "id": "quant_perm_0000",
+    "question": "How many arrangements of 'LEVEL'?",
+    "pattern": "permutation-repeat",
+    "skill": "permutation-repeat",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "How many arrangements of 'LEVEL'?",
+      "options": [
+        "A. 120",
+        "B. 60",
+        "C. 15",
+        "D. 30"
+      ],
+      "correct_answer": "D. 30",
+      "explanation": "Total letters = 5. Repeated: {'L': 2, 'E': 2, 'V': 1}. Answer = 5! / (4) = 30"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.188151+00:00",
+    "updated_at": "2026-09-21T12:53:32.188151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

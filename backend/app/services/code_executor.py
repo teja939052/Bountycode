@@ -1,10 +1,107 @@
 import httpx
 import asyncio
 import time
+import re
 from typing import Dict, Any, List, Optional
 from app.services.request_metrics import metrics as request_metrics
 from app.services.circuit_breaker import compiler_breaker
 from app.services.code_tracer import execute_with_trace, detect_algorithm_type
+
+
+# ─── Multi-language helper functions ────────────────────────────────
+
+def _convert_params_java(params: str) -> str:
+    if not params:
+        return ""
+    result = []
+    for param in params.split(","):
+        param = param.strip()
+        if ":" in param:
+            name, ptype = param.split(":", 1)
+            name, ptype = name.strip(), ptype.strip()
+            if ptype == "int":
+                result.append(f"int {name}")
+            elif ptype == "str":
+                result.append(f"String {name}")
+            elif ptype == "bool":
+                result.append(f"boolean {name}")
+            elif ptype == "list":
+                result.append(f"int[] {name}")
+            elif ptype == "dict":
+                result.append(f"java.util.Map<String, Integer> {name}")
+            else:
+                result.append(f"int {name}")
+        else:
+            result.append(f"int {param}")
+    return ", ".join(result)
+
+
+def _convert_params_cpp(params: str) -> str:
+    if not params:
+        return ""
+    result = []
+    for param in params.split(","):
+        param = param.strip()
+        if ":" in param:
+            name, ptype = param.split(":", 1)
+            name, ptype = name.strip(), ptype.strip()
+            if ptype == "int":
+                result.append(f"int {name}")
+            elif ptype == "str":
+                result.append(f"string {name}")
+            elif ptype == "bool":
+                result.append(f"bool {name}")
+            elif ptype == "list":
+                result.append(f"vector<int> {name}")
+            elif ptype == "dict":
+                result.append(f"map<string, int> {name}")
+            else:
+                result.append(f"int {name}")
+        else:
+            result.append(f"int {param}")
+    return ", ".join(result)
+
+
+def _convert_params_c(params: str) -> str:
+    if not params:
+        return ""
+    result = []
+    for param in params.split(","):
+        param = param.strip()
+        if ":" in param:
+            name, ptype = param.split(":", 1)
+            name, ptype = name.strip(), ptype.strip()
+            if ptype == "int":
+                result.append(f"int {name}")
+            elif ptype == "str":
+                result.append(f"char* {name}")
+            elif ptype == "bool":
+                result.append(f"bool {name}")
+            elif ptype == "list":
+                result.append(f"int* {name}")
+            elif ptype == "dict":
+                result.append(f"struct Dict* {name}")
+            else:
+                result.append(f"int {name}")
+        else:
+            result.append(f"int {param}")
+    return ", ".join(result)
+
+
+def _convert_return_java(return_type: str) -> str:
+    return {"int": "int", "str": "String", "bool": "boolean", "list": "int[]", "dict": "java.util.Map<String, Integer>"}.get(return_type, "int")
+
+
+def _convert_return_cpp(return_type: str) -> str:
+    return {"int": "int", "str": "string", "bool": "bool", "list": "vector<int>", "dict": "map<string, int>"}.get(return_type, "int")
+
+
+def _convert_return_c(return_type: str) -> str:
+    return {"int": "int", "str": "char*", "bool": "bool", "list": "int*", "dict": "struct Dict*"}.get(return_type, "int")
+
+
+def _default_return(return_type: str) -> str:
+    return {"int": "0", "str": '""', "bool": "false", "list": "null", "dict": "null"}.get(return_type, "0")
 
 
 # Circuit breaker — now uses async-safe CircuitBreaker class
@@ -236,7 +333,73 @@ func main() {
     // Your code here
 }''',
         },
+        "c": {
+            "general": '''#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    // Your code here
+    return 0;
+}''',
+            "class": '''#include <stdio.h>
+#include <stdlib.h>
+
+int solution(int* nums, int numsSize) {
+    // Your code here
+    return 0;
+}''',
+            "function": '''#include <stdio.h>
+
+int solution(int n) {
+    // Your code here
+    return 0;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    printf("%d", solution(n));
+    return 0;
+}''',
+        },
     }
+
+    @staticmethod
+    def generate_starter_code(signature: str, language: str = "python") -> str:
+        """Generate starter code for a given language from a Python signature.
+
+        Args:
+            signature: Python function signature like "def two_sum(nums: list, target: int) -> list:"
+            language: Target language (python, java, cpp, c)
+
+        Returns:
+            Starter code string for the target language.
+        """
+        import re
+        match = re.search(r'def\s+(\w+)\s*\(([^)]*)\)\s*(?:->\s*(\w+))?', signature)
+        if not match:
+            return CodeExecutionEngine.BOILERPLATES.get(language, {}).get("general", "")
+
+        func_name = match.group(1)
+        params = match.group(2).strip()
+        return_type = match.group(3) or "int"
+
+        if language == "python":
+            return f"def {func_name}({params}):\n    # Your code here\n    pass"
+        elif language == "java":
+            java_params = _convert_params_java(params)
+            java_return = _convert_return_java(return_type)
+            return f"public class Main {{\n    public static {java_return} {func_name}({java_params}) {{\n        // Your code here\n        return {_default_return(return_type)};\n    }}\n}}"
+        elif language == "cpp":
+            cpp_params = _convert_params_cpp(params)
+            cpp_return = _convert_return_cpp(return_type)
+            return f"#include <iostream>\n#include <vector>\nusing namespace std;\n\n{cpp_return} {func_name}({cpp_params}) {{\n    // Your code here\n    return {_default_return(return_type)};\n}}\n\nint main() {{\n    // Test your function\n    return 0;\n}}"
+        elif language == "c":
+            c_params = _convert_params_c(params)
+            c_return = _convert_return_c(return_type)
+            return f"#include <stdio.h>\n#include <stdlib.h>\n\n{c_return} {func_name}({c_params}) {{\n    // Your code here\n    return {_default_return(return_type)};\n}}\n\nint main() {{\n    // Test your function\n    return 0;\n}}"
+        return signature
 
     async def execute_code(
         self,
@@ -436,6 +599,8 @@ func main() {
         async def run_single_test(idx: int, case: Dict[str, str]):
             async with tc_semaphore:
                 stdin = case.get("input", "")
+                if not isinstance(stdin, str):
+                    stdin = CodeExecutionEngine._normalize_text(stdin)
                 expected = case.get("expected", case.get("expected_output", ""))
                 is_hidden = case.get("is_hidden", False)
 
@@ -719,8 +884,28 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
         return self._semaphore
 
     @staticmethod
-    def _normalize_text(value: str) -> str:
-        return "\n".join(line.rstrip() for line in (value or "").strip().splitlines())
+    def _normalize_text(value) -> str:
+        # Test-case inputs/expecteds are not always strings: several
+        # verified banks store structured args (e.g. [[2,7,11,15], 9]).
+        # Canonicalize containers to compact JSON (same rule as the batch
+        # runner's _canon); strings keep exact legacy behavior.
+        if value is None:
+            value = ""
+        if not isinstance(value, str):
+            try:
+                import json as _json
+
+                def _j(x):
+                    if isinstance(x, tuple):
+                        return [_j(y) for y in x]
+                    if isinstance(x, list):
+                        return [_j(y) for y in x]
+                    return x
+
+                value = _json.dumps(_j(value), separators=(",", ":"))
+            except Exception:
+                value = str(value)
+        return "\n".join(line.rstrip() for line in value.strip().splitlines())
 
     async def _grade_python_batched(
         self,
@@ -812,14 +997,60 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
     async def _record_failure(self):
         await compiler_breaker.record_failure()
 
-    async def _try_fallback(self, language: str, code: str, stdin: str, timeout: int) -> Dict[str, Any]:
-        """Run code through free remote providers (Wandbox, Glot.io) then the local
-        sandbox when Piston is unavailable.
+    async def _try_gcp_compiler(self, language: str, code: str, stdin: str,
+                                timeout: int) -> Dict[str, Any]:
+        """Own compiler microservice (Cloud Run free tier) — first fallback hop.
 
-        Chain: Wandbox -> Glot.io -> local sandbox. Remote providers are gated by
-        the USE_REMOTE_FALLBACKS flag; the local sandbox by USE_LOCAL_SANDBOX.
-        Returns {} when every hop fails so the caller surfaces the original error.
+        Thin HTTP client only: auth, timeout, and shape-check live here; all
+        sandboxing lives in backend/compiler-service (never in this backend).
+        Returns {} on any failure so the chain falls through to Piston.
         """
+        settings = get_settings()
+        base = (settings.COMPILER_SERVICE_URL or "").rstrip("/")
+        if not base:
+            return {}
+        if (language or "").lower() not in ("python", "javascript"):
+            return {}
+        started = time.perf_counter()
+        try:
+            client = await self._get_client()
+            response = await client.post(
+                base + "/execute",
+                json={"code": code, "language": (language or "").lower(),
+                      "stdin": stdin or "", "timeout": max(1, min(int(timeout or 5), 15))},
+                headers={"Authorization": f"Bearer {settings.COMPILER_SERVICE_KEY}"},
+                timeout=min(int(timeout or 5) + 10, 30),
+            )
+            if response.status_code != 200:
+                await request_metrics.record("compiler", "failure",
+                                             error=f"Compiler service HTTP {response.status_code}")
+                return {}
+            data = response.json()
+            if not isinstance(data, dict) or "success" not in data:
+                return {}
+            await request_metrics.record(
+                "compiler", "success" if data.get("success") else "failure",
+                duration_ms=(time.perf_counter() - started) * 1000)
+            data.setdefault("source", "gcp_compiler")
+            return data
+        except Exception as e:
+            await request_metrics.record("compiler", "failure", error=f"Compiler service: {e!r}"[:200])
+            return {}
+
+    async def _try_fallback(self, language: str, code: str, stdin: str, timeout: int) -> Dict[str, Any]:
+        """Fallback chain when Piston is unavailable.
+
+        Chain: own compiler service (Cloud Run) -> remote providers
+        (Judge0/Wandbox/Glot.io, gated by USE_REMOTE_FALLBACKS) -> local
+        sandbox (gated by USE_LOCAL_SANDBOX). Returns {} when every hop
+        fails so the caller surfaces the original error.
+        """
+        try:
+            own = await self._try_gcp_compiler(language, code, stdin, timeout)
+            if own:
+                return own
+        except Exception:
+            pass
         if get_settings().USE_REMOTE_FALLBACKS:
             try:
                 remote = await execute_remote_fallback(language, code, stdin, timeout)

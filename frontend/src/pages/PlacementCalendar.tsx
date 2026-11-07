@@ -33,7 +33,7 @@ const FOCUS_LESSON_MAP: Record<string, { label: string; route: string }> = {
   verbal: { label: "Reading Comp & Para Jumbles", route: "/aptitude" },
   "system design": { label: "System Design Fundamentals", route: "/system-design" },
   behavioral: { label: "STAR + Leadership Principles", route: "/interview" },
-  hr: { label: "HR & Salary Discussion", route: "/salary-negotiation" },
+  hr: { label: "HR & Behavioral", route: "/interview" },
   sql: { label: "DBMS & Query Practice", route: "/compiler" },
   dbms: { label: "DBMS & Query Practice", route: "/compiler" },
   oop: { label: "OOP & Design Patterns", route: "/coding-challenge" },
@@ -381,10 +381,6 @@ export default function PlacementCalendar() {
               <p className="text-xs text-cyber-green font-mono">💡 {selected.tips}</p>
             </div>
 
-            <a href="/referral" className="block mt-3 p-3 rounded-lg bg-cyber-blue/10 border border-cyber-blue/30 hover:bg-cyber-blue/20 transition-colors">
-              <p className="text-sm text-cyber-blue font-display font-bold flex items-center gap-2"><Link2 size={14} /> Invite a friend — you both get 1 month Pro free</p>
-              <p className="text-[11px] text-gray-400 font-mono mt-1">Turn your prep into a streak. Share your referral link and unlock Pro features for free.</p>
-            </a>
             <div className="mt-3 flex flex-wrap gap-1">
               {selected.roles.map((r) => <span key={r} className="text-[10px] px-2 py-0.5 rounded-full bg-space-panel text-gray-400">{r}</span>)}
             </div>

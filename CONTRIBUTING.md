@@ -1,6 +1,6 @@
-# Contributing to PlacementPro
+# Contributing to BountyCode
 
-Thank you for your interest in contributing! This document provides guidelines and best practices for contributing to the PlacementPro codebase.
+Thank you for your interest in contributing! This document provides guidelines and best practices for contributing to the BountyCode codebase.
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ Thank you for your interest in contributing! This document provides guidelines a
 ## Getting Started
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/your-username/placementpro.git`
+2. Clone your fork: `git clone https://github.com/your-username/BountyCode.git`
 3. Create a feature branch: `git checkout -b feature/my-new-feature`
 4. Make your changes
 5. Run tests: `pytest backend/tests/`
@@ -34,7 +34,7 @@ Thank you for your interest in contributing! This document provides guidelines a
 ## Project Structure
 
 ```
-placementpro/
+BountyCode/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py           # FastAPI app, routers, middleware

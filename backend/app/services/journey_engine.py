@@ -1,0 +1,977 @@
+﻿"""Journey Engine â€” the canonical orchestrator that determines the highest-value
+next action for any student.
+
+Per the architecture strategy doc (AGENTS.md): The Journey Engine sits *above*
+the Study Engine and composes its output with career context, company targets,
+mastery state, SRS due cards, gamification rewards, and readiness signals.
+
+It does NOT create new engines. It reads from the canonical systems:
+  * Study Engine (get_today) â€” NEXT + REVIEW + PRACTICE + CHALLENGE
+  * Gamification (get_gamification_profile) â€” Diamonds, level, coins, streak
+  * Mastery (skill_assessment) â€” per-skill scores
+  * Readiness (readiness_engine) â€” interview/OA readiness
+  * Question Bank (curated_questions) â€” practice questions
+  * World Registry (world_registry) â€” world/town/level progression
+  * Company Blueprints â€” target company context
+
+The single output is a canonical JourneyState that the frontend consumes,
+and the one answer to "What do I do next?"
+"""
+
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional
+
+from fastapi import APIRouter, Depends, HTTPException
+
+from app.middleware.auth import get_current_user
+from app.services.gamification import get_gamification_profile
+from app.services.study_engine import get_today as study_get_today
+from app.services.adaptive_learning import assess_user_skills, detect_weak_areas
+from app.services.readiness_engine import COMPANY_PROFILES, calculate_readiness, compute_readiness as get_readiness
+from app.data.worlds_data import WORLD_REGISTRY
+from app.routes.map import WORLD_ADVENTURE_NAMES
+from app.database import gamification_collection, skill_graph_collection, \
+    users_collection
+from app.services.spaced_repetition import get_due_cards, SRSState
+
+
+router = APIRouter(prefix="/api/v1/journey", tags=["journey"])
+
+
+# â”€â”€â”€ Priority matrix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# Higher score = higher priority. These weights are the canonical priority
+# engine. They consider SRS debt, company context, prerequisites, and
+# recent performance so the student always gets the most meaningful next
+# action.
+
+PRIORITY_WEIGHTS = {
+    "srs_overdue": 100,
+    "failed_repair": 95,
+    "prerequisite": 90,
+    "company_critical": 85,
+    "company_track": 84,
+    "current_lesson": 80,
+    "role_practice": 70,
+    "mock_prep": 60,
+    "challenge": 40,
+    "exploration": 10,
+}
+
+
+# â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+
+def _user_target_company(user: Dict[str, Any]) -> str:
+    """Read target company from user profile, defaulting to ''."""
+    return user.get("target_company", "") or user.get("company_target", "") or ""
+
+
+def _user_role_path(user: Dict[str, Any]) -> str:
+    """Read enrolled role path from user profile, defaulting to ''."""
+    return user.get("role_path", "") or ""
+
+
+def _user_company_track(user: Dict[str, Any]) -> str:
+    """Read enrolled company track from user profile, defaulting to ''."""
+    return user.get("company_track", "") or ""
+
+
+async def _get_user_profile(user_id: str) -> Dict[str, Any]:
+    """Resolve profiles by the authenticated Mongo id, with a legacy fallback."""
+    from bson import ObjectId
+
+    user = None
+    try:
+        if ObjectId.is_valid(user_id):
+            user = await users_collection().find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        user = None
+    if user is None:
+        user = await users_collection().find_one({"user_id": user_id})
+    return user or {}
+
+
+def _user_career_stage(user: Dict[str, Any]) -> str:
+    """Read career stage from user profile."""
+    return user.get("career_stage", "placement") or "placement"
+
+
+def _unlocked(world_id: str, town_id: str, level_id: str,
+              completed: Dict[str, Any]) -> bool:
+    """Check whether a level is unlocked in the world/town/level graph."""
+    wprefix = f"{world_id}:"
+    # Find the level's index in walk order
+    world = WORLD_REGISTRY.get(world_id)
+    all_level_ids: List[str] = []
+    for town_data in world.towns:
+        for lvl in town_data.lessons:
+            all_level_ids.append(lvl.id)
+
+    level_idx = all_level_ids.index(level_id)
+    if level_idx == 0:
+        return True
+    prev_key = f"{world_id}:{all_level_ids[level_idx - 1]}"
+    prev_done = completed.get(prev_key, {}).get("completed", False)
+    return prev_done
+
+
+def _has_mastery_evidence(world_id: str, level_id: str, completed: Dict[str, Any]) -> bool:
+    """Check if a level has evidence-based mastery (not just completion).
+
+    Requires:
+      1. Level is marked completed
+      2. Score >= 70% (passing threshold)
+      3. At least 3 steps completed (discover + predict + build/debug)
+    """
+    key = f"{world_id}:{level_id}"
+    entry = completed.get(key, {})
+    if not entry.get("completed"):
+        return False
+    score = entry.get("score", 0)
+    steps_done = entry.get("steps_completed", 0)
+    return score >= 70 and steps_done >= 3
+
+
+def _unlocked_evidence_based(world_id: str, town_id: str, level_id: str,
+                              completed: Dict[str, Any]) -> bool:
+    """Check whether a level is unlocked using evidence-based mastery.
+
+    Previous level must have mastery evidence (not just completion).
+    """
+    wprefix = f"{world_id}:"
+    world = WORLD_REGISTRY.get(world_id)
+    all_level_ids: List[str] = []
+    for town_data in world.towns:
+        for lvl in town_data.lessons:
+            all_level_ids.append(lvl.id)
+
+    level_idx = all_level_ids.index(level_id)
+    if level_idx == 0:
+        return True
+    prev_key = f"{world_id}:{all_level_ids[level_idx - 1]}"
+    return _has_mastery_evidence(world_id, all_level_ids[level_idx - 1], completed)
+
+
+async def _get_srs_due(user_id: str) -> list:
+    """Get due SRS cards for the user.
+
+    Persisted cards may contain Mongo metadata and legacy problem-card fields.
+    Always restore them through the shared deserializer so those documents are
+    not silently discarded by the Journey priority engine.
+    """
+    try:
+        from app.database import srs_cards_collection
+        from app.services.spaced_repetition import deserialize_state, get_due_cards
+
+        col = srs_cards_collection()
+        cards = []
+        async for doc in col.find({"user_id": user_id}).limit(50):
+            try:
+                state = deserialize_state(doc, user_id=user_id)
+                if state.concept_id:
+                    cards.append(state)
+            except (TypeError, ValueError, KeyError):
+                continue
+        return get_due_cards(cards, limit=5)
+    except Exception:
+        logger.exception("Could not load due SRS cards for Journey user %s", user_id)
+        return []
+
+
+
+# â”€â”€â”€ Core: rank activities for a single student â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+
+async def _rank_activities(user_id: str) -> Dict[str, Any]:
+    """Rank all possible next activities by priority and return the winner.
+
+    Returns a dict with per-category scores and the winning activity.
+    """
+    from app.services.ai_core import close_http_client  # avoid import cycle at top
+
+    # â”€â”€ Read user profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    user = await _get_user_profile(user_id)
+    # Also read from the in-memory get_current_user if available
+    try:
+        from app.middleware.auth import get_current_user as _gcu
+        # get_current_user is a dependency, not a plain function â€” skip
+    except Exception:
+        pass
+
+    # Read gamification profile
+    g = await get_gamification_profile(user_id)
+    completed: Dict[str, Any] = g.get("completed_competencies", {})
+    level = g.get("level", 1)
+    streak = g.get("streak", 0)
+    coins = g.get("coins", 0)
+
+    # Read Study Engine daily plan
+    study_plan = await study_get_today(user_id, force_refresh=True)
+    next_mission = study_plan.get("next")
+    reviews = study_plan.get("reviews", [])
+    practice = study_plan.get("practice", [])
+    challenge = study_plan.get("challenge")
+
+    # Read mastery/skill assessment
+    assessment = await assess_user_skills(user_id)
+    skills = assessment.get("skills", {})
+
+    # Read readiness
+    readiness = await get_readiness(user_id)
+    interview_readiness = readiness.get("interview_readiness", 0)
+    oa_readiness = readiness.get("oa_readiness", 0)
+
+    # Read target company
+    target_company = _user_target_company(user)
+    role_path = _user_role_path(user)
+    company_track = _user_company_track(user)
+    company_mission = study_plan.get("company_mission")
+
+    # Read SRS due cards
+    srs_due = await _get_srs_due(user_id)
+
+    # â”€â”€ Compute priority scores for each activity category â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    scores: Dict[str, int] = {}
+
+    # 1. SRS overdue â€” highest priority
+    if srs_due:
+        scores["srs_overdue"] = PRIORITY_WEIGHTS["srs_overdue"]
+
+    # 2. Failed concept repair â€” if recent failures in skill graph
+    failed_repairs = 0
+    try:
+        sg_doc = await skill_graph_collection().find_one({"user_id": user_id}) or {}
+        categories = sg_doc.get("categories", {})
+        for cat_name, cat_data in categories.items():
+            if isinstance(cat_data, dict) and cat_data.get("score", 0) < 50:
+                failed_repairs += 1
+    except Exception:
+        failed_repairs = 0
+    if failed_repairs > 0:
+        scores["failed_repair"] = PRIORITY_WEIGHTS["failed_repair"] * min(failed_repairs, 3)
+
+    # 3. Prerequisite check â€” is the current world progression blocked?
+    # Check if student is stuck (no unlocked incomplete levels beyond current)
+    world_pos = next(
+        (w for w in WORLD_REGISTRY.values()
+         if any(k.startswith(w.id + ":") for k in completed)),
+        None
+    )
+    prerequisite_blocked = False
+    if world_pos:
+        # Find the student's current position
+        for town in world_pos.towns:
+            for lvl in town.lessons:
+                key = f"{world_pos.id}:{lvl.id}"
+                if completed.get(key, {}).get("completed"):
+                    # Check if there's an unlocked incomplete level after this
+                    pass
+    # Check if there's an unlocked incomplete level
+    prerequisite_blocked = False
+    try:
+        async for _ in _iter_unlockable(world_pos.id if world_pos else "", completed):
+            prerequisite_blocked = False
+            break
+    except Exception:
+        pass
+
+    # Check if all worlds are complete
+    all_complete = True
+    for w in WORLD_REGISTRY.values():
+        for town in w.towns:
+            for lvl in town.lessons:
+                key = f"{w.id}:{lvl.id}"
+                if not completed.get(key, {}).get("completed", False):
+                    all_complete = False
+                    break
+            if not all_complete:
+                break
+        if not all_complete:
+            break
+
+    if not all_complete:
+        prerequisite_blocked = True
+
+    if not prerequisite_blocked:
+        scores["prerequisite"] = PRIORITY_WEIGHTS["prerequisite"]
+
+    # 4. Company-critical weakness â€” if target company is set, boost
+    # weaknesses in skills that company evaluates
+    if target_company:
+        company_profile = COMPANY_PROFILES.get(target_company.lower(), {})
+        # Check if any critical skill for this company is weak
+        critical_skills = company_profile.get("critical_skills", [])
+        weak_critical = []
+        for skill in critical_skills:
+            if skill in skills:
+                if skills[skill].get("score", 100) < 70:
+                    weak_critical.append(skill)
+        if weak_critical:
+            scores["company_critical"] = PRIORITY_WEIGHTS["company_critical"] * min(
+                len(weak_critical), 3)
+
+    # 5. Current lesson â€” the Study Engine's next mission
+    if next_mission:
+        scores["current_lesson"] = PRIORITY_WEIGHTS["current_lesson"]
+
+    # 6. Role practice â€” if we know the user's target role
+    target_role = user.get("target_role", "") or user.get("role", "")
+    if target_role and target_role != "student":
+        # Check if role-specific practice is available
+        scores["role_practice"] = PRIORITY_WEIGHTS["role_practice"]
+
+    # 6b. Company track activity — only rank it when an actual incomplete
+    # module exists. A profile flag alone must never create a dead-end action.
+    if company_track and company_mission:
+        scores["company_track"] = PRIORITY_WEIGHTS["company_track"]
+
+    # 7. Mock preparation â€” if readiness is below threshold
+    if interview_readiness < 70 or oa_readiness < 70:
+        scores["mock_prep"] = PRIORITY_WEIGHTS["mock_prep"]
+
+    # 8. Challenge â€” if student is ready (3+ mastered skills)
+    mastered_count = sum(
+        1 for s in skills.values()
+        if s.get("mastery", "") in ("competent", "proficient", "master")
+    )
+    if mastered_count >= 3 and challenge:
+        scores["challenge"] = PRIORITY_WEIGHTS["challenge"]
+
+    # 9. Exploration â€” low priority optional
+    # Only if there's "free time" (low total priority from other categories)
+    if not scores and challenge is None:
+        scores["exploration"] = PRIORITY_WEIGHTS["exploration"]
+
+    # â”€â”€ Select the winner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    winner_category = max(scores, key=scores.get) if scores else "exploration"
+    winner_score = scores.get(winner_category, 0)
+
+    return {
+        "scores": scores,
+        "winner_category": winner_category,
+        "winner_score": winner_score,
+        "target_company": target_company,
+        "company_track": company_track,
+        "company_mission": company_mission,
+        "interview_readiness": interview_readiness,
+        "oa_readiness": oa_readiness,
+        "mastered_count": mastered_count,
+        "prerequisite_blocked": prerequisite_blocked,
+        "skills": skills,
+    }
+
+
+async def _iter_unlockable(world_id: str, completed: Dict[str, Any]):
+    """Yield (world, town, level) tuples for the first unlocked incomplete level."""
+    world = WORLD_REGISTRY.get(world_id) if world_id else None
+    if not world:
+        for w in WORLD_REGISTRY.values():
+            async for result in _iter_unlockable(w.id, completed):
+                yield result
+        return
+
+    all_level_ids: List[str] = []
+    for town_data in world.towns:
+        for lvl in town_data.lessons:
+            all_level_ids.append(lvl.id)
+
+    seen_complete = True
+    for town_data in world.towns:
+        for lvl in town_data.lessons:
+            key = f"{world.id}:{lvl.id}"
+            done = completed.get(key, {}).get("completed", False)
+            if done:
+                continue
+            if not seen_complete:
+                continue
+            yield {"world_id": world.id, "town_id": town_data.id, "level_id": lvl.id}
+            seen_complete = all(
+                completed.get(f"{world.id}:{lvl2.id}", {}).get("completed", False)
+                for lvl2 in town_data.lessons
+            )
+
+
+# â”€â”€â”€ Build the canonical JourneyState â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+
+async def build_journey_state(user_id: str) -> Dict[str, Any]:
+    """Build the canonical JourneyState for the given user.
+
+    This is the single entry point the frontend uses to determine:
+      - Where the student is (character position)
+      - What they should do next (priority action)
+      - What reviews are due
+      - What practice/challenge is available
+      - Career readiness + company context
+
+    The Study Engine provides the learning activities; the Journey Engine
+    adds career context and ranks everything into a single next action.
+    """
+
+    # â”€â”€ Rank activities and get winner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    ranking = await _rank_activities(user_id)
+    winner = ranking["winner_category"]
+    scores = ranking["scores"]
+    skills = ranking.get("skills", {})
+
+    # â”€â”€ Read user profile for context â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    from app.middleware.auth import get_current_user as _gcu_dep
+    # We can't call the dependency directly, read from DB instead
+    from app.database import users_collection as _uc
+    user_doc = await _get_user_profile(user_id)
+    target_company = _user_target_company(user_doc)
+    target_role = user_doc.get("target_role", "") or user_doc.get("role", "")
+    role_path = _user_role_path(user_doc)
+    company_track = _user_company_track(user_doc)
+
+    # â”€â”€ Re-read Study Engine plan (already refreshed in _rank_activities) â”€
+    # We already have it from _rank_activities; reuse where possible
+    # For the full state, call study engine fresh:
+    study_plan = await study_get_today(user_id, force_refresh=True)
+    next_mission = study_plan.get("next")
+    reviews = study_plan.get("reviews", [])
+    practice = study_plan.get("practice", [])
+    challenge = study_plan.get("challenge")
+    company_mission = study_plan.get("company_mission")
+
+    # â”€â”€ Read gamification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    g = await get_gamification_profile(user_id)
+    level = g.get("level", 1)
+    diamonds = g.get("diamonds", 0)
+    coins = g.get("coins", 0)
+    streak = g.get("streak", 0)
+    badges = g.get("badges", [])
+
+    # â”€â”€ Read world/progression state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # Find the character position: first unlocked incomplete level
+    completed: Dict[str, Any] = g.get("completed_competencies", {})
+    character_position = None
+
+    # Walk worlds in order to find standing position
+    for world in sorted(WORLD_REGISTRY.values(), key=lambda w: w.order):
+        wprefix = world.id + ":"
+        world_keys = [k for k in completed if k.startswith(wprefix)]
+        if not world_keys:
+            continue  # locked world
+
+        # Check towns and levels
+        for town in world.towns:
+            town_levels = town.lessons
+            for idx, lvl in enumerate(town_levels):
+                key = f"{world.id}:{lvl.id}"
+                entry = completed.get(key, {})
+                is_done = bool(entry.get("completed"))
+
+                # Unlock rule
+                all_level_ids = []
+                for t in world.towns:
+                    for lt in t.lessons:
+                        all_level_ids.append(lt.id)
+                walk_idx = all_level_ids.index(lvl.id)
+                if walk_idx == 0:
+                    unlocked = True
+                else:
+                    prev_key = f"{world.id}:{all_level_ids[walk_idx - 1]}"
+                    unlocked = bool(completed.get(prev_key, {}).get("completed"))
+
+                if is_done:
+                    status = "completed"
+                elif unlocked and character_position is None:
+                    status = "current"
+                    character_position = {
+                        "world_id": world.id,
+                        "town_id": town.id,
+                        "level_id": lvl.id,
+                    }
+                elif unlocked:
+                    status = "unlocked"
+                else:
+                    status = "locked"
+
+                # Don't override character_position if already set
+                if character_position and (
+                    character_position["world_id"] != world.id or
+                    character_position["town_id"] != town.id or
+                    character_position["level_id"] != lvl.id
+                ):
+                    # Already set, just continue
+                    pass
+
+        # If we found the character position, stop looking
+        if character_position:
+            break
+
+    # Fallback: if nothing incomplete, stand on the last level of the last world
+    if character_position is None:
+        for world in sorted(WORLD_REGISTRY.values(), key=lambda w: w.order):
+            world_keys = [k for k in completed if k.startswith(world.id + ":")]
+            if world_keys and world.towns:
+                last_town = world.towns[-1]
+                if last_town.lessons:
+                    last_lvl = last_town.lessons[-1]
+                    character_position = {
+                        "world_id": world.id,
+                        "town_id": last_town.id,
+                        "level_id": last_lvl.id,
+                    }
+                    break
+
+    # â”€â”€ Determine the single next action â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # Based on the winner category from the priority engine:
+    next_action: Dict[str, Any] = {}
+    today = _today_key()
+
+    if winner == "srs_overdue" and reviews:
+        next_action = {
+            "type": "review",
+            "title": "Review SRS Cards",
+            "description": f"{len(reviews)} spaced-repetition cards due",
+            "kind": "srs",
+            "estimated_minutes": sum(r.get("estimated_minutes", 5) for r in reviews),
+            "xp_reward": 10 * len(reviews),
+            "action": "review",
+        }
+    elif winner == "failed_repair":
+        # Show the weakest skill needing repair
+        weakest = min(
+            (s for s in skills.values() if s.get("score", 100) < 70),
+            key=lambda s: s.get("score", 100),
+            default=None,
+        )
+        if weakest:
+            next_action = {
+                "type": "repair",
+                "title": f"Repair {weakest.get('name', 'skill')}",
+                "description": "This concept needs reinforcement",
+                "kind": "mastery_repair",
+                "skill_id": weakest.get("skill_id", ""),
+                "estimated_minutes": 15,
+                "xp_reward": 25,
+                "action": "mastery_repair",
+            }
+    elif winner == "prerequisite":
+        # Show the next unlockable level
+        if character_position:
+            w = WORLD_REGISTRY.get(character_position["world_id"])
+            town = next(t for t in w.towns if t.id == character_position["town_id"])
+            current_idx = None
+            for i, lvl in enumerate(town.lessons):
+                if lvl.id == character_position["level_id"]:
+                    current_idx = i
+                    break
+            if current_idx is not None and current_idx < len(town.lessons) - 1:
+                next_lvl = town.lessons[current_idx + 1]
+                next_action = {
+                    "type": "unlock",
+                    "title": f"Unlock: {next_lvl.title}",
+                    "description": f"Move from {town.name} to {next_lvl.title}",
+                    "kind": "progression",
+                    "target_world": character_position["world_id"],
+                    "target_town": character_position["town_id"],
+                    "target_level": next_lvl.id,
+                    "estimated_minutes": next_lvl.diamonds // 5 + 10,
+                    "xp_reward": next_lvl.diamonds,
+                    "action": "progression_unlock",
+                }
+            else:
+                # Move to next town or world
+                next_action = {
+                    "type": "explore",
+                    "title": "Continue Journey",
+                    "description": "Move to the next area",
+                    "kind": "progression",
+                    "estimated_minutes": 5,
+                    "xp_reward": 15,
+                    "action": "progression",
+                }
+    elif winner == "company_track" and company_mission:
+        next_action = {
+            "type": "company_mission",
+            "title": company_mission.get("title", "Company preparation"),
+            "description": company_mission.get("description", "Continue your target-company learning path"),
+            "kind": "company_track",
+            "company": company_mission.get("company", target_company),
+            "track_id": company_mission.get("track_id", company_track),
+            "section_id": company_mission.get("section_id", ""),
+            "module_id": company_mission.get("module_id", ""),
+            "topic_id": company_mission.get("topic_id", ""),
+            "topic_name": company_mission.get("topic_name", ""),
+            "mastered_topic_count": company_mission.get("mastered_topic_count", 0),
+            "required_topic_count": company_mission.get("required_topic_count", 0),
+            "estimated_minutes": company_mission.get("estimated_minutes", 30),
+            "xp_reward": company_mission.get("xp_reward", 50),
+            "action": "company_track",
+        }
+    elif winner == "current_lesson" and next_mission:
+        next_action = {
+            "type": "learn",
+            "title": next_mission.get("title", "Lesson"),
+            "description": next_mission.get("description", "Learn new concept"),
+            "kind": "lesson",
+            "world": next_mission.get("world", {}).get("id", ""),
+            "town": next_mission.get("town", {}).get("id", ""),
+            "level": next_mission.get("level", {}).get("id", ""),
+            "estimated_minutes": next_mission.get("estimated_minutes", 12),
+            "xp_reward": next_mission.get("xp_reward", 50),
+            "lesson_content": next_mission.get("lesson_content"),
+            "action": "learn_mission",
+        }
+    elif winner == "role_practice" and target_role:
+        next_action = {
+            "type": "practice",
+            "title": f"Role Practice: {target_role}",
+            "description": f"Practice problems aligned with {target_role}",
+            "kind": "role_practice",
+            "estimated_minutes": 20,
+            "xp_reward": 30,
+            "action": "role_practice",
+        }
+    elif winner == "mock_prep" and (ranking["interview_readiness"] < 70 or ranking["oa_readiness"] < 70):
+        # Generate mock OA or interview session
+        next_action = {
+            "type": "mock_assessment",
+            "title": "Mock Assessment",
+            "description": "Test your readiness with a simulated assessment",
+            "kind": "mock_oa",
+            "estimated_minutes": 45,
+            "xp_reward": 100,
+            "target_company": target_company,
+            "action": "mock_assessment",
+        }
+    elif winner == "challenge" and challenge:
+        next_action = {
+            "type": "challenge",
+            "title": challenge.get("title", "Debugging Sprint"),
+            "description": challenge.get("description", "Timed challenge"),
+            "kind": "timed_challenge",
+            "estimated_minutes": challenge.get("estimated_minutes", 12),
+            "xp_reward": challenge.get("xp_reward", 60),
+            "skill": challenge.get("skill", ""),
+            "action": "challenge",
+        }
+    else:
+        # Default: exploration / continue journey
+        next_action = {
+            "type": "explore",
+            "title": "Continue Journey",
+            "description": "Keep learning and progressing",
+            "kind": "exploration",
+            "estimated_minutes": 10,
+            "xp_reward": 15,
+            "action": "explore",
+        }
+
+    # â”€â”€ Build and return the canonical JourneyState â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    weak_patterns = _detect_weak_patterns(skills)
+    recommended_patterns = _recommend_patterns(weak_patterns, target_company)
+
+    current_world = None
+    if character_position:
+        current_world = WORLD_REGISTRY.get(character_position["world_id"])
+        if current_world:
+            current_world = {
+                "id": current_world.id,
+                "display_name": getattr(current_world, "display_name", current_world.id),
+                "description": getattr(current_world, "description", ""),
+                "towns": [
+                    {
+                        "id": t.id,
+                        "name": getattr(t, "name", t.id),
+                        "description": getattr(t, "description", ""),
+                        "icon": getattr(t, "icon", ""),
+                        "missions": [
+                            {
+                                "id": l.id,
+                                "title": getattr(l, "title", l.id),
+                                "description": getattr(l, "description", ""),
+                                "difficulty": getattr(l, "difficulty", "medium"),
+                                "xp_reward": getattr(l, "xp_reward", 0),
+                                "is_boss": getattr(l, "is_boss", False),
+                                "unlocked": True,
+                            }
+                            for l in t.lessons
+                        ],
+                    }
+                    for t in current_world.towns
+                ],
+            }
+
+    journey_state: Dict[str, Any] = {
+        "character": {
+            "level": level,
+            "title": _title_for_level(level),
+            "title_emoji": _emoji_for_level(level),
+            "position": character_position or {"world_id": "", "town_id": "", "level_id": ""},
+            "state": "idle",
+        },
+        "today": {
+            "date": today,
+            "next": next_action,
+            "next_action": next_action,
+            "reviews": reviews,
+            "practice": practice,
+            "challenge": challenge,
+            "company_mission": company_mission,
+        },
+        "stats": {
+            "diamonds": diamonds,
+            "level": level,
+            "coins": coins,
+            "streak": streak,
+            "badges_count": len(badges),
+        },
+        "readiness": {
+            "interview_readiness": ranking["interview_readiness"],
+            "oa_readiness": ranking["oa_readiness"],
+            "mastered_count": ranking["mastered_count"],
+        },
+        "weak_patterns": weak_patterns,
+        "recommended_patterns": recommended_patterns,
+        "company": {
+            "target": target_company,
+            "target_role": target_role,
+            "role_path": role_path,
+            "company_track": company_track,
+        },
+        "priority": {
+            "winner_category": winner,
+            "scores": scores,
+            "winner_score": ranking["winner_score"],
+        },
+    }
+
+    if current_world:
+        journey_state["world"] = current_world
+
+    all_worlds = []
+    for world in sorted(WORLD_REGISTRY.values(), key=lambda w: w.order):
+        world_keys = [k for k in completed if k.startswith(world.id + ":")]
+        if not world_keys:
+            status = "locked"
+        else:
+            all_completed = all(
+                completed.get(f"{world.id}:{lvl.id}", {}).get("completed", False)
+                for town in world.towns
+                for lvl in town.lessons
+            )
+            if all_completed:
+                status = "completed"
+            elif (
+                character_position
+                and character_position.get("world_id") == world.id
+            ):
+                status = "active"
+            else:
+                status = "unlocked"
+
+        towns = []
+        for town in world.towns:
+            levels = []
+            for lvl in town.lessons:
+                key = f"{world.id}:{lvl.id}"
+                entry = completed.get(key, {})
+                is_done = bool(entry.get("completed"))
+                if is_done:
+                    level_status = "completed"
+                elif (
+                    character_position
+                    and character_position.get("world_id") == world.id
+                    and character_position.get("town_id") == town.id
+                    and character_position.get("level_id") == lvl.id
+                ):
+                    level_status = "current"
+                elif world_keys:
+                    level_status = "unlocked"
+                else:
+                    level_status = "locked"
+
+                levels.append({
+                    "id": lvl.id,
+                    "title": getattr(lvl, "title", lvl.id),
+                    "icon": getattr(lvl, "icon", ""),
+                    "kind": "boss" if getattr(lvl, "is_boss", False) else "level",
+                    "order": getattr(lvl, "order", 0),
+                    "concept": getattr(lvl, "concept", getattr(lvl, "title", lvl.id)),
+                    "canonical_skill": getattr(lvl, "canonical_skill", ""),
+                    "status": level_status,
+                    "mastery": 0,
+                    "attempts": 0,
+                    "diamonds": getattr(lvl, "xp_reward", 0),
+                })
+
+            towns.append({
+                "id": town.id,
+                "title": getattr(town, "name", town.id),
+                "icon": getattr(town, "icon", ""),
+                "order": getattr(town, "order", 0),
+                "levels": levels,
+            })
+
+        all_worlds.append({
+            "id": world.id,
+            "title": getattr(world, "display_name", world.id),
+            "subtitle": getattr(world, "description", ""),
+            "icon": getattr(world, "icon", "🌍"),
+            "order": world.order,
+            "theme": "default",
+            "status": status,
+            "towns": towns,
+            "adventure_name": WORLD_ADVENTURE_NAMES.get(world.id, getattr(world, "display_name", world.id)),
+        })
+
+    journey_state["worlds"] = all_worlds
+
+    return journey_state
+
+
+def _detect_weak_patterns(skills: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Detect weak DSA/coding patterns from skill assessment data.
+
+    Returns a list of weak patterns with their scores and suggested actions.
+    """
+    weak_patterns = []
+    
+    # Map skill domain IDs to pattern names and priorities
+    pattern_map = {
+        "sliding_window": {"name": "Sliding Window", "priority": 1, "emoji": "🪟", "color": "#06B6D4"},
+        "two_pointers": {"name": "Two Pointers", "priority": 2, "emoji": "👆", "color": "#8B5CF6"},
+        "binary_search": {"name": "Binary Search", "priority": 3, "emoji": "🔍", "color": "#10B981"},
+        "arrays_hashing": {"name": "Arrays & Hashing", "priority": 4, "emoji": "📊", "color": "#3B82F6"},
+        "stack": {"name": "Stacks & Queues", "priority": 5, "emoji": "📚", "color": "#F59E0B"},
+        "linked_list": {"name": "Linked Lists", "priority": 6, "emoji": "⛓️", "color": "#EC4899"},
+        "strings": {"name": "Strings", "priority": 7, "emoji": "📝", "color": "#14B8A6"},
+        "dp": {"name": "Dynamic Programming", "priority": 8, "emoji": "🧠", "color": "#EF4444"},
+        "greedy": {"name": "Greedy", "priority": 9, "emoji": "💰", "color": "#EAB308"},
+        "trees": {"name": "Trees", "priority": 10, "emoji": "🌳", "color": "#22C55E"},
+    }
+    
+    for domain_id, skill_data in skills.items():
+        score = skill_data.get("score", 0)
+        mastery = skill_data.get("mastery", "")
+        
+        # Consider patterns with score < 60 as weak
+        if score < 60 and domain_id in pattern_map:
+            pattern_info = pattern_map[domain_id]
+            weak_patterns.append({
+                "domain_id": domain_id,
+                "name": pattern_info["name"],
+                "emoji": pattern_info["emoji"],
+                "color": pattern_info["color"],
+                "score": score,
+                "mastery": mastery,
+                "priority": pattern_info["priority"],
+                "action": f"Practice {pattern_info['name']} problems to improve your score",
+                "estimated_minutes": 20,
+                "xp_reward": 30,
+            })
+    
+    # Sort by priority (lower number = higher priority)
+    weak_patterns.sort(key=lambda x: x["priority"])
+    return weak_patterns[:5]  # Return top 5 weak patterns
+
+
+def _recommend_patterns(weak_patterns: List[Dict[str, Any]], target_company: str) -> List[Dict[str, Any]]:
+    """Recommend patterns to practice based on weak areas and target company."""
+    recommendations = []
+    
+    # Add weak patterns as recommendations
+    for pattern in weak_patterns[:3]:  # Top 3 weak patterns
+        recommendations.append({
+            "type": "weak_pattern_practice",
+            "pattern": pattern["name"],
+            "domain_id": pattern["domain_id"],
+            "reason": f"Your {pattern['name']} score is {pattern['score']}% — practice to improve",
+            "action": f"Practice {pattern['name']}",
+            "estimated_minutes": pattern["estimated_minutes"],
+            "xp_reward": pattern["xp_reward"],
+            "priority": "high",
+        })
+    
+    # If target company is set, add company-specific pattern recommendation
+    if target_company:
+        recommendations.append({
+            "type": "company_pattern_focus",
+            "pattern": "Company-specific practice",
+            "reason": f"Focus on patterns frequently asked at {target_company}",
+            "action": f"Practice {target_company} questions",
+            "estimated_minutes": 30,
+            "xp_reward": 40,
+            "priority": "medium",
+        })
+    
+    return recommendations[:5]  # Max 5 recommendations
+
+
+def _today_key() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+
+def _title_for_level(level: int) -> Dict[str, Any]:
+    """Return character title info for a given level."""
+    CHARACTER_TITLES = [
+        {"min_level": 1, "title": "Rookie", "emoji": "ðŸŒ±"},
+        {"min_level": 10, "title": "Explorer", "emoji": "ðŸ§­"},
+        {"min_level": 20, "title": "Problem Solver", "emoji": "ðŸ§©"},
+        {"min_level": 30, "title": "Builder", "emoji": "ðŸ› "},
+        {"min_level": 40, "title": "Engineer", "emoji": "âš™ï¸"},
+        {"min_level": 50, "title": "Developer", "emoji": "ðŸš€"},
+        {"min_level": 60, "title": "Specialist", "emoji": "ðŸ§ "},
+        {"min_level": 70, "title": "Architect", "emoji": "ðŸ—"},
+        {"min_level": 80, "title": "Senior Engineer", "emoji": "âš¡"},
+        {"min_level": 90, "title": "Expert", "emoji": "ðŸ‘‘"},
+        {"min_level": 100, "title": "Master Engineer", "emoji": "ðŸŒŒ"},
+    ]
+    pick = CHARACTER_TITLES[0]
+    for t in CHARACTER_TITLES:
+        if level >= t["min_level"]:
+            pick = t
+    return pick
+
+
+def _emoji_for_level(level: int) -> str:
+    return _title_for_level(level)["emoji"]
+
+
+# â”€â”€â”€ Router endpoint â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+@router.get("/state", summary="Return the canonical journey state for the user.")
+async def journey_state_endpoint(user=Depends(get_current_user)):
+    """Return the canonical JourneyState for the authenticated user.
+
+    This is the single source of truth the frontend uses to render:
+      - The student's character position on the world map
+      - Today's next action (the answer to "What do I do next?")
+      - SRS reviews due
+      - Practice tasks
+      - Optional challenge
+      - Career readiness + company context
+      - Priority scoring so the student understands why this action
+
+    The Journey Engine composes from:
+      * Study Engine (daily plan: NEXT + REVIEW + PRACTICE + CHALLENGE)
+      * Gamification (Diamonds, level, coins, streak)
+      * Mastery (per-skill scores)
+      * Readiness (interview + OA readiness)
+      * Company blueprints (target company context)
+      * World Registry (progression graph)
+
+    Result: one canonical state, one next action, no ambiguity.
+    """
+    user_id = user["id"]
+    state = await build_journey_state(user_id)
+
+    # Cache for the day (state is deterministic unless user progress changes)
+    try:
+        from app.services.cache import cache
+        import json as _json
+        cached = await cache.get("journey", f"state:{user_id}:{_today_key()}")
+        if cached:
+            # Don't return cached if we just computed a new state â€”
+            # the cache is best-effort for performance, not for correctness.
+            pass
+    except Exception:
+        pass
+
+    return {"success": True, "data": state}

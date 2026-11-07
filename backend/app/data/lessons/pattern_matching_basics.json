@@ -1,0 +1,218 @@
+{
+  "slug": "pattern_matching_basics",
+  "id": "lesson_pattern_matching_001",
+  "title": "String Pattern Matching",
+  "domain": "Programming Fundamentals",
+  "pattern": "Pattern Matching",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Text and pattern",
+      "content": "String pattern matching asks whether a smaller pattern occurs in a larger text, and often where it occurs. A simple algorithm checks possible starting positions one by one.",
+      "example": "Pattern 'cat' occurs in text 'educate' at the substring 'cat'."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Count a match",
+      "prompt": "Does the pattern 'aba' occur in the text 'ababa'?",
+      "options": [
+        "Yes, starting at index 0 and 2",
+        "Yes, only at index 1",
+        "No",
+        "Only after sorting"
+      ],
+      "correct_index": 0,
+      "explanation": "The substrings at indices 0–2 and 2–4 are both 'aba'."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand the naive approach",
+      "content": "The naive search compares the pattern at each possible text position. If the text has length n and the pattern length m, worst-case time is O(nm).",
+      "tip": "Do not stop after the first mismatch if you still need to check later starting positions."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Count candidate starts",
+      "prompt": "A text has length 8 and a pattern has length 3. How many possible starting positions can be checked?",
+      "options": [
+        "3",
+        "5",
+        "6",
+        "8"
+      ],
+      "correct_index": 2,
+      "explanation": "Valid starts are 0 through 8−3 = 5, giving 6 positions."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Reuse previous comparisons",
+      "content": "Efficient algorithms such as Knuth–Morris–Pratt preprocess the pattern so that after a mismatch, they can skip comparisons already known to match. This improves worst-case search to O(n+m).",
+      "example": "KMP uses a prefix table to decide how far the pattern can shift without rechecking matched characters."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What is the main goal of string pattern matching?",
+        "options": [
+          "Sort the text",
+          "Find occurrences of a pattern in text",
+          "Compress the pattern",
+          "Reverse every word"
+        ],
+        "correct_index": 1,
+        "explanation": "Pattern matching searches for a smaller sequence inside a larger text."
+      },
+      {
+        "prompt": "What is the worst-case time of naive matching for text length n and pattern length m?",
+        "options": [
+          "O(n+m) always",
+          "O(nm)",
+          "O(log n)",
+          "O(1)"
+        ],
+        "correct_index": 1,
+        "explanation": "The naive algorithm may compare up to m characters at each of about n positions."
+      },
+      {
+        "prompt": "How many possible start positions exist for n=10 and m=4?",
+        "options": [
+          "4",
+          "6",
+          "7",
+          "10"
+        ],
+        "correct_index": 2,
+        "explanation": "Starts 0 through 6 are valid: 10−4+1 = 7."
+      },
+      {
+        "prompt": "What does KMP preprocess?",
+        "options": [
+          "The pattern",
+          "The computer's memory",
+          "Every possible text",
+          "The output string"
+        ],
+        "correct_index": 0,
+        "explanation": "KMP builds a prefix/failure table from the pattern."
+      },
+      {
+        "prompt": "What is the worst-case time complexity of KMP?",
+        "options": [
+          "O(nm)",
+          "O(n+m)",
+          "O(n²)",
+          "O(2^n)"
+        ],
+        "correct_index": 1,
+        "explanation": "KMP scans the text and pattern in linear time overall."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Define pattern and text positions clearly.",
+    "Trace naive substring matching.",
+    "Understand why repeated comparisons can be expensive.",
+    "Recognize prefix-based approaches such as KMP at a high level."
+  ],
+  "prerequisites": [
+    "strings_basics",
+    "arrays_basics"
+  ],
+  "concepts": [
+    "text",
+    "pattern",
+    "alignment",
+    "naive matching",
+    "prefix function",
+    "KMP"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A match at one alignment means the whole text is searched.",
+      "correction": "A matcher must test all candidate start positions or use a valid skip rule."
+    },
+    {
+      "misconception": "A mismatch always means move one character.",
+      "correction": "Advanced matchers use prior matched information to skip safely."
+    },
+    {
+      "misconception": "KMP is a hash algorithm.",
+      "correction": "KMP uses prefix/suffix structure, not hashing."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Naive match",
+      "input": "text='ababa', pattern='aba'",
+      "trace": [
+        "Align at index 0; compare a,b,a: match.",
+        "Record start index 0.",
+        "Continue at index 1; compare b against a: mismatch; index 2 matches."
+      ],
+      "output": "Matches at indices 0 and 2",
+      "explanation": "Naive matching checks each possible alignment."
+    },
+    {
+      "title": "Count alignments",
+      "input": "Text length n=8, pattern length m=3",
+      "trace": [
+        "Possible starts range from 0 to n-m.",
+        "There are n-m+1 = 6 alignments.",
+        "Each may compare up to m characters."
+      ],
+      "output": "Worst-case O((n-m+1)m)",
+      "explanation": "Repeated character comparisons can make naive matching quadratic."
+    },
+    {
+      "title": "KMP intuition",
+      "input": "Pattern='ababaca'",
+      "trace": [
+        "Build longest proper prefix that is also suffix for each prefix.",
+        "On mismatch, reuse that prefix information.",
+        "Avoid rechecking text characters already known to match."
+      ],
+      "output": "Linear-time matching O(n+m)",
+      "explanation": "KMP uses prefix information to move the pattern without losing possible matches."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "string pattern matching",
+      "practice": "Trace alignments and explain prefix/suffix reuse."
+    },
+    {
+      "company": "TCS",
+      "skill": "string algorithms",
+      "practice": "State the naive complexity and edge cases."
+    },
+    {
+      "company": "Product companies",
+      "skill": "algorithm optimization",
+      "practice": "Understand KMP preprocessing and linear-time guarantee."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about String Pattern Matching?",
+      "answer": "Define pattern and text positions clearly. Trace naive substring matching. Understand why repeated comparisons can be expensive. Recognize prefix-based approaches such as KMP at a high level."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in String Pattern Matching?",
+      "answer": "A matcher must test all candidate start positions or use a valid skip rule."
+    }
+  ]
+}

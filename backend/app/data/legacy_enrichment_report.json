@@ -1,0 +1,18 @@
+{
+  "total_coding_processed": 2879,
+  "enriched_written": 2879,
+  "output": "D:\\Project-Fremen\\backend\\app\\data\\legacy_enriched_coding.json",
+  "by_trust": {
+    "needs_review": 2219,
+    "reviewed": 582,
+    "unverified": 78
+  },
+  "shells_quarantined": 3400,
+  "other_typed": 100,
+  "execution": {
+    "attempted": 0,
+    "succeeded": 0,
+    "mismatch": 0
+  },
+  "note": "Template shells (3,400) NOT fabricated — quarantined. Other typed MCQs (100) covered by verified pool. Enriched coding is LeetCode-complete structurally; automated_checked means solution+testcases present, NOT independently verified."
+}

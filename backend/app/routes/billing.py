@@ -24,13 +24,13 @@ FRONTEND_URL = settings.CORS_ORIGINS.split(",")[0].strip() if settings.CORS_ORIG
 
 PAYPAL_BASE = "https://api-m.sandbox.paypal.com" if settings.PAYPAL_MODE == "sandbox" else "https://api-m.paypal.com"
 
-# Pricing ladder (recurring must always be < lifetime, and yearly < 12x monthly):
-#   monthly < yearly(≈5-6x monthly) < lifetime(≈8-12x monthly)
+# Pricing ladder (yearly < 12x monthly):
+#   monthly < yearly < lifetime
 #   team/enterprise priced per seat/month with yearly ≈ 10x monthly.
 PRICING = {
     "pro_monthly": {"INR": {"amount": "99.00", "currency": "INR"}, "USD": {"amount": "19.00", "currency": "USD"}},
     "lifetime": {"INR": {"amount": "1499.00", "currency": "INR"}, "USD": {"amount": "149.00", "currency": "USD"}},
-    "pro_yearly": {"INR": {"amount": "499.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
+    "pro_yearly": {"INR": {"amount": "899.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
     "team": {"INR": {"amount": "12250.00", "currency": "INR"}, "USD": {"amount": "145.00", "currency": "USD"}},
     "team_yearly": {"INR": {"amount": "119900.00", "currency": "INR"}, "USD": {"amount": "1499.00", "currency": "USD"}},
     "enterprise_monthly": {"INR": {"amount": "66392.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
@@ -148,7 +148,7 @@ async def create_checkout(request: Request, user=Depends(get_current_user)):
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Pro Monthly x{seats} ({price_key['currency']} {price_key['amount']}/seat)",
+        f"BountyCode Pro Monthly x{seats} ({price_key['currency']} {price_key['amount']}/seat)",
         user["id"], seats
     )
 
@@ -207,7 +207,7 @@ async def create_lifetime_checkout(request: Request, user=Depends(get_current_us
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Lifetime ({price_key['currency']} {price_key['amount']})",
+        f"BountyCode Lifetime ({price_key['currency']} {price_key['amount']})",
         user["id"]
     )
 
@@ -265,7 +265,7 @@ async def create_yearly_checkout(request: Request, user=Depends(get_current_user
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Pro Yearly ({price_key['currency']} {price_key['amount']})",
+        f"BountyCode Pro Yearly ({price_key['currency']} {price_key['amount']})",
         user["id"]
     )
 
@@ -335,7 +335,7 @@ async def create_team_checkout(request: Request, user=Depends(get_current_user))
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Team ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
+        f"BountyCode Team ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
         user["id"], seats
     )
 
@@ -405,7 +405,7 @@ async def create_enterprise_checkout(request: Request, user=Depends(get_current_
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Enterprise ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
+        f"BountyCode Enterprise ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
         user["id"], seats
     )
 
@@ -467,7 +467,7 @@ async def create_stripe_checkout(request: Request, user=Depends(get_current_user
                 "currency": price_key["currency"].lower(),
                 "unit_amount": int(float(price_key["amount"]) * 100),
                 "product_data": {
-                    "name": f"PlacementPro {plan}",
+                    "name": f"BountyCode {plan}",
                     "description": f"Plan: {plan}, Seats: {seats}",
                 },
             },
@@ -555,7 +555,7 @@ async def capture_paypal_order(request: Request, user=Depends(get_current_user))
                 {"$set": {"status": "completed", "captured_at": datetime.now(timezone.utc)}},
             )
             try:
-                invoice = invoice_service.generate_invoice(
+                invoice = await invoice_service.generate_invoice(
                     user=user,
                     plan=payment_doc.get("plan", new_plan),
                     amount=float(payment_doc.get("amount", 0)),
@@ -636,7 +636,7 @@ async def paypal_webhook(request: Request):
                     status="completed",
                 )
                 try:
-                    invoice_service.generate_invoice(
+                    await invoice_service.generate_invoice(
                         user=user,
                         plan=new_plan,
                         amount=paid_amount,
@@ -740,13 +740,13 @@ async def billing_status(user=Depends(get_current_user)):
 @router.get("/invoices")
 async def list_invoices(user=Depends(get_current_user)):
     """List the current user's invoices (metadata only)."""
-    return {"invoices": invoice_service.get_user_invoices(user["id"])}
+    return {"invoices": await invoice_service.get_user_invoices(user["id"])}
 
 
 @router.get("/invoices/{invoice_id}")
 async def get_invoice(invoice_id: str, request: Request, user=Depends(get_current_user)):
     """Fetch a single invoice as JSON, or HTML with ?format=html."""
-    invoice = invoice_service.get_invoice(invoice_id)
+    invoice = await invoice_service.get_invoice(invoice_id)
     if not invoice or invoice.get("customer", {}).get("user_id") != str(user["id"]):
         raise HTTPException(status_code=404, detail="Invoice not found")
     if request.query_params.get("format") == "html":
@@ -784,3 +784,181 @@ async def get_plans():
             "currency_inr": inr.get("currency"),
         })
     return {"plans": out, "seat_min": {"team": 5, "enterprise": 10}, "seat_max": {"team": 50}}
+
+
+@router.post("/checkout/razorpay")
+async def create_razorpay_order(request: Request, user=Depends(get_current_user)):
+    """Create a Razorpay order for Indian users (INR + UPI)."""
+    if not settings.RAZORPAY_KEY_ID:
+        raise HTTPException(status_code=500, detail="Razorpay not configured")
+
+    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
+    plan_key = body.get("plan", "pro_monthly")
+    seats = body.get("seats", 1)
+
+    price_key = _get_pricing(plan_key, "IN")
+    final_amount = float(price_key["amount"]) * seats
+    currency = price_key["currency"]
+
+    coupon_code = body.get("coupon_code")
+    if coupon_code:
+        coupon_result = await apply_coupon_service(user["id"], coupon_code, plan_key.replace("_monthly", "").replace("_yearly", "").replace("_lifetime", ""), final_amount, "monthly")
+        if coupon_result.get("valid"):
+            final_amount = coupon_result["final_amount"]
+
+    order_data = {
+        "amount": int(final_amount * 100),
+        "currency": currency,
+        "receipt": f"rc_{user['id']}_{plan_key}",
+        "notes": {
+            "user_id": str(user["id"]),
+            "plan": plan_key,
+            "seats": str(seats),
+        },
+    }
+
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(
+            "https://api.razorpay.com/v1/orders",
+            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET),
+            headers={"Content-Type": "application/json"},
+            json=order_data,
+        )
+        resp.raise_for_status()
+        order = resp.json()
+
+    await users_collection.update_one(
+        {"_id": ObjectId(user["id"])},
+        {
+            "$set": {
+                "razorpay_order_id": order["id"],
+                "plan_pending": plan_key,
+            },
+        },
+    )
+
+    await record_payment(
+        user_id=user["id"],
+        amount=final_amount,
+        currency=currency,
+        plan=plan_key,
+        billing_cycle="yearly" if "yearly" in plan_key else "monthly" if "monthly" in plan_key else "lifetime",
+        payment_method="razorpay",
+        payment_id=order["id"],
+        status="pending",
+        metadata={"seats": seats, "coupon_code": coupon_code},
+    )
+
+    return {
+        "order_id": order["id"],
+        "amount": order["amount"],
+        "currency": order["currency"],
+        "key_id": settings.RAZORPAY_KEY_ID,
+    }
+
+
+def _verify_razorpay_signature(body: bytes, headers: dict) -> bool:
+    """Verify Razorpay webhook signature."""
+    if not settings.RAZORPAY_WEBHOOK_SECRET:
+        return False
+
+    signature = headers.get("x-razorpay-signature", "")
+    if not signature:
+        return False
+
+    secret = settings.RAZORPAY_WEBHOOK_SECRET.encode()
+    computed = hmac.new(secret, body, hashlib.sha256).hexdigest()
+    expected = hmac.new(secret, body, hashlib.sha256).hexdigest()
+
+    try:
+        return hmac.compare_digest(signature, computed)
+    except Exception:
+        return False
+
+
+@router.post("/webhook/razorpay")
+async def razorpay_webhook(request: Request):
+    """Handle Razorpay payment webhook events (UPI, cards, netbanking)."""
+    body = await request.body()
+    headers = dict(request.headers)
+
+    if not _verify_razorpay_signature(body, headers):
+        raise HTTPException(status_code=401, detail="Invalid webhook signature")
+
+    try:
+        payload = json.loads(body)
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
+
+    event_type = payload.get("event", "")
+
+    if event_type == "payment.captured":
+        payment = payload.get("payload", {}).get("payment", {}).get("entity", {})
+        order_id = payment.get("order_id", "")
+        notes = payment.get("notes", {})
+
+        user_id = notes.get("user_id", "")
+        plan_key = notes.get("plan", "pro")
+        seats = int(notes.get("seats", 1))
+
+        if not user_id or not ObjectId.is_valid(user_id):
+            return {"status": "ok"}
+
+        new_plan = "pro" if plan_key in ("pro_monthly", "pro_monthly") else plan_key
+        billing_cycle = "lifetime" if "lifetime" in plan_key else "yearly" if "yearly" in plan_key else "monthly"
+
+        amount = float(payment.get("amount", 0)) / 100.0
+        currency = payment.get("currency", "INR").upper()
+
+        await users_collection.update_one(
+            {"_id": ObjectId(user_id)},
+            {
+                "$set": {
+                    "plan": new_plan,
+                    "plan_updated_at": datetime.now(timezone.utc),
+                },
+                "$unset": {"razorpay_order_id": "", "plan_pending": ""},
+            },
+        )
+
+        from app.services.trial import mark_trial_converted
+        await mark_trial_converted(user_id)
+
+        await record_payment(
+            user_id=user_id,
+            amount=amount,
+            currency=currency,
+            plan=new_plan,
+            billing_cycle=billing_cycle,
+            payment_method="razorpay_webhook",
+            payment_id=order_id,
+            status="completed",
+        )
+
+        user = await users_collection.find_one({"_id": ObjectId(user_id)})
+        if user:
+            try:
+                await invoice_service.generate_invoice(
+                    user=user,
+                    plan=new_plan,
+                    amount=amount,
+                    currency=currency,
+                    transaction_id=order_id,
+                    billing_cycle="one-time" if "lifetime" in plan_key else billing_cycle,
+                )
+            except Exception:
+                pass
+
+    elif event_type == "payment.failed":
+        payment = payload.get("payload", {}).get("payment", {}).get("entity", {})
+        order_id = payment.get("order_id", "")
+        notes = payment.get("notes", {})
+        user_id = notes.get("user_id", "")
+
+        if user_id and ObjectId.is_valid(user_id):
+            await users_collection.update_one(
+                {"_id": ObjectId(user_id)},
+                {"$set": {"plan": "free", "plan_pending": ""}},
+            )
+
+    return {"status": "ok"}

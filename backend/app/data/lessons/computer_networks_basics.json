@@ -1,0 +1,247 @@
+{
+  "slug": "computer_networks_basics",
+  "id": "lesson_computer_networks_001",
+  "title": "Computer Networks Fundamentals",
+  "domain": "Computer Science Fundamentals",
+  "pattern": "Computer Networks",
+  "difficulty": "easy",
+  "duration_min": 24,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "How devices communicate",
+      "content": "A computer network connects devices so they can exchange data. Protocols define how data is formatted, addressed, transmitted and received.",
+      "example": "A browser uses application protocols such as HTTP or HTTPS to request a web page."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify DNS",
+      "prompt": "What does DNS primarily do?",
+      "options": [
+        "Encrypts hard drives",
+        "Maps domain names to IP addresses",
+        "Compresses images",
+        "Assigns CPU time"
+      ],
+      "correct_index": 1,
+      "explanation": "DNS resolves human-readable names such as example.com to IP addresses."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand TCP and UDP",
+      "content": "TCP provides a reliable, ordered byte stream with connection setup and retransmission. UDP sends datagrams without guaranteeing delivery or order; applications choose based on their needs.",
+      "tip": "TCP is not automatically faster or better; low-latency applications may prefer UDP."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose a transport protocol",
+      "prompt": "Which transport protocol is commonly used when an application needs reliable, ordered delivery?",
+      "options": [
+        "UDP",
+        "TCP",
+        "DNS",
+        "ARP"
+      ],
+      "correct_index": 1,
+      "explanation": "TCP provides reliable, ordered delivery using acknowledgements and retransmissions."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "What HTTPS adds",
+      "content": "HTTPS is HTTP protected by TLS. TLS helps provide encryption, integrity and server authentication for the connection.",
+      "example": "The browser validates a certificate before trusting the server identity for a secure HTTPS connection."
+    },
+    {
+      "step_number": 6,
+      "step_type": "api_scenario",
+      "title": "Choose the correct API response",
+      "content": "A request can be authenticated and still fail because the requested resource does not exist. Separate authentication failures from resource lookup failures.",
+      "request_preview": "GET /api/v1/orders/42\nAuthorization: Bearer valid-token\n\nDatabase lookup: no order exists with id 42",
+      "prompt": "Which HTTP status should the API return for this authenticated request?",
+      "options": [
+        "200 OK with an empty list",
+        "201 Created",
+        "401 Unauthorized",
+        "404 Not Found"
+      ],
+      "correct_index": 3,
+      "feedback_by_option": {
+        "0": "An empty list is usually used for a collection query that found no matching items. This request asks for one specific order.",
+        "1": "201 Created is for a successful resource creation. The client sent a GET request.",
+        "2": "401 Unauthorized is for missing or invalid authentication. The request has a valid token; the resource lookup failed."
+      },
+      "hints": [
+        "First decide whether the request is authenticated. The prompt says the token is valid.",
+        "Next ask whether order 42 exists. It does not.",
+        "Choose the status for a missing specific resource, not a login failure."
+      ],
+      "explanation": "404 Not Found is appropriate because authentication succeeded but the requested order does not exist. A 401 would incorrectly blame the credentials."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What does an IP address identify?",
+        "options": [
+          "A network interface or host address",
+          "A user's password",
+          "A file format",
+          "A CPU process"
+        ],
+        "correct_index": 0,
+        "explanation": "IP addresses identify network interfaces for routing packets."
+      },
+      {
+        "prompt": "Which protocol resolves domain names?",
+        "options": [
+          "FTP",
+          "DNS",
+          "TCP",
+          "SMTP"
+        ],
+        "correct_index": 1,
+        "explanation": "DNS maps domain names to IP addresses."
+      },
+      {
+        "prompt": "Which protocol provides reliable ordered delivery?",
+        "options": [
+          "UDP",
+          "TCP",
+          "IP alone",
+          "ARP"
+        ],
+        "correct_index": 1,
+        "explanation": "TCP handles sequencing, acknowledgements and retransmission."
+      },
+      {
+        "prompt": "HTTPS protects HTTP using:",
+        "options": [
+          "TLS",
+          "SQL",
+          "DHCP",
+          "Bluetooth"
+        ],
+        "correct_index": 0,
+        "explanation": "HTTPS uses TLS to secure HTTP communication."
+      },
+      {
+        "prompt": "Which device forwards packets between networks?",
+        "options": [
+          "Switch only",
+          "Router",
+          "Keyboard",
+          "Monitor"
+        ],
+        "correct_index": 1,
+        "explanation": "Routers forward IP packets between networks."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Explain the purpose of layered network models.",
+    "Distinguish TCP and UDP.",
+    "Describe IP addresses, ports and DNS.",
+    "Trace a basic HTTP request.",
+    "Understand latency, bandwidth and packet delivery."
+  ],
+  "prerequisites": [
+    "os_basics"
+  ],
+  "concepts": [
+    "TCP",
+    "UDP",
+    "IP address",
+    "port",
+    "DNS",
+    "HTTP",
+    "client-server",
+    "latency"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "DNS is the same as HTTP.",
+      "correction": "DNS resolves names to records such as IP addresses; HTTP carries application requests and responses."
+    },
+    {
+      "misconception": "TCP and IP are interchangeable.",
+      "correction": "IP routes packets between hosts; TCP provides a reliable ordered byte stream over IP."
+    },
+    {
+      "misconception": "A port identifies a computer on the internet.",
+      "correction": "An IP address identifies a host/interface; a port identifies a service endpoint on that host."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace a web request",
+      "input": "Browser opens https://example.com",
+      "trace": [
+        "DNS resolves example.com to an IP address.",
+        "The browser establishes a transport connection.",
+        "It sends an HTTP request to the server.",
+        "The server returns an HTTP response."
+      ],
+      "output": "DNS → connection → HTTP request → response",
+      "explanation": "Separating the steps makes network debugging easier."
+    },
+    {
+      "title": "Choose TCP or UDP",
+      "input": "Reliable file transfer versus live voice",
+      "trace": [
+        "File transfer needs ordered, reliable delivery.",
+        "Live voice often values low latency and can tolerate some packet loss.",
+        "TCP and UDP make different delivery trade-offs."
+      ],
+      "output": "TCP for reliable transfer; UDP is common for real-time media",
+      "explanation": "Choose based on the application's requirements, not on one protocol being universally better."
+    },
+    {
+      "title": "Understand a port",
+      "input": "A server IP hosts HTTPS and SSH",
+      "trace": [
+        "The IP identifies the destination host.",
+        "Port 443 commonly serves HTTPS.",
+        "Port 22 commonly serves SSH."
+      ],
+      "output": "IP address + port identifies the service endpoint",
+      "explanation": "Ports allow multiple services to share a host address."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "computer networks and web basics",
+      "practice": "Explain DNS, TCP, HTTP and port numbers."
+    },
+    {
+      "company": "Infosys",
+      "skill": "networking fundamentals",
+      "practice": "Trace a request from browser to server."
+    },
+    {
+      "company": "Accenture",
+      "skill": "technical support and networking",
+      "practice": "Differentiate connectivity, name-resolution and application errors."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Computer Networks Fundamentals?",
+      "answer": "Explain the purpose of layered network models. Distinguish TCP and UDP. Describe IP addresses, ports and DNS. Trace a basic HTTP request. Understand latency, bandwidth and packet delivery."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Computer Networks Fundamentals.",
+      "answer": "DNS resolves names to records such as IP addresses; HTTP carries application requests and responses."
+    }
+  ]
+}

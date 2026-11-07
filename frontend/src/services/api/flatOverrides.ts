@@ -108,13 +108,31 @@ export const flatOverrides = {
       method: "POST",
       body: JSON.stringify(payload),
     }),
-  completeAptitudeTest: (testId: string) =>
+  completeAptitudeTest: (testId: string, timeTaken: number, answers: Record<string, any>, category?: string, questions?: any[]) =>
     requestWithRetry(
       `/api/v1/aptitude/${encodeURIComponent(testId)}/complete`,
       {
         method: "POST",
+        body: JSON.stringify({ test_id: testId, time_taken: timeTaken, answers, category, questions }),
       },
     ),
+
+  // ---- repair loop (closed-loop return path) ----
+  getRepairMissions: () => requestWithRetry("/api/v1/repair/missions"),
+  completeRepairMission: (missionId: string) =>
+    requestWithRetry("/api/v1/repair/missions/complete", {
+      method: "POST",
+      body: JSON.stringify({ mission_id: missionId }),
+    }),
+  getRepairRetest: (skill: string, count = 3) =>
+    requestWithRetry(
+      `/api/v1/repair/retest?skill=${encodeURIComponent(skill)}&count=${count}`,
+    ),
+  submitRepairRetest: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/repair/retest/submit", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
 
   // ---- resume (convenience aliases) ----
   uploadResume: (file: File) => {
@@ -213,20 +231,6 @@ export const flatOverrides = {
       method: "POST",
       body: JSON.stringify(body),
     }),
-  getStudyGroups: () => requestWithRetry("/api/v1/hook/study-groups"),
-  createStudyGroup: (body: { name: string; description?: string }) =>
-    requestWithRetry("/api/v1/hook/study-groups/create", {
-      method: "POST",
-      body: JSON.stringify(body),
-    }),
-  joinStudyGroup: (groupId: string) =>
-    requestWithRetry(
-      `/api/v1/hook/study-groups/${encodeURIComponent(groupId)}/join`,
-      {
-        method: "POST",
-      },
-    ),
-
   // ---- company prep / mocks ----
   getCompanies: () => requestWithRetry("/api/v1/company/companies"),
   getCompanyGuide: (companyId: string) =>
@@ -252,19 +256,6 @@ export const flatOverrides = {
       )}&page=${page}&limit=${limit}`,
     ),
   getMockCompanies: () => requestWithRetry("/api/v1/company-mocks/companies"),
-  getMockHistory: () => requestWithRetry("/api/v1/mock-interview/history"),
-  startMockTest: (payload: Record<string, unknown>) =>
-    requestWithRetry("/api/v1/mock-interview/start", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    }),
-  completeMockTest: (sessionId: string) =>
-    requestWithRetry(
-      `/api/v1/mock-interview/${encodeURIComponent(sessionId)}/complete`,
-      {
-        method: "POST",
-      },
-    ),
 
   // ---- 30-day daily challenge (separate router) ----
   getDailyChallenge: () => requestWithRetry("/api/v1/daily/challenge"),
@@ -343,7 +334,7 @@ export const flatOverrides = {
   getProfileStats: () =>
     requestWithRetry("/api/v1/profile/stats") as Promise<{
       level?: number;
-      xp?: number;
+      diamonds?: number;
       streak?: number;
       total_solved?: number;
       easy?: number;
@@ -379,27 +370,6 @@ export const flatOverrides = {
         method: "DELETE",
       },
     ),
-
-  // ---- battles ----
-  joinBattleQueue: (body: Record<string, unknown> = {}) =>
-    requestWithRetry("/api/v1/battles/queue", {
-      method: "POST",
-      body: JSON.stringify(body),
-    }),
-  getBattleQueueStatus: () => requestWithRetry("/api/v1/battles/queue/status"),
-  getBattleState: (id: string) =>
-    requestWithRetry(`/api/v1/battles/${encodeURIComponent(id)}`),
-  getBattleHistory: () => requestWithRetry("/api/v1/battles/history"),
-  getBattleLeaderboard: () => requestWithRetry("/api/v1/battles/leaderboard"),
-  submitBattleSolution: (id: string, body: Record<string, unknown>) =>
-    requestWithRetry(`/api/v1/battles/${encodeURIComponent(id)}/submit`, {
-      method: "POST",
-      body: JSON.stringify(body),
-    }),
-  surrenderBattle: (id: string) =>
-    requestWithRetry(`/api/v1/battles/${encodeURIComponent(id)}/surrender`, {
-      method: "POST",
-    }),
 
   // ---- practice sessions ----
   createPracticeSession: (body: Record<string, unknown> = {}) =>
@@ -502,60 +472,11 @@ export const flatOverrides = {
       body: JSON.stringify(body),
     }),
 
-  // ---- salary + cover letter ----
-  generateCoverLetter: (
-    resumeId: string,
-    jobDescription: string,
-    companyName: string,
-  ) =>
-    requestWithRetry("/api/v1/tools/cover-letter", {
-      method: "POST",
-      body: JSON.stringify({
-        resume_id: resumeId,
-        job_description: jobDescription,
-        company_name: companyName,
-      }),
-    }),
+  // ---- tools ----
   generateLinkedInAbout: (resumeId: string, targetRole: string) =>
     requestWithRetry("/api/v1/tools/linkedin-about", {
       method: "POST",
       body: JSON.stringify({ resume_id: resumeId, target_role: targetRole }),
-    }),
-  getSalaryBenchmark: (
-    jobTitle: string,
-    location: string,
-    company = "",
-    yearsExperience = 0,
-    level = "",
-  ) =>
-    requestWithRetry("/api/v1/salary/benchmark", {
-      method: "POST",
-      body: JSON.stringify({
-        job_title: jobTitle,
-        location,
-        company,
-        years_experience: yearsExperience,
-        level,
-      }),
-    }),
-  getSalaryNegotiationTips: (
-    jobTitle: string,
-    offeredSalary: number,
-    location: string,
-    yearsExperience = 0,
-    companySize = "",
-    benefits: string[] = [],
-  ) =>
-    requestWithRetry("/api/v1/tools/salary-negotiation", {
-      method: "POST",
-      body: JSON.stringify({
-        job_title: jobTitle,
-        offered_salary: offeredSalary,
-        location,
-        years_experience: yearsExperience,
-        company_size: companySize,
-        benefits,
-      }),
     }),
 
   // ---- placement ----
@@ -594,13 +515,6 @@ export const flatOverrides = {
   getCompanyFingerprint: (companyId: string) =>
     requestWithRetry(
       `/api/v1/fingerprint/company/${encodeURIComponent(companyId)}`,
-    ),
-
-  // ---- journeys ----
-  getLearningJourneys: () => requestWithRetry("/api/v1/learning/journeys"),
-  getJourneyDetail: (journeyId: string) =>
-    requestWithRetry(
-      `/api/v1/learning/journeys/${encodeURIComponent(journeyId)}`,
     ),
 
   // ---- AI debugger ----
@@ -721,20 +635,6 @@ export const flatOverrides = {
   getFriendSuggestions: (q?: string, limit = 10) =>
     requestWithRetry(
       `/api/v1/friends/suggestions?${q ? `q=${encodeURIComponent(q)}&` : ""}limit=${limit}`,
-    ),
-
-  // ---- Battle challenges ----
-  createBattleChallenge: (mode: string, difficulty: string, language: string) =>
-    requestWithRetry("/api/v1/battles/challenge", {
-      method: "POST",
-      body: JSON.stringify({ mode, difficulty, language }),
-    }),
-  getBattleChallenge: (token: string) =>
-    requestWithRetry(`/api/v1/battles/challenge/${encodeURIComponent(token)}`),
-  acceptBattleChallenge: (token: string) =>
-    requestWithRetry(
-      `/api/v1/battles/challenge/${encodeURIComponent(token)}/accept`,
-      { method: "POST" },
     ),
 
   // ---- Squad join codes ----

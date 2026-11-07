@@ -1,0 +1,1573 @@
+[
+  {
+    "id": "tuf_0321",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Longest Substring Without Repeating",
+    "question_title": "Longest Substring Without Repeating",
+    "statement": "Longest Substring Without Repeating. Solve the Striver A2Z problem 'Longest Substring Without Repeating' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Longest Substring Without Repeating. Solve the Striver A2Z problem 'Longest Substring Without Repeating' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the requ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Substring Without Repeating - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 2248,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 59,
+    "upvotes": 303
+  },
+  {
+    "id": "tuf_0322",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Hard Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 10,
+    "question": "Max Consecutive Ones III",
+    "question_title": "Max Consecutive Ones III",
+    "statement": "Max Consecutive Ones III. Solve the Striver A2Z problem 'Max Consecutive Ones III' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Max Consecutive Ones III. Solve the Striver A2Z problem 'Max Consecutive Ones III' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def max(nums):\n    # Max Consecutive Ones III - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "max",
+    "leetcode_number": 2255,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 61,
+    "upvotes": 174
+  },
+  {
+    "id": "tuf_0323",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Fruit Into Baskets",
+    "question_title": "Fruit Into Baskets",
+    "statement": "Fruit Into Baskets. Solve the Striver A2Z problem 'Fruit Into Baskets' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Fruit Into Baskets. Solve the Striver A2Z problem 'Fruit Into Baskets' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def fruit(nums):\n    # Fruit Into Baskets - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "fruit",
+    "leetcode_number": 2262,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 28,
+    "upvotes": 385
+  },
+  {
+    "id": "tuf_0324",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Hard Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 10,
+    "question": "Longest Repeating Character Replacement",
+    "question_title": "Longest Repeating Character Replacement",
+    "statement": "Longest Repeating Character Replacement. Solve the Striver A2Z problem 'Longest Repeating Character Replacement' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Longest Repeating Character Replacement. Solve the Striver A2Z problem 'Longest Repeating Character Replacement' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return th",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Repeating Character Replacement - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 2269,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 10,
+    "upvotes": 434
+  },
+  {
+    "id": "tuf_0325",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Binary Subarrays With Sum",
+    "question_title": "Binary Subarrays With Sum",
+    "statement": "Binary Subarrays With Sum. Solve the Striver A2Z problem 'Binary Subarrays With Sum' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Binary Subarrays With Sum. Solve the Striver A2Z problem 'Binary Subarrays With Sum' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def binary(nums):\n    # Binary Subarrays With Sum - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "binary",
+    "leetcode_number": 2276,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 23,
+    "upvotes": 448
+  },
+  {
+    "id": "tuf_0326",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Hard Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 10,
+    "question": "Count Nice Subarrays",
+    "question_title": "Count Nice Subarrays",
+    "statement": "Count Nice Subarrays. Solve the Striver A2Z problem 'Count Nice Subarrays' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Count Nice Subarrays. Solve the Striver A2Z problem 'Count Nice Subarrays' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Nice Subarrays - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 2283,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 64,
+    "upvotes": 162
+  },
+  {
+    "id": "tuf_0327",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Number of Substrings with All Three Characters",
+    "question_title": "Number of Substrings with All Three Characters",
+    "statement": "Number of Substrings with All Three Characters. Solve the Striver A2Z problem 'Number of Substrings with All Three Characters' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Number of Substrings with All Three Characters. Solve the Striver A2Z problem 'Number of Substrings with All Three Characters' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Prob",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def number(nums):\n    # Number of Substrings with All Three Characters - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "number",
+    "leetcode_number": 2290,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 32,
+    "upvotes": 461
+  },
+  {
+    "id": "tuf_0328",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Hard Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 10,
+    "question": "Maximum Points from Cards",
+    "question_title": "Maximum Points from Cards",
+    "statement": "Maximum Points from Cards. Solve the Striver A2Z problem 'Maximum Points from Cards' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Maximum Points from Cards. Solve the Striver A2Z problem 'Maximum Points from Cards' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sh",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum Points from Cards - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 2297,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 76,
+    "upvotes": 287
+  },
+  {
+    "id": "tuf_0329",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Longest Substring with At Most K Distinct",
+    "question_title": "Longest Substring with At Most K Distinct",
+    "statement": "Longest Substring with At Most K Distinct. Solve the Striver A2Z problem 'Longest Substring with At Most K Distinct' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Longest Substring with At Most K Distinct. Solve the Striver A2Z problem 'Longest Substring with At Most K Distinct' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Ret",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Substring with At Most K Distinct - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 2304,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 335
+  },
+  {
+    "id": "tuf_0330",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Hard Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 10,
+    "question": "Subarrays with K Different Integers",
+    "question_title": "Subarrays with K Different Integers",
+    "statement": "Subarrays with K Different Integers. Solve the Striver A2Z problem 'Subarrays with K Different Integers' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Subarrays with K Different Integers. Solve the Striver A2Z problem 'Subarrays with K Different Integers' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the requir",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def subarrays(nums):\n    # Subarrays with K Different Integers - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "subarrays",
+    "leetcode_number": 2311,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 484
+  },
+  {
+    "id": "tuf_0331",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Minimum Window Substring",
+    "question_title": "Minimum Window Substring",
+    "statement": "Minimum Window Substring. Solve the Striver A2Z problem 'Minimum Window Substring' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Minimum Window Substring. Solve the Striver A2Z problem 'Minimum Window Substring' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sh",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Window Substring - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 2318,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 25,
+    "upvotes": 283
+  },
+  {
+    "id": "tuf_0332",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Hard Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 10,
+    "question": "Minimum Window Subsequence",
+    "question_title": "Minimum Window Subsequence",
+    "statement": "Minimum Window Subsequence. Solve the Striver A2Z problem 'Minimum Window Subsequence' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Minimum Window Subsequence. Solve the Striver A2Z problem 'Minimum Window Subsequence' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Window Subsequence - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 2325,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 27,
+    "upvotes": 460
+  },
+  {
+    "id": "tuf_0333",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Longest Substring Without Repeating (Sliding Wind #13)",
+    "question_title": "Longest Substring Without Repeating (Sliding Wind #13)",
+    "statement": "Longest Substring Without Repeating (Sliding Wind #13). Solve the Striver A2Z problem 'Longest Substring Without Repeating (Sliding Wind #13)' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Longest Substring Without Repeating (Sliding Wind #13). Solve the Striver A2Z problem 'Longest Substring Without Repeating (Sliding Wind #13)' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (patt",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Substring Without Repeating (Sliding Wind #13) - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 2332,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 391
+  },
+  {
+    "id": "tuf_0334",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Hard Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 10,
+    "question": "Max Consecutive Ones III (Sliding Wind #14)",
+    "question_title": "Max Consecutive Ones III (Sliding Wind #14)",
+    "statement": "Max Consecutive Ones III (Sliding Wind #14). Solve the Striver A2Z problem 'Max Consecutive Ones III (Sliding Wind #14)' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Max Consecutive Ones III (Sliding Wind #14). Solve the Striver A2Z problem 'Max Consecutive Ones III (Sliding Wind #14)' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Hard Problems). R",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def max(nums):\n    # Max Consecutive Ones III (Sliding Wind #14) - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "max",
+    "leetcode_number": 2339,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 77,
+    "upvotes": 336
+  },
+  {
+    "id": "tuf_0335",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Sliding Window & Two Pointer Combined Problems",
+    "sub_topic": "Medium Problems",
+    "pattern": "Sliding Window",
+    "tuf_step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 10,
+    "question": "Fruit Into Baskets (Sliding Wind #15)",
+    "question_title": "Fruit Into Baskets (Sliding Wind #15)",
+    "statement": "Fruit Into Baskets (Sliding Wind #15). Solve the Striver A2Z problem 'Fruit Into Baskets (Sliding Wind #15)' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Sliding Window & Two Pointer Combined Problems asked in top product companies.",
+    "description": "Fruit Into Baskets (Sliding Wind #15). Solve the Striver A2Z problem 'Fruit Into Baskets (Sliding Wind #15)' from TakeUForward step 'Sliding Window & Two Pointer Combined Problems' (pattern: Medium Problems). Return the ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Expand right, shrink left",
+      "Frequency map"
+    ],
+    "solution": {
+      "code": "def fruit(nums):\n    # Fruit Into Baskets (Sliding Wind #15) - Sliding Window & Two Pointer Combined Problems\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "fruit",
+    "leetcode_number": 2346,
+    "dsa_guide": {
+      "approach": "Sliding Window",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Sliding Window"
+      ],
+      "tips": [
+        "Expand right, shrink left",
+        "Frequency map"
+      ]
+    },
+    "source": "TakeUForward - Sliding Window & Two Pointer Combined Problems",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 86,
+    "upvotes": 212
+  }
+]

@@ -1,0 +1,253 @@
+{
+  "slug": "syllogisms",
+  "id": "lesson_syllogisms_001",
+  "title": "Syllogisms",
+  "domain": "Logical Reasoning",
+  "pattern": "Syllogisms",
+  "difficulty": "medium",
+  "duration_min": 30,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Treat statements as facts",
+      "content": "A syllogism asks what must be true if the given statements are true. Do not use real-world knowledge that is not stated.",
+      "example": "All roses are flowers. All flowers are plants. Therefore, all roses are plants.",
+      "tip": "Only conclusions forced by the statements are correct."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Follow a chain",
+      "prompt": "Statements: All cats are mammals. All mammals are animals. Which conclusion follows?",
+      "options": ["All animals are cats", "All cats are animals", "Some animals are not mammals", "No cats are animals"],
+      "correct_index": 1,
+      "explanation": "Every cat is a mammal and every mammal is an animal, so every cat is an animal.",
+      "hints": ["Represent each category as a set.", "Follow containment from A to B to C."]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand some and no",
+      "content": "'Some A are B' means at least one item belongs to both sets. 'No A are B' means the sets do not overlap. 'Some A are not B' means at least one A lies outside B.",
+      "tip": "A statement about 'some' does not mean 'all'."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Avoid an invalid inference",
+      "prompt": "Statements: All A are B. Some B are C. Does it necessarily follow that some A are C?",
+      "options": ["Yes, always", "No, not necessarily", "All A are C", "No A are B"],
+      "correct_index": 1,
+      "explanation": "The B items that are C may be outside the A subset. Overlap between A and C is not guaranteed.",
+      "hints": ["The 'some' elements of B may lie outside A.", "Try one valid arrangement where the conclusion is false."]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Use a quick Venn diagram",
+      "content": "Draw one circle inside another for 'all'. Separate circles for 'no'. For 'some', show a clear overlap or a marker in the relevant region. Test whether the conclusion is true in every arrangement allowed by the statements."
+    },
+    {
+      "step_number": 6,
+      "step_type": "order_steps",
+      "title": "Test a conclusion",
+      "content": "A methodical check prevents plausible-but-false answers.",
+      "prompt": "Arrange the steps to test a syllogism conclusion.",
+      "options": [
+        "Accept only if true in every valid arrangement",
+        "Draw the sets from the statements",
+        "Try to find a counterexample arrangement",
+        "Read the statements as given facts"
+      ],
+      "correct_order": [3, 1, 2, 0],
+      "explanation": "Facts → diagram → counterexample test → accept only if forced.",
+      "hints": ["A single counterexample kills the conclusion.", "Do not use outside knowledge."]
+    },
+    {
+      "step_number": 7,
+      "step_type": "practice",
+      "title": "No means disjoint",
+      "prompt": "Statements: No pens are pencils. Which conclusion follows?",
+      "options": ["All pencils are pens", "Some pens are pencils", "No pencils are pens", "All pens are pencils"],
+      "correct_index": 2,
+      "explanation": "If the sets do not overlap, no pencil is a pen.",
+      "hints": ["'No' means empty intersection.", "The reverse 'no' statement also holds."]
+    },
+    {
+      "step_number": 8,
+      "step_type": "debug_choice",
+      "title": "Catch the some-to-all error",
+      "content": "A student concludes 'All students are athletes' from 'Some students are athletes'.",
+      "code": "students = {'A', 'B', 'C'}\nathletes = {'A'}\nconclusion_is_all = students <= athletes\nprint(conclusion_is_all)",
+      "prompt": "Why is that invalid?",
+      "options": [
+        "'Some' only guarantees at least one shared case, not every student",
+        "'Some' always means all",
+        "Athletes cannot be students",
+        "The statement is impossible"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "Correct. 'Some' is existential, not universal.",
+        "2": "That is the error being diagnosed.",
+        "3": "The statement already allows shared members.",
+        "4": "The statement is possible; the over-strong conclusion is not."
+      },
+      "explanation": "'Some students are athletes' does not force every student to be an athlete.",
+      "hints": ["Translate 'some' as at least one.", "Ask whether every member must satisfy the conclusion."]
+    },
+    {
+      "step_number": 9,
+      "step_type": "interactive",
+      "title": "Forced negative conclusion",
+      "prompt": "Statements: No A are B. Some C are A. Which conclusion follows?",
+      "options": ["Some C are not B", "All C are B", "Some B are A", "No C are A"],
+      "correct_index": 0,
+      "explanation": "The C items that are A cannot be B, so at least some C are not B.",
+      "hints": ["Place the overlapping C-A region outside B.", "That region proves some C are not B."]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Statements: All A are B. All B are C. Which conclusion follows?",
+        "options": ["All C are A", "All A are C", "No A are C", "Some C are not B"],
+        "correct_index": 1,
+        "explanation": "A ⊆ B ⊆ C implies A ⊆ C."
+      },
+      {
+        "prompt": "Statements: No pens are pencils. Which conclusion follows?",
+        "options": ["All pencils are pens", "Some pens are pencils", "No pencils are pens", "All pens are pencils"],
+        "correct_index": 2,
+        "explanation": "Disjoint sets work both ways."
+      },
+      {
+        "prompt": "Statements: Some students are athletes. Which conclusion is certain?",
+        "options": ["All students are athletes", "Some athletes are students", "No students are athletes", "All athletes are students"],
+        "correct_index": 1,
+        "explanation": "Shared members are both athletes and students."
+      },
+      {
+        "prompt": "All doctors are graduates. Some graduates are artists. Does some doctor is an artist follow?",
+        "options": ["Yes", "No, not necessarily", "All artists are doctors", "No doctors are graduates"],
+        "correct_index": 1,
+        "explanation": "Artist-graduates may be outside the doctor group."
+      },
+      {
+        "prompt": "No A are B. Some C are A. Which conclusion follows?",
+        "options": ["Some C are not B", "All C are B", "Some B are A", "No C are A"],
+        "correct_index": 0,
+        "explanation": "C∩A lies outside B."
+      },
+      {
+        "prompt": "All cats are mammals. All mammals are animals. Conclusion?",
+        "options": ["All animals are cats", "All cats are animals", "No cats are animals", "Some animals are not mammals"],
+        "correct_index": 1,
+        "explanation": "Subset chain forces all cats are animals."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Translate universal and existential statements into set relationships.",
+    "Use subset chains to derive necessary conclusions.",
+    "Distinguish all, some and no statements.",
+    "Reject conclusions that are not guaranteed by the premises."
+  ],
+  "concepts": ["all", "some", "no", "subset", "overlap", "disjoint sets", "necessary conclusion", "Venn diagram"],
+  "common_misconceptions": [
+    {
+      "misconception": "Some B are C means some A are C when all A are B.",
+      "correction": "The B elements that overlap C may be outside the A subset."
+    },
+    {
+      "misconception": "All A are B means all B are A.",
+      "correction": "Set inclusion is one-directional unless the reverse is stated."
+    },
+    {
+      "misconception": "A real-world true statement must follow from the premises.",
+      "correction": "Use only the supplied statements."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Subset chain",
+      "input": "All A are B. All B are C.",
+      "trace": ["A inside B.", "B inside C.", "A inside C."],
+      "output": "All A are C",
+      "explanation": "Containment is transitive."
+    },
+    {
+      "title": "Invalid some-overlap",
+      "input": "All A are B. Some B are C.",
+      "trace": ["A is a subset of B.", "C may touch B outside A."],
+      "output": "Some A are C does not necessarily follow",
+      "explanation": "Need a forced overlap with A, not only with B."
+    },
+    {
+      "title": "Forced not-B",
+      "input": "No A are B. Some C are A.",
+      "trace": ["A and B disjoint.", "Part of C is inside A.", "That part cannot be B."],
+      "output": "Some C are not B",
+      "explanation": "The C∩A region lies outside B."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "syllogism and Venn-diagram reasoning",
+      "practice": "Draw the sets and test whether the conclusion is forced."
+    },
+    {
+      "company": "Infosys",
+      "skill": "logical deduction",
+      "practice": "Reject conclusions that require an unstated overlap."
+    },
+    {
+      "company": "Accenture",
+      "skill": "critical reasoning",
+      "practice": "Use a counterexample arrangement to test uncertain conclusions."
+    },
+    {
+      "company": "Wipro",
+      "skill": "logical reasoning",
+      "practice": "Separate 'some' from 'all' under time pressure."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "definition",
+      "question": "What does 'All A are B' mean?",
+      "answer": "Every member of A belongs to B; it does not imply every B is A."
+    },
+    {
+      "type": "method",
+      "question": "How can you disprove a syllogism conclusion?",
+      "answer": "Give one valid arrangement of the premises in which the conclusion is false."
+    },
+    {
+      "type": "definition",
+      "question": "What does 'some' guarantee?",
+      "answer": "At least one shared case — never automatically all members."
+    }
+  ],
+  "prerequisites": ["coding_decoding"],
+  "quest": {
+    "chapter": "The Logic Court",
+    "rank": "Inference Judge",
+    "story": "Service-company reasoning rounds treat statements as closed facts. Accept only forced conclusions.",
+    "mission": "Use set relationships and Venn diagrams to test necessary conclusions.",
+    "success_criteria": [
+      "Translate all, some and no statements into sets.",
+      "Follow subset chains.",
+      "Reject unsupported overlap assumptions.",
+      "Test conclusions in every valid arrangement."
+    ]
+  },
+  "next_lesson_slug": "analogies_odd_one_out",
+  "next_lesson_title": "Analogies and Odd One Out"
+}

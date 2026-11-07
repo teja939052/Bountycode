@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 export type ThemeMode =
   | "meadow" | "dark" | "transparent" | "blue" | "emerald" | "sunset"
   | "cyber" | "aurora" | "ember" | "synthwave" | "retro" | "ocean" | "lavender"
-  | "candy" | "neon" | "forest" | "nature";
+  | "candy" | "neon" | "forest" | "nature" | "crystal-light" | "crystal-dark";
 
 export interface ThemeInfo {
   id: ThemeMode;
@@ -28,6 +28,8 @@ export const THEME_INFO: ThemeInfo[] = [
   { id: "neon", name: "Neon Nights", pro: true, preview: { from: "#FF00FF", to: "#39FF14" } },
   { id: "forest", name: "Enchanted Forest", pro: false, preview: { from: "#2d5a30", to: "#7BB661" } },
   { id: "nature", name: "Nature", pro: false, preview: { from: "#16A34A", to: "#DCFCE7" } },
+  { id: "crystal-light", name: "Crystal Light", pro: false, preview: { from: "#58cc02", to: "#ffffff" } },
+  { id: "crystal-dark", name: "Crystal Dark", pro: false, preview: { from: "#58cc02", to: "#0f172a" } },
 ];
 
 const commonTransparent: Record<string, string> = {
@@ -352,15 +354,55 @@ const THEME_CSS_VARS: Record<ThemeMode, Record<string, string>> = {
     "--space-black": "#F6FAF7",
     "--nature-glow": "rgba(22,163,74,0.2)",
   },
+  "crystal-light": {
+    "--bg-base": "#ffffff",
+    "--bg-card": "#ffffff",
+    "--bg-surface": "#f8f9fa",
+    "--text-primary": "#4b4b4b",
+    "--text-secondary": "#777777",
+    "--text-muted": "#afafaf",
+    "--text-dim": "#94a3b8",
+    "--accent-primary": "#58cc02",
+    "--accent-secondary": "#1cb0f6",
+    "--accent-glow": "rgba(88,204,2,0.15)",
+    "--accent-tertiary": "#d7ffb8",
+    "--accent-warm": "#f59e0b",
+    "--border-subtle": "#e2e8f0",
+    "--border-default": "#afafaf",
+    "--glass-bg": "rgba(255,255,255,0.85)",
+    "--glass-blur": "12px",
+    "--shadow-color": "rgba(0,0,0,0.06)",
+    "--space-black": "#ffffff",
+  },
+  "crystal-dark": {
+    "--bg-base": "#0f172a",
+    "--bg-card": "#1e293b",
+    "--bg-surface": "#1e293b",
+    "--text-primary": "#f1f5f9",
+    "--text-secondary": "#cbd5e1",
+    "--text-muted": "#94a3b8",
+    "--text-dim": "#64748b",
+    "--accent-primary": "#58cc02",
+    "--accent-secondary": "#1cb0f6",
+    "--accent-glow": "rgba(88,204,2,0.2)",
+    "--accent-tertiary": "#d7ffb8",
+    "--accent-warm": "#f59e0b",
+    "--border-subtle": "rgba(255,255,255,0.08)",
+    "--border-default": "#334155",
+    "--glass-bg": "rgba(30,41,59,0.7)",
+    "--glass-blur": "16px",
+    "--shadow-color": "rgba(0,0,0,0.3)",
+    "--space-black": "#0f172a",
+  },
 };
 
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      mode: "nature",
+      mode: "crystal-light",
       setMode: (mode) => set({ mode }),
       toggleMode: (mode) =>
-        set((state) => ({ mode: state.mode === mode ? "dark" : mode })),
+        set((state) => ({ mode: state.mode === mode ? "crystal-dark" : mode })),
     }),
     {
       name: "bountycode-theme-v2",

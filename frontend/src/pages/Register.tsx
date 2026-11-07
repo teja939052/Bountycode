@@ -40,7 +40,7 @@ export default function Register() {
     setLoading(true);
     try {
       const data = await authApi.register(email, password, name);
-      setAuth(data.user);
+      setAuth(data.user, data.token);
       navigate("/onboarding");
     } catch (err: any) {
       setError(err.message || "Registration failed. Please try again.");
@@ -103,7 +103,7 @@ export default function Register() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="cadet@placementpro.app"
+                    placeholder="cadet@bountycode.app"
                     className="w-full pl-12 pr-4 py-3 bg-[#0d1510] border border-green-500/20 rounded-xl text-white placeholder-gray-500 focus:border-green-500/50 focus:ring-1 focus:ring-green-500/30 transition-all outline-none font-mono text-sm"
                     required
                   />

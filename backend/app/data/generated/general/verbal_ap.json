@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_ap_0000",
+    "question": "Change to passive: The teacher praised the student.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The teacher praised the student.",
+      "options": [
+        "A. The teacher praised the student.",
+        "B. The student is praised by the teacher.",
+        "C. The student was praised by the teacher.",
+        "D. The student praised the teacher."
+      ],
+      "correct_answer": "C. The student was praised by the teacher.",
+      "explanation": "Passive: 'The student was praised by the teacher.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0001",
+    "question": "Change to passive: They built a new house.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: They built a new house.",
+      "options": [
+        "A. The student praised the teacher.",
+        "B. The student is praised by the teacher.",
+        "C. A new house was built by them.",
+        "D. They built a new house."
+      ],
+      "correct_answer": "C. A new house was built by them.",
+      "explanation": "Passive: 'A new house was built by them.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0002",
+    "question": "Change to passive: She is writing a letter.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: She is writing a letter.",
+      "options": [
+        "A. The student is praised by the teacher.",
+        "B. The student praised the teacher.",
+        "C. A letter is being written by her.",
+        "D. She is writing a letter."
+      ],
+      "correct_answer": "C. A letter is being written by her.",
+      "explanation": "Passive: 'A letter is being written by her.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0003",
+    "question": "Change to passive: The dog chased the cat.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The dog chased the cat.",
+      "options": [
+        "A. The student is praised by the teacher.",
+        "B. The dog chased the cat.",
+        "C. The student praised the teacher.",
+        "D. The cat was chased by the dog."
+      ],
+      "correct_answer": "D. The cat was chased by the dog.",
+      "explanation": "Passive: 'The cat was chased by the dog.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0004",
+    "question": "Change to passive: We will finish the work.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: We will finish the work.",
+      "options": [
+        "A. We will finish the work.",
+        "B. The student is praised by the teacher.",
+        "C. The student praised the teacher.",
+        "D. The work will be finished by us."
+      ],
+      "correct_answer": "D. The work will be finished by us.",
+      "explanation": "Passive: 'The work will be finished by us.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0005",
+    "question": "Change to passive: He reads the newspaper.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: He reads the newspaper.",
+      "options": [
+        "A. The newspaper is read by him.",
+        "B. The student praised the teacher.",
+        "C. He reads the newspaper.",
+        "D. The student is praised by the teacher."
+      ],
+      "correct_answer": "A. The newspaper is read by him.",
+      "explanation": "Passive: 'The newspaper is read by him.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0006",
+    "question": "Change to passive: They have completed the project.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: They have completed the project.",
+      "options": [
+        "A. The project has been completed by them.",
+        "B. They have completed the project.",
+        "C. The student praised the teacher.",
+        "D. The student is praised by the teacher."
+      ],
+      "correct_answer": "A. The project has been completed by them.",
+      "explanation": "Passive: 'The project has been completed by them.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0007",
+    "question": "Change to passive: The chef is preparing the meal.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The chef is preparing the meal.",
+      "options": [
+        "A. The student praised the teacher.",
+        "B. The chef is preparing the meal.",
+        "C. The meal is being prepared by the chef.",
+        "D. The student is praised by the teacher."
+      ],
+      "correct_answer": "C. The meal is being prepared by the chef.",
+      "explanation": "Passive: 'The meal is being prepared by the chef.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0008",
+    "question": "Change to passive: Someone stole my wallet.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: Someone stole my wallet.",
+      "options": [
+        "A. Someone stole my wallet.",
+        "B. The student praised the teacher.",
+        "C. My wallet was stolen by someone.",
+        "D. The student is praised by the teacher."
+      ],
+      "correct_answer": "C. My wallet was stolen by someone.",
+      "explanation": "Passive: 'My wallet was stolen by someone.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.247234+00:00",
+    "updated_at": "2026-09-21T12:53:32.247234+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0009",
+    "question": "Change to passive: The students solved the problem.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The students solved the problem.",
+      "options": [
+        "A. The student is praised by the teacher.",
+        "B. The students solved the problem.",
+        "C. The student praised the teacher.",
+        "D. The problem was solved by the students."
+      ],
+      "correct_answer": "D. The problem was solved by the students.",
+      "explanation": "Passive: 'The problem was solved by the students.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0010",
+    "question": "Change to passive: The company launched a new product.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The company launched a new product.",
+      "options": [
+        "A. The company launched a new product.",
+        "B. A new product was launched by the company.",
+        "C. The student praised the teacher.",
+        "D. The student is praised by the teacher."
+      ],
+      "correct_answer": "B. A new product was launched by the company.",
+      "explanation": "Passive: 'A new product was launched by the company.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0011",
+    "question": "Change to passive: She speaks three languages.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: She speaks three languages.",
+      "options": [
+        "A. The student is praised by the teacher.",
+        "B. Three languages are spoken by her.",
+        "C. She speaks three languages.",
+        "D. The student praised the teacher."
+      ],
+      "correct_answer": "B. Three languages are spoken by her.",
+      "explanation": "Passive: 'Three languages are spoken by her.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0012",
+    "question": "Change to passive: The children are playing in the park.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The children are playing in the park.",
+      "options": [
+        "A. The student praised the teacher.",
+        "B. The children are playing in the park.",
+        "C. In the park the children are playing.",
+        "D. The student is praised by the teacher."
+      ],
+      "correct_answer": "C. In the park the children are playing.",
+      "explanation": "Passive: 'In the park the children are playing.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0013",
+    "question": "Change to passive: The doctor examined the patient.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The doctor examined the patient.",
+      "options": [
+        "A. The doctor examined the patient.",
+        "B. The patient was examined by the doctor.",
+        "C. The student is praised by the teacher.",
+        "D. The student praised the teacher."
+      ],
+      "correct_answer": "B. The patient was examined by the doctor.",
+      "explanation": "Passive: 'The patient was examined by the doctor.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0014",
+    "question": "Change to passive: We have completed the task.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: We have completed the task.",
+      "options": [
+        "A. We have completed the task.",
+        "B. The student is praised by the teacher.",
+        "C. The student praised the teacher.",
+        "D. The task has been completed by us."
+      ],
+      "correct_answer": "D. The task has been completed by us.",
+      "explanation": "Passive: 'The task has been completed by us.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0015",
+    "question": "Change to passive: The police caught the thief.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The police caught the thief.",
+      "options": [
+        "A. The police caught the thief.",
+        "B. The thief was caught by the police.",
+        "C. The student praised the teacher.",
+        "D. The student is praised by the teacher."
+      ],
+      "correct_answer": "B. The thief was caught by the police.",
+      "explanation": "Passive: 'The thief was caught by the police.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0016",
+    "question": "Change to passive: She made a cake.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: She made a cake.",
+      "options": [
+        "A. A cake was made by her.",
+        "B. The student is praised by the teacher.",
+        "C. She made a cake.",
+        "D. The student praised the teacher."
+      ],
+      "correct_answer": "A. A cake was made by her.",
+      "explanation": "Passive: 'A cake was made by her.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0017",
+    "question": "Change to passive: They are repairing the car.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: They are repairing the car.",
+      "options": [
+        "A. The car is being repaired by them.",
+        "B. The student is praised by the teacher.",
+        "C. The student praised the teacher.",
+        "D. They are repairing the car."
+      ],
+      "correct_answer": "A. The car is being repaired by them.",
+      "explanation": "Passive: 'The car is being repaired by them.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0018",
+    "question": "Change to passive: The teacher gave us homework.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: The teacher gave us homework.",
+      "options": [
+        "A. Homework was given to us by the teacher.",
+        "B. The student praised the teacher.",
+        "C. The student is praised by the teacher.",
+        "D. The teacher gave us homework."
+      ],
+      "correct_answer": "A. Homework was given to us by the teacher.",
+      "explanation": "Passive: 'Homework was given to us by the teacher.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_ap_0019",
+    "question": "Change to passive: He ate the pizza.",
+    "pattern": "active-passive",
+    "skill": "active-passive",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Change to passive: He ate the pizza.",
+      "options": [
+        "A. The student is praised by the teacher.",
+        "B. The pizza was eaten by him.",
+        "C. He ate the pizza.",
+        "D. The student praised the teacher."
+      ],
+      "correct_answer": "B. The pizza was eaten by him.",
+      "explanation": "Passive: 'The pizza was eaten by him.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.248233+00:00",
+    "updated_at": "2026-09-21T12:53:32.248233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

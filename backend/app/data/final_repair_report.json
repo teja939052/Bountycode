@@ -1,0 +1,21 @@
+{
+  "repair_attempted": 2443,
+  "repaired": 289,
+  "verification": {
+    "total": 2443,
+    "passed": 285,
+    "failed": 2002,
+    "quarantined": 156,
+    "skipped": 9333
+  },
+  "servable": 9618,
+  "categories": {
+    "total_failing": 2443,
+    "no_test_cases": 156,
+    "mismatch": 1365,
+    "python2": 35,
+    "other": 887,
+    "repaired": 0,
+    "still_failing": 0
+  }
+}

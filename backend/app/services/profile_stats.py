@@ -40,7 +40,7 @@ async def get_profile_stats(user_id: str) -> Dict[str, Any]:
     gam = await gamification_collection.find_one({"user_id": user_id}) or {}
     streak = gam.get("streak", 0)
     longest_streak = gam.get("longest_streak", 0)
-    xp = gam.get("xp", 0)
+    diamonds = gam.get("diamonds", 0)
     level = gam.get("level", 1)
 
     badges_raw = gam.get("badges", [])
@@ -132,7 +132,7 @@ async def get_profile_stats(user_id: str) -> Dict[str, Any]:
         "leetcode_username": leetcode_username,
         "streak": streak,
         "longest_streak": longest_streak,
-        "xp": xp,
+        "diamonds": diamonds,
         "level": level,
         "badges": badges,
         "skills": skills,

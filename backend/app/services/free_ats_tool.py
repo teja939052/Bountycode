@@ -217,6 +217,6 @@ class FreeATSTool:
             lines.append("No major issues found! Your resume should pass most ATS systems.")
             lines.append("")
 
-        lines.append("*Powered by PlacementPro - Free ATS Checker*")
+        lines.append("*Powered by BountyCode - Free ATS Checker*")
 
         return "\n".join(lines)

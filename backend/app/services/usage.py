@@ -35,7 +35,6 @@ async def check_and_reset_monthly_usage(user: dict) -> dict:
                     "interviews_used": 0,
                     "resumes_used": 0,
                     "aptitude_used": 0,
-                    "cover_letters_used": 0,
                     "company_mocks_used": 0,
                     "predictions_used": 0,
                     "question_bank_used": 0,
@@ -47,7 +46,6 @@ async def check_and_reset_monthly_usage(user: dict) -> dict:
         user["interviews_used"] = 0
         user["resumes_used"] = 0
         user["aptitude_used"] = 0
-        user["cover_letters_used"] = 0
         user["company_mocks_used"] = 0
         user["predictions_used"] = 0
         user["question_bank_used"] = 0
@@ -66,7 +64,6 @@ def can_use_feature(user: dict, feature: str) -> tuple[bool, str]:
         "interview": settings.FREE_TIER_INTERVIEW_LIMIT,
         "resume": settings.FREE_TIER_RESUME_LIMIT,
         "aptitude": getattr(settings, "FREE_TIER_APTITUDE_LIMIT", 5),
-        "cover_letter": getattr(settings, "FREE_TIER_COVER_LETTER_LIMIT", 3),
         "company_mock": getattr(settings, "FREE_TIER_COMPANY_MOCK_LIMIT", 1),
         "predictor": getattr(settings, "FREE_TIER_PREDICTOR_LIMIT", 3),
         "question_bank": getattr(settings, "FREE_TIER_QUESTION_BANK_LIMIT", 5),
@@ -78,7 +75,6 @@ def can_use_feature(user: dict, feature: str) -> tuple[bool, str]:
         "interview": "interviews_used",
         "resume": "resumes_used",
         "aptitude": "aptitude_used",
-        "cover_letter": "cover_letters_used",
         "company_mock": "company_mocks_used",
         "predictor": "predictions_used",
         "question_bank": "question_bank_used",
@@ -101,7 +97,6 @@ async def mark_feature_used(user_id: str, feature: str) -> None:
         "interview": "interviews_used",
         "resume": "resumes_used",
         "aptitude": "aptitude_used",
-        "cover_letter": "cover_letters_used",
         "company_mock": "company_mocks_used",
         "predictor": "predictions_used",
         "question_bank": "question_bank_used",
@@ -123,7 +118,6 @@ async def mark_feature_used(user_id: str, feature: str) -> None:
         "interview": settings.FREE_TIER_INTERVIEW_LIMIT,
         "resume": settings.FREE_TIER_RESUME_LIMIT,
         "aptitude": getattr(settings, "FREE_TIER_APTITUDE_LIMIT", 5),
-        "cover_letter": getattr(settings, "FREE_TIER_COVER_LETTER_LIMIT", 3),
         "company_mock": getattr(settings, "FREE_TIER_COMPANY_MOCK_LIMIT", 1),
         "predictor": getattr(settings, "FREE_TIER_PREDICTOR_LIMIT", 3),
         "question_bank": getattr(settings, "FREE_TIER_QUESTION_BANK_LIMIT", 5),
@@ -167,8 +161,6 @@ def get_usage_stats(user: dict) -> dict:
         "resumes_limit": "unlimited" if is_premium else settings.FREE_TIER_RESUME_LIMIT,
         "aptitude_used": user.get("aptitude_used", 0),
         "aptitude_limit": "unlimited" if is_premium else getattr(settings, "FREE_TIER_APTITUDE_LIMIT", 5),
-        "cover_letters_used": user.get("cover_letters_used", 0),
-        "cover_letters_limit": "unlimited" if is_premium else getattr(settings, "FREE_TIER_COVER_LETTER_LIMIT", 3),
         "company_mocks_used": user.get("company_mocks_used", 0),
         "company_mocks_limit": "unlimited" if is_premium else getattr(settings, "FREE_TIER_COMPANY_MOCK_LIMIT", 1),
         "predictions_used": user.get("predictions_used", 0),

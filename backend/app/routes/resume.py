@@ -5,11 +5,12 @@ from typing import Optional
 from app.models.resume import GenerateResume, OptimizeRequest
 from app.database import users_collection, resumes_collection
 from app.middleware.auth import get_current_user
-from app.services.ai import analyze_resume, optimize_ats, generate_resume_content
+from app.services.ai_resume import analyze_resume, optimize_ats, generate_resume_content
 from app.services.resume_parser import extract_text_from_pdf
 from app.services.export import export_to_docx, export_to_pdf
 from app.services.ats_semantic import semantic_score, section_scores, semantic_gaps
 from app.services.ats_enhanced import calculate_ats_score as keyword_ats_score
+from app.services.gamification import record_practice
 from app.config import get_settings
 from bson import ObjectId
 from fastapi.responses import StreamingResponse
@@ -25,6 +26,40 @@ def validate_pdf_content(content: bytes) -> bool:
 class SemanticScoreRequest(BaseModel):
     resume_text: str
     job_description: str = ""
+
+
+class RuleBasedATSRequest(BaseModel):
+    resume_text: str
+    job_description: str = ""
+
+
+@router.post("/analyze-rulebased")
+async def analyze_resume_rulebased(req: RuleBasedATSRequest, user=Depends(get_current_user)):
+    """Deterministic, non-AI ATS analysis. Always works without API keys/credits.
+
+    Uses ``RealATSScanner`` to simulate enterprise ATS parsing (Workday, Lever,
+    Greenhouse, iCIMS...) and returns a grade, critical issues, keyword gaps, and
+    line-by-line rewrite suggestions. This is the reliable fallback and the
+    core of the exact resume analyzer."""
+    from app.services.real_ats import RealATSScanner
+
+    scanner = RealATSScanner()
+    result = scanner.full_scan(req.resume_text or "", req.job_description or "")
+
+    return {
+        "ats_score": result.get("ats_score"),
+        "grade": result.get("grade"),
+        "would_pass_ats": result.get("would_pass_ats", False),
+        "parsing_simulation": result.get("parsing_simulation"),
+        "section_detection": result.get("section_detection"),
+        "contact_detection": result.get("contact_detection"),
+        "content_analysis": result.get("content_analysis"),
+        "keyword_analysis": result.get("keyword_analysis"),
+        "critical_issues": result.get("critical_issues", []),
+        "recommendations": result.get("recommendations", []),
+        "line_fixes": result.get("line_fixes", []),
+        "engine": "rulebased",
+    }
 
 
 @router.post("/semantic-score")
@@ -107,6 +142,11 @@ async def upload_resume(file: UploadFile = File(...), user=Depends(get_current_u
         {"$inc": {"resumes_used": 1}},
     )
 
+    # Gamification Law: record resume activity through the canonical pipeline.
+    # A created resume carries no ATS score yet, so score 0 — the ats_master /
+    # ats_95 badges fire later from /optimize where the real ATS score exists.
+    await record_practice(user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
+
     return {
         "resume_id": str(result.inserted_id),
         "text": text,
@@ -143,6 +183,9 @@ async def generate_resume(req: GenerateResume, user=Depends(get_current_user)):
         {"$inc": {"resumes_used": 1}},
     )
 
+    # Same canonical resume counter as upload (no ATS score yet).
+    await record_practice(user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
+
     return {
         "resume_id": str(result.inserted_id),
         "content": content,
@@ -171,6 +214,15 @@ async def optimize_resume(req: OptimizeRequest, user=Depends(get_current_user)):
             "optimized_text": optimization.get("optimized_resume", ""),
             "optimization_details": optimization,
         }},
+    )
+
+    # Real ATS score exists here — feeds ats_master (90+) / ats_95 (95+).
+    await record_practice(
+        user["id"],
+        "resume",
+        optimization.get("ats_score", 0),
+        role=user.get("role") or user.get("target_role") or "sde",
+        metadata={"resume_id": req.resume_id, "action": "optimize_ats"},
     )
 
     return optimization

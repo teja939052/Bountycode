@@ -6,11 +6,13 @@ import random
 from datetime import datetime, timezone, timedelta
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
-from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, solved_problems_collection,
-    question_answers_collection, gamification_collection, users_collection
+    solved_problems_collection,
+    question_answers_collection,
+    gamification_collection,
+    users_collection,
+    daily_challenges_users_collection,
 )
 from app.services.cache import cache
 from app.services.gamification import record_practice
@@ -45,46 +47,31 @@ def get_daily_config():
     return DAILY_CATEGORIES[day_of_week % len(DAILY_CATEGORIES)]
 
 
-def get_user_league(xp):
-    """Determine user's league based on XP."""
+def get_user_league(diamonds):
+    """Determine user's league based on Diamonds."""
     for league_key, league_data in LEAGUES.items():
-        if league_data["min_xp"] <= xp < league_data["max_xp"]:
+        if league_data["min_xp"] <= diamonds < league_data["max_xp"]:
             return {"key": league_key, **league_data}
     return {"key": "bronze", **LEAGUES["bronze"]}
 
 
-async def _get_featured_daily_problem(collection, config: dict, day_key: str):
-    """Pick a deterministic featured problem for the day and cache it."""
-    cache_key = f"{day_key}:{config['category']}:{config['difficulty']}"
-    cached_id = await cache.get("daily_problem", cache_key)
-    if cached_id and ObjectId.is_valid(str(cached_id)):
-        cached_doc = await collection.find_one({"_id": ObjectId(str(cached_id))})
-        if cached_doc:
-            return cached_doc
-
-    query = {
+def _get_featured_daily_problem(config: dict, day_key: str):
+    """Pick a deterministic featured problem for the day from the in-memory
+    canonical store (Residency Rule): verified content first. The day-seeded
+    pick is stable all day, so no cache round-trip is needed."""
+    from app.services import question_store
+    pool = question_store.find({
         "topic": config["category"],
         "difficulty": config["difficulty"],
         "type": "coding",
-    }
-    count = await collection.count_documents(query)
-    if count == 0:
-        query = {"type": "coding"}
-        count = await collection.count_documents(query)
-    if count == 0:
+    }).prefer_verified().to_list()
+    if not pool:
+        pool = question_store.find({"type": "coding"}).prefer_verified().to_list()
+    if not pool:
         return None
-
-    seed = int(hashlib.sha256(cache_key.encode("utf-8")).hexdigest(), 16)
-    offset = seed % count
-    cursor = collection.find(query).sort("_id", 1).skip(offset).limit(1)
-    problem = None
-    async for doc in cursor:
-        problem = doc
-        break
-
-    if problem and problem.get("_id"):
-        await cache.set("daily_problem", cache_key, str(problem["_id"]), ttl=86400)
-    return problem
+    seed = int(hashlib.sha256(f"{day_key}:{config['category']}:{config['difficulty']}".encode("utf-8")).hexdigest(), 16)
+    q = pool[seed % len(pool)]
+    return question_store.get_question_for_serving(q.get("id"))
 
 
 async def _get_daily_leaderboard(solved_col, day_key: str):
@@ -119,11 +106,9 @@ async def _get_daily_leaderboard(solved_col, day_key: str):
 
 @router.get("/challenge")
 async def get_daily_challenge(user=Depends(get_current_user)):
-    """Get today's daily challenge problem."""
-    collection = curated_questions_collection()
+    """Get today's daily challenge — weakness-based mission."""
     solved_col = solved_problems_collection()
     gam_col = gamification_collection()
-    config = get_daily_config()
     uid = user["id"]
 
     today = datetime.now(timezone.utc).date().isoformat()
@@ -134,56 +119,100 @@ async def get_daily_challenge(user=Depends(get_current_user)):
         "daily_challenge_date": today,
     })
 
-    problem_doc = await _get_featured_daily_problem(collection, config, today)
-    problem = None
-    if problem_doc:
-        problem = {
-            "id": str(problem_doc.pop("_id")),
-            "question_title": problem_doc.get("question_title"),
-            "statement": problem_doc.get("statement", problem_doc.get("question", "")),
-            "difficulty": problem_doc.get("difficulty"),
-            "topics": problem_doc.get("topics", []),
-            "company": problem_doc.get("company"),
-            "visible_test_cases": problem_doc.get("visible_test_cases", []),
-            "constraints": problem_doc.get("constraints", []),
-            "examples": problem_doc.get("examples", []),
-            "hints": problem_doc.get("hints", []),
-            "type": problem_doc.get("type", "coding"),
-        }
+    # Load user skill graph for weakness-based selection
+    skill_graph = {}
+    target_company = None
+    try:
+        from app.database import skill_graph_collection
+        sg_doc = await skill_graph_collection.find_one({"user_id": uid}) or {}
+        skill_graph = sg_doc.get("categories", {})
+    except Exception:
+        skill_graph = {}
 
-    if not problem:
-        # Fallback: get any unsolved problem
-        cursor = collection.find({"type": "coding"}).limit(1)
-        async for doc in cursor:
-            problem = {
-                "id": str(doc.pop("_id")),
-                "question_title": doc.get("question_title"),
-                "statement": doc.get("statement", doc.get("question", "")),
-                "difficulty": doc.get("difficulty"),
-                "topics": doc.get("topics", []),
-                "company": doc.get("company"),
-                "visible_test_cases": doc.get("visible_test_cases", []),
-                "constraints": doc.get("constraints", []),
-                "examples": doc.get("examples", []),
-                "hints": doc.get("hints", []),
-                "type": doc.get("type", "coding"),
-            }
+    try:
+        gam_doc = await gam_col.find_one({"user_id": uid}) or {}
+        target_company = gam_doc.get("target_company")
+    except Exception:
+        target_company = None
 
-    # Get user's XP for league
-    gam_doc = await gam_col.find_one({"user_id": uid})
-    xp = gam_doc.get("xp", 0) if gam_doc else 0
-    league = get_user_league(xp)
+    # Determine weak domains for this user
+    weak_domains = []
+    if skill_graph:
+        scored = []
+        for domain, val in skill_graph.items():
+            s = float(val.get("score", 0)) if isinstance(val, dict) else float(val)
+            scored.append((domain, s))
+        scored.sort(key=lambda x: x[1])
+        weak_domains = [d for d, _ in scored[:3]] if scored else ["aptitude", "dsa", "coding"]
+
+    # Build daily mission: 1 problem per weak domain
+    from app.services import question_store
+    mission_problems = []
+    used_ids = set()
+    for domain in weak_domains[:3]:
+        pool = question_store.find({
+            "topic": domain,
+            "type": {"$in": ["coding", "aptitude"]},
+        }).prefer_verified().to_list()
+        pool.sort(key=lambda q: (0 if q.get("difficulty") == "easy" else 1, 0 if q.get("id") not in used_ids else 1))
+        if pool:
+            q = pool[0]
+            used_ids.add(q.get("id"))
+            mission_problems.append({
+                "id": str(q.get("id", "")),
+                "question_title": q.get("question_title"),
+                "statement": q.get("statement", q.get("question", "")),
+                "difficulty": q.get("difficulty"),
+                "topics": q.get("topics", [q.get("topic", domain)]),
+                "company": (q.get("companies") or [None])[0],
+                "visible_test_cases": q.get("visible_test_cases", []),
+                "constraints": q.get("constraints", []),
+                "examples": q.get("examples", []),
+                "hints": q.get("hints", []),
+                "type": q.get("type", "coding"),
+                "domain": domain,
+            })
+
+    # Fallback: if no weak-domain problems found, use generic pool
+    if not mission_problems:
+        pool = question_store.find({"type": "coding"}).prefer_verified().to_list()
+        if pool:
+            q = pool[0]
+            mission_problems.append({
+                "id": str(q.get("id", "")),
+                "question_title": q.get("question_title"),
+                "statement": q.get("statement", q.get("question", "")),
+                "difficulty": q.get("difficulty"),
+                "topics": q.get("topics", [q.get("topic", "General")]),
+                "company": (q.get("companies") or [None])[0],
+                "visible_test_cases": q.get("visible_test_cases", []),
+                "constraints": q.get("constraints", []),
+                "examples": q.get("examples", []),
+                "hints": q.get("hints", []),
+                "type": q.get("type", "coding"),
+                "domain": "general",
+            })
+
+    # Get user's Diamonds/Proof for league
+    gam_doc = await gam_col.find_one({"user_id": uid}) or {}
+    diamonds = gam_doc.get("diamonds", 0)
+    proof = gam_doc.get("proof", 0)
+    league = get_user_league(diamonds)
 
     leaderboard = await _get_daily_leaderboard(solved_col, today)
 
     return {
         "date": today,
-        "config": config,
-        "problem": problem,
+        "mission_type": "weakness_repair",
+        "target_company": target_company,
+        "problems": mission_problems,
+        "problem_count": len(mission_problems),
+        "estimated_minutes": sum(30 if p.get("type") == "coding" else 15 for p in mission_problems),
         "already_completed": existing is not None,
         "user_league": league,
+        "user_proof": proof,
         "leaderboard": leaderboard,
-        "streak_bonus": 50,  # XP bonus for daily streak
+        "streak_bonus": 50,
     }
 
 
@@ -196,10 +225,9 @@ async def submit_daily_challenge(
 ):
     """Submit solution for daily challenge."""
     from app.services.code_executor import CodeExecutionEngine
-    from bson import ObjectId
 
     engine = CodeExecutionEngine()
-    collection = curated_questions_collection()
+    from app.services import question_store
     solved_col = solved_problems_collection()
     gam_col = gamification_collection()
     uid = user["id"]
@@ -213,13 +241,9 @@ async def submit_daily_challenge(
     if existing:
         raise HTTPException(status_code=400, detail="Already completed today's challenge")
 
-    # Get the problem
-    try:
-        q_oid = ObjectId(problem_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid problem ID")
-
-    question = await collection.find_one({"_id": q_oid})
+    # Get the problem from the in-memory canonical store
+    # (Residency Rule, AGENTS.md): never MongoDB.
+    question = question_store.get_question_for_serving(problem_id)
     if not question:
         raise HTTPException(status_code=404, detail="Problem not found")
 
@@ -259,7 +283,7 @@ async def submit_daily_challenge(
         "solved_at": datetime.now(timezone.utc),
     })
 
-    # Calculate XP
+    # Calculate Diamonds
     base_xp = 50 if all_passed else 10
     streak_bonus = 0
 
@@ -272,8 +296,8 @@ async def submit_daily_challenge(
 
     total_xp = base_xp + streak_bonus
 
-    # Record gamification
-    await record_practice(uid, "daily_challenge", score)
+    # Record gamification (score normalization lives in record_practice)
+    await record_practice(uid, "daily_challenge", score, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
         "score": score,
@@ -294,17 +318,17 @@ async def get_leagues(user=Depends(get_current_user)):
     users_col = users_collection()
     uid = user["id"]
 
-    # Get user's XP
+    # Get user's Diamonds
     gam_doc = await gam_col.find_one({"user_id": uid})
-    xp = gam_doc.get("xp", 0) if gam_doc else 0
-    user_league = get_user_league(xp)
+    diamonds = gam_doc.get("diamonds", 0) if gam_doc else 0
+    user_league = get_user_league(diamonds)
 
     # Get leaderboard for each league
     league_leaderboards = {}
     for league_key, league_data in LEAGUES.items():
         pipeline = [
             {"$match": {
-                "xp": {"$gte": league_data["min_xp"], "$lt": league_data["max_xp"]}
+                "diamonds": {"$gte": league_data["min_xp"], "$lt": league_data["max_xp"]}
             }},
             {"$lookup": {
                 "from": "users",
@@ -315,11 +339,11 @@ async def get_leagues(user=Depends(get_current_user)):
             {"$unwind": "$user"},
             {"$project": {
                 "user_name": "$user.name",
-                "xp": 1,
+                "diamonds": 1,
                 "level": 1,
                 "streak": 1,
             }},
-            {"$sort": {"xp": -1}},
+            {"$sort": {"diamonds": -1}},
             {"$limit": 10}
         ]
         leaders = []
@@ -337,17 +361,17 @@ async def get_leagues(user=Depends(get_current_user)):
     # Calculate promotion/demotion info
     next_league = None
     for league_key, league_data in LEAGUES.items():
-        if league_data["min_xp"] > xp:
+        if league_data["min_xp"] > diamonds:
             next_league = {
                 "name": league_data["name"],
                 "emoji": league_data["emoji"],
-                "xp_needed": league_data["min_xp"] - xp,
+                "xp_needed": league_data["min_xp"] - diamonds,
             }
             break
 
     return {
         "current_league": user_league,
-        "xp": xp,
+        "diamonds": diamonds,
         "next_league": next_league,
         "leagues": league_leaderboards,
     }
@@ -453,9 +477,9 @@ XP_MILESTONES = [
 
 
 def get_daily_xp(day: int) -> int:
-    for start, end, xp in XP_MILESTONES:
+    for start, end, diamonds in Diamonds_MILESTONES:
         if start <= day <= end:
-            return xp
+            return diamonds
     return 100
 
 
@@ -474,8 +498,7 @@ async def enroll_in_challenge(
     user=Depends(get_current_user),
 ):
     """Enroll in the 30 Days to Offer challenge."""
-    from app.database import daily_challenges_users_collection
-    from app.services.ai import generate_mentor_message
+    from app.services.ai_behavioral import generate_mentor_message
 
     uid = user["id"]
     col = daily_challenges_users_collection()
@@ -529,8 +552,6 @@ async def enroll_in_challenge(
 @challenge_router.get("/status")
 async def get_challenge_status(user=Depends(get_current_user)):
     """Get user's challenge status."""
-    from app.database import daily_challenges_users_collection
-
     uid = user["id"]
     col = daily_challenges_users_collection()
 
@@ -575,15 +596,10 @@ def _calculate_streak(completed_days: list) -> int:
 @challenge_router.get("/today")
 async def get_today_quest(user=Depends(get_current_user)):
     """Get today's quests for the 30-day challenge."""
-    from app.database import (
-        daily_challenges_users_collection, curated_questions_collection,
-        solved_problems_collection,
-    )
-    from app.services.ai import generate_mentor_message
+    from app.services.ai_behavioral import generate_mentor_message
 
     uid = user["id"]
     col = daily_challenges_users_collection()
-    curated = curated_questions_collection()
     solved_col = solved_problems_collection()
 
     doc = await col.find_one({"user_id": uid})
@@ -624,52 +640,40 @@ async def get_today_quest(user=Depends(get_current_user)):
     async for sd in solved_col.find({"user_id": uid}, {"question_id": 1}):
         solved_ids.append(sd["question_id"])
 
-    # 2 DSA problems — prefer unsolved
+    # 2 DSA problems — prefer unsolved, verified first (in-memory only,
+    # Residency Rule): never MongoDB.
+    from app.services import question_store
     dsa_questions = []
-    dsa_query = {"type": "coding"}
-    if solved_ids:
-        dsa_query["_id"] = {"$nin": [ObjectId(sid) for sid in solved_ids if ObjectId.is_valid(sid)]}
-
-    # Get up to 4 candidates for variety
-    pipeline = [
-        {"$match": dsa_query},
-        {"$sample": {"size": 4}},
-        {"$project": {"question_title": 1, "difficulty": 1, "question_id": {"$toString": "$_id"}, "topics": 1}},
-    ]
-    candidates = []
-    async for q in curated.aggregate(pipeline):
-        candidates.append(q)
+    solved_set = set(solved_ids)
+    dsa_pool = question_store.find({"type": "coding"}).prefer_verified().to_list()
+    unsolved = [q for q in dsa_pool if str(q.get("id")) not in solved_set] or dsa_pool
+    candidates = random.sample(unsolved, min(4, len(unsolved))) if unsolved else []
 
     if len(candidates) < 2:
-        # Fallback: allow any coding question
-        fallback_query = {"type": "coding"}
-        cursor = curated.aggregate([
-            {"$match": fallback_query},
-            {"$sample": {"size": 4}},
-            {"$project": {"question_title": 1, "difficulty": 1, "question_id": {"$toString": "$_id"}, "topics": 1}},
-        ])
-        candidates = [q async for q in cursor]
+        # Fallback: allow any coding question (already the whole pool)
+        candidates = random.sample(dsa_pool, min(4, len(dsa_pool))) if dsa_pool else []
 
     for c in candidates[:2]:
+        diff = c.get("difficulty", "medium")
         dsa_questions.append({
             "type": "dsa",
-            "title": c.get("question_title", "Coding Problem"),
-            "difficulty": c.get("difficulty", "medium"),
-            "points": 50 if c.get("difficulty") == "hard" else (30 if c.get("difficulty") == "medium" else 20),
-            "question_id": c.get("question_id") or str(c.get("_id", "")),
+            "title": c.get("question_title") or c.get("title") or "Coding Problem",
+            "difficulty": diff,
+            "points": 50 if diff == "hard" else (30 if diff == "medium" else 20),
+            "question_id": str(c.get("id", "")),
             "completed": False,
         })
 
-    # 1 Aptitude question
-    aptitude_query = {"type": "aptitude"}
-    aptitude_cursor = curated.aggregate([
-        {"$match": aptitude_query},
-        {"$sample": {"size": 1}},
-        {"$project": {"question_title": 1, "difficulty": 1, "question_id": {"$toString": "$_id"}}},
-    ])
+    # 1 Aptitude question (in-memory, verified first)
+    apt_pool = question_store.find({"type": "aptitude"}).prefer_verified().to_list()
     aptitude_q = None
-    async for a in aptitude_cursor:
-        aptitude_q = a
+    if apt_pool:
+        a = random.choice(apt_pool)
+        aptitude_q = {
+            "question_title": a.get("question_title") or a.get("title") or "Aptitude Problem",
+            "difficulty": a.get("difficulty", "medium"),
+            "question_id": str(a.get("id", "")),
+        }
     if not aptitude_q:
         aptitude_q = {"question_title": "Quantitative Aptitude Problem", "difficulty": "medium", "question_id": ""}
 
@@ -740,7 +744,6 @@ async def complete_day(
     user=Depends(get_current_user),
 ):
     """Mark today as completed."""
-    from app.database import daily_challenges_users_collection
     from app.services.gamification import record_practice
 
     uid = user["id"]
@@ -794,7 +797,7 @@ async def complete_day(
     if errors:
         raise HTTPException(status_code=400, detail=". ".join(errors))
 
-    # Calculate XP
+    # Calculate Diamonds
     base_xp = get_daily_xp(current_day)
     daily_bonus = 10
     total_xp_gained = base_xp + daily_bonus
@@ -839,8 +842,11 @@ async def complete_day(
         },
     )
 
-    # Record XP via gamification (also crosses global streak milestones)
-    practice_result = await record_practice(uid, "daily_challenge_30day", total_xp_gained + extra_bonus)
+    # Record Diamonds via gamification (also crosses global streak milestones).
+    # Score is 10.0: reaching this line means every required quest verified
+    # complete (400 otherwise). Passing total_xp_gained here used to mint
+    # perfect bonuses for any completion — same LAW violation as above.
+    practice_result = await record_practice(uid, "daily_challenge_30day", 10.0, role=user.get("role") or user.get("target_role") or "sde")
 
     result = {
         "day_completed": current_day,
@@ -868,8 +874,6 @@ async def complete_day(
 @challenge_router.get("/progress")
 async def get_challenge_progress(user=Depends(get_current_user)):
     """Get full progress of the 30-day challenge."""
-    from app.database import daily_challenges_users_collection
-
     uid = user["id"]
     col = daily_challenges_users_collection()
 
@@ -937,9 +941,7 @@ async def get_challenge_progress(user=Depends(get_current_user)):
 
 @challenge_router.get("/leaderboard")
 async def get_challenge_leaderboard(limit: int = 10, user=Depends(get_current_user)):
-    """Leaderboard of challengers by total XP."""
-    from app.database import daily_challenges_users_collection, users_collection
-
+    """Leaderboard of challengers by total Diamonds."""
     uid = user["id"]
     col = daily_challenges_users_collection()
     users_col = users_collection()

@@ -1,0 +1,870 @@
+[
+ {
+  "id": "verify-002",
+  "title": "Maximum Subarray Sum",
+  "reason": "MISMATCH exp='6' got='[-2,1,-3,4,-1,2,1,-5,4]'",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "verify-004",
+  "title": "Move Zeroes",
+  "reason": "MISMATCH exp='[1, 3, 12, 0, 0]' got='[[0,1,0,3,12]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-005",
+  "title": "Reverse Words in a String",
+  "reason": "AttributeError:'list' object has no attribute 'split'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-006",
+  "title": "Valid Palindrome",
+  "reason": "MISMATCH exp='False' got='True'",
+  "passed": 3,
+  "total": 4
+ },
+ {
+  "id": "verify-007",
+  "title": "Valid Parentheses: check if brackets are correctly paired",
+  "reason": "MISMATCH exp='True' got='False'",
+  "passed": 3,
+  "total": 5
+ },
+ {
+  "id": "verify-013",
+  "title": "Merge Intervals: merge all overlapping intervals",
+  "reason": "MISMATCH exp='[[1, 6], [8, 10], [15, 18]]' got='[[[1,3],[2,6],[8,10],[15,18]]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-014",
+  "title": "Product of Array Except Self",
+  "reason": "MISMATCH exp='[24, 12, 8, 6]' got='[1]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-015",
+  "title": "First Unique Character in a String",
+  "reason": "MISMATCH exp='2' got='0'",
+  "passed": 1,
+  "total": 3
+ },
+ {
+  "id": "verify-010",
+  "title": "Group Anagrams: group words that are anagrams",
+  "reason": "MISMATCH exp=\"[['ate', 'eat', 'tea'], ['nat', 'tan'], ['bat']]\" got='[[[eat,tea,tan,ate,nat,bat]]]'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "verify-017",
+  "title": "Roman to Integer",
+  "reason": "KeyError:'III'",
+  "passed": 1,
+  "total": 6
+ },
+ {
+  "id": "verify-018",
+  "title": "Best Time to Buy and Sell Stock (max one profit)",
+  "reason": "MISMATCH exp='5' got='0'",
+  "passed": 2,
+  "total": 4
+ },
+ {
+  "id": "verify-020",
+  "title": "Longest Common Prefix among strings",
+  "reason": "MISMATCH exp='fl' got='[flower,flow,flight]'",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "verify-021",
+  "title": "Majority Element (appears more than n/2)",
+  "reason": "MISMATCH exp='3' got='[3,2,3]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-023",
+  "title": "Linked List Cycle detection",
+  "reason": "IndexError:list index out of range",
+  "passed": 2,
+  "total": 4
+ },
+ {
+  "id": "verify-026",
+  "title": "Plus One: increment a big decimal integer",
+  "reason": "MISMATCH exp='[1, 2, 4]' got='[1,2,5]'",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "verify-027",
+  "title": "Length of Last Word",
+  "reason": "AttributeError:'list' object has no attribute 'strip'",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "verify-031",
+  "title": "Valid Parentheses: bracket matching",
+  "reason": "MISMATCH exp='True' got='False'",
+  "passed": 2,
+  "total": 5
+ },
+ {
+  "id": "verify-035",
+  "title": "Longest Increasing Subsequence",
+  "reason": "MISMATCH exp='4' got='1'",
+  "passed": 2,
+  "total": 4
+ },
+ {
+  "id": "verify-036",
+  "title": "Daily Temperatures: next warmer",
+  "reason": "MISMATCH exp='[1, 1, 4, 2, 1, 1, 0, 0]' got='[0]'",
+  "passed": 1,
+  "total": 3
+ },
+ {
+  "id": "verify-038",
+  "title": "Group Anagrams",
+  "reason": "MISMATCH exp=\"[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\" got='[[[eat,tea,tan,ate,nat,bat]]]'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "verify-039",
+  "title": "Product Except Self: prefix-suffix variant",
+  "reason": "MISMATCH exp='[24, 12, 8, 6]' got='[1]'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "verify-043",
+  "title": "Reverse Linked List (array sim)",
+  "reason": "MISMATCH exp='[3, 2, 1]' got='[[1,2,3]]'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "verify-044",
+  "title": "Maximum Depth of Binary Tree (array height sim)",
+  "reason": "MISMATCH exp='3' got='1'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "verify-047",
+  "title": "Invert Binary Tree (array sim)",
+  "reason": "MISMATCH exp='[4, 7, 2, 9, 6, 3, 1]' got='[[4,2,7,1,3,6,9]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-049",
+  "title": "Find Minimum in Rotated Sorted Array",
+  "reason": "MISMATCH exp='1' got='[3,4,5,1,2]'",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "verify-050",
+  "title": "Find Peak Element",
+  "reason": "MISMATCH exp='2' got='0'",
+  "passed": 1,
+  "total": 3
+ },
+ {
+  "id": "verify-056",
+  "title": "Remove Duplicates from Sorted Array",
+  "reason": "MISMATCH exp='2' got='1'",
+  "passed": 2,
+  "total": 4
+ },
+ {
+  "id": "verify-057",
+  "title": "Maximum Product of Three Numbers",
+  "reason": "IndexError:list index out of range",
+  "passed": 0,
+  "total": 5
+ },
+ {
+  "id": "verify-061",
+  "title": "Palindrome Linked List (array sim)",
+  "reason": "MISMATCH exp='False' got='True'",
+  "passed": 2,
+  "total": 3
+ },
+ {
+  "id": "verify-062",
+  "title": "Middle of Linked List (array sim)",
+  "reason": "MISMATCH exp='[3, 4, 5]' got='[[1,2,3,4,5]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-063",
+  "title": "Binary Tree Level Order (array sim)",
+  "reason": "MISMATCH exp='[[3], [9, 20], [15, 7]]' got='[[[3,9,20,None,None,15,7]]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-064",
+  "title": "Symmetric Tree (array sim)",
+  "reason": "MISMATCH exp='False' got='True'",
+  "passed": 3,
+  "total": 4
+ },
+ {
+  "id": "verify-065",
+  "title": "Validate Binary Search Tree (array sim)",
+  "reason": "MISMATCH exp='False' got='True'",
+  "passed": 2,
+  "total": 3
+ },
+ {
+  "id": "verify-067",
+  "title": "Sort Colors (partition)",
+  "reason": "MISMATCH exp='[0, 0, 1, 1, 2, 2]' got='[[2,0,2,1,1,0]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-069",
+  "title": "Sorted Array to Balanced BST (array sim)",
+  "reason": "MISMATCH exp='[0, -10, 5, None, -3, None, 9]' got='[[-10,-3,0,5,9]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-070",
+  "title": "Binary Tree Inorder (array sim)",
+  "reason": "MISMATCH exp='[1, 3, 2]' got='[[1,None,2,None,None,3]]'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-072",
+  "title": "Meeting Rooms",
+  "reason": "MISMATCH exp='False' got='True'",
+  "passed": 3,
+  "total": 4
+ },
+ {
+  "id": "verify-075",
+  "title": "Reverse String (array sim)",
+  "reason": "MISMATCH exp=\"['o', 'l', 'l', 'e', 'h']\" got='[[h,e,l,l,o]]'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "verify-078",
+  "title": "Reverse Vowels of a String",
+  "reason": "MISMATCH exp='holle' got='hello'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-080",
+  "title": "Can Place Flowers",
+  "reason": "MISMATCH exp='True' got='False'",
+  "passed": 1,
+  "total": 3
+ },
+ {
+  "id": "verify-090",
+  "title": "Monotonic Array",
+  "reason": "MISMATCH exp='False' got='True'",
+  "passed": 3,
+  "total": 4
+ },
+ {
+  "id": "verify-092",
+  "title": "Arithmetic Slices",
+  "reason": "MISMATCH exp='3' got='0'",
+  "passed": 0,
+  "total": 3
+ },
+ {
+  "id": "verify-093",
+  "title": "Longest Palindrome Length",
+  "reason": "MISMATCH exp='7' got='1'",
+  "passed": 1,
+  "total": 3
+ },
+ {
+  "id": "verify-094",
+  "title": "Defang IP Address",
+  "reason": "AttributeError:'list' object has no attribute 'replace'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "verify-102",
+  "title": "Summary Ranges",
+  "reason": "MISMATCH exp=\"['0->2', '4->5', '7']\" got='[[0, 1, 2, 4, 5, 7]]'",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "ind-code-maxprod",
+  "title": "Maximum product of any two elements",
+  "reason": "IndexError:list index out of range",
+  "passed": 0,
+  "total": 6
+ },
+ {
+  "id": "ind-code-sw-2",
+  "title": "Longest run of ones",
+  "reason": "MISMATCH exp='3' got='1'",
+  "passed": 3,
+  "total": 7
+ },
+ {
+  "id": "ind-code-tp-1",
+  "title": "Triplets that sum to zero",
+  "reason": "MISMATCH exp='2' got='0'",
+  "passed": 2,
+  "total": 7
+ },
+ {
+  "id": "ind-code-tp-2",
+  "title": "Widest water container",
+  "reason": "MISMATCH exp='49' got='0'",
+  "passed": 1,
+  "total": 7
+ },
+ {
+  "id": "ind-code-tp-3",
+  "title": "Colour-sort in a single pass",
+  "reason": "MISMATCH exp='[0, 0, 1, 1, 2, 2]' got='[[2,0,2,1,1,0]]'",
+  "passed": 0,
+  "total": 7
+ },
+ {
+  "id": "ind-code-hash-2",
+  "title": "Majority element",
+  "reason": "MISMATCH exp='3' got='[3,2,3]'",
+  "passed": 0,
+  "total": 5
+ },
+ {
+  "id": "ind-code-hash-5",
+  "title": "Group anagrams",
+  "reason": "MISMATCH exp=\"[['ate', 'eat', 'tea'], ['bat'], ['nat', 'tan']]\" got='[[[eat,tea,tan,ate,nat,bat]]]'",
+  "passed": 0,
+  "total": 5
+ },
+ {
+  "id": "ind-code-str-2",
+  "title": "Longest common prefix",
+  "reason": "MISMATCH exp='fl' got='[flower,flow,flight]'",
+  "passed": 0,
+  "total": 6
+ },
+ {
+  "id": "ind-code-str-3",
+  "title": "First unique character",
+  "reason": "MISMATCH exp='2' got='0'",
+  "passed": 2,
+  "total": 5
+ },
+ {
+  "id": "ind-code-str-4",
+  "title": "Reverse the vowels",
+  "reason": "MISMATCH exp='holle' got='hello'",
+  "passed": 1,
+  "total": 7
+ },
+ {
+  "id": "ind-code-str-5",
+  "title": "Run-length compress",
+  "reason": "MISMATCH exp='a3b2c1' got='aaabbc1'",
+  "passed": 1,
+  "total": 6
+ },
+ {
+  "id": "ind-code-sw-9",
+  "title": "Longest window with two distinct letters",
+  "reason": "MISMATCH exp='3' got='1'",
+  "passed": 1,
+  "total": 7
+ },
+ {
+  "id": "ind-code-sw-10",
+  "title": "Minimum swaps to gather all ones",
+  "reason": "MISMATCH exp='1' got='0'",
+  "passed": 3,
+  "total": 5
+ },
+ {
+  "id": "ind-code-sw-11",
+  "title": "Smallest window with every distinct letter",
+  "reason": "MISMATCH exp='4' got='1'",
+  "passed": 1,
+  "total": 6
+ },
+ {
+  "id": "ind-code-bs-4",
+  "title": "Peak index in a mountain array",
+  "reason": "MISMATCH exp='1' got='0'",
+  "passed": 1,
+  "total": 7
+ },
+ {
+  "id": "ind-apt-cal-1",
+  "title": "MCQ mismatch quarantine: ind-apt-cal-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-age-1",
+  "title": "MCQ mismatch quarantine: ind-apt-age-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-profit-1",
+  "title": "MCQ mismatch quarantine: ind-apt-profit-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-prob-1",
+  "title": "MCQ mismatch quarantine: ind-apt-prob-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-mixture-1",
+  "title": "MCQ mismatch quarantine: ind-apt-mixture-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-num-1",
+  "title": "MCQ mismatch quarantine: ind-apt-num-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-speed-1",
+  "title": "MCQ mismatch quarantine: ind-apt-speed-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-ratio-1",
+  "title": "MCQ mismatch quarantine: ind-apt-ratio-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-ci-1",
+  "title": "MCQ mismatch quarantine: ind-apt-ci-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-apt-avg-1",
+  "title": "MCQ mismatch quarantine: ind-apt-avg-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-code-1",
+  "title": "MCQ mismatch quarantine: ind-log-code-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-syllo-1",
+  "title": "MCQ mismatch quarantine: ind-log-syllo-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-seat-1",
+  "title": "MCQ mismatch quarantine: ind-log-seat-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-order-1",
+  "title": "MCQ mismatch quarantine: ind-log-order-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-venn-1",
+  "title": "MCQ mismatch quarantine: ind-log-venn-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-clock-1",
+  "title": "MCQ mismatch quarantine: ind-log-clock-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-blood-2",
+  "title": "MCQ mismatch quarantine: ind-log-blood-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-blood-3",
+  "title": "MCQ mismatch quarantine: ind-log-blood-3",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-dir-2",
+  "title": "MCQ mismatch quarantine: ind-log-dir-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-odd-1",
+  "title": "MCQ mismatch quarantine: ind-log-odd-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-code-2",
+  "title": "MCQ mismatch quarantine: ind-log-code-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-ord-2",
+  "title": "MCQ mismatch quarantine: ind-log-ord-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-syllo-2",
+  "title": "MCQ mismatch quarantine: ind-log-syllo-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-log-clock-2",
+  "title": "MCQ mismatch quarantine: ind-log-clock-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-analogy-1",
+  "title": "MCQ mismatch quarantine: ind-verb-analogy-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-id-1",
+  "title": "MCQ mismatch quarantine: ind-verb-id-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-spell-1",
+  "title": "MCQ mismatch quarantine: ind-verb-spell-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-fill-1",
+  "title": "MCQ mismatch quarantine: ind-verb-fill-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-owe-1",
+  "title": "MCQ mismatch quarantine: ind-verb-owe-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-ant-2",
+  "title": "MCQ mismatch quarantine: ind-verb-ant-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-ana-2",
+  "title": "MCQ mismatch quarantine: ind-verb-ana-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-id-2",
+  "title": "MCQ mismatch quarantine: ind-verb-id-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-owe-2",
+  "title": "MCQ mismatch quarantine: ind-verb-owe-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-sc-2",
+  "title": "MCQ mismatch quarantine: ind-verb-sc-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-spell-2",
+  "title": "MCQ mismatch quarantine: ind-verb-spell-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-syn-1",
+  "title": "MCQ mismatch quarantine: ind-verb-syn-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-fill-2",
+  "title": "MCQ mismatch quarantine: ind-verb-fill-2",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "ind-verb-prep-1",
+  "title": "MCQ mismatch quarantine: ind-verb-prep-1",
+  "reason": "MCQ test_case output does not match correct_answer letter",
+  "passed": 0,
+  "total": 0
+ },
+ {
+  "id": "tuf_0170",
+  "title": "Remove Outermost Parentheses",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0171",
+  "title": "Reverse Words",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0172",
+  "title": "Largest Odd Number",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0174",
+  "title": "Isomorphic String",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0175",
+  "title": "Rotate String",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0176",
+  "title": "Check Anagram",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0178",
+  "title": "Max Nesting Depth",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0180",
+  "title": "String to Integer atoi",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0182",
+  "title": "Sum of Beauty of Substrings",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0183",
+  "title": "Remove Outermost Parentheses (Strings [Bas #14)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0184",
+  "title": "Reverse Words (Strings [Bas #15)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0185",
+  "title": "Largest Odd Number (Strings [Bas #16)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0186",
+  "title": "Longest Common Prefix (Strings [Bas #17)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0187",
+  "title": "Isomorphic String (Strings [Bas #18)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0188",
+  "title": "Rotate String (Strings [Bas #19)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0561",
+  "title": "Climbing Stairs (Dynamic Prog #50)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 2
+ },
+ {
+  "id": "tuf_0591",
+  "title": "Minimum Window Subsequence (Strings #1)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0592",
+  "title": "Count and Say",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0593",
+  "title": "Rabin Karp",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0594",
+  "title": "KMP LPS Array",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0595",
+  "title": "Longest Happy Prefix",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0596",
+  "title": "Z-Function",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0597",
+  "title": "Shortest Palindrome",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0598",
+  "title": "Count Palindromic Subsequences",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0599",
+  "title": "Repeated String Match",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ },
+ {
+  "id": "tuf_0600",
+  "title": "Minimum Window Subsequence (Strings #10)",
+  "reason": "intake_lint:stub_literal_return_only \u2014 literal-return stub with stub-consistent test cases passes execution by construction; needs authored solution + independent test cases",
+  "passed": 0,
+  "total": 4
+ }
+]

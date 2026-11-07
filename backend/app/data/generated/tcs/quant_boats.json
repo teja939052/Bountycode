@@ -1,0 +1,1472 @@
+[
+  {
+    "id": "quant_boats_0000",
+    "question": "Downstream speed is 8 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 8 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 6 km/h, 2 km/h",
+        "B. 2 km/h, 6 km/h",
+        "C. 8 km/h",
+        "D. 4 km/h"
+      ],
+      "correct_answer": "A. 6 km/h, 2 km/h",
+      "explanation": "Boat = (8+4)/2 = 6. Stream = (8-4)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0001",
+    "question": "Downstream speed is 8 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 8 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 1 km/h, 7 km/h",
+        "B. 6 km/h",
+        "C. 8 km/h",
+        "D. 7 km/h, 1 km/h"
+      ],
+      "correct_answer": "D. 7 km/h, 1 km/h",
+      "explanation": "Boat = (8+6)/2 = 7. Stream = (8-6)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0002",
+    "question": "Downstream speed is 9 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 9 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 9 km/h",
+        "B. 2 km/h, 7 km/h",
+        "C. 7 km/h, 2 km/h",
+        "D. 5 km/h"
+      ],
+      "correct_answer": "C. 7 km/h, 2 km/h",
+      "explanation": "Boat = (9+5)/2 = 7. Stream = (9-5)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.151158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0003",
+    "question": "Downstream speed is 9 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 9 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 7 km/h",
+        "B. 8 km/h, 1 km/h",
+        "C. 9 km/h",
+        "D. 1 km/h, 8 km/h"
+      ],
+      "correct_answer": "B. 8 km/h, 1 km/h",
+      "explanation": "Boat = (9+7)/2 = 8. Stream = (9-7)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.151158+00:00",
+    "updated_at": "2026-09-21T12:53:32.151158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0004",
+    "question": "Downstream speed is 10 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 10 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 7 km/h, 3 km/h",
+        "B. 3 km/h, 7 km/h",
+        "C. 10 km/h",
+        "D. 4 km/h"
+      ],
+      "correct_answer": "A. 7 km/h, 3 km/h",
+      "explanation": "Boat = (10+4)/2 = 7. Stream = (10-4)/2 = 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.151158+00:00",
+    "updated_at": "2026-09-21T12:53:32.151158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0005",
+    "question": "Downstream speed is 10 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 10 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 2 km/h, 8 km/h",
+        "B. 10 km/h",
+        "C. 8 km/h, 2 km/h",
+        "D. 6 km/h"
+      ],
+      "correct_answer": "C. 8 km/h, 2 km/h",
+      "explanation": "Boat = (10+6)/2 = 8. Stream = (10-6)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.165792+00:00",
+    "updated_at": "2026-09-21T12:53:32.165792+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0006",
+    "question": "Downstream speed is 10 km/h and upstream is 8 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 10 km/h and upstream is 8 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 10 km/h",
+        "B. 1 km/h, 9 km/h",
+        "C. 8 km/h",
+        "D. 9 km/h, 1 km/h"
+      ],
+      "correct_answer": "D. 9 km/h, 1 km/h",
+      "explanation": "Boat = (10+8)/2 = 9. Stream = (10-8)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0007",
+    "question": "Downstream speed is 11 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 11 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 3 km/h, 8 km/h",
+        "B. 11 km/h",
+        "C. 8 km/h, 3 km/h",
+        "D. 5 km/h"
+      ],
+      "correct_answer": "C. 8 km/h, 3 km/h",
+      "explanation": "Boat = (11+5)/2 = 8. Stream = (11-5)/2 = 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0008",
+    "question": "Downstream speed is 11 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 11 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 7 km/h",
+        "B. 9 km/h, 2 km/h",
+        "C. 11 km/h",
+        "D. 2 km/h, 9 km/h"
+      ],
+      "correct_answer": "B. 9 km/h, 2 km/h",
+      "explanation": "Boat = (11+7)/2 = 9. Stream = (11-7)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0009",
+    "question": "Downstream speed is 11 km/h and upstream is 9 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 11 km/h and upstream is 9 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 10 km/h, 1 km/h",
+        "B. 11 km/h",
+        "C. 1 km/h, 10 km/h",
+        "D. 9 km/h"
+      ],
+      "correct_answer": "A. 10 km/h, 1 km/h",
+      "explanation": "Boat = (11+9)/2 = 10. Stream = (11-9)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0010",
+    "question": "Downstream speed is 12 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 12 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 4 km/h, 8 km/h",
+        "B. 8 km/h, 4 km/h",
+        "C. 12 km/h",
+        "D. 4 km/h"
+      ],
+      "correct_answer": "B. 8 km/h, 4 km/h",
+      "explanation": "Boat = (12+4)/2 = 8. Stream = (12-4)/2 = 4"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0011",
+    "question": "Downstream speed is 12 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 12 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 3 km/h, 9 km/h",
+        "B. 9 km/h, 3 km/h",
+        "C. 12 km/h",
+        "D. 6 km/h"
+      ],
+      "correct_answer": "B. 9 km/h, 3 km/h",
+      "explanation": "Boat = (12+6)/2 = 9. Stream = (12-6)/2 = 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0012",
+    "question": "Downstream speed is 12 km/h and upstream is 8 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 12 km/h and upstream is 8 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 10 km/h, 2 km/h",
+        "B. 2 km/h, 10 km/h",
+        "C. 12 km/h",
+        "D. 8 km/h"
+      ],
+      "correct_answer": "A. 10 km/h, 2 km/h",
+      "explanation": "Boat = (12+8)/2 = 10. Stream = (12-8)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0013",
+    "question": "Downstream speed is 12 km/h and upstream is 10 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 12 km/h and upstream is 10 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 10 km/h",
+        "B. 1 km/h, 11 km/h",
+        "C. 11 km/h, 1 km/h",
+        "D. 12 km/h"
+      ],
+      "correct_answer": "C. 11 km/h, 1 km/h",
+      "explanation": "Boat = (12+10)/2 = 11. Stream = (12-10)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0014",
+    "question": "Downstream speed is 13 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 13 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 9 km/h, 4 km/h",
+        "B. 13 km/h",
+        "C. 5 km/h",
+        "D. 4 km/h, 9 km/h"
+      ],
+      "correct_answer": "A. 9 km/h, 4 km/h",
+      "explanation": "Boat = (13+5)/2 = 9. Stream = (13-5)/2 = 4"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0015",
+    "question": "Downstream speed is 13 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 13 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 13 km/h",
+        "B. 10 km/h, 3 km/h",
+        "C. 7 km/h",
+        "D. 3 km/h, 10 km/h"
+      ],
+      "correct_answer": "B. 10 km/h, 3 km/h",
+      "explanation": "Boat = (13+7)/2 = 10. Stream = (13-7)/2 = 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0016",
+    "question": "Downstream speed is 13 km/h and upstream is 9 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 13 km/h and upstream is 9 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 11 km/h, 2 km/h",
+        "B. 2 km/h, 11 km/h",
+        "C. 9 km/h",
+        "D. 13 km/h"
+      ],
+      "correct_answer": "A. 11 km/h, 2 km/h",
+      "explanation": "Boat = (13+9)/2 = 11. Stream = (13-9)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0017",
+    "question": "Downstream speed is 13 km/h and upstream is 11 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 13 km/h and upstream is 11 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 11 km/h",
+        "B. 13 km/h",
+        "C. 1 km/h, 12 km/h",
+        "D. 12 km/h, 1 km/h"
+      ],
+      "correct_answer": "D. 12 km/h, 1 km/h",
+      "explanation": "Boat = (13+11)/2 = 12. Stream = (13-11)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0018",
+    "question": "Downstream speed is 14 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 14 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 14 km/h",
+        "B. 4 km/h",
+        "C. 9 km/h, 5 km/h",
+        "D. 5 km/h, 9 km/h"
+      ],
+      "correct_answer": "C. 9 km/h, 5 km/h",
+      "explanation": "Boat = (14+4)/2 = 9. Stream = (14-4)/2 = 5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0019",
+    "question": "Downstream speed is 14 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 14 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 4 km/h, 10 km/h",
+        "B. 6 km/h",
+        "C. 14 km/h",
+        "D. 10 km/h, 4 km/h"
+      ],
+      "correct_answer": "D. 10 km/h, 4 km/h",
+      "explanation": "Boat = (14+6)/2 = 10. Stream = (14-6)/2 = 4"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0020",
+    "question": "Downstream speed is 14 km/h and upstream is 8 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 14 km/h and upstream is 8 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 14 km/h",
+        "B. 3 km/h, 11 km/h",
+        "C. 8 km/h",
+        "D. 11 km/h, 3 km/h"
+      ],
+      "correct_answer": "D. 11 km/h, 3 km/h",
+      "explanation": "Boat = (14+8)/2 = 11. Stream = (14-8)/2 = 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.166790+00:00",
+    "updated_at": "2026-09-21T12:53:32.166790+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0021",
+    "question": "Downstream speed is 14 km/h and upstream is 10 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 14 km/h and upstream is 10 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 10 km/h",
+        "B. 14 km/h",
+        "C. 12 km/h, 2 km/h",
+        "D. 2 km/h, 12 km/h"
+      ],
+      "correct_answer": "C. 12 km/h, 2 km/h",
+      "explanation": "Boat = (14+10)/2 = 12. Stream = (14-10)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0022",
+    "question": "Downstream speed is 14 km/h and upstream is 12 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 14 km/h and upstream is 12 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 1 km/h, 13 km/h",
+        "B. 12 km/h",
+        "C. 14 km/h",
+        "D. 13 km/h, 1 km/h"
+      ],
+      "correct_answer": "D. 13 km/h, 1 km/h",
+      "explanation": "Boat = (14+12)/2 = 13. Stream = (14-12)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0023",
+    "question": "Downstream speed is 15 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 15 km/h and upstream is 5 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 15 km/h",
+        "B. 5 km/h",
+        "C. 10 km/h, 5 km/h",
+        "D. 5 km/h, 10 km/h"
+      ],
+      "correct_answer": "C. 10 km/h, 5 km/h",
+      "explanation": "Boat = (15+5)/2 = 10. Stream = (15-5)/2 = 5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0024",
+    "question": "Downstream speed is 15 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 15 km/h and upstream is 7 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 7 km/h",
+        "B. 11 km/h, 4 km/h",
+        "C. 15 km/h",
+        "D. 4 km/h, 11 km/h"
+      ],
+      "correct_answer": "B. 11 km/h, 4 km/h",
+      "explanation": "Boat = (15+7)/2 = 11. Stream = (15-7)/2 = 4"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0025",
+    "question": "Downstream speed is 15 km/h and upstream is 9 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 15 km/h and upstream is 9 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 3 km/h, 12 km/h",
+        "B. 9 km/h",
+        "C. 12 km/h, 3 km/h",
+        "D. 15 km/h"
+      ],
+      "correct_answer": "C. 12 km/h, 3 km/h",
+      "explanation": "Boat = (15+9)/2 = 12. Stream = (15-9)/2 = 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0026",
+    "question": "Downstream speed is 15 km/h and upstream is 11 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 15 km/h and upstream is 11 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 2 km/h, 13 km/h",
+        "B. 11 km/h",
+        "C. 13 km/h, 2 km/h",
+        "D. 15 km/h"
+      ],
+      "correct_answer": "C. 13 km/h, 2 km/h",
+      "explanation": "Boat = (15+11)/2 = 13. Stream = (15-11)/2 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0027",
+    "question": "Downstream speed is 15 km/h and upstream is 13 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 15 km/h and upstream is 13 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 1 km/h, 14 km/h",
+        "B. 15 km/h",
+        "C. 13 km/h",
+        "D. 14 km/h, 1 km/h"
+      ],
+      "correct_answer": "D. 14 km/h, 1 km/h",
+      "explanation": "Boat = (15+13)/2 = 14. Stream = (15-13)/2 = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0028",
+    "question": "Downstream speed is 16 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 16 km/h and upstream is 4 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 4 km/h",
+        "B. 6 km/h, 10 km/h",
+        "C. 10 km/h, 6 km/h",
+        "D. 16 km/h"
+      ],
+      "correct_answer": "C. 10 km/h, 6 km/h",
+      "explanation": "Boat = (16+4)/2 = 10. Stream = (16-4)/2 = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_boats_0029",
+    "question": "Downstream speed is 16 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+    "pattern": "boats",
+    "skill": "boats",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Downstream speed is 16 km/h and upstream is 6 km/h. Boat speed and stream speed?",
+      "options": [
+        "A. 16 km/h",
+        "B. 5 km/h, 11 km/h",
+        "C. 6 km/h",
+        "D. 11 km/h, 5 km/h"
+      ],
+      "correct_answer": "D. 11 km/h, 5 km/h",
+      "explanation": "Boat = (16+6)/2 = 11. Stream = (16-6)/2 = 5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

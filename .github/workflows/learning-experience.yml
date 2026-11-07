@@ -1,0 +1,97 @@
+name: Learning Experience
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "backend/app/routes/company_lessons.py"
+      - "backend/app/routes/academy_profile.py"
+      - "backend/app/routes/academy_diagnostic.py"
+      - "backend/app/routes/academy_plan.py"
+      - "backend/app/routes/quiz.py"
+      - "backend/app/services/adaptive_learning.py"
+      - "backend/app/services/journey_engine.py"
+      - "backend/app/services/spaced_repetition.py"
+      - "backend/app/services/study_engine.py"
+      - "backend/tests/test_academy_profile.py"
+      - "backend/tests/test_academy_diagnostic.py"
+      - "backend/tests/test_academy_plan.py"
+      - "backend/tests/test_quiz_time_limits.py"
+      - "backend/app/data/lessons/**"
+      - "backend/tests/test_company_lesson_placement_loop.py"
+      - "backend/tests/test_company_topic_progression.py"
+      - "backend/tests/test_lesson_content_quality.py"
+      - "backend/tests/test_sql_learning_runner.py"
+      - "backend/tests/test_srs_schedule_integrity.py"
+      - "backend/tests/test_adaptive_learning_score_impact.py"
+      - "backend/app/services/sql_engine.py"
+      - "backend/compiler-service/main.py"
+      - "backend/app/config.py"
+      - "backend/tests/test_compiler_sandbox_environment.py"
+      - "frontend/src/app/AppRoutes.tsx"
+      - "frontend/src/pages/LessonPlayer.tsx"
+      - "frontend/src/pages/PlacementAcademy.tsx"
+      - "frontend/src/pages/QuizPractice.tsx"
+      - "frontend/src/components/academy/**"
+      - "frontend/src/services/api/academy.ts"
+      - "frontend/src/hooks/useBrowserRuntime.ts"
+      - "frontend/src/pages/Compiler.tsx"
+      - "frontend/src/services/api/companyLessons.ts"
+      - ".github/workflows/learning-experience.yml"
+
+jobs:
+  backend-learning:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      - name: Compile learning routes
+        run: python -m compileall app/routes/company_lessons.py app/routes/academy_profile.py app/routes/academy_diagnostic.py app/routes/academy_plan.py app/routes/quiz.py -q
+      - name: Test lesson integrity, mastery and content quality
+        run: >
+          python -m pytest
+          tests/test_academy_profile.py
+          tests/test_academy_diagnostic.py
+          tests/test_academy_plan.py
+          tests/test_quiz_time_limits.py
+          tests/test_company_lesson_placement_loop.py
+          tests/test_company_topic_progression.py
+          tests/test_lesson_content_quality.py
+          tests/test_sql_learning_runner.py
+          tests/test_compiler_sandbox_environment.py
+          tests/test_srs_schedule_integrity.py
+          tests/test_adaptive_learning_score_impact.py
+          -q --tb=short
+
+  frontend-learning:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+      - name: Reconcile frontend lockfile
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Install frontend dependencies
+        run: npm ci
+      - name: Build frontend
+        run: npm run build

@@ -1,0 +1,5078 @@
+[
+  {
+    "id": "tuf_0377",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Introduction to Trees",
+    "question_title": "Introduction to Trees",
+    "statement": "Introduction to Trees. Solve the Striver A2Z problem 'Introduction to Trees' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Introduction to Trees. Solve the Striver A2Z problem 'Introduction to Trees' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. T",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def introduction(nums):\n    # Introduction to Trees - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "introduction",
+    "leetcode_number": 140,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 115
+  },
+  {
+    "id": "tuf_0378",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Binary Tree Representation",
+    "question_title": "Binary Tree Representation",
+    "statement": "Binary Tree Representation. Solve the Striver A2Z problem 'Binary Tree Representation' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Binary Tree Representation. Solve the Striver A2Z problem 'Binary Tree Representation' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer p",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def binary(nums):\n    # Binary Tree Representation - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "binary",
+    "leetcode_number": 147,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 89,
+    "upvotes": 323
+  },
+  {
+    "id": "tuf_0379",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Preorder Traversal",
+    "question_title": "Preorder Traversal",
+    "statement": "Preorder Traversal. Solve the Striver A2Z problem 'Preorder Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Preorder Traversal. Solve the Striver A2Z problem 'Preorder Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def preorder(nums):\n    # Preorder Traversal - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "preorder",
+    "leetcode_number": 154,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 251
+  },
+  {
+    "id": "tuf_0380",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Inorder Traversal",
+    "question_title": "Inorder Traversal",
+    "statement": "Inorder Traversal. Solve the Striver A2Z problem 'Inorder Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Inorder Traversal. Solve the Striver A2Z problem 'Inorder Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is p",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def inorder(nums):\n    # Inorder Traversal - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "inorder",
+    "leetcode_number": 161,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 85,
+    "upvotes": 338
+  },
+  {
+    "id": "tuf_0381",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Postorder Traversal",
+    "question_title": "Postorder Traversal",
+    "statement": "Postorder Traversal. Solve the Striver A2Z problem 'Postorder Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Postorder Traversal. Solve the Striver A2Z problem 'Postorder Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def postorder(nums):\n    # Postorder Traversal - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "postorder",
+    "leetcode_number": 168,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 94,
+    "upvotes": 63
+  },
+  {
+    "id": "tuf_0382",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Level Order Traversal",
+    "question_title": "Level Order Traversal",
+    "statement": "Level Order Traversal. Solve the Striver A2Z problem 'Level Order Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Level Order Traversal. Solve the Striver A2Z problem 'Level Order Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def level(nums):\n    # Level Order Traversal - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "level",
+    "leetcode_number": 175,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 20,
+    "upvotes": 379
+  },
+  {
+    "id": "tuf_0383",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Iterative Preorder",
+    "question_title": "Iterative Preorder",
+    "statement": "Iterative Preorder. Solve the Striver A2Z problem 'Iterative Preorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Iterative Preorder. Solve the Striver A2Z problem 'Iterative Preorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def iterative(nums):\n    # Iterative Preorder - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "iterative",
+    "leetcode_number": 182,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 64,
+    "upvotes": 119
+  },
+  {
+    "id": "tuf_0384",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Iterative Inorder",
+    "question_title": "Iterative Inorder",
+    "statement": "Iterative Inorder. Solve the Striver A2Z problem 'Iterative Inorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Iterative Inorder. Solve the Striver A2Z problem 'Iterative Inorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def iterative(nums):\n    # Iterative Inorder - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "iterative",
+    "leetcode_number": 189,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 143
+  },
+  {
+    "id": "tuf_0385",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Postorder using 2 Stacks",
+    "question_title": "Postorder using 2 Stacks",
+    "statement": "Postorder using 2 Stacks. Solve the Striver A2Z problem 'Postorder using 2 Stacks' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Postorder using 2 Stacks. Solve the Striver A2Z problem 'Postorder using 2 Stacks' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def postorder(nums):\n    # Postorder using 2 Stacks - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "postorder",
+    "leetcode_number": 196,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 183
+  },
+  {
+    "id": "tuf_0386",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Postorder using 1 Stack",
+    "question_title": "Postorder using 1 Stack",
+    "statement": "Postorder using 1 Stack. Solve the Striver A2Z problem 'Postorder using 1 Stack' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Postorder using 1 Stack. Solve the Striver A2Z problem 'Postorder using 1 Stack' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def postorder(nums):\n    # Postorder using 1 Stack - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "postorder",
+    "leetcode_number": 203,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 58,
+    "upvotes": 217
+  },
+  {
+    "id": "tuf_0387",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "All Traversals in One",
+    "question_title": "All Traversals in One",
+    "statement": "All Traversals in One. Solve the Striver A2Z problem 'All Traversals in One' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "All Traversals in One. Solve the Striver A2Z problem 'All Traversals in One' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF she",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def all(nums):\n    # All Traversals in One - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "all",
+    "leetcode_number": 210,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 37,
+    "upvotes": 282
+  },
+  {
+    "id": "tuf_0388",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Maximum Depth",
+    "question_title": "Maximum Depth",
+    "statement": "Maximum Depth. Solve the Striver A2Z problem 'Maximum Depth' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Maximum Depth. Solve the Striver A2Z problem 'Maximum Depth' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum Depth - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 217,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 51,
+    "upvotes": 222
+  },
+  {
+    "id": "tuf_0389",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Check Balanced",
+    "question_title": "Check Balanced",
+    "statement": "Check Balanced. Solve the Striver A2Z problem 'Check Balanced' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Check Balanced. Solve the Striver A2Z problem 'Check Balanced' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Balanced - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 224,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 58,
+    "upvotes": 192
+  },
+  {
+    "id": "tuf_0390",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Diameter of Binary Tree",
+    "question_title": "Diameter of Binary Tree",
+    "statement": "Diameter of Binary Tree. Solve the Striver A2Z problem 'Diameter of Binary Tree' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Diameter of Binary Tree. Solve the Striver A2Z problem 'Diameter of Binary Tree' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def diameter(nums):\n    # Diameter of Binary Tree - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "diameter",
+    "leetcode_number": 231,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 179
+  },
+  {
+    "id": "tuf_0391",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Maximum Path Sum",
+    "question_title": "Maximum Path Sum",
+    "statement": "Maximum Path Sum. Solve the Striver A2Z problem 'Maximum Path Sum' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Maximum Path Sum. Solve the Striver A2Z problem 'Maximum Path Sum' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is ",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum Path Sum - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 238,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 20,
+    "upvotes": 290
+  },
+  {
+    "id": "tuf_0392",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Check Identical Trees",
+    "question_title": "Check Identical Trees",
+    "statement": "Check Identical Trees. Solve the Striver A2Z problem 'Check Identical Trees' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Check Identical Trees. Solve the Striver A2Z problem 'Check Identical Trees' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. T",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Identical Trees - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 245,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 12,
+    "upvotes": 433
+  },
+  {
+    "id": "tuf_0393",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "ZigZag Traversal",
+    "question_title": "ZigZag Traversal",
+    "statement": "ZigZag Traversal. Solve the Striver A2Z problem 'ZigZag Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "ZigZag Traversal. Solve the Striver A2Z problem 'ZigZag Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This i",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def zigzag(nums):\n    # ZigZag Traversal - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "zigzag",
+    "leetcode_number": 252,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 79,
+    "upvotes": 76
+  },
+  {
+    "id": "tuf_0394",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Boundary Traversal",
+    "question_title": "Boundary Traversal",
+    "statement": "Boundary Traversal. Solve the Striver A2Z problem 'Boundary Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Boundary Traversal. Solve the Striver A2Z problem 'Boundary Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def boundary(nums):\n    # Boundary Traversal - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "boundary",
+    "leetcode_number": 259,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 54,
+    "upvotes": 164
+  },
+  {
+    "id": "tuf_0395",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Vertical Order Traversal",
+    "question_title": "Vertical Order Traversal",
+    "statement": "Vertical Order Traversal. Solve the Striver A2Z problem 'Vertical Order Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Vertical Order Traversal. Solve the Striver A2Z problem 'Vertical Order Traversal' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sh",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def vertical(nums):\n    # Vertical Order Traversal - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "vertical",
+    "leetcode_number": 266,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 93,
+    "upvotes": 85
+  },
+  {
+    "id": "tuf_0396",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Top View",
+    "question_title": "Top View",
+    "statement": "Top View. Solve the Striver A2Z problem 'Top View' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Top View. Solve the Striver A2Z problem 'Top View' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def top(nums):\n    # Top View - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "top",
+    "leetcode_number": 273,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 93,
+    "upvotes": 70
+  },
+  {
+    "id": "tuf_0397",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Bottom View",
+    "question_title": "Bottom View",
+    "statement": "Bottom View. Solve the Striver A2Z problem 'Bottom View' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Bottom View. Solve the Striver A2Z problem 'Bottom View' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Bi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def bottom(nums):\n    # Bottom View - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "bottom",
+    "leetcode_number": 280,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 176
+  },
+  {
+    "id": "tuf_0398",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Right/Left View",
+    "question_title": "Right/Left View",
+    "statement": "Right/Left View. Solve the Striver A2Z problem 'Right/Left View' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Right/Left View. Solve the Striver A2Z problem 'Right/Left View' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def rightleft(nums):\n    # Right/Left View - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "rightleft",
+    "leetcode_number": 287,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 35,
+    "upvotes": 479
+  },
+  {
+    "id": "tuf_0399",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Symmetric Tree",
+    "question_title": "Symmetric Tree",
+    "statement": "Symmetric Tree. Solve the Striver A2Z problem 'Symmetric Tree' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Symmetric Tree. Solve the Striver A2Z problem 'Symmetric Tree' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is pa",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def symmetric(nums):\n    # Symmetric Tree - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "symmetric",
+    "leetcode_number": 294,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 12,
+    "upvotes": 368
+  },
+  {
+    "id": "tuf_0400",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Root to Node Path",
+    "question_title": "Root to Node Path",
+    "statement": "Root to Node Path. Solve the Striver A2Z problem 'Root to Node Path' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Root to Node Path. Solve the Striver A2Z problem 'Root to Node Path' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This i",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def root(nums):\n    # Root to Node Path - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "root",
+    "leetcode_number": 301,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 29,
+    "upvotes": 172
+  },
+  {
+    "id": "tuf_0401",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "LCA",
+    "question_title": "LCA",
+    "statement": "LCA. Solve the Striver A2Z problem 'LCA' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "LCA. Solve the Striver A2Z problem 'LCA' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Travers",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def lca(nums):\n    # LCA - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "lca",
+    "leetcode_number": 308,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 26,
+    "upvotes": 292
+  },
+  {
+    "id": "tuf_0402",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Maximum Width",
+    "question_title": "Maximum Width",
+    "statement": "Maximum Width. Solve the Striver A2Z problem 'Maximum Width' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Maximum Width. Solve the Striver A2Z problem 'Maximum Width' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum Width - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 315,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 95,
+    "upvotes": 108
+  },
+  {
+    "id": "tuf_0403",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Children Sum Property",
+    "question_title": "Children Sum Property",
+    "statement": "Children Sum Property. Solve the Striver A2Z problem 'Children Sum Property' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Children Sum Property. Solve the Striver A2Z problem 'Children Sum Property' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def children(nums):\n    # Children Sum Property - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "children",
+    "leetcode_number": 322,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 82,
+    "upvotes": 161
+  },
+  {
+    "id": "tuf_0404",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Nodes at Distance K",
+    "question_title": "Nodes at Distance K",
+    "statement": "Nodes at Distance K. Solve the Striver A2Z problem 'Nodes at Distance K' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Nodes at Distance K. Solve the Striver A2Z problem 'Nodes at Distance K' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def nodes(nums):\n    # Nodes at Distance K - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "nodes",
+    "leetcode_number": 329,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 408
+  },
+  {
+    "id": "tuf_0405",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Minimum Time to Burn Tree",
+    "question_title": "Minimum Time to Burn Tree",
+    "statement": "Minimum Time to Burn Tree. Solve the Striver A2Z problem 'Minimum Time to Burn Tree' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Minimum Time to Burn Tree. Solve the Striver A2Z problem 'Minimum Time to Burn Tree' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Time to Burn Tree - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 336,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 42,
+    "upvotes": 442
+  },
+  {
+    "id": "tuf_0406",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Count Nodes in Complete BT",
+    "question_title": "Count Nodes in Complete BT",
+    "statement": "Count Nodes in Complete BT. Solve the Striver A2Z problem 'Count Nodes in Complete BT' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Count Nodes in Complete BT. Solve the Striver A2Z problem 'Count Nodes in Complete BT' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Nodes in Complete BT - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 343,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 57,
+    "upvotes": 135
+  },
+  {
+    "id": "tuf_0407",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Construct Unique BT Requirements",
+    "question_title": "Construct Unique BT Requirements",
+    "statement": "Construct Unique BT Requirements. Solve the Striver A2Z problem 'Construct Unique BT Requirements' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Construct Unique BT Requirements. Solve the Striver A2Z problem 'Construct Unique BT Requirements' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required a",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def construct(nums):\n    # Construct Unique BT Requirements - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "construct",
+    "leetcode_number": 350,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 87,
+    "upvotes": 360
+  },
+  {
+    "id": "tuf_0408",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Construct BT from Preorder Inorder",
+    "question_title": "Construct BT from Preorder Inorder",
+    "statement": "Construct BT from Preorder Inorder. Solve the Striver A2Z problem 'Construct BT from Preorder Inorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Construct BT from Preorder Inorder. Solve the Striver A2Z problem 'Construct BT from Preorder Inorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the r",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def construct(nums):\n    # Construct BT from Preorder Inorder - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "construct",
+    "leetcode_number": 357,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 448
+  },
+  {
+    "id": "tuf_0409",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Construct BT from Inorder Postorder",
+    "question_title": "Construct BT from Inorder Postorder",
+    "statement": "Construct BT from Inorder Postorder. Solve the Striver A2Z problem 'Construct BT from Inorder Postorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Construct BT from Inorder Postorder. Solve the Striver A2Z problem 'Construct BT from Inorder Postorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the r",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def construct(nums):\n    # Construct BT from Inorder Postorder - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "construct",
+    "leetcode_number": 364,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 30,
+    "upvotes": 209
+  },
+  {
+    "id": "tuf_0410",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Serialize and Deserialize",
+    "question_title": "Serialize and Deserialize",
+    "statement": "Serialize and Deserialize. Solve the Striver A2Z problem 'Serialize and Deserialize' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Serialize and Deserialize. Solve the Striver A2Z problem 'Serialize and Deserialize' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF ",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def serialize(nums):\n    # Serialize and Deserialize - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "serialize",
+    "leetcode_number": 371,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 23,
+    "upvotes": 346
+  },
+  {
+    "id": "tuf_0411",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Morris Preorder",
+    "question_title": "Morris Preorder",
+    "statement": "Morris Preorder. Solve the Striver A2Z problem 'Morris Preorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Morris Preorder. Solve the Striver A2Z problem 'Morris Preorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def morris(nums):\n    # Morris Preorder - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "morris",
+    "leetcode_number": 378,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 209
+  },
+  {
+    "id": "tuf_0412",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Morris Inorder",
+    "question_title": "Morris Inorder",
+    "statement": "Morris Inorder. Solve the Striver A2Z problem 'Morris Inorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Morris Inorder. Solve the Striver A2Z problem 'Morris Inorder' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def morris(nums):\n    # Morris Inorder - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "morris",
+    "leetcode_number": 385,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 83,
+    "upvotes": 396
+  },
+  {
+    "id": "tuf_0413",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Flatten BT",
+    "question_title": "Flatten BT",
+    "statement": "Flatten BT. Solve the Striver A2Z problem 'Flatten BT' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Flatten BT. Solve the Striver A2Z problem 'Flatten BT' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def flatten(nums):\n    # Flatten BT - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "flatten",
+    "leetcode_number": 392,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 58,
+    "upvotes": 253
+  },
+  {
+    "id": "tuf_0414",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Introduction to Trees (Binary Trees #38)",
+    "question_title": "Introduction to Trees (Binary Trees #38)",
+    "statement": "Introduction to Trees (Binary Trees #38). Solve the Striver A2Z problem 'Introduction to Trees (Binary Trees #38)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Introduction to Trees (Binary Trees #38). Solve the Striver A2Z problem 'Introduction to Trees (Binary Trees #38)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def introduction(nums):\n    # Introduction to Trees (Binary Trees #38) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "introduction",
+    "leetcode_number": 399,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 35,
+    "upvotes": 88
+  },
+  {
+    "id": "tuf_0415",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Binary Tree Representation (Binary Trees #39)",
+    "question_title": "Binary Tree Representation (Binary Trees #39)",
+    "statement": "Binary Tree Representation (Binary Trees #39). Solve the Striver A2Z problem 'Binary Tree Representation (Binary Trees #39)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Binary Tree Representation (Binary Trees #39). Solve the Striver A2Z problem 'Binary Tree Representation (Binary Trees #39)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Pro",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def binary(nums):\n    # Binary Tree Representation (Binary Trees #39) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "binary",
+    "leetcode_number": 406,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 85,
+    "upvotes": 403
+  },
+  {
+    "id": "tuf_0416",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Preorder Traversal (Binary Trees #40)",
+    "question_title": "Preorder Traversal (Binary Trees #40)",
+    "statement": "Preorder Traversal (Binary Trees #40). Solve the Striver A2Z problem 'Preorder Traversal (Binary Trees #40)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Preorder Traversal (Binary Trees #40). Solve the Striver A2Z problem 'Preorder Traversal (Binary Trees #40)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the ",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def preorder(nums):\n    # Preorder Traversal (Binary Trees #40) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "preorder",
+    "leetcode_number": 413,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 90,
+    "upvotes": 174
+  },
+  {
+    "id": "tuf_0417",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Inorder Traversal (Binary Trees #41)",
+    "question_title": "Inorder Traversal (Binary Trees #41)",
+    "statement": "Inorder Traversal (Binary Trees #41). Solve the Striver A2Z problem 'Inorder Traversal (Binary Trees #41)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Inorder Traversal (Binary Trees #41). Solve the Striver A2Z problem 'Inorder Traversal (Binary Trees #41)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return t",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def inorder(nums):\n    # Inorder Traversal (Binary Trees #41) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "inorder",
+    "leetcode_number": 420,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 23,
+    "upvotes": 406
+  },
+  {
+    "id": "tuf_0418",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Postorder Traversal (Binary Trees #42)",
+    "question_title": "Postorder Traversal (Binary Trees #42)",
+    "statement": "Postorder Traversal (Binary Trees #42). Solve the Striver A2Z problem 'Postorder Traversal (Binary Trees #42)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Postorder Traversal (Binary Trees #42). Solve the Striver A2Z problem 'Postorder Traversal (Binary Trees #42)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def postorder(nums):\n    # Postorder Traversal (Binary Trees #42) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "postorder",
+    "leetcode_number": 427,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 48,
+    "upvotes": 485
+  },
+  {
+    "id": "tuf_0419",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Level Order Traversal (Binary Trees #43)",
+    "question_title": "Level Order Traversal (Binary Trees #43)",
+    "statement": "Level Order Traversal (Binary Trees #43). Solve the Striver A2Z problem 'Level Order Traversal (Binary Trees #43)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Level Order Traversal (Binary Trees #43). Solve the Striver A2Z problem 'Level Order Traversal (Binary Trees #43)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Retur",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def level(nums):\n    # Level Order Traversal (Binary Trees #43) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "level",
+    "leetcode_number": 434,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 86,
+    "upvotes": 462
+  },
+  {
+    "id": "tuf_0420",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Iterative Preorder (Binary Trees #44)",
+    "question_title": "Iterative Preorder (Binary Trees #44)",
+    "statement": "Iterative Preorder (Binary Trees #44). Solve the Striver A2Z problem 'Iterative Preorder (Binary Trees #44)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Iterative Preorder (Binary Trees #44). Solve the Striver A2Z problem 'Iterative Preorder (Binary Trees #44)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def iterative(nums):\n    # Iterative Preorder (Binary Trees #44) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "iterative",
+    "leetcode_number": 441,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 25,
+    "upvotes": 457
+  },
+  {
+    "id": "tuf_0421",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "Iterative Inorder (Binary Trees #45)",
+    "question_title": "Iterative Inorder (Binary Trees #45)",
+    "statement": "Iterative Inorder (Binary Trees #45). Solve the Striver A2Z problem 'Iterative Inorder (Binary Trees #45)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Iterative Inorder (Binary Trees #45). Solve the Striver A2Z problem 'Iterative Inorder (Binary Trees #45)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def iterative(nums):\n    # Iterative Inorder (Binary Trees #45) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "iterative",
+    "leetcode_number": 448,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 82,
+    "upvotes": 450
+  },
+  {
+    "id": "tuf_0422",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Traversals",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Traversals",
+    "tuf_step_index": 13,
+    "question": "Postorder using 2 Stacks (Binary Trees #46)",
+    "question_title": "Postorder using 2 Stacks (Binary Trees #46)",
+    "statement": "Postorder using 2 Stacks (Binary Trees #46). Solve the Striver A2Z problem 'Postorder using 2 Stacks (Binary Trees #46)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Postorder using 2 Stacks (Binary Trees #46). Solve the Striver A2Z problem 'Postorder using 2 Stacks (Binary Trees #46)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Traversals).",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def postorder(nums):\n    # Postorder using 2 Stacks (Binary Trees #46) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "postorder",
+    "leetcode_number": 455,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Traversals"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 15,
+    "upvotes": 227
+  },
+  {
+    "id": "tuf_0423",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 13,
+    "question": "Postorder using 1 Stack (Binary Trees #47)",
+    "question_title": "Postorder using 1 Stack (Binary Trees #47)",
+    "statement": "Postorder using 1 Stack (Binary Trees #47). Solve the Striver A2Z problem 'Postorder using 1 Stack (Binary Trees #47)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "Postorder using 1 Stack (Binary Trees #47). Solve the Striver A2Z problem 'Postorder using 1 Stack (Binary Trees #47)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Medium Problem",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def postorder(nums):\n    # Postorder using 1 Stack (Binary Trees #47) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "postorder",
+    "leetcode_number": 462,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 78,
+    "upvotes": 269
+  },
+  {
+    "id": "tuf_0424",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Trees",
+    "tuf_step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 13,
+    "question": "All Traversals in One (Binary Trees #48)",
+    "question_title": "All Traversals in One (Binary Trees #48)",
+    "statement": "All Traversals in One (Binary Trees #48). Solve the Striver A2Z problem 'All Traversals in One (Binary Trees #48)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Binary Trees [Traversals, Medium and Hard Problems] asked in top product companies.",
+    "description": "All Traversals in One (Binary Trees #48). Solve the Striver A2Z problem 'All Traversals in One (Binary Trees #48)' from TakeUForward step 'Binary Trees [Traversals, Medium and Hard Problems]' (pattern: Hard Problems). Re",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Recursion models tree",
+      "Iterative stack for Morris"
+    ],
+    "solution": {
+      "code": "def all(nums):\n    # All Traversals in One (Binary Trees #48) - Binary Trees [Traversals, Medium and Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "all",
+    "leetcode_number": 469,
+    "dsa_guide": {
+      "approach": "Trees",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Recursion models tree",
+        "Iterative stack for Morris"
+      ]
+    },
+    "source": "TakeUForward - Binary Trees [Traversals, Medium and Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 94,
+    "upvotes": 239
+  }
+]

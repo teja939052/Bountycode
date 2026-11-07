@@ -1,0 +1,219 @@
+{
+  "slug": "arithmetic_algebra",
+  "id": "lesson_arithmetic_algebra_001",
+  "title": "Arithmetic and Algebra Foundations",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Arithmetic and Algebra",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Order of operations",
+      "content": "Use parentheses first, then exponents, then multiplication and division, then addition and subtraction. Operations of equal precedence are evaluated from left to right.",
+      "example": "18 ÷ 3 × 2 = 6 × 2 = 12."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Evaluate an expression",
+      "prompt": "What is 12 + 6 ÷ 3 × 2?",
+      "options": [
+        "12",
+        "14",
+        "16",
+        "18"
+      ],
+      "correct_index": 2,
+      "explanation": "Division and multiplication go left to right: 6÷3=2, 2×2=4, then 12+4=16."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Solve a linear equation",
+      "content": "Keep equations balanced by applying the same operation to both sides. Collect variable terms on one side and constants on the other.",
+      "example": "3x + 5 = 20 → 3x = 15 → x = 5.",
+      "formula": "ax + b = c  ⇒  x = (c−b)/a, when a ≠ 0"
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find the unknown",
+      "prompt": "Solve 4x − 7 = 13.",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct_index": 2,
+      "explanation": "Add 7 to both sides: 4x=20. Divide by 4: x=5."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Translate words into equations",
+      "content": "Convert phrases carefully: 'twice a number' is 2x; 'five more than a number' is x+5; 'the difference between a number and 4' depends on the stated order.",
+      "tip": "Define the unknown before writing the equation."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Evaluate 20 − 4 × 3.",
+        "options": [
+          "8",
+          "12",
+          "48",
+          "16"
+        ],
+        "correct_index": 0,
+        "explanation": "Multiplication first: 20−12=8."
+      },
+      {
+        "prompt": "Solve 2x + 6 = 18.",
+        "options": [
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "correct_index": 2,
+        "explanation": "2x=12, so x=6."
+      },
+      {
+        "prompt": "Twice a number is 26. What is the number?",
+        "options": [
+          "11",
+          "12",
+          "13",
+          "14"
+        ],
+        "correct_index": 2,
+        "explanation": "2x=26 gives x=13."
+      },
+      {
+        "prompt": "Evaluate 3² + 4.",
+        "options": [
+          "10",
+          "12",
+          "13",
+          "16"
+        ],
+        "correct_index": 2,
+        "explanation": "3²=9, then 9+4=13."
+      },
+      {
+        "prompt": "If x=3, what is the value of 2x²?",
+        "options": [
+          "12",
+          "18",
+          "24",
+          "36"
+        ],
+        "correct_index": 1,
+        "explanation": "2×3² = 2×9 = 18."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Translate word problems into equations.",
+    "Work with ratios, percentages and averages.",
+    "Solve linear equations and verify results.",
+    "Estimate answers and check units."
+  ],
+  "prerequisites": [
+    "hcf_lcm"
+  ],
+  "concepts": [
+    "ratio",
+    "percentage",
+    "average",
+    "linear equation",
+    "unit conversion",
+    "estimation"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A 20% increase followed by a 20% decrease returns to the original value.",
+      "correction": "Percentage changes use different bases; the final value is 96% of the starting value."
+    },
+    {
+      "misconception": "An average is always one of the observed values.",
+      "correction": "An average is total divided by count and may be between observed values."
+    },
+    {
+      "misconception": "Cross multiplication is valid without checking the equation structure.",
+      "correction": "Use equivalent ratios and preserve the equality when multiplying both sides."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Successive percentage change",
+      "input": "Start = 100; increase 20%; then decrease 20%",
+      "trace": [
+        "After increase: 100 × 1.20 = 120.",
+        "Decrease 20% of 120: 120 × 0.80 = 96."
+      ],
+      "output": "96",
+      "explanation": "The second percentage applies to 120, not the original 100."
+    },
+    {
+      "title": "Find an average",
+      "input": "Marks = 60, 70, 80",
+      "trace": [
+        "Add values: 60 + 70 + 80 = 210.",
+        "There are 3 values.",
+        "Divide 210 by 3."
+      ],
+      "output": "Average = 70",
+      "explanation": "The arithmetic mean is the sum divided by the number of observations."
+    },
+    {
+      "title": "Solve a linear equation",
+      "input": "3x + 5 = 20",
+      "trace": [
+        "Subtract 5 from both sides: 3x = 15.",
+        "Divide both sides by 3.",
+        "Substitute x=5 to verify."
+      ],
+      "output": "x = 5",
+      "explanation": "Perform the same valid operation on both sides to preserve equality."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "quantitative aptitude and arithmetic",
+      "practice": "Show each step and keep units consistent."
+    },
+    {
+      "company": "Infosys",
+      "skill": "quantitative aptitude",
+      "practice": "Practice percentages, ratios and data interpretation."
+    },
+    {
+      "company": "Accenture",
+      "skill": "numerical reasoning",
+      "practice": "Estimate first, then verify exact calculations."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Arithmetic and Algebra Foundations?",
+      "answer": "Translate word problems into equations. Work with ratios, percentages and averages. Solve linear equations and verify results. Estimate answers and check units."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Arithmetic and Algebra Foundations.",
+      "answer": "Percentage changes use different bases; the final value is 96% of the starting value."
+    }
+  ],
+  "next_lesson_slug": "successive_percentage_change",
+  "next_lesson_title": "Successive Percentage Change"
+}

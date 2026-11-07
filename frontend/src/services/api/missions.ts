@@ -1,63 +1,60 @@
 import { requestWithRetry } from "./request.ts";
+import { journeyApi } from "./journey.ts";
 
+/**
+ * Mission adapter (V4 internal wiring).
+ *
+ * NOTE: there is no `/api/v1/missions/*` backend — the previous functions in
+ * this module called dead endpoints. This adapter rewires the Mission Shell to
+ * the canonical systems instead of inventing parallel ones:
+ *
+ * - identity/next action → GET /api/v1/journey/state (journey_engine)
+ * - daily plan           → GET /api/v1/study/today     (study_engine)
+ * - completion/evidence  → POST /api/v1/study/activity (record_activity →
+ *                           mastery + SRS + record_practice + LearningEvent)
+ * - repair/retest        → /api/v1/repair/*            (repair_service,
+ *                           verified-only via question_store)
+ */
 export const missionApi = {
-  interactionTypes() {
-    return requestWithRetry("/api/v1/missions/interaction-types");
+  /** Backend-decided journey state (single next action, character, map). */
+  getJourneyState() {
+    return journeyApi.getState();
   },
-  masteryDimensions() {
-    return requestWithRetry("/api/v1/missions/mastery-dimensions");
+  /** Study Engine daily plan (next / reviews / practice / challenge). */
+  getToday() {
+    return journeyApi.getToday();
   },
-  skillRanks() {
-    return requestWithRetry("/api/v1/missions/skill-ranks");
+  /**
+   * Canonical completion sink. Payload keys (study_engine.record_activity):
+   * type, skill_id, passed, score, attempts, time_spent, hints_used,
+   * diagnosis_codes, question_id/trust_status (Content Trust instrumentation).
+   * Returns authoritative server numbers (score, diamonds, mastery_before/after).
+   */
+  recordActivity(payload: Record<string, unknown>) {
+    return journeyApi.recordActivity(payload);
   },
-  topics() {
-    return requestWithRetry("/api/v1/missions/topics");
+  /** Active repair missions + next-best recommendation. */
+  listRepairMissions() {
+    return requestWithRetry("/api/v1/repair/missions");
   },
-  topicMastery(topic: string) {
-    return requestWithRetry(`/api/v1/missions/mastery/${topic}`);
-  },
-  allMastery() {
-    return requestWithRetry("/api/v1/missions/mastery");
-  },
-  stats() {
-    return requestWithRetry("/api/v1/missions/stats");
-  },
-  submitInteraction(data: {
-    topic: string;
-    interaction_type: string;
-    score: number;
-    is_correct: boolean;
-    time_taken?: number;
-    answer?: string;
-  }) {
-    return requestWithRetry("/api/v1/missions/interact", {
+  completeRepairMission(missionId: string) {
+    return requestWithRetry("/api/v1/repair/missions/complete", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ mission_id: missionId }),
     });
   },
-  requestHint(data: {
-    topic: string;
-    interaction_type: string;
-    hint_level: number;
-    context?: any;
-  }) {
-    return requestWithRetry("/api/v1/missions/hint", {
+  /** Verified-only retest for a weakness skill (never backfilled). */
+  getRetest(skill: string, count = 3) {
+    return requestWithRetry(
+      `/api/v1/repair/retest?skill=${encodeURIComponent(skill)}&count=${count}`,
+    );
+  },
+  submitRetest(body: Record<string, unknown>) {
+    return requestWithRetry("/api/v1/repair/retest/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     });
-  },
-  topicRank(topic: string) {
-    return requestWithRetry(`/api/v1/missions/rank/${topic}`);
-  },
-  domainProgress(domain: string) {
-    return requestWithRetry(`/api/v1/missions/domain/${domain}`);
-  },
-  missionContent(topic: string) {
-    return requestWithRetry(`/api/v1/missions/content/${topic}`);
-  },
-  allMissionContent() {
-    return requestWithRetry("/api/v1/missions/content");
   },
 };
+
+export default missionApi;

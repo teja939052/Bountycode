@@ -1,0 +1,1 @@
+[{"_id": {"$oid": "6a83c5b1e005392b3d2a4fe1"}, "event": "tab_hidden", "at": 1234.5, "detail": "switched tab", "user_id": "6a83c5afe005392b3d2a4fdc", "session_id": "6a83c5b0e005392b3d2a4fde", "created_at": {"$date": "2026-08-18T02:38:41.516000"}}]

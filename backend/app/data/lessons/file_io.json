@@ -1,0 +1,125 @@
+{
+  "slug": "file_io",
+  "id": "lesson_file_io_001",
+  "title": "File Input and Output",
+  "domain": "Programming Fundamentals",
+  "pattern": "File I/O",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Open a file with a mode",
+      "content": "A program opens a file to read or write data. Common modes include r (read), w (write and truncate/create), a (append) and x (create only if it does not exist).",
+      "example": "open('notes.txt', 'r') reads an existing text file."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose append mode",
+      "prompt": "Which mode adds new content at the end without first truncating the existing file?",
+      "options": [
+        "r",
+        "w",
+        "a",
+        "x"
+      ],
+      "correct_index": 2,
+      "explanation": "Append mode a writes at the end of the existing file, creating it if needed."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use a context manager",
+      "content": "A with statement manages the file resource and closes it when the block exits, including when an exception occurs.",
+      "example": "with open('notes.txt', 'r', encoding='utf-8') as file:\\n    text = file.read()",
+      "tip": "Use an explicit encoding for text files when your data must be portable."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Understand write mode",
+      "prompt": "What normally happens when an existing file is opened in mode 'w'?",
+      "options": [
+        "The file is read only",
+        "Existing content is truncated",
+        "New data is always added to the end",
+        "The file is deleted permanently"
+      ],
+      "correct_index": 1,
+      "explanation": "Write mode truncates an existing file before writing new content."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Read line by line",
+      "content": "read() loads the whole file, readline() reads one line and iteration over a file object processes lines one by one. Line-by-line reading is useful for large files.",
+      "example": "for line in file:\\n    process(line.strip())"
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which mode opens an existing file for reading?",
+        "options": [
+          "r",
+          "w",
+          "a",
+          "x"
+        ],
+        "correct_index": 0,
+        "explanation": "r is read mode."
+      },
+      {
+        "prompt": "Which statement about with open(...) is correct?",
+        "options": [
+          "It never closes the file",
+          "It closes the file when the block exits",
+          "It only works for binary files",
+          "It deletes the file"
+        ],
+        "correct_index": 1,
+        "explanation": "The context manager closes the file when control exits the block."
+      },
+      {
+        "prompt": "Which method reads the entire file content as one string?",
+        "options": [
+          "read()",
+          "readline()",
+          "write()",
+          "close()"
+        ],
+        "correct_index": 0,
+        "explanation": "read() reads the remaining file content."
+      },
+      {
+        "prompt": "Which mode is appropriate when you want to add a log entry at the end?",
+        "options": [
+          "r",
+          "w",
+          "a",
+          "x"
+        ],
+        "correct_index": 2,
+        "explanation": "Append mode writes at the end while preserving existing content."
+      },
+      {
+        "prompt": "Why can line-by-line reading help with large files?",
+        "options": [
+          "It sorts the file",
+          "It avoids loading the entire file into memory at once",
+          "It encrypts every line",
+          "It makes the file smaller automatically"
+        ],
+        "correct_index": 1,
+        "explanation": "Iterating through lines keeps memory use lower than reading the entire file at once."
+      }
+    ]
+  },
+  "next_lesson_slug": "matrix_operations",
+  "next_lesson_title": "Matrix Operations"
+}

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from app.middleware.auth import get_current_user
-from app.services.ai import generate_interview_question, evaluate_answer
+from app.services.ai_interview import generate_interview_question, evaluate_answer
 
 router = APIRouter(prefix="/api/v1/free", tags=["free-practice"])
 

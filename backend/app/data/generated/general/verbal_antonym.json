@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_antonym_0000",
+    "question": "Antonym of 'Happy'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Happy'?",
+      "options": [
+        "A. Bright",
+        "B. Rich",
+        "C. Strong",
+        "D. Sad"
+      ],
+      "correct_answer": "D. Sad",
+      "explanation": "'Sad' is an antonym of 'Happy'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0001",
+    "question": "Antonym of 'Big'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Big'?",
+      "options": [
+        "A. Bright",
+        "B. Happy",
+        "C. Rich",
+        "D. Small"
+      ],
+      "correct_answer": "D. Small",
+      "explanation": "'Small' is an antonym of 'Big'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0002",
+    "question": "Antonym of 'Fast'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Fast'?",
+      "options": [
+        "A. Slow",
+        "B. Hot",
+        "C. Bright",
+        "D. Happy"
+      ],
+      "correct_answer": "A. Slow",
+      "explanation": "'Slow' is an antonym of 'Fast'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0003",
+    "question": "Antonym of 'Hot'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Hot'?",
+      "options": [
+        "A. Cold",
+        "B. Hot",
+        "C. Love",
+        "D. Fast"
+      ],
+      "correct_answer": "A. Cold",
+      "explanation": "'Cold' is an antonym of 'Hot'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.241233+00:00",
+    "updated_at": "2026-09-21T12:53:32.241233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0004",
+    "question": "Antonym of 'Bright'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Bright'?",
+      "options": [
+        "A. Bright",
+        "B. Hot",
+        "C. Fast",
+        "D. Dark"
+      ],
+      "correct_answer": "D. Dark",
+      "explanation": "'Dark' is an antonym of 'Bright'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.241233+00:00",
+    "updated_at": "2026-09-21T12:53:32.241233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0005",
+    "question": "Antonym of 'Strong'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Strong'?",
+      "options": [
+        "A. Big",
+        "B. Weak",
+        "C. Strong",
+        "D. Happy"
+      ],
+      "correct_answer": "B. Weak",
+      "explanation": "'Weak' is an antonym of 'Strong'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.241233+00:00",
+    "updated_at": "2026-09-21T12:53:32.241233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0006",
+    "question": "Antonym of 'Rich'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Rich'?",
+      "options": [
+        "A. Poor",
+        "B. Rich",
+        "C. Big",
+        "D. Love"
+      ],
+      "correct_answer": "A. Poor",
+      "explanation": "'Poor' is an antonym of 'Rich'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.241233+00:00",
+    "updated_at": "2026-09-21T12:53:32.241233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0007",
+    "question": "Antonym of 'Love'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Love'?",
+      "options": [
+        "A. Strong",
+        "B. Happy",
+        "C. Hate",
+        "D. Big"
+      ],
+      "correct_answer": "C. Hate",
+      "explanation": "'Hate' is an antonym of 'Love'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.241233+00:00",
+    "updated_at": "2026-09-21T12:53:32.241233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0008",
+    "question": "Antonym of 'Brave'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Brave'?",
+      "options": [
+        "A. Bright",
+        "B. Big",
+        "C. Fast",
+        "D. Cowardly"
+      ],
+      "correct_answer": "D. Cowardly",
+      "explanation": "'Cowardly' is an antonym of 'Brave'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.241233+00:00",
+    "updated_at": "2026-09-21T12:53:32.241233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0009",
+    "question": "Antonym of 'Clean'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Clean'?",
+      "options": [
+        "A. Strong",
+        "B. Hot",
+        "C. Dirty",
+        "D. Rich"
+      ],
+      "correct_answer": "C. Dirty",
+      "explanation": "'Dirty' is an antonym of 'Clean'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.241233+00:00",
+    "updated_at": "2026-09-21T12:53:32.241233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0010",
+    "question": "Antonym of 'Clear'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Clear'?",
+      "options": [
+        "A. Cloudy",
+        "B. Strong",
+        "C. Love",
+        "D. Happy"
+      ],
+      "correct_answer": "A. Cloudy",
+      "explanation": "'Cloudy' is an antonym of 'Clear'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0011",
+    "question": "Antonym of 'Dead'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Dead'?",
+      "options": [
+        "A. Hot",
+        "B. Alive",
+        "C. Fast",
+        "D. Strong"
+      ],
+      "correct_answer": "B. Alive",
+      "explanation": "'Alive' is an antonym of 'Dead'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0012",
+    "question": "Antonym of 'Empty'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Empty'?",
+      "options": [
+        "A. Full",
+        "B. Hot",
+        "C. Bright",
+        "D. Big"
+      ],
+      "correct_answer": "A. Full",
+      "explanation": "'Full' is an antonym of 'Empty'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0013",
+    "question": "Antonym of 'Extinct'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Extinct'?",
+      "options": [
+        "A. Love",
+        "B. Hot",
+        "C. Rich",
+        "D. Living"
+      ],
+      "correct_answer": "D. Living",
+      "explanation": "'Living' is an antonym of 'Extinct'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0014",
+    "question": "Antonym of 'False'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'False'?",
+      "options": [
+        "A. Rich",
+        "B. Love",
+        "C. Big",
+        "D. True"
+      ],
+      "correct_answer": "D. True",
+      "explanation": "'True' is an antonym of 'False'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0015",
+    "question": "Antonym of 'Gentle'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Gentle'?",
+      "options": [
+        "A. Big",
+        "B. Rough",
+        "C. Rich",
+        "D. Hot"
+      ],
+      "correct_answer": "B. Rough",
+      "explanation": "'Rough' is an antonym of 'Gentle'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0016",
+    "question": "Antonym of 'Happy'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Happy'?",
+      "options": [
+        "A. Fast",
+        "B. Love",
+        "C. Hot",
+        "D. Sad"
+      ],
+      "correct_answer": "D. Sad",
+      "explanation": "'Sad' is an antonym of 'Happy'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0017",
+    "question": "Antonym of 'Heavy'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Heavy'?",
+      "options": [
+        "A. Light",
+        "B. Bright",
+        "C. Big",
+        "D. Love"
+      ],
+      "correct_answer": "A. Light",
+      "explanation": "'Light' is an antonym of 'Heavy'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0018",
+    "question": "Antonym of 'High'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'High'?",
+      "options": [
+        "A. Love",
+        "B. Low",
+        "C. Big",
+        "D. Happy"
+      ],
+      "correct_answer": "B. Low",
+      "explanation": "'Low' is an antonym of 'High'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_antonym_0019",
+    "question": "Antonym of 'Impossible'?",
+    "pattern": "antonym",
+    "skill": "antonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Antonym of 'Impossible'?",
+      "options": [
+        "A. Fast",
+        "B. Bright",
+        "C. Strong",
+        "D. Possible"
+      ],
+      "correct_answer": "D. Possible",
+      "explanation": "'Possible' is an antonym of 'Impossible'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

@@ -1,0 +1,752 @@
+[
+  {
+    "id": "code_string_0000",
+    "question": "What does this function return?\ndef reverse(s): return s[::-1]\nprint(reverse('hello'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef reverse(s): return s[::-1]\nprint(reverse('hello'))",
+      "options": [
+        "A. Python",
+        "B. olleh",
+        "C. hello",
+        "D. 5"
+      ],
+      "correct_answer": "B. olleh",
+      "explanation": "String result: olleh"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.291374+00:00",
+    "updated_at": "2026-09-21T12:53:32.291374+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0001",
+    "question": "What does this function return?\ndef count_vowels(s): return sum(1 for c in s if c in 'aeiouAEIOU')\nprint(count_vowels('hello'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef count_vowels(s): return sum(1 for c in s if c in 'aeiouAEIOU')\nprint(count_vowels('hello'))",
+      "options": [
+        "A. 2",
+        "B. False",
+        "C. Python",
+        "D. olleh"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "String result: 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.291374+00:00",
+    "updated_at": "2026-09-21T12:53:32.291374+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0002",
+    "question": "What does this function return?\ndef is_palindrome(s): return s == s[::-1]\nprint(is_palindrome('racecar'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef is_palindrome(s): return s == s[::-1]\nprint(is_palindrome('racecar'))",
+      "options": [
+        "A. hello",
+        "B. olleh",
+        "C. True",
+        "D. 5"
+      ],
+      "correct_answer": "C. True",
+      "explanation": "String result: True"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.291374+00:00",
+    "updated_at": "2026-09-21T12:53:32.292007+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0003",
+    "question": "What does this function return?\ndef uppercase(s): return s.upper()\nprint(uppercase('hello'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef uppercase(s): return s.upper()\nprint(uppercase('hello'))",
+      "options": [
+        "A. hello",
+        "B. HELLO",
+        "C. Python",
+        "D. olleh"
+      ],
+      "correct_answer": "B. HELLO",
+      "explanation": "String result: HELLO"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292007+00:00",
+    "updated_at": "2026-09-21T12:53:32.292007+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0004",
+    "question": "What does this function return?\ndef join_str(a, b): return a + ' ' + b\nprint(join_str('Hello', 'World'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef join_str(a, b): return a + ' ' + b\nprint(join_str('Hello', 'World'))",
+      "options": [
+        "A. Hello World",
+        "B. 6",
+        "C. hello",
+        "D. Python"
+      ],
+      "correct_answer": "A. Hello World",
+      "explanation": "String result: Hello World"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292007+00:00",
+    "updated_at": "2026-09-21T12:53:32.292007+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0005",
+    "question": "What does this function return?\ndef first_char(s): return s[0]\nprint(first_char('Python'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef first_char(s): return s[0]\nprint(first_char('Python'))",
+      "options": [
+        "A. False",
+        "B. 5",
+        "C. Python",
+        "D. P"
+      ],
+      "correct_answer": "D. P",
+      "explanation": "String result: P"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292007+00:00",
+    "updated_at": "2026-09-21T12:53:32.292007+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0006",
+    "question": "What does this function return?\ndef last_char(s): return s[-1]\nprint(last_char('Python'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef last_char(s): return s[-1]\nprint(last_char('Python'))",
+      "options": [
+        "A. n",
+        "B. 5",
+        "C. True",
+        "D. hello"
+      ],
+      "correct_answer": "A. n",
+      "explanation": "String result: n"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292007+00:00",
+    "updated_at": "2026-09-21T12:53:32.292007+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0007",
+    "question": "What does this function return?\ndef substring(s): return s[1:4]\nprint(substring('Python'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef substring(s): return s[1:4]\nprint(substring('Python'))",
+      "options": [
+        "A. False",
+        "B. hello",
+        "C. 6",
+        "D. yth"
+      ],
+      "correct_answer": "D. yth",
+      "explanation": "String result: yth"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292007+00:00",
+    "updated_at": "2026-09-21T12:53:32.292007+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0008",
+    "question": "What does this function return?\ndef replace_hello(s): return s.replace('hello', 'hi')\nprint(replace_hello('hello world'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef replace_hello(s): return s.replace('hello', 'hi')\nprint(replace_hello('hello world'))",
+      "options": [
+        "A. 6",
+        "B. Python",
+        "C. hi world",
+        "D. hello"
+      ],
+      "correct_answer": "C. hi world",
+      "explanation": "String result: hi world"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292700+00:00",
+    "updated_at": "2026-09-21T12:53:32.292700+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0009",
+    "question": "What does this function return?\ndef split_str(s): return s.split(',')\nprint(split_str('a,b,c'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef split_str(s): return s.split(',')\nprint(split_str('a,b,c'))",
+      "options": [
+        "A. Python",
+        "B. hello",
+        "C. ['a', 'b', 'c']",
+        "D. False"
+      ],
+      "correct_answer": "C. ['a', 'b', 'c']",
+      "explanation": "String result: ['a', 'b', 'c']"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292700+00:00",
+    "updated_at": "2026-09-21T12:53:32.292700+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0010",
+    "question": "What does this function return?\ndef trim(s): return s.strip()\nprint(trim('  hello  '))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef trim(s): return s.strip()\nprint(trim('  hello  '))",
+      "options": [
+        "A. hello",
+        "B. False",
+        "C. True",
+        "D. 5"
+      ],
+      "correct_answer": "A. hello",
+      "explanation": "String result: hello"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292700+00:00",
+    "updated_at": "2026-09-21T12:53:32.292700+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0011",
+    "question": "What does this function return?\ndef find_sub(s): return s.find('lo')\nprint(find_sub('hello'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef find_sub(s): return s.find('lo')\nprint(find_sub('hello'))",
+      "options": [
+        "A. False",
+        "B. hello",
+        "C. 3",
+        "D. Python"
+      ],
+      "correct_answer": "C. 3",
+      "explanation": "String result: 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.292700+00:00",
+    "updated_at": "2026-09-21T12:53:32.292700+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0012",
+    "question": "What does this function return?\ndef contains(s): return 'ell' in s\nprint(contains('hello'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef contains(s): return 'ell' in s\nprint(contains('hello'))",
+      "options": [
+        "A. True",
+        "B. hello",
+        "C. 6",
+        "D. Python"
+      ],
+      "correct_answer": "A. True",
+      "explanation": "String result: True"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.293590+00:00",
+    "updated_at": "2026-09-21T12:53:32.293590+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0013",
+    "question": "What does this function return?\ndef length(s): return len(s)\nprint(length('Python'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef length(s): return len(s)\nprint(length('Python'))",
+      "options": [
+        "A. 6",
+        "B. Python",
+        "C. True",
+        "D. hello"
+      ],
+      "correct_answer": "A. 6",
+      "explanation": "String result: 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.293590+00:00",
+    "updated_at": "2026-09-21T12:53:32.293590+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "code_string_0014",
+    "question": "What does this function return?\ndef concat(s1, s2): return s1 + s2\nprint(concat('Py', 'thon'))",
+    "pattern": "string-manipulation",
+    "skill": "string-manipulation",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef concat(s1, s2): return s1 + s2\nprint(concat('Py', 'thon'))",
+      "options": [
+        "A. olleh",
+        "B. True",
+        "C. Python",
+        "D. hello"
+      ],
+      "correct_answer": "C. Python",
+      "explanation": "String result: Python"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.293590+00:00",
+    "updated_at": "2026-09-21T12:53:32.293590+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  }
+]

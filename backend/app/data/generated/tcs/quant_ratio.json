@@ -1,0 +1,2002 @@
+[
+  {
+    "id": "quant_ratio_0000",
+    "question": "Divide ₹100 in the ratio 1:1:7.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 1:1:7.",
+      "options": [
+        "A. 77/11/11",
+        "B. 11/11/11",
+        "C. 11/11/77",
+        "D. 11/11/77"
+      ],
+      "correct_answer": "C. 11/11/77",
+      "explanation": "Parts = 1+1+7 = 9. Values = 100*1/9, 100*1/9, 100*7/9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0001",
+    "question": "Divide ₹100 in the ratio 1:2:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 1:2:8.",
+      "options": [
+        "A. 9/9/9",
+        "B. 18/9/72",
+        "C. 9/18/72",
+        "D. 72/9/18"
+      ],
+      "correct_answer": "C. 9/18/72",
+      "explanation": "Parts = 1+2+8 = 11. Values = 100*1/11, 100*2/11, 100*8/11"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0002",
+    "question": "Divide ₹100 in the ratio 1:3:2.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 1:3:2.",
+      "options": [
+        "A. 16/50/33",
+        "B. 33/16/50",
+        "C. 16/16/16",
+        "D. 50/16/33"
+      ],
+      "correct_answer": "A. 16/50/33",
+      "explanation": "Parts = 1+3+2 = 6. Values = 100*1/6, 100*3/6, 100*2/6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0003",
+    "question": "Divide ₹100 in the ratio 1:4:2.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 1:4:2.",
+      "options": [
+        "A. 14/57/28",
+        "B. 28/14/57",
+        "C. 57/14/28",
+        "D. 14/14/14"
+      ],
+      "correct_answer": "A. 14/57/28",
+      "explanation": "Parts = 1+4+2 = 7. Values = 100*1/7, 100*4/7, 100*2/7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0004",
+    "question": "Divide ₹100 in the ratio 1:5:4.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 1:5:4.",
+      "options": [
+        "A. 50/10/40",
+        "B. 10/10/10",
+        "C. 10/50/40",
+        "D. 40/10/50"
+      ],
+      "correct_answer": "C. 10/50/40",
+      "explanation": "Parts = 1+5+4 = 10. Values = 100*1/10, 100*5/10, 100*4/10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0005",
+    "question": "Divide ₹100 in the ratio 1:6:2.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 1:6:2.",
+      "options": [
+        "A. 11/66/22",
+        "B. 22/11/66",
+        "C. 11/11/11",
+        "D. 66/11/22"
+      ],
+      "correct_answer": "A. 11/66/22",
+      "explanation": "Parts = 1+6+2 = 9. Values = 100*1/9, 100*6/9, 100*2/9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0006",
+    "question": "Divide ₹100 in the ratio 1:7:3.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 1:7:3.",
+      "options": [
+        "A. 9/9/9",
+        "B. 27/9/63",
+        "C. 9/63/27",
+        "D. 63/9/27"
+      ],
+      "correct_answer": "C. 9/63/27",
+      "explanation": "Parts = 1+7+3 = 11. Values = 100*1/11, 100*7/11, 100*3/11"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0007",
+    "question": "Divide ₹100 in the ratio 2:1:5.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 2:1:5.",
+      "options": [
+        "A. 12/12/12",
+        "B. 62/25/12",
+        "C. 25/12/62",
+        "D. 12/25/62"
+      ],
+      "correct_answer": "C. 25/12/62",
+      "explanation": "Parts = 2+1+5 = 8. Values = 100*2/8, 100*1/8, 100*5/8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0008",
+    "question": "Divide ₹100 in the ratio 2:2:2.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 2:2:2.",
+      "options": [
+        "A. 33/33/33",
+        "B. 16/16/16",
+        "C. 33/33/33",
+        "D. 33/33/33"
+      ],
+      "correct_answer": "A. 33/33/33",
+      "explanation": "Parts = 2+2+2 = 6. Values = 100*2/6, 100*2/6, 100*2/6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0009",
+    "question": "Divide ₹100 in the ratio 2:3:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 2:3:8.",
+      "options": [
+        "A. 15/23/61",
+        "B. 23/15/61",
+        "C. 61/15/23",
+        "D. 7/7/7"
+      ],
+      "correct_answer": "A. 15/23/61",
+      "explanation": "Parts = 2+3+8 = 13. Values = 100*2/13, 100*3/13, 100*8/13"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0010",
+    "question": "Divide ₹100 in the ratio 2:4:6.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 2:4:6.",
+      "options": [
+        "A. 50/16/33",
+        "B. 16/33/50",
+        "C. 8/8/8",
+        "D. 33/16/50"
+      ],
+      "correct_answer": "B. 16/33/50",
+      "explanation": "Parts = 2+4+6 = 12. Values = 100*2/12, 100*4/12, 100*6/12"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.172330+00:00",
+    "updated_at": "2026-09-21T12:53:32.172330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0011",
+    "question": "Divide ₹100 in the ratio 2:5:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 2:5:8.",
+      "options": [
+        "A. 13/33/53",
+        "B. 33/13/53",
+        "C. 53/13/33",
+        "D. 6/6/6"
+      ],
+      "correct_answer": "A. 13/33/53",
+      "explanation": "Parts = 2+5+8 = 15. Values = 100*2/15, 100*5/15, 100*8/15"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173330+00:00",
+    "updated_at": "2026-09-21T12:53:32.173330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0012",
+    "question": "Divide ₹100 in the ratio 2:6:5.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 2:6:5.",
+      "options": [
+        "A. 38/15/46",
+        "B. 7/7/7",
+        "C. 46/15/38",
+        "D. 15/46/38"
+      ],
+      "correct_answer": "D. 15/46/38",
+      "explanation": "Parts = 2+6+5 = 13. Values = 100*2/13, 100*6/13, 100*5/13"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173330+00:00",
+    "updated_at": "2026-09-21T12:53:32.173330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0013",
+    "question": "Divide ₹100 in the ratio 2:7:5.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 2:7:5.",
+      "options": [
+        "A. 35/14/50",
+        "B. 14/50/35",
+        "C. 50/14/35",
+        "D. 7/7/7"
+      ],
+      "correct_answer": "B. 14/50/35",
+      "explanation": "Parts = 2+7+5 = 14. Values = 100*2/14, 100*7/14, 100*5/14"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173330+00:00",
+    "updated_at": "2026-09-21T12:53:32.173330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0014",
+    "question": "Divide ₹100 in the ratio 3:1:1.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 3:1:1.",
+      "options": [
+        "A. 20/20/20",
+        "B. 60/20/20",
+        "C. 20/60/20",
+        "D. 20/60/20"
+      ],
+      "correct_answer": "B. 60/20/20",
+      "explanation": "Parts = 3+1+1 = 5. Values = 100*3/5, 100*1/5, 100*1/5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173330+00:00",
+    "updated_at": "2026-09-21T12:53:32.173330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0015",
+    "question": "Divide ₹100 in the ratio 3:2:2.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 3:2:2.",
+      "options": [
+        "A. 28/42/28",
+        "B. 42/28/28",
+        "C. 28/42/28",
+        "D. 14/14/14"
+      ],
+      "correct_answer": "B. 42/28/28",
+      "explanation": "Parts = 3+2+2 = 7. Values = 100*3/7, 100*2/7, 100*2/7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173330+00:00",
+    "updated_at": "2026-09-21T12:53:32.173330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0016",
+    "question": "Divide ₹100 in the ratio 3:3:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 3:3:8.",
+      "options": [
+        "A. 21/21/57",
+        "B. 57/21/21",
+        "C. 7/7/7",
+        "D. 21/21/57"
+      ],
+      "correct_answer": "A. 21/21/57",
+      "explanation": "Parts = 3+3+8 = 14. Values = 100*3/14, 100*3/14, 100*8/14"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173330+00:00",
+    "updated_at": "2026-09-21T12:53:32.173330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0017",
+    "question": "Divide ₹100 in the ratio 3:4:3.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 3:4:3.",
+      "options": [
+        "A. 30/30/40",
+        "B. 10/10/10",
+        "C. 40/30/30",
+        "D. 30/40/30"
+      ],
+      "correct_answer": "D. 30/40/30",
+      "explanation": "Parts = 3+4+3 = 10. Values = 100*3/10, 100*4/10, 100*3/10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173330+00:00",
+    "updated_at": "2026-09-21T12:53:32.173330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0018",
+    "question": "Divide ₹100 in the ratio 3:5:6.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 3:5:6.",
+      "options": [
+        "A. 35/21/42",
+        "B. 7/7/7",
+        "C. 42/21/35",
+        "D. 21/35/42"
+      ],
+      "correct_answer": "D. 21/35/42",
+      "explanation": "Parts = 3+5+6 = 14. Values = 100*3/14, 100*5/14, 100*6/14"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0019",
+    "question": "Divide ₹100 in the ratio 3:6:1.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 3:6:1.",
+      "options": [
+        "A. 30/60/10",
+        "B. 10/10/10",
+        "C. 10/30/60",
+        "D. 60/30/10"
+      ],
+      "correct_answer": "A. 30/60/10",
+      "explanation": "Parts = 3+6+1 = 10. Values = 100*3/10, 100*6/10, 100*1/10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0020",
+    "question": "Divide ₹100 in the ratio 3:7:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 3:7:8.",
+      "options": [
+        "A. 16/38/44",
+        "B. 44/16/38",
+        "C. 5/5/5",
+        "D. 38/16/44"
+      ],
+      "correct_answer": "A. 16/38/44",
+      "explanation": "Parts = 3+7+8 = 18. Values = 100*3/18, 100*7/18, 100*8/18"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0021",
+    "question": "Divide ₹100 in the ratio 4:1:5.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 4:1:5.",
+      "options": [
+        "A. 40/10/50",
+        "B. 50/40/10",
+        "C. 10/40/50",
+        "D. 10/10/10"
+      ],
+      "correct_answer": "A. 40/10/50",
+      "explanation": "Parts = 4+1+5 = 10. Values = 100*4/10, 100*1/10, 100*5/10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0022",
+    "question": "Divide ₹100 in the ratio 4:2:1.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 4:2:1.",
+      "options": [
+        "A. 14/14/14",
+        "B. 28/57/14",
+        "C. 57/28/14",
+        "D. 14/57/28"
+      ],
+      "correct_answer": "C. 57/28/14",
+      "explanation": "Parts = 4+2+1 = 7. Values = 100*4/7, 100*2/7, 100*1/7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0023",
+    "question": "Divide ₹100 in the ratio 4:3:2.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 4:3:2.",
+      "options": [
+        "A. 44/33/22",
+        "B. 22/44/33",
+        "C. 33/44/22",
+        "D. 11/11/11"
+      ],
+      "correct_answer": "A. 44/33/22",
+      "explanation": "Parts = 4+3+2 = 9. Values = 100*4/9, 100*3/9, 100*2/9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0024",
+    "question": "Divide ₹100 in the ratio 4:4:3.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 4:4:3.",
+      "options": [
+        "A. 36/36/27",
+        "B. 9/9/9",
+        "C. 36/36/27",
+        "D. 27/36/36"
+      ],
+      "correct_answer": "A. 36/36/27",
+      "explanation": "Parts = 4+4+3 = 11. Values = 100*4/11, 100*4/11, 100*3/11"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0025",
+    "question": "Divide ₹100 in the ratio 4:5:6.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 4:5:6.",
+      "options": [
+        "A. 26/33/40",
+        "B. 33/26/40",
+        "C. 6/6/6",
+        "D. 40/26/33"
+      ],
+      "correct_answer": "A. 26/33/40",
+      "explanation": "Parts = 4+5+6 = 15. Values = 100*4/15, 100*5/15, 100*6/15"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0026",
+    "question": "Divide ₹100 in the ratio 4:6:3.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 4:6:3.",
+      "options": [
+        "A. 7/7/7",
+        "B. 23/30/46",
+        "C. 46/30/23",
+        "D. 30/46/23"
+      ],
+      "correct_answer": "D. 30/46/23",
+      "explanation": "Parts = 4+6+3 = 13. Values = 100*4/13, 100*6/13, 100*3/13"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0027",
+    "question": "Divide ₹100 in the ratio 4:7:6.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 4:7:6.",
+      "options": [
+        "A. 5/5/5",
+        "B. 23/41/35",
+        "C. 35/23/41",
+        "D. 41/23/35"
+      ],
+      "correct_answer": "B. 23/41/35",
+      "explanation": "Parts = 4+7+6 = 17. Values = 100*4/17, 100*7/17, 100*6/17"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0028",
+    "question": "Divide ₹100 in the ratio 5:1:7.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 5:1:7.",
+      "options": [
+        "A. 7/7/7",
+        "B. 7/38/53",
+        "C. 38/7/53",
+        "D. 53/38/7"
+      ],
+      "correct_answer": "C. 38/7/53",
+      "explanation": "Parts = 5+1+7 = 13. Values = 100*5/13, 100*1/13, 100*7/13"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.173853+00:00",
+    "updated_at": "2026-09-21T12:53:32.173853+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0029",
+    "question": "Divide ₹100 in the ratio 5:2:5.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 5:2:5.",
+      "options": [
+        "A. 41/41/16",
+        "B. 8/8/8",
+        "C. 41/16/41",
+        "D. 16/41/41"
+      ],
+      "correct_answer": "C. 41/16/41",
+      "explanation": "Parts = 5+2+5 = 12. Values = 100*5/12, 100*2/12, 100*5/12"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0030",
+    "question": "Divide ₹100 in the ratio 5:3:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 5:3:8.",
+      "options": [
+        "A. 6/6/6",
+        "B. 50/31/18",
+        "C. 31/18/50",
+        "D. 18/31/50"
+      ],
+      "correct_answer": "C. 31/18/50",
+      "explanation": "Parts = 5+3+8 = 16. Values = 100*5/16, 100*3/16, 100*8/16"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0031",
+    "question": "Divide ₹100 in the ratio 5:4:3.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 5:4:3.",
+      "options": [
+        "A. 25/41/33",
+        "B. 8/8/8",
+        "C. 33/41/25",
+        "D. 41/33/25"
+      ],
+      "correct_answer": "D. 41/33/25",
+      "explanation": "Parts = 5+4+3 = 12. Values = 100*5/12, 100*4/12, 100*3/12"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0032",
+    "question": "Divide ₹100 in the ratio 5:5:1.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 5:5:1.",
+      "options": [
+        "A. 45/45/9",
+        "B. 45/45/9",
+        "C. 9/9/9",
+        "D. 9/45/45"
+      ],
+      "correct_answer": "A. 45/45/9",
+      "explanation": "Parts = 5+5+1 = 11. Values = 100*5/11, 100*5/11, 100*1/11"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0033",
+    "question": "Divide ₹100 in the ratio 5:6:7.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 5:6:7.",
+      "options": [
+        "A. 5/5/5",
+        "B. 38/27/33",
+        "C. 27/33/38",
+        "D. 33/27/38"
+      ],
+      "correct_answer": "C. 27/33/38",
+      "explanation": "Parts = 5+6+7 = 18. Values = 100*5/18, 100*6/18, 100*7/18"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0034",
+    "question": "Divide ₹100 in the ratio 5:7:3.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 5:7:3.",
+      "options": [
+        "A. 20/33/46",
+        "B. 46/33/20",
+        "C. 33/46/20",
+        "D. 6/6/6"
+      ],
+      "correct_answer": "C. 33/46/20",
+      "explanation": "Parts = 5+7+3 = 15. Values = 100*5/15, 100*7/15, 100*3/15"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0035",
+    "question": "Divide ₹100 in the ratio 6:1:6.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 6:1:6.",
+      "options": [
+        "A. 46/7/46",
+        "B. 46/46/7",
+        "C. 7/7/7",
+        "D. 7/46/46"
+      ],
+      "correct_answer": "A. 46/7/46",
+      "explanation": "Parts = 6+1+6 = 13. Values = 100*6/13, 100*1/13, 100*6/13"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0036",
+    "question": "Divide ₹100 in the ratio 6:2:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 6:2:8.",
+      "options": [
+        "A. 6/6/6",
+        "B. 37/12/50",
+        "C. 50/37/12",
+        "D. 12/37/50"
+      ],
+      "correct_answer": "B. 37/12/50",
+      "explanation": "Parts = 6+2+8 = 16. Values = 100*6/16, 100*2/16, 100*8/16"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.174879+00:00",
+    "updated_at": "2026-09-21T12:53:32.174879+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0037",
+    "question": "Divide ₹100 in the ratio 6:3:5.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 6:3:5.",
+      "options": [
+        "A. 35/42/21",
+        "B. 21/42/35",
+        "C. 42/21/35",
+        "D. 7/7/7"
+      ],
+      "correct_answer": "C. 42/21/35",
+      "explanation": "Parts = 6+3+5 = 14. Values = 100*6/14, 100*3/14, 100*5/14"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.175882+00:00",
+    "updated_at": "2026-09-21T12:53:32.175882+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0038",
+    "question": "Divide ₹100 in the ratio 6:4:8.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 6:4:8.",
+      "options": [
+        "A. 33/22/44",
+        "B. 44/33/22",
+        "C. 22/33/44",
+        "D. 5/5/5"
+      ],
+      "correct_answer": "A. 33/22/44",
+      "explanation": "Parts = 6+4+8 = 18. Values = 100*6/18, 100*4/18, 100*8/18"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_ratio_0039",
+    "question": "Divide ₹100 in the ratio 6:5:7.",
+    "pattern": "ratio-division",
+    "skill": "ratio-division",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Divide ₹100 in the ratio 6:5:7.",
+      "options": [
+        "A. 5/5/5",
+        "B. 38/33/27",
+        "C. 33/27/38",
+        "D. 27/33/38"
+      ],
+      "correct_answer": "C. 33/27/38",
+      "explanation": "Parts = 6+5+7 = 18. Values = 100*6/18, 100*5/18, 100*7/18"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  }
+]

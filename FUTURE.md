@@ -1,4 +1,4 @@
-# FUTURE.md — PlacementPro $2M ARR Roadmap
+# FUTURE.md — BountyCode $2M ARR Roadmap
 
 > From $0 to $2M annual recurring revenue as a solo founder, built with MimoCode.
 
@@ -40,7 +40,7 @@
    - Post 2-3x/week, engage in comments, never spam
 
 2. **LinkedIn** (secondary)
-   - Build in public posts: "Day 14 of building PlacementPro..."
+   - Build in public posts: "Day 14 of building BountyCode..."
    - Share user wins (with permission)
    - Engage with HR/recruiter content to get visibility
 
@@ -179,7 +179,7 @@ To hit $1M ARR from here, you need ONE of these levers:
 - Combined: ~$800K-1M ARR
 
 ### Features for $1M Scale
-- [ ] **White-label platform** — Bootcamps deploy their own PlacementPro
+- [ ] **White-label platform** — Bootcamps deploy their own BountyCode
 - [ ] **API product** — Sell AI interview/ATS API to other tools
 - [ ] **Mobile app** — React Native (interview practice on commute)
 - [ ] **Browser extension** — Real-time ATS scoring while editing resume
@@ -209,7 +209,7 @@ To hit $1M ARR from here, you need ONE of these levers:
 | $0-100 | Keep day job, build nights/weekends |
 | $100-500 | Consider going full-time if runway allows |
 | $500-1K | Hire first contractor (support/content) |
-| $1K-3K | Full-time on PlacementPro, hire part-time help |
+| $1K-3K | Full-time on BountyCode, hire part-time help |
 | $3K-5K | Hire first full-time employee |
 | $5K-10K | Start enterprise/b2b sales motion |
 | $10K-25K | Team of 3-5, dedicated sales |
@@ -237,7 +237,7 @@ To hit $1M ARR from here, you need ONE of these levers:
 
 1. **AI Prompt Quality** — Best interview questions, most helpful feedback (80% of value)
 2. **User Data Network Effect** — More users → better AI training data → better prompts
-3. **Brand Trust** — Job seekers trust "PlacementPro" over random tools
+3. **Brand Trust** — Job seekers trust "BountyCode" over random tools
 4. **Switching Cost** — Resume history, interview progress, certifications
 5. **SEO Dominance** — Rank #1 for "ai interview practice", "free resume scanner"
 6. **Community** — Discord/forum where users help each other

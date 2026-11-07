@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { authApi } from "../services/api/auth.ts";
-import { API_BASE } from "../services/api/request.ts";
+import { API_BASE, setAuthToken } from "../services/api/request.ts";
 import type { AuthUser } from "../services/api/types.ts";
 
 export interface AuthState {
   user: AuthUser | null;
   loading: boolean;
-  setAuth: (user: AuthUser) => void;
+  setAuth: (user: AuthUser, token?: string) => void;
   logout: () => Promise<void>;
   loadUser: () => Promise<void>;
   refreshToken: () => Promise<void>;
@@ -16,8 +16,11 @@ const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
 
-  setAuth: (user) => {
+  setAuth: (user, token) => {
     set({ user, loading: false });
+    if (token) {
+      setAuthToken(token);
+    }
   },
 
   logout: async () => {
@@ -27,6 +30,7 @@ const useAuthStore = create<AuthState>((set) => ({
       // cookie may already be gone
     }
     set({ user: null, loading: false });
+    setAuthToken(null);
   },
 
   loadUser: async () => {

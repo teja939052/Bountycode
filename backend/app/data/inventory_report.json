@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-08-30T20:35:02.011580",
+  "total_questions": 6389,
+  "classifications": {
+    "INCOMPLETE": 209,
+    "SHELL": 6180
+  },
+  "duplicates_found": 3611,
+  "unique_complete": 0,
+  "shell_count": 6180,
+  "incomplete_count": 209,
+  "by_type": {
+    "coding": {
+      "INCOMPLETE": 158,
+      "SHELL": 6121
+    },
+    "aptitude": {
+      "INCOMPLETE": 50
+    },
+    "logical": {
+      "SHELL": 30
+    },
+    "verbal": {
+      "SHELL": 20
+    },
+    "hr": {
+      "SHELL": 9,
+      "INCOMPLETE": 1
+    }
+  },
+  "complete_by_topic": {},
+  "sample_complete": []
+}

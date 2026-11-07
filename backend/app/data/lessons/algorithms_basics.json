@@ -1,0 +1,220 @@
+{
+  "slug": "algorithms_basics",
+  "id": "lesson_algorithms_basics_001",
+  "title": "Algorithm Design Basics",
+  "domain": "Programming Fundamentals",
+  "pattern": "Algorithms",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Plan before coding",
+      "content": "An algorithm is a finite sequence of clear steps that solves a problem. Identify the input, required output, constraints and edge cases before choosing an approach.",
+      "example": "For finding the largest number, scan the array once while maintaining the largest value seen so far."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a simple approach",
+      "prompt": "To find the maximum value in an unsorted array, which approach is correct?",
+      "options": [
+        "Check only the first element",
+        "Scan every element and track the largest",
+        "Sort descending is always required",
+        "Use binary search without sorting"
+      ],
+      "correct_index": 1,
+      "explanation": "A single pass compares each value with the current maximum and updates it when necessary."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use invariants",
+      "content": "A loop invariant is a fact that remains true before and after each iteration. It helps prove correctness. For a maximum scan, after processing i values, the stored maximum is the largest among those i values.",
+      "example": "Start with the first element as max; after each comparison, max still represents the largest value visited."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Select an optimization",
+      "prompt": "An array is sorted and you need to find a target quickly. Which standard algorithm is suitable?",
+      "options": [
+        "Linear search only",
+        "Binary search",
+        "Bubble sort",
+        "Depth-first search"
+      ],
+      "correct_index": 1,
+      "explanation": "Binary search repeatedly halves a sorted search range and runs in O(log n)."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Validate edge cases",
+      "content": "Test empty input, one element, duplicates, negative values and maximum-size input where relevant. An algorithm should handle the full stated input domain, not only the sample case.",
+      "tip": "A correct algorithm and an efficient algorithm are separate goals; establish correctness first."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "What should be identified before implementing an algorithm?",
+        "options": [
+          "Input, output and constraints",
+          "Only variable names",
+          "Only the programming language",
+          "Only the sample output"
+        ],
+        "correct_index": 0,
+        "explanation": "The problem contract and constraints guide the algorithm choice."
+      },
+      {
+        "prompt": "What is a loop invariant?",
+        "options": [
+          "A variable that never exists",
+          "A property that remains true across iterations",
+          "A syntax error",
+          "A sorting algorithm"
+        ],
+        "correct_index": 1,
+        "explanation": "An invariant is a condition preserved as the loop progresses."
+      },
+      {
+        "prompt": "What is the time complexity of scanning n values once?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n²)"
+        ],
+        "correct_index": 2,
+        "explanation": "The algorithm performs a number of operations proportional to n."
+      },
+      {
+        "prompt": "Which technique uses sorted order to repeatedly discard half the search interval?",
+        "options": [
+          "Linear search",
+          "Binary search",
+          "Selection sort",
+          "Brute force enumeration"
+        ],
+        "correct_index": 1,
+        "explanation": "Binary search exploits sorted order to halve the candidate range."
+      },
+      {
+        "prompt": "Why test edge cases?",
+        "options": [
+          "To make code longer",
+          "To ensure correctness beyond the sample input",
+          "To avoid reading the problem",
+          "To change the required output"
+        ],
+        "correct_index": 1,
+        "explanation": "Edge cases expose incorrect assumptions about boundaries and unusual inputs."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Describe an algorithm as finite, precise steps.",
+    "Trace an algorithm on a small input.",
+    "Check correctness with invariants and edge cases.",
+    "Compare alternative approaches by time and space."
+  ],
+  "prerequisites": [
+    "programming_languages",
+    "time_complexity"
+  ],
+  "concepts": [
+    "input",
+    "output",
+    "finite steps",
+    "correctness",
+    "invariant",
+    "edge case"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A program that compiles must be correct.",
+      "correction": "Compilation checks syntax and types; logic can still be wrong."
+    },
+    {
+      "misconception": "Passing one example proves correctness.",
+      "correction": "Test boundaries and reason about why the algorithm works for all valid inputs."
+    },
+    {
+      "misconception": "Optimization should come before a working solution.",
+      "correction": "Establish correctness first, then optimize based on constraints."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Find maximum",
+      "input": "[4, 9, 2, 7]",
+      "trace": [
+        "Set max=4.",
+        "Compare 9; update max=9.",
+        "Compare 2 and 7; max remains 9."
+      ],
+      "output": "9",
+      "explanation": "The invariant is that max stores the largest value seen so far."
+    },
+    {
+      "title": "Check an empty input",
+      "input": "Find maximum of []",
+      "trace": [
+        "There is no first element to initialize max.",
+        "The algorithm needs a defined empty-input policy.",
+        "Return an optional result or report invalid input."
+      ],
+      "output": "Handle empty input explicitly",
+      "explanation": "Edge cases must be part of the problem contract."
+    },
+    {
+      "title": "Compare approaches",
+      "input": "Find whether any duplicate exists",
+      "trace": [
+        "Nested loops compare pairs: O(n²).",
+        "A set checks whether each value was seen: expected O(n).",
+        "Choose extra memory to reduce repeated comparisons."
+      ],
+      "output": "Hash-set approach: expected O(n) time",
+      "explanation": "Algorithm design balances time, space and constraints."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "logic and algorithm design",
+      "practice": "State the invariant and handle boundary inputs."
+    },
+    {
+      "company": "Infosys",
+      "skill": "problem solving",
+      "practice": "Explain correctness before complexity."
+    },
+    {
+      "company": "Accenture",
+      "skill": "coding assessment",
+      "practice": "Test duplicates, empty input and single-element input."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Algorithm Design Basics?",
+      "answer": "Describe an algorithm as finite, precise steps. Trace an algorithm on a small input. Check correctness with invariants and edge cases. Compare alternative approaches by time and space."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Algorithm Design Basics?",
+      "answer": "Compilation checks syntax and types; logic can still be wrong."
+    }
+  ],
+  "next_lesson_slug": "collections_framework",
+  "next_lesson_title": "Collections Framework"
+}

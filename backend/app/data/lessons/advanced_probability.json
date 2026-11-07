@@ -1,0 +1,126 @@
+{
+  "slug": "advanced_probability",
+  "id": "lesson_advanced_probability_001",
+  "title": "Advanced Probability",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Advanced Probability",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Conditional probability",
+      "content": "Conditional probability measures the chance of event A given that event B has happened. Restrict the sample space to outcomes where B is true.",
+      "formula": "P(A|B) = P(A ∩ B) / P(B), when P(B) > 0",
+      "example": "If 3 of 5 red balls are marked, then P(marked | red) = 3/5."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Calculate a conditional probability",
+      "prompt": "A bag has 4 red and 6 blue balls. Of the red balls, 2 are marked. What is P(marked | red)?",
+      "options": [
+        "1/5",
+        "1/2",
+        "2/5",
+        "2/3"
+      ],
+      "correct_index": 1,
+      "explanation": "Given that the ball is red, the sample space contains only 4 red balls. Two are marked, so 2/4 = 1/2."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Independent events",
+      "content": "Events A and B are independent when knowing that one occurred does not change the probability of the other. For independent events, P(A∩B)=P(A)×P(B).",
+      "example": "Two fair coin tosses are independent. P(heads on both) = 1/2×1/2 = 1/4."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Use the complement",
+      "prompt": "A fair die is rolled twice. What is the probability of getting at least one 6?",
+      "options": [
+        "1/6",
+        "5/18",
+        "11/36",
+        "1/3"
+      ],
+      "correct_index": 2,
+      "explanation": "Use the complement: P(no 6 on either roll) = 5/6×5/6 = 25/36. At least one 6 = 1−25/36 = 11/36."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Use total probability carefully",
+      "content": "When outcomes are separated into mutually exclusive cases that cover all possibilities, add the probability of the event within each case multiplied by the probability of that case.",
+      "example": "If a product comes from factory A or B, calculate the probability of a defect from each factory and weight it by the factory's production share.",
+      "tip": "Draw a tree diagram when events happen in stages or depend on earlier outcomes."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "If P(A∩B)=0.2 and P(B)=0.5, find P(A|B).",
+        "options": [
+          "0.1",
+          "0.2",
+          "0.4",
+          "0.7"
+        ],
+        "correct_index": 2,
+        "explanation": "P(A|B)=0.2/0.5=0.4."
+      },
+      {
+        "prompt": "For independent events A and B, P(A)=0.3 and P(B)=0.4. Find P(A∩B).",
+        "options": [
+          "0.1",
+          "0.12",
+          "0.3",
+          "0.7"
+        ],
+        "correct_index": 1,
+        "explanation": "For independence, multiply: 0.3×0.4=0.12."
+      },
+      {
+        "prompt": "A fair coin is tossed twice. What is the probability of exactly one head?",
+        "options": [
+          "1/4",
+          "1/2",
+          "3/4",
+          "1"
+        ],
+        "correct_index": 1,
+        "explanation": "The outcomes HT and TH are two of four equally likely outcomes, so 2/4=1/2."
+      },
+      {
+        "prompt": "A fair die is rolled. What is the probability of not getting 1 or 2?",
+        "options": [
+          "1/6",
+          "1/3",
+          "1/2",
+          "2/3"
+        ],
+        "correct_index": 3,
+        "explanation": "Favourable outcomes are 3,4,5,6: 4/6 = 2/3."
+      },
+      {
+        "prompt": "Which formula expresses the probability of A or B when the events may overlap?",
+        "options": [
+          "P(A)+P(B)",
+          "P(A)+P(B)−P(A∩B)",
+          "P(A)×P(B)",
+          "P(A∩B)/P(A)"
+        ],
+        "correct_index": 1,
+        "explanation": "Subtract the overlap once so shared outcomes are not counted twice."
+      }
+    ]
+  },
+  "next_lesson_slug": "geometry_basics",
+  "next_lesson_title": "Geometry Basics"
+}

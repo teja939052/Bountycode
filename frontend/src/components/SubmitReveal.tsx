@@ -6,7 +6,7 @@ import AlgorithmGraph from './AlgorithmGraph';
 import { CheckCircle, XCircle, Zap, Trophy, ArrowRight, RotateCcw, Star } from 'lucide-react';
 
 // Full-screen celebration overlay after submitting a problem
-// Combines emblem animation, complexity display, graph, XP counter
+// Combines emblem animation, complexity display, graph, Diamonds counter
 
 interface SubmitRevealProps {
   result?: Record<string, any>;
@@ -28,30 +28,30 @@ export default function SubmitReveal({
 
   const score = result?.score || 0;
   const passed = score >= 6;
-  const xp = result?.xp_gained || 0;
+  const diamonds = result?.xp_gained || 0;
 
   useEffect(() => {
     const timers = [
       setTimeout(() => setPhase(1), 200),    // emblem appears
       setTimeout(() => setPhase(2), 800),     // score reveal
       setTimeout(() => setPhase(3), 1400),    // complexity + graph
-      setTimeout(() => setPhase(4), 2000),    // XP counter
+      setTimeout(() => setPhase(4), 2000),    // Diamonds counter
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  // XP counter animation
+  // Diamonds counter animation
   useEffect(() => {
-    if (phase < 4 || xp === 0) return;
+    if (phase < 4 || diamonds === 0) return;
     let current = 0;
-    const step = Math.max(1, Math.floor(xp / 20));
+    const step = Math.max(1, Math.floor(diamonds / 20));
     const interval = setInterval(() => {
-      current = Math.min(current + step, xp);
+      current = Math.min(current + step, diamonds);
       setXpCount(current);
-      if (current >= xp) clearInterval(interval);
+      if (current >= diamonds) clearInterval(interval);
     }, 50);
     return () => clearInterval(interval);
-  }, [phase, xp]);
+  }, [phase, diamonds]);
 
   if (!result) return null;
 
@@ -194,7 +194,7 @@ export default function SubmitReveal({
               />
             )}
 
-            {/* XP Counter */}
+            {/* Diamonds Counter */}
             {phase >= 4 && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -206,7 +206,7 @@ export default function SubmitReveal({
                   <span className="text-2xl font-display font-black text-cyber-amber">
                     +{xpCount}
                   </span>
-                  <span className="text-xs font-mono text-gray-500">XP</span>
+                  <span className="text-xs font-mono text-gray-500">Diamonds</span>
                 </div>
               </motion.div>
             )}

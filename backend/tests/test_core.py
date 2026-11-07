@@ -1,4 +1,4 @@
-"""Critical path tests for PlacementPro backend."""
+"""Critical path tests for BountyCode backend."""
 import asyncio
 import hashlib
 import re
@@ -115,7 +115,7 @@ def test_health_check_exists():
 
 
 def test_assign_companies():
-    from app.services.ai import assign_companies
+    from app.services.ai_core import assign_companies
     companies = assign_companies()
     assert 2 <= len(companies) <= 5
     assert len(set(companies)) == len(companies)

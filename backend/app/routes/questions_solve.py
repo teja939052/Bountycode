@@ -11,7 +11,7 @@ from app.database import (
 )
 from app.models.question import SubmitAnswer
 from app.services import question_store
-from app.services.ai import chat_completion, parse_json, assign_companies
+from app.services.ai_core import chat_completion, parse_json, assign_companies
 from app.services.gamification import record_practice
 from app.services.usage import check_and_reset_monthly_usage
 from app.services.code_executor import CodeExecutionEngine
@@ -19,7 +19,10 @@ from app.services.job_queue import get_job_queue, Job, JobType
 from app.services.cache import cache
 from app.services.explanation_cache import get_or_create_explanation, get_cached_explanation
 from app.config import get_settings
+import logging
 import random
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/v1/questions", tags=["question-solve"])
 code_engine = CodeExecutionEngine()
@@ -104,6 +107,8 @@ def _is_correct_answer(user_ans: str, correct: str, q_type: str) -> bool:
 @router.post("/answer")
 async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
     await check_and_reset_monthly_usage(user)
+    from app.routes.questions import _is_paid, _check_question_quota
+    _check_question_quota(user)
     qid = req.question_id
     question = question_store.find_one({"id": qid})
     if not question:
@@ -183,10 +188,19 @@ Be direct, constructive, and specific. If the answer is vague, say so. If it's w
 
     score = feedback.get("score", 5)
 
+    # Skill linkage + attempt order for the evidence layer (same canonical
+    # mapping the LearningEvent below uses; attempt from history already read).
+    from app.services.skill_taxonomy import canonical_skill_id as _canon
+    _raw_topic = question.get("topic", "")
+    _tags = list(question.get("topics") or []) + list(question.get("tags") or [])
+    _skill_id = _canon(_raw_topic) or (_canon(_tags[0]) if _tags else None) or "coding.uncategorized"
+
     answer_doc = {
         "user_id": user["id"],
         "question_id": qid,
         "answer": req.answer,
+        "skill_id": _skill_id,
+        "attempt_number": len(previous) + 1,
         "score": score,
         "is_correct": feedback.get("is_correct", is_correct),
         "feedback": feedback.get("feedback", ""),
@@ -203,7 +217,42 @@ Be direct, constructive, and specific. If the answer is vague, say so. If it's w
     }
     await answer_collection.insert_one(answer_doc)
 
-    await record_practice(user["id"], "question_bank", score)
+    await record_practice(user["id"], "question_bank", score, role=user.get("role") or user.get("target_role") or "sde")
+
+    # â”€â”€ Emit canonical LearningEvent â”€â”€
+    try:
+        from app.services.study_engine import emit_learning_event
+        from app.services.skill_taxonomy import canonical_skill_id
+        from app.services.diagnosis import diagnose_question_failure
+
+        raw_topic = question.get("topic", "")
+        tags = list(question.get("topics") or []) + list(question.get("tags") or [])
+        skill_id = canonical_skill_id(raw_topic) or (canonical_skill_id(tags[0]) if tags else None) or "coding.uncategorized"
+
+        diagnosis = diagnose_question_failure(score, req.answer, q_type, question)
+        attempt_num = len(previous) + 1
+        await emit_learning_event(user["id"], {
+            "activity_type": "question_answer",
+            "source": "question_bank",
+            "skill_id": skill_id,
+            "question_id": qid,
+            "passed": score >= 7,
+            "score": score,
+            "time_spent_seconds": req.time_taken or 0,
+            "hints_used": 0,
+            "attempt_number": attempt_num,
+            "diagnosis_codes": diagnosis["codes"] if isinstance(diagnosis, dict) else [],
+            "trust_status": question.get("trust_status"),
+            "source_bank": question.get("source_bank"),
+            "metadata": {
+                "q_type": q_type,
+                "difficulty": question.get("difficulty", "medium"),
+                "company_tags": question.get("companies", []),
+                "diagnosis_reason": diagnosis.get("reason", "") if isinstance(diagnosis, dict) else "",
+            },
+        })
+    except Exception as exc:
+        logger.warning("question_answer event emission failed: %s", exc)
 
     explanation = None
     if score < 7:
@@ -263,6 +312,8 @@ async def submit_code_for_question(
     user=Depends(get_current_user),
 ):
     await check_and_reset_monthly_usage(user)
+    from app.routes.questions import _check_question_quota
+    _check_question_quota(user)
     question = question_store.find_one({"id": question_id})
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
@@ -352,9 +403,58 @@ async def submit_code_for_question(
                 upsert=True,
             )
             xp_gained = 50
-            await record_practice(user["id"], "coding", score)
+            await record_practice(user["id"], "coding", score, role=user.get("role") or user.get("target_role") or "sde")
         else:
             xp_gained = 0
+
+        # â”€â”€ Emit canonical LearningEvent â”€â”€
+        try:
+            from app.services.study_engine import emit_learning_event
+            from app.services.skill_taxonomy import canonical_skill_id
+            from app.services.diagnosis import diagnose_question_failure
+
+            raw_topic = question.get("topic", "")
+            tags = list(question.get("topics") or []) + list(question.get("tags") or [])
+            skill_id = canonical_skill_id(raw_topic) or (canonical_skill_id(tags[0]) if tags else None) or "coding.uncategorized"
+
+            diagnosis = diagnose_question_failure(
+                score, "", "coding", question,
+                metadata={"all_passed": all_passed, "passed_count": passed_count, "total": total},
+            )
+
+            # Attempt order for the evidence layer (best-effort; falls back to 1).
+            try:
+                from app.database import learning_events_collection
+                _prior_solves = await learning_events_collection().count_documents({
+                    "user_id": user["id"], "question_id": question_id,
+                    "activity_type": "question_solve"})
+            except Exception:
+                _prior_solves = 0
+
+            await emit_learning_event(user["id"], {
+                "activity_type": "question_solve",
+                "source": "question_bank",
+                "skill_id": skill_id,
+                "question_id": question_id,
+                "passed": all_passed,
+                "score": score,
+                "time_spent_seconds": payload.get("time_spent", 0),
+                "hints_used": payload.get("hints_used", 0),
+                "attempt_number": _prior_solves + 1,
+                "diagnosis_codes": diagnosis["codes"] if isinstance(diagnosis, dict) else [],
+                "trust_status": question.get("trust_status"),
+                "source_bank": question.get("source_bank"),
+                "metadata": {
+                    "difficulty": question.get("difficulty", "medium"),
+                    "all_passed": all_passed,
+                    "passed_count": passed_count,
+                    "total": total,
+                    "language": language,
+                    "diagnosis_reason": diagnosis.get("reason", "") if isinstance(diagnosis, dict) else "",
+                },
+            })
+        except Exception as exc:
+            logger.warning("question_solve event emission failed: %s", exc)
 
         return {
             "success": True,
@@ -407,6 +507,10 @@ async def get_random_question(
     if company:
         query["company"] = {"$in": [company, company.title(), company.upper()]}
 
+    # ── Quality gate: only serve A/B tier questions to students ──
+    # C (filler) and Q (quarantined) are filtered out by default
+    query["quality_tier"] = {"$in": ["placement", "solid", "A", "B"]}
+
     cache_key = f"{type or '*'}:{difficulty or '*'}:{topic or '*'}:{company or '*'}:{'1' if exclude_solved else '0'}"
     cached_id = await cache.get("random_question", cache_key)
     if cached_id:
@@ -431,7 +535,7 @@ async def get_random_question(
         solved = await solved_problems_collection.find({"user_id": user["id"]}, {"question_id": 1}).to_list(1000)
         solved_ids = {str(s["question_id"]) for s in solved if s.get("question_id")}
 
-    candidates = question_store.find(query).to_list()
+    candidates = question_store.find(query).prefer_verified().to_list()
     if exclude_solved and solved_ids:
         candidates = [q for q in candidates if q["id"] not in solved_ids]
 
@@ -528,3 +632,28 @@ async def get_question_solution(
         "solution": visible_solution,
         "unlocked": plan in ("pro", "lifetime") or bool(solved),
     }
+
+
+@router.get("/quality-stats")
+async def get_quality_stats():
+    """Return question bank quality statistics for the landing page.
+
+    Shows verified placement-quality question counts, not raw totals.
+    """
+    try:
+        from pathlib import Path
+        import json
+        report_path = Path(__file__).parent.parent / "data" / "quality_report.json"
+        if report_path.exists():
+            with open(report_path, "r", encoding="utf-8") as f:
+                report = json.load(f)
+            return {
+                "published": report.get("showable", 0),
+                "excellent": report.get("excellent", 0),
+                "good": report.get("good", 0),
+                "total_reviewed": report.get("total", 0),
+                "note": "Only verified A/B tier questions are served to students",
+            }
+    except Exception:
+        pass
+    return {"published": 0, "note": "Quality report unavailable"}

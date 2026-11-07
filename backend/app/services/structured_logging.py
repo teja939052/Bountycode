@@ -89,7 +89,7 @@ def setup_structured_logging():
     handler.setFormatter(StructuredFormatter())
     root.addHandler(handler)
 
-    file_handler = logging.FileHandler("placementpro.log")
+    file_handler = logging.FileHandler("BountyCode.log")
     file_handler.setFormatter(StructuredFormatter())
     root.addHandler(file_handler)
 

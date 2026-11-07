@@ -1,0 +1,362 @@
+{
+  "id": "lesson_successive_percentage_001",
+  "slug": "successive_percentage_change",
+  "title": "Successive Percentage Change",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Successive Percentage Change",
+  "difficulty": "easy",
+  "duration_min": 28,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Why you cannot simply add percentages",
+      "content": "When a value is increased by x% and then decreased by y%, the second percentage uses a different base. The net change is not simply (x − y)%. Each percentage acts on the current value after the previous change.",
+      "example": "Start with ₹100. Increase by 20% → ₹120. Decrease by 10% → ₹108. Net change = +₹8, which is +8%, not +10%.",
+      "formula": "Net change % = x + y + (x × y) / 100",
+      "tip": "Apply changes one after another, or use the net-change formula with signs."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Apply the net-change formula",
+      "content": "Treat an increase as positive and a decrease as negative in the formula.",
+      "prompt": "A shirt's price is increased by 30% and then decreased by 20%. What is the net percentage change?",
+      "options": [
+        "+10%",
+        "+4%",
+        "+6%",
+        "-6%"
+      ],
+      "correct_index": 1,
+      "explanation": "Net change = 30 + (−20) + (30 × −20)/100 = 10 − 6 = +4%. Final price is 104% of the original.",
+      "hints": [
+        "Use +30 for the increase and −20 for the decrease.",
+        "Do not stop after adding 30 − 20 = 10; include the product term."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "practice",
+      "title": "Equal up and down is not zero",
+      "prompt": "If a number is increased by 10% and then decreased by 10%, the net change is:",
+      "options": [
+        "0%",
+        "−1%",
+        "+1%",
+        "−2%"
+      ],
+      "correct_index": 1,
+      "explanation": "Net change = 10 + (−10) + (10 × −10)/100 = −1%. The value ends 1% below the original.",
+      "hints": [
+        "The second 10% decrease acts on a larger intermediate value.",
+        "Use the formula with x = 10 and y = −10."
+      ]
+    },
+    {
+      "step_number": 4,
+      "step_type": "explain",
+      "title": "Restoring a decreased value",
+      "content": "If a value falls by x%, a later increase of the same x% does not restore the original. The increase is calculated on the reduced amount, so you need a larger percentage to return to the start.",
+      "example": "Salary falls by 25% from 100 to 75. A 25% raise on 75 adds only 18.75, reaching 93.75 — not 100.",
+      "formula": "Required increase to restore after x% fall = (x × 100) / (100 − x) %",
+      "tip": "After a 25% fall you need a 33.33% rise to restore the original."
+    },
+    {
+      "step_number": 5,
+      "step_type": "predict_output",
+      "title": "Trace a two-step price change",
+      "content": "Apply each percentage to the current value before moving to the next step.",
+      "prompt": "A number starts at 200. It rises 10%, then falls 20%. What is the final value?",
+      "code": "value = 200\nvalue = value * 1.10   # +10%\nvalue = value * 0.80   # -20%\nprint(value)",
+      "language": "python",
+      "answer_placeholder": "Enter the final number",
+      "expected_answer": "176",
+      "explanation": "200 × 1.10 = 220. Then 220 × 0.80 = 176. Net change = −12%.",
+      "hints": [
+        "Compute the intermediate value after +10% first.",
+        "Apply −20% to 220, not to 200."
+      ]
+    },
+    {
+      "step_number": 6,
+      "step_type": "practice",
+      "title": "Restore after a cut",
+      "prompt": "If the price of an article is decreased by 25%, by what percent must it be increased to restore the original price?",
+      "options": [
+        "25%",
+        "30%",
+        "33.33%",
+        "20%"
+      ],
+      "correct_index": 2,
+      "explanation": "Required increase = (25 × 100) / (100 − 25) = 2500/75 = 33.33%.",
+      "hints": [
+        "The reduced price is 75% of the original.",
+        "You need to grow that 75 back to 100, which is a 33.33% increase on 75."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Solve successive change safely",
+      "content": "A reliable method is to either multiply factors in order or use the signed net-change formula once.",
+      "prompt": "Arrange the steps for a +20% then −10% change on 100 using multiplication.",
+      "options": [
+        "Multiply the intermediate result by 0.9",
+        "Start with 100",
+        "Multiply by 1.2 to apply +20%",
+        "Read the final value 108"
+      ],
+      "correct_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "explanation": "Start from the original, apply the first factor, apply the second factor, then read the result.",
+      "hints": [
+        "Factors must be applied in the same order as the stated changes.",
+        "A 10% decrease multiplies by 0.9."
+      ]
+    },
+    {
+      "step_number": 8,
+      "step_type": "debug_choice",
+      "title": "Catch the addition mistake",
+      "content": "A student treats successive percentage changes like ordinary addition and subtraction.",
+      "code": "value = 100\nvalue *= 1.10\nvalue *= 0.90\nprint(value)",
+      "prompt": "Price rises 20% and then falls 20%. A student says the net change is 0%. What is wrong?",
+      "options": [
+        "The second 20% acts on a larger intermediate price, so the net result is a 4% loss",
+        "Percentages can never cancel",
+        "The first change should have been ignored",
+        "The final answer must always be positive"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "Correct. 100 → 120 → 96. Net change = −4%.",
+        "2": "Equal successive changes can partially cancel, but not completely when bases differ.",
+        "3": "Both changes matter; the issue is the changing base.",
+        "4": "Net change can be negative; the sign is not forced positive."
+      },
+      "explanation": "Net change = 20 + (−20) + (20 × −20)/100 = −4%.",
+      "hints": [
+        "Compute the intermediate value after the increase.",
+        "Apply the decrease to that intermediate value."
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "interactive",
+      "title": "Company-style multi-step change",
+      "content": "Service-company papers often hide successive changes inside a word problem.",
+      "prompt": "A number is first increased by 10% and then decreased by 20%. The net change is:",
+      "options": [
+        "−10%",
+        "−12%",
+        "−8%",
+        "+10%"
+      ],
+      "correct_index": 1,
+      "explanation": "Net change = 10 + (−20) + (10 × −20)/100 = −12%.",
+      "hints": [
+        "Insert the signed values into the net-change formula.",
+        "The product term (10 × −20)/100 contributes −2."
+      ]
+    }
+  ],
+  "practice_questions": [
+    "tcs_nqt_quant_0001",
+    "tcs_nqt_quant_0002",
+    "tcs_nqt_quant_0003"
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "A number is first increased by 10% and then decreased by 20%. The net change is:",
+        "options": [
+          "−10%",
+          "−12%",
+          "−8%",
+          "+10%"
+        ],
+        "correct_index": 1,
+        "explanation": "Net change = 10 + (−20) + (10 × −20)/100 = −12%."
+      },
+      {
+        "prompt": "If price of an article is decreased by 25%, by what percent must it be increased to restore the original price?",
+        "options": [
+          "25%",
+          "30%",
+          "33.33%",
+          "20%"
+        ],
+        "correct_index": 2,
+        "explanation": "Required increase = (25 × 100) / (100 − 25) = 33.33%."
+      },
+      {
+        "prompt": "A value rises 20% and then falls 20%. Final value as a percentage of the original is:",
+        "options": [
+          "100%",
+          "96%",
+          "104%",
+          "80%"
+        ],
+        "correct_index": 1,
+        "explanation": "Net change = −4%, so the final value is 96% of the original."
+      },
+      {
+        "prompt": "Why is successive +10% and −10% not a 0% net change?",
+        "options": [
+          "The second percentage uses a different base",
+          "Percentages cannot be negative",
+          "The formula ignores the second change",
+          "The original value always doubles"
+        ],
+        "correct_index": 0,
+        "explanation": "The decrease is calculated on the increased intermediate value, so the absolute drop is larger than the absolute rise."
+      },
+      {
+        "prompt": "Using the formula, successive changes of +15% and −10% give a net change of:",
+        "options": [
+          "+5%",
+          "+3.5%",
+          "+4.5%",
+          "−5%"
+        ],
+        "correct_index": 1,
+        "explanation": "15 + (−10) + (15 × −10)/100 = 5 − 1.5 = +3.5%."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Explain why successive percentage changes cannot be added like ordinary numbers.",
+    "Apply the net-change formula with correct signs.",
+    "Trace multi-step price or salary changes on intermediate bases.",
+    "Compute the percentage needed to restore a value after a given fall.",
+    "Detect and correct the common zero-net-change error."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "percentage base",
+    "successive change",
+    "net percentage change",
+    "restore percentage",
+    "multiplication factors"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "+x% followed by −x% returns the original value.",
+      "correction": "The decrease uses a larger intermediate base, so the net result is a loss of x²/100 percent."
+    },
+    {
+      "misconception": "Successive percentages can always be added or subtracted directly.",
+      "correction": "Each percentage acts on the current value; include the product term or multiply factors in order."
+    },
+    {
+      "misconception": "To reverse an x% fall, increase by the same x%.",
+      "correction": "The required increase is (x × 100)/(100 − x) percent."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Net change with mixed signs",
+      "input": "+30% then −20%",
+      "trace": [
+        "Write x = 30, y = −20.",
+        "Compute x + y = 10.",
+        "Compute (x × y)/100 = −6.",
+        "Net change = 10 − 6 = +4%."
+      ],
+      "output": "+4%",
+      "explanation": "The product term adjusts for the changing base."
+    },
+    {
+      "title": "Equal rise and fall",
+      "input": "Start 100; +10%; −10%",
+      "trace": [
+        "After +10%: 110.",
+        "After −10% of 110: 99.",
+        "Final is 1% below original."
+      ],
+      "output": "−1%",
+      "explanation": "Symmetric percentages do not cancel on changing bases."
+    },
+    {
+      "title": "Restore after a 25% fall",
+      "input": "Value falls from 100 to 75",
+      "trace": [
+        "Need to grow 75 back to 100.",
+        "Required growth = 25 on a base of 75.",
+        "(25/75) × 100 = 33.33%."
+      ],
+      "output": "33.33% increase restores the original",
+      "explanation": "The restore percentage is larger than the original fall."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "percentage arithmetic under time pressure",
+      "practice": "Use the net-change formula instead of long intermediate arithmetic when possible."
+    },
+    {
+      "company": "Infosys",
+      "skill": "quantitative aptitude",
+      "practice": "Watch for restore-percentage questions after salary or price cuts."
+    },
+    {
+      "company": "Wipro",
+      "skill": "numerical ability",
+      "practice": "Translate worded successive changes into signed x and y values."
+    },
+    {
+      "company": "Accenture",
+      "skill": "percentage and ratio reasoning",
+      "practice": "Explain why +x then −x is not identity before computing."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "formula",
+      "question": "What is the formula for successive percentage change with changes x% and y%?",
+      "answer": "Net change % = x + y + (x × y) / 100, using signed values."
+    },
+    {
+      "type": "concept",
+      "question": "Why can't we simply add or subtract successive percentages?",
+      "answer": "Each percentage is calculated on a different base value."
+    },
+    {
+      "type": "formula",
+      "question": "After an x% fall, what increase restores the original value?",
+      "answer": "(x × 100) / (100 − x) percent."
+    },
+    {
+      "type": "misconception",
+      "question": "What is the net result of +10% then −10%?",
+      "answer": "A net loss of 1%."
+    }
+  ],
+  "quest": {
+    "chapter": "The Percentage Forge",
+    "rank": "Ratio Scout",
+    "story": "Service-company aptitude rounds punish students who treat successive percentages like simple addition. Your job is to respect the changing base every time.",
+    "mission": "Master successive percentage change, restore percentages and the net-change formula.",
+    "success_criteria": [
+      "Apply the net-change formula with correct signs.",
+      "Trace intermediate values in multi-step changes.",
+      "Compute a restore percentage after a fall.",
+      "Reject the false claim that +x% and −x% cancel."
+    ]
+  },
+  "next_lesson_slug": "profit_loss",
+  "next_lesson_title": "Profit, Loss and Discount"
+}

@@ -1,0 +1,16 @@
+{
+  "repair": {
+    "total": 2835,
+    "extracted_test_cases": 0,
+    "fixed_mismatches": 398,
+    "still_failing": 2437
+  },
+  "verification": {
+    "total": 2835,
+    "passed": 677,
+    "failed": 2002,
+    "quarantined": 156,
+    "skipped": 8941
+  },
+  "servable": 9618
+}

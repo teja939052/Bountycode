@@ -16,7 +16,6 @@ TIER_LIMITS = {
         "interviews_per_month": 3,
         "resume_reviews_per_month": 3,
         "aptitude_tests_per_month": 5,
-        "cover_letters_per_month": 3,
         "daily_compiler_runs": 20,
         "daily_ai_questions": 5,
         "problems_per_day": 10,
@@ -31,7 +30,6 @@ TIER_LIMITS = {
         "interviews_per_month": 999,
         "resume_reviews_per_month": 999,
         "aptitude_tests_per_month": 999,
-        "cover_letters_per_month": 999,
         "daily_compiler_runs": 999,
         "daily_ai_questions": 999,
         "problems_per_day": 999,
@@ -46,7 +44,6 @@ TIER_LIMITS = {
         "interviews_per_month": 999,
         "resume_reviews_per_month": 999,
         "aptitude_tests_per_month": 999,
-        "cover_letters_per_month": 999,
         "daily_compiler_runs": 999,
         "daily_ai_questions": 999,
         "problems_per_day": 999,
@@ -99,7 +96,6 @@ def _get_remaining(user: dict, feature: str) -> dict:
         "interviews_per_month",
         "resume_reviews_per_month",
         "aptitude_tests_per_month",
-        "cover_letters_per_month",
         "mock_interviews_per_month",
     ]
     daily_features = [
@@ -169,7 +165,6 @@ async def tier_status(user=Depends(get_current_user)):
             "interviews_per_month": _get_remaining(user, "interviews_per_month"),
             "resume_reviews_per_month": _get_remaining(user, "resume_reviews_per_month"),
             "aptitude_tests_per_month": _get_remaining(user, "aptitude_tests_per_month"),
-            "cover_letters_per_month": _get_remaining(user, "cover_letters_per_month"),
             "daily_compiler_runs": _get_remaining(user, "daily_compiler_runs"),
             "daily_ai_questions": _get_remaining(user, "daily_ai_questions"),
             "problems_per_day": _get_remaining(user, "problems_per_day"),
@@ -231,7 +226,6 @@ async def check_access(req: AccessCheckRequest, user=Depends(get_current_user)):
         "interviews": "interviews_per_month",
         "resume_reviews": "resume_reviews_per_month",
         "aptitude_tests": "aptitude_tests_per_month",
-        "cover_letters": "cover_letters_per_month",
         "mock_interviews": "mock_interviews_per_month",
     }
     daily_features = {
@@ -332,7 +326,7 @@ async def tier_pricing():
             },
             "lifetime": {
                 "name": "Lifetime",
-                "price": {"USD": 49.0, "INR": 499.0},
+                "price": {"USD": 149.0, "INR": 1499.0},
                 "billing": "one_time",
                 "features": TIER_LIMITS["lifetime"],
                 "highlights": [
@@ -377,7 +371,6 @@ async def reset_usage(user=Depends(get_current_user)):
                 "interviews_used": 0,
                 "resumes_used": 0,
                 "aptitude_used": 0,
-                "cover_letters_used": 0,
                 "monthly_reset_date": now,
                 "daily_usage": {},
             }
@@ -433,14 +426,6 @@ async def tier_usage(user=Depends(get_current_user)):
                 else -1,
                 "unit": "per_month",
             },
-            "cover_letters": {
-                "used": user.get("cover_letters_used", 0),
-                "limit": limits["cover_letters_per_month"],
-                "remaining": max(0, limits["cover_letters_per_month"] - user.get("cover_letters_used", 0))
-                if limits["cover_letters_per_month"] < 999
-                else -1,
-                "unit": "per_month",
-            },
             "mock_interviews": {
                 "used": user.get("mock_interviews_used", 0),
                 "limit": limits["mock_interviews_per_month"],
@@ -488,7 +473,6 @@ async def tier_usage(user=Depends(get_current_user)):
             "total_interviews": all_time_usage.get("total_interviews", 0),
             "total_resumes": all_time_usage.get("total_resumes", 0),
             "total_aptitude": all_time_usage.get("total_aptitude", 0),
-            "total_cover_letters": all_time_usage.get("total_cover_letters", 0),
             "total_problems_solved": all_time_usage.get("total_problems_solved", 0),
             "total_compiler_runs": all_time_usage.get("total_compiler_runs", 0),
         },

@@ -23,7 +23,7 @@ const LAYER_COLORS = [
 interface UserEmblemProps {
   skills?: Record<string, any>;
   level?: number;
-  xp?: number;
+  diamonds?: number;
   size?: number;
   className?: string;
   animated?: boolean;
@@ -32,7 +32,7 @@ interface UserEmblemProps {
 export default function UserEmblem({
   skills = {},
   level = 1,
-  xp = 0,
+  diamonds = 0,
   size = 96,
   className = '',
   animated = true,
@@ -57,8 +57,8 @@ export default function UserEmblem({
     }));
   }, [skills]);
 
-  // Hash level + xp to create unique rotation offset
-  const hash = (level * 31 + xp * 17) % 360;
+  // Hash level + diamonds to create unique rotation offset
+  const hash = (level * 31 + diamonds * 17) % 360;
 
   return (
     <div className={`relative ${className}`} style={{ width: size, height: size }}>

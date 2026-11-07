@@ -1,0 +1,221 @@
+{
+  "slug": "os_basics",
+  "id": "lesson_os_basics_001",
+  "title": "Operating Systems Fundamentals",
+  "domain": "Computer Science Fundamentals",
+  "pattern": "Operating Systems",
+  "difficulty": "easy",
+  "duration_min": 24,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "What an operating system does",
+      "content": "An operating system manages hardware and provides services for programs. Core responsibilities include process management, memory management, files, devices, security and scheduling.",
+      "example": "When you open a browser, the OS creates or schedules processes and manages memory and device access."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Process versus program",
+      "prompt": "What is a process?",
+      "options": [
+        "A program stored on disk only",
+        "A program in execution",
+        "A type of file system",
+        "A CPU register"
+      ],
+      "correct_index": 1,
+      "explanation": "A process is an executing instance of a program with its own execution state and resources."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Process scheduling",
+      "content": "The scheduler decides which ready process receives CPU time. Context switching saves one process's state and loads another's. Switching has overhead, so it is not free.",
+      "tip": "A process is a running program; a thread is an execution path within a process."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Understand deadlock",
+      "prompt": "Which condition is one of the classic necessary conditions for deadlock?",
+      "options": [
+        "Circular wait",
+        "Infinite memory",
+        "Single user",
+        "No scheduling"
+      ],
+      "correct_index": 0,
+      "explanation": "The four Coffman conditions include mutual exclusion, hold-and-wait, no preemption and circular wait."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Virtual memory",
+      "content": "Virtual memory gives each process a virtual address space. The OS and hardware translate virtual addresses to physical memory; pages may be loaded on demand.",
+      "example": "A page fault occurs when a referenced page is not currently mapped in physical memory and must be resolved."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which is a core operating-system responsibility?",
+        "options": [
+          "Writing every application",
+          "Memory management",
+          "Designing websites",
+          "Compiling all source code automatically"
+        ],
+        "correct_index": 1,
+        "explanation": "The OS manages memory resources for processes."
+      },
+      {
+        "prompt": "A process is:",
+        "options": [
+          "A program in execution",
+          "A file extension",
+          "A CPU model",
+          "A database query"
+        ],
+        "correct_index": 0,
+        "explanation": "A process is an executing program instance."
+      },
+      {
+        "prompt": "What is a context switch?",
+        "options": [
+          "Changing a variable name",
+          "Saving and restoring execution state between processes/threads",
+          "Formatting a disk",
+          "A database join"
+        ],
+        "correct_index": 1,
+        "explanation": "The CPU switches execution by saving one state and restoring another."
+      },
+      {
+        "prompt": "Which is NOT one of the four classic deadlock conditions?",
+        "options": [
+          "Mutual exclusion",
+          "Hold and wait",
+          "Circular wait",
+          "Automatic garbage collection"
+        ],
+        "correct_index": 3,
+        "explanation": "The four conditions are mutual exclusion, hold-and-wait, no preemption and circular wait."
+      },
+      {
+        "prompt": "What is a page fault?",
+        "options": [
+          "A syntax error",
+          "A request for a page not currently present in physical memory",
+          "A failed SQL query",
+          "A broken network cable"
+        ],
+        "correct_index": 1,
+        "explanation": "The memory system must resolve a reference to a page that is not currently resident."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Explain process and thread differences.",
+    "Describe CPU scheduling and context switching.",
+    "Understand memory management and virtual memory.",
+    "Explain synchronization and deadlocks.",
+    "Connect operating-system concepts to everyday behavior."
+  ],
+  "prerequisites": [
+    "programming_languages"
+  ],
+  "concepts": [
+    "process",
+    "thread",
+    "scheduling",
+    "context switch",
+    "virtual memory",
+    "mutex",
+    "deadlock"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A process and a thread are identical.",
+      "correction": "A process has its own address space; threads within it share process resources."
+    },
+    {
+      "misconception": "More threads always make a program faster.",
+      "correction": "Synchronization and scheduling overhead can reduce performance."
+    },
+    {
+      "misconception": "Deadlock means a process is merely slow.",
+      "correction": "Deadlock is a circular wait in which involved processes cannot make progress."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Process versus thread",
+      "input": "A browser runs tabs and background tasks.",
+      "trace": [
+        "The operating system isolates processes.",
+        "A process can contain multiple threads.",
+        "Threads in one process share its memory space."
+      ],
+      "output": "A process is a resource boundary; a thread is an execution path",
+      "explanation": "This distinction helps explain isolation, communication and concurrency."
+    },
+    {
+      "title": "Context switching",
+      "input": "CPU switches from process A to process B",
+      "trace": [
+        "Save A's execution state.",
+        "Load B's saved state.",
+        "Resume B at its saved instruction."
+      ],
+      "output": "The CPU continues with process B",
+      "explanation": "Context switching enables multitasking but has overhead."
+    },
+    {
+      "title": "Recognize deadlock",
+      "input": "P1 holds R1 and waits for R2; P2 holds R2 and waits for R1.",
+      "trace": [
+        "P1 cannot proceed without R2.",
+        "P2 cannot proceed without R1.",
+        "Each waits for a resource held by the other."
+      ],
+      "output": "Deadlock cycle: P1 → R2 → P2 → R1 → P1",
+      "explanation": "A circular wait can prevent both processes from progressing."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "operating systems fundamentals",
+      "practice": "Explain processes, threads, scheduling and deadlocks."
+    },
+    {
+      "company": "Infosys",
+      "skill": "CS fundamentals",
+      "practice": "Use small examples to explain synchronization and memory."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "technical interview basics",
+      "practice": "Compare concepts clearly and identify trade-offs."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Operating Systems Fundamentals?",
+      "answer": "Explain process and thread differences. Describe CPU scheduling and context switching. Understand memory management and virtual memory. Explain synchronization and deadlocks. Connect operating-system concepts to everyday behavior."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Operating Systems Fundamentals.",
+      "answer": "A process has its own address space; threads within it share process resources."
+    }
+  ],
+  "next_lesson_slug": "computer_networks_basics",
+  "next_lesson_title": "Computer Networks Fundamentals"
+}

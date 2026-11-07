@@ -1,0 +1,32 @@
+Loading all question sources...
+  questions_bank.json: 6379 questions
+  verified_placement_questions.json: 254 questions
+  sql_practice_bank.json: 54 questions
+  interview_practice_bank.json: 100 questions
+  india_placement_depth.json: 85 questions
+  system_design_bank.json: 12 questions
+  ERROR debugging_bank.json: Extra data: line 4009 column 3 (char 189636)
+  promoted_questions.json: 21 questions
+  leetcode_problems_seed.json: 45 questions
+  striver_a2z_600.json: 600 questions
+  tcs_nqt_questions.json: 450 questions
+  infosys_questions.json: 340 questions
+  legacy_enriched_coding.json: 2879 questions
+  llm_draft_checked.json: 7917 questions
+
+Total loaded: 19136
+Deduplicating...
+  Duplicates found: 4816
+  Retained: 14320
+Checking for unreplaced templates...
+Generating report...
+Writing unified bank...
+Writing quarantine...
+Writing report...
+
+=== UNIFICATION COMPLETE ===
+Loaded: 19136
+Retained: 14320
+Quarantined: 4816
+
+Distribution: {'coding': 10958, 'aptitude': 1024, 'logical': 796, 'verbal': 344, 'cs_fundamentals': 193, 'sql': 884, 'interview': 100, 'system_design': 12, 'cs': 9}

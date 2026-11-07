@@ -1,0 +1,224 @@
+{
+  "slug": "programming_languages",
+  "id": "lesson_programming_languages_001",
+  "title": "Programming Fundamentals Across Languages",
+  "domain": "Programming Fundamentals",
+  "pattern": "Programming Languages",
+  "difficulty": "easy",
+  "duration_min": 24,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Values, variables and types",
+      "content": "A variable names a value stored by a program. Common types include integers, floating-point numbers, characters, strings and booleans. Languages differ in syntax and type rules, but the underlying ideas are shared.",
+      "example": "age = 19 stores an integer; is_ready = true stores a Boolean in languages that use true/false literals."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose the right type",
+      "prompt": "Which type best represents whether a user is logged in?",
+      "options": [
+        "Integer",
+        "Boolean",
+        "String",
+        "Floating point"
+      ],
+      "correct_index": 1,
+      "explanation": "A Boolean represents one of two logical states: true or false."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Control the flow",
+      "content": "A conditional chooses between branches. A loop repeats work. A function groups reusable logic and can accept inputs and return a result.",
+      "example": "if marks >= 40: print('Pass') else: print('Fail')",
+      "tip": "Trace the condition first, then follow only the branch whose condition is true."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Trace a condition",
+      "prompt": "x is 7. The code checks if x > 10, prints A if true and B otherwise. What is printed?",
+      "options": [
+        "A",
+        "B",
+        "A then B",
+        "Nothing"
+      ],
+      "correct_index": 1,
+      "explanation": "7 is not greater than 10, so the else branch prints B."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Understand functions and scope",
+      "content": "A function receives arguments, performs work and may return a value. Local variables belong to the function call; global state is shared more broadly and should be used carefully.",
+      "example": "A function add(a,b) can return a+b. The caller uses that returned value."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which type represents true or false?",
+        "options": [
+          "String",
+          "Boolean",
+          "Float",
+          "Array"
+        ],
+        "correct_index": 1,
+        "explanation": "Boolean values represent truth states."
+      },
+      {
+        "prompt": "What is the main purpose of a function?",
+        "options": [
+          "To group reusable logic",
+          "To store every variable globally",
+          "To stop compilation",
+          "To sort every array"
+        ],
+        "correct_index": 0,
+        "explanation": "Functions package reusable behaviour behind a callable interface."
+      },
+      {
+        "prompt": "Which structure repeats a block of code?",
+        "options": [
+          "Loop",
+          "Comment",
+          "Class name",
+          "Import statement"
+        ],
+        "correct_index": 0,
+        "explanation": "Loops execute a block repeatedly while iterating or while a condition holds."
+      },
+      {
+        "prompt": "What does a return statement do in a function?",
+        "options": [
+          "Always prints a value",
+          "Sends a result back to the caller",
+          "Creates a loop",
+          "Declares a variable"
+        ],
+        "correct_index": 1,
+        "explanation": "return ends the function call and supplies a result to the caller."
+      },
+      {
+        "prompt": "A variable declared inside a function is generally:",
+        "options": [
+          "Local to that function",
+          "Always global",
+          "A database table",
+          "A compiler option"
+        ],
+        "correct_index": 0,
+        "explanation": "Function-local variables are scoped to the function unless explicitly declared otherwise."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Distinguish values, variables and data types.",
+    "Choose a suitable type for a problem.",
+    "Trace conditions and control flow.",
+    "Explain function parameters, return values and scope."
+  ],
+  "prerequisites": [],
+  "concepts": [
+    "values",
+    "variables",
+    "types",
+    "conditions",
+    "control flow",
+    "functions",
+    "scope"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A variable is the value itself.",
+      "correction": "A variable is a named reference or storage location associated with a value."
+    },
+    {
+      "misconception": "A condition always runs its body.",
+      "correction": "A conditional body runs only when its condition evaluates to true."
+    },
+    {
+      "misconception": "Printing a value and returning a value are identical.",
+      "correction": "Printing displays output; returning sends a value back to the caller."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Choose a type",
+      "input": "age = 18\\nname = 'Teja'\\nactive = True",
+      "trace": [
+        "age stores a whole number.",
+        "name stores text.",
+        "active stores a Boolean value."
+      ],
+      "output": "integer, string, Boolean",
+      "explanation": "Types describe the kind of value and the operations that make sense for it."
+    },
+    {
+      "title": "Trace a condition",
+      "input": "marks = 72\\nif marks >= 40: print('Pass')",
+      "trace": [
+        "Read marks as 72.",
+        "Evaluate 72 >= 40 as true.",
+        "Execute the body."
+      ],
+      "output": "Pass",
+      "explanation": "Evaluate the condition before deciding which branch executes."
+    },
+    {
+      "title": "Return versus print",
+      "input": "def double(x):\\n    return x * 2\\nresult = double(4)",
+      "trace": [
+        "Call double with x = 4.",
+        "Calculate 4 * 2.",
+        "Return 8 to the caller."
+      ],
+      "output": "result is 8",
+      "explanation": "A returned value can be stored, combined or passed into another function."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "programming fundamentals and output tracing",
+      "practice": "Explain variable updates and trace branch conditions."
+    },
+    {
+      "company": "Infosys",
+      "skill": "basic programming and language concepts",
+      "practice": "Compare data types and explain function behavior."
+    },
+    {
+      "company": "Accenture",
+      "skill": "pseudocode and logical reasoning",
+      "practice": "Predict branch outcomes before writing code."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Programming Fundamentals Across Languages?",
+      "answer": "Distinguish values, variables and data types. Choose a suitable type for a problem. Trace conditions and control flow. Explain function parameters, return values and scope."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Programming Fundamentals Across Languages.",
+      "answer": "A variable is a named reference or storage location associated with a value."
+    },
+    {
+      "type": "application",
+      "question": "What is the difference between printing and returning a value?",
+      "answer": "Printing displays information to the user or console. Returning sends a value back to the caller so the program can store it, combine it, or use it in another expression."
+    }
+  ],
+  "next_lesson_slug": "loops_basics",
+  "next_lesson_title": "Loops and Iteration"
+}

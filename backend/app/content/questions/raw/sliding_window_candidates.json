@@ -1,0 +1,234 @@
+[
+  {
+    "candidate_id": "llm-sw-01",
+    "trust_status": "UNVERIFIED",
+    "provenance": "llm_candidate",
+    "never_serve": true,
+    "title": "Maximum Average Subarray I",
+    "description": "Given an array of integers nums and an integer k, find the contiguous subarray of length k that has the maximum average value. Return the maximum average.",
+    "difficulty": "easy",
+    "hints": [
+      "Use a sliding window of fixed size k to maintain the running sum",
+      "Initialize sum of first k elements, then slide by subtracting left and adding right",
+      "Track max_sum, not max_avg, to avoid floating point issues during comparison",
+      "Edge case: when k == len(nums), the entire array is the answer"
+    ],
+    "editorial": "Brute Force: O(n*k) - compute average for each subarray. Optimized: O(n) sliding window. Compute sum of first k elements. For each subsequent element, subtract the element leaving the window and add the new element. Track max_sum. Final answer is max_sum / k. Time: O(n), Space: O(1).",
+    "test_cases": [
+      {
+        "input": {
+          "nums": [
+            1,
+            12,
+            -5,
+            -6,
+            50,
+            3
+          ],
+          "k": 4
+        },
+        "output": 12.75
+      },
+      {
+        "input": {
+          "nums": [
+            5
+          ],
+          "k": 1
+        },
+        "output": 5.0
+      }
+    ]
+  },
+  {
+    "candidate_id": "llm-sw-02",
+    "trust_status": "UNVERIFIED",
+    "provenance": "llm_candidate",
+    "never_serve": true,
+    "title": "Longest Subarray with Sum at Most K",
+    "description": "Given an array of positive integers nums and an integer k, find the length of the longest contiguous subarray whose sum is less than or equal to k. Return 0 if no such subarray exists.",
+    "difficulty": "medium",
+    "hints": [
+      "Since all numbers are positive, expanding the window increases the sum",
+      "Use two pointers: expand right while sum <= k, shrink left when sum > k",
+      "Track maximum window size during valid (sum <= k) states",
+      "Edge case: single element > k means that element can never be in a valid window"
+    ],
+    "editorial": "Two-pointer sliding window. Maintain left and right pointers with current sum. While right < n: add nums[right] to sum. While sum > k and left <= right: subtract nums[left] from sum, increment left. If sum <= k, update max_len = max(max_len, right - left + 1). Increment right. Time: O(n), Space: O(1).",
+    "test_cases": [
+      {
+        "input": {
+          "nums": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "k": 11
+        },
+        "output": 4
+      },
+      {
+        "input": {
+          "nums": [
+            3,
+            1,
+            2,
+            1
+          ],
+          "k": 4
+        },
+        "output": 3
+      }
+    ]
+  },
+  {
+    "candidate_id": "llm-sw-03",
+    "trust_status": "UNVERIFIED",
+    "provenance": "llm_candidate",
+    "never_serve": true,
+    "title": "Longest Substring with At Most K Distinct Characters",
+    "description": "Given a string s and an integer k, find the length of the longest substring of s that contains at most k distinct characters.",
+    "difficulty": "medium",
+    "hints": [
+      "Use a hash map or array of size 26 to track character frequencies in the window",
+      "Expand right, add character to frequency map; when distinct count > k, shrink left",
+      "Distinct count increases only when a character frequency goes from 0 to 1",
+      "Edge case: k = 0 means no valid substring; k >= len(s) means entire string"
+    ],
+    "editorial": "Sliding window with frequency map. Maintain left=0, right=0, freq[26]={0}, distinct=0, max_len=0. While right < n: add s[right], if freq was 0, distinct++. While distinct > k: remove s[left], if freq becomes 0, distinct--, left++. max_len = max(max_len, right-left+1). right++. Time: O(n), Space: O(1) for fixed alphabet.",
+    "test_cases": [
+      {
+        "input": {
+          "s": "eceba",
+          "k": 2
+        },
+        "output": 3
+      },
+      {
+        "input": {
+          "s": "aa",
+          "k": 1
+        },
+        "output": 2
+      }
+    ]
+  },
+  {
+    "candidate_id": "llm-sw-04",
+    "trust_status": "UNVERIFIED",
+    "provenance": "llm_candidate",
+    "never_serve": true,
+    "title": "Minimum Window Substring",
+    "description": "Given strings s and t, return the minimum window in s which will contain all the characters of t (including duplicates). If no such window exists, return empty string.",
+    "difficulty": "hard",
+    "hints": [
+      "Build frequency map of required characters from t; track how many required characters are satisfied",
+      "Expand right to find a valid window, then shrink left to minimize it while keeping it valid",
+      "A character is satisfied when its frequency in window >= required frequency in t",
+      "Use a formed counter: increment when a char becomes satisfied, decrement when it becomes unsatisfied"
+    ],
+    "editorial": "Sliding window with character requirement tracking. Build dict of required chars from t. Use left=0, right=0, formed=0, required=len(required_chars). While right < len(s): add s[right] to window_counts; if window_counts[char] == required_counts[char], formed++. While formed == required and left <= right: update min window if smaller. Remove s[left] from window_counts; if it becomes unsatisfied, formed--; left++. right++. Time: O(|s| + |t|), Space: O(|s| + |t|).",
+    "test_cases": [
+      {
+        "input": {
+          "s": "ADOBECODEBANC",
+          "t": "ABC"
+        },
+        "output": "BANC"
+      },
+      {
+        "input": {
+          "s": "a",
+          "t": "a"
+        },
+        "output": "a"
+      }
+    ]
+  },
+  {
+    "candidate_id": "llm-sw-05",
+    "trust_status": "UNVERIFIED",
+    "provenance": "llm_candidate",
+    "never_serve": true,
+    "title": "Subarray Sum Equals K",
+    "description": "Given an array of integers nums and an integer k, return the total number of continuous subarrays whose sum equals to k.",
+    "difficulty": "medium",
+    "hints": [
+      "Prefix sum + hash map: count how many prefix sums equal (current_prefix - k)",
+      "Initialize map with {0: 1} to handle subarrays starting from index 0",
+      "Negative numbers allowed, so two-pointer sliding window does NOT work directly",
+      "This is a prefix sum pattern, not a traditional sliding window - but uses window concept"
+    ],
+    "editorial": "Prefix sum with hash map. The number of subarrays ending at i with sum k equals the number of prefix sums (before i) equal to prefix[i] - k. Maintain count of prefix sums seen so far. For each element: prefix += nums[i]; if (prefix - k) in map, add map[prefix-k] to answer; increment map[prefix]. Time: O(n), Space: O(n).",
+    "test_cases": [
+      {
+        "input": {
+          "nums": [
+            1,
+            1,
+            1
+          ],
+          "k": 2
+        },
+        "output": 2
+      },
+      {
+        "input": {
+          "nums": [
+            1,
+            2,
+            3
+          ],
+          "k": 3
+        },
+        "output": 2
+      }
+    ]
+  },
+  {
+    "candidate_id": "llm-sw-06",
+    "trust_status": "UNVERIFIED",
+    "provenance": "llm_candidate",
+    "never_serve": true,
+    "title": "Shortest Subarray with Same Degree",
+    "description": "The degree of an array is the maximum frequency of any one of its elements. Given an array of positive integers nums, find the length of the shortest contiguous subarray that has the same degree as the entire array.",
+    "difficulty": "medium",
+    "hints": [
+      "First pass: find the degree (max frequency) and which elements achieve it",
+      "For each element with max frequency, find its first and last occurrence",
+      "The shortest subarray containing all occurrences of that element has length last-first+1",
+      "Take the minimum over all max-frequency elements"
+    ],
+    "editorial": "Two-pass approach. Pass 1: count frequencies using hash map, track degree = max(freq.values()), track elements_with_degree. Pass 2: for each element in elements_with_degree, find its first and last index in nums. Shortest subarray for that element = last - first + 1. Answer = min over all such elements. Time: O(n), Space: O(n).",
+    "test_cases": [
+      {
+        "input": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            1
+          ]
+        },
+        "output": 2
+      },
+      {
+        "input": {
+          "nums": [
+            1,
+            2,
+            2,
+            3,
+            1,
+            4,
+            2
+          ]
+        },
+        "output": 6
+      }
+    ]
+  }
+]

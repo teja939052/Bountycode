@@ -38,7 +38,7 @@ export default function Login() {
     setLoading(true);
     try {
       const data = await authApi.login(email, password);
-      setAuth(data.user);
+      setAuth(data.user, data.token);
       navigate("/dashboard");
     } catch (err: any) {
       setError(err.message || "Login failed. Please try again.");

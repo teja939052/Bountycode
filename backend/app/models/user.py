@@ -34,7 +34,6 @@ class UserInDB(BaseModel):
     interviews_used: int = 0
     resumes_used: int = 0
     aptitude_used: int = 0
-    cover_letters_used: int = 0
     mock_interviews_used: int = 0
     monthly_reset_date: Optional[datetime] = None
     daily_usage: dict = {}
@@ -54,3 +53,19 @@ class UpdateProfileRequest(BaseModel):
 class ChangePasswordRequest(BaseModel):
     current_password: str
     new_password: str = Field(min_length=8)
+
+
+class UserTier(BaseModel):
+    """Lightweight tier + quota tracking model for content paywall gating.
+
+    Injected into routes that serve premium content (compiler, question bank,
+    mock interviews) to enforce free-tier limits and intercept upgrades.
+    """
+    tier_name: str = "free"
+    valid_until: Optional[datetime] = None
+    interview_tokens: int = 0
+    compilation_limit_today: int = 5
+    last_compilation_reset: datetime = Field(default_factory=utcnow)
+    question_bank_limit: int = 5
+    interviews_limit: int = 3
+    daily_reset_date: Optional[datetime] = None

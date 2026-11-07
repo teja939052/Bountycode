@@ -1,0 +1,3972 @@
+{
+  "offset": 0,
+  "limit": 50,
+  "reviewed_pool": 582,
+  "counts": {
+    "PASS": 20,
+    "FAIL": 30
+  },
+  "results": [
+    {
+      "id": "4fd32539-c4bd-4902-8016-98078c9578f9",
+      "title": "Array Problem 1: Find the maximum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 42,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "4b9e64bf-e4a3-4e24-8c3b-9209df93d626",
+      "title": "Array Problem 2: Find the minimum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 42,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "b1d9624d-b974-496b-8043-2a4dd86837a2",
+      "title": "Array Problem 3: Find the duplicate element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 44,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "a0234f87-9d37-4bc8-93ec-33d9e17e591b",
+      "title": "Array Problem 4: Find the maximum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 42,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "0a5a37a2-0c77-4dce-9ece-5353a4d2988d",
+      "title": "Array Problem 5: Find the minimum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 42,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "289d1bc9-0ba6-4bdf-884f-52f4942430e3",
+      "title": "Array Problem 6: Find the duplicate element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 44,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "be23c5ff-233b-44ec-b1a1-513e69bce9aa",
+      "title": "Array Problem 7: Find the maximum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 42,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "b8b081b7-acba-4ef6-95a6-a51bb2d90096",
+      "title": "Array Problem 8: Find the minimum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 42,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "e7098c37-782f-429e-90b6-12ae7dc424de",
+      "title": "Array Problem 9: Find the duplicate element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 44,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "43276cef-7d23-4fc4-8988-7bce2da8313a",
+      "title": "Array Problem 10: Find the maximum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "0945a322-a287-41e5-9780-831561c81697",
+      "title": "Array Problem 11: Find the minimum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "beeef4b9-8993-4d53-a31c-e69b65e6726a",
+      "title": "Array Problem 12: Find the duplicate element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 45,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "fc6c7227-51a8-47e8-bf02-6e635fc28325",
+      "title": "Array Problem 13: Find the maximum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "165138c2-a15c-4de4-9ead-e5d157299506",
+      "title": "Array Problem 14: Find the minimum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "f80feb35-4a07-4188-b68d-b4fdf2f9318b",
+      "title": "Array Problem 15: Find the duplicate element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 45,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "d8171e84-5204-4ed0-b0de-b5b0088bffda",
+      "title": "Array Problem 16: Find the maximum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "cf140b5b-b530-4180-b8b5-464a79e8b74e",
+      "title": "Array Problem 17: Find the minimum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "4521670e-731b-4d6a-a876-42430bf703cc",
+      "title": "Array Problem 18: Find the duplicate element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 45,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "17ce29c1-98c0-4d92-836f-1b7e76f37857",
+      "title": "Array Problem 19: Find the maximum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "8f6408d9-4d83-4793-a4e6-63b441d9ee07",
+      "title": "Array Problem 20: Find the minimum element.",
+      "topic": "Arrays",
+      "difficulty": "easy",
+      "function": "solution",
+      "params": [
+        "nums"
+      ],
+      "verdict": "PASS",
+      "fail_reason": null,
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 43,
+        "fn_params": [
+          "nums"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "expected": 5,
+          "computed": 5,
+          "match": true
+        },
+        {
+          "input": [
+            1
+          ],
+          "expected": 1,
+          "computed": 1,
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "6fc73af4-df26-4a91-9f5a-382d0585af8e",
+      "title": "Array Problem 21: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "1abedc37-37ef-427b-9d5d-edf897384421",
+      "title": "Array Problem 22: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "83b91c30-0ea6-445d-9c36-823b53df674f",
+      "title": "Array Problem 23: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "c350f690-b5b5-4f65-b2f5-4d4591beaff5",
+      "title": "Array Problem 24: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "81112a27-601f-49af-ad64-e050b7b7de31",
+      "title": "Array Problem 25: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "360d8c30-bf2b-4afb-8647-5074d332a4cd",
+      "title": "Array Problem 26: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "781e5e51-36e8-4f79-8a29-6ab62acac310",
+      "title": "Array Problem 27: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "37baa094-fdfb-4797-97b4-2fcfa570ea19",
+      "title": "Array Problem 28: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "75af6273-83a2-4558-873b-0f56c505673f",
+      "title": "Array Problem 29: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "3c93ecf7-f237-4948-97b2-d2677110c007",
+      "title": "Array Problem 30: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "c6919e08-13df-4c61-99c1-2c36d6caf40a",
+      "title": "Array Problem 31: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "dac4b760-9e1a-4620-9214-f9dbc0bced8e",
+      "title": "Array Problem 32: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "e2b8b16b-da64-4e44-bdeb-5af8f9486772",
+      "title": "Array Problem 33: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "e5833c38-ae63-4160-b193-9b6994b397f5",
+      "title": "Array Problem 34: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "1f6486ab-c71a-41b6-bf4e-0ccf8c490251",
+      "title": "Array Problem 35: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "5501f108-6ca9-4dff-842c-3702ad93865b",
+      "title": "Array Problem 36: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "1b50bf25-e19c-4915-94d6-abec9ae1ffa4",
+      "title": "Array Problem 37: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "facb4fb7-0a7f-44c9-b236-3dfabb660095",
+      "title": "Array Problem 38: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "b1e79ed9-64e8-4eb4-941f-2c2bca78b8dd",
+      "title": "Array Problem 39: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "0b1a1232-2b9f-4b46-aaaf-7f3c429d33d5",
+      "title": "Array Problem 40: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "41dc1919-c701-4805-b2e4-a598737bb766",
+      "title": "Array Problem 41: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "9625185d-7b1b-4751-8265-1552810ddda7",
+      "title": "Array Problem 42: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "e51cfae5-2bfa-437f-a270-976382dfb621",
+      "title": "Array Problem 43: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "7ac35b7a-2bb9-4792-aeb3-a91a11eb804e",
+      "title": "Array Problem 44: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "002c7c54-1043-464c-abaf-bcd76405e251",
+      "title": "Array Problem 45: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "87ee0f11-7f47-4efb-9f2b-f8fc3a8e804a",
+      "title": "Array Problem 46: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "93c39304-c87c-4ed6-b848-79e525461568",
+      "title": "Array Problem 47: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "8172a9a3-6663-429b-af89-7568edca031f",
+      "title": "Array Problem 48: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "9f85f16c-ae7a-4db7-9332-8956416a785e",
+      "title": "Array Problem 49: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    },
+    {
+      "id": "07cf2472-d18f-424d-a356-f125fd4a3730",
+      "title": "Array Problem 50: Two Pointer / Sliding Window variant.",
+      "topic": "Arrays",
+      "difficulty": "medium",
+      "function": "solution",
+      "params": [
+        "nums",
+        "target"
+      ],
+      "verdict": "FAIL",
+      "fail_reason": "mismatch expected [3, 4] vs computed [4, 3]",
+      "checks": {
+        "has_fn": true,
+        "has_tcs": true,
+        "question_len": 55,
+        "fn_params": [
+          "nums",
+          "target"
+        ],
+        "visible": 2,
+        "hidden": 1,
+        "hidden_distinct": true
+      },
+      "testcases": [
+        {
+          "input": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            9
+          ],
+          "expected": [
+            2,
+            3,
+            4
+          ],
+          "computed": [
+            2,
+            3,
+            4
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            3
+          ],
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "computed": [
+            1,
+            1,
+            1
+          ],
+          "match": true
+        },
+        {
+          "input": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            7
+          ],
+          "expected": [
+            3,
+            4
+          ],
+          "computed": [
+            4,
+            3
+          ],
+          "match": false
+        }
+      ]
+    }
+  ],
+  "note": "PASS = all executed tcs matched stored expected. FAIL = mismatch or exec error. SKIP = param_mismatch/no executable tc (needs authoring). PASS does NOT auto-promote to verified — still requires signature↔prompt and constraint validation."
+}

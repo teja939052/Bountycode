@@ -1,0 +1,1266 @@
+{
+ "count": 205,
+ "items": [
+  {
+   "id": "autocheck-q_04711",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04606",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04687",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04512",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04496",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03441",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04510",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06609",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04815",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04791",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06545",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04767",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04575",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03035",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04912",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06605",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04743",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04518",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04768",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04862",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04576",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04710",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06572",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04656",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03125",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04566",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03439",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04688",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04816",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04503",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03445",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04878",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04839",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06560",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04519",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04902",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04694",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04734",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03004",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04919",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04494",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04918",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06558",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04672",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04911",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04663",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04880",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03451",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04759",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04976",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03442",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04638",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03025",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04944",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04486",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04583",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04959",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04935",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04847",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04646",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03449",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04598",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04662",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04782",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04495",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04736",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04639",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04783",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04832",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04830",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04831",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04848",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04758",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04467",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04608",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04607",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03458",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04960",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04926",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04752",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04622",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04592",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03026",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04679",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04623",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06606",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06557",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04838",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04614",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04863",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04726",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04974",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04678",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04719",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04735",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04927",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04942",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04686",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03305",
+   "reasons": {
+    "language_edge": "bad_options;bad_index",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04928",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04558",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04823",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03444",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04784",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04910",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04966",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04469",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04544",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04864",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03455",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04703",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04534",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04800",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04775",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04535",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04624",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04543",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03018",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04477",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04502",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04590",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_02715",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04599",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04896",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04975",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04894",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04951",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06548",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06571",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03006",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04798",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03015",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04822",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04439",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03448",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04527",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04790",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04806",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04870",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06553",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04854",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04903",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04846",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04567",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04559",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04814",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03447",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04631",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04615",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04895",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04807",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03007",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04742",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04630",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04574",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04766",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04751",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06559",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04774",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04640",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03456",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04967",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04591",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03005",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04799",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04671",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06620",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04582",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04511",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03011",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04654",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04871",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04950",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03457",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_03034",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04695",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04886",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04670",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04551",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_06600",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04879",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04528",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03443",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04887",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_02992",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_06570",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04542",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04720",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04718",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04943",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04934",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04487",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04647",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04727",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04750",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04655",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03450",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04526",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04550",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_03438",
+   "reasons": {
+    "language_edge": "no_terminal_punct",
+    "duplicate": "already_served"
+   }
+  },
+  {
+   "id": "autocheck-q_04560",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04704",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04702",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04958",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  },
+  {
+   "id": "autocheck-q_04855",
+   "reasons": {
+    "language_edge": "no_terminal_punct"
+   }
+  }
+ ]
+}

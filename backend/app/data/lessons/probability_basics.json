@@ -1,0 +1,208 @@
+{
+  "slug": "probability_basics",
+  "id": "lesson_probability_001",
+  "title": "Probability Basics",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Probability",
+  "difficulty": "medium",
+  "duration_min": 20,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Probability is a fraction of outcomes",
+      "content": "When outcomes are equally likely, probability of an event = favourable outcomes ÷ total possible outcomes. It ranges from 0 (impossible) to 1 (certain).",
+      "formula": "P(E) = favourable outcomes / total outcomes",
+      "example": "A fair die has 6 outcomes. P(rolling an even number) = 3/6 = 1/2."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "A coin toss",
+      "prompt": "A fair coin is tossed once. What is the probability of getting heads?",
+      "options": [
+        "0",
+        "1/4",
+        "1/2",
+        "1"
+      ],
+      "correct_index": 2,
+      "explanation": "There are two equally likely outcomes, and one is heads. Probability = 1/2.",
+      "hints": [
+        "A fair coin has two equally likely outcomes.",
+        "Only one of those outcomes is heads."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use the complement",
+      "content": "The probability that an event does not happen is 1 − P(event). This is useful when counting the opposite event is easier.",
+      "example": "Probability of at least one head in two tosses = 1 − P(no heads) = 1 − 1/4 = 3/4.",
+      "tip": "'At least one' often becomes 1 − 'none'."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Pick a card",
+      "prompt": "One card is drawn from a standard 52-card deck. What is the probability of drawing an ace?",
+      "options": [
+        "1/52",
+        "1/26",
+        "1/13",
+        "4/13"
+      ],
+      "correct_index": 2,
+      "explanation": "There are 4 aces among 52 cards. 4/52 = 1/13.",
+      "hints": [
+        "A standard deck has 52 cards in total.",
+        "There are four aces; simplify favourable outcomes divided by total outcomes."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Independent events",
+      "content": "For independent events, multiply probabilities to get the probability that both happen. For mutually exclusive alternatives, add probabilities.",
+      "example": "Two fair coin tosses: P(two heads) = 1/2×1/2 = 1/4."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "A fair die is rolled. Probability of getting 5 is:",
+        "options": [
+          "1/2",
+          "1/3",
+          "1/6",
+          "5/6"
+        ],
+        "correct_index": 2,
+        "explanation": "One favourable result out of six equally likely results."
+      },
+      {
+        "prompt": "A fair die is rolled. Probability of getting an odd number is:",
+        "options": [
+          "1/6",
+          "1/3",
+          "1/2",
+          "2/3"
+        ],
+        "correct_index": 2,
+        "explanation": "Odd outcomes are 1,3,5: 3/6 = 1/2."
+      },
+      {
+        "prompt": "Two fair coins are tossed. Probability of getting two tails is:",
+        "options": [
+          "1/2",
+          "1/3",
+          "1/4",
+          "3/4"
+        ],
+        "correct_index": 2,
+        "explanation": "P(TT) = 1/2×1/2 = 1/4."
+      },
+      {
+        "prompt": "A bag contains 3 red and 2 blue balls. Probability of picking a blue ball is:",
+        "options": [
+          "2/3",
+          "2/5",
+          "3/5",
+          "1/5"
+        ],
+        "correct_index": 1,
+        "explanation": "2 blue balls out of 5 total = 2/5."
+      },
+      {
+        "prompt": "Probability of not rolling a 6 on a fair die is:",
+        "options": [
+          "1/6",
+          "1/3",
+          "1/2",
+          "5/6"
+        ],
+        "correct_index": 3,
+        "explanation": "Complement = 1 − 1/6 = 5/6."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Define a sample space and favourable event.",
+    "Calculate probability for equally likely outcomes.",
+    "Use complements to simplify 'at least one' questions.",
+    "Distinguish independent and mutually exclusive events."
+  ],
+  "concepts": [
+    "sample space",
+    "event",
+    "favourable outcome",
+    "equally likely",
+    "complement",
+    "independent events",
+    "mutually exclusive events"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A probability can be greater than 1.",
+      "correction": "Probability lies between 0 and 1 inclusive."
+    },
+    {
+      "misconception": "Independent events cannot happen together.",
+      "correction": "Independent events can occur together; independence means one event does not change the probability of the other."
+    },
+    {
+      "misconception": "Mutually exclusive and independent mean the same thing.",
+      "correction": "Mutually exclusive events cannot occur together; non-zero independent events can occur together."
+    }
+  ],
+  "worked_examples": [],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "basic probability",
+      "practice": "Count the sample space before selecting favourable outcomes."
+    },
+    {
+      "company": "Infosys",
+      "skill": "probability and counting",
+      "practice": "Use a complement for 'at least one' problems."
+    },
+    {
+      "company": "Accenture",
+      "skill": "quantitative reasoning",
+      "practice": "Recognize when event probabilities should be multiplied."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "formula",
+      "question": "What is the complement rule?",
+      "answer": "P(not A) = 1 − P(A)."
+    },
+    {
+      "type": "distinction",
+      "question": "How do independent events differ from mutually exclusive events?",
+      "answer": "Independent events do not affect each other's probabilities; mutually exclusive events cannot happen at the same time."
+    }
+  ],
+  "prerequisites": [
+    "permutations_combinations"
+  ],
+  "quest": {
+    "chapter": "The Chance Chamber",
+    "rank": "Probability Apprentice",
+    "story": "The academy wants to model uncertain events such as selecting a question or rolling a die. You must count outcomes carefully instead of guessing from intuition.",
+    "mission": "Build sample spaces, count favourable outcomes and use complements and independence.",
+    "success_criteria": [
+      "Identify equally likely outcomes.",
+      "Calculate a basic event probability.",
+      "Use the complement rule.",
+      "Multiply probabilities for independent events."
+    ]
+  },
+  "next_lesson_slug": "advanced_probability",
+  "next_lesson_title": "Advanced Probability"
+}

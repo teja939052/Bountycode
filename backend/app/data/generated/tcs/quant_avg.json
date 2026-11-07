@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "quant_avg_0000",
+    "question": "Average of 3 numbers is 10. After removing one number, average becomes 7. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 10. After removing one number, average becomes 7. Removed number?",
+      "options": [
+        "A. 16",
+        "B. 7",
+        "C. 7",
+        "D. 13"
+      ],
+      "correct_answer": "A. 16",
+      "explanation": "Total = 3*10 = 30. New total = 14. Removed = 30 - 14 = 16"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0001",
+    "question": "Average of 3 numbers is 11. After removing one number, average becomes 7. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 11. After removing one number, average becomes 7. Removed number?",
+      "options": [
+        "A. 7",
+        "B. 8",
+        "C. 14",
+        "D. 19"
+      ],
+      "correct_answer": "D. 19",
+      "explanation": "Total = 3*11 = 33. New total = 14. Removed = 33 - 14 = 19"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0002",
+    "question": "Average of 3 numbers is 12. After removing one number, average becomes 4. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 12. After removing one number, average becomes 4. Removed number?",
+      "options": [
+        "A. 9",
+        "B. 4",
+        "C. 15",
+        "D. 28"
+      ],
+      "correct_answer": "D. 28",
+      "explanation": "Total = 3*12 = 36. New total = 8. Removed = 36 - 8 = 28"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0003",
+    "question": "Average of 3 numbers is 13. After removing one number, average becomes 10. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 13. After removing one number, average becomes 10. Removed number?",
+      "options": [
+        "A. 10",
+        "B. 19",
+        "C. 16",
+        "D. 10"
+      ],
+      "correct_answer": "B. 19",
+      "explanation": "Total = 3*13 = 39. New total = 20. Removed = 39 - 20 = 19"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0004",
+    "question": "Average of 3 numbers is 14. After removing one number, average becomes 11. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 14. After removing one number, average becomes 11. Removed number?",
+      "options": [
+        "A. 20",
+        "B. 11",
+        "C. 17",
+        "D. 11"
+      ],
+      "correct_answer": "A. 20",
+      "explanation": "Total = 3*14 = 42. New total = 22. Removed = 42 - 22 = 20"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0005",
+    "question": "Average of 3 numbers is 15. After removing one number, average becomes 11. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 15. After removing one number, average becomes 11. Removed number?",
+      "options": [
+        "A. 23",
+        "B. 18",
+        "C. 12",
+        "D. 11"
+      ],
+      "correct_answer": "A. 23",
+      "explanation": "Total = 3*15 = 45. New total = 22. Removed = 45 - 22 = 23"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0006",
+    "question": "Average of 3 numbers is 16. After removing one number, average becomes 12. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 16. After removing one number, average becomes 12. Removed number?",
+      "options": [
+        "A. 13",
+        "B. 12",
+        "C. 19",
+        "D. 23"
+      ],
+      "correct_answer": "D. 23",
+      "explanation": "Total = 3*16 = 48. New total = 25. Removed = 48 - 25 = 23"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0007",
+    "question": "Average of 3 numbers is 17. After removing one number, average becomes 13. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 17. After removing one number, average becomes 13. Removed number?",
+      "options": [
+        "A. 24",
+        "B. 14",
+        "C. 13",
+        "D. 20"
+      ],
+      "correct_answer": "A. 24",
+      "explanation": "Total = 3*17 = 51. New total = 27. Removed = 51 - 27 = 24"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0008",
+    "question": "Average of 3 numbers is 18. After removing one number, average becomes 9. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 18. After removing one number, average becomes 9. Removed number?",
+      "options": [
+        "A. 35",
+        "B. 9",
+        "C. 21",
+        "D. 15"
+      ],
+      "correct_answer": "A. 35",
+      "explanation": "Total = 3*18 = 54. New total = 19. Removed = 54 - 19 = 35"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0009",
+    "question": "Average of 3 numbers is 19. After removing one number, average becomes 15. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 19. After removing one number, average becomes 15. Removed number?",
+      "options": [
+        "A. 22",
+        "B. 15",
+        "C. 16",
+        "D. 27"
+      ],
+      "correct_answer": "D. 27",
+      "explanation": "Total = 3*19 = 57. New total = 30. Removed = 57 - 30 = 27"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0010",
+    "question": "Average of 3 numbers is 20. After removing one number, average becomes 11. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 20. After removing one number, average becomes 11. Removed number?",
+      "options": [
+        "A. 17",
+        "B. 23",
+        "C. 38",
+        "D. 11"
+      ],
+      "correct_answer": "C. 38",
+      "explanation": "Total = 3*20 = 60. New total = 22. Removed = 60 - 22 = 38"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0011",
+    "question": "Average of 3 numbers is 21. After removing one number, average becomes 13. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 21. After removing one number, average becomes 13. Removed number?",
+      "options": [
+        "A. 36",
+        "B. 18",
+        "C. 24",
+        "D. 13"
+      ],
+      "correct_answer": "A. 36",
+      "explanation": "Total = 3*21 = 63. New total = 27. Removed = 63 - 27 = 36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0012",
+    "question": "Average of 3 numbers is 22. After removing one number, average becomes 18. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 22. After removing one number, average becomes 18. Removed number?",
+      "options": [
+        "A. 30",
+        "B. 18",
+        "C. 25",
+        "D. 19"
+      ],
+      "correct_answer": "A. 30",
+      "explanation": "Total = 3*22 = 66. New total = 36. Removed = 66 - 36 = 30"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0013",
+    "question": "Average of 3 numbers is 23. After removing one number, average becomes 16. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 23. After removing one number, average becomes 16. Removed number?",
+      "options": [
+        "A. 16",
+        "B. 26",
+        "C. 36",
+        "D. 20"
+      ],
+      "correct_answer": "C. 36",
+      "explanation": "Total = 3*23 = 69. New total = 33. Removed = 69 - 33 = 36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0014",
+    "question": "Average of 3 numbers is 24. After removing one number, average becomes 20. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 24. After removing one number, average becomes 20. Removed number?",
+      "options": [
+        "A. 27",
+        "B. 21",
+        "C. 20",
+        "D. 31"
+      ],
+      "correct_answer": "D. 31",
+      "explanation": "Total = 3*24 = 72. New total = 41. Removed = 72 - 41 = 31"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.167787+00:00",
+    "updated_at": "2026-09-21T12:53:32.167787+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0015",
+    "question": "Average of 3 numbers is 25. After removing one number, average becomes 16. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 25. After removing one number, average becomes 16. Removed number?",
+      "options": [
+        "A. 16",
+        "B. 28",
+        "C. 22",
+        "D. 43"
+      ],
+      "correct_answer": "D. 43",
+      "explanation": "Total = 3*25 = 75. New total = 32. Removed = 75 - 32 = 43"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0016",
+    "question": "Average of 3 numbers is 26. After removing one number, average becomes 21. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 26. After removing one number, average becomes 21. Removed number?",
+      "options": [
+        "A. 21",
+        "B. 29",
+        "C. 23",
+        "D. 35"
+      ],
+      "correct_answer": "D. 35",
+      "explanation": "Total = 3*26 = 78. New total = 43. Removed = 78 - 43 = 35"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0017",
+    "question": "Average of 3 numbers is 27. After removing one number, average becomes 23. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 27. After removing one number, average becomes 23. Removed number?",
+      "options": [
+        "A. 35",
+        "B. 24",
+        "C. 30",
+        "D. 23"
+      ],
+      "correct_answer": "A. 35",
+      "explanation": "Total = 3*27 = 81. New total = 46. Removed = 81 - 46 = 35"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0018",
+    "question": "Average of 3 numbers is 28. After removing one number, average becomes 25. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 28. After removing one number, average becomes 25. Removed number?",
+      "options": [
+        "A. 34",
+        "B. 31",
+        "C. 25",
+        "D. 25"
+      ],
+      "correct_answer": "A. 34",
+      "explanation": "Total = 3*28 = 84. New total = 50. Removed = 84 - 50 = 34"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0019",
+    "question": "Average of 3 numbers is 29. After removing one number, average becomes 21. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 29. After removing one number, average becomes 21. Removed number?",
+      "options": [
+        "A. 32",
+        "B. 21",
+        "C. 26",
+        "D. 45"
+      ],
+      "correct_answer": "D. 45",
+      "explanation": "Total = 3*29 = 87. New total = 42. Removed = 87 - 42 = 45"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0020",
+    "question": "Average of 3 numbers is 30. After removing one number, average becomes 25. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 30. After removing one number, average becomes 25. Removed number?",
+      "options": [
+        "A. 33",
+        "B. 27",
+        "C. 39",
+        "D. 25"
+      ],
+      "correct_answer": "C. 39",
+      "explanation": "Total = 3*30 = 90. New total = 51. Removed = 90 - 51 = 39"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0021",
+    "question": "Average of 3 numbers is 31. After removing one number, average becomes 23. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 31. After removing one number, average becomes 23. Removed number?",
+      "options": [
+        "A. 23",
+        "B. 34",
+        "C. 47",
+        "D. 28"
+      ],
+      "correct_answer": "C. 47",
+      "explanation": "Total = 3*31 = 93. New total = 46. Removed = 93 - 46 = 47"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0022",
+    "question": "Average of 3 numbers is 32. After removing one number, average becomes 26. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 32. After removing one number, average becomes 26. Removed number?",
+      "options": [
+        "A. 35",
+        "B. 44",
+        "C. 29",
+        "D. 26"
+      ],
+      "correct_answer": "B. 44",
+      "explanation": "Total = 3*32 = 96. New total = 52. Removed = 96 - 52 = 44"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.169305+00:00",
+    "updated_at": "2026-09-21T12:53:32.169305+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0023",
+    "question": "Average of 3 numbers is 33. After removing one number, average becomes 26. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 33. After removing one number, average becomes 26. Removed number?",
+      "options": [
+        "A. 30",
+        "B. 36",
+        "C. 26",
+        "D. 46"
+      ],
+      "correct_answer": "D. 46",
+      "explanation": "Total = 3*33 = 99. New total = 53. Removed = 99 - 53 = 46"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0024",
+    "question": "Average of 3 numbers is 34. After removing one number, average becomes 27. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 34. After removing one number, average becomes 27. Removed number?",
+      "options": [
+        "A. 27",
+        "B. 48",
+        "C. 37",
+        "D. 31"
+      ],
+      "correct_answer": "B. 48",
+      "explanation": "Total = 3*34 = 102. New total = 54. Removed = 102 - 54 = 48"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0025",
+    "question": "Average of 3 numbers is 35. After removing one number, average becomes 30. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 35. After removing one number, average becomes 30. Removed number?",
+      "options": [
+        "A. 45",
+        "B. 30",
+        "C. 32",
+        "D. 38"
+      ],
+      "correct_answer": "A. 45",
+      "explanation": "Total = 3*35 = 105. New total = 60. Removed = 105 - 60 = 45"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0026",
+    "question": "Average of 3 numbers is 36. After removing one number, average becomes 32. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 36. After removing one number, average becomes 32. Removed number?",
+      "options": [
+        "A. 32",
+        "B. 43",
+        "C. 33",
+        "D. 39"
+      ],
+      "correct_answer": "B. 43",
+      "explanation": "Total = 3*36 = 108. New total = 65. Removed = 108 - 65 = 43"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0027",
+    "question": "Average of 3 numbers is 37. After removing one number, average becomes 33. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 37. After removing one number, average becomes 33. Removed number?",
+      "options": [
+        "A. 44",
+        "B. 34",
+        "C. 33",
+        "D. 40"
+      ],
+      "correct_answer": "A. 44",
+      "explanation": "Total = 3*37 = 111. New total = 67. Removed = 111 - 67 = 44"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0028",
+    "question": "Average of 3 numbers is 38. After removing one number, average becomes 28. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 38. After removing one number, average becomes 28. Removed number?",
+      "options": [
+        "A. 28",
+        "B. 41",
+        "C. 57",
+        "D. 35"
+      ],
+      "correct_answer": "C. 57",
+      "explanation": "Total = 3*38 = 114. New total = 57. Removed = 114 - 57 = 57"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0029",
+    "question": "Average of 3 numbers is 39. After removing one number, average becomes 32. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 39. After removing one number, average becomes 32. Removed number?",
+      "options": [
+        "A. 42",
+        "B. 53",
+        "C. 32",
+        "D. 36"
+      ],
+      "correct_answer": "B. 53",
+      "explanation": "Total = 3*39 = 117. New total = 64. Removed = 117 - 64 = 53"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0030",
+    "question": "Average of 3 numbers is 40. After removing one number, average becomes 37. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 40. After removing one number, average becomes 37. Removed number?",
+      "options": [
+        "A. 37",
+        "B. 37",
+        "C. 46",
+        "D. 43"
+      ],
+      "correct_answer": "C. 46",
+      "explanation": "Total = 3*40 = 120. New total = 74. Removed = 120 - 74 = 46"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0031",
+    "question": "Average of 3 numbers is 41. After removing one number, average becomes 37. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 41. After removing one number, average becomes 37. Removed number?",
+      "options": [
+        "A. 48",
+        "B. 37",
+        "C. 44",
+        "D. 38"
+      ],
+      "correct_answer": "A. 48",
+      "explanation": "Total = 3*41 = 123. New total = 75. Removed = 123 - 75 = 48"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0032",
+    "question": "Average of 3 numbers is 42. After removing one number, average becomes 32. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 42. After removing one number, average becomes 32. Removed number?",
+      "options": [
+        "A. 62",
+        "B. 39",
+        "C. 45",
+        "D. 32"
+      ],
+      "correct_answer": "A. 62",
+      "explanation": "Total = 3*42 = 126. New total = 64. Removed = 126 - 64 = 62"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0033",
+    "question": "Average of 3 numbers is 43. After removing one number, average becomes 37. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 43. After removing one number, average becomes 37. Removed number?",
+      "options": [
+        "A. 37",
+        "B. 40",
+        "C. 46",
+        "D. 54"
+      ],
+      "correct_answer": "D. 54",
+      "explanation": "Total = 3*43 = 129. New total = 75. Removed = 129 - 75 = 54"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0034",
+    "question": "Average of 3 numbers is 44. After removing one number, average becomes 40. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 44. After removing one number, average becomes 40. Removed number?",
+      "options": [
+        "A. 52",
+        "B. 47",
+        "C. 40",
+        "D. 41"
+      ],
+      "correct_answer": "A. 52",
+      "explanation": "Total = 3*44 = 132. New total = 80. Removed = 132 - 80 = 52"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.170330+00:00",
+    "updated_at": "2026-09-21T12:53:32.170330+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0035",
+    "question": "Average of 3 numbers is 45. After removing one number, average becomes 38. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 45. After removing one number, average becomes 38. Removed number?",
+      "options": [
+        "A. 42",
+        "B. 48",
+        "C. 38",
+        "D. 59"
+      ],
+      "correct_answer": "D. 59",
+      "explanation": "Total = 3*45 = 135. New total = 76. Removed = 135 - 76 = 59"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0036",
+    "question": "Average of 3 numbers is 46. After removing one number, average becomes 43. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 46. After removing one number, average becomes 43. Removed number?",
+      "options": [
+        "A. 43",
+        "B. 49",
+        "C. 43",
+        "D. 52"
+      ],
+      "correct_answer": "D. 52",
+      "explanation": "Total = 3*46 = 138. New total = 86. Removed = 138 - 86 = 52"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0037",
+    "question": "Average of 3 numbers is 47. After removing one number, average becomes 41. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 47. After removing one number, average becomes 41. Removed number?",
+      "options": [
+        "A. 58",
+        "B. 44",
+        "C. 41",
+        "D. 50"
+      ],
+      "correct_answer": "A. 58",
+      "explanation": "Total = 3*47 = 141. New total = 83. Removed = 141 - 83 = 58"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0038",
+    "question": "Average of 3 numbers is 48. After removing one number, average becomes 40. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 48. After removing one number, average becomes 40. Removed number?",
+      "options": [
+        "A. 45",
+        "B. 51",
+        "C. 40",
+        "D. 63"
+      ],
+      "correct_answer": "D. 63",
+      "explanation": "Total = 3*48 = 144. New total = 81. Removed = 144 - 81 = 63"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_avg_0039",
+    "question": "Average of 3 numbers is 49. After removing one number, average becomes 40. Removed number?",
+    "pattern": "averages-removal",
+    "skill": "averages-removal",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Average of 3 numbers is 49. After removing one number, average becomes 40. Removed number?",
+      "options": [
+        "A. 46",
+        "B. 40",
+        "C. 67",
+        "D. 52"
+      ],
+      "correct_answer": "C. 67",
+      "explanation": "Total = 3*49 = 147. New total = 80. Removed = 147 - 80 = 67"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  }
+]

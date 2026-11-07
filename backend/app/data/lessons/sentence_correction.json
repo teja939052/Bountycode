@@ -1,0 +1,306 @@
+{
+  "slug": "sentence_correction",
+  "id": "lesson_sentence_correction_001",
+  "title": "Sentence Correction",
+  "domain": "Verbal Ability",
+  "pattern": "Grammar",
+  "difficulty": "easy",
+  "duration_min": 30,
+  "xp_reward": 120,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Find the subject and verb",
+      "content": "A sentence needs a clear subject and a verb that agrees with it. Singular subjects usually take singular verbs; plural subjects take plural verbs.",
+      "example": "The student writes every day. / The students write every day.",
+      "tip": "Ignore extra phrases between the subject and verb when checking agreement."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Subject–verb agreement",
+      "prompt": "Choose the grammatically correct sentence.",
+      "options": [
+        "The list of items are on the desk.",
+        "The list of items is on the desk.",
+        "The lists of item is on the desk.",
+        "The list are on the desk."
+      ],
+      "correct_index": 1,
+      "explanation": "The subject is 'list' (singular). The phrase 'of items' does not change the subject, so use 'is'.",
+      "hints": [
+        "Find the true subject, not the noun closest to the verb.",
+        "A singular subject generally takes a singular verb in the present simple; a plural subject takes a plural verb."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Keep verb tense consistent",
+      "content": "Use the tense that matches the time of the action. Avoid switching between past and present without a reason.",
+      "example": "Incorrect: She entered the room and sits down. Correct: She entered the room and sat down."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose the correct tense",
+      "prompt": "By the time we arrived, the meeting ___ .",
+      "options": [
+        "starts",
+        "has started",
+        "had started",
+        "starting"
+      ],
+      "correct_index": 2,
+      "explanation": "The meeting started before another past event (our arrival), so past perfect 'had started' is appropriate.",
+      "hints": [
+        "Look for time markers such as yesterday, since, already or every day.",
+        "Make the verb tense match when the action happens and whether it continues."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Pronouns and parallel structure",
+      "content": "A pronoun should clearly refer to a noun. Items in a list should use the same grammatical form (parallel structure).",
+      "example": "Parallel: The role requires planning, writing and presenting. Avoid mixing nouns and unrelated verb forms."
+    },
+    {
+      "step_number": 6,
+      "step_type": "interactive",
+      "title": "Check parallel structure",
+      "content": "Items in a list or pair should use grammatically consistent forms. This is called parallel structure.",
+      "prompt": "Which sentence uses parallel structure?",
+      "options": [
+        "She enjoys coding, testing and documenting.",
+        "She enjoys coding, to test and documentation.",
+        "She enjoys to code, testing and document.",
+        "She enjoys code, test and documenting."
+      ],
+      "correct_index": 0,
+      "explanation": "Coding, testing and documenting are all gerunds, so the list uses a consistent grammatical form.",
+      "hints": [
+        "Compare the grammatical form of each item in the list.",
+        "A list should keep verbs or nouns in a consistent structure."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "fill_blank",
+      "title": "Correct subject–verb agreement",
+      "content": "A singular subject takes a singular verb in the present tense; a plural subject takes a plural verb. Do not let a nearby plural noun distract you from the actual subject.",
+      "prompt": "Complete the sentence: Each of the candidates ______ completed the assessment.",
+      "expected_answer": "has",
+      "answer_placeholder": "Choose the correct verb",
+      "explanation": "Each is grammatically singular, so it takes has, not have.",
+      "hints": [
+        "Identify the real subject: each.",
+        "The phrase 'of the candidates' does not change the number of the subject."
+      ]
+    },
+    {
+      "step_number": 8,
+      "step_type": "order_steps",
+      "title": "Proofread a sentence systematically",
+      "content": "A reliable correction process checks sentence structure before minor style choices.",
+      "prompt": "Arrange a practical sentence-correction checklist.",
+      "options": [
+        "Check punctuation and word choice",
+        "Find the subject and main verb",
+        "Check agreement and tense",
+        "Read the complete sentence for meaning"
+      ],
+      "correct_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "explanation": "Identify the core subject and verb, check agreement and tense, then review punctuation and word choice and reread the complete sentence.",
+      "hints": [
+        "Start with the main grammatical structure.",
+        "Read the corrected sentence as a whole to make sure the intended meaning remains clear."
+      ]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Choose the correct sentence.",
+        "options": [
+          "Each of the players have a jersey.",
+          "Each of the players has a jersey.",
+          "Each players has a jersey.",
+          "Each of players have a jersey."
+        ],
+        "correct_index": 1,
+        "explanation": "'Each' is singular, so use 'has'."
+      },
+      {
+        "prompt": "Neither the manager nor the employees ___ available.",
+        "options": [
+          "is",
+          "was",
+          "are",
+          "be"
+        ],
+        "correct_index": 2,
+        "explanation": "With 'neither…nor', the verb commonly agrees with the nearer subject; 'employees' is plural."
+      },
+      {
+        "prompt": "Choose the sentence with consistent tense.",
+        "options": [
+          "He opened the door and walks in.",
+          "He opens the door and walked in.",
+          "He opened the door and walked in.",
+          "He opening the door and walked in."
+        ],
+        "correct_index": 2,
+        "explanation": "Both actions are completed in the past, so both verbs use past tense."
+      },
+      {
+        "prompt": "Select the parallel construction.",
+        "options": [
+          "She likes reading, writing and to swim.",
+          "She likes to read, writing and swimming.",
+          "She likes reading, writing and swimming.",
+          "She likes read, writing and swim."
+        ],
+        "correct_index": 2,
+        "explanation": "All three items are gerunds: reading, writing and swimming."
+      },
+      {
+        "prompt": "Choose the correct article: She is ___ honest engineer.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correct_index": 1,
+        "explanation": "'Honest' begins with a vowel sound because the h is silent, so use 'an'."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Identify subjects, verbs and agreement relationships.",
+    "Correct common tense and pronoun errors.",
+    "Use parallel structure in lists and paired expressions.",
+    "Apply articles, prepositions and punctuation in context.",
+    "Proofread a sentence without changing its intended meaning."
+  ],
+  "concepts": [
+    "subject",
+    "predicate",
+    "subject–verb agreement",
+    "tense consistency",
+    "pronoun agreement",
+    "parallel structure",
+    "articles",
+    "prepositions",
+    "punctuation"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "The noun closest to the verb always determines agreement.",
+      "correction": "Find the grammatical subject; intervening phrases do not change its number."
+    },
+    {
+      "misconception": "A list sounds acceptable even when its grammatical forms differ.",
+      "correction": "Parallel items should follow a consistent grammatical structure."
+    },
+    {
+      "misconception": "Grammar correction means replacing a sentence with a more complicated one.",
+      "correction": "Preserve the original meaning and make only the changes needed for correctness and clarity."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Find the real subject",
+      "input": "The list of selected candidates is ready.",
+      "trace": [
+        "The main noun is list.",
+        "The phrase 'of selected candidates' describes the list.",
+        "List is singular, so use is."
+      ],
+      "output": "The list ... is ready.",
+      "explanation": "Do not let a nearby plural noun control the verb."
+    },
+    {
+      "title": "Repair parallel structure",
+      "input": "The role requires coding, testing and to document changes.",
+      "trace": [
+        "The first item is a gerund: coding.",
+        "The second item is a gerund: testing.",
+        "Make the third item a gerund too: documenting."
+      ],
+      "output": "coding, testing and documenting",
+      "explanation": "Consistent grammatical forms make lists easier to read."
+    },
+    {
+      "title": "Keep tense consistent",
+      "input": "Yesterday she reviewed the code and fixes the bug.",
+      "trace": [
+        "The first verb reviewed is past tense.",
+        "The second verb fixes is present tense.",
+        "Use fixed to keep the completed past actions consistent."
+      ],
+      "output": "Yesterday she reviewed the code and fixed the bug.",
+      "explanation": "Tense should reflect the time relationship between actions."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "English grammar and sentence correction",
+      "practice": "Find subject–verb agreement errors and choose a grammatically correct rewrite."
+    },
+    {
+      "company": "Infosys",
+      "skill": "verbal ability",
+      "practice": "Correct tense, pronoun and parallel-structure mistakes."
+    },
+    {
+      "company": "Wipro",
+      "skill": "written communication",
+      "practice": "Improve clarity without changing the sentence's intended meaning."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "rule",
+      "question": "What determines subject–verb agreement?",
+      "answer": "The grammatical subject, not a nearby noun inside a descriptive phrase."
+    },
+    {
+      "type": "rule",
+      "question": "What is parallel structure?",
+      "answer": "Using consistent grammatical forms for items in a list or paired construction."
+    },
+    {
+      "type": "method",
+      "question": "What is a reliable first step in sentence correction?",
+      "answer": "Identify the subject and main verb, then check agreement and tense."
+    }
+  ],
+  "prerequisites": [
+    "vocabulary_cloze"
+  ],
+  "quest": {
+    "chapter": "The Grammar Workshop",
+    "rank": "Sentence Editor",
+    "story": "A hiring communication test contains messages with subtle agreement, tense and structure errors. Your task is to make each sentence clear without changing what the writer intended.",
+    "mission": "Diagnose the grammar rule, correct the sentence and explain why the original construction fails.",
+    "success_criteria": [
+      "Find the real subject and verb.",
+      "Correct agreement and tense.",
+      "Repair non-parallel lists.",
+      "Preserve meaning while improving correctness."
+    ]
+  },
+  "next_lesson_slug": "grammar_transformations",
+  "next_lesson_title": "Grammar Transformations"
+}

@@ -419,9 +419,9 @@ async def complete_oa_test(
 ):
     """Complete an OA test and get final results."""
     # Get user's skill graph to calculate readiness
-    from app.services.skill_assessment import get_readiness_score
+    from app.services.readiness_engine import compute_readiness
     
-    readiness = await get_readiness_score(user["id"], "sde")
+    readiness = await compute_readiness(user["id"], "sde")
     
     return {
         "test_id": test_id,
