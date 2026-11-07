@@ -105,7 +105,7 @@ _PYTHON_CORE: Dict[str, Dict[str, Any]] = {
             ("What does a function return if execution reaches the end without return?", ["0", "False", "None", "An empty string"], 2, "Python functions implicitly return None when no return statement supplies a value."),
             ("What is the difference between print(result) and return result?", ["They are identical", "print displays; return passes a value to the caller", "return only works with strings", "print ends the function"], 1, "Printing is a side effect for display, while returning makes the value available to the calling code."),
         ],
-    },,
+    },
     "Nested Conditionals": {
         "concept": "nested conditionals",
         "purpose": "evaluate a second decision only after an outer condition has been satisfied",
