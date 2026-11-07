@@ -1,57 +1,55 @@
 # Service-Company Content Status
 
 **Updated:** 2026-11-07  
-**Quality bar:** World-1 interactive standard (discover → predict → build → break → retrieve → transfer → mastery)
+**Quality bar:** World-1 interactive standard
 
 ---
 
-## Quantitative Aptitude (`aptitude_quant`)
+## Quantitative Aptitude (`aptitude_quant`) — COMPLETE CORE + DEPTH
 
-| Town | File | Status |
-|------|------|--------|
-| Percentages | `world_aptitude_quant.py` | Complete |
-| Profit & Loss | `world_aptitude_quant.py` | Complete |
-| Time & Work | `world_aptitude_time_work.py` | Complete |
-| Time, Speed & Distance | `world_aptitude_tsd.py` | Complete |
-| Ratios & Averages | `world_aptitude_ratios_averages.py` | Complete |
+| Town | Status |
+|------|--------|
+| Percentages | Complete |
+| Profit & Loss | Complete |
+| Time & Work | Complete |
+| Time, Speed & Distance | Complete |
+| Ratios & Averages | Complete |
+| Simple & Compound Interest | Complete |
+| Probability | Complete |
+| Data Interpretation | Complete |
 
-## Logical Reasoning (`aptitude_reasoning`)
+## Logical Reasoning (`aptitude_reasoning`) — COMPLETE CORE + DEPTH
 
-| Town | File | Status |
-|------|------|--------|
-| Series | `world_aptitude_reasoning.py` | Complete |
-| Coding-Decoding | `world_aptitude_reasoning.py` | Complete |
-| Blood Relations | `world_aptitude_blood_relations.py` | Complete |
-| Direction Sense | `world_aptitude_direction_sense.py` | Complete |
-| Seating Arrangement | `world_aptitude_seating.py` | Complete |
-| Syllogisms | `world_aptitude_syllogisms.py` | Complete |
+| Town | Status |
+|------|--------|
+| Series | Complete |
+| Coding-Decoding | Complete |
+| Blood Relations | Complete |
+| Direction Sense | Complete |
+| Seating Arrangement | Complete |
+| Syllogisms | Complete |
+| Puzzles | Complete |
+| Data Sufficiency | Complete |
+| Clocks & Calendars | Complete |
 
-All towns are registered via `world_registry.py` and discoverable by the study engine.
+## Verbal Ability (`aptitude_verbal`) — CORE LIVE
 
----
+| Town | Status |
+|------|--------|
+| Grammar & Error Spotting | Complete |
+| Para-jumbles & Vocabulary | Complete |
 
-## Still high-value to add next (same quality bar)
-
-**Quant depth**
-- Simple & Compound Interest
-- Probability & Permutation/Combination
-- Data Interpretation
-
-**Reasoning depth**
-- Puzzles (floor / scheduling style)
-- Data Sufficiency
-- Clocks & Calendars
-- Statement–Conclusion / Assumption
-
-**Verbal (Phase F)**
-- Reading comprehension, error spotting, para-jumbles, grammar for TCS-style verbal
-
-**Programming Foundations (Phase A)** raise remaining thin lessons to World-1 depth
-
-**Company pathways (Phase H)** verified mocks + repair loops for TCS / Infosys / Wipro / Accenture
+All towns registered in `world_registry.py`.
 
 ---
+
+## Still optional / next layer
+
+- Deeper Verbal: RC passages, advanced vocab banks, cloze tests
+- Company-specific mock pathways (TCS / Infosys / Wipro / Accenture) with repair loops
+- Raise thin programming foundation lessons to full World-1 depth
+- Permutation & Combination as explicit quant town (partially covered via probability counting)
 
 ## Rule
 
-No bulk filler. Every new lesson ships complete against the interactive standard in `docs/learning/LEARNING_EXPERIENCE_STANDARD.md` and the spine in `docs/SERVICE_COMPANY_CURRICULUM.md`.
+No bulk filler. Every lesson ships complete against the interactive standard.
