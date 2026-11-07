@@ -147,3 +147,24 @@ def test_python_algorithms_regex_and_advanced_iteration_lessons_are_authored():
         assert len(lesson["quizzes"]) == 3, title
         assert len(lesson["exercises"]) == 2, title
         assert score_lesson_content(lesson)["status"] == "ready", title
+
+
+
+def test_python_beginner_setup_input_and_data_type_lessons_are_authored():
+    cases = [
+        ("python-l01-01", "What is Python?", "language = 'Python'"),
+        ("python-l01-02", "Hello World in Python", "Hello, world!"),
+        ("python-l01-03", "print() Function", "sep=' | '"),
+        ("python-l01-04", "Comments in Python", "# Calculate the final price"),
+        ("python-l01-06", "Indentation Matters", "if score >= 40:"),
+        ("python-l02-01", "Numbers: int & float", "type(items).__name__"),
+        ("python-l02-02", "Strings in Python", "name.lower()"),
+        ("python-l02-07", "Input with input()", "int(input('Marks: '))"),
+    ]
+
+    for lesson_id, title, expected_code in cases:
+        lesson = get_lesson_content("python", lesson_id, title, "theory")
+        assert expected_code in lesson["code_example"]["code"], title
+        assert len(lesson["quizzes"]) == 3, title
+        assert len(lesson["exercises"]) == 2, title
+        assert score_lesson_content(lesson)["status"] == "ready", title
