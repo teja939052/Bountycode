@@ -20,6 +20,7 @@ import ResultBanner from "../components/journey/ResultBanner";
 import WorldSummary from "../components/journey/WorldSummary";
 import { useMapState } from "../hooks/useMapState";
 import { api } from "../services/api";
+import { academyApi } from "../services/api/academy";
 import { API_BASE } from "../services/api/request";
 
 interface MapVoyageSectionProps {
@@ -264,6 +265,13 @@ export default function JourneyPage() {
 
   const { data: gp } = useGamificationProfile();
 
+  const { data: academyPlanResponse } = useQuery({
+    queryKey: ["academy", "plan"],
+    queryFn: () => academyApi.getPlan(),
+    staleTime: 60_000,
+    retry: false,
+  });
+
   if (isLoading) {
     return (
       <div className="min-h-[80vh] flex flex-col items-center justify-center gap-4">
@@ -301,6 +309,16 @@ export default function JourneyPage() {
   const todayChallenge = state.today?.challenge;
   const todayRole = state.today?.role_activity;
   const nextAction = (state.today?.next ?? (state as any)?.next_action) as Record<string, any> | undefined;
+  const academyPlan = (academyPlanResponse as any)?.plan ?? (academyPlanResponse as any)?.data?.plan ?? null;
+  const academyTasks = Array.isArray(academyPlan?.daily_tasks) ? academyPlan.daily_tasks : [];
+  const academyRevision = academyPlan?.revision ?? {};
+  const academyCompanies = Array.isArray(academyPlan?.company_preparation)
+    ? academyPlan.company_preparation
+    : [];
+  const academyTaskHref = (task: Record<string, any>) =>
+    task.lesson_slug
+      ? `/learn/lesson/${encodeURIComponent(task.lesson_slug)}`
+      : "/academy";
 
   return (
     <div className="min-h-screen bg-base">
@@ -354,7 +372,73 @@ export default function JourneyPage() {
           </div>
         </section>
 
-        {/* The Academy plan brings diagnostic-driven learning tasks onto the home dashboard. */}
+        {/* ═══ PERSONALIZED ACADEMY PLAN ═══ */}
+        <section aria-label="Personalized learning plan" className="rounded-3xl border border-emerald-200/70 bg-white p-5 shadow-sm">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-700">Personalized Academy plan</p>
+              <h2 className="font-display mt-1 text-xl font-black text-gray-900">
+                {academyPlan ? "Your next best learning steps" : "Build your personalized learning plan"}
+              </h2>
+              <p className="mt-1 max-w-2xl text-sm text-gray-600">
+                {academyPlan?.personalization_note || "Complete a short profile and diagnostic so Bountycode can choose the right foundations, practice, and revision for you."}
+              </p>
+            </div>
+            <Link to="/academy" className="inline-flex min-h-[42px] shrink-0 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-semibold text-emerald-800 hover:bg-emerald-100">
+              {academyPlan ? "Open Academy" : "Set up plan"} <ChevronRight size={15} />
+            </Link>
+          </div>
+
+          {academyPlan ? (
+            <>
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <div className="rounded-xl bg-emerald-50 px-3 py-2">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Role</p>
+                  <p className="mt-1 truncate text-sm font-bold text-gray-900">{String(academyPlan.target_role || "Placement").replace(/_/g, " ")}</p>
+                </div>
+                <div className="rounded-xl bg-sky-50 px-3 py-2">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-sky-700">Daily time</p>
+                  <p className="mt-1 text-sm font-bold text-gray-900">{academyPlan.daily_minutes || 60} min</p>
+                </div>
+                <div className="rounded-xl bg-amber-50 px-3 py-2">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700">Revision due</p>
+                  <p className="mt-1 text-sm font-bold text-gray-900">{academyRevision.due_count || 0}</p>
+                </div>
+                <div className="rounded-xl bg-violet-50 px-3 py-2">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-violet-700">Targets</p>
+                  <p className="mt-1 text-sm font-bold text-gray-900">{academyCompanies.length || academyPlan.target_companies?.length || 0}</p>
+                </div>
+              </div>
+
+              {academyTasks.length > 0 ? (
+                <ol className="mt-4 space-y-2">
+                  {academyTasks.slice(0, 4).map((task: Record<string, any>, index: number) => (
+                    <li key={`${task.domain || task.lesson_slug || "task"}-${index}`}>
+                      <Link to={academyTaskHref(task)} className="group flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50/80 p-3 transition hover:border-emerald-200 hover:bg-emerald-50/50">
+                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">{index + 1}</span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block font-bold text-gray-900">{task.title || String(task.domain || "Next skill").replace(/_/g, " ")}</span>
+                          <span className="mt-0.5 block text-xs text-gray-600">{task.reason || "Recommended from your current skill evidence."}</span>
+                          <span className="mt-1 block text-[11px] font-semibold uppercase tracking-wide text-gray-400">{task.estimated_minutes || 15} min · {String(task.skill_level || "next").replace(/_/g, " ")}</span>
+                        </span>
+                        <ChevronRight size={17} className="mt-1 shrink-0 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-emerald-600" />
+                      </Link>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <div className="mt-4 rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-4 text-sm text-gray-600">
+                  Your plan is ready for its first diagnostic task. Open the Academy to begin.
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-dashed border-emerald-200 bg-emerald-50/50 p-4 text-sm text-gray-700 sm:flex-row sm:items-center sm:justify-between">
+              <span>Tell us your role, target companies, experience, and available time. The plan will adapt as your evidence changes.</span>
+              <Link to="/academy" className="shrink-0 font-semibold text-emerald-800 hover:underline">Start setup →</Link>
+            </div>
+          )}
+        </section>
 
         {/* ═══ LEVEL MAP header (hybrid) ═══ */}
         <motion.section
