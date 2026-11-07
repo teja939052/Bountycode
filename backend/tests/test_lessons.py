@@ -524,3 +524,23 @@ def test_os_and_networking_expansions_are_registered():
     for lesson_id, mapping in expected.items():
         assert lesson_id in _LESSONS
         assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == mapping
+
+
+def test_computer_architecture_track_is_registered_and_mapped():
+    expected = {
+        "arch-computer-organization",
+        "arch-number-systems",
+        "arch-memory-hierarchy",
+        "arch-pipelining",
+    }
+    actual = {
+        lesson_id
+        for lesson_id, lesson in _LESSONS.items()
+        if lesson.get("track") == "architecture"
+    }
+    assert expected <= actual
+    for lesson_id in expected:
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == (
+            "programming",
+            "computer_architecture",
+        )
