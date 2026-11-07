@@ -12,6 +12,7 @@ from .python import PYTHON_LESSONS
 from .python_content import PYTHON_CONTENT_LESSONS
 from .java import JAVA_LESSONS
 from .cpp import CPP_LESSONS
+from .c import C_LESSONS
 from .dsa import DSA_LESSONS
 from .aptitude import APTITUDE_LESSONS
 from .logical import LOGICAL_LESSONS
@@ -40,6 +41,7 @@ _TRACK_MODULES: List[Tuple[str, List[dict]]] = [
     ("python_content", PYTHON_CONTENT_LESSONS),
     ("java", JAVA_LESSONS),
     ("cpp", CPP_LESSONS),
+    ("c", C_LESSONS),
     ("dsa", DSA_LESSONS),
     ("aptitude", APTITUDE_LESSONS),
     ("logical", LOGICAL_LESSONS),
@@ -75,6 +77,7 @@ __all__ = [
     "PYTHON_CONTENT_LESSONS",
     "JAVA_LESSONS",
     "CPP_LESSONS",
+    "C_LESSONS",
     "DSA_LESSONS",
     "APTITUDE_LESSONS",
     "LOGICAL_LESSONS",
