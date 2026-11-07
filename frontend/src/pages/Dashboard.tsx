@@ -25,7 +25,6 @@ import { ReadinessRing } from "../design-system/Progress";
 import { placementRank } from "../lib/placementRank";
 
 type PlanTask = {
-  id?: string;
   type?: string;
   kind?: string;
   title?: string;
@@ -37,17 +36,12 @@ type PlanTask = {
   to?: string;
   label?: string;
   minutes?: number;
-  difficulty?: string;
-  mastery_label?: string;
 };
 
 function taskHref(task: PlanTask): string {
   if (task.to) return task.to;
   if (task.question_id) return `/question/${task.question_id}`;
-  if (task.type === "next_mission" || task.kind === "lesson") return "/academy";
   if (task.type === "practice" || task.kind === "question") return "/practice";
-  if (task.type === "review" || task.kind === "srs") return "/academy";
-  if (task.type === "company_mission" || task.type === "company_focus") return "/academy";
   return "/academy";
 }
 
@@ -58,8 +52,7 @@ function taskLabel(task: PlanTask, index: number): string {
 function taskReason(task: PlanTask): string {
   if (task.reason) return task.reason;
   if (task.description) return task.description;
-  if (task.type === "next_mission") return "Next curriculum step on your learning path.";
-  if (task.type === "practice" || task.kind === "weak_area") return "Recommended because this skill needs more evidence.";
+  if (task.type === "practice") return "Recommended because this skill needs more evidence.";
   if (task.type === "review") return "Due for spaced repetition so you keep what you learned.";
   if (task.type === "company_mission" || task.type === "company_focus") return "Aligned to your target company track.";
   return "Part of today's personalized plan.";
@@ -125,12 +118,9 @@ export default function Dashboard() {
         type: next.type || "next_mission",
         title: next.title || next.level?.title || next.label || "Continue your learning path",
         estimated_minutes: next.estimated_minutes ?? next.minutes ?? 15,
-        xp_reward: next.xp_reward ?? next.xp ?? 40,
       });
     }
-    for (const t of Array.isArray(plan.tasks) ? plan.tasks : []) {
-      if (t) collected.push(t);
-    }
+    for (const t of Array.isArray(plan.tasks) ? plan.tasks : []) if (t) collected.push(t);
     for (const t of Array.isArray(plan.practice) ? plan.practice : []) {
       if (t) collected.push({ ...t, type: t.type || "practice" });
     }
@@ -155,10 +145,7 @@ export default function Dashboard() {
       .slice(0, 8);
   }, [plan]);
 
-  const totalMinutes = useMemo(
-    () => tasks.reduce((sum, t) => sum + taskMinutes(t), 0),
-    [tasks],
-  );
+  const totalMinutes = useMemo(() => tasks.reduce((sum, t) => sum + taskMinutes(t), 0), [tasks]);
 
   const weakSkills = useMemo(() => {
     return Object.entries(skills)
@@ -168,15 +155,9 @@ export default function Dashboard() {
       .slice(0, 5);
   }, [skills]);
 
-  const readiness =
-    readinessScore?.score ?? plan.overall_score ?? skillsPayload.overall_score ?? null;
-
+  const readiness = readinessScore?.score ?? plan.overall_score ?? skillsPayload.overall_score ?? null;
   const streak =
-    streakStatus?.current_streak ??
-    gamification?.streak ??
-    plan.streak ??
-    storeUser?.streak ??
-    0;
+    streakStatus?.current_streak ?? gamification?.streak ?? plan.streak ?? storeUser?.streak ?? 0;
   const level = gamification?.level ?? plan.level ?? storeUser?.level ?? 1;
   const rank = placementRank(Number(level));
 
@@ -207,7 +188,6 @@ export default function Dashboard() {
         <div className="text-center max-w-md">
           <AlertCircle className="mx-auto text-rose-500 mb-3" size={32} />
           <h2 className="text-lg font-bold text-slate-900">Could not load your dashboard</h2>
-          <p className="text-sm text-slate-500 mt-2">Check your connection and try again. Your progress is safe.</p>
           <button
             onClick={() => {
               void refetch();
@@ -225,12 +205,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="mx-auto max-w-5xl px-4 py-6 sm:py-10">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="space-y-6"
-        >
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
           <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <p className="text-sm text-slate-500">
@@ -273,9 +248,6 @@ export default function Dashboard() {
                       ? `${tasks.length} focused task${tasks.length === 1 ? "" : "s"} · ~${totalMinutes} min`
                       : "Your next step is ready"}
                   </h2>
-                  <p className="mt-1 text-sm text-slate-600">
-                    Learn the concept, practise it, then prove you know it.
-                  </p>
                 </div>
                 <Link to={primaryHref} className="shrink-0">
                   <Button variant="primary" rightIcon={<Play size={16} />} className="w-full sm:w-auto min-h-11">
@@ -283,33 +255,24 @@ export default function Dashboard() {
                   </Button>
                 </Link>
               </div>
-
               {tasks.length === 0 ? (
                 <div className="rounded-2xl border border-dashed border-slate-200 bg-white/70 p-6 text-center">
-                  <p className="text-sm font-medium text-slate-800">No open tasks yet</p>
-                  <div className="mt-4 flex flex-wrap justify-center gap-2">
-                    <Link to="/academy" className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
-                      Open Academy <ArrowRight size={14} />
-                    </Link>
-                    <Link to="/target" className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
-                      Set target companies
-                    </Link>
-                  </div>
+                  <Link to="/academy" className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                    Open Academy <ArrowRight size={14} />
+                  </Link>
                 </div>
               ) : (
                 <ol className="space-y-3">
                   {tasks.map((task, index) => {
-                    const href = taskHref(task);
-                    const minutes = taskMinutes(task);
                     const isPrimary = index === 0;
                     return (
                       <li key={`${task.type}-${task.title}-${index}`}>
                         <Link
-                          to={href}
+                          to={taskHref(task)}
                           className={`group flex items-start gap-3 rounded-2xl border p-3.5 transition-all ${
                             isPrimary
                               ? "border-emerald-300 bg-white shadow-sm"
-                              : "border-slate-200 bg-white/80 hover:border-emerald-200 hover:bg-white"
+                              : "border-slate-200 bg-white/80 hover:border-emerald-200"
                           }`}
                         >
                           <div
@@ -320,15 +283,13 @@ export default function Dashboard() {
                             {index + 1}
                           </div>
                           <div className="min-w-0 flex-1">
-                            <h3 className="font-bold text-slate-900 group-hover:text-emerald-800">
-                              {taskLabel(task, index)}
-                            </h3>
+                            <h3 className="font-bold text-slate-900">{taskLabel(task, index)}</h3>
                             <p className="mt-1 text-sm text-slate-600 line-clamp-2">{taskReason(task)}</p>
                             <div className="mt-2 text-xs text-slate-500 inline-flex items-center gap-1">
-                              <Clock size={12} /> ~{minutes} min
+                              <Clock size={12} /> ~{taskMinutes(task)} min
                             </div>
                           </div>
-                          <ArrowRight size={18} className="mt-1 shrink-0 text-slate-300 group-hover:text-emerald-600" />
+                          <ArrowRight size={18} className="mt-1 shrink-0 text-slate-300" />
                         </Link>
                       </li>
                     );
@@ -341,13 +302,11 @@ export default function Dashboard() {
           <section aria-label="Company mock assessment">
             <Card className="border border-indigo-200/80 bg-gradient-to-br from-white via-indigo-50/30 to-white p-5 sm:p-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div className="min-w-0">
+                <div>
                   <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-indigo-700">
                     <Briefcase size={14} /> Service-company mock
                   </p>
-                  <h2 className="mt-1 text-lg font-black text-slate-900">
-                    Measure placement readiness under exam conditions
-                  </h2>
+                  <h2 className="mt-1 text-lg font-black text-slate-900">Measure readiness under exam conditions</h2>
                   <p className="mt-1 text-sm text-slate-600">
                     TCS / Infosys / Wipro style mocks feed the same readiness engine as your lessons.
                   </p>
@@ -372,14 +331,10 @@ export default function Dashboard() {
               </div>
               {weakSkills.length === 0 ? (
                 <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
-                  {Object.keys(skills).length === 0
-                    ? "Complete a diagnostic or a few lessons so we can measure your strengths and gaps."
-                    : "No weak skills with enough evidence yet. Mastery updates from assessments, not time spent."}
-                  <div className="mt-3">
-                    <Link to="/academy" className="text-sm font-semibold text-emerald-700 hover:underline">
-                      Go to Academy →
-                    </Link>
-                  </div>
+                  Mastery updates from assessments, not time spent.{" "}
+                  <Link to="/academy" className="font-semibold text-emerald-700 hover:underline">
+                    Go to Academy →
+                  </Link>
                 </div>
               ) : (
                 <ul className="space-y-2">
@@ -387,7 +342,7 @@ export default function Dashboard() {
                     <li key={skill.id}>
                       <Link
                         to={`/academy?focus=${encodeURIComponent(skill.id)}`}
-                        className="flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2.5 hover:border-rose-200 hover:bg-rose-50/40 transition"
+                        className="flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2.5 hover:border-rose-200 transition"
                       >
                         <div className="min-w-0">
                           <p className="text-sm font-semibold text-slate-900 truncate">
