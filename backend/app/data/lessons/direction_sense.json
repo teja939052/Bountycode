@@ -22,10 +22,18 @@
       "step_type": "interactive",
       "title": "Track a turn",
       "prompt": "A person faces North and turns right. Which direction are they facing?",
-      "options": ["West", "South", "East", "North"],
+      "options": [
+        "West",
+        "South",
+        "East",
+        "North"
+      ],
       "correct_index": 2,
       "explanation": "A clockwise quarter-turn from North points East.",
-      "hints": ["Imagine standing facing North.", "A right turn is a clockwise quarter-turn."]
+      "hints": [
+        "Imagine standing facing North.",
+        "A right turn is a clockwise quarter-turn."
+      ]
     },
     {
       "step_number": 3,
@@ -39,10 +47,18 @@
       "step_type": "practice",
       "title": "Find the final direction",
       "prompt": "A person walks 4 km East, then 4 km North, then 4 km West. Where are they relative to the start?",
-      "options": ["North", "South", "East", "West"],
+      "options": [
+        "North",
+        "South",
+        "East",
+        "West"
+      ],
       "correct_index": 0,
       "explanation": "East and west cancel. The person is 4 km North of the start.",
-      "hints": ["Cancel opposite movements on the same axis.", "Only the unmatched North remains."]
+      "hints": [
+        "Cancel opposite movements on the same axis.",
+        "Only the unmatched North remains."
+      ]
     },
     {
       "step_number": 5,
@@ -63,7 +79,10 @@
       "answer_placeholder": "e.g. 4 km East",
       "expected_answer": "4 km East",
       "explanation": "6 km East − 2 km West = 4 km East.",
-      "hints": ["Put both movements on the same axis.", "Subtract the smaller opposite movement."]
+      "hints": [
+        "Put both movements on the same axis.",
+        "Subtract the smaller opposite movement."
+      ]
     },
     {
       "step_number": 7,
@@ -77,20 +96,35 @@
         "Apply each walk on the current facing",
         "Start with the initial facing direction"
       ],
-      "correct_order": [3, 1, 2, 0],
+      "correct_order": [
+        3,
+        1,
+        2,
+        0
+      ],
       "explanation": "Know the facing, update turns, apply walks, then answer.",
-      "hints": ["Facing changes only on turns.", "A walk uses the current facing."],
-      "hints": ["Facing changes only on turns.", "A walk uses the current facing."]
+      "hints": [
+        "Facing changes only on turns.",
+        "A walk uses the current facing."
+      ]
     },
     {
       "step_number": 8,
       "step_type": "practice",
       "title": "Shortest distance",
       "prompt": "A person walks 3 km East and 4 km North. What is the shortest distance from the start?",
-      "options": ["4 km", "5 km", "6 km", "7 km"],
+      "options": [
+        "4 km",
+        "5 km",
+        "6 km",
+        "7 km"
+      ],
       "correct_index": 1,
       "explanation": "√(3²+4²) = √25 = 5 km.",
-      "hints": ["The path is an L shape.", "Use Pythagoras on the two perpendicular legs."]
+      "hints": [
+        "The path is an L shape.",
+        "Use Pythagoras on the two perpendicular legs."
+      ]
     },
     {
       "step_number": 9,
@@ -112,7 +146,12 @@
         "4": "South is the original facing, not the result of a right turn."
       },
       "explanation": "Right turn is clockwise: North→East→South→West→North.",
-      "hints": ["Use a clock-face image of the compass.", "From South, clockwise points West."]
+      "hints": [
+        "Use a clock-face image of the compass.",
+        "From South, clockwise points West."
+      ],
+      "code": "directions = [\"North\", \"East\", \"South\", \"West\"]\n\ndef turn_right(facing):\n    index = directions.index(facing)\n    return directions[(index + 1) % len(directions)]\n\n# Bug: a right turn from South is incorrectly treated as East.\nprint(\"South\".replace(\"South\", \"East\"))  # incorrect hard-coded assumption\n\n# Correct: move one position clockwise.\nprint(turn_right(\"South\"))  # West",
+      "language": "python"
     }
   ],
   "assessment": {
@@ -121,37 +160,67 @@
     "questions": [
       {
         "prompt": "Facing West, a person turns left. Which way are they facing?",
-        "options": ["North", "South", "East", "West"],
+        "options": [
+          "North",
+          "South",
+          "East",
+          "West"
+        ],
         "correct_index": 1,
         "explanation": "A left turn from West points South."
       },
       {
         "prompt": "A person walks 5 km North and 5 km South. Where are they?",
-        "options": ["5 km North", "5 km South", "At the starting point", "5 km East"],
+        "options": [
+          "5 km North",
+          "5 km South",
+          "At the starting point",
+          "5 km East"
+        ],
         "correct_index": 2,
         "explanation": "Opposite equal movements cancel."
       },
       {
         "prompt": "A person walks 3 km East and 4 km North. Shortest distance from start?",
-        "options": ["4 km", "5 km", "6 km", "7 km"],
+        "options": [
+          "4 km",
+          "5 km",
+          "6 km",
+          "7 km"
+        ],
         "correct_index": 1,
         "explanation": "√(9+16)=5 km."
       },
       {
         "prompt": "Facing South, a right turn points:",
-        "options": ["East", "West", "North", "South"],
+        "options": [
+          "East",
+          "West",
+          "North",
+          "South"
+        ],
         "correct_index": 1,
         "explanation": "Turning right from South points West."
       },
       {
         "prompt": "A person walks 2 km West and 6 km East. Net displacement?",
-        "options": ["4 km East", "4 km West", "8 km East", "8 km West"],
+        "options": [
+          "4 km East",
+          "4 km West",
+          "8 km East",
+          "8 km West"
+        ],
         "correct_index": 0,
         "explanation": "6 − 2 = 4 km East."
       },
       {
         "prompt": "Facing North, a person turns right. Facing?",
-        "options": ["West", "South", "East", "North"],
+        "options": [
+          "West",
+          "South",
+          "East",
+          "North"
+        ],
         "correct_index": 2,
         "explanation": "Right from North is East."
       }
@@ -163,8 +232,17 @@
     "Compute shortest distance with the Pythagorean theorem.",
     "Avoid clockwise/anticlockwise turn mistakes."
   ],
-  "prerequisites": ["coding_decoding"],
-  "concepts": ["compass", "left turn", "right turn", "displacement", "relative position", "shortest distance"],
+  "prerequisites": [
+    "coding_decoding"
+  ],
+  "concepts": [
+    "compass",
+    "left turn",
+    "right turn",
+    "displacement",
+    "relative position",
+    "shortest distance"
+  ],
   "common_misconceptions": [
     {
       "misconception": "A right turn always points East.",
@@ -183,21 +261,30 @@
     {
       "title": "Cancel opposite walks",
       "input": "4 km East, 4 km North, 4 km West",
-      "trace": ["East and West cancel.", "North remains 4 km."],
+      "trace": [
+        "East and West cancel.",
+        "North remains 4 km."
+      ],
       "output": "4 km North of start",
       "explanation": "Net only the unmatched axis."
     },
     {
       "title": "Shortest distance",
       "input": "3 km East, 4 km North",
-      "trace": ["Horizontal 3, vertical 4.", "√(9+16)=5."],
+      "trace": [
+        "Horizontal 3, vertical 4.",
+        "√(9+16)=5."
+      ],
       "output": "5 km",
       "explanation": "Use Pythagoras for perpendicular legs."
     },
     {
       "title": "Turn tracking",
       "input": "Face South, turn right",
-      "trace": ["Clockwise from South.", "Next cardinal is West."],
+      "trace": [
+        "Clockwise from South.",
+        "Next cardinal is West."
+      ],
       "output": "Facing West",
       "explanation": "Right = clockwise quarter-turn."
     }
