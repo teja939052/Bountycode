@@ -294,7 +294,6 @@ DSA_LESSONS = [
             },
         ],
     },
-,
     {
         "id": "dsa-hashing-basics",
         "title": "Hash Maps and Frequency Counting",
