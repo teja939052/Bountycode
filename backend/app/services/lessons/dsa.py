@@ -328,7 +328,7 @@ DSA_LESSONS = [
                 "instruction": "Given an integer array, use a set to detect whether a value has appeared before. Return the first value that repeats while scanning from left to right.",
                 "starterCode": "unordered_set<int> seen;\n// Scan the values from left to right",
                 "solution": "int values[] = {4, 7, 2, 7, 4};\nunordered_set<int> seen;\nfor (int x : values) {\n    if (seen.count(x)) { cout << x << endl; break; }\n    seen.insert(x);\n}",
-                "tests": [{"input": null, "expected": "7", "check": "prints_first_repeated_value"}],
+                "tests": [{"input": None, "expected": "7", "check": "prints_first_repeated_value"}],
                 "explanation": "Insert unseen values into the set. The first value already present is the first repeated value."
             },
             {
@@ -376,7 +376,7 @@ DSA_LESSONS = [
                 "instruction": "Write sumToN(n) that returns 1 + 2 + ... + n for n >= 0. Use zero as the base case.",
                 "starterCode": "int sumToN(int n) {\n    // Add base case and recursive case\n}",
                 "solution": "int sumToN(int n) {\n    if (n <= 0) return 0;\n    return n + sumToN(n - 1);\n}",
-                "tests": [{"input": null, "expected": "sumToN(4) = 10", "check": "returns_recursive_sum"}],
+                "tests": [{"input": None, "expected": "sumToN(4) = 10", "check": "returns_recursive_sum"}],
                 "explanation": "The recursive call reduces n by one until it reaches zero."
             },
             {
