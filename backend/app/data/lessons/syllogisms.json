@@ -22,10 +22,18 @@
       "step_type": "interactive",
       "title": "Follow a chain",
       "prompt": "Statements: All cats are mammals. All mammals are animals. Which conclusion follows?",
-      "options": ["All animals are cats", "All cats are animals", "Some animals are not mammals", "No cats are animals"],
+      "options": [
+        "All animals are cats",
+        "All cats are animals",
+        "Some animals are not mammals",
+        "No cats are animals"
+      ],
       "correct_index": 1,
       "explanation": "Every cat is a mammal and every mammal is an animal, so every cat is an animal.",
-      "hints": ["Represent each category as a set.", "Follow containment from A to B to C."]
+      "hints": [
+        "Represent each category as a set.",
+        "Follow containment from A to B to C."
+      ]
     },
     {
       "step_number": 3,
@@ -39,10 +47,18 @@
       "step_type": "practice",
       "title": "Avoid an invalid inference",
       "prompt": "Statements: All A are B. Some B are C. Does it necessarily follow that some A are C?",
-      "options": ["Yes, always", "No, not necessarily", "All A are C", "No A are B"],
+      "options": [
+        "Yes, always",
+        "No, not necessarily",
+        "All A are C",
+        "No A are B"
+      ],
       "correct_index": 1,
       "explanation": "The B items that are C may be outside the A subset. Overlap between A and C is not guaranteed.",
-      "hints": ["The 'some' elements of B may lie outside A.", "Try one valid arrangement where the conclusion is false."]
+      "hints": [
+        "The 'some' elements of B may lie outside A.",
+        "Try one valid arrangement where the conclusion is false."
+      ]
     },
     {
       "step_number": 5,
@@ -62,19 +78,35 @@
         "Try to find a counterexample arrangement",
         "Read the statements as given facts"
       ],
-      "correct_order": [3, 1, 2, 0],
+      "correct_order": [
+        3,
+        1,
+        2,
+        0
+      ],
       "explanation": "Facts → diagram → counterexample test → accept only if forced.",
-      "hints": ["A single counterexample kills the conclusion.", "Do not use outside knowledge."]
+      "hints": [
+        "A single counterexample kills the conclusion.",
+        "Do not use outside knowledge."
+      ]
     },
     {
       "step_number": 7,
       "step_type": "practice",
       "title": "No means disjoint",
       "prompt": "Statements: No pens are pencils. Which conclusion follows?",
-      "options": ["All pencils are pens", "Some pens are pencils", "No pencils are pens", "All pens are pencils"],
+      "options": [
+        "All pencils are pens",
+        "Some pens are pencils",
+        "No pencils are pens",
+        "All pens are pencils"
+      ],
       "correct_index": 2,
       "explanation": "If the sets do not overlap, no pencil is a pen.",
-      "hints": ["'No' means empty intersection.", "The reverse 'no' statement also holds."]
+      "hints": [
+        "'No' means empty intersection.",
+        "The reverse 'no' statement also holds."
+      ]
     },
     {
       "step_number": 8,
@@ -96,17 +128,30 @@
         "4": "The statement is possible; the over-strong conclusion is not."
       },
       "explanation": "'Some students are athletes' does not force every student to be an athlete.",
-      "hints": ["Translate 'some' as at least one.", "Ask whether every member must satisfy the conclusion."]
+      "hints": [
+        "Translate 'some' as at least one.",
+        "Ask whether every member must satisfy the conclusion."
+      ],
+      "code": "# Premises: Some developers are testers. All testers are detail-oriented.\nsome_developers_are_testers = True\nall_testers_are_detail_oriented = True\n\n# Bug: \"some\" does not mean \"all\".\nall_developers_are_detail_oriented = all_testers_are_detail_oriented\n\n# Safe conclusion: only the developers who are testers are guaranteed\n# to be detail-oriented; nothing is established about every developer.\nprint(\"Some developers are detail-oriented; not necessarily all.\")",
+      "language": "python"
     },
     {
       "step_number": 9,
       "step_type": "interactive",
       "title": "Forced negative conclusion",
       "prompt": "Statements: No A are B. Some C are A. Which conclusion follows?",
-      "options": ["Some C are not B", "All C are B", "Some B are A", "No C are A"],
+      "options": [
+        "Some C are not B",
+        "All C are B",
+        "Some B are A",
+        "No C are A"
+      ],
       "correct_index": 0,
       "explanation": "The C items that are A cannot be B, so at least some C are not B.",
-      "hints": ["Place the overlapping C-A region outside B.", "That region proves some C are not B."]
+      "hints": [
+        "Place the overlapping C-A region outside B.",
+        "That region proves some C are not B."
+      ]
     }
   ],
   "assessment": {
@@ -115,37 +160,67 @@
     "questions": [
       {
         "prompt": "Statements: All A are B. All B are C. Which conclusion follows?",
-        "options": ["All C are A", "All A are C", "No A are C", "Some C are not B"],
+        "options": [
+          "All C are A",
+          "All A are C",
+          "No A are C",
+          "Some C are not B"
+        ],
         "correct_index": 1,
         "explanation": "A ⊆ B ⊆ C implies A ⊆ C."
       },
       {
         "prompt": "Statements: No pens are pencils. Which conclusion follows?",
-        "options": ["All pencils are pens", "Some pens are pencils", "No pencils are pens", "All pens are pencils"],
+        "options": [
+          "All pencils are pens",
+          "Some pens are pencils",
+          "No pencils are pens",
+          "All pens are pencils"
+        ],
         "correct_index": 2,
         "explanation": "Disjoint sets work both ways."
       },
       {
         "prompt": "Statements: Some students are athletes. Which conclusion is certain?",
-        "options": ["All students are athletes", "Some athletes are students", "No students are athletes", "All athletes are students"],
+        "options": [
+          "All students are athletes",
+          "Some athletes are students",
+          "No students are athletes",
+          "All athletes are students"
+        ],
         "correct_index": 1,
         "explanation": "Shared members are both athletes and students."
       },
       {
         "prompt": "All doctors are graduates. Some graduates are artists. Does some doctor is an artist follow?",
-        "options": ["Yes", "No, not necessarily", "All artists are doctors", "No doctors are graduates"],
+        "options": [
+          "Yes",
+          "No, not necessarily",
+          "All artists are doctors",
+          "No doctors are graduates"
+        ],
         "correct_index": 1,
         "explanation": "Artist-graduates may be outside the doctor group."
       },
       {
         "prompt": "No A are B. Some C are A. Which conclusion follows?",
-        "options": ["Some C are not B", "All C are B", "Some B are A", "No C are A"],
+        "options": [
+          "Some C are not B",
+          "All C are B",
+          "Some B are A",
+          "No C are A"
+        ],
         "correct_index": 0,
         "explanation": "C∩A lies outside B."
       },
       {
         "prompt": "All cats are mammals. All mammals are animals. Conclusion?",
-        "options": ["All animals are cats", "All cats are animals", "No cats are animals", "Some animals are not mammals"],
+        "options": [
+          "All animals are cats",
+          "All cats are animals",
+          "No cats are animals",
+          "Some animals are not mammals"
+        ],
         "correct_index": 1,
         "explanation": "Subset chain forces all cats are animals."
       }
@@ -157,7 +232,16 @@
     "Distinguish all, some and no statements.",
     "Reject conclusions that are not guaranteed by the premises."
   ],
-  "concepts": ["all", "some", "no", "subset", "overlap", "disjoint sets", "necessary conclusion", "Venn diagram"],
+  "concepts": [
+    "all",
+    "some",
+    "no",
+    "subset",
+    "overlap",
+    "disjoint sets",
+    "necessary conclusion",
+    "Venn diagram"
+  ],
   "common_misconceptions": [
     {
       "misconception": "Some B are C means some A are C when all A are B.",
@@ -176,21 +260,32 @@
     {
       "title": "Subset chain",
       "input": "All A are B. All B are C.",
-      "trace": ["A inside B.", "B inside C.", "A inside C."],
+      "trace": [
+        "A inside B.",
+        "B inside C.",
+        "A inside C."
+      ],
       "output": "All A are C",
       "explanation": "Containment is transitive."
     },
     {
       "title": "Invalid some-overlap",
       "input": "All A are B. Some B are C.",
-      "trace": ["A is a subset of B.", "C may touch B outside A."],
+      "trace": [
+        "A is a subset of B.",
+        "C may touch B outside A."
+      ],
       "output": "Some A are C does not necessarily follow",
       "explanation": "Need a forced overlap with A, not only with B."
     },
     {
       "title": "Forced not-B",
       "input": "No A are B. Some C are A.",
-      "trace": ["A and B disjoint.", "Part of C is inside A.", "That part cannot be B."],
+      "trace": [
+        "A and B disjoint.",
+        "Part of C is inside A.",
+        "That part cannot be B."
+      ],
       "output": "Some C are not B",
       "explanation": "The C∩A region lies outside B."
     }
@@ -234,7 +329,9 @@
       "answer": "At least one shared case — never automatically all members."
     }
   ],
-  "prerequisites": ["coding_decoding"],
+  "prerequisites": [
+    "coding_decoding"
+  ],
   "quest": {
     "chapter": "The Logic Court",
     "rank": "Inference Judge",
