@@ -124,17 +124,17 @@ export default function StudyGroups() {
         {loading ? (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="rounded-xl border border-gray-700/20 p-5 animate-pulse bg-gray-900/20">
-                <div className="h-4 bg-gray-700/40 rounded w-1/2 mb-3" />
-                <div className="h-3 bg-gray-700/30 rounded w-2/3 mb-2" />
-                <div className="h-3 bg-gray-700/20 rounded w-1/3" />
+              <div key={i} className="rounded-xl border border-slate-100 p-5 animate-pulse bg-white">
+                <div className="h-4 bg-slate-100 rounded w-1/2 mb-3" />
+                <div className="h-3 bg-slate-100 rounded w-2/3 mb-2" />
+                <div className="h-3 bg-slate-100 rounded w-1/3" />
               </div>
             ))}
           </div>
         ) : filtered.length === 0 ? (
           <Card rarity="common" hoverEffect={false} className="text-center py-12">
             <div className="text-4xl mb-3">👥</div>
-            <p className="text-gray-400 text-sm">{searchQuery ? 'No groups found' : 'No study groups yet'}</p>
+            <p className="text-gray-500 text-sm">{searchQuery ? 'No groups found' : 'No study groups yet'}</p>
             <p className="text-xs text-gray-600 mt-1 font-mono">Create one and invite your friends!</p>
           </Card>
         ) : (
@@ -161,7 +161,7 @@ export default function StudyGroups() {
                 </div>
 
                 {group.description && (
-                  <p className="text-xs text-gray-400 mb-3 line-clamp-2">{group.description}</p>
+                  <p className="text-xs text-gray-500 mb-3 line-clamp-2">{group.description}</p>
                 )}
 
                 <div className="flex items-center justify-between">
@@ -170,13 +170,13 @@ export default function StudyGroups() {
                     {(group.members || []).slice(0, 4).map((m, j) => (
                       <div
                         key={j}
-                        className="w-7 h-7 rounded-full bg-gray-700 border-2 border-gray-900 flex items-center justify-center text-[9px] font-bold text-gray-300"
+                        className="w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center text-[9px] font-bold text-gray-600"
                       >
                         {m.name?.[0] || '?'}
                       </div>
                     ))}
                     {(group.members?.length || 0) > 4 && (
-                      <div className="w-7 h-7 rounded-full bg-gray-800 border-2 border-gray-900 flex items-center justify-center text-[9px] text-gray-500">
+                      <div className="w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center text-[9px] text-gray-500">
                         +{group.members.length - 4}
                       </div>
                     )}

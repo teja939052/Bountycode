@@ -235,9 +235,9 @@ export default function StudyTimer() {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           <Stat icon={<Timer size={16} />} label="Total (min)" value={stats?.total_minutes ?? 0} color="text-brand-sky" />
-          <Stat icon={<Flame size={16} />} label="Streak" value={`${stats?.streak_days ?? 0}d`} color="text-orange-400" />
-          <Stat icon={<Coins size={16} />} label="Sessions" value={stats?.total_sessions ?? 0} color="text-yellow-400" />
-          <Stat icon={<Crown size={16} />} label="Rank" value={stats?.focus_rank ?? "Novice"} color="text-purple-400" />
+          <Stat icon={<Flame size={16} />} label="Streak" value={`${stats?.streak_days ?? 0}d`} color="text-orange-600" />
+          <Stat icon={<Coins size={16} />} label="Sessions" value={stats?.total_sessions ?? 0} color="text-yellow-600" />
+          <Stat icon={<Crown size={16} />} label="Rank" value={stats?.focus_rank ?? "Novice"} color="text-purple-600" />
         </div>
 
         <div className="text-center">
@@ -252,7 +252,7 @@ export default function StudyTimer() {
 
 function Stat({ icon, label, value, color }: { icon: any; label: string; value: any; color: string }) {
   return (
-    <div className="bg-gray-900/40 border border-gray-700/20 rounded-xl p-3 text-center">
+    <div className="bg-white border border-slate-100 rounded-xl p-3 text-center">
       <div className={`flex items-center justify-center gap-1 mb-1 ${color}`}>{icon}</div>
       <div className="text-xl font-display font-bold text-text-primary">{value}</div>
       <div className="text-[9px] font-mono text-gray-500">{label}</div>

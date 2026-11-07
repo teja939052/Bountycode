@@ -54,7 +54,7 @@ export default class FeatureErrorBoundary extends Component<
         <div className="min-h-[50vh] flex items-center justify-center px-4 py-12">
           <div className="max-w-md w-full rounded-2xl border border-red-500/20 bg-red-500/5 backdrop-blur-sm p-6 text-center">
             <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center mx-auto mb-4">
-              <AlertTriangle className="text-red-400" size={28} />
+              <AlertTriangle className="text-red-600" size={28} />
             </div>
             <h2 className="text-lg font-display font-bold text-brand-primary mb-1">
               {this.props.featureName} crashed
@@ -66,7 +66,7 @@ export default class FeatureErrorBoundary extends Component<
             <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
               <button
                 onClick={this.handleReset}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-bold text-text-primary hover:bg-brand-primary/80 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-primary/80 transition-colors"
               >
                 <RefreshCw size={14} />
                 Try again
@@ -90,16 +90,16 @@ export default class FeatureErrorBoundary extends Component<
                 </button>
                 {this.state.detailsOpen && (
                   <div className="mt-2 rounded-xl border border-red-500/10 bg-red-500/5 p-3 overflow-x-auto">
-                    <p className="break-words font-mono text-xs text-red-400 mb-2">
+                    <p className="break-words font-mono text-xs text-red-600 mb-2">
                       {this.state.error.message}
                     </p>
                     {this.state.error.stack && (
-                      <pre className="max-h-40 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-red-400/70">
+                      <pre className="max-h-40 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-red-600">
                         {this.state.error.stack}
                       </pre>
                     )}
                     {this.state.errorInfo?.componentStack && (
-                      <pre className="mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-red-400/50">
+                      <pre className="mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-red-600">
                         {this.state.errorInfo.componentStack}
                       </pre>
                     )}

@@ -80,7 +80,7 @@ export default function CoverLetter() {
           <h1 className="section-header text-3xl mb-2">
             Cover <span className="text-cyber-blue">Letter</span> & LinkedIn
           </h1>
-          <p className="text-gray-400 mt-2">
+          <p className="text-gray-500 mt-2">
             Generate tailored cover letters and LinkedIn content with AI
           </p>
         </motion.div>
@@ -103,8 +103,8 @@ export default function CoverLetter() {
                 id="cl-upload"
               />
               <label htmlFor="cl-upload" className="cursor-pointer">
-                <Mail className="mx-auto text-gray-400 mb-3" size={40} />
-                <p className="text-gray-400">Click to upload PDF resume</p>
+                <Mail className="mx-auto text-gray-500 mb-3" size={40} />
+                <p className="text-gray-500">Click to upload PDF resume</p>
                 <p className="text-sm text-brand-muted mt-1">Max 5MB</p>
               </label>
             </div>
@@ -134,13 +134,13 @@ export default function CoverLetter() {
               <div className="card">
                 <h2 className="text-xl font-display font-bold text-text-primary mb-4">Generate Cover Letter</h2>
                 <div className="bg-surface-base border border-brand-primary/10 rounded-lg p-3 mb-4">
-                  <p className="text-xs font-mono text-gray-400">
+                  <p className="text-xs font-mono text-gray-500">
                     Resume uploaded: <span className="text-text-primary">{resumeText.substring(0, 80)}...</span>
                   </p>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Company Name (optional)</label>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Company Name (optional)</label>
                     <input
                       className="input"
                       placeholder="e.g. Google, Microsoft, Amazon"
@@ -149,7 +149,7 @@ export default function CoverLetter() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Job Description *</label>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Job Description *</label>
                     <textarea
                       className="input min-h-[150px] resize-y"
                       placeholder="Paste the job description here..."
@@ -199,13 +199,13 @@ export default function CoverLetter() {
               <div className="card">
                 <h2 className="text-xl font-display font-bold text-text-primary mb-4">Generate LinkedIn About Section</h2>
                 <div className="bg-surface-base border border-brand-primary/10 rounded-lg p-3 mb-4">
-                  <p className="text-xs font-mono text-gray-400">
+                  <p className="text-xs font-mono text-gray-500">
                     Resume uploaded: <span className="text-text-primary">{resumeText.substring(0, 80)}...</span>
                   </p>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Target Role (optional)</label>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Target Role (optional)</label>
                     <input
                       className="input"
                       placeholder="e.g. Senior Software Engineer"

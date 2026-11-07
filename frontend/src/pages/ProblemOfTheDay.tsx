@@ -21,9 +21,9 @@ import useReducedMotion from "../hooks/useReducedMotion";
 import { requestWithRetry } from "../services/api/request.ts";
 
 const DIFFICULTY_COLORS = {
-  easy: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  medium: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400",
-  hard: "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400",
+  easy: "bg-green-100 text-green-700",
+  medium: "bg-yellow-100 text-yellow-700",
+  hard: "bg-red-100 text-red-700",
 };
 
 const LANGUAGES = [
@@ -161,16 +161,16 @@ export default function ProblemOfTheDay() {
         </Link>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-800 flex items-center justify-center text-xl sm:text-2xl">
+            <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-orange-100 border border-orange-300 flex items-center justify-center text-xl sm:text-2xl">
               {league.emoji}
             </div>
             <div className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-orange-500 flex items-center justify-center">
-              <Flame size={8} className="text-white" />
+              <Flame size={8} className="text-slate-900" />
             </div>
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-text-primary dark:text-white">Problem of the Day</h1>
-            <p className="text-xs sm:text-sm text-brand-muted dark:text-gray-400">
+            <h1 className="text-xl sm:text-2xl font-bold text-text-primary">Problem of the Day</h1>
+            <p className="text-xs sm:text-sm text-brand-muted">
               {challenge.config?.category} · {challenge.config?.difficulty} · {challenge.config?.focus || "Daily challenge"}
             </p>
           </div>
@@ -184,26 +184,26 @@ export default function ProblemOfTheDay() {
           {/* League card */}
           <AnimatedCard className="card">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-xl">
+              <div className="h-10 w-10 rounded-xl bg-orange-50 flex items-center justify-center text-xl">
                 {league.emoji}
               </div>
               <div className="flex-1">
-                <div className="font-bold text-orange-700 dark:text-orange-400 text-sm uppercase tracking-wide">{league.name} League</div>
-                <div className="text-xs text-brand-muted dark:text-gray-400">
+                <div className="font-bold text-orange-700 text-sm uppercase tracking-wide">{league.name} League</div>
+                <div className="text-xs text-brand-muted">
                   {challenge.already_completed ? "Completed today!" : `+${challenge.streak_bonus || 50} Diamonds bonus for daily streak`}
                 </div>
               </div>
               {!challenge.already_completed && (
-                <div className="hidden sm:flex items-center gap-1 rounded-lg bg-orange-50 dark:bg-orange-900/20 px-3 py-1.5">
+                <div className="hidden sm:flex items-center gap-1 rounded-lg bg-orange-50 px-3 py-1.5">
                   <Zap size={14} className="text-orange-500" />
-                  <span className="text-xs font-bold text-orange-700 dark:text-orange-400">+{challenge.xp_reward || 50} Diamonds</span>
+                  <span className="text-xs font-bold text-orange-700">+{challenge.xp_reward || 50} Diamonds</span>
                 </div>
               )}
             </div>
           </AnimatedCard>
 
           {/* Tabs */}
-          <div className="flex items-center gap-1 bg-surface-card/50 p-1 rounded-xl border border-brand-primary/10 dark:border-gray-700">
+          <div className="flex items-center gap-1 bg-surface-card/50 p-1 rounded-xl border border-brand-primary/10">
             {[
               { key: "problem", label: "Problem", icon: FileText },
               { key: "code", label: "Code", icon: Code2 },
@@ -214,8 +214,8 @@ export default function ProblemOfTheDay() {
                 onClick={() => setActiveTab(tab.key)}
                 className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                   activeTab === tab.key
-                    ? "bg-white dark:bg-gray-800 text-text-primary dark:text-white shadow-sm"
-                    : "text-brand-muted dark:text-gray-400 hover:text-text-primary dark:hover:text-gray-200"
+                    ? "bg-white text-text-primary shadow-sm"
+                    : "text-brand-muted hover:text-text-primary"
                 }`}
               >
                 <tab.icon size={14} />
@@ -233,28 +233,28 @@ export default function ProblemOfTheDay() {
             >
               <AnimatedCard className="card">
                 <div className="flex items-center gap-3 mb-4">
-                  <h2 className="text-lg sm:text-xl font-bold text-text-primary dark:text-white flex-1">{problem.question_title}</h2>
+                  <h2 className="text-lg sm:text-xl font-bold text-text-primary flex-1">{problem.question_title}</h2>
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${DIFFICULTY_COLORS[problem.difficulty] || DIFFICULTY_COLORS.medium}`}>
                     {problem.difficulty?.charAt(0).toUpperCase() + problem.difficulty?.slice(1)}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {(problem.topics || []).map((t, i) => (
-                    <span key={i} className="px-2 py-1 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 rounded-lg text-xs font-mono border border-primary-100 dark:border-primary-800">
+                    <span key={i} className="px-2 py-1 bg-primary-50 text-primary-700 rounded-lg text-xs font-mono border border-primary-100">
                       {t}
                     </span>
                   ))}
                 </div>
-                <div className="prose prose-sm dark:prose-invert max-w-none text-brand-primary dark:text-gray-300 leading-relaxed">
+                <div className="prose prose-sm max-w-none text-brand-primary leading-relaxed">
                   <div className="whitespace-pre-wrap text-sm sm:text-base">{problem.statement}</div>
                 </div>
                 {problem.constraints && problem.constraints.length > 0 && (
-                  <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                    <h4 className="text-xs font-bold text-blue-700 dark:text-blue-400 mb-2 uppercase tracking-wide">Constraints</h4>
-                    <ul className="text-xs text-blue-600 dark:text-blue-300 space-y-1">
+                  <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 className="text-xs font-bold text-blue-700 mb-2 uppercase tracking-wide">Constraints</h4>
+                    <ul className="text-xs text-blue-600 space-y-1">
                       {problem.constraints.map((c, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <span className="text-blue-400 mt-0.5">•</span>
+                          <span className="text-blue-600 mt-0.5">•</span>
                           <span>{c}</span>
                         </li>
                       ))}
@@ -263,14 +263,14 @@ export default function ProblemOfTheDay() {
                 )}
                 {problem.examples && problem.examples.length > 0 && (
                   <div className="mt-4 space-y-3">
-                    <h3 className="font-semibold text-text-primary dark:text-white text-sm flex items-center gap-2">
+                    <h3 className="font-semibold text-text-primary text-sm flex items-center gap-2">
                       <Code2 size={16} />
                       Examples
                     </h3>
                     {problem.examples.map((ex, i) => (
-                      <div key={i} className="bg-surface-card/50 rounded-lg p-4 border border-brand-primary/10 dark:border-gray-700">
+                      <div key={i} className="bg-surface-card/50 rounded-lg p-4 border border-brand-primary/10">
                         <div className="text-xs font-mono text-brand-muted mb-1">Input: {ex.input || "N/A"}</div>
-                        <div className="text-sm font-mono text-green-700 dark:text-green-400 mb-1">Output: {ex.output || "N/A"}</div>
+                        <div className="text-sm font-mono text-green-700 mb-1">Output: {ex.output || "N/A"}</div>
                         {ex.explanation && <div className="text-xs text-brand-muted mt-2 italic">{ex.explanation}</div>}
                       </div>
                     ))}
@@ -281,7 +281,7 @@ export default function ProblemOfTheDay() {
                     <button
                       onClick={revealNextHint}
                       disabled={revealedHints >= problem.hints.length}
-                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 text-xs font-medium hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors disabled:opacity-50"
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-700 text-xs font-medium hover:bg-amber-100 transition-colors disabled:opacity-50"
                     >
                       <Lightbulb size={14} />
                       {revealedHints >= problem.hints.length ? "All hints revealed" : `Reveal hint ${revealedHints + 1} of ${problem.hints.length}`}
@@ -290,10 +290,10 @@ export default function ProblemOfTheDay() {
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800"
+                        className="p-3 bg-amber-50 rounded-lg border border-amber-200"
                       >
                         {problem.hints.slice(0, revealedHints).map((hint, i) => (
-                          <div key={i} className="flex items-start gap-2 text-xs text-amber-800 dark:text-amber-300">
+                          <div key={i} className="flex items-start gap-2 text-xs text-amber-800">
                             <span className="text-amber-500 mt-0.5">💡</span>
                             <span>{hint}</span>
                           </div>
@@ -303,9 +303,9 @@ export default function ProblemOfTheDay() {
                   </div>
                 )}
                 {challenge.already_completed && (
-                  <div className="mt-4 flex items-center gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                  <div className="mt-4 flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-200">
                     <CheckCircle2 size={16} className="text-green-600" />
-                    <span className="text-sm text-green-700 dark:text-green-400 font-medium">Already completed today! Come back tomorrow for a new challenge.</span>
+                    <span className="text-sm text-green-700 font-medium">Already completed today! Come back tomorrow for a new challenge.</span>
                   </div>
                 )}
               </AnimatedCard>
@@ -323,13 +323,13 @@ export default function ProblemOfTheDay() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Flame size={18} className="text-primary-600" />
-                    <h2 className="text-lg font-bold text-text-primary dark:text-white">Code Editor</h2>
+                    <h2 className="text-lg font-bold text-text-primary">Code Editor</h2>
                   </div>
                   <div className="flex items-center gap-2">
                     <select
                       value={selectedLanguage}
                       onChange={(e) => setSelectedLanguage(e.target.value)}
-                      className="px-3 py-1.5 bg-surface-card border border-brand-primary/10 dark:border-gray-600 rounded-lg text-sm text-brand-primary dark:text-gray-200 focus:outline-none focus:border-primary-500"
+                      className="px-3 py-1.5 bg-surface-card border border-brand-primary/10 rounded-lg text-sm text-brand-primary focus:outline-none focus:border-primary-500"
                     >
                       {LANGUAGES.map((lang) => (
                         <option key={lang.value} value={lang.value}>{lang.label}</option>
@@ -339,21 +339,21 @@ export default function ProblemOfTheDay() {
                 </div>
 
                 {/* Code editor */}
-                <div className="relative rounded-xl overflow-hidden border border-gray-300 dark:border-gray-600 bg-gray-900">
-                  <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+                <div className="relative rounded-xl overflow-hidden border border-gray-300 bg-white">
+                  <div className="flex items-center justify-between px-4 py-2 bg-white border-b border-slate-200">
                     <div className="flex items-center gap-2">
                       <div className="flex gap-1.5">
                         <div className="h-3 w-3 rounded-full bg-red-500/80" />
                         <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
                         <div className="h-3 w-3 rounded-full bg-green-500/80" />
                       </div>
-                      <span className="text-xs text-gray-400 ml-2">solution.{selectedLanguage === "cpp" ? "cpp" : selectedLanguage === "javascript" ? "js" : selectedLanguage}</span>
+                      <span className="text-xs text-gray-500 ml-2">solution.{selectedLanguage === "cpp" ? "cpp" : selectedLanguage === "javascript" ? "js" : selectedLanguage}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={handleRun}
                         disabled={codeRunning || !userCode.trim()}
-                        className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 text-white text-xs font-medium rounded-lg transition-colors"
+                        className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-100 disabled:opacity-50 text-slate-900 text-xs font-medium rounded-lg transition-colors"
                       >
                         <Play size={12} />
                         {codeRunning ? "Running..." : "Run"}
@@ -372,7 +372,7 @@ export default function ProblemOfTheDay() {
                     value={userCode}
                     onChange={(e) => setUserCode(e.target.value)}
                     placeholder={`// Write your ${selectedLanguage} solution here...`}
-                    className="w-full h-64 sm:h-80 p-4 bg-gray-900 text-green-400 font-mono text-sm leading-relaxed resize-none focus:outline-none"
+                    className="w-full h-64 sm:h-80 p-4 bg-slate-100 text-green-600 font-mono text-sm leading-relaxed resize-none focus:outline-none"
                     spellCheck={false}
                     disabled={challenge.already_completed}
                   />
@@ -383,7 +383,7 @@ export default function ProblemOfTheDay() {
                   <motion.div
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-3 p-4 bg-surface-card/50 rounded-xl border border-brand-primary/10 dark:border-gray-700"
+                    className="mt-3 p-4 bg-surface-card/50 rounded-xl border border-brand-primary/10"
                   >
                     <div className="flex items-center gap-2 mb-2">
                       {runResult.success ? (
@@ -394,10 +394,10 @@ export default function ProblemOfTheDay() {
                       <span className="font-bold text-sm">{runResult.success ? "Execution Success" : "Execution Failed"}</span>
                     </div>
                     {runResult.stdout && (
-                      <div className="p-3 bg-gray-900 rounded-lg font-mono text-xs text-green-400 whitespace-pre-wrap">{runResult.stdout}</div>
+                      <div className="p-3 bg-slate-100 rounded-lg font-mono text-xs text-green-600 whitespace-pre-wrap">{runResult.stdout}</div>
                     )}
                     {runResult.error && (
-                      <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg font-mono text-xs text-red-600 dark:text-red-400 mt-2">{runResult.error}</div>
+                      <div className="p-3 bg-red-50 rounded-lg font-mono text-xs text-red-600 mt-2">{runResult.error}</div>
                     )}
                   </motion.div>
                 )}
@@ -408,15 +408,15 @@ export default function ProblemOfTheDay() {
                     initial={{ opacity: 0, y: 8, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                    className="mt-4 p-5 bg-surface-card/50 rounded-xl border border-brand-primary/10 dark:border-gray-700"
+                    className="mt-4 p-5 bg-surface-card/50 rounded-xl border border-brand-primary/10"
                   >
                     <div className="flex items-center gap-3 mb-4">
                       {result.all_passed ? (
-                        <div className="h-10 w-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
                           <CheckCircle2 size={24} className="text-green-600" />
                         </div>
                       ) : (
-                        <div className="h-10 w-10 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-full bg-yellow-100 flex items-center justify-center">
                           <XCircle size={24} className="text-yellow-600" />
                         </div>
                       )}
@@ -426,15 +426,15 @@ export default function ProblemOfTheDay() {
                       </div>
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                      <div className="text-center p-3 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
+                      <div className="text-center p-3 bg-primary-50 rounded-lg">
                         <div className="text-xl font-bold text-primary-600">+{result.xp_gained || 0}</div>
                         <div className="text-[10px] text-brand-muted uppercase tracking-wide mt-1">Diamonds Gained</div>
                       </div>
-                      <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                      <div className="text-center p-3 bg-green-50 rounded-lg">
                         <div className="text-xl font-bold text-green-600">+{result.streak_bonus || 0}</div>
                         <div className="text-[10px] text-brand-muted uppercase tracking-wide mt-1">Streak Bonus</div>
                       </div>
-                      <div className="text-center p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+                      <div className="text-center p-3 bg-amber-50 rounded-lg">
                         <div className="text-xl font-bold text-amber-600">{(result.time_taken || 0).toFixed(1)}s</div>
                         <div className="text-[10px] text-brand-muted uppercase tracking-wide mt-1">Time</div>
                       </div>
@@ -453,13 +453,13 @@ export default function ProblemOfTheDay() {
               transition={{ duration: 0.3 }}
             >
               <AnimatedCard className="card">
-                <h2 className="text-lg font-bold text-text-primary dark:text-white mb-4 flex items-center gap-2">
+                <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
                   <Trophy size={20} className="text-amber-500" />
                   Today&apos;s Leaderboard
                 </h2>
                 {!challenge.leaderboard || challenge.leaderboard.length === 0 ? (
                   <div className="text-center py-12">
-                    <Trophy size={48} className="mx-auto mb-3 text-gray-300 dark:text-gray-600" />
+                    <Trophy size={48} className="mx-auto mb-3 text-gray-600" />
                     <p className="text-sm text-brand-muted">No submissions yet. Be the first to solve!</p>
                   </div>
                 ) : (
@@ -470,7 +470,7 @@ export default function ProblemOfTheDay() {
                         initial={{ opacity: 0, x: -12 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.05 }}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-surface-card/50 border border-brand-primary/5 dark:border-gray-700 hover:border-brand-primary/20 transition-colors"
+                        className="flex items-center gap-3 p-3 rounded-xl bg-surface-card/50 border border-brand-primary/5 hover:border-brand-primary/20 transition-colors"
                       >
                         <span className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold ${
                           i === 0 ? "bg-yellow-100 text-yellow-700" :
@@ -480,7 +480,7 @@ export default function ProblemOfTheDay() {
                         }`}>
                           {i + 1}
                         </span>
-                        <span className="flex-1 font-medium text-sm text-text-primary dark:text-white">{entry.user_name}</span>
+                        <span className="flex-1 font-medium text-sm text-text-primary">{entry.user_name}</span>
                         <span className="text-xs text-brand-muted font-mono">{(entry.time_taken || 0).toFixed(1)}s</span>
                       </motion.div>
                     ))}
@@ -495,13 +495,13 @@ export default function ProblemOfTheDay() {
         <div className="lg:col-span-4 space-y-4 sm:space-y-6">
           {/* Daily bonus */}
           {!challenge.already_completed && (
-            <AnimatedCard className="card border-2 border-primary-200 dark:border-primary-800 bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/20 dark:to-gray-800">
+            <AnimatedCard className="card border-2 border-primary-200 bg-gradient-to-br from-primary-50 to-white">
               <div className="text-center">
-                <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30">
+                <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary-100">
                   <Trophy size={28} className="text-primary-600" />
                 </div>
-                <h3 className="font-bold text-text-primary dark:text-white mb-1">Daily Bonus</h3>
-                <p className="text-xs text-brand-muted dark:text-gray-400 mb-4">Solve today for +{challenge.streak_bonus || 50} bonus Diamonds</p>
+                <h3 className="font-bold text-text-primary mb-1">Daily Bonus</h3>
+                <p className="text-xs text-brand-muted mb-4">Solve today for +{challenge.streak_bonus || 50} bonus Diamonds</p>
                 <button
                   onClick={() => setActiveTab("code")}
                   className="w-full py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm"
@@ -514,7 +514,7 @@ export default function ProblemOfTheDay() {
 
           {/* User stats */}
           <AnimatedCard className="card">
-            <h3 className="font-bold text-text-primary dark:text-white mb-4 flex items-center gap-2">
+            <h3 className="font-bold text-text-primary mb-4 flex items-center gap-2">
               <Flame size={16} className="text-orange-500" />
               Your Stats
             </h3>
@@ -524,7 +524,7 @@ export default function ProblemOfTheDay() {
                 { label: "Diamonds", value: `${user?.diamonds || 0}`, color: "text-primary-600" },
                 { label: "Level", value: `${user?.level || 1}`, color: "text-amber-600" },
               ].map((stat) => (
-                <div key={stat.label} className="flex items-center justify-between p-2.5 rounded-lg bg-surface-card/50 border border-brand-primary/5 dark:border-gray-700">
+                <div key={stat.label} className="flex items-center justify-between p-2.5 rounded-lg bg-surface-card/50 border border-brand-primary/5">
                   <span className="text-xs text-brand-muted uppercase tracking-wide">{stat.label}</span>
                   <span className={`font-bold text-sm ${stat.color}`}>{stat.value}</span>
                 </div>
@@ -533,12 +533,12 @@ export default function ProblemOfTheDay() {
           </AnimatedCard>
 
           {/* Tips */}
-          <AnimatedCard className="card bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-blue-200 dark:border-blue-800">
+          <AnimatedCard className="card bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
             <div className="flex items-start gap-3">
               <div className="text-2xl">💡</div>
               <div>
-                <h4 className="font-bold text-blue-900 dark:text-blue-100 text-sm mb-1">Pro Tip</h4>
-                <p className="text-xs text-blue-700 dark:text-blue-300 leading-relaxed">
+                <h4 className="font-bold text-blue-900 text-sm mb-1">Pro Tip</h4>
+                <p className="text-xs text-blue-700 leading-relaxed">
                   Solve the daily problem before midnight to maintain your streak! Consistency beats intensity.
                 </p>
               </div>

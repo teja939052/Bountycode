@@ -60,7 +60,7 @@ function Stars({ n }: { n: number }) {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: "spring", stiffness: 400, damping: 18 }}
       aria-label={`${n} stars`}
-      className="ml-1 inline-block text-[11px] tracking-tight text-amber-300"
+      className="ml-1 inline-block text-[11px] tracking-tight text-amber-600"
     >
       {"★".repeat(n)}{"☆".repeat(Math.max(0, 3 - n))}
     </motion.span>
@@ -297,9 +297,9 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
   return (
     <div>
       {/* Diamonds momentum bar (backend-owned numbers only) */}
-      <div className="mb-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3">
+      <div className="mb-3 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
         <span aria-label="streak">🔥 <b>{map.stats?.streak ?? 0}</b></span>
-        <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+        <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
           <motion.div
             className="h-full rounded-full bg-lime-500"
             animate={{ width: `${xpPct}%` }}
@@ -311,7 +311,7 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
         <button
           onClick={toggleMute}
           aria-label={muted ? "Unmute voyage sounds" : "Mute voyage sounds"}
-          className="rounded-lg border border-white/10 bg-white/[0.06] px-2 py-1 text-sm"
+          className="rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-sm"
         >
           {muted ? "🔇" : "🔊"}
         </button>
@@ -324,7 +324,7 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
       <p className="mb-2 text-xs opacity-60">Tap set sail — clear the pulsing node. Character walks on mastery, not clicks.</p>
 
       {bossAhead && (
-        <div className="mb-2 rounded-xl border border-amber-300/30 bg-amber-300/10 px-3 py-2 text-xs font-semibold text-amber-200">
+        <div className="mb-2 rounded-xl border border-amber-300/30 bg-amber-300/10 px-3 py-2 text-xs font-semibold text-amber-700">
           🏴‍☠️ {bossAhead.title} awaits {bossAhead.steps === 1 ? "at the next island" : `${bossAhead.steps} islands ahead`} — fog promises, not just hides.
         </div>
       )}
@@ -332,7 +332,7 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
       {campfire && (
         <button
           onClick={() => { sfx("pop"); onCampfire?.(); }}
-          className="mb-2 flex w-full items-center gap-2 rounded-xl border border-orange-300/40 bg-orange-400/10 px-3 py-2 text-left text-xs font-semibold text-orange-200"
+          className="mb-2 flex w-full items-center gap-2 rounded-xl border border-orange-300/40 bg-orange-400/10 px-3 py-2 text-left text-xs font-semibold text-orange-700"
         >
           <span aria-hidden>🔥</span>
           Campfire Rest — {campfire.due_count ?? map.campfire?.due_count ?? 0} review{((campfire.due_count ?? 0) === 1) ? "" : "s"} due before the guardian. Rest, don&apos;t grind.
@@ -342,7 +342,7 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
       {repair && repairParent && (
         <button
           onClick={openRepair}
-          className="mb-2 flex w-full items-center gap-2 rounded-xl border border-teal-300/40 bg-teal-400/10 px-3 py-2 text-left text-xs font-semibold text-teal-200"
+          className="mb-2 flex w-full items-center gap-2 rounded-xl border border-teal-300/40 bg-teal-400/10 px-3 py-2 text-left text-xs font-semibold text-teal-700"
         >
           <span aria-hidden>🛠️</span>
           {repair.title} — a short detour off {repairParent.title}, then straight back. Struggle is data.
@@ -350,7 +350,7 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
       )}
 
       <div
-        className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-emerald-900 via-[#082e21] to-[#041a12]"
+        className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-b from-emerald-50 via-slate-50 to-slate-50"
         style={{ boxShadow: `inset 0 0 120px ${themeColor}22` }}
       >
         <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full" role="img" aria-label="Adventure voyage path">
@@ -479,12 +479,12 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
       <div className="mt-3 flex flex-col gap-2">
         {nodes.slice(0, 6).map((n) => (
           <div key={n.node_id}
-            className={`flex items-center gap-3 rounded-xl border px-3 py-2 text-sm ${n.is_current ? "border-lime-500/40 bg-lime-500/10" : n.kind === "srs_campfire" ? "border-orange-300/40 bg-orange-400/10" : "border-white/10 bg-white/[0.04]"}`}>
-            <span className={`h-2.5 w-2.5 rounded-full ${n.status === "completed" ? "bg-amber-300" : n.is_current ? "bg-lime-500" : n.kind === "srs_campfire" ? "bg-orange-400" : n.kind === "repair" ? "bg-teal-300" : "bg-white/25"}`} />
+            className={`flex items-center gap-3 rounded-xl border px-3 py-2 text-sm ${n.is_current ? "border-lime-500/40 bg-lime-500/10" : n.kind === "srs_campfire" ? "border-orange-300/40 bg-orange-400/10" : "border-slate-200 bg-slate-50"}`}>
+            <span className={`h-2.5 w-2.5 rounded-full ${n.status === "completed" ? "bg-amber-300" : n.is_current ? "bg-lime-500" : n.kind === "srs_campfire" ? "bg-orange-400" : n.kind === "repair" ? "bg-teal-300" : "bg-slate-200"}`} />
             <div>
               <span className="font-semibold">{n.kind === "srs_campfire" ? "🔥 " : n.kind === "repair" ? "🛠️ " : ""}{n.title}</span>
               <Stars n={n.stars} />
-              {n.recovered && <span className="ml-1 text-[11px] font-semibold text-sky-300">· fought back</span>}
+              {n.recovered && <span className="ml-1 text-[11px] font-semibold text-sky-600">· fought back</span>}
               <div className="text-xs opacity-50">
                 {n.kind === "srs_campfire"
                   ? `rest stop · ${n.due_count ?? 0} due`
@@ -510,12 +510,12 @@ export default function VoyagePath({ map, onAdvance, onCampfire }: Props) {
           </button>
         )}
         {foggedCount > 0 && (
-          <div className="rounded-xl border border-dashed border-white/15 px-3 py-2 text-center text-xs opacity-50">
+          <div className="rounded-xl border border-dashed border-slate-200 px-3 py-2 text-center text-xs opacity-50">
             🌫️ {foggedCount} more node{foggedCount === 1 ? "" : "s"} shrouded — clear the path to reveal them.
           </div>
         )}
         {foggedCount === 0 && nodes.length > 0 && (
-          <div className="rounded-xl border border-white/10 px-3 py-2 text-center text-xs opacity-50">
+          <div className="rounded-xl border border-slate-200 px-3 py-2 text-center text-xs opacity-50">
             🗺️ Charted waters end here — new regions unlock as verified content ships.
           </div>
         )}

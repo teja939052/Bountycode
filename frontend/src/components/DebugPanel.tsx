@@ -55,18 +55,18 @@ export default function DebugPanel() {
 
       {open && (
         <div className="fixed bottom-36 right-4 z-[9999] flex max-h-[70vh] w-[420px] max-w-[calc(100vw-2rem)] flex-col rounded-xl border border-cyber-red/30 bg-surface-2 shadow-2xl backdrop-blur">
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+          <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
             <div className="flex items-center gap-2 font-mono text-sm font-bold text-cyber-red">
               <Bug size={16} /> Error Tracker <span className="text-text-primary/40">({errors.length})</span>
             </div>
             <div className="flex items-center gap-2">
-              <button onClick={() => { clearTrackedErrors(); refresh(); }} className="text-text-primary/40 hover:text-white" title="Clear">
+              <button onClick={() => { clearTrackedErrors(); refresh(); }} className="text-text-primary/40 hover:text-slate-900" title="Clear">
                 <Trash2 size={16} />
               </button>
-              <button onClick={refresh} className="text-text-primary/40 hover:text-white" title="Refresh">
+              <button onClick={refresh} className="text-text-primary/40 hover:text-slate-900" title="Refresh">
                 <RefreshCw size={16} />
               </button>
-              <button onClick={() => setOpen(false)} className="text-text-primary/40 hover:text-white" title="Close">
+              <button onClick={() => setOpen(false)} className="text-text-primary/40 hover:text-slate-900" title="Close">
                 <X size={16} />
               </button>
             </div>
@@ -77,7 +77,7 @@ export default function DebugPanel() {
               <p className="font-mono text-xs text-text-primary/40">No errors tracked yet. Any crash, rejected promise, or console.error will show here and post to /api/v1/debug/log.</p>
             )}
             {errors.map((err, i) => (
-              <div key={i} className="rounded-lg border border-white/10 bg-white border-border shadow-card p-2">
+              <div key={i} className="rounded-lg border border-slate-200 bg-white border-border shadow-card p-2">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
                     <p className="break-words font-mono text-xs font-semibold text-cyber-red">{err.message}</p>
@@ -85,7 +85,7 @@ export default function DebugPanel() {
                       {err.component} · {err.url} · {err.at}
                     </p>
                   </div>
-                  <button onClick={() => copyText(`${err.message}\n\n${err.stack || ""}`)} className="shrink-0 text-text-primary/40 hover:text-white" title="Copy">
+                  <button onClick={() => copyText(`${err.message}\n\n${err.stack || ""}`)} className="shrink-0 text-text-primary/40 hover:text-slate-900" title="Copy">
                     <Copy size={14} />
                   </button>
                 </div>

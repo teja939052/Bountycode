@@ -202,7 +202,7 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
             onClick={() => setActiveSection(tab.id)}
             className={`flex items-center gap-1.5 border-b-2 px-3 py-2.5 text-xs font-medium transition-colors ${
               activeSection === tab.id
-                ? "border-[#4F8F57] text-nature-blossom"
+                ? "border-slate-200 text-nature-blossom"
                 : "border-transparent text-text-muted hover:text-text-primary"
             }`}
           >

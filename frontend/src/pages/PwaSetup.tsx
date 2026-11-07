@@ -18,7 +18,7 @@ function StatusPill({ online }) {
       className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border ${
         online
           ? "bg-nature-bark text-nature-blossom border-nature-leaf/30"
-          : "bg-amber-500/10 text-amber-400 border-amber-500/30"
+          : "bg-amber-500/10 text-amber-600 border-amber-500/30"
       }`}
     >
       {online ? <Wifi size={14} /> : <WifiOff size={14} />}
@@ -124,7 +124,7 @@ export default function PwaSetup() {
             <Smartphone className="w-7 h-7 text-nature-blossom" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-[#1F2937] via-[#4F8F57] to-[#7BB661] bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-100 via-slate-100 to-[#7BB661] bg-clip-text text-transparent">
               Offline & Notifications
             </h1>
             <p className="text-text-muted text-sm mt-1">
@@ -143,7 +143,7 @@ export default function PwaSetup() {
               className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                 isOnline
                   ? "bg-nature-bark text-nature-blossom"
-                  : "bg-amber-500/15 text-amber-400"
+                  : "bg-amber-500/15 text-amber-600"
               }`}
             >
               {isOnline ? <Wifi size={20} /> : <WifiOff size={20} />}
@@ -261,7 +261,7 @@ export default function PwaSetup() {
                 </p>
               </div>
             </div>
-            <span className="text-2xl font-bold font-mono bg-gradient-to-r from-[#4F8F57] to-[#7BB661] bg-clip-text text-transparent">
+            <span className="text-2xl font-bold font-mono bg-gradient-to-r from-slate-100 to-[#7BB661] bg-clip-text text-transparent">
               {cachedCount}
             </span>
           </motion.div>

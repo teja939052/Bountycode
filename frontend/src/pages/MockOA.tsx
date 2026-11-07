@@ -891,7 +891,7 @@ export default function MockOA() {
                           [currentQ]: !prev[currentQ],
                         }))
                       }
-                      className="flex items-center gap-2 text-xs font-mono text-gray-400 hover:text-text-primary transition-colors w-full"
+                      className="flex items-center gap-2 text-xs font-mono text-gray-500 hover:text-text-primary transition-colors w-full"
                     >
                       {showExplanation[currentQ] ? (
                         <EyeOff size={14} />
@@ -901,7 +901,7 @@ export default function MockOA() {
                       {showExplanation[currentQ] ? "Hide" : "Show"} Explanation
                     </button>
                     {showExplanation[currentQ] && (
-                      <p className="text-xs font-mono text-gray-400 mt-3 leading-relaxed">
+                      <p className="text-xs font-mono text-gray-500 mt-3 leading-relaxed">
                         {submittedAnswers[currentQ].explanation}
                       </p>
                     )}
@@ -978,7 +978,7 @@ export default function MockOA() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Unattempted</span>
-                    <span className="text-gray-400">
+                    <span className="text-gray-500">
                       {unattemptedCount}
                     </span>
                   </div>
@@ -1060,7 +1060,7 @@ export default function MockOA() {
               <p className="font-display font-bold text-cyber-amber mb-1">
                 Couldn't reach the server
               </p>
-              <p className="font-mono text-xs text-gray-400">
+              <p className="font-mono text-xs text-gray-500">
                 Your answers could not be submitted for grading. The scores
                 shown here are placeholders — no OA result was recorded and no
                 repair mission was started. Please check your connection and
@@ -1105,7 +1105,7 @@ export default function MockOA() {
               </div>
               <div className="w-px h-8 bg-space-border" />
               <div className="text-center">
-                <p className="font-display font-black text-2xl text-gray-400">
+                <p className="font-display font-black text-2xl text-gray-500">
                   {unattemptedCount}
                 </p>
                 <p className="font-mono text-[10px] text-gray-500 uppercase">
@@ -1274,7 +1274,7 @@ export default function MockOA() {
                           {chain.map((step, i) => (
                             <li
                               key={i}
-                              className="flex items-center gap-2 font-mono text-xs text-gray-300"
+                              className="flex items-center gap-2 font-mono text-xs text-gray-600"
                             >
                               <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded bg-cyber-red/10 text-[10px] font-bold text-cyber-red">
                                 {i + 1}
@@ -1433,7 +1433,7 @@ export default function MockOA() {
                                   <span className="text-cyber-blue font-bold shrink-0">
                                     {String.fromCharCode(65 + oi)}.
                                   </span>
-                                  <span className="text-gray-300 flex-1">
+                                  <span className="text-gray-600 flex-1">
                                     {opt}
                                   </span>
                                   <span className="shrink-0 flex items-center gap-1">

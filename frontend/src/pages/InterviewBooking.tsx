@@ -469,7 +469,7 @@ export default function InterviewBooking() {
                       });
                       setSelectedSlot(null);
                     }}
-                    className="px-5 py-2.5 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-medium text-brand-secondary hover:text-white transition-colors"
+                    className="px-5 py-2.5 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-medium text-brand-secondary hover:text-slate-900 transition-colors"
                   >
                     Cancel
                   </button>
@@ -538,7 +538,7 @@ export default function InterviewBooking() {
                   <button
                     onClick={() => setShowConfirmModal(false)}
                     disabled={submitting}
-                    className="flex-1 px-4 py-2.5 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-medium text-brand-secondary hover:text-white transition-colors disabled:opacity-50"
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-medium text-brand-secondary hover:text-slate-900 transition-colors disabled:opacity-50"
                   >
                     Back
                   </button>
@@ -567,7 +567,7 @@ export default function InterviewBooking() {
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === "book"
                     ? "text-brand-sky border-b-2 border-brand-sky bg-brand-sky/5"
-                    : "text-text-light hover:text-white"
+                    : "text-text-light hover:text-slate-900"
                 }`}
               >
                 Upcoming ({bookings.length})
@@ -577,7 +577,7 @@ export default function InterviewBooking() {
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === "history"
                     ? "text-brand-sky border-b-2 border-brand-sky bg-brand-sky/5"
-                    : "text-text-light hover:text-white"
+                    : "text-text-light hover:text-slate-900"
                 }`}
               >
                 History
@@ -608,7 +608,7 @@ export default function InterviewBooking() {
                         <motion.div
                           key={booking.id || booking.booking_id}
                           whileHover={{ scale: 1.005 }}
-                          className="rounded-xl border border-white/8 bg-white border-border/3 p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+                          className="rounded-xl border border-slate-200 bg-white border-border/3 p-5 flex flex-col sm:flex-row sm:items-center gap-4"
                         >
                           <div className="flex items-center gap-4 flex-1 min-w-0">
                             <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${STATUS_COLORS[booking.status] || STATUS_COLORS.scheduled}`}>
@@ -662,7 +662,7 @@ export default function InterviewBooking() {
                       className={`px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-colors ${
                         historyTab === tab
                           ? "bg-brand-sky/10 text-brand-sky border border-brand-sky/20"
-                          : "text-text-light hover:text-white"
+                          : "text-text-light hover:text-slate-900"
                       }`}
                     >
                       {tab === "all" ? "All" : tab.replace("_", " ")}
@@ -680,7 +680,7 @@ export default function InterviewBooking() {
                       <motion.div
                         key={booking.id || booking.booking_id}
                         whileHover={{ scale: 1.005 }}
-                        className="rounded-xl border border-white/8 bg-white border-border/3 p-4 flex flex-col sm:flex-row sm:items-center gap-4"
+                        className="rounded-xl border border-slate-200 bg-white border-border/3 p-4 flex flex-col sm:flex-row sm:items-center gap-4"
                       >
                         <div className="flex items-center gap-4 flex-1 min-w-0">
                             <div className="w-10 h-10 rounded-xl bg-surface-card/30 flex items-center justify-center border border-brand-primary/10">
@@ -710,7 +710,7 @@ export default function InterviewBooking() {
                                     api.booking.getBookingDetail(booking.id || booking.booking_id);
                                   }
                                 }}
-                                className="px-3 py-1.5 rounded-lg border border-brand-primary/10 bg-surface-card/30 text-xs font-medium text-brand-secondary hover:text-white transition-colors"
+                                className="px-3 py-1.5 rounded-lg border border-brand-primary/10 bg-surface-card/30 text-xs font-medium text-brand-secondary hover:text-slate-900 transition-colors"
                               >
                                 Review
                               </button>
@@ -733,7 +733,7 @@ export default function InterviewBooking() {
                                 api.booking.getBookingDetail(booking.id || booking.booking_id);
                               }
                             }}
-                            className="px-3 py-1.5 rounded-lg border border-brand-primary/10 bg-surface-card/30 text-xs font-medium text-brand-secondary hover:text-white transition-colors"
+                            className="px-3 py-1.5 rounded-lg border border-brand-primary/10 bg-surface-card/30 text-xs font-medium text-brand-secondary hover:text-slate-900 transition-colors"
                           >
                             View
                           </button>

@@ -54,12 +54,12 @@ export default function ForgotPassword() {
                   Email address
                 </label>
                 <div className="relative group">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300 group-focus-within:text-green-500 transition-colors" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 group-focus-within:text-green-500 transition-colors" />
                   <motion.input
                     id="email"
                     type="email"
                     required
-                    className="w-full pl-12 pr-4 py-3.5 border-2 border-gray-100 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all text-gray-900 placeholder-gray-400 text-base"
+                    className="w-full pl-12 pr-4 py-3.5 border-2 border-gray-100 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all text-gray-900 placeholder-gray-500 text-base"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -90,7 +90,7 @@ export default function ForgotPassword() {
                 transition={{ delay: 0.3 }}
               >
                 {loading ? (
-                  <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <span className="w-5 h-5 border-2 border-slate-200 border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <Send className="w-5 h-5" />
                 )}
@@ -103,7 +103,7 @@ export default function ForgotPassword() {
                 <div className="w-full border-t border-gray-200" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-400">or</span>
+                <span className="px-4 bg-white text-gray-500">or</span>
               </div>
             </div>
 
@@ -167,7 +167,7 @@ export default function ForgotPassword() {
 
               {message && (
                 <motion.div
-                  className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-sm text-green-600 bg-white/90 px-4 py-2 rounded-full shadow"
+                  className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-sm text-green-600 bg-white px-4 py-2 rounded-full shadow"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >

@@ -443,7 +443,7 @@ export default function TcsNqtSimulation() {
 
     return (
       <div className="min-h-screen">
-        <div className="sticky top-0 z-30 border-b border-black/5 bg-white/95 backdrop-blur">
+        <div className="sticky top-0 z-30 border-b border-black/5 bg-white backdrop-blur">
           <div className="max-w-7xl mx-auto px-4 py-2.5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 min-w-0">
@@ -543,7 +543,7 @@ export default function TcsNqtSimulation() {
                       placeholder={Object.keys(q.starter_code || {}).length
                         ? (q.starter_code || {}).python
                         : "# def solve(...):\n#   ..."}
-                      className="w-full rounded-xl border border-black/10 bg-[#0d1117] p-4 font-mono text-xs text-emerald-300 focus:border-cyber-blue/60 focus:outline-none"
+                      className="w-full rounded-xl border border-black/10 bg-white p-4 font-mono text-xs text-emerald-600 focus:border-cyber-blue/60 focus:outline-none"
                     />
                     <button
                       onClick={() => submitCurrentAnswer(typeof answers[currentQ] === "string" ? answers[currentQ] : codeDraft)}
@@ -596,7 +596,7 @@ export default function TcsNqtSimulation() {
                         onClick={() => navigateQuestion(i)}
                         className={`h-8 rounded-lg font-mono text-[11px] font-bold border transition-all ${
                           isCurrent
-                            ? "bg-nature-blossom text-white border-nature-blossom scale-110"
+                            ? "bg-nature-blossom text-slate-900 border-nature-blossom scale-110"
                             : isAnswered
                             ? "bg-emerald-100 text-emerald-700 border-emerald-200"
                             : "bg-white text-text-muted border-black/5 hover:border-nature-blossom/50"

@@ -40,7 +40,7 @@ export default function BadgeCard({
         </div>
         <button
           onClick={copy}
-          className="shrink-0 rounded-xl bg-accent-warm px-3 py-2 text-xs font-bold text-white"
+          className="shrink-0 rounded-xl bg-accent-warm px-3 py-2 text-xs font-bold text-slate-900"
         >
           {copied ? "Copied!" : "Copy embed"}
         </button>

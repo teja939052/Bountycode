@@ -76,7 +76,7 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-soft-lg border border-white/60"
+            className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-soft-lg border border-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-4">
@@ -95,13 +95,13 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
             </div>
 
             <div className="grid grid-cols-2 gap-3 mb-4">
-              <div className="rounded-2xl border border-white/60 bg-brand-primary/5 p-3 text-center">
+              <div className="rounded-2xl border border-slate-200 bg-brand-primary/5 p-3 text-center">
                 <Shield size={16} className="mx-auto text-sky-500 mb-1" />
                 <div className="text-2xl font-display font-bold text-text-primary">{freezes}</div>
                 <div className="text-[10px] font-mono text-text-light">freezes held</div>
               </div>
-              <div className="rounded-2xl border border-white/60 bg-brand-primary/5 p-3 text-center">
-                <Flame size={16} className={`mx-auto mb-1 ${danger ? "text-red-500" : "text-orange-400"}`} />
+              <div className="rounded-2xl border border-slate-200 bg-brand-primary/5 p-3 text-center">
+                <Flame size={16} className={`mx-auto mb-1 ${danger ? "text-red-500" : "text-orange-600"}`} />
                 <div className="text-2xl font-display font-bold text-text-primary">{status?.streak || 0}</div>
                 <div className="text-[10px] font-mono text-text-light">day streak</div>
               </div>
@@ -132,18 +132,18 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
             <button
               onClick={handleBuy}
               disabled={buying}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 text-text-primary font-display font-bold text-sm disabled:opacity-50 shadow-soft-md hover:shadow-soft-lg transition-shadow"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-display font-bold text-sm disabled:opacity-50 shadow-soft-md hover:shadow-soft-lg transition-shadow"
             >
               {buying ? (
                 <span className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-slate-200 border-t-white rounded-full animate-spin" />
                   Buying...
                 </span>
               ) : (
                 <>
                   <Snowflake size={16} />
                   Buy Streak Freeze
-                  <Coins size={14} className="text-yellow-300" />
+                  <Coins size={14} className="text-yellow-600" />
                   {cost}
                 </>
               )}

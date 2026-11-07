@@ -142,14 +142,14 @@ export default function AdminDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-3">
-              <Shield size={14} className="text-red-400" />
-              <span className="text-xs font-mono text-red-400 tracking-wider">ADMIN ONLY</span>
+              <Shield size={14} className="text-red-600" />
+              <span className="text-xs font-mono text-red-600 tracking-wider">ADMIN ONLY</span>
             </div>
             <h1 className="text-3xl font-display font-black text-text-primary">Analytics Console</h1>
             <p className="text-sm text-gray-500 font-mono mt-1">Real-time platform intelligence</p>
           </div>
           <button onClick={handleRefresh} disabled={refreshing}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-border shadow-card border border-white/10 text-gray-400 text-sm font-mono hover:text-text-primary transition-all">
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-border shadow-card border border-slate-200 text-gray-500 text-sm font-mono hover:text-text-primary transition-all">
             <RefreshCw size={14} className={refreshing ? "animate-spin" : ""} />
             Refresh
           </button>
@@ -159,8 +159,8 @@ export default function AdminDashboard() {
       {/* Content-trust admin tools */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
         <button onClick={() => navigate("/admin/exam-review")}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all text-left">
-          <ShieldCheck size={18} className="text-emerald-400 shrink-0" />
+          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all text-left">
+          <ShieldCheck size={18} className="text-emerald-600 shrink-0" />
           <span>
             <span className="block text-sm font-mono text-text-primary">Exam Memory Review</span>
             <span className="block text-[11px] font-mono text-gray-500">Promote crowdsourced recollections into the live bank</span>
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
           <ArrowUpRight size={15} className="ml-auto text-gray-500 shrink-0" />
         </button>
         <button onClick={() => navigate("/admin/content-corpus")}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-sky-500/30 hover:bg-sky-500/5 transition-all text-left">
+          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-sky-500/30 hover:bg-sky-500/5 transition-all text-left">
           <ListTree size={18} className="text-brand-sky shrink-0" />
           <span>
             <span className="block text-sm font-mono text-text-primary">Content Corpus</span>
@@ -182,19 +182,19 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
         <StatCard icon={Eye} label="Today Views" value={realtime?.today_views || 0} color="text-brand-sky" delay={0} />
         <StatCard icon={Users} label="Today Unique" value={realtime?.today_unique || 0} color="text-brand-teal" delay={0.05} />
-        <StatCard icon={Activity} label="Active (1hr)" value={realtime?.active_last_hour || 0} color="text-orange-400" delay={0.1} />
+        <StatCard icon={Activity} label="Active (1hr)" value={realtime?.active_last_hour || 0} color="text-orange-600" delay={0.1} />
         <StatCard icon={Crown} label="Total Users" value={realtime?.total_users || 0} color="text-brand-lavender" delay={0.15} />
-        <StatCard icon={UserCheck} label="Active Today" value={userSummary?.active_today || realtime?.today_unique || 0} color="text-emerald-400" delay={0.2} />
+        <StatCard icon={UserCheck} label="Active Today" value={userSummary?.active_today || realtime?.today_unique || 0} color="text-emerald-600" delay={0.2} />
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-6 p-1 bg-white/[0.03] rounded-xl border border-white/5 overflow-x-auto">
+      <div className="flex gap-1 mb-6 p-1 bg-slate-50 rounded-xl border border-slate-200 overflow-x-auto">
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono transition-all whitespace-nowrap ${
               tab === t.key
-                ? "bg-white border-border/10 text-text-primary border border-white/10"
-                : "text-gray-500 hover:text-gray-300"
+                ? "bg-white border-border/10 text-text-primary border border-slate-200"
+                : "text-gray-500 hover:text-gray-600"
             }`}>
             <t.icon size={14} />
             {t.label}
@@ -209,12 +209,12 @@ export default function AdminDashboard() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="glass rounded-xl p-6">
             <h3 className="font-display font-bold text-text-primary mb-4 flex items-center gap-2">
-              <Shield size={18} className={health?.status === "healthy" ? "text-emerald-400" : "text-amber-400"} />
+              <Shield size={18} className={health?.status === "healthy" ? "text-emerald-600" : "text-amber-600"} />
               System Health
               <span className={`ml-auto text-[10px] font-mono px-2 py-1 rounded-full border ${
                 health?.status === "healthy"
-                  ? "border-emerald-500/30 text-emerald-400 bg-emerald-500/10"
-                  : "border-amber-500/30 text-amber-400 bg-amber-500/10"
+                  ? "border-emerald-500/30 text-emerald-600 bg-emerald-500/10"
+                  : "border-amber-500/30 text-amber-600 bg-amber-500/10"
               }`}>
                 {health?.status || "unknown"}
               </span>
@@ -226,11 +226,11 @@ export default function AdminDashboard() {
               <HealthChip icon={Server} label="Memory" value={health?.memory_mb != null ? `${health.memory_mb} MB` : "n/a"} tone="info" />
             </div>
             {health?.metrics?.failures && Object.keys(health.metrics.failures).length > 0 && (
-              <div className="rounded-lg bg-white/[0.02] border border-white/5 p-3 mt-3">
+              <div className="rounded-lg bg-slate-50 border border-slate-200 p-3 mt-3">
                 <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-gray-500 mb-2">Recent failures</div>
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(health.metrics.failures).slice(0, 6).map(([service, count]: [string, any]) => (
-                    <span key={service} className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] bg-red-500/10 text-red-300 border border-red-500/20">
+                    <span key={service} className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] bg-red-500/10 text-red-600 border border-red-500/20">
                       <XCircle size={10} /> {service}: {count}
                     </span>
                   ))}
@@ -260,7 +260,7 @@ export default function AdminDashboard() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
               className="glass rounded-xl p-6">
               <h3 className="font-display font-bold text-text-primary mb-4 flex items-center gap-2">
-                <Clock size={18} className="text-yellow-400" /> Traffic by Hour (7d)
+                <Clock size={18} className="text-yellow-600" /> Traffic by Hour (7d)
               </h3>
               {hourly.length > 0 ? (
                 <div className="space-y-1 max-h-64 overflow-y-auto pr-1">
@@ -287,22 +287,22 @@ export default function AdminDashboard() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
               className="glass rounded-xl p-6">
               <h3 className="font-display font-bold text-text-primary mb-4 flex items-center gap-2">
-                <UserCheck size={18} className="text-emerald-400" /> Visitor Retention (30d)
+                <UserCheck size={18} className="text-emerald-600" /> Visitor Retention (30d)
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
+                <div className="text-center p-3 rounded-lg bg-slate-50">
                   <p className="text-2xl font-display font-black text-brand-sky">{retention.total_visitors || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">Total Visitors</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
-                  <p className="text-2xl font-display font-black text-emerald-400">{retention.new_users || 0}</p>
+                <div className="text-center p-3 rounded-lg bg-slate-50">
+                  <p className="text-2xl font-display font-black text-emerald-600">{retention.new_users || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">New Visitors</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
-                  <p className="text-2xl font-display font-black text-amber-400">{retention.returning_users || 0}</p>
+                <div className="text-center p-3 rounded-lg bg-slate-50">
+                  <p className="text-2xl font-display font-black text-amber-600">{retention.returning_users || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">Returning Visitors</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
+                <div className="text-center p-3 rounded-lg bg-slate-50">
                   <p className="text-2xl font-display font-black text-brand-lavender">{retention.retention_rate || 0}%</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">Retention Rate</p>
                 </div>
@@ -318,24 +318,24 @@ export default function AdminDashboard() {
                 <Users size={18} className="text-brand-lavender" /> User Summary
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
+                <div className="text-center p-3 rounded-lg bg-slate-50">
                   <p className="text-xl font-display font-black text-text-primary">{userSummary.total_users || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">Total Users</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
-                  <p className="text-xl font-display font-black text-emerald-400">{userSummary.plan_counts?.pro || 0}</p>
+                  <p className="text-xl font-display font-black text-emerald-600">{userSummary.plan_counts?.pro || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">Pro Users</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
-                  <p className="text-xl font-display font-black text-gray-400">{userSummary.plan_counts?.free || 0}</p>
+                <div className="text-center p-3 rounded-lg bg-slate-50">
+                  <p className="text-xl font-display font-black text-gray-500">{userSummary.plan_counts?.free || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">Free Users</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
+                <div className="text-center p-3 rounded-lg bg-slate-50">
                   <p className="text-xl font-display font-black text-brand-sky">{userSummary.new_today || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">New Today</p>
                 </div>
-                <div className="text-center p-3 rounded-lg bg-white/[0.02]">
-                  <p className="text-xl font-display font-black text-amber-400">{userSummary.new_this_week || 0}</p>
+                <div className="text-center p-3 rounded-lg bg-slate-50">
+                  <p className="text-xl font-display font-black text-amber-600">{userSummary.new_this_week || 0}</p>
                   <p className="text-[10px] font-mono text-gray-500 mt-1">New This Week</p>
                 </div>
               </div>
@@ -356,7 +356,7 @@ export default function AdminDashboard() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/5">
+                  <tr className="border-b border-slate-200">
                     <th className="text-left py-2 px-3 text-[10px] font-mono text-gray-500 uppercase tracking-wider">#</th>
                     <th className="text-left py-2 px-3 text-[10px] font-mono text-gray-500 uppercase tracking-wider">User</th>
                     <th className="text-left py-2 px-3 text-[10px] font-mono text-gray-500 uppercase tracking-wider">Plan</th>
@@ -367,30 +367,30 @@ export default function AdminDashboard() {
                 </thead>
                 <tbody>
                   {users.map((u: any, i: number) => (
-                    <tr key={i} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors">
+                    <tr key={i} className="border-b border-slate-200 hover:bg-slate-50 transition-colors">
                       <td className="py-2.5 px-3 font-mono text-gray-600 text-xs">{i + 1}</td>
                       <td className="py-2.5 px-3">
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono text-gray-400">
+                          <div className="w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono text-gray-500">
                             {(u.name || u.email || "?")[0].toUpperCase()}
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm text-gray-300 truncate">{u.name || "Anonymous"}</p>
+                            <p className="text-sm text-gray-600 truncate">{u.name || "Anonymous"}</p>
                             <p className="text-[10px] text-gray-600 font-mono truncate">{u.email || u.user_id?.slice(0, 12) + "..."}</p>
                           </div>
                         </div>
                       </td>
                       <td className="py-2.5 px-3">
                         <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
-                          u.plan === "pro" ? "border-emerald-500/30 text-emerald-400 bg-emerald-500/10"
-                          : u.plan === "lifetime" ? "border-amber-500/30 text-amber-400 bg-amber-500/10"
-                          : "border-white/10 text-gray-500 bg-white/[0.03]"
+                          u.plan === "pro" ? "border-emerald-500/30 text-emerald-600 bg-emerald-500/10"
+                          : u.plan === "lifetime" ? "border-amber-500/30 text-amber-600 bg-amber-500/10"
+                          : "border-slate-200 text-gray-500 bg-slate-50"
                         }`}>
                           {u.plan || "free"}
                         </span>
                       </td>
                       <td className="py-2.5 px-3 text-right font-mono text-sm text-brand-sky">{u.total_views}</td>
-                      <td className="py-2.5 px-3 text-right font-mono text-sm text-gray-400">{u.pages_count}</td>
+                      <td className="py-2.5 px-3 text-right font-mono text-sm text-gray-500">{u.pages_count}</td>
                       <td className="py-2.5 px-3 text-right font-mono text-[10px] text-gray-600">
                         {u.last_active ? new Date(u.last_active).toLocaleDateString() : "—"}
                       </td>
@@ -417,13 +417,13 @@ export default function AdminDashboard() {
                 const maxViews = pages[0]?.views || 1;
                 const pct = Math.round((p.views / maxViews) * 100);
                 return (
-                  <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+                  <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-50 transition-colors">
                     <span className="w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono text-gray-500 shrink-0">
                       {i + 1}
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-sm font-mono text-gray-300 truncate">{p.path || p._id}</span>
+                        <span className="text-sm font-mono text-gray-600 truncate">{p.path || p._id}</span>
                         <span className="text-xs font-mono text-brand-sky shrink-0 ml-2">{p.views} views</span>
                       </div>
                       <div className="h-1 bg-white border-border shadow-card rounded-full overflow-hidden">
@@ -443,7 +443,7 @@ export default function AdminDashboard() {
       {tab === "features" && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass rounded-xl p-6">
           <h3 className="font-display font-bold text-text-primary mb-4 flex items-center gap-2">
-            <Zap size={18} className="text-amber-400" /> Feature Usage (30d)
+            <Zap size={18} className="text-amber-600" /> Feature Usage (30d)
           </h3>
           {features.length === 0 ? (
             <EmptyState text="No feature usage data yet" />
@@ -452,16 +452,16 @@ export default function AdminDashboard() {
               {features.map((f: any, i: number) => {
                 const maxUses = features[0]?.uses || 1;
                 const pct = Math.round((f.uses / maxUses) * 100);
-                const colors = ["text-brand-sky", "text-brand-teal", "text-amber-400", "text-emerald-400", "text-brand-lavender"];
+                const colors = ["text-brand-sky", "text-brand-teal", "text-amber-600", "text-emerald-600", "text-brand-lavender"];
                 return (
-                  <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+                  <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50 hover:bg-slate-50 transition-colors">
                     <span className={`w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono shrink-0 ${colors[i % colors.length]}`}>
                       {i + 1}
                     </span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-sm font-mono text-gray-300 truncate">{f.feature || f._id}</span>
-                        <span className="text-xs font-mono text-amber-400 shrink-0 ml-2">{f.uses} uses</span>
+                        <span className="text-sm font-mono text-gray-600 truncate">{f.feature || f._id}</span>
+                        <span className="text-xs font-mono text-amber-600 shrink-0 ml-2">{f.uses} uses</span>
                       </div>
                       <div className="h-1 bg-white border-border shadow-card rounded-full overflow-hidden">
                         <div className="h-full bg-amber-500/40 rounded-full" style={{ width: `${pct}%` }} />
@@ -491,13 +491,13 @@ export default function AdminDashboard() {
                   const maxVisits = geo[0]?.visits || 1;
                   const pct = Math.round((g.visits / maxVisits) * 100);
                   return (
-                    <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02]">
+                    <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-slate-50">
                       <span className="w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono text-gray-500 shrink-0">
                         {i + 1}
                       </span>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-mono text-gray-300">{g.ip || g._id || "unknown"}</span>
+                          <span className="text-sm font-mono text-gray-600">{g.ip || g._id || "unknown"}</span>
                           <span className="text-xs font-mono text-brand-teal shrink-0 ml-2">{g.visits} visits</span>
                         </div>
                         <div className="h-1 bg-white border-border shadow-card rounded-full overflow-hidden">
@@ -515,19 +515,19 @@ export default function AdminDashboard() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}
               className="glass rounded-xl p-6">
               <h3 className="font-display font-bold text-text-primary mb-4 flex items-center gap-2">
-                <UserCheck size={18} className="text-emerald-400" /> Retention (30d)
+                <UserCheck size={18} className="text-emerald-600" /> Retention (30d)
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-4 rounded-lg bg-white/[0.02]">
+                <div className="text-center p-4 rounded-lg bg-slate-50">
                   <p className="text-3xl font-display font-black text-brand-sky">{retention.total_visitors || 0}</p>
                   <p className="text-xs font-mono text-gray-500 mt-2">Total Visitors</p>
                 </div>
                 <div className="text-center p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
-                  <p className="text-3xl font-display font-black text-emerald-400">{retention.new_users || 0}</p>
+                  <p className="text-3xl font-display font-black text-emerald-600">{retention.new_users || 0}</p>
                   <p className="text-xs font-mono text-gray-500 mt-2">New</p>
                 </div>
                 <div className="text-center p-4 rounded-lg bg-amber-500/5 border border-amber-500/10">
-                  <p className="text-3xl font-display font-black text-amber-400">{retention.returning_users || 0}</p>
+                  <p className="text-3xl font-display font-black text-amber-600">{retention.returning_users || 0}</p>
                   <p className="text-xs font-mono text-gray-500 mt-2">Returning</p>
                 </div>
                 <div className="text-center p-4 rounded-lg bg-brand-lavender/5 border border-brand-lavender/10">
@@ -557,9 +557,9 @@ function EmptyState({ text }: { text: string }) {
 
 function HealthChip({ icon: Icon, label, value, tone = "info" }: any) {
   const toneClasses: Record<string, string> = {
-    good: "border-emerald-500/20 bg-emerald-500/10 text-emerald-300",
-    warn: "border-amber-500/20 bg-amber-500/10 text-amber-300",
-    info: "border-white/10 bg-white/[0.03] text-gray-300",
+    good: "border-emerald-500/20 bg-emerald-500/10 text-emerald-600",
+    warn: "border-amber-500/20 bg-amber-500/10 text-amber-600",
+    info: "border-slate-200 bg-slate-50 text-gray-600",
   };
   return (
     <div className={`rounded-xl border p-3 ${toneClasses[tone] || toneClasses.info}`}>

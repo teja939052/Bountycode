@@ -34,21 +34,21 @@ export const StaminaDepletedModal: React.FC<StaminaDepletedModalProps> = ({ visi
             <h3 className="font-bold text-2xl text-text-primary mb-4 font-heading">
               Stamina Depleted!
             </h3>
-            <p className="text-sm text-gray-400 font-mono mb-6">
+            <p className="text-sm text-gray-500 font-mono mb-6">
               You've used all {3} free problems today. Upgrade to Pro for:
             </p>
             <ul className="space-y-2 mb-6 text-left">
               <li className="flex items-start gap-2 text-sm">
                 <span className="text-cyber-green font-bold">✓</span>
-                <span className="text-gray-300">Unlimited problems — no daily cap</span>
+                <span className="text-gray-600">Unlimited problems — no daily cap</span>
               </li>
               <li className="flex items-start gap-2 text-sm">
                 <span className="text-cyber-green font-bold">✓</span>
-                <span className="text-gray-300">53 company-specific question banks</span>
+                <span className="text-gray-600">53 company-specific question banks</span>
               </li>
               <li className="flex items-start gap-2 text-sm">
                 <span className="text-cyber-green font-bold">✓</span>
-                <span className="text-gray-300">Curated questions only (no templates)</span>
+                <span className="text-gray-600">Curated questions only (no templates)</span>
               </li>
             </ul>
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6">
@@ -58,13 +58,13 @@ export const StaminaDepletedModal: React.FC<StaminaDepletedModalProps> = ({ visi
             </div>
             <button
               onClick={handleUpgrade}
-              className="w-full py-3 px-4 bg-cyber-green text-white font-bold rounded-xl hover:shadow-lg transition-all border-b-2 border-cyber-green active:border-b-0 active:translate-y-[2px]"
+              className="w-full py-3 px-4 bg-cyber-green text-slate-900 font-bold rounded-xl hover:shadow-lg transition-all border-b-2 border-cyber-green active:border-b-0 active:translate-y-[2px]"
             >
               Unlock Pro Pass
             </button>
             <button
               onClick={onClose}
-              className="mt-3 text-xs text-gray-500 hover:text-gray-400 font-mono"
+              className="mt-3 text-xs text-gray-500 hover:text-gray-500 font-mono"
             >
               Keep browsing for now
             </button>

@@ -57,7 +57,7 @@ function getComplexityKey(algoId, algoName) {
 }
 
 function Badge({ children, color = "indigo" }) {
-  const map = { indigo: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30", emerald: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30", amber: "bg-amber-500/20 text-amber-300 border-amber-500/30", blue: "bg-blue-500/20 text-blue-300 border-blue-500/30", purple: "bg-purple-500/20 text-purple-300 border-purple-500/30", cyan: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30" };
+  const map = { indigo: "bg-indigo-500/20 text-indigo-600 border-indigo-500/30", emerald: "bg-emerald-500/20 text-emerald-600 border-emerald-500/30", amber: "bg-amber-500/20 text-amber-600 border-amber-500/30", blue: "bg-blue-500/20 text-blue-600 border-blue-500/30", purple: "bg-purple-500/20 text-purple-600 border-purple-500/30", cyan: "bg-cyan-500/20 text-cyan-600 border-cyan-500/30" };
   return <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold border ${map[color] || map.indigo}`}>{children}</span>;
 }
 
@@ -93,7 +93,7 @@ function ComparisonCard({ comparison, index, onClick }) {
   );
 }
 
-function StatsRow({ label, value1, value2, color1 = "text-cyan-400", color2 = "text-purple-400" }) {
+function StatsRow({ label, value1, value2, color1 = "text-cyan-600", color2 = "text-purple-600" }) {
   return (
     <div className="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-2 border border-black/10">
       <span className="text-xs text-brand-secondary font-mono w-20 shrink-0">{label}</span>
@@ -237,7 +237,7 @@ export default function CompareVisualizer() {
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 pixel-float">
+          <div className="p-2.5 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-600 pixel-float">
             <Share2 className="w-5 h-5" />
           </div>
           <div>
@@ -248,7 +248,7 @@ export default function CompareVisualizer() {
       </motion.div>
 
       {error && (
-        <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm">
+        <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 text-sm">
           {error}
         </div>
       )}
@@ -307,18 +307,18 @@ export default function CompareVisualizer() {
                   <div className="relative z-10 flex flex-col gap-4">
                     <div className="flex items-center justify-between pb-3 border-b border-black/10">
                       <div className="flex items-center gap-3">
-                        <Cpu className="w-4 h-4 text-indigo-400" />
+                        <Cpu className="w-4 h-4 text-indigo-600" />
                         <span className="text-xs font-bold text-brand-secondary uppercase tracking-wider font-mono">Complexity Comparison</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="text-xs font-mono text-indigo-400 font-bold">{algo1?.name || "Algo 1"}</span>
+                        <span className="text-xs font-mono text-indigo-600 font-bold">{algo1?.name || "Algo 1"}</span>
                         <span className="text-[10px] text-slate-600 font-bold">⚡</span>
-                        <span className="text-xs font-mono text-purple-400 font-bold">{algo2?.name || "Algo 2"}</span>
+                        <span className="text-xs font-mono text-purple-600 font-bold">{algo2?.name || "Algo 2"}</span>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 gap-2">
-                      <StatsRow label="Time" value1={algo1Trace?.time_complexity || "—"} value2={algo2Trace?.time_complexity || "—"} color1="text-cyan-400" color2="text-purple-400" />
-                      <StatsRow label="Space" value1={algo1Trace?.space_complexity || "—"} value2={algo2Trace?.space_complexity || "—"} color1="text-emerald-400" color2="text-amber-400" />
+                      <StatsRow label="Time" value1={algo1Trace?.time_complexity || "—"} value2={algo2Trace?.time_complexity || "—"} color1="text-cyan-600" color2="text-purple-600" />
+                      <StatsRow label="Space" value1={algo1Trace?.space_complexity || "—"} value2={algo2Trace?.space_complexity || "—"} color1="text-emerald-600" color2="text-amber-600" />
                     </div>
                     <div className="flex flex-wrap items-center gap-3 pt-2">
                       <Badge color="indigo">{algo1?.type || "Algo"}</Badge>
@@ -338,7 +338,7 @@ export default function CompareVisualizer() {
                     <button onClick={handleResetAll} className="p-2 rounded-lg bg-white border border-black/10 hover:bg-surface-2 text-text-primary transition-colors" title="Reset All">
                       <RotateCcw className="w-4 h-4" />
                     </button>
-                    <button onClick={handlePlayAll} className="px-4 py-2 rounded-xl font-medium text-xs flex items-center gap-2 transition-all bg-indigo-600 hover:bg-indigo-500 text-text-primary shadow-lg shadow-indigo-600/25">
+                    <button onClick={handlePlayAll} className="px-4 py-2 rounded-xl font-medium text-xs flex items-center gap-2 transition-all bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25">
                       <Play className="w-3.5 h-3.5 fill-current" /> Play Both
                     </button>
                   </div>
@@ -361,7 +361,7 @@ export default function CompareVisualizer() {
                   <div ref={viz1Ref} className="flex flex-col gap-3">
                     <div className="flex items-center gap-2 px-1">
                       <div className="w-2 h-2 rounded-full bg-indigo-500" />
-                      <span className="text-xs font-mono font-bold text-indigo-300">{algo1?.name || "Algorithm 1"}</span>
+                      <span className="text-xs font-mono font-bold text-indigo-600">{algo1?.name || "Algorithm 1"}</span>
                       <span className="text-[10px] text-slate-500 font-mono">· {algo1?.id}</span>
                     </div>
                     {algo1Trace ? (
@@ -377,7 +377,7 @@ export default function CompareVisualizer() {
                   <div ref={viz2Ref} className="flex flex-col gap-3">
                     <div className="flex items-center gap-2 px-1">
                       <div className="w-2 h-2 rounded-full bg-purple-500" />
-                      <span className="text-xs font-mono font-bold text-purple-300">{algo2?.name || "Algorithm 2"}</span>
+                      <span className="text-xs font-mono font-bold text-purple-600">{algo2?.name || "Algorithm 2"}</span>
                       <span className="text-[10px] text-slate-500 font-mono">· {algo2?.id}</span>
                     </div>
                     {algo2Trace ? (

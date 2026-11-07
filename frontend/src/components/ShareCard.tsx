@@ -12,7 +12,7 @@ export default function ShareCard({ user, stats, onClose }) {
     try {
       const html2canvas = (await import('html2canvas')).default;
       const canvas = await html2canvas(cardRef.current, {
-        backgroundColor: '#0B0C10',
+        backgroundColor: '#FFFFFF',
         scale: 2,
         useCORS: true,
       });
@@ -37,9 +37,9 @@ export default function ShareCard({ user, stats, onClose }) {
   return (
     <div className="space-y-4">
       {/* Shareable Card */}
-      <div ref={cardRef} className="rounded-2xl overflow-hidden border border-gray-700/30" style={{ background: 'linear-gradient(135deg, #0B0C10 0%, #111318 50%, #0B0C10 100%)' }}>
+      <div ref={cardRef} className="rounded-2xl overflow-hidden border border-slate-100" style={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 50%, #FFFFFF 100%)' }}>
         {/* Header */}
-        <div className="p-6 text-center border-b border-gray-700/20">
+        <div className="p-6 text-center border-b border-slate-100">
           <div className="flex items-center justify-center gap-2 mb-3">
             <div className="w-8 h-8 bg-gradient-to-br from-cyber-blue to-cyber-purple rounded-lg flex items-center justify-center">
               <span className="text-text-primary text-sm font-bold">⚡</span>
@@ -61,13 +61,13 @@ export default function ShareCard({ user, stats, onClose }) {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-3 gap-px bg-gray-700/10">
+        <div className="grid grid-cols-3 gap-px bg-slate-100">
           {[
             { value: stats?.total_solved || 0, label: 'Problems', color: '#22C55E' },
             { value: `${stats?.streak || 0}🔥`, label: 'Day Streak', color: '#EAB308' },
             { value: (user?.diamonds || 0).toLocaleString(), label: 'Diamonds', color: '#3B82F6' },
           ].map((stat) => (
-            <div key={stat.label} className="bg-[#0B0C10] p-4 text-center">
+            <div key={stat.label} className="bg-slate-100 p-4 text-center">
               <p className="text-xl font-display font-black" style={{ color: stat.color }}>{stat.value}</p>
               <p className="text-[9px] font-mono text-gray-500 uppercase tracking-wider mt-1">{stat.label}</p>
             </div>
@@ -75,7 +75,7 @@ export default function ShareCard({ user, stats, onClose }) {
         </div>
 
         {/* Bottom */}
-        <div className="p-4 text-center border-t border-gray-700/20">
+        <div className="p-4 text-center border-t border-slate-100">
           <p className="text-[9px] font-mono text-gray-600">bountycode.in · Power your placement prep</p>
         </div>
       </div>

@@ -45,14 +45,14 @@ const FOCUS_LESSON_MAP: Record<string, { label: string; route: string }> = {
 const KIND_COLORS: Record<string, string> = {
   Drive: "bg-cyber-blue/15 text-cyber-blue border-cyber-blue/30",
   Internship: "bg-cyber-green/15 text-cyber-green border-cyber-green/30",
-  Exam: "bg-purple-500/15 text-purple-300 border-purple-500/30",
-  Hackathon: "bg-amber-500/15 text-amber-300 border-amber-500/30",
-  "Off-campus": "bg-pink-500/15 text-pink-300 border-pink-500/30",
-  Results: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-  "Pre-placement Talk": "bg-sky-500/15 text-sky-300 border-sky-500/30",
-  deadline: "bg-red-500/15 text-red-300 border-red-500/30",
-  "Open Role": "bg-indigo-500/15 text-indigo-300 border-indigo-500/30",
-  Referral: "bg-teal-500/15 text-teal-300 border-teal-500/30",
+  Exam: "bg-purple-500/15 text-purple-600 border-purple-500/30",
+  Hackathon: "bg-amber-500/15 text-amber-600 border-amber-500/30",
+  "Off-campus": "bg-pink-500/15 text-pink-600 border-pink-500/30",
+  Results: "bg-emerald-500/15 text-emerald-600 border-emerald-500/30",
+  "Pre-placement Talk": "bg-sky-500/15 text-sky-600 border-sky-500/30",
+  deadline: "bg-red-500/15 text-red-600 border-red-500/30",
+  "Open Role": "bg-indigo-500/15 text-indigo-600 border-indigo-500/30",
+  Referral: "bg-teal-500/15 text-teal-600 border-teal-500/30",
 };
 
 // Novel, differentiated things job seekers actually pay for (beyond a flat subscription).
@@ -190,7 +190,7 @@ export default function PlacementCalendar() {
         <div className="text-center mb-8">
           <span className="section-subheader block mb-2">2026 – 2027 Hiring Season</span>
           <h1 className="section-header text-4xl mb-2">Placement & Internship <span className="text-cyber-blue">Calendar</span></h1>
-          <p className="text-gray-400 font-mono text-sm">140+ companies, what they ask, how to prepare, and when they hire.</p>
+          <p className="text-gray-500 font-mono text-sm">140+ companies, what they ask, how to prepare, and when they hire.</p>
         </div>
 
         <div className="flex justify-center gap-2 mb-8 flex-wrap">
@@ -225,7 +225,7 @@ export default function PlacementCalendar() {
                       <div key={i} className="rounded-lg border border-space-border bg-space-panel/60 p-3">
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-mono text-xs text-text-primary">{ev.title}</span>
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full border ${KIND_COLORS[ev.kind] || "border-gray-500/30 text-gray-400"}`}>{ev.kind}</span>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full border ${KIND_COLORS[ev.kind] || "border-slate-100 text-gray-500"}`}>{ev.kind}</span>
                         </div>
                         <div className="flex flex-wrap gap-1 mb-1">
                           {ev.companies.map((c) => (
@@ -249,17 +249,17 @@ export default function PlacementCalendar() {
               <div className="flex items-center gap-2 flex-1 bg-space-panel border border-space-border rounded-lg px-3">
                 <Search size={16} className="text-gray-500" />
                 <input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === "Enter" && loadCompanies()} placeholder="Search company, role, skill…"
-                  className="flex-1 bg-transparent py-2 text-sm text-gray-200 focus:outline-none" />
+                  className="flex-1 bg-transparent py-2 text-sm text-gray-700 focus:outline-none" />
               </div>
-              <select value={type} onChange={(e) => setType(e.target.value)} className="bg-space-panel border border-space-border rounded-lg px-3 py-2 text-sm text-gray-200">
+              <select value={type} onChange={(e) => setType(e.target.value)} className="bg-space-panel border border-space-border rounded-lg px-3 py-2 text-sm text-gray-700">
                 <option value="">All types</option>
                 {filters.types.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
-              <select value={tier} onChange={(e) => setTier(e.target.value)} className="bg-space-panel border border-space-border rounded-lg px-3 py-2 text-sm text-gray-200">
+              <select value={tier} onChange={(e) => setTier(e.target.value)} className="bg-space-panel border border-space-border rounded-lg px-3 py-2 text-sm text-gray-700">
                 <option value="">All tiers</option>
                 {filters.tiers.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
-              <select value={month} onChange={(e) => setMonth(e.target.value)} className="bg-space-panel border border-space-border rounded-lg px-3 py-2 text-sm text-gray-200">
+              <select value={month} onChange={(e) => setMonth(e.target.value)} className="bg-space-panel border border-space-border rounded-lg px-3 py-2 text-sm text-gray-700">
                 <option value="">All months</option>
                 {filters.months.map((m) => <option key={m} value={m}>{m}</option>)}
               </select>
@@ -271,7 +271,7 @@ export default function PlacementCalendar() {
                 <button key={c.id} onClick={() => openCompany(c.id)} className="card text-left hover:border-cyber-blue/50 transition-colors">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className="font-display font-bold text-text-primary">{c.name}</h3>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full border border-space-border text-gray-400">{c.tier}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full border border-space-border text-gray-500">{c.tier}</span>
                   </div>
                   <p className="text-xs text-gray-500 font-mono mb-2">{c.type} · {c.calendar_window}</p>
                   <div className="flex flex-wrap gap-1">
@@ -295,7 +295,7 @@ export default function PlacementCalendar() {
 
         {view === "ideas" && (
           <div className="max-w-4xl mx-auto">
-            <p className="text-center text-gray-400 text-sm mb-6">Unique, high-intent things job seekers gladly pay for — beyond a flat subscription. Each is a leverage point for ARR.</p>
+            <p className="text-center text-gray-500 text-sm mb-6">Unique, high-intent things job seekers gladly pay for — beyond a flat subscription. Each is a leverage point for ARR.</p>
             <div className="grid sm:grid-cols-2 gap-4">
               {PREMIUM_IDEAS.map((idea) => (
                 <div key={idea.title} className="card">
@@ -303,7 +303,7 @@ export default function PlacementCalendar() {
                     <h3 className="font-display font-bold text-text-primary flex items-center gap-2"><Sparkles size={14} className="text-cyber-green" /> {idea.title}</h3>
                     <span className="text-[11px] px-2 py-0.5 rounded-full bg-cyber-green/10 text-cyber-green whitespace-nowrap">{idea.price}</span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-2 font-mono">{idea.desc}</p>
+                  <p className="text-xs text-gray-500 mt-2 font-mono">{idea.desc}</p>
                 </div>
               ))}
             </div>
@@ -325,29 +325,29 @@ export default function PlacementCalendar() {
                   <Link2 size={11} /> Shareable: <span className="text-cyber-blue">/placement-calendar?company={selected.id}</span>
                 </div>
               </div>
-              <button onClick={closeCompany} className="text-gray-400 hover:text-white"><X size={20} /></button>
+              <button onClick={closeCompany} className="text-gray-500 hover:text-slate-900"><X size={20} /></button>
             </div>
 
             <Section icon={<Target size={14} className="text-cyber-blue" />} title="What they ask">
               <ul className="space-y-1">
-                {selected.what_they_ask.map((w, i) => <li key={i} className="text-sm text-gray-300 font-mono flex gap-2"><span className="text-cyber-blue">▹</span>{w}</li>)}
+                {selected.what_they_ask.map((w, i) => <li key={i} className="text-sm text-gray-600 font-mono flex gap-2"><span className="text-cyber-blue">▹</span>{w}</li>)}
               </ul>
             </Section>
 
             <Section icon={<Clock size={14} className="text-cyber-green" />} title="How the interview goes">
               <ol className="space-y-1">
-                {selected.interview_process.map((r, i) => <li key={i} className="text-sm text-gray-300 font-mono">{i + 1}. {r}</li>)}
+                {selected.interview_process.map((r, i) => <li key={i} className="text-sm text-gray-600 font-mono">{i + 1}. {r}</li>)}
               </ol>
             </Section>
 
-            <Section icon={<GraduationCap size={14} className="text-purple-300" />} title="Free prep checklist (A → Z)">
+            <Section icon={<GraduationCap size={14} className="text-purple-600" />} title="Free prep checklist (A → Z)">
               <div className="space-y-1">
                 {selected.focus_areas.map((f) => {
                   const lesson = lessonFor(f);
                   const key = `${selected.id}:${f}`;
-                  if (!lesson) return <div key={f} className="text-sm text-gray-300 font-mono">• {f}</div>;
+                  if (!lesson) return <div key={f} className="text-sm text-gray-600 font-mono">• {f}</div>;
                   return (
-                    <label key={f} className="flex items-center gap-2 text-sm text-gray-300 font-mono cursor-pointer">
+                    <label key={f} className="flex items-center gap-2 text-sm text-gray-600 font-mono cursor-pointer">
                       <input type="checkbox" checked={!!checked[key]}
                         onChange={() => setChecked((c) => {
                           const next = { ...c, [key]: !c[key] };
@@ -382,7 +382,7 @@ export default function PlacementCalendar() {
             </div>
 
             <div className="mt-3 flex flex-wrap gap-1">
-              {selected.roles.map((r) => <span key={r} className="text-[10px] px-2 py-0.5 rounded-full bg-space-panel text-gray-400">{r}</span>)}
+              {selected.roles.map((r) => <span key={r} className="text-[10px] px-2 py-0.5 rounded-full bg-space-panel text-gray-500">{r}</span>)}
             </div>
           </div>
         </div>

@@ -29,7 +29,7 @@ const SIZE_MAP = {
 
 const STATUS_BORDER: Record<string, string> = {
   active: "border-green-500/60",
-  inactive: "border-gray-500/40",
+  inactive: "border-slate-100",
   legendary: "border-yellow-400/60",
 };
 
@@ -55,10 +55,10 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
       <div className="absolute inset-0 rounded-2xl opacity-60 pointer-events-none" style={{ background: `linear-gradient(135deg, ${color}33, transparent, ${color}33)` }} />
 
       {/* Top bar */}
-      <div className="relative px-4 pt-4 pb-2 border-b border-white/10">
+      <div className="relative px-4 pt-4 pb-2 border-b border-slate-200">
         <div className="flex items-center justify-between">
           <span className="text-[9px] font-bold tracking-[0.3em] text-gray-500 uppercase">WANTED</span>
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-gray-500">
             {"★".repeat(user.tier?.stars || 1)}
           </span>
         </div>
@@ -73,19 +73,19 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
       {/* Avatar */}
       <div className="relative px-4 pt-5 pb-3 flex flex-col items-center">
         <div
-          className={`${s.avatar} rounded-full border-[3px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-700 shadow-lg`}
+          className={`${s.avatar} rounded-full border-[3px] overflow-hidden bg-gradient-to-br from-white to-slate-50 shadow-lg`}
           style={{ borderColor: `${color}88`, boxShadow: `0 0 24px ${color}33, inset 0 0 12px ${color}22` }}
         >
           {user.avatar_url ? (
             <img src={user.avatar_url} alt={user.name} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center font-black text-gray-200"
+            <div className="w-full h-full flex items-center justify-center font-black text-gray-700"
               style={{ fontSize: size === "small" ? 20 : size === "large" ? 36 : 28 }}>
               {user.name?.charAt(0) || "?"}
             </div>
           )}
         </div>
-        <h3 className={`${s.name} font-bold text-white mt-3 tracking-wide text-center`}>{user.name}</h3>
+        <h3 className={`${s.name} font-bold text-slate-900 mt-3 tracking-wide text-center`}>{user.name}</h3>
         <p className="text-[10px] font-medium uppercase tracking-wider mt-0.5"
           style={{ color }}>
           &ldquo;{user.display_title || user.tier?.title}&rdquo;
@@ -94,24 +94,24 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
 
       {/* Stats */}
       {showStats && (
-        <div className="relative px-4 py-3 bg-black/20 border-t border-white/10">
+        <div className="relative px-4 py-3 bg-black/20 border-t border-slate-200">
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
             <div className="flex justify-between">
               <span className="text-gray-500">LVL</span>
-              <span className="text-white font-semibold">{user.level}</span>
+              <span className="text-slate-900 font-semibold">{user.level}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">🔥</span>
-              <span className="text-white font-semibold">{user.streak}d</span>
+              <span className="text-slate-900 font-semibold">{user.streak}d</span>
             </div>
             {user.categories && Object.entries(user.categories).slice(0, 4).map(([k, v]) => (
               <div key={k} className="flex justify-between">
                 <span className="text-gray-500">{CATEGORY_ICONS[k] || "•"} {k.slice(0, 4)}</span>
-                <span className="text-white font-semibold">{Math.round(v)}%</span>
+                <span className="text-slate-900 font-semibold">{Math.round(v)}%</span>
               </div>
             ))}
           </div>
-          <div className="mt-2 pt-2 border-t border-white/10 flex justify-between text-[9px] text-gray-500">
+          <div className="mt-2 pt-2 border-t border-slate-200 flex justify-between text-[9px] text-gray-500">
             <span>Placement Pro</span>
             <span>
               {user.bosses_defeated ? `💀 ${user.bosses_defeated}` : ""}

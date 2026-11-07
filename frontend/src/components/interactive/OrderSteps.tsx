@@ -90,10 +90,10 @@ export default function OrderSteps({
                   {item.text}
                 </span>
                 {isCorrectPosition && (
-                  <CheckCircle size={16} className="text-emerald-400 flex-shrink-0" />
+                  <CheckCircle size={16} className="text-emerald-600 flex-shrink-0" />
                 )}
                 {isWrongPosition && (
-                  <XCircle size={16} className="text-rose-400 flex-shrink-0" />
+                  <XCircle size={16} className="text-rose-600 flex-shrink-0" />
                 )}
               </Reorder.Item>
             );
@@ -110,7 +110,7 @@ export default function OrderSteps({
               className="overflow-hidden"
             >
               <div className="mt-4 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                <p className="text-xs text-emerald-300 leading-relaxed">
+                <p className="text-xs text-emerald-600 leading-relaxed">
                   {explanation}
                 </p>
               </div>
@@ -137,7 +137,7 @@ export default function OrderSteps({
           </button>
         )}
         {correct && (
-          <span className="text-sm font-bold text-emerald-400 flex items-center gap-1">
+          <span className="text-sm font-bold text-emerald-600 flex items-center gap-1">
             <CheckCircle size={16} /> Correct order!
           </span>
         )}

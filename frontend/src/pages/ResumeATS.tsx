@@ -109,7 +109,7 @@ function ScoreBar({ label, score, icon: Icon, delay = 0 }) {
     >
       <div className="flex items-center gap-2 mb-2">
         {Icon && <Icon size={14} className="text-gray-500" />}
-        <span className="text-xs font-mono uppercase tracking-wider text-gray-400">{label}</span>
+        <span className="text-xs font-mono uppercase tracking-wider text-gray-500">{label}</span>
         <span className={`ml-auto text-sm font-display font-bold ${c.text}`}>{score}/100</span>
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
@@ -367,7 +367,7 @@ export default function ResumeATS() {
                         <Upload className="text-cyber-blue" size={22} />
                       </div>
                       <h3 className="section-header text-lg mb-1">Upload Resume</h3>
-                      <p className="text-sm text-gray-400 font-mono">
+                      <p className="text-sm text-gray-500 font-mono">
                         Drop a PDF. AI will scan and score it instantly.
                       </p>
                     </div>
@@ -385,7 +385,7 @@ export default function ResumeATS() {
                         <Wand2 className="text-cyber-purple" size={22} />
                       </div>
                       <h3 className="section-header text-lg mb-1">Generate with AI</h3>
-                      <p className="text-sm text-gray-400 font-mono">
+                      <p className="text-sm text-gray-500 font-mono">
                         Fill in details. AI writes a professional resume.
                       </p>
                     </div>
@@ -426,7 +426,7 @@ export default function ResumeATS() {
                     ) : (
                       <>
                         <Upload className="mx-auto text-gray-500 mb-3" size={40} />
-                        <p className="text-gray-400 font-mono text-sm">
+                        <p className="text-gray-500 font-mono text-sm">
                           Drag & drop your PDF here
                         </p>
                         <p className="text-xs text-gray-600 mt-1">or click to browse</p>
@@ -535,7 +535,7 @@ export default function ResumeATS() {
               <div className="card-glow text-center py-8 sm:py-10">
                 <ScoreRing score={atsScore} />
                 <motion.p
-                  className="text-gray-400 font-mono text-sm mt-6"
+                  className="text-gray-500 font-mono text-sm mt-6"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.4 }}
@@ -581,7 +581,7 @@ export default function ResumeATS() {
                     <div className="space-y-1">
                       {Object.entries(semanticScore.section_scores || semanticScore.breakdown || {}).map(([k, v]: [string, any]) => (
                         <div key={k} className="flex items-center justify-between text-xs">
-                          <span className="text-gray-400 capitalize font-mono">{k.replace(/_/g, " ")}</span>
+                          <span className="text-gray-500 capitalize font-mono">{k.replace(/_/g, " ")}</span>
                           <span className="text-text-primary font-mono">{typeof v === "object" ? v.score : v}%</span>
                         </div>
                       ))}
@@ -677,7 +677,7 @@ export default function ResumeATS() {
               {optimization.ats_score && (
                 <div className="card-glow text-center py-6">
                   <ScoreRing score={optimization.ats_score} size={160} strokeWidth={8} />
-                  <p className="text-gray-400 font-mono text-xs mt-4">
+                  <p className="text-gray-500 font-mono text-xs mt-4">
                     Optimized ATS Score
                   </p>
                 </div>
@@ -741,7 +741,7 @@ export default function ResumeATS() {
                   </h3>
                   <ul className="space-y-1.5">
                     {optimization.changes_made.map((c, i) => (
-                      <li key={i} className="text-xs font-mono text-gray-400 flex items-start gap-2">
+                      <li key={i} className="text-xs font-mono text-gray-500 flex items-start gap-2">
                         <span className="text-cyber-amber mt-0.5">›</span>
                         {c}
                       </li>
@@ -805,7 +805,7 @@ export default function ResumeATS() {
               exit={{ opacity: 0 }}
             >
               <Spinner size="lg" />
-              <p className="text-gray-400 font-mono text-sm mt-4">
+              <p className="text-gray-500 font-mono text-sm mt-4">
                 {step === 1
                   ? "Scanning resume..."
                   : step === 3

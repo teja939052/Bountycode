@@ -70,14 +70,14 @@ export default function SystemDesign() {
             <p className="text-gray-500 text-sm font-mono">Master system design interviews with AI feedback</p>
           </motion.div>
 
-          {error && <div className="bg-red-950/30 border border-red-500/30 text-red-400 px-4 py-3 rounded-lg mb-6 text-center text-sm font-mono">{error}</div>}
+          {error && <div className="bg-red-950/30 border border-red-500/30 text-red-600 px-4 py-3 rounded-lg mb-6 text-center text-sm font-mono">{error}</div>}
 
           <Card rarity="epic" hoverEffect={false} className="mb-5">
-            <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-4">Select Difficulty</h3>
+            <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-4">Select Difficulty</h3>
             <div className="grid sm:grid-cols-3 gap-3">
               {DIFFICULTIES.map((d) => (
                 <button key={d.id} onClick={() => setDifficulty(d.id)}
-                  className={`p-4 rounded-xl text-left transition-all border ${difficulty === d.id ? 'shadow-lg' : 'border-gray-700/30 hover:border-gray-600/40'}`}
+                  className={`p-4 rounded-xl text-left transition-all border ${difficulty === d.id ? 'shadow-lg' : 'border-slate-100 hover:border-slate-100'}`}
                   style={difficulty === d.id ? { borderColor: d.color, boxShadow: `0 0 15px ${d.color}15`, background: `${d.color}08` } : {}}>
                   <span className="text-xl mb-1 block">{d.emoji}</span>
                   <p className="font-semibold text-sm text-text-primary">{d.name}</p>
@@ -88,11 +88,11 @@ export default function SystemDesign() {
           </Card>
 
           <Card rarity="rare" hoverEffect={false} className="mb-6">
-            <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-4">Select Topic (Optional)</h3>
+            <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-4">Select Topic (Optional)</h3>
             <div className="flex flex-wrap gap-2">
               {TOPICS.map((t) => (
                 <button key={t} onClick={() => setTopic(topic === t ? '' : t)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all border ${topic === t ? 'bg-cyber-purple/15 text-cyber-purple border-cyber-purple/40' : 'border-gray-700/30 text-gray-400 hover:text-gray-300 hover:border-gray-600/40'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all border ${topic === t ? 'bg-cyber-purple/15 text-cyber-purple border-cyber-purple/40' : 'border-slate-100 text-gray-500 hover:text-gray-600 hover:border-slate-100'}`}>
                   {t}
                 </button>
               ))}
@@ -122,16 +122,16 @@ export default function SystemDesign() {
             <h2 className="text-lg font-display font-bold text-text-primary mb-4">{question.question}</h2>
             {question.hints?.length > 0 && (
               <div className="bg-yellow-950/20 border border-yellow-500/20 rounded-lg p-3 mb-3">
-                <p className="text-[10px] font-mono font-bold text-yellow-400 uppercase tracking-wider mb-2">Hints</p>
-                <ul className="space-y-1">{question.hints.map((h, i) => <li key={i} className="text-xs text-yellow-300/70 font-mono">• {h}</li>)}</ul>
+                <p className="text-[10px] font-mono font-bold text-yellow-600 uppercase tracking-wider mb-2">Hints</p>
+                <ul className="space-y-1">{question.hints.map((h, i) => <li key={i} className="text-xs text-yellow-600 font-mono">• {h}</li>)}</ul>
               </div>
             )}
             {question.expected_components?.length > 0 && (
               <div className="bg-blue-950/20 border border-blue-500/20 rounded-lg p-3">
-                <p className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-wider mb-2">Expected Components</p>
+                <p className="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-wider mb-2">Expected Components</p>
                 <div className="flex flex-wrap gap-1.5">
                   {question.expected_components.map((c, i) => (
-                    <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">{c}</span>
+                    <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 border border-blue-500/20">{c}</span>
                   ))}
                 </div>
               </div>
@@ -142,21 +142,21 @@ export default function SystemDesign() {
             <Card rarity="uncommon" hoverEffect={false} className="mb-5">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-lg">✓</span>
-                <span className="font-display font-bold text-green-400">Score: {feedback.score}/10</span>
+                <span className="font-display font-bold text-green-600">Score: {feedback.score}/10</span>
               </div>
-              {feedback.strengths?.length > 0 && <div className="mb-2"><p className="text-[10px] font-mono font-bold text-green-400 uppercase tracking-wider mb-1">Strengths</p><ul className="text-xs text-green-300/70 space-y-0.5">{feedback.strengths.map((s, i) => <li key={i}>• {s}</li>)}</ul></div>}
-              {feedback.improvements?.length > 0 && <div className="mb-2"><p className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider mb-1">Improve</p><ul className="text-xs text-amber-300/70 space-y-0.5">{feedback.improvements.map((s, i) => <li key={i}>• {s}</li>)}</ul></div>}
-              {feedback.missing_concepts?.length > 0 && <div><p className="text-[10px] font-mono font-bold text-red-400 uppercase tracking-wider mb-1">Missing</p><ul className="text-xs text-red-300/70 space-y-0.5">{feedback.missing_concepts.map((s, i) => <li key={i}>• {s}</li>)}</ul></div>}
+              {feedback.strengths?.length > 0 && <div className="mb-2"><p className="text-[10px] font-mono font-bold text-green-600 uppercase tracking-wider mb-1">Strengths</p><ul className="text-xs text-green-600 space-y-0.5">{feedback.strengths.map((s, i) => <li key={i}>• {s}</li>)}</ul></div>}
+              {feedback.improvements?.length > 0 && <div className="mb-2"><p className="text-[10px] font-mono font-bold text-amber-600 uppercase tracking-wider mb-1">Improve</p><ul className="text-xs text-amber-600 space-y-0.5">{feedback.improvements.map((s, i) => <li key={i}>• {s}</li>)}</ul></div>}
+              {feedback.missing_concepts?.length > 0 && <div><p className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-wider mb-1">Missing</p><ul className="text-xs text-red-600 space-y-0.5">{feedback.missing_concepts.map((s, i) => <li key={i}>• {s}</li>)}</ul></div>}
             </Card>
           )}
 
           <Card rarity="common" hoverEffect={false} className="mb-5">
-            <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">Your Design Answer</label>
+            <label className="block text-[10px] font-mono font-bold text-gray-500 uppercase tracking-wider mb-2">Your Design Answer</label>
             <textarea className="input min-h-[180px] resize-y" placeholder="High-level architecture, components, data flow, scaling, trade-offs..." value={answer} onChange={(e) => setAnswer(e.target.value)} />
           </Card>
 
           <Card rarity="common" hoverEffect={false} className="mb-5">
-            <label className="block text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">Diagram Description (Optional)</label>
+            <label className="block text-[10px] font-mono font-bold text-gray-500 uppercase tracking-wider mb-2">Diagram Description (Optional)</label>
             <textarea className="input min-h-[80px] resize-y" placeholder="User → Load Balancer → API Gateway → Service → DB" value={diagram} onChange={(e) => setDiagram(e.target.value)} />
           </Card>
 
@@ -182,7 +182,7 @@ export default function SystemDesign() {
               style={{ color: result.overall_score >= 7 ? '#22C55E' : result.overall_score >= 5 ? '#EAB308' : '#EF4444', background: result.overall_score >= 7 ? 'rgba(34,197,94,0.1)' : result.overall_score >= 5 ? 'rgba(234,179,8,0.1)' : 'rgba(239,68,68,0.1)', border: `2px solid ${result.overall_score >= 7 ? 'rgba(34,197,94,0.3)' : result.overall_score >= 5 ? 'rgba(234,179,8,0.3)' : 'rgba(239,68,68,0.3)'}` }}>
               {result.overall_score}
             </div>
-            <p className="text-gray-400 text-sm font-mono">Overall Score (out of 10) · {result.topic}</p>
+            <p className="text-gray-500 text-sm font-mono">Overall Score (out of 10) · {result.topic}</p>
             <div className="flex gap-3 mt-6 justify-center">
               <Link to="/system-design" className="btn-primary text-sm">Practice Again</Link>
               <Link to="/dashboard" className="btn-secondary text-sm">Dashboard</Link>

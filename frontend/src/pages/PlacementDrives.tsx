@@ -9,10 +9,10 @@ import useReducedMotion from "../hooks/useReducedMotion";
 import AnimatedCard from "../components/motion/AnimatedCard";
 
 const TIER_STYLES = {
-  FAANG: "border-red-300 dark:border-red-800 bg-red-50/50 dark:bg-red-900/5",
-  Product: "border-purple-300 dark:border-purple-800 bg-purple-50/50 dark:bg-purple-900/5",
-  Services: "border-blue-300 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/5",
-  Startup: "border-green-300 dark:border-green-800 bg-green-50/50 dark:bg-green-900/5",
+  FAANG: "border-red-300 bg-red-50/50",
+  Product: "border-purple-300 bg-purple-50/50",
+  Services: "border-blue-300 bg-blue-50/50",
+  Startup: "border-green-300 bg-green-50/50",
 };
 
 export default function PlacementDrives() {
@@ -49,12 +49,12 @@ export default function PlacementDrives() {
       <div className="max-w-6xl mx-auto">
         <motion.div className="mb-8" initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center">
               <GraduationCap size={24} className="text-emerald-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold dark:text-white">Placement Drives</h1>
-              <p className="text-brand-secondary dark:text-gray-400">Companies you're eligible for and likely to clear</p>
+              <h1 className="text-3xl font-bold">Placement Drives</h1>
+              <p className="text-brand-secondary">Companies you're eligible for and likely to clear</p>
             </div>
           </div>
         </motion.div>
@@ -62,7 +62,7 @@ export default function PlacementDrives() {
         {/* Stats bar */}
         <div className="grid grid-cols-3 gap-3 mb-6">
           {[
-            { label: "Total Drives", value: drives.length, color: "text-brand-secondary dark:text-gray-400" },
+            { label: "Total Drives", value: drives.length, color: "text-brand-secondary" },
             { label: "Eligible", value: eligibleCount, color: "text-green-600" },
             { label: "Likely to Clear", value: likelyCount, color: "text-emerald-600" },
           ].map((s, i) => (
@@ -85,8 +85,8 @@ export default function PlacementDrives() {
               onClick={() => setFilter(f.key)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 filter === f.key
-                  ? "bg-primary-600 text-text-primary"
-                  : "bg-surface-card/50 dark:bg-gray-800 text-brand-secondary dark:text-gray-400 hover:bg-surface-card/50"
+                  ? "bg-primary-600 text-white"
+                  : "bg-surface-card/50 text-brand-secondary hover:bg-surface-card/50"
               }`}
             >
               {f.label}
@@ -98,15 +98,15 @@ export default function PlacementDrives() {
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="card animate-pulse">
-                <div className="h-4 bg-surface-card/50 dark:bg-gray-700 rounded w-1/2 mb-2" />
-                <div className="h-3 bg-surface-card/50 dark:bg-gray-700 rounded w-1/3" />
+                <div className="h-4 bg-surface-card/50 rounded w-1/2 mb-2" />
+                <div className="h-3 bg-surface-card/50 rounded w-1/3" />
               </div>
             ))}
           </div>
         ) : visibleDrives.length === 0 ? (
           <div className="card text-center py-12">
-            <GraduationCap size={48} className="mx-auto text-brand-secondary dark:text-brand-secondary mb-4" />
-            <p className="text-brand-muted dark:text-gray-400">No drives match your filter</p>
+            <GraduationCap size={48} className="mx-auto text-brand-secondary mb-4" />
+            <p className="text-brand-muted">No drives match your filter</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -121,27 +121,27 @@ export default function PlacementDrives() {
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-bold text-lg dark:text-white">{drive.company}</h3>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 dark:bg-gray-700 text-brand-secondary dark:text-gray-400">
+                      <h3 className="font-bold text-lg">{drive.company}</h3>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 text-brand-secondary">
                         {drive.tier}
                       </span>
                       {drive.likely_to_clear && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 flex items-center gap-1">
                           <TrendingUp size={12} /> {drive.probability}% match
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-brand-secondary dark:text-gray-400">{drive.role}</p>
+                    <p className="text-sm text-brand-secondary">{drive.role}</p>
                   </div>
                   <div className="text-right">
                     <p className="text-xs text-brand-muted">Deadline</p>
-                    <p className={`text-sm font-bold ${drive.days_left <= 5 ? "text-red-600" : "text-brand-primary dark:text-brand-secondary"}`}>
+                    <p className={`text-sm font-bold ${drive.days_left <= 5 ? "text-red-600" : "text-brand-primary"}`}>
                       {drive.days_left} days
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-3 mb-3 text-sm text-brand-secondary dark:text-gray-400">
+                <div className="flex flex-wrap gap-3 mb-3 text-sm text-brand-secondary">
                   <span className="flex items-center gap-1"><MapPin size={14} /> {drive.location}</span>
                   <span className="flex items-center gap-1"><IndianRupee size={14} /> {drive.package_lpa} LPA</span>
                   {drive.eligibility?.min_cgpa && (
@@ -152,7 +152,7 @@ export default function PlacementDrives() {
                 {drive.match_reasons?.length > 0 && (
                   <div className="mb-3">
                     {drive.match_reasons.slice(0, 3).map((reason, ri) => (
-                      <div key={ri} className="flex items-center gap-2 text-xs text-brand-secondary dark:text-gray-400 mb-1">
+                      <div key={ri} className="flex items-center gap-2 text-xs text-brand-secondary mb-1">
                         {drive.eligible ? (
                           <CheckCircle size={12} className="text-green-500" />
                         ) : (

@@ -252,8 +252,8 @@ export default function AptitudeTest() {
       <div className="min-h-screen py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <span className="text-xs font-mono text-gray-400">Query {currentQ + 1} / {questions.length}</span>
-            <div className="flex items-center gap-2 text-sm font-mono text-gray-400">
+            <span className="text-xs font-mono text-gray-500">Query {currentQ + 1} / {questions.length}</span>
+            <div className="flex items-center gap-2 text-sm font-mono text-gray-500">
               <Clock size={14} /> {formatTime(timeTaken)}
             </div>
           </div>
@@ -278,7 +278,7 @@ export default function AptitudeTest() {
                   {answerFeedback.is_correct ? "Correct!" : "Incorrect"}
                 </span>
               </div>
-              <p className="text-xs font-mono text-gray-400">{answerFeedback.explanation}</p>
+              <p className="text-xs font-mono text-gray-500">{answerFeedback.explanation}</p>
             </motion.div>
           )}
 
@@ -293,7 +293,7 @@ export default function AptitudeTest() {
                   className={`w-full text-left p-4 rounded-lg border-2 transition-all font-mono text-sm ${
                     answers[currentQ] === idx
                       ? "border-cyber-purple bg-cyber-purple/10 text-text-primary"
-                      : "border-brand-primary/10 hover:border-brand-primary/20 text-gray-400 hover:text-text-primary"
+                      : "border-brand-primary/10 hover:border-brand-primary/20 text-gray-500 hover:text-text-primary"
                   } ${answerFeedback !== null ? "cursor-not-allowed opacity-70" : ""}`}
                 >
                   <span className="font-bold text-cyber-blue">{String.fromCharCode(65 + idx)}.</span> {option}
@@ -362,7 +362,7 @@ export default function AptitudeTest() {
                   )}
                 </div>
                 <div className="text-xs font-mono space-y-1">
-                  <p className="text-gray-400">Your answer: {q.options[q.your_answer] || "Not answered"}</p>
+                  <p className="text-gray-500">Your answer: {q.options[q.your_answer] || "Not answered"}</p>
                   {!q.is_correct && <p className="text-cyber-green">Correct: {q.options[q.correct_answer]}</p>}
                   <p className="text-brand-secondary italic">{q.explanation}</p>
                 </div>

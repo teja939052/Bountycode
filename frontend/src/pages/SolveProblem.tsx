@@ -130,7 +130,7 @@ export default function SolveProblem() {
           <p className="text-sm font-semibold text-text-primary">Problem not found</p>
           <button
             onClick={() => navigate("/question-bank")}
-            className="mt-3 rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-text-primary"
+            className="mt-3 rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white"
           >
             Back to Question Bank
           </button>
@@ -214,7 +214,7 @@ export default function SolveProblem() {
           <button
             onClick={() => setMobileTab("problem")}
             className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
-              mobileTab === "problem" ? "bg-brand-primary text-text-primary" : "text-brand-muted"
+              mobileTab === "problem" ? "bg-brand-primary text-white" : "text-brand-muted"
             }`}
           >
             <FileText size={13} />
@@ -223,7 +223,7 @@ export default function SolveProblem() {
           <button
             onClick={() => setMobileTab("code")}
             className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
-              mobileTab === "code" ? "bg-brand-primary text-text-primary" : "text-brand-muted"
+              mobileTab === "code" ? "bg-brand-primary text-white" : "text-brand-muted"
             }`}
           >
             <Code2 size={13} />

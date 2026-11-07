@@ -14,19 +14,19 @@ const STATUS_OPTIONS = ["seeded", "AUTO_SCAFFOLDED", "enriched", "verified"];
 const CONTENT_TYPES = ["lesson", "exercise", "quiz", "assessment", "debug_challenge"];
 
 const STATUS_COLORS: Record<string, string> = {
-  seeded: "bg-gray-500/10 text-gray-400 border-gray-500/30",
-  AUTO_SCAFFOLDED: "bg-amber-500/10 text-amber-400 border-amber-500/30",
-  enriched: "bg-sky-500/10 text-sky-400 border-sky-500/30",
-  verified: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+  seeded: "bg-slate-50 text-gray-500 border-slate-100",
+  AUTO_SCAFFOLDED: "bg-amber-500/10 text-amber-600 border-amber-500/30",
+  enriched: "bg-sky-500/10 text-sky-600 border-sky-500/30",
+  verified: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
 };
 
 const DOMAIN_COLORS: Record<string, string> = {
   cs: "bg-brand-primary/10 text-brand-primary border-brand-primary/20",
-  databases: "bg-sky-500/10 text-sky-400 border-sky-500/30",
-  devops: "bg-amber-500/10 text-amber-400 border-amber-500/30",
-  placement: "bg-rose-500/10 text-rose-400 border-rose-500/30",
+  databases: "bg-sky-500/10 text-sky-600 border-sky-500/30",
+  devops: "bg-amber-500/10 text-amber-600 border-amber-500/30",
+  placement: "bg-rose-500/10 text-rose-600 border-rose-500/30",
   programming: "bg-brand-lavender/10 text-brand-lavender border-brand-lavender/20",
-  web: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+  web: "bg-emerald-500/10 text-emerald-600 border-emerald-500/30",
 };
 
 const inputCls = "w-full px-3.5 py-2.5 rounded-xl bg-surface-base border border-nature-leaf/20 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-nature-leaf focus:ring-1 focus:ring-nature-leaf/30 transition-all";
@@ -185,8 +185,8 @@ export default function AdminContentCorpus() {
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 mb-3">
-              <BookOpen size={14} className="text-red-400" />
-              <span className="text-xs font-mono text-red-400">ADMIN</span>
+              <BookOpen size={14} className="text-red-600" />
+              <span className="text-xs font-mono text-red-600">ADMIN</span>
             </div>
             <h1 className="text-3xl font-display font-black text-text-primary">Knowledge Corpus</h1>
             <p className="text-sm text-text-muted font-mono mt-1">Manage concepts, generation queue, and content verification</p>
@@ -218,8 +218,8 @@ export default function AdminContentCorpus() {
       {summary && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           <StatCard icon={BookOpen} label="Concepts" value={formatCount(summary.total_concepts)} sub={`${Object.keys(summary.domains || {}).length} domains`} color="text-brand-primary" />
-          <StatCard icon={CheckCircle2} label="Verified" value={formatCount(summary.status_counts?.verified || 0)} sub={`${summary.status_counts?.AUTO_SCAFFOLDED || 0} scaffolded`} color="text-emerald-400" />
-          <StatCard icon={AlertTriangle} label="Issues" value={formatCount(summary.validation?.issues?.length || 0)} sub={summary.validation?.valid ? "Corpus valid" : "Has issues"} color={summary.validation?.valid ? "text-emerald-400" : "text-amber-400"} />
+          <StatCard icon={CheckCircle2} label="Verified" value={formatCount(summary.status_counts?.verified || 0)} sub={`${summary.status_counts?.AUTO_SCAFFOLDED || 0} scaffolded`} color="text-emerald-600" />
+          <StatCard icon={AlertTriangle} label="Issues" value={formatCount(summary.validation?.issues?.length || 0)} sub={summary.validation?.valid ? "Corpus valid" : "Has issues"} color={summary.validation?.valid ? "text-emerald-600" : "text-amber-600"} />
           <StatCard icon={FileText} label="Categories" value={formatCount(Object.keys(summary.categories || {}).length)} sub={`${Object.keys(summary.status_counts || {}).length} statuses`} color="text-brand-sky" />
         </motion.div>
       )}
@@ -263,7 +263,7 @@ export default function AdminContentCorpus() {
                 <motion.div key={c.concept_id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: Math.min(i * 0.02, 0.3) }}
                   className="glass rounded-xl p-4 flex items-center gap-4">
                   <button onClick={() => toggleSelect(c.concept_id)} className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all ${selectedIds.has(c.concept_id) ? "bg-nature-leaf border-nature-leaf" : "border-nature-leaf/30 hover:border-nature-leaf/60"}`}>
-                    {selectedIds.has(c.concept_id) && <CheckCircle2 size={12} className="text-white" />}
+                    {selectedIds.has(c.concept_id) && <CheckCircle2 size={12} className="text-slate-900" />}
                   </button>
                   <div className="flex-1 min-w-0 cursor-pointer" onClick={() => openConcept(c.concept_id)}>
                     <div className="flex items-center gap-2 flex-wrap">
@@ -317,7 +317,7 @@ export default function AdminContentCorpus() {
                     </div>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {(item.missing_types || []).map(t => (
-                        <span key={t} className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">{t}</span>
+                        <span key={t} className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 text-amber-600 border border-amber-500/20">{t}</span>
                       ))}
                     </div>
                   </div>
@@ -346,9 +346,9 @@ export default function AdminContentCorpus() {
             <div className="glass rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
                 {validation.valid ? (
-                  <CheckCircle2 size={20} className="text-emerald-400" />
+                  <CheckCircle2 size={20} className="text-emerald-600" />
                 ) : (
-                  <AlertTriangle size={20} className="text-amber-400" />
+                  <AlertTriangle size={20} className="text-amber-600" />
                 )}
                 <h3 className="font-display font-bold text-text-primary">
                   {validation.valid ? "Corpus is valid" : `${(validation.issues || []).length} issue(s) found`}
@@ -361,7 +361,7 @@ export default function AdminContentCorpus() {
                 <div className="space-y-2 max-h-96 overflow-y-auto">
                   {(validation.issues || []).map((issue, i) => (
                     <div key={i} className="rounded-lg bg-surface-base border border-nature-leaf/20 p-3 flex items-start gap-3">
-                      <AlertTriangle size={14} className="text-amber-400 mt-0.5 shrink-0" />
+                      <AlertTriangle size={14} className="text-amber-600 mt-0.5 shrink-0" />
                       <div>
                         {issue.concept_id && <span className="text-[10px] font-mono text-text-muted">{issue.concept_id}</span>}
                         <p className="text-sm text-text-secondary">{issue.message}</p>
@@ -387,7 +387,7 @@ export default function AdminContentCorpus() {
             ) : (
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-mono uppercase border bg-amber-500/10 text-amber-400 border-amber-500/30`}>
+                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-mono uppercase border bg-amber-500/10 text-amber-600 border-amber-500/30`}>
                     Dry Run
                   </span>
                   <span className="text-xs font-mono text-text-muted">concept: {String(generateResult?.concept_id || "")}</span>
@@ -395,11 +395,11 @@ export default function AdminContentCorpus() {
 
                 {generateResult?.generated && Object.keys(generateResult.generated).length > 0 && (
                   <div>
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-emerald-400 mb-2">Generated</h4>
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-emerald-600 mb-2">Generated</h4>
                     <div className="space-y-1">
                       {Object.entries(generateResult.generated as Record<string, unknown>).map(([key, val]) => (
                         <div key={key} className="rounded-lg bg-emerald-500/5 border border-emerald-500/10 p-3 flex items-center gap-2">
-                          <CheckCircle2 size={12} className="text-emerald-400" />
+                          <CheckCircle2 size={12} className="text-emerald-600" />
                           <span className="text-xs font-mono text-text-primary">{key}</span>
                           <span className="text-[10px] font-mono text-text-muted ml-auto">{typeof val === "object" ? JSON.stringify(val).slice(0, 60) : String(val)}</span>
                         </div>
@@ -410,11 +410,11 @@ export default function AdminContentCorpus() {
 
                 {generateResult?.skipped && Object.keys(generateResult.skipped).length > 0 && (
                   <div>
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-amber-400 mb-2">Skipped</h4>
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-amber-600 mb-2">Skipped</h4>
                     <div className="space-y-1">
                       {Object.entries(generateResult.skipped as Record<string, string>).map(([key, reason]) => (
                         <div key={key} className="rounded-lg bg-amber-500/5 border border-amber-500/10 p-3 flex items-center gap-2">
-                          <Clock size={12} className="text-amber-400" />
+                          <Clock size={12} className="text-amber-600" />
                           <span className="text-xs font-mono text-text-primary">{key}</span>
                           <span className="text-[10px] font-mono text-text-muted ml-auto">{reason}</span>
                         </div>
@@ -425,10 +425,10 @@ export default function AdminContentCorpus() {
 
                 {generateResult?.validation && !generateResult.validation.valid && (
                   <div className="rounded-lg bg-red-500/5 border border-red-500/10 p-3">
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-red-400 mb-2">Validation Issues</h4>
+                    <h4 className="text-xs font-mono uppercase tracking-wider text-red-600 mb-2">Validation Issues</h4>
                     <div className="space-y-1">
                       {(generateResult.validation.issues || []).map((issue: any, idx: number) => (
-                        <p key={idx} className="text-xs font-mono text-red-400">{issue.message || JSON.stringify(issue)}</p>
+                        <p key={idx} className="text-xs font-mono text-red-600">{issue.message || JSON.stringify(issue)}</p>
                       ))}
                     </div>
                   </div>
@@ -486,7 +486,7 @@ export default function AdminContentCorpus() {
                     <div className="space-y-2 max-h-48 overflow-y-auto">
                       {(activeConcept.misconceptions as any[]).map((m, i) => (
                         <div key={i} className="rounded-lg bg-amber-500/5 border border-amber-500/10 p-3">
-                          <p className="text-xs font-mono text-amber-400">{typeof m === "string" ? m : JSON.stringify(m, null, 2)}</p>
+                          <p className="text-xs font-mono text-amber-600">{typeof m === "string" ? m : JSON.stringify(m, null, 2)}</p>
                         </div>
                       ))}
                     </div>
@@ -498,7 +498,7 @@ export default function AdminContentCorpus() {
                     <h4 className="text-xs font-mono uppercase tracking-wider text-text-muted mb-2">Transfer Targets</h4>
                     <div className="flex flex-wrap gap-2">
                       {(activeConcept.transfer_targets as string[]).map(t => (
-                        <span key={t} className="px-2 py-1 rounded-lg bg-sky-500/5 border border-sky-500/10 text-[10px] font-mono text-sky-400">{t}</span>
+                        <span key={t} className="px-2 py-1 rounded-lg bg-sky-500/5 border border-sky-500/10 text-[10px] font-mono text-sky-600">{t}</span>
                       ))}
                     </div>
                   </div>

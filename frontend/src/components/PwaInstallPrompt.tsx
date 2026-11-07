@@ -55,16 +55,16 @@ export default function PwaInstallPrompt() {
             </div>
             <p className="text-sm font-semibold text-text-primary">Install BountyCode</p>
           </div>
-          <button onClick={handleDismiss} className="text-gray-400 hover:text-white transition-colors">
+          <button onClick={handleDismiss} className="text-gray-500 hover:text-slate-900 transition-colors">
             <X size={16} />
           </button>
         </div>
-        <p className="text-xs text-gray-400 mb-3">
+        <p className="text-xs text-gray-500 mb-3">
           Install the app for the best experience — practice anywhere, even offline.
         </p>
         <button
           onClick={handleInstall}
-          className="w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-text-primary text-sm font-semibold transition-colors"
+          className="w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors"
         >
           Install App
         </button>

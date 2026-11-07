@@ -21,18 +21,18 @@ type WorldMeta = {
 };
 
 const WORLD_THEME: Record<string, { gradient: string; border: string; glow: string; bg: string }> = {
-  foundations: { gradient: "from-emerald-400 to-cyan-400", border: "border-emerald-400/30", glow: "rgba(52,211,153,0.25)", bg: "from-emerald-50 to-cyan-50 dark:from-emerald-950/40 dark:to-cyan-950/30" },
-  searchlands: { gradient: "from-blue-400 to-indigo-400", border: "border-blue-400/30", glow: "rgba(96,165,250,0.25)", bg: "from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/30" },
-  sorting: { gradient: "from-amber-400 to-orange-400", border: "border-amber-400/30", glow: "rgba(251,191,36,0.25)", bg: "from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/30" },
-  recursion: { gradient: "from-purple-400 to-pink-400", border: "border-purple-400/30", glow: "rgba(192,132,252,0.25)", bg: "from-purple-50 to-pink-50 dark:from-purple-950/40 dark:to-pink-950/30" },
-  linked: { gradient: "from-teal-400 to-emerald-400", border: "border-teal-400/30", glow: "rgba(45,212,191,0.25)", bg: "from-teal-50 to-emerald-50 dark:from-teal-950/40 dark:to-emerald-950/30" },
-  stack: { gradient: "from-sky-400 to-blue-400", border: "border-sky-400/30", glow: "rgba(125,211,252,0.25)", bg: "from-sky-50 to-blue-50 dark:from-sky-950/40 dark:to-blue-950/30" },
-  queue: { gradient: "from-violet-400 to-purple-400", border: "border-violet-400/30", glow: "rgba(167,139,250,0.25)", bg: "from-violet-50 to-purple-50 dark:from-violet-950/40 dark:to-purple-950/30" },
-  hashing: { gradient: "from-rose-400 to-pink-400", border: "border-rose-400/30", glow: "rgba(251,113,133,0.25)", bg: "from-rose-50 to-pink-50 dark:from-rose-950/40 dark:to-pink-950/30" },
-  trees: { gradient: "from-green-400 to-lime-400", border: "border-green-400/30", glow: "rgba(74,222,128,0.25)", bg: "from-green-50 to-lime-50 dark:from-green-950/40 dark:to-lime-950/30" },
-  graphs: { gradient: "from-cyan-400 to-teal-400", border: "border-cyan-400/30", glow: "rgba(34,211,238,0.25)", bg: "from-cyan-50 to-teal-50 dark:from-cyan-950/40 dark:to-teal-950/30" },
-  dynamic: { gradient: "from-fuchsia-400 to-purple-400", border: "border-fuchsia-400/30", glow: "rgba(232,121,249,0.25)", bg: "from-fuchsia-50 to-purple-50 dark:from-fuchsia-950/40 dark:to-purple-950/30" },
-  alpine: { gradient: "from-indigo-400 to-violet-400", border: "border-indigo-400/30", glow: "rgba(129,140,248,0.25)", bg: "from-indigo-50 to-violet-50 dark:from-indigo-950/40 dark:to-violet-950/30" },
+  foundations: { gradient: "from-emerald-400 to-cyan-400", border: "border-emerald-400/30", glow: "rgba(52,211,153,0.25)", bg: "from-emerald-50 to-cyan-50" },
+  searchlands: { gradient: "from-blue-400 to-indigo-400", border: "border-blue-400/30", glow: "rgba(96,165,250,0.25)", bg: "from-blue-50 to-indigo-50" },
+  sorting: { gradient: "from-amber-400 to-orange-400", border: "border-amber-400/30", glow: "rgba(251,191,36,0.25)", bg: "from-amber-50 to-orange-50" },
+  recursion: { gradient: "from-purple-400 to-pink-400", border: "border-purple-400/30", glow: "rgba(192,132,252,0.25)", bg: "from-purple-50 to-pink-50" },
+  linked: { gradient: "from-teal-400 to-emerald-400", border: "border-teal-400/30", glow: "rgba(45,212,191,0.25)", bg: "from-teal-50 to-emerald-50" },
+  stack: { gradient: "from-sky-400 to-blue-400", border: "border-sky-400/30", glow: "rgba(125,211,252,0.25)", bg: "from-sky-50 to-blue-50" },
+  queue: { gradient: "from-violet-400 to-purple-400", border: "border-violet-400/30", glow: "rgba(167,139,250,0.25)", bg: "from-violet-50 to-purple-50" },
+  hashing: { gradient: "from-rose-400 to-pink-400", border: "border-rose-400/30", glow: "rgba(251,113,133,0.25)", bg: "from-rose-50 to-pink-50" },
+  trees: { gradient: "from-green-400 to-lime-400", border: "border-green-400/30", glow: "rgba(74,222,128,0.25)", bg: "from-green-50 to-lime-50" },
+  graphs: { gradient: "from-cyan-400 to-teal-400", border: "border-cyan-400/30", glow: "rgba(34,211,238,0.25)", bg: "from-cyan-50 to-teal-50" },
+  dynamic: { gradient: "from-fuchsia-400 to-purple-400", border: "border-fuchsia-400/30", glow: "rgba(232,121,249,0.25)", bg: "from-fuchsia-50 to-purple-50" },
+  alpine: { gradient: "from-indigo-400 to-violet-400", border: "border-indigo-400/30", glow: "rgba(129,140,248,0.25)", bg: "from-indigo-50 to-violet-50" },
 };
 
 export default function WorldMap() {
@@ -65,7 +65,7 @@ export default function WorldMap() {
 
   if (loading) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 bg-gradient-to-b from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900 px-6">
+      <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 bg-gradient-to-b from-zinc-50 to-zinc-100 px-6">
         <motion.div
           className="h-16 w-16 rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-primary/5 flex items-center justify-center text-3xl shadow-lg"
           animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
@@ -88,7 +88,7 @@ export default function WorldMap() {
   const locked = worlds.filter((w) => !w.unlocked);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 text-zinc-900 dark:text-zinc-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-50 via-white to-zinc-50 text-zinc-900 relative overflow-hidden">
       {/* Ambient background blobs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <motion.div
@@ -129,7 +129,7 @@ export default function WorldMap() {
             </div>
             <Link
               to="/dashboard"
-              className="hidden sm:flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-all"
+              className="hidden sm:flex items-center gap-2 rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-all"
             >
               ← Dashboard
             </Link>
@@ -137,7 +137,7 @@ export default function WorldMap() {
 
           {/* Progress summary */}
           <div className="mt-4 flex items-center gap-3">
-            <div className="flex-1 h-2 rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden">
+            <div className="flex-1 h-2 rounded-full bg-zinc-200 overflow-hidden">
               <motion.div
                 className="h-full bg-gradient-to-r from-brand-primary to-emerald-500"
                 initial={{ width: 0 }}
@@ -172,8 +172,8 @@ export default function WorldMap() {
                     isHovered && canEnter
                       ? `border-transparent bg-gradient-to-br ${theme.bg} shadow-2xl scale-[1.03]`
                       : canEnter
-                        ? "border-zinc-200/80 dark:border-zinc-700/80 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-600 shadow-md hover:shadow-xl"
-                        : "border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-800/40 opacity-55 cursor-not-allowed"
+                        ? "border-zinc-200/80 bg-white hover:border-zinc-300 shadow-md hover:shadow-xl"
+                        : "border-zinc-200/60 bg-zinc-50/80 opacity-55 cursor-not-allowed"
                   }`}
                   style={
                     isHovered && canEnter
@@ -183,10 +183,10 @@ export default function WorldMap() {
                 >
                   {/* Locked overlay */}
                   {!canEnter && (
-                    <div className="absolute inset-0 rounded-3xl bg-zinc-100/40 dark:bg-zinc-900/40 backdrop-blur-[1px] z-10 flex items-center justify-center">
+                    <div className="absolute inset-0 rounded-3xl bg-slate-100 backdrop-blur-[1px] z-10 flex items-center justify-center">
                       <div className="flex flex-col items-center gap-2">
                         <span className="text-2xl grayscale opacity-60">🔒</span>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
                           Locked — complete prerequisites first
                         </span>
                       </div>
@@ -217,7 +217,7 @@ export default function WorldMap() {
 
                     {/* Text content */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-base font-bold leading-tight text-zinc-900 dark:text-zinc-100">
+                      <h3 className="text-base font-bold leading-tight text-zinc-900">
                         {w.name}
                       </h3>
                       <p className={`text-[11px] font-mono mt-0.5 bg-gradient-to-r ${theme.gradient} bg-clip-text text-transparent font-semibold`}>
@@ -233,12 +233,12 @@ export default function WorldMap() {
                           <span className="inline-block h-1.5 w-1.5 rounded-full bg-zinc-400" />
                           {w.towns_count} {w.towns_count === 1 ? 'town' : 'towns'}
                         </span>
-                        <span className="text-zinc-300 dark:text-zinc-700">·</span>
+                        <span className="text-zinc-600">·</span>
                         <span className="flex items-center gap-1">
                           <span className="inline-block h-1.5 w-1.5 rounded-full bg-zinc-400" />
                           {w.levels_count} levels
                         </span>
-                        <span className="text-zinc-300 dark:text-zinc-700">·</span>
+                        <span className="text-zinc-600">·</span>
                         <span className="flex items-center gap-1">
                           <span className="inline-block h-1.5 w-1.5 rounded-full bg-zinc-400" />
                           {w.progress_pct}%
@@ -246,7 +246,7 @@ export default function WorldMap() {
                       </div>
 
                       {/* Progress bar */}
-                      <div className="mt-2.5 h-1.5 w-full rounded-full bg-zinc-200/80 dark:bg-zinc-800 overflow-hidden">
+                      <div className="mt-2.5 h-1.5 w-full rounded-full bg-zinc-200/80 overflow-hidden">
                         <motion.div
                           className={`h-full rounded-full bg-gradient-to-r ${theme.gradient}`}
                           initial={{ width: 0 }}
@@ -267,7 +267,7 @@ export default function WorldMap() {
                     >
                       <Link
                         to={`/worlds/${w.id}`}
-                        className={`flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r ${theme.gradient} px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:shadow-xl transition-all`}
+                        className={`flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r ${theme.gradient} px-5 py-2.5 text-sm font-bold text-slate-900 shadow-lg hover:shadow-xl transition-all`}
                         onClick={(e) => e.stopPropagation()}
                       >
                         <span>Enter World</span>
@@ -286,7 +286,7 @@ export default function WorldMap() {
                     <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-mono text-text-muted">
                       <span>Prerequisites:</span>
                       {w.prerequisites.map((pre) => (
-                        <span key={pre} className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-zinc-600 dark:text-zinc-400">
+                        <span key={pre} className="rounded-full bg-zinc-100 px-2 py-0.5 text-zinc-600">
                           {pre}
                         </span>
                       ))}
@@ -301,7 +301,7 @@ export default function WorldMap() {
         {/* Empty state */}
         {unlocked.length === 0 && (
           <motion.div
-            className="mt-12 rounded-3xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-10 text-center"
+            className="mt-12 rounded-3xl border-2 border-dashed border-zinc-300 bg-white p-10 text-center"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
           >
@@ -330,7 +330,7 @@ export default function WorldMap() {
             {unlocked.length} unlocked
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+            <span className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
             {locked.length} locked
           </span>
           <span className="flex items-center gap-1.5">

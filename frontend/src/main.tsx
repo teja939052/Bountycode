@@ -7,11 +7,11 @@ import { installGlobalErrorTracker } from "./services/errorTracker";
 
 function renderBootShell(rootEl: HTMLElement) {
   rootEl.innerHTML = `
-    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#050816;color:#e5e7eb;font-family:system-ui,sans-serif;padding:24px;">
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#F7FAF7;color:#17211B;font-family:system-ui,sans-serif;padding:24px;">
       <div style="max-width:32rem;text-align:center;">
-        <div style="margin:0 auto 16px;height:56px;width:56px;border-radius:9999px;border:4px solid rgba(99,102,241,0.25);border-top-color:#6366f1;animation:spin 1s linear infinite;"></div>
+        <div style="margin:0 auto 16px;height:56px;width:56px;border-radius:9999px;border:4px solid rgba(34,197,94,0.2);border-top-color:#22C55E;animation:spin 1s linear infinite;"></div>
         <h1 style="margin:0 0 8px;font-size:1.5rem;line-height:2rem;">Loading BountyCode</h1>
-        <p style="margin:0;color:#9ca3af;">Preparing the app shell and safety rails...</p>
+        <p style="margin:0;color:#68736B;">Preparing the app shell and safety rails...</p>
       </div>
     </div>
   `;
@@ -20,11 +20,11 @@ function renderBootShell(rootEl: HTMLElement) {
 function renderFatalBootError(rootEl: HTMLElement, error: unknown) {
   const message = error instanceof Error ? error.message : String(error);
   rootEl.innerHTML = `
-    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#050816;color:#e5e7eb;font-family:system-ui,sans-serif;padding:24px;">
-      <div style="max-width:36rem;border:1px solid rgba(239,68,68,0.25);background:rgba(17,24,39,0.92);padding:24px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,0.35);">
-        <h1 style="margin:0 0 8px;font-size:1.5rem;line-height:2rem;color:#fca5a5;">The app could not start</h1>
-        <p style="margin:0 0 16px;color:#d1d5db;">A boot-time error happened before React finished loading. The app is still alive, but this screen needs attention.</p>
-        <pre style="margin:0;white-space:pre-wrap;word-break:break-word;padding:16px;border-radius:12px;background:rgba(0,0,0,0.35);color:#fca5a5;font-size:12px;line-height:1.5;">${message}</pre>
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#F7FAF7;color:#17211B;font-family:system-ui,sans-serif;padding:24px;">
+      <div style="max-width:36rem;border:1px solid rgba(239,68,68,0.25);background:#FFFFFF;padding:24px;border-radius:20px;box-shadow:0 20px 50px rgba(17,33,27,0.12);">
+        <h1 style="margin:0 0 8px;font-size:1.5rem;line-height:2rem;color:#B91C1C;">The app could not start</h1>
+        <p style="margin:0 0 16px;color:#4B5563;">A boot-time error happened before React finished loading. The app is still alive, but this screen needs attention.</p>
+        <pre style="margin:0;white-space:pre-wrap;word-break:break-word;padding:16px;border-radius:12px;background:#FEF2F2;color:#B91C1C;font-size:12px;line-height:1.5;">${message}</pre>
       </div>
     </div>
   `;

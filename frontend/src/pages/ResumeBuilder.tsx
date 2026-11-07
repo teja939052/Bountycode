@@ -134,12 +134,12 @@ export default function ResumeBuilder() {
                 <div className={`w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold ${getScoreColor(analysis.overall_score)}`}>
                   {analysis.overall_score}
                 </div>
-                <p className="text-gray-400">Overall Resume Score</p>
+                <p className="text-gray-500">Overall Resume Score</p>
               </div>
               <div className="grid sm:grid-cols-2 gap-4 mb-4">
                 {Object.entries(analysis.sections || {}).map(([key, val]: [string, any]) => (
                   <div key={key} className="bg-space-void rounded-lg p-3">
-                    <p className="text-sm font-mono uppercase tracking-wider text-gray-400 capitalize">{key}</p>
+                    <p className="text-sm font-mono uppercase tracking-wider text-gray-500 capitalize">{key}</p>
                     <p className={`text-lg font-bold ${getScoreColor(val.score)}`}>{val.score}/100</p>
                     <p className="text-xs text-gray-500">{val.feedback}</p>
                   </div>
@@ -147,10 +147,10 @@ export default function ResumeBuilder() {
               </div>
               {analysis.improvements?.length > 0 && (
                 <div>
-                  <p className="font-mono uppercase tracking-wider text-gray-400 mb-2">Improvements Needed:</p>
+                  <p className="font-mono uppercase tracking-wider text-gray-500 mb-2">Improvements Needed:</p>
                   <ul className="space-y-1">
                     {analysis.improvements.map((imp, i) => (
-                      <li key={i} className="text-sm text-gray-400 flex items-start gap-2">
+                      <li key={i} className="text-sm text-gray-500 flex items-start gap-2">
                         <span className="text-cyber-amber">•</span> {imp}
                       </li>
                     ))}
@@ -162,7 +162,7 @@ export default function ResumeBuilder() {
 
           <div className="card mb-6">
             <h2 className="section-header text-xl mb-4">Resume Content</h2>
-            <pre className="whitespace-pre-wrap text-sm text-gray-300 bg-space-void p-4 rounded-lg max-h-96 overflow-y-auto font-mono">
+            <pre className="whitespace-pre-wrap text-sm text-gray-600 bg-space-void p-4 rounded-lg max-h-96 overflow-y-auto font-mono">
               {resumeText}
             </pre>
           </div>
@@ -197,7 +197,7 @@ export default function ResumeBuilder() {
           </div>
           <span className="section-subheader mb-3 block">Hull Registry</span>
           <h1 className="section-header text-3xl mb-2">Resume Fabricator</h1>
-          <p className="text-gray-400 mt-2">
+          <p className="text-gray-500 mt-2">
             Upload an existing resume or let AI generate one for you
           </p>
         </motion.div>
@@ -216,7 +216,7 @@ export default function ResumeBuilder() {
             >
               <Upload className="text-cyber-green mb-3" size={32} />
               <h3 className="section-header text-lg mb-2">Upload Resume</h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-500">
                 Upload your existing PDF resume. AI will analyze and score it.
               </p>
             </button>
@@ -226,7 +226,7 @@ export default function ResumeBuilder() {
             >
               <FileText className="text-cyber-green mb-3" size={32} />
               <h3 className="section-header text-lg mb-2">Generate New</h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-500">
                 Fill in your details. AI will write a professional resume for you.
               </p>
             </button>
@@ -236,7 +236,7 @@ export default function ResumeBuilder() {
             >
               <Wand2 className="text-cyber-green mb-3" size={32} />
               <h3 className="section-header text-lg mb-2">Bullet Improver</h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-500">
                 Paste weak resume bullets. AI rewrites them with strong action verbs, metrics, and impact.
               </p>
             </button>
@@ -256,7 +256,7 @@ export default function ResumeBuilder() {
               />
               <label htmlFor="resume-upload" className="cursor-pointer">
                 <Upload className="mx-auto text-gray-500 mb-3" size={40} />
-                <p className="text-gray-400">
+                <p className="text-gray-500">
                   {file ? file.name : "Click to select PDF (max 5MB)"}
                 </p>
               </label>
@@ -278,7 +278,7 @@ export default function ResumeBuilder() {
             <div className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Full Name</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Full Name</label>
                   <input
                     className="input"
                     value={form.name}
@@ -287,7 +287,7 @@ export default function ResumeBuilder() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Email</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
                   <input
                     className="input"
                     value={form.email}
@@ -298,7 +298,7 @@ export default function ResumeBuilder() {
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Phone</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Phone</label>
                   <input
                     className="input"
                     value={form.phone}
@@ -307,7 +307,7 @@ export default function ResumeBuilder() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Target Role</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Target Role</label>
                   <input
                     className="input"
                     value={form.target_role}
@@ -318,7 +318,7 @@ export default function ResumeBuilder() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">
+                <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">
                   Skills (comma separated)
                 </label>
                 <input
@@ -331,7 +331,7 @@ export default function ResumeBuilder() {
 
               {/* Experience Section */}
               <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-gray-400 mb-3">Experience</p>
+                <p className="font-mono text-xs uppercase tracking-wider text-gray-500 mb-3">Experience</p>
                 {form.experience.map((exp, i) => (
                   <div key={i} className="bg-space-void rounded-lg p-4 space-y-3 mb-3">
                     <p className="text-xs text-gray-500 font-mono">Experience {i + 1}</p>
@@ -394,7 +394,7 @@ export default function ResumeBuilder() {
 
               {/* Education Section */}
               <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-gray-400 mb-3">Education</p>
+                <p className="font-mono text-xs uppercase tracking-wider text-gray-500 mb-3">Education</p>
                 {form.education.map((edu, i) => (
                   <div key={i} className="bg-space-void rounded-lg p-4 space-y-3 mb-3">
                     <p className="text-xs text-gray-500 font-mono">Education {i + 1}</p>
@@ -460,7 +460,7 @@ export default function ResumeBuilder() {
         {mode === "improve" && !improving && (
           <div className="card">
             <h2 className="section-header text-xl mb-1">Bullet Improver</h2>
-            <p className="text-sm text-gray-400 mb-6">
+            <p className="text-sm text-gray-500 mb-6">
               One bullet per line. Free tier allows 3 improvements per day — Pro is unlimited.
             </p>
 
@@ -472,7 +472,7 @@ export default function ResumeBuilder() {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Target Role (optional)</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Target Role (optional)</label>
                 <input
                   className="input"
                   value={bulletRole}
@@ -481,7 +481,7 @@ export default function ResumeBuilder() {
                 />
               </div>
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Your Bullets</label>
+                <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Your Bullets</label>
                 <textarea
                   className="input min-h-[140px] font-mono text-sm"
                   value={bulletsInput}
@@ -502,7 +502,7 @@ export default function ResumeBuilder() {
               {bulletResults.length > 0 && (
                 <div className="pt-4 space-y-4">
                   <div className="flex items-center justify-between">
-                    <p className="font-mono text-xs uppercase tracking-wider text-gray-400">Improvements</p>
+                    <p className="font-mono text-xs uppercase tracking-wider text-gray-500">Improvements</p>
                     <button
                       onClick={copyAllBullets}
                       className="text-xs text-cyber-green font-mono hover:underline flex items-center gap-1"
@@ -515,11 +515,11 @@ export default function ResumeBuilder() {
                     <div key={i} className="bg-space-void rounded-lg p-4 space-y-3">
                       <div>
                         <p className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-1">Before</p>
-                        <p className="text-sm text-gray-400">{r.original}</p>
+                        <p className="text-sm text-gray-500">{r.original}</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono uppercase tracking-wider text-cyber-green mb-1">After</p>
-                        <p className="text-sm text-gray-200 leading-relaxed">{r.improved}</p>
+                        <p className="text-sm text-gray-700 leading-relaxed">{r.improved}</p>
                       </div>
                       {(r.action_verbs?.length > 0 || r.metric_added?.length > 0) && (
                         <div className="flex flex-wrap gap-2 pt-1">
@@ -549,7 +549,7 @@ export default function ResumeBuilder() {
         {loading && (
           <div className="card text-center py-12">
             <Spinner size="lg" />
-            <p className="text-gray-400 mt-4 font-mono">
+            <p className="text-gray-500 mt-4 font-mono">
               {mode === "upload" ? "Analyzing hull integrity..." : "Fabricating resume..."}
             </p>
             <p className="text-sm text-gray-500 mt-1 font-mono">This usually takes 10-20 seconds</p>

@@ -29,7 +29,6 @@ export const THEME_INFO: ThemeInfo[] = [
   { id: "forest", name: "Enchanted Forest", pro: false, preview: { from: "#2d5a30", to: "#7BB661" } },
   { id: "nature", name: "Nature", pro: false, preview: { from: "#16A34A", to: "#DCFCE7" } },
   { id: "crystal-light", name: "Crystal Light", pro: false, preview: { from: "#58cc02", to: "#ffffff" } },
-  { id: "crystal-dark", name: "Crystal Dark", pro: false, preview: { from: "#58cc02", to: "#0f172a" } },
 ];
 
 const commonTransparent: Record<string, string> = {
@@ -60,7 +59,8 @@ interface ThemeState {
   toggleMode: (mode: ThemeMode) => void;
 }
 
-const THEME_CSS_VARS: Record<ThemeMode, Record<string, string>> = {
+// Kept for reference/documentation; the app always renders LIGHT_THEME_VARS.
+export const THEME_CSS_VARS: Record<ThemeMode, Record<string, string>> = {
   meadow: {
     "--bg-base": "#F6F3EA",
     "--bg-card": "#FFFFFF",
@@ -411,6 +411,33 @@ export const useThemeStore = create<ThemeState>()(
   )
 );
 
-export function getThemeVars(mode: ThemeMode) {
-  return THEME_CSS_VARS[mode] || THEME_CSS_VARS.dark;
+/**
+ * The app ships ONE bright theme. Legacy theme ids are kept for backwards
+ * compatibility with persisted settings, but every id resolves to this light
+ * palette so a stale "dark"/"night" preference can never repaint the app.
+ */
+export const LIGHT_THEME_VARS: Record<string, string> = {
+  "--bg-base": "#FFFFFF",
+  "--bg-card": "#FFFFFF",
+  "--bg-surface": "#F7FAF7",
+  "--text-primary": "#17211B",
+  "--text-secondary": "#4B5563",
+  "--text-muted": "#68736B",
+  "--text-dim": "#94A3B8",
+  "--accent-primary": "#22C55E",
+  "--accent-secondary": "#5BA7A0",
+  "--accent-glow": "rgba(34,197,94,0.15)",
+  "--accent-tertiary": "#DCFCE7",
+  "--accent-warm": "#EAB74D",
+  "--border-subtle": "#E6EDE7",
+  "--border-default": "#DCE8DE",
+  "--glass-bg": "rgba(255,255,255,0.85)",
+  "--glass-blur": "14px",
+  "--shadow-color": "rgba(17,33,27,0.08)",
+  "--space-black": "#FFFFFF",
+  "--nature-glow": "rgba(34,197,94,0.2)",
+};
+
+export function getThemeVars(_mode?: ThemeMode) {
+  return LIGHT_THEME_VARS;
 }

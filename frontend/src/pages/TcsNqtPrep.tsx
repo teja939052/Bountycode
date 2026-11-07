@@ -201,7 +201,7 @@ export default function TcsNqtPrep() {
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400">
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-600">
             {error}
           </div>
         )}
@@ -240,7 +240,7 @@ export default function TcsNqtPrep() {
                 <select
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value)}
-                  className="bg-surface border border-white/10 rounded-lg px-3 py-2 text-sm text-text-primary"
+                  className="bg-surface border border-slate-200 rounded-lg px-3 py-2 text-sm text-text-primary"
                 >
                   <option value="all">All Difficulties</option>
                   <option value="easy">Easy</option>
@@ -360,12 +360,12 @@ export default function TcsNqtPrep() {
                       } else if (isSelected) {
                         btnClass += "border-cyber-red/50 bg-cyber-red/10 ";
                       } else {
-                        btnClass += "border-white/5 opacity-60 ";
+                        btnClass += "border-slate-200 opacity-60 ";
                       }
                     } else if (isSelected) {
                       btnClass += "border-cyber-blue/50 bg-cyber-blue/10 ";
                     } else {
-                      btnClass += "border-white/10 hover:border-cyber-blue/30 hover:bg-surfaceElevated ";
+                      btnClass += "border-slate-200 hover:border-cyber-blue/30 hover:bg-surfaceElevated ";
                     }
 
                     return (
@@ -443,7 +443,7 @@ export default function TcsNqtPrep() {
                       <button
                         onClick={nextQuestion}
                         disabled={loading}
-                        className="w-full py-3 bg-cyber-blue text-white rounded-xl font-medium hover:bg-cyber-blue/90 transition-colors disabled:opacity-50"
+                        className="w-full py-3 bg-cyber-blue text-slate-900 rounded-xl font-medium hover:bg-cyber-blue/90 transition-colors disabled:opacity-50"
                       >
                         {currentQ < questions.length - 1 ? (
                           <span className="flex items-center justify-center gap-2">
@@ -496,14 +496,14 @@ export default function TcsNqtPrep() {
                 <div className="flex gap-3 justify-center">
                   <button
                     onClick={resetPractice}
-                    className="px-6 py-3 bg-surfaceElevated text-text-primary rounded-xl hover:bg-white/10 transition-colors"
+                    className="px-6 py-3 bg-surfaceElevated text-text-primary rounded-xl hover:bg-slate-100 transition-colors"
                   >
                     Back to Patterns
                   </button>
                   <button
                     onClick={() => loadQuestions(result.pattern)}
                     disabled={loading}
-                    className="px-6 py-3 bg-cyber-blue text-white rounded-xl hover:bg-cyber-blue/90 transition-colors disabled:opacity-50"
+                    className="px-6 py-3 bg-cyber-blue text-slate-900 rounded-xl hover:bg-cyber-blue/90 transition-colors disabled:opacity-50"
                   >
                     Practice Again
                   </button>

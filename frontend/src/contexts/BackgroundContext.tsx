@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-export type BackgroundTheme = "ocean" | "night" | "sunset" | "forest" | "auto";
+export type BackgroundTheme = "ocean" | "sunset" | "forest" | "auto";
 
 export interface BackgroundContextValue {
   theme: BackgroundTheme;
@@ -16,12 +16,15 @@ const BackgroundContext = createContext<BackgroundContextValue | undefined>(unde
 const STORAGE_KEY = "bc_background_theme";
 const AUTO_KEY = "bc_background_auto";
 
-const THEME_ORDER: BackgroundTheme[] = ["ocean", "night", "sunset", "forest"];
+const THEME_ORDER: BackgroundTheme[] = ["ocean", "sunset", "forest"];
 
 export function BackgroundProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<BackgroundTheme>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as BackgroundTheme | null;
+      // Legacy "night" preference is migrated to the bright ocean background.
+      if ((stored as string) === "night") return "ocean";
+      if (stored === "auto") return "auto";
       if (stored && THEME_ORDER.includes(stored)) return stored;
     } catch {}
     return "ocean";
@@ -42,7 +45,7 @@ export function BackgroundProvider({ children }: { children: React.ReactNode }) 
     if (hour >= 5 && hour < 12) return "sunset";
     if (hour >= 12 && hour < 17) return "ocean";
     if (hour >= 17 && hour < 20) return "sunset";
-    return "night";
+    return "forest";
   }, [theme]);
 
   useEffect(() => {

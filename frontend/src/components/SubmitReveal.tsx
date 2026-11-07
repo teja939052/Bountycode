@@ -103,11 +103,11 @@ export default function SubmitReveal({
               >
                 <div className="flex items-center justify-center gap-2 mb-2">
                   {passed ? (
-                    <CheckCircle size={24} className="text-green-400" />
+                    <CheckCircle size={24} className="text-green-600" />
                   ) : (
-                    <XCircle size={24} className="text-red-400" />
+                    <XCircle size={24} className="text-red-600" />
                   )}
-                  <span className={`text-2xl font-display font-black ${passed ? 'text-green-400' : 'text-red-400'}`}>
+                  <span className={`text-2xl font-display font-black ${passed ? 'text-green-600' : 'text-red-600'}`}>
                     {passed ? 'SOLVED' : 'KEEP PUSHING'}
                   </span>
                 </div>
@@ -124,7 +124,7 @@ export default function SubmitReveal({
                         className={`w-2 h-6 rounded-sm ${
                           i < score
                             ? score >= 8 ? 'bg-green-400' : score >= 5 ? 'bg-yellow-400' : 'bg-red-400'
-                            : 'bg-gray-700/30'
+                            : 'bg-slate-100'
                         }`}
                         style={{ transformOrigin: 'bottom' }}
                       />
@@ -135,7 +135,7 @@ export default function SubmitReveal({
 
                 {/* Feedback */}
                 {result.feedback && (
-                  <p className="text-sm text-gray-300 font-mono px-6 mt-2">
+                  <p className="text-sm text-gray-600 font-mono px-6 mt-2">
                     {result.feedback}
                   </p>
                 )}
@@ -144,7 +144,7 @@ export default function SubmitReveal({
           </div>
 
           {/* Body */}
-          <div className="bg-gray-900/80 border border-gray-700/30 rounded-b-2xl p-4 space-y-4">
+          <div className="bg-white border border-slate-100 rounded-b-2xl p-4 space-y-4">
             {/* Strengths & Improvements */}
             {phase >= 2 && (
               <motion.div
@@ -156,22 +156,22 @@ export default function SubmitReveal({
                 {result.strengths?.length > 0 && (
                   <div className="bg-green-500/5 border border-green-500/15 rounded-lg p-3">
                     <div className="flex items-center gap-1 mb-1">
-                      <Star size={10} className="text-green-400" />
-                      <span className="text-[9px] font-mono text-green-400 uppercase">Strengths</span>
+                      <Star size={10} className="text-green-600" />
+                      <span className="text-[9px] font-mono text-green-600 uppercase">Strengths</span>
                     </div>
                     {result.strengths.map((s, i) => (
-                      <p key={i} className="text-[10px] font-mono text-gray-400 mt-1">{s}</p>
+                      <p key={i} className="text-[10px] font-mono text-gray-500 mt-1">{s}</p>
                     ))}
                   </div>
                 )}
                 {result.improvements?.length > 0 && (
                   <div className="bg-yellow-500/5 border border-yellow-500/15 rounded-lg p-3">
                     <div className="flex items-center gap-1 mb-1">
-                      <Zap size={10} className="text-yellow-400" />
-                      <span className="text-[9px] font-mono text-yellow-400 uppercase">Improve</span>
+                      <Zap size={10} className="text-yellow-600" />
+                      <span className="text-[9px] font-mono text-yellow-600 uppercase">Improve</span>
                     </div>
                     {result.improvements.map((s, i) => (
-                      <p key={i} className="text-[10px] font-mono text-gray-400 mt-1">{s}</p>
+                      <p key={i} className="text-[10px] font-mono text-gray-500 mt-1">{s}</p>
                     ))}
                   </div>
                 )}
@@ -220,7 +220,7 @@ export default function SubmitReveal({
                 className="bg-cyber-blue/5 border border-cyber-blue/15 rounded-lg p-3"
               >
                 <span className="text-[9px] font-mono text-cyber-blue uppercase">Better Approach</span>
-                <p className="text-[10px] font-mono text-gray-400 mt-1">{result.better_approach}</p>
+                <p className="text-[10px] font-mono text-gray-500 mt-1">{result.better_approach}</p>
               </motion.div>
             )}
 
@@ -231,7 +231,7 @@ export default function SubmitReveal({
                 animate={{ opacity: 1, y: 0 }}
                 className="flex gap-3 pt-2"
               >
-                <button onClick={onTryAgain} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border border-gray-700/40 text-gray-400 hover:text-text-primary hover:border-gray-600 transition-all text-xs font-mono">
+                <button onClick={onTryAgain} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg border border-slate-100 text-gray-500 hover:text-text-primary hover:border-slate-200 transition-all text-xs font-mono">
                   <RotateCcw size={12} />
                   Try Again
                 </button>

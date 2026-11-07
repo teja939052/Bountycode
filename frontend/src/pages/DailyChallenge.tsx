@@ -177,7 +177,7 @@ export default function DailyChallenge() {
         <div className="max-w-4xl mx-auto">
           <motion.div initial={reduced ? {} : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center">
             <div className="w-20 h-20 rounded-2xl bg-accent-primary flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <Gamepad2 size={40} className="text-white" />
+              <Gamepad2 size={40} className="text-slate-900" />
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-extrabold tracking-tight text-primary mb-3">
               30 Days to <span className="text-accent-secondary">Offer</span>
@@ -208,7 +208,7 @@ export default function DailyChallenge() {
             </button>
 
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
-              <div className="card p-6 border border-white/60">
+              <div className="card p-6 border border-slate-200">
                 <h3 className="font-display font-bold text-text-primary mb-3 flex items-center gap-2">
                   <Target size={18} className="text-brand-sky" /> Daily Quests
                 </h3>
@@ -218,7 +218,7 @@ export default function DailyChallenge() {
                   <li className="flex items-center gap-2"><CheckCircle2 size={14} className="text-green-500 shrink-0" /> 1 Behavioral Question</li>
                 </ul>
               </div>
-              <div className="card p-6 border border-white/60">
+              <div className="card p-6 border border-slate-200">
                 <h3 className="font-display font-bold text-text-primary mb-3 flex items-center gap-2">
                   <Gift size={18} className="text-brand-coral" /> Rewards Scaling
                 </h3>
@@ -246,7 +246,7 @@ export default function DailyChallenge() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-surface-card rounded-3xl p-8 max-w-md w-full shadow-soft-lg border border-white/60"
+                className="bg-surface-card rounded-3xl p-8 max-w-md w-full shadow-soft-lg border border-slate-200"
                 onClick={(e) => e.stopPropagation()}
               >
                 <h2 className="text-2xl font-display font-bold text-text-primary mb-2">Choose Your Path</h2>
@@ -324,7 +324,7 @@ export default function DailyChallenge() {
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Gamepad2 size={24} className="text-white" />
+                <Gamepad2 size={24} className="text-slate-900" />
               </motion.div>
               <div>
                 <h1 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-primary">
@@ -369,7 +369,7 @@ export default function DailyChallenge() {
           <div className="flex flex-col sm:flex-row items-center gap-5">
             <div className="relative inline-flex items-center justify-center shrink-0">
               <svg width="96" height="96" viewBox="0 0 96 96" className="drop-shadow-lg">
-                <circle cx="48" cy="48" r="40" fill="none" stroke="currentColor" strokeWidth="5" className="text-black/5 dark:text-white/10" />
+                <circle cx="48" cy="48" r="40" fill="none" stroke="currentColor" strokeWidth="5" className="text-black/5" />
                 <motion.circle
                   cx="48" cy="48" r="40"
                   fill="none"
@@ -486,7 +486,7 @@ export default function DailyChallenge() {
         {error && (
           <div className="fixed bottom-6 right-6 bg-red-500 text-white px-6 py-3 rounded-2xl shadow-lg text-sm">
             {error}
-            <button onClick={() => setError(null)} className="ml-3 text-white/70 hover:text-white">✕</button>
+            <button onClick={() => setError(null)} className="ml-3 text-slate-900 hover:text-slate-900">✕</button>
           </div>
         )}
       </div>
@@ -605,7 +605,7 @@ function TodayQuestTab({
             >
               {completing ? (
                 <span className="flex items-center gap-2">
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-slate-200 border-t-white rounded-full animate-spin" />
                   Completing...
                 </span>
               ) : (
@@ -692,7 +692,7 @@ function ProgressTab({ progress, reduced }) {
                 } ${
                   day.status === "current" ? "ring-2 ring-accent-secondary ring-offset-1 text-primary" : ""
                 } ${
-                  day.status === "completed" ? "text-white" : day.status === "missed" ? "text-white" : "text-muted"
+                  day.status === "completed" ? "text-slate-900" : day.status === "missed" ? "text-slate-900" : "text-muted"
                 }`}
               >
                 {day.day}
@@ -751,9 +751,9 @@ function LeaderboardTab({ leaderboard, reduced }) {
               }`}
             >
               <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold font-mono ${
-                i === 0 ? "bg-accent-warm text-white" :
-                i === 1 ? "bg-gray-400 text-white" :
-                i === 2 ? "bg-orange-400 text-white" :
+                i === 0 ? "bg-accent-warm text-slate-900" :
+                i === 1 ? "bg-gray-400 text-slate-900" :
+                i === 2 ? "bg-orange-400 text-slate-900" :
                 "bg-card text-muted"
               }`}>
                 {i + 1}
@@ -786,7 +786,7 @@ function MentorCard({ mentorName, todayData }) {
     <div className="card p-5 border border-default">
       <div className="flex items-center gap-3 mb-3">
         <div className="w-12 h-12 rounded-full bg-accent-primary flex items-center justify-center">
-          <User size={20} className="text-white" />
+          <User size={20} className="text-slate-900" />
         </div>
         <div>
           <p className="text-xs text-secondary font-mono">Your Mentor</p>
@@ -930,7 +930,7 @@ function StreakMilestoneModal({ rewards, onClose }) {
 
           <button
             onClick={onClose}
-            className="w-full px-4 py-3 rounded-2xl bg-accent-warm text-white font-display font-bold text-sm shadow-md hover:shadow-lg transition-shadow"
+            className="w-full px-4 py-3 rounded-2xl bg-accent-warm text-slate-900 font-display font-bold text-sm shadow-md hover:shadow-lg transition-shadow"
           >
             Claim & keep going
           </button>

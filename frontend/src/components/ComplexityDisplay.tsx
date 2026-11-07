@@ -32,7 +32,7 @@ export default function ComplexityDisplay({ timeComplexity, spaceComplexity, alg
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-gray-900/60 border border-gray-700/40 rounded-xl p-4"
+      className="bg-white border border-slate-100 rounded-xl p-4"
     >
       <div className="text-center mb-3">
         <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500">
@@ -42,7 +42,7 @@ export default function ComplexityDisplay({ timeComplexity, spaceComplexity, alg
 
       <div className="flex items-center justify-center gap-6">
         <ComplexityBadge label="Time" complexity={timeComplexity} info={time} animated={animated} delay={0.3} />
-        <div className="w-px h-12 bg-gray-700/30" />
+        <div className="w-px h-12 bg-slate-100" />
         <ComplexityBadge label="Space" complexity={spaceComplexity} info={space} animated={animated} delay={0.5} />
       </div>
 

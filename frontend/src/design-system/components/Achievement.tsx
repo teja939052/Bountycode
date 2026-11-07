@@ -134,7 +134,7 @@ export function Achievement({
 
           {!unlocked && progress !== undefined && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg">
-              <span className="text-sm font-bold text-white">
+              <span className="text-sm font-bold text-slate-900">
                 {Math.round((progress / maxProgress) * 100)}%
               </span>
             </div>

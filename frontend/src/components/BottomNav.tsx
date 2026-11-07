@@ -36,26 +36,26 @@ export default function BottomNav() {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-white/10 bg-gray-900/90 backdrop-blur-xl safe-area-bottom">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-slate-200 bg-white backdrop-blur-xl safe-area-bottom">
         {showLeague && (
           <Link
             to="/leaderboard"
-            className="block border-b border-white/10"
+            className="block border-b border-slate-200"
             style={{ background: `${tier.color}15` }}
           >
             <div className="flex items-center justify-center gap-1.5 h-7 px-3 text-[10px] font-mono">
               <Trophy size={11} style={{ color: tier.color }} />
               <span className="font-bold" style={{ color: tier.color }}>{tier.name} League</span>
-              <span className="text-gray-400">
+              <span className="text-gray-500">
                 #{league.rank} of {league.of} · {league.weekly_xp || 0} Diamonds
               </span>
-              {league.promoted_next_week && <span className="text-emerald-400">&uarr; promoting</span>}
-              {league.relegated_next_week && <span className="text-red-400">&darr; relegation</span>}
+              {league.promoted_next_week && <span className="text-emerald-600">&uarr; promoting</span>}
+              {league.relegated_next_week && <span className="text-red-600">&darr; relegation</span>}
             </div>
           </Link>
         )}
         {streak > 0 && (
-          <div className="flex items-center justify-center gap-1.5 h-6 text-[10px] font-mono text-orange-400 border-b border-white/5 bg-orange-500/5">
+          <div className="flex items-center justify-center gap-1.5 h-6 text-[10px] font-mono text-orange-600 border-b border-slate-200 bg-orange-500/5">
             <Flame size={10} className="fill-orange-500 text-orange-500" />
             <span className="font-bold">{streak} day streak</span>
           </div>
@@ -72,7 +72,7 @@ export default function BottomNav() {
               >
                 <div className="relative w-7 h-7 flex items-center justify-center">
                   <Icon size={18}
-                    className={`transition-colors duration-200 ${isActive ? 'text-indigo-400' : 'text-gray-500'}`}
+                    className={`transition-colors duration-200 ${isActive ? 'text-indigo-600' : 'text-gray-500'}`}
                   />
                   {isActive && (
                     <motion.div layoutId="bottomNavActive"
@@ -86,7 +86,7 @@ export default function BottomNav() {
                     </span>
                   )}
                 </div>
-                <span className={`text-[9px] tracking-wider mt-0.5 ${isActive ? 'text-indigo-400 font-bold' : 'text-gray-500'}`}>
+                <span className={`text-[9px] tracking-wider mt-0.5 ${isActive ? 'text-indigo-600 font-bold' : 'text-gray-500'}`}>
                   {label}
                 </span>
               </Link>

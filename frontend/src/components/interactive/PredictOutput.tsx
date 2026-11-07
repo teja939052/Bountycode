@@ -79,7 +79,7 @@ export default function PredictOutput({
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-surface-elevated">
         <div className="flex items-center gap-2">
-          <Terminal size={18} className="text-emerald-400" />
+          <Terminal size={18} className="text-emerald-600" />
           <span className="font-bold text-sm text-text-primary">
             Predict the Output
           </span>
@@ -98,8 +98,8 @@ export default function PredictOutput({
             exit={{ opacity: 0, x: -20 }}
           >
             {/* Code block */}
-            <div className="rounded-xl bg-slate-900 border border-slate-700 p-4 mb-5 overflow-x-auto">
-              <pre className="text-xs font-mono text-slate-200 leading-relaxed whitespace-pre">
+            <div className="rounded-xl bg-white border border-slate-200 p-4 mb-5 overflow-x-auto">
+              <pre className="text-xs font-mono text-slate-700 leading-relaxed whitespace-pre">
                 {q.code}
               </pre>
             </div>
@@ -138,13 +138,13 @@ export default function PredictOutput({
                     {answered && isCorrect && (
                       <CheckCircle
                         size={14}
-                        className="inline ml-2 text-emerald-400"
+                        className="inline ml-2 text-emerald-600"
                       />
                     )}
                     {answered && isSelected && !isCorrect && (
                       <XCircle
                         size={14}
-                        className="inline ml-2 text-rose-400"
+                        className="inline ml-2 text-rose-600"
                       />
                     )}
                   </button>

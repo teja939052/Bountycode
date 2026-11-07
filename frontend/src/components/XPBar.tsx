@@ -59,7 +59,7 @@ export default function DiamondsBar({ diamonds = 0, level: levelProp, xpIntoLeve
     return (
       <div className={`relative inline-flex items-center justify-center ${className}`}>
         <svg width="96" height="96" viewBox="0 0 96 96" className="drop-shadow-lg">
-          <circle cx="48" cy="48" r={radius} fill="none" stroke="currentColor" strokeWidth="6" className="text-gray-200 dark:text-gray-800" />
+          <circle cx="48" cy="48" r={radius} fill="none" stroke="currentColor" strokeWidth="6" className="text-gray-700" />
           <motion.circle
             cx="48" cy="48" r={radius}
             fill="none"
@@ -110,7 +110,7 @@ export default function DiamondsBar({ diamonds = 0, level: levelProp, xpIntoLeve
       <div className="flex-1 min-w-0">
         {compact ? (
           <div className="flex items-center gap-2">
-            <div className="relative h-2 bg-gray-800 rounded-full overflow-hidden flex-1">
+            <div className="relative h-2 bg-slate-100 rounded-full overflow-hidden flex-1">
               <div className="absolute inset-0 bg-gradient-to-r from-ocean/10 to-ocean/5" />
               <motion.div
                 className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-ocean to-sky"
@@ -119,7 +119,7 @@ export default function DiamondsBar({ diamonds = 0, level: levelProp, xpIntoLeve
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 1, ease: 'easeOut' }}
               >
-                <div className="absolute inset-y-0 right-0 w-6 bg-gradient-to-r from-transparent to-white/30" />
+                <div className="absolute inset-y-0 right-0 w-6 bg-gradient-to-r from-transparent to-slate-200" />
               </motion.div>
             </div>
             <span className="text-[10px] font-mono text-gray-500 shrink-0">
@@ -134,10 +134,10 @@ export default function DiamondsBar({ diamonds = 0, level: levelProp, xpIntoLeve
                 <CountUp end={into} duration={1.2} /> / {span} Diamonds
               </span>
             </div>
-            <div className="relative h-2.5 bg-gray-800 rounded-full overflow-hidden">
+            <div className="relative h-2.5 bg-slate-100 rounded-full overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-ocean/10 to-ocean/5" />
               {[25, 50, 75].map((mark) => (
-                <div key={mark} className="absolute inset-y-0 w-px bg-white/10" style={{ left: `${mark}%` }} />
+                <div key={mark} className="absolute inset-y-0 w-px bg-slate-100" style={{ left: `${mark}%` }} />
               ))}
               <motion.div
                 className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-ocean to-sky"
@@ -147,7 +147,7 @@ export default function DiamondsBar({ diamonds = 0, level: levelProp, xpIntoLeve
                 transition={{ duration: 1.2, ease: 'easeOut' }}
               >
                 <div className="absolute inset-0 overflow-hidden rounded-full">
-                  <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-r from-transparent to-white/30" />
+                  <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-r from-transparent to-slate-200" />
                   <div className="absolute inset-0 holo-shimmer opacity-50" style={{ animationDuration: '2s' }} />
                 </div>
               </motion.div>
