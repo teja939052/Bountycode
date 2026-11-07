@@ -49,3 +49,23 @@ def test_python_decision_and_collection_lessons_use_authored_content():
         assert len(lesson["quizzes"]) == 3
         assert len(lesson["exercises"]) == 2
         assert score_lesson_content(lesson)["status"] == "ready"
+
+
+
+def test_python_lists_dictionaries_and_strings_use_authored_content():
+    cases = [
+        ("python-l07-01", "Lists Basics", "marks = [78, 91, 64]"),
+        ("python-l07-02", "List Methods", "tasks.append('revise')"),
+        ("python-l07-03", "Slicing", "values[::-1]"),
+        ("python-l08-01", "String Methods Deep", "raw.strip().lower()"),
+        ("python-l08-02", "f-strings & Formatting", "score:.2f"),
+        ("python-l08-05", "dict Basics", "student.get('grade'"),
+        ("python-l08-06", "dict Methods", "scores.items()"),
+    ]
+
+    for lesson_id, title, expected_code in cases:
+        lesson = get_lesson_content("python", lesson_id, title, "theory")
+        assert expected_code in lesson["code_example"]["code"]
+        assert len(lesson["quizzes"]) == 3
+        assert len(lesson["exercises"]) == 2
+        assert score_lesson_content(lesson)["status"] == "ready"
