@@ -271,7 +271,6 @@ DBMS_LESSONS = [
             },
         ],
     },
-,
     {
         "id": "dbms-sql-joins-aggregation",
         "title": "SQL Joins and Grouped Reports",
