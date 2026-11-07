@@ -60,6 +60,9 @@ _TRACK_SKILL: Dict[str, Tuple[str, str]] = {
     "logical": ("aptitude", "logical_reasoning"),
     "verbal": ("aptitude", "verbal_ability"),
     "company_prep": ("behavioral", "problem_solving"),
+    "debugging": ("debugging", "debugging_workflow"),
+    "system_design": ("system_design", "requirements_gathering"),
+    "behavioral": ("behavioral", "communication"),
 }
 
 # DSA lessons map to the specific DSA sub-skill their content is about.
