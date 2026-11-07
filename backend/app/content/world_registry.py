@@ -17,6 +17,7 @@ from app.content.worlds_3_to_6 import WORLD_3_BUILD_SYSTEMS, WORLD_4_WORK_WITH_D
 from app.content.worlds_7_to_9 import WORLD_7_HIRING_ARENA, WORLD_8_COMPANY_MISSIONS, WORLD_9_AI_ENGINEERING
 from app.content.worlds_10_to_12 import WORLD_10_PRODUCTION, WORLD_11_PROJECTS, WORLD_12_CREATIVE
 from app.content.world_aptitude_quant import WORLD_APTITUDE_QUANT
+from app.content.world_aptitude_reasoning import WORLD_APTITUDE_REASONING
 
 # ─── World registry ─────────────────────────────────────────────────────────────
 # Order matters — worlds are presented to students in this order.
@@ -34,8 +35,9 @@ ALL_WORLDS: Dict[str, WorldDefinition] = {
     WORLD_10_PRODUCTION.id: WORLD_10_PRODUCTION,
     WORLD_11_PROJECTS.id: WORLD_11_PROJECTS,
     WORLD_12_CREATIVE.id: WORLD_12_CREATIVE,
-    # Service-company Numerical Ability (Phase D of SERVICE_COMPANY_CURRICULUM)
+    # Service-company placement tracks
     WORLD_APTITUDE_QUANT.id: WORLD_APTITUDE_QUANT,
+    WORLD_APTITUDE_REASONING.id: WORLD_APTITUDE_REASONING,
 }
 
 
