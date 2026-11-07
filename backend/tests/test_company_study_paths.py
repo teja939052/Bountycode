@@ -13,6 +13,8 @@ def test_service_company_path_prioritizes_aptitude_and_database_foundations():
 
 
 def test_company_aliases_resolve_to_canonical_paths():
+    assert get_company_learning_path("TCS-NQT")["company"] == "TCS"
+    assert get_company_learning_path("Infosys Specialist Programmer")["company"] == "Infosys"
     assert get_company_learning_path("techm")["company"] == "Tech Mahindra"
     assert get_company_learning_path("Tech Mahindra")["company"] == "Tech Mahindra"
     assert get_company_learning_path("LTIMindtree")["company"] == "LTIMindtree"
