@@ -231,6 +231,48 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
     return evidence
 
 
+async def _update_quiz_srs(user_id: str, question_id: str, passed: bool) -> bool:
+    """Update the question's spaced-repetition schedule after a graded answer."""
+    try:
+        from dataclasses import asdict
+        from app.services.spaced_repetition import (
+            SpacedRepetitionEngine,
+            ReviewGrade,
+            deserialize_state,
+        )
+
+        existing = await srs_cards_collection.find_one({
+            "user_id": user_id,
+            "problem_id": question_id,
+        })
+        engine = SpacedRepetitionEngine()
+        state = (
+            deserialize_state(existing, user_id=user_id)
+            if existing
+            else engine.create_new_card(concept_id=question_id, user_id=user_id)
+        )
+        state = engine.review(
+            state,
+            ReviewGrade.GOOD if passed else ReviewGrade.AGAIN,
+        )
+        state_doc = asdict(state)
+        state_doc["problem_id"] = question_id
+        await srs_cards_collection.update_one(
+            {"user_id": user_id, "problem_id": question_id},
+            {"$set": state_doc},
+            upsert=True,
+        )
+        try:
+            from app.services.study_engine import invalidate_daily_plan
+            await invalidate_daily_plan(user_id)
+        except Exception:
+            logger.debug("Could not invalidate study plan after SRS update for %s", user_id)
+        return True
+    except Exception:
+        logger.exception("Could not update quiz SRS card for %s", question_id)
+        return False
+
+
 def _ordered_quiz_attempts(session: Dict[str, Any]) -> tuple[list, list]:
     """Return trusted question-bank docs and attempts in the original session order."""
     stored_answers = {
@@ -442,6 +484,12 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
                 repair_id = mission.id if mission else None
         except Exception:
             logger.exception("Could not create quiz repair mission for %s", submission.question_id)
+
+    # Update spaced repetition independently of XP. Correct answers move
+    # the card forward; failures return it to the short learning step.
+    srs_updated = await _update_quiz_srs(
+        user["id"], submission.question_id, bool(result.get("is_correct"))
+    )
 
     # Persist every graded quiz answer into the canonical longitudinal
     # evidence stream. This event is separate from XP and is useful for
