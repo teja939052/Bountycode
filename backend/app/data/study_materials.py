@@ -1034,6 +1034,63 @@ def search_articles(query: str) -> list[dict[str, Any]]:
     ]
 
 
+COMPANY_STUDY_PATHS: dict[str, dict[str, Any]] = {
+    "tcs": {"name": "TCS", "priority": ["aptitude", "dbms", "sql", "operating-systems", "computer-networks"], "focus": ["quantitative aptitude", "logical reasoning", "verbal ability", "programming fundamentals", "SQL and database concepts"]},
+    "infosys": {"name": "Infosys", "priority": ["aptitude", "sql", "dbms", "operating-systems", "computer-networks"], "focus": ["quantitative and analytical reasoning", "verbal ability", "programming fundamentals", "SQL"]},
+    "wipro": {"name": "Wipro", "priority": ["aptitude", "dbms", "sql", "computer-networks", "operating-systems"], "focus": ["aptitude", "logical reasoning", "verbal communication", "programming and CS foundations"]},
+    "accenture": {"name": "Accenture", "priority": ["aptitude", "computer-networks", "dbms", "sql", "operating-systems"], "focus": ["cognitive aptitude", "logical reasoning", "communication", "technical fundamentals"]},
+    "cognizant": {"name": "Cognizant", "priority": ["aptitude", "sql", "dbms", "operating-systems", "computer-networks"], "focus": ["quantitative aptitude", "reasoning", "verbal ability", "coding and database foundations"]},
+    "capgemini": {"name": "Capgemini", "priority": ["aptitude", "dbms", "sql", "computer-networks", "operating-systems"], "focus": ["aptitude", "pseudo-code reasoning", "programming logic", "CS fundamentals"]},
+    "hcl": {"name": "HCL", "priority": ["aptitude", "dbms", "sql", "operating-systems", "computer-networks"], "focus": ["quantitative aptitude", "reasoning", "programming", "core CS"]},
+    "tech_mahindra": {"name": "Tech Mahindra", "priority": ["aptitude", "computer-networks", "dbms", "sql", "operating-systems"], "focus": ["aptitude", "communication", "networking basics", "programming fundamentals"]},
+    "lti_mindtree": {"name": "LTIMindtree", "priority": ["aptitude", "sql", "dbms", "operating-systems", "computer-networks"], "focus": ["aptitude", "reasoning", "coding", "database and CS fundamentals"]},
+    "mphasis": {"name": "Mphasis", "priority": ["aptitude", "dbms", "sql", "operating-systems", "computer-networks"], "focus": ["aptitude", "verbal ability", "programming basics", "core CS"]},
+    "google": {"name": "Google", "priority": ["dbms", "operating-systems", "computer-networks", "sql", "aptitude"], "focus": ["data structures and algorithms", "problem solving", "systems fundamentals", "technical communication"]},
+    "amazon": {"name": "Amazon", "priority": ["operating-systems", "dbms", "computer-networks", "sql", "aptitude"], "focus": ["data structures and algorithms", "problem solving", "systems fundamentals", "leadership principles"]},
+    "microsoft": {"name": "Microsoft", "priority": ["dbms", "operating-systems", "computer-networks", "sql", "aptitude"], "focus": ["data structures and algorithms", "problem solving", "CS fundamentals", "technical communication"]},
+    "meta": {"name": "Meta", "priority": ["operating-systems", "computer-networks", "dbms", "sql", "aptitude"], "focus": ["data structures and algorithms", "coding", "systems design", "behavioral interviews"]},
+}
+_COMPANY_ALIASES = {
+    "tcs nqt": "tcs", "tata consultancy services": "tcs",
+    "infosys sp": "infosys", "specialist programmer": "infosys",
+    "wipro turbo": "wipro", "techm": "tech_mahindra", "tech mahindra": "tech_mahindra",
+    "lti": "lti_mindtree", "ltimindtree": "lti_mindtree",
+}
+
+
+def get_company_learning_path(company: str) -> dict[str, Any] | None:
+    """Return an explainable study sequence; this is platform guidance, not an employer exam guarantee."""
+    key = str(company or "").strip().lower().replace("-", "_")
+    key = _COMPANY_ALIASES.get(key, key.replace(" ", "_"))
+    config = COMPANY_STUDY_PATHS.get(key)
+    if not config:
+        return None
+    articles_by_category: dict[str, list[dict[str, Any]]] = {}
+    for category in config["priority"]:
+        articles_by_category[category] = get_articles(category)
+    modules = []
+    for order, category in enumerate(config["priority"], start=1):
+        for article in articles_by_category[category]:
+            modules.append({
+                "order": len(modules) + 1,
+                "phase": order,
+                "category": category,
+                "article_id": article["id"],
+                "title": article["title"],
+                "level": article.get("level", "beginner"),
+                "read_time_min": article.get("read_time_min", 10),
+                "summary": article.get("summary", ""),
+            })
+    return {
+        "company": config["name"],
+        "company_key": key,
+        "focus_areas": list(config["focus"]),
+        "study_modules": modules,
+        "module_count": len(modules),
+        "disclaimer": "This is Bountycode's recommended foundation sequence. Hiring assessments vary by role, location and hiring cycle; verify current employer guidance and use your diagnostic results to adjust priorities.",
+    }
+
+
 def get_related_articles(
     language_id: str,
     query: str = "",
