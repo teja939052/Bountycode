@@ -44,7 +44,7 @@ type CompanyPreset = {
   color: string;
 };
 
-const COMPANIES: CompanyPreset[] = [
+export const COMPANY_PRESETS: CompanyPreset[] = [
   { id: "general", backendCompany: "swe", name: "General OA", logo: "📋", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Mixed placement OA covering all sections", sourceLabel: "Product recommendation", sourceUrl: null, color: "cyber-blue" },
   { id: "tcs", backendCompany: "tcs", name: "TCS Foundation + Advanced", logo: "🔷", duration: 190, questionCount: 30, difficulty: "medium", sections: ["Foundation", "Advanced"], description: "Full two-stage TCS NQT-style practice", sourceLabel: "Official drive structure; verify current hall ticket", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
   { id: "tcs_foundation", backendCompany: "tcs", track: "foundation", name: "TCS Foundation", logo: "🔷", duration: 75, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal"], description: "Numerical, verbal and reasoning practice", sourceLabel: "Official cited TCS drive: 75 minutes", sourceUrl: "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring", color: "cyber-blue" },
@@ -58,6 +58,8 @@ const COMPANIES: CompanyPreset[] = [
   { id: "hcl", backendCompany: "hcl", name: "HCL Tech", logo: "🟢", duration: 30, questionCount: 15, difficulty: "easy", sections: ["Quant", "Logical", "Verbal"], description: "HCL TalentConnect pattern", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-green" },
   { id: "tech_mahindra", backendCompany: "tech_mahindra", name: "Tech Mahindra", logo: "⚡", duration: 45, questionCount: 20, difficulty: "medium", sections: ["Quant", "Logical", "Verbal", "Technical"], description: "Tech Mahindra SMART assessment", sourceLabel: "Pattern-relevant practice", sourceUrl: null, color: "cyber-purple" },
 ];
+
+const COMPANIES = COMPANY_PRESETS;
 
 const SECTION_CATEGORIES = {
   Quant: "quantitative",
