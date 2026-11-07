@@ -47,3 +47,21 @@ repos:
       - id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
         exclude: ^(backend/venv/|frontend/node_modules/|.*\.lock$)
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0
+    hooks:
+      - id: prettier
+        files: ^frontend/
+        types: [javascript, jsx, typescript, tsx, json, css, scss, markdown]
+        args: ['--check']
+
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: bash -c 'cd frontend && npx eslint . --ext .ts,.tsx'
+        language: system
+        files: ^frontend/
+        types: [javascript, jsx, typescript, tsx]
+        pass_filenames: []

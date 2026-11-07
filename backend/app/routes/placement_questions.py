@@ -128,7 +128,12 @@ async def get_questions_by_company(
     count: int = 10,
     user=Depends(get_current_user),
 ):
-    """Get questions commonly asked at a specific company."""
+    """Get pattern-relevant practice questions for a specific company.
+
+    A5 provenance contract (2026-09-10): company alignment here is
+    pattern-relevant topic matching, never a claim of historically asked
+    questions. See provenance_note in the response.
+    """
     if not PLACEMENT_APTITUDE_QUESTIONS:
         raise HTTPException(status_code=503, detail="Question bank not loaded")
 
@@ -160,6 +165,11 @@ async def get_questions_by_company(
             "by_category": dict(category_counts),
             "by_difficulty": dict(difficulty_counts),
         },
+        "provenance_note": (
+            "Pattern-relevant company alignment: these questions match the "
+            "company's placement patterns and are never presented as "
+            "historically asked-at-X."
+        ),
     }
 
 

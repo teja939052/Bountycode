@@ -9,8 +9,8 @@ export default function Terms() {
           <div className="space-y-8 text-gray-700 text-sm leading-relaxed">
             <section>
               <h2 className="text-xl font-semibold text-gray-900 mb-3">1. Acceptance of Terms</h2>
-              <p>By accessing or using PlacementPro ("the Platform"), you agree to be bound by these Terms & Conditions ("Terms"). If you do not agree to these Terms, you must not use the Platform.</p>
-              <p className="mt-2">These Terms constitute a legally binding agreement between you ("User") and PlacementPro ("Company", "We", "Us").</p>
+              <p>By accessing or using BountyCode ("the Platform"), you agree to be bound by these Terms & Conditions ("Terms"). If you do not agree to these Terms, you must not use the Platform.</p>
+              <p className="mt-2">These Terms constitute a legally binding agreement between you ("User") and BountyCode ("Company", "We", "Us").</p>
               <p className="mt-2 text-amber-600 font-medium">⚠️ By using the Platform, you acknowledge that you have read, understood, and accepted these Terms.</p>
             </section>
 
@@ -74,7 +74,7 @@ export default function Terms() {
                 <p>We offer a 7-day money-back guarantee for all paid subscriptions. If you are not satisfied, you may request a full refund within 7 days of purchase.</p>
 
                 <p className="mt-3"><strong>5.2 How to Request</strong></p>
-                <p>Email us at <a href="mailto:support@placementpro.com" className="text-green-600 hover:underline">support@placementpro.com</a> with:</p>
+                <p>Email us at <a href="mailto:support@bountycode.app" className="text-green-600 hover:underline">support@bountycode.app</a> with:</p>
                 <ul className="list-disc pl-6 mt-1 space-y-1">
                   <li>Your registered email address</li>
                   <li>PayPal Transaction ID</li>
@@ -110,7 +110,7 @@ export default function Terms() {
             <section>
               <h2 className="text-xl font-semibold text-gray-900 mb-3">7. Intellectual Property</h2>
               <ul className="list-disc pl-6 space-y-2">
-                <li>All content on the Platform (courses, questions, designs, code, text, graphics, logos) is owned by PlacementPro.</li>
+                <li>All content on the Platform (courses, questions, designs, code, text, graphics, logos) is owned by BountyCode.</li>
                 <li>You may not reproduce, distribute, or create derivative works without explicit written permission.</li>
                 <li>Your submitted content (solutions, code, etc.) becomes our property upon submission.</li>
                 <li>We do not claim ownership of your personal data (as per Privacy Policy).</li>
@@ -176,14 +176,14 @@ export default function Terms() {
               <h2 className="text-xl font-semibold text-gray-900 mb-3">13. Contact Information</h2>
               <p><strong>For legal inquiries:</strong></p>
               <ul className="list-none space-y-1 mt-2">
-                <li>📧 Email: <a href="mailto:legal@placementpro.com" className="text-green-600 hover:underline">legal@placementpro.com</a></li>
+                 <li>📧 Email: <a href="mailto:legal@bountycode.app" className="text-green-600 hover:underline">legal@bountycode.app</a></li>
                 <li>📞 Phone: [Your Phone Number]</li>
                 <li>📍 Address: [Your Business Address]</li>
               </ul>
             </section>
 
             <div className="border-t border-gray-200 pt-6 mt-8 text-xs text-gray-400">
-              <p>By using PlacementPro, you agree to these Terms & Conditions.</p>
+              <p>By using BountyCode, you agree to these Terms & Conditions.</p>
               <p className="mt-1">Last Updated: August 2026 • Version: 2.0</p>
             </div>
           </div>

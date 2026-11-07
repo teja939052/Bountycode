@@ -27,7 +27,7 @@ export function useGamification() {
       if (startupData)
         setStartup({
           level: startupData.level,
-          xp: startupData.xp,
+          diamonds: startupData.diamonds,
           streak: startupData.streak,
           streak_freezes: startupData.streak_freezes,
           streak_protected: startupData.streak_protected,
@@ -54,11 +54,11 @@ export function useGamification() {
     const onXp = () => {
       if (active) refetch();
     };
-    window.addEventListener("xp-gained", onXp);
+    window.addEventListener("diamonds-gained", onXp);
     window.addEventListener("celebrate", onXp);
     return () => {
       active = false;
-      window.removeEventListener("xp-gained", onXp);
+      window.removeEventListener("diamonds-gained", onXp);
       window.removeEventListener("celebrate", onXp);
     };
   }, [refetch]);

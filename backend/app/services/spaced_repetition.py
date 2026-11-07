@@ -2,7 +2,7 @@
 Spaced Repetition Engine (SM-2 Algorithm) for DSA Concept Mastery
 Implements Anki/SuperMemo scheduling for optimal retention
 """
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from app.utils.timeutil import utcnow
 from typing import Dict, List, Optional, Any
@@ -50,6 +50,59 @@ class SRSState:
             self.created_at = utcnow()
         if self.updated_at is None:
             self.updated_at = utcnow()
+
+
+def _coerce_utc_datetime(value: Any) -> Optional[datetime]:
+    """Parse Mongo/Python ISO date values into timezone-aware UTC datetimes."""
+    if value is None:
+        return None
+    parsed = value
+    if isinstance(value, str):
+        try:
+            parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+        except (TypeError, ValueError):
+            return None
+    if not isinstance(parsed, datetime):
+        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def deserialize_state(doc: Dict[str, Any], user_id: Optional[str] = None) -> SRSState:
+    """Restore an SRS card without dropping its persisted schedule.
+
+    Supports both the canonical SRSState fields and legacy problem-card fields
+    (problem_id, interval_days, review_count). Mongo metadata is intentionally
+    ignored instead of being passed into the dataclass constructor.
+    """
+    now = utcnow()
+    created_at = _coerce_utc_datetime(doc.get("created_at")) or now
+    last_reviewed = _coerce_utc_datetime(
+        doc.get("last_reviewed") or doc.get("last_review")
+    )
+    interval = max(0, int(doc.get("interval", doc.get("interval_days", 0)) or 0))
+    next_review = _coerce_utc_datetime(
+        doc.get("next_review") or doc.get("next_review_at")
+    )
+    if next_review is None:
+        anchor = last_reviewed or created_at
+        next_review = anchor + timedelta(days=interval) if interval > 0 else now
+
+    return SRSState(
+        concept_id=str(doc.get("concept_id") or doc.get("problem_id") or ""),
+        user_id=str(user_id or doc.get("user_id") or ""),
+        interval=interval,
+        repetitions=max(0, int(doc.get("repetitions", doc.get("review_count", 0)) or 0)),
+        ease_factor=max(1.3, float(doc.get("ease_factor", 2.5) or 2.5)),
+        next_review=next_review,
+        last_reviewed=last_reviewed,
+        learning_step=max(0, int(doc.get("learning_step", 0) or 0)),
+        total_reviews=max(0, int(doc.get("total_reviews", doc.get("review_count", 0)) or 0)),
+        lapses=max(0, int(doc.get("lapses", 0) or 0)),
+        created_at=created_at,
+        updated_at=_coerce_utc_datetime(doc.get("updated_at")) or created_at,
+    )
 
 
 class SpacedRepetitionEngine:
@@ -148,19 +201,25 @@ class SpacedRepetitionEngine:
             new_state.ease_factor = self._update_ease_factor(new_state, grade)
             return new_state
         
-        # Correct answer
+        # Correct answer. learning_step points to the NEXT step to schedule:
+        # first recall -> 10 minutes, second -> 1 day, third -> 3 days.
+        # The old code incremented before indexing and therefore skipped 10m.
         if new_state.interval == 0:
-            # In learning phase
-            new_state.learning_step += 1
+            step_index = min(
+                max(0, new_state.learning_step),
+                len(self.LEARNING_STEPS_MINUTES) - 1,
+            )
+            minutes = self.LEARNING_STEPS_MINUTES[step_index]
+            new_state.learning_step = step_index + 1
+            new_state.next_review = now + timedelta(minutes=minutes)
             if new_state.learning_step >= len(self.LEARNING_STEPS_MINUTES):
-                # Graduated!
-                new_state.interval = self.GRADUATING_INTERVAL
+                # Graduate at the last learning interval (3 days), then use
+                # the normal ease-factor schedule on subsequent reviews.
+                new_state.interval = max(
+                    self.GRADUATING_INTERVAL,
+                    (minutes + 1439) // 1440,
+                )
                 new_state.repetitions = 1
-                new_state.next_review = now + timedelta(days=new_state.interval)
-            else:
-                # Still learning
-                minutes = self.LEARNING_STEPS_MINUTES[new_state.learning_step]
-                new_state.next_review = now + timedelta(minutes=minutes)
         else:
             # In review phase
             new_state.repetitions += 1
@@ -318,6 +377,39 @@ def initialize_user_srs(user_id: str) -> List[SRSState]:
     """Initialize SRS states for all DSA concepts for a new user"""
     engine = SpacedRepetitionEngine()
     return [engine.create_new_card(cid, user_id) for cid in get_all_concept_ids()]
+
+
+def serialize_state(state: SRSState) -> Dict[str, Any]:
+    """Serialize an SRSState for API response."""
+    now = utcnow()
+    next_review = _coerce_utc_datetime(state.next_review)
+    last_reviewed = _coerce_utc_datetime(state.last_reviewed)
+    now = _coerce_utc_datetime(now) or utcnow()
+    overdue_days = 0
+    if next_review and next_review < now:
+        overdue_days = (now - next_review).days
+
+    return {
+        "concept_id": state.concept_id,
+        "user_id": state.user_id,
+        "interval_days": state.interval,
+        "repetitions": state.repetitions,
+        "ease_factor": round(state.ease_factor, 2),
+        "next_review": next_review.isoformat() if next_review else None,
+        "last_reviewed": last_reviewed.isoformat() if last_reviewed else None,
+        "learning_step": state.learning_step,
+        "total_reviews": state.total_reviews,
+        "lapses": state.lapses,
+        "is_due": bool(next_review and next_review <= now),
+        "overdue_days": overdue_days,
+    }
+
+
+# Compatibility aliases for study_engine.py
+def get_due_cards(states: List[SRSState], limit: int = 20) -> List[SRSState]:
+    """Get cards due for review (compatibility wrapper)."""
+    engine = SpacedRepetitionEngine()
+    return engine.get_due_cards(states, limit)
 
 
 # Example usage and testing

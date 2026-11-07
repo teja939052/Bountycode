@@ -105,6 +105,8 @@ STUDY_CATEGORIES = [
      "description": "The foundation of modern systems — pointers, memory, files, enums."},
     {"id": "full-stack", "name": "Full-Stack Projects", "icon": "🚀", "color": "#8B5CF6",
      "description": "End-to-end builds that tie the whole path together."},
+    {"id": "placement", "name": "Placement Prep", "icon": "🎯", "color": "#F59E0B",
+     "description": "Company-wise exam patterns, band logic, and prep plans — TCS NQT, Infosys, Wipro."},
 ]
 
 
@@ -876,6 +878,61 @@ ARTICLES: list[dict[str, Any]] = [
             "One source of truth per field; validation at the server boundary",
             "Verify identity server-side on every protected request",
             "Migrations + env vars + reverse proxy = shippable",
+        ],
+    ),
+    # ────────────────────────── Placement Prep ──────────────────────────
+    _article(
+        "tcs-nqt-2026-guide",
+        "TCS NQT 2026: Exact Pattern, Band Logic, and 8-Week Prep Plan",
+        "placement",
+        "One integrated 190-minute test decides Ninja, Digital, or Prime. Learn the exact section counts, why locked navigation changes your strategy, and how to turn Foundation → Advanced → Coding into a weekly Journey with mock-OA repair.",
+        "beginner", 12, ["tcs-nqt", "aptitude", "reasoning", "coding", "mock-oa"],
+        [
+            _section(
+                "The exact 2026 pattern",
+                "Part A Foundation (75 min, 65 questions): Numerical Ability 20 in 25 min, Verbal Ability 25 in 25 min, Reasoning Ability 20 in 25 min. Part B Advanced (115 min): Advanced Aptitude 15 in 25 min, then Advanced Coding — 2 problems in 90 min with partial marks for passing test cases. Total: 190 minutes. Pattern-relevant (third-party verified, not an official TCS publication).",
+            ),
+            _section(
+                "Band logic: Ninja vs Digital vs Prime",
+                "Everyone attempts all 5 sections in one sitting. Foundation percentile is evaluated first — clear it and you are Ninja-eligible. Clearing Advanced Aptitude upgrades you to Digital-eligible. Advanced Coding at roughly the 80th percentile overall is what gates Prime. Translation: Foundation-only practice caps you at Ninja; Digital and Prime are decided in Part B.",
+            ),
+            _section(
+                "Three hall rules that change strategy",
+                "No negative marking: a blank and a wrong answer both score zero, so attempt every question — guess in the last 10 seconds of a section. Locked sections: when a section's timer expires it is gone forever, and inside a section clicking Next locks the question with no review. So pace per-section (75 seconds per Foundation question, 100 per Advanced MCQ), never borrow time mentally from a locked section.",
+            ),
+            _section(
+                "The 8-week plan wired to your Journey",
+                "Weeks 1–3: Foundation aptitude daily (Numerical → Verbal → Reasoning), 20 timed questions a day. Weeks 4–5: Advanced Aptitude + TCS coding patterns (arrays, strings, loops, recursion, sorting) in Python, Java, or C++ — use the language lessons, not new material. Week 6: first full Foundation mock, then repair every weak section through guided practice + SRS. Week 7: Advanced Coding under the 90-minute clock — ship a brute force that passes sample cases first (partial marks), then optimize. Week 8: full 190-minute simulation, then fix the 3 weakest areas the report names and retest.",
+                "Week 1 mission: 20 Foundation questions, timed, zero blanks.\nWeek 4 mission: 2 TCS coding patterns, brute-force accepted.\nWeek 8 mission: full mock → repair → retest, readiness must move.",
+                "Your mock score is not a grade — it is a work order. Every red section becomes tomorrow's mission.",
+            ),
+        ],
+        [
+            "190 minutes, 5 sections, one sitting — Foundation 65Q/75min, Advanced 15Q/25min + 2 coding/90min",
+            "Ninja = Foundation; Digital = +Advanced Aptitude; Prime = +Advanced Coding",
+            "No negative marking means attempt everything; locked sections mean pace per-section",
+            "Partial marks in coding reward a working brute force before optimization",
+        ],
+        "tcs-nqt",
+        quiz=[
+            _quiz(
+                "TCS NQT 2026 has no negative marking. What should you do with 10 seconds left in a section?",
+                ["Leave tough questions blank to stay safe", "Attempt every unanswered question, even by guessing", "Skip to save time for the next section", "Review earlier answers instead"],
+                1,
+                "Blank and wrong both score zero, so guessing strictly dominates leaving blanks — and sections lock, so there is no later review.",
+            ),
+            _quiz(
+                "How many Advanced Coding problems does TCS NQT 2026 have, and how long do you get?",
+                ["3 problems in 60 minutes", "2 problems in 90 minutes", "1 problem in 45 minutes", "5 problems in 120 minutes"],
+                1,
+                "Advanced Coding is 2 problems in 90 minutes with partial marks on test-case pass rate.",
+            ),
+            _quiz(
+                "Which performance gates the Prime band?",
+                ["Verbal Ability score", "Foundation percentile alone", "Advanced Coding at ~80th percentile overall", "Reasoning speed"],
+                2,
+                "Prime is decided by Advanced Coding on top of Foundation + Advanced Aptitude eligibility.",
+            ),
         ],
     ),
 ]

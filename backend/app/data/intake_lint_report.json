@@ -1,0 +1,388 @@
+{
+ "scanned": 11836,
+ "verdicts": {
+  "pass": 11102,
+  "needs_work": 154,
+  "rejected": 580
+ },
+ "rejected_by_reason": {
+  "stub_literal_return_only": 528,
+  "formatter_not_solution": 24,
+  "mcq_options_must_have_exactly_4_entries": 14,
+  "solution_syntax_error": 12,
+  "stub_pass_only_body": 2
+ },
+ "rejected_by_source_bank_top20": {
+  "legacy": 537,
+  "questions_bank.json#coding_legacy_enriched": 34,
+  "cs - Computer Fundamentals": 9
+ },
+ "rejected_by_type": {
+  "coding": 566,
+  "cs": 10,
+  "cs_fundamentals": 4
+ },
+ "rejected_sample": [
+  {
+   "id": "nc-sliding-window-maximum",
+   "title": "Sliding Window Maximum",
+   "type": "coding",
+   "source_bank": "questions_bank.json#coding_legacy_enriched",
+   "reasons": [
+    "formatter_not_solution"
+   ]
+  },
+  {
+   "id": "nc-daily-temperatures",
+   "title": "Daily Temperatures",
+   "type": "coding",
+   "source_bank": "questions_bank.json#coding_legacy_enriched",
+   "reasons": [
+    "formatter_not_solution"
+   ]
+  },
+  {
+   "id": "nc-3sum",
+   "title": "3Sum",
+   "type": "coding",
+   "source_bank": "questions_bank.json#coding_legacy_enriched",
+   "reasons": [
+    "formatter_not_solution"
+   ]
+  },
+  {
+   "id": "nc-two-sum",
+   "title": "Two Sum",
+   "type": "coding",
+   "source_bank": "questions_bank.json#coding_legacy_enriched",
+   "reasons": [
+    "formatter_not_solution"
+   ]
+  },
+  {
+   "id": "nc-counting-bits",
+   "title": "Counting Bits",
+   "type": "coding",
+   "source_bank": "questions_bank.json#coding_legacy_enriched",
+   "reasons": [
+    "formatter_not_solution"
+   ]
+  },
+  {
+   "id": "nc-insert-interval",
+   "title": "Insert Interval",
+   "type": "coding",
+   "source_bank": "questions_bank.json#coding_legacy_enriched",
+   "reasons": [
+    "formatter_not_solution"
+   ]
+  },
+  {
+   "id": "apt_359420281",
+   "title": "What is the IP address class if the first octet is 192?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_647693166",
+   "title": "What is the difference between DELETE and TRUNCATE?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_731983367",
+   "title": "What is the difference between process and thread?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_482181718",
+   "title": "What is the difference between RAM and ROM?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_265639987",
+   "title": "Which of the following is not a secondary storage device: RAM, Hard Disk, CD-ROM",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_900351610",
+   "title": "HTTP stands for?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_501645174",
+   "title": "What is the default constraint on a column in SQL?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_099158",
+   "title": "What is the full form of USB?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "apt_85050803",
+   "title": "Windows 10 is based on which kernel?",
+   "type": "cs",
+   "source_bank": "cs - Computer Fundamentals",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "q_03459",
+   "title": "OS \u2014 scheduling concept",
+   "type": "cs_fundamentals",
+   "source_bank": "legacy",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "q_03460",
+   "title": "DB \u2014 normal form",
+   "type": "cs_fundamentals",
+   "source_bank": "legacy",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "q_03461",
+   "title": "Networking \u2014 protocol",
+   "type": "cs_fundamentals",
+   "source_bank": "legacy",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "q_03462",
+   "title": "OOP \u2014 concept",
+   "type": "cs_fundamentals",
+   "source_bank": "legacy",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "q_04213",
+   "title": "Which of the following is not a secondary storage device: RAM, Hard Disk, CD-ROM",
+   "type": "cs",
+   "source_bank": "legacy",
+   "reasons": [
+    "mcq_options_must_have_exactly_4_entries"
+   ]
+  },
+  {
+   "id": "tuf_0170",
+   "title": "Remove Outermost Parentheses",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0171",
+   "title": "Reverse Words",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0172",
+   "title": "Largest Odd Number",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0174",
+   "title": "Isomorphic String",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0175",
+   "title": "Rotate String",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0176",
+   "title": "Check Anagram",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0178",
+   "title": "Max Nesting Depth",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0180",
+   "title": "String to Integer atoi",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0182",
+   "title": "Sum of Beauty of Substrings",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0183",
+   "title": "Remove Outermost Parentheses (Strings [Bas #14)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0184",
+   "title": "Reverse Words (Strings [Bas #15)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0185",
+   "title": "Largest Odd Number (Strings [Bas #16)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0186",
+   "title": "Longest Common Prefix (Strings [Bas #17)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0187",
+   "title": "Isomorphic String (Strings [Bas #18)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0188",
+   "title": "Rotate String (Strings [Bas #19)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0561",
+   "title": "Climbing Stairs (Dynamic Prog #50)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0591",
+   "title": "Minimum Window Subsequence (Strings #1)",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0592",
+   "title": "Count and Say",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0593",
+   "title": "Rabin Karp",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  },
+  {
+   "id": "tuf_0594",
+   "title": "KMP LPS Array",
+   "type": "coding",
+   "source_bank": "legacy",
+   "reasons": [
+    "stub_literal_return_only"
+   ]
+  }
+ ],
+ "rule": "intake screen only; no trust_status mutation, no promotion, no quarantine"
+}

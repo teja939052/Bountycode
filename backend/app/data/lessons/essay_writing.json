@@ -1,0 +1,122 @@
+{
+  "slug": "essay_writing",
+  "id": "lesson_essay_writing_001",
+  "title": "Placement Essay Writing",
+  "domain": "Verbal Ability",
+  "pattern": "Essay Writing",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Understand the prompt",
+      "content": "Identify the essay topic, task verb and expected viewpoint. Decide whether you must explain, compare, argue for a position or propose solutions.",
+      "example": "For 'Should remote work continue?', you need a clear position and reasons supporting it."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a thesis",
+      "prompt": "Which sentence is the clearest thesis for an essay on responsible use of technology?",
+      "options": [
+        "Technology is everywhere.",
+        "This essay is about technology.",
+        "Technology is useful when access, privacy and digital skills are developed responsibly.",
+        "Many people use devices."
+      ],
+      "correct_index": 2,
+      "explanation": "A thesis states a clear, arguable position and previews the main reasoning."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Build a coherent structure",
+      "content": "Use an introduction with a thesis, body paragraphs with one main point each, and a conclusion that synthesizes the argument. Transitions should show how ideas relate.",
+      "tip": "One paragraph should develop one main idea rather than listing unrelated points."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Support a claim",
+      "prompt": "Which is the strongest support for the claim that public transport reduces traffic?",
+      "options": [
+        "I like buses.",
+        "More commuters using buses means fewer individual cars on the road.",
+        "Buses are large vehicles.",
+        "Traffic is sometimes slow."
+      ],
+      "correct_index": 1,
+      "explanation": "This evidence explains the causal mechanism connecting public transport use to fewer cars."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Revise for clarity",
+      "content": "Check whether each paragraph supports the thesis. Correct grammar, remove repetition, use precise words and confirm that the conclusion answers the prompt. Respect the requested word count.",
+      "example": "Replace vague wording such as 'a lot of things' with specific examples or evidence."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What is the purpose of a thesis statement?",
+        "options": [
+          "To list every detail",
+          "To state the central position or argument",
+          "To replace the conclusion",
+          "To introduce unrelated facts"
+        ],
+        "correct_index": 1,
+        "explanation": "The thesis tells the reader the essay's main claim or direction."
+      },
+      {
+        "prompt": "What should a body paragraph usually contain?",
+        "options": [
+          "Several unrelated claims",
+          "One main point with explanation or support",
+          "Only the title",
+          "A new thesis"
+        ],
+        "correct_index": 1,
+        "explanation": "A focused paragraph develops one point and supports it."
+      },
+      {
+        "prompt": "Which transition signals contrast?",
+        "options": [
+          "Furthermore",
+          "For example",
+          "However",
+          "Therefore"
+        ],
+        "correct_index": 2,
+        "explanation": "However signals a contrast or qualification."
+      },
+      {
+        "prompt": "What is the best way to support a factual claim?",
+        "options": [
+          "A relevant example or credible evidence",
+          "Repeating the claim",
+          "Using a longer sentence",
+          "Adding an unrelated opinion"
+        ],
+        "correct_index": 0,
+        "explanation": "Relevant evidence makes a claim more persuasive and clear."
+      },
+      {
+        "prompt": "What should the conclusion do?",
+        "options": [
+          "Introduce several new arguments",
+          "Synthesize the main argument and answer the prompt",
+          "Repeat the title only",
+          "Ignore the thesis"
+        ],
+        "correct_index": 1,
+        "explanation": "A conclusion brings the argument together and reinforces the response to the prompt."
+      }
+    ]
+  }
+}

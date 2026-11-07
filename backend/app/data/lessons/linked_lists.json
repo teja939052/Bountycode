@@ -1,0 +1,222 @@
+{
+  "slug": "linked_lists",
+  "id": "lesson_linked_lists_001",
+  "title": "Linked Lists",
+  "domain": "Programming Fundamentals",
+  "pattern": "Linked Lists",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Understand a node",
+      "content": "A linked list is made of nodes. A singly linked-list node stores data and a pointer/reference to the next node. The head points to the first node; the last node points to null.",
+      "example": "10 → 20 → 30 → null. The head points to the node containing 10."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Recognize the tail",
+      "prompt": "In 5 → 8 → 12 → null, what does the next pointer of the node containing 12 hold?",
+      "options": [
+        "5",
+        "8",
+        "12",
+        "null"
+      ],
+      "correct_index": 3,
+      "explanation": "The final node has no successor, so its next pointer is null."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Insert at the head",
+      "content": "To insert a new node at the head, set newNode.next = head, then update head = newNode. Both pointer updates are important.",
+      "example": "Before: 10 → 20. Insert 5: set 5.next=10, then head=5, giving 5 → 10 → 20.",
+      "tip": "Set the new node's next pointer before replacing the head reference."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Know the trade-off",
+      "prompt": "What is the time complexity of accessing the kth element of a singly linked list from its head?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correct_index": 2,
+      "explanation": "You must follow next pointers from the head until reaching the kth node, so access is O(n)."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Singly versus doubly linked",
+      "content": "A singly linked list points forward. A doubly linked list stores both next and previous pointers, enabling backward traversal at the cost of extra memory and pointer maintenance."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What does the head of a linked list reference?",
+        "options": [
+          "The last node",
+          "The first node",
+          "The middle node",
+          "Every node"
+        ],
+        "correct_index": 1,
+        "explanation": "The head is the reference to the first node."
+      },
+      {
+        "prompt": "What marks the end of a singly linked list?",
+        "options": [
+          "-1 always",
+          "A self pointer",
+          "null",
+          "The head"
+        ],
+        "correct_index": 2,
+        "explanation": "The tail node's next pointer is null."
+      },
+      {
+        "prompt": "What is the time complexity of inserting a node at the head when the head pointer is available?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n²)"
+        ],
+        "correct_index": 0,
+        "explanation": "Only a constant number of pointer assignments are needed."
+      },
+      {
+        "prompt": "Which structure supports forward and backward traversal?",
+        "options": [
+          "Singly linked list",
+          "Doubly linked list",
+          "Stack",
+          "Queue"
+        ],
+        "correct_index": 1,
+        "explanation": "A doubly linked list has both next and previous pointers."
+      },
+      {
+        "prompt": "Why is random indexing slower in a linked list than in an array?",
+        "options": [
+          "Nodes are always sorted",
+          "Nodes are reached by following pointers",
+          "It has no data",
+          "It uses recursion"
+        ],
+        "correct_index": 1,
+        "explanation": "A linked list does not provide direct index-based memory access."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Explain nodes and next references.",
+    "Trace traversal from the head pointer.",
+    "Compare linked-list access with array access.",
+    "Understand insertion and deletion pointer changes."
+  ],
+  "prerequisites": [
+    "data_structures_intro",
+    "programming_languages"
+  ],
+  "concepts": [
+    "node",
+    "head",
+    "next pointer",
+    "traversal",
+    "singly linked list",
+    "insertion",
+    "deletion"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A linked list supports O(1) indexing.",
+      "correction": "Finding the kth node requires traversal and takes O(n)."
+    },
+    {
+      "misconception": "Deleting a node always needs shifting.",
+      "correction": "A singly linked list can unlink a node by changing a previous node's next pointer."
+    },
+    {
+      "misconception": "The head pointer is the entire list.",
+      "correction": "The head points to the first node; each node links to the next node."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Traverse a linked list",
+      "input": "head → 10 → 20 → 30 → null",
+      "trace": [
+        "Start current at head (10).",
+        "Visit 10; move to next (20).",
+        "Visit 20; move to next (30).",
+        "Visit 30; next is null, stop."
+      ],
+      "output": "10, 20, 30",
+      "explanation": "Traversal follows links until the next pointer is null."
+    },
+    {
+      "title": "Insert after the head",
+      "input": "10 → 30; insert 20 after 10",
+      "trace": [
+        "Create a node containing 20.",
+        "Set new_node.next to the old next node (30).",
+        "Set head.next to new_node."
+      ],
+      "output": "10 → 20 → 30",
+      "explanation": "Set the new node's next pointer before overwriting the previous link."
+    },
+    {
+      "title": "Compare access costs",
+      "input": "Find the 100th item",
+      "trace": [
+        "Array: calculate its address from the index.",
+        "Linked list: follow next pointers one node at a time.",
+        "The linked list may need about 100 visits."
+      ],
+      "output": "Array O(1), linked-list traversal O(n)",
+      "explanation": "Data structure choice depends on the operations the application needs."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "linked-list fundamentals",
+      "practice": "Trace pointer changes for insertion and deletion."
+    },
+    {
+      "company": "TCS",
+      "skill": "data structures and complexity",
+      "practice": "Compare array and linked-list operation costs."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "coding implementation",
+      "practice": "Handle empty list, one node and deleting the head."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Linked Lists?",
+      "answer": "Explain nodes and next references. Trace traversal from the head pointer. Compare linked-list access with array access. Understand insertion and deletion pointer changes."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Linked Lists.",
+      "answer": "Finding the kth node requires traversal and takes O(n)."
+    }
+  ],
+  "next_lesson_slug": "stacks_queues",
+  "next_lesson_title": "Stacks and Queues"
+}

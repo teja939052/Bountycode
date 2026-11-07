@@ -41,11 +41,11 @@ const QUEST_STEPS = [
   },
   {
     id: "step-3",
-    title: "Earn Your First XP",
+    title: "Earn Your First Diamonds",
     description:
       "Complete the lesson and watch your progress climb. Gamification keeps you hooked.",
     type: "action",
-    action: "Complete a lesson to earn XP",
+    action: "Complete a lesson to earn Diamonds",
     target: "/learn/c",
   },
   {
@@ -61,7 +61,7 @@ const QUEST_STEPS = [
     id: "step-5",
     title: "Go Pro for Unlimited Access",
     description:
-      "Free users get 3 lessons per month. Pro unlocks everything for $9/mo or lock in lifetime for $39.",
+      "Free users get 3 lessons per month. Pro unlocks everything for ₹99/mo or ₹899/yr.",
     type: "conversion",
     action: "Upgrade to Pro",
     target: "/pricing",
@@ -81,7 +81,7 @@ const STEP_GLYPHS: Record<string, React.ReactNode> = {
 const MENTOR_LINES: Record<string, string> = {
   "step-1": "First, pick your weapon. Every voyage starts with the tool you'll carry.",
   "step-2": "Code before you feel ready. The fastest way to learn is to run something real.",
-  "step-3": "XP is your compass. It always points toward the next island.",
+  "step-3": "Diamonds is your compass. It always points toward the next island.",
   "step-4": "Steady sailors outpace sprinters. Show up tomorrow — that's the whole trick.",
   "step-5": "Free waters only go so far. Pro charts the entire sea.",
 };
@@ -111,6 +111,12 @@ interface QuestStatus {
 }
 
 export default function OnboardingQuest() {
+  // V3 §2 — 2 screens max: Sign Up (done) → ONE question → Journey.
+  // goal → follow-up (language | role → company) → /journey.
+  const [goal, setGoal] = useState<string | null>(() => localStorage.getItem("bountycode.goal"));
+  const [role, setRole] = useState<string | null>(null);
+  const [company, setCompany] = useState<string | null>(null);
+  const [language, setLanguage] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [questData, setQuestData] = useState<{ steps: QuestStep[] } | null>(null);
   const [status, setStatus] = useState<QuestStatus | null>(null);
@@ -136,7 +142,7 @@ export default function OnboardingQuest() {
         if (firstIncomplete >= 0) {
           setCurrentStep(firstIncomplete);
         } else if (statusRes.is_complete) {
-          navigate("/learn/c");
+          navigate("/journey");
         }
       } catch {
         setQuestData({ steps: QUEST_STEPS });
@@ -161,7 +167,94 @@ export default function OnboardingQuest() {
         const newCompleted = status
           ? [...(status.completed_steps || []), step.id]
           : [step.id];
-        const steps = questData?.steps || QUEST_STEPS;
+  if (!goal) {
+    const GOALS = [
+      { id: "skills", icon: "🎓", title: "BUILD MY CODING SKILLS", desc: "Prepare from the fundamentals." },
+      { id: "placements", icon: "🎯", title: "PREPARE FOR PLACEMENTS", desc: "Build skills + aptitude + interviews." },
+      { id: "job", icon: "💼", title: "PREPARE FOR A JOB", desc: "Target a role/company and prove readiness." },
+    ];
+    const pick = (id: string) => {
+      setGoal(id);
+      localStorage.setItem("bountycode.goal", id);
+    };
+    return (
+      <PageShell theme="nature">
+        <div className="flex min-h-screen items-center justify-center px-4 py-12">
+          <div className="w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-soft-lg">
+            <h2 className="font-display text-2xl font-extrabold text-text text-center">What are you here to accomplish?</h2>
+            <div className="mt-5 space-y-3">
+              {GOALS.map((g) => (
+                <button key={g.id} onClick={() => pick(g.id)} className="w-full rounded-xl border-2 border-border p-4 text-left hover:border-primary/50 hover:bg-surface-2">
+                  <span className="text-xl">{g.icon}</span>
+                  <span className="ml-2 font-bold">{g.title}</span>
+                  <p className="mt-1 text-sm text-text-muted">{g.desc}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </PageShell>
+    );
+  }
+
+  if ((goal === "skills" && !language) || ((goal === "placements" || goal === "job") && !role)) {
+    const startJourney = async () => {
+      try {
+        await api.onboarding.completeStep({ step_id: "v3-target", goal, role, company, language } as any);
+      } catch { /* persist locally regardless */ }
+      localStorage.setItem("bountycode.target", JSON.stringify({ goal, role, company, language }));
+      navigate("/journey");
+    };
+    return (
+      <PageShell theme="nature">
+        <div className="flex min-h-screen items-center justify-center px-4 py-12">
+          <div className="w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-soft-lg">
+            {goal === "skills" ? (
+              <>
+                <h2 className="font-display text-2xl font-extrabold text-center">What do you want to learn?</h2>
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  {[...LANGUAGE_OPTIONS, { id: "unsure", label: "Not sure yet", desc: "Show me basics" }].map((l) => (
+                    <button key={l.id} onClick={() => setLanguage(l.id)} className={`rounded-xl border-2 p-4 text-left ${language === l.id ? "border-primary bg-mint" : "border-border hover:border-primary/40"}`}>
+                      <span className="font-bold">{l.label}</span>
+                      <p className="text-xs text-text-muted">{l.desc}</p>
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="font-display text-2xl font-extrabold text-center">What role are you targeting?</h2>
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  {["Software Engineer", "Frontend Developer", "Backend Developer", "Full Stack Developer", "Data Analyst", "QA Engineer", "DevOps Engineer", "Not sure yet"].map((r) => (
+                    <button key={r} onClick={() => setRole(r)} className={`rounded-xl border-2 p-3 text-left text-sm ${role === r ? "border-primary bg-mint font-bold" : "border-border hover:border-primary/40"}`}>{r}</button>
+                  ))}
+                </div>
+                {role && role !== "Not sure yet" && (
+                  <>
+                    <h3 className="mt-5 font-bold text-center">Where are you applying? (optional)</h3>
+                    <div className="mt-3 flex flex-wrap gap-2 justify-center">
+                      {["TCS NQT", "Infosys", "Wipro", "Cognizant", "Capgemini", "Amazon", "Google", "Generic prep"].map((c) => (
+                        <button key={c} onClick={() => setCompany(c)} className={`rounded-full border px-3 py-1.5 text-xs font-mono ${company === c ? "border-primary bg-mint" : "border-border"}`}>{c}</button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </>
+            )}
+            <button
+              onClick={startJourney}
+              disabled={goal === "skills" ? !language : !role}
+              className="mt-6 w-full rounded-xl bg-[#F4532F] py-3 font-bold text-white disabled:opacity-40"
+            >
+              Start Journey →
+            </button>
+          </div>
+        </div>
+      </PageShell>
+    );
+  }
+
+  const steps = questData?.steps || QUEST_STEPS;
         const total = steps.length;
         const progress = Math.round((newCompleted.length / total) * 100);
         setStatus({
@@ -181,7 +274,7 @@ export default function OnboardingQuest() {
         if (next < total) {
           setCurrentStep(next);
         } else {
-          navigate("/learn/c");
+          navigate("/journey");
         }
       } catch {
       } finally {
@@ -192,7 +285,7 @@ export default function OnboardingQuest() {
   );
 
   const handleSkip = useCallback(() => {
-    navigate("/learn/c");
+    navigate("/journey");
   }, [navigate]);
 
   if (loading) {
@@ -308,10 +401,10 @@ export default function OnboardingQuest() {
                   </div>
                 )}
 
-                {/* XP reward badge */}
+                {/* Diamonds reward badge */}
                 <div className="flex items-center justify-center gap-2 text-sm font-semibold text-wood">
                   <Star size={14} className="text-reward" />
-                  <span>+10 XP on completion</span>
+                  <span>+10 Diamonds on completion</span>
                 </div>
 
                 {/* Action button */}

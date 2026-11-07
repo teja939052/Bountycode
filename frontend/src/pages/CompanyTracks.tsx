@@ -1,0 +1,550 @@
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import api from "../services/api";
+import useAuthStore from "../store/authStore";
+import {
+  Building2, Briefcase, Clock, Trophy, TrendingUp, Sparkles, ArrowRight,
+  BookOpen, Target, Zap, Crown, CheckCircle2, Lock, Star,
+} from "lucide-react";
+
+const LESSON_BY_TOPIC: Record<string, string> = {
+  percentages: "successive_percentage_change",
+  successive_percentage_change: "successive_percentage_change",
+  profit_loss: "profit_loss",
+  ratio_proportion: "ratio_proportion",
+  ratio: "ratio_proportion",
+  averages: "averages",
+  average: "averages",
+  time_work: "time_work",
+  time_distance: "time_distance",
+  speed_time_distance: "time_distance",
+  probability: "probability_basics",
+  permutations: "permutations_combinations",
+  permutation: "permutations_combinations",
+  series: "number_series",
+  number_series: "number_series",
+  coding_decoding: "coding_decoding",
+  blood_relations: "blood_relations",
+  blood_relation: "blood_relations",
+  reading_comprehension: "reading_comprehension",
+  reading: "reading_comprehension",
+  sentence_correction: "sentence_correction",
+  grammar: "sentence_correction",
+  para_jumbles: "para_jumbles",
+  sentence_rearrangement: "para_jumbles",
+  arrays: "arrays_basics",
+  array: "arrays_basics",
+  strings: "strings_basics",
+  loops: "loops_basics",
+  conditions: "loops_basics",
+  recursion: "recursion_basics",
+  sorting: "sorting_basics",
+  searching: "searching_basics",
+  hashing: "hashing_basics",
+  hashmaps: "hashing_basics",
+  joins: "sql_joins",
+  sql: "sql_select_basics",
+  basic_sql: "sql_select_basics",
+  oop: "oops_basics",
+  normalization: "dbms_basics",
+  os: "os_basics",
+  operating_systems: "os_basics",
+  networking: "computer_networks_basics",
+  computer_networks: "computer_networks_basics",
+  number_system: "number_systems",
+  number_systems: "number_systems",
+  hcf_lcm: "hcf_lcm",
+  hcf: "hcf_lcm",
+  lcm: "hcf_lcm",
+  simple_interest: "simple_compound_interest",
+  compound_interest: "simple_compound_interest",
+  interest: "simple_compound_interest",
+  mixture_alligation: "mixture_alligation",
+  mixtures: "mixture_alligation",
+  alligation: "mixture_alligation",
+  advanced_mixtures: "mixture_alligation",
+  syllogisms: "syllogisms",
+  direction_sense: "direction_sense",
+  directions: "direction_sense",
+  puzzles: "logical_puzzles",
+  arrangements: "logical_puzzles",
+  seating_arrangement: "logical_puzzles",
+  venn_diagrams: "logical_puzzles",
+  clocks: "clocks_calendars",
+  calendars: "clocks_calendars",
+  linked_list: "linked_lists",
+  linked_lists: "linked_lists",
+  trees: "trees_basics",
+  binary_trees: "trees_basics",
+  bst: "trees_basics",
+  stacks_queues: "stacks_queues",
+  stack: "stacks_queues",
+  queue: "stacks_queues",
+  dynamic_programming: "dynamic_programming",
+  dp: "dynamic_programming",
+  basic_dp: "dynamic_programming",
+  exception_handling: "exception_handling",
+  exceptions: "exception_handling",
+  file_io: "file_io",
+  files: "file_io",
+  time_complexity: "time_complexity",
+  complexity_analysis: "time_complexity",
+  big_o: "time_complexity",
+  subqueries: "sql_subqueries",
+  exists: "sql_subqueries",
+  not_exists: "sql_subqueries",
+  in: "sql_subqueries",
+  any_all: "sql_subqueries",
+  group_by: "sql_group_by",
+  having: "sql_group_by",
+  aggregation: "sql_group_by",
+  matrix: "matrix_operations",
+  matrices: "matrix_operations",
+  matrix_operations: "matrix_operations",
+  pipes_cisterns: "pipes_cisterns",
+  number_analogies: "analogies_odd_one_out",
+  odd_one_out: "analogies_odd_one_out",
+  word_relationships: "analogies_odd_one_out",
+  word_analogy: "analogies_odd_one_out",
+  active_passive_voice: "grammar_transformations",
+  direct_indirect_speech: "grammar_transformations",
+  error_spotting: "error_spotting",
+  cloze_test: "vocabulary_cloze",
+  fill_in_blanks: "vocabulary_cloze",
+  synonyms_antonyms: "vocabulary_cloze",
+  vocabulary: "vocabulary_cloze",
+  one_word_substitution: "vocabulary_cloze",
+  java_python_basics: "programming_languages",
+  c_java_python_basics: "programming_languages",
+  collections: "collections_framework",
+  pattern_printing: "pattern_printing",
+  pattern_matching: "pattern_matching_basics",
+  basic_pattern_matching: "pattern_matching_basics",
+  pattern_recognition: "pattern_matching_basics",
+  indexing: "sql_indexes_triggers",
+  triggers: "sql_indexes_triggers",
+  basic_algorithms: "algorithms_basics",
+  mathematical: "algorithms_basics",
+  math: "algorithms_basics",
+  arithmetic: "arithmetic_algebra",
+  algebra: "arithmetic_algebra",
+  geometry: "geometry_basics",
+  basic_ds: "data_structures_intro",
+  technology_topics: "essay_writing",
+  current_affairs: "essay_writing",
+  opinion_essays: "essay_writing",
+  technology: "essay_writing",
+  business: "essay_writing",
+  social_issues: "essay_writing",
+  essay: "essay_writing",
+  advanced_probability: "advanced_probability",
+  advanced_time_work: "advanced_time_work",
+  simple_compound_interest: "simple_compound_interest",
+  critical_reasoning: "logical_puzzles",
+  dynamic_programming_basics: "dynamic_programming",
+
+};
+
+function lessonForModule(
+  topics: string[] = [],
+  topicMastery: Record<string, { mastered?: boolean }> = {},
+): { slug: string; topicId: string } | null {
+  for (const topic of topics) {
+    const key = topic.toLowerCase().trim().replace(/[\s-]+/g, "_");
+    if (topicMastery[key]?.mastered) continue;
+    if (LESSON_BY_TOPIC[key]) return { slug: LESSON_BY_TOPIC[key], topicId: key };
+  }
+  return null;
+}
+
+const DIFFICULTY_COLORS = {
+  easy: "text-green-400 bg-green-500/10 border-green-500/20",
+  medium: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
+  hard: "text-red-400 bg-red-500/10 border-red-500/20",
+};
+
+export default function CompanyTracks() {
+  const { user } = useAuthStore();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedTrack, setSelectedTrack] = useState<string | null>(() => searchParams.get("track"));
+
+  useEffect(() => {
+    setSelectedTrack(searchParams.get("track"));
+  }, [searchParams]);
+
+  const openTrack = (trackId: string) => {
+    setSelectedTrack(trackId);
+    setSearchParams({ track: trackId });
+  };
+
+  const closeTrack = () => {
+    setSelectedTrack(null);
+    setSearchParams({});
+  };
+
+  const { data: tracksData, isLoading } = useQuery({
+    queryKey: ["company-tracks", "list"],
+    queryFn: () => api.companyTracks.listCompanies(),
+  });
+
+  const tracks = tracksData?.tracks || [];
+
+  if (selectedTrack) {
+    return (
+      <div className="min-h-screen py-6 px-3 sm:py-8 sm:px-4 max-w-6xl mx-auto">
+        <button
+          onClick={closeTrack}
+          className="mb-4 text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
+        >
+          ← Back to all tracks
+        </button>
+        <TrackDetail trackId={selectedTrack} onBack={closeTrack} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen py-6 px-3 sm:py-8 sm:px-4 max-w-6xl mx-auto">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-8"
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <div className="p-2 rounded-xl bg-primary-500/10 border border-primary-500/20">
+            <Building2 className="w-6 h-6 text-primary-600" />
+          </div>
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Company Tracks</h1>
+            <p className="text-sm text-gray-500">TCS, Accenture, Infosys, Wipro — targeted prep for India's top recruiters</p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Tracks Grid */}
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 animate-pulse">
+              <div className="h-6 bg-gray-700 rounded w-1/2 mb-3" />
+              <div className="h-4 bg-gray-700 rounded w-full mb-2" />
+              <div className="h-4 bg-gray-700 rounded w-2/3" />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {tracks.map((track, i) => (
+            <motion.div
+              key={track.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <TrackCard track={track} onClick={() => openTrack(track.id)} />
+            </motion.div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TrackCard({ track, onClick }: { track: any; onClick: () => void }) {
+  return (
+    <motion.div
+      whileHover={{ y: -4, scale: 1.01 }}
+      onClick={onClick}
+      className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 cursor-pointer hover:border-primary-500/30 hover:shadow-lg hover:shadow-primary-500/5 transition-all"
+    >
+      <div className="flex items-start gap-3 mb-3">
+        <div className="text-3xl">{track.icon}</div>
+        <div className="flex-1 min-w-0">
+          <h3 className="font-semibold text-gray-900 truncate">{track.name}</h3>
+          <p className="text-xs text-gray-500 line-clamp-2">{track.description}</p>
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-2 mb-3">
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-500/10 text-gray-400 border border-gray-500/20">
+          {track.duration_minutes} min
+        </span>
+        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${DIFFICULTY_COLORS[track.difficulty as keyof typeof DIFFICULTY_COLORS] || DIFFICULTY_COLORS.easy}`}>
+          {track.difficulty}
+        </span>
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
+          {track.total_modules} modules
+        </span>
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+          {track.package_range}
+        </span>
+      </div>
+      <div className="flex items-center justify-between text-xs text-gray-500">
+        <span className="flex items-center gap-1">
+          <Trophy className="w-3 h-3" />
+          {track.total_xp} Diamonds
+        </span>
+        <span className="flex items-center gap-1">
+          <BookOpen className="w-3 h-3" />
+          {track.total_sections} sections
+        </span>
+      </div>
+      {track.enrolled && (
+        <div className="mt-3">
+          <div className="h-1.5 rounded-full bg-gray-800 overflow-hidden">
+            <div className="h-full rounded-full bg-primary-500 transition-all" style={{ width: `${track.progress_pct || 0}%` }} />
+          </div>
+          <p className="text-[10px] text-gray-500 mt-1">{track.progress_pct || 0}% complete</p>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
+function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void }) {
+  const queryClient = useQueryClient();
+  const { data: trackData, isLoading } = useQuery({
+    queryKey: ["company-tracks", "detail", trackId],
+    queryFn: () => api.companyTracks.getTrack(trackId),
+  });
+
+  const enrollMutation = useMutation({
+    mutationFn: () => api.companyTracks.enroll(trackId),
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["company-tracks"] }),
+        queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
+        queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+        queryClient.invalidateQueries({ queryKey: ["adaptive"] }),
+      ]);
+    },
+  });
+
+  if (isLoading || !trackData) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary-600" />
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-6"
+    >
+      {/* Track Header */}
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <div className="flex items-start gap-4">
+          <div className="text-5xl">{trackData.icon}</div>
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold text-gray-900">{trackData.full_name}</h2>
+            <p className="text-sm text-gray-500 mt-1">{trackData.description}</p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              <span className="text-xs px-2 py-1 rounded-full bg-gray-500/10 text-gray-400 border border-gray-500/20">
+                {trackData.duration_minutes} minutes
+              </span>
+              <span className={`text-xs px-2 py-1 rounded-full border ${DIFFICULTY_COLORS[trackData.difficulty as keyof typeof DIFFICULTY_COLORS] || ""}`}>
+                {trackData.difficulty}
+              </span>
+              <span className="text-xs px-2 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
+                {trackData.role}
+              </span>
+              <span className="text-xs px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                {trackData.package_range}
+              </span>
+            </div>
+          </div>
+          {!trackData.enrolled ? (
+            <button
+              onClick={() => enrollMutation.mutate()}
+              disabled={enrollMutation.isPending}
+              className="px-4 py-2 rounded-xl bg-primary-600 text-white text-sm font-medium hover:bg-primary-700 disabled:opacity-50"
+            >
+              {enrollMutation.isPending ? "Enrolling..." : "Enroll Now"}
+            </button>
+          ) : (
+            <Link
+              to="/journey"
+              className="px-4 py-2 rounded-xl bg-primary-600 text-white text-sm font-medium hover:bg-primary-700"
+            >
+              Continue Journey
+            </Link>
+          )}
+        </div>
+      </div>
+      {enrollMutation.isError && (
+        <p role="alert" className="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          Enrollment failed. Please retry.
+        </p>
+      )}
+
+      {/* Sections */}
+      {trackData.sections?.map((section: any, sIdx: number) => (
+        <motion.div
+          key={section.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: sIdx * 0.1 }}
+          className="rounded-2xl border border-white/10 bg-white/[0.03] p-6"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900">{section.title}</h3>
+              <p className="text-xs text-gray-500">{section.description}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs px-2 py-1 rounded-full bg-gray-500/10 text-gray-400">
+                {section.duration_minutes} min
+              </span>
+              <span className="text-xs px-2 py-1 rounded-full bg-gray-500/10 text-gray-400">
+                {section.questions_count} questions
+              </span>
+            </div>
+          </div>
+
+          {/* Topics */}
+          <div className="mb-4">
+            <h4 className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Topics</h4>
+            <div className="flex flex-wrap gap-2">
+              {section.topics?.map((topic: any) => (
+                <div key={topic.name} className="text-xs px-3 py-1.5 rounded-lg bg-gray-500/5 border border-gray-500/10">
+                  <span className="font-medium text-gray-300">{topic.name}</span>
+                  <span className="text-gray-500 ml-1">({topic.weight}%)</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Modules */}
+          <div className="space-y-3">
+            {section.modules?.map((mod: any, mIdx: number) => (
+              <div
+                key={mod.id}
+                className={`rounded-xl border p-4 ${mod.completed ? "border-green-500/20 bg-green-500/5" : "border-white/10 bg-white/[0.02]"}`}
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 className="font-medium text-gray-900">{mod.title}</h4>
+                      {mod.completed && <CheckCircle2 className="w-4 h-4 text-green-500" />}
+                    </div>
+                    <p className="text-xs text-gray-500 mb-2">{mod.description}</p>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {(mod.topics || []).slice(0, 7).map((t: string) => (
+                        <span key={t} className={`text-[10px] px-1.5 py-0.5 rounded ${mod.topic_mastery?.[t]?.mastered ? "bg-green-500/10 text-green-700" : "bg-gray-500/10 text-gray-400"}`}>
+                          {mod.topic_mastery?.[t]?.mastered ? "✓ " : ""}{t}
+                        </span>
+                      ))}
+                    </div>
+                    {mod.required_topic_count > 0 && (
+                      <p className="mb-2 text-[10px] font-mono text-gray-500">
+                        {mod.mastered_topic_count || 0}/{mod.required_topic_count} topic skills mastered
+                      </p>
+                    )}
+                    <div className="flex items-center gap-3 text-xs text-gray-500">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {mod.duration_minutes} min
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <BookOpen className="w-3 h-3" />
+                        {mod.questions_count} questions
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Zap className="w-3 h-3 text-yellow-500" />
+                        {mod.xp_reward} Diamonds
+                      </span>
+                      {mod.score != null && (
+                        <span className="flex items-center gap-1">
+                          <Target className="w-3 h-3 text-primary-500" />
+                          {mod.score}%
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  {trackData.enrolled && !mod.completed && (
+                    <div className="ml-3 flex shrink-0 flex-col gap-2">
+                      {(() => {
+                        const nextLesson = lessonForModule(mod.topics, mod.topic_mastery);
+                        return nextLesson ? (
+                          <Link
+                            to={`/learn/lesson/${nextLesson.slug}?track_id=${encodeURIComponent(trackData.id)}&module_id=${encodeURIComponent(mod.id)}&topic_id=${encodeURIComponent(nextLesson.topicId)}`}
+                            className="rounded-lg bg-primary-600 px-3 py-1.5 text-center text-xs font-semibold text-white hover:bg-primary-700"
+                          >
+                            Learn {nextLesson.topicId.replace(/_/g, " ")}
+                          </Link>
+                        ) : null;
+                      })()}
+                      <Link
+                        to={`/tracks/${trackData.company_id}`}
+                        className="rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1.5 text-center text-xs font-medium text-primary-700 hover:bg-primary-500/15"
+                      >
+                        Practice
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      ))}
+
+      {/* Coding Patterns */}
+      {trackData.coding_patterns && trackData.coding_patterns.length > 0 && (
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+            <Code2 className="w-5 h-5 text-primary-600" />
+            Practice Coding Patterns
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {trackData.coding_patterns.map((pattern: string, i: number) => (
+              <div key={i} className="text-sm px-3 py-2 rounded-lg bg-gray-500/5 border border-gray-500/10 text-gray-400">
+                {pattern}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* HR Questions */}
+      {trackData.hr_questions && trackData.hr_questions.length > 0 && (
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+            <Briefcase className="w-5 h-5 text-primary-600" />
+            Common HR Questions
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {trackData.hr_questions.map((q: string, i: number) => (
+              <div key={i} className="text-sm px-3 py-2 rounded-lg bg-gray-500/5 border border-gray-500/10 text-gray-400">
+                {q}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Tips */}
+      {trackData.tips && trackData.tips.length > 0 && (
+        <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-6">
+          <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+            <Sparkles className="w-5 h-5 text-yellow-500" />
+            Pro Tips
+          </h3>
+          <ul className="space-y-2">
+            {trackData.tips.map((tip: string, i: number) => (
+              <li key={i} className="text-sm text-gray-400 flex items-start gap-2">
+                <Star className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                {tip}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </motion.div>
+  );
+}

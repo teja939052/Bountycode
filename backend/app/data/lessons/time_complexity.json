@@ -1,0 +1,220 @@
+{
+  "slug": "time_complexity",
+  "id": "lesson_time_complexity_001",
+  "title": "Time Complexity and Big O",
+  "domain": "Programming Fundamentals",
+  "pattern": "Time Complexity",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Measure growth, not seconds",
+      "content": "Time complexity describes how an algorithm's work grows as input size n grows. Big O focuses on an upper-bound growth rate and ignores constant factors and lower-order terms.",
+      "example": "3n + 10 grows linearly, so it is O(n)."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Recognize a linear loop",
+      "prompt": "A loop visits each of n array elements once. What is its time complexity?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n²)"
+      ],
+      "correct_index": 2,
+      "explanation": "The number of iterations grows proportionally to n."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Recognize nested loops",
+      "content": "Two independent loops each running n times produce about n×n operations, or O(n²). A loop that repeatedly halves n takes O(log n) iterations.",
+      "example": "for i in range(n): for j in range(n): work() is O(n²)."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Analyze a halving loop",
+      "prompt": "A loop starts with n and halves the value each iteration until it reaches 1. What is its complexity?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correct_index": 1,
+      "explanation": "The number of halvings needed to reach 1 is approximately log₂(n)."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Compare common growth rates",
+      "content": "For large n, O(1) grows slowest, then O(log n), O(n), O(n log n), O(n²) and O(2^n). Analyze the dominant operation and remember that input structure can affect an algorithm's best and worst cases.",
+      "tip": "State the input size and whether you are discussing best, average or worst case."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What is the time complexity of reading an array element by index?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n²)"
+        ],
+        "correct_index": 0,
+        "explanation": "Array indexing uses direct address calculation and is constant time."
+      },
+      {
+        "prompt": "Two nested loops each run n times. What is the total complexity?",
+        "options": [
+          "O(n)",
+          "O(log n)",
+          "O(n²)",
+          "O(2n)"
+        ],
+        "correct_index": 2,
+        "explanation": "The inner work runs n times for each of n outer iterations."
+      },
+      {
+        "prompt": "Which grows faster for large n?",
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "They grow at the same rate",
+          "O(1)"
+        ],
+        "correct_index": 1,
+        "explanation": "Linear growth eventually exceeds logarithmic growth."
+      },
+      {
+        "prompt": "What is the time complexity of merge sort?",
+        "options": [
+          "O(n)",
+          "O(n log n)",
+          "O(n²)",
+          "O(2^n)"
+        ],
+        "correct_index": 1,
+        "explanation": "Merge sort divides the array into log n levels and processes n items per level."
+      },
+      {
+        "prompt": "What is the purpose of dropping constants in Big O?",
+        "options": [
+          "To hide all work",
+          "To describe the dominant growth rate",
+          "To measure memory in bytes",
+          "To make algorithms identical"
+        ],
+        "correct_index": 1,
+        "explanation": "Big O emphasizes how growth changes with input size, not machine-specific constants."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Count dominant operations as input grows.",
+    "Express worst-case growth using Big-O.",
+    "Compare constant, logarithmic, linear, n-log-n and quadratic growth.",
+    "Analyze nested loops and divide-and-conquer recurrences."
+  ],
+  "prerequisites": [
+    "loops_basics",
+    "arrays_basics"
+  ],
+  "concepts": [
+    "Big-O",
+    "worst case",
+    "dominant term",
+    "nested loops",
+    "logarithm",
+    "space complexity"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "O(n) means exactly n operations.",
+      "correction": "Big-O describes an asymptotic growth bound, ignoring constants and lower-order terms."
+    },
+    {
+      "misconception": "Two sequential O(n) loops are O(n²).",
+      "correction": "Sequential linear passes add to O(n), not multiply."
+    },
+    {
+      "misconception": "An algorithm with fewer lines is faster.",
+      "correction": "Runtime depends on operations and input growth, not source-code length."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Sequential loops",
+      "input": "Loop n times, then another loop n times",
+      "trace": [
+        "First loop performs n iterations.",
+        "Second loop performs n iterations.",
+        "Total 2n; discard constant factor."
+      ],
+      "output": "O(n)",
+      "explanation": "Sequential costs add."
+    },
+    {
+      "title": "Nested loops",
+      "input": "for i=0..n-1; for j=0..n-1",
+      "trace": [
+        "Each outer iteration runs n inner iterations.",
+        "There are n outer iterations.",
+        "Total n×n operations."
+      ],
+      "output": "O(n²)",
+      "explanation": "Nested independent loops multiply iteration counts."
+    },
+    {
+      "title": "Binary search",
+      "input": "Search a sorted array of n elements",
+      "trace": [
+        "Each comparison discards about half the candidates.",
+        "After k steps, candidates are about n/2^k.",
+        "Stop when one candidate remains."
+      ],
+      "output": "O(log n)",
+      "explanation": "Repeated halving produces logarithmic growth."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "complexity and output analysis",
+      "practice": "Explain the dominant term and worst-case input."
+    },
+    {
+      "company": "Infosys",
+      "skill": "algorithm analysis",
+      "practice": "Compare O(n), O(n log n) and O(n²) for constraints."
+    },
+    {
+      "company": "Product companies",
+      "skill": "optimization",
+      "practice": "Include auxiliary space and trade-offs."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Time Complexity and Big O?",
+      "answer": "Count dominant operations as input grows. Express worst-case growth using Big-O. Compare constant, logarithmic, linear, n-log-n and quadratic growth. Analyze nested loops and divide-and-conquer recurrences."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Time Complexity and Big O?",
+      "answer": "Big-O describes an asymptotic growth bound, ignoring constants and lower-order terms."
+    }
+  ],
+  "next_lesson_slug": "searching_basics",
+  "next_lesson_title": "Searching Fundamentals"
+}

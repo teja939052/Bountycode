@@ -1,4 +1,4 @@
-"""Authentication middleware and utilities for PlacementPro.
+"""Authentication middleware and utilities for BountyCode.
 
 Provides JWT-based authentication with httpOnly cookies, password hashing,
 WebSocket auth, and plan-based access control dependencies.
@@ -215,15 +215,11 @@ async def _user_from_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
 
 async def get_current_user_ws(
     websocket: WebSocket,
-    token: Optional[str] = None,
 ) -> Dict[str, Any]:
-    """Authenticate a WebSocket connection from a query `token` param or the
-    `pp_token` cookie. Returns the user dict or raises a 401 HTTPException
-    (callers convert to close codes).
+    """Authenticate a WebSocket connection from the httpOnly `pp_token` cookie.
 
     Args:
         websocket: The incoming WebSocket connection.
-        token: Optional JWT token passed as a query parameter.
 
     Returns:
         Dict[str, Any]: Sanitized user document.
@@ -231,10 +227,8 @@ async def get_current_user_ws(
     Raises:
         HTTPException: 401 if no valid token is provided.
     """
-    raw = token
-    if not raw:
-        cookies = websocket.cookies
-        raw = cookies.get(COOKIE_NAME)
+    cookies = websocket.cookies
+    raw = cookies.get(COOKIE_NAME)
     if not raw:
         raise HTTPException(status_code=401, detail="Missing token")
     payload = decode_token(raw)

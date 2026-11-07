@@ -44,7 +44,7 @@ async def get_overview(user_id: str) -> Dict[str, Any]:
 
     # Gamification stats
     gam = await gam_col.find_one({"user_id": user_id}) or {}
-    xp = gam.get("xp", 0)
+    diamonds = gam.get("diamonds", 0)
     level = gam.get("level", 1)
     streak = gam.get("streak", 0)
 
@@ -67,7 +67,7 @@ async def get_overview(user_id: str) -> Dict[str, Any]:
         "offers_received": offers,
         "offers_accepted": accepted,
         "offer_rate": round((offers / total_apps * 100), 1) if total_apps else 0,
-        "xp": xp,
+        "diamonds": diamonds,
         "level": level,
         "streak": streak,
         "overall_skill_score": overall_score,

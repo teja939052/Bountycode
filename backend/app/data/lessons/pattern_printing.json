@@ -1,0 +1,125 @@
+{
+  "slug": "pattern_printing",
+  "id": "lesson_pattern_printing_001",
+  "title": "Pattern Printing with Loops",
+  "domain": "Programming Fundamentals",
+  "pattern": "Pattern Printing",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Rows and columns",
+      "content": "Most star and number patterns use an outer loop for rows and an inner loop for columns. The outer loop controls how many lines are printed; the inner loop controls what appears on one line.",
+      "example": "For 3 rows, the outer loop runs 3 times."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Trace a rectangle",
+      "prompt": "An outer loop runs 3 times and an inner loop prints 4 stars each time. How many stars are printed?",
+      "options": [
+        "7",
+        "9",
+        "12",
+        "16"
+      ],
+      "correct_index": 2,
+      "explanation": "3 rows × 4 stars per row = 12 stars."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Build a right triangle",
+      "content": "A right triangle of height n prints row i with i stars. The inner loop's upper bound depends on the current row number.",
+      "example": "For n=4:\\n*\\n**\\n***\\n****",
+      "tip": "Trace each row separately before generalizing the loop condition."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Count the pattern",
+      "prompt": "A triangle has 5 rows and row i prints i stars. How many stars are printed in total?",
+      "options": [
+        "10",
+        "12",
+        "15",
+        "25"
+      ],
+      "correct_index": 2,
+      "explanation": "1+2+3+4+5 = 15 stars."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Use spaces for alignment",
+      "content": "Pyramids and centered patterns print spaces before stars. A common row i uses n−i leading spaces and 2i−1 stars. Keep spacing logic separate from star logic.",
+      "example": "For n=3, rows use (2 spaces,1 star), (1 space,3 stars), (0 spaces,5 stars)."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which loop usually controls the number of rows?",
+        "options": [
+          "Outer loop",
+          "Inner loop only",
+          "No loop",
+          "A return statement"
+        ],
+        "correct_index": 0,
+        "explanation": "The outer loop typically advances from one row to the next."
+      },
+      {
+        "prompt": "A 4×5 rectangle prints how many symbols?",
+        "options": [
+          "9",
+          "16",
+          "20",
+          "25"
+        ],
+        "correct_index": 2,
+        "explanation": "Four rows with five symbols each gives 4×5 = 20."
+      },
+      {
+        "prompt": "In a right triangle, row i prints i stars. How many stars are in row 4?",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "correct_index": 2,
+        "explanation": "The row number equals the star count, so row 4 prints four stars."
+      },
+      {
+        "prompt": "How many stars are printed by rows 1 through 4 of a triangle?",
+        "options": [
+          "8",
+          "10",
+          "12",
+          "16"
+        ],
+        "correct_index": 1,
+        "explanation": "1+2+3+4 = 10."
+      },
+      {
+        "prompt": "What controls the number of leading spaces in a centered pyramid?",
+        "options": [
+          "The row's position relative to total height",
+          "The star's color",
+          "The array's data type",
+          "The function name"
+        ],
+        "correct_index": 0,
+        "explanation": "Earlier rows need more leading spaces to center the pattern."
+      }
+    ]
+  },
+  "next_lesson_slug": "arrays_basics",
+  "next_lesson_title": "Arrays Basics"
+}

@@ -1,0 +1,9 @@
+Questions loaded into memory: 7834
+
+Types: {'coding': 4560, 'aptitude': 937, 'logical': 762, 'verbal': 320, 'cs_fundamentals': 190, 'sql': 883, 'interview': 100, 'system_design': 12, 'debugging': 70}
+
+Top companies: {'infosys': 403, 'tcs': 400, 'wipro': 375, 'accenture': 360, 'cognizant': 318, 'amazon': 204, 'google': 176, 'microsoft': 168, 'meta': 92, 'Amazon': 27}
+
+Difficulty: {'easy': 4354, 'medium': 3249, 'hard': 231}
+
+Coding with test cases: 0/4560

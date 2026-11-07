@@ -1,0 +1,223 @@
+{
+  "slug": "recursion_basics",
+  "id": "lesson_recursion_basics_001",
+  "title": "Recursion Fundamentals",
+  "domain": "Programming Fundamentals",
+  "pattern": "Recursion",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "A function calling itself",
+      "content": "Recursion solves a problem by reducing it to a smaller version of the same problem. Every correct recursive function needs a base case that stops the calls.",
+      "example": "factorial(3) = 3 × factorial(2) = 3 × 2 × factorial(1) = 6.",
+      "tip": "Find the base case before tracing the recursive call."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify the base case",
+      "prompt": "For factorial(n), which is a valid base case?",
+      "options": [
+        "n == 0 returns 1",
+        "n == 10 calls factorial(9)",
+        "n increases by 1",
+        "No base case is needed"
+      ],
+      "correct_index": 0,
+      "explanation": "0! = 1. Returning 1 at n==0 allows all recursive calls to unwind."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Trace the call stack",
+      "content": "Each recursive call gets its own local variables and waits for the smaller call to return. After the base case, results combine while the stack unwinds.",
+      "example": "sum(3) → 3 + sum(2) → 3 + 2 + sum(1) → 3 + 2 + 1 + sum(0)."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Count recursive calls",
+      "prompt": "A function calls itself with n−1 until n==0. Starting at n=4, how many calls are made including the base call?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "correct_index": 1,
+      "explanation": "Calls are n=4,3,2,1,0: five calls."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Avoid infinite recursion",
+      "content": "Each recursive call should move toward the base case. If the input does not get closer to the stopping condition, recursion may never end and can overflow the call stack.",
+      "example": "For n>0, call f(n−1). Calling f(n) again makes no progress."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What must a recursive function have?",
+        "options": [
+          "A loop only",
+          "A base case",
+          "A global variable",
+          "Two return statements"
+        ],
+        "correct_index": 1,
+        "explanation": "The base case stops further recursive calls."
+      },
+      {
+        "prompt": "What is factorial(4)?",
+        "options": [
+          "12",
+          "16",
+          "24",
+          "32"
+        ],
+        "correct_index": 2,
+        "explanation": "4×3×2×1 = 24."
+      },
+      {
+        "prompt": "What happens as recursive calls return?",
+        "options": [
+          "The stack unwinds",
+          "The program restarts",
+          "The base case is deleted",
+          "All variables become global"
+        ],
+        "correct_index": 0,
+        "explanation": "Calls return in reverse order, unwinding the call stack."
+      },
+      {
+        "prompt": "If f(n) calls f(n−1), which input moves toward base case n=0?",
+        "options": [
+          "n+1",
+          "n−1",
+          "2n",
+          "n"
+        ],
+        "correct_index": 1,
+        "explanation": "Subtracting one moves a positive n closer to zero."
+      },
+      {
+        "prompt": "What can happen if recursion never reaches a base case?",
+        "options": [
+          "Faster execution",
+          "Stack overflow",
+          "Automatic sorting",
+          "Nothing"
+        ],
+        "correct_index": 1,
+        "explanation": "Unbounded recursive calls can exhaust the call stack."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Identify the base case and recursive case.",
+    "Trace calls and returns using a call stack.",
+    "Ensure each recursive call moves toward termination.",
+    "Estimate recursion time and stack space."
+  ],
+  "prerequisites": [
+    "programming_languages",
+    "loops_basics"
+  ],
+  "concepts": [
+    "base case",
+    "recursive case",
+    "call stack",
+    "stack frame",
+    "recurrence",
+    "termination"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A recursive function stops automatically.",
+      "correction": "It stops only when a base case is reached or an error/limit occurs."
+    },
+    {
+      "misconception": "The return happens while calls are still descending.",
+      "correction": "A call returns after its deeper recursive call finishes."
+    },
+    {
+      "misconception": "Recursion always uses less memory than loops.",
+      "correction": "Each active call uses stack space; deep recursion can exhaust the call stack."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace factorial",
+      "input": "factorial(3) = 3 * factorial(2)",
+      "trace": [
+        "factorial(3) waits for factorial(2).",
+        "factorial(2) waits for factorial(1).",
+        "factorial(1) reaches base case and returns 1.",
+        "Return 2, then return 6."
+      ],
+      "output": "factorial(3) = 6",
+      "explanation": "Calls descend toward the base case; results are combined while returning."
+    },
+    {
+      "title": "Find the base case",
+      "input": "sum(n): if n == 0 return 0; else return n + sum(n-1)",
+      "trace": [
+        "sum(3) waits for sum(2).",
+        "sum(2) waits for sum(1).",
+        "sum(1) waits for sum(0).",
+        "sum(0) returns 0."
+      ],
+      "output": "sum(3) returns 6",
+      "explanation": "The argument decreases, so the function reaches n == 0."
+    },
+    {
+      "title": "Count stack frames",
+      "input": "f(4) calls f(3), f(2), f(1), f(0)",
+      "trace": [
+        "Four recursive calls are active above the base call.",
+        "Each call has its own parameter and return location.",
+        "Frames are removed as calls return."
+      ],
+      "output": "O(n) call-stack space",
+      "explanation": "Linear recursion depth uses linear stack space."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "recursion and problem solving",
+      "practice": "Explain base cases and trace the call stack."
+    },
+    {
+      "company": "TCS",
+      "skill": "programming fundamentals and recursion",
+      "practice": "Handle n=0, n=1 and negative or invalid inputs."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "coding implementation",
+      "practice": "Convert simple recursion to iteration when stack depth is a concern."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Recursion Fundamentals?",
+      "answer": "Identify the base case and recursive case. Trace calls and returns using a call stack. Ensure each recursive call moves toward termination. Estimate recursion time and stack space."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Recursion Fundamentals.",
+      "answer": "It stops only when a base case is reached or an error/limit occurs."
+    }
+  ],
+  "next_lesson_slug": "linked_lists",
+  "next_lesson_title": "Linked Lists"
+}

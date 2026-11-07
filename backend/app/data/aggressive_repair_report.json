@@ -1,0 +1,17 @@
+{
+  "repair": {
+    "total": 2835,
+    "fixed_mismatch": 322,
+    "fixed_python2": 0,
+    "fixed_mcq": 154,
+    "still_failing": 2359
+  },
+  "verification": {
+    "total": 2835,
+    "passed": 831,
+    "failed": 1848,
+    "quarantined": 156,
+    "skipped": 8941
+  },
+  "servable": 9772
+}

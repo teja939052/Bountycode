@@ -30,7 +30,7 @@ PRO_TIER = {
     "price_monthly": 19,
     "price_yearly": 99,
     "price_monthly_inr": 99,
-    "price_yearly_inr": 499,
+    "price_yearly_inr": 899,
     "features": {
         "resume_bullet_improve": {"daily": -1, "monthly": -1},
         "ats_checklist": {"daily": -1, "monthly": -1},

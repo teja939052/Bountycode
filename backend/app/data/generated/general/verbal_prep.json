@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_prep_0000",
+    "question": "She is good ___ math.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She is good ___ math.",
+      "options": [
+        "A. to",
+        "B. by",
+        "C. at",
+        "D. for"
+      ],
+      "correct_answer": "C. at",
+      "explanation": "'at' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0001",
+    "question": "The cat is ___ the table.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The cat is ___ the table.",
+      "options": [
+        "A. at",
+        "B. for",
+        "C. on",
+        "D. with"
+      ],
+      "correct_answer": "C. on",
+      "explanation": "'on' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0002",
+    "question": "He arrived ___ the station.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He arrived ___ the station.",
+      "options": [
+        "A. to",
+        "B. for",
+        "C. at",
+        "D. with"
+      ],
+      "correct_answer": "C. at",
+      "explanation": "'at' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0003",
+    "question": "She is interested ___ music.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She is interested ___ music.",
+      "options": [
+        "A. in",
+        "B. in",
+        "C. on",
+        "D. by"
+      ],
+      "correct_answer": "A. in",
+      "explanation": "'in' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0004",
+    "question": "The book is ___ the bag.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The book is ___ the bag.",
+      "options": [
+        "A. in",
+        "B. by",
+        "C. with",
+        "D. for"
+      ],
+      "correct_answer": "A. in",
+      "explanation": "'in' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0005",
+    "question": "He works ___ a bank.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He works ___ a bank.",
+      "options": [
+        "A. by",
+        "B. at",
+        "C. for",
+        "D. with"
+      ],
+      "correct_answer": "B. at",
+      "explanation": "'at' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0006",
+    "question": "She laughed ___ the joke.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She laughed ___ the joke.",
+      "options": [
+        "A. of",
+        "B. at",
+        "C. to",
+        "D. on"
+      ],
+      "correct_answer": "B. at",
+      "explanation": "'at' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0007",
+    "question": "The bird flew ___ the sky.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The bird flew ___ the sky.",
+      "options": [
+        "A. with",
+        "B. for",
+        "C. to",
+        "D. in"
+      ],
+      "correct_answer": "D. in",
+      "explanation": "'in' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0008",
+    "question": "He is proud ___ his achievement.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He is proud ___ his achievement.",
+      "options": [
+        "A. of",
+        "B. by",
+        "C. to",
+        "D. of"
+      ],
+      "correct_answer": "A. of",
+      "explanation": "'of' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0009",
+    "question": "She is afraid ___ spiders.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She is afraid ___ spiders.",
+      "options": [
+        "A. to",
+        "B. of",
+        "C. at",
+        "D. of"
+      ],
+      "correct_answer": "B. of",
+      "explanation": "'of' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.256805+00:00",
+    "updated_at": "2026-09-21T12:53:32.256805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0010",
+    "question": "We depend ___ each other.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "We depend ___ each other.",
+      "options": [
+        "A. of",
+        "B. on",
+        "C. on",
+        "D. for"
+      ],
+      "correct_answer": "B. on",
+      "explanation": "'on' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0011",
+    "question": "He succeeded ___ hard work.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He succeeded ___ hard work.",
+      "options": [
+        "A. at",
+        "B. through",
+        "C. for",
+        "D. on"
+      ],
+      "correct_answer": "B. through",
+      "explanation": "'through' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0012",
+    "question": "She apologized ___ her mistake.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She apologized ___ her mistake.",
+      "options": [
+        "A. with",
+        "B. on",
+        "C. in",
+        "D. for"
+      ],
+      "correct_answer": "D. for",
+      "explanation": "'for' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0013",
+    "question": "The results are different ___ mine.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The results are different ___ mine.",
+      "options": [
+        "A. from",
+        "B. for",
+        "C. to",
+        "D. at"
+      ],
+      "correct_answer": "A. from",
+      "explanation": "'from' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0014",
+    "question": "He is busy ___ his work.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He is busy ___ his work.",
+      "options": [
+        "A. with",
+        "B. for",
+        "C. in",
+        "D. by"
+      ],
+      "correct_answer": "A. with",
+      "explanation": "'with' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0015",
+    "question": "She is tired ___ the journey.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She is tired ___ the journey.",
+      "options": [
+        "A. of",
+        "B. for",
+        "C. to",
+        "D. with"
+      ],
+      "correct_answer": "A. of",
+      "explanation": "'of' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0016",
+    "question": "He believes ___ God.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He believes ___ God.",
+      "options": [
+        "A. in",
+        "B. to",
+        "C. at",
+        "D. of"
+      ],
+      "correct_answer": "A. in",
+      "explanation": "'in' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0017",
+    "question": "The project is about ___ AI.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The project is about ___ AI.",
+      "options": [
+        "A. to",
+        "B. in",
+        "C. about",
+        "D. on"
+      ],
+      "correct_answer": "C. about",
+      "explanation": "'about' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0018",
+    "question": "She is capable ___ solving this.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She is capable ___ solving this.",
+      "options": [
+        "A. on",
+        "B. of",
+        "C. by",
+        "D. to"
+      ],
+      "correct_answer": "B. of",
+      "explanation": "'of' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_prep_0019",
+    "question": "He is fond ___ music.",
+    "pattern": "prepositions",
+    "skill": "prepositions",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He is fond ___ music.",
+      "options": [
+        "A. at",
+        "B. by",
+        "C. of",
+        "D. to"
+      ],
+      "correct_answer": "C. of",
+      "explanation": "'of' is the correct preposition"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.257808+00:00",
+    "updated_at": "2026-09-21T12:53:32.257808+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  }
+]

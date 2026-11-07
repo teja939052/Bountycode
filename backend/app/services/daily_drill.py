@@ -104,7 +104,7 @@ class DailyDrill:
             "time_limit": 300,  # 5 minutes
             "message": "Complete this 5-minute drill to maintain your streak!",
             "rewards": {
-                "xp": 25,
+                "diamonds": 25,
                 "streak_maintained": True,
                 "pro_token_chance": 0.1,  # 10% chance to earn a Pro Token
             },

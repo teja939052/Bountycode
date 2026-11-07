@@ -61,8 +61,8 @@ async def create_all_indexes(db):
         # Gamification data
         "user_gamification": [
             ({"user_id": 1}, {"unique": True}),
-            ({"xp": -1}, {}),  # For leaderboards
-            ({"level": -1, "xp": -1}, {}),
+            ({"diamonds": -1}, {}),  # For leaderboards
+            ({"level": -1, "diamonds": -1}, {}),
             ({"streak": -1}, {}),
         ],
         

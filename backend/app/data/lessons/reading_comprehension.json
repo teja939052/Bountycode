@@ -1,0 +1,267 @@
+{
+  "id": "lesson_reading_comprehension_001",
+  "slug": "reading_comprehension",
+  "title": "Reading Comprehension",
+  "domain": "Verbal Ability",
+  "pattern": "Reading Comprehension",
+  "difficulty": "medium",
+  "duration_min": 20,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Active Reading Strategy",
+      "content": "Reading comprehension is not about reading fast — it's about understanding deeply. Read the passage first, then the questions. Underline key terms and transitional phrases.",
+      "example": "Passage: 'While traditional education focuses on rote learning, modern pedagogy emphasizes critical thinking.' Key contrast: traditional vs modern.",
+      "tip": "Read the passage twice. First for gist, second for details. Then answer questions."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify the Main Idea",
+      "prompt": "Passage: 'The rise of remote work has transformed urban economics. Downtown cafes struggle as office attendance drops, while suburban co-working spaces flourish. This shift represents a permanent restructuring of commercial real estate.' What is the main idea?",
+      "options": [
+        "Remote work is temporary",
+        "Urban economics are being restructured by remote work",
+        "Cafes are struggling everywhere",
+        "Co-working spaces are better"
+      ],
+      "correct_index": 1,
+      "explanation": "The passage discusses how remote work is transforming urban economics — cafe struggles and co-working growth are supporting details, not the main idea.",
+      "hints": [
+        "Ask what the passage is mostly about, not which detail appears most often.",
+        "The best answer should cover the whole passage without being too broad."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "practice",
+      "title": "Inference Practice",
+      "prompt": "Passage: 'The CEO's announcement was met with silence. No one clapped, no one booed. Employees simply gathered their things and left.' What can you infer?",
+      "options": [
+        "Employees were happy",
+        "Employees were indifferent or dissatisfied",
+        "Employees were confused",
+        "Employees were excited"
+      ],
+      "correct_index": 1,
+      "explanation": "Silence and leaving without reaction suggests negative sentiment. The absence of applause or boos indicates indifference or dissatisfaction.",
+      "hints": [
+        "An inference must be supported by details in the passage even if it is not stated word for word.",
+        "Eliminate options that introduce a new fact or claim stronger than the evidence."
+      ]
+    },
+    {
+      "step_number": 4,
+      "step_type": "explain",
+      "title": "Answering Different Question Types",
+      "content": "RC questions test: (1) Main idea, (2) Detail retrieval, (3) Inference, (4) Author's tone, (5) Vocabulary in context. Each requires a slightly different approach.",
+      "tip": "For inference questions, look for what is IMPLIED but not directly stated. The answer must be supported by the passage, not by outside knowledge."
+    },
+    {
+      "step_number": 5,
+      "step_type": "interactive",
+      "title": "Vocabulary in Context",
+      "prompt": "Passage: 'The politician's eloquent speech silenced his critics.' What does 'eloquent' most likely mean?",
+      "options": [
+        "Lengthy",
+        "Fluent and persuasive",
+        "Aggressive",
+        "Confusing"
+      ],
+      "correct_index": 1,
+      "explanation": "Context: the speech silenced critics, implying it was persuasive and well-delivered. 'Eloquent' means fluent and persuasive.",
+      "hints": [
+        "Read the sentence before and after the target word.",
+        "Replace the word with each option and see which preserves the author's meaning."
+      ]
+    }
+  ],
+  "practice_questions": [
+    "tcs_nqt_verbal_0001",
+    "tcs_nqt_verbal_0002"
+  ],
+  "assessment": {
+    "questions": [
+      {
+        "prompt": "Passage: 'Climate change is not a distant threat. Rising sea levels already displace coastal communities. Extreme weather events have increased 5x in the last decade.' What is the author's tone?",
+        "options": [
+          "Optimistic",
+          "Urgent",
+          "Skeptical",
+          "Humorous"
+        ],
+        "correct_index": 1,
+        "explanation": "Words like 'not distant', 'already displace', and 'increased 5x' convey urgency."
+      },
+      {
+        "prompt": "Passage: 'While AI can automate routine tasks, it cannot replicate human creativity or ethical judgment.' What is the author's purpose?",
+        "options": [
+          "To criticize AI completely",
+          "To highlight AI's limitations",
+          "To promote AI adoption",
+          "To discuss AI history"
+        ],
+        "correct_index": 1,
+        "explanation": "The author is contrasting AI's capabilities with its limitations, specifically creativity and ethics."
+      },
+      {
+        "prompt": "Which statement is the best definition of a passage's main idea?",
+        "options": [
+          "A minor example in one paragraph",
+          "The central point that connects the passage",
+          "A fact from outside the passage",
+          "The most difficult word"
+        ],
+        "correct_index": 1,
+        "explanation": "The main idea summarizes the central point supported by the passage."
+      },
+      {
+        "prompt": "A passage says attendance rose after a new schedule began. What can you safely conclude?",
+        "options": [
+          "The schedule definitely caused the rise",
+          "Attendance rose after the schedule changed",
+          "Every reader liked the schedule",
+          "Attendance will keep rising"
+        ],
+        "correct_index": 1,
+        "explanation": "The passage establishes sequence, not necessarily causation or future results."
+      },
+      {
+        "prompt": "How should you answer an inference question?",
+        "options": [
+          "Use personal experience",
+          "Choose the most dramatic option",
+          "Select a conclusion supported by passage details",
+          "Choose the longest option"
+        ],
+        "correct_index": 2,
+        "explanation": "A valid inference is supported by evidence in the passage."
+      }
+    ],
+    "mastery_threshold": 0.7,
+    "duration_sec": 120
+  },
+  "srs_cards": [
+    {
+      "type": "strategy",
+      "question": "What is the recommended order for tackling RC passages?",
+      "answer": "1) Read passage for gist, 2) Read questions, 3) Re-read passage for details, 4) Answer questions with evidence."
+    },
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Reading Comprehension?",
+      "answer": "Identify a passage's central claim. Distinguish evidence from examples and opinion. Infer meaning using only passage context. Recognize tone, purpose and supported conclusions."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Reading Comprehension.",
+      "answer": "A valid inference must be supported by details in the passage."
+    },
+    {
+      "type": "method",
+      "question": "What makes a good inference?",
+      "answer": "It is not necessarily stated directly, but it must be supported by evidence in the passage."
+    }
+  ],
+  "learning_objectives": [
+    "Identify the main idea and purpose of a passage.",
+    "Locate direct evidence for factual questions.",
+    "Make reasonable inferences without adding outside assumptions.",
+    "Interpret vocabulary using the surrounding context."
+  ],
+  "prerequisites": [
+    "para_jumbles"
+  ],
+  "concepts": [
+    "main idea",
+    "supporting detail",
+    "author's purpose",
+    "inference",
+    "tone",
+    "context clue",
+    "fact versus opinion"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "The main idea is always the first sentence.",
+      "correction": "The main point may be stated later or developed across the passage."
+    },
+    {
+      "misconception": "An inference can use outside knowledge even when the passage says nothing about it.",
+      "correction": "Inference should be grounded in textual evidence."
+    },
+    {
+      "misconception": "A vocabulary option is correct because it is a dictionary synonym.",
+      "correction": "The word must fit the specific context and preserve the sentence's meaning."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Find the main idea",
+      "input": "A passage explains that urban trees reduce heat, absorb rainwater and improve public spaces.",
+      "trace": [
+        "Identify repeated subject: urban trees.",
+        "Group the benefits: environmental and social.",
+        "Choose the broad idea covering all benefits."
+      ],
+      "output": "Urban trees provide several important city benefits",
+      "explanation": "The main idea covers the passage as a whole, not one supporting example."
+    },
+    {
+      "title": "Separate fact from inference",
+      "input": "The library added evening hours. Attendance increased by 30% in the next month.",
+      "trace": [
+        "The opening hours changed.",
+        "Attendance increased afterward.",
+        "The passage does not prove the hours alone caused the increase."
+      ],
+      "output": "Attendance increased after evening hours were added",
+      "explanation": "Avoid claiming causation when the passage only establishes sequence."
+    },
+    {
+      "title": "Use context clues",
+      "input": "The word 'concise' appears in: 'Her concise report covered every finding in two pages.'",
+      "trace": [
+        "The report is short.",
+        "It still includes every finding.",
+        "The context suggests brief but complete."
+      ],
+      "output": "Brief and clear",
+      "explanation": "Use nearby details to infer meaning rather than relying on a guess."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "reading comprehension",
+      "practice": "Locate the exact evidence supporting a factual answer."
+    },
+    {
+      "company": "Infosys",
+      "skill": "verbal communication",
+      "practice": "Summarize the main idea without exaggerating the passage."
+    },
+    {
+      "company": "Accenture",
+      "skill": "critical reading",
+      "practice": "Choose inferences that are supported but not overstated."
+    }
+  ],
+  "quest": {
+    "chapter": "The Reading Observatory",
+    "rank": "Evidence Reader",
+    "story": "A company brief contains facts, opinions and implied conclusions. You must answer from the passage rather than from what you already believe.",
+    "mission": "Identify the main idea, locate evidence and make cautious inferences.",
+    "success_criteria": [
+      "Find the author's main point.",
+      "Separate a stated fact from an inference.",
+      "Use nearby words to infer meaning.",
+      "Reject options that go beyond the passage."
+    ]
+  },
+  "next_lesson_slug": "essay_writing",
+  "next_lesson_title": "Essay Writing"
+}

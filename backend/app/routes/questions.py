@@ -1,15 +1,17 @@
 from datetime import datetime, timezone
-from fastapi import APIRouter, Depends, HTTPException, Query
+import json
+import os
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
-from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, question_answers_collection,
-    users_collection, solved_problems_collection
+    question_answers_collection, users_collection, solved_problems_collection,
+    question_reports_collection, served_quarantine_collection,
 )
 from app.models.question import SubmitAnswer, QuestionSubmission, QuestionVote
-from app.services.ai import chat_completion, parse_json, assign_companies
+from app.services.ai_core import chat_completion, parse_json, assign_companies
 from app.services.gamification import record_practice
 from app.services.usage import check_and_reset_monthly_usage
 from app.services.code_executor import CodeExecutionEngine
@@ -17,9 +19,87 @@ from app.services.response_cache import cached, invalidate_questions_cache
 from app.services import question_store
 from app.services.explanation_cache import get_or_create_explanation
 import random
+import os
+import json
+from pathlib import Path
+
+BACKEND_ROOT = Path(__file__).resolve().parents[2]
 
 router = APIRouter(prefix="/api/v1/questions", tags=["question-bank"])
 code_engine = CodeExecutionEngine()
+
+FREE_DAILY_PROBLEM_LIMIT = 3
+
+
+def _is_paid(user: dict) -> bool:
+    return user.get("plan") in ("pro", "lifetime")
+
+
+def _daily_question_count(user: dict) -> int:
+    daily = user.get("daily_usage") or {}
+    today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return daily.get("questions_today", 0)
+
+
+def _check_question_quota(user: dict):
+    """Raise HTTPException if the user has exhausted their free daily quota."""
+    if _is_paid(user):
+        return
+    if _daily_question_count(user) >= FREE_DAILY_PROBLEM_LIMIT:
+        raise HTTPException(
+            status_code=402,
+            detail=(
+                "⚠️ Your daily training stamina is depleted! "
+                "You've used your 3 free problems today. "
+                "Upgrade to the Pro Pass for unlimited practice, "
+                "company-specific questions, and instant AI feedback."
+            ),
+        )
+
+
+def _filter_curated(questions: list, company: str, pattern: str, role: str) -> list:
+    """Apply company/pattern/role filters to the curated question list."""
+    result = questions
+    if company:
+        result = [q for q in result if company.lower() in [c.lower() for c in q.get("company", [])]]
+    if pattern:
+        result = [q for q in result if q.get("pattern") == pattern]
+    if role:
+        result = [q for q in result if q.get("role") == role]
+    return result
+
+
+# Canonical source of truth: question_store (in-memory bank loaded from
+# versioned files under backend/app/data/). No duplicate file reads here,
+# no MongoDB question reads, no LLM drafts. quiz_service owns the separate
+# curated interactive-quiz model (see services/question_standard.py).
+def _complete_serving_card(q: dict) -> dict:
+    """Normalize one browse item onto the complete LeetCode/GFG parity card.
+
+    Presentation fallbacks only — never invents grading content. Incomplete
+    items are dropped by the caller (quarantine, not publish).
+    """
+    out = dict(q)
+    title = out.get("title") or out.get("question_title") or (out.get("question") or "")[:80]
+    out["question_title"] = out.get("question_title") or title or "Unknown"
+    out["statement"] = out.get("statement") or out.get("question", "")
+    out["visible_test_cases"] = out.get("visible_test_cases") or out.get("testcases") or out.get("test_cases") or []
+    out["hidden_test_cases"] = out.get("hidden_test_cases") or out.get("hidden_testcases") or []
+    out["examples"] = out.get("examples") or []
+    out["constraints"] = out.get("constraints") or ""
+    out["hints"] = out.get("hints") or []
+    out["editorial"] = out.get("editorial") or out.get("explanation") or ""
+    out["provenance"] = out.get("provenance") or out.get("source_bank") or "verified"
+    return out
+
+
+def _load_curated_questions() -> list:
+    """Deprecated shim kept for internal callers: returns the canonical
+    verified in-memory bank (complete cards only). Never reads MongoDB."""
+    return [
+        _complete_serving_card(q)
+        for q in question_store.find().only_verified().to_list()
+    ]
 
 
 def _question_title(q: dict) -> str:
@@ -85,44 +165,66 @@ async def browse_questions(
     sort: Optional[str] = Query("frequency"),
     page: int = Query(1, ge=1),
     limit: int = Query(30, ge=1, le=100),
+    skip_quota: bool = Query(False, description="Internal: skip quota for verified free-access content"),
+    context: Optional[str] = Query(None, description="Context for free-access verification: onboarding|tutorial|first_problem"),
     user=Depends(get_current_user),
 ):
-    query = {}
-    if company:
-        query["company"] = {"$in": [company, company.title(), company.upper()]}
-    if role:
-        query["role"] = role
+    # Paywall: company-specific filters require Pro
+    if company and not _is_paid(user):
+        raise HTTPException(
+            status_code=402,
+            detail=(
+                f"🔒 Company-specific question filters are locked. "
+                f"Targeted {company} preparation requires a Pro Pass. "
+                f"Upgrade for access to 53 company blueprints."
+            ),
+        )
+
+    # Free-access verification: backend independently identifies whether the
+    # requested content is legitimately onboarding/tutorial/first-problem.
+    # The frontend cannot simply set skip_quota=true to bypass the quota.
+    is_free_access = False
+    if skip_quota and context in ("onboarding", "tutorial", "first_problem"):
+        # Only allow free access if the user is actually eligible (free tier, not yet consumed today)
+        if not _is_paid(user) and not _daily_question_count(user) >= FREE_DAILY_PROBLEM_LIMIT:
+            is_free_access = True
+
+    # Paywall: enforce daily free quota
+    # Exception: allow onboarding diagnostic + first sample without consuming quota
+    if not is_free_access:
+        _check_question_quota(user)
+
+    # Canonical in-memory bank (Residency Rule): verified human-reviewed
+    # stock only, for every tier. Pending/unverified/automated_checked are
+    # quarantined — never served, even to Pro/Admin (Content Trust Rule).
+    all_questions = _load_curated_questions()
+
+    # Apply filters
+    filtered = _filter_curated(all_questions, company, pattern, role)
     if topic:
-        query["topic"] = topic
-    if sub_topic:
-        query["sub_topic"] = sub_topic
+        filtered = [q for q in filtered if q.get("topic", "").lower() == topic.lower()]
     if difficulty:
-        query["difficulty"] = difficulty
+        filtered = [q for q in filtered if q.get("difficulty", "").lower() == difficulty.lower()]
     if type:
-        query["type"] = type
-    if pattern:
-        query["pattern"] = pattern
-    if source:
-        query["source"] = source
+        filtered = [q for q in filtered if q.get("type", "").lower() == type.lower()]
     if search:
-        query["$text"] = {"$search": search}
+        search_lower = search.lower()
+        filtered = [q for q in filtered if search_lower in (q.get("question", "") or "").lower()]
 
+    # Sort
     if sort == "difficulty":
-        sort_stage = [("difficulty", 1), ("frequency", -1)]
-    elif sort == "companies":
-        sort_stage = [("company", -1), ("frequency", -1)]
-    elif sort == "acceptance":
-        sort_stage = [("frequency", -1)]
-    elif sort == "newest":
-        sort_stage = [("frequency", -1)]
+        filtered.sort(key=lambda q: (q.get("difficulty", "medium"),))
     elif sort == "alphabetical":
-        sort_stage = [("question", 1)]
+        filtered.sort(key=lambda q: q.get("question", ""))[:100]
     else:
-        sort_stage = [("frequency", -1)]
+        filtered.sort(key=lambda q: q.get("frequency", 0), reverse=True)
 
-    total = question_store.count_documents(query)
+    total = len(filtered)
     skip = (page - 1) * limit
-    items = question_store.find(query).skip(skip).limit(limit).sort(sort_stage).to_list()
+    items = filtered[skip:skip + limit]
+
+    # Inject usage info for the frontend
+    remaining = max(0, FREE_DAILY_PROBLEM_LIMIT - _daily_question_count(user)) if not _is_paid(user) else -1
 
     return {
         "questions": items,
@@ -130,6 +232,9 @@ async def browse_questions(
         "page": page,
         "pages": (total + limit - 1) // limit if total > 0 else 1,
         "sort": sort,
+        "remaining_daily": remaining,
+        "is_pro": _is_paid(user),
+        "source": "curated",
     }
 
 
@@ -149,7 +254,7 @@ def _coding_store_topics(company_key: str, limit: int = 8):
     variants = ("-v2", "-v3", "-v4")
     query = {"company": {"$in": [company_key, company_key.replace("_", " "), company_key.replace("_", "-")]}, "type": "coding"}
     counts: Dict[str, int] = {}
-    for q in question_store.find(query).to_list():
+    for q in question_store.find(query).prefer_verified().to_list():
         if str(q.get("id", "")).endswith(variants):
             continue
         topic = (q.get("topic") or "General").strip()
@@ -180,16 +285,7 @@ async def company_question_bank(
 
     focus_areas = []
     prep_name = None
-    try:
-        from app.routes.company_prep import TOP_COMPANIES
-        meta = TOP_COMPANIES.get(company_id) if company_id else None
-        if meta:
-            focus_areas = list(meta.get("focus_areas", []))
-            prep_name = meta.get("name")
-    except Exception:
-        pass
-
-    display_name = (overview or {}).get("name") or prep_name or company.title()
+    display_name = (overview or {}).get("name") or company.title()
     icon = (overview or {}).get("icon", "")
     color = (overview or {}).get("color", "")
 
@@ -211,7 +307,7 @@ async def company_question_bank(
                 })
     if coding["top_topics"]:
         query = {"company": {"$in": [company_id or company.lower().strip()]}, "type": "coding"}
-        for q in question_store.find(query).to_list():
+        for q in question_store.find(query).prefer_verified().to_list():
             if str(q.get("id", "")).endswith(("-v2", "-v3", "-v4")):
                 continue
             if len([s for s in samples if s["type"] == "coding"]) >= 3:
@@ -226,6 +322,25 @@ async def company_question_bank(
                 "type": "coding",
             })
 
+    # Verified per-company bank: deterministic in-memory filter over TRUSTED
+    # stock by explicit company tags (no LLM, honest provenance). Counts only —
+    # items are served by the OA/study flows that consume the same index.
+    verified_bank = {}
+    try:
+        bank = question_store.company_verified_bank(company_id or company.lower().strip())
+        verified_bank = {
+            "company": bank["company"],
+            "total": bank["total"],
+            "by_type": {
+                        t: {"count": e["count"], "topics": e["topics"]}
+                        for t, e in bank["by_type"].items()
+                    },
+            "relevance": bank["relevance"],
+            "provenance_note": bank["provenance_note"],
+        }
+    except Exception:
+        verified_bank = {"total": 0, "by_type": {}}
+
     return {
         "company_id": company_id,
         "company": display_name,
@@ -237,6 +352,7 @@ async def company_question_bank(
         "leadership_principles": (overview or {}).get("leadership_principles", []),
         "focus_areas": focus_areas,
         "coding_store": coding,
+        "verified_bank": verified_bank,
         "sample_questions": samples[:12],
         "source": "Authored interview question bank + curated coding store",
     }
@@ -307,6 +423,136 @@ async def get_patterns():
     return {"patterns": patterns, "total": sum(p["total"] for p in patterns)}
 
 
+def _canonical_pattern(name: str) -> Optional[str]:
+    """Resolve a slug or free-text name to a canonical Striver pattern name."""
+    if not name or not name.strip():
+        return None
+    slug = "".join(ch for ch in name.lower().replace("_", " ").replace("-", " ") if ch.isalnum() or ch == " ")
+    slug = " ".join(slug.split())
+    for p in question_store.STRIVER_PATTERNS:
+        p_flat = p.lower().replace(" ", "")
+        if slug == p.lower() or slug.replace(" ", "") == p_flat:
+            return p
+    if slug in {"slidingwindow", "sliding windows", "sw"}:
+        return "Sliding Window"
+    for p in question_store.STRIVER_PATTERNS:
+        if slug in p.lower() or p.lower() in slug:
+            return p
+    return None
+
+
+def pattern_variants(pattern: str) -> List[str]:
+    """Canonical pattern name plus legacy tag variants (e.g. 'sliding_window',
+    'two pointers', 'binary search')."""
+    variants = [pattern]
+    lower_under = pattern.lower().replace(" ", "_")
+    lower_space = pattern.lower()
+    for v in (lower_under, lower_space, lower_under.replace("_", ""), lower_space.replace(" ", "")):
+        if v and v not in variants:
+            variants.append(v)
+    return variants
+
+
+async def build_pattern_page_payload(uid: str, canonical: str) -> Dict[str, Any]:
+    """Aggregate a per-user pattern page over existing student state
+    (solved_problems + question_answers). Pure read — no new collections."""
+    problems = question_store.find({"type": "coding", "pattern": {"$in": pattern_variants(canonical)}}).only_verified().to_list()
+    diff_order = {"easy": 0, "medium": 1, "hard": 2}
+    problems.sort(key=lambda q: (diff_order.get(q.get("difficulty", "medium"), 3), (q.get("title") or "")))
+
+    ids = [q["id"] for q in problems]
+
+    solved_ids: set = set()
+    solved_docs = await solved_problems_collection.find(
+        {"user_id": uid, "question_id": {"$in": ids}}, {"question_id": 1}
+    ).to_list(10000)
+    for d in solved_docs:
+        solved_ids.add(d.get("question_id"))
+
+    best_by_qid: Dict[str, float] = {}
+    if ids:
+        cursor = question_answers_collection.find(
+            {"user_id": uid, "question_id": {"$in": ids}}, {"question_id": 1, "score": 1}
+        )
+        async for a in cursor:
+            qid = a.get("question_id")
+            sc = a.get("score") or 0
+            if qid not in best_by_qid or sc > best_by_qid[qid]:
+                best_by_qid[qid] = sc
+
+    items = []
+    company_counts: Dict[str, int] = {}
+    for q in problems:
+        qid = q["id"]
+        if qid in solved_ids:
+            status = "solved"
+        elif qid in best_by_qid:
+            status = "attempted"
+        else:
+            status = "not_started"
+        best_score = round(best_by_qid[qid], 1) if qid in best_by_qid else None
+        if status == "solved" and best_score is not None and best_score >= 8.0:
+            status = "mastered"
+        for c in q.get("companies", []) or []:
+            company_counts[c] = company_counts.get(c, 0) + 1
+        guide = q.get("dsa_guide") or {}
+        title = q.get("title") or q.get("question_title") or ""
+        if not title:
+            clean = (q.get("question") or "").strip()
+            title = (clean[:72] + "…") if len(clean) > 72 else clean
+        items.append({
+            "id": qid,
+            "title": title,
+            "difficulty": q.get("difficulty") or "medium",
+            "type": q.get("type") or "coding",
+            "topic": q.get("topic") or "",
+            "sub_topic": q.get("sub_topic") or "",
+            "status": status,
+            "best_score": best_score,
+            "companies": q.get("companies") or [],
+            "provenance": q.get("provenance") or "",
+            "statement": q.get("question") or "",
+            "approach": guide.get("approach") or "",
+            "complexity": guide.get("complexity") or {},
+            "common_mistakes": guide.get("common_mistakes") or [],
+            "tips": guide.get("tips") or [],
+            "testcase_count": len((q.get("testcases") or (q.get("solution") or {}).get("testcases") or [])),
+            "external_url": q.get("external_url") or "",
+            "source_platform": q.get("source_platform") or "",
+            "ladder_order": q.get("ladder_order", 999),
+        })
+
+    total = len(items)
+    mastered = len([i for i in items if i["status"] == "mastered"])
+    solved = len([i for i in items if i["status"] in ("solved", "mastered")])
+    attempted = len([i for i in items if i["status"] == "attempted"])
+    top_companies = sorted(company_counts.items(), key=lambda kv: (-kv[1], kv[0]))[:6]
+
+    return {
+        "pattern": canonical,
+        "verified_only": True,
+        "total": total,
+        "mastered": mastered,
+        "solved": solved,
+        "attempted": attempted,
+        "remaining": total - solved - attempted,
+        "mastery_percent": round((solved / total) * 100, 1) if total else 0,
+        "companies": [{"name": k, "count": v} for k, v in top_companies],
+        "problems": items,
+    }
+
+
+@router.get("/patterns/{pattern}")
+async def get_pattern_page(pattern: str, user=Depends(get_current_user)):
+    """Per-user pattern page: verified problems ordered Easy->Medium->Hard with
+    per-question status (not_started/attempted/solved) and pattern mastery %.
+    Pure read aggregation over existing student state — no new collections."""
+    canonical = _canonical_pattern(pattern)
+    if not canonical:
+        raise HTTPException(status_code=404, detail=f"Unknown pattern: {pattern}")
+    return await build_pattern_page_payload(user["id"], canonical)
+
+
 @router.get("/topics")
 @cached(ttl=300, key_prefix="questions")
 async def get_topics():
@@ -350,17 +596,53 @@ async def get_my_stats(user=Depends(get_current_user)):
     }
 
 
+@router.post("/daily-increment")
+async def increment_daily_question_count(user=Depends(get_current_user)):
+    """Increment the user's daily question counter. Returns remaining daily quota."""
+    if _is_paid(user):
+        return {"remaining": -1, "is_pro": True}
+    today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    daily = user.get("daily_usage") or {}
+    last_reset = daily.get("questions_reset_date")
+    if last_reset != today_key:
+        daily["questions_today"] = 0
+        daily["questions_reset_date"] = today_key
+    daily["questions_today"] = daily.get("questions_today", 0) + 1
+    remaining = max(0, FREE_DAILY_PROBLEM_LIMIT - daily["questions_today"])
+    await users_collection.update_one(
+        {"_id": ObjectId(user["id"])},
+        {"$set": {"daily_usage": daily}},
+    )
+    return {"remaining": remaining, "is_pro": False}
+
+
 @router.post("/submit")
 async def submit_question(req: QuestionSubmission, user=Depends(get_current_user)):
+    # Residency Rule (AGENTS.md): question content is in-memory only, never in
+    # MongoDB. User submissions enter the in-memory store as UNVERIFIED curation
+    # candidates and are never served as trusted content.
+    import uuid as _uuid
     doc = req.model_dump()
+    # Intake lint (app/services/intake_lint.py): filler never enters even
+    # the UNVERIFIED candidate pool. Structural screens only — never a
+    # trust stamp; accepted docs are still unverified, never served.
+    from app.services.intake_lint import lint_question
+    lint = lint_question(doc)
+    if lint["verdict"] == "rejected":
+        raise HTTPException(status_code=422, detail={
+            "message": "Submission looks like filler content and was not accepted.",
+            "reasons": lint["reasons"],
+        })
+    doc["id"] = f"user-submitted-{_uuid.uuid4().hex[:12]}"
     doc["submitted_by"] = user["id"]
     doc["upvotes"] = 0
     doc["downvotes"] = 0
     doc["reported"] = False
+    doc["trust_status"] = "unverified"
+    if lint["warnings"]:
+        doc["lint_flags"] = lint["warnings"]
     doc["created_at"] = datetime.now(timezone.utc)
     doc["updated_at"] = datetime.now(timezone.utc)
-    result = await curated_questions_collection.insert_one(doc)
-    doc["id"] = str(result.inserted_id)
     try:
         from app.services import question_store
         question_store.insert_question(doc)
@@ -370,30 +652,210 @@ async def submit_question(req: QuestionSubmission, user=Depends(get_current_user
     return doc
 
 
+REPORT_QUORUM = 10
+REPORTS_PATH = BACKEND_ROOT / "app" / "data" / "question_reports.json"
+SERVED_QUARANTINE_PATH = BACKEND_ROOT / "app" / "data" / "served_quarantine.json"
+
+
+def _read_json_list(path) -> list:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
 @router.post("/upvote")
 async def upvote_question(req: QuestionVote, user=Depends(get_current_user)):
     question = question_store.find_one({"id": req.question_id})
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
-    try:
-        q_oid = ObjectId(req.question_id)
-        await curated_questions_collection.update_one(
-            {"_id": q_oid},
-            {"$inc": {"upvotes": max(0, req.vote), "downvotes": max(0, -req.vote)}, "$set": {"updated_at": datetime.now(timezone.utc)}},
-        )
-        updated = await curated_questions_collection.find_one({"_id": q_oid})
-        up = updated.get("upvotes", 0) if updated else question.get("upvotes", 0)
-        down = updated.get("downvotes", 0) if updated else question.get("downvotes", 0)
-    except Exception:
-        up = question.get("upvotes", 0) + max(0, req.vote)
-        down = question.get("downvotes", 0) + max(0, -req.vote)
+    updated = question_store.vote_question(req.question_id, req.vote)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Question not found")
+    up = updated.get("upvotes", 0)
+    down = updated.get("downvotes", 0)
+
+    # Student report loop (no new collection): downvote + reason is a report.
+    # Abuse guards: authenticated user only (route requires auth), one report
+    # per user+question, max 5 reports per user per day. Quorum of distinct
+    # reporters auto-quarantines the question from serving (rollback path,
+    # human-reviewable file). NOTE: no email verification exists yet (P3), so
+    # throwaway-account brigading is only blunted, not eliminated.
+    REPORT_DAILY_CAP = 5
+    report_count = 0
+    quarantined = False
+    if req.vote < 0 and (req.reason or "").strip():
+        # Reports + quorum quarantine live in Mongo (§1.1 migration: local
+        # JSON resets on every Render restart, silently un-quarantining).
+        # The app/data files are seed/export artifacts only (see backfill).
+        from pymongo.errors import DuplicateKeyError
+        today = datetime.now(timezone.utc).date().isoformat()
+        if await question_reports_collection.count_documents(
+                {"user_id": user["id"], "day": today}) >= REPORT_DAILY_CAP:
+            raise HTTPException(status_code=429, detail="Daily report limit reached (5/day)")
+        try:
+            await question_reports_collection.insert_one(
+                {"question_id": req.question_id, "user_id": user["id"],
+                 "reason": req.reason.strip()[:500], "day": today,
+                 "created_at": datetime.now(timezone.utc)})
+        except DuplicateKeyError:
+            pass  # concurrent double-report: already recorded, keep counting
+        report_count = await question_reports_collection.count_documents(
+            {"question_id": req.question_id})
+        if report_count >= REPORT_QUORUM:
+            await served_quarantine_collection.update_one(
+                {"question_id": req.question_id},
+                {"$setOnInsert": {
+                    "question_id": req.question_id,
+                    "reason": f"student-quorum:{report_count}_reports",
+                    "title": (question.get("question") or "")[:80],
+                    "created_at": datetime.now(timezone.utc)}},
+                upsert=True,
+            )
+            quarantined = True
+            # Immediate effect on this process (no restart): mark in-memory.
+            try:
+                question_store.mark_quarantined_in_memory(req.question_id)
+            except Exception:
+                pass
 
     return {
         "question_id": req.question_id,
         "upvotes": up,
         "downvotes": down,
+        "report_count": report_count,
+        "quarantined": quarantined,
     }
+
+
+@router.get("/pattern-readiness/{patternId}", response_model=dict)
+async def pattern_readiness(
+    patternId: str,
+    company: str = "TCS",
+    uid: str = Depends(get_current_user),
+):
+    """Return pattern mastery + company readiness for a given pattern and company."""
+    # resolve canonical pattern name
+    canonical = _canonical_pattern(patternId)
+    if not canonical:
+        raise HTTPException(404, detail="Pattern not found")
+    variants = pattern_variants(canonical)
+    pool = question_store.find({"pattern": {"$in": variants}, "type": "coding"}).prefer_verified().to_list()
+    total = len(pool)
+
+    qids = [q["id"] for q in pool]
+    if not qids:
+        return {
+            "patternId": patternId,
+            "masteryPercent": 0.0,
+            "totalQuestions": 0,
+            "solvedCount": 0,
+            "companyReadiness": {
+                "overallPercent": 0,
+                "sections": [],
+                "nextUpId": None,
+                "weakestSection": None,
+                "weakestTitle": None,
+            },
+            "nextPattern": None,
+        }
+
+    # compute user's solved / attempted / mastered status
+    solved_set: set = set()
+    best: Dict[str, float] = {}
+    if qids:
+        docs = await solved_problems_collection.find(
+            {"user_id": uid, "question_id": {"$in": qids}}, {"question_id": 1}
+        ).to_list(10000)
+        solved_set = {d.get("question_id") for d in docs}
+        cursor = question_answers_collection.find(
+            {"user_id": uid, "question_id": {"$in": qids}}, {"question_id": 1, "score": 1}
+        )
+        async for a in cursor:
+            qid = a.get("question_id")
+            sc = a.get("score") or 0
+            if qid not in best or sc > best[qid]:
+                best[qid] = sc
+
+    solved_count = 0
+    mastered_count = 0
+    for q in pool:
+        qid = q["id"]
+        if qid in solved_set:
+            solved_count += 1
+            if qid in best and best[qid] >= 8.0:
+                mastered_count += 1
+
+    mastery_percent = (mastered_count / total * 100) if total else 0.0
+
+    # determine next pattern in the canonical order
+    pattern_order = ["sliding-window", "two-pointers", "binary-search", "hashing", "strings"]
+    current_idx = pattern_order.index(patternId) if patternId in pattern_order else -1
+    next_pattern = pattern_order[current_idx + 1] if current_idx is not None and current_idx + 1 < len(pattern_order) else None
+
+    # company readiness: we currently return a minimal block; full details
+    # can be fetched from /api/v1/tracks/{company}/overview
+    company_readiness = {
+        "overallPercent": 0,  # placeholder; compute from user's solved/total if desired
+        "sections": [],       # placeholder
+        "nextUpId": None,
+        "weakestSection": None,
+        "weakestTitle": None,
+    }
+
+    return {
+        "patternId": patternId,
+        "masteryPercent": mastery_percent,
+        "totalQuestions": total,
+        "solvedCount": solved_count,
+        "companyReadiness": company_readiness,
+        "nextPattern": next_pattern,
+    }
+
+
+class PatternChecklistState(BaseModel):
+    pattern_id: str
+    checked: List[bool] = Field(default_factory=list, description="Checked state for each checklist item")
+    checklist: List[str] = Field(default_factory=list, description="Checklist items")
+
+
+@router.get("/pattern-checklist/{pattern_id}")
+async def get_pattern_checklist(pattern_id: str, user=Depends(get_current_user)):
+    """Get saved checklist state for a pattern page."""
+    uid = user["id"]
+    doc = await user_question_state_collection.find_one({
+        "user_id": uid,
+        "pattern_id": pattern_id,
+        "type": "pattern_checklist",
+    })
+    if not doc:
+        return {"pattern_id": pattern_id, "checked": [], "checklist": []}
+    return {
+        "pattern_id": doc.get("pattern_id", pattern_id),
+        "checked": doc.get("checked", []),
+        "checklist": doc.get("checklist", []),
+    }
+
+
+@router.post("/pattern-checklist")
+async def save_pattern_checklist(req: PatternChecklistState, user=Depends(get_current_user)):
+    """Save checklist state for a pattern page."""
+    uid = user["id"]
+    await user_question_state_collection.update_one(
+        {"user_id": uid, "pattern_id": req.pattern_id, "type": "pattern_checklist"},
+        {"$set": {
+            "user_id": uid,
+            "pattern_id": req.pattern_id,
+            "type": "pattern_checklist",
+            "checked": req.checked,
+            "checklist": req.checklist,
+            "updated_at": datetime.now(timezone.utc),
+        }},
+        upsert=True,
+    )
+    return {"success": True, "pattern_id": req.pattern_id}
 
 
 from app.routes.questions_solve import router as solve_router

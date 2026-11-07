@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PlacementPro smoke test.
+ * BountyCode smoke test.
  *
  * Verifies the app boots, key pages render without crashing, and the core
  * backend flows (auth + telemetry) work. Run with:  npm run smoke
@@ -175,7 +175,7 @@ async function apiCheck() {
 }
 
 async function main() {
-  console.log("PlacementPro smoke test");
+  console.log("BountyCode smoke test");
   console.log(`  frontend: ${FRONTEND}`);
   console.log(`  backend:  ${API}`);
   console.log("");

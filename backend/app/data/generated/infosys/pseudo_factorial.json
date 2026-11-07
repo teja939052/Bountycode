@@ -1,0 +1,502 @@
+[
+  {
+    "id": "pseudo_factorial_0000",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=2?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=2?",
+      "options": [
+        "A. 6",
+        "B. 1",
+        "C. 4",
+        "D. 2"
+      ],
+      "correct_answer": "D. 2",
+      "explanation": "Recursion: 2 x fun(1) = 2 x 1 = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224569+00:00",
+    "updated_at": "2026-09-21T12:53:32.224569+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0001",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=3?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=3?",
+      "options": [
+        "A. 6",
+        "B. 24",
+        "C. 9",
+        "D. 2"
+      ],
+      "correct_answer": "A. 6",
+      "explanation": "Recursion: 3 x fun(2) = 3 x 2 = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224569+00:00",
+    "updated_at": "2026-09-21T12:53:32.224569+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0002",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=4?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=4?",
+      "options": [
+        "A. 24",
+        "B. 28",
+        "C. 120",
+        "D. 6"
+      ],
+      "correct_answer": "A. 24",
+      "explanation": "Recursion: 4 x fun(3) = 4 x 6 = 24"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224569+00:00",
+    "updated_at": "2026-09-21T12:53:32.224569+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0003",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=5?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=5?",
+      "options": [
+        "A. 24",
+        "B. 720",
+        "C. 125",
+        "D. 120"
+      ],
+      "correct_answer": "D. 120",
+      "explanation": "Recursion: 5 x fun(4) = 5 x 24 = 120"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224569+00:00",
+    "updated_at": "2026-09-21T12:53:32.224569+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0004",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=6?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=6?",
+      "options": [
+        "A. 720",
+        "B. 120",
+        "C. 726",
+        "D. 5040"
+      ],
+      "correct_answer": "A. 720",
+      "explanation": "Recursion: 6 x fun(5) = 6 x 120 = 720"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224569+00:00",
+    "updated_at": "2026-09-21T12:53:32.224569+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0005",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=7?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=7?",
+      "options": [
+        "A. 40320",
+        "B. 5047",
+        "C. 5040",
+        "D. 720"
+      ],
+      "correct_answer": "C. 5040",
+      "explanation": "Recursion: 7 x fun(6) = 7 x 720 = 5040"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224569+00:00",
+    "updated_at": "2026-09-21T12:53:32.224569+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0006",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=8?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=8?",
+      "options": [
+        "A. 40328",
+        "B. 5040",
+        "C. 362880",
+        "D. 40320"
+      ],
+      "correct_answer": "D. 40320",
+      "explanation": "Recursion: 8 x fun(7) = 8 x 5040 = 40320"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0007",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=9?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=9?",
+      "options": [
+        "A. 362889",
+        "B. 362880",
+        "C. 40320",
+        "D. 3628800"
+      ],
+      "correct_answer": "B. 362880",
+      "explanation": "Recursion: 9 x fun(8) = 9 x 40320 = 362880"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0008",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=10?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=10?",
+      "options": [
+        "A. 3628810",
+        "B. 362880",
+        "C. 3628800",
+        "D. 39916800"
+      ],
+      "correct_answer": "C. 3628800",
+      "explanation": "Recursion: 10 x fun(9) = 10 x 362880 = 3628800"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  },
+  {
+    "id": "pseudo_factorial_0009",
+    "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=11?",
+    "pattern": "recursion-trace",
+    "skill": "recursion-trace",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.5,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.75,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this return: fun(n){ if(n<=1) return 1; return n * fun(n-1); } with n=11?",
+      "options": [
+        "A. 479001600",
+        "B. 3628800",
+        "C. 39916811",
+        "D. 39916800"
+      ],
+      "correct_answer": "D. 39916800",
+      "explanation": "Recursion: 11 x fun(10) = 11 x 3628800 = 39916800"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "Accenture"
+    ]
+  }
+]

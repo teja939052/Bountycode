@@ -14,10 +14,17 @@ from app.services.gamification import (
     SEASONAL_STORMS,
     record_practice,
 )
+from app.services.gamification_core import (
+    BADGES,
+    BADGE_CONDITIONS,
+    ACTIVITY_COUNTER_FIELD,
+    GAMIFICATION_COUNTER_FIELDS,
+    badge_condition_met,
+)
 
 
 class TestCalculateLevel:
-    """Tests for XP-to-level calculation."""
+    """Tests for Diamonds-to-level calculation."""
 
     def test_level_1_at_zero_xp(self):
         assert _calculate_level(0) == 1
@@ -32,8 +39,8 @@ class TestCalculateLevel:
         assert _calculate_level(4950) == 10
 
     def test_level_never_decreases(self):
-        for xp in [0, 10, 100, 1000, 5000]:
-            level = _calculate_level(xp)
+        for diamonds in [0, 10, 100, 1000, 5000]:
+            level = _calculate_level(diamonds)
             assert level >= 1
             assert level <= 100
 
@@ -42,7 +49,7 @@ class TestCalculateLevel:
 
 
 class TestCalculateXP:
-    """Tests for XP reward calculation by activity type."""
+    """Tests for Diamonds reward calculation by activity type."""
 
     def test_xp_scales_with_score(self):
         xp_50 = _calculate_xp("interview", 50)
@@ -226,3 +233,132 @@ class TestRecordPractice:
             await record_practice(mock_user_id, "interview", 100)
 
         mock_find.assert_called()
+
+
+class TestBadgeConditionParity:
+    """CI tripwire: the badge catalog and its conditions must be 1:1.
+
+    A badge with no condition can never be earned (a catalog lie); a
+    condition for a badge that doesn't exist is dead configuration.
+    """
+
+    def test_badge_catalog_matches_conditions(self):
+        assert set(BADGES) == set(BADGE_CONDITIONS)
+
+    def test_all_counter_conditions_reference_canonical_fields(self):
+        for badge_id, condition in BADGE_CONDITIONS.items():
+            if condition is None:
+                continue
+            assert isinstance(condition, tuple), f"{badge_id} condition must be a tuple"
+            assert 2 <= len(condition) <= 3, f"{badge_id} condition must be (kind, key, min)"
+            kind = condition[0]
+            assert kind in ("counter", "score", "streak", "level", "bosses"), f"{badge_id} has unknown kind {kind}"
+            if kind == "counter":
+                assert condition[1] in GAMIFICATION_COUNTER_FIELDS, (
+                    f"{badge_id} counter condition references {condition[1]} which record_practice() never writes"
+                )
+
+    def test_all_score_conditions_use_known_activities(self):
+        for badge_id, condition in BADGE_CONDITIONS.items():
+            if condition is None or condition[0] != "score":
+                continue
+            activity = condition[1]
+            assert activity in ACTIVITY_COUNTER_FIELD, (
+                f"{badge_id} score condition references activity '{activity}' with no canonical counter"
+            )
+
+    def test_resume_badges_never_fire_with_zero_score(self):
+        """Resume creation is recorded at score 0; only /optimize (real ATS) earns."""
+        profile = {"total_resumes": 3, "level": 1, "bosses_defeated": []}
+        assert badge_condition_met(BADGE_CONDITIONS["first_resume"], profile, "resume", 0, 0)
+        assert not badge_condition_met(BADGE_CONDITIONS["ats_master"], profile, "resume", 0, 0)
+        assert not badge_condition_met(BADGE_CONDITIONS["ats_95"], profile, "resume", 0, 0)
+
+    def test_first_accepted_and_hard_problem_scores(self):
+        profile = {"level": 1, "bosses_defeated": []}
+        assert badge_condition_met(BADGE_CONDITIONS["first_accepted"], profile, "coding", 80, 0)
+        assert not badge_condition_met(BADGE_CONDITIONS["first_accepted"], profile, "coding", 79, 0)
+        assert badge_condition_met(BADGE_CONDITIONS["hard_problem"], profile, "coding", 95, 0)
+        assert not badge_condition_met(BADGE_CONDITIONS["hard_problem"], profile, "coding", 90, 0)
+
+    def test_coding_score_badges_are_activity_gated(self):
+        profile = {"level": 1, "bosses_defeated": []}
+        assert not badge_condition_met(BADGE_CONDITIONS["first_accepted"], profile, "aptitude", 100, 0)
+
+    def test_score_scale_thresholds_are_consistent_with_caller_scales(self):
+        """Interview/system_design are 0-10; aptitude/coding/resume are 0-100.
+
+        Thresholds in BADGE_CONDITIONS must sit on the same scale the callers
+        pass, otherwise a badge is fireable-on-trivial or unreachable.
+        """
+        profile = {"level": 1, "bosses_defeated": []}
+        active = [
+            ("perfect_score", "interview", 10),
+            ("high_score_streak", "interview", 8),
+            ("aptitude_perfect", "aptitude", 100),
+            ("first_accepted", "coding", 80),
+            ("hard_problem", "coding", 95),
+            ("ats_master", "resume", 90),
+            ("ats_95", "resume", 95),
+            ("system_design_master", "system_design", 9),
+        ]
+        for badge_id, activity, min_score in active:
+            cond = BADGE_CONDITIONS[badge_id]
+            assert cond[0] == "score", badge_id
+            assert not badge_condition_met(cond, profile, activity, min_score - 1, 0), (
+                f"{badge_id} must NOT fire below its threshold"
+            )
+            assert badge_condition_met(cond, profile, activity, min_score, 0), (
+                f"{badge_id} must fire at its threshold"
+            )
+
+    def test_unreachable_score_thresholds_rejected(self):
+        """A perfect score is 10/10 (interview, system_design) or 100% (others).
+        Thresholds above the max possible on each scale are unreachable."""
+        max_by_activity = {
+            "interview": 10,
+            "system_design": 10,
+            "aptitude": 100,
+            "coding": 100,
+            "resume": 100,
+        }
+        for badge_id, condition in BADGE_CONDITIONS.items():
+            if condition is None or condition[0] != "score":
+                continue
+            activity = condition[1]
+            assert condition[2] <= max_by_activity[activity], (
+                f"{badge_id} threshold {condition[2]} is unreachable on {activity} scale"
+            )
+
+    def test_lucky_streak_is_externally_declared(self):
+        assert BADGE_CONDITIONS["lucky_streak"] is None
+
+    def test_counter_badges_respect_profile_thresholds(self):
+        profile = {"level": 1, "bosses_defeated": [], "total_interviews": 9}
+        assert not badge_condition_met(BADGE_CONDITIONS["interview_10"], profile, "interview", 10, 0)
+        profile["total_interviews"] = 10
+        assert badge_condition_met(BADGE_CONDITIONS["interview_10"], profile, "interview", 10, 0)
+
+    def test_level_badges_use_server_level(self):
+        profile = {"level": 50, "bosses_defeated": []}
+        assert badge_condition_met(BADGE_CONDITIONS["tower_floor_5"], profile, "coding", 80, 0)
+        assert not badge_condition_met(BADGE_CONDITIONS["tower_floor_10"], profile, "coding", 80, 0)
+
+    def test_boss_badges_use_bosses_defeated(self):
+        profile = {"level": 1, "bosses_defeated": [10, 20, 30, 40, 50]}
+        assert badge_condition_met(BADGE_CONDITIONS["boss_5"], profile, "coding", 80, 0)
+        assert not badge_condition_met(BADGE_CONDITIONS["boss_10"], profile, "coding", 80, 0)
+
+    def test_counter_fields_map_to_singular_names_readers_use(self):
+        """record_practice() must increment the same fields readers query.
+
+        Historical bug: the engine wrote plural fields (total_aptitudes) that
+        no reader consumed while readers read total_aptitude etc. This tripwire
+        pins the canonical names so a regression fails CI."""
+        assert ACTIVITY_COUNTER_FIELD["interview"] == "total_interviews"
+        assert ACTIVITY_COUNTER_FIELD["aptitude"] == "total_aptitude"
+        assert ACTIVITY_COUNTER_FIELD["coding"] == "total_coding"
+        assert ACTIVITY_COUNTER_FIELD["system_design"] == "total_system_design"
+        assert ACTIVITY_COUNTER_FIELD["resume"] == "total_resumes"
+        assert "total_powerups_used" in GAMIFICATION_COUNTER_FIELDS
+        assert "total_perfect_scores" in GAMIFICATION_COUNTER_FIELDS

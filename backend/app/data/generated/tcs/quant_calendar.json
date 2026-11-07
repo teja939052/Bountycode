@@ -1,0 +1,2502 @@
+[
+  {
+    "id": "quant_calendar_0000",
+    "question": "If January 1, 2000 is a Saturday, what day is January 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If January 1, 2000 is a Saturday, what day is January 1, 2001?",
+      "options": [
+        "A. Friday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Monday"
+      ],
+      "correct_answer": "B. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.123154+00:00",
+    "updated_at": "2026-09-21T12:53:32.123154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0001",
+    "question": "If January 15, 2000 is a Saturday, what day is January 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If January 15, 2000 is a Saturday, what day is January 15, 2001?",
+      "options": [
+        "A. Friday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Monday"
+      ],
+      "correct_answer": "B. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.123154+00:00",
+    "updated_at": "2026-09-21T12:53:32.123154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0002",
+    "question": "If February 1, 2000 is a Tuesday, what day is February 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If February 1, 2000 is a Tuesday, what day is February 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Sunday",
+        "C. Thursday",
+        "D. Friday"
+      ],
+      "correct_answer": "C. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.123154+00:00",
+    "updated_at": "2026-09-21T12:53:32.123154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0003",
+    "question": "If February 15, 2000 is a Tuesday, what day is February 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If February 15, 2000 is a Tuesday, what day is February 15, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Sunday",
+        "C. Thursday",
+        "D. Friday"
+      ],
+      "correct_answer": "C. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.123154+00:00",
+    "updated_at": "2026-09-21T12:53:32.123154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0004",
+    "question": "If March 1, 2000 is a Wednesday, what day is March 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If March 1, 2000 is a Wednesday, what day is March 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Thursday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "B. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.123154+00:00",
+    "updated_at": "2026-09-21T12:53:32.123154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0005",
+    "question": "If March 15, 2000 is a Wednesday, what day is March 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If March 15, 2000 is a Wednesday, what day is March 15, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Thursday",
+        "D. Sunday"
+      ],
+      "correct_answer": "C. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.123154+00:00",
+    "updated_at": "2026-09-21T12:53:32.123154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0006",
+    "question": "If April 1, 2000 is a Saturday, what day is April 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If April 1, 2000 is a Saturday, what day is April 1, 2001?",
+      "options": [
+        "A. Sunday",
+        "B. Sunday",
+        "C. Monday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.124152+00:00",
+    "updated_at": "2026-09-21T12:53:32.124152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0007",
+    "question": "If April 15, 2000 is a Saturday, what day is April 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If April 15, 2000 is a Saturday, what day is April 15, 2001?",
+      "options": [
+        "A. Friday",
+        "B. Sunday",
+        "C. Monday",
+        "D. Sunday"
+      ],
+      "correct_answer": "B. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.124152+00:00",
+    "updated_at": "2026-09-21T12:53:32.124152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0008",
+    "question": "If May 1, 2000 is a Monday, what day is May 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If May 1, 2000 is a Monday, what day is May 1, 2001?",
+      "options": [
+        "A. Sunday",
+        "B. Friday",
+        "C. Monday",
+        "D. Tuesday"
+      ],
+      "correct_answer": "D. Tuesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Tuesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.124152+00:00",
+    "updated_at": "2026-09-21T12:53:32.124152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0009",
+    "question": "If May 15, 2000 is a Monday, what day is May 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If May 15, 2000 is a Monday, what day is May 15, 2001?",
+      "options": [
+        "A. Friday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Tuesday"
+      ],
+      "correct_answer": "D. Tuesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Tuesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.124152+00:00",
+    "updated_at": "2026-09-21T12:53:32.124152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0010",
+    "question": "If June 1, 2000 is a Thursday, what day is June 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If June 1, 2000 is a Thursday, what day is June 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Friday",
+        "D. Sunday"
+      ],
+      "correct_answer": "B. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.124152+00:00",
+    "updated_at": "2026-09-21T12:53:32.124152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0011",
+    "question": "If June 15, 2000 is a Thursday, what day is June 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If June 15, 2000 is a Thursday, what day is June 15, 2001?",
+      "options": [
+        "A. Friday",
+        "B. Sunday",
+        "C. Friday",
+        "D. Monday"
+      ],
+      "correct_answer": "A. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.124152+00:00",
+    "updated_at": "2026-09-21T12:53:32.124152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0012",
+    "question": "If July 1, 2000 is a Saturday, what day is July 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If July 1, 2000 is a Saturday, what day is July 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Sunday",
+        "D. Sunday"
+      ],
+      "correct_answer": "C. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.129154+00:00",
+    "updated_at": "2026-09-21T12:53:32.129154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0013",
+    "question": "If July 15, 2000 is a Saturday, what day is July 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If July 15, 2000 is a Saturday, what day is July 15, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Sunday",
+        "C. Friday",
+        "D. Sunday"
+      ],
+      "correct_answer": "B. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.129154+00:00",
+    "updated_at": "2026-09-21T12:53:32.129154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0014",
+    "question": "If August 1, 2000 is a Tuesday, what day is August 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If August 1, 2000 is a Tuesday, what day is August 1, 2001?",
+      "options": [
+        "A. Wednesday",
+        "B. Friday",
+        "C. Monday",
+        "D. Sunday"
+      ],
+      "correct_answer": "A. Wednesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Wednesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.129154+00:00",
+    "updated_at": "2026-09-21T12:53:32.129154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0015",
+    "question": "If August 15, 2000 is a Tuesday, what day is August 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If August 15, 2000 is a Tuesday, what day is August 15, 2001?",
+      "options": [
+        "A. Wednesday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Wednesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Wednesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.129154+00:00",
+    "updated_at": "2026-09-21T12:53:32.129154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0016",
+    "question": "If September 1, 2000 is a Friday, what day is September 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If September 1, 2000 is a Friday, what day is September 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Saturday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "B. Saturday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Saturday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.130153+00:00",
+    "updated_at": "2026-09-21T12:53:32.130153+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0017",
+    "question": "If September 15, 2000 is a Friday, what day is September 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If September 15, 2000 is a Friday, what day is September 15, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Sunday",
+        "D. Saturday"
+      ],
+      "correct_answer": "D. Saturday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Saturday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.130153+00:00",
+    "updated_at": "2026-09-21T12:53:32.130153+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0018",
+    "question": "If October 1, 2000 is a Sunday, what day is October 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If October 1, 2000 is a Sunday, what day is October 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.130153+00:00",
+    "updated_at": "2026-09-21T12:53:32.130153+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0019",
+    "question": "If October 15, 2000 is a Sunday, what day is October 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If October 15, 2000 is a Sunday, what day is October 15, 2001?",
+      "options": [
+        "A. Sunday",
+        "B. Friday",
+        "C. Monday",
+        "D. Monday"
+      ],
+      "correct_answer": "C. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.130153+00:00",
+    "updated_at": "2026-09-21T12:53:32.130153+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0020",
+    "question": "If November 1, 2000 is a Wednesday, what day is November 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If November 1, 2000 is a Wednesday, what day is November 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Sunday",
+        "D. Thursday"
+      ],
+      "correct_answer": "D. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.131672+00:00",
+    "updated_at": "2026-09-21T12:53:32.131672+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0021",
+    "question": "If November 15, 2000 is a Wednesday, what day is November 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If November 15, 2000 is a Wednesday, what day is November 15, 2001?",
+      "options": [
+        "A. Thursday",
+        "B. Friday",
+        "C. Monday",
+        "D. Sunday"
+      ],
+      "correct_answer": "A. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.131672+00:00",
+    "updated_at": "2026-09-21T12:53:32.131672+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0022",
+    "question": "If December 1, 2000 is a Friday, what day is December 1, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If December 1, 2000 is a Friday, what day is December 1, 2001?",
+      "options": [
+        "A. Monday",
+        "B. Sunday",
+        "C. Saturday",
+        "D. Friday"
+      ],
+      "correct_answer": "C. Saturday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Saturday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0023",
+    "question": "If December 15, 2000 is a Friday, what day is December 15, 2001?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If December 15, 2000 is a Friday, what day is December 15, 2001?",
+      "options": [
+        "A. Saturday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Saturday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Saturday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0024",
+    "question": "If January 1, 2001 is a Monday, what day is January 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If January 1, 2001 is a Monday, what day is January 1, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Tuesday",
+        "D. Sunday"
+      ],
+      "correct_answer": "C. Tuesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Tuesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0025",
+    "question": "If January 15, 2001 is a Monday, what day is January 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If January 15, 2001 is a Monday, what day is January 15, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Tuesday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "B. Tuesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Tuesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0026",
+    "question": "If February 1, 2001 is a Thursday, what day is February 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If February 1, 2001 is a Thursday, what day is February 1, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Friday",
+        "D. Sunday"
+      ],
+      "correct_answer": "B. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0027",
+    "question": "If February 15, 2001 is a Thursday, what day is February 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If February 15, 2001 is a Thursday, what day is February 15, 2002?",
+      "options": [
+        "A. Friday",
+        "B. Friday",
+        "C. Sunday",
+        "D. Monday"
+      ],
+      "correct_answer": "A. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0028",
+    "question": "If March 1, 2001 is a Thursday, what day is March 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If March 1, 2001 is a Thursday, what day is March 1, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "B. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0029",
+    "question": "If March 15, 2001 is a Thursday, what day is March 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If March 15, 2001 is a Thursday, what day is March 15, 2002?",
+      "options": [
+        "A. Friday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.132701+00:00",
+    "updated_at": "2026-09-21T12:53:32.132701+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0030",
+    "question": "If April 1, 2001 is a Sunday, what day is April 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If April 1, 2001 is a Sunday, what day is April 1, 2002?",
+      "options": [
+        "A. Friday",
+        "B. Monday",
+        "C. Monday",
+        "D. Sunday"
+      ],
+      "correct_answer": "B. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.133961+00:00",
+    "updated_at": "2026-09-21T12:53:32.133961+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0031",
+    "question": "If April 15, 2001 is a Sunday, what day is April 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If April 15, 2001 is a Sunday, what day is April 15, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.133961+00:00",
+    "updated_at": "2026-09-21T12:53:32.133961+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0032",
+    "question": "If May 1, 2001 is a Tuesday, what day is May 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If May 1, 2001 is a Tuesday, what day is May 1, 2002?",
+      "options": [
+        "A. Wednesday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Wednesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Wednesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.133961+00:00",
+    "updated_at": "2026-09-21T12:53:32.133961+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0033",
+    "question": "If May 15, 2001 is a Tuesday, what day is May 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If May 15, 2001 is a Tuesday, what day is May 15, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Friday",
+        "C. Wednesday",
+        "D. Sunday"
+      ],
+      "correct_answer": "C. Wednesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Wednesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.133961+00:00",
+    "updated_at": "2026-09-21T12:53:32.133961+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0034",
+    "question": "If June 1, 2001 is a Friday, what day is June 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If June 1, 2001 is a Friday, what day is June 1, 2002?",
+      "options": [
+        "A. Saturday",
+        "B. Monday",
+        "C. Friday",
+        "D. Sunday"
+      ],
+      "correct_answer": "A. Saturday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Saturday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.133961+00:00",
+    "updated_at": "2026-09-21T12:53:32.133961+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0035",
+    "question": "If June 15, 2001 is a Friday, what day is June 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If June 15, 2001 is a Friday, what day is June 15, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Sunday",
+        "C. Saturday",
+        "D. Friday"
+      ],
+      "correct_answer": "C. Saturday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Saturday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.133961+00:00",
+    "updated_at": "2026-09-21T12:53:32.133961+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0036",
+    "question": "If July 1, 2001 is a Sunday, what day is July 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If July 1, 2001 is a Sunday, what day is July 1, 2002?",
+      "options": [
+        "A. Sunday",
+        "B. Monday",
+        "C. Friday",
+        "D. Monday"
+      ],
+      "correct_answer": "B. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.133961+00:00",
+    "updated_at": "2026-09-21T12:53:32.133961+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0037",
+    "question": "If July 15, 2001 is a Sunday, what day is July 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If July 15, 2001 is a Sunday, what day is July 15, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Monday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Monday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.134965+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0038",
+    "question": "If August 1, 2001 is a Wednesday, what day is August 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If August 1, 2001 is a Wednesday, what day is August 1, 2002?",
+      "options": [
+        "A. Thursday",
+        "B. Friday",
+        "C. Sunday",
+        "D. Monday"
+      ],
+      "correct_answer": "A. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.134965+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0039",
+    "question": "If August 15, 2001 is a Wednesday, what day is August 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If August 15, 2001 is a Wednesday, what day is August 15, 2002?",
+      "options": [
+        "A. Sunday",
+        "B. Monday",
+        "C. Thursday",
+        "D. Friday"
+      ],
+      "correct_answer": "C. Thursday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Thursday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.134965+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0040",
+    "question": "If September 1, 2001 is a Saturday, what day is September 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If September 1, 2001 is a Saturday, what day is September 1, 2002?",
+      "options": [
+        "A. Friday",
+        "B. Monday",
+        "C. Sunday",
+        "D. Sunday"
+      ],
+      "correct_answer": "C. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.134965+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0041",
+    "question": "If September 15, 2001 is a Saturday, what day is September 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If September 15, 2001 is a Saturday, what day is September 15, 2002?",
+      "options": [
+        "A. Sunday",
+        "B. Sunday",
+        "C. Monday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.134965+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0042",
+    "question": "If October 1, 2001 is a Monday, what day is October 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If October 1, 2001 is a Monday, what day is October 1, 2002?",
+      "options": [
+        "A. Monday",
+        "B. Tuesday",
+        "C. Sunday",
+        "D. Friday"
+      ],
+      "correct_answer": "B. Tuesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Tuesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.134965+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0043",
+    "question": "If October 15, 2001 is a Monday, what day is October 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If October 15, 2001 is a Monday, what day is October 15, 2002?",
+      "options": [
+        "A. Tuesday",
+        "B. Friday",
+        "C. Sunday",
+        "D. Monday"
+      ],
+      "correct_answer": "A. Tuesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Tuesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.134965+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0044",
+    "question": "If November 1, 2001 is a Thursday, what day is November 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If November 1, 2001 is a Thursday, what day is November 1, 2002?",
+      "options": [
+        "A. Friday",
+        "B. Friday",
+        "C. Monday",
+        "D. Sunday"
+      ],
+      "correct_answer": "A. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.134965+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0045",
+    "question": "If November 15, 2001 is a Thursday, what day is November 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If November 15, 2001 is a Thursday, what day is November 15, 2002?",
+      "options": [
+        "A. Friday",
+        "B. Sunday",
+        "C. Monday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Friday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Friday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0046",
+    "question": "If December 1, 2001 is a Saturday, what day is December 1, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If December 1, 2001 is a Saturday, what day is December 1, 2002?",
+      "options": [
+        "A. Sunday",
+        "B. Sunday",
+        "C. Monday",
+        "D. Friday"
+      ],
+      "correct_answer": "A. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0047",
+    "question": "If December 15, 2001 is a Saturday, what day is December 15, 2002?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If December 15, 2001 is a Saturday, what day is December 15, 2002?",
+      "options": [
+        "A. Friday",
+        "B. Sunday",
+        "C. Monday",
+        "D. Sunday"
+      ],
+      "correct_answer": "B. Sunday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Sunday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0048",
+    "question": "If January 1, 2002 is a Tuesday, what day is January 1, 2003?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If January 1, 2002 is a Tuesday, what day is January 1, 2003?",
+      "options": [
+        "A. Friday",
+        "B. Wednesday",
+        "C. Monday",
+        "D. Sunday"
+      ],
+      "correct_answer": "B. Wednesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Wednesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  },
+  {
+    "id": "quant_calendar_0049",
+    "question": "If January 15, 2002 is a Tuesday, what day is January 15, 2003?",
+    "pattern": "calendar-arith",
+    "skill": "calendar-arith",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.75,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "If January 15, 2002 is a Tuesday, what day is January 15, 2003?",
+      "options": [
+        "A. Wednesday",
+        "B. Sunday",
+        "C. Friday",
+        "D. Monday"
+      ],
+      "correct_answer": "A. Wednesday",
+      "explanation": "365 days = 52 weeks + 1 day. Next year same date = Wednesday"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Cognizant"
+    ]
+  }
+]

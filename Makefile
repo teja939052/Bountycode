@@ -1,7 +1,7 @@
 .PHONY: help dev backend frontend test lint typecheck clean docker-up docker-down
 
 help:
-	@echo "PlacementPro Development Commands"
+	@echo "BountyCode Development Commands"
 	@echo "  make dev          - Start both backend and frontend"
 	@echo "  make backend      - Start backend dev server"
 	@echo "  make frontend     - Start frontend dev server"
@@ -14,7 +14,7 @@ help:
 	@echo "  make docker-down  - Stop Docker Compose services"
 
 dev:
-	@echo "Starting PlacementPro development environment..."
+	@echo "Starting BountyCode development environment..."
 	@docker-compose up mongodb redis -d
 	@$(MAKE) backend &
 	@$(MAKE) frontend

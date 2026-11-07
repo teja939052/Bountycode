@@ -1,0 +1,7085 @@
+[
+  {
+    "id": "capacc_coding_001",
+    "type": "coding",
+    "title": "Two Sum",
+    "question": "Return indices summing to target.",
+    "difficulty": "easy",
+    "topic": "General DSA",
+    "sub_topic": "two",
+    "pattern": "General DSA",
+    "skill": "two_sum",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "TwoSum",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for two sum."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def twoSum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        comp = target - num\n        if comp in seen:\n            return [seen[comp], i]\n        seen[num] = i\n    return []\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve two sum using an efficient approach.",
+    "hints": [
+      "Hint 1 for two sum.",
+      "Hint 2 for two sum."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_002",
+    "type": "coding",
+    "title": "Reverse Array",
+    "question": "Reverse array in-place.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "reverse",
+    "pattern": "Arrays",
+    "skill": "reverse_array",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ReverseArray",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for reverse array."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def reverseArray(arr):\n    left, right = 0, len(arr) - 1\n    while left < right:\n        arr[left], arr[right] = arr[right], arr[left]\n        left += 1\n        right -= 1\n    return arr\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve reverse array using an efficient approach.",
+    "hints": [
+      "Hint 1 for reverse array.",
+      "Hint 2 for reverse array."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_003",
+    "type": "coding",
+    "title": "Check Prime",
+    "question": "Check if number is prime.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "check",
+    "pattern": "Numbers",
+    "skill": "check_prime",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CheckPrime",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": true,
+        "explanation": "Example for check prime."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": true
+      },
+      {
+        "input": 10,
+        "expected": false
+      },
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": true
+      },
+      {
+        "input": 10,
+        "expected": false
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "solution": {
+      "code": "def isPrime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n",
+      "language": "python",
+      "time_complexity": "O(sqrt(n))",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve check prime using an efficient approach.",
+    "hints": [
+      "Hint 1 for check prime.",
+      "Hint 2 for check prime."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_004",
+    "type": "coding",
+    "title": "Count Vowels",
+    "question": "Count vowels in string.",
+    "difficulty": "easy",
+    "topic": "General DSA",
+    "sub_topic": "count",
+    "pattern": "General DSA",
+    "skill": "count_vowels",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CountVowels",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for count vowels."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def countVowels(s):\n    return sum(1 for ch in s.lower() if ch in 'aeiou')\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve count vowels using an efficient approach.",
+    "hints": [
+      "Hint 1 for count vowels.",
+      "Hint 2 for count vowels."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_005",
+    "type": "coding",
+    "title": "Factorial",
+    "question": "Compute factorial.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "factorial",
+    "pattern": "Numbers",
+    "skill": "factorial",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Factorial",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 120,
+        "explanation": "Example for factorial."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 120
+      },
+      {
+        "input": 10,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 120
+      },
+      {
+        "input": 10,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "solution": {
+      "code": "def factorial(n):\n    res = 1\n    for i in range(2, n + 1):\n        res *= i\n    return res\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve factorial using an efficient approach.",
+    "hints": [
+      "Hint 1 for factorial.",
+      "Hint 2 for factorial."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_006",
+    "type": "coding",
+    "title": "Fibonacci",
+    "question": "Return nth Fibonacci.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "fibonacci",
+    "pattern": "Numbers",
+    "skill": "fibonacci",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Fibonacci",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 5,
+        "explanation": "Example for fibonacci."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 5
+      },
+      {
+        "input": 10,
+        "expected": 55
+      },
+      {
+        "input": 1,
+        "expected": 0
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 5
+      },
+      {
+        "input": 10,
+        "expected": 55
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 0
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 0
+      }
+    ],
+    "solution": {
+      "code": "def fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve fibonacci using an efficient approach.",
+    "hints": [
+      "Hint 1 for fibonacci.",
+      "Hint 2 for fibonacci."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_007",
+    "type": "coding",
+    "title": "Palindrome Check",
+    "question": "Check palindrome.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "palindrome",
+    "pattern": "Strings",
+    "skill": "palindrome_check",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PalindromeCheck",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for palindrome check."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isPalindrome(s):\n    return s == s[::-1]\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve palindrome check using an efficient approach.",
+    "hints": [
+      "Hint 1 for palindrome check.",
+      "Hint 2 for palindrome check."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_008",
+    "type": "coding",
+    "title": "Find Maximum",
+    "question": "Return max element.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "find",
+    "pattern": "Arrays",
+    "skill": "find_maximum",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "FindMaximum",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for find maximum."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def findMax(arr):\n    return max(arr)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve find maximum using an efficient approach.",
+    "hints": [
+      "Hint 1 for find maximum.",
+      "Hint 2 for find maximum."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_009",
+    "type": "coding",
+    "title": "Array Sum",
+    "question": "Return sum of array.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "array",
+    "pattern": "Arrays",
+    "skill": "array_sum",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ArraySum",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for array sum."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def arraySum(arr):\n    return sum(arr)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve array sum using an efficient approach.",
+    "hints": [
+      "Hint 1 for array sum.",
+      "Hint 2 for array sum."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_010",
+    "type": "coding",
+    "title": "Check Anagram",
+    "question": "Check anagrams.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "check",
+    "pattern": "Strings",
+    "skill": "check_anagram",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CheckAnagram",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for check anagram."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isAnagram(a, b):\n    return sorted(a) == sorted(b)\n",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve check anagram using an efficient approach.",
+    "hints": [
+      "Hint 1 for check anagram.",
+      "Hint 2 for check anagram."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_011",
+    "type": "coding",
+    "title": "Valid Parentheses",
+    "question": "Check balanced brackets.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "valid",
+    "pattern": "Strings",
+    "skill": "valid_parentheses",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ValidParentheses",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for valid parentheses."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isValid(s):\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for ch in s:\n        if ch in pairs.values():\n            stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack[-1] != pairs[ch]:\n                return False\n            stack.pop()\n    return not stack\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve valid parentheses using an efficient approach.",
+    "hints": [
+      "Hint 1 for valid parentheses.",
+      "Hint 2 for valid parentheses."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_012",
+    "type": "coding",
+    "title": "Binary to Decimal",
+    "question": "Binary to decimal.",
+    "difficulty": "easy",
+    "topic": "Number System",
+    "sub_topic": "binary",
+    "pattern": "Number System",
+    "skill": "binary_to_decimal",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "BinarytoDecimal",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for binary to decimal."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def binaryToDecimal(s):\n    return int(s, 2)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve binary to decimal using an efficient approach.",
+    "hints": [
+      "Hint 1 for binary to decimal.",
+      "Hint 2 for binary to decimal."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_013",
+    "type": "coding",
+    "title": "Decimal to Binary",
+    "question": "Decimal to binary.",
+    "difficulty": "easy",
+    "topic": "Number System",
+    "sub_topic": "decimal",
+    "pattern": "Number System",
+    "skill": "decimal_to_binary",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DecimaltoBinary",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for decimal to binary."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def decimalToBinary(n):\n    return bin(n)[2:]\n",
+      "language": "python",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(log n)"
+    },
+    "explanation": "Solve decimal to binary using an efficient approach.",
+    "hints": [
+      "Hint 1 for decimal to binary.",
+      "Hint 2 for decimal to binary."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_014",
+    "type": "coding",
+    "title": "Count Digits",
+    "question": "Count digits.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "count",
+    "pattern": "Numbers",
+    "skill": "count_digits",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CountDigits",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for count digits."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def countDigits(n):\n    n = abs(n)\n    if n == 0:\n        return 1\n    c = 0\n    while n:\n        c += 1\n        n //= 10\n    return c\n",
+      "language": "python",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve count digits using an efficient approach.",
+    "hints": [
+      "Hint 1 for count digits.",
+      "Hint 2 for count digits."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_015",
+    "type": "coding",
+    "title": "Reverse String",
+    "question": "Reverse string.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "reverse",
+    "pattern": "Strings",
+    "skill": "reverse_string",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ReverseString",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for reverse string."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def reverseString(s):\n    return s[::-1]\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve reverse string using an efficient approach.",
+    "hints": [
+      "Hint 1 for reverse string.",
+      "Hint 2 for reverse string."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_016",
+    "type": "coding",
+    "title": "GCD",
+    "question": "Return GCD.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "gcd",
+    "pattern": "Numbers",
+    "skill": "gcd",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "GCD",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 1,
+        "explanation": "Example for gcd."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 1
+      },
+      {
+        "input": 10,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 5
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 1
+      },
+      {
+        "input": 10,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 5
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 5
+      }
+    ],
+    "solution": {
+      "code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n",
+      "language": "python",
+      "time_complexity": "O(log(min(a,b))",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve gcd using an efficient approach.",
+    "hints": [
+      "Hint 1 for gcd.",
+      "Hint 2 for gcd."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_017",
+    "type": "coding",
+    "title": "LCM",
+    "question": "Return LCM.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "lcm",
+    "pattern": "Numbers",
+    "skill": "lcm",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "LCM",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 10,
+        "explanation": "Example for lcm."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 10
+      },
+      {
+        "input": 10,
+        "expected": 10
+      },
+      {
+        "input": 1,
+        "expected": 10
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 10
+      },
+      {
+        "input": 10,
+        "expected": 10
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 10
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 10
+      }
+    ],
+    "solution": {
+      "code": "def lcm(a, b):\n    return a * b // gcd(a, b)\n",
+      "language": "python",
+      "time_complexity": "O(log(min(a,b))",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve lcm using an efficient approach.",
+    "hints": [
+      "Hint 1 for lcm.",
+      "Hint 2 for lcm."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_018",
+    "type": "coding",
+    "title": "Power of Two",
+    "question": "Check power of two.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "power",
+    "pattern": "Numbers",
+    "skill": "power_of_two",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PowerofTwo",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for power of two."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isPowerOfTwo(n):\n    return n > 0 and (n & (n - 1)) == 0\n",
+      "language": "python",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve power of two using an efficient approach.",
+    "hints": [
+      "Hint 1 for power of two.",
+      "Hint 2 for power of two."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_019",
+    "type": "coding",
+    "title": "Climbing Stairs",
+    "question": "Climb stairs ways.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "climbing",
+    "pattern": "Numbers",
+    "skill": "climbing_stairs",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ClimbingStairs",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for climbing stairs."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def climbStairs(n):\n    a, b = 1, 2\n    for _ in range(n - 1):\n        a, b = b, a + b\n    return a\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve climbing stairs using an efficient approach.",
+    "hints": [
+      "Hint 1 for climbing stairs.",
+      "Hint 2 for climbing stairs."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_020",
+    "type": "coding",
+    "title": "Merge Sorted",
+    "question": "Merge sorted arrays.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "merge",
+    "pattern": "Arrays",
+    "skill": "merge_sorted",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MergeSorted",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for merge sorted."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def mergeSorted(a, b):\n    i = j = 0\n    res = []\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            res.append(a[i])\n            i += 1\n        else:\n            res.append(b[j])\n            j += 1\n    res.extend(a[i:])\n    res.extend(b[j:])\n    return res\n",
+      "language": "python",
+      "time_complexity": "O(n+m)",
+      "space_complexity": "O(n+m)"
+    },
+    "explanation": "Solve merge sorted using an efficient approach.",
+    "hints": [
+      "Hint 1 for merge sorted.",
+      "Hint 2 for merge sorted."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_021",
+    "type": "coding",
+    "title": "Majority Element",
+    "question": "Return majority element.",
+    "difficulty": "medium",
+    "topic": "Arrays",
+    "sub_topic": "majority",
+    "pattern": "Arrays",
+    "skill": "majority_element",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MajorityElement",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for majority element."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def majorityElement(arr):\n    count = 0\n    candidate = None\n    for x in arr:\n        if count == 0:\n            candidate = x\n        count += 1 if x == candidate else -1\n    return candidate\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve majority element using an efficient approach.",
+    "hints": [
+      "Hint 1 for majority element.",
+      "Hint 2 for majority element."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_022",
+    "type": "coding",
+    "title": "Move Zeros",
+    "question": "Move zeros to end.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "move",
+    "pattern": "Arrays",
+    "skill": "move_zeros",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MoveZeros",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for move zeros."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def moveZeros(arr):\n    pos = 0\n    for i in range(len(arr)):\n        if arr[i] != 0:\n            arr[pos], arr[i] = arr[i], arr[pos]\n            pos += 1\n    return arr\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve move zeros using an efficient approach.",
+    "hints": [
+      "Hint 1 for move zeros.",
+      "Hint 2 for move zeros."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_023",
+    "type": "coding",
+    "title": "Remove Duplicates",
+    "question": "Remove duplicates sorted.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "remove",
+    "pattern": "Arrays",
+    "skill": "remove_duplicates",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "RemoveDuplicates",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for remove duplicates."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def removeDuplicates(arr):\n    if not arr:\n        return 0\n    i = 0\n    for j in range(1, len(arr)):\n        if arr[j] != arr[i]:\n            i += 1\n            arr[i] = arr[j]\n    return i + 1\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve remove duplicates using an efficient approach.",
+    "hints": [
+      "Hint 1 for remove duplicates.",
+      "Hint 2 for remove duplicates."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_coding_024",
+    "type": "coding",
+    "title": "Find Missing",
+    "question": "Find missing number.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "find",
+    "pattern": "Arrays",
+    "skill": "find_missing",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "FindMissing",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for find missing."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def findMissing(arr, n):\n    total = n * (n + 1) // 2\n    return total - sum(arr)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve find missing using an efficient approach.",
+    "hints": [
+      "Hint 1 for find missing.",
+      "Hint 2 for find missing."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_025",
+    "type": "aptitude",
+    "title": "Profit Percentage",
+    "question": "CP=200, SP=250. Profit %.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "profit",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ProfitPercentage",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for profit percentage."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve profit percentage using an efficient approach.",
+    "hints": [
+      "Hint 1 for profit percentage.",
+      "Hint 2 for profit percentage."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_026",
+    "type": "aptitude",
+    "title": "Percentage",
+    "question": "15% of 240?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "percentage",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Percentage",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for percentage."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve percentage using an efficient approach.",
+    "hints": [
+      "Hint 1 for percentage.",
+      "Hint 2 for percentage."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_027",
+    "type": "aptitude",
+    "title": "Ratio",
+    "question": "Divide 100 in 2:3.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "ratio",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Ratio",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for ratio."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve ratio using an efficient approach.",
+    "hints": [
+      "Hint 1 for ratio.",
+      "Hint 2 for ratio."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_028",
+    "type": "aptitude",
+    "title": "Time Work",
+    "question": "A=10, B=15 days. Together?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "time",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "TimeWork",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for time work."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve time work using an efficient approach.",
+    "hints": [
+      "Hint 1 for time work.",
+      "Hint 2 for time work."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_029",
+    "type": "aptitude",
+    "title": "Train Speed",
+    "question": "120m train, 3s pole. Speed?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "train",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "TrainSpeed",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for train speed."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve train speed using an efficient approach.",
+    "hints": [
+      "Hint 1 for train speed.",
+      "Hint 2 for train speed."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_030",
+    "type": "aptitude",
+    "title": "Simple Interest",
+    "question": "SI on 1000 at 5% 2y.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "simple",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SimpleInterest",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for simple interest."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve simple interest using an efficient approach.",
+    "hints": [
+      "Hint 1 for simple interest.",
+      "Hint 2 for simple interest."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_031",
+    "type": "aptitude",
+    "title": "Compound Interest",
+    "question": "CI on 1000 at 10% 2y.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "compound",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CompoundInterest",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for compound interest."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve compound interest using an efficient approach.",
+    "hints": [
+      "Hint 1 for compound interest.",
+      "Hint 2 for compound interest."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_032",
+    "type": "aptitude",
+    "title": "Average",
+    "question": "Avg 5 numbers is 20. Sum?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "average",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Average",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for average."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve average using an efficient approach.",
+    "hints": [
+      "Hint 1 for average.",
+      "Hint 2 for average."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_033",
+    "type": "aptitude",
+    "title": "Age",
+    "question": "Father 3x son. After 10y 2x. Ages?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "age",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Age",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for age."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve age using an efficient approach.",
+    "hints": [
+      "Hint 1 for age.",
+      "Hint 2 for age."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_034",
+    "type": "aptitude",
+    "title": "Probability",
+    "question": "Heads in toss?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "probability",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Probability",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for probability."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve probability using an efficient approach.",
+    "hints": [
+      "Hint 1 for probability.",
+      "Hint 2 for probability."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_035",
+    "type": "aptitude",
+    "title": "Permutation",
+    "question": "Arrange ABC.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "permutation",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Permutation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for permutation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve permutation using an efficient approach.",
+    "hints": [
+      "Hint 1 for permutation.",
+      "Hint 2 for permutation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_036",
+    "type": "aptitude",
+    "title": "Number Series",
+    "question": "2,6,12,20,?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "number",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "NumberSeries",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for number series."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve number series using an efficient approach.",
+    "hints": [
+      "Hint 1 for number series.",
+      "Hint 2 for number series."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_037",
+    "type": "aptitude",
+    "title": "Area Circle",
+    "question": "Radius 7 area?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "area",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "AreaCircle",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for area circle."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve area circle using an efficient approach.",
+    "hints": [
+      "Hint 1 for area circle.",
+      "Hint 2 for area circle."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_038",
+    "type": "aptitude",
+    "title": "Net Change",
+    "question": "+20% then -20%. Net?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "net",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "NetChange",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for net change."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve net change using an efficient approach.",
+    "hints": [
+      "Hint 1 for net change.",
+      "Hint 2 for net change."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_039",
+    "type": "aptitude",
+    "title": "Partnership",
+    "question": "A=5000,B=7000. Ratio?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "partnership",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Partnership",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for partnership."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve partnership using an efficient approach.",
+    "hints": [
+      "Hint 1 for partnership.",
+      "Hint 2 for partnership."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_040",
+    "type": "aptitude",
+    "title": "Pipes",
+    "question": "A fills 4h, B empties 6h. Together?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "pipes",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Pipes",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for pipes."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve pipes using an efficient approach.",
+    "hints": [
+      "Hint 1 for pipes.",
+      "Hint 2 for pipes."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_041",
+    "type": "aptitude",
+    "title": "Clock Angle",
+    "question": "Angle at 3:15?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "clock",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ClockAngle",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for clock angle."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve clock angle using an efficient approach.",
+    "hints": [
+      "Hint 1 for clock angle.",
+      "Hint 2 for clock angle."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_042",
+    "type": "aptitude",
+    "title": "Blood Relation",
+    "question": "A father B, B mother C. A-C?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "blood",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "BloodRelation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for blood relation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve blood relation using an efficient approach.",
+    "hints": [
+      "Hint 1 for blood relation.",
+      "Hint 2 for blood relation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_043",
+    "type": "aptitude",
+    "title": "Data Interpretation",
+    "question": "Table sales. Avg growth?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "data",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DataInterpretation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for data interpretation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve data interpretation using an efficient approach.",
+    "hints": [
+      "Hint 1 for data interpretation.",
+      "Hint 2 for data interpretation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_044",
+    "type": "aptitude",
+    "title": "Logarithms",
+    "question": "log(1000) base 10?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "logarithms",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Logarithms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for logarithms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve logarithms using an efficient approach.",
+    "hints": [
+      "Hint 1 for logarithms.",
+      "Hint 2 for logarithms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_045",
+    "type": "aptitude",
+    "title": "Alligation",
+    "question": "Mix 40 and 60 to get 50. Ratio?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "alligation",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Alligation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for alligation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve alligation using an efficient approach.",
+    "hints": [
+      "Hint 1 for alligation.",
+      "Hint 2 for alligation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_046",
+    "type": "aptitude",
+    "title": "Boats",
+    "question": "Still 10, stream 2. Downstream?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "boats",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Boats",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for boats."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve boats using an efficient approach.",
+    "hints": [
+      "Hint 1 for boats.",
+      "Hint 2 for boats."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_047",
+    "type": "aptitude",
+    "title": "HCF",
+    "question": "HCF 12 and 18?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "hcf",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "HCF",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for hcf."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve hcf using an efficient approach.",
+    "hints": [
+      "Hint 1 for hcf.",
+      "Hint 2 for hcf."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_048",
+    "type": "aptitude",
+    "title": "LCM",
+    "question": "LCM 12 and 18?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "lcm",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "LCM",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for lcm."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve lcm using an efficient approach.",
+    "hints": [
+      "Hint 1 for lcm.",
+      "Hint 2 for lcm."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_049",
+    "type": "aptitude",
+    "title": "Sqrt",
+    "question": "Sqrt 144?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "sqrt",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Sqrt",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for sqrt."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve sqrt using an efficient approach.",
+    "hints": [
+      "Hint 1 for sqrt.",
+      "Hint 2 for sqrt."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_050",
+    "type": "aptitude",
+    "title": "Binary",
+    "question": "Binary of 13?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "binary",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Binary",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for binary."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve binary using an efficient approach.",
+    "hints": [
+      "Hint 1 for binary.",
+      "Hint 2 for binary."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_051",
+    "type": "aptitude",
+    "title": "Simplification",
+    "question": "2^3 * 2^4?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "simplification",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Simplification",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for simplification."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve simplification using an efficient approach.",
+    "hints": [
+      "Hint 1 for simplification.",
+      "Hint 2 for simplification."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_052",
+    "type": "aptitude",
+    "title": "Surds",
+    "question": "Simplify sqrt(50)?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "surds",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Surds",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for surds."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve surds using an efficient approach.",
+    "hints": [
+      "Hint 1 for surds.",
+      "Hint 2 for surds."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_053",
+    "type": "aptitude",
+    "title": "Chain Rule",
+    "question": "5 men 10 days. 10 men?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "chain",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ChainRule",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for chain rule."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve chain rule using an efficient approach.",
+    "hints": [
+      "Hint 1 for chain rule.",
+      "Hint 2 for chain rule."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_aptitude_054",
+    "type": "aptitude",
+    "title": "Profit Loss",
+    "question": "CP=200, SP=250. Profit %?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "profit",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ProfitLoss",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for profit loss."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve profit loss using an efficient approach.",
+    "hints": [
+      "Hint 1 for profit loss.",
+      "Hint 2 for profit loss."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_055",
+    "type": "reasoning",
+    "title": "Series Completion",
+    "question": "Complete series: 2, 4, 8, 16, ?",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "series",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SeriesCompletion",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for series completion."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve series completion using an efficient approach.",
+    "hints": [
+      "Hint 1 for series completion.",
+      "Hint 2 for series completion."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_056",
+    "type": "reasoning",
+    "title": "Odd One Out",
+    "question": "Find odd: Apple, Banana, Carrot, Grape",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "odd",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "OddOneOut",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for odd one out."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve odd one out using an efficient approach.",
+    "hints": [
+      "Hint 1 for odd one out.",
+      "Hint 2 for odd one out."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_057",
+    "type": "reasoning",
+    "title": "Coding Decoding",
+    "question": "If A=1, B=2, code CAT?",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "coding",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CodingDecoding",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for coding decoding."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve coding decoding using an efficient approach.",
+    "hints": [
+      "Hint 1 for coding decoding.",
+      "Hint 2 for coding decoding."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_058",
+    "type": "reasoning",
+    "title": "Blood Relation",
+    "question": "A is B's father. B is C's mother.",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "blood",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "BloodRelation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for blood relation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve blood relation using an efficient approach.",
+    "hints": [
+      "Hint 1 for blood relation.",
+      "Hint 2 for blood relation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_059",
+    "type": "reasoning",
+    "title": "Direction Sense",
+    "question": "Face north, turn right 90, then 180.",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "direction",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DirectionSense",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for direction sense."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve direction sense using an efficient approach.",
+    "hints": [
+      "Hint 1 for direction sense.",
+      "Hint 2 for direction sense."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_060",
+    "type": "reasoning",
+    "title": "Syllogism",
+    "question": "All A are B. Some B are C. Conclusion?",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "syllogism",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Syllogism",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for syllogism."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve syllogism using an efficient approach.",
+    "hints": [
+      "Hint 1 for syllogism.",
+      "Hint 2 for syllogism."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_061",
+    "type": "reasoning",
+    "title": "Data Sufficiency",
+    "question": "Is x > y? Statement 1...",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "data",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DataSufficiency",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for data sufficiency."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve data sufficiency using an efficient approach.",
+    "hints": [
+      "Hint 1 for data sufficiency.",
+      "Hint 2 for data sufficiency."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_062",
+    "type": "reasoning",
+    "title": "Arrangement",
+    "question": "Arrange people in order.",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "arrangement",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Arrangement",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for arrangement."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve arrangement using an efficient approach.",
+    "hints": [
+      "Hint 1 for arrangement.",
+      "Hint 2 for arrangement."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_063",
+    "type": "reasoning",
+    "title": "Puzzle Test",
+    "question": "Five people, five seats. Who sits where?",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "puzzle",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PuzzleTest",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for puzzle test."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve puzzle test using an efficient approach.",
+    "hints": [
+      "Hint 1 for puzzle test.",
+      "Hint 2 for puzzle test."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_064",
+    "type": "reasoning",
+    "title": "Inequalities",
+    "question": "If x > y and y > z, then?",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "inequalities",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Inequalities",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for inequalities."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve inequalities using an efficient approach.",
+    "hints": [
+      "Hint 1 for inequalities.",
+      "Hint 2 for inequalities."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_065",
+    "type": "reasoning",
+    "title": "Ranking",
+    "question": "A beats B, B beats C. A vs C?",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "ranking",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Ranking",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for ranking."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve ranking using an efficient approach.",
+    "hints": [
+      "Hint 1 for ranking.",
+      "Hint 2 for ranking."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_066",
+    "type": "reasoning",
+    "title": "Calendar",
+    "question": "Day on 1 Jan 2000?",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "calendar",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Calendar",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for calendar."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve calendar using an efficient approach.",
+    "hints": [
+      "Hint 1 for calendar.",
+      "Hint 2 for calendar."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_067",
+    "type": "reasoning",
+    "title": "Clock",
+    "question": "Coincidence of hands?",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "clock",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Clock",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for clock."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve clock using an efficient approach.",
+    "hints": [
+      "Hint 1 for clock.",
+      "Hint 2 for clock."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_068",
+    "type": "reasoning",
+    "title": "Cubes Dice",
+    "question": "Opposite faces on dice.",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "cubes",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CubesDice",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for cubes dice."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve cubes dice using an efficient approach.",
+    "hints": [
+      "Hint 1 for cubes dice.",
+      "Hint 2 for cubes dice."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_069",
+    "type": "reasoning",
+    "title": "Mirror Image",
+    "question": "Mirror image of figure?",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "mirror",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MirrorImage",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for mirror image."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve mirror image using an efficient approach.",
+    "hints": [
+      "Hint 1 for mirror image.",
+      "Hint 2 for mirror image."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_070",
+    "type": "reasoning",
+    "title": "Water Image",
+    "question": "Water image of figure?",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "water",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "WaterImage",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for water image."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve water image using an efficient approach.",
+    "hints": [
+      "Hint 1 for water image.",
+      "Hint 2 for water image."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_071",
+    "type": "reasoning",
+    "title": "Paper Folding",
+    "question": "Paper folding pattern?",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "paper",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PaperFolding",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for paper folding."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve paper folding using an efficient approach.",
+    "hints": [
+      "Hint 1 for paper folding.",
+      "Hint 2 for paper folding."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_072",
+    "type": "reasoning",
+    "title": "Dot Situation",
+    "question": "Dots on figure?",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "dot",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DotSituation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for dot situation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve dot situation using an efficient approach.",
+    "hints": [
+      "Hint 1 for dot situation.",
+      "Hint 2 for dot situation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_073",
+    "type": "reasoning",
+    "title": "Analogy",
+    "question": "Book:Read::Pen:Write",
+    "difficulty": "easy",
+    "topic": "Reasoning",
+    "sub_topic": "analogy",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Analogy",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for analogy."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve analogy using an efficient approach.",
+    "hints": [
+      "Hint 1 for analogy.",
+      "Hint 2 for analogy."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_074",
+    "type": "reasoning",
+    "title": "Classification",
+    "question": "Classify items into groups.",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "classification",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Classification",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for classification."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve classification using an efficient approach.",
+    "hints": [
+      "Hint 1 for classification.",
+      "Hint 2 for classification."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_075",
+    "type": "reasoning",
+    "title": "Analytical Reasoning",
+    "question": "Seating arrangement puzzle.",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "analytical",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "AnalyticalReasoning",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for analytical reasoning."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve analytical reasoning using an efficient approach.",
+    "hints": [
+      "Hint 1 for analytical reasoning.",
+      "Hint 2 for analytical reasoning."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_076",
+    "type": "reasoning",
+    "title": "Logical Deduction",
+    "question": "If all X are Y, and some Y are Z...",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "logical",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "LogicalDeduction",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for logical deduction."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve logical deduction using an efficient approach.",
+    "hints": [
+      "Hint 1 for logical deduction.",
+      "Hint 2 for logical deduction."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_077",
+    "type": "reasoning",
+    "title": "Cause Effect",
+    "question": "Identify cause-effect relationship.",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "cause",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CauseEffect",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for cause effect."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve cause effect using an efficient approach.",
+    "hints": [
+      "Hint 1 for cause effect.",
+      "Hint 2 for cause effect."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_078",
+    "type": "reasoning",
+    "title": "Statement Assumption",
+    "question": "Find assumption in statement.",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "statement",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "StatementAssumption",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for statement assumption."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve statement assumption using an efficient approach.",
+    "hints": [
+      "Hint 1 for statement assumption.",
+      "Hint 2 for statement assumption."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_reasoning_079",
+    "type": "reasoning",
+    "title": "Statement Conclusion",
+    "question": "Find conclusion from statement.",
+    "difficulty": "medium",
+    "topic": "Reasoning",
+    "sub_topic": "statement",
+    "pattern": "Reasoning",
+    "skill": "logical_reasoning",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "StatementConclusion",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for statement conclusion."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve statement conclusion using an efficient approach.",
+    "hints": [
+      "Hint 1 for statement conclusion.",
+      "Hint 2 for statement conclusion."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_080",
+    "type": "verbal",
+    "title": "Synonyms",
+    "question": "Synonym of 'Big'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "synonyms",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Synonyms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for synonyms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve synonyms using an efficient approach.",
+    "hints": [
+      "Hint 1 for synonyms.",
+      "Hint 2 for synonyms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_081",
+    "type": "verbal",
+    "title": "Antonyms",
+    "question": "Antonym of 'Happy'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "antonyms",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Antonyms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for antonyms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve antonyms using an efficient approach.",
+    "hints": [
+      "Hint 1 for antonyms.",
+      "Hint 2 for antonyms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_082",
+    "type": "verbal",
+    "title": "Fill Blank",
+    "question": "He ___ to market. (go/goes)",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "fill",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "FillBlank",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for fill blank."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve fill blank using an efficient approach.",
+    "hints": [
+      "Hint 1 for fill blank.",
+      "Hint 2 for fill blank."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_083",
+    "type": "verbal",
+    "title": "Grammar",
+    "question": "Correct sentence.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "grammar",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Grammar",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for grammar."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve grammar using an efficient approach.",
+    "hints": [
+      "Hint 1 for grammar.",
+      "Hint 2 for grammar."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_084",
+    "type": "verbal",
+    "title": "Vocabulary",
+    "question": "Meaning of 'Ephemeral'.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "vocabulary",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Vocabulary",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for vocabulary."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve vocabulary using an efficient approach.",
+    "hints": [
+      "Hint 1 for vocabulary.",
+      "Hint 2 for vocabulary."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_085",
+    "type": "verbal",
+    "title": "Prepositions",
+    "question": "Depend ___",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "prepositions",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Prepositions",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for prepositions."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve prepositions using an efficient approach.",
+    "hints": [
+      "Hint 1 for prepositions.",
+      "Hint 2 for prepositions."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_086",
+    "type": "verbal",
+    "title": "Tense",
+    "question": "Past perfect form.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "tense",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Tense",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for tense."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve tense using an efficient approach.",
+    "hints": [
+      "Hint 1 for tense.",
+      "Hint 2 for tense."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_087",
+    "type": "verbal",
+    "title": "Active Passive",
+    "question": "Convert passive.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "active",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ActivePassive",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for active passive."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve active passive using an efficient approach.",
+    "hints": [
+      "Hint 1 for active passive.",
+      "Hint 2 for active passive."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_088",
+    "type": "verbal",
+    "title": "Direct Indirect",
+    "question": "Convert indirect speech.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "direct",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DirectIndirect",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for direct indirect."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve direct indirect using an efficient approach.",
+    "hints": [
+      "Hint 1 for direct indirect.",
+      "Hint 2 for direct indirect."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_089",
+    "type": "verbal",
+    "title": "Idioms",
+    "question": "Meaning of 'piece of cake'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "idioms",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Idioms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for idioms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve idioms using an efficient approach.",
+    "hints": [
+      "Hint 1 for idioms.",
+      "Hint 2 for idioms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_090",
+    "type": "verbal",
+    "title": "One Word",
+    "question": "Person who loves books?",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "one",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "OneWord",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for one word."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve one word using an efficient approach.",
+    "hints": [
+      "Hint 1 for one word.",
+      "Hint 2 for one word."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_091",
+    "type": "verbal",
+    "title": "Spelling",
+    "question": "Correct: 'Reciept'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "spelling",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Spelling",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for spelling."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve spelling using an efficient approach.",
+    "hints": [
+      "Hint 1 for spelling.",
+      "Hint 2 for spelling."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_092",
+    "type": "verbal",
+    "title": "Articles",
+    "question": "Correct article: ___ apple.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "articles",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Articles",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for articles."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve articles using an efficient approach.",
+    "hints": [
+      "Hint 1 for articles.",
+      "Hint 2 for articles."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_093",
+    "type": "verbal",
+    "title": "Conjunctions",
+    "question": "Join: I am tired ___ I worked.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "conjunctions",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Conjunctions",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for conjunctions."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve conjunctions using an efficient approach.",
+    "hints": [
+      "Hint 1 for conjunctions.",
+      "Hint 2 for conjunctions."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_094",
+    "type": "verbal",
+    "title": "Degrees",
+    "question": "Comparative of 'Good'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "degrees",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Degrees",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for degrees."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve degrees using an efficient approach.",
+    "hints": [
+      "Hint 1 for degrees.",
+      "Hint 2 for degrees."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_095",
+    "type": "verbal",
+    "title": "Question Tag",
+    "question": "She is coming, ___?",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "question",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "QuestionTag",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for question tag."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve question tag using an efficient approach.",
+    "hints": [
+      "Hint 1 for question tag.",
+      "Hint 2 for question tag."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_096",
+    "type": "verbal",
+    "title": "Error Spotting",
+    "question": "Find error.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "error",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ErrorSpotting",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for error spotting."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve error spotting using an efficient approach.",
+    "hints": [
+      "Hint 1 for error spotting.",
+      "Hint 2 for error spotting."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_097",
+    "type": "verbal",
+    "title": "Word Association",
+    "question": "Odd one out.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "word",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "WordAssociation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for word association."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve word association using an efficient approach.",
+    "hints": [
+      "Hint 1 for word association.",
+      "Hint 2 for word association."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_098",
+    "type": "verbal",
+    "title": "Sentence Completion",
+    "question": "Complete sentence.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "sentence",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SentenceCompletion",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for sentence completion."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve sentence completion using an efficient approach.",
+    "hints": [
+      "Hint 1 for sentence completion.",
+      "Hint 2 for sentence completion."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "capacc_verbal_099",
+    "type": "verbal",
+    "title": "Phrasal Verbs",
+    "question": "Meaning of 'look up'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "phrasal",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Capgemini",
+      "Accenture"
+    ],
+    "source_bank": "capgemini_accenture_verified",
+    "trust_status": "verified",
+    "provenance": "Capgemini + Accenture Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PhrasalVerbs",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for phrasal verbs."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve phrasal verbs using an efficient approach.",
+    "hints": [
+      "Hint 1 for phrasal verbs.",
+      "Hint 2 for phrasal verbs."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  }
+]

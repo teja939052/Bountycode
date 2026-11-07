@@ -8,7 +8,6 @@ Domain-specific logic lives in:
   - ai_aptitude.py: Aptitude question generation and evaluation
   - ai_resume.py: Resume analysis, ATS optimization, content generation
   - ai_cover_letter.py: Cover letter and LinkedIn About generation
-  - ai_salary.py: Salary negotiation tips, benchmarks, offer comparison
   - ai_system_design.py: System design question generation and evaluation
   - ai_behavioral.py: Behavioral questions, interview tips, mentor messages
   - ai_project.py: Project generation, review, code improvement, setup instructions
@@ -47,13 +46,7 @@ from app.services.ai_resume import (
     generate_resume_content,
 )
 from app.services.ai_cover_letter import (
-    generate_cover_letter,
     generate_linkedin_about,
-)
-from app.services.ai_salary import (
-    generate_salary_negotiation_tips,
-    generate_salary_benchmark,
-    generate_offer_comparison,
 )
 from app.services.ai_system_design import (
     generate_system_design_question,
@@ -91,11 +84,7 @@ __all__ = [
     "analyze_resume",
     "optimize_ats",
     "generate_resume_content",
-    "generate_cover_letter",
     "generate_linkedin_about",
-    "generate_salary_negotiation_tips",
-    "generate_salary_benchmark",
-    "generate_offer_comparison",
     "generate_system_design_question",
     "evaluate_system_design_answer",
     "generate_behavioral_question",

@@ -116,25 +116,4 @@ export const billingApi = {
   getRevenueAnalytics(days: number = 30): Promise<Record<string, unknown>> {
     return request(`/api/v1/revenue/analytics?days=${days || 30}`);
   },
-
-  getReferralInfo(): Promise<Record<string, unknown>> {
-    return request("/api/v1/referral/info");
-  },
-
-  createReferral(): Promise<{ referral_code: string; referral_link: string }> {
-    return request("/api/v1/referral/create", { method: "POST" });
-  },
-
-  getReferralLeaderboard(limit = 10): Promise<Record<string, unknown>> {
-    return request(`/api/v1/referral/leaderboard?limit=${limit}`);
-  },
-
-  claimReferralReward(
-    referralNumber: string,
-  ): Promise<{ claimed?: boolean; reward?: string }> {
-    return request("/api/v1/referral/claim-reward", {
-      method: "POST",
-      body: JSON.stringify({ referral_number: referralNumber }),
-    });
-  },
 };

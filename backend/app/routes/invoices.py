@@ -21,7 +21,7 @@ class GenerateInvoiceRequest(BaseModel):
 async def generate_invoice(req: GenerateInvoiceRequest, user: dict = Depends(get_current_user)):
     """Generate an invoice for a payment."""
     try:
-        user_obj = users_collection.find_one({"_id": ObjectId(user["id"])})
+        user_obj = await users_collection.find_one({"_id": ObjectId(user["id"])})
         if not user_obj:
             raise HTTPException(status_code=404, detail="User not found")
 
@@ -31,7 +31,7 @@ async def generate_invoice(req: GenerateInvoiceRequest, user: dict = Depends(get
                 self.name = data.get("name", "")
                 self.email = data.get("email", "")
 
-        invoice = invoice_service.generate_invoice(
+        invoice = await invoice_service.generate_invoice(
             user=SimpleUser(user_obj),
             plan=req.plan,
             amount=req.amount,
@@ -49,7 +49,7 @@ async def generate_invoice(req: GenerateInvoiceRequest, user: dict = Depends(get
 async def get_my_invoices(user: dict = Depends(get_current_user)):
     """Get all invoices for the current user."""
     try:
-        invoices = invoice_service.get_user_invoices(user["id"])
+        invoices = await invoice_service.get_user_invoices(user["id"])
         return {"success": True, "invoices": invoices}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -59,7 +59,7 @@ async def get_my_invoices(user: dict = Depends(get_current_user)):
 async def get_invoice(invoice_id: str, user: dict = Depends(get_current_user)):
     """Get a specific invoice by ID."""
     try:
-        invoice = invoice_service.get_invoice(invoice_id)
+        invoice = await invoice_service.get_invoice(invoice_id)
         if not invoice:
             raise HTTPException(status_code=404, detail="Invoice not found")
         if invoice.get("customer", {}).get("user_id") != str(user["id"]):

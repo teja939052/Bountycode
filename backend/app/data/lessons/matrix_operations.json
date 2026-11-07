@@ -1,0 +1,218 @@
+{
+  "slug": "matrix_operations",
+  "id": "lesson_matrix_operations_001",
+  "title": "Matrices and 2D Arrays",
+  "domain": "Programming Fundamentals",
+  "pattern": "Matrices",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Rows and columns",
+      "content": "A matrix is a rectangular arrangement of values. An r×c matrix has r rows and c columns. In a 2D array, an element is accessed with a row index and a column index.",
+      "example": "A 2×3 matrix has 2 rows and 3 columns, for 6 values total."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Count matrix elements",
+      "prompt": "How many elements are in a 3×4 matrix?",
+      "options": [
+        "7",
+        "10",
+        "12",
+        "16"
+      ],
+      "correct_index": 2,
+      "explanation": "Rows × columns = 3×4 = 12 elements."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Transpose a matrix",
+      "content": "The transpose swaps rows and columns. An element at row i, column j moves to row j, column i. A matrix with r rows and c columns becomes c×r.",
+      "example": "[[1,2,3],[4,5,6]] transposes to [[1,4],[2,5],[3,6]]."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Check multiplication dimensions",
+      "prompt": "A 2×3 matrix is multiplied by a 3×4 matrix. What is the result's dimension?",
+      "options": [
+        "2×4",
+        "3×3",
+        "4×2",
+        "2×3"
+      ],
+      "correct_index": 0,
+      "explanation": "The inner dimensions (3 and 3) match; the result uses the outer dimensions 2×4."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Use nested loops carefully",
+      "content": "Matrix traversal usually uses an outer loop for rows and an inner loop for columns. Matrix addition requires equal dimensions; matrix multiplication requires the first matrix's columns to equal the second matrix's rows.",
+      "tip": "Write the matrix dimensions beside the problem before coding."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "How many elements are in a 4×5 matrix?",
+        "options": [
+          "9",
+          "16",
+          "20",
+          "25"
+        ],
+        "correct_index": 2,
+        "explanation": "4 rows × 5 columns = 20 elements."
+      },
+      {
+        "prompt": "What are the dimensions of the transpose of a 2×5 matrix?",
+        "options": [
+          "2×5",
+          "5×2",
+          "2×2",
+          "5×5"
+        ],
+        "correct_index": 1,
+        "explanation": "Transpose swaps rows and columns, giving 5×2."
+      },
+      {
+        "prompt": "Can a 2×3 matrix be added to a 3×2 matrix?",
+        "options": [
+          "Yes, always",
+          "No, dimensions differ",
+          "Only if all values are zero",
+          "Only after sorting"
+        ],
+        "correct_index": 1,
+        "explanation": "Matrix addition requires the same number of rows and columns."
+      },
+      {
+        "prompt": "What is the result dimension of (3×2) × (2×5)?",
+        "options": [
+          "3×5",
+          "2×2",
+          "5×3",
+          "3×2"
+        ],
+        "correct_index": 0,
+        "explanation": "The inner dimensions match (2), and the result has the outer dimensions 3×5."
+      },
+      {
+        "prompt": "Which index pair identifies a value in a 2D array?",
+        "options": [
+          "Only row",
+          "Only column",
+          "Row and column",
+          "Only array length"
+        ],
+        "correct_index": 2,
+        "explanation": "A 2D array element is addressed by both its row and column indices."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Represent a matrix using row and column indices.",
+    "Traverse rows, columns and diagonals correctly.",
+    "Perform matrix addition and transpose.",
+    "Estimate O(rows × columns) traversal cost."
+  ],
+  "prerequisites": [
+    "arrays_basics",
+    "loops_basics"
+  ],
+  "concepts": [
+    "row",
+    "column",
+    "nested loops",
+    "transpose",
+    "diagonal",
+    "matrix dimensions"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Rows and columns are interchangeable.",
+      "correction": "A[r][c] means row r and column c; dimensions may differ."
+    },
+    {
+      "misconception": "A transpose preserves the same row and column counts.",
+      "correction": "Transpose swaps dimensions from R×C to C×R."
+    },
+    {
+      "misconception": "Every matrix has a main diagonal of length equal to rows.",
+      "correction": "The main diagonal length is min(rows, columns)."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace matrix indexing",
+      "input": "[[1,2,3],[4,5,6]]",
+      "trace": [
+        "There are 2 rows and 3 columns.",
+        "A[0][2] is 3.",
+        "A[1][0] is 4."
+      ],
+      "output": "2×3 matrix",
+      "explanation": "The first index selects the row; the second selects the column."
+    },
+    {
+      "title": "Transpose",
+      "input": "[[1,2,3],[4,5,6]]",
+      "trace": [
+        "Create output with 3 rows and 2 columns.",
+        "Set B[0][0]=A[0][0], B[1][0]=A[0][1].",
+        "Continue by swapping row and column indices."
+      ],
+      "output": "[[1,4],[2,5],[3,6]]",
+      "explanation": "Transpose maps A[r][c] to B[c][r]."
+    },
+    {
+      "title": "Count traversal work",
+      "input": "Matrix has 4 rows and 7 columns",
+      "trace": [
+        "Each row has 7 entries.",
+        "Visit all 4 rows.",
+        "Total visits = 4×7."
+      ],
+      "output": "28 visits; O(R×C)",
+      "explanation": "Every cell is processed once."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "matrix traversal",
+      "practice": "Trace row and column indices with non-square matrices."
+    },
+    {
+      "company": "Infosys",
+      "skill": "2D array coding",
+      "practice": "Handle boundary rows, columns and diagonals."
+    },
+    {
+      "company": "Wipro",
+      "skill": "basic programming",
+      "practice": "State dimensions before writing nested loops."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Matrices and 2D Arrays?",
+      "answer": "Represent a matrix using row and column indices. Traverse rows, columns and diagonals correctly. Perform matrix addition and transpose. Estimate O(rows × columns) traversal cost."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Matrices and 2D Arrays?",
+      "answer": "A[r][c] means row r and column c; dimensions may differ."
+    }
+  ]
+}

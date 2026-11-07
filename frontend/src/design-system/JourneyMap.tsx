@@ -122,7 +122,7 @@ export interface BountyCardProps {
   difficulty?: "Easy" | "Medium" | "Hard" | "Boss";
   /** e.g. "Arrays", "Hash Maps" */
   topics?: string[];
-  /** XP reward */
+  /** Diamonds reward */
   reward?: number;
   mastery?: number;
   state?: Extract<NodeState, "locked" | "available" | "in_progress" | "completed">;
@@ -183,7 +183,7 @@ export function BountyCard({
           <div className="shrink-0 text-right">
             <p className="text-[10px] font-bold uppercase tracking-wider text-wood">Bounty</p>
             <p className="font-display text-lg font-extrabold leading-none text-reward">+{reward}</p>
-            <p className="text-[10px] font-semibold text-text-muted">XP</p>
+            <p className="text-[10px] font-semibold text-text-muted">Diamonds</p>
           </div>
         )}
       </div>

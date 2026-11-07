@@ -46,6 +46,10 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
   const [solved, setSolved] = useState(false);
   const [activeSection, setActiveSection] = useState("description");
   const [hintsRevealed, setHintsRevealed] = useState(0);
+  const [serverHintData, setServerHintData] = useState<any>(null);
+  const [hintLoading, setHintLoading] = useState(false);
+  const [revealedSolution, setRevealedSolution] = useState<any>(null);
+  const [solutionLockedNote, setSolutionLockedNote] = useState(false);
   const [similarProblems, setSimilarProblems] = useState([]);
   const [acceptance, setAcceptance] = useState(null);
   const [discussions, setDiscussions] = useState([]);
@@ -56,11 +60,19 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
     if (propProblem) {
       setProblem(propProblem);
       setLoading(false);
+      setHintsRevealed(0);
+      setServerHintData(null);
+      setRevealedSolution(null);
+      setSolutionLockedNote(false);
       return;
     }
 
     const load = async () => {
       setLoading(true);
+      setHintsRevealed(0);
+      setServerHintData(null);
+      setRevealedSolution(null);
+      setSolutionLockedNote(false);
       try {
         const [problemData, solvedData] = await Promise.all([
           api.questions.getFull(id),
@@ -81,6 +93,42 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
 
     load();
   }, [id, propProblem]);
+
+  // Hint ladder: Hint 1..n via the server (respects Pro/solved gating and
+  // total_hints), with a final Reveal-solution step the server allows or
+  // locks. Falls back to the static hints shipped with the detail payload
+  // if the call fails — the UI stays calm, the gate stays server-side.
+  const revealNextHint = async () => {
+    if (!id || hintLoading) return;
+    setHintLoading(true);
+    try {
+      const data: any = await api.questions.getSolution(id, hintsRevealed + 1);
+      setServerHintData(data);
+      setHintsRevealed(data?.hints?.length ?? hintsRevealed + 1);
+    } catch {
+      setHintsRevealed(hintsRevealed + 1);
+    } finally {
+      setHintLoading(false);
+    }
+  };
+
+  const revealSolution = async () => {
+    if (!id || hintLoading) return;
+    setHintLoading(true);
+    try {
+      const data: any = await api.questions.getSolution(id, (serverHintData?.total_hints ?? hintsRevealed) + 1);
+      setServerHintData(data);
+      if (data?.unlocked && data?.solution && !data.solution.locked) {
+        setRevealedSolution(data.solution);
+      } else {
+        setSolutionLockedNote(true);
+      }
+    } catch {
+      setSolutionLockedNote(true);
+    } finally {
+      setHintLoading(false);
+    }
+  };
 
   const handlePostDiscussion = async () => {
     if (!discussionContent.trim()) return;
@@ -136,6 +184,14 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
   const visibleTestCases = Array.isArray(problem.visible_test_cases) ? problem.visible_test_cases : [];
   const examples = Array.isArray(problem.examples) ? problem.examples : [];
   const constraints = Array.isArray(problem.constraints) ? problem.constraints : [];
+  // Editorial walkthrough fields (served by get_question_for_serving; only
+  // rendered when present — human-authored content, never generated here).
+  const editorialApproach = problem.approach || dsaGuide.approach || "";
+  const editorialText = problem.editorial || problem.explanation || "";
+  const editorialPitfall = problem.misconceptions || problem.common_trap || "";
+  const editorialSteps = Array.isArray(problem.reasoning_steps) ? problem.reasoning_steps : [];
+  const hasEditorial = Boolean(editorialApproach || editorialText || editorialPitfall || editorialSteps.length > 0 || expectedTime || expectedSpace);
+  const solutionCode = typeof problem.solution === "string" ? problem.solution : problem.solution?.code || (problem.solution ? JSON.stringify(problem.solution, null, 2) : "");
 
   return (
     <div className="h-full overflow-y-auto bg-[color:var(--bg-base,#f6f3ea)]">
@@ -383,31 +439,56 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
                 <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-amber-700">
                   <Lightbulb size={14} /> Hints
                   <span className="ml-auto text-[10px] font-normal text-text-muted">
-                    {hintsRevealed}/{hints.length} revealed
+                    {serverHintData ? `${serverHintData.hints?.length ?? 0}/${serverHintData.total_hints ?? hints.length}` : `${hintsRevealed}/${hints.length}`} revealed
                   </span>
                 </h3>
                 <div className="space-y-2">
-                  {hints.map((hint, i) => (
-                    <div key={i}>
-                      {i < hintsRevealed ? (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          className="rounded-xl border border-amber-200 bg-white p-3 text-xs text-text-secondary"
-                        >
-                          <span className="mr-2 font-medium text-amber-600">{i + 1}.</span>
-                          {hint}
-                        </motion.div>
-                      ) : i === hintsRevealed ? (
-                        <button
-                          onClick={() => setHintsRevealed(hintsRevealed + 1)}
-                          className="flex items-center gap-1 text-xs text-amber-700 hover:text-amber-800"
-                        >
-                          <Sparkles size={12} /> Reveal Hint {i + 1}
-                        </button>
-                      ) : null}
-                    </div>
+                  {(serverHintData?.hints ?? hints.slice(0, hintsRevealed)).map((hint, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      className="rounded-xl border border-amber-200 bg-white p-3 text-xs text-text-secondary"
+                    >
+                      <span className="mr-2 font-medium text-amber-600">{i + 1}.</span>
+                      {typeof hint === "string" ? hint : hint?.text || JSON.stringify(hint)}
+                    </motion.div>
                   ))}
+                  {(serverHintData ? (serverHintData.hints?.length ?? 0) < (serverHintData.total_hints ?? hints.length) : hintsRevealed < hints.length) && (
+                    <button
+                      onClick={revealNextHint}
+                      disabled={hintLoading}
+                      className="flex items-center gap-1 text-xs text-amber-700 hover:text-amber-800 disabled:opacity-50"
+                    >
+                      <Sparkles size={12} /> {hintLoading ? "Revealing..." : `Reveal Hint ${(serverHintData?.hints?.length ?? hintsRevealed) + 1}`}
+                    </button>
+                  )}
+                  {(serverHintData ? (serverHintData.hints?.length ?? 0) >= (serverHintData.total_hints ?? hints.length) && (serverHintData.total_hints ?? hints.length) > 0 : hintsRevealed >= hints.length && hints.length > 0) && !revealedSolution && !solutionLockedNote && (
+                    <button
+                      onClick={revealSolution}
+                      disabled={hintLoading}
+                      className="flex items-center gap-1 text-xs font-medium text-emerald-700 hover:text-emerald-800 disabled:opacity-50"
+                    >
+                      <Zap size={12} /> {hintLoading ? "Checking..." : "Reveal solution"}
+                    </button>
+                  )}
+                  {revealedSolution && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      className="rounded-xl border border-emerald-200 bg-white p-3"
+                    >
+                      <span className="mb-1 block text-[10px] font-medium uppercase tracking-widest text-emerald-600">Solution</span>
+                      <pre className="whitespace-pre-wrap font-mono text-xs text-text-secondary">
+                        {typeof revealedSolution === "string" ? revealedSolution : revealedSolution.code || JSON.stringify(revealedSolution, null, 2)}
+                      </pre>
+                    </motion.div>
+                  )}
+                  {solutionLockedNote && (
+                    <p className="flex items-center gap-1 text-xs text-text-muted">
+                      <Lock size={11} /> Solve this problem or upgrade to Pro to unlock the full solution.
+                    </p>
+                  )}
                 </div>
               </div>
             )}
@@ -444,7 +525,7 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
                   <Zap size={14} /> Solution
                 </h3>
                 <pre className="whitespace-pre-wrap font-mono text-xs text-text-secondary">
-                  {typeof problem.solution === "string" ? problem.solution : JSON.stringify(problem.solution, null, 2)}
+                  {solutionCode}
                 </pre>
               </div>
             )}
@@ -482,14 +563,69 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
         {activeSection === "solutions" && (
           <div className="space-y-4">
             {problem.solution && !problem.solution.locked ? (
-              <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
-                <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-emerald-700">
-                  <Zap size={14} /> Official Solution
-                </h3>
-                <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-text-secondary">
-                  {typeof problem.solution === "string" ? problem.solution : JSON.stringify(problem.solution, null, 2)}
-                </pre>
-              </div>
+              <>
+                {hasEditorial && (
+                  <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5">
+                    <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-sky-700">
+                      <BookOpen size={14} /> Walkthrough
+                    </h3>
+                    <div className="space-y-3">
+                      {(expectedTime || expectedSpace) && (
+                        <div className="flex flex-wrap gap-2 text-[11px]">
+                          {expectedTime && (
+                            <span className="rounded-full bg-white px-2.5 py-1 font-mono text-sky-700">Time: {expectedTime}</span>
+                          )}
+                          {expectedSpace && (
+                            <span className="rounded-full bg-white px-2.5 py-1 font-mono text-sky-700">Space: {expectedSpace}</span>
+                          )}
+                        </div>
+                      )}
+                      {editorialApproach && (
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-[11px] font-medium uppercase tracking-widest text-sky-600">
+                            <Target size={11} /> Approach
+                          </p>
+                          <p className="text-xs leading-relaxed text-text-secondary">{editorialApproach}</p>
+                        </div>
+                      )}
+                      {editorialSteps.length > 0 && (
+                        <div>
+                          <p className="mb-1 text-[11px] font-medium uppercase tracking-widest text-sky-600">Steps</p>
+                          <ol className="list-decimal space-y-1 pl-5 text-xs leading-relaxed text-text-secondary">
+                            {editorialSteps.map((step, i) => (
+                              <li key={i}>{typeof step === "string" ? step : JSON.stringify(step)}</li>
+                            ))}
+                          </ol>
+                        </div>
+                      )}
+                      {editorialText && (
+                        <div>
+                          <p className="mb-1 flex items-center gap-1 text-[11px] font-medium uppercase tracking-widest text-sky-600">
+                            <Brain size={11} /> Why it works
+                          </p>
+                          <p className="whitespace-pre-wrap text-xs leading-relaxed text-text-secondary">{editorialText}</p>
+                        </div>
+                      )}
+                      {editorialPitfall && (
+                        <div className="rounded-xl border border-amber-200 bg-white p-3">
+                          <p className="mb-1 flex items-center gap-1 text-[11px] font-medium uppercase tracking-widest text-amber-600">
+                            <Quote size={11} /> Common pitfall
+                          </p>
+                          <p className="text-xs leading-relaxed text-text-secondary">{editorialPitfall}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                  <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                    <Zap size={14} /> Official Solution
+                  </h3>
+                  <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-text-secondary">
+                    {solutionCode}
+                  </pre>
+                </div>
+              </>
             ) : (
               <div className="py-12 text-center text-text-muted">
                 <Lock size={32} className="mx-auto mb-3 opacity-50" />

@@ -72,7 +72,7 @@ async def create_contest(
         "contest_type": contest_type,
         "start_date": start_date,
         "end_date": end_date,
-        "prizes": prizes or ["1st Place Badge", "500 XP", "Bragging Rights"],
+        "prizes": prizes or ["1st Place Badge", "500 Diamonds", "Bragging Rights"],
         "status": "upcoming",
         "entries_count": 0,
         "created_at": datetime.now(timezone.utc),

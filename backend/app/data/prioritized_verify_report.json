@@ -1,0 +1,372 @@
+{
+ "queued": 2654,
+ "passed_automated_checked_candidates": 823,
+ "failed": 1831,
+ "quarantined": 0,
+ "top_queue_sample": [
+  {
+   "id": "apt_204666325",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_271002172",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_333665422",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_620058859",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_637594763",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "coding",
+   "score": 1120
+  },
+  {
+   "id": "apt_727233573",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_803046674",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "coding",
+   "score": 1120
+  },
+  {
+   "id": "apt_80574838",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_840857164",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_870281936",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_973375420",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys",
+    "Wipro"
+   ],
+   "type": "aptitude",
+   "score": 1120
+  },
+  {
+   "id": "apt_1014939033",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_213907621",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_238642889",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_249310440",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_302277050",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_34075063",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_419246503",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_433140455",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  },
+  {
+   "id": "apt_444056890",
+   "pattern": "Arrays",
+   "companies": [
+    "TCS",
+    "Infosys"
+   ],
+   "type": "aptitude",
+   "score": 1020
+  }
+ ],
+ "failure_sample": [
+  {
+   "id": "apt_637594763",
+   "verdict": "failed",
+   "reason": "EXEC_FAIL:SyntaxError"
+  },
+  {
+   "id": "apt_803046674",
+   "verdict": "failed",
+   "reason": "EXEC_FAIL:SyntaxError"
+  },
+  {
+   "id": "3bf0eb74-d618-4600-8647-c85fa9b0dadb",
+   "verdict": "failed",
+   "reason": "EXEC_FAIL:SyntaxError"
+  },
+  {
+   "id": "tuf_0078",
+   "verdict": "failed",
+   "reason": "TypeError:largest() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0079",
+   "verdict": "failed",
+   "reason": "TypeError:second() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0080",
+   "verdict": "failed",
+   "reason": "TypeError:check() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0081",
+   "verdict": "failed",
+   "reason": "TypeError:remove() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0084",
+   "verdict": "failed",
+   "reason": "TypeError:linear() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0085",
+   "verdict": "failed",
+   "reason": "TypeError:union() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0089",
+   "verdict": "failed",
+   "reason": "TypeError:longest() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0091",
+   "verdict": "failed",
+   "reason": "TypeError:sort() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0093",
+   "verdict": "failed",
+   "reason": "TypeError:kadane() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0095",
+   "verdict": "failed",
+   "reason": "TypeError:leaders() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0098",
+   "verdict": "failed",
+   "reason": "TypeError:rotate() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0100",
+   "verdict": "failed",
+   "reason": "TypeError:count() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0101",
+   "verdict": "failed",
+   "reason": "TypeError:pascal() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0103",
+   "verdict": "failed",
+   "reason": "TypeError:solve3() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0104",
+   "verdict": "failed",
+   "reason": "TypeError:solve4() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0105",
+   "verdict": "failed",
+   "reason": "TypeError:merge() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0106",
+   "verdict": "failed",
+   "reason": "TypeError:merge() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0107",
+   "verdict": "failed",
+   "reason": "TypeError:find() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0108",
+   "verdict": "failed",
+   "reason": "TypeError:count() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0109",
+   "verdict": "failed",
+   "reason": "TypeError:reverse() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0111",
+   "verdict": "failed",
+   "reason": "TypeError:largest() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0112",
+   "verdict": "failed",
+   "reason": "TypeError:count() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0113",
+   "verdict": "failed",
+   "reason": "TypeError:largest() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0114",
+   "verdict": "failed",
+   "reason": "TypeError:second() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0115",
+   "verdict": "failed",
+   "reason": "TypeError:check() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0116",
+   "verdict": "failed",
+   "reason": "TypeError:remove() takes 1 positional argument but 2 were given"
+  },
+  {
+   "id": "tuf_0117",
+   "verdict": "failed",
+   "reason": "TypeError:rotate() takes 1 positional argument but 2 were given"
+  }
+ ],
+ "rule": "zero LLM; candidates need human tranche-approve; source banks untouched"
+}

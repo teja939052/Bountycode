@@ -1,0 +1,303 @@
+{
+  "slug": "number_systems",
+  "id": "lesson_number_systems_001",
+  "title": "Number Systems",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Number Systems",
+  "difficulty": "easy",
+  "duration_min": 30,
+  "xp_reward": 120,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Understand place value",
+      "content": "A number is built from digits and place values. In 4,582, the 4 represents four thousands, the 5 five hundreds, the 8 eight tens and the 2 two ones.",
+      "example": "4,582 = 4×1000 + 5×100 + 8×10 + 2."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Classify a number",
+      "prompt": "Which of these is a prime number?",
+      "options": [
+        "21",
+        "27",
+        "29",
+        "33"
+      ],
+      "correct_index": 2,
+      "explanation": "29 has exactly two positive factors: 1 and 29. The other numbers have additional factors.",
+      "hints": [
+        "A prime number has exactly two positive factors.",
+        "Check whether the candidate can be divided evenly by any integer other than 1 and itself."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use divisibility rules",
+      "content": "A number is divisible by 2 if its last digit is even; by 3 if its digit sum is divisible by 3; by 5 if it ends in 0 or 5; and by 9 if its digit sum is divisible by 9.",
+      "example": "729 has digit sum 18, so it is divisible by 9 and by 3.",
+      "tip": "For large numbers, use divisibility rules before attempting long division."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find the remainder",
+      "prompt": "What is the remainder when 47 is divided by 5?",
+      "options": [
+        "0",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_index": 1,
+      "explanation": "5×9 = 45. The remainder is 47−45 = 2.",
+      "hints": [
+        "Find the largest multiple of 5 that does not exceed 47.",
+        "Subtract that multiple from 47; the leftover amount is the remainder."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Estimate multiples",
+      "content": "For the smallest multiple of k greater than or equal to n, find the first integer m with k×m ≥ n. This is useful in remainder, scheduling and divisibility questions.",
+      "example": "The smallest three-digit multiple of 7 is 7×15 = 105."
+    },
+    {
+      "step_type": "interactive",
+      "title": "Use a divisibility shortcut",
+      "prompt": "Which number is divisible by 9?",
+      "options": [
+        "4,721",
+        "5,238",
+        "6,345",
+        "7,124"
+      ],
+      "correct_index": 2,
+      "explanation": "For 6,345 the digit sum is 6+3+4+5=18, which is divisible by 9. Therefore 6,345 is divisible by 9.",
+      "hints": [
+        "Add the digits instead of dividing the whole number.",
+        "A number is divisible by 9 when its digit sum is divisible by 9."
+      ],
+      "step_number": 6
+    },
+    {
+      "step_type": "fill_blank",
+      "title": "Count the factors",
+      "content": "A factor divides a number exactly, leaving no remainder.",
+      "prompt": "How many positive factors does 12 have?",
+      "expected_answer": "6",
+      "answer_placeholder": "Enter a whole number",
+      "explanation": "The positive factors are 1, 2, 3, 4, 6 and 12. There are six.",
+      "hints": [
+        "List factor pairs: 1×12, 2×6 and 3×4.",
+        "Each pair contributes two different factors here."
+      ],
+      "step_number": 7
+    },
+    {
+      "step_type": "order_steps",
+      "title": "Test whether a number is prime",
+      "prompt": "Arrange a simple primality check for 29.",
+      "options": [
+        "Check divisors up to the square root of 29",
+        "Conclude that 29 is prime if none divides it",
+        "Start with the smallest prime divisor, 2",
+        "Check the next possible prime divisor, 3"
+      ],
+      "correct_order": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "explanation": "A composite number has a factor no larger than its square root. Check prime divisors 2, 3 and 5 (since √29 is about 5.4); none divides 29, so it is prime.",
+      "hints": [
+        "A composite number must have a factor at or below its square root.",
+        "Check small prime divisors before concluding a number is prime."
+      ],
+      "step_number": 8
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which number is divisible by 9?",
+        "options": [
+          "724",
+          "729",
+          "731",
+          "742"
+        ],
+        "correct_index": 1,
+        "explanation": "7+2+9 = 18, which is divisible by 9."
+      },
+      {
+        "prompt": "How many positive factors does 12 have?",
+        "options": [
+          "4",
+          "5",
+          "6",
+          "8"
+        ],
+        "correct_index": 2,
+        "explanation": "The factors are 1, 2, 3, 4, 6 and 12: six factors."
+      },
+      {
+        "prompt": "What is the smallest three-digit multiple of 7?",
+        "options": [
+          "98",
+          "105",
+          "112",
+          "119"
+        ],
+        "correct_index": 1,
+        "explanation": "7×14 = 98 is two-digit; 7×15 = 105 is the first three-digit multiple."
+      },
+      {
+        "prompt": "Which of these is an even prime number?",
+        "options": [
+          "1",
+          "2",
+          "4",
+          "6"
+        ],
+        "correct_index": 1,
+        "explanation": "2 is the only even prime; every other even integer has factor 2 and itself."
+      },
+      {
+        "prompt": "What is the remainder when 83 is divided by 10?",
+        "options": [
+          "3",
+          "8",
+          "10",
+          "0"
+        ],
+        "correct_index": 0,
+        "explanation": "83 = 8×10 + 3, so the remainder is 3."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Explain place value and classify common number types.",
+    "Apply divisibility rules and identify factors and multiples.",
+    "Calculate quotient and remainder accurately.",
+    "Test primality using divisors up to the square root."
+  ],
+  "concepts": [
+    "place value",
+    "natural numbers",
+    "integers",
+    "prime numbers",
+    "composite numbers",
+    "factors",
+    "multiples",
+    "divisibility",
+    "quotient",
+    "remainder"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Every odd number is prime.",
+      "correction": "An odd number can have several factors; for example, 9 is odd but composite."
+    },
+    {
+      "misconception": "A remainder can be equal to the divisor.",
+      "correction": "For positive divisor d, the remainder r must satisfy 0 ≤ r < d."
+    },
+    {
+      "misconception": "To prove a number prime, every number below it must be tested.",
+      "correction": "It is enough to test possible prime divisors up to the square root."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Use divisibility by 3 and 9",
+      "input": "Is 5,832 divisible by 3 and 9?",
+      "trace": [
+        "Add the digits: 5+8+3+2 = 18.",
+        "18 is divisible by 3.",
+        "18 is also divisible by 9."
+      ],
+      "output": "5,832 is divisible by both 3 and 9",
+      "explanation": "Digit-sum tests avoid long division when checking divisibility by 3 or 9."
+    },
+    {
+      "title": "Find a quotient and remainder",
+      "input": "47 ÷ 5",
+      "trace": [
+        "The largest multiple of 5 not exceeding 47 is 45.",
+        "45 = 5×9, so the quotient is 9.",
+        "47−45 = 2, so the remainder is 2."
+      ],
+      "output": "Quotient = 9; remainder = 2",
+      "explanation": "Division with remainder expresses n = dq + r, where 0 ≤ r < d."
+    },
+    {
+      "title": "Check whether 29 is prime",
+      "input": "Test divisors of 29",
+      "trace": [
+        "The square root of 29 is about 5.4.",
+        "Test prime divisors 2, 3 and 5.",
+        "None divides 29 exactly."
+      ],
+      "output": "29 is prime",
+      "explanation": "A composite number must have at least one factor no greater than its square root."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "number properties",
+      "practice": "Use divisibility shortcuts and factor reasoning before calculating."
+    },
+    {
+      "company": "Infosys",
+      "skill": "quantitative reasoning",
+      "practice": "Explain prime, composite, quotient and remainder concepts."
+    },
+    {
+      "company": "Accenture",
+      "skill": "numerical reasoning",
+      "practice": "Estimate and verify number-property questions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "definition",
+      "question": "What is a prime number?",
+      "answer": "A positive integer greater than 1 with exactly two positive factors: 1 and itself."
+    },
+    {
+      "type": "method",
+      "question": "How can you test whether n is prime efficiently by trial division?",
+      "answer": "Check possible prime divisors only up to √n; if none divides n, n is prime."
+    },
+    {
+      "type": "rule",
+      "question": "What is the remainder constraint in division with remainder?",
+      "answer": "For divisor d > 0, n = dq + r with 0 ≤ r < d."
+    }
+  ],
+  "prerequisites": [],
+  "quest": {
+    "chapter": "The Number Foundry",
+    "rank": "Number Scout",
+    "story": "The placement gate is locked by number properties. Prime numbers, divisibility and remainders are the keys hidden in its mechanisms.",
+    "mission": "Classify numbers, use divisibility shortcuts and reason about factors without relying on guesswork.",
+    "success_criteria": [
+      "Explain place value and prime factors.",
+      "Apply divisibility rules for 2, 3, 5 and 9.",
+      "Calculate quotient and remainder.",
+      "Test primality using factors up to the square root."
+    ]
+  },
+  "next_lesson_slug": "hcf_lcm",
+  "next_lesson_title": "HCF and LCM",
+  "mastery_threshold": 0.7
+}

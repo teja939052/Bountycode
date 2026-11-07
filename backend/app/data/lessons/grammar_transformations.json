@@ -1,0 +1,124 @@
+{
+  "slug": "grammar_transformations",
+  "id": "lesson_grammar_transformations_001",
+  "title": "Active and Passive Voice; Direct and Indirect Speech",
+  "domain": "Verbal Ability",
+  "pattern": "Grammar Transformations",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Active versus passive voice",
+      "content": "In active voice, the subject performs the action. In passive voice, the subject receives the action. The passive form uses a suitable form of be plus the past participle.",
+      "example": "Active: The team completed the task. Passive: The task was completed by the team."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Convert to passive",
+      "prompt": "Choose the passive form of: 'The manager approved the request.'",
+      "options": [
+        "The request approved the manager.",
+        "The request was approved by the manager.",
+        "The manager was approved by the request.",
+        "The request is approving the manager."
+      ],
+      "correct_index": 1,
+      "explanation": "The object becomes the subject; past simple passive uses was/were + past participle."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Direct versus indirect speech",
+      "content": "Direct speech quotes the speaker's exact words. Indirect speech reports the meaning without quotation marks. When the reporting verb is in the past, tense and pronouns often shift to match the reporting context.",
+      "example": "Direct: She said, 'I am tired.' Indirect: She said that she was tired."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Report a statement",
+      "prompt": "Choose the correct indirect form: He said, 'I have finished my work.'",
+      "options": [
+        "He said that I have finished my work.",
+        "He said that he had finished his work.",
+        "He says he finish his work.",
+        "He said that he will finish his work."
+      ],
+      "correct_index": 1,
+      "explanation": "With a past reporting verb, present perfect commonly backshifts to past perfect; the pronoun changes to he."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Preserve meaning and time",
+      "content": "When transforming a sentence, keep the original meaning, tense, subject/object relationship and time reference. Some facts and universal truths may not need tense backshift in reported speech.",
+      "tip": "Check the auxiliary verb and past participle in passive voice; check pronouns and tense in reported speech."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Choose the passive form: 'The chef cooked the meal.'",
+        "options": [
+          "The meal cooked the chef.",
+          "The meal was cooked by the chef.",
+          "The chef was cooked by the meal.",
+          "The meal is cooking the chef."
+        ],
+        "correct_index": 1,
+        "explanation": "Past simple passive: was + past participle cooked."
+      },
+      {
+        "prompt": "Choose the passive form: 'They are repairing the road.'",
+        "options": [
+          "The road is repaired them.",
+          "The road is being repaired by them.",
+          "The road was repairing them.",
+          "They are being repaired by the road."
+        ],
+        "correct_index": 1,
+        "explanation": "Present continuous passive uses is/are being + past participle."
+      },
+      {
+        "prompt": "Indirect speech: She said, 'I will call you.'",
+        "options": [
+          "She said that she would call me.",
+          "She said that I will call her.",
+          "She says she called you.",
+          "She said that she calls me."
+        ],
+        "correct_index": 0,
+        "explanation": "Will commonly backshifts to would; the pronouns change with the reporting perspective."
+      },
+      {
+        "prompt": "Which sentence is in active voice?",
+        "options": [
+          "The report was prepared by Ana.",
+          "The window was broken.",
+          "Ana prepared the report.",
+          "The work is being done."
+        ],
+        "correct_index": 2,
+        "explanation": "Ana is the subject performing the action."
+      },
+      {
+        "prompt": "Indirect speech: Ravi said, 'I am busy.'",
+        "options": [
+          "Ravi said that he was busy.",
+          "Ravi said that I am busy.",
+          "Ravi says that he busy.",
+          "Ravi said he will be busy."
+        ],
+        "correct_index": 0,
+        "explanation": "The pronoun changes from I to he and present simple 'am' backshifts to 'was'."
+      }
+    ]
+  },
+  "next_lesson_slug": "error_spotting",
+  "next_lesson_title": "Error Spotting"
+}

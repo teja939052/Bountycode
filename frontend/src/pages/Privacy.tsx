@@ -9,7 +9,7 @@ export default function Privacy() {
           <div className="space-y-8 text-gray-700 text-sm leading-relaxed">
             <section>
               <h2 className="text-xl font-semibold text-gray-900 mb-3">1. Overview</h2>
-              <p>PlacementPro ("we", "us", "our") respects your privacy. This Privacy Policy explains how we collect, use, and protect your personal data when you use our Platform.</p>
+              <p>BountyCode ("we", "us", "our") respects your privacy. This Privacy Policy explains how we collect, use, and protect your personal data when you use our Platform.</p>
               <p className="mt-2 text-amber-600 font-medium">⚠️ We are committed to protecting your data and complying with applicable privacy laws, including GDPR and the Indian IT Act.</p>
             </section>
 
@@ -124,7 +124,7 @@ export default function Privacy() {
                 <li><strong>Portability:</strong> Request your data in a machine-readable format.</li>
                 <li><strong>Objection:</strong> Object to processing for marketing purposes.</li>
               </ul>
-              <p className="mt-3">To exercise any of these rights, email us at <a href="mailto:privacy@placementpro.com" className="text-green-600 hover:underline">privacy@placementpro.com</a>.</p>
+               <p className="mt-3">To exercise any of these rights, email us at <a href="mailto:privacy@bountycode.app" className="text-green-600 hover:underline">privacy@bountycode.app</a>.</p>
             </section>
 
             <section>
@@ -156,16 +156,16 @@ export default function Privacy() {
               <h2 className="text-xl font-semibold text-gray-900 mb-3">12. Contact Information</h2>
               <p><strong>For privacy inquiries:</strong></p>
               <ul className="list-none space-y-1 mt-2">
-                <li>📧 Email: <a href="mailto:privacy@placementpro.com" className="text-green-600 hover:underline">privacy@placementpro.com</a></li>
-                <li>📧 General: <a href="mailto:support@placementpro.com" className="text-green-600 hover:underline">support@placementpro.com</a></li>
+                <li>📧 Email: <a href="mailto:privacy@bountycode.app" className="text-green-600 hover:underline">privacy@bountycode.app</a></li>
+                <li>📧 General: <a href="mailto:support@bountycode.app" className="text-green-600 hover:underline">support@bountycode.app</a></li>
                 <li>📍 Address: [Your Business Address]</li>
                 <li>📞 Phone: [Your Phone Number]</li>
               </ul>
-              <p className="mt-3 text-sm text-gray-500">For GDPR-related inquiries, our Data Protection Officer (DPO) can be reached at dpo@placementpro.com.</p>
+              <p className="mt-3 text-sm text-gray-500">For GDPR-related inquiries, our Data Protection Officer (DPO) can be reached at dpo@bountycode.app.</p>
             </section>
 
             <div className="border-t border-gray-200 pt-6 mt-8 text-xs text-gray-400">
-              <p>By using PlacementPro, you agree to this Privacy Policy.</p>
+              <p>By using BountyCode, you agree to this Privacy Policy.</p>
               <p className="mt-1">Last Updated: August 2026 • Version: 2.0</p>
             </div>
           </div>

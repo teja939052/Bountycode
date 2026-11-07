@@ -1,0 +1,30 @@
+{
+  "raw_total": 11134,
+  "unique_total": 4209,
+  "dupes_collapsed": 6925,
+  "autochecked": 521,
+  "quarantined": 3192,
+  "verified_kept": 496,
+  "by_type": {
+    "coding": 3528,
+    "aptitude": 164,
+    "logical": 60,
+    "verbal": 49,
+    "sql": 103,
+    "interview": 148,
+    "system_design": 24,
+    "debugging": 133
+  },
+  "quarantine_reasons": {
+    "SOLUTION_MISSING": 167,
+    "TEST_PLACEHOLDER": 104,
+    "SOLUTION_EXEC_FAIL": 2368,
+    "APT_STRUCTURE_MISSING": 101,
+    "EXPECTED_MISMATCH": 231,
+    "STUB_SOLUTION": 4,
+    "TEMPLATE_SHELL": 5,
+    "APT_PLACEHOLDER_TESTS_NO_OPTIONS": 54,
+    "TEST_CASE_MISSING": 158
+  },
+  "note": "AUTOMATED_CHECKED = solution executed + all visible/hidden tests pass. NOT TRUSTED. TRUSTED requires human review per Content Trust Rule. No LLM used."
+}

@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import Optional, List
 from app.database import users_collection, coding_challenges_collection
 from app.middleware.auth import get_current_user
-from app.services.ai import generate_coding_challenge
+from app.services.ai_coding import generate_coding_challenge
 from app.services.coding_engine import CodingEngine
 from app.services.usage import check_and_reset_monthly_usage, can_use_feature
 from app.services.code_executor import CodeExecutionEngine
@@ -162,7 +162,7 @@ async def submit_coding_answer(req: SubmitCodingAnswer, user=Depends(get_current
         {"$set": {"user_code": req.code, "time_taken": req.time_taken, "status": status, "score": score}},
     )
 
-    gamification_result = await record_practice(user["id"], "coding", score)
+    gamification_result = await record_practice(user["id"], "coding", score, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
         "status": status,

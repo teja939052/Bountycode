@@ -1,0 +1,220 @@
+{
+  "slug": "dynamic_programming",
+  "id": "lesson_dynamic_programming_001",
+  "title": "Dynamic Programming Basics",
+  "domain": "Data Structures",
+  "pattern": "Dynamic Programming",
+  "difficulty": "medium",
+  "duration_min": 28,
+  "xp_reward": 120,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Recognize repeated subproblems",
+      "content": "Dynamic programming (DP) solves a problem by reusing results of smaller subproblems instead of recalculating them. It is useful when subproblems overlap and an optimal solution can be built from optimal smaller solutions.",
+      "example": "Naive recursive Fibonacci recalculates fib(2) many times."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a DP signal",
+      "prompt": "Which property suggests that dynamic programming may help?",
+      "options": [
+        "No repeated work",
+        "Overlapping subproblems",
+        "Only one possible input",
+        "The problem has no substructure"
+      ],
+      "correct_index": 1,
+      "explanation": "DP saves work when the same smaller subproblems are solved repeatedly."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Memoization versus tabulation",
+      "content": "Memoization is top-down: solve recursively and store each result. Tabulation is bottom-up: fill a table from base cases toward the answer.",
+      "example": "For Fibonacci, store fib(0), fib(1), then compute each next value once."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find Fibonacci",
+      "prompt": "Using fib(0)=0 and fib(1)=1, what is fib(5)?",
+      "options": [
+        "3",
+        "5",
+        "8",
+        "13"
+      ],
+      "correct_index": 1,
+      "explanation": "The sequence is 0, 1, 1, 2, 3, 5. So fib(5)=5."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Define the state and transition",
+      "content": "A DP solution needs a state (what a subproblem represents), a transition (how states depend on smaller states), base cases and an evaluation order.",
+      "tip": "Before writing code, write the meaning of dp[i] in one sentence."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What is memoization?",
+        "options": [
+          "Sorting a table",
+          "Caching results of solved subproblems",
+          "Removing recursion",
+          "Using a queue"
+        ],
+        "correct_index": 1,
+        "explanation": "Memoization stores previously computed results for reuse."
+      },
+      {
+        "prompt": "What is tabulation?",
+        "options": [
+          "Top-down recursion only",
+          "Bottom-up table filling",
+          "Random guessing",
+          "Hash collision handling"
+        ],
+        "correct_index": 1,
+        "explanation": "Tabulation computes smaller states first and fills the table toward the final state."
+      },
+      {
+        "prompt": "Which two properties commonly support DP?",
+        "options": [
+          "Overlapping subproblems and optimal substructure",
+          "Only sorted input",
+          "Unique values only",
+          "No base cases"
+        ],
+        "correct_index": 0,
+        "explanation": "DP benefits from repeated subproblems and solutions built from smaller optimal solutions."
+      },
+      {
+        "prompt": "With fib(0)=0 and fib(1)=1, what is fib(6)?",
+        "options": [
+          "5",
+          "8",
+          "13",
+          "21"
+        ],
+        "correct_index": 1,
+        "explanation": "The sequence is 0,1,1,2,3,5,8, so fib(6)=8."
+      },
+      {
+        "prompt": "What should a DP state clearly define?",
+        "options": [
+          "The color of the array",
+          "What each stored subproblem value means",
+          "Only the variable name",
+          "The programming language"
+        ],
+        "correct_index": 1,
+        "explanation": "A precise state definition makes the recurrence and base cases understandable."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Recognize overlapping subproblems and optimal substructure.",
+    "Define a state and recurrence before coding.",
+    "Choose memoization or tabulation.",
+    "Set base cases and verify transition dependencies."
+  ],
+  "prerequisites": [
+    "recursion_basics",
+    "arrays_basics"
+  ],
+  "concepts": [
+    "state",
+    "recurrence",
+    "base case",
+    "memoization",
+    "tabulation",
+    "transition"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Dynamic programming is just recursion.",
+      "correction": "DP stores results of overlapping subproblems to avoid recomputation."
+    },
+    {
+      "misconception": "A recurrence alone is a complete solution.",
+      "correction": "You also need correct base cases, evaluation order and state boundaries."
+    },
+    {
+      "misconception": "Memoization and tabulation are identical implementations.",
+      "correction": "Memoization is top-down; tabulation fills states bottom-up."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Fibonacci with memoization",
+      "input": "fib(n)=fib(n-1)+fib(n-2)",
+      "trace": [
+        "Base: fib(0)=0, fib(1)=1.",
+        "Compute fib(2)=1 and store it.",
+        "Later requests reuse stored values instead of recalculating."
+      ],
+      "output": "O(n) time and O(n) storage",
+      "explanation": "Caching removes the repeated exponential recursion tree."
+    },
+    {
+      "title": "Climbing stairs",
+      "input": "1 or 2 steps at a time; reach step n",
+      "trace": [
+        "Ways(0)=1 and Ways(1)=1.",
+        "Ways(n)=Ways(n-1)+Ways(n-2).",
+        "For n=4: 1,1,2,3,5."
+      ],
+      "output": "5 ways for n=4",
+      "explanation": "The final step comes from either n-1 or n-2."
+    },
+    {
+      "title": "Choose DP state",
+      "input": "Minimum coins to make amount x",
+      "trace": [
+        "State dp[x] = fewest coins for amount x.",
+        "Base dp[0]=0; other amounts start unreachable.",
+        "Try each coin c: dp[x]=min(dp[x],1+dp[x-c]) when valid."
+      ],
+      "output": "A one-dimensional bottom-up DP",
+      "explanation": "A precise state definition makes the transition and boundaries easier to verify."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "problem solving and optimization",
+      "practice": "Explain state, transition and base case before code."
+    },
+    {
+      "company": "TCS",
+      "skill": "dynamic programming fundamentals",
+      "practice": "Start with small n and trace the table."
+    },
+    {
+      "company": "Product companies",
+      "skill": "algorithmic coding",
+      "practice": "Analyze time and memory in terms of states and transitions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Dynamic Programming Basics?",
+      "answer": "Recognize overlapping subproblems and optimal substructure. Define a state and recurrence before coding. Choose memoization or tabulation. Set base cases and verify transition dependencies."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Dynamic Programming Basics?",
+      "answer": "DP stores results of overlapping subproblems to avoid recomputation."
+    }
+  ],
+  "next_lesson_slug": "sliding_window",
+  "next_lesson_title": "Sliding Window Technique"
+}

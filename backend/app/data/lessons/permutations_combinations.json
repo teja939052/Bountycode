@@ -1,0 +1,126 @@
+{
+  "slug": "permutations_combinations",
+  "id": "lesson_permutations_combinations_001",
+  "title": "Permutations and Combinations",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Permutations and Combinations",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Order matters or not?",
+      "content": "A permutation counts arrangements where order matters. A combination counts selections where order does not matter. First ask: would swapping two selected items create a different outcome?",
+      "example": "Choosing captain and vice-captain from 5 people is a permutation. Choosing any 2 team members is a combination.",
+      "tip": "Arrangement = permutation. Selection = combination."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose the right operation",
+      "prompt": "A team of 3 students is selected from 8. Which method should be used?",
+      "options": [
+        "Permutation",
+        "Combination",
+        "Factorial only",
+        "Probability"
+      ],
+      "correct_index": 1,
+      "explanation": "The team is the same regardless of the order in which the 3 students are chosen, so use combinations."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use the formulas",
+      "content": "nPr = n!/(n−r)! counts ordered arrangements. nCr = n!/[r!(n−r)!] counts unordered selections.",
+      "formula": "nPr = n! / (n−r)!\nnCr = n! / [r!(n−r)!]",
+      "example": "5C2 = 5!/(2!3!) = 10. 5P2 = 5!/3! = 20."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Calculate a combination",
+      "prompt": "How many ways can 2 people be selected from 6 people?",
+      "options": [
+        "12",
+        "15",
+        "30",
+        "36"
+      ],
+      "correct_index": 1,
+      "explanation": "6C2 = 6×5/(2×1) = 15."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Watch for repeated positions",
+      "content": "If all n distinct items are arranged, the number of arrangements is n!. If some positions have restrictions, count the allowed choices stage by stage.",
+      "example": "Four different books on a shelf can be arranged in 4! = 24 ways."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which situation uses permutations?",
+        "options": [
+          "Selecting 3 friends for a group",
+          "Choosing 2 fruits",
+          "Assigning president and secretary",
+          "Choosing 4 questions to answer"
+        ],
+        "correct_index": 2,
+        "explanation": "The roles are different, so swapping the two people changes the outcome."
+      },
+      {
+        "prompt": "What is 5C2?",
+        "options": [
+          "5",
+          "10",
+          "20",
+          "25"
+        ],
+        "correct_index": 1,
+        "explanation": "5C2 = 5×4/2 = 10."
+      },
+      {
+        "prompt": "What is 4P2?",
+        "options": [
+          "6",
+          "8",
+          "12",
+          "16"
+        ],
+        "correct_index": 2,
+        "explanation": "4P2 = 4×3 = 12."
+      },
+      {
+        "prompt": "How many ways can 4 distinct books be arranged?",
+        "options": [
+          "8",
+          "12",
+          "16",
+          "24"
+        ],
+        "correct_index": 3,
+        "explanation": "4! = 4×3×2×1 = 24."
+      },
+      {
+        "prompt": "For a combination, does the order of selected items matter?",
+        "options": [
+          "Always",
+          "Never",
+          "Only when n is odd",
+          "Only when r is 1"
+        ],
+        "correct_index": 1,
+        "explanation": "A combination treats a selection as the same regardless of order."
+      }
+    ]
+  },
+  "next_lesson_slug": "probability_basics",
+  "next_lesson_title": "Probability Basics"
+}

@@ -8,6 +8,20 @@ import StaggerContainer, { StaggerItem } from "../components/motion/StaggerConta
 import useReducedMotion from "../hooks/useReducedMotion";
 import { GROUP_META, GROUP_ORDER, TOPIC_DESCRIPTIONS, topicGroup } from "../utils/topicGroups";
 
+const PUBLISHED_PATTERN_PAGES = new Set(["sliding-window", "two-pointers", "binary-search", "hashing", "strings"]);
+
+const PATTERN_PAGE_SLUGS: Record<string, string> = {
+  "Sliding Window": "sliding-window",
+  "Two Pointers": "two-pointers",
+  "Binary Search": "binary-search",
+  "Prefix Sum": "prefix-sum",
+  "Hashing / Hash Map": "hashing",
+  "Strings": "strings",
+  "Monotonic Stack": "monotonic-stack",
+  "Intervals": "intervals",
+  "Greedy": "greedy",
+};
+
 const TOPIC_ICONS = {
   "Arrays": "01",
   "Linked Lists": "02",
@@ -280,7 +294,15 @@ export default function Topics() {
 
                     return (
                       <StaggerItem key={topic.topic}>
-                        <Link to={`/problems/${encodeURIComponent(topic.topic)}`}>
+                        <Link
+                          to={
+                            topicGroup(topic.topic) === "pattern" &&
+                            PATTERN_PAGE_SLUGS[topic.topic] &&
+                            PUBLISHED_PATTERN_PAGES.has(PATTERN_PAGE_SLUGS[topic.topic])
+                              ? `/pattern/${PATTERN_PAGE_SLUGS[topic.topic]}`
+                              : `/problems/${encodeURIComponent(topic.topic)}`
+                          }
+                        >
                           <motion.div
                             whileHover={reduced ? {} : { y: -4, scale: 1.02 }}
                                 className="card h-full cursor-pointer group bg-white"

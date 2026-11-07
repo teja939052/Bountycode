@@ -13,7 +13,7 @@ async def ping():
     """Simple health check ping."""
     return {
         "status": "ok",
-        "message": "PlacementPro API is running",
+        "message": "BountyCode API is running",
     }
 
 

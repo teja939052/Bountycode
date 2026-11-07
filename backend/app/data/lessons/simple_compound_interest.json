@@ -1,0 +1,126 @@
+{
+  "slug": "simple_compound_interest",
+  "id": "lesson_interest_001",
+  "title": "Simple and Compound Interest",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Interest",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Understand principal, rate and time",
+      "content": "Principal (P) is the amount invested or borrowed. Rate (R) is the annual interest percentage. Time (T) is measured in years unless the question says otherwise.",
+      "example": "₹5,000 at 8% per year for 2 years has P=5000, R=8 and T=2."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Calculate simple interest",
+      "prompt": "Find simple interest on ₹2,000 at 5% per year for 3 years.",
+      "options": [
+        "₹200",
+        "₹250",
+        "₹300",
+        "₹350"
+      ],
+      "correct_index": 2,
+      "explanation": "SI = P×R×T/100 = 2000×5×3/100 = ₹300."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Simple interest formula",
+      "content": "Simple interest is calculated on the original principal for the whole period. The amount is principal plus simple interest.",
+      "formula": "SI = (P×R×T)/100\nAmount = P + SI",
+      "example": "₹1,000 at 10% for 2 years gives SI ₹200 and amount ₹1,200."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Understand compound interest",
+      "prompt": "₹1,000 is compounded annually at 10% for 2 years. What is the final amount?",
+      "options": [
+        "₹1,100",
+        "₹1,200",
+        "₹1,210",
+        "₹1,220"
+      ],
+      "correct_index": 2,
+      "explanation": "After year 1 the amount is ₹1,100. Year 2 interest is 10% of ₹1,100 = ₹110. Final amount = ₹1,210."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Compound interest grows on the amount",
+      "content": "With annual compounding, interest in each year is calculated on the amount after the previous year. For one compounding period per year, Amount = P(1+R/100)^T.",
+      "formula": "CI = P(1 + R/100)^T − P",
+      "tip": "Check whether compounding is annual, half-yearly or quarterly before using the formula."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Find SI on ₹4,000 at 5% for 2 years.",
+        "options": [
+          "₹200",
+          "₹300",
+          "₹400",
+          "₹500"
+        ],
+        "correct_index": 2,
+        "explanation": "SI = 4000×5×2/100 = ₹400."
+      },
+      {
+        "prompt": "What is the amount for ₹2,000 at 10% simple interest for 1 year?",
+        "options": [
+          "₹2,000",
+          "₹2,100",
+          "₹2,200",
+          "₹2,400"
+        ],
+        "correct_index": 2,
+        "explanation": "SI = ₹200, so amount = ₹2,200."
+      },
+      {
+        "prompt": "₹1,000 compounded annually at 10% for 2 years becomes:",
+        "options": [
+          "₹1,200",
+          "₹1,210",
+          "₹1,220",
+          "₹1,250"
+        ],
+        "correct_index": 1,
+        "explanation": "1000×1.1×1.1 = ₹1,210."
+      },
+      {
+        "prompt": "What is the simple interest on ₹5,000 at 6% for 6 months?",
+        "options": [
+          "₹100",
+          "₹150",
+          "₹200",
+          "₹300"
+        ],
+        "correct_index": 1,
+        "explanation": "Six months is half a year: 5000×6×0.5/100 = ₹150."
+      },
+      {
+        "prompt": "With positive interest and annual compounding, compound interest over two years is usually:",
+        "options": [
+          "Less than simple interest",
+          "Equal to simple interest",
+          "Greater than simple interest",
+          "Always zero"
+        ],
+        "correct_index": 2,
+        "explanation": "The second year's compound interest is earned on the increased amount, so CI exceeds SI."
+      }
+    ]
+  },
+  "next_lesson_slug": "mixture_alligation",
+  "next_lesson_title": "Mixtures and Alligation"
+}

@@ -1,0 +1,598 @@
+{
+  "amazon": {
+    "mock_config": {
+      "name": "Amazon SDE Mock Test",
+      "description": "Simulates Amazon's online assessment: 4 debugging MCQs + 2 coding problems + Work Simulation",
+      "total_questions": 14,
+      "time_limit_minutes": 135,
+      "sections": [
+        {
+          "name": "Debugging MCQ",
+          "type": "mcq",
+          "count": 4,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "q_000002",
+              "title": "Given an integer array nums, return true if any value appear",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "mcq"
+            },
+            {
+              "id": "q_000180",
+              "title": "Given two binary trees p and q, check if they are identical.",
+              "pattern": "tree-dfs",
+              "difficulty": "easy",
+              "type": "mcq"
+            },
+            {
+              "id": "q_000266",
+              "title": "Alien Dictionary: Given list of words from an alien language",
+              "pattern": "graph-dfs",
+              "difficulty": "hard",
+              "type": "mcq"
+            },
+            {
+              "id": "q_000084",
+              "title": "Given array of positive integers and target, return minimal ",
+              "pattern": "sliding-window",
+              "difficulty": "easy",
+              "type": "mcq"
+            }
+          ]
+        },
+        {
+          "name": "Coding Problem 1",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 45,
+          "questions": [
+            {
+              "id": "q_000000",
+              "title": "Given an array of integers nums sorted in non-decreasing ord",
+              "pattern": "binary-search",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Coding Problem 2",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 45,
+          "questions": [
+            {
+              "id": "q_000004",
+              "title": "Given an array of strings strs, group the anagrams together.",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Work Simulation",
+          "type": "simulation",
+          "count": 1,
+          "time_minutes": 25,
+          "questions": [
+            {
+              "id": "q_000014",
+              "title": "Given array nums, return the majority element (appears more ",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "simulation"
+            }
+          ]
+        }
+      ],
+      "patterns": [
+        "hash-table",
+        "two-sum",
+        "tree-dfs",
+        "graph-dfs",
+        "sliding-window"
+      ]
+    },
+    "booking_slots": {
+      "duration_minutes": 60,
+      "slots_per_day": 8,
+      "available_hours": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "14:00",
+        "15:30",
+        "17:00"
+      ]
+    },
+    "total_questions": 14,
+    "patterns_covered": [
+      "two-pointers",
+      "binary-search",
+      "tree-dfs",
+      "hash-table",
+      "sliding-window",
+      "graph-dfs"
+    ],
+    "avg_quality": 32.0
+  },
+  "google": {
+    "mock_config": {
+      "name": "Google SWE Mock Test",
+      "description": "Simulates Google's phone screen: 1 hard coding + 1 medium + Googliness behavioral",
+      "total_questions": 12,
+      "time_limit_minutes": 120,
+      "sections": [
+        {
+          "name": "Hard Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 45,
+          "questions": [
+            {
+              "id": "q_000152",
+              "title": "Return middle node of linked list. If two middles, return se",
+              "pattern": "bit-manipulation",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Medium Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 30,
+          "questions": [
+            {
+              "id": "q_000156",
+              "title": "Merge two sorted linked lists into one sorted list.\n\nExample",
+              "pattern": "bit-manipulation",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Googliness Behavioral",
+          "type": "behavioral",
+          "count": 1,
+          "time_minutes": 15,
+          "questions": [
+            {
+              "id": "q_000174",
+              "title": "Convert binary number in linked list to integer (values are ",
+              "pattern": "bit-manipulation",
+              "difficulty": "easy",
+              "type": "behavioral"
+            }
+          ]
+        },
+        {
+          "name": "System Design (Optional)",
+          "type": "design",
+          "count": 1,
+          "time_minutes": 30,
+          "questions": [
+            {
+              "id": "q_000084",
+              "title": "Given array of positive integers and target, return minimal ",
+              "pattern": "sliding-window",
+              "difficulty": "easy",
+              "type": "design"
+            }
+          ]
+        }
+      ],
+      "patterns": [
+        "dp-2d",
+        "graph-bfs",
+        "bit-manipulation",
+        "sliding-window",
+        "greedy"
+      ]
+    },
+    "booking_slots": {
+      "duration_minutes": 45,
+      "slots_per_day": 12,
+      "available_hours": [
+        "08:00",
+        "09:30",
+        "11:00",
+        "13:00",
+        "14:30",
+        "16:00"
+      ]
+    },
+    "total_questions": 12,
+    "patterns_covered": [
+      "two-pointers",
+      "binary-search",
+      "greedy",
+      "hash-table",
+      "bit-manipulation",
+      "sliding-window"
+    ],
+    "avg_quality": 32.0
+  },
+  "microsoft": {
+    "mock_config": {
+      "name": "Microsoft SDE Mock Test",
+      "description": "Simulates Microsoft's online assessment: 3 coding problems + Probability QnA",
+      "total_questions": 12,
+      "time_limit_minutes": 100,
+      "sections": [
+        {
+          "name": "Easy Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "q_000064",
+              "title": "Check if string s is a palindrome considering only alphanume",
+              "pattern": "two-pointers",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Medium Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 35,
+          "questions": [
+            {
+              "id": "q_000186",
+              "title": "Determine if binary tree is a valid BST (left < root < right",
+              "pattern": "tree-dfs",
+              "difficulty": "medium",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Hard Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 40,
+          "questions": [
+            {
+              "id": "q_000268",
+              "title": "Return nth Fibonacci number (F(0)=0, F(1)=1).\n\nExample: n=6 ",
+              "pattern": "dp-1d",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Probability QnA",
+          "type": "theory",
+          "count": 1,
+          "time_minutes": 5,
+          "questions": [
+            {
+              "id": "q_000130",
+              "title": "Find square root of non-negative integer x. Return only inte",
+              "pattern": "binary-search",
+              "difficulty": "easy",
+              "type": "theory"
+            }
+          ]
+        }
+      ],
+      "patterns": [
+        "two-pointers",
+        "tree-dfs",
+        "dp-1d",
+        "binary-search",
+        "stack"
+      ]
+    },
+    "booking_slots": {
+      "duration_minutes": 60,
+      "slots_per_day": 10,
+      "available_hours": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "13:30",
+        "15:00",
+        "16:30"
+      ]
+    },
+    "total_questions": 12,
+    "patterns_covered": [
+      "two-pointers",
+      "binary-search",
+      "tree-dfs",
+      "hash-table",
+      "stack",
+      "bit-manipulation",
+      "sliding-window",
+      "dp-1d"
+    ],
+    "avg_quality": 32.0
+  },
+  "tcs": {
+    "mock_config": {
+      "name": "TCS NQT Mock Test",
+      "description": "Abridged TCS NQT 2026-pattern simulation (15 questions). The real NQT has two separate stages: Foundation (65Q/75min: Numerical 20 + Verbal 25 + Reasoning 20) and Advanced (15Q/25min Aptitude + 2 problems/90min Coding with partial marks), 190 min total, no negative marking, sections lock permanently. This mock samples each section.",
+      "total_questions": 15,
+      "time_limit_minutes": 95,
+      "pattern_version": "2026-abridged",
+      "full_pattern": {
+        "foundation": {
+          "questions": 65,
+          "minutes": 75,
+          "sections": {
+            "numerical_ability": {
+              "questions": 20,
+              "minutes": 25
+            },
+            "verbal_ability": {
+              "questions": 25,
+              "minutes": 25
+            },
+            "reasoning_ability": {
+              "questions": 20,
+              "minutes": 25
+            }
+          }
+        },
+        "advanced_aptitude": {
+          "questions": 15,
+          "minutes": 25
+        },
+        "advanced_coding": {
+          "problems": 2,
+          "minutes": 90,
+          "partial_marks": true
+        },
+        "total_minutes": 190,
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false
+      },
+      "sections": [
+        {
+          "name": "Numerical Ability",
+          "type": "aptitude",
+          "count": 5,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "apt-001",
+              "title": "(Successive percent) A price is raised by 20% then reduced b",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "apt-002",
+              "title": "(Time & Work) A completes a job in 12 days, B in 18 days. Wo",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys / Cognizant",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "apt-003",
+              "title": "(Profit & Loss) Bought for Rs 500, sold for Rs 575. The prof",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Wipro / Capgemini",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "apt-004",
+              "title": "(Ratio) A invests Rs 2000, B invests Rs 3000 in a venture. P",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Infosys / Accenture",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "apt-005",
+              "title": "(Speed) A train travels 120 km at 40 km/h, then 120 km at 60",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
+            }
+          ]
+        },
+        {
+          "name": "Verbal Ability",
+          "type": "verbal",
+          "count": 5,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "verb-001",
+              "title": "(Synonym) Select the closest synonym of 'EPHEMERAL'.",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Infosys",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-002",
+              "title": "(Grammar) Choose the correct sentence.",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Accenture",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-003",
+              "title": "(Antonym) Select the antonym of 'AMICABLE'.",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Infosys",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-004",
+              "title": "(Synonym) Closest synonym of 'ABUNDANT':",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern_relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-005",
+              "title": "(Antonym) Opposite of 'TRANSPARENT':",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern_relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
+            }
+          ]
+        },
+        {
+          "name": "Reasoning Ability",
+          "type": "logical",
+          "count": 3,
+          "time_minutes": 15,
+          "questions": [
+            {
+              "id": "log-001",
+              "title": "(Series) Find the next term: 2, 5, 10, 17, 26, ?",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "logical",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "log-002",
+              "title": "(Coding-Decoding) If CAT is coded as DBU, how is DOG coded?",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "logical",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "log-003",
+              "title": "(Arrangement) Five friends A,B,C,D,E sit in a row. B is to t",
+              "pattern": "misc",
+              "difficulty": "hard",
+              "type": "logical",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT",
+              "source_bank": "verified_placement_questions"
+            }
+          ]
+        },
+        {
+          "name": "Coding Problems",
+          "type": "coding",
+          "count": 2,
+          "time_minutes": 40,
+          "questions": [
+            {
+              "id": "verify-001",
+              "title": "Two Sum: find indices of two numbers that add to a target",
+              "pattern": "hashing",
+              "difficulty": "easy",
+              "type": "coding",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verify-002",
+              "title": "Maximum Subarray Sum",
+              "pattern": "dynamic programming",
+              "difficulty": "medium",
+              "type": "coding",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+              "source_bank": "verified_placement_questions"
+            }
+          ]
+        }
+      ],
+      "patterns": [
+        "percentages",
+        "time-work",
+        "profit-loss",
+        "ratio-proportion",
+        "speed-distance-time",
+        "synonym",
+        "antonym",
+        "sentence-correction",
+        "series",
+        "coding-decoding",
+        "seating",
+        "hashing",
+        "dynamic programming"
+      ],
+      "content_trust": {
+        "aptitude": "verified_placement_questions.json — independent correct_answer + options per question",
+        "verbal": "verified_placement_questions.json — independent correct_answer + options per question",
+        "logical": "verified_placement_questions.json — independent correct_answer + options per question",
+        "coding": "verified_placement_questions.json — independent visible_testcases + hidden_testcases per question"
+      }
+    },
+    "booking_slots": {
+      "duration_minutes": 40,
+      "slots_per_day": 15,
+      "available_hours": [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00"
+      ]
+    },
+    "total_questions": 15,
+    "patterns_covered": [
+      "percentages",
+      "time-work",
+      "profit-loss",
+      "ratio-proportion",
+      "speed-distance-time",
+      "synonym",
+      "antonym",
+      "sentence-correction",
+      "series",
+      "coding-decoding",
+      "seating",
+      "hashing",
+      "dynamic programming"
+    ],
+    "avg_quality": 32.0
+  }
+}

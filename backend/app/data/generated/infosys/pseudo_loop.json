@@ -1,0 +1,3002 @@
+[
+  {
+    "id": "pseudo_while_0000",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 11",
+        "B. 3",
+        "C. 7",
+        "D. 4"
+      ],
+      "correct_answer": "C. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0001",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 5",
+        "B. 15",
+        "C. 7",
+        "D. 8"
+      ],
+      "correct_answer": "C. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0002",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 6",
+        "B. 8",
+        "C. 15",
+        "D. 7"
+      ],
+      "correct_answer": "D. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0003",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 7",
+        "B. 11",
+        "C. 3",
+        "D. 1"
+      ],
+      "correct_answer": "A. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0004",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 7",
+        "B. 4",
+        "C. 7",
+        "D. 9"
+      ],
+      "correct_answer": "A. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0005",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 7",
+        "B. 2",
+        "C. 5",
+        "D. 11"
+      ],
+      "correct_answer": "A. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0006",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 11",
+        "B. 3",
+        "C. 7",
+        "D. 18"
+      ],
+      "correct_answer": "C. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0007",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 10",
+        "B. 3",
+        "C. 7",
+        "D. 5"
+      ],
+      "correct_answer": "C. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0008",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 7",
+        "B. 13",
+        "C. 12",
+        "D. 6"
+      ],
+      "correct_answer": "A. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0009",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 7",
+        "B. 17",
+        "C. 10",
+        "D. 2"
+      ],
+      "correct_answer": "A. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0010",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 6",
+        "B. 11",
+        "C. 7",
+        "D. 9"
+      ],
+      "correct_answer": "C. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_while_0011",
+    "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; i=1; while(s<10){ s=s+i; i=i+2; } print i;\n```",
+      "options": [
+        "A. 8",
+        "B. 7",
+        "C. 17",
+        "D. 3"
+      ],
+      "correct_answer": "B. 7",
+      "explanation": "Trace output = 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0012",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 8",
+        "B. 9",
+        "C. 8",
+        "D. 11"
+      ],
+      "correct_answer": "B. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0013",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 11",
+        "B. 13",
+        "C. 9",
+        "D. 4"
+      ],
+      "correct_answer": "C. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.220051+00:00",
+    "updated_at": "2026-09-21T12:53:32.220051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0014",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 11",
+        "B. 9",
+        "C. 11",
+        "D. 4"
+      ],
+      "correct_answer": "B. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0015",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 19",
+        "B. 9",
+        "C. 4",
+        "D. 12"
+      ],
+      "correct_answer": "B. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0016",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 4",
+        "B. 9",
+        "C. 10",
+        "D. 13"
+      ],
+      "correct_answer": "B. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0017",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 8",
+        "B. 8",
+        "C. 9",
+        "D. 10"
+      ],
+      "correct_answer": "C. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0018",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 6",
+        "B. 20",
+        "C. 9",
+        "D. 10"
+      ],
+      "correct_answer": "C. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0019",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 11",
+        "B. 6",
+        "C. 2",
+        "D. 9"
+      ],
+      "correct_answer": "D. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0020",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 12",
+        "B. 4",
+        "C. 10",
+        "D. 9"
+      ],
+      "correct_answer": "D. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0021",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 11",
+        "B. 9",
+        "C. 14",
+        "D. 8"
+      ],
+      "correct_answer": "B. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0022",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 16",
+        "B. 11",
+        "C. 9",
+        "D. 5"
+      ],
+      "correct_answer": "C. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_for_0023",
+    "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ns=0; for(i=1;i<=5;i++){ if(i%2==0) continue; s+=i; } print s;\n```",
+      "options": [
+        "A. 9",
+        "B. 4",
+        "C. 11",
+        "D. 6"
+      ],
+      "correct_answer": "A. 9",
+      "explanation": "Trace output = 9"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0024",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 8",
+        "B. 6",
+        "C. 4",
+        "D. 1"
+      ],
+      "correct_answer": "B. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0025",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 11",
+        "B. 6",
+        "C. 1",
+        "D. 8"
+      ],
+      "correct_answer": "B. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0026",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 4",
+        "B. 10",
+        "C. 11",
+        "D. 6"
+      ],
+      "correct_answer": "D. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.221051+00:00",
+    "updated_at": "2026-09-21T12:53:32.221051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0027",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 3",
+        "B. 6",
+        "C. 9",
+        "D. 4"
+      ],
+      "correct_answer": "B. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0028",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 8",
+        "B. 4",
+        "C. 9",
+        "D. 6"
+      ],
+      "correct_answer": "D. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0029",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 6",
+        "B. 5",
+        "C. 7",
+        "D. 2"
+      ],
+      "correct_answer": "A. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0030",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 6",
+        "B. 2",
+        "C. 8",
+        "D. 16"
+      ],
+      "correct_answer": "A. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0031",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 2",
+        "B. 19",
+        "C. 6",
+        "D. 7"
+      ],
+      "correct_answer": "C. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0032",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 10",
+        "B. 5",
+        "C. 7",
+        "D. 6"
+      ],
+      "correct_answer": "D. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0033",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 5",
+        "B. 6",
+        "C. 11",
+        "D. 7"
+      ],
+      "correct_answer": "B. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0034",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 6",
+        "B. 7",
+        "C. 3",
+        "D. 1"
+      ],
+      "correct_answer": "A. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_nested_0035",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=3;i++) for(j=i;j<=3;j++) c++; print c;\n```",
+      "options": [
+        "A. 7",
+        "B. 2",
+        "C. 6",
+        "D. 6"
+      ],
+      "correct_answer": "C. 6",
+      "explanation": "Trace output = 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0036",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 2",
+        "B. 1",
+        "C. 7",
+        "D. 3"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0037",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 5",
+        "C. 8",
+        "D. 2"
+      ],
+      "correct_answer": "D. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0038",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 16",
+        "C. 2",
+        "D. 7"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0039",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 2",
+        "B. 3",
+        "C. 3",
+        "D. 1"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.222050+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0040",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 1",
+        "C. 2",
+        "D. 4"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.222050+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0041",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 2",
+        "B. 4",
+        "C. 3",
+        "D. 1"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0042",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 6",
+        "C. 2",
+        "D. 3"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0043",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 6",
+        "C. 2",
+        "D. 6"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0044",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 2",
+        "C. 9",
+        "D. 6"
+      ],
+      "correct_answer": "B. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0045",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 2",
+        "B. 4",
+        "C. 3",
+        "D. 1"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0046",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 18",
+        "B. 1",
+        "C. 7",
+        "D. 2"
+      ],
+      "correct_answer": "D. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_break_0047",
+    "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\nc=0; for(i=1;i<=10;i++){ if(i%3==0) break; c++; } print c;\n```",
+      "options": [
+        "A. 2",
+        "B. 1",
+        "C. 19",
+        "D. 7"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Trace output = 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0048",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 2",
+        "C. 1",
+        "D. 2"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0049",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 7",
+        "B. 1",
+        "C. 1",
+        "D. 3"
+      ],
+      "correct_answer": "B. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0050",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 14",
+        "B. 1",
+        "C. 1",
+        "D. 5"
+      ],
+      "correct_answer": "B. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0051",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 6",
+        "C. 11",
+        "D. 1"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0052",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 18",
+        "C. 6",
+        "D. 1"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0053",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 2",
+        "C. 1",
+        "D. 19"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.223049+00:00",
+    "updated_at": "2026-09-21T12:53:32.223049+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0054",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 3",
+        "B. 1",
+        "C. 19",
+        "D. 1"
+      ],
+      "correct_answer": "B. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224051+00:00",
+    "updated_at": "2026-09-21T12:53:32.224051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0055",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 1",
+        "C. 4",
+        "D. 12"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224051+00:00",
+    "updated_at": "2026-09-21T12:53:32.224051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0056",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 5",
+        "B. 1",
+        "C. 1",
+        "D. 20"
+      ],
+      "correct_answer": "B. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224051+00:00",
+    "updated_at": "2026-09-21T12:53:32.224051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0057",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 4",
+        "C. 1",
+        "D. 5"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224051+00:00",
+    "updated_at": "2026-09-21T12:53:32.224051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0058",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 1",
+        "C. 4",
+        "D. 2"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224051+00:00",
+    "updated_at": "2026-09-21T12:53:32.224051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  },
+  {
+    "id": "pseudo_dowhile_0059",
+    "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+    "pattern": "loop-output",
+    "skill": "loop-output",
+    "domain": "Programming Logic",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.95,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\n```c\ni=0; c=0; do{ c++; i++; } while(i<0); print c;\n```",
+      "options": [
+        "A. 1",
+        "B. 10",
+        "C. 2",
+        "D. 1"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Trace output = 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.224051+00:00",
+    "updated_at": "2026-09-21T12:53:32.224051+00:00",
+    "trust_status": "automated_checked",
+    "type": "cs_fundamentals",
+    "company_tags": [
+      "Infosys",
+      "Capgemini",
+      "TCS"
+    ]
+  }
+]

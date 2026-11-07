@@ -1,0 +1,8 @@
+{
+  "total_sql": 932,
+  "already_has_tc": 103,
+  "missing_schema_or_query": 829,
+  "generated_tc": 0,
+  "generation_failed": 0,
+  "marked_needs_review": 829
+}

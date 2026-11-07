@@ -1,0 +1,299 @@
+{
+  "slug": "vocabulary_cloze",
+  "id": "lesson_vocabulary_cloze_001",
+  "title": "Vocabulary, Fill in the Blanks and Cloze Tests",
+  "domain": "Verbal Ability",
+  "pattern": "Vocabulary",
+  "difficulty": "easy",
+  "duration_min": 30,
+  "xp_reward": 120,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Use context clues",
+      "content": "A fill-in-the-blank question tests whether a word fits the sentence's meaning and grammar. Read the entire sentence before selecting a word.",
+      "example": "The instructions were so clear that the task was easy to understand. 'Clear' matches the meaning."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a synonym",
+      "prompt": "Which word is closest in meaning to 'concise'?",
+      "options": [
+        "Brief",
+        "Confusing",
+        "Lengthy",
+        "Careless"
+      ],
+      "correct_index": 0,
+      "explanation": "Concise means brief and expressed in few words.",
+      "hints": [
+        "Replace the target word with each option and compare the meaning.",
+        "Choose the closest meaning in this sentence, not a word that is merely related."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use collocations",
+      "content": "Some words naturally occur together, such as make a decision, take responsibility and strong evidence. Learning common collocations improves accuracy.",
+      "example": "The phrase is 'reach a conclusion', not usually 'arrive a conclusion'."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Complete a sentence",
+      "prompt": "Despite the heavy rain, the match continued ___ interruption.",
+      "options": [
+        "with",
+        "without",
+        "between",
+        "among"
+      ],
+      "correct_index": 1,
+      "explanation": "Without interruption means the match continued and was not stopped.",
+      "hints": [
+        "Read the whole sentence before looking at the options.",
+        "Check meaning and grammar together; the word must fit both."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Solve a cloze passage",
+      "content": "In a cloze test, read the whole passage for its topic and tone. Use nearby words, grammar and logical connections to select each blank. Re-read the completed passage for flow.",
+      "tip": "Do not choose a word only because it fits one sentence; it must fit the passage as a whole."
+    },
+    {
+      "step_type": "interactive",
+      "title": "Choose meaning from context",
+      "prompt": "The engineer gave a concise explanation, covering the key points in two minutes. What does concise mean here?",
+      "options": [
+        "Brief but clear",
+        "Unnecessarily technical",
+        "Uncertain",
+        "Repetitive"
+      ],
+      "correct_index": 0,
+      "explanation": "The two-minute explanation covered the key points, so concise means brief and clear rather than incomplete.",
+      "hints": [
+        "Use the phrase 'covering the key points' as a clue.",
+        "The word describes length and clarity, not technical difficulty."
+      ],
+      "step_number": 6
+    },
+    {
+      "step_type": "fill_blank",
+      "title": "Use a precise context word",
+      "prompt": "The auditor was ______, checking every entry for even the smallest discrepancy.",
+      "expected_answer": "meticulous",
+      "answer_placeholder": "Enter the best word",
+      "explanation": "Meticulous means extremely careful and attentive to detail, which matches checking every entry.",
+      "hints": [
+        "Look for a word that means careful about small details.",
+        "The clue is 'checking every entry' and 'smallest discrepancy'."
+      ],
+      "step_number": 7
+    },
+    {
+      "step_type": "order_steps",
+      "title": "Solve a cloze passage systematically",
+      "prompt": "Arrange a reliable method for answering a cloze passage.",
+      "options": [
+        "Re-read the completed passage for coherence",
+        "Read the whole passage to understand topic and tone",
+        "Use grammar and context to evaluate each blank",
+        "Compare the options and eliminate meaning mismatches"
+      ],
+      "correct_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "explanation": "Understand the passage first, use grammar and context for each blank, compare options, then reread the completed passage.",
+      "hints": [
+        "Do not answer each blank without understanding the passage.",
+        "A final reread catches choices that fit locally but break the overall meaning."
+      ],
+      "step_number": 8
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Choose a synonym for 'abundant'.",
+        "options": [
+          "Scarce",
+          "Plentiful",
+          "Empty",
+          "Fragile"
+        ],
+        "correct_index": 1,
+        "explanation": "Abundant means plentiful or available in large quantity."
+      },
+      {
+        "prompt": "Choose an antonym for 'reluctant'.",
+        "options": [
+          "Unwilling",
+          "Hesitant",
+          "Eager",
+          "Doubtful"
+        ],
+        "correct_index": 2,
+        "explanation": "Reluctant means unwilling; eager is a suitable opposite."
+      },
+      {
+        "prompt": "The committee reached a ___ after discussion.",
+        "options": [
+          "decision",
+          "decide",
+          "deciding",
+          "decisive"
+        ],
+        "correct_index": 0,
+        "explanation": "The noun decision fits after the article a."
+      },
+      {
+        "prompt": "The new policy had a positive ___ on attendance.",
+        "options": [
+          "affect",
+          "effect",
+          "effort",
+          "offer"
+        ],
+        "correct_index": 1,
+        "explanation": "Effect is the noun meaning result or impact."
+      },
+      {
+        "prompt": "Choose the best word: The evidence was ___, so the claim was accepted.",
+        "options": [
+          "convincing",
+          "convince",
+          "convinced",
+          "convincingly"
+        ],
+        "correct_index": 0,
+        "explanation": "Convincing is the adjective describing the evidence."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Infer word meaning from sentence and passage context.",
+    "Recognize useful synonyms, antonyms and collocations.",
+    "Use grammar and parts of speech to eliminate options.",
+    "Solve cloze passages while preserving tone and coherence."
+  ],
+  "concepts": [
+    "context clues",
+    "synonyms",
+    "antonyms",
+    "collocations",
+    "parts of speech",
+    "cloze passage",
+    "tone",
+    "coherence"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A familiar synonym always fits a blank.",
+      "correction": "The option must match the exact context, grammar, tone and intended relationship."
+    },
+    {
+      "misconception": "The nearest word in meaning is always the best answer.",
+      "correction": "A collocation or grammatical constraint may make another option correct."
+    },
+    {
+      "misconception": "Each cloze blank can be solved without reading the passage.",
+      "correction": "The whole passage supplies topic, tone and logical connections that affect each blank."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Use context rather than memorization",
+      "input": "The evidence was sparse, so the team avoided a firm conclusion.",
+      "trace": [
+        "The team has little evidence.",
+        "Sparse means small in amount or not plentiful.",
+        "The word must preserve the sentence's cautious meaning."
+      ],
+      "output": "Sparse = limited or insufficient in amount",
+      "explanation": "Context can reveal a word's meaning even when the word itself is unfamiliar."
+    },
+    {
+      "title": "Choose a collocation",
+      "input": "The analyst had to ___ a decision before noon.",
+      "trace": [
+        "The blank needs a verb that naturally combines with decision.",
+        "Common English collocation: make a decision.",
+        "Check that the phrase is grammatically correct."
+      ],
+      "output": "make a decision",
+      "explanation": "Collocations are conventional word pairings; knowing them improves fluency and cloze accuracy."
+    },
+    {
+      "title": "Check a cloze answer globally",
+      "input": "The report is concise, ___ it covers every key finding.",
+      "trace": [
+        "The second clause adds a result or compatible fact.",
+        "A contrast connector would change the intended relationship.",
+        "The sentence needs a connector such as and."
+      ],
+      "output": "and",
+      "explanation": "Read the entire sentence and passage so the selected word fits the logical relationship."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "verbal ability",
+      "practice": "Use context, grammar and collocations to eliminate distractors."
+    },
+    {
+      "company": "Infosys",
+      "skill": "English communication",
+      "practice": "Choose words that preserve the sentence's meaning and tone."
+    },
+    {
+      "company": "Wipro",
+      "skill": "verbal reasoning",
+      "practice": "Read the whole passage before filling individual blanks."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "method",
+      "question": "How should you approach a cloze passage?",
+      "answer": "Read the whole passage, use grammar and context for each blank, compare options and reread for coherence."
+    },
+    {
+      "type": "concept",
+      "question": "What is a collocation?",
+      "answer": "A conventional pairing of words, such as make a decision or strong evidence."
+    },
+    {
+      "type": "strategy",
+      "question": "What is a context clue?",
+      "answer": "Nearby wording or the passage's logic that helps infer a word's intended meaning."
+    }
+  ],
+  "prerequisites": [],
+  "quest": {
+    "chapter": "The Word Library",
+    "rank": "Context Detective",
+    "story": "A communication assessment hides missing words inside technical messages. The correct choice must fit grammar, meaning and the complete passage.",
+    "mission": "Use context clues, collocations, grammar and passage coherence to select precise words.",
+    "success_criteria": [
+      "Infer meaning from context.",
+      "Recognize common collocations.",
+      "Use grammar to eliminate options.",
+      "Check each answer against the complete passage."
+    ]
+  },
+  "next_lesson_slug": "sentence_correction",
+  "next_lesson_title": "Sentence Correction",
+  "mastery_threshold": 0.7
+}

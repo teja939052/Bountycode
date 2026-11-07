@@ -1,0 +1,606 @@
+{
+  "verified_pool": {
+    "total": 254,
+    "by_type": {
+      "coding": 135,
+      "aptitude": 50,
+      "logical": 15,
+      "verbal": 15,
+      "cs_fundamentals": 39
+    },
+    "by_difficulty": {
+      "easy": 168,
+      "medium": 76,
+      "hard": 10
+    },
+    "by_topic": {
+      "arrays": 35,
+      "math": 9,
+      "strings": 23,
+      "percentages": 6,
+      "time-work": 5,
+      "profit-loss": 5,
+      "ratio-proportion": 2,
+      "speed-distance-time": 3,
+      "stack": 3,
+      "dynamic programming": 2,
+      "binary search": 2,
+      "bit manipulation": 2,
+      "series": 4,
+      "coding-decoding": 1,
+      "seating": 1,
+      "synonym": 3,
+      "sentence-correction": 1,
+      "linked list": 1,
+      "simple-interest": 3,
+      "averages": 2,
+      "compound-interest": 5,
+      "probability": 3,
+      "geometry": 1,
+      "matrix": 1,
+      "data-structures": 8,
+      "dbms": 8,
+      "os": 10,
+      "networking": 8,
+      "antonym": 2,
+      "number-system": 2,
+      "mixture-alligation": 1,
+      "average": 1,
+      "complexity": 2,
+      "oops": 2,
+      "blood-relations": 1,
+      "direction": 2,
+      "calendar": 1,
+      "syllogism": 1,
+      "analogy": 1,
+      "sentence-completion": 1,
+      "ratios": 1,
+      "time-speed": 1,
+      "mixtures": 1,
+      "average-speed": 1,
+      "number-series": 1,
+      "perimeter-area": 1,
+      "ratio-time": 1,
+      "sorting": 1,
+      "number-puzzles": 1,
+      "analogy-numbers": 1,
+      "cubes": 1,
+      "spelling": 1,
+      "one-word": 1,
+      "Arrays": 20,
+      "Bit Manipulation": 9,
+      "Strings": 1,
+      "dp": 7,
+      "hashing": 6,
+      "linked_list": 3,
+      "trees": 7,
+      "graphs": 1,
+      "blood-relation": 1,
+      "grammar": 3,
+      "bit_manipulation": 3,
+      "ratio": 1,
+      "time-distance": 1,
+      "idioms": 1,
+      "ages": 1,
+      "numbers": 1,
+      "synonyms": 1
+    },
+    "duplicates": 0
+  },
+  "packs": [
+    {
+      "id": "trusted-tcs-nqt",
+      "company": "tcs",
+      "stage": "nqt",
+      "total": 24,
+      "sections": {
+        "aptitude": 8,
+        "logical": 5,
+        "verbal": 5,
+        "cs_fundamentals": 3,
+        "coding": 3
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 8,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 5,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 5,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 3,
+          "have": 39,
+          "ok": true
+        },
+        "coding": {
+          "need": 3,
+          "have": 135,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 80,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-infosys",
+      "company": "infosys",
+      "stage": "specialist_programmer",
+      "total": 25,
+      "sections": {
+        "aptitude": 8,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 4,
+        "coding": 5
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 8,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 4,
+          "have": 39,
+          "ok": true
+        },
+        "coding": {
+          "need": 5,
+          "have": 135,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 85,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-wipro",
+      "company": "wipro",
+      "stage": "nlth",
+      "total": 20,
+      "sections": {
+        "aptitude": 7,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 2,
+        "coding": 3
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 7,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 2,
+          "have": 39,
+          "ok": true
+        },
+        "coding": {
+          "need": 3,
+          "have": 135,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 60,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-accenture",
+      "company": "accenture",
+      "stage": "cognitive",
+      "total": 22,
+      "sections": {
+        "aptitude": 8,
+        "logical": 5,
+        "verbal": 5,
+        "cs_fundamentals": 4
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 8,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 5,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 5,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 4,
+          "have": 39,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 75,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-cognizant",
+      "company": "cognizant",
+      "stage": "genc",
+      "total": 22,
+      "sections": {
+        "aptitude": 7,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 4,
+        "coding": 3
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 7,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 4,
+          "have": 39,
+          "ok": true
+        },
+        "coding": {
+          "need": 3,
+          "have": 135,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 75,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-capgemini",
+      "company": "capgemini",
+      "stage": "exceller",
+      "total": 20,
+      "sections": {
+        "aptitude": 7,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 3,
+        "coding": 2
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 7,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 3,
+          "have": 39,
+          "ok": true
+        },
+        "coding": {
+          "need": 2,
+          "have": 135,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 65,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-ibm",
+      "company": "ibm",
+      "stage": "cognitive_assessment",
+      "total": 23,
+      "sections": {
+        "aptitude": 6,
+        "logical": 4,
+        "verbal": 3,
+        "cs_fundamentals": 5,
+        "coding": 5
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 6,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 4,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 3,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 5,
+          "have": 39,
+          "ok": true
+        },
+        "coding": {
+          "need": 5,
+          "have": 135,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 80,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-deloitte",
+      "company": "deloitte",
+      "stage": "specialist",
+      "total": 20,
+      "sections": {
+        "aptitude": 8,
+        "logical": 5,
+        "verbal": 5,
+        "cs_fundamentals": 2
+      },
+      "section_availability": {
+        "aptitude": {
+          "need": 8,
+          "have": 50,
+          "ok": true
+        },
+        "logical": {
+          "need": 5,
+          "have": 15,
+          "ok": true
+        },
+        "verbal": {
+          "need": 5,
+          "have": 15,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 2,
+          "have": 39,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 70,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-amazon",
+      "company": "amazon",
+      "stage": "swe_oa",
+      "total": 14,
+      "sections": {
+        "coding": 8,
+        "cs_fundamentals": 3,
+        "aptitude": 3
+      },
+      "section_availability": {
+        "coding": {
+          "need": 8,
+          "have": 135,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 3,
+          "have": 39,
+          "ok": true
+        },
+        "aptitude": {
+          "need": 3,
+          "have": 50,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 120,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    },
+    {
+      "id": "trusted-flipkart",
+      "company": "flipkart",
+      "stage": "sde_oa",
+      "total": 12,
+      "sections": {
+        "coding": 8,
+        "cs_fundamentals": 2,
+        "aptitude": 2
+      },
+      "section_availability": {
+        "coding": {
+          "need": 8,
+          "have": 135,
+          "ok": true
+        },
+        "cs_fundamentals": {
+          "need": 2,
+          "have": 39,
+          "ok": true
+        },
+        "aptitude": {
+          "need": 2,
+          "have": 50,
+          "ok": true
+        }
+      },
+      "total_matches_sections": true,
+      "difficulty_balance": {
+        "easy": 168,
+        "medium": 76,
+        "hard": 10
+      },
+      "difficulty_ok": true,
+      "duration": 100,
+      "duration_ok": true,
+      "provenance": "pattern_relevant",
+      "provenance_ok": true,
+      "duplicates": 0,
+      "duplicates_ok": true,
+      "valid": true,
+      "verdict": "READY"
+    }
+  ]
+}

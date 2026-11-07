@@ -1,9 +1,23 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
 from datetime import datetime
 
-VALID_QUESTION_TYPES = {"coding", "aptitude", "behavioral", "system_design", "hr"}
+VALID_QUESTION_TYPES = {"coding", "aptitude", "behavioral", "system_design", "hr", "sql", "gd", "group_discussion"}
 VALID_DIFFICULTIES = {"easy", "medium", "hard"}
+
+
+class MCQOption(BaseModel):
+    text: str = Field(default="", max_length=1024)
+    is_correct: bool = False
+    misconception_tag: Optional[str] = Field(default=None, max_length=128)
+    repair_hint: Optional[str] = Field(default=None, max_length=1024)
+
+
+class SQLSchemaMetadata(BaseModel):
+    schema_ddl: str = Field(default="", max_length=20000)
+    seed_inserts: str = Field(default="", max_length=20000)
+    expected_query: str = Field(default="", max_length=20000)
+    enforce_order: bool = False
 
 
 class CuratedQuestion(BaseModel):
@@ -15,7 +29,7 @@ class CuratedQuestion(BaseModel):
     topic: str = Field(default="", max_length=128)
     sub_topic: str = Field(default="", max_length=128)
     question: str = Field(default="", max_length=10000)
-    options: List[str] = Field(default_factory=list, max_length=10)
+    options: List[Union[str, Dict[str, Any]]] = Field(default_factory=list, max_length=10)
     correct_answer: str = Field(default="", max_length=512)
     explanation: str = Field(default="", max_length=5000)
     hints: List[str] = Field(default_factory=list, max_length=10)
@@ -28,6 +42,10 @@ class CuratedQuestion(BaseModel):
     reported: bool = False
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
+    sql_schema: Optional[SQLSchemaMetadata] = None
+    test_cases: List[Dict[str, Any]] = Field(default_factory=list)
+    trust_status: str = Field(default="unverified", max_length=32)
+    is_executable: bool = Field(default=False)
 
 
 class QuestionFilter(BaseModel):
@@ -78,3 +96,5 @@ class QuestionSubmission(BaseModel):
 class QuestionVote(BaseModel):
     question_id: str = Field(..., min_length=1, max_length=64)
     vote: int = Field(..., ge=-1, le=1)
+    reason: Optional[str] = Field(default=None, max_length=500,
+                                  description="Optional report reason (stored with downvotes)")

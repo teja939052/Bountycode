@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "pseudo_func_0000",
+    "question": "What is the output?\ndef add(a, b): return a + b\nprint(add(3, 5))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef add(a, b): return a + b\nprint(add(3, 5))",
+      "options": [
+        "A. 8",
+        "B. 49",
+        "C. 10",
+        "D. 30"
+      ],
+      "correct_answer": "A. 8",
+      "explanation": "Function returns: 8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285047+00:00",
+    "updated_at": "2026-09-21T12:53:32.285047+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0001",
+    "question": "What is the output?\ndef mul(a, b): return a * b\nprint(mul(4, 5))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef mul(a, b): return a * b\nprint(mul(4, 5))",
+      "options": [
+        "A. 15",
+        "B. 20",
+        "C. 3",
+        "D. 100"
+      ],
+      "correct_answer": "B. 20",
+      "explanation": "Function returns: 20"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285047+00:00",
+    "updated_at": "2026-09-21T12:53:32.285047+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0002",
+    "question": "What is the output?\ndef sub(a, b): return a - b\nprint(sub(10, 3))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef sub(a, b): return a - b\nprint(sub(10, 3))",
+      "options": [
+        "A. 10",
+        "B. True",
+        "C. 100",
+        "D. 7"
+      ],
+      "correct_answer": "D. 7",
+      "explanation": "Function returns: 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285047+00:00",
+    "updated_at": "2026-09-21T12:53:32.285047+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0003",
+    "question": "What is the output?\ndef div(a, b): return a // b\nprint(div(15, 4))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef div(a, b): return a // b\nprint(div(15, 4))",
+      "options": [
+        "A. 14",
+        "B. 3",
+        "C. 20",
+        "D. 25"
+      ],
+      "correct_answer": "B. 3",
+      "explanation": "Function returns: 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285047+00:00",
+    "updated_at": "2026-09-21T12:53:32.285047+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0004",
+    "question": "What is the output?\ndef sq(n): return n * n\nprint(sq(5))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef sq(n): return n * n\nprint(sq(5))",
+      "options": [
+        "A. 25",
+        "B. 15",
+        "C. 14",
+        "D. 10"
+      ],
+      "correct_answer": "A. 25",
+      "explanation": "Function returns: 25"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285652+00:00",
+    "updated_at": "2026-09-21T12:53:32.285652+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0005",
+    "question": "What is the output?\ndef double(n): return n * 2\nprint(double(7))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef double(n): return n * 2\nprint(double(7))",
+      "options": [
+        "A. 14",
+        "B. 50",
+        "C. 3",
+        "D. 30"
+      ],
+      "correct_answer": "A. 14",
+      "explanation": "Function returns: 14"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285652+00:00",
+    "updated_at": "2026-09-21T12:53:32.285652+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0006",
+    "question": "What is the output?\ndef triple(n): return n * 3\nprint(triple(4))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef triple(n): return n * 3\nprint(triple(4))",
+      "options": [
+        "A. 5",
+        "B. False",
+        "C. 12",
+        "D. 8"
+      ],
+      "correct_answer": "C. 12",
+      "explanation": "Function returns: 12"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285652+00:00",
+    "updated_at": "2026-09-21T12:53:32.285652+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0007",
+    "question": "What is the output?\ndef inc(n): return n + 1\nprint(inc(99))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef inc(n): return n + 1\nprint(inc(99))",
+      "options": [
+        "A. 100",
+        "B. 14",
+        "C. 15",
+        "D. False"
+      ],
+      "correct_answer": "A. 100",
+      "explanation": "Function returns: 100"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285652+00:00",
+    "updated_at": "2026-09-21T12:53:32.285652+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0008",
+    "question": "What is the output?\ndef dec(n): return n - 1\nprint(dec(50))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef dec(n): return n - 1\nprint(dec(50))",
+      "options": [
+        "A. 25",
+        "B. 49",
+        "C. 12",
+        "D. 8"
+      ],
+      "correct_answer": "B. 49",
+      "explanation": "Function returns: 49"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.285652+00:00",
+    "updated_at": "2026-09-21T12:53:32.285652+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0009",
+    "question": "What is the output?\ndef max_of(a, b): return a if a > b else b\nprint(max_of(3, 7))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef max_of(a, b): return a if a > b else b\nprint(max_of(3, 7))",
+      "options": [
+        "A. False",
+        "B. 12",
+        "C. 50",
+        "D. 7"
+      ],
+      "correct_answer": "D. 7",
+      "explanation": "Function returns: 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286276+00:00",
+    "updated_at": "2026-09-21T12:53:32.286276+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0010",
+    "question": "What is the output?\ndef max_of(a, b): return a if a > b else b\nprint(max_of(10, 2))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef max_of(a, b): return a if a > b else b\nprint(max_of(10, 2))",
+      "options": [
+        "A. 7",
+        "B. 10",
+        "C. 100",
+        "D. 49"
+      ],
+      "correct_answer": "B. 10",
+      "explanation": "Function returns: 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286276+00:00",
+    "updated_at": "2026-09-21T12:53:32.286276+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0011",
+    "question": "What is the output?\ndef is_even(n): return n % 2 == 0\nprint(is_even(4))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef is_even(n): return n % 2 == 0\nprint(is_even(4))",
+      "options": [
+        "A. 14",
+        "B. 7",
+        "C. 3",
+        "D. True"
+      ],
+      "correct_answer": "D. True",
+      "explanation": "Function returns: True"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286276+00:00",
+    "updated_at": "2026-09-21T12:53:32.286276+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0012",
+    "question": "What is the output?\ndef is_even(n): return n % 2 == 0\nprint(is_even(7))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef is_even(n): return n % 2 == 0\nprint(is_even(7))",
+      "options": [
+        "A. 15",
+        "B. False",
+        "C. 7",
+        "D. 49"
+      ],
+      "correct_answer": "B. False",
+      "explanation": "Function returns: False"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286276+00:00",
+    "updated_at": "2026-09-21T12:53:32.286276+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0013",
+    "question": "What is the output?\ndef greeting(name): return 'Hello ' + name\nprint(greeting('Alice'))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef greeting(name): return 'Hello ' + name\nprint(greeting('Alice'))",
+      "options": [
+        "A. True",
+        "B. 3",
+        "C. 50",
+        "D. Hello Alice"
+      ],
+      "correct_answer": "D. Hello Alice",
+      "explanation": "Function returns: Hello Alice"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286624+00:00",
+    "updated_at": "2026-09-21T12:53:32.286624+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0014",
+    "question": "What is the output?\ndef greet(name): return name + '!'  \nprint(greet('World'))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef greet(name): return name + '!'  \nprint(greet('World'))",
+      "options": [
+        "A. 100",
+        "B. World!",
+        "C. 20",
+        "D. True"
+      ],
+      "correct_answer": "B. World!",
+      "explanation": "Function returns: World!"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286624+00:00",
+    "updated_at": "2026-09-21T12:53:32.286624+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0015",
+    "question": "What is the output?\ndef area(l, w): return l * w\nprint(area(5, 3))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef area(l, w): return l * w\nprint(area(5, 3))",
+      "options": [
+        "A. True",
+        "B. 10",
+        "C. 15",
+        "D. 25"
+      ],
+      "correct_answer": "C. 15",
+      "explanation": "Function returns: 15"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286624+00:00",
+    "updated_at": "2026-09-21T12:53:32.286624+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0016",
+    "question": "What is the output?\ndef perimeter(l, w): return 2*(l+w)\nprint(perimeter(4, 6))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef perimeter(l, w): return 2*(l+w)\nprint(perimeter(4, 6))",
+      "options": [
+        "A. 49",
+        "B. 3",
+        "C. 14",
+        "D. 20"
+      ],
+      "correct_answer": "D. 20",
+      "explanation": "Function returns: 20"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286624+00:00",
+    "updated_at": "2026-09-21T12:53:32.286624+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0017",
+    "question": "What is the output?\ndef circle(r): return 2*3.14*r\nprint(circle(1))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef circle(r): return 2*3.14*r\nprint(circle(1))",
+      "options": [
+        "A. 25",
+        "B. True",
+        "C. 100",
+        "D. 6.28"
+      ],
+      "correct_answer": "D. 6.28",
+      "explanation": "Function returns: 6.28"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.286624+00:00",
+    "updated_at": "2026-09-21T12:53:32.286624+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0018",
+    "question": "What is the output?\ndef first(arr): return arr[0]\nprint(first([10, 20, 30]))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef first(arr): return arr[0]\nprint(first([10, 20, 30]))",
+      "options": [
+        "A. 10",
+        "B. True",
+        "C. 12",
+        "D. 25"
+      ],
+      "correct_answer": "A. 10",
+      "explanation": "Function returns: 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287216+00:00",
+    "updated_at": "2026-09-21T12:53:32.287216+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_func_0019",
+    "question": "What is the output?\ndef last(arr): return arr[-1]\nprint(last([10, 20, 30]))",
+    "pattern": "function-calls",
+    "skill": "function-calls",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ndef last(arr): return arr[-1]\nprint(last([10, 20, 30]))",
+      "options": [
+        "A. 30",
+        "B. 50",
+        "C. 7",
+        "D. 20"
+      ],
+      "correct_answer": "A. 30",
+      "explanation": "Function returns: 30"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287216+00:00",
+    "updated_at": "2026-09-21T12:53:32.287216+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  }
+]

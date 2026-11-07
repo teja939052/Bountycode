@@ -1,0 +1,125 @@
+{
+  "slug": "sql_subqueries",
+  "id": "lesson_sql_subqueries_001",
+  "title": "SQL Subqueries, IN and EXISTS",
+  "domain": "SQL",
+  "pattern": "SQL Subqueries",
+  "difficulty": "medium",
+  "duration_min": 26,
+  "xp_reward": 115,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "A query inside a query",
+      "content": "A subquery is a SELECT placed inside another SQL statement. It can return one value, one column or a set of rows, depending on its use.",
+      "example": "SELECT name FROM Employee WHERE salary > (SELECT AVG(salary) FROM Employee);"
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Use IN for a set",
+      "prompt": "What does WHERE department_id IN (10, 20) select?",
+      "options": [
+        "Rows with department 10 or 20",
+        "Only rows with both departments at once",
+        "Rows without a department",
+        "The two department rows only"
+      ],
+      "correct_index": 0,
+      "explanation": "IN matches a value against any value in the supplied list or subquery result."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand EXISTS",
+      "content": "EXISTS is true when its subquery returns at least one row. It is often used with a correlated subquery that references a row from the outer query.",
+      "example": "SELECT d.name FROM Department d WHERE EXISTS (SELECT 1 FROM Employee e WHERE e.department_id=d.id);",
+      "tip": "EXISTS tests whether a matching row exists; it does not return the matching rows themselves."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose the existence test",
+      "prompt": "Which operator is designed to test whether a subquery returns at least one row?",
+      "options": [
+        "IN",
+        "EXISTS",
+        "ORDER BY",
+        "GROUP BY"
+      ],
+      "correct_index": 1,
+      "explanation": "EXISTS evaluates to true when the subquery returns one or more rows."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Correlated and non-correlated subqueries",
+      "content": "A non-correlated subquery can run independently of the outer query. A correlated subquery refers to an outer-query column and is logically evaluated for each candidate outer row, though the optimizer may transform it.",
+      "example": "A correlated EXISTS can check whether each department has at least one employee."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "A scalar subquery should return:",
+        "options": [
+          "Exactly one value",
+          "Any number of columns",
+          "A whole database",
+          "Only duplicate rows"
+        ],
+        "correct_index": 0,
+        "explanation": "A scalar subquery returns one row and one column."
+      },
+      {
+        "prompt": "What does EXISTS return?",
+        "options": [
+          "A table",
+          "True when at least one row is returned",
+          "The first column's value",
+          "A sorted list"
+        ],
+        "correct_index": 1,
+        "explanation": "EXISTS is a Boolean condition based on whether the subquery returns any row."
+      },
+      {
+        "prompt": "Which subquery is correlated?",
+        "options": [
+          "One that references an outer query column",
+          "One that always returns one value",
+          "One with ORDER BY only",
+          "One with no FROM clause"
+        ],
+        "correct_index": 0,
+        "explanation": "A correlated subquery refers to a value from the outer query."
+      },
+      {
+        "prompt": "Which condition selects employees in departments returned by another query?",
+        "options": [
+          "salary = AVG(salary)",
+          "department_id IN (subquery)",
+          "ORDER BY subquery",
+          "GROUP BY subquery"
+        ],
+        "correct_index": 1,
+        "explanation": "IN can compare department_id against the set returned by a subquery."
+      },
+      {
+        "prompt": "What does NOT EXISTS test?",
+        "options": [
+          "No row is returned by the subquery",
+          "Every row is returned",
+          "The subquery is sorted",
+          "The subquery returns a number"
+        ],
+        "correct_index": 0,
+        "explanation": "NOT EXISTS is true when the subquery returns no rows."
+      }
+    ]
+  },
+  "next_lesson_slug": "sql_indexes_triggers",
+  "next_lesson_title": "SQL Indexes and Triggers"
+}

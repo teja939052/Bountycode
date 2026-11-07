@@ -1,5 +1,15 @@
 export const API_BASE = import.meta.env.VITE_API_URL || "";
 
+let authToken: string | null = null;
+
+export function setAuthToken(token: string | null) {
+  authToken = token;
+}
+
+export function getAuthToken(): string | null {
+  return authToken;
+}
+
 export interface ApiErrorBody {
   detail?: string;
   error_explanation?: string | null;
@@ -8,12 +18,34 @@ export interface ApiErrorBody {
 
 export interface ApiRequestOptions extends RequestInit {
   headers?: Record<string, string>;
+  skipAuthRefresh?: boolean;
 }
 
 const MEMORY_CACHE_TTL = 60000;
 const MAX_CACHE_SIZE = 200;
 const memoryCache = new Map<string, { data: unknown; timestamp: number }>();
 const inFlight = new Map<string, Promise<unknown>>();
+let refreshPromise: Promise<void> | null = null;
+
+async function ensureAuth() {
+  if (refreshPromise) return refreshPromise;
+  refreshPromise = fetch(`${API_BASE}/api/v1/auth/refresh`, {
+    method: "POST",
+    credentials: "include",
+  })
+    .then(async (res) => {
+      if (!res.ok) throw new Error("Session expired");
+      const data = await res.json().catch(() => ({}));
+      if ((data as { token?: string }).token) {
+        setAuthToken((data as { token: string }).token);
+      }
+    })
+    .catch((err) => {
+      refreshPromise = null;
+      throw err;
+    });
+  return refreshPromise;
+}
 
 export function clearApiCache() {
   memoryCache.clear();
@@ -122,6 +154,10 @@ export async function requestWithRetry<T = any>(
     ...(options.headers || {}),
   };
 
+  if (getAuthToken()) {
+    headers.Authorization = `Bearer ${getAuthToken()}`;
+  }
+
   const run = (async () => {
     let lastError: unknown;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -132,12 +168,9 @@ export async function requestWithRetry<T = any>(
           credentials: "include",
         });
 
-        if (response.status === 401 && attempt === 0) {
+        if (response.status === 401 && attempt === 0 && !options.skipAuthRefresh) {
           try {
-            await fetch(`${API_BASE}/api/v1/auth/refresh`, {
-              method: "POST",
-              credentials: "include",
-            });
+            await ensureAuth();
             continue;
           } catch {
             throw new Error("Session expired");
@@ -161,7 +194,14 @@ export async function requestWithRetry<T = any>(
           throw err;
         }
 
-        const data: T = await response.json();
+        const raw: T = await response.json();
+        const data =
+          raw &&
+          typeof raw === "object" &&
+          "success" in raw &&
+          "data" in raw
+            ? (raw as { success: boolean; data: T }).data
+            : raw;
         if (options.method !== "POST") {
           memoryCache.set(key, { data, timestamp: now });
         }

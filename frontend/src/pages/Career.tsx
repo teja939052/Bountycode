@@ -1,5 +1,5 @@
 import SectionPage from "../components/SectionPage";
-import { UserCircle, FileText, Search, Mail, Briefcase, MapPin, Users, Calendar, BarChart3, Handshake } from "lucide-react";
+import { UserCircle, FileText, Search, Mail, Briefcase, MapPin, Users, Calendar } from "lucide-react";
 
 export default function Career() {
   return (
@@ -24,13 +24,6 @@ export default function Career() {
             { to: "/placement-drives", label: "Placement Drives", desc: "Upcoming campus drives", icon: MapPin },
             { to: "/alumni-experiences", label: "Alumni Experiences", desc: "Peer interview insights", icon: Users },
             { to: "/interview-booking", label: "Interview Booking", desc: "Schedule mock interviews", icon: Calendar },
-          ],
-        },
-        {
-          label: "Salary",
-          items: [
-            { to: "/salary-benchmark", label: "Salary Benchmark", desc: "Market rate data", icon: BarChart3 },
-            { to: "/salary-negotiation", label: "Salary Negotiation", desc: "AI negotiation coaching", icon: Handshake },
           ],
         },
       ]}
