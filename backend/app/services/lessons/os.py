@@ -183,7 +183,6 @@ OS_LESSONS = [
             },
         ],
     },
-,
     {
         "id": "os-threads-synchronization",
         "title": "Threads and Synchronization",
