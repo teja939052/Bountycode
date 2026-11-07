@@ -303,6 +303,9 @@ export default function StudyLibrary() {
   const [loading, setLoading] = useState(true);
   const [openArticle, setOpenArticle] = useState(null);
   const [articleDetail, setArticleDetail] = useState(null);
+  const [pathCompany, setPathCompany] = useState("");
+  const [companyPath, setCompanyPath] = useState(null);
+  const [pathLoading, setPathLoading] = useState(false);
   const [searchParams] = useSearchParams();
 
   const loadArticles = useCallback((category, q) => {
@@ -335,6 +338,17 @@ export default function StudyLibrary() {
     const q = e.target.value;
     setQuery(q);
     loadArticles(activeCategory, q);
+  };
+
+  const loadCompanyPath = company => {
+    setPathCompany(company);
+    setCompanyPath(null);
+    if (!company) return;
+    setPathLoading(true);
+    studyApi.getCompanyLearningPath(company)
+      .then(d => setCompanyPath(d.path || null))
+      .catch(() => setCompanyPath(null))
+      .finally(() => setPathLoading(false));
   };
 
   const openArticleDetail = id => {
@@ -379,6 +393,65 @@ export default function StudyLibrary() {
               </div>
             </div>
           </div>
+        </motion.section>
+
+        <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="arena-card p-5 md:p-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-cyber-blue">Personalized study sequence</span>
+              <h2 className="mt-1 text-lg font-display font-bold text-text-primary">Prepare by target company</h2>
+              <p className="mt-1 max-w-2xl text-xs leading-6 text-text-muted">Choose a company to get an ordered foundation path across aptitude, DBMS, SQL, operating systems and networking. Your diagnostic results should determine what to revise first.</p>
+            </div>
+            <select
+              value={pathCompany}
+              onChange={e => loadCompanyPath(e.target.value)}
+              className="w-full rounded-xl border border-white/15 bg-surface-card px-4 py-3 text-sm text-text-primary md:max-w-xs"
+            >
+              <option value="">Choose a company</option>
+              <option value="tcs">TCS / TCS NQT</option>
+              <option value="infosys">Infosys</option>
+              <option value="wipro">Wipro</option>
+              <option value="accenture">Accenture</option>
+              <option value="cognizant">Cognizant</option>
+              <option value="capgemini">Capgemini</option>
+              <option value="hcl">HCL</option>
+              <option value="tech_mahindra">Tech Mahindra</option>
+              <option value="lti_mindtree">LTIMindtree</option>
+              <option value="mphasis">Mphasis</option>
+              <option value="google">Google</option>
+              <option value="amazon">Amazon</option>
+              <option value="microsoft">Microsoft</option>
+              <option value="meta">Meta</option>
+            </select>
+          </div>
+          {pathLoading ? (
+            <div className="mt-4 text-xs font-mono text-text-light">Building your study sequence…</div>
+          ) : companyPath ? (
+            <div className="mt-5 space-y-4">
+              <div className="flex flex-wrap gap-2">
+                {companyPath.focus_areas.map(area => (
+                  <span key={area} className="rounded-full border border-cyber-blue/20 bg-cyber-blue/5 px-3 py-1 text-[11px] text-text-secondary">{area}</span>
+                ))}
+              </div>
+              <div className="grid gap-2 md:grid-cols-2">
+                {companyPath.study_modules.map(module => (
+                  <button
+                    key={module.article_id}
+                    onClick={() => openArticleDetail(module.article_id)}
+                    className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 text-left transition hover:border-cyber-blue/40 hover:bg-white/[0.04]"
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-cyber-blue/10 text-xs font-mono text-cyber-blue">{module.order}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-xs font-semibold text-text-primary">{module.title}</span>
+                      <span className="mt-1 block text-[10px] font-mono text-text-light">{module.category.replace("-", " ")} · {module.read_time_min} min</span>
+                    </span>
+                    <ChevronRight size={14} className="shrink-0 text-text-light" />
+                  </button>
+                ))}
+              </div>
+              <p className="text-[10px] leading-5 text-text-light">{companyPath.disclaimer}</p>
+            </div>
+          ) : null}
         </motion.section>
 
         <motion.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
