@@ -456,3 +456,33 @@ def test_new_debugging_system_design_and_behavioral_tracks_are_registered():
         assert lesson_ids <= actual
         for lesson_id in lesson_ids:
             assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) is not None
+
+
+def test_c_track_is_registered_and_mapped_to_programming_skill():
+    expected = {
+        "c-hello-world",
+        "c-variables-and-types",
+        "c-conditions-and-loops",
+        "c-arrays-functions-pointers",
+    }
+    actual = {
+        lesson_id
+        for lesson_id, lesson in _LESSONS.items()
+        if lesson.get("track") == "c"
+    }
+    assert expected <= actual
+    for lesson_id in expected:
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("programming", "c")
+
+
+def test_java_lessons_do_not_contain_cpp_output_syntax():
+    for lesson_id, lesson in _LESSONS.items():
+        if lesson.get("track") != "java":
+            continue
+        for step in lesson.get("steps", []):
+            source = " ".join(
+                str(step.get(field, ""))
+                for field in ("content", "code", "solution", "explanation")
+            )
+            assert "cout <<" not in source, f"{lesson_id}/{step.get('id')} contains C++ output syntax"
+            assert "endl" not in source, f"{lesson_id}/{step.get('id')} contains C++ endl"
