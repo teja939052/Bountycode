@@ -241,7 +241,7 @@ _PYTHON_CORE: Dict[str, Dict[str, Any]] = {
         "why": "String slicing is useful for extracting prefixes, suffixes, file extensions, identifiers and fixed-width fields. It is common in coding exercises involving palindromes, parsing and text transformations.",
         "pitfall": "The stop index is exclusive. Slicing beyond the end is safe and returns the available characters, but direct indexing beyond the end raises IndexError. Remember that slicing does not alter the original string.",
         "code": "code = 'BOUNTYCODE'\nprint(code[:6])\nprint(code[-4:])\nprint(code[::2])\nprint(code[::-1])",
-        "output": "BOUNTY\nCODE\nBUTC D\nEDOCYTNUOB",
+        "output": "BOUNTY\nCODE\nBUTCD\nEDOCYTNUOB",
         "exercise": "Read a word and print its first three characters, last two characters, and reversed form. Handle words shorter than three characters without crashing.",
         "expected": "For Python, the outputs are Pyt, on and nohtyP; short words return the available slice without an indexing error.",
         "quiz": [
