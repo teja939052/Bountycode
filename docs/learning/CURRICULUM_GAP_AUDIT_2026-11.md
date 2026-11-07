@@ -55,7 +55,7 @@ Source files and imports were inspected after the changes. Automated backend tes
 
 ## Second audit pass — programming and DSA
 
-A source-level inventory of the registered lesson modules found **130 lesson objects across 17 registered tracks/modules** on this branch. This is a count of lesson objects, not proof that every planned concept is covered or that all code examples execute.
+A source-level inventory of the registered lesson modules found **134 lesson objects across 18 registered tracks/modules** on this branch. This is a count of lesson objects, not proof that every planned concept is covered or that all code examples execute.
 
 ### Concrete issues found and fixed
 
@@ -85,7 +85,7 @@ A source-level inventory of the registered lesson modules found **130 lesson obj
 | Debugging | 2 |
 | System design | 2 |
 | Behavioral | 2 |
-| **Total** | **130** |
+| Computer architecture | 4 |\n| **Total** | **134** |
 
 ### Important limitations
 
@@ -144,3 +144,14 @@ Added three networking lessons:
 Added regression tests confirming all six lessons are registered and mapped to the existing operating-systems and computer-networks skill IDs.
 
 Remaining core-subject gaps include deeper CPU scheduling calculations, synchronization exercises, file systems and disk scheduling; IPv6, routing, switching, DHCP, NAT, proxies, firewalls, and more subnetting practice; and a dedicated computer-architecture lesson track.
+
+
+## Fifth audit pass — Computer architecture
+
+The blueprint includes computer architecture, but the interactive lesson catalog had no dedicated track. Added a four-lesson foundation:
+- CPU components, registers and the instruction cycle
+- Binary, hexadecimal and two's complement
+- Memory hierarchy, cache and locality
+- Instruction pipelining, throughput and hazards
+
+Registered the track, added a computer-architecture skill to the programming skill graph, mapped lesson completion to that skill, and added a regression test. Advanced architecture topics such as cache mapping, instruction formats, virtualisation, and detailed pipeline performance calculations remain future work.
