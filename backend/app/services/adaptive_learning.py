@@ -79,6 +79,42 @@ def _score_to_percent(correct: int, total: int) -> float:
         return 0.0
     return round(correct / total * 100, 1)
 
+# Only server-graded, question-level outcomes can contribute to demonstrated
+# mastery. Lesson navigation/completion, XP, streaks and client telemetry are
+# useful engagement signals, but are not proof that a learner knows a skill.
+MASTERY_EVIDENCE_TYPES = frozenset({
+    "lesson_assessment",
+    "quiz_answer",
+    "diagnostic",
+})
+
+
+def _is_mastery_evidence_activity(activity: Dict[str, Any]) -> bool:
+    """Whether a persisted activity is an eligible server-graded assessment."""
+    return (
+        isinstance(activity, dict)
+        and activity.get("type") in MASTERY_EVIDENCE_TYPES
+        and activity.get("source") != "client_self_reported"
+    )
+
+
+def _calculate_mastery_score(correct: int, total: int) -> float:
+    """Require repeated independent evidence before a high mastery score.
+
+    Accuracy alone is noisy on tiny samples. Confidence ramps linearly to full
+    weight after ten question-level outcomes, preventing one lucky answer from
+    making a learner appear competent or mastered.
+    """
+    if total <= 0:
+        return 0.0
+    safe_total = max(1, int(total))
+    safe_correct = min(safe_total, max(0, int(correct)))
+    accuracy = safe_correct / safe_total * 100
+    coverage = min(100.0, safe_total * 8.0)
+    evidence_score = (accuracy * 0.8) + (coverage * 0.2)
+    confidence = min(1.0, safe_total / 10.0)
+    return round(max(0.0, min(100.0, evidence_score * confidence)), 1)
+
 
 # ─── Skill Assessment ───
 
@@ -93,11 +129,8 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
     submissions = await submissions_collection.find({"user_id": user_id}).to_list(1000)
     answers = await question_answers_collection.find({"user_id": user_id}).to_list(500)
     learning = await learning_progress_collection.find({"user_id": user_id}).to_list(100)
-    skill_graph = await skill_graph_collection.find_one({"user_id": user_id})
-
-    # Build skill scores from all evidence sources. Lesson interactions are
-    # stored as events in learning_progress.activities; they count as evidence
-    # alongside coding submissions and aptitude answers.
+    # Build mastery only from independently graded outcomes. Engagement
+    # events remain available to the planner but cannot certify competence.
     skills = {}
     for domain_id, domain_info in SKILL_DOMAINS.items():
         domain_solved = [
@@ -120,6 +153,7 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
             for document in learning
             for activity in (document.get("activities") or [])
             if activity.get("domain_id") == domain_id
+            and _is_mastery_evidence_activity(activity)
         ]
 
         # A final quiz carries its question-level score, so count each
@@ -151,21 +185,10 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
         correct_count += sum(1 for item in domain_answers if item.get("is_correct", False))
         correct_count += activity_correct
 
-        graph_skill = (skill_graph or {}).get("skills", {}).get(domain_id, {})
-        existing_score = float(graph_skill.get("score", 0) or 0)
-
-        if total_attempts > 0:
-            accuracy = correct_count / total_attempts * 100
-            coverage = min(100.0, total_attempts * 8.0)
-            evidence_score = (accuracy * 0.8) + (coverage * 0.2)
-            # Let recent evidence move mastery both up and down. Do not preserve
-            # a stale high score forever with max(existing_score, new_score).
-            combined = (evidence_score * 0.75) + (existing_score * 0.25)
-        else:
-            accuracy = 0.0
-            combined = existing_score
-
-        combined = round(max(0.0, min(100.0, combined)), 1)
+        accuracy = (correct_count / total_attempts * 100) if total_attempts else 0.0
+        # The legacy skill-graph score is an activity/reward accumulator, not
+        # an assessment record. Never blend it into demonstrated mastery.
+        combined = _calculate_mastery_score(correct_count, total_attempts)
         mastery = _get_mastery_label(combined)
         next_milestone = next(
             (level for level in MASTERY_LEVELS if level["min_score"] > combined),
@@ -456,8 +479,8 @@ def _activity_score_delta(activity_type: str, success: bool, score_impact: Any) 
 async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Dict[str, Any]:
     """Record a learning activity and update skill scores."""
     domain_id = activity.get("domain_id")
-    if not domain_id:
-        return {"status": "error", "message": "domain_id required"}
+    if not isinstance(domain_id, str) or domain_id not in SKILL_DOMAINS:
+        return {"status": "error", "message": "valid domain_id required"}
 
     activity_type = activity.get("type", "practice")
     success = activity.get("success", True)
@@ -480,6 +503,7 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
         "domain_id": domain_id,
         "type": activity_type,
         "success": bool(success),
+        "source": str(activity.get("source") or "server"),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
     # Keep enough context to explain an adaptive recommendation later. Only
