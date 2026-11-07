@@ -1,0 +1,122 @@
+{
+  "slug": "dynamic_programming",
+  "id": "lesson_dynamic_programming_001",
+  "title": "Dynamic Programming Basics",
+  "domain": "Data Structures",
+  "pattern": "Dynamic Programming",
+  "difficulty": "medium",
+  "duration_min": 28,
+  "xp_reward": 120,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Recognize repeated subproblems",
+      "content": "Dynamic programming (DP) solves a problem by reusing results of smaller subproblems instead of recalculating them. It is useful when subproblems overlap and an optimal solution can be built from optimal smaller solutions.",
+      "example": "Naive recursive Fibonacci recalculates fib(2) many times."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a DP signal",
+      "prompt": "Which property suggests that dynamic programming may help?",
+      "options": [
+        "No repeated work",
+        "Overlapping subproblems",
+        "Only one possible input",
+        "The problem has no substructure"
+      ],
+      "correct_index": 1,
+      "explanation": "DP saves work when the same smaller subproblems are solved repeatedly."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Memoization versus tabulation",
+      "content": "Memoization is top-down: solve recursively and store each result. Tabulation is bottom-up: fill a table from base cases toward the answer.",
+      "example": "For Fibonacci, store fib(0), fib(1), then compute each next value once."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find Fibonacci",
+      "prompt": "Using fib(0)=0 and fib(1)=1, what is fib(5)?",
+      "options": [
+        "3",
+        "5",
+        "8",
+        "13"
+      ],
+      "correct_index": 1,
+      "explanation": "The sequence is 0, 1, 1, 2, 3, 5. So fib(5)=5."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Define the state and transition",
+      "content": "A DP solution needs a state (what a subproblem represents), a transition (how states depend on smaller states), base cases and an evaluation order.",
+      "tip": "Before writing code, write the meaning of dp[i] in one sentence."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What is memoization?",
+        "options": [
+          "Sorting a table",
+          "Caching results of solved subproblems",
+          "Removing recursion",
+          "Using a queue"
+        ],
+        "correct_index": 1,
+        "explanation": "Memoization stores previously computed results for reuse."
+      },
+      {
+        "prompt": "What is tabulation?",
+        "options": [
+          "Top-down recursion only",
+          "Bottom-up table filling",
+          "Random guessing",
+          "Hash collision handling"
+        ],
+        "correct_index": 1,
+        "explanation": "Tabulation computes smaller states first and fills the table toward the final state."
+      },
+      {
+        "prompt": "Which two properties commonly support DP?",
+        "options": [
+          "Overlapping subproblems and optimal substructure",
+          "Only sorted input",
+          "Unique values only",
+          "No base cases"
+        ],
+        "correct_index": 0,
+        "explanation": "DP benefits from repeated subproblems and solutions built from smaller optimal solutions."
+      },
+      {
+        "prompt": "With fib(0)=0 and fib(1)=1, what is fib(6)?",
+        "options": [
+          "5",
+          "8",
+          "13",
+          "21"
+        ],
+        "correct_index": 1,
+        "explanation": "The sequence is 0,1,1,2,3,5,8, so fib(6)=8."
+      },
+      {
+        "prompt": "What should a DP state clearly define?",
+        "options": [
+          "The color of the array",
+          "What each stored subproblem value means",
+          "Only the variable name",
+          "The programming language"
+        ],
+        "correct_index": 1,
+        "explanation": "A precise state definition makes the recurrence and base cases understandable."
+      }
+    ]
+  }
+}

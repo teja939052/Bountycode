@@ -1,0 +1,122 @@
+{
+  "slug": "data_structures_intro",
+  "id": "lesson_data_structures_intro_001",
+  "title": "Choosing the Right Data Structure",
+  "domain": "Data Structures",
+  "pattern": "Data Structures",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Match the structure to the operation",
+      "content": "Data structures organize information so common operations are efficient. Consider how data is accessed, inserted, removed and searched before choosing one.",
+      "example": "An array is convenient for indexed access; a linked list supports pointer-based insertion when the position is known."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose for undo history",
+      "prompt": "Which structure naturally supports undoing the most recent action first?",
+      "options": [
+        "Queue",
+        "Stack",
+        "Sorted array",
+        "Graph"
+      ],
+      "correct_index": 1,
+      "explanation": "A stack is LIFO, so the most recent action is removed first."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use hashing for lookup",
+      "content": "A hash map stores key-value pairs and is useful when fast lookup by a key is important. A set is useful when membership and uniqueness matter.",
+      "example": "A set can detect whether an ID has already appeared."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose for arrival order",
+      "prompt": "A customer-service system processes requests in the order received. Which structure is appropriate?",
+      "options": [
+        "Stack",
+        "Queue",
+        "Binary search tree only",
+        "Recursion"
+      ],
+      "correct_index": 1,
+      "explanation": "A queue is FIFO and processes the earliest request first."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Think about trade-offs",
+      "content": "Arrays, linked lists, stacks, queues, trees, heaps, hash maps and graphs solve different problems. The right structure depends on required operations, data size and ordering constraints.",
+      "tip": "Do not choose a structure because it is familiar; choose it because its operations fit the task."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which structure is best known for direct indexed access?",
+        "options": [
+          "Array",
+          "Stack",
+          "Queue",
+          "Linked list"
+        ],
+        "correct_index": 0,
+        "explanation": "Arrays support direct access by index in O(1) time."
+      },
+      {
+        "prompt": "Which structure models first-in, first-out processing?",
+        "options": [
+          "Stack",
+          "Queue",
+          "Tree",
+          "Set"
+        ],
+        "correct_index": 1,
+        "explanation": "A queue removes the oldest inserted element first."
+      },
+      {
+        "prompt": "Which structure is useful for key-to-value lookup?",
+        "options": [
+          "Hash map",
+          "Stack only",
+          "Queue only",
+          "Matrix"
+        ],
+        "correct_index": 0,
+        "explanation": "A hash map associates keys with values and offers average constant-time lookup."
+      },
+      {
+        "prompt": "Which structure is hierarchical?",
+        "options": [
+          "Array",
+          "Queue",
+          "Tree",
+          "Stack"
+        ],
+        "correct_index": 2,
+        "explanation": "Trees represent parent-child hierarchical relationships."
+      },
+      {
+        "prompt": "What should guide data-structure selection?",
+        "options": [
+          "Only the language name",
+          "The required operations and constraints",
+          "The variable name",
+          "The screen size"
+        ],
+        "correct_index": 1,
+        "explanation": "Choose a structure based on performance needs, operations and input constraints."
+      }
+    ]
+  }
+}

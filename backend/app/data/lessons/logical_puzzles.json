@@ -1,0 +1,121 @@
+{
+  "slug": "logical_puzzles",
+  "id": "lesson_logical_puzzles_001",
+  "title": "Logical Puzzles and Arrangements",
+  "domain": "Logical Reasoning",
+  "pattern": "Logical Puzzles",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Turn clues into constraints",
+      "content": "A seating or ordering puzzle gives relationships that must all hold. Translate words such as before, after, immediately next to, left of and between into constraints before choosing an arrangement.",
+      "example": "If A is before B and B is before C, the order must be A–B–C."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Apply an ordering clue",
+      "prompt": "A is before B. B is before C. Which order is possible?",
+      "options": [
+        "C–B–A",
+        "B–A–C",
+        "A–B–C",
+        "C–A–B"
+      ],
+      "correct_index": 2,
+      "explanation": "Both constraints are satisfied only by A before B before C."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use a table or slots",
+      "content": "For position puzzles, draw numbered slots. For assignment puzzles, make a grid with people on one axis and attributes on the other. Mark confirmed facts and eliminate impossible combinations.",
+      "tip": "Do not keep the whole puzzle in your head. Write every fixed constraint."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Place the middle person",
+      "prompt": "Four people P, Q, R and S sit in a row. P is left of Q, R is right of Q, and S is left of P. Who is second from the left?",
+      "options": [
+        "S",
+        "P",
+        "Q",
+        "R"
+      ],
+      "correct_index": 1,
+      "explanation": "The only order satisfying all clues is S–P–Q–R. P is second from the left."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Check every clue",
+      "content": "A candidate arrangement is valid only if it satisfies every statement. If two arrangements remain possible, do not claim a conclusion that is true in only one of them."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "A is taller than B. B is taller than C. Who is shortest?",
+        "options": [
+          "A",
+          "B",
+          "C",
+          "Cannot be determined"
+        ],
+        "correct_index": 2,
+        "explanation": "A > B > C, so C is shortest."
+      },
+      {
+        "prompt": "Four tasks W, X, Y, Z are ordered. W is before X, X before Y and Y before Z. Which is first?",
+        "options": [
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ],
+        "correct_index": 0,
+        "explanation": "The constraints require W–X–Y–Z."
+      },
+      {
+        "prompt": "In a row of five people, the middle position is:",
+        "options": [
+          "1st",
+          "2nd",
+          "3rd",
+          "4th"
+        ],
+        "correct_index": 2,
+        "explanation": "The third position is the middle of five positions."
+      },
+      {
+        "prompt": "A is immediately left of B. Which pair order is fixed?",
+        "options": [
+          "B before A",
+          "A before B",
+          "A and B must be at the ends",
+          "No relation"
+        ],
+        "correct_index": 1,
+        "explanation": "Immediately left means A is directly before B in the row."
+      },
+      {
+        "prompt": "If two arrangements satisfy all given clues, what can you conclude about an extra statement true in only one arrangement?",
+        "options": [
+          "It must be true",
+          "It must be false",
+          "It is not guaranteed",
+          "Both arrangements are invalid"
+        ],
+        "correct_index": 2,
+        "explanation": "A conclusion must hold in every valid arrangement; one counterexample is enough to show it is not guaranteed."
+      }
+    ]
+  }
+}

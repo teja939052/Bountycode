@@ -1,0 +1,122 @@
+{
+  "slug": "trees_basics",
+  "id": "lesson_trees_basics_001",
+  "title": "Trees and Binary Search Trees",
+  "domain": "Data Structures",
+  "pattern": "Trees",
+  "difficulty": "medium",
+  "duration_min": 26,
+  "xp_reward": 115,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Tree vocabulary",
+      "content": "A tree is a hierarchical data structure. The top node is the root. A node may have children; a node with no children is a leaf. The path length counts edges between nodes.",
+      "example": "In a family tree, the top ancestor is the root and people with no listed children are leaves."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Count children",
+      "prompt": "In a binary tree, what is the maximum number of children a node can have?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "Unlimited"
+      ],
+      "correct_index": 1,
+      "explanation": "A binary tree node has at most two children: left and right."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Binary search tree order",
+      "content": "In a binary search tree, keys in the left subtree are smaller than the node's key, and keys in the right subtree are larger (assuming unique keys). This supports ordered searching.",
+      "example": "For root 8, value 3 belongs left and value 12 belongs right.",
+      "tip": "The ordering rule applies to the entire left and right subtrees, not just direct children."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Recognize inorder traversal",
+      "prompt": "What is the usual output of inorder traversal of a binary search tree with unique keys?",
+      "options": [
+        "Descending order",
+        "Ascending order",
+        "Level order",
+        "Random order"
+      ],
+      "correct_index": 1,
+      "explanation": "Inorder visits left subtree, node, then right subtree, producing ascending key order in a BST."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Traversal methods",
+      "content": "Preorder visits node-left-right. Inorder visits left-node-right. Postorder visits left-right-node. Level order visits nodes breadth-first, usually using a queue."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "A node with no children is called a:",
+        "options": [
+          "Root",
+          "Parent",
+          "Leaf",
+          "Sibling"
+        ],
+        "correct_index": 2,
+        "explanation": "A leaf node has no children."
+      },
+      {
+        "prompt": "At which positions can a binary tree node have children?",
+        "options": [
+          "Only left",
+          "Only right",
+          "Left and right",
+          "Four directions"
+        ],
+        "correct_index": 2,
+        "explanation": "A binary tree allows at most a left child and a right child."
+      },
+      {
+        "prompt": "Inorder traversal visits nodes in which order?",
+        "options": [
+          "Node-left-right",
+          "Left-node-right",
+          "Left-right-node",
+          "Level by level"
+        ],
+        "correct_index": 1,
+        "explanation": "Inorder is left subtree, node, right subtree."
+      },
+      {
+        "prompt": "Which traversal is naturally implemented using a queue?",
+        "options": [
+          "Preorder",
+          "Inorder",
+          "Postorder",
+          "Level order"
+        ],
+        "correct_index": 3,
+        "explanation": "Breadth-first level-order traversal uses a queue."
+      },
+      {
+        "prompt": "In a BST, where does a value smaller than the current node belong?",
+        "options": [
+          "Right subtree",
+          "Left subtree",
+          "Root only",
+          "It is discarded"
+        ],
+        "correct_index": 1,
+        "explanation": "Smaller keys belong in the left subtree."
+      }
+    ]
+  }
+}

@@ -59,6 +59,26 @@ from app.models.learning_event import (
 logger = logging.getLogger(__name__)
 
 
+async def _get_user_profile(user_id: str) -> Dict[str, Any]:
+    """Resolve the authenticated user profile using the same id as auth.
+
+    Authenticated user ids are Mongo ObjectId strings. The legacy user_id
+    lookup remains as a migration fallback for older imported user documents.
+    """
+    from bson import ObjectId
+    from app.database import users_collection
+
+    user = None
+    try:
+        if ObjectId.is_valid(user_id):
+            user = await users_collection().find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        user = None
+    if user is None:
+        user = await users_collection().find_one({"user_id": user_id})
+    return user or {}
+
+
 def _now() -> datetime:
     return datetime.now(timezone.utc)
 
@@ -67,6 +87,15 @@ def _now() -> datetime:
 
 def _today_key() -> str:
     return _now().strftime("%Y-%m-%d")
+
+
+async def invalidate_daily_plan(user_id: str) -> None:
+    """Invalidate the canonical Study Engine plan after new learning evidence."""
+    try:
+        from app.services.cache import cache
+        await cache.delete("study", f"today:{user_id}:{_today_key()}")
+    except Exception as exc:
+        logger.warning("Study plan cache invalidation failed for %s: %s", user_id, exc)
 
 
 # â”€â”€â”€ 1. NEXT â€” the next curriculum mission (world/level) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -198,7 +227,7 @@ async def _get_due_reviews(user_id: str, limit: int = 5) -> List[Dict[str, Any]]
     Tolerates the SRS collection being empty/absent (returns ``[]``).
     """
     from app.database import srs_cards_collection
-    from app.services.spaced_repetition import serialize_state
+    from app.services.spaced_repetition import deserialize_state, serialize_state
 
     col = srs_cards_collection()
     cursor = col.find({"user_id": user_id})
@@ -206,7 +235,7 @@ async def _get_due_reviews(user_id: str, limit: int = 5) -> List[Dict[str, Any]]
     try:
         async for doc in cursor:
             try:
-                raw_cards.append(SRSState(**doc))
+                raw_cards.append(deserialize_state(doc, user_id=user_id))
             except Exception:
                 continue
     except Exception as exc:
@@ -249,8 +278,7 @@ async def _get_practice_tasks(
     # ── Read user goal for company-aware filtering ──
     company_relevant_topics: List[str] = []
     try:
-        from app.database import users_collection
-        user_doc = await users_collection().find_one({"user_id": user_id}) or {}
+        user_doc = await _get_user_profile(user_id)
         company_track = user_doc.get("company_track", "")
         if company_track:
             from app.data.learning_paths import COMPANY_TRACKS
@@ -385,20 +413,20 @@ async def _get_role_activity(user_id: str) -> Optional[Dict[str, Any]]:
 
 
 async def _get_user_role(user_id: str) -> Optional[str]:
-    """Get the student's selected role from their profile."""
+    """Get the student's selected role from their authenticated profile."""
     try:
-        from app.database import users_collection
-        user = await users_collection.find_one({"user_id": user_id})
-        if user:
-            return user.get("selected_role")
+        user = await _get_user_profile(user_id)
+        return user.get("selected_role") or user.get("target_role") or None
     except Exception:
-        pass
-    return None
+        return None
 
 
 # â”€â”€â”€ 6. COMPANY MISSION â€” company-aligned daily objective â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
+async def _get_company_mission(
+    user_id: str,
+    assessment: Optional[Dict[str, Any]] = None,
+) -> Optional[Dict[str, Any]]:
     """Get the next company-aligned mission for the student.
 
     When a company track is enrolled, surfaces:
@@ -407,8 +435,7 @@ async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
     - Company HR question practice
     """
     try:
-        from app.database import users_collection
-        user = await users_collection.find_one({"user_id": user_id})
+        user = await _get_user_profile(user_id)
         if not user:
             return None
 
@@ -431,24 +458,113 @@ async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
             return None
 
         sections = progress.get("sections", {})
+        section_definitions = {
+            section.get("id"): section for section in track.get("sections", [])
+        }
         for sec_id, sec_data in sections.items():
             if sec_data.get("completed"):
                 continue
+            section_definition = section_definitions.get(sec_id, {})
+            module_definitions = {
+                module.get("id"): module
+                for module in section_definition.get("modules", [])
+            }
             modules = sec_data.get("modules", {})
             for mod_id, mod_data in modules.items():
                 if mod_data.get("completed"):
                     continue
+                module_definition = module_definitions.get(mod_id, {})
+                module_title = module_definition.get("title") or mod_id
+                topics = module_definition.get("topics") or []
+                topic_mastery = mod_data.get("topic_mastery") or {}
+
+                def normalize_topic(value: Any) -> str:
+                    return str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+
+                # Topic-level progress is the adaptive unit. Recommending the
+                # same module title after a learner has mastered its first
+                # topic creates a loop; select the earliest required topic
+                # without a verified >=70% assessment instead.
+                remaining_topics = [
+                    topic for topic in topics
+                    if not (
+                        (topic_mastery.get(normalize_topic(topic)) or {}).get("mastered") is True
+                        and float((topic_mastery.get(normalize_topic(topic)) or {}).get("score", 0) or 0) >= 70
+                    )
+                ]
+                if topics and not remaining_topics:
+                    # Repair older documents that contain topic mastery but
+                    # missed the aggregate module-completion flag.
+                    average_score = sum(
+                        float((topic_mastery.get(normalize_topic(topic)) or {}).get("score", 0) or 0)
+                        for topic in topics
+                    ) / len(topics)
+                    try:
+                        from app.services.learning_paths import complete_track_module
+                        await complete_track_module(
+                            user_id=user_id,
+                            track_id=company_track,
+                            module_id=mod_id,
+                            score=average_score,
+                            role=user.get("role") or user.get("target_role") or "sde",
+                        )
+                    except Exception:
+                        logger.exception("Could not reconcile company module %s mastery", mod_id)
+                    continue
+
+                # Use the learner's evidence to select the weakest unfinished
+                # topic. Untouched topics remain in syllabus order because their
+                # evidence scores tie at zero.
+                from app.services.adaptive_learning import (
+                    COMPANY_TOPIC_DOMAINS,
+                    COMPANY_TOPIC_LESSONS,
+                )
+                skill_scores = (assessment or {}).get("skills") or {}
+
+                def topic_priority(item):
+                    index, topic = item
+                    domain_id = COMPANY_TOPIC_DOMAINS.get(normalize_topic(topic), normalize_topic(topic))
+                    score = float((skill_scores.get(domain_id) or {}).get("score", 0) or 0)
+                    return (score, index)
+
+                _, next_topic = min(
+                    enumerate(remaining_topics),
+                    key=topic_priority,
+                )
+                topic_id = normalize_topic(next_topic)
+                topic_label = str(next_topic).replace("_", " ")
+                domain_id = COMPANY_TOPIC_DOMAINS.get(topic_id, topic_id)
+                lesson_slug = COMPANY_TOPIC_LESSONS.get(topic_id)
+                module_description = module_definition.get("description") or (
+                    f"Learn and practise {topic_label} inside {module_title}."
+                )
+                action_url = (
+                    f"/learn/lesson/{lesson_slug}?track_id={company_track}&module_id={mod_id}&topic_id={topic_id}"
+                    if lesson_slug else f"/company-tracks?track={company_track}"
+                )
                 return {
                     "type": "company_mission",
-                    "title": f"{track['name']}: {sec_data.get('title', 'Practice')}",
-                    "description": mod_data.get("module_id", ""),
+                    "title": f"{module_title}: {topic_label}",
+                    "description": module_description,
+                    "section_title": sec_data.get("title", "Practice"),
+                    "topics": topics,
+                    "topic_id": topic_id,
+                    "topic_name": topic_label,
+                    "domain_id": domain_id,
+                    "lesson_slug": lesson_slug,
+                    "action_url": action_url,
+                    "skill_score": float((skill_scores.get(domain_id) or {}).get("score", 0) or 0),
+                    "focus_reason": "Prioritized using your lowest evidenced company-relevant skill.",
+                    "mastered_topic_count": len(topics) - len(remaining_topics),
+                    "required_topic_count": len(topics),
+                    "question_count": module_definition.get("questions", 0),
                     "kind": "company_track",
                     "company": track.get("company_id", ""),
                     "track_id": company_track,
                     "section_id": sec_id,
                     "module_id": mod_id,
-                    "estimated_minutes": 30,
-                    "xp_reward": 50,
+                    "estimated_minutes": module_definition.get("duration_minutes", 30),
+                    "xp_reward": module_definition.get("diamonds", 50),
                     "action": "company_track",
                 }
 
@@ -504,7 +620,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     role_activity = await _get_role_activity(user_id)
 
     # Company-aligned mission (if company track enrolled)
-    company_mission = await _get_company_mission(user_id)
+    company_mission = await _get_company_mission(user_id, assessment)
 
     # Gamification context for the header tile.
     try:
@@ -663,7 +779,11 @@ async def record_activity(
 
     # â”€â”€ SRS card update â”€â”€
     try:
-        from app.services.spaced_repetition import SpacedRepetitionEngine, SRSState
+        from app.services.spaced_repetition import (
+            SpacedRepetitionEngine,
+            ReviewGrade,
+            deserialize_state,
+        )
         from app.database import srs_cards_collection
 
         if skill_id or activity.get("competency_id"):
@@ -673,15 +793,15 @@ async def record_activity(
             engine = SpacedRepetitionEngine()
             grade = ReviewGrade.GOOD if passed else ReviewGrade.AGAIN
             if existing:
-                existing.pop("_id", None)
-                state = SRSState(**existing)
-                state = engine.review(state, grade)
+                state = deserialize_state(existing, user_id=user_id)
             else:
                 state = engine.create_new_card(concept_id=prob_id, user_id=user_id)
-                state = engine.review(state, grade)
+            state = engine.review(state, grade)
+            state_doc = asdict(state)
+            state_doc["problem_id"] = prob_id
             await col.update_one(
                 {"user_id": user_id, "problem_id": prob_id},
-                {"$set": asdict(state)},
+                {"$set": state_doc},
                 upsert=True,
             )
     except Exception as exc:
@@ -768,6 +888,7 @@ async def record_activity(
         "diagnosis_codes": diagnosis_codes,
         "repair_id": repair_id,
     })
+    await invalidate_daily_plan(user_id)
     return result
 
 

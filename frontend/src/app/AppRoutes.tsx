@@ -75,6 +75,8 @@ import {
   ReadinessHeatmap,
   EvidenceDashboard,
   Target,
+  PlacementAcademy,
+  QuizPractice,
   Skills,
   Profile,
   Mission,
@@ -140,6 +142,15 @@ export function AnimatedRoutes() {
         <Route path="/dashboard" element={<Navigate to="/journey" replace />} />
         {/* V3 unified: Journey / Practice / Target / Skills / Profile */}
         <Route path="/target" element={<Target />} />
+        <Route path="/academy" element={<PlacementAcademy />} />
+        <Route
+          path="/quiz"
+          element={
+            <FeatureErrorBoundary featureName="Adaptive Practice">
+              <QuizPractice />
+            </FeatureErrorBoundary>
+          }
+        />
         <Route path="/skills" element={<Skills />} />
         <Route path="/profile" element={<Profile />} />
         {/* V4 internal wiring: universal Mission Shell (roads, not nav) */}
@@ -195,7 +206,7 @@ export function AnimatedRoutes() {
         <Route path="/hub" element={<Navigate to="/journey" replace />} />
         <Route path="/compete" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/career" element={<Navigate to="/career-profile" replace />} />
-        <Route path="/prepare" element={<Navigate to="/journey" replace />} />
+        <Route path="/prepare" element={<Navigate to="/academy" replace />} />
         <Route path="/company-mocks" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/company-mocks/:testId" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/practice" element={<Practice />} />

@@ -1,136 +1,136 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Building2, ArrowRight, Target as TargetIcon } from "lucide-react";
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Building2, ArrowRight, CheckCircle2, Clock, Target } from "lucide-react";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 
-// V3 §5 — Company pages are TARGET PACKS, not mini-LMS.
-// Selecting a pack sets the Journey target (role+company) via the
-// existing onboarding/company-track APIs, then drops back to /journey.
-const PACKS: Record<string, Array<{ id: string; name: string; desc: string }>> = {
-  tcs: [
-    { id: "tcs-nqt", name: "TCS NQT", desc: "General preparation" },
-    { id: "tcs-digital", name: "TCS Digital", desc: "Advanced preparation" },
-    { id: "tcs-prime", name: "TCS Prime", desc: "Elite preparation" },
-  ],
-  infosys: [
-    { id: "infosys-se", name: "Infosys SE", desc: "General preparation" },
-    { id: "infosys-dse", name: "Infosys DSE", desc: "Advanced preparation" },
-  ],
-  wipro: [{ id: "wipro-nlth", name: "Wipro NLTH", desc: "General preparation" }],
-  cognizant: [{ id: "cognizant-genc", name: "Cognizant GenC", desc: "General preparation" }],
-  capgemini: [{ id: "capgemini", name: "Capgemini", desc: "General preparation" }],
-  amazon: [{ id: "amazon-sde", name: "Amazon SDE", desc: "DSA-heavy preparation" }],
-  google: [{ id: "google-swe", name: "Google SWE", desc: "DSA-heavy preparation" }],
+type CompanyTrack = {
+  id: string;
+  company_id: string;
+  name: string;
+  full_name: string;
+  icon: string;
+  description: string;
+  package_range: string;
+  duration_minutes: number;
+  difficulty: string;
+  total_sections: number;
+  total_modules: number;
+  enrolled?: boolean;
+  progress_pct?: number;
 };
-
-const COMPANIES = Object.keys(PACKS);
 
 export default function Target() {
   const navigate = useNavigate();
-  const [company, setCompany] = useState("tcs");
-  const [readiness, setReadiness] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState<string | null>(null);
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    let alive = true;
-    (async () => {
-      setLoading(true);
-      try {
-        const data = await (api as any).adaptive?.getReadinessScore?.(company);
-        if (alive) setReadiness(data);
-      } catch {
-        if (alive) setReadiness(null);
-      } finally {
-        if (alive) setLoading(false);
-      }
-    })();
-    return () => { alive = false; };
-  }, [company]);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["company-tracks", "list"],
+    queryFn: () => api.companyTracks.listCompanies(),
+  });
 
-  const startPack = async (packId: string) => {
-    setSaving(packId);
-    try {
-      // Persist target via existing onboarding API; fall back to localStorage.
-      await (api as any).onboarding?.completeStep?.({
-        target_company: company, target_pack: packId,
-      }).catch(() => {});
-      localStorage.setItem("bountycode.target", JSON.stringify({ company, pack: packId }));
-    } finally {
-      setSaving(null);
+  const tracks = useMemo(() => data?.tracks ?? [], [data]);
+
+  const enrollMutation = useMutation({
+    mutationFn: (trackId: string) => api.companyTracks.enroll(trackId),
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["company-tracks"] }),
+        queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
+        queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+        queryClient.invalidateQueries({ queryKey: ["adaptive"] }),
+      ]);
       navigate("/journey");
+    },
+  });
+
+  const startOrContinue = (track: CompanyTrack) => {
+    if (track.enrolled) {
+      navigate(`/company-tracks?track=${encodeURIComponent(track.id)}`);
+      return;
     }
+    enrollMutation.mutate(track.id);
   };
 
-  const score = readiness?.overall_readiness ?? readiness?.overall ?? null;
-  const skills: Array<{ skill_id: string; score: number }> =
-    readiness?.target_readiness?.skills ?? [];
-
   return (
-    <div className="min-h-screen px-4 py-6 md:py-8 pb-24 md:pb-8">
-      <div className="mx-auto max-w-3xl space-y-6">
-        <div className="rounded-2xl border border-border bg-white p-5 shadow-card">
-          <p className="text-[10px] font-mono uppercase tracking-widest text-primary mb-1 flex items-center gap-2">
-            <Building2 size={12} /> Target
+    <div className="min-h-screen px-4 py-6 pb-24 md:py-8">
+      <div className="mx-auto max-w-5xl space-y-6">
+        <header className="rounded-2xl border border-border bg-white p-5 shadow-card">
+          <p className="mb-1 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-primary">
+            <Building2 size={13} /> Placement target
           </p>
           <h1 className="font-display text-2xl font-black text-text-primary">
-            {company.toUpperCase()}
+            Choose your target company assessment
           </h1>
-          <p className="text-xs text-text-muted font-mono mt-1">Choose your target pack — one Journey, reordered for this target.</p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {COMPANIES.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCompany(c)}
-                className={`rounded-full border px-3 py-1.5 text-xs font-mono ${c === company ? "border-primary/50 bg-primary/10 text-primary" : "border-black/10 text-text-secondary"}`}
-              >
-                {c.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </div>
+          <p className="mt-2 max-w-2xl text-sm text-text-muted">
+            Pick one company and assessment track. Bountycode will use it to prioritize your daily learning,
+            verified practice, mock assessments, and readiness evidence in one Journey.
+          </p>
+        </header>
 
-        {(PACKS[company] ?? []).map((p) => (
-          <div key={p.id} className="rounded-2xl border border-border bg-white p-5 shadow-card flex items-center justify-between gap-4">
-            <div>
-              <p className="font-display font-bold text-text-primary">{p.name}</p>
-              <p className="text-xs text-text-muted font-mono">{p.desc}</p>
-            </div>
-            <button
-              onClick={() => startPack(p.id)}
-              disabled={saving === p.id}
-              className="btn-primary text-sm inline-flex items-center gap-2"
-            >
-              {saving === p.id ? <Spinner size={14} /> : <>Start <ArrowRight size={14} /></>}
-            </button>
+        {enrollMutation.isError && (
+          <div role="alert" className="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+            We could not save this target. Please retry.
           </div>
-        ))}
+        )}
 
-        <div className="rounded-2xl border border-border bg-white p-5 shadow-card">
-          <h2 className="section-header text-lg mb-2 flex items-center gap-2">
-            <TargetIcon size={18} className="text-primary" />
-            {company.toUpperCase()} readiness {score != null ? `— ${Math.round(score)}%` : ""}
-          </h2>
-          {loading ? <Spinner /> : skills.length === 0 ? (
-            <p className="text-xs text-text-muted font-mono">No evidence yet — your first mission will generate it. <Link to="/journey" className="text-primary">Enter Journey →</Link></p>
-          ) : (
-            <div className="space-y-2">
-              {skills.slice(0, 6).map((s) => (
-                <div key={s.skill_id} className="flex items-center gap-3">
-                  <span className="w-40 truncate font-mono text-xs text-text-secondary capitalize">{s.skill_id.split(".").pop()}</span>
-                  <div className="h-2 flex-1 rounded-full bg-black/5 overflow-hidden">
-                    <div className="h-full rounded-full bg-primary" style={{ width: `${Math.round(s.score)}%` }} />
+        {isLoading ? (
+          <div className="flex justify-center py-16"><Spinner /></div>
+        ) : isError ? (
+          <div role="alert" className="rounded-xl border border-border bg-white p-5 text-sm text-text-secondary">
+            Company tracks could not be loaded. Refresh and try again.
+          </div>
+        ) : tracks.length === 0 ? (
+          <div className="rounded-xl border border-border bg-white p-5 text-sm text-text-secondary">
+            No company tracks are available yet.
+          </div>
+        ) : (
+          <section aria-label="Available placement tracks" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {tracks.map((track: CompanyTrack) => (
+              <article key={track.id} className="flex flex-col rounded-2xl border border-border bg-white p-5 shadow-card">
+                <div className="flex items-start gap-3">
+                  <span aria-hidden className="text-3xl">{track.icon || "🏢"}</span>
+                  <div className="min-w-0 flex-1">
+                    <h2 className="font-display font-bold text-text-primary">{track.name}</h2>
+                    <p className="mt-1 text-xs text-text-muted">{track.full_name}</p>
                   </div>
-                  <span className="font-mono text-xs w-10 text-right">{Math.round(s.score)}%</span>
+                  {track.enrolled && <CheckCircle2 aria-label="Enrolled" className="shrink-0 text-emerald-600" size={18} />}
                 </div>
-              ))}
-              <Link to="/journey" className="btn-secondary text-xs inline-flex items-center gap-2 mt-3">
-                Enter Journey <ArrowRight size={12} />
-              </Link>
-            </div>
-          )}
-        </div>
+                <p className="mt-3 flex-1 text-sm text-text-secondary">{track.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-text-muted">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-1">
+                    <Clock size={12} /> {track.duration_minutes} min
+                  </span>
+                  <span className="rounded-full bg-gray-100 px-2 py-1">{track.total_sections} sections</span>
+                  <span className="rounded-full bg-gray-100 px-2 py-1">{track.total_modules} modules</span>
+                  {track.package_range && <span className="rounded-full bg-gray-100 px-2 py-1">{track.package_range}</span>}
+                </div>
+                {track.enrolled && (
+                  <div className="mt-3">
+                    <div className="h-1.5 overflow-hidden rounded-full bg-gray-100">
+                      <div className="h-full rounded-full bg-primary" style={{ width: `${Math.min(100, Math.max(0, track.progress_pct ?? 0))}%` }} />
+                    </div>
+                    <p className="mt-1 text-[11px] text-text-muted">{track.progress_pct ?? 0}% completed</p>
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={() => startOrContinue(track)}
+                  disabled={enrollMutation.isPending}
+                  className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {enrollMutation.isPending && enrollMutation.variables === track.id
+                    ? <Spinner size={14} />
+                    : <><Target size={15} /> {track.enrolled ? "Continue track" : "Choose this target"} <ArrowRight size={14} /></>}
+                </button>
+              </article>
+            ))}
+          </section>
+        )}
+        <p className="text-xs text-text-muted">
+          You can change your target later. Your completed lessons and practice history remain in your account.
+        </p>
       </div>
     </div>
   );

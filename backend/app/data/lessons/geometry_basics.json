@@ -1,0 +1,122 @@
+{
+  "slug": "geometry_basics",
+  "id": "lesson_geometry_basics_001",
+  "title": "Geometry and Mensuration Basics",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Geometry",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Angles and triangles",
+      "content": "A straight angle is 180° and a full turn is 360°. The interior angles of a triangle sum to 180°. A right angle is 90°.",
+      "example": "If a triangle has angles 50° and 60°, the third is 180−50−60 = 70°."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Find a missing angle",
+      "prompt": "A triangle has angles 45° and 65°. What is the third angle?",
+      "options": [
+        "60°",
+        "70°",
+        "80°",
+        "90°"
+      ],
+      "correct_index": 1,
+      "explanation": "180−45−65 = 70°."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Area and perimeter",
+      "content": "Perimeter measures the distance around a shape. Area measures the surface inside. For a rectangle, perimeter = 2(l+w) and area = l×w.",
+      "example": "A rectangle of length 8 and width 3 has perimeter 22 and area 24 square units."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Use Pythagoras",
+      "prompt": "A right triangle has perpendicular sides 3 and 4. What is its hypotenuse?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "correct_index": 1,
+      "explanation": "c²=3²+4²=25, so c=5."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Choose the correct formula",
+      "content": "For a circle, circumference = 2πr and area = πr². Check whether a question asks for length around the shape or the area inside it.",
+      "tip": "Keep units: perimeter is in length units; area is in square units."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "What is the sum of interior angles of a triangle?",
+        "options": [
+          "90°",
+          "180°",
+          "270°",
+          "360°"
+        ],
+        "correct_index": 1,
+        "explanation": "The interior angles of every triangle sum to 180°."
+      },
+      {
+        "prompt": "Find the area of a rectangle with length 7 and width 4.",
+        "options": [
+          "11",
+          "22",
+          "28",
+          "56"
+        ],
+        "correct_index": 2,
+        "explanation": "Area = 7×4 = 28 square units."
+      },
+      {
+        "prompt": "Find the perimeter of a square of side 5.",
+        "options": [
+          "10",
+          "15",
+          "20",
+          "25"
+        ],
+        "correct_index": 2,
+        "explanation": "Perimeter = 4×5 = 20."
+      },
+      {
+        "prompt": "A circle has radius 3. Its area is:",
+        "options": [
+          "3π",
+          "6π",
+          "9π",
+          "12π"
+        ],
+        "correct_index": 2,
+        "explanation": "Area = πr² = π×3² = 9π."
+      },
+      {
+        "prompt": "A right triangle has legs 5 and 12. Its hypotenuse is:",
+        "options": [
+          "10",
+          "11",
+          "12",
+          "13"
+        ],
+        "correct_index": 3,
+        "explanation": "√(5²+12²) = √169 = 13."
+      }
+    ]
+  }
+}

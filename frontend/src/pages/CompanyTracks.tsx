@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../services/api";
@@ -8,6 +9,157 @@ import {
   BookOpen, Target, Zap, Crown, CheckCircle2, Lock, Star,
 } from "lucide-react";
 
+const LESSON_BY_TOPIC: Record<string, string> = {
+  percentages: "successive_percentage_change",
+  successive_percentage_change: "successive_percentage_change",
+  profit_loss: "profit_loss",
+  ratio_proportion: "ratio_proportion",
+  ratio: "ratio_proportion",
+  averages: "averages",
+  average: "averages",
+  time_work: "time_work",
+  time_distance: "time_distance",
+  speed_time_distance: "time_distance",
+  probability: "probability_basics",
+  permutations: "permutations_combinations",
+  permutation: "permutations_combinations",
+  series: "number_series",
+  number_series: "number_series",
+  coding_decoding: "coding_decoding",
+  blood_relations: "blood_relations",
+  blood_relation: "blood_relations",
+  reading_comprehension: "reading_comprehension",
+  reading: "reading_comprehension",
+  sentence_correction: "sentence_correction",
+  grammar: "sentence_correction",
+  error_spotting: "sentence_correction",
+  para_jumbles: "para_jumbles",
+  sentence_rearrangement: "para_jumbles",
+  arrays: "arrays_basics",
+  array: "arrays_basics",
+  strings: "strings_basics",
+  loops: "loops_basics",
+  conditions: "loops_basics",
+  recursion: "recursion_basics",
+  sorting: "sorting_basics",
+  searching: "searching_basics",
+  hashing: "hashing_basics",
+  hashmaps: "hashing_basics",
+  joins: "sql_joins",
+  sql: "sql_select_basics",
+  basic_sql: "sql_select_basics",
+  oop: "oops_basics",
+  normalization: "dbms_basics",
+  os: "os_basics",
+  operating_systems: "os_basics",
+  networking: "computer_networks_basics",
+  computer_networks: "computer_networks_basics",
+  number_system: "number_systems",
+  number_systems: "number_systems",
+  hcf_lcm: "hcf_lcm",
+  hcf: "hcf_lcm",
+  lcm: "hcf_lcm",
+  simple_interest: "simple_compound_interest",
+  compound_interest: "simple_compound_interest",
+  interest: "simple_compound_interest",
+  mixture_alligation: "mixture_alligation",
+  mixtures: "mixture_alligation",
+  alligation: "mixture_alligation",
+  advanced_mixtures: "mixture_alligation",
+  syllogisms: "syllogisms",
+  direction_sense: "direction_sense",
+  directions: "direction_sense",
+  puzzles: "logical_puzzles",
+  arrangements: "logical_puzzles",
+  seating_arrangement: "logical_puzzles",
+  venn_diagrams: "logical_puzzles",
+  clocks: "clocks_calendars",
+  calendars: "clocks_calendars",
+  linked_list: "linked_lists",
+  linked_lists: "linked_lists",
+  trees: "trees_basics",
+  binary_trees: "trees_basics",
+  bst: "trees_basics",
+  stacks_queues: "stacks_queues",
+  stack: "stacks_queues",
+  queue: "stacks_queues",
+  dynamic_programming: "dynamic_programming",
+  dp: "dynamic_programming",
+  basic_dp: "dynamic_programming",
+  exception_handling: "exception_handling",
+  exceptions: "exception_handling",
+  file_io: "file_io",
+  files: "file_io",
+  time_complexity: "time_complexity",
+  complexity_analysis: "time_complexity",
+  big_o: "time_complexity",
+  subqueries: "sql_subqueries",
+  exists: "sql_subqueries",
+  not_exists: "sql_subqueries",
+  in: "sql_subqueries",
+  any_all: "sql_subqueries",
+  group_by: "sql_group_by",
+  having: "sql_group_by",
+  aggregation: "sql_group_by",
+  matrix: "matrix_operations",
+  matrices: "matrix_operations",
+  matrix_operations: "matrix_operations",
+  pipes_cisterns: "pipes_cisterns",
+  number_analogies: "analogies_odd_one_out",
+  odd_one_out: "analogies_odd_one_out",
+  word_relationships: "analogies_odd_one_out",
+  word_analogy: "analogies_odd_one_out",
+  active_passive_voice: "grammar_transformations",
+  direct_indirect_speech: "grammar_transformations",
+  error_spotting: "error_spotting",
+  cloze_test: "vocabulary_cloze",
+  fill_in_blanks: "vocabulary_cloze",
+  synonyms_antonyms: "vocabulary_cloze",
+  vocabulary: "vocabulary_cloze",
+  one_word_substitution: "vocabulary_cloze",
+  java_python_basics: "programming_languages",
+  c_java_python_basics: "programming_languages",
+  collections: "collections_framework",
+  pattern_printing: "pattern_printing",
+  pattern_matching: "pattern_matching_basics",
+  basic_pattern_matching: "pattern_matching_basics",
+  pattern_recognition: "pattern_matching_basics",
+  indexing: "sql_indexes_triggers",
+  triggers: "sql_indexes_triggers",
+  basic_algorithms: "algorithms_basics",
+  mathematical: "algorithms_basics",
+  math: "algorithms_basics",
+  arithmetic: "arithmetic_algebra",
+  algebra: "arithmetic_algebra",
+  geometry: "geometry_basics",
+  basic_ds: "data_structures_intro",
+  technology_topics: "essay_writing",
+  current_affairs: "essay_writing",
+  opinion_essays: "essay_writing",
+  technology: "essay_writing",
+  business: "essay_writing",
+  social_issues: "essay_writing",
+  essay: "essay_writing",
+  advanced_probability: "advanced_probability",
+  advanced_time_work: "advanced_time_work",
+  simple_compound_interest: "simple_compound_interest",
+  critical_reasoning: "logical_puzzles",
+  dynamic_programming_basics: "dynamic_programming",
+
+};
+
+function lessonForModule(
+  topics: string[] = [],
+  topicMastery: Record<string, { mastered?: boolean }> = {},
+): { slug: string; topicId: string } | null {
+  for (const topic of topics) {
+    const key = topic.toLowerCase().trim().replace(/[\s-]+/g, "_");
+    if (topicMastery[key]?.mastered) continue;
+    if (LESSON_BY_TOPIC[key]) return { slug: LESSON_BY_TOPIC[key], topicId: key };
+  }
+  return null;
+}
+
 const DIFFICULTY_COLORS = {
   easy: "text-green-400 bg-green-500/10 border-green-500/20",
   medium: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
@@ -16,7 +168,22 @@ const DIFFICULTY_COLORS = {
 
 export default function CompanyTracks() {
   const { user } = useAuthStore();
-  const [selectedTrack, setSelectedTrack] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedTrack, setSelectedTrack] = useState<string | null>(() => searchParams.get("track"));
+
+  useEffect(() => {
+    setSelectedTrack(searchParams.get("track"));
+  }, [searchParams]);
+
+  const openTrack = (trackId: string) => {
+    setSelectedTrack(trackId);
+    setSearchParams({ track: trackId });
+  };
+
+  const closeTrack = () => {
+    setSelectedTrack(null);
+    setSearchParams({});
+  };
 
   const { data: tracksData, isLoading } = useQuery({
     queryKey: ["company-tracks", "list"],
@@ -29,12 +196,12 @@ export default function CompanyTracks() {
     return (
       <div className="min-h-screen py-6 px-3 sm:py-8 sm:px-4 max-w-6xl mx-auto">
         <button
-          onClick={() => setSelectedTrack(null)}
+          onClick={closeTrack}
           className="mb-4 text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
         >
           ← Back to all tracks
         </button>
-        <TrackDetail trackId={selectedTrack} onBack={() => setSelectedTrack(null)} />
+        <TrackDetail trackId={selectedTrack} onBack={closeTrack} />
       </div>
     );
   }
@@ -78,7 +245,7 @@ export default function CompanyTracks() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
             >
-              <TrackCard track={track} onClick={() => setSelectedTrack(track.id)} />
+              <TrackCard track={track} onClick={() => openTrack(track.id)} />
             </motion.div>
           ))}
         </div>
@@ -146,24 +313,15 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
 
   const enrollMutation = useMutation({
     mutationFn: () => api.companyTracks.enroll(trackId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["company-tracks"] });
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["company-tracks"] }),
+        queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
+        queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+        queryClient.invalidateQueries({ queryKey: ["adaptive"] }),
+      ]);
     },
   });
-
-  const [completing, setCompleting] = useState<string | null>(null);
-
-  const handleComplete = async (moduleId: string) => {
-    setCompleting(moduleId);
-    try {
-      await api.companyTracks.completeModule(trackId, moduleId, 85);
-      queryClient.invalidateQueries({ queryKey: ["company-tracks", "detail", trackId] });
-    } catch (e) {
-      console.error("Failed to complete module:", e);
-    } finally {
-      setCompleting(null);
-    }
-  };
 
   if (isLoading || !trackData) {
     return (
@@ -201,7 +359,7 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
               </span>
             </div>
           </div>
-          {!trackData.enrolled && (
+          {!trackData.enrolled ? (
             <button
               onClick={() => enrollMutation.mutate()}
               disabled={enrollMutation.isPending}
@@ -209,9 +367,21 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
             >
               {enrollMutation.isPending ? "Enrolling..." : "Enroll Now"}
             </button>
+          ) : (
+            <Link
+              to="/journey"
+              className="px-4 py-2 rounded-xl bg-primary-600 text-white text-sm font-medium hover:bg-primary-700"
+            >
+              Continue Journey
+            </Link>
           )}
         </div>
       </div>
+      {enrollMutation.isError && (
+        <p role="alert" className="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          Enrollment failed. Please retry.
+        </p>
+      )}
 
       {/* Sections */}
       {trackData.sections?.map((section: any, sIdx: number) => (
@@ -265,10 +435,17 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                     </div>
                     <p className="text-xs text-gray-500 mb-2">{mod.description}</p>
                     <div className="flex flex-wrap gap-1 mb-2">
-                      {mod.topics.slice(0, 5).map((t: string) => (
-                        <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-gray-500/10 text-gray-400">{t}</span>
+                      {(mod.topics || []).slice(0, 7).map((t: string) => (
+                        <span key={t} className={`text-[10px] px-1.5 py-0.5 rounded ${mod.topic_mastery?.[t]?.mastered ? "bg-green-500/10 text-green-700" : "bg-gray-500/10 text-gray-400"}`}>
+                          {mod.topic_mastery?.[t]?.mastered ? "✓ " : ""}{t}
+                        </span>
                       ))}
                     </div>
+                    {mod.required_topic_count > 0 && (
+                      <p className="mb-2 text-[10px] font-mono text-gray-500">
+                        {mod.mastered_topic_count || 0}/{mod.required_topic_count} topic skills mastered
+                      </p>
+                    )}
                     <div className="flex items-center gap-3 text-xs text-gray-500">
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" />
@@ -282,7 +459,7 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                         <Zap className="w-3 h-3 text-yellow-500" />
                         {mod.xp_reward} Diamonds
                       </span>
-                      {mod.score && (
+                      {mod.score != null && (
                         <span className="flex items-center gap-1">
                           <Target className="w-3 h-3 text-primary-500" />
                           {mod.score}%
@@ -291,13 +468,25 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                     </div>
                   </div>
                   {trackData.enrolled && !mod.completed && (
-                    <button
-                      onClick={() => handleComplete(mod.id)}
-                      disabled={completing === mod.id}
-                      className="ml-3 px-3 py-1.5 rounded-lg bg-primary-600 text-white text-xs font-medium hover:bg-primary-700 disabled:opacity-50"
-                    >
-                      {completing === mod.id ? "..." : "Complete"}
-                    </button>
+                    <div className="ml-3 flex shrink-0 flex-col gap-2">
+                      {(() => {
+                        const nextLesson = lessonForModule(mod.topics, mod.topic_mastery);
+                        return nextLesson ? (
+                          <Link
+                            to={`/learn/lesson/${nextLesson.slug}?track_id=${encodeURIComponent(trackData.id)}&module_id=${encodeURIComponent(mod.id)}&topic_id=${encodeURIComponent(nextLesson.topicId)}`}
+                            className="rounded-lg bg-primary-600 px-3 py-1.5 text-center text-xs font-semibold text-white hover:bg-primary-700"
+                          >
+                            Learn {nextLesson.topicId.replace(/_/g, " ")}
+                          </Link>
+                        ) : null;
+                      })()}
+                      <Link
+                        to={`/tracks/${trackData.company_id}`}
+                        className="rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1.5 text-center text-xs font-medium text-primary-700 hover:bg-primary-500/15"
+                      >
+                        Practice
+                      </Link>
+                    </div>
                   )}
                 </div>
               </div>

@@ -1,0 +1,122 @@
+{
+  "slug": "searching_basics",
+  "id": "lesson_searching_basics_001",
+  "title": "Searching Fundamentals",
+  "domain": "Programming Fundamentals",
+  "pattern": "Searching",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Linear search",
+      "content": "Linear search checks items one by one until the target is found or the list ends. It works on sorted and unsorted data.",
+      "example": "Find 8 in [4,2,8,6]: inspect 4, then 2, then 8. Three comparisons."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Count linear comparisons",
+      "prompt": "In the array [3,6,9,12,15], how many checks are needed to find 12 with a left-to-right linear search?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "correct_index": 2,
+      "explanation": "Checks are 3, 6, 9, then 12: four comparisons."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Binary search halves the range",
+      "content": "Binary search requires sorted data. Compare the target with the middle value, discard the half that cannot contain it, then repeat.",
+      "example": "Search 7 in [1,3,5,7,9]. Middle is 5; search the right half [7,9], then find 7.",
+      "tip": "Never apply ordinary binary search to an unsorted array."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose the complexity",
+      "prompt": "What is the time complexity of binary search on a sorted array?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n²)"
+      ],
+      "correct_index": 1,
+      "explanation": "Each comparison cuts the remaining search interval roughly in half, so O(log n)."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Know the trade-off",
+      "content": "Linear search needs no sorting and is simple for tiny lists. Binary search is faster for large sorted data, but the ordering requirement must be satisfied."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which search works on an unsorted array?",
+        "options": [
+          "Binary search",
+          "Linear search",
+          "Interpolation search only",
+          "None"
+        ],
+        "correct_index": 1,
+        "explanation": "Linear search checks every item and does not require sorting."
+      },
+      {
+        "prompt": "What prerequisite does binary search have?",
+        "options": [
+          "The array must be sorted",
+          "The array must contain unique values",
+          "The array must be reversed",
+          "The array must have even length"
+        ],
+        "correct_index": 0,
+        "explanation": "Binary search relies on order to discard half the remaining range."
+      },
+      {
+        "prompt": "What is the worst-case time complexity of linear search?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n)",
+          "O(n log n)"
+        ],
+        "correct_index": 2,
+        "explanation": "The target may be last or absent, requiring n checks."
+      },
+      {
+        "prompt": "What is the worst-case time complexity of binary search?",
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "O(n²)",
+          "O(1)"
+        ],
+        "correct_index": 0,
+        "explanation": "The search range halves at each iteration."
+      },
+      {
+        "prompt": "When is linear search a reasonable choice?",
+        "options": [
+          "Only on sorted arrays",
+          "For small or unsorted lists",
+          "Only for trees",
+          "Only for databases"
+        ],
+        "correct_index": 1,
+        "explanation": "Linear search is simple and does not need preprocessing or sorted input."
+      }
+    ]
+  }
+}

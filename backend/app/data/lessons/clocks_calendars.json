@@ -1,0 +1,122 @@
+{
+  "slug": "clocks_calendars",
+  "id": "lesson_clocks_calendars_001",
+  "title": "Clocks and Calendars",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Clocks and Calendars",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Read clock angles",
+      "content": "A clock is 360° around. Each hour mark is 30° apart. The minute hand moves 6° per minute; the hour hand moves 0.5° per minute.",
+      "example": "At 3:00, the hands are 3 hour marks apart: 3×30° = 90°."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Find a right angle",
+      "prompt": "What is the smaller angle between the hands at exactly 6:00?",
+      "options": [
+        "90°",
+        "120°",
+        "180°",
+        "270°"
+      ],
+      "correct_index": 2,
+      "explanation": "At 6:00 the hands are opposite each other: 6×30° = 180°."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand odd days",
+      "content": "A normal year has 365 days = 52 weeks + 1 day, so it shifts the weekday by one. A leap year has 366 days = 52 weeks + 2 days, so it shifts by two.",
+      "example": "If 1 January is Monday, 1 January next year is Tuesday after a normal year."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Count the weekday shift",
+      "prompt": "If 1 January is Monday, what day is 1 January next year after a leap year?",
+      "options": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "correct_index": 2,
+      "explanation": "A leap year shifts the weekday by two days: Monday → Wednesday."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Check leap years",
+      "content": "A year divisible by 4 is normally a leap year. Century years are exceptions: they must also be divisible by 400. Thus 2000 was a leap year, while 1900 was not.",
+      "tip": "Apply the century exception after checking divisibility by 4."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "How many degrees does the minute hand move in 10 minutes?",
+        "options": [
+          "30°",
+          "45°",
+          "60°",
+          "90°"
+        ],
+        "correct_index": 2,
+        "explanation": "The minute hand moves 6° per minute, so 10×6° = 60°."
+      },
+      {
+        "prompt": "What is the smaller angle at 3:00?",
+        "options": [
+          "45°",
+          "60°",
+          "90°",
+          "180°"
+        ],
+        "correct_index": 2,
+        "explanation": "Three hour marks separate the hands: 3×30° = 90°."
+      },
+      {
+        "prompt": "How many odd days does a normal year contain?",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "correct_index": 1,
+        "explanation": "365 = 52×7 + 1, leaving one odd day."
+      },
+      {
+        "prompt": "Which century year is a leap year?",
+        "options": [
+          "1700",
+          "1800",
+          "1900",
+          "2000"
+        ],
+        "correct_index": 3,
+        "explanation": "Century years are leap years only when divisible by 400. 2000 is divisible by 400."
+      },
+      {
+        "prompt": "A normal year begins on Friday. On which day does the next year begin?",
+        "options": [
+          "Friday",
+          "Saturday",
+          "Sunday",
+          "Monday"
+        ],
+        "correct_index": 1,
+        "explanation": "A normal year shifts the weekday forward by one: Friday to Saturday."
+      }
+    ]
+  }
+}

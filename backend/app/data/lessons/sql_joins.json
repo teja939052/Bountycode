@@ -1,0 +1,122 @@
+{
+  "slug": "sql_joins",
+  "id": "lesson_sql_joins_001",
+  "title": "SQL Joins",
+  "domain": "SQL",
+  "pattern": "SQL Joins",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Why joins are needed",
+      "content": "A join combines related rows from two tables using a matching condition. For example, Student.department_id can match Department.id.",
+      "example": "SELECT s.name, d.department_name FROM Student s JOIN Department d ON s.department_id = d.id;"
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose an inner join",
+      "prompt": "Which join returns only rows with a match in both tables?",
+      "options": [
+        "LEFT JOIN",
+        "RIGHT JOIN",
+        "INNER JOIN",
+        "FULL OUTER JOIN"
+      ],
+      "correct_index": 2,
+      "explanation": "INNER JOIN includes rows where the join condition matches on both sides."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Left join keeps every left row",
+      "content": "LEFT JOIN returns all rows from the left table and matching rows from the right. If there is no match, right-side columns are NULL.",
+      "example": "Student LEFT JOIN Department keeps a student even if their department_id has no matching department."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Understand unmatched rows",
+      "prompt": "A LEFT JOIN starts with Student and joins Department. A student has no matching department. What happens?",
+      "options": [
+        "The student is removed",
+        "The student remains; Department columns are NULL",
+        "The query always errors",
+        "The student appears twice"
+      ],
+      "correct_index": 1,
+      "explanation": "LEFT JOIN preserves all left-table rows and fills unmatched right-side values with NULL."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Join conditions matter",
+      "content": "Use ON to state how tables relate. A missing or incorrect join condition can create a Cartesian product or duplicate rows. FULL OUTER JOIN preserves unmatched rows from both sides when supported.",
+      "tip": "Before trusting a join, check whether the key is unique and whether one-to-many relationships are expected."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which join keeps all rows from the left table?",
+        "options": [
+          "INNER JOIN",
+          "LEFT JOIN",
+          "CROSS JOIN",
+          "SELF JOIN"
+        ],
+        "correct_index": 1,
+        "explanation": "LEFT JOIN preserves every left-table row."
+      },
+      {
+        "prompt": "What is returned for an unmatched right-side row in a LEFT JOIN?",
+        "options": [
+          "0",
+          "An empty table",
+          "NULL for right-side columns",
+          "The row is deleted"
+        ],
+        "correct_index": 2,
+        "explanation": "Missing right-side values are represented as NULL."
+      },
+      {
+        "prompt": "Which clause usually states the join-key relationship?",
+        "options": [
+          "WHERE only",
+          "ON",
+          "ORDER BY",
+          "HAVING"
+        ],
+        "correct_index": 1,
+        "explanation": "ON specifies the matching condition for the join."
+      },
+      {
+        "prompt": "What does INNER JOIN return?",
+        "options": [
+          "All rows from left table",
+          "Only matching rows from both sides",
+          "All rows from right table",
+          "Every possible pair"
+        ],
+        "correct_index": 1,
+        "explanation": "INNER JOIN returns pairs satisfying the join condition."
+      },
+      {
+        "prompt": "Which join can return unmatched rows from both tables?",
+        "options": [
+          "INNER JOIN",
+          "LEFT JOIN",
+          "FULL OUTER JOIN",
+          "CROSS JOIN"
+        ],
+        "correct_index": 2,
+        "explanation": "FULL OUTER JOIN preserves matched and unmatched rows from both sides."
+      }
+    ]
+  }
+}
