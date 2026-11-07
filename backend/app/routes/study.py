@@ -49,6 +49,25 @@ async def today(force: bool = Query(False, description="Force refresh the daily 
     return plan
 
 
+@router.get("/prerequisites/{target_skill_id}")
+async def prerequisite_learning_step(
+    target_skill_id: str,
+    user=Depends(get_current_user),
+):
+    """Return the next prerequisite lesson/diagnostic step for a target skill.
+
+    Progress is derived from persisted, distinct server-graded question-bank
+    events. Client-provided scores and lesson-completion flags are not accepted.
+    """
+    from app.services.prerequisite_graph import get_user_prerequisite_learning_step
+
+    result = await get_user_prerequisite_learning_step(
+        user["id"],
+        target_skill_id,
+    )
+    return {"success": True, **result}
+
+
 @router.post("/activity")
 async def log_activity(activity: dict, user=Depends(get_current_user)):
     """Record a completed learning activity and fan-out to mastery / SRS / Diamonds."""
