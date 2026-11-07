@@ -128,6 +128,9 @@ def test_plan_exposes_a_transparent_level_path_and_assessment_track():
     assert len(plan["level_path"]) == 6
     assert plan["level_path"][3]["status"] == "current"
     assert plan["next_action"] == plan["daily_tasks"][0]
+    assert plan["assessment_blueprint"]["duration_minutes"] == 75
+    assert plan["assessment_readiness"]["mock_ready"] is True
+    assert plan["weekly_minutes"] == 300
 
 
 def test_reading_preference_creates_a_reading_first_routine():

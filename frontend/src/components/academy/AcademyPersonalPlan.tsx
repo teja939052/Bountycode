@@ -118,6 +118,28 @@ export default function AcademyPersonalPlan() {
         </div>
       )}
 
+      {plan.assessment_blueprint && (
+        <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50/60 p-4">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-800">Assessment blueprint</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{plan.assessment_blueprint.source_label}</p>
+              <p className="mt-1 text-xs text-slate-600">{plan.assessment_blueprint.sections?.join(" · ")}</p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm font-black text-slate-900">{plan.assessment_blueprint.duration_minutes ? `${plan.assessment_blueprint.duration_minutes} min` : "Invitation-specific"}</p>
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-amber-800">{plan.assessment_blueprint.confidence}</p>
+            </div>
+          </div>
+          <p className="mt-3 text-xs leading-5 text-amber-900">{plan.assessment_blueprint.notice}</p>
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-amber-200/80 pt-3 text-xs">
+            <span className="font-semibold text-slate-700">This week: {plan.weekly_minutes || plan.daily_minutes * 5} focused minutes</span>
+            {plan.assessment_blueprint.source_url && <a href={plan.assessment_blueprint.source_url} target="_blank" rel="noreferrer" className="font-bold text-amber-900 underline">Read source</a>}
+          </div>
+          {plan.assessment_readiness?.action && <p className="mt-2 text-xs font-semibold text-indigo-800">Next readiness step: {plan.assessment_readiness.action}</p>}
+        </div>
+      )}
+
       {curriculum.length > 0 ? (
         <div className="mt-5">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2">

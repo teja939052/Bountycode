@@ -54,6 +54,72 @@ ASSESSMENT_TRACK_LABELS = {
     "accenture": "Accenture campus",
     "cognizant": "Cognizant GenC",
 }
+ASSESSMENT_BLUEPRINTS = {
+    "service_company_core": {
+        "sections": ["Numerical Ability", "Logical Reasoning", "Verbal Ability", "Programming and SQL"],
+        "duration_minutes": None,
+        "confidence": "Product recommendation",
+        "source_label": "Shared service-company foundation",
+        "source_url": None,
+        "notice": "Use your current employer invitation for the exact sections, timing and eligibility.",
+    },
+    "tcs_foundation": {
+        "sections": ["Numerical Ability", "Verbal Ability", "Reasoning Ability"],
+        "duration_minutes": 75,
+        "confidence": "Official drive pattern",
+        "source_label": "TCS All India NQT drive",
+        "source_url": "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+        "notice": "The 75-minute Foundation pattern belongs to the cited TCS drive; verify the current hall ticket.",
+    },
+    "tcs_advanced": {
+        "sections": ["Advanced Quantitative and Reasoning Ability", "Advanced Coding"],
+        "duration_minutes": 115,
+        "confidence": "Official drive pattern",
+        "source_label": "TCS All India NQT drive",
+        "source_url": "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+        "notice": "The 115-minute Advanced pattern belongs to the cited TCS drive; verify the current hall ticket.",
+    },
+    "infosys_infytq": {
+        "sections": ["Programming", "DBMS and SQL", "Aptitude", "OOP and DSA"],
+        "duration_minutes": None,
+        "confidence": "Edition-dependent",
+        "source_label": "Infosys InfyTQ",
+        "source_url": "https://www.infosys.com/insights/human-potential/industry-grade-certification.html",
+        "notice": "InfyTQ patterns change by certification cycle. Use the live Infosys notice as the source of truth.",
+    },
+    "hackwithinfy": {
+        "sections": ["Timed Coding Round", "Constraints and Efficiency"],
+        "duration_minutes": 180,
+        "confidence": "Official 2026 terms",
+        "source_label": "HackWithInfy 2026",
+        "source_url": "https://www.infosys.com/careers/hackwithinfy/2026/hwi-terms-conditions.pdf",
+        "notice": "The three-hour coding round is specific to the cited 2026 terms and is not a universal Infosys pattern.",
+    },
+    "wipro": {
+        "sections": ["Verbal Ability", "Analytical Ability", "Quantitative Ability", "Written Communication", "Voice Assessment"],
+        "duration_minutes": 100,
+        "confidence": "Official cohort pattern",
+        "source_label": "Wipro WILP cohort listing",
+        "source_url": "https://app.joinsuperset.com/company/wipro/wilp.html",
+        "notice": "The cited WILP cohort lists 80 minutes online plus a 20-minute voice assessment; verify your cohort invitation.",
+    },
+    "accenture": {
+        "sections": ["Cognitive and Logical Reasoning", "Technical Skills", "Coding", "Communication"],
+        "duration_minutes": None,
+        "confidence": "Invitation-dependent",
+        "source_label": "Accenture India assessment guidance",
+        "source_url": "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture",
+        "notice": "Accenture sections and duration depend on the role and invitation; do not treat this as a guaranteed pattern.",
+    },
+    "cognizant": {
+        "sections": ["Communication", "Aptitude", "Role-based Technical Skills"],
+        "duration_minutes": None,
+        "confidence": "Role-dependent",
+        "source_label": "Cognizant GenC process",
+        "source_url": "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program/",
+        "notice": "Cognizant says assessments vary by role. Verify the current candidate-platform communication.",
+    },
+}
 LEVEL_PATH = [
     {"id": 0, "title": "Orientation", "focus": "Profile, diagnostic and exam readiness", "unlock": "Start here"},
     {"id": 1, "title": "Foundations", "focus": "Numerical, verbal, reasoning and programming basics", "unlock": "Build reliable fundamentals"},
@@ -203,6 +269,15 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
     }.get(learning_preference, "Combine clear explanations, worked examples and independent practice.")
     current_level, level_path = _level_path(diagnostic, scores)
     assessment_track = str(profile.get("assessment_track", "service_company_core") or "service_company_core").lower()
+    assessment_blueprint = ASSESSMENT_BLUEPRINTS.get(assessment_track, ASSESSMENT_BLUEPRINTS["service_company_core"])
+    readiness_actions = [
+        "Complete your baseline diagnostic before attempting a full mock.",
+        "Repair your weakest foundations, then use short sectional practice.",
+        "Mix core skills and add edge-case and debugging practice.",
+        "Start timed sectional mocks and review speed, accuracy and unanswered items.",
+        "Run employer-format mocks, then practise communication and interview answers.",
+        "Maintain with mixed transfer practice and rehearse your interview evidence.",
+    ]
 
     return {
         "target_role": role,
@@ -213,6 +288,13 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "assessment_track": assessment_track,
         "assessment_track_label": ASSESSMENT_TRACK_LABELS.get(assessment_track, ASSESSMENT_TRACK_LABELS["service_company_core"]),
         "assessment_date": profile.get("assessment_date"),
+        "assessment_blueprint": assessment_blueprint,
+        "assessment_readiness": {
+            "stage": "diagnostic" if current_level == 0 else "build" if current_level < 3 else "timed" if current_level < 5 else "interview",
+            "action": readiness_actions[current_level],
+            "mock_ready": current_level >= 3,
+        },
+        "weekly_minutes": int(profile.get("daily_minutes", 60)) * int(profile.get("weekly_days", 5)),
         "current_level": current_level,
         "level_path": level_path,
         "company_preparation": matched_tracks,
