@@ -85,7 +85,8 @@ A source-level inventory of the registered lesson modules found **134 lesson obj
 | Debugging | 2 |
 | System design | 2 |
 | Behavioral | 2 |
-| Computer architecture | 4 |\n| **Total** | **134** |
+| Computer architecture | 4 |
+| **Total** | **134** |
 
 ### Important limitations
 
