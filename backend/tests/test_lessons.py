@@ -510,3 +510,17 @@ def test_sql_and_dbms_extension_is_registered():
     for lesson_id in expected:
         assert lesson_id in _LESSONS
         assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("programming", "dbms")
+
+
+def test_os_and_networking_expansions_are_registered():
+    expected = {
+        "os-threads-synchronization": ("programming", "operating_systems"),
+        "os-deadlock-handling": ("programming", "operating_systems"),
+        "os-page-replacement": ("programming", "operating_systems"),
+        "net-ip-addressing-subnetting": ("programming", "computer_networks"),
+        "net-dns-tls": ("programming", "computer_networks"),
+        "net-tcp-udp-handshake": ("programming", "computer_networks"),
+    }
+    for lesson_id, mapping in expected.items():
+        assert lesson_id in _LESSONS
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == mapping
