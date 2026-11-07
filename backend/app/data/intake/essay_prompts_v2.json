@@ -1,0 +1,604 @@
+{
+  "rubric": {
+    "scale": "0 to 5 per criterion, total 20",
+    "criteria": [
+      {
+        "id": "relevance_ideas",
+        "name": "Relevance and ideas",
+        "5": "Answers the prompt directly with 2 or more distinct, specific points and an example",
+        "3": "On topic but points are general or repeated; no concrete example",
+        "1": "Mostly off topic or only restates the prompt"
+      },
+      {
+        "id": "structure",
+        "name": "Structure",
+        "5": "Clear opening, 2 to 3 organised body paragraphs, a conclusion that follows from the points",
+        "3": "Some order but missing an opening or conclusion, or paragraphs mix ideas",
+        "1": "One block of text with no visible order"
+      },
+      {
+        "id": "language",
+        "name": "Grammar and vocabulary",
+        "5": "Few or no errors; varied, accurate word choice",
+        "3": "Some errors that do not block meaning; simple vocabulary",
+        "1": "Frequent errors that make sentences hard to follow"
+      },
+      {
+        "id": "clarity",
+        "name": "Clarity and length",
+        "5": "Within the word range; every sentence adds something; easy to read",
+        "3": "Within about 20% of the range, or some padding",
+        "1": "Far below or above the range, or mostly filler"
+      }
+    ],
+    "automatic_checks": [
+      "word count inside the prompt's range",
+      "no sentence repeated more than once",
+      "at least 3 paragraphs",
+      "mentions at least one key term from the prompt"
+    ],
+    "ai_use": "A model may apply this rubric and must quote the sentence behind each score. It must be checked against at least 30 human-scored essays before its score affects readiness."
+  },
+  "prompts": [
+    {
+      "id": "gen2-essay-001",
+      "type": "essay",
+      "theme": "technology",
+      "prompt": "Artificial intelligence will create more jobs than it removes. Do you agree?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-002",
+      "type": "essay",
+      "theme": "technology",
+      "prompt": "Should students be allowed to use smartphones in college?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-003",
+      "type": "essay",
+      "theme": "technology",
+      "prompt": "The advantages and risks of working from home.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-004",
+      "type": "essay",
+      "theme": "technology",
+      "prompt": "How has online payment (UPI) changed everyday life in India?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-005",
+      "type": "essay",
+      "theme": "technology",
+      "prompt": "Social media: a tool for connection or a cause of distraction?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-006",
+      "type": "essay",
+      "theme": "technology",
+      "prompt": "Is it safe to share personal data with apps? Discuss.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-007",
+      "type": "essay",
+      "theme": "technology",
+      "prompt": "The role of coding skills for students of every branch.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-008",
+      "type": "essay",
+      "theme": "education_career",
+      "prompt": "Marks or skills: which matters more for getting a job?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-009",
+      "type": "essay",
+      "theme": "education_career",
+      "prompt": "Why continuous learning matters in an IT career.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-010",
+      "type": "essay",
+      "theme": "education_career",
+      "prompt": "Is an engineering degree still necessary to work in technology?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-011",
+      "type": "essay",
+      "theme": "education_career",
+      "prompt": "Describe how you handle pressure during exams or deadlines.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-012",
+      "type": "essay",
+      "theme": "education_career",
+      "prompt": "The importance of internships for fresh graduates.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-013",
+      "type": "essay",
+      "theme": "education_career",
+      "prompt": "Teamwork or individual talent: which leads to better results?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-014",
+      "type": "essay",
+      "theme": "education_career",
+      "prompt": "What makes a good leader in a project team?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-015",
+      "type": "essay",
+      "theme": "society",
+      "prompt": "How can cities reduce traffic congestion?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-016",
+      "type": "essay",
+      "theme": "society",
+      "prompt": "The importance of saving water and what students can do.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-017",
+      "type": "essay",
+      "theme": "society",
+      "prompt": "Should voting be made compulsory? Give your views.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-018",
+      "type": "essay",
+      "theme": "society",
+      "prompt": "Does a healthy lifestyle improve work performance?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-019",
+      "type": "essay",
+      "theme": "society",
+      "prompt": "How can we reduce plastic waste in our daily lives?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-020",
+      "type": "essay",
+      "theme": "society",
+      "prompt": "The benefits of learning more than one language.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-021",
+      "type": "essay",
+      "theme": "society",
+      "prompt": "Is online shopping better than visiting a market?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-022",
+      "type": "essay",
+      "theme": "workplace",
+      "prompt": "Why honesty matters in the workplace.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-023",
+      "type": "essay",
+      "theme": "workplace",
+      "prompt": "How should a new employee handle a mistake at work?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-024",
+      "type": "essay",
+      "theme": "workplace",
+      "prompt": "The value of time management for a young professional.",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-025",
+      "type": "essay",
+      "theme": "workplace",
+      "prompt": "Relocating for a first job: opportunity or burden?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-026",
+      "type": "essay",
+      "theme": "workplace",
+      "prompt": "How can companies support the mental well-being of employees?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-027",
+      "type": "essay",
+      "theme": "workplace",
+      "prompt": "What does being a responsible engineer mean to you?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    },
+    {
+      "id": "gen2-essay-028",
+      "type": "essay",
+      "theme": "workplace",
+      "prompt": "Customer feedback: how should a company respond to criticism?",
+      "word_range": [
+        200,
+        300
+      ],
+      "minutes": 20,
+      "companies": [
+        "wipro",
+        "tech_mahindra",
+        "infosys",
+        "cognizant",
+        "ltimindtree"
+      ],
+      "trust_status": "unverified",
+      "source_bank": "handwritten_communication_v2"
+    }
+  ]
+}

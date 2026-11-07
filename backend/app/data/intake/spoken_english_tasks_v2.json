@@ -1,0 +1,432 @@
+[
+  {
+    "id": "gen2-spoken-001",
+    "type": "read_aloud",
+    "text": "The new software update will be released next Thursday.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-002",
+    "type": "read_aloud",
+    "text": "Please submit your assignment before the deadline.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-003",
+    "type": "read_aloud",
+    "text": "She sells sea shells by the sea shore.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-004",
+    "type": "read_aloud",
+    "text": "The manager scheduled a meeting to discuss the quarterly results.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-005",
+    "type": "read_aloud",
+    "text": "Technology has changed the way we learn and work.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-006",
+    "type": "read_aloud",
+    "text": "I would like to thank everyone for their support.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-007",
+    "type": "read_aloud",
+    "text": "The company offers training programs for fresh graduates.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-008",
+    "type": "read_aloud",
+    "text": "Regular practice improves both speed and accuracy.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-009",
+    "type": "read_aloud",
+    "text": "Our team successfully completed the project ahead of schedule.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-010",
+    "type": "read_aloud",
+    "text": "Could you please repeat the question more slowly?",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-011",
+    "type": "read_aloud",
+    "text": "The weather forecast predicts heavy rain this weekend.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-012",
+    "type": "read_aloud",
+    "text": "Communication is an essential skill in every profession.",
+    "max_seconds": 15,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-013",
+    "type": "repeat_sentence",
+    "text": "I am a final year student.",
+    "max_seconds": 20,
+    "level": 1,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-014",
+    "type": "repeat_sentence",
+    "text": "I enjoy solving problems with code.",
+    "max_seconds": 20,
+    "level": 1,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-015",
+    "type": "repeat_sentence",
+    "text": "My strength is that I learn new things quickly.",
+    "max_seconds": 20,
+    "level": 2,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-016",
+    "type": "repeat_sentence",
+    "text": "I completed a project on a library management system.",
+    "max_seconds": 20,
+    "level": 2,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-017",
+    "type": "repeat_sentence",
+    "text": "I would like to work in a team that values learning.",
+    "max_seconds": 20,
+    "level": 2,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-018",
+    "type": "repeat_sentence",
+    "text": "During my internship I learned how to write and test small programs.",
+    "max_seconds": 20,
+    "level": 2,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-019",
+    "type": "repeat_sentence",
+    "text": "When I face a difficult problem, I break it into smaller steps and solve each one.",
+    "max_seconds": 20,
+    "level": 3,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-020",
+    "type": "repeat_sentence",
+    "text": "I believe consistent daily practice is more useful than studying only before exams.",
+    "max_seconds": 20,
+    "level": 2,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-021",
+    "type": "repeat_sentence",
+    "text": "Although the deadline was tight, our team divided the work and finished on time.",
+    "max_seconds": 20,
+    "level": 2,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-022",
+    "type": "repeat_sentence",
+    "text": "I am excited about this opportunity because it matches my interest in building reliable software.",
+    "max_seconds": 20,
+    "level": 3,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-023",
+    "type": "short_answer",
+    "prompt": "Introduce yourself in about 30 seconds.",
+    "max_seconds": 30,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-024",
+    "type": "short_answer",
+    "prompt": "Tell me about your final year project in about 45 seconds.",
+    "max_seconds": 45,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-025",
+    "type": "short_answer",
+    "prompt": "What are your strengths? Give one example.",
+    "max_seconds": 40,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-026",
+    "type": "short_answer",
+    "prompt": "Why do you want to join this company?",
+    "max_seconds": 40,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-027",
+    "type": "short_answer",
+    "prompt": "Describe a time you worked in a team.",
+    "max_seconds": 45,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-028",
+    "type": "short_answer",
+    "prompt": "Where do you see yourself in three years?",
+    "max_seconds": 30,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-029",
+    "type": "short_answer",
+    "prompt": "How do you handle a deadline when you have too much to do?",
+    "max_seconds": 40,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  },
+  {
+    "id": "gen2-spoken-030",
+    "type": "short_answer",
+    "prompt": "Tell me about a mistake you made and what you learned.",
+    "max_seconds": 45,
+    "companies": [
+      "cognizant",
+      "tech_mahindra",
+      "ltimindtree",
+      "wipro"
+    ],
+    "trust_status": "unverified",
+    "source_bank": "handwritten_communication_v2"
+  }
+]

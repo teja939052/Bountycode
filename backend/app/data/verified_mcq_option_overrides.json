@@ -1,0 +1,1619 @@
+{
+  "version": 1,
+  "source_bank": "verified_placement_questions.json",
+  "note": "Source-backed repairs for verified MCQs that contained placeholder option labels. Applying this overlay never changes trust_status.",
+  "items": [
+    {
+      "id": "apt-001",
+      "type": "aptitude",
+      "options": [
+        "0%",
+        "+4%",
+        "-4%",
+        "+1%"
+      ],
+      "correct_index": 2,
+      "correct_answer": "-4%",
+      "explanation": "Solve using the appropriate formula for percentages.",
+      "reasoning_steps": "Two successive changes a=+20, b=-20: net = a + b + (a*b/100) = 20 - 20 + ((20*-20)/100) = -4%. So a 4% reduction.",
+      "shortcut": "For +x% then -x%, net is always -x^2/100% = -4%.",
+      "common_trap": "Picking 0% ('they cancel') ignores that the second change applies to the already-raised base.",
+      "hints": [
+        "This is a percentages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-002",
+      "type": "aptitude",
+      "options": [
+        "7.2 days",
+        "6 days",
+        "7.5 days",
+        "5.5 days"
+      ],
+      "correct_index": 0,
+      "correct_answer": "7.2 days",
+      "explanation": "Solve using the appropriate formula for time-work.",
+      "reasoning_steps": "A rate = 1/12, B rate = 1/18 per day. Combined = 1/12 + 1/18 = (3+2)/36 = 5/36 per day. Time = 36/5 = 7.2 days.",
+      "shortcut": "For two workers alone in a and b days: time together = ab/(a+b) = (12*18)/(12+18) = 216/30 = 7.2.",
+      "common_trap": "Adding the durations (12+18=30) instead of adding rates; also confusing 7.5 with 7.2.",
+      "hints": [
+        "This is a time-work problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-003",
+      "type": "aptitude",
+      "options": [
+        "15%",
+        "12%",
+        "18%",
+        "10%"
+      ],
+      "correct_index": 0,
+      "correct_answer": "15%",
+      "explanation": "Solve using the appropriate formula for profit-loss.",
+      "reasoning_steps": "Profit = 575 - 500 = 75. Profit% = (Profit / Cost) x 100 = (75/500) x 100 = 15%.",
+      "shortcut": "Profit% = (SP - CP)/CP x 100.",
+      "common_trap": "Dividing profit by selling price (75/575) instead of cost price (75/500).",
+      "hints": [
+        "This is a profit-loss problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-004",
+      "type": "aptitude",
+      "options": [
+        "A: Rs 2000, B: Rs 3000",
+        "A: Rs 2500, B: Rs 2500",
+        "A: Rs 1500, B: Rs 3500",
+        "A: Rs 3000, B: Rs 2000"
+      ],
+      "correct_index": 0,
+      "correct_answer": "A: Rs 2000, B: Rs 3000",
+      "explanation": "Solve using the appropriate formula for ratio-proportion.",
+      "reasoning_steps": "Investment ratio 2000:3000 = 2:3. A share = (2/5)*5000 = 2000; B share = (3/5)*5000 = 3000.",
+      "shortcut": "Split profit in investment ratio when time is equal.",
+      "common_trap": "Equal split (2500 each) or forgetting to simplify the ratio first.",
+      "hints": [
+        "This is a ratio-proportion problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-005",
+      "type": "aptitude",
+      "options": [
+        "50 km/h",
+        "48 km/h",
+        "45 km/h",
+        "52 km/h"
+      ],
+      "correct_index": 1,
+      "correct_answer": "48 km/h",
+      "explanation": "Solve using the appropriate formula for speed-distance-time.",
+      "reasoning_steps": "Time1 = 120/40 = 3h. Time2 = 120/60 = 2h. Total = 240 km in 5h. Avg = 240/5 = 48 km/h.",
+      "shortcut": "For equal distances at u and v, avg = 2uv/(u+v) = 2*40*60/(100) = 4800/100 = 48.",
+      "common_trap": "Arithmetic mean (40+60)/2 = 50, which is wrong because different time is spent.",
+      "hints": [
+        "This is a speed-distance-time problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-001",
+      "type": "logical",
+      "options": [
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "correct_index": 2,
+      "correct_answer": "37",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Differences: +3, +5, +7, +9 (consecutive odd numbers). Next difference +11: 26+11 = 37.",
+      "shortcut": "n-th term = n^2 + 1 (1,4,9,16,25,36 +1). Next = 6^2+1 = 37.",
+      "common_trap": "Assuming a constant difference (+9 each time -> 35).",
+      "hints": []
+    },
+    {
+      "id": "log-002",
+      "type": "logical",
+      "options": [
+        "EPH",
+        "EPI",
+        "FQH",
+        "DPG"
+      ],
+      "correct_index": 0,
+      "correct_answer": "EPH",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Each letter advanced by +1: C->D, A->B, T->U. So D->E, O->P, G->H = EPH.",
+      "shortcut": "Apply uniform +1 shift to every letter.",
+      "common_trap": "Shifting by +1 then alternating, or coding backwards.",
+      "hints": []
+    },
+    {
+      "id": "log-003",
+      "type": "logical",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "E",
+        "D"
+      ],
+      "correct_index": 3,
+      "correct_answer": "E",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "C at left end. D between A and C -> C-D-A. B immediate right of A -> A-B. So C-D-A-B, leaving E at the right end: C D A B E.",
+      "shortcut": "Place the locked pairs (A-B, C-D-A) and fit the remainder.",
+      "common_trap": "Forgetting C must be at an end, or misplacing D.",
+      "hints": []
+    },
+    {
+      "id": "verb-001",
+      "type": "verbal",
+      "options": [
+        "Transient",
+        "Permanent",
+        "Eternal",
+        "Stable"
+      ],
+      "correct_index": 0,
+      "correct_answer": "Transient",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Ephemeral means lasting a very short time = transient.",
+      "shortcut": "Root 'ephemer-': short-lived.",
+      "common_trap": "Confusing with 'primary/permanent' (opposites).",
+      "hints": []
+    },
+    {
+      "id": "verb-002",
+      "type": "verbal",
+      "options": [
+        "Neither of the answers is correct.",
+        "Neither of the answers are correct.",
+        "Neither of the answer is correct.",
+        "Neither of the answers were correct."
+      ],
+      "correct_index": 0,
+      "correct_answer": "Neither of the answers is correct.",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "With 'neither of' + plural noun, the verb is singular: 'Neither ... is correct'.",
+      "shortcut": "Neither/either + verb -> singular.",
+      "common_trap": "Using plural 'are' because the noun is plural.",
+      "hints": []
+    },
+    {
+      "id": "apt-006",
+      "type": "aptitude",
+      "options": [
+        "Rs 1000",
+        "Rs 1200",
+        "Rs 1400",
+        "Rs 1500"
+      ],
+      "correct_index": 1,
+      "correct_answer": "Rs 1200",
+      "explanation": "Solve using the appropriate formula for simple-interest.",
+      "reasoning_steps": "SI = P*R*T/100 = 5000*8*3/100 = 1200.",
+      "shortcut": "P*R*T/100 directly.",
+      "common_trap": "Using compound interest or misplacing the decimal in /100.",
+      "hints": [
+        "This is a simple-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-007",
+      "type": "aptitude",
+      "options": [
+        "17",
+        "18",
+        "17.5",
+        "16.5"
+      ],
+      "correct_index": 2,
+      "correct_answer": "17.5",
+      "explanation": "Solve using the appropriate formula for averages.",
+      "reasoning_steps": "Sum of 5 = 5*20 = 100. Remove 30 -> 70. New avg = 70/4 = 17.5.",
+      "shortcut": "(n*avg - removed)/(n-1).",
+      "common_trap": "Dividing by 5 instead of 4 after removal.",
+      "hints": [
+        "This is a averages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-008",
+      "type": "aptitude",
+      "options": [
+        "Rs 1210",
+        "Rs 1200",
+        "Rs 1100",
+        "Rs 1220"
+      ],
+      "correct_index": 0,
+      "correct_answer": "Rs 1210",
+      "explanation": "Solve using the appropriate formula for compound-interest.",
+      "reasoning_steps": "A = P(1+r/100)^t = 1000*(1.1)^2 = 1000*1.21 = 1210.",
+      "shortcut": "Year 1: 1100; Year 2: 1100*1.1 = 1210.",
+      "common_trap": "Adding 100 each year (SI) -> 1200.",
+      "hints": [
+        "This is a compound-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-009",
+      "type": "aptitude",
+      "options": [
+        "5/8",
+        "3/8",
+        "1/3",
+        "3/5"
+      ],
+      "correct_index": 1,
+      "correct_answer": "3/8",
+      "explanation": "Solve using the appropriate formula for probability.",
+      "reasoning_steps": "Favorable = 3 red, total = 8. P = 3/8.",
+      "shortcut": "count(favorable)/count(total).",
+      "common_trap": "Using 3/5 (red vs blue) instead of over total 8.",
+      "hints": [
+        "This is a probability problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-010",
+      "type": "aptitude",
+      "options": [
+        "24",
+        "30",
+        "34",
+        "60"
+      ],
+      "correct_index": 2,
+      "correct_answer": "34",
+      "explanation": "Solve using the appropriate formula for geometry.",
+      "reasoning_steps": "Perimeter = 2(l+w) = 2*(12+5) = 34.",
+      "shortcut": "2(l+w).",
+      "common_trap": "Computing area (60) instead of perimeter.",
+      "hints": [
+        "This is a geometry problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "verb-003",
+      "type": "verbal",
+      "options": [
+        "Friendly",
+        "Hostile",
+        "Cooperative",
+        "Congenial"
+      ],
+      "correct_index": 1,
+      "correct_answer": "Hostile",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Amicable means friendly/peaceable; its opposite is hostile.",
+      "shortcut": "amic- root: friendly.",
+      "common_trap": "Choosing a synonym (friendly) instead of the opposite.",
+      "hints": []
+    },
+    {
+      "id": "apt-011",
+      "type": "aptitude",
+      "options": [
+        "48",
+        "60",
+        "72",
+        "96"
+      ],
+      "correct_index": 2,
+      "correct_answer": "72",
+      "explanation": "Solve using the appropriate formula for number-system.",
+      "reasoning_steps": "Prime: 24=2^3*3, 36=2^2*3^2. LCM takes max exponents: 2^3*3^2 = 8*9 = 72.",
+      "shortcut": "LCM = product / HCF. HCF(24,36)=12, product=864, 864/12=72.",
+      "common_trap": "Choosing 48 (HCF) or 96 (wrong product) instead of 72.",
+      "hints": [
+        "This is a number-system problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-012",
+      "type": "aptitude",
+      "options": [
+        "6",
+        "12",
+        "24",
+        "36"
+      ],
+      "correct_index": 1,
+      "correct_answer": "12",
+      "explanation": "Solve using the appropriate formula for number-system.",
+      "reasoning_steps": "48=2^4*3, 72=2^3*3^2, 108=2^2*3^3. HCF takes min exponents: 2^2*3 = 12.",
+      "shortcut": "Factor each and take the common base powers.",
+      "common_trap": "Choosing 24 (divides 48 & 72 but not 108).",
+      "hints": [
+        "This is a number-system problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-013",
+      "type": "aptitude",
+      "options": [
+        "15%",
+        "25%",
+        "18%",
+        "20%"
+      ],
+      "correct_index": 3,
+      "correct_answer": "20%",
+      "explanation": "Solve using the appropriate formula for percentages.",
+      "reasoning_steps": "(30/150)*100 = 20%.",
+      "shortcut": "part/whole *100.",
+      "common_trap": "Reversing: 150/30 instead of 30/150.",
+      "hints": [
+        "This is a percentages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-014",
+      "type": "aptitude",
+      "options": [
+        "24,000",
+        "24,200",
+        "22,000",
+        "26,620"
+      ],
+      "correct_index": 1,
+      "correct_answer": "24,200",
+      "explanation": "Solve using the appropriate formula for percentages.",
+      "reasoning_steps": "Year1: 20000*1.1=22000. Year2: 22000*1.1=24200.",
+      "shortcut": "P(1+r/100)^t = 20000*(1.1)^2 = 20000*1.21 = 24200.",
+      "common_trap": "Adding 2000+2000 (simple) = 24000, forgetting compounding.",
+      "hints": [
+        "This is a percentages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-015",
+      "type": "aptitude",
+      "options": [
+        "12 h",
+        "6 h",
+        "9 h",
+        "18 h"
+      ],
+      "correct_index": 0,
+      "correct_answer": "12 h",
+      "explanation": "Solve using the appropriate formula for time-work.",
+      "reasoning_steps": "Fill rate 1/6, leak rate 1/12. Net = 1/6 - 1/12 = 1/12 per hour. Time = 12 h.",
+      "shortcut": "ab/(b-a) with a<b: (6*12)/(12-6)=72/6=12.",
+      "common_trap": "Subtracting wrong order or adding rates (giving 4 h).",
+      "hints": [
+        "This is a time-work problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-016",
+      "type": "aptitude",
+      "options": [
+        "10 days",
+        "11 days",
+        "12.5 days",
+        "12 days"
+      ],
+      "correct_index": 3,
+      "correct_answer": "12 days",
+      "explanation": "Solve using the appropriate formula for time-work.",
+      "reasoning_steps": "In 2-day cycle A+B do 1/10+1/15 = 1/6. After 6 cycles (12 days) work = 6*(1/6)=1 done.",
+      "shortcut": "Pair them into least-common cycles.",
+      "common_trap": "Assuming both year-equal efficiency or mis-rounding 12.5.",
+      "hints": [
+        "This is a time-work problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-017",
+      "type": "aptitude",
+      "options": [
+        "640",
+        "680",
+        "700",
+        "720"
+      ],
+      "correct_index": 1,
+      "correct_answer": "680",
+      "explanation": "Solve using the appropriate formula for profit-loss.",
+      "reasoning_steps": "Discount = 15% of 800 = 120. SP = 800-120 = 680.",
+      "shortcut": "SP = MP*(1 - d/100) = 800*0.85 = 680.",
+      "common_trap": "Markup confusion or wrong 15% of 800.",
+      "hints": [
+        "This is a profit-loss problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-018",
+      "type": "aptitude",
+      "options": [
+        "6 days",
+        "8 days",
+        "9 days",
+        "10 days"
+      ],
+      "correct_index": 3,
+      "correct_answer": "10 days",
+      "explanation": "Solve using the appropriate formula for ratio-proportion.",
+      "reasoning_steps": "Worker-days = 15*8 = 120. 120/12 = 10 days.",
+      "shortcut": "Use total person-days constant.",
+      "common_trap": "Inverse vs direct: fewer workers => more days.",
+      "hints": [
+        "This is a ratio-proportion problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-019",
+      "type": "aptitude",
+      "options": [
+        "2:1",
+        "1:2",
+        "3:2",
+        "2:3"
+      ],
+      "correct_index": 0,
+      "correct_answer": "2:1",
+      "explanation": "Solve using the appropriate formula for mixture-alligation.",
+      "reasoning_steps": "Alligation: (50-30):(30-20) = 20:10 = 2:1.",
+      "shortcut": "High-target : target-low.",
+      "common_trap": "Reversing the ratio.",
+      "hints": [
+        "This is a mixture-alligation problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-020",
+      "type": "aptitude",
+      "options": [
+        "10 s",
+        "12 s",
+        "15 s",
+        "18 s"
+      ],
+      "correct_index": 1,
+      "correct_answer": "12 s",
+      "explanation": "Solve using the appropriate formula for speed-distance-time.",
+      "reasoning_steps": "Combined speed = 60+75 = 135 km/h = 37.5 m/s. Distance = 450 m. Time = 450/37.5 = 12 s.",
+      "shortcut": "Convert km/h to m/s (x5/18) then distance/speed.",
+      "common_trap": "Forgetting to add both lengths or mis-converting km/h.",
+      "hints": [
+        "This is a speed-distance-time problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-021",
+      "type": "aptitude",
+      "options": [
+        "2 h",
+        "4 h",
+        "5.3 h",
+        "8 h"
+      ],
+      "correct_index": 1,
+      "correct_answer": "4 h",
+      "explanation": "Solve using the appropriate formula for speed-distance-time.",
+      "reasoning_steps": "Upstream speed = 12-4 = 8 km/h. Time = 32/8 = 4 h.",
+      "shortcut": "Upstream = still - current.",
+      "common_trap": "Using downstream (12+4=16) giving 2 h.",
+      "hints": [
+        "This is a speed-distance-time problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-022",
+      "type": "aptitude",
+      "options": [
+        "40",
+        "50",
+        "55",
+        "60"
+      ],
+      "correct_index": 3,
+      "correct_answer": "60",
+      "explanation": "Solve using the appropriate formula for average.",
+      "reasoning_steps": "Sum 11 = 440. Sum 10 = 380. Removed = 440-380 = 60.",
+      "shortcut": "10*(new avg) subtracted from 11*(old avg).",
+      "common_trap": "Using sum of 11 with new average.",
+      "hints": [
+        "This is a average problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-023",
+      "type": "aptitude",
+      "options": [
+        "8%",
+        "10%",
+        "12%",
+        "20%"
+      ],
+      "correct_index": 1,
+      "correct_answer": "10%",
+      "explanation": "Solve using the appropriate formula for simple-interest.",
+      "reasoning_steps": "SI = PRT/100 => 400 = 2000*R*2/100 => R = 400*100/4000 = 10%.",
+      "shortcut": "R = (SI*100)/(P*T).",
+      "common_trap": "Dropping the /100.",
+      "hints": [
+        "This is a simple-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-024",
+      "type": "aptitude",
+      "options": [
+        "1/6",
+        "1/12",
+        "1/36",
+        "5/36"
+      ],
+      "correct_index": 0,
+      "correct_answer": "1/6",
+      "explanation": "Solve using the appropriate formula for probability.",
+      "reasoning_steps": "Favorable pairs to sum 7: (1,6)(2,5)(3,4)(4,3)(5,2)(6,1) = 6. Total 36. P=6/36=1/6.",
+      "shortcut": "6 favorable doubles on 36.",
+      "common_trap": "Counting (1,6) and (6,1) as one.",
+      "hints": [
+        "This is a probability problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-025",
+      "type": "aptitude",
+      "options": [
+        "Rs 1080",
+        "Rs 1081.60",
+        "Rs 1082",
+        "Rs 1166.40"
+      ],
+      "correct_index": 1,
+      "correct_answer": "Rs 1081.60",
+      "explanation": "Solve using the appropriate formula for compound-interest.",
+      "reasoning_steps": "Half-yearly: n=2, rate per period 4%. A=1000*(1.04)^2 = 1000*1.0816 = 1081.60.",
+      "shortcut": "Divide rate by 2, double periods.",
+      "common_trap": "Using 8% annual = 1080, or wrong period count.",
+      "hints": [
+        "This is a compound-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-004",
+      "type": "logical",
+      "options": [
+        "Brother",
+        "Uncle",
+        "Father",
+        "Grandfather"
+      ],
+      "correct_index": 2,
+      "correct_answer": "Father",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "My father's only son = me. My (own) father's... wait: father's only son = me. My father = the man being asked. So he is my father.",
+      "shortcut": "Break 'only son' chain outward.",
+      "common_trap": "Concluding brother.",
+      "hints": []
+    },
+    {
+      "id": "log-005",
+      "type": "logical",
+      "options": [
+        "3 km North",
+        "3 km South",
+        "5 km North",
+        "13 km North"
+      ],
+      "correct_index": 0,
+      "correct_answer": "3 km North",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "North 8, East 3, South 5. Vertical = 8-5 = 3 km North. Horizontal cancels (only east 3 remains, as bearer is 3 km east and 3 km north). Net = 3 km North.",
+      "shortcut": "Separate N/S and E/W components.",
+      "common_trap": "Adding path length 16 km instead of displacement.",
+      "hints": []
+    },
+    {
+      "id": "log-006",
+      "type": "logical",
+      "options": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "correct_index": 3,
+      "correct_answer": "Thursday",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "50 mod 7 = 1. Wednesday +1 = Thursday.",
+      "shortcut": "Take remainder mod 7.",
+      "common_trap": "Adding full weeks incorrectly.",
+      "hints": []
+    },
+    {
+      "id": "log-007",
+      "type": "logical",
+      "options": [
+        "All cats are pets",
+        "Some pets may be cats",
+        "No cats are pets",
+        "All pets are cats"
+      ],
+      "correct_index": 1,
+      "correct_answer": "Some pets may be cats",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Cats nested in mammals; pets overlap mammals. Only possible: some pets may be cats. Cannot guarantee all cats are pets.",
+      "shortcut": "Overlap reasoning in Venn.",
+      "common_trap": "Concluding 'all cats are pets' (overreaching).",
+      "hints": []
+    },
+    {
+      "id": "verb-004",
+      "type": "verbal",
+      "options": [
+        "Scarce",
+        "Plentiful",
+        "Rare",
+        "Limited"
+      ],
+      "correct_index": 1,
+      "correct_answer": "Plentiful",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Abundant means existing in large quantities = plentiful.",
+      "shortcut": "Abundant => plentiful.",
+      "common_trap": "Choosing an antonym (scarce/rare).",
+      "hints": []
+    },
+    {
+      "id": "verb-005",
+      "type": "verbal",
+      "options": [
+        "Clear",
+        "Visible",
+        "Opaque",
+        "Lucid"
+      ],
+      "correct_index": 2,
+      "correct_answer": "Opaque",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Transparent = see-through; its opposite (not see-through) = opaque.",
+      "shortcut": "Transparent vs opaque.",
+      "common_trap": "Choosing a synonym (clear/lucid).",
+      "hints": []
+    },
+    {
+      "id": "verb-006",
+      "type": "verbal",
+      "options": [
+        "School",
+        "Lesson",
+        "Student",
+        "Class"
+      ],
+      "correct_index": 0,
+      "correct_answer": "School",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "A doctor works in a hospital; teacher works in a school. Place-of-work analogy.",
+      "shortcut": "worker : workplace.",
+      "common_trap": "Choosing 'student' (the object) instead of workplace.",
+      "hints": []
+    },
+    {
+      "id": "verb-007",
+      "type": "verbal",
+      "options": [
+        "was cancelled",
+        "was delayed",
+        "went ahead",
+        "was postponed"
+      ],
+      "correct_index": 2,
+      "correct_answer": "went ahead",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "'Despite' signals a contrast/obstacle overcome; so the match went ahead (opposite of expected delay).",
+      "shortcut": "Despite => the opposite of expected.",
+      "common_trap": "Choosing cancel/delay (the expected, not the contrast).",
+      "hints": []
+    },
+    {
+      "id": "apt-027",
+      "type": "aptitude",
+      "options": [
+        "400 and 320",
+        "360 and 360",
+        "450 and 270",
+        "420 and 300"
+      ],
+      "correct_index": 0,
+      "correct_answer": "400 and 320",
+      "explanation": "Solve using the appropriate formula for ratios.",
+      "reasoning_steps": "Total parts 9; one = 5/9*720=400, other=4/9*720=320.",
+      "shortcut": "part = ratio/total * whole.",
+      "common_trap": "Equal split or wrong total parts.",
+      "hints": [
+        "This is a ratios problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-028",
+      "type": "aptitude",
+      "options": [
+        "75%",
+        "76%",
+        "78%",
+        "80%"
+      ],
+      "correct_index": 2,
+      "correct_answer": "78%",
+      "explanation": "Solve using the appropriate formula for percentages.",
+      "reasoning_steps": "312/400*100 = 78%.",
+      "shortcut": "score/total*100.",
+      "common_trap": "Dropping a digit (e.g. 75%).",
+      "hints": [
+        "This is a percentages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-029",
+      "type": "aptitude",
+      "options": [
+        "4 h",
+        "5 h",
+        "6 h",
+        "8 h"
+      ],
+      "correct_index": 2,
+      "correct_answer": "6 h",
+      "explanation": "Solve using the appropriate formula for time-speed.",
+      "reasoning_steps": "A lead = 40*2 = 80 km. B gains 20 km/h. Time = 80/20 = 4 h after B starts = 6 h after A.",
+      "shortcut": "lead/gain_rate, then add head start.",
+      "common_trap": "Adding gain time to the wrong baseline.",
+      "hints": [
+        "This is a time-speed problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-030",
+      "type": "aptitude",
+      "options": [
+        "432",
+        "440",
+        "540",
+        "450"
+      ],
+      "correct_index": 3,
+      "correct_answer": "450",
+      "explanation": "Solve using the appropriate formula for profit-loss.",
+      "reasoning_steps": "SP=CP*1.2 => CP = 540/1.2 = 450.",
+      "shortcut": "CP = SP/(1+gain%).",
+      "common_trap": "SP*0.8 (wrong) = 432.",
+      "hints": [
+        "This is a profit-loss problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-031",
+      "type": "aptitude",
+      "options": [
+        "7%",
+        "8%",
+        "9%",
+        "10%"
+      ],
+      "correct_index": 1,
+      "correct_answer": "8%",
+      "explanation": "Solve using the appropriate formula for mixtures.",
+      "reasoning_steps": "Salt = 10% of 20 = 2 L. New total 25 L. % = 2/25*100 = 8%.",
+      "shortcut": "salt_amount/new_total.",
+      "common_trap": "Dividing by original 20 L.",
+      "hints": [
+        "This is a mixtures problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-032",
+      "type": "aptitude",
+      "options": [
+        "48 km/h",
+        "50 km/h",
+        "55 km/h",
+        "45 km/h"
+      ],
+      "correct_index": 0,
+      "correct_answer": "48 km/h",
+      "explanation": "Solve using the appropriate formula for average-speed.",
+      "reasoning_steps": "Equal distances: avg = 2uv/(u+v) = 2*40*60/100 = 4800/100 = 48.",
+      "shortcut": "2uv/(u+v).",
+      "common_trap": "Arithmetic mean 50.",
+      "hints": [
+        "This is a average-speed problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-033",
+      "type": "aptitude",
+      "options": [
+        "Rs 30",
+        "Rs 30.90",
+        "Rs 31",
+        "Rs 33"
+      ],
+      "correct_index": 2,
+      "correct_answer": "Rs 31",
+      "explanation": "Solve using the appropriate formula for compound-interest.",
+      "reasoning_steps": "SI=1000*10*3/100=300. CI=1000*(1.1)^3-1000=1331-1000=331. Diff=31.",
+      "shortcut": "Use the 3-year CI-SI formula or compute directly.",
+      "common_trap": "Using 2-year formula giving 30.",
+      "hints": [
+        "This is a compound-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-034",
+      "type": "aptitude",
+      "options": [
+        "108",
+        "162",
+        "216",
+        "243"
+      ],
+      "correct_index": 3,
+      "correct_answer": "243",
+      "explanation": "Solve using the appropriate formula for number-series.",
+      "reasoning_steps": "Each term x3: 81*3 = 243.",
+      "shortcut": "Identify constant multiplier.",
+      "common_trap": "Adding instead of multiplying.",
+      "hints": [
+        "This is a number-series problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-035",
+      "type": "aptitude",
+      "options": [
+        "44",
+        "154",
+        "308",
+        "49"
+      ],
+      "correct_index": 1,
+      "correct_answer": "154",
+      "explanation": "Solve using the appropriate formula for perimeter-area.",
+      "reasoning_steps": "pi*r^2 = 22/7 * 49 = 154.",
+      "shortcut": "pi r^2.",
+      "common_trap": "Using circumference 44 instead.",
+      "hints": [
+        "This is a perimeter-area problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-036",
+      "type": "aptitude",
+      "options": [
+        "24",
+        "16",
+        "18",
+        "20"
+      ],
+      "correct_index": 2,
+      "correct_answer": "18",
+      "explanation": "Solve using the appropriate formula for ratio-time.",
+      "reasoning_steps": "If A=2B rates, A+B = 3B = 1/12 => B=1/36, A=2/36=1/18 => 18 days.",
+      "shortcut": "Let B=x, A=2x.",
+      "common_trap": "Wrongly setting A=24.",
+      "hints": [
+        "This is a ratio-time problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-008",
+      "type": "logical",
+      "options": [
+        "20",
+        "24",
+        "29",
+        "31"
+      ],
+      "correct_index": 2,
+      "correct_answer": "29",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Rule: a*b -> a*b + a + b. 2*3=6+2+3=11; 3*4=12+3+4=19; so 4*5=20+4+5=29.",
+      "shortcut": "Multiply then add both operands.",
+      "common_trap": "Assuming plain multiplication.",
+      "hints": []
+    },
+    {
+      "id": "log-009",
+      "type": "logical",
+      "options": [
+        "72",
+        "81",
+        "90",
+        "99"
+      ],
+      "correct_index": 1,
+      "correct_answer": "81",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "7^2=49, so 9^2=81.",
+      "shortcut": "Square the first.",
+      "common_trap": "Adding (9+72) instead of squaring.",
+      "hints": []
+    },
+    {
+      "id": "log-010",
+      "type": "logical",
+      "options": [
+        "8",
+        "12",
+        "16",
+        "24"
+      ],
+      "correct_index": 1,
+      "correct_answer": "12",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Edge cubes (not corners) each have 2 painted faces: 12 edges * 1 center cube = 12.",
+      "shortcut": "For n: 12*(n-2); here 12*1=12.",
+      "common_trap": "Counting corners (3 faces) or face-centers (1 face).",
+      "hints": []
+    },
+    {
+      "id": "verb-008",
+      "type": "verbal",
+      "options": [
+        "Accommodate",
+        "Acommodate",
+        "Accomodate",
+        "Acomodate"
+      ],
+      "correct_index": 0,
+      "correct_answer": "Accommodate",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Accommodate has double c and double m.",
+      "shortcut": "acCOMMoDATE (two c, two m).",
+      "common_trap": "Dropping one 'c' or 'm'.",
+      "hints": []
+    },
+    {
+      "id": "verb-009",
+      "type": "verbal",
+      "options": [
+        "Short",
+        "Long",
+        "Detailed",
+        "Wordy"
+      ],
+      "correct_index": 0,
+      "correct_answer": "Short",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Brief means short in duration or length = short.",
+      "shortcut": "Brief = short.",
+      "common_trap": "Choosing an antonym.",
+      "hints": []
+    },
+    {
+      "id": "verb-010",
+      "type": "verbal",
+      "options": [
+        "Linguist",
+        "Innumerable",
+        "Prolific",
+        "Polyglot"
+      ],
+      "correct_index": 3,
+      "correct_answer": "Polyglot",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "A polyglot knows/uses several languages.",
+      "shortcut": "Polyglot = many languages.",
+      "common_trap": "Choosing Linguist (language scholar).",
+      "hints": []
+    },
+    {
+      "id": "apt-037",
+      "type": "aptitude",
+      "options": [
+        "100",
+        "96",
+        "92",
+        "88"
+      ],
+      "correct_index": 1,
+      "correct_answer": "96",
+      "explanation": "Solve using the appropriate formula for percentages.",
+      "reasoning_steps": "100*1.2=120; 120*0.8=96.",
+      "shortcut": "100*(1+x)(1-x)=100*(1-x^2)",
+      "common_trap": "Thinking net 0.",
+      "hints": [
+        "This is a percentages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-038",
+      "type": "aptitude",
+      "options": [
+        "400",
+        "380",
+        "360",
+        "320"
+      ],
+      "correct_index": 2,
+      "correct_answer": "360",
+      "explanation": "Solve using the appropriate formula for profit-loss.",
+      "reasoning_steps": "SP=500*0.9=450; CP=450/1.25=360.",
+      "shortcut": "SP=MP*(1-d); CP=SP/(1+p)",
+      "common_trap": "Using MP as SP.",
+      "hints": [
+        "This is a profit-loss problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-039",
+      "type": "aptitude",
+      "options": [
+        "7.2 days",
+        "6 days",
+        "8 days",
+        "9 days"
+      ],
+      "correct_index": 0,
+      "correct_answer": "7.2 days",
+      "explanation": "Solve using the appropriate formula for time-work.",
+      "reasoning_steps": "1/12+1/18=5/36 => 36/5=7.2.",
+      "shortcut": "1/(1/a+1/b)",
+      "common_trap": "Averaging (15 days).",
+      "hints": [
+        "This is a time-work problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-011",
+      "type": "logical",
+      "options": [
+        "Brother",
+        "Father",
+        "Uncle",
+        "Cousin"
+      ],
+      "correct_index": 2,
+      "correct_answer": "Uncle",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "B is C's father, A is B's brother => A is C's uncle.",
+      "shortcut": "Brother of father = uncle.",
+      "common_trap": "Picking cousin.",
+      "hints": []
+    },
+    {
+      "id": "verb-011",
+      "type": "verbal",
+      "options": [
+        "works",
+        "has been working",
+        "worked",
+        "will work"
+      ],
+      "correct_index": 1,
+      "correct_answer": "has been working",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Since + duration requires present perfect continuous.",
+      "shortcut": "since/for → has been.",
+      "common_trap": "Simple present works.",
+      "hints": []
+    },
+    {
+      "id": "apt-040",
+      "type": "aptitude",
+      "options": [
+        "2000",
+        "3000",
+        "2400",
+        "3600"
+      ],
+      "correct_index": 1,
+      "correct_answer": "3000",
+      "explanation": "Solve using the appropriate formula for ratio.",
+      "reasoning_steps": "2 parts=1200 => 1 part=600; larger 5 parts=3000.",
+      "shortcut": "diff/(a-b)*max(a,b)",
+      "common_trap": "Using smaller share.",
+      "hints": [
+        "This is a ratio problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-041",
+      "type": "aptitude",
+      "options": [
+        "1/9",
+        "1/6",
+        "1/12",
+        "5/36"
+      ],
+      "correct_index": 1,
+      "correct_answer": "1/6",
+      "explanation": "Solve using the appropriate formula for probability.",
+      "reasoning_steps": "Favourable (4,6)(5,5)(6,4)(5,6)(6,5)(6,6)=6; 6/36=1/6.",
+      "shortcut": "count/36",
+      "common_trap": "Including (3,7) which needs 7.",
+      "hints": [
+        "This is a probability problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-042",
+      "type": "aptitude",
+      "options": [
+        "820",
+        "800",
+        "840",
+        "780"
+      ],
+      "correct_index": 0,
+      "correct_answer": "820",
+      "explanation": "Solve using the appropriate formula for compound-interest.",
+      "reasoning_steps": "8000*1.05^2=8820; CI=820.",
+      "shortcut": "P[(1+r/100)^t -1]",
+      "common_trap": "Computing simple interest.",
+      "hints": [
+        "This is a compound-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-012",
+      "type": "logical",
+      "options": [
+        "40",
+        "42",
+        "44",
+        "46"
+      ],
+      "correct_index": 1,
+      "correct_answer": "42",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "n*n+? -> terms are k(k+1) for k=1..5, next 6*7=42.",
+      "shortcut": "n(n+1)",
+      "common_trap": "Adding alternating numbers.",
+      "hints": []
+    },
+    {
+      "id": "verb-012",
+      "type": "verbal",
+      "options": [
+        "in",
+        "at",
+        "on",
+        "for"
+      ],
+      "correct_index": 1,
+      "correct_answer": "at",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "'Good at' is the idiomatic collocation.",
+      "shortcut": "good at X",
+      "common_trap": "Using 'in' by translation.",
+      "hints": []
+    },
+    {
+      "id": "apt-043",
+      "type": "aptitude",
+      "options": [
+        "900",
+        "800",
+        "950",
+        "1000"
+      ],
+      "correct_index": 0,
+      "correct_answer": "900",
+      "explanation": "Solve using the appropriate formula for simple-interest.",
+      "reasoning_steps": "6000*0.05*3=900.",
+      "shortcut": "P*R*T/100",
+      "common_trap": "Using compound interest formula.",
+      "hints": [
+        "This is a simple-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-044",
+      "type": "aptitude",
+      "options": [
+        "15",
+        "10",
+        "18",
+        "12"
+      ],
+      "correct_index": 0,
+      "correct_answer": "15",
+      "explanation": "Solve using the appropriate formula for time-distance.",
+      "reasoning_steps": "54*5/18=15.",
+      "shortcut": "km/h * 5/18",
+      "common_trap": "Multiplying by 18/5.",
+      "hints": [
+        "This is a time-distance problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-045",
+      "type": "aptitude",
+      "options": [
+        "8",
+        "6",
+        "10",
+        "12"
+      ],
+      "correct_index": 0,
+      "correct_answer": "8",
+      "explanation": "Solve using the appropriate formula for averages.",
+      "reasoning_steps": "Sum 40 / 5 = 8.",
+      "shortcut": "middle of evenly spaced = 8.",
+      "common_trap": "Summing then forgetting to divide.",
+      "hints": [
+        "This is a averages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-013",
+      "type": "logical",
+      "options": [
+        "4 km South",
+        "4 km East",
+        "3 km North",
+        "7 km East"
+      ],
+      "correct_index": 1,
+      "correct_answer": "4 km East",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "North/South cancel; 4 km East remains.",
+      "shortcut": "Cancel opposite legs.",
+      "common_trap": "Adding all distances.",
+      "hints": []
+    },
+    {
+      "id": "verb-013",
+      "type": "verbal",
+      "options": [
+        "Literal animals falling",
+        "Raining very heavily",
+        "Light drizzle",
+        "Storm with hail"
+      ],
+      "correct_index": 1,
+      "correct_answer": "Raining very heavily",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "English idiom for heavy rain.",
+      "shortcut": "Cats and dogs = heavy rain.",
+      "common_trap": "Taking it literally.",
+      "hints": []
+    },
+    {
+      "id": "apt-046",
+      "type": "aptitude",
+      "options": [
+        "50",
+        "40",
+        "25",
+        "75"
+      ],
+      "correct_index": 0,
+      "correct_answer": "50",
+      "explanation": "Solve using the appropriate formula for percentages.",
+      "reasoning_steps": "25/100*200=50.",
+      "shortcut": "Quarter of 200 = 50.",
+      "common_trap": "Compute 20%.",
+      "hints": [
+        "This is a percentages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-047",
+      "type": "aptitude",
+      "options": [
+        "8",
+        "10",
+        "12",
+        "15"
+      ],
+      "correct_index": 1,
+      "correct_answer": "10",
+      "explanation": "Solve using the appropriate formula for ages.",
+      "reasoning_steps": "F=3S; F+10=2(S+10) => 3S+10=2S+20 => S=10.",
+      "shortcut": "3S+10=2(S+10).",
+      "common_trap": "Setting F=2S now.",
+      "hints": [
+        "This is a ages problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-048",
+      "type": "aptitude",
+      "options": [
+        "50",
+        "100",
+        "25",
+        "75"
+      ],
+      "correct_index": 0,
+      "correct_answer": "50",
+      "explanation": "Solve using the appropriate formula for compound-interest.",
+      "reasoning_steps": "Diff = P*(r/100)^2 = 5000*0.01=50.",
+      "shortcut": "diff = P*(r/100)^2 (2 yrs).",
+      "common_trap": "Using r^2/100 alone.",
+      "hints": [
+        "This is a compound-interest problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-014",
+      "type": "logical",
+      "options": [
+        "108",
+        "162",
+        "243",
+        "324"
+      ],
+      "correct_index": 2,
+      "correct_answer": "243",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Each term is previous *3.",
+      "shortcut": "x3 pattern.",
+      "common_trap": "Adding 18, 54, 108.",
+      "hints": []
+    },
+    {
+      "id": "verb-014",
+      "type": "verbal",
+      "options": [
+        "practice",
+        "has been practicing",
+        "practiced",
+        "will practice"
+      ],
+      "correct_index": 1,
+      "correct_answer": "has been practicing",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Since + ongoing action -> present perfect continuous.",
+      "shortcut": "since + duration -> has been ...ing.",
+      "common_trap": "Simple past.",
+      "hints": []
+    },
+    {
+      "id": "apt-049",
+      "type": "aptitude",
+      "options": [
+        "12 min",
+        "15 min",
+        "10 min",
+        "18 min"
+      ],
+      "correct_index": 0,
+      "correct_answer": "12 min",
+      "explanation": "Solve using the appropriate formula for time-work.",
+      "reasoning_steps": "1/20+1/30=5/60=1/12 -> 12 min.",
+      "shortcut": "1/(1/a+1/b).",
+      "common_trap": "Average of times (25).",
+      "hints": [
+        "This is a time-work problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-050",
+      "type": "aptitude",
+      "options": [
+        "200",
+        "210",
+        "220",
+        "190"
+      ],
+      "correct_index": 1,
+      "correct_answer": "210",
+      "explanation": "Solve using the appropriate formula for numbers.",
+      "reasoning_steps": "20*21/2=210.",
+      "shortcut": "n(n+1)/2.",
+      "common_trap": "Using n(n-1)/2.",
+      "hints": [
+        "This is a numbers problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "apt-051",
+      "type": "aptitude",
+      "options": [
+        "450",
+        "480",
+        "500",
+        "525"
+      ],
+      "correct_index": 2,
+      "correct_answer": "500",
+      "explanation": "Solve using the appropriate formula for profit-loss.",
+      "reasoning_steps": "400*1.25=500.",
+      "shortcut": "CP*(1+g).",
+      "common_trap": "Computing gain on SP.",
+      "hints": [
+        "This is a profit-loss problem.",
+        "Write down the given values.",
+        "Identify the formula or approach needed.",
+        "Solve step by step."
+      ]
+    },
+    {
+      "id": "log-015",
+      "type": "logical",
+      "options": [
+        "S",
+        "T",
+        "U",
+        "V"
+      ],
+      "correct_index": 2,
+      "correct_answer": "U",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Gaps +2,+3,+4,+5 then +6: O+6 = U.",
+      "shortcut": "Step size grows by 1.",
+      "common_trap": "Constant +2.",
+      "hints": []
+    },
+    {
+      "id": "verb-015",
+      "type": "verbal",
+      "options": [
+        "Stubborn",
+        "Flexible",
+        "Weak",
+        "Lazy"
+      ],
+      "correct_index": 0,
+      "correct_answer": "Stubborn",
+      "explanation": "Apply logical reasoning to determine the answer.",
+      "reasoning_steps": "Obstinate = stubbornly unyielding.",
+      "shortcut": "Obstinate = stubborn.",
+      "common_trap": "Choosing flexible (antonym).",
+      "hints": []
+    }
+  ],
+  "demote_ids": []
+}
