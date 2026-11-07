@@ -13,6 +13,13 @@ MASTERY_THRESHOLD = 70.0
 MIN_INDEPENDENT_ATTEMPTS = 3
 
 SKILL_PREREQUISITES: Dict[str, Dict[str, Any]] = {
+    # Foundational nodes are explicit leaves so graph validation can detect
+    # misspelled references instead of treating every unknown node as a root.
+    "coding.variables": {"title": "Variables and assignment", "prerequisites": []},
+    "coding.types": {"title": "Data types", "prerequisites": []},
+    "coding.conditions": {"title": "Conditions and Boolean logic", "prerequisites": []},
+    "cs_fundamentals.databases": {"title": "Database fundamentals", "prerequisites": []},
+    "system_design.caching": {"title": "Caching fundamentals", "prerequisites": []},
     "coding.functions": {
         "title": "Functions and scope",
         "prerequisites": ["coding.variables", "coding.types", "coding.conditions"],
