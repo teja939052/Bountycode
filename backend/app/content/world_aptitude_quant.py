@@ -4,8 +4,7 @@ Follows the exact teaching standard of World 1 Foundations:
 discover → manipulate → predict → build → break → debug → retrieve → transfer → mastery.
 
 Primary target: TCS NQT / Infosys / Wipro / Accenture Numerical Ability.
-Towns live in this file (Percentages, Profit & Loss) or in dedicated modules
-and are composed here into WORLD_APTITUDE_QUANT.
+Town modules are composed here into WORLD_APTITUDE_QUANT.
 """
 from __future__ import annotations
 
@@ -17,11 +16,10 @@ from app.content.lesson_definitions import (
 )
 from app.content.world_aptitude_time_work import TIME_WORK_TOWN
 from app.content.world_aptitude_tsd import TIME_SPEED_DISTANCE_TOWN
+from app.content.world_aptitude_ratios_averages import RATIOS_AVERAGES_TOWN
 
 
-# ───────────────────────────────────────────────────────────────────
-# TOWN 1 — PERCENTAGES
-# ───────────────────────────────────────────────────────────────────
+# ─── TOWN 1 — PERCENTAGES ───
 
 PERCENTAGES_TOWN = TownDefinition(
     id="percentages",
@@ -181,9 +179,7 @@ PERCENTAGES_TOWN = TownDefinition(
 )
 
 
-# ───────────────────────────────────────────────────────────────────
-# TOWN 2 — PROFIT & LOSS
-# ───────────────────────────────────────────────────────────────────
+# ─── TOWN 2 — PROFIT & LOSS ───
 
 PROFIT_LOSS_TOWN = TownDefinition(
     id="profit_loss",
@@ -306,9 +302,7 @@ PROFIT_LOSS_TOWN = TownDefinition(
 )
 
 
-# ───────────────────────────────────────────────────────────────────
-# WORLD DEFINITION — composes all towns
-# ───────────────────────────────────────────────────────────────────
+# ─── WORLD DEFINITION — composes all towns ───
 
 WORLD_APTITUDE_QUANT = WorldDefinition(
     id="aptitude_quant",
@@ -326,5 +320,6 @@ WORLD_APTITUDE_QUANT = WorldDefinition(
         PROFIT_LOSS_TOWN,
         TIME_WORK_TOWN,
         TIME_SPEED_DISTANCE_TOWN,
+        RATIOS_AVERAGES_TOWN,
     ],
 )
