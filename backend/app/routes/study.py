@@ -1,4 +1,3 @@
-import asyncio
 """Study Engine routes — the single canonical daily-learning API.
 
 Per the canonical architecture:
@@ -20,6 +19,8 @@ Legacy endpoints:
       existing frontends keep working; new code should prefer
       ``/study/today``.
 """
+
+import asyncio
 from fastapi import APIRouter, Depends, Query
 
 from app.middleware.auth import get_current_user
