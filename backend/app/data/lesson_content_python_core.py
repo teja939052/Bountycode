@@ -576,7 +576,7 @@ _PYTHON_CORE: Dict[str, Dict[str, Any]] = {
         "how": "The json module converts JSON text to Python values with loads() and load(), and converts Python values to JSON text with dumps() and dump(). JSON objects become dictionaries, arrays become lists, and null becomes None.",
         "why": "JSON is widely used by REST APIs, configuration files and browser-server communication. Understanding the conversion between JSON text and Python data is essential when building backends and integrating services.",
         "pitfall": "loads() expects JSON text, while load() expects a file-like object. JSON uses true, false and null rather than Python's True, False and None. Do not use eval() to parse untrusted JSON.",
-        "code": "import json\nraw = '{"name": "Asha", "skills": ["Python", "SQL"]}'\nstudent = json.loads(raw)\nstudent['active'] = True\nprint(student['name'])\nprint(json.dumps(student))",
+        "code": "import json\nraw = '{\"name\": \"Asha\", \"skills\": [\"Python\", \"SQL\"]}'\nstudent = json.loads(raw)\nstudent['active'] = True\nprint(student['name'])\nprint(json.dumps(student))",
         "output": "Asha\nA JSON string representing the updated student object is printed.",
         "exercise": "Parse a JSON string containing a product name and price. Add an in_stock Boolean field and serialize the updated dictionary back to JSON.",
         "expected": "The decoded dictionary contains the original name and price plus in_stock: True; the serialized JSON uses true for the Boolean value.",
