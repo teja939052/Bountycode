@@ -5,7 +5,7 @@ discover → manipulate → predict → build → break → debug → retrieve �
 
 Primary target: TCS NQT / Infosys / Wipro / Accenture Numerical Ability.
 Towns live in this file (Percentages, Profit & Loss) or in dedicated modules
-(Time & Work) and are composed here into WORLD_APTITUDE_QUANT.
+and are composed here into WORLD_APTITUDE_QUANT.
 """
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ from app.content.lesson_definitions import (
     WorldDefinition,
 )
 from app.content.world_aptitude_time_work import TIME_WORK_TOWN
+from app.content.world_aptitude_tsd import TIME_SPEED_DISTANCE_TOWN
 
 
 # ───────────────────────────────────────────────────────────────────
@@ -31,50 +32,39 @@ PERCENTAGES_TOWN = TownDefinition(
     mental_model="A percentage is always 'parts out of 100'. The original value is almost always the base.",
     canonical_skills=["aptitude.percentages"],
     competencies=[
-        "percentage_meaning",
-        "percent_of_quantity",
-        "percentage_increase",
-        "percentage_decrease",
-        "successive_change",
-        "reverse_percentage",
-        "percentage_comparison",
+        "percentage_meaning", "percent_of_quantity", "percentage_increase",
+        "percentage_decrease", "successive_change", "reverse_percentage", "percentage_comparison",
     ],
     lessons=[
         LessonDefinition(
-            id="pct-1",
-            title="What Percentage Means",
-            icon="1",
-            order=1,
+            id="pct-1", title="What Percentage Means", icon="1", order=1,
             concept="percentage_meaning",
-            mental_model="x% means x parts out of every 100 parts. It is a fraction with denominator 100.",
+            mental_model="x% means x parts out of every 100 parts.",
             canonical_skill="aptitude.percentages",
-            location="Market Square — Price Board",
-            npc="Ravi the Shopkeeper",
-            npc_line="Every discount board says 20% off. Students still treat 20% as the number 20. Help them see it as a fraction of 100.",
-            tutor_discover="Percentage is just a special fraction whose denominator is always 100.",
-            tutor_explain="25% = 25/100 = 1/4 = 0.25. Saying '25 percent' is the same as saying 'one quarter'.",
-            why_this_matters="Almost every numerical question in TCS NQT, Infosys and Wipro uses percentages. If the base is wrong, the entire answer is wrong.",
-            engineering_context="In product metrics we talk about conversion rate, churn, growth — all percentages.",
-            builds_toward="NQT Numerical Ability — every section",
+            location="Market Square — Price Board", npc="Ravi the Shopkeeper",
+            npc_line="Students still treat 20% as the number 20.",
+            tutor_discover="Percentage is a special fraction with denominator 100.",
+            why_this_matters="Almost every numerical question uses percentages.",
+            engineering_context="Conversion rate, churn, growth — all percentages.",
+            builds_toward="NQT Numerical Ability",
             steps=[
                 LessonStep(step_type="discover", title="The Price Board",
-                    content="A shirt costs \u20b91000. The board says '20% off'. What does 20% actually mean?",
-                    visual="1000 \u00f7 100 = 10 \u2192 each 1% is \u20b910 \u2192 20% = \u20b9200 off",
-                    interaction="select-value", prompt="20% of 1000 is equal to:",
+                    content="Shirt costs \u20b91000, 20% off. What is 20% of 1000?",
+                    visual="1000 \u00f7 100 = 10 \u2192 20% = \u20b9200",
+                    interaction="select-value", prompt="20% of 1000:",
                     values=["20", "200", "0.20", "1000/20"], answer="200"),
                 LessonStep(step_type="build", title="Calculate the discount",
                     function_name="percent_of", signature="def percent_of(x: float, n: float) -> float:",
                     description="Return x% of n.",
                     test_cases=[{"input": [20, 150], "expected": 30.0}, {"input": [25, 200], "expected": 50.0}],
-                    hidden_tests=3, repair_steps=[{"trigger": "wrong_answer", "hint": "x% of n = (x/100)*n"}],
-                    passing_score=70, max_attempts=3),
+                    hidden_tests=3, repair_steps=[], passing_score=70, max_attempts=3),
                 LessonStep(step_type="mastery", title="Prove it",
                     function_name="percent_of", signature="def percent_of(x: float, n: float) -> float:",
                     description="Return x% of n.",
                     test_cases=[{"input": [12.5, 64], "expected": 8.0}, {"input": [7.5, 200], "expected": 15.0}],
                     hidden_tests=4, repair_steps=[], passing_score=80, max_attempts=3),
             ],
-            mastery_evidence=["Convert between %, fraction and decimal", "Compute x% of any number"],
+            mastery_evidence=["Convert %, fraction, decimal", "Compute x% of any number"],
             unlocks="pct-2",
         ),
         LessonDefinition(
@@ -83,10 +73,10 @@ PERCENTAGES_TOWN = TownDefinition(
             mental_model="Original is the base. Increase \u00d7 (1+x/100). Decrease \u00d7 (1-x/100).",
             canonical_skill="aptitude.percentages",
             location="Market Square — Discount Counter", npc="Ravi the Shopkeeper",
-            npc_line="Students keep using the new price as the base. That is the #1 error.",
+            npc_line="Students keep using the new price as the base.",
             tutor_discover="The starting value is almost always the base.",
-            why_this_matters="Salary hikes, price drops, mark-up and discount all use this idea.",
-            engineering_context="Week-over-week growth and pricing engines use the same multipliers.",
+            why_this_matters="Salary hikes, price drops, mark-up and discount.",
+            engineering_context="Week-over-week growth and pricing engines.",
             builds_toward="NQT Numerical + Profit & Loss",
             steps=[
                 LessonStep(step_type="discover", title="Salary hike",
@@ -114,10 +104,10 @@ PERCENTAGES_TOWN = TownDefinition(
             mental_model="Apply each change to the current value. Percentages do not simply add.",
             canonical_skill="aptitude.percentages",
             location="Market Square — Double Discount Day", npc="Ravi the Shopkeeper",
-            npc_line="Students add 20+10=30 and get the wrong answer every time.",
+            npc_line="Students add 20+10=30 and get the wrong answer.",
             tutor_discover="Successive changes are multiplicative.",
             why_this_matters="Appears in almost every higher-difficulty percentage question.",
-            engineering_context="Compound interest and multi-step growth rates use the same model.",
+            engineering_context="Compound interest and multi-step growth rates.",
             builds_toward="NQT medium/hard Numerical",
             steps=[
                 LessonStep(step_type="discover", title="Double discount",
@@ -213,8 +203,8 @@ PROFIT_LOSS_TOWN = TownDefinition(
             location="Market Square — Ledger Desk", npc="Meena the Trader",
             npc_line="Students keep dividing by SP instead of CP.",
             tutor_discover="Profit and loss percentage is always on the cost price.",
-            why_this_matters="Foundation of every profit-loss question in TCS, Infosys and Wipro.",
-            engineering_context="Margin = (SP - CP) / CP in every commerce system.",
+            why_this_matters="Foundation of every profit-loss question.",
+            engineering_context="Margin = (SP - CP) / CP.",
             builds_toward="NQT Numerical — Profit & Loss",
             steps=[
                 LessonStep(step_type="discover", title="Simple profit",
@@ -245,7 +235,7 @@ PROFIT_LOSS_TOWN = TownDefinition(
             tutor_discover="Marked Price is the tag price. Discount reduces MP to SP.",
             why_this_matters="Almost every discount question uses this relationship.",
             engineering_context="E-commerce list price + promotional discounts.",
-            builds_toward="NQT Numerical — Discount questions",
+            builds_toward="NQT Numerical — Discount",
             steps=[
                 LessonStep(step_type="discover", title="Simple discount",
                     content="MP \u20b9800, discount 20%. SP?",
@@ -273,8 +263,8 @@ PROFIT_LOSS_TOWN = TownDefinition(
             location="Market Square — Full Transaction", npc="Meena the Trader",
             npc_line="This is the pattern in almost every medium and hard profit-loss question.",
             tutor_discover="Markup creates MP from CP. Discount creates SP from MP.",
-            why_this_matters="Classic 'marked x% above cost then y% discount' is a TCS/Infosys staple.",
-            engineering_context="Retail pricing pipelines: cost \u2192 target margin \u2192 list \u2192 promotions.",
+            why_this_matters="Classic marked-x%-then-y%-discount is a TCS/Infosys staple.",
+            engineering_context="Retail pricing pipelines.",
             builds_toward="NQT medium/hard Profit & Loss",
             steps=[
                 LessonStep(step_type="discover", title="The classic pattern",
@@ -331,5 +321,10 @@ WORLD_APTITUDE_QUANT = WorldDefinition(
     ),
     order=20,
     theme="aptitude",
-    towns=[PERCENTAGES_TOWN, PROFIT_LOSS_TOWN, TIME_WORK_TOWN],
+    towns=[
+        PERCENTAGES_TOWN,
+        PROFIT_LOSS_TOWN,
+        TIME_WORK_TOWN,
+        TIME_SPEED_DISTANCE_TOWN,
+    ],
 )
