@@ -40,6 +40,20 @@ export const companyLessonsApi = {
     );
   },
 
+  /** Progressive server-side hint. Never awards mastery. */
+  getHint(slug: string, stepIndex: number, hintsUsed = 0) {
+    return request<{
+      success: boolean;
+      hint: string | null;
+      hints_remaining?: number;
+      exhausted?: boolean;
+      awards_mastery?: boolean;
+    }>(`/api/v1/sprint/lessons/${encodeURIComponent(slug)}/hint`, {
+      method: "POST",
+      body: JSON.stringify({ step_index: stepIndex, hints_used: hintsUsed }),
+    });
+  },
+
   complete(
     slug: string,
     payload: {
