@@ -1,222 +1,30 @@
 {
   "slug": "hashing_basics",
   "id": "lesson_hashing_basics_001",
-  "title": "Hashing Fundamentals",
-  "domain": "Data Structures",
-  "pattern": "Hashing",
+  "title": "Hashing basics",
+  "domain": "DSA",
   "difficulty": "medium",
-  "duration_min": 22,
-  "xp_reward": 105,
+  "duration_min": 24,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
   "steps": [
-    {
-      "step_number": 1,
-      "step_type": "explain",
-      "title": "Store and find by key",
-      "content": "A hash table stores key-value pairs. A hash function maps a key to an array index, making lookup and insertion O(1) on average.",
-      "example": "A student ID can be the key and the student's record the value."
-    },
-    {
-      "step_number": 2,
-      "step_type": "interactive",
-      "title": "Why collisions happen",
-      "prompt": "What is a hash collision?",
-      "options": [
-        "Two keys map to the same table index",
-        "A key is missing",
-        "The table is sorted",
-        "A value is duplicated"
-      ],
-      "correct_index": 0,
-      "explanation": "Different keys can produce the same hash-table index. The table must handle the collision."
-    },
-    {
-      "step_number": 3,
-      "step_type": "explain",
-      "title": "Handle collisions",
-      "content": "Separate chaining stores multiple entries in a bucket, often as a list. Open addressing searches for another available slot using probing.",
-      "example": "If keys 12 and 22 both hash to index 2, chaining keeps both entries in bucket 2."
-    },
-    {
-      "step_number": 4,
-      "step_type": "practice",
-      "title": "Average lookup",
-      "prompt": "What is the average lookup time in a well-sized hash table?",
-      "options": [
-        "O(log n)",
-        "O(n)",
-        "O(1)",
-        "O(n log n)"
-      ],
-      "correct_index": 2,
-      "explanation": "With a good hash function and controlled load factor, lookup is O(1) on average."
-    },
-    {
-      "step_number": 5,
-      "step_type": "explain",
-      "title": "Understand the worst case",
-      "content": "If many keys collide, a bucket can become long and operations may degrade to O(n). A good hash function distributes keys, and resizing helps keep the load factor controlled.",
-      "tip": "Hash table operations are average O(1), not guaranteed O(1) in every case."
-    }
+    {"step_number": 1, "step_type": "explain", "title": "Key to bucket", "content": "A hash function maps a key to a bucket index. Average lookup is O(1) when the distribution is good. Collisions happen when two keys map to the same bucket."},
+    {"step_number": 2, "step_type": "interactive", "title": "Use case", "prompt": "Fast check whether an ID was seen before suggests:", "options": ["Only sorted array scan always", "Hash set / hash map", "Only recursion", "Bubble sort"], "correct_index": 1, "explanation": "Hash set/map optimises membership and key lookup.", "hints": ["Which structure is built for keys?"]},
+    {"step_number": 3, "step_type": "practice", "title": "Collision idea", "prompt": "Two different keys, same bucket means:", "options": ["Impossible", "A collision", "Sorted order", "Stack overflow"], "correct_index": 1, "explanation": "That is a collision.", "hints": ["Same index, different keys."]},
+    {"step_number": 4, "step_type": "practice", "title": "OA pattern", "prompt": "Count frequencies of array elements is often solved with:", "options": ["Hash map counts", "Only binary search on unsorted", "Selection sort only", "Hard-coded ifs"], "correct_index": 0, "explanation": "Map value → count.", "hints": ["Need key → frequency."]},
+    {"step_number": 5, "step_type": "explain", "title": "Service OA tip", "content": "Prefer clear hash-map solutions for frequency and pair-sum patterns over fragile micro-optimisations."}
   ],
-  "assessment": {
-    "mastery_threshold": 0.7,
-    "duration_sec": 240,
-    "questions": [
-      {
-        "prompt": "What does a hash function do?",
-        "options": [
-          "Sorts keys",
-          "Maps a key to a hash value/index",
-          "Encrypts all values",
-          "Deletes duplicates"
-        ],
-        "correct_index": 1,
-        "explanation": "A hash function maps a key to a location in the table."
-      },
-      {
-        "prompt": "What is a collision?",
-        "options": [
-          "Two keys map to the same index",
-          "The table becomes empty",
-          "A value is null",
-          "The array is sorted"
-        ],
-        "correct_index": 0,
-        "explanation": "A collision occurs when distinct keys map to the same table index."
-      },
-      {
-        "prompt": "Which is a collision-resolution strategy?",
-        "options": [
-          "Binary search",
-          "Separate chaining",
-          "Merge sort",
-          "Two pointers"
-        ],
-        "correct_index": 1,
-        "explanation": "Separate chaining stores collided entries together in a bucket."
-      },
-      {
-        "prompt": "What is average lookup time in a well-designed hash table?",
-        "options": [
-          "O(1)",
-          "O(log n)",
-          "O(n)",
-          "O(n²)"
-        ],
-        "correct_index": 0,
-        "explanation": "Expected lookup is O(1) under a suitable distribution and load factor."
-      },
-      {
-        "prompt": "What can happen in the worst case with many collisions?",
-        "options": [
-          "O(1) always",
-          "O(log n) always",
-          "O(n) operations",
-          "The keys disappear"
-        ],
-        "correct_index": 2,
-        "explanation": "If entries accumulate in one bucket or probe sequence, lookup can degrade to linear time."
-      }
-    ]
-  },
-  "learning_objectives": [
-    "Explain key-value lookup using a hash table.",
-    "Use a frequency map to count values.",
-    "Understand collisions and collision handling.",
-    "State average and worst-case lookup complexity."
-  ],
-  "prerequisites": [
-    "arrays_basics"
-  ],
-  "concepts": [
-    "hash function",
-    "hash table",
-    "key-value pair",
-    "collision",
-    "frequency map",
-    "set",
-    "average O(1)"
-  ],
-  "common_misconceptions": [
-    {
-      "misconception": "Hash maps guarantee O(1) in every case.",
-      "correction": "Average operations are often O(1); pathological collisions can degrade performance."
-    },
-    {
-      "misconception": "A hash map stores values in sorted order.",
-      "correction": "A typical hash map does not guarantee sorted iteration order."
-    },
-    {
-      "misconception": "A set stores duplicate values.",
-      "correction": "A set keeps unique elements; adding an existing value does not create a duplicate."
-    }
-  ],
-  "worked_examples": [
-    {
-      "title": "Count frequencies",
-      "input": "[2, 1, 2, 3, 1, 2]",
-      "trace": [
-        "Read 2; count[2] becomes 1.",
-        "Read 1; count[1] becomes 1.",
-        "Read 2; count[2] becomes 2.",
-        "Continue until all six values are processed."
-      ],
-      "output": "2 → 3, 1 → 2, 3 → 1",
-      "explanation": "A frequency map stores one counter per distinct key."
-    },
-    {
-      "title": "Detect a duplicate",
-      "input": "[4, 7, 2, 7]",
-      "trace": [
-        "Insert 4 into seen.",
-        "Insert 7 into seen.",
-        "Insert 2 into seen.",
-        "Read 7; it is already in seen."
-      ],
-      "output": "Duplicate found: 7",
-      "explanation": "A set provides a concise way to remember values already encountered."
-    },
-    {
-      "title": "Reason about complexity",
-      "input": "Process n values with a hash set",
-      "trace": [
-        "Each value is hashed to a bucket.",
-        "Average insertion or lookup is expected O(1).",
-        "Across n values, expected total work is O(n)."
-      ],
-      "output": "Expected O(n) total time",
-      "explanation": "State the average-case assumption and mention collision worst cases."
-    }
-  ],
-  "company_applications": [
-    {
-      "company": "TCS",
-      "skill": "arrays, hashing and duplicate detection",
-      "practice": "Use maps for counts and sets for membership."
-    },
-    {
-      "company": "Infosys",
-      "skill": "problem-solving optimization",
-      "practice": "Compare nested-loop O(n²) with expected O(n) hashing."
-    },
-    {
-      "company": "Accenture",
-      "skill": "coding logic and edge cases",
-      "practice": "Test empty arrays, repeated values and negative numbers."
-    }
-  ],
-  "srs_cards": [
-    {
-      "type": "concept",
-      "question": "What are the key ideas in Hashing Fundamentals?",
-      "answer": "Explain key-value lookup using a hash table. Use a frequency map to count values. Understand collisions and collision handling. State average and worst-case lookup complexity."
-    },
-    {
-      "type": "misconception",
-      "question": "Name a common mistake in Hashing Fundamentals.",
-      "answer": "Average operations are often O(1); pathological collisions can degrade performance."
-    }
-  ],
-  "next_lesson_slug": "recursion_basics",
-  "next_lesson_title": "Recursion Fundamentals"
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Average hash lookup:", "options": ["O(n)", "O(1)", "O(n^2)", "O(n log n) always"], "correct_index": 1, "explanation": "Average O(1)."},
+    {"prompt": "Collision means:", "options": ["No keys", "Keys share a bucket", "Sorted keys", "Empty map"], "correct_index": 1, "explanation": "Shared bucket."},
+    {"prompt": "Frequency counting fits:", "options": ["Hash map", "Only queue", "Only stack", "Only DFS"], "correct_index": 0, "explanation": "Hash map."},
+    {"prompt": "Hash maps store:", "options": ["Only integers", "Key-value associations", "Only sorted pairs", "Pixels"], "correct_index": 1, "explanation": "Key-value."},
+    {"prompt": "In OA prefer:", "options": ["Obscure bit hacks first", "Correct clear map logic", "Undefined behavior", "Ignore collisions conceptually"], "correct_index": 1, "explanation": "Clear correct logic."}
+  ]},
+  "learning_objectives": ["Explain hashing purpose", "Choose maps for frequency/membership"],
+  "concepts": ["hash", "collision", "map"],
+  "company_applications": [{"company": "Infosys", "skill": "hashing", "practice": "Frequency and pair problems."}],
+  "srs_cards": [{"type": "concept", "question": "Why hash maps?", "answer": "Average fast key-based insert/lookup."}],
+  "next_lesson_slug": "algorithms_basics",
+  "next_lesson_title": "Algorithms basics"
 }

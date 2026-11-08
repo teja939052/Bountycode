@@ -1,219 +1,30 @@
 {
   "slug": "sorting_basics",
   "id": "lesson_sorting_basics_001",
-  "title": "Sorting Fundamentals",
-  "domain": "Programming Fundamentals",
-  "pattern": "Sorting",
-  "difficulty": "easy",
-  "duration_min": 22,
-  "xp_reward": 100,
+  "title": "Sorting basics",
+  "domain": "DSA",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
   "steps": [
-    {
-      "step_number": 1,
-      "step_type": "explain",
-      "title": "What sorting does",
-      "content": "Sorting arranges data in a chosen order, usually ascending or descending. A good algorithm also considers input size, memory and whether equal items keep their relative order.",
-      "example": "[7,2,5,2] sorted ascending becomes [2,2,5,7]."
-    },
-    {
-      "step_number": 2,
-      "step_type": "interactive",
-      "title": "Understand bubble sort",
-      "prompt": "In one left-to-right pass of bubble sort on [4,1,3,2], which value is guaranteed to reach the final position?",
-      "options": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
-      "correct_index": 3,
-      "explanation": "The largest value moves right whenever an adjacent pair is swapped, so 4 reaches the final position after one full pass."
-    },
-    {
-      "step_number": 3,
-      "step_type": "explain",
-      "title": "Compare common algorithms",
-      "content": "Bubble, selection and insertion sort are O(n²) in average/worst cases. Merge sort is O(n log n) and uses extra memory. Quicksort is O(n log n) on average but O(n²) in the worst case.",
-      "tip": "For small or nearly sorted arrays, insertion sort can perform well despite O(n²) worst-case complexity."
-    },
-    {
-      "step_number": 4,
-      "step_type": "practice",
-      "title": "Choose the complexity",
-      "prompt": "What is the average time complexity of merge sort?",
-      "options": [
-        "O(1)",
-        "O(log n)",
-        "O(n)",
-        "O(n log n)"
-      ],
-      "correct_index": 3,
-      "explanation": "Merge sort splits the input into log n levels and processes n elements per level: O(n log n)."
-    },
-    {
-      "step_number": 5,
-      "step_type": "explain",
-      "title": "Stability and in-place sorting",
-      "content": "A stable sort keeps equal-key items in their original relative order. An in-place algorithm uses little extra memory beyond the input array. These are separate properties."
-    }
+    {"step_number": 1, "step_type": "explain", "title": "Why sort?", "content": "Sorted data enables binary search and simpler two-pointer techniques. Comparison sorts need at least about n log n comparisons in the worst case for general inputs."},
+    {"step_number": 2, "step_type": "interactive", "title": "After sort", "prompt": "[3,1,2] ascending becomes:", "options": ["[3,2,1]", "[1,2,3]", "[2,1,3]", "[1,3,2]"], "correct_index": 1, "explanation": "Ascending order 1,2,3.", "hints": ["Smallest first."]},
+    {"step_number": 3, "step_type": "practice", "title": "Binary search need", "prompt": "Binary search requires:", "options": ["Random hash only", "Sorted order", "Graph input", "Unsorted always"], "correct_index": 1, "explanation": "Binary search needs sorted data.", "hints": ["What property does mid-point logic need?"]},
+    {"step_number": 4, "step_type": "practice", "title": "Stability idea", "prompt": "A stable sort:", "options": ["Changes relative order of equal keys", "Preserves relative order of equal keys", "Only sorts numbers", "Never terminates"], "correct_index": 1, "explanation": "Stability preserves equal-key order.", "hints": ["Equal keys — relative order?"]},
+    {"step_number": 5, "step_type": "explain", "title": "OA tip", "content": "Use library sort when allowed; know O(n log n) expectation and when the array must be sorted first."}
   ],
-  "assessment": {
-    "mastery_threshold": 0.7,
-    "duration_sec": 240,
-    "questions": [
-      {
-        "prompt": "Which algorithm repeatedly swaps adjacent out-of-order items?",
-        "options": [
-          "Merge sort",
-          "Bubble sort",
-          "Binary search",
-          "Hashing"
-        ],
-        "correct_index": 1,
-        "explanation": "Bubble sort compares adjacent values and swaps when they are out of order."
-      },
-      {
-        "prompt": "What is the average time complexity of merge sort?",
-        "options": [
-          "O(n²)",
-          "O(n log n)",
-          "O(log n)",
-          "O(n)"
-        ],
-        "correct_index": 1,
-        "explanation": "Merge sort has O(n log n) time in best, average and worst cases."
-      },
-      {
-        "prompt": "Which algorithm is usually efficient on small, nearly sorted arrays?",
-        "options": [
-          "Insertion sort",
-          "Heap sort",
-          "Breadth-first search",
-          "Hash lookup"
-        ],
-        "correct_index": 0,
-        "explanation": "Insertion sort can run close to O(n) on nearly sorted input."
-      },
-      {
-        "prompt": "What does a stable sort guarantee?",
-        "options": [
-          "No extra memory",
-          "O(n) time",
-          "Equal keys preserve relative order",
-          "The array is reversed"
-        ],
-        "correct_index": 2,
-        "explanation": "Stability preserves the original order of records with equal keys."
-      },
-      {
-        "prompt": "Worst-case quicksort time can be:",
-        "options": [
-          "O(1)",
-          "O(log n)",
-          "O(n log n)",
-          "O(n²)"
-        ],
-        "correct_index": 3,
-        "explanation": "Poor pivots can create highly unbalanced partitions, giving O(n²) worst-case time."
-      }
-    ]
-  },
-  "learning_objectives": [
-    "Explain why sorting is useful before searching or grouping.",
-    "Trace adjacent swaps in a simple sort.",
-    "Compare quadratic and n-log-n sorting approaches.",
-    "Choose a stable, in-place or efficient sort when required."
-  ],
-  "prerequisites": [
-    "arrays_basics"
-  ],
-  "concepts": [
-    "comparison sort",
-    "bubble sort",
-    "insertion sort",
-    "merge sort",
-    "stability",
-    "in-place",
-    "time complexity"
-  ],
-  "common_misconceptions": [
-    {
-      "misconception": "Sorting always takes O(n log n).",
-      "correction": "Simple comparison sorts such as bubble and insertion sort can take O(n²)."
-    },
-    {
-      "misconception": "One pass of bubble sort always sorts the array.",
-      "correction": "A pass moves one extreme value to its final end; multiple passes may be required."
-    },
-    {
-      "misconception": "Sorting changes only the display order.",
-      "correction": "In-place sorting may mutate the original array."
-    }
-  ],
-  "worked_examples": [
-    {
-      "title": "One bubble-sort pass",
-      "input": "[5, 1, 4, 2]",
-      "trace": [
-        "Compare 5 and 1; swap → [1, 5, 4, 2].",
-        "Compare 5 and 4; swap → [1, 4, 5, 2].",
-        "Compare 5 and 2; swap → [1, 4, 2, 5]."
-      ],
-      "output": "[1, 4, 2, 5]",
-      "explanation": "The largest value has bubbled to the final position after one left-to-right pass."
-    },
-    {
-      "title": "Insertion sort idea",
-      "input": "[3, 1, 2]",
-      "trace": [
-        "Treat 3 as the sorted prefix.",
-        "Insert 1 before 3 → [1, 3, 2].",
-        "Insert 2 between 1 and 3 → [1, 2, 3]."
-      ],
-      "output": "[1, 2, 3]",
-      "explanation": "Insertion sort grows a sorted prefix and is useful for small or nearly sorted arrays."
-    },
-    {
-      "title": "Choose a sorting approach",
-      "input": "n = 100000 random values",
-      "trace": [
-        "A quadratic algorithm may perform roughly n² comparisons.",
-        "An n-log-n algorithm grows far more slowly.",
-        "Use a standard efficient sort unless constraints require a specialized method."
-      ],
-      "output": "Prefer O(n log n) sorting for large general inputs",
-      "explanation": "Always connect algorithm choice to input size and constraints."
-    }
-  ],
-  "company_applications": [
-    {
-      "company": "TCS",
-      "skill": "sorting and array manipulation",
-      "practice": "Trace swaps and explain best, average and worst cases."
-    },
-    {
-      "company": "Infosys",
-      "skill": "algorithm choice and complexity",
-      "practice": "Justify an efficient sort for large input sizes."
-    },
-    {
-      "company": "Wipro",
-      "skill": "basic coding and output prediction",
-      "practice": "Dry-run each pass and avoid off-by-one errors."
-    }
-  ],
-  "srs_cards": [
-    {
-      "type": "concept",
-      "question": "What are the key ideas in Sorting Fundamentals?",
-      "answer": "Explain why sorting is useful before searching or grouping. Trace adjacent swaps in a simple sort. Compare quadratic and n-log-n sorting approaches. Choose a stable, in-place or efficient sort when required."
-    },
-    {
-      "type": "misconception",
-      "question": "Name a common mistake in Sorting Fundamentals.",
-      "answer": "Simple comparison sorts such as bubble and insertion sort can take O(n²)."
-    }
-  ],
-  "next_lesson_slug": "hashing_basics",
-  "next_lesson_title": "Hashing Fundamentals"
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "[5,2,2] ascending:", "options": ["[5,2,2]", "[2,2,5]", "[2,5,2]", "[5,2]"], "correct_index": 1, "explanation": "2,2,5."},
+    {"prompt": "Binary search needs:", "options": ["Sorted data", "Hash only", "Stack", "Queue"], "correct_index": 0, "explanation": "Sorted."},
+    {"prompt": "General comparison sort lower bound order:", "options": ["O(1)", "O(n log n)", "O(n!)", "O(log log n)"], "correct_index": 1, "explanation": "~ n log n."},
+    {"prompt": "Stable sort preserves:", "options": ["Equal-key relative order", "Nothing", "Only max", "Only min"], "correct_index": 0, "explanation": "Equal keys order."},
+    {"prompt": "Before two-pointer on values:", "options": ["Often sort", "Never sort", "Always DFS", "Always BFS"], "correct_index": 0, "explanation": "Often sort first."}
+  ]},
+  "learning_objectives": ["State why sorting helps", "Know binary search prerequisite"],
+  "concepts": ["sort", "stability", "n log n"],
+  "company_applications": [{"company": "TCS NQT", "skill": "sorting", "practice": "Output after sort + complexity MCQ."}],
+  "srs_cards": [{"type": "concept", "question": "Binary search needs?", "answer": "Sorted data."}],
+  "next_lesson_slug": "searching_basics",
+  "next_lesson_title": "Searching basics"
 }
