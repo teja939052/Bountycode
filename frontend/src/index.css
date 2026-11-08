@@ -1074,46 +1074,90 @@
   transition: background 0.8s ease, color 0.4s ease;
 }
 
-/* ─── Hero section uniqueness layer ─── */
-
-/* Gradient glow that shifts position — used behind hero content */
-@keyframes hero-gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.hero-glow-bg {
-  background: linear-gradient(
-    -45deg,
-    rgba(255, 242, 205, 0.25),
-    rgba(255, 183, 197, 0.2),
-    rgba(233, 106, 91, 0.15),
-    rgba(251, 228, 236, 0.18)
-  );
-  background-size: 300% 300%;
-  animation: hero-gradient-shift 10s ease infinite;
+/* ─── Hero mesh gradient blobs — distraction-free, CSS-only animation ─── */
+.hero-mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+  opacity: 0.35;
+  will-change: transform;
+  animation: hero-mesh-drift 14s ease-in-out infinite alternate;
 }
 
-/* Floating decoration — gentle up/down drift */
-@keyframes hero-float {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-16px) rotate(2deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-.hero-float {
-  animation: hero-float 6s ease-in-out infinite;
-}
-
-/* Pulse glow for orbs */
-@keyframes hero-orb-pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.15); }
-}
-.hero-orb-pulse {
-  animation: hero-orb-pulse 4s ease-in-out infinite;
+.blob-1 {
+  width: 520px;
+  height: 520px;
+  top: -160px;
+  left: -120px;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 183, 197, 0.45), transparent 60%);
+  animation-name: hero-mesh-drift-1;
+  animation-duration: 16s;
 }
 
-/* Shimmer line across buttons/text */
+.blob-2 {
+  width: 460px;
+  height: 460px;
+  bottom: -140px;
+  right: -100px;
+  background: radial-gradient(circle at 65% 65%, rgba(255, 242, 205, 0.4), transparent 60%);
+  animation-name: hero-mesh-drift-2;
+  animation-duration: 20s;
+  animation-delay: 2s;
+}
+
+.blob-3 {
+  width: 380px;
+  height: 380px;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 50%, rgba(233, 106, 91, 0.2), transparent 60%);
+  animation-name: hero-mesh-drift-3;
+  animation-duration: 18s;
+  animation-delay: 4s;
+}
+
+@keyframes hero-mesh-drift-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -30px) scale(1.06); }
+}
+
+@keyframes hero-mesh-drift-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-35px, 40px) scale(1.08); }
+}
+
+@keyframes hero-mesh-drift-3 {
+  0% { transform: translateX(-50%) scale(1); }
+  100% { transform: translateX(-50%) translate(20px, -20px) scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh-blob {
+    animation: none;
+    transform: none !important;
+  }
+}
+
+/* ─── Hero text animations ─── */
+@keyframes hero-fade-up {
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero-fade-up {
+  animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Gradient text for headline highlight */
+.hero-gradient-text {
+  background: linear-gradient(135deg, #D4A843 0%, #E85D8A 50%, #EAB74D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* CTA shimmer + pill glow */
 @keyframes hero-shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
@@ -1129,29 +1173,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%);
   transform: translateX(-100%);
-  animation: hero-shimmer 3s ease-in-out infinite;
+  animation: hero-shimmer 3.5s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* Gradient text underline */
-.hero-gradient-text {
-  background: linear-gradient(135deg, #D4A843 0%, #E85D8A 50%, #EAB74D 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Gold pill glow behind CTA */
 @keyframes hero-pill-glow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 67, 0.4); }
-  50% { box-shadow: 0 0 20px 8px rgba(212, 168, 67, 0.35); }
+  50% { box-shadow: 0 0 24px 10px rgba(212, 168, 67, 0.3); }
 }
 .hero-pill-glow {
   animation: hero-pill-glow 3s ease-in-out infinite;

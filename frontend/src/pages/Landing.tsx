@@ -614,185 +614,12 @@ export default function Landing() {
       </a>
 
       {/* ═══ Hero — the spring path ═══ */}
-      <section className="spring-hero relative overflow-hidden" style={{ background: "#fbe4ec" }}>
-        {/* Gradient mesh base — warm, nostalgic spring feel */}
-        <div
-          className="absolute inset-0 -z-10 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 20% -10%, rgba(255,242,205,0.35) 0%, transparent 40%), " +
-              "radial-gradient(ellipse 60% 40% at 80% 0%, rgba(255,183,197,0.3) 0%, transparent 40%), " +
-              "radial-gradient(ellipse 50% 50% at 50% 100%, rgba(233,106,91,0.15) 0%, transparent 40%), " +
-              "linear-gradient(180deg, rgba(251,228,236,0.18) 0%, rgba(255,250,247,0.16) 42%, rgba(255,252,248,0.42) 72%, rgba(255,252,248,0.86) 100%)",
-          }}
-        />
-
-        {/* Soft halo behind the headline only. */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          animate={{
-            opacity: [0.35, 0.55, 0.35],
-            scale: [1, 1.06, 1],
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            background:
-              "radial-gradient(ellipse 46% 34% at 50% 42%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.3) 45%, transparent 72%)",
-          }}
-        />
-
-        {/* Warm sunlight, upper right. */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          animate={{
-            x: [0, 12, 0],
-            y: [0, -10, 0],
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            background:
-              "radial-gradient(ellipse 52% 42% at 78% 14%, rgba(255,242,205,0.22) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Left branch graphic — floats gently */}
-        <motion.div
-          className="pointer-events-none absolute left-0 top-0 h-[62%] w-[26%] overflow-hidden"
-          aria-hidden="true"
-          animate={{
-            y: [0, -14, 0],
-          }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          style={{ opacity: 0.09 }}
-        >
-          <svg viewBox="0 0 300 450" className="h-full w-full" style={{ transform: "scaleX(-1)" }}>
-            <path d="M0 0 C 25 70, 50 110, 35 180 C 28 230, 45 270, 70 310" stroke="#4a2510" strokeWidth="2.5" fill="none" opacity="0.7" />
-            <path d="M35 180 C 60 170, 85 160, 110 175" stroke="#4a2510" strokeWidth="1.8" fill="none" opacity="0.5" />
-            <path d="M70 310 C 85 300, 105 285, 130 300" stroke="#4a2510" strokeWidth="1.5" fill="none" opacity="0.4" />
-            <circle cx="110" cy="172" r="5" fill="#FFC8D6" opacity="0.45" />
-            <circle cx="106" cy="168" r="3" fill="#FFB7C5" opacity="0.35" />
-          </svg>
-        </motion.div>
-
-        {/* Right branch graphic — floats gently opposite direction */}
-        <motion.div
-          className="pointer-events-none absolute right-0 top-0 h-[62%] w-[26%] overflow-hidden"
-          aria-hidden="true"
-          animate={{
-            y: [0, 14, 0],
-          }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          style={{ opacity: 0.09 }}
-        >
-          <svg viewBox="0 0 300 450" className="h-full w-full">
-            <path d="M300 0 C 275 70, 250 110, 265 180 C 272 230, 255 270, 230 310" stroke="#4a2510" strokeWidth="2.5" fill="none" opacity="0.7" />
-            <path d="M265 180 C 240 170, 215 160, 190 175" stroke="#4a2510" strokeWidth="1.8" fill="none" opacity="0.5" />
-            <path d="M230 310 C 215 300, 195 285, 170 300" stroke="#4a2510" strokeWidth="1.5" fill="none" opacity="0.4" />
-            <circle cx="190" cy="172" r="5" fill="#FFC8D6" opacity="0.45" />
-            <circle cx="194" cy="168" r="3" fill="#FFB7C5" opacity="0.35" />
-          </svg>
-        </motion.div>
-
-        {/* Central blossom cluster — slow pulse and drift */}
-        <motion.div
-          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px]"
-          aria-hidden="true"
-          animate={{
-            scale: [1, 1.08, 1],
-            y: [0, -12, 0],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          style={{ opacity: 0.12 }}
-        >
-          <svg viewBox="0 0 400 400" className="h-full w-full">
-            <defs>
-              <radialGradient id="blossom-glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FFC8D6" stopOpacity="0.6" />
-                <stop offset="60%" stopColor="#FFB7C5" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#FFC8D6" stopOpacity="0" />
-              </radialGradient>
-              <radialGradient id="petal-glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FFF5F7" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#FFC8D6" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-            <circle cx="200" cy="200" r="140" fill="url(#blossom-glow)" />
-            <path d="M 80 200 Q 140 120, 200 200 T 320 200" stroke="#E96A5B" strokeWidth="3" fill="none" opacity="0.4" />
-            <path d="M 100 200 Q 150 140, 200 200 T 300 200" stroke="#EAB74D" strokeWidth="2" fill="none" opacity="0.25" />
-            {/* Petals around center */}
-            <circle cx="150" cy="150" r="8" fill="url(#petal-glow)" opacity="0.8" />
-            <circle cx="250" cy="150" r="8" fill="url(#petal-glow)" opacity="0.8" />
-            <circle cx="150" cy="250" r="8" fill="url(#petal-glow)" opacity="0.8" />
-            <circle cx="250" cy="250" r="8" fill="url(#petal-glow)" opacity="0.8" />
-            <circle cx="200" cy="200" r="12" fill="#E85D8A" opacity="0.9" />
-            <circle cx="200" cy="200" r="18" fill="#FFC8D6" opacity="0.15" />
-            <circle cx="200" cy="200" r="24" fill="#FFB7C5" opacity="0.08" />
-          </svg>
-        </motion.div>
-
-        {/* Decorative floating orbs — uniqueness layer */}
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <motion.div
-            key={i}
-            className="pointer-events-none absolute"
-            aria-hidden="true"
-            animate={{
-              y: [0, -20 - i * 4, 0],
-              x: [0, 10 - i * 2, 0],
-              opacity: [0.4, 0.7, 0.4],
-            }}
-            transition={{
-              duration: 5 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5,
-            }}
-            style={{
-              top: `${20 + i * 13}%`,
-              left: `${15 + i * 14}%`,
-              width: `${14 + i * 3}px`,
-              height: `${14 + i * 3}px`,
-              borderRadius: "50%",
-              background:
-                i % 2 === 0
-                  ? "radial-gradient(circle at 30% 30%, #FFC8D6, #E85D8A)"
-                  : "radial-gradient(circle at 30% 30%, #FFE5D9, #EAB74D)",
-              boxShadow: "0 0 20px rgba(232, 93, 138, 0.35)",
-            }}
-          />
-        ))}
-
-        {/* Twinkling sparkles */}
-        {[1, 2, 3, 4, 5].map((i) => (
-          <motion.div
-            key={"sparkle-" + i}
-            className="pointer-events-none absolute"
-            aria-hidden="true"
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0.5, 1.2, 0.5],
-              rotate: [0, 180, 360],
-            }}
-            transition={{
-              duration: 3 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.7,
-            }}
-            style={{
-              top: `${10 + i * 17}%`,
-              left: `${55 + i * 9}%`,
-              width: `${6 + i}px`,
-              height: `${6 + i}px`,
-              background: i % 2 === 0 ? "#FFF5F7" : "#D4A843",
-              borderRadius: "50%",
-              boxShadow: "0 0 12px rgba(255, 255, 255, 0.8)",
-            }}
-          />
-        ))}
+      <section className="spring-hero relative overflow-hidden min-h-screen" style={{ background: "#fbe4ec" }}>
+        {/* Animated mesh gradient background — soft, distraction-free, CSS-only */}
+        <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true" />
+        <div className="hero-mesh-blob blob-1" />
+        <div className="hero-mesh-blob blob-2" />
+        <div className="hero-mesh-blob blob-3" />
 
         <SakuraPetals density="hero" />
 
@@ -823,7 +650,7 @@ export default function Landing() {
 
           <div className="flex flex-1 items-center justify-center px-6 pb-24 pt-6">
             <motion.div
-              className="mx-auto max-w-3xl text-center"
+              className="mx-auto max-w-3xl text-center hero-fade-up"
               initial={reduced ? false : { opacity: 0, y: 22 }}
               animate={{
                 opacity: 1,
