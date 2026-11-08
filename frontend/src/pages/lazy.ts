@@ -14,11 +14,8 @@ const routeImportFns = {
   ATSOptimizer: () => import("./ATSOptimizer"),
   AptitudeTest: () => import("./AptitudeTest"),
   CoverLetter: () => import("./CoverLetter"),
-  SalaryNegotiation: () => import("./SalaryNegotiation"),
   SystemDesign: () => import("./SystemDesign"),
-  CompanyPrep: () => import("./CompanyPrep"),
   CodingChallenge: () => import("./CodingChallenge"),
-  SalaryBenchmark: () => import("./SalaryBenchmark"),
   Pricing: () => import("./Pricing"),
   PlacementCalendar: () => import("./PlacementCalendar"),
   NotFound: () => import("./NotFound"),
@@ -31,7 +28,6 @@ const routeImportFns = {
   QuestionBank: () => import("./QuestionBank"),
   PracticeMode: () => import("./PracticeMode"),
   MyProgress: () => import("./MyProgress"),
-  CompanyMocks: () => import("./CompanyMocks"),
   AlumniExperiences: () => import("./AlumniExperiences"),
   PlacementDrives: () => import("./PlacementDrives"),
   CareerProfile: () => import("./CareerProfile"),
@@ -44,7 +40,6 @@ const routeImportFns = {
   ResetPassword: () => import("./ResetPassword"),
   MonthlyContests: () => import("./MonthlyContests"),
   IndianPlacement: () => import("./IndianPlacement"),
-  DSAFingerprint: () => import("./DSAFingerprint"),
   TowerDashboard: () => import("./TowerDashboard"),
   MockOA: () => import("./MockOA"),
   ResumeATS: () => import("./ResumeATS"),
@@ -58,19 +53,15 @@ const routeImportFns = {
   PersonalDashboard: () => import("./PersonalDashboard"),
   AdaptivePath: () => import("./AdaptivePath"),
    LearningModules: () => import("./LearningModules"),
-   LearningModule: () => import("./LearningModule"),
-  ProblemOfTheDay: () => import("./ProblemOfTheDay"),
+   ProblemOfTheDay: () => import("./ProblemOfTheDay"),
   DailyChallenge: () => import("./DailyChallenge"),
   DSAVisualizer: () => import("./DSAVisualizer"),
-  LearningJourneys: () => import("./LearningJourneys"),
   ChallengePacks: () => import("./ChallengePacks"),
   AIMentor: () => import("./AIMentor"),
   CodePlayground: () => import("./CodePlayground"),
-  CommandCenter: () => import("./CommandCenter"),
   CompareVisualizer: () => import("./CompareVisualizer"),
   Community: () => import("./Community"),
 
-  ProjectGenerator: () => import("./ProjectGenerator"),
   LanguageLearning: () => import("./LanguageLearning"),
   OnboardingQuest: () => import("./OnboardingQuest"),
   InterviewBooking: () => import("./InterviewBooking"),
@@ -119,7 +110,6 @@ const IDLE_PRELOAD_ROUTES = [
   "ATSOptimizer",
   "AptitudeTest",
   "SystemDesign",
-  "CompanyPrep",
   "CodingChallenge",
   "TowerDashboard",
   "LearningHub",
@@ -153,11 +143,8 @@ const ResumeStudio = lazy(() => import("./ResumeStudio"));
 const ATSOptimizer = lazy(() => import("./ATSOptimizer"));
 const AptitudeTest = lazy(() => import("./AptitudeTest"));
 const CoverLetter = lazy(() => import("./CoverLetter"));
-const SalaryNegotiation = lazy(() => import("./SalaryNegotiation"));
 const SystemDesign = lazy(() => import("./SystemDesign"));
-const CompanyPrep = lazy(() => import("./CompanyPrep"));
 const CodingChallenge = lazy(() => import("./CodingChallenge"));
-const SalaryBenchmark = lazy(() => import("./SalaryBenchmark"));
 const Pricing = lazy(() => import("./Pricing"));
 const PlacementCalendar = lazy(() => import("./PlacementCalendar"));
 const NotFound = lazy(() => import("./NotFound"));
@@ -170,7 +157,6 @@ const Predictor = lazy(() => import("./Predictor"));
 const QuestionBank = lazy(() => import("./QuestionBank"));
 const PracticeMode = lazy(() => import("./PracticeMode"));
 const MyProgress = lazy(() => import("./MyProgress"));
-const CompanyMocks = lazy(() => import("./CompanyMocks"));
 const AlumniExperiences = lazy(() => import("./AlumniExperiences"));
 const PlacementDrives = lazy(() => import("./PlacementDrives"));
 const CareerProfile = lazy(() => import("./CareerProfile"));
@@ -183,7 +169,6 @@ const ForgotPassword = lazy(() => import("./ForgotPassword"));
 const ResetPassword = lazy(() => import("./ResetPassword"));
 const MonthlyContests = lazy(() => import("./MonthlyContests"));
 const IndianPlacement = lazy(() => import("./IndianPlacement"));
-const DSAFingerprint = lazy(() => import("./DSAFingerprint"));
 const TowerDashboard = lazy(() => import("./TowerDashboard"));
 const MockOA = lazy(() => import("./MockOA"));
 const ResumeATS = lazy(() => import("./ResumeATS"));
@@ -200,18 +185,14 @@ const PersonalDashboard = lazy(() => import("./PersonalDashboard"));
 const StudentDashboard = lazy(() => import("./StudentDashboard"));
 const AdaptivePath = lazy(() => import("./AdaptivePath"));
 const LearningModules = lazy(() => import("./LearningModules"));
-const LearningModule = lazy(() => import("./LearningModule"));
 const ProblemOfTheDay = lazy(() => import('./ProblemOfTheDay'));
 const DailyChallenge = lazy(() => import('./DailyChallenge'));
 const DSAVisualizer = lazy(() => import('./DSAVisualizer'));
-const LearningJourneys = lazy(() => import('./LearningJourneys'));
 const ChallengePacks = lazy(() => import('./ChallengePacks'));
 const AIMentor = lazy(() => import('./AIMentor'));
 const CodePlayground = lazy(() => import('./CodePlayground'));
-const CommandCenter = lazy(() => import('./CommandCenter'));
 const CompareVisualizer = lazy(() => import('./CompareVisualizer'));
 const Community = lazy(() => import('./Community'));
-const ProjectGenerator = lazy(() => import('./ProjectGenerator'));
 const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
 const InterviewBooking = lazy(() => import('./InterviewBooking'));
@@ -248,7 +229,6 @@ export {
   ProblemOfTheDay,
   DailyChallenge,
   DSAVisualizer,
-  LearningJourneys,
   ChallengePacks,
   AIMentor,
   Login,
@@ -261,13 +241,9 @@ export {
   ATSOptimizer,
   AptitudeTest,
   CoverLetter,
-  SalaryNegotiation,
   SystemDesign,
-  CompanyPrep,
   CodingChallenge,
-  SalaryBenchmark,
-  Pricing,
-  PlacementCalendar,
+  Pricing,  PlacementCalendar,
   NotFound,
   Settings,
   History,
@@ -278,7 +254,6 @@ export {
   QuestionBank,
   PracticeMode,
   MyProgress,
-  CompanyMocks,
   AlumniExperiences,
   PlacementDrives,
   CareerProfile,
@@ -291,7 +266,6 @@ export {
   ResetPassword,
   MonthlyContests,
   IndianPlacement,
-  DSAFingerprint,
   TowerDashboard,
   MockOA,
   ResumeATS,
@@ -308,10 +282,7 @@ export {
   StudentDashboard,
   AdaptivePath,
   LearningModules,
-  LearningModule,
   CodePlayground,
-  CommandCenter,
-  ProjectGenerator,
   LanguageLearning,
   OnboardingQuest,
   InterviewBooking,

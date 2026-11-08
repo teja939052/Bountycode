@@ -1,20 +1,15 @@
 import { authApi } from "./auth.ts";
-import { interviewApi, mockInterviewApi, bookingApi } from "./interview.ts";
+import { interviewApi, bookingApi } from "./interview.ts";
 import { resumeApi } from "./resume.ts";
 import { billingApi } from "./billing.ts";
 import { aptitudeApi } from "./aptitude.ts";
 import { behavioralApi } from "./behavioral.ts";
 import { hrApi } from "./hr.ts";
 
-export {
-  cloudinaryImage,
-  cloudinaryVideo,
-  optimizeImage,
-} from "../cloudinary.ts";
 import { codingApi, compilerApi } from "./coding.ts";
 import { questionsApi } from "./questions.ts";
-import { toolsApi, salaryApi } from "./tools.ts";
-import { companyPrepApi, companyMocksApi } from "./companyPrep.ts";
+import { toolsApi } from "./tools.ts";
+import { companyMocksApi } from "./companyPrep.ts";
 import { gamificationApi } from "./gamification.ts";
 import { enhancedApi, freePracticeApi } from "./enhanced.ts";
 import { studentApi } from "./student.ts";
@@ -23,10 +18,8 @@ import { systemDesignApi, systemDesignTestsApi } from "./systemDesign.ts";
 import { communityApi, dailyApi, learningApi } from "./community.ts";
 import { adaptiveApi, predictorApi, readinessApi } from "./adaptive.ts";
 import {
-  mockInterviewApi as mockIntApi,
   personalDashboardApi,
   dsaFingerprintApi,
-  projectGeneratorApi,
   playlistsApi,
   discussionsApi,
   submissionsApi,
@@ -39,7 +32,6 @@ import {
 } from "./misc.ts";
 import { learningModulesApi } from "./learningModules.ts";
 import { studyApi } from "./study.ts";
-import { languagePathsApi } from "./languagePathsApi.ts";
 import { freeTrialApi } from "./freeTrial.ts";
 import { onboardingApi } from "./onboarding.ts";
 import { adminContentApi, assignmentsApi } from "./adminContent.ts";
@@ -52,7 +44,6 @@ import { blogApi } from "./blog.ts";
 const api = {
   auth: authApi,
   interview: interviewApi,
-  mockInterview: mockInterviewApi,
   booking: bookingApi,
   resume: resumeApi,
   billing: billingApi,
@@ -63,8 +54,6 @@ const api = {
   compiler: compilerApi,
   questions: questionsApi,
   tools: toolsApi,
-  salary: salaryApi,
-  companyPrep: companyPrepApi,
   companyMocks: companyMocksApi,
   gamification: gamificationApi,
   enhanced: enhancedApi,
@@ -82,7 +71,6 @@ const api = {
   readiness: readinessApi,
   personalDashboard: personalDashboardApi,
   dsaFingerprint: dsaFingerprintApi,
-  projectGenerator: projectGeneratorApi,
   playlists: playlistsApi,
   discussions: discussionsApi,
   submissions: submissionsApi,
@@ -94,7 +82,6 @@ const api = {
   concepts: conceptsApi,
   learningModules: learningModulesApi,
   study: studyApi,
-  languagePaths: languagePathsApi,
   freeTrial: freeTrialApi,
   onboarding: onboardingApi,
   adminContent: adminContentApi,
@@ -130,7 +117,6 @@ export default api;
 export {
   authApi,
   interviewApi,
-  mockInterviewApi,
   bookingApi,
   resumeApi,
   billingApi,
@@ -141,8 +127,6 @@ export {
   compilerApi,
   questionsApi,
   toolsApi,
-  salaryApi,
-  companyPrepApi,
   companyMocksApi,
   gamificationApi,
   enhancedApi,
@@ -158,10 +142,8 @@ export {
   adaptiveApi,
   predictorApi,
   readinessApi,
-  mockIntApi,
   personalDashboardApi,
   dsaFingerprintApi,
-  projectGeneratorApi,
   playlistsApi,
   discussionsApi,
   submissionsApi,
@@ -173,7 +155,6 @@ export {
   conceptsApi,
   learningModulesApi,
   studyApi,
-  languagePathsApi,
   freeTrialApi,
   onboardingApi,
   blogApi,

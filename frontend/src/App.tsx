@@ -56,11 +56,8 @@ import {
   CompareVisualizer,
   AptitudeTest,
   CoverLetter,
-  SalaryNegotiation,
   SystemDesign,
-  CompanyPrep,
   CodingChallenge,
-  SalaryBenchmark,
   Settings,
   History,
   Leaderboard,
@@ -70,7 +67,6 @@ import {
   QuestionBank,
   PracticeMode,
   MyProgress,
-  CompanyMocks,
   AlumniExperiences,
   PlacementDrives,
   CareerProfile,
@@ -83,7 +79,6 @@ import {
   ResetPassword,
   MonthlyContests,
   IndianPlacement,
-  DSAFingerprint,
   TowerDashboard,
   StudyTimer,
   StudyGoals,
@@ -105,9 +100,7 @@ import {
   StudentDashboard,
   AdaptivePath,
    LearningModules,
-   LearningModule,
-   ProjectGenerator,
-  LanguageLearning,
+   LanguageLearning,
   CurriculumHub,
   LearnTrack,
   LearnLesson,
@@ -122,9 +115,7 @@ import {
   Practice,
   Compete,
   Career,
-  CommandCenter,
   Community,
-  LearningJourneys,
   Concepts,
   Terms,
   Privacy,
@@ -288,22 +279,6 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/salary-negotiation"
-          element={
-            <FeatureErrorBoundary featureName="Career">
-              <SalaryNegotiation />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/salary-benchmark"
-          element={
-            <FeatureErrorBoundary featureName="Career">
-              <SalaryBenchmark />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
           path="/career-profile"
           element={
             <FeatureErrorBoundary featureName="Career">
@@ -377,37 +352,12 @@ function AnimatedRoutes() {
             </FeatureErrorBoundary>
           }
         />
-        <Route
-          path="/company-mocks"
-          element={
-            <FeatureErrorBoundary featureName="Assessment">
-              <CompanyMocks />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/company-mocks/:testId"
-          element={
-            <FeatureErrorBoundary featureName="Assessment">
-              <CompanyMocks />
-            </FeatureErrorBoundary>
-          }
-        />
-
         {/* System Design & Company Prep */}
         <Route
           path="/system-design"
           element={
             <FeatureErrorBoundary featureName="System Design">
               <SystemDesign />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/company-prep"
-          element={
-            <FeatureErrorBoundary featureName="Company Prep">
-              <CompanyPrep />
             </FeatureErrorBoundary>
           }
         />
@@ -499,14 +449,6 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/fingerprint"
-          element={
-            <FeatureErrorBoundary featureName="Question Bank">
-              <DSAFingerprint />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
           path="/challenge-packs"
           element={
             <FeatureErrorBoundary featureName="Question Bank">
@@ -578,14 +520,6 @@ function AnimatedRoutes() {
             </FeatureErrorBoundary>
           }
         />
-        <Route
-          path="/modules/:moduleId"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <LearningModule />
-            </FeatureErrorBoundary>
-          }
-        />
         <Route path="/adaptive" element={<Navigate to="/learn" replace />} />
         <Route path="/languages" element={<Navigate to="/learn" replace />} />
         <Route
@@ -625,14 +559,6 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Study Tools">
               <AIMentor />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/project-generator"
-          element={
-            <FeatureErrorBoundary featureName="Study Tools">
-              <ProjectGenerator />
             </FeatureErrorBoundary>
           }
         />
