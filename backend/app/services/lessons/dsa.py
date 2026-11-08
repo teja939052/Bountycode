@@ -294,4 +294,193 @@ DSA_LESSONS = [
             },
         ],
     },
+    {
+        "id": "dsa-hashing-basics",
+        "title": "Hash Maps and Frequency Counting",
+        "track": "dsa",
+        "description": "Use hash maps to count values and answer fast lookup questions.",
+        "difficulty": "beginner",
+        "prerequisites": ["dsa-arrays-intro"],
+        "xpReward": 80,
+        "steps": [
+            {
+                "id": "dh1",
+                "type": "explain",
+                "title": "What is hashing?",
+                "content": "A hash map stores key-value pairs and uses a hash function to locate a bucket for a key. Average lookup and insertion are often O(1), but collisions can occur and worst-case performance can be slower. Use a map when you need to associate a value with a key.",
+                "code": "unordered_map<string, int> frequency;\nfrequency[\"apple\"]++;\nfrequency[\"apple\"]++;\ncout << frequency[\"apple\"] << endl;",
+                "output": "2",
+                "explanation": "Each update increments the count associated with the key apple."
+            },
+            {
+                "id": "dh2",
+                "type": "explain",
+                "title": "Count frequencies",
+                "content": "Frequency counting stores how many times each value appears. Visit each input item once and increment its count. This usually takes O(n) average time and O(k) extra space, where k is the number of distinct values.",
+                "code": "int values[] = {2, 1, 2, 3, 1, 2};\nunordered_map<int, int> count;\nfor (int x : values) count[x]++;\ncout << count[2] << endl;",
+                "output": "3",
+                "explanation": "The value 2 appears three times in the input."
+            },
+            {
+                "id": "dh3",
+                "type": "exercise",
+                "title": "Find the first repeated value",
+                "instruction": "Given an integer array, use a set to detect whether a value has appeared before. Return the first value that repeats while scanning from left to right.",
+                "starterCode": "unordered_set<int> seen;\n// Scan the values from left to right",
+                "solution": "int values[] = {4, 7, 2, 7, 4};\nunordered_set<int> seen;\nfor (int x : values) {\n    if (seen.count(x)) { cout << x << endl; break; }\n    seen.insert(x);\n}",
+                "tests": [{"input": None, "expected": "7", "check": "prints_first_repeated_value"}],
+                "explanation": "Insert unseen values into the set. The first value already present is the first repeated value."
+            },
+            {
+                "id": "dh4",
+                "type": "quiz",
+                "title": "Choose a hash map",
+                "question": "You need to count how often each word appears in a document. Which structure is the best fit?",
+                "options": ["Stack", "Queue", "Hash map", "Binary tree traversal"],
+                "correctIndex": 2,
+                "explanation": "A hash map associates each word with its frequency count."
+            }
+        ]
+    },
+    {
+        "id": "dsa-recursion-basics",
+        "title": "Recursion and the Call Stack",
+        "track": "dsa",
+        "description": "Understand base cases, recursive calls, and how the call stack grows and returns.",
+        "difficulty": "beginner",
+        "prerequisites": ["dsa-arrays-intro"],
+        "xpReward": 85,
+        "steps": [
+            {
+                "id": "dr1",
+                "type": "explain",
+                "title": "A function that calls itself",
+                "content": "Recursion solves a problem by reducing it to a smaller instance of the same problem. Every recursive solution needs a base case that stops further calls and a progress step that moves toward that base case.",
+                "code": "int factorial(int n) {\n    if (n <= 1) return 1;\n    return n * factorial(n - 1);\n}",
+                "output": "factorial(4) = 24",
+                "explanation": "factorial(4) becomes 4 * 3 * 2 * 1. The base case factorial(1) returns 1."
+            },
+            {
+                "id": "dr2",
+                "type": "explain",
+                "title": "Understand the call stack",
+                "content": "Each active function call has its own parameters and local variables. Calls are placed on the call stack. When a call reaches its return statement, it finishes and control returns to the previous call. Deep recursion can use substantial stack space.",
+                "code": "void countDown(int n) {\n    if (n == 0) return;\n    cout << n << endl;\n    countDown(n - 1);\n}",
+                "output": "3\n2\n1",
+                "explanation": "The calls stop when n reaches zero. No new call is made for the base case."
+            },
+            {
+                "id": "dr3",
+                "type": "exercise",
+                "title": "Sum numbers recursively",
+                "instruction": "Write sumToN(n) that returns 1 + 2 + ... + n for n >= 0. Use zero as the base case.",
+                "starterCode": "int sumToN(int n) {\n    // Add base case and recursive case\n}",
+                "solution": "int sumToN(int n) {\n    if (n <= 0) return 0;\n    return n + sumToN(n - 1);\n}",
+                "tests": [{"input": None, "expected": "sumToN(4) = 10", "check": "returns_recursive_sum"}],
+                "explanation": "The recursive call reduces n by one until it reaches zero."
+            },
+            {
+                "id": "dr4",
+                "type": "quiz",
+                "title": "Find the base case",
+                "question": "What is the main purpose of a base case in recursion?",
+                "options": ["Make the function call itself forever", "Stop recursive calls when the smallest case is reached", "Increase memory usage", "Sort the input"],
+                "correctIndex": 1,
+                "explanation": "The base case stops recursion and provides the answer for the smallest instance."
+            }
+        ]
+    },
+    {
+        "id": "dsa-graph-traversal",
+        "title": "Graph Traversal: BFS and DFS",
+        "track": "dsa",
+        "description": "Represent graphs and visit reachable vertices using breadth-first and depth-first search.",
+        "difficulty": "intermediate",
+        "prerequisites": ["dsa-linked-list"],
+        "xpReward": 100,
+        "steps": [
+            {
+                "id": "dg1",
+                "type": "explain",
+                "title": "Represent a graph",
+                "content": "A graph contains vertices (nodes) and edges (connections). An adjacency list stores, for each vertex, the vertices connected to it. It is often space-efficient for sparse graphs. For an undirected graph, add each edge to both endpoint lists.",
+                "code": "vector<vector<int>> graph(4);\ngraph[0].push_back(1);\ngraph[1].push_back(0); // undirected edge",
+                "output": "0 is connected to 1",
+                "explanation": "The same edge is recorded from both endpoints in an undirected adjacency list."
+            },
+            {
+                "id": "dg2",
+                "type": "explain",
+                "title": "Breadth-first search",
+                "content": "BFS explores vertices in layers from a starting vertex. It uses a queue and a visited array or set. In an unweighted graph, BFS can find the shortest path measured by number of edges. Its time complexity with an adjacency list is O(V + E).",
+                "code": "queue<int> q;\nvector<bool> visited(n, false);\nq.push(start); visited[start] = true;\nwhile (!q.empty()) {\n    int u = q.front(); q.pop();\n    for (int v : graph[u]) if (!visited[v]) {\n        visited[v] = true; q.push(v);\n    }\n}",
+                "output": "Visits reachable vertices by increasing distance in edges",
+                "explanation": "Mark a vertex visited when enqueuing it so it is not added repeatedly."
+            },
+            {
+                "id": "dg3",
+                "type": "explain",
+                "title": "Depth-first search",
+                "content": "DFS follows one path as far as possible before backtracking. It can be implemented recursively or with an explicit stack. With an adjacency list, its time complexity is O(V + E). DFS is useful for connected components, cycle checks, and traversal order tasks.",
+                "code": "void dfs(int u) {\n    visited[u] = true;\n    for (int v : graph[u]) {\n        if (!visited[v]) dfs(v);\n    }\n}",
+                "output": "Visits each reachable vertex once when guarded by visited",
+                "explanation": "The visited check prevents revisiting vertices and looping forever on cycles."
+            },
+            {
+                "id": "dg4",
+                "type": "quiz",
+                "title": "Choose BFS",
+                "question": "Which traversal finds the shortest path by edge count in an unweighted graph?",
+                "options": ["Depth-first search", "Breadth-first search", "Selection sort", "Binary search"],
+                "correctIndex": 1,
+                "explanation": "BFS explores vertices in increasing distance from the start vertex in an unweighted graph."
+            }
+        ]
+    },
+    {
+        "id": "dsa-dynamic-programming-intro",
+        "title": "Dynamic Programming: Memoization and Tabulation",
+        "track": "dsa",
+        "description": "Recognize overlapping subproblems and store answers to avoid repeated work.",
+        "difficulty": "intermediate",
+        "prerequisites": ["dsa-recursion-basics"],
+        "xpReward": 110,
+        "steps": [
+            {
+                "id": "dp1",
+                "type": "explain",
+                "title": "Why dynamic programming helps",
+                "content": "Dynamic programming is useful when a problem has overlapping subproblems and an optimal substructure. Instead of solving the same smaller problem repeatedly, store its answer and reuse it. First define the state and recurrence clearly.",
+                "code": "",
+                "explanation": "The state describes the smaller problem whose answer can be reused."
+            },
+            {
+                "id": "dp2",
+                "type": "explain",
+                "title": "Memoization: top-down",
+                "content": "Memoization starts with a recursive solution and caches results. Before solving a state, check whether its answer is already stored. This can reduce repeated work, though recursion still uses call-stack space.",
+                "code": "int memo[100];\nint fib(int n) {\n    if (n <= 1) return n;\n    if (memo[n] != -1) return memo[n];\n    return memo[n] = fib(n - 1) + fib(n - 2);\n}",
+                "output": "fib(6) = 8",
+                "explanation": "Initialize memo entries to -1 before the first call. Each state is then computed once."
+            },
+            {
+                "id": "dp3",
+                "type": "explain",
+                "title": "Tabulation: bottom-up",
+                "content": "Tabulation fills a table from smaller states to larger states in an order that makes dependencies available. It often avoids recursive call overhead. For Fibonacci, compute dp[0] and dp[1], then fill each later value from the previous two.",
+                "code": "int dp[7];\ndp[0] = 0; dp[1] = 1;\nfor (int i = 2; i <= 6; i++) {\n    dp[i] = dp[i - 1] + dp[i - 2];\n}\ncout << dp[6] << endl;",
+                "output": "8",
+                "explanation": "Each table entry uses two already-computed smaller entries."
+            },
+            {
+                "id": "dp4",
+                "type": "quiz",
+                "title": "Identify overlapping subproblems",
+                "question": "Why can memoization improve a naive recursive Fibonacci solution?",
+                "options": ["It sorts the input", "It stores previously computed Fibonacci values", "It removes the base case", "It makes every operation constant time"],
+                "correctIndex": 1,
+                "explanation": "Caching avoids recalculating the same Fibonacci state many times."
+            }
+        ]
+    }
 ]

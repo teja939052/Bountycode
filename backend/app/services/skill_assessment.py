@@ -13,6 +13,13 @@ SKILL_CATEGORIES = {
             "dynamic_programming", "recursion", "greedy", "binary_search",
         ],
     },
+    "debugging": {
+        "name": "Debugging & Testing",
+        "skills": [
+            "debugging_workflow", "error_classification", "execution_tracing",
+            "edge_case_testing", "root_cause_analysis",
+        ],
+    },
     "system_design": {
         "name": "System Design",
         "skills": [
@@ -46,8 +53,8 @@ SKILL_CATEGORIES = {
     "programming": {
         "name": "Programming & CS Fundamentals",
         "skills": [
-            "python", "java", "cpp", "oop",
-            "dbms", "operating_systems", "computer_networks",
+            "python", "c", "cpp", "java", "oop",
+            "dbms", "operating_systems", "computer_networks", "computer_architecture",
         ],
     },
 }
