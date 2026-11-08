@@ -94,6 +94,10 @@ backend/bandit-report.json
 backend/htmlcov/
 backend/app/data/invoices/
 
+# Duplicate-request guard persistence (runtime hash cache, never content)
+data/duplicate_hashes.json
+backend/tests/data/duplicate_hashes.json
+
 # Scratch / temp artifacts
 null
 err_seg.txt

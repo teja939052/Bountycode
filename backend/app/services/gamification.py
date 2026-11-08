@@ -16,10 +16,10 @@ Intended modular split (follow-up refactor):
 from datetime import datetime, timezone, timedelta
 from app.database import users_collection, gamification_collection, get_client
 from bson import ObjectId
-from pymongo import ReturnDocument
 import math
 import logging
 from app.services.usage import can_use_feature, mark_feature_used
+from app.services.gamification_core import normalize_badge_ids
 
 logger = logging.getLogger(__name__)
 
@@ -587,8 +587,8 @@ async def initialize_gamification(user_id: str):
         "total_aptitude": 0,
         "total_coding": 0,
         "total_system_design": 0,
-        # Lesson engine bridge (lesson XP lives in lesson_progress, mirrored here)
-        "lesson_xp": 0,
+        # Idempotency markers for awards that originate outside this service.
+        # Marker fields only — XP itself is written by record_practice alone.
         "lesson_xp_awards": [],
         # Tower fields
         "stars_total": 0,
@@ -612,10 +612,43 @@ async def initialize_gamification(user_id: str):
     return profile
 
 
-async def record_practice(user_id: str, activity_type: str, score: float = 0, metadata: dict = None):
-    """Record a practice activity and update gamification with tower mechanics."""
+async def record_practice(
+    user_id: str,
+    activity_type: str,
+    score: float = 0,
+    metadata: dict = None,
+    role: str = "sde",
+):
+    """Record a practice activity and update gamification with tower mechanics.
+
+    This is the ONLY writer of XP, coins, stars, streak, combo, badges and
+    league state (Gamification Law #1) — callers must never ``$inc`` or
+    ``$set`` those fields themselves.
+
+    ``role`` is caller context: it is carried in ``metadata`` so the award
+    records who it was for. It deliberately does not change the payout — the
+    reward policy has no role multiplier, and inventing one would be a new
+    XP formula (Law #6 requires explicit sign-off).
+    """
+    # ── Law #2: exactly one score scale ──
+    # Callers pass a 0–10 pedagogical score. Percent-style call sites (0–100)
+    # still exist, so normalize once, here: a 50%-correct attempt must not
+    # earn the same 3 stars and perfect bonus as a 10/10 solve.
+    try:
+        score = float(score)
+    except (TypeError, ValueError):
+        score = 0.0
+    if score > 10:
+        score /= 10.0
+    score = max(0.0, min(score, 10.0))
+
     now = datetime.now(timezone.utc)
     today = now.date()
+
+    # Carry caller context (role, world, lesson, ...) into the award record.
+    metadata = dict(metadata or {})
+    if role:
+        metadata.setdefault("role", role)
 
     profile = await gamification_collection.find_one({"user_id": user_id})
     if not profile:
@@ -990,7 +1023,7 @@ def get_xp_with_multiplier(base_xp: int, streak: int, is_first_today: bool = Fal
 async def _check_badges(user_id: str, activity_type: str, score: float, streak: int) -> list:
     """Check and award new badges."""
     profile = await gamification_collection.find_one({"user_id": user_id})
-    existing_badges = set(profile.get("badges", []))
+    existing_badges = set(normalize_badge_ids(profile.get("badges", [])))
     new_badges = []
 
     badge_checks = {
@@ -1246,25 +1279,30 @@ async def ensure_tower_fields(user_id: str):
     return profile
 
 
-async def award_lesson_xp(user_id: str, lesson_id: str, xp: int) -> int:
-    """Credit verified lesson XP to the gamification profile exactly once.
+async def award_lesson_xp(user_id: str, lesson_id: str, lesson_xp_reward: int) -> int:
+    """Credit a verified lesson through the canonical reward writer.
 
-    Lesson rewards are persisted in ``lesson_progress`` while the dashboard
-    reads the ``gamification`` collection. Without this bridge a learner's
-    level/XP would never reflect completed lessons. The lesson id is recorded
-    in ``lesson_xp_awards``, so a replay (or a concurrent double submission)
-    can never credit the same lesson twice.
+    Lesson completions are persisted in ``lesson_progress`` while the dashboard
+    reads the ``gamification`` collection, so the two must be bridged or lesson
+    XP stays invisible to levels, streaks and the tower.
+
+    Gamification Law #1: XP is written by ``record_practice`` only. This helper
+    therefore never touches the reward fields itself — it claims the lesson id
+    in ``lesson_xp_awards`` (an idempotency marker, not a reward field) and then
+    hands the award to ``record_practice``. A replay or a concurrent submission
+    can only ever trigger one award, and if the engine fails the claim is
+    released so a retry can still credit the lesson.
 
     Args:
         user_id: Owner of the profile.
         lesson_id: Lesson whose reward is being credited.
-        xp: Reward amount from the lesson definition.
+        lesson_xp_reward: The lesson engine's own reward bookkeeping. Recorded
+            in metadata for reconciliation; payout comes from the reward policy.
 
     Returns:
         int: XP actually credited (0 when it was already credited).
     """
-    amount = int(xp or 0)
-    if amount <= 0 or not lesson_id:
+    if not lesson_id:
         return 0
 
     profile = await gamification_collection.find_one({"user_id": user_id})
@@ -1274,26 +1312,27 @@ async def award_lesson_xp(user_id: str, lesson_id: str, xp: int) -> int:
     if lesson_id in (profile.get("lesson_xp_awards") or []):
         return 0
 
-    now = datetime.now(timezone.utc)
-    updated = await gamification_collection.find_one_and_update(
+    claim = await gamification_collection.update_one(
         {"user_id": user_id, "lesson_xp_awards": {"$ne": lesson_id}},
-        {
-            "$inc": {"xp": amount, "lesson_xp": amount},
-            "$addToSet": {"lesson_xp_awards": lesson_id},
-            "$set": {"updated_at": now},
-        },
-        return_document=ReturnDocument.AFTER,
+        {"$addToSet": {"lesson_xp_awards": lesson_id}},
     )
-    if not updated:
-        # A concurrent request already credited this lesson.
+    if claim.modified_count != 1:
+        # A concurrent request already claimed this lesson.
         return 0
 
-    new_level = _calculate_level(int(updated.get("xp", 0) or 0))
-    if new_level != updated.get("level"):
-        await gamification_collection.update_one(
-            {"user_id": user_id}, {"$set": {"level": new_level}}
+    try:
+        result = await record_practice(
+            user_id,
+            "lesson",
+            10.0,
+            {"lesson_id": lesson_id, "lesson_xp_reward": int(lesson_xp_reward or 0)},
         )
-    return amount
+    except Exception:
+        await gamification_collection.update_one(
+            {"user_id": user_id}, {"$pull": {"lesson_xp_awards": lesson_id}}
+        )
+        raise
+    return int((result or {}).get("xp_gained", 0) or 0)
 
 
 async def get_gamification_profile(user_id: str) -> dict:
@@ -1302,8 +1341,11 @@ async def get_gamification_profile(user_id: str) -> dict:
     if not profile:
         profile = await initialize_gamification(user_id)
 
-    profile.setdefault("lesson_xp", 0)
     profile.setdefault("lesson_xp_awards", [])
+    # Law #6: badges are stored as string IDs and hydrated on read. Legacy
+    # profiles can still hold object entries (older daily-bonus path), which
+    # used to raise `TypeError: unhashable type: 'dict'` on the membership test.
+    profile["badges"] = normalize_badge_ids(profile.get("badges", []))
 
     level = _calculate_level(profile.get("xp", 0))
     title, emoji = get_title_for_level(level)
@@ -1316,7 +1358,7 @@ async def get_gamification_profile(user_id: str) -> dict:
         current_boss = alias_boss_with_storm(BOSS_BATTLES.get(boss_level), boss_level)
 
     profile["id"] = str(profile.pop("_id"))
-    profile["badges_details"] = [BADGES[b] for b in profile.get("badges", []) if b in BADGES]
+    profile["badges_details"] = [BADGES[b] for b in profile["badges"] if b in BADGES]
     profile["level"] = level
     profile["xp_to_next_level"] = xp_for_next_level(level) - profile.get("xp", 0)
     profile["xp_for_current_level"] = xp_for_level(level)
@@ -1343,8 +1385,18 @@ async def get_gamification_profile(user_id: str) -> dict:
     today = now.date()
     daily_goal_date = profile.get("daily_goal_date")
     if daily_goal_date:
-        dg_date = daily_goal_date.date() if isinstance(daily_goal_date, datetime) else daily_goal_date
-        daily_goal_count = profile.get("daily_goal_count", 0) if dg_date == today else 0
+        # record_practice persists this as an ISO string, older profiles wrote
+        # a datetime — normalise both so the response matches the stored doc.
+        dg_date = (
+            daily_goal_date.date()
+            if isinstance(daily_goal_date, datetime)
+            else str(daily_goal_date)
+        )
+        daily_goal_count = (
+            profile.get("daily_goal_count", 0)
+            if str(dg_date) == today.isoformat()
+            else 0
+        )
     else:
         daily_goal_count = 0
 
@@ -2076,3 +2128,105 @@ async def claim_daily_bonus(user_id: str) -> dict:
         "bonus_tier": bonus_tier,
         "badge_unlocked": badge_unlocked,
     }
+
+
+# ─── Combo / daily-login / achievement-chains read surface ───
+#
+# These three names are what ``routes/gamification.py`` exposes. This economy
+# tracks XP, streak, coins and badges (not combo state, and not a separate
+# daily-login counter), so each function is a thin, honest adapter over the
+# canonical data instead of a second reward system:
+#
+# * combo   → nothing is tracked; report the zero state rather than fake one.
+# * daily   → read/project ``claim_daily_bonus`` + ``daily_bonus_history``.
+# * chains  → no chain definitions exist; return an empty list.
+#
+# Only ``claim_daily_login`` writes, and it writes by delegating to
+# ``claim_daily_bonus`` so there is exactly one daily-claim path.
+
+
+async def get_combo_status(user_id: str) -> dict:
+    """Report combo state for the UI.
+
+    This economy does not track combo chains (no ``current_combo`` /
+    ``last_combo_at`` fields are written anywhere), so the honest answer is the
+    zero state. The shape matches what the profile popup expects.
+    """
+    return {
+        "current_combo": 0,
+        "max_combo": 0,
+        "multiplier": 1.0,
+        "combo_window_seconds": 0,
+        "decay_warning": False,
+        "tracked": False,
+    }
+
+
+async def get_daily_login_calendar(user_id: str, days: int = 7) -> dict:
+    """Project the canonical daily-bonus history into a login-calendar grid.
+
+    Reads the same fields as ``/gamification/daily-bonus/history`` — this
+    adapter exists only because the older ``/daily-login`` route is still in
+    the client surface. It never awards anything.
+    """
+    window = max(1, min(int(days or 7), 60))
+    history = await get_daily_bonus_history(user_id, limit=window)
+    grid = list(history.get("calendar") or [])[-window:]
+    login_streak = int(history.get("login_streak", 0) or 0)
+
+    calendar = []
+    for index, cell in enumerate(grid, start=1):
+        label = "Today"
+        if not cell.get("today"):
+            iso = str(cell.get("date") or "")
+            try:
+                label = datetime.fromisoformat(iso).strftime("%b %d")
+            except ValueError:
+                label = f"Day {index}"
+        calendar.append(
+            {
+                "day": index,
+                "date": cell.get("date"),
+                "label": label,
+                "claimed": bool(cell.get("claimed")),
+                "today": bool(cell.get("today")),
+                "xp": int(cell.get("xp", 0) or 0),
+                "coins": int(cell.get("coins", 0) or 0),
+            }
+        )
+
+    next_reward = next((c for c in calendar if not c["claimed"]), None)
+    return {
+        "streak": login_streak,
+        "calendar": calendar,
+        "next_reward": next_reward,
+        "claims_tracked": len(calendar),
+    }
+
+
+async def claim_daily_login(user_id: str) -> dict:
+    """Claim today's login reward through the canonical daily-bonus path.
+
+    ``claim_daily_bonus`` owns the streak, the payout and the history entry, so
+    this is a response-shape adapter, not a second claim implementation.
+    """
+    result = await claim_daily_bonus(user_id)
+    return {
+        "claimed": bool(result.get("claimed")),
+        "streak": int(result.get("login_streak", 0) or 0),
+        "xp": int(result.get("xp_bonus", 0) or 0) + int(result.get("streak_bonus", 0) or 0),
+        "coins": int(result.get("coins_bonus", 0) or 0),
+        "badge_unlocked": result.get("badge_unlocked"),
+        "message": result.get("message"),
+        "reward": result,
+    }
+
+
+async def get_achievement_chains(user_id: str) -> dict:
+    """Return achievement chains.
+
+    No chain definitions (badge requirement sets + rewards) exist in this
+    economy, so the list is genuinely empty. Badges themselves live on the
+    profile and are served by ``/gamification/badges``.
+    """
+    return {"chains": []}

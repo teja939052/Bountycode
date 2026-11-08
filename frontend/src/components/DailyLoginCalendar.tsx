@@ -36,8 +36,8 @@ export default function DailyLoginCalendar({ calendar = [], streak = 0, onClaim 
             >
               <div className="text-[10px] font-mono text-gray-500 mb-1">{day.label}</div>
               <div className="text-xl mb-1">{icon}</div>
-              <div className="text-[10px] font-bold text-gray-600">+{day.diamonds} Diamonds</div>
-              <div className="text-[10px] text-yellow-600">+{day.coins} 🪙</div>
+              <div className="text-[10px] font-bold text-gray-600">+{day.xp ?? day.diamonds ?? 0} XP</div>
+              <div className="text-[10px] text-yellow-600">+{day.coins ?? 0} 🪙</div>
               {day.claimed && (
                 <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-green-500 flex items-center justify-center text-[10px] text-white">
                   ✓

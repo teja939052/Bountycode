@@ -222,11 +222,20 @@ async def complete_module(
             upsert=True
         )
         
-        # Award XP via gamification
-        await db.gamification.update_one(
-            {"user_id": str(current_user.id)},
-            {"$inc": {"xp": xp_gained}},
-            upsert=True
+        # Award global XP through the single writer (Gamification Law #1).
+        # Module completion carries no measured performance, so the honest
+        # pedagogical score is 0.0 — the engine decides the payout.
+        from app.services.gamification import record_practice
+        await record_practice(
+            str(current_user.id),
+            "lesson",
+            0.0,
+            {
+                "source": "language_path",
+                "language_id": language_id,
+                "module_id": module_id,
+                "module_index": module_index,
+            },
         )
     
     return {

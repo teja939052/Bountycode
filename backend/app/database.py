@@ -6,6 +6,7 @@ Provides:
 - Index creation for 50+ collections
 - Connection health checking (ping)
 """
+import asyncio
 import logging
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from app.config import get_settings
@@ -180,6 +181,17 @@ def get_client() -> AsyncIOMotorClient:
                 _client = None
                 _db = None
                 _collections.clear()
+            else:
+                # Recreate if the running loop differs from the client's IO loop
+                # (e.g. pytest-asyncio uses a fresh loop per test). Safe for
+                # production where uvicorn runs a single long-lived loop.
+                try:
+                    if loop is not asyncio.get_running_loop():
+                        _client = None
+                        _db = None
+                        _collections.clear()
+                except RuntimeError:
+                    pass  # no running loop; keep existing client
         except Exception:
             _client = None
             _db = None
@@ -191,8 +203,8 @@ def get_client() -> AsyncIOMotorClient:
             maxPoolSize=settings.MONGODB_MAX_POOL_SIZE,
             minPoolSize=settings.MONGODB_MIN_POOL_SIZE,
             maxIdleTimeMS=settings.MONGODB_MAX_IDLE_TIME_MS,
-            serverSelectionTimeoutMS=5000,
-            connectTimeoutMS=5000,
+            serverSelectionTimeoutMS=15000,
+            connectTimeoutMS=10000,
             socketTimeoutMS=30000,
         )
     return _client
@@ -312,6 +324,19 @@ friends_collection = _LazyCollection("friends")
 oa_sessions_collection = _LazyCollection("oa_sessions")
 integrity_events_collection = _LazyCollection("integrity_events")
 daily_quests_collection = _LazyCollection("daily_quests")
+# Restored after the f659ebf merge dropped parent 2's declarations while
+# keeping its routes (16 route modules failed to import without these).
+content_tranches_collection = _LazyCollection("content_tranches")
+exam_memories_collection = _LazyCollection("exam_memories")
+invoices_collection = _LazyCollection("invoices")
+learning_events_collection = _LazyCollection("learning_events")
+question_reports_collection = _LazyCollection("question_reports")
+repair_missions_collection = _LazyCollection("repair_missions")
+season_xp_collection = _LazyCollection("season_xp")
+served_quarantine_collection = _LazyCollection("served_quarantine")
+user_company_tracks_collection = _LazyCollection("user_company_tracks")
+user_learning_paths_collection = _LazyCollection("user_learning_paths")
+user_weaknesses_collection = _LazyCollection("user_weaknesses")
 
 
 async def init_db():

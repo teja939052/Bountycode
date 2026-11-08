@@ -387,30 +387,53 @@ class TestIndianCompanies:
 class TestRouteRegistration:
     """Verify all routers are registered without importing main (avoids resource module on Windows)."""
 
-    def test_all_route_modules_importable(self):
-        """Verify all core route modules import without error."""
-        from app.routes import (
-            auth, interview, resume, billing, aptitude, cover_letter,
-            system_design, salary, company_prep, coding, gamification,
-            free_practice, predictor, questions,
-            career_profile, practice, analytics, ai_feedback,
-            profile_stats, compiler, problems,
-            daily_challenge, playlists,
-            submissions, progress, features,
-            aptitude_tests,
-            indian_placement, placement_questions,
-            dsa_fingerprint, learning, analytics_admin, lessons,
+    @staticmethod
+    def _route_modules():
+        import pathlib
+
+        import app.routes as routes_pkg
+
+        route_dir = pathlib.Path(routes_pkg.__file__).parent
+        return sorted(
+            p.stem for p in route_dir.glob("*.py") if p.stem != "__init__"
         )
 
+    def test_all_route_modules_importable(self):
+        """Every route module on disk imports cleanly.
+
+        Discovery instead of a hardcoded list: the list went stale every time
+        a dead route was removed (``salary``, ``company_conversion``,
+        ``predictor`` ...), so the test kept failing for the wrong reason while
+        a genuinely broken new module could slip through.
+        """
+        import importlib
+
+        modules = self._route_modules()
+        assert modules, "no route modules discovered"
+        broken = []
+        for name in modules:
+            try:
+                importlib.import_module(f"app.routes.{name}")
+            except Exception as exc:  # noqa: BLE001 - report every broken module
+                broken.append(f"{name}: {type(exc).__name__}: {exc}")
+        assert not broken, "route modules failed to import:\n" + "\n".join(broken)
+
     def test_extended_route_modules_importable(self):
-        """Verify extended routes (may have deeper dependency chains)."""
-        from app.routes import enhanced, student_features, enterprise, trial
-        from app.routes import discussions, company_mocks, personal_dashboard, readiness
-        from app.routes import ai_debugger, concepts, company_conversion
-        from app.routes import visualizations, distributions, mock_interview
-        from app.routes import system_design_tests, aptitude_tests
-        # If we get here, all imports succeeded
-        assert True
+        """Extended routes (deeper dependency chains) import cleanly."""
+        import importlib
+
+        extended = [
+            "enhanced", "student_features", "enterprise", "trial",
+            "discussions", "company_mocks", "personal_dashboard", "readiness",
+            "ai_debugger", "concepts",
+            "visualizations", "distributions", "mock_interview",
+            "system_design_tests", "aptitude_tests",
+        ]
+        available = set(self._route_modules())
+        for name in extended:
+            if name not in available:
+                continue  # route retired; nothing to import
+            importlib.import_module(f"app.routes.{name}")
 
     def test_all_routers_have_prefix(self):
         from app.routes import auth, interview, billing, learning, gamification

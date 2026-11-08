@@ -465,6 +465,11 @@ class TestCompleteLearnerJourney:
         assert replay["xp_earned"] == 0
         assert replay["lesson_verified"] is True
         assert replay["total_xp"] == int(raw["xpReward"])
+        # A replay of an already-verified step records no new skill evidence,
+        # so mastery cannot be inflated by re-submitting an easy quiz.
+        assert (await _skills(client, token))["categories"]["programming"]["skills"]["python"][
+            "attempts"
+        ] == 2
 
         # ── 7. Progress API matches persisted MongoDB ──────────────────
         progress = await _progress(client, token)

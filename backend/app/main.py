@@ -161,11 +161,12 @@ async def lifespan(app: FastAPI):
                 logger.warning(f"Database init attempt {attempt + 1} failed: {e}")
                 await asyncio.sleep(2)
         
-        # Load question store into memory (seed files + MongoDB)
+        # Load question store into memory from versioned files only.
+        # Question content never lives in MongoDB (Question Bank Residency
+        # Rule); the old load_from_mongo() path was removed in 5d0bc5b.
         try:
             from app.services import question_store
             question_store.load_all()
-            await question_store.load_from_mongo()
             logger.info("Question store loaded into memory")
         except Exception as e:
             logger.warning(f"Question store initialization failed: {e}")

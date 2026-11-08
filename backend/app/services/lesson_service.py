@@ -407,8 +407,10 @@ async def _record_evidence(
 async def _award_gamification_xp(user_id: str, lesson_id: str, xp: int) -> int:
     """Mirror verified lesson XP into gamification exactly once.
 
-    Imported lazily: gamification imports the database layer eagerly and this
-    module must stay importable from the catalog alone (tests, scripts).
+    Gamification Law #1 makes ``record_practice`` the only writer of XP, so the
+    lesson engine delegates instead of writing reward fields itself. Imported
+    lazily: gamification imports the database layer eagerly and this module
+    must stay importable from the catalog alone (tests, scripts).
     """
     try:
         from app.services.gamification import award_lesson_xp
