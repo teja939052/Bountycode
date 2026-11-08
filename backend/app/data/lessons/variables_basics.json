@@ -1,1 +1,34 @@
-PLACEHOLDER
+{
+  "slug": "variables_basics",
+  "id": "lesson_variables_basics_001",
+  "title": "Variables and assignment",
+  "domain": "Programming Logic",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "What is a variable?", "content": "A variable is a named box that stores a value. In most languages you declare a name, optionally a type, and assign a value with =."},
+    {"step_number": 2, "step_type": "interactive", "title": "Pick the assignment", "prompt": "Which line assigns 10 to a variable named score?", "options": ["score == 10", "score = 10", "10 = score", "var 10 score"], "correct_index": 1, "explanation": "Single = assigns. Double == compares.", "hints": ["Look for assignment, not comparison.", "The variable name is on the left."]},
+    {"step_number": 3, "step_type": "explain", "title": "Types matter", "content": "Integers, floats, strings and booleans store different kinds of data. Mixing them carelessly causes bugs.", "tip": "Know whether a value is text or a number before you operate on it."},
+    {"step_number": 4, "step_type": "practice", "title": "String vs number", "prompt": "After x = \"5\" and y = 2, what is x + y in most typed languages?", "options": ["7", "52", "Type error or invalid", "5"], "correct_index": 2, "explanation": "You cannot add a string and an integer without converting.", "hints": ["Is \"5\" a number or text?", "Adding different types is usually invalid."]},
+    {"step_number": 5, "step_type": "practice", "title": "Update a variable", "prompt": "score starts at 0. After score = score + 1 twice, score is:", "options": ["0", "1", "2", "3"], "correct_index": 2, "explanation": "Each assignment reads the current value, adds 1, stores the result.", "hints": ["Trace the value after each line."]}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Which symbol assigns a value?", "options": ["==", "=", "!=", ":"], "correct_index": 1, "explanation": "= assigns; == compares."},
+    {"prompt": "x = 3; x = x * 2. Final x?", "options": ["3", "5", "6", "9"], "correct_index": 2, "explanation": "3 * 2 = 6."},
+    {"prompt": "A variable name should:", "options": ["Start with a digit", "Describe the value it holds", "Always be a single letter", "Include spaces"], "correct_index": 1, "explanation": "Clear names reduce bugs."},
+    {"prompt": "Boolean values are:", "options": ["Only 0 and 1 as strings", "true/false", "Only positive integers", "Functions"], "correct_index": 1, "explanation": "Booleans are true or false."},
+    {"prompt": "After n = 5 and n = n - 1, n is:", "options": ["5", "4", "6", "0"], "correct_index": 1, "explanation": "5 - 1 = 4."}
+  ]},
+  "learning_objectives": ["Declare and assign variables", "Distinguish assignment from comparison", "Trace simple updates"],
+  "prerequisites": [],
+  "concepts": ["variable", "assignment", "type"],
+  "common_misconceptions": [{"misconception": "== assigns a value", "correction": "== compares; = assigns."}],
+  "worked_examples": [],
+  "company_applications": [{"company": "TCS NQT", "skill": "programming basics", "practice": "Trace short assignment snippets."}],
+  "srs_cards": [{"type": "concept", "question": "What does = do?", "answer": "Assigns the right-hand value to the left-hand variable."}],
+  "quest": {"chapter": "Programming Logic", "mission": "Variables and assignment", "success_criteria": ["Declare and assign variables", "Distinguish assignment from comparison", "Trace simple updates"]},
+  "next_lesson_slug": "conditions_basics",
+  "next_lesson_title": "Conditions and branching"
+}
