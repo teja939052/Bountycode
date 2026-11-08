@@ -1,0 +1,38 @@
+{
+  "id": "bountycode_scrim_catalog",
+  "title": "Coddy-style scrim catalog",
+  "philosophy": "Short interactive missions. Explain → try → feedback → assess. Hints never grant mastery. Gamification tracks evidence and placement rank, not answer-buying XP.",
+  "tracks": [
+    {
+      "id": "programming",
+      "name": "Programming foundations",
+      "scrims": ["variables_basics", "conditions_basics", "loops_basics", "functions_basics", "arrays_basics", "strings_basics"]
+    },
+    {
+      "id": "quant",
+      "name": "Quantitative aptitude",
+      "scrims": ["number_systems", "percentages", "successive_percentage_change", "profit_loss", "ratio_proportion", "averages", "time_work", "time_distance", "hcf_lcm", "simple_compound_interest", "pipes_cisterns", "mixture_alligation"]
+    },
+    {
+      "id": "reasoning",
+      "name": "Logical reasoning",
+      "scrims": ["number_series", "coding_decoding", "blood_relations", "direction_sense", "syllogisms", "seating_arrangement", "analogies_odd_one_out", "logical_puzzles", "pattern_matching_basics", "clocks_calendars"]
+    },
+    {
+      "id": "verbal",
+      "name": "Verbal ability",
+      "scrims": ["reading_comprehension", "error_spotting", "vocabulary_cloze", "grammar_transformations", "sentence_correction", "para_jumbles"]
+    },
+    {
+      "id": "dsa",
+      "name": "DSA for service OA",
+      "scrims": ["data_structures_intro", "hashing_basics", "algorithms_basics", "sorting_basics", "searching_basics", "recursion_basics"]
+    }
+  ],
+  "gamification": {
+    "mastery_source": "server_graded_assessment_only",
+    "hints_award_mastery": false,
+    "placement_ranks": true,
+    "anti_patterns_disabled": ["buy_answer", "xp_for_skip", "streak_freeze_paywall"]
+  }
+}
