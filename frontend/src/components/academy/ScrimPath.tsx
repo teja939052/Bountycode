@@ -7,12 +7,13 @@ const SCRIM_TRACKS = [
   {
     id: "programming",
     name: "Programming",
-    blurb: "Variables → control flow → functions → arrays & strings",
+    blurb: "Variables → control flow → code lab → arrays & strings",
     color: "#22c55e",
     scrims: [
       { slug: "variables_basics", title: "Variables and assignment" },
       { slug: "conditions_basics", title: "Conditions and branching" },
       { slug: "loops_basics", title: "Loops and repetition" },
+      { slug: "loops_code_lab", title: "Code lab — sum with a loop" },
       { slug: "functions_basics", title: "Functions and parameters" },
       { slug: "arrays_basics", title: "Arrays and lists" },
       { slug: "strings_basics", title: "Strings basics" },
@@ -36,6 +37,7 @@ const SCRIM_TRACKS = [
       { slug: "simple_compound_interest", title: "Simple & compound interest" },
       { slug: "pipes_cisterns", title: "Pipes & cisterns" },
       { slug: "mixture_alligation", title: "Mixtures & alligation" },
+      { slug: "probability_basics", title: "Probability basics" },
     ],
   },
   {
