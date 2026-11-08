@@ -1,0 +1,48 @@
+{
+  "id": "service_company_skill_graph",
+  "title": "Service Company Skill Graph",
+  "description": "Evidence-based map from diagnostic and lesson assessments to placement readiness for TCS, Infosys, Wipro, Accenture, Cognizant.",
+  "mastery_threshold": 70,
+  "domains": [
+    {
+      "id": "programming_fundamentals",
+      "name": "Programming fundamentals",
+      "company_weight": { "tcs": 0.2, "infosys": 0.25, "wipro": 0.2, "accenture": 0.2, "cognizant": 0.2 },
+      "lessons": ["variables_basics", "conditions_basics", "loops_basics", "functions_basics", "arrays_basics", "strings_basics"],
+      "prerequisites": [],
+      "color": "#22c55e"
+    },
+    {
+      "id": "quantitative_aptitude",
+      "name": "Quantitative aptitude",
+      "company_weight": { "tcs": 0.35, "infosys": 0.3, "wipro": 0.3, "accenture": 0.25, "cognizant": 0.3 },
+      "lessons": ["number_systems", "percentages", "successive_percentage_change", "profit_loss", "ratio_proportion", "averages", "time_work", "time_distance", "hcf_lcm", "simple_compound_interest", "arithmetic_algebra"],
+      "prerequisites": [],
+      "color": "#3b82f6"
+    },
+    {
+      "id": "logical_reasoning",
+      "name": "Logical reasoning",
+      "company_weight": { "tcs": 0.25, "infosys": 0.2, "wipro": 0.25, "accenture": 0.25, "cognizant": 0.25 },
+      "lessons": ["number_series", "coding_decoding", "blood_relations", "direction_sense", "syllogisms", "analogies_odd_one_out", "seating_arrangement", "logical_puzzles", "pattern_matching_basics"],
+      "prerequisites": [],
+      "color": "#a855f7"
+    },
+    {
+      "id": "verbal_ability",
+      "name": "Verbal ability",
+      "company_weight": { "tcs": 0.15, "infosys": 0.15, "wipro": 0.15, "accenture": 0.2, "cognizant": 0.15 },
+      "lessons": ["reading_comprehension", "error_spotting", "vocabulary_cloze", "grammar_transformations"],
+      "prerequisites": [],
+      "color": "#f59e0b"
+    },
+    {
+      "id": "arrays_hashing",
+      "name": "DSA for service OA",
+      "company_weight": { "tcs": 0.15, "infosys": 0.2, "wipro": 0.15, "accenture": 0.15, "cognizant": 0.15 },
+      "lessons": ["data_structures_intro", "hashing_basics", "algorithms_basics", "sorting_basics", "recursion_basics"],
+      "prerequisites": ["programming_fundamentals"],
+      "color": "#ef4444"
+    }
+  ]
+}

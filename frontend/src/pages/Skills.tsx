@@ -1,7 +1,6 @@
-import ReadinessHeatmap from "./ReadinessHeatmap";
+import { Navigate } from "react-router-dom";
 
-// V3 §4 — SKILLS is the Capability Graph: ONE profile, multiple targets.
-// Reuses the canonical readiness/evidence engine (no parallel truth path).
+// Skills = evidence-based capability graph for service-company placement.
 export default function Skills() {
-  return <ReadinessHeatmap />;
+  return <Navigate to="/skill-graph" replace />;
 }
