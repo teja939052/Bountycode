@@ -31,6 +31,7 @@
       "goal": "High-frequency aptitude topics for service OA",
       "lessons": [
         "number_systems",
+        "percentages",
         "successive_percentage_change",
         "profit_loss",
         "ratio_proportion",
@@ -45,7 +46,7 @@
     {
       "id": "sprint_3_reasoning",
       "name": "Sprint 3 — Reasoning core",
-      "goal": "Series, coding-decoding, relations, direction, syllogisms",
+      "goal": "Series, coding-decoding, relations, direction, syllogisms, seating",
       "lessons": [
         "number_series",
         "coding_decoding",
@@ -53,6 +54,7 @@
         "direction_sense",
         "syllogisms",
         "analogies_odd_one_out",
+        "seating_arrangement",
         "logical_puzzles",
         "pattern_matching_basics"
       ]
