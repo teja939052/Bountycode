@@ -9,7 +9,6 @@ import {
   Gauge,
   Lock,
   ShieldCheck,
-  Sparkles,
   Star,
   Target,
   Timer,
@@ -32,6 +31,8 @@ import { JourneyMap, IslandNode, BountyCard as JourneyBountyCard } from "../desi
 import { CandyCard } from "../components/candy/CandyCard";
 import { CandyButton } from "../components/candy/CandyButton";
 import { OrganicPath } from "../components/candy/OrganicPath";
+import { HeroCanvas } from "../components/hero/HeroCanvas";
+import { HeroBadge } from "../components/hero/HeroBadge";
 
 /* ------------------------------------------------------------------ */
 /*  Palette — warm paper, deep ink, gold, and one colour per phase.    */
@@ -615,11 +616,7 @@ export default function Landing() {
 
       {/* ═══ Hero — the spring path ═══ */}
       <section className="spring-hero relative overflow-hidden min-h-screen" style={{ background: "#fbe4ec" }}>
-        {/* Animated mesh gradient background — soft, distraction-free, CSS-only */}
-        <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true" />
-        <div className="hero-mesh-blob blob-1" />
-        <div className="hero-mesh-blob blob-2" />
-        <div className="hero-mesh-blob blob-3" />
+        <HeroCanvas className="hero-canvas" />
 
         <SakuraPetals density="hero" />
 
@@ -649,67 +646,62 @@ export default function Landing() {
           </header>
 
           <div className="flex flex-1 items-center justify-center px-6 pb-24 pt-6">
-            <motion.div
-              className="mx-auto max-w-3xl text-center hero-fade-up"
-              initial={reduced ? false : { opacity: 0, y: 22 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-              }}
-              transition={{
-                duration: 0.9,
-                ease: "easeOut",
-                filter: { type: "spring", stiffness: 300, damping: 30 },
-              }}
-            >
-              <p
-                className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/55 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] backdrop-blur-[2px]"
-                style={{ color: "#33453B" }}
+            <div className="hero-card mx-auto max-w-3xl px-6 md:px-8 py-10">
+              <motion.div
+                className="mx-auto max-w-xl text-center hero-fade-up"
+                initial={reduced ? false : { opacity: 0, y: 22 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                }}
+                transition={{
+                  duration: 0.9,
+                  ease: "easeOut",
+                  filter: { type: "spring", stiffness: 300, damping: 30 },
+                }}
               >
-                <Sparkles size={12} style={{ color: GOLD }} aria-hidden="true" />
-                Built for the service-company pipeline
-              </p>
+                <HeroBadge />
 
-              <h1
-                className="mt-5 font-display text-[2.5rem] font-extrabold leading-[1.07] tracking-tight sm:text-6xl md:text-7xl md:leading-[1.04]"
-                style={{ color: INK }}
-              >
-                From your first line of code
-                <br />
-                <span className="hero-gradient-text">to your first offer.</span>
-              </h1>
-
-              <p className="mt-6 text-lg font-bold sm:text-xl" style={{ color: INK }}>
-                A guided path from learning to getting hired.
-              </p>
-              <p
-                className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed sm:text-base"
-                style={{ color: INK, opacity: 0.82 }}
-              >
-                Pick your target company. Learn the patterns these assessments test, in the
-                order a blueprint weights them. Prove it in a company-style mock, then let
-                evidence — not guesswork — decide what you repair next.
-              </p>
-
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link
-                  to="/register"
-                  className="hero-cta-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] sm:w-auto hero-shimmer hero-pill-glow"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
+                <h1
+                  className="mt-6 font-display text-[3rem] font-extrabold leading-[1.05] tracking-tight sm:text-7xl md:text-8xl md:leading-[1.02]"
+                  style={{ color: INK }}
                 >
-                  Start free
-                  <ArrowRight size={16} />
-                </Link>
-                <Link
-                  to="/percentages-academy"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border bg-white px-7 py-3.5 text-sm font-bold shadow-sm transition-colors hover:bg-[#FFFDF8] sm:w-auto"
-                  style={{ borderColor: "#E4D6B2", color: INK }}
+                  From your first line of code
+                  <br />
+                  <span className="hero-gradient-text">to your first offer.</span>
+                </h1>
+
+                <p className="mt-7 text-lg font-bold sm:text-xl md:text-lg" style={{ color: INK }}>
+                  A guided path from learning to getting hired.
+                </p>
+                <p
+                  className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed sm:text-base md:text-lg"
+                  style={{ color: INK, opacity: 0.85 }}
                 >
-                  Try a lesson
-                </Link>
-              </div>
+                  Pick your target company. Learn the patterns these assessments test, in the
+                  order a blueprint weights them. Prove it in a company-style mock, then let
+                  evidence — not guesswork — decide what you repair next.
+                </p>
+
+                <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                  <Link
+                    to="/register"
+                    className="hero-cta-primary inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl px-8 py-4 text-sm font-bold shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98] hero-shimmer hero-pill-glow"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Start free
+                    <ArrowRight size={17} />
+                  </Link>
+                  <Link
+                    to="/percentages-academy"
+                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/60 bg-white/40 px-8 py-4 text-sm font-bold backdrop-blur-sm transition-colors hover:bg-white/60 hero-soft-glow"
+                    style={{ borderColor: "rgba(255,255,255,0.5)", color: INK }}
+                  >
+                    Try a lesson
+                  </Link>
+                </div>
 
               {/* The product, in four words */}
               <ol
@@ -740,7 +732,9 @@ export default function Landing() {
               </ol>
             </motion.div>
           </div>
-        </div>\n      </section>
+        </div>
+      </div>
+      </section>
 
       <main id="main" className="relative z-10" style={{ background: PAPER }}>
         {/* ═══ The loop ═══ */}

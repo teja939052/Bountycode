@@ -1074,84 +1074,40 @@
   transition: background 0.8s ease, color 0.4s ease;
 }
 
-/* ─── Hero mesh gradient blobs — distraction-free, CSS-only animation ─── */
-.hero-mesh-blob {
+/* ─── Hero canvas — interactive particle system (WebGL-light) ─── */
+.hero-canvas {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(64px);
-  opacity: 0.35;
-  will-change: transform;
-  animation: hero-mesh-drift 14s ease-in-out infinite alternate;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  display: block;
+  background: #fbe4ec;
 }
 
-.blob-1 {
-  width: 520px;
-  height: 520px;
-  top: -160px;
-  left: -120px;
-  background: radial-gradient(circle at 35% 35%, rgba(255, 183, 197, 0.45), transparent 60%);
-  animation-name: hero-mesh-drift-1;
-  animation-duration: 16s;
-}
-
-.blob-2 {
-  width: 460px;
-  height: 460px;
-  bottom: -140px;
-  right: -100px;
-  background: radial-gradient(circle at 65% 65%, rgba(255, 242, 205, 0.4), transparent 60%);
-  animation-name: hero-mesh-drift-2;
-  animation-duration: 20s;
-  animation-delay: 2s;
-}
-
-.blob-3 {
-  width: 380px;
-  height: 380px;
-  top: 40%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: radial-gradient(circle at 50% 50%, rgba(233, 106, 91, 0.2), transparent 60%);
-  animation-name: hero-mesh-drift-3;
-  animation-duration: 18s;
-  animation-delay: 4s;
-}
-
-@keyframes hero-mesh-drift-1 {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(40px, -30px) scale(1.06); }
-}
-
-@keyframes hero-mesh-drift-2 {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-35px, 40px) scale(1.08); }
-}
-
-@keyframes hero-mesh-drift-3 {
-  0% { transform: translateX(-50%) scale(1); }
-  100% { transform: translateX(-50%) translate(20px, -20px) scale(1.05); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-mesh-blob {
-    animation: none;
-    transform: none !important;
-  }
+/* ─── Hero content card — glassmorphism ─── */
+.hero-card {
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 32px;
+  box-shadow: 0 20px 60px -15px rgba(14, 24, 19, 0.12);
 }
 
 /* ─── Hero text animations ─── */
 @keyframes hero-fade-up {
-  0% { opacity: 0; transform: translateY(14px); }
+  0% { opacity: 0; transform: translateY(18px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
 .hero-fade-up {
-  animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Gradient text for headline highlight */
 .hero-gradient-text {
-  background: linear-gradient(135deg, #D4A843 0%, #E85D8A 50%, #EAB74D 100%);
+  background: linear-gradient(135deg, #D4A843 0%, #E85D8A 45%, #22C55E 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1181,8 +1137,26 @@
 
 @keyframes hero-pill-glow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 67, 0.4); }
-  50% { box-shadow: 0 0 24px 10px rgba(212, 168, 67, 0.3); }
+  50% { box-shadow: 0 0 28px 12px rgba(212, 168, 67, 0.35); }
 }
 .hero-pill-glow {
   animation: hero-pill-glow 3s ease-in-out infinite;
+}
+
+/* Secondary button glow */
+@keyframes hero-soft-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233, 106, 91, 0.2); }
+  50% { box-shadow: 0 0 20px 6px rgba(233, 106, 91, 0.25); }
+}
+.hero-soft-glow {
+  animation: hero-soft-glow 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-up,
+  .hero-pill-glow,
+  .hero-soft-glow,
+  .hero-shimmer::after {
+    animation: none !important;
+  }
 }
