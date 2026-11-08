@@ -59,7 +59,6 @@ import {
   ChallengePacks,
   Practice,
   Concepts,
-  LessonPage,
   LessonPlayer,
   Terms,
   Privacy,
