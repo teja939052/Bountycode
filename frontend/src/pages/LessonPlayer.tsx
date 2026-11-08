@@ -8,6 +8,7 @@ import {
   Loader2,
   ChevronRight,
   ChevronLeft,
+  Code2,
 } from "lucide-react";
 import api from "../services/api";
 import { LessonStepHints } from "../components/academy/LessonStepHints";
@@ -19,10 +20,16 @@ type Step = {
   content?: string;
   prompt?: string;
   options?: string[];
+  correct_order?: number[];
   explanation?: string;
   tip?: string;
   formula?: string;
   example?: string;
+  code?: string;
+  language?: string;
+  starter_code?: string;
+  expected_answer?: string;
+  answer_placeholder?: string;
   hints?: string[];
 };
 
@@ -40,9 +47,17 @@ type LessonContent = {
   next_lesson_title?: string;
 };
 
+const MCQ_TYPES = new Set(["interactive", "practice", "quiz", "debug_choice", "api_scenario"]);
+const TEXT_TYPES = new Set(["code_lab", "predict_output", "fill_blank", "short_answer"]);
+const ORDER_TYPES = new Set(["order_steps"]);
+
+function normalizeText(value: string) {
+  return value.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
 /**
- * Progressive Academy lesson player.
- * Answers are always graded on the server. Hints never award mastery.
+ * Progressive Academy lesson player (Coddy/scrim style).
+ * Answers are graded on the server when possible. Hints never award mastery.
  */
 export default function LessonPlayer() {
   const { slug } = useParams();
@@ -58,10 +73,9 @@ export default function LessonPlayer() {
   const [currentStep, setCurrentStep] = useState(0);
   const [phase, setPhase] = useState<"learn" | "assessment" | "done">("learn");
   const [selected, setSelected] = useState<number | null>(null);
-  const [feedback, setFeedback] = useState<{
-    correct: boolean;
-    explanation: string;
-  } | null>(null);
+  const [textAnswer, setTextAnswer] = useState("");
+  const [orderPick, setOrderPick] = useState<number[]>([]);
+  const [feedback, setFeedback] = useState<{ correct: boolean; explanation: string } | null>(null);
   const [stepError, setStepError] = useState("");
   const [saving, setSaving] = useState(false);
   const [assessmentAnswers, setAssessmentAnswers] = useState<Record<string, number>>({});
@@ -76,6 +90,8 @@ export default function LessonPlayer() {
     setCurrentStep(0);
     setPhase("learn");
     setSelected(null);
+    setTextAnswer("");
+    setOrderPick([]);
     setFeedback(null);
     setAssessmentAnswers({});
     setAssessmentResult(null);
@@ -119,13 +135,27 @@ export default function LessonPlayer() {
 
   const step = lesson?.steps?.[currentStep];
 
-  const checkAnswer = useCallback(
+  const resetStepLocal = () => {
+    setSelected(null);
+    setTextAnswer(step?.starter_code || "");
+    setOrderPick([]);
+    setFeedback(null);
+    setStepError("");
+  };
+
+  useEffect(() => {
+    if (!step) return;
+    setSelected(null);
+    setTextAnswer(step.starter_code || "");
+    setOrderPick([]);
+    setFeedback(null);
+    setStepError("");
+  }, [currentStep, step?.step_type, step?.starter_code]);
+
+  const checkMcq = useCallback(
     async (index: number) => {
       if (!lesson || !step || feedback || saving) return;
-      const answerable = ["interactive", "practice", "quiz", "debug_choice", "api_scenario"].includes(
-        step.step_type,
-      );
-      if (!answerable) return;
+      if (!MCQ_TYPES.has(step.step_type)) return;
       setSelected(index);
       setStepError("");
       setSaving(true);
@@ -148,20 +178,111 @@ export default function LessonPlayer() {
     [lesson, step, feedback, saving, lessonSlug, currentStep, queryClient],
   );
 
+  const checkText = async () => {
+    if (!lesson || !step || feedback || saving) return;
+    if (!TEXT_TYPES.has(step.step_type)) return;
+    const answer = textAnswer.trim();
+    if (!answer) {
+      setStepError("Enter your answer or code before checking.");
+      return;
+    }
+    setStepError("");
+    setSaving(true);
+    try {
+      // Prefer server grading when API accepts string answers; fall back to local expected_answer.
+      let graded: { correct: boolean; explanation: string } | null = null;
+      try {
+        const res: any = await api.companyLessons.answerStep(lessonSlug, currentStep, answer as any);
+        if (res?.data) {
+          graded = {
+            correct: Boolean(res.data.correct),
+            explanation: [res.data.feedback, res.data.explanation].filter(Boolean).join("\n\n") || "",
+          };
+        }
+      } catch {
+        graded = null;
+      }
+      if (!graded && step.expected_answer != null) {
+        const ok = normalizeText(answer) === normalizeText(String(step.expected_answer));
+        graded = {
+          correct: ok,
+          explanation: ok
+            ? step.explanation || "Correct."
+            : step.explanation || `Expected something like: ${step.expected_answer}`,
+        };
+      }
+      if (!graded) {
+        setStepError("This step could not be graded yet. Try the multiple-choice practice steps.");
+        return;
+      }
+      setFeedback(graded);
+      void queryClient.invalidateQueries({ queryKey: ["adaptive"] });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const checkOrder = async () => {
+    if (!lesson || !step || feedback || saving) return;
+    if (!ORDER_TYPES.has(step.step_type)) return;
+    const options = step.options || [];
+    if (orderPick.length !== options.length) {
+      setStepError("Tap every step in the correct order.");
+      return;
+    }
+    setSaving(true);
+    setStepError("");
+    try {
+      let graded: { correct: boolean; explanation: string } | null = null;
+      try {
+        const res: any = await api.companyLessons.answerStep(lessonSlug, currentStep, orderPick as any);
+        if (res?.data) {
+          graded = {
+            correct: Boolean(res.data.correct),
+            explanation: [res.data.feedback, res.data.explanation].filter(Boolean).join("\n\n") || "",
+          };
+        }
+      } catch {
+        graded = null;
+      }
+      if (!graded && Array.isArray(step.correct_order)) {
+        const ok =
+          orderPick.length === step.correct_order.length &&
+          orderPick.every((v, i) => v === step.correct_order![i]);
+        graded = {
+          correct: ok,
+          explanation: ok ? step.explanation || "Correct order." : step.explanation || "Not the right order — try again.",
+        };
+      }
+      if (!graded) {
+        setStepError("Could not grade this ordering step.");
+        return;
+      }
+      setFeedback(graded);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const toggleOrder = (index: number) => {
+    if (feedback) return;
+    setOrderPick((prev) => {
+      if (prev.includes(index)) return prev.filter((x) => x !== index);
+      return [...prev, index];
+    });
+  };
+
   const goNext = () => {
     if (!lesson || !step) return;
-    const mustAttempt = ["interactive", "practice", "quiz", "debug_choice", "api_scenario"].includes(
-      step.step_type,
-    );
+    const mustAttempt =
+      MCQ_TYPES.has(step.step_type) || TEXT_TYPES.has(step.step_type) || ORDER_TYPES.has(step.step_type);
     if (mustAttempt && !feedback) {
       setStepError("Try this step before continuing. You will get feedback after your answer.");
       return;
     }
     if (currentStep < lesson.steps.length - 1) {
       setCurrentStep((s) => s + 1);
-      setSelected(null);
-      setFeedback(null);
-      setStepError("");
+      resetStepLocal();
     } else {
       setPhase("assessment");
       setAssessmentError("");
@@ -176,9 +297,6 @@ export default function LessonPlayer() {
     }
     if (currentStep > 0) {
       setCurrentStep((s) => s - 1);
-      setSelected(null);
-      setFeedback(null);
-      setStepError("");
     }
   };
 
@@ -249,7 +367,7 @@ export default function LessonPlayer() {
           <div className="mt-6 flex flex-col gap-2">
             {lesson.next_lesson_slug && (
               <Link
-                to={`/academy/lesson/${lesson.next_lesson_slug}`}
+                to={`/learn/lesson/${lesson.next_lesson_slug}`}
                 className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white"
               >
                 Next: {lesson.next_lesson_title || lesson.next_lesson_slug}
@@ -277,7 +395,8 @@ export default function LessonPlayer() {
           </button>
           <h1 className="text-2xl font-black">Final check · {lesson.title}</h1>
           <p className="mt-1 text-sm text-slate-400">
-            Server-graded. Mastery threshold {Math.round((lesson.assessment?.mastery_threshold ?? lesson.mastery_threshold ?? 0.7) * 100)}%.
+            Server-graded. Mastery threshold{" "}
+            {Math.round((lesson.assessment?.mastery_threshold ?? lesson.mastery_threshold ?? 0.7) * 100)}%.
           </p>
           <ol className="mt-6 space-y-5">
             {questions.map((q, qi) => (
@@ -322,7 +441,6 @@ export default function LessonPlayer() {
     );
   }
 
-  // Learn phase
   const progressPct = lesson.steps.length
     ? Math.round(((currentStep + 1) / lesson.steps.length) * 100)
     : 0;
@@ -346,8 +464,13 @@ export default function LessonPlayer() {
 
         {step && (
           <div className="mt-6 rounded-2xl border border-slate-700 bg-slate-900/60 p-5">
-            <h2 className="text-lg font-bold">{step.title}</h2>
-            {step.content && <p className="mt-3 text-sm leading-relaxed text-slate-300 whitespace-pre-wrap">{step.content}</p>}
+            <div className="flex items-center gap-2">
+              {TEXT_TYPES.has(step.step_type) && <Code2 size={16} className="text-sky-400" />}
+              <h2 className="text-lg font-bold">{step.title}</h2>
+            </div>
+            {step.content && (
+              <p className="mt-3 text-sm leading-relaxed text-slate-300 whitespace-pre-wrap">{step.content}</p>
+            )}
             {step.formula && (
               <p className="mt-3 rounded-lg border border-sky-500/30 bg-sky-500/10 px-3 py-2 font-mono text-sm text-sky-200">
                 {step.formula}
@@ -359,9 +482,12 @@ export default function LessonPlayer() {
                 {step.example}
               </p>
             )}
-            {step.tip && (
-              <p className="mt-3 text-xs text-amber-200/90">💡 {step.tip}</p>
+            {step.code && (
+              <pre className="mt-3 overflow-x-auto rounded-xl border border-slate-700 bg-black/40 p-3 font-mono text-xs text-sky-100">
+                {step.code}
+              </pre>
             )}
+            {step.tip && <p className="mt-3 text-xs text-amber-200/90">💡 {step.tip}</p>}
 
             <div className="mt-4">
               <LessonStepHints slug={lessonSlug} stepIndex={currentStep} localHints={step.hints || []} />
@@ -369,7 +495,7 @@ export default function LessonPlayer() {
 
             {step.prompt && <p className="mt-4 text-sm font-semibold">{step.prompt}</p>}
 
-            {Array.isArray(step.options) && step.options.length > 0 && (
+            {MCQ_TYPES.has(step.step_type) && Array.isArray(step.options) && (
               <div className="mt-3 space-y-2">
                 {step.options.map((opt, oi) => {
                   const isSelected = selected === oi;
@@ -379,7 +505,7 @@ export default function LessonPlayer() {
                       key={oi}
                       type="button"
                       disabled={Boolean(feedback) || saving}
-                      onClick={() => void checkAnswer(oi)}
+                      onClick={() => void checkMcq(oi)}
                       className={`w-full text-left rounded-xl border px-3 py-2.5 text-sm transition ${
                         showResult
                           ? feedback!.correct
@@ -394,6 +520,64 @@ export default function LessonPlayer() {
                     </button>
                   );
                 })}
+              </div>
+            )}
+
+            {TEXT_TYPES.has(step.step_type) && (
+              <div className="mt-3 space-y-2">
+                <textarea
+                  value={textAnswer}
+                  onChange={(e) => setTextAnswer(e.target.value)}
+                  disabled={Boolean(feedback) || saving}
+                  rows={step.step_type === "code_lab" ? 8 : 3}
+                  placeholder={step.answer_placeholder || (step.step_type === "code_lab" ? "Write your code…" : "Your answer…")}
+                  className="w-full rounded-xl border border-slate-700 bg-black/30 px-3 py-2 font-mono text-sm text-slate-100 outline-none focus:border-emerald-500"
+                />
+                {!feedback && (
+                  <button
+                    type="button"
+                    disabled={saving}
+                    onClick={() => void checkText()}
+                    className="rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+                  >
+                    {saving ? "Checking…" : "Check answer"}
+                  </button>
+                )}
+              </div>
+            )}
+
+            {ORDER_TYPES.has(step.step_type) && Array.isArray(step.options) && (
+              <div className="mt-3 space-y-2">
+                <p className="text-xs text-slate-400">Tap steps in the correct order. Tap again to undo.</p>
+                {step.options.map((opt, oi) => {
+                  const rank = orderPick.indexOf(oi);
+                  return (
+                    <button
+                      key={oi}
+                      type="button"
+                      disabled={Boolean(feedback)}
+                      onClick={() => toggleOrder(oi)}
+                      className={`flex w-full items-center gap-2 rounded-xl border px-3 py-2.5 text-left text-sm ${
+                        rank >= 0 ? "border-emerald-500 bg-emerald-500/10" : "border-slate-700 hover:border-slate-500"
+                      }`}
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-800 text-[11px] font-bold">
+                        {rank >= 0 ? rank + 1 : "·"}
+                      </span>
+                      {opt}
+                    </button>
+                  );
+                })}
+                {!feedback && (
+                  <button
+                    type="button"
+                    disabled={saving}
+                    onClick={() => void checkOrder()}
+                    className="rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+                  >
+                    {saving ? "Checking…" : "Check order"}
+                  </button>
+                )}
               </div>
             )}
 
@@ -430,7 +614,7 @@ export default function LessonPlayer() {
             onClick={goNext}
             className="inline-flex items-center gap-1 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white"
           >
-            {currentStep >= (lesson.steps.length - 1) ? "Final assessment" : "Continue"}
+            {currentStep >= lesson.steps.length - 1 ? "Final assessment" : "Continue"}
             <ChevronRight size={16} />
           </button>
         </div>
