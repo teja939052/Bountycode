@@ -1,221 +1,30 @@
 {
   "slug": "data_structures_intro",
   "id": "lesson_data_structures_intro_001",
-  "title": "Choosing the Right Data Structure",
-  "domain": "Data Structures",
-  "pattern": "Data Structures",
+  "title": "Data structures intro",
+  "domain": "DSA",
   "difficulty": "easy",
   "duration_min": 22,
   "xp_reward": 100,
+  "mastery_threshold": 0.7,
   "steps": [
-    {
-      "step_number": 1,
-      "step_type": "explain",
-      "title": "Match the structure to the operation",
-      "content": "Data structures organize information so common operations are efficient. Consider how data is accessed, inserted, removed and searched before choosing one.",
-      "example": "An array is convenient for indexed access; a linked list supports pointer-based insertion when the position is known."
-    },
-    {
-      "step_number": 2,
-      "step_type": "interactive",
-      "title": "Choose for undo history",
-      "prompt": "Which structure naturally supports undoing the most recent action first?",
-      "options": [
-        "Queue",
-        "Stack",
-        "Sorted array",
-        "Graph"
-      ],
-      "correct_index": 1,
-      "explanation": "A stack is LIFO, so the most recent action is removed first."
-    },
-    {
-      "step_number": 3,
-      "step_type": "explain",
-      "title": "Use hashing for lookup",
-      "content": "A hash map stores key-value pairs and is useful when fast lookup by a key is important. A set is useful when membership and uniqueness matter.",
-      "example": "A set can detect whether an ID has already appeared."
-    },
-    {
-      "step_number": 4,
-      "step_type": "practice",
-      "title": "Choose for arrival order",
-      "prompt": "A customer-service system processes requests in the order received. Which structure is appropriate?",
-      "options": [
-        "Stack",
-        "Queue",
-        "Binary search tree only",
-        "Recursion"
-      ],
-      "correct_index": 1,
-      "explanation": "A queue is FIFO and processes the earliest request first."
-    },
-    {
-      "step_number": 5,
-      "step_type": "explain",
-      "title": "Think about trade-offs",
-      "content": "Arrays, linked lists, stacks, queues, trees, heaps, hash maps and graphs solve different problems. The right structure depends on required operations, data size and ordering constraints.",
-      "tip": "Do not choose a structure because it is familiar; choose it because its operations fit the task."
-    }
+    {"step_number": 1, "step_type": "explain", "title": "Choose by access pattern", "content": "Arrays give index access. Stacks are LIFO. Queues are FIFO. Hash maps store key→value for fast lookup. Pick the structure that matches the operations you need most."},
+    {"step_number": 2, "step_type": "interactive", "title": "LIFO", "prompt": "Undo in an editor is best modeled by:", "options": ["Queue", "Stack", "Only unsorted list", "Binary search tree only"], "correct_index": 1, "explanation": "Last action undone first → stack.", "hints": ["Last in, first out?"]},
+    {"step_number": 3, "step_type": "practice", "title": "FIFO", "prompt": "Print jobs in arrival order fit a:", "options": ["Stack", "Queue", "Max-heap only", "Recursion only"], "correct_index": 1, "explanation": "First in, first out → queue.", "hints": ["Who should print first?"]},
+    {"step_number": 4, "step_type": "practice", "title": "Fast key lookup", "prompt": "Check if a user ID exists quickly:", "options": ["Always full array scan only", "Hash set/map", "Only stack pops", "Only queue pops"], "correct_index": 1, "explanation": "Hash-based membership.", "hints": ["Key-based structure."]},
+    {"step_number": 5, "step_type": "explain", "title": "OA tip", "content": "State the structure and why in one sentence before coding. Interviewers care about the match between operations and structure."}
   ],
-  "assessment": {
-    "mastery_threshold": 0.7,
-    "duration_sec": 240,
-    "questions": [
-      {
-        "prompt": "Which structure is best known for direct indexed access?",
-        "options": [
-          "Array",
-          "Stack",
-          "Queue",
-          "Linked list"
-        ],
-        "correct_index": 0,
-        "explanation": "Arrays support direct access by index in O(1) time."
-      },
-      {
-        "prompt": "Which structure models first-in, first-out processing?",
-        "options": [
-          "Stack",
-          "Queue",
-          "Tree",
-          "Set"
-        ],
-        "correct_index": 1,
-        "explanation": "A queue removes the oldest inserted element first."
-      },
-      {
-        "prompt": "Which structure is useful for key-to-value lookup?",
-        "options": [
-          "Hash map",
-          "Stack only",
-          "Queue only",
-          "Matrix"
-        ],
-        "correct_index": 0,
-        "explanation": "A hash map associates keys with values and offers average constant-time lookup."
-      },
-      {
-        "prompt": "Which structure is hierarchical?",
-        "options": [
-          "Array",
-          "Queue",
-          "Tree",
-          "Stack"
-        ],
-        "correct_index": 2,
-        "explanation": "Trees represent parent-child hierarchical relationships."
-      },
-      {
-        "prompt": "What should guide data-structure selection?",
-        "options": [
-          "Only the language name",
-          "The required operations and constraints",
-          "The variable name",
-          "The screen size"
-        ],
-        "correct_index": 1,
-        "explanation": "Choose a structure based on performance needs, operations and input constraints."
-      }
-    ]
-  },
-  "learning_objectives": [
-    "Choose arrays, linked lists, stacks, queues, sets and maps by operation needs.",
-    "Compare indexed access, insertion, deletion and lookup costs.",
-    "Distinguish abstract data types from their implementations.",
-    "Justify a structure using constraints and expected operations."
-  ],
-  "prerequisites": [
-    "programming_languages",
-    "arrays_basics"
-  ],
-  "concepts": [
-    "ADT",
-    "array",
-    "linked list",
-    "stack",
-    "queue",
-    "hash map",
-    "set"
-  ],
-  "common_misconceptions": [
-    {
-      "misconception": "A data structure is the same as an algorithm.",
-      "correction": "A data structure organizes data; an algorithm operates on it."
-    },
-    {
-      "misconception": "One structure is best for every task.",
-      "correction": "Trade-offs depend on access pattern, update frequency and ordering needs."
-    },
-    {
-      "misconception": "A hash map preserves sorted order.",
-      "correction": "Typical hash maps prioritize key lookup, not sorted iteration."
-    }
-  ],
-  "worked_examples": [
-    {
-      "title": "Choose fast indexed access",
-      "input": "Read item at index 5000 repeatedly",
-      "trace": [
-        "The operation needs direct indexed access.",
-        "An array computes the position directly.",
-        "A linked list must traverse nodes."
-      ],
-      "output": "Array: O(1) indexed access",
-      "explanation": "Choose arrays when random access is central."
-    },
-    {
-      "title": "Choose FIFO processing",
-      "input": "Handle support tickets in arrival order",
-      "trace": [
-        "New tickets join at the back.",
-        "Oldest ticket is handled first.",
-        "A queue models this behavior."
-      ],
-      "output": "Queue",
-      "explanation": "The required order determines the abstract data type."
-    },
-    {
-      "title": "Choose frequency counting",
-      "input": "Count occurrences of each word",
-      "trace": [
-        "Each word is a key.",
-        "Increment its stored count as it appears.",
-        "A map stores key-to-count associations."
-      ],
-      "output": "Hash map / dictionary",
-      "explanation": "A map makes frequency counting concise and usually linear on average."
-    }
-  ],
-  "company_applications": [
-    {
-      "company": "TCS",
-      "skill": "data-structure fundamentals",
-      "practice": "Name the operation that matters and its complexity."
-    },
-    {
-      "company": "Infosys",
-      "skill": "problem solving",
-      "practice": "Explain why a map or set improves a nested-loop approach."
-    },
-    {
-      "company": "Accenture",
-      "skill": "coding basics",
-      "practice": "Select a stack, queue or map from the problem's behavior."
-    }
-  ],
-  "srs_cards": [
-    {
-      "type": "concept",
-      "question": "What should you remember about Choosing the Right Data Structure?",
-      "answer": "Choose arrays, linked lists, stacks, queues, sets and maps by operation needs. Compare indexed access, insertion, deletion and lookup costs. Distinguish abstract data types from their implementations. Justify a structure using constraints and expected operations."
-    },
-    {
-      "type": "misconception",
-      "question": "What mistake should you avoid in Choosing the Right Data Structure?",
-      "answer": "A data structure organizes data; an algorithm operates on it."
-    }
-  ],
-  "next_lesson_slug": "time_complexity",
-  "next_lesson_title": "Time Complexity and Big O"
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Stack order:", "options": ["FIFO", "LIFO", "Random", "Sorted only"], "correct_index": 1, "explanation": "LIFO."},
+    {"prompt": "Queue order:", "options": ["LIFO", "FIFO", "Heap only", "DFS only"], "correct_index": 1, "explanation": "FIFO."},
+    {"prompt": "Index access strength:", "options": ["Linked list only", "Array", "Stack only", "Queue only"], "correct_index": 1, "explanation": "Array."},
+    {"prompt": "Key→value fits:", "options": ["Hash map", "Only queue", "Only stack", "Only DFS"], "correct_index": 0, "explanation": "Hash map."},
+    {"prompt": "Choose structure by:", "options": ["Font color", "Needed operations", "Variable names", "File size only"], "correct_index": 1, "explanation": "Operations."}
+  ]},
+  "learning_objectives": ["Map problems to stack/queue/array/map", "Explain LIFO vs FIFO"],
+  "concepts": ["array", "stack", "queue", "hash map"],
+  "company_applications": [{"company": "Accenture", "skill": "data_structures", "practice": "Pick structure MCQs."}],
+  "srs_cards": [{"type": "concept", "question": "Stack vs queue?", "answer": "Stack LIFO; queue FIFO."}],
+  "next_lesson_slug": "hashing_basics",
+  "next_lesson_title": "Hashing basics"
 }

@@ -1,126 +1,30 @@
 {
   "slug": "simple_compound_interest",
-  "id": "lesson_interest_001",
-  "title": "Simple and Compound Interest",
+  "id": "lesson_simple_compound_interest_001",
+  "title": "Simple and compound interest",
   "domain": "Quantitative Aptitude",
-  "pattern": "Interest",
   "difficulty": "medium",
-  "duration_min": 22,
-  "xp_reward": 100,
+  "duration_min": 26,
+  "xp_reward": 115,
+  "mastery_threshold": 0.7,
   "steps": [
-    {
-      "step_number": 1,
-      "step_type": "explain",
-      "title": "Understand principal, rate and time",
-      "content": "Principal (P) is the amount invested or borrowed. Rate (R) is the annual interest percentage. Time (T) is measured in years unless the question says otherwise.",
-      "example": "₹5,000 at 8% per year for 2 years has P=5000, R=8 and T=2."
-    },
-    {
-      "step_number": 2,
-      "step_type": "interactive",
-      "title": "Calculate simple interest",
-      "prompt": "Find simple interest on ₹2,000 at 5% per year for 3 years.",
-      "options": [
-        "₹200",
-        "₹250",
-        "₹300",
-        "₹350"
-      ],
-      "correct_index": 2,
-      "explanation": "SI = P×R×T/100 = 2000×5×3/100 = ₹300."
-    },
-    {
-      "step_number": 3,
-      "step_type": "explain",
-      "title": "Simple interest formula",
-      "content": "Simple interest is calculated on the original principal for the whole period. The amount is principal plus simple interest.",
-      "formula": "SI = (P×R×T)/100\nAmount = P + SI",
-      "example": "₹1,000 at 10% for 2 years gives SI ₹200 and amount ₹1,200."
-    },
-    {
-      "step_number": 4,
-      "step_type": "practice",
-      "title": "Understand compound interest",
-      "prompt": "₹1,000 is compounded annually at 10% for 2 years. What is the final amount?",
-      "options": [
-        "₹1,100",
-        "₹1,200",
-        "₹1,210",
-        "₹1,220"
-      ],
-      "correct_index": 2,
-      "explanation": "After year 1 the amount is ₹1,100. Year 2 interest is 10% of ₹1,100 = ₹110. Final amount = ₹1,210."
-    },
-    {
-      "step_number": 5,
-      "step_type": "explain",
-      "title": "Compound interest grows on the amount",
-      "content": "With annual compounding, interest in each year is calculated on the amount after the previous year. For one compounding period per year, Amount = P(1+R/100)^T.",
-      "formula": "CI = P(1 + R/100)^T − P",
-      "tip": "Check whether compounding is annual, half-yearly or quarterly before using the formula."
-    }
+    {"step_number": 1, "step_type": "explain", "title": "Simple interest", "content": "SI = (P × R × T) / 100. Interest is earned only on the original principal for the whole time.", "formula": "SI = PRT/100", "tip": "P = principal, R = rate % per year, T = time in years."},
+    {"step_number": 2, "step_type": "interactive", "title": "Compute SI", "prompt": "SI on ₹1000 at 10% for 2 years?", "options": ["₹100", "₹200", "₹210", "₹220"], "correct_index": 1, "explanation": "SI = 1000×10×2/100 = 200.", "hints": ["Use PRT/100.", "Substitute carefully."]},
+    {"step_number": 3, "step_type": "explain", "title": "Compound interest idea", "content": "CI earns interest on principal plus previously accrued interest. For 2 years at rate R: Amount = P(1+R/100)^2, CI = Amount − P."},
+    {"step_number": 4, "step_type": "practice", "title": "Two-year CI", "prompt": "Approx CI on ₹1000 at 10% for 2 years (annual compounding)?", "options": ["₹200", "₹210", "₹220", "₹100"], "correct_index": 1, "explanation": "Amount = 1000×1.1×1.1 = 1210; CI = 210.", "hints": ["Multiply by 1.1 twice.", "Subtract principal."]},
+    {"step_number": 5, "step_type": "practice", "title": "SI vs CI", "prompt": "For the same P, R, T>1, generally:", "options": ["SI > CI", "CI > SI", "Always equal", "CI is zero"], "correct_index": 1, "explanation": "Compounding grows the base, so CI exceeds SI for T>1 at positive rates.", "hints": ["Does interest earn interest?"]}
   ],
-  "assessment": {
-    "mastery_threshold": 0.7,
-    "duration_sec": 300,
-    "questions": [
-      {
-        "prompt": "Find SI on ₹4,000 at 5% for 2 years.",
-        "options": [
-          "₹200",
-          "₹300",
-          "₹400",
-          "₹500"
-        ],
-        "correct_index": 2,
-        "explanation": "SI = 4000×5×2/100 = ₹400."
-      },
-      {
-        "prompt": "What is the amount for ₹2,000 at 10% simple interest for 1 year?",
-        "options": [
-          "₹2,000",
-          "₹2,100",
-          "₹2,200",
-          "₹2,400"
-        ],
-        "correct_index": 2,
-        "explanation": "SI = ₹200, so amount = ₹2,200."
-      },
-      {
-        "prompt": "₹1,000 compounded annually at 10% for 2 years becomes:",
-        "options": [
-          "₹1,200",
-          "₹1,210",
-          "₹1,220",
-          "₹1,250"
-        ],
-        "correct_index": 1,
-        "explanation": "1000×1.1×1.1 = ₹1,210."
-      },
-      {
-        "prompt": "What is the simple interest on ₹5,000 at 6% for 6 months?",
-        "options": [
-          "₹100",
-          "₹150",
-          "₹200",
-          "₹300"
-        ],
-        "correct_index": 1,
-        "explanation": "Six months is half a year: 5000×6×0.5/100 = ₹150."
-      },
-      {
-        "prompt": "With positive interest and annual compounding, compound interest over two years is usually:",
-        "options": [
-          "Less than simple interest",
-          "Equal to simple interest",
-          "Greater than simple interest",
-          "Always zero"
-        ],
-        "correct_index": 2,
-        "explanation": "The second year's compound interest is earned on the increased amount, so CI exceeds SI."
-      }
-    ]
-  },
-  "next_lesson_slug": "mixture_alligation",
-  "next_lesson_title": "Mixtures and Alligation"
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "SI formula?", "options": ["PR/100", "PRT/100", "P+R+T", "P(1+R)^T"], "correct_index": 1, "explanation": "PRT/100."},
+    {"prompt": "SI on 500 at 8% for 1 year?", "options": ["40", "80", "20", "50"], "correct_index": 0, "explanation": "500×8×1/100=40."},
+    {"prompt": "CI compounds on:", "options": ["Principal only always", "Growing amount", "Rate only", "Time only"], "correct_index": 1, "explanation": "Growing amount."},
+    {"prompt": "Amount after 2 years 10% on 1000:", "options": ["1100", "1200", "1210", "1000"], "correct_index": 2, "explanation": "1210."},
+    {"prompt": "For T=1 year, SI and annual CI:", "options": ["Differ a lot", "Are equal", "CI half of SI", "SI zero"], "correct_index": 1, "explanation": "Equal for one year annual compounding."}
+  ]},
+  "learning_objectives": ["Compute SI", "Compute basic CI", "Compare SI and CI"],
+  "concepts": ["simple interest", "compound interest"],
+  "company_applications": [{"company": "TCS NQT", "skill": "interest", "practice": "One-step SI and 2-year CI."}],
+  "srs_cards": [{"type": "formula", "question": "SI formula?", "answer": "SI = PRT/100"}],
+  "next_lesson_slug": "pipes_cisterns",
+  "next_lesson_title": "Pipes and cisterns"
 }

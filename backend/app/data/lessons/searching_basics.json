@@ -1,221 +1,30 @@
 {
   "slug": "searching_basics",
   "id": "lesson_searching_basics_001",
-  "title": "Searching Fundamentals",
-  "domain": "Programming Fundamentals",
-  "pattern": "Searching",
-  "difficulty": "easy",
-  "duration_min": 20,
-  "xp_reward": 95,
+  "title": "Searching basics",
+  "domain": "DSA",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 115,
+  "mastery_threshold": 0.7,
   "steps": [
-    {
-      "step_number": 1,
-      "step_type": "explain",
-      "title": "Linear search",
-      "content": "Linear search checks items one by one until the target is found or the list ends. It works on sorted and unsorted data.",
-      "example": "Find 8 in [4,2,8,6]: inspect 4, then 2, then 8. Three comparisons."
-    },
-    {
-      "step_number": 2,
-      "step_type": "interactive",
-      "title": "Count linear comparisons",
-      "prompt": "In the array [3,6,9,12,15], how many checks are needed to find 12 with a left-to-right linear search?",
-      "options": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
-      "correct_index": 2,
-      "explanation": "Checks are 3, 6, 9, then 12: four comparisons."
-    },
-    {
-      "step_number": 3,
-      "step_type": "explain",
-      "title": "Binary search halves the range",
-      "content": "Binary search requires sorted data. Compare the target with the middle value, discard the half that cannot contain it, then repeat.",
-      "example": "Search 7 in [1,3,5,7,9]. Middle is 5; search the right half [7,9], then find 7.",
-      "tip": "Never apply ordinary binary search to an unsorted array."
-    },
-    {
-      "step_number": 4,
-      "step_type": "practice",
-      "title": "Choose the complexity",
-      "prompt": "What is the time complexity of binary search on a sorted array?",
-      "options": [
-        "O(1)",
-        "O(log n)",
-        "O(n)",
-        "O(n²)"
-      ],
-      "correct_index": 1,
-      "explanation": "Each comparison cuts the remaining search interval roughly in half, so O(log n)."
-    },
-    {
-      "step_number": 5,
-      "step_type": "explain",
-      "title": "Know the trade-off",
-      "content": "Linear search needs no sorting and is simple for tiny lists. Binary search is faster for large sorted data, but the ordering requirement must be satisfied."
-    }
+    {"step_number": 1, "step_type": "explain", "title": "Linear vs binary", "content": "Linear search checks elements one by one — O(n). Binary search halves a sorted range each step — O(log n)."},
+    {"step_number": 2, "step_type": "interactive", "title": "Prerequisite", "prompt": "Binary search requires:", "options": ["Random hash only", "Sorted data", "Graph input", "Unsorted always"], "correct_index": 1, "explanation": "The midpoint test needs sorted order.", "hints": ["What property does mid comparison need?"]},
+    {"step_number": 3, "step_type": "practice", "title": "Worst linear", "prompt": "Linear search worst-case comparisons for n elements:", "options": ["1", "log n", "n", "n^2"], "correct_index": 2, "explanation": "May scan all n elements.", "hints": ["Target at the end or missing."]},
+    {"step_number": 4, "step_type": "practice", "title": "Binary idea", "prompt": "Sorted [1,3,5,7,9], search 7. First mid (0-based L=0,R=4) index 2 value 5. Next search:", "options": ["Left half only", "Right half only", "Entire array again", "Stop fail"], "correct_index": 1, "explanation": "7 > 5 → search right half.", "hints": ["Compare target to mid."]},
+    {"step_number": 5, "step_type": "explain", "title": "OA tip", "content": "If the problem allows sorting first, binary search or two-pointers often beat repeated linear scans."}
   ],
-  "assessment": {
-    "mastery_threshold": 0.7,
-    "duration_sec": 240,
-    "questions": [
-      {
-        "prompt": "Which search works on an unsorted array?",
-        "options": [
-          "Binary search",
-          "Linear search",
-          "Interpolation search only",
-          "None"
-        ],
-        "correct_index": 1,
-        "explanation": "Linear search checks every item and does not require sorting."
-      },
-      {
-        "prompt": "What prerequisite does binary search have?",
-        "options": [
-          "The array must be sorted",
-          "The array must contain unique values",
-          "The array must be reversed",
-          "The array must have even length"
-        ],
-        "correct_index": 0,
-        "explanation": "Binary search relies on order to discard half the remaining range."
-      },
-      {
-        "prompt": "What is the worst-case time complexity of linear search?",
-        "options": [
-          "O(1)",
-          "O(log n)",
-          "O(n)",
-          "O(n log n)"
-        ],
-        "correct_index": 2,
-        "explanation": "The target may be last or absent, requiring n checks."
-      },
-      {
-        "prompt": "What is the worst-case time complexity of binary search?",
-        "options": [
-          "O(log n)",
-          "O(n)",
-          "O(n²)",
-          "O(1)"
-        ],
-        "correct_index": 0,
-        "explanation": "The search range halves at each iteration."
-      },
-      {
-        "prompt": "When is linear search a reasonable choice?",
-        "options": [
-          "Only on sorted arrays",
-          "For small or unsorted lists",
-          "Only for trees",
-          "Only for databases"
-        ],
-        "correct_index": 1,
-        "explanation": "Linear search is simple and does not need preprocessing or sorted input."
-      }
-    ]
-  },
-  "learning_objectives": [
-    "Explain linear search and when it is appropriate.",
-    "Explain why binary search requires sorted data.",
-    "Trace the low, mid and high pointers.",
-    "Recognize O(n) versus O(log n) search time."
-  ],
-  "prerequisites": [
-    "arrays_basics"
-  ],
-  "concepts": [
-    "linear search",
-    "binary search",
-    "sorted input",
-    "low",
-    "high",
-    "mid",
-    "search invariant"
-  ],
-  "common_misconceptions": [
-    {
-      "misconception": "Binary search works on any array.",
-      "correction": "The standard binary search algorithm requires sorted data or another monotonic search space."
-    },
-    {
-      "misconception": "mid is always the answer.",
-      "correction": "mid is a candidate; compare its value and discard the half that cannot contain the target."
-    },
-    {
-      "misconception": "Binary search checks every item.",
-      "correction": "Each comparison removes about half of the remaining search interval."
-    }
-  ],
-  "worked_examples": [
-    {
-      "title": "Linear search",
-      "input": "[6, 2, 9, 4], target = 9",
-      "trace": [
-        "Check index 0: 6 is not 9.",
-        "Check index 1: 2 is not 9.",
-        "Check index 2: 9 matches."
-      ],
-      "output": "Found at index 2",
-      "explanation": "Linear search checks items in order and takes O(n) time in the worst case."
-    },
-    {
-      "title": "Binary search",
-      "input": "[2, 4, 6, 8, 10], target = 8",
-      "trace": [
-        "low=0, high=4, mid=2; value 6 is too small.",
-        "Move low to 3.",
-        "mid=3; value 8 matches."
-      ],
-      "output": "Found at index 3",
-      "explanation": "The sorted order lets us discard the entire left side after seeing 6."
-    },
-    {
-      "title": "Count binary search steps",
-      "input": "n = 16 sorted values",
-      "trace": [
-        "After one comparison, at most 8 remain.",
-        "After two, at most 4 remain.",
-        "After three, at most 2 remain.",
-        "After four, at most 1 remains."
-      ],
-      "output": "At most 4 halvings to isolate one candidate",
-      "explanation": "The number of halvings grows logarithmically, giving O(log n)."
-    }
-  ],
-  "company_applications": [
-    {
-      "company": "TCS",
-      "skill": "array searching and algorithm basics",
-      "practice": "Explain the sorted-input requirement and trace pointer updates."
-    },
-    {
-      "company": "Infosys",
-      "skill": "searching and complexity analysis",
-      "practice": "Compare linear and binary search using input constraints."
-    },
-    {
-      "company": "Accenture",
-      "skill": "output tracing and debugging",
-      "practice": "Test target at first, last and missing positions."
-    }
-  ],
-  "srs_cards": [
-    {
-      "type": "concept",
-      "question": "What are the key ideas in Searching Fundamentals?",
-      "answer": "Explain linear search and when it is appropriate. Explain why binary search requires sorted data. Trace the low, mid and high pointers. Recognize O(n) versus O(log n) search time."
-    },
-    {
-      "type": "misconception",
-      "question": "Name a common mistake in Searching Fundamentals.",
-      "answer": "The standard binary search algorithm requires sorted data or another monotonic search space."
-    }
-  ],
-  "next_lesson_slug": "sorting_basics",
-  "next_lesson_title": "Sorting Fundamentals"
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Binary search needs:", "options": ["Sorted data", "Stack only", "Queue only", "Unsorted"], "correct_index": 0, "explanation": "Sorted."},
+    {"prompt": "Linear search complexity:", "options": ["O(1)", "O(log n)", "O(n)", "O(n^2)"], "correct_index": 2, "explanation": "O(n)."},
+    {"prompt": "Binary search complexity:", "options": ["O(n)", "O(log n)", "O(n^2)", "O(1) always"], "correct_index": 1, "explanation": "O(log n)."},
+    {"prompt": "If mid < target in ascending array:", "options": ["Search left", "Search right", "Done", "Error"], "correct_index": 1, "explanation": "Search right."},
+    {"prompt": "Unsorted data, need one find:", "options": ["Binary only", "Linear (or sort first)", "Impossible", "Only hash mandatory"], "correct_index": 1, "explanation": "Linear or sort then binary."}
+  ]},
+  "learning_objectives": ["Contrast linear and binary search", "Apply binary on sorted arrays"],
+  "concepts": ["linear search", "binary search"],
+  "company_applications": [{"company": "Infosys", "skill": "searching", "practice": "Complexity + mid-step traces."}],
+  "srs_cards": [{"type": "concept", "question": "Binary search needs?", "answer": "Sorted data; O(log n) halvings."}],
+  "next_lesson_slug": "recursion_basics",
+  "next_lesson_title": "Recursion basics"
 }

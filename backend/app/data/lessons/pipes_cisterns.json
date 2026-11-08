@@ -1,125 +1,30 @@
 {
   "slug": "pipes_cisterns",
   "id": "lesson_pipes_cisterns_001",
-  "title": "Pipes and Cisterns",
+  "title": "Pipes and cisterns",
   "domain": "Quantitative Aptitude",
-  "pattern": "Pipes and Cisterns",
   "difficulty": "medium",
-  "duration_min": 22,
-  "xp_reward": 100,
+  "duration_min": 24,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
   "steps": [
-    {
-      "step_number": 1,
-      "step_type": "explain",
-      "title": "Treat filling as positive work",
-      "content": "A pipe that fills a tank contributes a positive rate. A pipe or leak that empties the tank contributes a negative rate. Add rates to find the net rate.",
-      "formula": "Filling rate = 1 / time to fill\nEmptying rate = −1 / time to empty",
-      "example": "A pipe fills a tank in 6 hours, so it fills 1/6 of the tank per hour."
-    },
-    {
-      "step_number": 2,
-      "step_type": "interactive",
-      "title": "Combine two filling pipes",
-      "prompt": "Pipe A fills a tank in 6 hours and B in 3 hours. How long do they take together?",
-      "options": [
-        "1 hour",
-        "2 hours",
-        "3 hours",
-        "4 hours"
-      ],
-      "correct_index": 1,
-      "explanation": "Combined rate = 1/6 + 1/3 = 1/2 tank per hour. Time = 2 hours."
-    },
-    {
-      "step_number": 3,
-      "step_type": "explain",
-      "title": "Include a leak",
-      "content": "Subtract the leak's emptying rate from the filling rate. If a pipe fills in a hours and a leak empties in b hours, net rate is 1/a − 1/b when the leak is active.",
-      "example": "A pipe fills in 4 hours; a leak empties in 12 hours. Net rate = 1/4−1/12 = 1/6, so the tank fills in 6 hours."
-    },
-    {
-      "step_number": 4,
-      "step_type": "practice",
-      "title": "Find the net time",
-      "prompt": "A pipe fills a tank in 8 hours. A leak empties it in 24 hours. How long to fill with the leak open?",
-      "options": [
-        "8 hours",
-        "10 hours",
-        "12 hours",
-        "16 hours"
-      ],
-      "correct_index": 2,
-      "explanation": "Net rate = 1/8−1/24 = 2/24 = 1/12 tank per hour. Time = 12 hours."
-    },
-    {
-      "step_number": 5,
-      "step_type": "explain",
-      "title": "Work with changing pipes",
-      "content": "When a pipe is opened or closed partway through, calculate work completed in each time interval separately, then add the remaining fraction.",
-      "tip": "Use fractions of one tank as the unit of work; avoid adding the times directly."
-    }
+    {"step_number": 1, "step_type": "explain", "title": "Work rates", "content": "If a pipe fills a tank in n hours, its rate is 1/n tank per hour. Inlet rates add; outlet rates subtract."},
+    {"step_number": 2, "step_type": "interactive", "title": "Single pipe", "prompt": "A pipe fills in 4 hours. Rate per hour?", "options": ["1/2", "1/3", "1/4", "4"], "correct_index": 2, "explanation": "Rate = 1/4 tank per hour.", "hints": ["Rate is reciprocal of time."]},
+    {"step_number": 3, "step_type": "practice", "title": "Two inlets", "prompt": "Pipes A and B fill in 3h and 6h. Together time?", "options": ["1h", "2h", "3h", "4.5h"], "correct_index": 1, "explanation": "Rates 1/3+1/6=1/2 → 2 hours.", "hints": ["Add rates.", "Time = 1 / combined rate."]},
+    {"step_number": 4, "step_type": "practice", "title": "Inlet and outlet", "prompt": "A fills in 4h, B empties in 6h. Net rate when both open?", "options": ["1/4", "1/6", "1/12", "1/3"], "correct_index": 2, "explanation": "1/4 − 1/6 = 1/12 tank per hour.", "hints": ["Subtract outlet rate."]},
+    {"step_number": 5, "step_type": "explain", "title": "Exam tip", "content": "Always convert to rates first. Combined time is 1 divided by net rate when net rate is positive."}
   ],
-  "assessment": {
-    "mastery_threshold": 0.7,
-    "duration_sec": 300,
-    "questions": [
-      {
-        "prompt": "A pipe fills a tank in 10 hours. Its one-hour rate is:",
-        "options": [
-          "1/5",
-          "1/10",
-          "1/20",
-          "10"
-        ],
-        "correct_index": 1,
-        "explanation": "One-hour work = 1/10 of the tank."
-      },
-      {
-        "prompt": "Two pipes fill a tank in 4 and 4 hours. Together they take:",
-        "options": [
-          "1 hour",
-          "2 hours",
-          "4 hours",
-          "8 hours"
-        ],
-        "correct_index": 1,
-        "explanation": "Combined rate = 1/4+1/4 = 1/2, so time = 2 hours."
-      },
-      {
-        "prompt": "A pipe fills in 6 hours and a leak empties in 6 hours. With both open, the tank:",
-        "options": [
-          "Fills in 3 hours",
-          "Empties in 3 hours",
-          "Never changes level",
-          "Fills in 6 hours"
-        ],
-        "correct_index": 2,
-        "explanation": "The positive and negative rates cancel, so the water level does not change."
-      },
-      {
-        "prompt": "A fills in 5 hours and B fills in 20 hours. Together they fill in:",
-        "options": [
-          "3 hours",
-          "4 hours",
-          "5 hours",
-          "10 hours"
-        ],
-        "correct_index": 1,
-        "explanation": "Rate = 1/5+1/20 = 1/4 tank per hour, so 4 hours."
-      },
-      {
-        "prompt": "A pipe fills in 12 hours and a leak empties in 18 hours. Net filling time is:",
-        "options": [
-          "24 hours",
-          "30 hours",
-          "36 hours",
-          "40 hours"
-        ],
-        "correct_index": 2,
-        "explanation": "Net rate = 1/12−1/18 = 1/36, so 36 hours."
-      }
-    ]
-  },
-  "next_lesson_slug": "permutations_combinations",
-  "next_lesson_title": "Permutations and Combinations"
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Fill in 5h → rate?", "options": ["5", "1/5", "1/10", "2/5"], "correct_index": 1, "explanation": "1/5."},
+    {"prompt": "1/3+1/6 =", "options": ["1/2", "1/3", "1/9", "1"], "correct_index": 0, "explanation": "1/2."},
+    {"prompt": "Net rate 1/12 → time to fill?", "options": ["6h", "12h", "24h", "1h"], "correct_index": 1, "explanation": "12 hours."},
+    {"prompt": "Outlet does what?", "options": ["Adds rate", "Subtracts rate", "Squares rate", "Ignores time"], "correct_index": 1, "explanation": "Subtracts."},
+    {"prompt": "First step in pipes problems?", "options": ["Guess", "Write rates", "Ignore outlet", "Use SI formula"], "correct_index": 1, "explanation": "Write rates."}
+  ]},
+  "learning_objectives": ["Convert times to rates", "Combine inlet and outlet"],
+  "concepts": ["work rate", "pipes"],
+  "company_applications": [{"company": "Wipro", "skill": "pipes_cisterns", "practice": "Two-pipe net rate items."}],
+  "srs_cards": [{"type": "formula", "question": "Pipe fills in n hours → rate?", "answer": "1/n tank per hour."}],
+  "next_lesson_slug": "mixture_alligation",
+  "next_lesson_title": "Mixtures and alligation"
 }
