@@ -1,326 +1,533 @@
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import {
-  BookOpen,
-  Code2,
-  ListChecks,
-  CalendarCheck,
-  Trophy,
+  ArrowLeft,
   Flame,
-  Search,
-  ChevronRight,
-  Rocket,
+  Zap,
+  Crown,
+  Play,
+  RefreshCw,
+  Settings,
 } from "lucide-react";
-import Spinner from "../components/ui/Spinner";
-import { useLearning } from "../hooks/useLearning";
 import {
-  LNav,
-  LCard,
-  LSectionTitle,
-  Chip,
-  LC,
-} from "../components/leetcode/Kit";
+  StreakDisplay,
+  XPLevelBar,
+  HeartsDisplay,
+  LessonCard,
+  CelebrationModal,
+  LessonToast,
+  Button,
+  Card,
+  PageShell,
+} from "../components/design-system";
 
-const QUICK_START = [
-  { to: "/curriculum", icon: BookOpen, title: "Structured Courses", desc: "7 languages, 105 hands-on lessons with live previews and quizzes." },
-  { to: "/compiler", icon: Code2, title: "Full Compiler", desc: "8 languages, test cases and a step-by-step visualizer." },
-  { to: "/question-bank", icon: ListChecks, title: "Question Bank", desc: "100+ curated interview problems by company, topic, difficulty." },
-  { to: "/daily-challenge", icon: CalendarCheck, title: "Daily Challenge", desc: "Adaptive missions that change as you improve." },
-];
+// Mock curriculum data — in production this comes from /api/v1/curriculum
+// For now, we simulate the structure from the backend curriculum module
+const MOCK_CURRICULUM: Record<string, any> = {
+  python: {
+    id: "python",
+    name: "Python",
+    icon: "🐍",
+    color: "#22C55E",
+    description: "The most popular language for AI, web, and data science",
+    total_lessons: 198,
+    levels: {
+      l01: {
+        id: "l01",
+        name: "First Steps",
+        emoji: "🌱",
+        color: "#22C55E",
+        description: "Hello World & basic output",
+        order: 1,
+        difficulty: 1,
+        total_xp: 85,
+        lessons: [
+          {
+            title: "Hello World in Python",
+            type: "practice",
+            diamonds: 10,
+            difficulty: 1,
+            concept: "output",
+            why: "Computers do nothing unless you tell them to — output is the first conversation between human and machine.",
+            real_world: "Every CLI tool, web server, and mobile app starts by printing something to the screen.",
+            interview: "Write a program that prints a formatted greeting with the user's name.",
+            build: "A greeting card generator that takes user input and displays a personalized message.",
+            problem_set: "Print numbers 1 to 100, each on a new line. Print them in reverse order too.",
+            engineering: "stdout vs stderr, buffering, terminal encoding.",
+            career: "Junior developer, QA engineer, technical support.",
+          },
+          {
+            title: "print() Function",
+            type: "theory",
+            diamonds: 10,
+            difficulty: 1,
+            concept: "output",
+            why: "print() is your first tool for talking to the computer.",
+            real_world: "Debug output, logging, user-facing messages.",
+            interview: "What's the difference between print() and return?",
+            build: "A program that prints your name, age, and favorite language.",
+            problem_set: "Print a multi-line poem using escape sequences.",
+            engineering: "stdout buffering, end parameter, sep parameter.",
+            career: "Every developer uses print for debugging.",
+          },
+          {
+            title: "f-Strings & Formatting",
+            type: "theory",
+            diamonds: 10,
+            difficulty: 1,
+            concept: "output",
+            why: "Clean string formatting makes output readable and professional.",
+            real_world: "Formatted emails, reports, dashboard displays.",
+            interview: "What's the advantage of f-strings over % formatting?",
+            build: "A receipt formatter that shows item, qty, price, and total.",
+            problem_set: "Format a user's full name, email, and phone into a contact card.",
+            engineering: "String interpolation, locale-aware formatting.",
+            career: "Backend (API responses), frontend (UI text), data (reports).",
+          },
+          {
+            title: "Practice: Greeting Program",
+            type: "practice",
+            diamonds: 15,
+            difficulty: 1,
+            concept: "output",
+            why: "Practice cements the concept — you learn by doing, not watching.",
+            real_world: "User onboarding flows, welcome screens.",
+            interview: "Write a program that asks for a name and prints a personalized greeting.",
+            build: "A greeting card generator that takes user input and displays a personalized message.",
+            problem_set: "Ask for two numbers and print their sum in a sentence.",
+            engineering: "input() function, string concatenation vs interpolation.",
+            career: "Frontend (form handling), backend (request parameters).",
+          },
+          {
+            title: "Challenge: ASCII Banner",
+            type: "challenge",
+            diamonds: 25,
+            difficulty: 2,
+            concept: "output",
+            why: "Challenges push you to apply concepts under constraints.",
+            real_world: "CLI tools, terminal dashboards, ASCII art generators.",
+            interview: "Print a box of asterisks with a message centered inside.",
+            build: "A CLI banner program that prints a styled welcome message with borders.",
+            problem_set: "Print a diamond pattern of asterisks.",
+            engineering: "String multiplication, center alignment, loop-based output.",
+            career: "DevOps (CLI tools), backend (scripting), QA (test output).",
+          },
+          {
+            title: "Project: Welcome CLI",
+            type: "project",
+            diamonds: 60,
+            difficulty: 3,
+            concept: "output",
+            why: "Projects combine everything you've learned into something real.",
+            real_world: "Developer tools, onboarding scripts, welcome emails.",
+            interview: "Walk me through a project you built from scratch.",
+            build: "A CLI greeting card generator that takes user input and displays a personalized message.",
+            problem_set: "Add a --name flag and --color option to your CLI.",
+            engineering: "CLI argument parsing, modular code structure, error handling.",
+            career: "Junior developer, QA engineer, technical support.",
+          },
+        ],
+      },
+      l02: {
+        id: "l02",
+        name: "Variables",
+        emoji: "📦",
+        color: "#3B82F6",
+        description: "Data types, constants, declarations",
+        order: 2,
+        difficulty: 1,
+        total_xp: 100,
+        lessons: [
+          {
+            title: "Dynamic Typing",
+            type: "theory",
+            diamonds: 10,
+            difficulty: 1,
+            concept: "variables",
+            why: "Variables give names to values so you can reuse and reason about them.",
+            real_world: "User profiles, shopping carts, game scores — all named values in memory.",
+            interview: "What's the difference between declaration, initialization, and assignment?",
+            build: "A variable-driven mad-libs story generator.",
+            problem_set: "Declare variables for length and width, compute area and perimeter.",
+            engineering: "Stack vs heap allocation, variable lifetime, naming conventions.",
+            career: "Frontend, backend, full-stack — every role uses variables.",
+          },
+        ],
+      },
+    },
+  },
+};
 
-function LanguageCard({ lang }: { lang: any }) {
-  const pct = lang.progress_pct || 0;
-  const inProgress = (lang.lessons_completed || 0) > 0;
+interface LessonNodeProps {
+  lesson: any;
+  level: any;
+  languageId: string;
+  levelId: string;
+  onLessonClick: (lesson: any) => void;
+  completedLessons: Set<string>;
+  currentLessonId?: string;
+}
+
+function LessonNode({
+  lesson,
+  level,
+  languageId,
+  levelId,
+  onLessonClick,
+  completedLessons,
+  currentLessonId,
+}: LessonNodeProps) {
+  const isCompleted = completedLessons.has(lesson.title);
+  const isCurrent = lesson.title === currentLessonId;
+  const status: "locked" | "current" | "completed" = isCompleted
+    ? "completed"
+    : isCurrent
+      ? "current"
+      : "locked";
+
+  const typeMap: Record<string, "theory" | "practice" | "challenge" | "project" | "boss" | "quiz"> = {
+    theory: "theory",
+    practice: "practice",
+    challenge: "challenge",
+    project: "project",
+    boss: "boss",
+    quiz: "quiz",
+  };
+
   return (
-    <Link to={`/learn/${lang.id}`} className="group block">
-      <LCard className="h-full transition-colors hover:border-[#ffa11655]">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-3xl border border-slate-200">
-            {lang.icon}
-          </div>
-          {inProgress && (
-            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-slate-500">
-              In progress
-            </span>
-          )}
-        </div>
-        <h3 className="mt-3 text-lg font-bold">{lang.name}</h3>
-        <p className="mt-1 text-sm text-slate-500 line-clamp-2 min-h-[2.5rem]">
-          {lang.description}
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono text-slate-500">
-            {lang.practice_lessons} practice
-          </span>
-          <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono text-slate-500">
-            {lang.challenge_lessons} challenges
-          </span>
-          <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-mono text-slate-500">
-            {lang.project_lessons} projects
-          </span>
-        </div>
-        <div className="mt-4">
-          <div className="flex justify-between text-[11px] font-mono text-slate-500 mb-1">
-            <span>
-              {lang.lessons_completed} / {lang.total_lessons} lessons
-            </span>
-            <span>{pct}%</span>
-          </div>
-          <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
-            <div
-              className="h-full rounded-full bg-[#ffa116]"
-              style={{ width: `${pct}%` }}
-            />
-          </div>
-        </div>
-        <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
-          <span className="font-mono">{lang.total_xp} Diamonds</span>
-          <ChevronRight
-            size={16}
-            className="text-[#6b6b6b] transition-transform group-hover:translate-x-1 group-hover:text-[#ffa116]"
-          />
-        </div>
-      </LCard>
-    </Link>
+    <LessonCard
+      id={lesson.title}
+      title={lesson.title}
+      emoji={level.emoji || "📚"}
+      description={lesson.why || lesson.interview}
+      type={typeMap[lesson.type] || "theory"}
+      diamonds={lesson.diamonds || 15}
+      status={status}
+      progress={isCompleted ? 100 : isCurrent ? 50 : 0}
+      onClick={() => !status.includes("locked") && onLessonClick(lesson)}
+      className="w-full"
+    />
   );
 }
 
 export default function LearningHub() {
-  const { data, leaderboard, isLoading, isError, refetch } = useLearning();
-  const [query, setQuery] = useState("");
+  const { languageId } = useParams<{ languageId: string }>();
+  const navigate = useNavigate();
+  const [language, setLanguage] = useState<any>(null);
+  const [levels, setLevels] = useState<any[]>([]);
+  const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
+  const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
+  const [currentLesson, setCurrentLesson] = useState<any>(null);
+  const [showLessonView, setShowLessonView] = useState(false);
+  const [celebration, setCelebration] = useState<{
+    title: string;
+    subtitle?: string;
+    emoji?: string;
+    xpGained?: number;
+    streakGained?: number;
+  } | null>(null);
+  const [toast, setToast] = useState<{
+    isOpen: boolean;
+    title: string;
+    xpGained?: number;
+    streak?: number;
+  } | null>(null);
+  const [streak, setStreak] = useState(5);
+  const [xp, setXp] = useState(1240);
+  const [levelNum, setLevelNum] = useState(7);
+  const [hearts, setHearts] = useState(3);
+  const [streakFreeze, setStreakFreeze] = useState(2);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const languages = useMemo(() => {
-    if (!data?.languages) return [];
-    const q = query.trim().toLowerCase();
-    return q
-      ? data.languages.filter((l: any) => l.name?.toLowerCase().includes(q))
-      : data.languages;
-  }, [data, query]);
+  useEffect(() => {
+    if (!languageId) return;
+    const lang = MOCK_CURRICULUM[languageId as keyof typeof MOCK_CURRICULUM];
+    if (lang) {
+      setLanguage(lang);
+      const levelArray = Object.values(lang.levels).sort(
+        (a: any, b: any) => a.order - b.order
+      );
+      setLevels(levelArray);
+      const firstIncomplete = levelArray.findIndex(
+        (l: any) =>
+          l.lessons.some(
+            (lesson: any) => !completedLessons.has(lesson.title)
+          )
+      );
+      setCurrentLevelIndex(firstIncomplete === -1 ? levelArray.length - 1 : firstIncomplete);
+    }
+    setIsLoading(false);
+  }, [languageId]);
 
-  if (isLoading) {
+  const handleLessonClick = (lesson: any) => {
+    setCurrentLesson(lesson);
+    setShowLessonView(true);
+  };
+
+  const handleLessonComplete = (xpGained: number = 15) => {
+    if (currentLesson) {
+      setCompletedLessons((prev) => new Set([...prev, currentLesson.title]));
+    }
+    setXp((prev) => prev + xpGained);
+    setStreak((prev) => prev + 1);
+    setToast({
+      isOpen: true,
+      title: "Lesson complete!",
+      xpGained,
+      streak: streak + 1,
+    });
+
+    if ((xp + xpGained) >= levelNum * 100) {
+      setCelebration({
+        title: "Level Up!",
+        subtitle: `You've reached level ${levelNum + 1}`,
+        emoji: "👑",
+        xpGained,
+        streakGained: 1,
+      });
+      setLevelNum((prev) => prev + 1);
+    } else {
+      setCelebration({
+        title: "Great job!",
+        subtitle: "You're making excellent progress",
+        emoji: "✅",
+        xpGained,
+        streakGained: 1,
+      });
+    }
+  };
+
+  const handleCelebrationClose = () => {
+    setCelebration(null);
+  };
+
+  const handleToastClose = () => {
+    setToast(null);
+  };
+
+  const handleBackToPath = () => {
+    setShowLessonView(false);
+    setCurrentLesson(null);
+  };
+
+  if (isLoading || !language) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <Spinner />
-      </div>
+      <PageShell theme="focus" className="max-w-4xl mx-auto py-20">
+        <div className="flex items-center justify-center gap-2">
+          <RefreshCw size={20} className="animate-spin" />
+          <span className="text-text-muted">Loading your path…</span>
+        </div>
+      </PageShell>
     );
   }
 
-  if (isError || !data) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-slate-50 text-slate-500">
-        <div className="text-sm">Failed to load learning hub</div>
-        <button
-          onClick={() => refetch()}
-          className="px-4 py-2 rounded-lg bg-[#ffa116] text-black text-sm font-semibold"
-        >
-          Retry
-        </button>
-      </div>
-    );
-  }
+  const currentLevel = levels[currentLevelIndex];
+  const nextLockedLesson = currentLevel?.lessons.find(
+    (l: any) => !completedLessons.has(l.title)
+  );
 
-  const totalProjects =
-    data.languages?.reduce(
-      (a: number, l: any) => a + (l.project_lessons || 0),
-      0
-    ) || 0;
+  const completedCount = currentLevel.lessons.filter((l: any) =>
+    completedLessons.has(l.title)
+  ).length;
+  const progressPercent = Math.round((completedCount / currentLevel.lessons.length) * 100);
 
   return (
-    <div className="flex min-h-screen bg-slate-50 text-slate-700">
-      <LNav />
-
-      <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Hero */}
-        <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-6 md:p-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#ffa11655] px-3 py-1 text-[11px] font-medium text-[#ffa116]">
-                <BookOpen size={12} /> Learning Hub
-              </span>
-              <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
-                Master <span className="text-[#ffa116]">13 coding campaigns</span>
-              </h1>
-              <p className="mt-3 text-sm text-slate-500 leading-7">
-                Lessons, challenges, projects and boss battles in one progression
-                loop — from C and Python to HTML, CSS, SQL, TypeScript, React and
-                Node. Pick a track, climb the ladder, keep the streak alive.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
-                <div className="text-xl font-bold text-slate-700">
-                  {data.total_xp}
-                </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
-                  Diamonds
-                </div>
-              </div>
-              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
-                <div className="text-xl font-bold text-slate-700">
-                  {data.total_lessons}
-                </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
-                  Lessons
-                </div>
-              </div>
-              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
-                <div className="text-xl font-bold text-[#ffa116]">
-                  {data.streak?.streak || 0}
-                </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
-                  Streak
-                </div>
-              </div>
-              <div className="rounded-xl bg-slate-100 px-3 py-3 text-center">
-                <div className="text-xl font-bold text-slate-700">
-                  {totalProjects}
-                </div>
-                <div className="mt-1 text-[10px] uppercase tracking-wider text-slate-500">
-                  Projects
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick start */}
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {QUICK_START.map((q) => (
-            <Link key={q.to} to={q.to} className="group block">
-              <LCard className="h-full transition-colors hover:border-[#ffa11655]">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#ffa116] border border-slate-200">
-                  <q.icon size={20} />
-                </div>
-                <h3 className="mt-3 font-bold">{q.title}</h3>
-                <p className="mt-1.5 text-sm text-slate-500 leading-6">
-                  {q.desc}
-                </p>
-                <span className="mt-3 inline-flex items-center gap-1 text-xs font-mono text-[#ffa116]">
-                  Open <ChevronRight size={12} />
-                </span>
-              </LCard>
-            </Link>
-          ))}
-        </div>
-
-        {/* Language campaigns */}
-        <LCard>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <LSectionTitle title="Language Campaigns" />
-            <div className="relative">
-              <Search
-                size={15}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6b6b6b]"
-              />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Filter languages…"
-                className="w-full sm:w-64 rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 placeholder:text-[#6b6b6b] focus:border-[#ffa116] focus:outline-none"
-              />
-            </div>
-          </div>
-          {languages.length === 0 ? (
-            <div className="py-8 text-center text-sm text-[#6b6b6b]">
-              No languages match “{query}”.
-            </div>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 mt-4">
-              {languages.map((lang: any) => (
-                <LanguageCard key={lang.id} lang={lang} />
-              ))}
-            </div>
-          )}
-        </LCard>
-
-        {/* Study library + leaderboard */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-5">
-          <Link to="/study" className="group block">
-            <LCard className="h-full transition-colors hover:border-[#ffa11655]">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#ffa1161a] text-[#ffa116]">
-                  <BookOpen size={22} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-mono uppercase tracking-[0.24em] text-[#ffa116]">
-                    Study library
-                  </p>
-                  <h2 className="mt-1 text-xl font-bold">
-                    In-depth guides that go deeper than W3Schools
-                  </h2>
-                  <p className="mt-2 text-sm text-slate-500 leading-6">
-                    The why behind the syntax — theory, analogies, real code and
-                    common mistakes for HTML, CSS, JS, TS, React, Node, SQL and
-                    full-stack architecture.
-                  </p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-mono text-[#ffa116]">
-                    Explore articles <ChevronRight size={14} />
-                  </span>
-                </div>
-              </div>
-            </LCard>
+    <PageShell theme="focus" className="max-w-5xl mx-auto">
+      {/* Top Bar — Gamification */}
+      <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Link to="/">
+            <ArrowLeft size={20} className="text-text-muted" />
           </Link>
-
-          <LCard>
-            <LSectionTitle
-              title="Top Learners"
-              icon={<Trophy size={16} className="text-[#ffa116]" />}
-            />
-            {!leaderboard || leaderboard.length === 0 ? (
-              <div className="py-6 text-center text-sm text-[#6b6b6b]">
-                Leaderboard is empty.
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {leaderboard.slice(0, 5).map((entry: any, i: number) => (
-                  <div
-                    key={entry.user_id}
-                    className="flex items-center gap-3 rounded-lg bg-slate-100 px-3 py-2"
-                  >
-                    <span
-                      className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
-                        i === 0
-                          ? "bg-yellow-500/20 text-yellow-600"
-                          : i === 1
-                          ? "bg-[#9a9a9a]/20 text-slate-700"
-                          : i === 2
-                          ? "bg-orange-500/20 text-orange-600"
-                          : "bg-slate-100 text-slate-500"
-                      }`}
-                    >
-                      {i + 1}
-                    </span>
-                    <span className="flex-1 truncate text-sm">
-                      {entry.name}
-                    </span>
-                    <span className="text-xs font-mono text-[#ffa116]">
-                      {entry.total_xp} Diamonds
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </LCard>
+          <div className="flex flex-col">
+            <h1 className="font-bold text-text-primary text-xl">{language.name}</h1>
+            <p className="text-xs text-text-muted">{language.description}</p>
+          </div>
         </div>
 
-        {/* Streak aura */}
-        {data.streak?.streak > 0 && (
-          <LCard className="flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ffa1161a] text-[#ffa116]">
-              <Flame size={26} />
-            </div>
-            <div>
-              <div className="text-2xl font-bold">{data.streak.streak}</div>
-              <div className="text-xs uppercase tracking-[0.2em] text-slate-500">
-                days in a row
+        <div className="flex items-center gap-4 flex-wrap">
+          <StreakDisplay streak={streak} streakFreezeCount={streakFreeze} />
+          <XPLevelBar xp={xp} level={levelNum} xpToNext={100} />
+          <HeartsDisplay hearts={hearts} />
+          <Button variant="outline" size="sm" onClick={() => navigate("/profile")}>
+            <Settings size={16} className="mr-2" /> Profile
+          </Button>
+        </div>
+      </div>
+
+      {/* Celebration Modal */}
+      <CelebrationModal
+        isOpen={!!celebration}
+        onClose={handleCelebrationClose}
+        title={celebration?.title || ""}
+        subtitle={celebration?.subtitle}
+        emoji={celebration?.emoji}
+        xpGained={celebration?.xpGained}
+        streakGained={celebration?.streakGained}
+      />
+
+      {/* Lesson Toast */}
+      <LessonToast
+        isOpen={!!toast}
+        onClose={handleToastClose}
+        title={toast?.title || ""}
+        xpGained={toast?.xpGained}
+        streak={toast?.streak}
+      />
+
+      {/* Lesson View */}
+      {showLessonView && currentLesson && (
+        <div className="mt-6">
+          <div className="flex items-center gap-3 mb-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleBackToPath}
+              className="text-text-muted"
+            >
+              <ArrowLeft size={16} /> Back to path
+            </Button>
+            <h2 className="font-bold text-text-primary">{currentLesson.title}</h2>
+            <span className="px-2 py-1 rounded bg-blue-50 text-blue-600 text-xs font-bold">
+              {currentLevel.emoji} {currentLevel.name}
+            </span>
+          </div>
+
+          <Card variant="dark" padding="lg" radius="lg" className="shadow-card-hover">
+            <div className="space-y-6">
+              <h3 className="font-bold text-text-primary text-lg">{currentLesson.title}</h3>
+
+              <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                <h4 className="font-bold text-blue-800 text-sm mb-2 flex items-center gap-2">
+                  <Flame size={14} /> Why this matters
+                </h4>
+                <p className="text-blue-700 text-sm">{currentLesson.why}</p>
+              </div>
+
+              <div className="bg-green-50 border border-green-100 rounded-lg p-4">
+                <h4 className="font-bold text-green-800 text-sm mb-2 flex items-center gap-2">
+                  <Zap size={14} /> Real world
+                </h4>
+                <p className="text-green-700 text-sm">{currentLesson.real_world}</p>
+              </div>
+
+              <div className="bg-purple-50 border border-purple-100 rounded-lg p-4">
+                <h4 className="font-bold text-purple-800 text-sm mb-2 flex items-center gap-2">
+                  <Crown size={14} /> Interview prep
+                </h4>
+                <p className="text-purple-700 text-sm">{currentLesson.interview}</p>
+              </div>
+
+              <div className="bg-orange-50 border border-orange-100 rounded-lg p-4">
+                <h4 className="font-bold text-orange-800 text-sm mb-2 flex items-center gap-2">
+                  <Play size={14} /> Build project
+                </h4>
+                <p className="text-orange-700 text-sm">{currentLesson.build}</p>
+              </div>
+
+              <div className="pt-4">
+                <Button
+                  variant="primary"
+                  className="w-full"
+                  onClick={() => handleLessonComplete()}
+                >
+                  Mark Complete +{currentLesson.diamonds || 15} XP
+                  <Play size={18} className="ml-2" />
+                </Button>
               </div>
             </div>
-            <Chip icon={<Rocket size={13} className="text-[#ffa116]" />} tone="brand">
-              Keep it alive
-            </Chip>
-          </LCard>
-        )}
-      </main>
-    </div>
+          </Card>
+        </div>
+      )}
+
+      {!showLessonView && (
+        <>
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-bold text-text-primary text-xl">
+                {currentLevel.emoji} {currentLevel.name}
+              </h2>
+              <span className="px-2 py-1 rounded bg-gray-100 text-gray-600 text-xs font-bold">
+                Level {currentLevel.order} of 40
+              </span>
+            </div>
+            <p className="text-text-muted">{currentLevel.description}</p>
+
+            <div className="mt-6 flex items-center justify-center">
+              <div className="progress-ring">
+                <svg viewBox="0 0 88 88">
+                  <circle className="progress-ring-circle" cx="44" cy="44" r="40" />
+                  <circle
+                    className="progress-ring-fill"
+                    cx="44"
+                    cy="44"
+                    r="40"
+                    style={{
+                      strokeDasharray: "251.2",
+                      strokeDashoffset: 251.2 - (251.2 * (progressPercent / 100)),
+                    }}
+                  />
+                </svg>
+                <div className="progress-ring-text">
+                  <div className="progress-ring-value">{progressPercent}%</div>
+                  <div className="progress-ring-label">Level complete</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {currentLevel.lessons.map((lesson: any) => {
+              const isCompleted = completedLessons.has(lesson.title);
+              const isCurrent = lesson === nextLockedLesson;
+              const status: "locked" | "current" | "completed" = isCompleted
+                ? "completed"
+                : isCurrent
+                  ? "current"
+                  : "locked";
+
+              return (
+                <LessonCard
+                  key={lesson.title}
+                  id={lesson.title}
+                  title={lesson.title}
+                  emoji={currentLevel.emoji || "📚"}
+                  description={lesson.why}
+                  type={
+                    {
+                      theory: "theory",
+                      practice: "practice",
+                      challenge: "challenge",
+                      project: "project",
+                      boss: "boss",
+                      quiz: "quiz",
+                    }[lesson.type] || "theory"
+                  }
+                  diamonds={lesson.diamonds || 15}
+                  status={status}
+                  progress={isCompleted ? 100 : isCurrent ? 30 : 0}
+                  onClick={() => handleLessonClick(lesson)}
+                />
+              );
+            })}
+          </div>
+
+          {levels[currentLevelIndex + 1] && (
+            <Card variant="outlined" padding="md" radius="lg" className="mt-8 border-blue-100 bg-blue-50">
+              <div className="flex items-center gap-3">
+                <Flame size={18} className="text-blue-500" />
+                <span className="font-bold text-text-primary">Next level:</span>
+                <span className="text-text-muted">{levels[currentLevelIndex + 1].name}</span>
+              </div>
+              <p className="text-xs text-text-muted mt-1">
+                Keep going to unlock {levels[currentLevelIndex + 1].description}
+              </p>
+            </Card>
+          )}
+        </>
+      )}
+    </PageShell>
   );
 }

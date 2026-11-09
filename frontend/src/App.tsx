@@ -98,11 +98,10 @@ import {
   TopicProblems,
   PersonalDashboard,
   StudentDashboard,
-  AdaptivePath,
+   AdaptivePath,
    LearningModules,
-   LanguageLearning,
-  CurriculumHub,
-  LearnTrack,
+   CurriculumHub,
+   LearnTrack,
   LearnLesson,
   FreeTrial,
   PwaSetup,
@@ -484,8 +483,9 @@ function AnimatedRoutes() {
         />
 
         {/* Learning Routes */}
+        <Route path="/learn" element={<Navigate to="/learn/python" replace />} />
         <Route
-          path="/learn"
+          path="/learn/:languageId"
           element={
             <FeatureErrorBoundary featureName="Learning">
               <LearningHub />
@@ -495,14 +495,6 @@ function AnimatedRoutes() {
         <Route
           path="/learn/modules"
           element={<Navigate to="/learn" replace />}
-        />
-        <Route
-          path="/learn/:languageId"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <LanguageLearning />
-            </FeatureErrorBoundary>
-          }
         />
         <Route
           path="/learn/:languageId/:levelId/:lessonId"
