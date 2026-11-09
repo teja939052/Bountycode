@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
-export default function HeroBadge() {
+function HeroBadge() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -15,3 +15,6 @@ export default function HeroBadge() {
     </motion.div>
   );
 }
+
+export { HeroBadge };
+export default HeroBadge;

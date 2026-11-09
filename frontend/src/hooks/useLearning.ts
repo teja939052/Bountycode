@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../services/api";
+import { studyApi } from "../services/api/study";
 
 const LANGUAGES_KEY = ["learning", "languages"] as const;
 const LEADERBOARD_KEY = ["learning", "leaderboard"] as const;
@@ -105,5 +106,15 @@ export function useCompleteStep() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: MODULE_PROGRESS_KEY });
     },
+  });
+}
+
+export function useNextAction(params: { target_skill_id?: string; time_budget_minutes?: number } = {}) {
+  return useQuery({
+    queryKey: ["study", "next-action", params],
+    queryFn: () => studyApi.getNextAction(params),
+    retry: 1,
+    staleTime: 60_000,
+    refetchOnWindowFocus: false,
   });
 }
