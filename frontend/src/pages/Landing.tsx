@@ -33,6 +33,7 @@ import { CandyButton } from "../components/candy/CandyButton";
 import { OrganicPath } from "../components/candy/OrganicPath";
 import { HeroBadge } from "../components/hero/HeroBadge";
 import SplashScreen from "../components/hero/SplashScreen";
+import { BountyTriquetra } from "../components/brand/BountyTriquetra";
 
 /* ------------------------------------------------------------------ */
 /*  Palette — warm paper, deep ink, gold, and one colour per phase.    */
@@ -622,10 +623,10 @@ export default function Landing() {
         <div className="relative z-10 flex min-h-screen flex-col">
           {/* One minimal nav — the global Navbar is hidden on "/" */}
           <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-            <Link to="/" className="flex items-center gap-2.5" style={{ color: INK }} aria-label="BountyCode home">
-              <Blossom className="h-8 w-8" />
-              <span className="font-display text-lg font-extrabold tracking-tight">BountyCode</span>
-            </Link>
+              <Link to="/" className="flex items-center gap-2.5" style={{ color: INK }} aria-label="BountyCode home">
+                <BountyTriquetra className="h-8 w-8" />
+                <span className="font-display text-lg font-extrabold tracking-tight">BountyCode</span>
+              </Link>
             <nav className="flex items-center gap-3 sm:gap-5" aria-label="Account">
               <Link
                 to="/login"

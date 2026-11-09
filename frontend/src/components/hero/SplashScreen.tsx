@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { BountyTriquetra } from "../brand/BountyTriquetra";
 
 export default function SplashScreen() {
   const [show, setShow] = useState(true);
@@ -27,11 +28,7 @@ export default function SplashScreen() {
         className="flex items-center justify-center gap-4"
       >
         <div className="relative w-24 h-24">
-          <img
-            src="/assets/logo/bountycode-icon.svg"
-            alt="BountyCode triquetra logo"
-            className="w-full h-full drop-shadow-[0_20px_40px_rgba(23,33,27,0.15)]"
-          />
+          <BountyTriquetra className="w-full h-full text-[#28D3C5]" />
           <div className="absolute inset-0 rounded-full border-2 border-[#5BA7A0]/30 animate-ping" />
         </div>
         <div className="text-[#17211B] font-display font-extrabold tracking-tight text-3xl">
