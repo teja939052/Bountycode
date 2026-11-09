@@ -10,7 +10,7 @@ interface Particle {
   opacity: number;
 }
 
-export default function HeroCanvas({ className }: { className?: string }) {
+export function HeroCanvas({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
 
@@ -154,3 +154,5 @@ export default function HeroCanvas({ className }: { className?: string }) {
 
   return <canvas ref={canvasRef} className={`absolute inset-0 -z-10 block ${className ?? ""}`} />;
 }
+
+export default HeroCanvas;

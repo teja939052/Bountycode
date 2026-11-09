@@ -615,18 +615,30 @@ export default function Landing() {
         Skip to content
       </a>
 
-      {/* ═══ Hero ═══ */}
+      {/* ═══ Hero — Cinematic Title Card ═══ */}
       <section className="spring-hero relative overflow-hidden min-h-screen" style={{ background: "#fbe4ec" }}>
+        {/* Animated gradient mesh background — Claude.ai Aurora UI pattern */}
+        <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true">
+          <div className="hero-blob absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[80px] bg-[radial-gradient(circle_at_35%_35%,rgba(233,106,91,0.35)_0%,transparent_70%)] animate-hero-float" style={{ animationDuration: "18s", animationDelay: "0s" }} />
+          <div className="hero-blob absolute bottom-[-15%] right-[-10%] w-[520px] h-[520px] rounded-full blur-[80px] bg-[radial-gradient(circle_at_65%_65%,rgba(255,242,205,0.3)_0%,transparent_70%)] animate-hero-float" style={{ animationDuration: "22s", animationDelay: "-6s" }} />
+          <div className="hero-blob absolute top-[40%] left-[50%] -translate-x-1/2 w-[440px] h-[440px] rounded-full blur-[80px] bg-[radial-gradient(circle_at_50%_50%,rgba(212,168,67,0.25)_0%,transparent_70%)] animate-hero-float" style={{ animationDuration: "20s", animationDelay: "-12s" }} />
+        </div>
+
+        {/* Gradient mesh behind everything */}
+        <div className="absolute inset-0 -z-11 pointer-events-none" aria-hidden="true" style={{
+          background: "radial-gradient(ellipse 80% 60% at 20% -10%, rgba(255,242,205,0.25) 0%, transparent 40%), radial-gradient(ellipse 60% 40% at 80% 0%, rgba(233,106,91,0.2) 0%, transparent 40%), radial-gradient(ellipse 50% 50% at 50% 100%, rgba(212,168,67,0.1) 0%, transparent 40%)",
+          animation: "hero-mesh-shift 12s ease infinite",
+        }} />
 
         <SakuraPetals density="hero" />
 
         <div className="relative z-10 flex min-h-screen flex-col">
           {/* One minimal nav — the global Navbar is hidden on "/" */}
           <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-              <Link to="/" className="flex items-center gap-2.5" style={{ color: INK }} aria-label="BountyCode home">
-                <BountyTriquetra className="h-8 w-8 text-[#28D3C5]" />
-                <span className="font-display text-lg font-extrabold tracking-tight">BountyCode</span>
-              </Link>
+            <Link to="/" className="flex items-center gap-2.5" style={{ color: INK }} aria-label="BountyCode home">
+              <BountyTriquetra className="h-9 w-9 text-[#28D3C5]" />
+              <span className="font-display text-lg font-extrabold tracking-tight">BountyCode</span>
+            </Link>
             <nav className="flex items-center gap-3 sm:gap-5" aria-label="Account">
               <Link
                 to="/login"
@@ -648,14 +660,14 @@ export default function Landing() {
           <div className="flex flex-1 items-center justify-center px-6 pb-24 pt-6">
             <motion.div
               className="mx-auto max-w-3xl text-center hero-fade-up"
-              initial={reduced ? false : { opacity: 0, y: 22 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{
                 opacity: 1,
                 y: 0,
                 filter: "blur(0px)",
               }}
               transition={{
-                duration: 0.9,
+                duration: 1.2,
                 ease: "easeOut",
                 filter: { type: "spring", stiffness: 300, damping: 30 },
               }}
@@ -663,19 +675,19 @@ export default function Landing() {
               <HeroBadge />
 
               <h1
-                className="mt-6 font-display text-[3rem] font-extrabold leading-[1.05] tracking-tight sm:text-7xl md:text-8xl md:leading-[1.02]"
+                className="mt-8 font-display text-[4rem] font-black leading-[1.02] tracking-tight sm:text-6xl md:text-7xl md:leading-[1] xl:text-[6rem]"
                 style={{ color: INK }}
               >
-                From your first line of code
+                <span className="hero-gradient-text">From your first line</span>
                 <br />
                 <span className="hero-gradient-text">to your first offer.</span>
               </h1>
 
-              <p className="mt-7 text-lg font-bold sm:text-xl md:text-lg" style={{ color: INK }}>
+              <p className="mt-10 text-lg font-bold sm:text-xl md:text-lg mx-auto max-w-2xl" style={{ color: INK, opacity: 0.9 }}>
                 A guided path from learning to getting hired.
               </p>
               <p
-                className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed sm:text-base md:text-lg"
+                className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed sm:text-base md:text-lg"
                 style={{ color: INK, opacity: 0.85 }}
               >
                 Pick your target company. Learn the patterns these assessments test, in the
@@ -683,19 +695,19 @@ export default function Landing() {
                 evidence — not guesswork — decide what you repair next.
               </p>
 
-              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <div className="mt-14 flex flex-col items-center justify-center gap-5 sm:flex-row">
                 <Link
                   to="/register"
-                  className="hero-cta-primary inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl px-8 py-4 text-sm font-bold shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98]"
+                  className="hero-btn-primary inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl px-9 py-5 text-base font-bold shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98]"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   Start free
-                  <ArrowRight size={17} />
+                  <ArrowRight size={18} className="ml-2" />
                 </Link>
                 <Link
                   to="/percentages-academy"
-                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/60 bg-white px-8 py-4 text-sm font-bold shadow-sm transition-colors hover:bg-white/60 hero-soft-glow"
+                  className="hero-btn-ghost inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl border border-white/60 bg-white px-9 py-5 text-base font-bold shadow-sm transition-colors hover:bg-white/60 hero-soft-glow"
                   style={{ borderColor: "rgba(255,255,255,0.5)", color: INK }}
                 >
                   Try a lesson
@@ -704,13 +716,13 @@ export default function Landing() {
 
               {/* The product, in four words */}
               <ol
-                className="mt-10 flex flex-wrap items-center justify-center gap-2"
+                className="mt-16 flex flex-wrap items-center justify-center gap-3"
                 aria-label="How BountyCode works"
               >
                 {[1, 2, 3, 4].map((chip, index) => (
-                  <li key={chip} className="flex items-center gap-2">
+                  <li key={chip} className="flex items-center gap-2.5">
                     <span
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/80 bg-white px-3.5 py-1.5 text-xs font-bold shadow-sm"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/80 bg-white px-4 py-2 text-xs font-bold shadow-sm"
                       style={{ color: "#14201B" }}
                     >
                       <span
@@ -729,6 +741,9 @@ export default function Landing() {
                   </li>
                 ))}
               </ol>
+
+              {/* Scroll indicator */}
+              <div className="mt-14 hero-scroll-indicator" aria-hidden="true" />
             </motion.div>
           </div>
         </div>
