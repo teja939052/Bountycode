@@ -1,12 +1,20 @@
 """
 Candy Crush-style learning curriculum.
-40 levels per language (C, C++, Java, Python) = 160 total levels.
+40 levels per language (C, C++, Java, Python, JavaScript, TypeScript, Go, Rust, C#, SQL, WebDev) = 440+ total levels.
 Each level has a theme, color, icon, lessons with difficulty stars, projects, and boss battles.
 """
 #pylint: skip-file
 
 # Difficulty: 1=easy, 2=medium, 3=hard
 # Diamonds: easy=10-15, medium=20-30, hard=35-50, project=60, boss=80
+
+from .curriculum_base import LEVEL_THEMES, _L, _bonus_lessons
+from .curriculum_typescript import TS_LEVELS
+from .curriculum_go import GO_LEVELS
+from .curriculum_rust import RUST_LEVELS
+from .curriculum_csharp import CSHARP_LEVELS
+from .curriculum_sql import SQL_LEVELS
+from .curriculum_webdev import WEB_LEVELS
 
 LEVEL_THEMES = [
     {"id": "l01", "name": "First Steps",        "emoji": "🌱", "color": "#22C55E", "bg": "from-green-500/20 to-emerald-600/20",  "border": "border-green-500/30",  "text": "text-green-400",  "desc": "Hello World & basic output"},
@@ -82,7 +90,7 @@ def _bonus_lessons(lang_id, theme):
 # ────────────────────────────────────────────
 C_LEVELS = [
     # Level 1: First Steps 🌱
-    {"id": "l01", "lessons": [
+    {"id": "l01", "difficulty": 1, "name": "First Steps", "lessons": [
         _L("What is C?", 10, 1), _L("Your First C Program", 10, 1, "practice"),
         _L("printf() Basics", 10, 1), _L("Comments in C", 10, 1),
         _L("Compilation Process", 15, 1), _L("Practice: Hello World", 15, 1, "practice"),
@@ -91,7 +99,7 @@ C_LEVELS = [
            "A customizable terminal startup banner that displays ASCII art and system information, perfect for personalizing your development environment."),
     ]},
     # Level 2: Variables 📦
-    {"id": "l02", "lessons": [
+    {"id": "l02", "difficulty": 1, "name": "Variables", "lessons": [
         {"title": "The Memory Kingdom — Variable Discovery", "diamonds": 75, "difficulty": 3, "type": "discovery", "lesson_id": "variable-discovery"},
         _L("Int, Float, Double", 10, 1), _L("char Type", 10, 1),
         _L("Variable Declaration", 15, 1), _L("Constants & #define", 15, 1),
@@ -102,7 +110,7 @@ C_LEVELS = [
            "A calculator application with memory-safe practices, featuring history logging and robust error handling for reliable daily use."),
     ]},
     # Level 3: Operators ⚡
-    {"id": "l03", "lessons": [
+    {"id": "l03", "difficulty": 1, "name": "Operators", "lessons": [
         _L("Arithmetic Operators", 10, 1), _L("Relational Operators", 10, 1),
         _L("Logical Operators", 15, 1), _L("Bitwise Operators", 20, 2),
         _L("Assignment Operators", 10, 1), _L("Operator Precedence", 15, 2),
@@ -112,7 +120,7 @@ C_LEVELS = [
            "A versatile unit converter supporting multiple measurement categories with file I/O for saving and loading conversion presets."),
     ]},
     # Level 4: Conditionals 🔀
-    {"id": "l04", "lessons": [
+    {"id": "l04", "difficulty": 1, "name": "Conditionals", "lessons": [
         _L("if Statement", 10, 1), _L("if-else Statement", 10, 1),
         _L("Nested if-else", 15, 2), _L("Switch Statement", 15, 2),
         _L("Fall-through in Switch", 20, 2), _L("Practice: Grade Calculator", 20, 2, "practice"),
@@ -122,7 +130,7 @@ C_LEVELS = [
            "A comprehensive health tracking dashboard that calculates BMI, BMR, and calorie metrics with persistent data logging."),
     ]},
     # Level 5: Loops 🔄
-    {"id": "l05", "lessons": [
+    {"id": "l05", "difficulty": 2, "name": "Loops", "lessons": [
         _L("for Loop", 10, 1), _L("while Loop", 10, 1),
         _L("do-while Loop", 15, 1), _L("Nested Loops", 15, 2),
         _L("break & continue", 15, 2), _L("Pattern Printing", 25, 3, "practice"),
@@ -133,7 +141,7 @@ C_LEVELS = [
            "An interactive number guessing game with difficulty levels and scoring, demonstrating loops and random number generation."),
     ]},
     # Level 6: Functions 🧩
-    {"id": "l06", "lessons": [
+    {"id": "l06", "difficulty": 2, "name": "Functions", "lessons": [
         _L("Function Basics", 10, 1), _L("Parameters & Return", 15, 1),
         _L("Function Prototypes", 15, 2), _L("Call by Value", 15, 2),
         _L("Call by Reference", 20, 2), _L("Recursion Basics", 25, 2),
@@ -143,7 +151,7 @@ C_LEVELS = [
            "A terminal-based dungeon crawler RPG featuring save/load functionality, combat system, and procedural map generation."),
     ]},
     # Level 7: Arrays 📊
-    {"id": "l07", "lessons": [
+    {"id": "l07", "difficulty": 2, "name": "Arrays", "lessons": [
         _L("1D Array Basics", 10, 1), _L("Array Input/Output", 15, 1, "practice"),
         _L("2D Arrays", 15, 2), _L("Array Traversal", 15, 2),
         _L("Linear Search", 15, 2), _L("Binary Search", 25, 3),
@@ -154,7 +162,7 @@ C_LEVELS = [
            "A complete school management system with CSV import/export, student records, grade tracking, and analytics dashboards."),
     ]},
     # Level 8: Strings 📝
-    {"id": "l08", "lessons": [
+    {"id": "l08", "difficulty": 2, "name": "Strings", "lessons": [
         _L("Character Arrays", 10, 1), _L("String Functions", 15, 1),
         _L("strlen, strcpy, strcat", 15, 2, "practice"), _L("strcmp & strncmp", 15, 2),
         _L("String Reversal", 20, 2, "practice"), _L("Palindrome Check", 25, 2, "practice"),
@@ -165,7 +173,7 @@ C_LEVELS = [
            "A real-time word frequency analysis tool that generates word clouds and statistical insights from text input."),
     ]},
     # Level 9: Pointers & Memory 🧠
-    {"id": "l09", "lessons": [
+    {"id": "l09", "difficulty": 2, "name": "Pointers & Memory", "lessons": [
         _L("What are Pointers?", 15, 2), _L("Pointer Operators &", 15, 2),
         _L("Pointer Arithmetic", 20, 2), _L("Pointers & Arrays", 20, 2),
         _L("Pointer to Pointer", 25, 3), _L("malloc & free", 20, 2),
@@ -176,7 +184,7 @@ C_LEVELS = [
            "A custom string manipulation library implementing all standard string.h functions with comprehensive unit tests."),
     ]},
     # Level 10: OOP in C 🏗️
-    {"id": "l10", "lessons": [
+    {"id": "l10", "difficulty": 3, "name": "OOP", "lessons": [
         _L("Structs", 15, 2), _L("Nested Structs", 15, 2),
         _L("Struct Pointers", 20, 2), _L("Enums & Typedef", 15, 2),
         _L("Function Pointers", 25, 3), _L("Polymorphism via Tables", 30, 3),
@@ -187,7 +195,7 @@ C_LEVELS = [
            "A library system with binary search indexing and file persistence for managing books, members, and transactions."),
     ]},
     # Level 11: Data Structures 🌳
-    {"id": "l11", "lessons": [
+    {"id": "l11", "difficulty": 3, "name": "Data Structures", "lessons": [
         _L("Singly Linked List", 25, 2), _L("Doubly Linked List", 25, 3),
         _L("Stack (Array)", 20, 2), _L("Stack (Linked List)", 25, 3),
         _L("Queue (Array)", 20, 2), _L("Circular Queue", 25, 3),
@@ -198,7 +206,7 @@ C_LEVELS = [
            "A simulated Unix-like file system supporting mkdir, ls, cp, rm, and tree commands with in-memory directory structures."),
     ]},
     # Level 12: Final Challenge 👑
-    {"id": "l12", "lessons": [
+    {"id": "l12", "difficulty": 3, "name": "Final Challenge", "lessons": [
         _L("Sorting Algorithms Review", 30, 3), _L("Searching Deep Dive", 30, 3),
         _L("Dynamic Programming Intro", 35, 3), _L("DP: Knapsack Problem", 40, 3),
         _L("Greedy Algorithms", 35, 3), _L("Bit Manipulation Mastery", 35, 3),
@@ -209,7 +217,7 @@ C_LEVELS = [
         _L("👑 C Grandmaster Boss", 80, 3, "boss"),
     ]},
     # Level 13: Mini Compiler ⚙️
-    {"id": "l13", "lessons": [
+    {"id": "l13", "difficulty": 3, "name": "Mini Compiler", "lessons": [
         _L("How C Compilers Work (GCC/Clang Internals)", 30, 3),
         _L("Lexing: Tokenizing C Source Code", 35, 3, "practice"),
         _L("Challenge: Build an AST", 40, 3, "challenge"),
@@ -217,7 +225,7 @@ C_LEVELS = [
            "A mini expression compiler that parses and compiles arithmetic expressions into x86-like assembly instructions."),
     ]},
     # Level 14: Portfolio Capstone 🏆
-    {"id": "l14", "lessons": [
+    {"id": "l14", "difficulty": 3, "name": "Portfolio Capstone", "lessons": [
         _L("Project Architecture for Large C Programs", 35, 3),
         _L("Design Patterns in C: Modular Architecture", 40, 3, "practice"),
         _L("Challenge: Performance Optimization & Profiling", 45, 3, "challenge"),
@@ -233,7 +241,7 @@ C_LEVELS = [
 # ────────────────────────────────────────────
 CPP_LEVELS = [
     # Level 1: First Steps 🌱
-    {"id": "l01", "lessons": [
+    {"id": "l01", "difficulty": 1, "name": "First Steps", "lessons": [
         _L("What is C++?", 10, 1), _L("Hello World in C++", 10, 1, "practice"),
         _L("iostream & cout", 10, 1), _L("cin for Input", 10, 1, "practice"),
         _L("Namespaces", 10, 1), _L("Comments in C++", 10, 1),
@@ -243,7 +251,7 @@ CPP_LEVELS = [
            "A rich terminal-based profile card with box drawing characters and color formatting for displaying user information."),
     ]},
     # Level 2: Variables 📦
-    {"id": "l02", "lessons": [
+    {"id": "l02", "difficulty": 1, "name": "Variables", "lessons": [
         _L("Primitive Types", 10, 1), _L("auto Keyword", 15, 1),
         _L("String Type", 15, 1), _L("Constants: const & constexpr", 15, 2),
         _L("Type Inference", 15, 2), _L("Reference Variables", 20, 2),
@@ -253,7 +261,7 @@ CPP_LEVELS = [
            "An e-commerce shopping cart system with discount engine, tax calculations, and receipt generation."),
     ]},
     # Level 3: Operators ⚡
-    {"id": "l03", "lessons": [
+    {"id": "l03", "difficulty": 1, "name": "Operators", "lessons": [
         _L("Arithmetic & Assignment", 10, 1), _L("Comparison Operators", 10, 1),
         _L("Logical Operators", 15, 1), _L("Bitwise Operators", 20, 2),
         _L("Ternary Operator", 15, 1), _L("Operator Overloading Intro", 25, 3),
@@ -263,7 +271,7 @@ CPP_LEVELS = [
            "A mathematical expression parser supporting arithmetic operators, trigonometric functions, and logarithms."),
     ]},
     # Level 4: Conditionals 🔀
-    {"id": "l04", "lessons": [
+    {"id": "l04", "difficulty": 1, "name": "Conditionals", "lessons": [
         _L("if / else if / else", 10, 1), _L("Nested Conditionals", 15, 2),
         _L("Switch Statement", 15, 2), _L("Switch with Strings", 20, 2),
         _L("Structured Bindings (C++17)", 20, 3),
@@ -273,7 +281,7 @@ CPP_LEVELS = [
            "A multiplayer quiz game with timer-based rounds, scoring system, and persistent leaderboard."),
     ]},
     # Level 5: Loops 🔄
-    {"id": "l05", "lessons": [
+    {"id": "l05", "difficulty": 2, "name": "Loops", "lessons": [
         _L("for Loop", 10, 1), _L("Range-based for", 15, 1),
         _L("while & do-while", 15, 1), _L("Nested Loops", 15, 2),
         _L("break, continue, goto", 15, 2), _L("Loop Patterns", 25, 3, "practice"),
@@ -283,7 +291,7 @@ CPP_LEVELS = [
            "A real-time 3D starfield animation rendered in the terminal with adjustable depth and speed parameters."),
     ]},
     # Level 6: Functions 🧩
-    {"id": "l06", "lessons": [
+    {"id": "l06", "difficulty": 2, "name": "Functions", "lessons": [
         _L("Function Basics", 10, 1), _L("Default Arguments", 15, 2),
         _L("Function Overloading", 20, 2), _L("Inline Functions", 15, 2),
         _L("Pass by Value vs Reference", 20, 2), _L("Const References", 20, 2),
@@ -293,7 +301,7 @@ CPP_LEVELS = [
            "A scientific calculator library with complex number support, mathematical functions, and extensible architecture."),
     ]},
     # Level 7: Arrays & Vectors 📊
-    {"id": "l07", "lessons": [
+    {"id": "l07", "difficulty": 2, "name": "Arrays", "lessons": [
         _L("C-style Arrays", 10, 1), _L("std::array", 15, 2),
         _L("std::vector Basics", 15, 2), _L("Vector Methods", 20, 2),
         _L("Iterators", 20, 2), _L("Algorithms: sort, find, count", 25, 2),
@@ -303,7 +311,7 @@ CPP_LEVELS = [
            "A university grade management system with GPA calculation, transcript generation, and course analytics."),
     ]},
     # Level 8: Strings 📝
-    {"id": "l08", "lessons": [
+    {"id": "l08", "difficulty": 2, "name": "Strings", "lessons": [
         _L("std::string Basics", 10, 1), _L("String Methods", 15, 1),
         _L("String Concatenation", 15, 2), _L("String Streams", 20, 2),
         _L("Substring & Find", 20, 2), _L("Regex Basics", 30, 3),
@@ -313,7 +321,7 @@ CPP_LEVELS = [
            "A terminal-based text editor with search, replace, syntax highlighting, and file management capabilities."),
     ]},
     # Level 9: Pointers & Memory 🧠
-    {"id": "l09", "lessons": [
+    {"id": "l09", "difficulty": 2, "name": "Pointers & Memory", "lessons": [
         _L("Raw Pointers Review", 15, 2), _L("Heap vs Stack", 15, 2),
         _L("new & delete", 15, 2), _L("Smart Pointers: unique_ptr", 20, 2),
         _L("Smart Pointers: shared_ptr", 20, 2), _L("Weak Pointers", 25, 3),
@@ -323,7 +331,7 @@ CPP_LEVELS = [
            "A complete JSON parser with validation, pretty-printing, schema checking, and nested object support."),
     ]},
     # Level 10: OOP 🏗️
-    {"id": "l10", "lessons": [
+    {"id": "l10", "difficulty": 3, "name": "OOP", "lessons": [
         _L("Classes & Objects", 15, 2), _L("Constructors & Destructors", 15, 2),
         _L("Copy Constructor", 20, 2), _L("Move Semantics", 25, 3),
         _L("Inheritance", 20, 2), _L("Virtual Functions & vtable", 25, 3),
@@ -334,7 +342,7 @@ CPP_LEVELS = [
            "A terminal-based 2D graphics engine capable of drawing circles, rectangles, and lines on a grid display."),
     ]},
     # Level 11: STL & Templates 🌳
-    {"id": "l11", "lessons": [
+    {"id": "l11", "difficulty": 3, "name": "Data Structures", "lessons": [
         _L("Templates Basics", 25, 2), _L("Template Specialization", 30, 3),
         _L("STL: map & unordered_map", 20, 2), _L("STL: set & multiset", 20, 2),
         _L("STL: stack & queue", 20, 2), _L("STL Algorithms Deep", 30, 3),
@@ -344,7 +352,7 @@ CPP_LEVELS = [
            "A custom implementation of standard template library containers including vector, map, set, and list with iterators."),
     ]},
     # Level 12: Final Challenge 👑
-    {"id": "l12", "lessons": [
+    {"id": "l12", "difficulty": 3, "name": "Final Challenge", "lessons": [
         _L("Concurrency: threads", 30, 3), _L("Mutex & Locks", 30, 3),
         _L("Async & Futures", 35, 3), _L("Design Patterns: Singleton", 30, 3),
         _L("Design Patterns: Factory", 30, 3), _L("Design Patterns: Observer", 30, 3),
@@ -355,7 +363,7 @@ CPP_LEVELS = [
         _L("👑 C++ Grandmaster Boss", 80, 3, "boss"),
     ]},
     # Level 13: Mini Compiler ⚙️
-    {"id": "l13", "lessons": [
+    {"id": "l13", "difficulty": 3, "name": "Mini Compiler", "lessons": [
         _L("Compilation Pipeline: Preprocessing to Linking", 30, 3),
         _L("Parsing C++ with Recursive Descent", 35, 3, "practice"),
         _L("Challenge: Template-Aware Parser", 40, 3, "challenge"),
@@ -363,7 +371,7 @@ CPP_LEVELS = [
            "A mini programming language compiler with LLVM IR generation, demonstrating the full compilation pipeline from lexing to code generation."),
     ]},
     # Level 14: Portfolio Capstone 🏆
-    {"id": "l14", "lessons": [
+    {"id": "l14", "difficulty": 3, "name": "Portfolio Capstone", "lessons": [
         _L("System Design: Large-Scale C++ Projects", 35, 3),
         _L("Modern C++ Design Patterns in Practice", 40, 3, "practice"),
         _L("Challenge: Template Metaprogramming Optimization", 45, 3, "challenge"),
@@ -379,7 +387,7 @@ CPP_LEVELS = [
 # ────────────────────────────────────────────
 JAVA_LEVELS = [
     # Level 1: First Steps 🌱
-    {"id": "l01", "lessons": [
+    {"id": "l01", "difficulty": 1, "name": "First Steps", "lessons": [
         _L("What is Java?", 10, 1), _L("Hello World in Java", 10, 1, "practice"),
         _L("Class & main Method", 10, 1), _L("System.out.println", 10, 1),
         _L("JDK, JRE, JVM", 10, 1), _L("Comments in Java", 10, 1),
@@ -389,7 +397,7 @@ JAVA_LEVELS = [
            "An animated terminal profile card with customizable color themes and dynamic display effects."),
     ]},
     # Level 2: Variables 📦
-    {"id": "l02", "lessons": [
+    {"id": "l02", "difficulty": 1, "name": "Variables", "lessons": [
         _L("Primitive Types", 10, 1), _L("Wrapper Classes", 15, 2),
         _L("String & StringBuilder", 15, 1), _L("var Keyword (Java 10)", 15, 1),
         _L("Constants: final", 15, 2), _L("Type Casting", 15, 2),
@@ -400,7 +408,7 @@ JAVA_LEVELS = [
            "A smart shopping cart engine supporting tax brackets, discount codes, coupon stacking, and detailed receipts."),
     ]},
     # Level 3: Operators ⚡
-    {"id": "l03", "lessons": [
+    {"id": "l03", "difficulty": 1, "name": "Operators", "lessons": [
         _L("Arithmetic Operators", 10, 1), _L("Relational Operators", 10, 1),
         _L("Logical Operators", 15, 1), _L("Bitwise Operators", 20, 2),
         _L("Instanceof Operator", 20, 2), _L("Ternary Operator", 15, 1),
@@ -410,7 +418,7 @@ JAVA_LEVELS = [
            "A mathematical expression evaluator with variable assignment, operator precedence, and computation history."),
     ]},
     # Level 4: Conditionals 🔀
-    {"id": "l04", "lessons": [
+    {"id": "l04", "difficulty": 1, "name": "Conditionals", "lessons": [
         _L("if / else if / else", 10, 1), _L("Nested Conditionals", 15, 2),
         _L("Switch Statement", 15, 2), _L("Enhanced Switch (Java 14)", 20, 2),
         _L("Pattern Matching (Java 21)", 25, 3),
@@ -420,7 +428,7 @@ JAVA_LEVELS = [
            "A multiplayer trivia quiz game with difficulty tiers, power-ups, and real-time scoring."),
     ]},
     # Level 5: Loops 🔄
-    {"id": "l05", "lessons": [
+    {"id": "l05", "difficulty": 2, "name": "Loops", "lessons": [
         _L("for Loop", 10, 1), _L("Enhanced for Loop", 15, 1),
         _L("while & do-while", 15, 1), _L("Nested Loops", 15, 2),
         _L("break, continue", 15, 2), _L("Loop Patterns", 25, 3, "practice"),
@@ -430,7 +438,7 @@ JAVA_LEVELS = [
            "An advanced ASCII art pattern generator featuring 20+ patterns with customizable sizes and character sets."),
     ]},
     # Level 6: Methods 🧩
-    {"id": "l06", "lessons": [
+    {"id": "l06", "difficulty": 2, "name": "Functions", "lessons": [
         _L("Method Basics", 10, 1), _L("Static Methods", 15, 2),
         _L("Method Overloading", 20, 2), _L("Varargs", 20, 2),
         _L("Pass by Value (Everything)", 20, 2), _L("Recursion", 25, 2),
@@ -440,7 +448,7 @@ JAVA_LEVELS = [
            "A comprehensive linear algebra library implementing matrix operations, vector math, determinants, and eigenvalue computation."),
     ]},
     # Level 7: Arrays & Collections 📊
-    {"id": "l07", "lessons": [
+    {"id": "l07", "difficulty": 2, "name": "Arrays", "lessons": [
         _L("Arrays Basics", 10, 1), _L("2D Arrays", 15, 2),
         _L("Arrays Utility Class", 15, 2), _L("ArrayList", 15, 2),
         _L("LinkedList", 20, 2), _L("Iteration Patterns", 20, 2),
@@ -450,7 +458,7 @@ JAVA_LEVELS = [
            "A university grade book with analytics dashboard, GPA computation, class ranking, and data export features."),
     ]},
     # Level 8: Strings 📝
-    {"id": "l08", "lessons": [
+    {"id": "l08", "difficulty": 2, "name": "Strings", "lessons": [
         _L("String Immutability", 15, 2), _L("StringBuilder", 15, 1),
         _L("String Methods Deep", 15, 2), _L("String.split & join", 20, 2),
         _L("Regex in Java", 25, 3), _L("Pattern & Matcher", 25, 3),
@@ -460,7 +468,7 @@ JAVA_LEVELS = [
            "A document processing pipeline converting Markdown to HTML with spell checking and readability scoring."),
     ]},
     # Level 9: OOP Fundamentals 🏗️
-    {"id": "l09", "lessons": [
+    {"id": "l09", "difficulty": 2, "name": "Pointers & Memory", "lessons": [
         _L("Classes & Objects", 15, 2), _L("Constructors", 15, 2),
         _L("this Keyword", 15, 2), _L("Inheritance", 20, 2),
         _L("Method Overriding", 20, 2), _L("super Keyword", 15, 2),
@@ -471,7 +479,7 @@ JAVA_LEVELS = [
            "A banking system supporting account management, fund transfers, transaction history, and interest calculations."),
     ]},
     # Level 10: OOP Advanced 🌳
-    {"id": "l10", "lessons": [
+    {"id": "l10", "difficulty": 3, "name": "OOP", "lessons": [
         _L("Polymorphism Deep", 20, 2), _L("Enums & Enum Methods", 20, 2),
         _L("Records (Java 16)", 20, 2), _L("Sealed Classes", 25, 3),
         _L("Inner Classes", 20, 2), _L("Anonymous Classes", 20, 2),
@@ -482,7 +490,7 @@ JAVA_LEVELS = [
            "A lightweight ORM framework with annotation-based mappings, SQL generation, and entity relationship management."),
     ]},
     # Level 11: Collections & Functional 👑
-    {"id": "l11", "lessons": [
+    {"id": "l11", "difficulty": 3, "name": "Data Structures", "lessons": [
         _L("HashMap Deep", 20, 2), _L("TreeMap & LinkedHashMap", 25, 3),
         _L("HashSet & TreeSet", 20, 2), _L("PriorityQueue", 25, 3),
         _L("Comparable vs Comparator", 25, 3), _L("Streams API", 30, 3),
@@ -494,7 +502,7 @@ JAVA_LEVELS = [
            "An ETL pipeline using Java Streams for CSV parsing, data transformation, and parallel processing with JSON output."),
     ]},
     # Level 12: Final Challenge 👑
-    {"id": "l12", "lessons": [
+    {"id": "l12", "difficulty": 3, "name": "Final Challenge", "lessons": [
         _L("Threading Basics", 30, 3), _L("Synchronized & Locks", 30, 3),
         _L("ExecutorService", 30, 3), _L("CompletableFuture", 35, 3),
         _L("Concurrent Collections", 30, 3), _L("Design Patterns: Singleton", 30, 3),
@@ -505,7 +513,7 @@ JAVA_LEVELS = [
         _L("👑 Java Grandmaster Boss", 80, 3, "boss"),
     ]},
     # Level 13: Mini Compiler ⚙️
-    {"id": "l13", "lessons": [
+    {"id": "l13", "difficulty": 3, "name": "Mini Compiler", "lessons": [
         _L("Java Compiler Architecture: javac Internals", 30, 3),
         _L("Parsing with ANTLR", 35, 3, "practice"),
         _L("Challenge: Bytecode Generation", 40, 3, "challenge"),
@@ -513,7 +521,7 @@ JAVA_LEVELS = [
            "A mini Java source-to-bytecode compiler demonstrating lexing, parsing, semantic analysis, and bytecode generation phases."),
     ]},
     # Level 14: Portfolio Capstone 🏆
-    {"id": "l14", "lessons": [
+    {"id": "l14", "difficulty": 3, "name": "Portfolio Capstone", "lessons": [
         _L("Enterprise Architecture: Microservices vs Monoliths", 35, 3),
         _L("System Design Patterns in Practice", 40, 3, "practice"),
         _L("Challenge: JVM Performance Tuning", 45, 3, "challenge"),
@@ -529,7 +537,7 @@ JAVA_LEVELS = [
 # ────────────────────────────────────────────
 PYTHON_LEVELS = [
     # Level 1: First Steps 🌱
-    {"id": "l01", "lessons": [
+    {"id": "l01", "difficulty": 1, "name": "First Steps", "lessons": [
         _L("What is Python?", 10, 1), _L("Hello World in Python", 10, 1, "practice"),
         _L("print() Function", 10, 1), _L("Comments in Python", 10, 1),
         _L("Python Interpreter", 10, 1), _L("Indentation Matters", 10, 1),
@@ -539,7 +547,7 @@ PYTHON_LEVELS = [
            "An animated greeting card generator with customizable templates and PDF export functionality."),
     ]},
     # Level 2: Variables 📦
-    {"id": "l02", "lessons": [
+    {"id": "l02", "difficulty": 1, "name": "Variables", "lessons": [
         _L("Numbers: int & float", 10, 1), _L("Strings in Python", 10, 1),
         _L("Booleans", 10, 1), _L("Variable Naming Rules", 10, 1),
         _L("Multiple Assignment", 15, 1), _L("type() & isinstance()", 15, 2),
@@ -550,7 +558,7 @@ PYTHON_LEVELS = [
            "A unit converter supporting 50+ units across categories with live currency rates and dual CLI/web interfaces."),
     ]},
     # Level 3: Operators ⚡
-    {"id": "l03", "lessons": [
+    {"id": "l03", "difficulty": 1, "name": "Operators", "lessons": [
         _L("Arithmetic Operators", 10, 1), _L("Comparison Operators", 10, 1),
         _L("Logical Operators", 15, 1), _L("Assignment Operators", 10, 1),
         _L("Identity & Membership", 20, 2), _L("Operator Precedence", 15, 2),
@@ -560,7 +568,7 @@ PYTHON_LEVELS = [
            "A currency converter with real-time rate updates, historical charts, and configurable alert thresholds."),
     ]},
     # Level 4: Conditionals 🔀
-    {"id": "l04", "lessons": [
+    {"id": "l04", "difficulty": 1, "name": "Conditionals", "lessons": [
         _L("if Statement", 10, 1), _L("if-else Statement", 10, 1),
         _L("elif Chain", 15, 1), _L("Nested Conditionals", 15, 2),
         _L("Ternary Expression", 15, 2), _L("Match-Case (3.10)", 20, 3),
@@ -571,7 +579,7 @@ PYTHON_LEVELS = [
            "An AI-powered number guessing game with adaptive difficulty, hint system, and multiplayer support."),
     ]},
     # Level 5: Loops 🔄
-    {"id": "l05", "lessons": [
+    {"id": "l05", "difficulty": 2, "name": "Loops", "lessons": [
         _L("for Loop with range()", 10, 1), _L("while Loop", 10, 1),
         _L("for...in with Lists", 15, 1), _L("Nested Loops", 15, 2),
         _L("break, continue, else", 15, 2), _L("List Comprehensions", 20, 2),
@@ -582,7 +590,7 @@ PYTHON_LEVELS = [
            "A password management tool with generator, strength analyzer, breach checking, and encrypted vault storage."),
     ]},
     # Level 6: Functions 🧩
-    {"id": "l06", "lessons": [
+    {"id": "l06", "difficulty": 2, "name": "Functions", "lessons": [
         _L("def & return", 10, 1), _L("Parameters & Arguments", 15, 1),
         _L("Default Parameters", 15, 2), _L("*args & **kwargs", 20, 2),
         _L("Lambda Functions", 20, 2), _L("Recursion", 25, 2),
@@ -593,7 +601,7 @@ PYTHON_LEVELS = [
            "A feature-rich todo list CLI with SQLite persistence, priority levels, deadlines, tags, and export capabilities."),
     ]},
     # Level 7: Lists & Tuples 📊
-    {"id": "l07", "lessons": [
+    {"id": "l07", "difficulty": 2, "name": "Arrays", "lessons": [
         _L("Lists Basics", 10, 1), _L("List Methods", 15, 1),
         _L("Slicing", 15, 2), _L("Nested Lists", 15, 2),
         _L("Tuples", 15, 1), _L("List Comprehensions Deep", 20, 2),
@@ -603,7 +611,7 @@ PYTHON_LEVELS = [
            "A contact management system with CRUD operations, duplicate detection, search, and vCard import/export."),
     ]},
     # Level 8: Strings & Dictionaries 📝
-    {"id": "l08", "lessons": [
+    {"id": "l08", "difficulty": 2, "name": "Strings", "lessons": [
         _L("String Methods Deep", 15, 2), _L("f-strings & Formatting", 15, 1),
         _L("String Slicing", 15, 2), _L("Regular Expressions", 25, 3),
         _L("dict Basics", 15, 1), _L("dict Methods", 15, 2),
@@ -614,7 +622,7 @@ PYTHON_LEVELS = [
            "A personal finance tracker with category management, budget tracking, charts, and CSV/JSON export."),
     ]},
     # Level 9: File I/O & Error Handling 🧠
-    {"id": "l09", "lessons": [
+    {"id": "l09", "difficulty": 2, "name": "Pointers & Memory", "lessons": [
         _L("Reading Files", 15, 2), _L("Writing Files", 15, 2),
         _L("with Statement (Context Manager)", 15, 2), _L("CSV Files", 20, 2),
         _L("try / except / finally", 15, 2), _L("Custom Exceptions", 25, 3),
@@ -624,7 +632,7 @@ PYTHON_LEVELS = [
            "A Markdown processing engine with full spec support, multiple themes, and syntax highlighting."),
     ]},
     # Level 10: OOP 🏗️
-    {"id": "l10", "lessons": [
+    {"id": "l10", "difficulty": 3, "name": "OOP", "lessons": [
         _L("Classes & Objects", 15, 2), _L("__init__ & self", 15, 2),
         _L("Instance vs Class Variables", 20, 2), _L("Methods", 15, 2),
         _L("Inheritance", 20, 2), _L("Method Overriding", 20, 2),
@@ -636,7 +644,7 @@ PYTHON_LEVELS = [
            "A digital library system with catalog management, borrowing, reservations, and overdue tracking."),
     ]},
     # Level 11: Advanced Python 🌳
-    {"id": "l11", "lessons": [
+    {"id": "l11", "difficulty": 3, "name": "Data Structures", "lessons": [
         _L("Generators & yield", 25, 3), _L("Iterators", 25, 3),
         _L("Decorators with Parameters", 30, 3), _L("Context Managers", 25, 3),
         _L("Map, Filter, Reduce", 20, 2), _L("Sets & Frozensets", 15, 2),
@@ -647,7 +655,7 @@ PYTHON_LEVELS = [
            "A production-grade REST API with authentication, CRUD operations, rate limiting, and Swagger documentation."),
     ]},
     # Level 12: Final Challenge 👑
-    {"id": "l12", "lessons": [
+    {"id": "l12", "difficulty": 3, "name": "Final Challenge", "lessons": [
         _L("List/Dict Comprehensions Master", 25, 3), _L("Algorithms: Sorting", 30, 3),
         _L("Algorithms: Searching", 30, 3), _L("Data Structures: Stacks & Queues", 30, 3),
         _L("Threading Basics", 30, 3), _L("asyncio Fundamentals", 35, 3),
@@ -658,7 +666,7 @@ PYTHON_LEVELS = [
         _L("👑 Python Grandmaster Boss", 80, 3, "boss"),
     ]},
     # Level 13: Mini Compiler ⚙️
-    {"id": "l13", "lessons": [
+    {"id": "l13", "difficulty": 3, "name": "Mini Compiler", "lessons": [
         _L("CPython Internals: How Python Runs Your Code", 30, 3),
         _L("Parsing with the AST Module", 35, 3, "practice"),
         _L("Challenge: Custom DSL Parser", 40, 3, "challenge"),
@@ -666,16 +674,159 @@ PYTHON_LEVELS = [
            "A mini Python-to-Python transpiler that transforms source code using AST manipulation and custom DSL parsing."),
     ]},
     # Level 14: Portfolio Capstone 🏆
-    {"id": "l14", "lessons": [
+    {"id": "l14", "difficulty": 3, "name": "Portfolio Capstone", "lessons": [
         _L("Python Project Architecture: Best Practices", 35, 3),
         _L("System Design Patterns for Python", 40, 3, "practice"),
         _L("Challenge: Async Performance Optimization", 45, 3, "challenge"),
         _L("Project: Full Portfolio — REST API, CLI, Data Pipeline, Web Dashboard", 80, 3, "project",
            "A comprehensive portfolio project combining a REST API, CLI tool, data processing pipeline, and web dashboard in Python."),
         _L("🏆 Python Mastery Finale", 100, 3, "boss"),
-    ]},
+    ]}
 ]
 
+
+# ────────────────────────────────────────────
+#  JAVASCRIPT / TYPESCRIPT LANGUAGE — 14 Levels
+# ────────────────────────────────────────────
+JS_LEVELS = [
+    # Level 1: First Steps 🌱
+    {"id": "l01", "difficulty": 1, "name": "First Steps", "lessons": [
+        _L("What is JavaScript?", 10, 1), _L("Hello World in JS", 10, 1, "practice"),
+        _L("console.log() & Output", 10, 1), _L("Comments in JS", 10, 1),
+        _L("Browser Console & DevTools", 10, 1), _L("script Tag & Loading", 10, 1),
+        _L("Practice: Your First Script", 15, 1, "practice"),
+        _L("Challenge: ASCII Box Generator", 25, 2, "challenge"),
+        _L("Project: Interactive Greeting Card with User Input", 60, 3, "project",
+           "An interactive greeting card that takes user input and displays personalized messages with animations."),
+    ]},
+    # Level 2: Variables 📦
+    {"id": "l02", "difficulty": 1, "name": "Variables", "lessons": [
+        _L("var, let, const", 10, 1), _L("Block vs Function Scope", 15, 2),
+        _L("Primitive Types: string, number, boolean", 10, 1), _L("null & undefined", 10, 1),
+        _L("Template Literals", 15, 1), _L("Type Coercion", 15, 2),
+        _L("Practice: Type Explorer", 20, 2, "practice"),
+        _L("Challenge: Truthy/Falsy Puzzle", 25, 2, "challenge"),
+        _L("Project: Shopping Cart with Discount Engine", 60, 3, "project",
+           "An e-commerce shopping cart with discount calculations, tax, and receipt generation."),
+    ]},
+    # Level 3: Operators ⚡
+    {"id": "l03", "difficulty": 1, "name": "Operators", "lessons": [
+        _L("Arithmetic & Assignment", 10, 1), _L("Comparison: == vs ===", 15, 2),
+        _L("Logical Operators", 15, 1), _L("Bitwise Operators", 20, 2),
+        _L("Ternary Operator", 15, 1), _L("Optional Chaining & Nullish Coalescing", 20, 3),
+        _L("Practice: Boolean Expression Evaluator", 20, 2, "practice"),
+        _L("Challenge: Bit Flags Manager", 30, 3, "challenge"),
+        _L("Project: Math Expression Parser with Operator Precedence", 60, 3, "project",
+           "A mathematical expression parser supporting arithmetic, comparison, and logical operators with correct precedence."),
+    ]},
+    # Level 4: Conditionals 🔀
+    {"id": "l04", "difficulty": 1, "name": "Conditionals", "lessons": [
+        _L("if / else if / else", 10, 1), _L("Nested Conditionals", 15, 2),
+        _L("Switch Statement", 15, 2), _L("Truthy/Falsy Rules", 15, 2),
+        _L("Short-Circuit Evaluation", 20, 2), _L("Practice: Grade Calculator", 20, 2, "practice"),
+        _L("Challenge: Rock Paper Scissors", 25, 2, "challenge"),
+        _L("Challenge: Vending Machine", 35, 3, "challenge"),
+        _L("Project: Health Dashboard — BMI, BMR & Calorie Tracker", 60, 3, "project",
+           "A health tracking dashboard with BMI, BMR, calorie calculations, and progress charts."),
+    ]},
+    # Level 5: Loops 🔄
+    {"id": "l05", "difficulty": 2, "name": "Loops", "lessons": [
+        _L("for Loop", 10, 1), _L("while & do-while", 10, 1),
+        _L("for...of & for...in", 15, 1), _L("Array.forEach()", 15, 2),
+        _L("break, continue, labels", 15, 2), _L("Loop Performance", 20, 2),
+        _L("Practice: Multiplication Table", 20, 2, "practice"),
+        _L("Challenge: FizzBuzz Advanced", 25, 2, "challenge"),
+        _L("Challenge: Number Pyramid", 35, 3, "challenge"),
+        _L("Project: Number Guessing Game with Difficulty Levels", 60, 2, "project",
+           "An interactive number guessing game with adaptive difficulty, scoring, and high score tracking."),
+    ]},
+    # Level 6: Functions 🧩
+    {"id": "l06", "difficulty": 2, "name": "Functions", "lessons": [
+        _L("Function Declarations", 10, 1), _L("Arrow Functions", 15, 1),
+        _L("Default Parameters", 15, 2), _L("Rest Parameters & Spread", 20, 2),
+        _L("IIFE & Scope", 20, 2), _L("Closures", 25, 3),
+        _L("Practice: Power Function", 25, 2, "practice"),
+        _L("Challenge: Currying & Partial Application", 40, 3, "challenge"),
+        _L("Project: Todo CLI with LocalStorage, priorities, filters & export", 60, 3, "project",
+           "A feature-rich todo CLI with localStorage persistence, priority filtering, search, and JSON export."),
+    ]},
+    # Level 7: Arrays & Objects 📊
+    {"id": "l07", "difficulty": 2, "name": "Arrays", "lessons": [
+        _L("Array Basics & Literals", 10, 1), _L("Array Methods: push, pop, shift, unshift", 15, 2),
+        _L("Array Methods: map, filter, reduce", 20, 2), _L("Object Literals", 15, 1),
+        _L("Object Methods & this", 20, 2), _L("Destructuring Arrays & Objects", 20, 2),
+        _L("Practice: Matrix Operations", 30, 3, "practice"),
+        _L("Challenge: Two Sum Optimized", 35, 3, "challenge"),
+        _L("Project: Contact Manager — CRUD, search, groups, vCard export", 60, 3, "project",
+           "A contact management system with full CRUD, search, grouping, and vCard import/export."),
+    ]},
+    # Level 8: Strings & JSON 📝
+    {"id": "l08", "difficulty": 2, "name": "Strings", "lessons": [
+        _L("String Methods: slice, substring, replace", 15, 2), _L("Template Literals", 10, 1),
+        _L("String.indexOf & includes", 15, 2), _L("JSON.parse & JSON.stringify", 20, 2),
+        _L("String.prototype Methods", 15, 2), _L("Unicode & Encoding", 20, 3),
+        _L("Practice: Word Frequency Counter", 25, 2, "practice"),
+        _L("Challenge: Palindrome & Anagram", 30, 3, "challenge"),
+        _L("Project: Markdown to HTML Converter with Themes", 60, 3, "project",
+           "A Markdown processing engine with theme support, syntax highlighting, and export options."),
+    ]},
+    # Level 9: DOM & Events 🧠
+    {"id": "l09", "difficulty": 2, "name": "Pointers & Memory", "lessons": [
+        _L("document.querySelector & getElementById", 15, 2), _L("DOM Manipulation: createElement, appendChild", 20, 2),
+        _L("Event Listeners & Event Object", 20, 2), _L("Event Bubbling & Capturing", 20, 2),
+        _L("DOM Traversal: parentNode, childNodes", 20, 2), _L("Dynamic CSS Classes & Styles", 20, 2),
+        _L("Practice: Interactive Tooltip", 30, 3, "practice"),
+        _L("Challenge: Modal Dialog System", 35, 3, "challenge"),
+        _L("Project: Real-Time Word Frequency Analyzer", 60, 3, "project",
+           "A real-time text analyzer showing word counts, frequencies, and visual word clouds."),
+    ]},
+    # Level 10: OOP & Classes 🏗️
+    {"id": "l10", "difficulty": 3, "name": "OOP", "lessons": [
+        _L("class Keyword & Constructor", 15, 2), _L("Instance vs Static Methods", 20, 2),
+        _L("Inheritance & extends", 20, 2), _L("Method Overriding & super()", 20, 2),
+        _L("Getters & Setters", 20, 2), _L("Static Members", 15, 2),
+        _L("Practice: Shape Hierarchy with area()", 35, 3, "practice"),
+        _L("Challenge: Event Emitter from Scratch", 40, 3, "challenge"),
+        _L("Project: Library System with Search, Reservations & Overdue Tracking", 60, 3, "project",
+           "A library management system with book search, member reservations, and overdue item tracking."),
+    ]},
+    # Level 11: Async & Promises 🌳
+    {"id": "l11", "difficulty": 3, "name": "Data Structures", "lessons": [
+        _L("setTimeout & setInterval", 20, 2), _L("Promises: resolve & reject", 25, 3),
+        _L(".then() / .catch() / .finally()", 25, 3), _L("async / await", 25, 3),
+        _L("Promise.all & Promise.race", 30, 3), _L("Fetch API & HTTP Requests", 25, 3),
+        _L("Error Handling in Async Code", 25, 3), _L("Practice: Fetch & Display API Data", 30, 3, "practice"),
+        _L("Challenge: Retry Logic with Exponential Backoff", 40, 3, "challenge"),
+        _L("Project: Weather Dashboard — API integration, caching, charts", 60, 3, "project",
+           "A weather dashboard with real-time API data, caching, and interactive charts."),
+    ]},
+    # Level 12: Final Challenge 👑
+    {"id": "l12", "difficulty": 3, "name": "Final Challenge", "lessons": [
+        _L("Closures & Private State", 30, 3), _L("Modules: import / export", 30, 3),
+        _L("Map, Set, WeakMap, WeakSet", 30, 3), _L("Symbols & Iterators", 30, 3),
+        _L("Generators & yield*", 30, 3), _L("Proxy & Reflect", 35, 3),
+        _L("Practice: Build a Mini Framework", 40, 3, "practice"),
+        _L("Challenge: Event-Driven Architecture", 50, 3, "challenge"),
+        _L("Capstone: Full-Stack SaaS — Auth, Dashboard, Real-Time Updates", 80, 3, "project",
+           "A full-stack SaaS application with authentication, dashboard, real-time updates, and deployment readiness."),
+        _L("👑 JavaScript Grandmaster Boss", 80, 3, "boss"),
+    ]},
+    # Level 13: Mini Compiler ⚙️
+    {"id": "l13", "difficulty": 3, "name": "Mini Compiler", "lessons": [
+        _L("JavaScript Engine: V8 Internals", 30, 3), _L("Parsing JS with Recursive Descent", 35, 3, "practice"),
+        _L("Challenge: Build an AST Walker", 40, 3, "challenge"),
+        _L("Project: Mini JS-to-Bytecode Compiler", 70, 3, "project",
+           "A mini JavaScript compiler that transforms source code into bytecode with lexing, parsing, and code generation phases."),
+    ]},
+    # Level 14: Portfolio Capstone 🏆
+    {"id": "l14", "difficulty": 3, "name": "Portfolio Capstone", "lessons": [
+        _L("Modern JS Project Architecture", 35, 3), _L("Design Patterns in JavaScript", 40, 3, "practice"),
+        _L("Challenge: Async Performance Optimization", 45, 3, "challenge"),
+        _L("Project: Full Portfolio — React Frontend, Node API, MongoDB, Docker", 80, 3, "project",
+           "A comprehensive portfolio project combining React frontend, Node.js backend, MongoDB database, and Docker deployment."),
+        _L("🏆 JavaScript Mastery Finale", 100, 3, "boss"),
+    ]},
+]
 
 def _generate_lessons_for_level(level_meta, lang_id, level_index):
     """Generate lesson content for levels 15+ using template-based approach.
@@ -735,6 +886,12 @@ for _i in range(14, 40):
     _lessons = _generate_lessons_for_level(_meta, "python", _i)
     PYTHON_LEVELS.append({"id": _meta["id"], "lessons": _lessons})
 
+# Append levels 15-40 for JavaScript
+for _i in range(14, 40):
+    _meta = LEVEL_THEMES[_i]
+    _lessons = _generate_lessons_for_level(_meta, "js", _i)
+    JS_LEVELS.append({"id": _meta["id"], "lessons": _lessons})
+
 
 def _build_level(lang_id, level_cfg, level_index):
     """Convert level config to full level dict with computed fields."""
@@ -755,6 +912,14 @@ def _build_level(lang_id, level_cfg, level_index):
             lesson["git_description"] = l["git_description"]
         lessons.append(lesson)
     total_xp = sum(l["diamonds"] for l in lessons)
+    # Level difficulty: l01-l04 = 1 (beginner), l05-l09 = 2 (intermediate), l10+ = 3 (advanced)
+    level_index_zero_based = level_index
+    if level_index_zero_based < 4:
+        level_difficulty = 1
+    elif level_index_zero_based < 9:
+        level_difficulty = 2
+    else:
+        level_difficulty = 3
     return {
         "id": level_cfg["id"],
         "name": theme["name"],
@@ -765,6 +930,7 @@ def _build_level(lang_id, level_cfg, level_index):
         "text": theme["text"],
         "description": theme["desc"],
         "order": level_index + 1,
+        "difficulty": level_difficulty,
         "lessons": lessons,
         "total_lessons": len(lessons),
         "total_xp": total_xp,
@@ -799,6 +965,20 @@ LANGUAGES = {
         "Enterprise-grade OOP with platform independence", JAVA_LEVELS),
     "python": _build_language("python", "Python", "🐍", "#22C55E",
         "The most popular language for AI, web, and data science", PYTHON_LEVELS),
+    "js": _build_language("js", "JavaScript", "🟨", "#F7DF1E",
+        "The language of the web — frontend, backend, and mobile", JS_LEVELS),
+    "ts": _build_language("ts", "TypeScript", "🔷", "#3178C6",
+        "Type-safe JavaScript for enterprise-scale applications", TS_LEVELS),
+    "go": _build_language("go", "Go", "🐹", "#00ADD8",
+        "Concurrent, systems-level language for cloud and backend", GO_LEVELS),
+    "rust": _build_language("rust", "Rust", "🦀", "#000000",
+        "Memory safety without garbage collection — systems programming", RUST_LEVELS),
+    "csharp": _build_language("csharp", "C#", "#", "#68217A",
+        "Enterprise-grade .NET development with LINQ and async", CSHARP_LEVELS),
+    "sql": _build_language("sql", "SQL", "🗄️", "#336791",
+        "Relational databases, queries, joins, and data modeling", SQL_LEVELS),
+    "webdev": _build_language("webdev", "Web Development", "🌐", "#E34F26",
+        "Full-stack web development: HTML, CSS, React, Node.js", WEB_LEVELS),
 }
 
 
