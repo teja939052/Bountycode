@@ -1207,7 +1207,7 @@
   transform: translateY(-1px);
 }
 
-/── Glass button ── */
+/* Glass button */
 .btn-glass {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
@@ -1219,7 +1219,7 @@
   transform: translateY(-1px);
 }
 
-/── Dark gradient button ── */
+/* Dark gradient button */
 .btn-dark-gradient {
   background: linear-gradient(135deg, #1E1E1E 0%, #2D2E2F 100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1230,7 +1230,7 @@
   transform: translateY(-1px);
 }
 
-/── Startup platform card ── */
+/* Startup platform card */
 .card-startup {
   background: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%);
   border: 1px solid rgba(34, 197, 94, 0.08);
@@ -1253,7 +1253,7 @@
   transform: translateY(-2px);
 }
 
-/── Learning page styles ── */
+/* Learning page styles */
 .learning-step-card {
   background: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%);
   border: 1px solid rgba(34, 197, 94, 0.08);
@@ -1282,7 +1282,7 @@
   cursor: not-allowed;
 }
 
-/── Code block styling ── */
+/* Code block styling */
 .code-block-dark {
   background: #0d1117;
   border: 1px solid #30363d;
@@ -1307,7 +1307,7 @@
   border: 1px solid #30363d;
 }
 
-/── Progress indicators ── */
+/* Progress indicators */
 .progress-track {
   height: 8px;
   background: #e2e8f0;
@@ -1343,7 +1343,7 @@
   100% { transform: translateX(100%); }
 }
 
-/── Step badge ── */
+/* Step badge */
 .step-badge {
   display: inline-flex;
   align-items: center;
@@ -1376,7 +1376,7 @@
   border: 1px solid #fed7aa;
 }
 
-/── Glow effects ── */
+/* Glow effects */
 .glow-green {
   box-shadow: 0 0 24px rgba(34, 197, 94, 0.2);
 }
@@ -1390,7 +1390,7 @@
   box-shadow: 0 0 24px rgba(139, 107, 217, 0.2);
 }
 
-/── Code tracer styles ── */
+/* Code tracer styles */
 .trace-step-variable {
   background: #0d1117;
   border: 1px solid #30363d;
@@ -1424,7 +1424,7 @@
   50% { box-shadow: 0 0 24px rgba(34, 197, 94, 0.4); }
 }
 
-/── Input enhancements ── */
+/* Input enhancements */
 .input-startup {
   background: #FFFFFF;
   border: 1px solid #DCE8DE;
@@ -1454,7 +1454,7 @@
   outline: none;
 }
 
-/── Page section headers ── */
+/* Page section headers */
 .section-header {
   display: flex;
   align-items: center;
@@ -1483,7 +1483,7 @@
   color: #92400e;
 }
 
-/── Toast/notification ── */
+/* Toast/notification */
 .toast-startup {
   background: #FFFFFF;
   border: 1px solid #DCE8DE;
@@ -1498,7 +1498,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/── Responsive ── */
+/* Responsive */
 @media (max-width: 640px) {
   .learning-step-card {
     padding: 1rem;
@@ -1510,9 +1510,9 @@
   }
 }
 
-/ ═════════════════════════════════════════════════════════════════════
+/* ═════════════════════════════════════════════════════════════════════
    DUOLINGO-STYLE GAMIFICATION — Streaks, XP, Hearts, Celebrations
-   ═════════════════════════════════════════════════════════════════════ */
+   ══════════════════════════════════════════════════════════════════════ */
 
 :root {
   --dl-blue: #1CB0F6;
@@ -1525,7 +1525,7 @@
   --dl-border: 2px solid;
 }
 
-/ ── Streak flame ── */
+/* Streak flame */
 .streak-flame {
   display: inline-flex;
   align-items: center;
@@ -1578,7 +1578,7 @@
   50% { opacity: 1; transform: scale(1.3); }
 }
 
-/ ── XP Counter ── */
+/* XP Counter */
 .xp-pill {
   display: inline-flex;
   align-items: center;
@@ -1595,7 +1595,7 @@
   font-size: 14px;
 }
 
-/ ── Level Badge ── */
+/* Level Badge */
 .level-badge {
   display: inline-flex;
   align-items: center;
@@ -1614,7 +1614,7 @@
   font-family: "Feather Bold", sans-serif;
 }
 
-/ ── Hearts / Lives ── */
+/* Hearts / Lives */
 .hearts-container {
   display: flex;
   gap: 8px;
@@ -1654,7 +1654,7 @@
   50% { transform: scale(1.1); box-shadow: 0 0 12px rgba(255, 59, 48, 0.6); }
 }
 
-/ ── Duolingo-style Lesson Card ── */
+/* Duolingo-style Lesson Card */
 .lesson-card {
   background: #fff;
   border: var(--dl-border) #E5E5E5;
@@ -1773,7 +1773,7 @@
   color: #ccc;
 }
 
-/ ── Progress Ring ── */
+/* Progress Ring */
 .progress-ring {
   position: relative;
   width: 80px;
@@ -1817,7 +1817,7 @@
   text-transform: uppercase;
 }
 
-/ ── Celebration Modal ── */
+/* Celebration Modal */
 .celebration-overlay {
   position: fixed;
   inset: 0;
@@ -1886,7 +1886,7 @@
   text-transform: uppercase;
 }
 
-/ ── Streak Freeze ── */
+/* Streak Freeze */
 .streak-freeze {
   display: inline-flex;
   align-items: center;
@@ -1904,7 +1904,7 @@
   background: #fffef0;
 }
 
-/ ── Streak banner ── */
+/* Streak banner */
 .streak-banner {
   display: flex;
   align-items: center;
@@ -1924,7 +1924,7 @@
   50% { box-shadow: 0 8px 32px rgba(255, 200, 0, 0.5); }
 }
 
-/ ── Lesson completion toast ── */
+/* Lesson completion toast */
 .lesson-toast {
   position: fixed;
   bottom: 24px;
@@ -1953,7 +1953,7 @@
   font-size: 24px;
 }
 
-/ ── Mobile-first adjustments ── */
+/* Mobile-first adjustments */
 @media (max-width: 640px) {
   .level-badge {
     padding: 6px 12px;
@@ -1988,13 +1988,13 @@
   }
 }
 
-/ ── Focus states ── */
+/* Focus states */
 *:focus-visible {
   outline: 3px solid var(--dl-blue);
   outline-offset: 2px;
 }
 
-/ ── Reduced motion ── */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .streak-flame,
   .streak-flame .flame-emoji,
@@ -2005,5 +2005,8 @@
   }
   .lesson-card {
     transition: none;
+  }
+  .hero-blob {
+    animation: none;
   }
 }

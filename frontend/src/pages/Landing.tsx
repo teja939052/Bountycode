@@ -31,8 +31,8 @@ import { JourneyMap, IslandNode, BountyCard as JourneyBountyCard } from "../desi
 import { CandyCard } from "../components/candy/CandyCard";
 import { CandyButton } from "../components/candy/CandyButton";
 import { OrganicPath } from "../components/candy/OrganicPath";
-import { HeroCanvas } from "../components/hero/HeroCanvas";
 import { HeroBadge } from "../components/hero/HeroBadge";
+import SplashScreen from "../components/hero/SplashScreen";
 
 /* ------------------------------------------------------------------ */
 /*  Palette — warm paper, deep ink, gold, and one colour per phase.    */
@@ -604,9 +604,9 @@ const GAME_CARDS = [
 /* ------------------------------------------------------------------ */
 export default function Landing() {
   const reduced = useReducedMotion();
-
   return (
     <PageShell theme="spring">
+      <SplashScreen />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-4 focus:z-[100] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-lg focus:border focus:border-gray-300 focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[#14201B] focus:shadow-lg"
@@ -614,9 +614,8 @@ export default function Landing() {
         Skip to content
       </a>
 
-      {/* ═══ Hero — the spring path ═══ */}
+      {/* ═══ Hero ═══ */}
       <section className="spring-hero relative overflow-hidden min-h-screen" style={{ background: "#fbe4ec" }}>
-        <HeroCanvas className="hero-canvas" />
 
         <SakuraPetals density="hero" />
 
@@ -637,7 +636,7 @@ export default function Landing() {
               </Link>
               <Link
                 to="/register"
-                className="hero-cta-primary inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold shadow-md transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                className="hero-btn-ghost inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 Get started
                 <ArrowRight size={14} />
@@ -646,62 +645,61 @@ export default function Landing() {
           </header>
 
           <div className="flex flex-1 items-center justify-center px-6 pb-24 pt-6">
-            <div className="hero-card mx-auto max-w-3xl px-6 md:px-8 py-10">
-              <motion.div
-                className="mx-auto max-w-xl text-center hero-fade-up"
-                initial={reduced ? false : { opacity: 0, y: 22 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                }}
-                transition={{
-                  duration: 0.9,
-                  ease: "easeOut",
-                  filter: { type: "spring", stiffness: 300, damping: 30 },
-                }}
+            <motion.div
+              className="mx-auto max-w-3xl text-center hero-fade-up"
+              initial={reduced ? false : { opacity: 0, y: 22 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+              }}
+              transition={{
+                duration: 0.9,
+                ease: "easeOut",
+                filter: { type: "spring", stiffness: 300, damping: 30 },
+              }}
+            >
+              <HeroBadge />
+
+              <h1
+                className="mt-6 font-display text-[3rem] font-extrabold leading-[1.05] tracking-tight sm:text-7xl md:text-8xl md:leading-[1.02]"
+                style={{ color: INK }}
               >
-                <HeroBadge />
+                From your first line of code
+                <br />
+                <span className="hero-gradient-text">to your first offer.</span>
+              </h1>
 
-                <h1
-                  className="mt-6 font-display text-[3rem] font-extrabold leading-[1.05] tracking-tight sm:text-7xl md:text-8xl md:leading-[1.02]"
-                  style={{ color: INK }}
+              <p className="mt-7 text-lg font-bold sm:text-xl md:text-lg" style={{ color: INK }}>
+                A guided path from learning to getting hired.
+              </p>
+              <p
+                className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed sm:text-base md:text-lg"
+                style={{ color: INK, opacity: 0.85 }}
+              >
+                Pick your target company. Learn the patterns these assessments test, in the
+                order a blueprint weights them. Prove it in a company-style mock, then let
+                evidence — not guesswork — decide what you repair next.
+              </p>
+
+              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Link
+                  to="/register"
+                  className="hero-cta-primary inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl px-8 py-4 text-sm font-bold shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98]"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  From your first line of code
-                  <br />
-                  <span className="hero-gradient-text">to your first offer.</span>
-                </h1>
-
-                <p className="mt-7 text-lg font-bold sm:text-xl md:text-lg" style={{ color: INK }}>
-                  A guided path from learning to getting hired.
-                </p>
-                <p
-                  className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed sm:text-base md:text-lg"
-                  style={{ color: INK, opacity: 0.85 }}
+                  Start free
+                  <ArrowRight size={17} />
+                </Link>
+                <Link
+                  to="/percentages-academy"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/60 bg-white px-8 py-4 text-sm font-bold shadow-sm transition-colors hover:bg-white/60 hero-soft-glow"
+                  style={{ borderColor: "rgba(255,255,255,0.5)", color: INK }}
                 >
-                  Pick your target company. Learn the patterns these assessments test, in the
-                  order a blueprint weights them. Prove it in a company-style mock, then let
-                  evidence — not guesswork — decide what you repair next.
-                </p>
-
-                <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                  <Link
-                    to="/register"
-                    className="hero-cta-primary inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl px-8 py-4 text-sm font-bold shadow-xl transition-all hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98] hero-shimmer hero-pill-glow"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Start free
-                    <ArrowRight size={17} />
-                  </Link>
-                  <Link
-                    to="/percentages-academy"
-                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/60 bg-white/40 px-8 py-4 text-sm font-bold backdrop-blur-sm transition-colors hover:bg-white/60 hero-soft-glow"
-                    style={{ borderColor: "rgba(255,255,255,0.5)", color: INK }}
-                  >
-                    Try a lesson
-                  </Link>
-                </div>
+                  Try a lesson
+                </Link>
+              </div>
 
               {/* The product, in four words */}
               <ol
@@ -733,7 +731,6 @@ export default function Landing() {
             </motion.div>
           </div>
         </div>
-      </div>
       </section>
 
       <main id="main" className="relative z-10" style={{ background: PAPER }}>
@@ -1156,7 +1153,7 @@ export default function Landing() {
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 to="/register"
-                className="hero-cta-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] sm:w-auto"
+                className="hero-btn-primary inline-flex w-full items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] sm:w-auto"
               >
                 Start free
                 <ArrowRight size={16} />
