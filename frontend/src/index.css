@@ -27,6 +27,11 @@
     --pp-primary-dark: #15803D;
     --pp-primary-soft: #DCFCE7;
 
+    /* ── Triquetra Cyan ── */
+    --pp-cyan: #28D3C5;
+    --pp-cyan-dark: #14B8A6;
+    --pp-cyan-soft: #CCFBF1;
+
     /* ── Adventure Palette ── */
     --pp-ocean: #5BA7A0;
     --pp-ocean-soft: #E0F2F1;

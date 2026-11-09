@@ -624,7 +624,7 @@ export default function Landing() {
           {/* One minimal nav — the global Navbar is hidden on "/" */}
           <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
               <Link to="/" className="flex items-center gap-2.5" style={{ color: INK }} aria-label="BountyCode home">
-                <BountyTriquetra className="h-8 w-8" />
+                <BountyTriquetra className="h-8 w-8 text-[#28D3C5]" />
                 <span className="font-display text-lg font-extrabold tracking-tight">BountyCode</span>
               </Link>
             <nav className="flex items-center gap-3 sm:gap-5" aria-label="Account">

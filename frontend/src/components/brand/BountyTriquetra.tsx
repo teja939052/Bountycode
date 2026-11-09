@@ -2,20 +2,35 @@ import { useId, type SVGProps } from "react";
 
 type BountyTriquetraProps = SVGProps<SVGSVGElement> & {
   title?: string;
+  size?: number | string;
+  color?: string;
+  variant?: "cyan" | "violet" | "gold" | "ocean" | "mono";
+};
+
+const VARIANT_COLORS: Record<string, string> = {
+  cyan: "#28D3C5",
+  violet: "#8B5CF6",
+  gold: "#EAB74D",
+  ocean: "#5BA7A0",
+  mono: "#17211B",
 };
 
 export function BountyTriquetra({
   title,
+  size = 32,
+  color,
+  variant,
   ...props
 }: BountyTriquetraProps) {
   const titleId = useId();
+  const triColor = color || VARIANT_COLORS[variant || "cyan"];
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
-      width={32}
-      height={32}
+      width={size}
+      height={size}
       role={title ? "img" : undefined}
       aria-labelledby={title ? titleId : undefined}
       aria-hidden={title ? undefined : true}
@@ -23,8 +38,28 @@ export function BountyTriquetra({
     >
       {title && <title id={titleId}>{title}</title>}
 
+      <defs>
+        <radialGradient id="triquetra-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor={triColor} stopOpacity="0.9" />
+          <stop offset="60%" stopColor={triColor} stopOpacity="0.45" />
+          <stop offset="100%" stopColor={triColor} stopOpacity="0" />
+        </radialGradient>
+
+        <filter id="triquetra-shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation={8} />
+          <feOffset dx={0} dy={8} result="offsetblur" />
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.4" />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
       <path
-        fill="currentColor"
+        fill={triColor}
         d="
           M256 74.06
           c32.76 39.37 52.457 90.004 52.457 145.29
@@ -64,6 +99,8 @@ export function BountyTriquetra({
           c15.04 0 29.76-1.364 44.056-3.963
         "
       />
+
+      <circle cx="256" cy="256" r="160" fill="url(#triquetra-glow)" opacity="0.15" />
     </svg>
   );
 }
