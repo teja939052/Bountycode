@@ -107,6 +107,7 @@ def load_content_file(path: str) -> Dict[str, int]:
     pattern = data.get("pattern") or topic
     inserted = 0
     skipped = 0
+    untrusted = 0
 
     items: List[Dict[str, Any]] = []
     items.extend(data.get("practice") or [])
