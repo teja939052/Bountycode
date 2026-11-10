@@ -114,7 +114,9 @@ def submit_aptitude_answer(req: SubmitAptitudeAnswer, user=Depends(get_current_u
 
     # Check answer - correct_index is 0-based
     correct_idx = q.get("correct_index", 0)
-    is_correct = str(req.answer).strip().upper() == str(correct_idx).strip().upper() if isinstance(correct_idx, int) else False
+    options = q.get("options", [])
+    correct_answer = str(options[correct_idx]).strip() if isinstance(correct_idx, int) and 0 <= correct_idx < len(options) else str(correct_idx)
+    is_correct = str(req.answer).strip().lower() == correct_answer.lower()
 
     return {
         "is_correct": is_correct,
@@ -160,8 +162,9 @@ async def complete_aptitude_test(test_id: str, req: CompleteAptitudeTest, user=D
             continue
         q = questions[idx]
         correct_idx = q.get("correct_index")
-        correct_answer = q.get("correct_answer", str(correct_idx) if correct_idx is not None else "")
-        is_correct = str(selected).strip().upper() == str(correct_idx).strip().upper() if correct_idx is not None else False
+        options = q.get("options", [])
+        correct_answer = str(options[correct_idx]).strip() if isinstance(correct_idx, int) and 0 <= correct_idx < len(options) else str(correct_idx or "")
+        is_correct = str(selected).strip().lower() == correct_answer.lower()
         
         results.append({
             "question_index": idx,

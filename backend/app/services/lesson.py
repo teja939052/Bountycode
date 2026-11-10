@@ -416,7 +416,7 @@ class LessonService:
         from app.database import gamification_collection as _gc
 
         comp_key = "code_foundations:" + self._lesson.get("world_progression", {}).get(
-            "competency_id", self._lesson["lesson_id"]
+            "competency_id", self._lesson.get("id", self._lesson.get("lesson_id", "unknown"))
         )
         # Atomic improvement-claim: of concurrent duplicate submits, exactly
         # one wins the "score beats stored best" filter and awards Diamonds; the
@@ -466,7 +466,7 @@ class LessonService:
             user_id=user_id,
             activity_type="lesson",
             score=score / 10,  # gamification expects 0-10 scale
-            metadata={"lesson_id": self._lesson["lesson_id"], "time_spent": time_spent_seconds},
+            metadata={"lesson_id": self._lesson.get("id", self._lesson.get("lesson_id", "unknown")), "time_spent": time_spent_seconds},
             role=role,
         )
 
@@ -533,7 +533,7 @@ class LessonService:
         from app.services.skill_assessment import SKILL_CATEGORIES, update_skill_score
 
         comp_key = "code_foundations:" + self._lesson.get("world_progression", {}).get(
-            "competency_id", self._lesson["lesson_id"]
+            "competency_id", self._lesson.get("id", self._lesson.get("lesson_id", "unknown"))
         )
 
         _doc = await gamification_collection.find_one({"user_id": user_id}) or {}

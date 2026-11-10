@@ -1379,9 +1379,13 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
 async def submit_oa_answer(req: SubmitOABatch, user=Depends(get_current_user)):
     """Submit one or more OA answers. Records answers + timing for scoring at completion."""
     try:
-        sess = await oa_sessions_collection.find_one({"_id": ObjectId(req.session_id)})
+        object_id = ObjectId(req.session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
+    sess = await oa_sessions_collection.find_one({"_id": object_id})
+    if not sess:
+        # Fallback: try lookup by session_id string field
+        sess = await oa_sessions_collection.find_one({"session_id": req.session_id})
     if not sess:
         raise HTTPException(status_code=404, detail="OA session not found")
     if sess["user_id"] != user["id"]:
@@ -1477,9 +1481,12 @@ async def record_integrity_signal(req: IntegritySignal, user=Depends(get_current
 async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(default=None), user=Depends(get_current_user)):
     """Grade the OA, produce the scorecard, update readiness, and surface next missions."""
     try:
-        sess = await oa_sessions_collection.find_one({"_id": ObjectId(session_id)})
+        object_id = ObjectId(session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
+    sess = await oa_sessions_collection.find_one({"_id": object_id})
+    if not sess:
+        sess = await oa_sessions_collection.find_one({"session_id": session_id})
     if not sess:
         raise HTTPException(status_code=404, detail="OA session not found")
     if sess["user_id"] != user["id"]:
@@ -1752,9 +1759,12 @@ async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(def
 @router.get("/{session_id}/result")
 async def get_oa_result(session_id: str, user=Depends(get_current_user)):
     try:
-        sess = await oa_sessions_collection.find_one({"_id": ObjectId(session_id)})
+        object_id = ObjectId(session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
+    sess = await oa_sessions_collection.find_one({"_id": object_id})
+    if not sess:
+        sess = await oa_sessions_collection.find_one({"session_id": session_id})
     if not sess:
         raise HTTPException(status_code=404, detail="OA session not found")
     if sess["user_id"] != user["id"]:
@@ -1767,9 +1777,12 @@ async def get_oa_result(session_id: str, user=Depends(get_current_user)):
 @router.get("/{session_id}/readiness-report")
 async def download_readiness_report(session_id: str, user=Depends(get_current_user)):
     try:
-        sess = await oa_sessions_collection.find_one({"_id": ObjectId(session_id)})
+        object_id = ObjectId(session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
+    sess = await oa_sessions_collection.find_one({"_id": object_id})
+    if not sess:
+        sess = await oa_sessions_collection.find_one({"session_id": session_id})
     if not sess:
         raise HTTPException(status_code=404, detail="OA session not found")
     if sess["user_id"] != user["id"]:
