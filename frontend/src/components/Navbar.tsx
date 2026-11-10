@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
+import type { AuthState } from "../store/authStore";
 import useAuthStore from "../store/authStore";
 import { GamificationWidget } from "../components/gamification";
 import {
@@ -21,6 +22,7 @@ import {
   Brain,
   List,
   Lightbulb,
+  User,
 } from "lucide-react";
 
 /* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
@@ -132,27 +134,12 @@ export default function Navbar() {
                       </>
                     )}
 
-                    <Link to="/problems?random=true" className="ml-2 inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice - random question">
-                      <Sparkles size={14} aria-hidden="true" />
-                      Quick Practice
-                    </Link>
+                <Link to="/problems?random=true" className="ml-2 inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice - random question">
+                  <Sparkles size={14} aria-hidden="true" />
+                  Quick Practice
+                </Link>
 
-                    <div className="ml-3 flex items-center gap-3 rounded-full border border-gray-200 bg-white border-border/80 px-3 py-1.5 shadow-sm" aria-label="User menu">
-                  <div className="hidden xl:flex flex-col text-right">
-                    <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">Signed in as</span>
-                    <span className="max-w-[140px] truncate text-sm font-medium text-text-primary">{user.name}</span>
-                  </div>
-                  <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
-                    {user.plan}
-                  </span>
-                  <GamificationWidget xp={user.xp ?? 0} level={user.level ?? 1} streak={user.streak ?? 0} league={(user as any).leagueRank ?? 5} badges={(user as any).badgesCount ?? 0} />
-                  <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
-                    <Settings size={17} />
-                  </Link>
-                  <button onClick={handleLogout} className="text-text-muted transition-colors hover:text-error" aria-label="Logout">
-                    <LogOut size={17} />
-                  </button>
-                </div>
+                <UserMenu user={user} onLogout={handleLogout} />
               </>
              ) : (
               <>
@@ -294,5 +281,73 @@ function MobileLink({ to, children, onClick, primary, icon: Icon }: NavLinkProps
       {Icon ? <Icon size={14} /> : null}
       {children}
     </Link>
+  );
+}
+
+function UserMenu({ user, onLogout }: { user: NonNullable<AuthState["user"]>; onLogout: () => void }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative ml-3">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label="User menu"
+        className="flex items-center gap-2 rounded-full border border-gray-200 bg-white border-border/80 px-3 py-1.5 text-sm font-medium text-text-primary shadow-sm transition-colors hover:border-brand-primary/40 hover:bg-brand-primary/5"
+      >
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">
+          <User size={15} aria-hidden="true" />
+        </span>
+        <span className="max-w-[140px] truncate">{user.name}</span>
+        <ChevronDown size={14} className={`text-text-muted transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
+      </button>
+
+      {open && (
+        <div
+          role="menu"
+          aria-label="Account menu"
+          className="absolute right-0 mt-2 w-72 rounded-2xl border border-gray-200 bg-white border-border/95 p-3 shadow-lg z-20"
+        >
+          <div className="px-2 pb-2">
+            <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">Signed in as</div>
+            <div className="mt-0.5 truncate text-sm font-medium text-text-primary">{user.name}</div>
+            <div className="mt-2 flex items-center gap-2">
+              <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
+                {user.plan}
+              </span>
+            </div>
+          </div>
+          <div className="border-t border-border/60 pt-2">
+            <GamificationWidget xp={user.xp ?? 0} level={user.level ?? 1} streak={user.streak ?? 0} league={(user as any).leagueRank ?? 5} badges={(user as any).badgesCount ?? 0} />
+          </div>
+          <div className="mt-2 grid gap-1 border-t border-border/60 pt-2">
+            <Link to="/settings" onClick={() => setOpen(false)} role="menuitem" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-text-secondary transition-colors hover:bg-brand-primary/10 hover:text-brand-primary">
+              <Settings size={15} aria-hidden="true" /> Settings
+            </Link>
+            <button onClick={() => { setOpen(false); onLogout(); }} role="menuitem" className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm text-error transition-colors hover:bg-error/10">
+              <LogOut size={15} aria-hidden="true" /> Logout
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
