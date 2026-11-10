@@ -376,9 +376,29 @@ export default function MockOA() {
         }
         setTestId(data.session_id);
         setSelectedCompany(data.company || null);
-        setQuestions(data.questions);
-        setCurrentQ(Math.min(data.questions_answered || 0, Math.max(data.questions.length - 1, 0)));
-        setStartTime(Date.now() - Math.max(0, ((companyMocksApi as any).getStatus ? 0 : 0)));
+        setQuestions(data.questions || []);
+        setUnsupportedRounds(data.unsupported_rounds || []);
+        const restoredAnswers: Record<number, string> = {};
+        const restoredSubmissions: Record<number, any> = {};
+        (data.answers || []).forEach((answer) => {
+          const questionIndex = data.questions?.findIndex((question) => question.id === answer.question_id) ?? -1;
+          if (questionIndex < 0) return;
+          restoredAnswers[questionIndex] = answer.code || "";
+          restoredSubmissions[questionIndex] = {
+            is_correct: answer.is_correct,
+            passed_count: answer.passed_count,
+            total_count: answer.total_count,
+            score: answer.score,
+            summary: answer.summary,
+          };
+        });
+        setAnswers(restoredAnswers);
+        setSubmittedAnswers(restoredSubmissions);
+        const firstUnanswered = (data.questions || []).findIndex((_, index) => !restoredSubmissions[index]);
+        setCurrentQ(firstUnanswered >= 0 ? firstUnanswered : Math.max((data.questions || []).length - 1, 0));
+        const startedAt = data.started_at ? new Date(data.started_at).getTime() : Date.now();
+        setStartTime(startedAt);
+        setTimeTaken(Math.max(0, Math.floor((Date.now() - startedAt) / 1000)));
         setSessionEndsAt(data.ends_at || null);
         setStep("test");
       })
