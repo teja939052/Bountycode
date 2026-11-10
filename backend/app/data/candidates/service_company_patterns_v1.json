@@ -1,0 +1,1591 @@
+{
+  "pack_id": "service-company-pattern-candidates-v1",
+  "title": "Service-company placement pattern candidates",
+  "schema_version": "bountycode-learning-object-v1",
+  "created_at": "2026-11-10",
+  "status": "candidate_unverified",
+  "authored_by": "ai:OpenAI GPT-6",
+  "intended_use": "Editorial review candidates only. This file is not registered in question_store, content_loader, company_lessons, or any student-facing route.",
+  "publication_policy": {
+    "student_serving": false,
+    "required_gates": [
+      "independent answer and reasoning verification",
+      "ambiguity and distractor review",
+      "domain-expert human review with reviewer identity and timestamp",
+      "company alignment review against dated public sources",
+      "stable item ID and content version",
+      "test/evidence contract review before promotion"
+    ],
+    "prohibited_claims": [
+      "These exact questions were asked by a named company",
+      "These items reproduce proprietary or leaked assessments",
+      "Candidate pack status means human reviewed or trusted"
+    ]
+  },
+  "source_alignment": {
+    "official_sources": [
+      {
+        "company": "tcs",
+        "url": "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+        "checked_at": "2026-11-10",
+        "supports": "2026 All India NQT publishes Foundation numerical, verbal and reasoning sections, plus Advanced quantitative/reasoning and coding. It does not source any item in this pack."
+      },
+      {
+        "company": "accenture",
+        "url": "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture",
+        "checked_at": "2026-11-10",
+        "supports": "Role-dependent technical assessments evaluate problem solving, logical reasoning, applied technical knowledge and coding-environment work."
+      },
+      {
+        "company": "cognizant",
+        "url": "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program",
+        "checked_at": "2026-11-10",
+        "supports": "GenC assessments vary by role and may cover communication, aptitude and/or technical skills."
+      },
+      {
+        "company": "hcltech",
+        "url": "https://www.hcltech.com/careers/campus-hiring",
+        "checked_at": "2026-11-10",
+        "supports": "AMP Ascend lists cognitive numerical/verbal/reasoning, coding/technical and Versant speaking/listening stages."
+      },
+      {
+        "company": "wipro",
+        "url": "https://careers.wipro.com/content/Early-Careers/",
+        "checked_at": "2026-11-10",
+        "supports": "Wipro Elite is described as a technical graduate hiring programme; this source does not establish a universal section count or timing."
+      },
+      {
+        "company": "infosys",
+        "url": "https://www.infosys.com/careers/hackwithinfy.html",
+        "checked_at": "2026-11-10",
+        "supports": "HackWithInfy is a distinct coding competition; do not generalize its rounds to all Infosys fresher hiring."
+      },
+      {
+        "company": "capgemini",
+        "url": "https://www.capgemini.com/in-en/careers/join-capgemini/recruitment-process/",
+        "checked_at": "2026-11-10",
+        "supports": "Capgemini India describes role-dependent technical/language assessments and interviews."
+      }
+    ],
+    "standard_sources": [
+      {
+        "name": "1EdTech QTI",
+        "url": "https://www.1edtech.org/standards/qti/index",
+        "supports": "Interchange of assessment items, tests and results across item banks, authoring tools, delivery and scoring systems."
+      },
+      {
+        "name": "ADL xAPI",
+        "url": "https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md",
+        "supports": "A consistent event structure using actor, verb, object, result and context for recording learning experiences."
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "svc-quant-successive-change-001",
+      "title": "Successive percentage change in a service contract",
+      "canonical_problem": "Successive percentage change",
+      "learning": {
+        "concept": "Apply each percentage change to the current value, not the original value.",
+        "mental_model": "Percentage changes are multipliers. A 12% increase multiplies by 1.12; a 10% reduction then multiplies the new amount by 0.90.",
+        "why_this_matters": "Service operations, invoices, project budgets and staffing costs often change in stages. Treating two successive percentage changes as a simple addition or subtraction gives the wrong final amount and can distort estimates.",
+        "real_world": [
+          "A support contract receives an annual rate revision and then a separate negotiated discount.",
+          "A project estimate changes after a scope increase and a later cost-saving adjustment."
+        ],
+        "prerequisites": [
+          "fractions_decimals",
+          "percentage_basics"
+        ],
+        "learning_objective": "Calculate the net effect of two or more successive percentage changes and explain why the base changes after each step."
+      },
+      "reasoning": {
+        "pattern": "successive-multipliers",
+        "recognition_signals": [
+          "The prompt describes an increase and a later decrease (or multiple revisions).",
+          "Each change applies to the amount after the previous change."
+        ],
+        "anti_patterns": [
+          "Adding 12% and subtracting 10% as if both use the same starting base.",
+          "Assuming equal percentage increase and decrease cancel each other."
+        ],
+        "tradeoffs": [
+          "Multiplication by factors is reliable for any number of sequential changes.",
+          "A base-100 calculation is useful for mental checking but the multiplier method generalizes better."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Start with a convenient base such as 100 units so each percentage has a visible monetary value.",
+        "hint_2": "After the 12% increase, use the new amount as the base for the 10% reduction.",
+        "hint_3": "Compute 100 × 1.12 × 0.90. Compare the result with 100 to find the net percentage change.",
+        "common_mistakes": [
+          "Using 100 as the base for both percentages.",
+          "Subtracting 10 from 12 and reporting a 2% increase.",
+          "Reporting the final amount as the percentage change."
+        ]
+      },
+      "assessment": {
+        "difficulty": "easy",
+        "constraints": [
+          "Use a positive starting value.",
+          "State both the final amount and the net percentage change."
+        ],
+        "test_cases": [
+          {
+            "input": "Starting amount 100; increase 12%; then decrease 10%.",
+            "expected": "100.8; net increase 0.8%"
+          },
+          {
+            "input": "Starting amount 500; decrease 20%; then increase 25%.",
+            "expected": "500; net change 0%"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "applies changes sequentially",
+            "points": 2
+          },
+          {
+            "criterion": "calculates final amount correctly",
+            "points": 2
+          },
+          {
+            "criterion": "states net change relative to original",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "analyst",
+          "operations analyst"
+        ],
+        "companies": [
+          "tcs",
+          "accenture",
+          "cognizant",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original Bountycode candidate. The item is not an official or reported company question. Its skill alignment is pattern-relevant to published numerical/cognitive assessment categories.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": [
+            "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+            "https://www.hcltech.com/careers/campus-hiring"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "quantitative_aptitude.percentages.successive_change",
+        "world": "quantitative-aptitude",
+        "town": "percentage-workshop",
+        "mission_id": "quant-successive-change",
+        "boss_variant": false,
+        "unlock_condition": "percentage_basics mastery evidence",
+        "xp_reward": 0
+      },
+      "problem": "A managed-services contract has a base monthly value of ₹100,000. A rate revision increases it by 12%. After the revised amount is calculated, the customer receives a 10% reduction on that revised amount. What is the final monthly value, and what is the net percentage change from the original value? Choose the one correct result.\nA. ₹102,000; 2% increase\nB. ₹100,800; 0.8% increase\nC. ₹98,000; 2% decrease\nD. ₹100,000; no change\n\nExample check: use ₹100 as the starting amount before applying the same sequence.",
+      "solution": {
+        "answer": "B",
+        "final_amount": "₹100,800",
+        "net_change": "0.8% increase",
+        "worked_reasoning": [
+          "Start with ₹100,000.",
+          "Increase by 12%: ₹100,000 × 1.12 = ₹112,000.",
+          "Reduce the revised amount by 10%: ₹112,000 × 0.90 = ₹100,800.",
+          "Compare with the original: ₹800 ÷ ₹100,000 × 100 = 0.8% increase."
+        ],
+        "distractor_analysis": {
+          "A": "Treats the changes as a simple 12% − 10% = 2% increase.",
+          "C": "Uses the wrong base or applies the reduction before the increase.",
+          "D": "Assumes the two changes cancel; they are applied to different bases."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "quantitative_aptitude",
+          "percentages",
+          "successive_change",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-quant-work-rate-001",
+      "title": "Combined work rates",
+      "canonical_problem": "Work-rate addition",
+      "learning": {
+        "concept": "Convert completion times into rates before combining workers or machines.",
+        "mental_model": "Time describes how long one worker needs for the whole job; rate describes the fraction of the job completed per day. Independent simultaneous work adds rates, not days.",
+        "why_this_matters": "Support teams, migration teams and batch-processing jobs often work in parallel. Estimating combined throughput from rates helps avoid the common error of adding completion times or averaging them without justification.",
+        "real_world": [
+          "Two engineers handle independent parts of a migration and their daily throughput can be combined when work is divisible.",
+          "Two batch jobs process independent records in parallel, so total throughput is the sum of their processing rates."
+        ],
+        "prerequisites": [
+          "fractions",
+          "reciprocals",
+          "ratio_proportion"
+        ],
+        "learning_objective": "Find combined completion time for independent constant-rate workers and solve for a missing worker rate."
+      },
+      "reasoning": {
+        "pattern": "work-rate",
+        "recognition_signals": [
+          "Two or more workers or machines work simultaneously on the same divisible job.",
+          "The prompt gives individual completion times or rates."
+        ],
+        "anti_patterns": [
+          "Adding the number of days instead of adding work per day.",
+          "Taking the arithmetic mean of completion times without deriving a rate."
+        ],
+        "tradeoffs": [
+          "Rate addition handles any number of workers and partial work.",
+          "A common-denominator fraction provides a check on decimal arithmetic."
+        ]
+      },
+      "assistance": {
+        "hint_1": "If A finishes one job in 12 days, write A's one-day rate as 1/12 of the job.",
+        "hint_2": "Write B's rate in the same units and add the fractions to get the combined daily rate.",
+        "hint_3": "For A = 12 days and B = 18 days, the rate is 1/12 + 1/18 = 5/36 job per day; take the reciprocal to get days.",
+        "common_mistakes": [
+          "Adding 12 + 18 days.",
+          "Stopping at the combined rate instead of taking its reciprocal.",
+          "Assuming workers have identical efficiency when the question does not say so."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Assume constant rates and independent work unless stated otherwise.",
+          "Express the final time in days."
+        ],
+        "test_cases": [
+          {
+            "input": "A finishes in 12 days; B finishes in 18 days; both work together.",
+            "expected": "36/5 days = 7.2 days"
+          },
+          {
+            "input": "A finishes in 8 days; B finishes in 8 days; both work together.",
+            "expected": "4 days"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "converts each time to a rate",
+            "points": 2
+          },
+          {
+            "criterion": "adds rates correctly",
+            "points": 2
+          },
+          {
+            "criterion": "takes reciprocal and gives units",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "application support analyst",
+          "operations analyst"
+        ],
+        "companies": [
+          "tcs",
+          "wipro",
+          "hcltech",
+          "cognizant"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original numerical aptitude practice. Broad pattern relevance only; not an employer-published question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": [
+            "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+            "https://www.hcltech.com/careers/campus-hiring"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "quantitative_aptitude.time_work.combined_rates",
+        "world": "quantitative-aptitude",
+        "town": "workshop-of-rates",
+        "mission_id": "quant-work-rate",
+        "boss_variant": false,
+        "unlock_condition": "fractions and reciprocals",
+        "xp_reward": 0
+      },
+      "problem": "Two independent engineers are assigned equivalent portions of a migration task. Engineer A would complete the entire task alone in 12 days; Engineer B would complete it alone in 18 days. If both work at their usual constant rates together, how long do they need to finish one task?\nA. 6 days\nB. 7.2 days\nC. 15 days\nD. 30 days\n\nAssume work is divisible, both start together, and neither blocks the other.",
+      "solution": {
+        "answer": "B",
+        "duration_days": 7.2,
+        "worked_reasoning": [
+          "A completes 1/12 of the task per day.",
+          "B completes 1/18 of the task per day.",
+          "Combined rate = 1/12 + 1/18 = 3/36 + 2/36 = 5/36 task per day.",
+          "Time = 1 ÷ (5/36) = 36/5 = 7.2 days."
+        ],
+        "distractor_analysis": {
+          "A": "Adds the rates incorrectly or uses a rough mental shortcut.",
+          "C": "Averages 12 and 18 days, which is not valid for parallel work.",
+          "D": "Adds the individual completion times and ignores parallel execution."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "quantitative_aptitude",
+          "time_work",
+          "rates",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-quant-data-interpretation-001",
+      "title": "Service desk data interpretation",
+      "canonical_problem": "Tabular data interpretation",
+      "learning": {
+        "concept": "Read a table precisely, calculate totals and ratios, and distinguish a weighted rate from an unweighted average.",
+        "mental_model": "Every question has a denominator. Identify whether the denominator is a total volume, a subgroup, or a number of teams before calculating a percentage.",
+        "why_this_matters": "Operations and service-delivery roles use tables to track incidents, SLA performance, ticket volumes and backlog. Good analysts calculate the correct denominator and explain what the number means instead of reporting an isolated percentage.",
+        "real_world": [
+          "A service desk compares incoming incident volumes and first-response performance across support queues.",
+          "A delivery manager combines counts from several teams to measure the overall share of tickets resolved within SLA."
+        ],
+        "prerequisites": [
+          "addition_subtraction",
+          "fractions_decimals",
+          "percentage_basics"
+        ],
+        "learning_objective": "Calculate totals, averages, subgroup percentages and weighted overall rates from a table, then interpret what the values do and do not show."
+      },
+      "reasoning": {
+        "pattern": "data-interpretation-table",
+        "recognition_signals": [
+          "A table contains counts for multiple teams, categories or periods.",
+          "The question asks for a percentage, difference, average or total across rows."
+        ],
+        "anti_patterns": [
+          "Averaging percentages when group sizes differ.",
+          "Using resolved tickets as the denominator when the question asks for a resolution rate among received tickets.",
+          "Rounding too early and choosing an answer based on a close approximation."
+        ],
+        "tradeoffs": [
+          "A two-pass method—identify formula/denominator, then substitute values—reduces errors.",
+          "A quick magnitude check catches totals that are too large or percentages above 100%."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Read the table headings first. For a resolution rate, the denominator is tickets received, not tickets resolved.",
+        "hint_2": "Add the received and resolved counts separately before calculating an overall rate.",
+        "hint_3": "The total received is 600 and total resolved is 505, so the overall rate is 505 ÷ 600 × 100 ≈ 84.17%.",
+        "common_mistakes": [
+          "Averaging the five team percentages instead of weighting by ticket count.",
+          "Subtracting resolved from received incorrectly.",
+          "Reporting a difference in percentage points as a percentage change."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Use the dataset exactly as shown.",
+          "Round percentages to two decimal places only when needed."
+        ],
+        "test_cases": [
+          {
+            "input": "Received counts: 120,150,90,140,100. Find total received.",
+            "expected": "600"
+          },
+          {
+            "input": "Resolved counts: 108,120,63,119,95. Find overall resolved percentage.",
+            "expected": "84.17%"
+          },
+          {
+            "input": "Team C received 90 and resolved 63. Find its resolution rate.",
+            "expected": "70%"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "chooses the correct denominator",
+            "points": 2
+          },
+          {
+            "criterion": "performs arithmetic accurately",
+            "points": 2
+          },
+          {
+            "criterion": "interprets the metric with correct units",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "service desk analyst",
+          "operations analyst"
+        ],
+        "companies": [
+          "tcs",
+          "hcltech",
+          "accenture",
+          "cognizant"
+        ],
+        "placement_stage": [
+          "oa",
+          "technical-interview"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original table and questions composed for Bountycode. The broad quantitative/cognitive relevance is pattern-relevant; these are not official employer questions.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": [
+            "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+            "https://www.hcltech.com/careers/campus-hiring",
+            "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "quantitative_aptitude.data_interpretation.tables",
+        "world": "quantitative-aptitude",
+        "town": "operations-analytics",
+        "mission_id": "quant-data-interpretation",
+        "boss_variant": false,
+        "unlock_condition": "percentage_basics",
+        "xp_reward": 0
+      },
+      "problem": "A service desk records the following April incident volumes:\n\n| Team | Tickets received | Tickets resolved within SLA |\n|---|---:|---:|\n| A | 120 | 108 |\n| B | 150 | 120 |\n| C | 90 | 63 |\n| D | 140 | 119 |\n| E | 100 | 95 |\n\nQuestion 1: What is the total number of tickets received?\nA. 500  B. 550  C. 600  D. 650\n\nQuestion 2: What is the overall percentage resolved within SLA?\nA. 80.00%  B. 82.50%  C. 84.17%  D. 88.00%\n\nQuestion 3: Which team has the highest within-SLA resolution rate?\nA. A  B. B  C. D  D. E\n\nQuestion 4: How many tickets were not resolved within SLA across all teams?\nA. 85  B. 90  C. 95  D. 105\n\nExample: Team C's rate is 63 ÷ 90 × 100 = 70%.",
+      "solution": {
+        "answers": [
+          "C",
+          "C",
+          "D",
+          "C"
+        ],
+        "calculation_notes": [
+          "Total received = 120 + 150 + 90 + 140 + 100 = 600.",
+          "Total resolved = 108 + 120 + 63 + 119 + 95 = 505. Overall rate = 505/600 × 100 = 84.1666…%, which rounds to 84.17%.",
+          "Team rates: A 90%, B 80%, C 70%, D 85%, E 95%. Team E is highest; option D in Question 3.",
+          "Unresolved = 600 − 505 = 95."
+        ],
+        "distractor_analysis": {
+          "A": "Treats the total as a smaller subtotal or omits a row.",
+          "B": "Rounds before combining or uses an incorrect denominator.",
+          "D": "Confuses an unweighted average of team rates with the overall weighted rate."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "quantitative_aptitude",
+          "data_interpretation",
+          "tables",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-reasoning-syllogism-001",
+      "title": "Syllogism: avoid the converse trap",
+      "canonical_problem": "Syllogism with universal and particular statements",
+      "learning": {
+        "concept": "Treat each statement as a set relationship and accept only conclusions that must be true in every arrangement satisfying the premises.",
+        "mental_model": "A statement that all members of A are in B does not say that all members of B are in A. Particular information about B does not automatically tell us anything about A.",
+        "why_this_matters": "Reasoning assessments reward conclusions that follow strictly from given information. In support and analysis work, the same discipline prevents a plausible assumption from being treated as a proven fact.",
+        "real_world": [
+          "A support workflow may require every priority-one incident to be escalated, but not every escalated incident is priority one.",
+          "A report may state that all certified testers completed training; that does not imply every trained employee is certified."
+        ],
+        "prerequisites": [
+          "sets",
+          "basic_logic"
+        ],
+        "learning_objective": "Translate all/some/no statements into set relationships and reject conclusions that reverse an implication or invent an overlap."
+      },
+      "reasoning": {
+        "pattern": "syllogism-set-relations",
+        "recognition_signals": [
+          "The prompt uses words such as all, some, none or only.",
+          "A conclusion reverses the direction of an 'all A are B' statement.",
+          "The conclusion claims an overlap that the premises never establish."
+        ],
+        "anti_patterns": [
+          "Assuming 'all A are B' means 'all B are A'.",
+          "Assuming two subsets overlap because they share a larger superset.",
+          "Using real-world beliefs instead of the given premises."
+        ],
+        "tradeoffs": [
+          "Venn-style set reasoning is reliable for small syllogisms.",
+          "Testing a conclusion against a counterexample is an efficient way to disprove 'must follow'."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Write the first premise as a one-way containment: Analysts ⊆ Graduates.",
+        "hint_2": "The second premise says some Graduates are Coders. It does not specify where those Coders sit inside the Graduate set.",
+        "hint_3": "Imagine Analysts and Coders as two separate groups inside Graduates. That arrangement satisfies both premises while containing no Analyst-Coder overlap.",
+        "common_mistakes": [
+          "Reversing an implication.",
+          "Confusing some with all.",
+          "Assuming two subsets overlap because both belong to a common superset."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Use only the stated premises.",
+          "A conclusion follows only if it is true in every valid arrangement."
+        ],
+        "test_cases": [
+          {
+            "input": "All analysts are graduates. Some graduates are coders. Conclusion: Some analysts are coders.",
+            "expected": "Does not follow"
+          },
+          {
+            "input": "No archived ticket is active. Ticket X is archived. Conclusion: Ticket X is not active.",
+            "expected": "Follows"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "models the direction of each set relation",
+            "points": 2
+          },
+          {
+            "criterion": "uses a valid counterexample or proof",
+            "points": 2
+          },
+          {
+            "criterion": "states follows/does not follow precisely",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "analyst",
+          "service desk analyst"
+        ],
+        "companies": [
+          "tcs",
+          "hcltech",
+          "accenture",
+          "cognizant",
+          "capgemini"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original syllogism item. Pattern alignment is broad reasoning preparation, not a company-specific question claim.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": [
+            "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+            "https://www.hcltech.com/careers/campus-hiring",
+            "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "logical_reasoning.syllogism.set_relations",
+        "world": "logical-reasoning",
+        "town": "set-logic",
+        "mission_id": "reasoning-syllogism",
+        "boss_variant": false,
+        "unlock_condition": "basic_logic",
+        "xp_reward": 0
+      },
+      "problem": "Premises:\n1. All analysts are graduates.\n2. Some graduates are coders.\n\nConclusion: Some analysts are coders.\n\nChoose the correct evaluation.\nA. The conclusion definitely follows.\nB. The conclusion definitely does not follow in any possible arrangement.\nC. The conclusion does not necessarily follow from the premises.\nD. The premises contradict each other.",
+      "solution": {
+        "answer": "C",
+        "worked_reasoning": [
+          "Premise 1 places every analyst inside the graduate set.",
+          "Premise 2 says at least one graduate is a coder, but it does not say that graduate is an analyst.",
+          "A valid arrangement can place the coder graduate outside the analyst subset.",
+          "Therefore an analyst-coder overlap is possible but not guaranteed."
+        ],
+        "distractor_analysis": {
+          "A": "Assumes the known coder graduate must be an analyst.",
+          "B": "Overstates the result: the premises allow analysts and coders to overlap, but do not require it.",
+          "D": "The two premises are compatible."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "logical_reasoning",
+          "syllogism",
+          "set_logic",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-verbal-inference-001",
+      "title": "Reading inference without overclaiming",
+      "canonical_problem": "Evidence-based inference",
+      "learning": {
+        "concept": "Choose an inference that is supported by the passage while avoiding stronger claims than the evidence allows.",
+        "mental_model": "A good inference sits one step beyond the sentence, not three steps beyond it. It connects clues without inventing causes, motives or outcomes.",
+        "why_this_matters": "Client updates, incident summaries and technical documentation often contain incomplete information. Professionals must distinguish what is known, what is suggested and what still needs confirmation.",
+        "real_world": [
+          "A support analyst should not tell a client an outage is resolved until monitoring confirms recovery.",
+          "A project update may show a milestone slipped after a dependency delay without proving the dependency was the only cause."
+        ],
+        "prerequisites": [
+          "main_idea",
+          "fact_vs_opinion"
+        ],
+        "learning_objective": "Separate explicit facts from reasonable inferences and reject causal claims unsupported by the passage."
+      },
+      "reasoning": {
+        "pattern": "reading-comprehension-inference",
+        "recognition_signals": [
+          "The question asks what can be inferred, implied or concluded.",
+          "The passage provides observations but not a complete causal explanation.",
+          "One answer is plausible but adds a new fact not stated or supported."
+        ],
+        "anti_patterns": [
+          "Treating sequence as proof of causation.",
+          "Choosing the strongest or most dramatic conclusion.",
+          "Using outside knowledge to fill gaps in the passage."
+        ],
+        "tradeoffs": [
+          "Evidence marking is slower than guessing but produces more reliable answers.",
+          "A conservative inference is often better than a confident unsupported claim."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Underline the facts the passage explicitly states before evaluating the answer choices.",
+        "hint_2": "Ask which option is supported by all the clues without adding a new cause or future prediction.",
+        "hint_3": "The passage says delays persisted after staffing increased. It supports the conclusion that more staff alone did not remove the bottleneck; it does not identify the exact remaining cause.",
+        "common_mistakes": [
+          "Confusing after with because of.",
+          "Assuming a single root cause when the passage lists only observations.",
+          "Selecting an answer that introduces a new event."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Answer only from the passage.",
+          "Do not assume facts that are not stated or logically implied."
+        ],
+        "test_cases": [
+          {
+            "input": "A team increased staffing from four to six people. The queue fell slightly, but average resolution time remained above target.",
+            "expected": "More staffing alone did not bring resolution time to target."
+          },
+          {
+            "input": "Attendance rose after a schedule change; no other evidence is supplied.",
+            "expected": "Attendance rose after the change; causation is not established."
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "identifies explicit evidence",
+            "points": 2
+          },
+          {
+            "criterion": "draws only a supported inference",
+            "points": 2
+          },
+          {
+            "criterion": "avoids unsupported causal claims",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "analyst",
+          "service desk analyst"
+        ],
+        "companies": [
+          "tcs",
+          "cognizant",
+          "capgemini",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "oa",
+          "communication"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original passage and question. Broad verbal/communication practice only; not copied from employer assessments.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": [
+            "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+            "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program",
+            "https://www.capgemini.com/in-en/careers/join-capgemini/recruitment-process/"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "verbal_ability.reading_comprehension.inference",
+        "world": "verbal",
+        "town": "evidence-reading",
+        "mission_id": "verbal-inference",
+        "boss_variant": false,
+        "unlock_condition": "main_idea and fact_vs_opinion",
+        "xp_reward": 0
+      },
+      "problem": "Passage:\nA service team added two analysts to its evening shift after the unresolved ticket queue grew for three weeks. During the next week, the queue fell from 240 tickets to 205. However, the median resolution time remained above the service target. The report does not identify the exact cause of the remaining delay.\n\nWhich conclusion is best supported?\nA. Adding analysts caused the entire queue problem to disappear.\nB. The queue became smaller, but the service target was still not being met.\nC. The new analysts were less productive than the previous team.\nD. The ticket queue will continue to fall in the next month.",
+      "solution": {
+        "answer": "B",
+        "worked_reasoning": [
+          "The passage explicitly states the queue dropped from 240 to 205.",
+          "It also states median resolution time remained above target.",
+          "It does not prove the staffing change caused the reduction or explain the remaining delay.",
+          "It does not predict what will happen next month."
+        ],
+        "distractor_analysis": {
+          "A": "Contradicts the stated fact that median resolution remained above target.",
+          "C": "Invents a judgement about the new analysts that is not in the passage.",
+          "D": "Predicts a future trend without evidence."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "verbal",
+          "reading_comprehension",
+          "inference",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-verbal-email-001",
+      "title": "Write a clear professional status email",
+      "canonical_problem": "Professional email structure",
+      "learning": {
+        "concept": "A professional status email gives the reader context, current state, impact, next action and a specific request.",
+        "mental_model": "The reader should be able to answer five questions quickly: what is this about, what changed, what is the impact, what happens next, and what do you need from me?",
+        "why_this_matters": "Entry-level engineers and analysts communicate with teammates, clients and managers during handovers, incidents and delivery updates. Clear writing reduces unnecessary follow-up and prevents a status message from sounding defensive or vague.",
+        "real_world": [
+          "A developer communicates a blocker and revised estimate to a project lead.",
+          "A support analyst hands over an unresolved incident with impact, actions taken and the next owner."
+        ],
+        "prerequisites": [
+          "sentence_clarity",
+          "paragraph_structure"
+        ],
+        "learning_objective": "Choose an appropriate subject line, state facts neutrally, include a concrete next step and make a polite, specific request."
+      },
+      "reasoning": {
+        "pattern": "professional-email",
+        "recognition_signals": [
+          "The reader needs an update or action rather than a long narrative.",
+          "A deadline, blocker or ownership handoff must be clear.",
+          "The message should separate confirmed facts from estimates."
+        ],
+        "anti_patterns": [
+          "Using vague subjects such as 'Hi' or 'Important'.",
+          "Blaming another team or using emotional language.",
+          "Saying 'will update soon' without a time or next action."
+        ],
+        "tradeoffs": [
+          "A concise message is faster to scan but must still include enough context for action.",
+          "A clear request can feel direct while remaining polite and professional."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Choose a subject that names the project or incident and the requested action.",
+        "hint_2": "Use short paragraphs: context, current status and impact, then next action/request.",
+        "hint_3": "State the exact deliverable and when you will provide it; use neutral language and avoid assigning blame.",
+        "common_mistakes": [
+          "Missing the ask.",
+          "No date or owner for the next action.",
+          "Promising a resolution time that has not been confirmed."
+        ]
+      },
+      "assessment": {
+        "difficulty": "easy",
+        "constraints": [
+          "Use neutral, professional language.",
+          "Do not invent a confirmed resolution time.",
+          "Include one specific request or next action."
+        ],
+        "test_cases": [
+          {
+            "input": "A deployment is blocked by a failing integration test. The team is investigating and expects to share a revised estimate by 3 PM.",
+            "expected": "Subject, factual blocker, impact, current action, and time-bound next update."
+          },
+          {
+            "input": "You need a reviewer to approve a pull request before a release cut-off.",
+            "expected": "Clear request with PR context and deadline."
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "specific subject and context",
+            "points": 1
+          },
+          {
+            "criterion": "factual status and impact",
+            "points": 1
+          },
+          {
+            "criterion": "clear next action and owner",
+            "points": 1
+          },
+          {
+            "criterion": "polite, concise and non-blaming language",
+            "points": 1
+          },
+          {
+            "criterion": "time-bound request or update where justified",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "application support analyst",
+          "service desk analyst"
+        ],
+        "companies": [
+          "cognizant",
+          "capgemini",
+          "hcltech",
+          "accenture"
+        ],
+        "placement_stage": [
+          "communication",
+          "technical-interview"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original professional communication practice. It is not represented as a named employer assessment item.",
+          "company_alignment_level": "general_transferable_skill",
+          "evidence_refs": [
+            "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program",
+            "https://www.capgemini.com/in-en/careers/join-capgemini/recruitment-process/",
+            "https://www.hcltech.com/careers/campus-hiring"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "communication.professional_writing.status_email",
+        "world": "verbal",
+        "town": "workplace-communication",
+        "mission_id": "email-status-update",
+        "boss_variant": false,
+        "unlock_condition": "sentence_clarity",
+        "xp_reward": 0
+      },
+      "problem": "You are a junior developer on a release team. A deployment is blocked because an integration test fails in the staging environment. The team is investigating. You have not confirmed the root cause or a resolution time. You can provide the next update by 3:00 PM.\n\nWhich email is the best professional update?\n\nA. Subject: Important. The deployment is broken because the other team did not do their job. We will fix it soon.\nB. Subject: Staging deployment blocked — integration test failure. The release is currently on hold while we investigate the failing integration test. I will share the findings and a revised estimate by 3:00 PM. Please let me know if the release cut-off has changed.\nC. Subject: Hi. There is an issue. Please check.\nD. Subject: Deployment solved. The test is failing but we will definitely finish before lunch.",
+      "solution": {
+        "answer": "B",
+        "worked_reasoning": [
+          "The subject names the status and specific cause currently observed.",
+          "The message separates the known failure from the unconfirmed root cause.",
+          "It states the impact (release on hold), current action (investigation) and a time-bound next update.",
+          "The final sentence makes a polite, relevant request without assigning blame."
+        ],
+        "distractor_analysis": {
+          "A": "Blames another team and promises a fix without evidence.",
+          "C": "Does not provide enough context or an actionable request.",
+          "D": "Claims the issue is solved and guarantees an unconfirmed deadline."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "verbal",
+          "communication",
+          "professional_email",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-pseudo-nested-loop-001",
+      "title": "Trace a nested loop with a changing inner bound",
+      "canonical_problem": "Nested-loop variable-state tracing",
+      "learning": {
+        "concept": "A nested loop executes the inner body a number of times determined by the current outer-loop value.",
+        "mental_model": "For each outer-loop value, reset the inner-loop variable and trace every iteration before moving to the next outer value.",
+        "why_this_matters": "Programming-logic and pseudocode assessments often test whether a candidate can maintain variable state across nested loops. A disciplined trace also helps engineers debug counters, retry logic and batch-processing code.",
+        "real_world": [
+          "A batch processor loops over each customer and then over that customer's records.",
+          "A test runner iterates over suites and then over individual test cases within each suite."
+        ],
+        "prerequisites": [
+          "variables_state",
+          "loops_basics",
+          "comparison_operators"
+        ],
+        "learning_objective": "Produce an iteration table for nested loops, calculate loop-body execution count and track an accumulator without skipping or duplicating iterations."
+      },
+      "reasoning": {
+        "pattern": "nested-loop-trace",
+        "recognition_signals": [
+          "An inner loop uses the current outer variable in its limit.",
+          "An accumulator changes inside the inner loop.",
+          "The question asks for a final printed value or number of iterations."
+        ],
+        "anti_patterns": [
+          "Assuming the inner loop has the same number of iterations each time.",
+          "Failing to reset the inner variable for each outer iteration.",
+          "Updating an accumulator only once per outer iteration when the statement is inside the inner loop."
+        ],
+        "tradeoffs": [
+          "A table of i, j and total is reliable for small inputs.",
+          "A formula can speed up large traces, but only after the loop ranges are understood."
+        ]
+      },
+      "assistance": {
+        "hint_1": "List the outer values first: i = 1, 2, 3. For each one, the inner loop starts again at j = 0.",
+        "hint_2": "Write one row per body execution and update total by i + j each time.",
+        "hint_3": "The contributions are 1; then 2 and 3; then 3, 4 and 5. Add them to get 18.",
+        "common_mistakes": [
+          "Keeping j from the previous outer iteration.",
+          "Using j <= i instead of j < i.",
+          "Updating total with i only and ignoring j.",
+          "Counting loop-condition checks as body executions."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Outer loop: i takes values 1, 2, 3.",
+          "Inner loop: j starts at 0 and continues while j < i.",
+          "The body adds i + j to total."
+        ],
+        "test_cases": [
+          {
+            "input": "total=0; for i=1..3: for j=0..i-1: total += i+j",
+            "expected": "18"
+          },
+          {
+            "input": "Count body executions for i=1..4 with j=0..i-1.",
+            "expected": "10"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "lists all outer iterations",
+            "points": 1
+          },
+          {
+            "criterion": "resets inner loop correctly",
+            "points": 2
+          },
+          {
+            "criterion": "updates accumulator accurately",
+            "points": 1
+          },
+          {
+            "criterion": "reports final output",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "analyst"
+        ],
+        "companies": [
+          "infosys",
+          "tcs",
+          "accenture",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original pseudocode-style trace candidate. Infosys HackWithInfy is a distinct coding competition; this item is broad programming-logic practice and is not an official test question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": [
+            "https://www.infosys.com/careers/hackwithinfy.html",
+            "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+            "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "programming_logic.nested_loops.variable_trace",
+        "world": "pseudocode-programming-logic",
+        "town": "execution-trace-lab",
+        "mission_id": "nested-loop-trace",
+        "boss_variant": false,
+        "unlock_condition": "variables_state and loops_basics",
+        "xp_reward": 0
+      },
+      "problem": "Trace the following pseudocode. The inner loop starts again at zero for each outer-loop value.\n\n```\ntotal = 0\nfor i = 1 to 3:\n    for j = 0 to i - 1:\n        total = total + i + j\nprint(total)\n```\n\nWhat is printed?\nA. 10\nB. 12\nC. 18\nD. 21\n\nExample trace for i=2: j takes 0 and 1, so the body adds 2 and 3.",
+      "solution": {
+        "answer": "C",
+        "output": 18,
+        "iteration_trace": [
+          {
+            "i": 1,
+            "j": 0,
+            "added": 1,
+            "running_total": 1
+          },
+          {
+            "i": 2,
+            "j": 0,
+            "added": 2,
+            "running_total": 3
+          },
+          {
+            "i": 2,
+            "j": 1,
+            "added": 3,
+            "running_total": 6
+          },
+          {
+            "i": 3,
+            "j": 0,
+            "added": 3,
+            "running_total": 9
+          },
+          {
+            "i": 3,
+            "j": 1,
+            "added": 4,
+            "running_total": 13
+          },
+          {
+            "i": 3,
+            "j": 2,
+            "added": 5,
+            "running_total": 18
+          }
+        ],
+        "worked_reasoning": [
+          "For i=1, the inner loop runs once: add 1.",
+          "For i=2, the inner loop runs twice: add 2 then 3.",
+          "For i=3, the inner loop runs three times: add 3, then 4, then 5.",
+          "Final total = 1 + 2 + 3 + 3 + 4 + 5 = 18."
+        ],
+        "distractor_analysis": {
+          "A": "Misses one or more inner iterations.",
+          "B": "Counts iterations but uses an incomplete accumulator update.",
+          "D": "Runs the inner loop one extra time or misreads the inclusive/exclusive bound."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "pseudocode",
+          "nested_loops",
+          "trace",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-coding-first-unique-001",
+      "title": "First non-repeating character",
+      "canonical_problem": "Frequency map with stable scan",
+      "learning": {
+        "concept": "Count occurrences first, then scan the original sequence to find the first item with frequency one.",
+        "mental_model": "The frequency map answers how often each character occurs; the original order answers which unique character appears first. These are two separate responsibilities.",
+        "why_this_matters": "Frequency maps are a foundational service-level coding pattern used in log parsing, input validation and string analysis. The problem tests both a useful data structure and the discipline to preserve original order.",
+        "real_world": [
+          "A log analyzer can identify the first character or token that appears only once in a record.",
+          "A text-processing utility can locate the first unique symbol while preserving the original input order."
+        ],
+        "prerequisites": [
+          "strings_basics",
+          "hashing_basics",
+          "loops_basics"
+        ],
+        "learning_objective": "Implement a two-pass frequency-map solution and explain its O(n) time and O(k) auxiliary-space complexity."
+      },
+      "reasoning": {
+        "pattern": "hash-map-frequency",
+        "recognition_signals": [
+          "The prompt asks for first/earliest/leftmost item satisfying a frequency condition.",
+          "The input is a sequence where order must be preserved.",
+          "Repeated membership checks would make a nested-loop solution unnecessarily slow."
+        ],
+        "anti_patterns": [
+          "Returning the first character inserted into a hash map without checking order.",
+          "Sorting the string and losing the original position.",
+          "Using a nested scan for every character without considering O(n²) work."
+        ],
+        "tradeoffs": [
+          "Two passes provide O(n) time with a frequency map.",
+          "A fixed-size array can be faster for a restricted alphabet but is less general than a map."
+        ]
+      },
+      "assistance": {
+        "hint_1": "You need both frequency and original order; do not sort the input.",
+        "hint_2": "First pass: increment a count for every character. Second pass: return the first character whose count is exactly one.",
+        "hint_3": "For 'swiss', counts are s:3, w:1, i:1. Scanning the original string finds 'w' before 'i'.",
+        "common_mistakes": [
+          "Returning any unique character rather than the first unique character.",
+          "Treating uppercase and lowercase as equal without being asked to normalize case.",
+          "Failing to define what to return when no unique character exists."
+        ]
+      },
+      "assessment": {
+        "difficulty": "easy",
+        "constraints": [
+          "Input contains lowercase English letters only.",
+          "Return an empty string when every character repeats.",
+          "Target time complexity O(n)."
+        ],
+        "test_cases": [
+          {
+            "input": "swiss",
+            "expected": "w"
+          },
+          {
+            "input": "aabbc",
+            "expected": "c"
+          },
+          {
+            "input": "aabb",
+            "expected": ""
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "counts each character correctly",
+            "points": 2
+          },
+          {
+            "criterion": "preserves original order in second pass",
+            "points": 2
+          },
+          {
+            "criterion": "handles no-unique-character case",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "software developer"
+        ],
+        "companies": [
+          "tcs",
+          "accenture",
+          "cognizant",
+          "wipro",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original coding candidate. Broad array/string/hash-map pattern practice; not copied from an employer's item bank.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": [
+            "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
+            "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "dsa.strings.hash_map_frequency",
+        "world": "easy-medium-dsa",
+        "town": "string-workshop",
+        "mission_id": "first-non-repeating",
+        "boss_variant": false,
+        "unlock_condition": "strings_basics and hashing_basics",
+        "xp_reward": 0
+      },
+      "problem": "Given a string containing lowercase English letters, return the first character that appears exactly once. Return an empty string if no such character exists.\n\nExamples:\n- input: `swiss` → output: `w`\n- input: `aabbc` → output: `c`\n- input: `aabb` → output: `\"\"`\n\nWhat is the best general approach for O(n) time?\nA. Sort the string, then select the first character\nB. Count frequencies, then scan the original string in order\nC. Compare every pair of characters using nested loops\nD. Return the first character that is different from the final character.",
+      "solution": {
+        "answer": "B",
+        "algorithm": [
+          "Create an empty frequency map.",
+          "Scan the input once and increment the count for each character.",
+          "Scan the input again from left to right.",
+          "Return the first character whose count equals one; if none exists, return an empty string."
+        ],
+        "python_code": "def first_unique_char(text):\n    counts = {}\n    for ch in text:\n        counts[ch] = counts.get(ch, 0) + 1\n    for ch in text:\n        if counts[ch] == 1:\n            return ch\n    return \"\"\n",
+        "time_complexity": "O(n)",
+        "space_complexity": "O(k), where k is the number of distinct characters",
+        "distractor_analysis": {
+          "A": "Sorting changes original order, so it cannot preserve the first unique character in the input.",
+          "C": "Can work but is O(n²) in the straightforward implementation.",
+          "D": "A character differing from the last character does not imply that it appears exactly once."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "coding",
+          "strings",
+          "hash_map",
+          "frequency",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-technical-http-idempotency-001",
+      "title": "HTTP methods and retry safety",
+      "canonical_problem": "Idempotent request semantics",
+      "learning": {
+        "concept": "Idempotency describes whether repeating the same request has the same intended effect as performing it once.",
+        "mental_model": "A retry is safe only when repeating the operation does not create additional unintended state. Ask whether the request sets a target state or creates another action each time.",
+        "why_this_matters": "Service-company engineers maintain APIs and distributed applications where clients retry after timeouts or network failures. Understanding idempotency helps prevent duplicate orders, payments and resource creation.",
+        "real_world": [
+          "A client retries a resource update after losing the response and must avoid applying the state change repeatedly.",
+          "An API gateway handles transient failures without creating duplicate resources or business transactions."
+        ],
+        "prerequisites": [
+          "http_methods",
+          "rest_api_basics"
+        ],
+        "learning_objective": "Distinguish safe/idempotent HTTP semantics from methods that typically create new actions, and explain why an idempotency key may be required."
+      },
+      "reasoning": {
+        "pattern": "http-idempotency",
+        "recognition_signals": [
+          "A request may be retried after a timeout or lost response.",
+          "The operation updates a resource to a desired state rather than creating a new action.",
+          "Duplicate side effects would be harmful."
+        ],
+        "anti_patterns": [
+          "Assuming every POST is automatically safe to retry.",
+          "Confusing an identical response with an idempotent state change.",
+          "Ignoring business-level idempotency for payment or order creation."
+        ],
+        "tradeoffs": [
+          "PUT is intended to be idempotent for replacing/updating a resource at a known URI.",
+          "POST is not generally idempotent; an idempotency key can make selected business operations safe against duplicate retries."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Think about the server-side effect, not just the HTTP response body.",
+        "hint_2": "Repeating a PUT to set the same resource representation should not create another resource or increment a counter.",
+        "hint_3": "For an order-creation POST, use a unique idempotency key and persist the key/result so a retry can return the original outcome instead of creating another order.",
+        "common_mistakes": [
+          "Claiming POST is always idempotent.",
+          "Assuming every PUT request has no side effects in every application.",
+          "Using retries without an idempotency strategy for payments."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Use standard HTTP semantics; application-specific safeguards may add stronger guarantees.",
+          "Distinguish protocol intent from implementation defects."
+        ],
+        "test_cases": [
+          {
+            "input": "Client retries PUT /users/42 with the same desired representation.",
+            "expected": "Idempotent in intended semantics."
+          },
+          {
+            "input": "Client retries POST /payments without a deduplication key.",
+            "expected": "Not generally safe; may create duplicate payment actions."
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "defines idempotency as same intended effect",
+            "points": 2
+          },
+          {
+            "criterion": "distinguishes PUT and POST correctly",
+            "points": 2
+          },
+          {
+            "criterion": "mentions business-level deduplication for retryable POST",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "application developer",
+          "backend developer"
+        ],
+        "companies": [
+          "accenture",
+          "cognizant",
+          "hcltech",
+          "capgemini",
+          "tcs"
+        ],
+        "placement_stage": [
+          "technical-interview"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original technical-interview scenario. Company mappings are role-relevant preparation hypotheses, not published company question claims.",
+          "company_alignment_level": "role_relevant",
+          "evidence_refs": [
+            "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture",
+            "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program",
+            "https://www.hcltech.com/careers/campus-hiring"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "computer_science.web_api.http.idempotency",
+        "world": "technical-foundations",
+        "town": "api-design",
+        "mission_id": "http-idempotency",
+        "boss_variant": false,
+        "unlock_condition": "http_methods and rest_api_basics",
+        "xp_reward": 0
+      },
+      "problem": "An application sends `POST /payments` to create a payment. The network times out before the client receives a response. The client retries the exact same request. Which design best prevents a duplicate payment?\n\nA. Assume POST is idempotent and retry without tracking the request.\nB. Attach a unique idempotency key and persist the outcome so repeated requests with that key return the original result.\nC. Change the HTTP method to GET but keep the request body.\nD. Retry the request with a new random key each time.",
+      "solution": {
+        "answer": "B",
+        "worked_reasoning": [
+          "A timeout does not prove the server failed to process the first request.",
+          "POST is not generally idempotent, so a second request may create another payment.",
+          "A stable idempotency key lets the server recognize the same logical operation and return the stored outcome.",
+          "A new key for each retry defeats deduplication."
+        ],
+        "distractor_analysis": {
+          "A": "Assumes a guarantee POST does not provide by default.",
+          "C": "Misuses GET and does not fix payment creation semantics.",
+          "D": "Creates a new identity for the retry, so it cannot be deduplicated as the same operation."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "technical_interview",
+          "http",
+          "api_design",
+          "idempotency",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-technical-test-design-001",
+      "title": "Boundary-value testing",
+      "canonical_problem": "Boundary-value analysis",
+      "learning": {
+        "concept": "Boundary-value analysis selects tests at, just below and just above input limits because defects often occur where conditions change.",
+        "mental_model": "If an input is valid from 1 through 100, test the edges: 0, 1, 2, 99, 100 and 101—not just a typical middle value.",
+        "why_this_matters": "Entry-level engineers often need to validate form inputs, API parameters and business rules. Boundary-focused test design finds off-by-one errors that happy-path examples miss.",
+        "real_world": [
+          "A registration API validates age or quantity ranges before writing data.",
+          "A report filter accepts page sizes within a documented range and must reject values outside it."
+        ],
+        "prerequisites": [
+          "conditions_basics",
+          "comparison_operators"
+        ],
+        "learning_objective": "Construct boundary test sets and explain how each test distinguishes inclusive and exclusive limits."
+      },
+      "reasoning": {
+        "pattern": "boundary-value-analysis",
+        "recognition_signals": [
+          "The specification gives a minimum or maximum value.",
+          "The implementation uses <, <=, > or >= conditions.",
+          "A value changes from valid to invalid at a defined boundary."
+        ],
+        "anti_patterns": [
+          "Testing only ordinary mid-range values.",
+          "Testing the minimum and maximum but not just outside them.",
+          "Ignoring empty, null or one-item inputs when the specification permits them."
+        ],
+        "tradeoffs": [
+          "Boundary-value tests are compact and high-yield.",
+          "Equivalence partitioning broadens coverage by testing representative values from valid and invalid groups."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Write down the inclusive valid range exactly as stated before choosing tests.",
+        "hint_2": "For each boundary, select the value itself and the nearest value on either side.",
+        "hint_3": "For 1 ≤ quantity ≤ 100, include 0, 1, 2, 99, 100 and 101; then add null/empty only if the API contract defines them.",
+        "common_mistakes": [
+          "Testing 1 and 100 but not 0 or 101.",
+          "Assuming whether an endpoint is inclusive without reading the specification.",
+          "Mixing boundary analysis with random testing."
+        ]
+      },
+      "assessment": {
+        "difficulty": "easy",
+        "constraints": [
+          "Valid quantity is an integer from 1 through 100 inclusive.",
+          "Do not assume behavior for non-integer values unless stated."
+        ],
+        "test_cases": [
+          {
+            "input": "quantity must satisfy 1 <= quantity <= 100",
+            "expected": "0 invalid; 1 valid; 2 valid; 99 valid; 100 valid; 101 invalid"
+          },
+          {
+            "input": "page_size must satisfy 1 <= page_size < 51",
+            "expected": "0 invalid; 1 valid; 50 valid; 51 invalid"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "identifies valid interval correctly",
+            "points": 1
+          },
+          {
+            "criterion": "tests both sides of each boundary",
+            "points": 2
+          },
+          {
+            "criterion": "distinguishes inclusive and exclusive limits",
+            "points": 2
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "QA engineer",
+          "application support analyst"
+        ],
+        "companies": [
+          "tcs",
+          "accenture",
+          "cognizant",
+          "capgemini",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "technical-interview"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original testing fundamentals candidate. This is role-relevant preparation rather than a claim about a specific employer's test.",
+          "company_alignment_level": "role_relevant",
+          "evidence_refs": [
+            "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture",
+            "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program"
+          ]
+        }
+      },
+      "progression": {
+        "mastery_skill": "software_engineering.testing.boundary_value_analysis",
+        "world": "technical-foundations",
+        "town": "test-design",
+        "mission_id": "boundary-value-analysis",
+        "boss_variant": false,
+        "unlock_condition": "conditions_basics",
+        "xp_reward": 0
+      },
+      "problem": "An API accepts `quantity` as an integer from 1 through 100, inclusive. Which set gives the most useful boundary-value coverage?\n\nA. 10, 20, 30, 40\nB. 1, 100\nC. 0, 1, 2, 99, 100, 101\nD. 50, 60, 70, 80, 90",
+      "solution": {
+        "answer": "C",
+        "worked_reasoning": [
+          "The valid range is inclusive: 1 ≤ quantity ≤ 100.",
+          "Test 0 just below the lower boundary, 1 at the lower boundary and 2 just above it.",
+          "Test 99 just below the upper boundary, 100 at the upper boundary and 101 just above it.",
+          "This detects common off-by-one and comparison-operator errors."
+        ],
+        "distractor_analysis": {
+          "A": "Typical valid values do not exercise the validity transition.",
+          "B": "Tests the endpoints but not just outside or just inside them.",
+          "D": "Tests only middle-of-range values."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "technical_interview",
+          "software_testing",
+          "boundary_values",
+          "candidate_unverified"
+        ]
+      }
+    }
+  ]
+}
