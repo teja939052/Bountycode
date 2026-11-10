@@ -6,6 +6,16 @@ The internal schemas used by TCS, Infosys, Wipro, Cognizant, HCLTech, Accenture,
 
 There are public interoperability standards. 1EdTech QTI models assessment items, tests/sections and results so those artifacts can move between item banks, authoring systems, delivery systems and scoring/analytics tools. ADL xAPI defines a consistent learning-experience statement with an actor, verb, object, result and context. These are useful reference standards, not proof that a particular employer uses them internally.
 
+## Mainline curriculum integration
+
+The current canonical product documents are:
+- `docs/SERVICE_COMPANY_CURRICULUM.md`: ordered service-company curriculum spine and release priorities.
+- `docs/learning/LEARNING_EXPERIENCE_STANDARD.md`: lesson anatomy, interactive exercise patterns, feedback, mastery and quality gates.
+- `backend/app/content/world_registry.py` plus `world*.py`: the single student-facing lesson/world registry.
+- `backend/app/content/company_journeys.py` and the company blueprint infrastructure: employer overlays.
+
+The 17 learning objects in `backend/app/data/candidates/service_company_patterns_v1.json` are authoring/review artifacts, not LessonDefinitions and not a new student-facing registry. If a candidate is approved, the content team should either adapt it into the existing world/town lesson definition with the required interactive learning sequence, or create a verified question-bank item where a standalone assessment question is appropriate. Do not add the candidate directory to runtime loaders or the World Registry.
+
 ## Existing Bountycode sources of truth
 
 Reuse what already exists:
