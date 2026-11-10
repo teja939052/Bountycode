@@ -110,8 +110,8 @@
           "Assuming equal percentage increase and decrease cancel each other."
         ],
         "tradeoffs": [
-          "Multiplication by factors is reliable for any number of sequential changes.",
-          "A base-100 calculation is useful for mental checking but the multiplier method generalizes better."
+          "Multipliers scale to any number of sequential revisions; a base-100 worked example is easier for mental arithmetic.",
+          "Exact fractions preserve precision; round only at the final currency or percentage display."
         ]
       },
       "assistance": {
@@ -253,8 +253,8 @@
           "Taking the arithmetic mean of completion times without deriving a rate."
         ],
         "tradeoffs": [
-          "Rate addition handles any number of workers and partial work.",
-          "A common-denominator fraction provides a check on decimal arithmetic."
+          "Adding rates is valid for independent simultaneous work; averaging completion times is not a substitute.",
+          "Fraction arithmetic keeps the result exact; decimal rates can be faster when the values are simple."
         ]
       },
       "assistance": {
@@ -396,8 +396,8 @@
           "Rounding too early and choosing an answer based on a close approximation."
         ],
         "tradeoffs": [
-          "A two-pass method—identify formula/denominator, then substitute values—reduces errors.",
-          "A quick magnitude check catches totals that are too large or percentages above 100%."
+          "A weighted overall rate reflects ticket volume; an unweighted team average answers a different question.",
+          "Exact counts should be summed before rounding rates; early rounding can change a close option."
         ]
       },
       "assistance": {
@@ -549,8 +549,8 @@
           "Using real-world beliefs instead of the given premises."
         ],
         "tradeoffs": [
-          "Venn-style set reasoning is reliable for small syllogisms.",
-          "Testing a conclusion against a counterexample is an efficient way to disprove 'must follow'."
+          "A counterexample is efficient for disproving a conclusion that must follow; a Venn diagram helps visualize all valid arrangements.",
+          "Strict premise-based reasoning is safer than importing real-world assumptions about the groups."
         ]
       },
       "assistance": {
@@ -693,8 +693,8 @@
           "Using outside knowledge to fill gaps in the passage."
         ],
         "tradeoffs": [
-          "Evidence marking is slower than guessing but produces more reliable answers.",
-          "A conservative inference is often better than a confident unsupported claim."
+          "A conservative inference avoids unsupported claims; a stronger causal conclusion requires explicit evidence.",
+          "Quoting textual evidence is slower than intuition but reduces over-interpretation."
         ]
       },
       "assistance": {
@@ -837,8 +837,8 @@
           "Saying 'will update soon' without a time or next action."
         ],
         "tradeoffs": [
-          "A concise message is faster to scan but must still include enough context for action.",
-          "A clear request can feel direct while remaining polite and professional."
+          "Concise writing reduces reading time; too much compression can omit ownership, impact or the actual request.",
+          "A specific next-update time is useful when known; inventing an ETA creates an avoidable commitment."
         ]
       },
       "assistance": {
@@ -991,8 +991,8 @@
           "Updating an accumulator only once per outer iteration when the statement is inside the inner loop."
         ],
         "tradeoffs": [
-          "A table of i, j and total is reliable for small inputs.",
-          "A formula can speed up large traces, but only after the loop ranges are understood."
+          "A row-by-row state table is reliable for short traces; formulas are faster only after loop bounds are understood.",
+          "Counting body executions differs from counting condition checks, so name the quantity being asked."
         ]
       },
       "assistance": {
@@ -1179,8 +1179,8 @@
           "Using a nested scan for every character without considering O(n²) work."
         ],
         "tradeoffs": [
-          "Two passes provide O(n) time with a frequency map.",
-          "A fixed-size array can be faster for a restricted alphabet but is less general than a map."
+          "A two-pass hash-map approach is O(n) and preserves input order; sorting loses the required order.",
+          "A fixed-size frequency array can reduce overhead for a restricted alphabet; a map handles a wider character set."
         ]
       },
       "assistance": {
@@ -1330,8 +1330,8 @@
           "Ignoring business-level idempotency for payment or order creation."
         ],
         "tradeoffs": [
-          "PUT is intended to be idempotent for replacing/updating a resource at a known URI.",
-          "POST is not generally idempotent; an idempotency key can make selected business operations safe against duplicate retries."
+          "PUT expresses a desired resource state and is intended to be idempotent; POST often represents creation or an action.",
+          "An idempotency key adds business-level retry safety for POST but requires server-side persistence and expiry policy."
         ]
       },
       "assistance": {
@@ -1475,8 +1475,8 @@
           "Ignoring empty, null or one-item inputs when the specification permits them."
         ],
         "tradeoffs": [
-          "Boundary-value tests are compact and high-yield.",
-          "Equivalence partitioning broadens coverage by testing representative values from valid and invalid groups."
+          "Boundary-value analysis is compact and high-yield; equivalence partitioning adds representative tests from each valid/invalid class.",
+          "A small boundary set is more targeted than random mid-range values, but it does not replace broader integration testing."
         ]
       },
       "assistance": {
