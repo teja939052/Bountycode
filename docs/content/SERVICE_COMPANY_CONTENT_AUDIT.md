@@ -100,7 +100,7 @@ The highest-value next content work is not duplicating those slugs. It is:
 
 File: backend/app/data/candidates/service_company_patterns_v1.json
 
-Ten original learning-object candidates cover:
+Seventeen original learning-object candidates cover:
 1. successive percentage change;
 2. combined work rates;
 3. service-desk data interpretation;
@@ -110,7 +110,14 @@ Ten original learning-object candidates cover:
 7. nested-loop pseudocode tracing;
 8. first non-repeating character;
 9. HTTP idempotency and retry safety;
-10. boundary-value testing.
+10. boundary-value testing;
+11. average speed over equal distances;
+12. coordinate-based direction reasoning;
+13. subject–verb agreement with intervening phrases;
+14. sequential array mutation tracing;
+15. second-largest distinct array value;
+16. OOP runtime method dispatch;
+17. Git feature-branch and pull-request workflow.
 
 They use the existing Learning Object shape, stable IDs, worked reasoning, recognition signals, anti-patterns, hint ladders, test/assessment examples and explicit provenance notes.
 
