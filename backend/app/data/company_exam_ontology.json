@@ -1,0 +1,104 @@
+{
+  "id": "india_service_company_oa",
+  "version": "2026.1",
+  "philosophy": "One skill graph maps to multiple company OAs. Content is topic-tagged, company-weighted, and timed like real papers.",
+  "companies": {
+    "tcs_nqt": {
+      "name": "TCS NQT",
+      "tracks": ["Ninja", "Digital", "Prime"],
+      "no_negative_marking": true,
+      "parts": [
+        {
+          "id": "foundation",
+          "duration_min": 75,
+          "sections": [
+            {"id": "numerical_ability", "questions": 20, "duration_min": 25, "sec_per_q": 75},
+            {"id": "verbal_ability", "questions": 25, "duration_min": 25, "sec_per_q": 60},
+            {"id": "reasoning_ability", "questions": 20, "duration_min": 25, "sec_per_q": 75}
+          ]
+        },
+        {
+          "id": "advanced",
+          "duration_min": 115,
+          "sections": [
+            {"id": "advanced_quant_reasoning", "questions": 15, "duration_min": 25},
+            {"id": "advanced_coding", "problems": 2, "duration_min": 90, "languages": ["C", "C++", "Java", "Python"]}
+          ]
+        }
+      ],
+      "high_weight_topics": {
+        "numerical_ability": ["percentages", "profit_loss", "time_work", "time_distance", "ratio_proportion", "averages", "number_systems", "hcf_lcm", "probability", "data_interpretation"],
+        "reasoning_ability": ["seating_arrangement", "number_series", "coding_decoding", "blood_relations", "syllogisms", "direction_sense", "data_sufficiency"],
+        "verbal_ability": ["reading_comprehension", "error_spotting", "sentence_completion", "para_jumbles", "synonyms_antonyms"],
+        "coding": ["arrays", "strings", "sorting", "searching", "basic_math", "recursion"]
+      }
+    },
+    "infosys": {
+      "name": "Infosys (SE / SP / PP)",
+      "tracks": ["System Engineer", "Specialist Programmer", "Power Programmer"],
+      "sections": [
+        {"id": "mathematical_ability", "questions": 10, "duration_min": 35},
+        {"id": "logical_reasoning", "questions": 15, "duration_min": 25},
+        {"id": "verbal_ability", "questions": 20, "duration_min": 20},
+        {"id": "pseudocode", "questions": 5, "duration_min": 10},
+        {"id": "puzzle", "questions": 4, "duration_min": 10}
+      ],
+      "high_weight_topics": {
+        "mathematical_ability": ["percentages", "profit_loss", "time_distance", "permutation_combination", "probability", "data_interpretation"],
+        "logical_reasoning": ["syllogisms", "seating_arrangement", "blood_relations", "data_sufficiency", "coding_decoding"],
+        "verbal_ability": ["reading_comprehension", "sentence_correction", "para_jumbles"],
+        "pseudocode": ["loop_trace", "conditionals", "arrays", "recursion_output"],
+        "coding_sp": ["arrays", "strings", "hashing", "two_pointers", "dp_basics"]
+      },
+      "related": ["InfyTQ", "HackWithInfy"]
+    },
+    "wipro_nlth": {
+      "name": "Wipro NLTH / NTH",
+      "tracks": ["Engineer Trainee", "Elite"],
+      "sections": [
+        {"id": "aptitude", "note": "Quant + Logical + Verbal cluster"},
+        {"id": "written_communication", "type": "essay", "duration_min": 20},
+        {"id": "coding", "problems": "1-2", "duration_min": 45}
+      ],
+      "high_weight_topics": {
+        "aptitude": ["time_work", "time_distance", "percentages", "profit_loss", "ratio_proportion", "seating_arrangement", "series"],
+        "verbal": ["reading_comprehension", "error_spotting", "grammar"],
+        "coding": ["arrays", "strings", "loops", "recursion"]
+      }
+    },
+    "cognizant_genc": {
+      "name": "Cognizant GenC",
+      "tracks": ["GenC", "GenC Pro", "GenC Next"],
+      "sections": [
+        {"id": "quantitative_ability", "questions": 16, "duration_min": 16},
+        {"id": "logical_reasoning", "questions": 14, "duration_min": 14},
+        {"id": "verbal_ability", "questions": 25, "duration_min": 25}
+      ],
+      "also": ["communication_assessment", "technical_cluster_java_python_csharp"],
+      "high_weight_topics": {
+        "quantitative_ability": ["percentages", "time_work", "ratio_proportion", "averages", "profit_loss"],
+        "logical_reasoning": ["seating_arrangement", "blood_relations", "coding_decoding", "series"],
+        "verbal_ability": ["reading_comprehension", "para_jumbles", "sentence_correction"]
+      }
+    },
+    "accenture": {
+      "name": "Accenture",
+      "high_weight_topics": {
+        "cognitive": ["percentages", "ratio_proportion", "series", "coding_decoding", "reading_comprehension"],
+        "technical": ["oops", "dbms", "networking_basics", "pseudocode"],
+        "coding": ["arrays", "strings", "basic_dsa"]
+      }
+    }
+  },
+  "shared_skill_spine": [
+    "number_systems", "percentages", "profit_loss", "ratio_proportion", "averages",
+    "time_work", "time_distance", "hcf_lcm", "simple_compound_interest", "mixture_alligation",
+    "pipes_cisterns", "probability_basics", "permutation_combination", "data_interpretation",
+    "number_series", "coding_decoding", "blood_relations", "direction_sense", "syllogisms",
+    "seating_arrangement", "logical_puzzles", "data_sufficiency", "clocks_calendars",
+    "reading_comprehension", "error_spotting", "sentence_correction", "para_jumbles",
+    "vocabulary_cloze", "grammar_transformations",
+    "variables_basics", "conditions_basics", "loops_basics", "arrays_basics", "strings_basics",
+    "hashing_basics", "sorting_basics", "searching_basics", "recursion_basics", "pseudocode_trace"
+  ]
+}

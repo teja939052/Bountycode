@@ -1,0 +1,37 @@
+{
+  "slug": "pseudocode_trace",
+  "id": "lesson_pseudocode_trace_001",
+  "title": "Pseudocode output tracing",
+  "domain": "Programming Logic",
+  "difficulty": "medium",
+  "duration_min": 25,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Why Infosys/TCS love this", "content": "Pseudocode questions ask you to simulate code without a compiler. Track variables on paper after every line. Used heavily in Infosys OA and TCS programming logic."},
+    {"step_number": 2, "step_type": "interactive", "title": "Simple assignment", "prompt": "x ← 3; x ← x + 2; print x. Output?", "options": ["3", "5", "2", "6"], "correct_index": 1, "explanation": "3+2=5.", "hints": ["Update x after each assignment."]},
+    {"step_number": 3, "step_type": "practice", "title": "Loop trace", "prompt": "s ← 0; for i ← 1 to 3: s ← s + i; print s. Output?", "options": ["3", "6", "9", "1"], "correct_index": 1, "explanation": "1+2+3=6.", "hints": ["Accumulate each i."]},
+    {"step_number": 4, "step_type": "practice", "title": "Condition", "prompt": "n ← 4; if n mod 2 = 0 then print EVEN else print ODD.", "options": ["EVEN", "ODD", "4", "Error"], "correct_index": 0, "explanation": "4 is even.", "hints": ["mod 2 = 0 means even."]},
+    {"step_number": 5, "step_type": "predict_output", "title": "Nested update", "prompt": "a ← 1; b ← 2; a ← a + b; b ← a + b; What is b?", "expected_answer": "5", "answer_placeholder": "number", "explanation": "a becomes 3; b becomes 3+2=5.", "hints": ["Update a first, then use new a for b."]}
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {"prompt": "x←2; x←x*x; x=?", "options": ["2", "4", "8", "16"], "correct_index": 1, "explanation": "4."},
+      {"prompt": "Best tool for tracing:", "options": ["Guess", "Variable table on paper", "Skip loops", "Only final print"], "correct_index": 1, "explanation": "Track variables."},
+      {"prompt": "for i←1 to 2: print i. Prints:", "options": ["1 only", "1 then 2", "2 only", "0 1 2"], "correct_index": 1, "explanation": "1 then 2."},
+      {"prompt": "if false branch runs when:", "options": ["Condition true", "Condition false", "Always", "Never"], "correct_index": 1, "explanation": "False branch."},
+      {"prompt": "Infosys OA includes pseudocode mainly to test:", "options": ["Essay writing", "Dry-run logic skill", "Network cables", "HR soft skills only"], "correct_index": 1, "explanation": "Trace execution logic."}
+    ]
+  },
+  "learning_objectives": ["Trace assignments and loops", "Simulate conditions without a compiler"],
+  "concepts": ["pseudocode", "dry run", "loop trace"],
+  "company_applications": [
+    {"company": "Infosys", "skill": "pseudocode", "practice": "5 Qs, ~10 min — output prediction."},
+    {"company": "TCS NQT", "skill": "programming logic", "practice": "Short snippet MCQs."},
+    {"company": "Accenture", "skill": "technical MCQ", "practice": "Logic tracing."}
+  ],
+  "srs_cards": [{"type": "strategy", "question": "How to approach pseudocode?", "answer": "Make a variable table; update after every line."}],
+  "next_lesson_slug": "loops_code_lab",
+  "next_lesson_title": "Code lab — sum with a loop"
+}
