@@ -643,13 +643,9 @@ export default function MockOA() {
                     <span className="mr-2">{company.logo}</span>{company.name} — Coding Mock
                   </h3>
                   <p className="text-xs font-mono text-gray-500">
-                    The current executable mock uses verified coding questions. Other configured round types will be shown as unavailable until their graders are integrated.
+                    The executable mock currently uses verified coding questions. Unsupported configured rounds are disclosed after the session starts.
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
-                {resumableSessionId && (
-                  <button onClick={() => companyMocksApi.getStatus(resumableSessionId).then((data) => { if (data.status === "in_progress") { setTestId(data.session_id); setSelectedCompany(data.company || null); setQuestions(data.questions || []); setSessionEndsAt(data.ends_at || null); setStep("test"); } }).catch((err) => setError(err.message))} disabled={loading} className="btn-secondary">Resume session</button>
-                )}
                 <button onClick={startTest} disabled={loading} className="btn-primary flex items-center gap-2">
                   {loading ? <Spinner size="sm" className="text-space-void" /> : <>Start Mock OA <ArrowRight size={16} /></>}
                 </button>
@@ -660,7 +656,6 @@ export default function MockOA() {
       </div>
     );
   }
-
   // ═══════════════ TEST SCREEN ═══════════════
   if (step === "test" && questions.length > 0) {
     const q = questions[currentQ];
