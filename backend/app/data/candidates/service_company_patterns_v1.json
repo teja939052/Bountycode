@@ -1586,6 +1586,998 @@
           "candidate_unverified"
         ]
       }
+    },
+    {
+      "id": "svc-quant-average-speed-equal-distance-001",
+      "title": "Average speed over equal distances",
+      "canonical_problem": "Average speed with unequal segment speeds",
+      "learning": {
+        "concept": "For equal distances, average speed is total distance divided by total time, not the arithmetic mean of the two speeds.",
+        "mental_model": "Imagine the same road segment travelled twice. The slower segment consumes more time, so it has more influence on the average.",
+        "why_this_matters": "Transport, field-support and delivery estimates combine speed and time. The arithmetic mean of two speeds is only valid in special cases such as equal travel times, not equal distances.",
+        "real_world": [
+          "A field engineer drives the same 60 km route outward and back at different speeds.",
+          "A service delivery estimate compares travel legs with different speeds but known distances."
+        ],
+        "prerequisites": [
+          "speed_distance",
+          "fractions"
+        ],
+        "learning_objective": "Calculate average speed from total distance and total time, and identify when arithmetic averaging is invalid."
+      },
+      "reasoning": {
+        "pattern": "average-speed-equal-distance",
+        "recognition_signals": [
+          "The prompt gives equal distances at different speeds.",
+          "The question asks for one average over the complete journey."
+        ],
+        "anti_patterns": [
+          "Taking the arithmetic mean of speeds without checking travel times.",
+          "Averaging segment times instead of adding them."
+        ],
+        "tradeoffs": [
+          "Total distance/time is universally safe when both are known.",
+          "A reciprocal-rate formula can be faster for exactly equal distances."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Write the same distance for each leg and find each leg's travel time.",
+        "hint_2": "Add the two distances and add the two travel times separately.",
+        "hint_3": "For 60 km at 30 km/h and 60 km at 60 km/h, time is 2 h + 1 h = 3 h; total distance is 120 km; average = 40 km/h.",
+        "common_mistakes": [
+          "Using distance as if it were time.",
+          "Taking the arithmetic mean of speeds.",
+          "Dropping units while adding hours and kilometres."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Both legs cover the same distance.",
+          "Assume constant speed on each leg."
+        ],
+        "test_cases": [
+          {
+            "input": "60 km at 30 km/h, then 60 km at 60 km/h",
+            "expected": "40 km/h"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "calculates each segment time",
+            "points": 2
+          },
+          {
+            "criterion": "adds total distance and total time",
+            "points": 2
+          },
+          {
+            "criterion": "reports correct average with units",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "operations analyst"
+        ],
+        "companies": [
+          "tcs",
+          "hcltech",
+          "accenture"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original synthetic item. Numerical reasoning alignment is broad and pattern-relevant only; not an official employer question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": []
+        }
+      },
+      "progression": {
+        "mastery_skill": "quantitative_aptitude.time_distance.average_speed",
+        "world": "quantitative-aptitude",
+        "town": "distance-and-rate",
+        "mission_id": "average-speed",
+        "boss_variant": false,
+        "unlock_condition": "speed_distance",
+        "xp_reward": 0
+      },
+      "problem": "A field engineer drives 60 km to a customer site at 30 km/h and returns over the same 60 km route at 60 km/h. What is the average speed for the complete 120 km journey?\nA. 45 km/h\nB. 40 km/h\nC. 42 km/h\nD. 50 km/h",
+      "solution": {
+        "answer": "B",
+        "worked_reasoning": [
+          "Outbound time = 60/30 = 2 hours.",
+          "Return time = 60/60 = 1 hour.",
+          "Total distance = 120 km and total time = 3 hours.",
+          "Average speed = 120/3 = 40 km/h."
+        ],
+        "distractor_analysis": {
+          "A": "Arithmetic mean of the two speeds; that would correspond to equal travel times, not equal distances.",
+          "C": "Uses an inconsistent total-time calculation.",
+          "D": "Does not follow from total distance divided by total time."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "quantitative_aptitude",
+          "time_distance",
+          "average_speed",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-reasoning-direction-001",
+      "title": "Direction reasoning on a coordinate grid",
+      "canonical_problem": "Multi-step direction and displacement",
+      "learning": {
+        "concept": "Represent each movement as a signed change on horizontal and vertical axes, then compute the final displacement.",
+        "mental_model": "North increases the vertical coordinate, south decreases it, east increases horizontal position and west decreases it.",
+        "why_this_matters": "Direction questions test careful state updates. The same coordinate method is used in navigation, grid-based systems and tracking movement in a sequence of operations.",
+        "real_world": [
+          "An engineer traces a robot's movement through a warehouse grid.",
+          "A support analyst interprets a sequence of location changes in a simple simulation."
+        ],
+        "prerequisites": [
+          "integer_arithmetic",
+          "coordinate_axes"
+        ],
+        "learning_objective": "Track a sequence of cardinal-direction moves and distinguish final displacement from total path length."
+      },
+      "reasoning": {
+        "pattern": "direction-sense-coordinate-trace",
+        "recognition_signals": [
+          "The prompt gives several north/south/east/west moves.",
+          "The question asks for the final position or straight-line distance from the start."
+        ],
+        "anti_patterns": [
+          "Adding all movement magnitudes without cancelling opposite directions.",
+          "Confusing total path length with displacement.",
+          "Reversing the sign of west or south."
+        ],
+        "tradeoffs": [
+          "A coordinate pair provides exact final position; Pythagoras gives straight-line distance.",
+          "A hand-drawn compass sketch is intuitive; coordinates are easier to audit."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Set the starting point to (0,0) and write east/west as horizontal changes.",
+        "hint_2": "Add north and south movements separately, then east and west movements.",
+        "hint_3": "North 5 then south 2 gives y=3; east 3 then west 1 gives x=2; final point is (2,3).",
+        "common_mistakes": [
+          "Treating north and south as the same direction.",
+          "Reporting total path length when asked for displacement.",
+          "Forgetting that opposite movements cancel."
+        ]
+      },
+      "assessment": {
+        "difficulty": "easy",
+        "constraints": [
+          "Start at (0,0).",
+          "North/east are positive; south/west are negative."
+        ],
+        "test_cases": [
+          {
+            "input": "N5, E3, S2, W1",
+            "expected": "(2,3); northeast; distance sqrt(13)"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "updates both coordinates",
+            "points": 2
+          },
+          {
+            "criterion": "finds final direction",
+            "points": 1
+          },
+          {
+            "criterion": "distinguishes displacement from path length",
+            "points": 2
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "analyst"
+        ],
+        "companies": [
+          "tcs",
+          "hcltech",
+          "cognizant",
+          "capgemini"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original direction-reasoning item; broad cognitive-preparation alignment only, not an employer-reported question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": []
+        }
+      },
+      "progression": {
+        "mastery_skill": "logical_reasoning.direction_sense.coordinates",
+        "world": "logical-reasoning",
+        "town": "coordinate-map",
+        "mission_id": "direction-coordinate-trace",
+        "boss_variant": false,
+        "unlock_condition": "integer_arithmetic",
+        "xp_reward": 0
+      },
+      "problem": "A technician starts at the service desk. They walk 5 blocks north, 3 blocks east, 2 blocks south, then 1 block west. Relative to the starting point, where are they?\nA. 2 blocks west and 3 north\nB. 2 blocks east and 3 north\nC. 3 blocks east and 2 north\nD. 2 blocks east and 7 north",
+      "solution": {
+        "answer": "B",
+        "final_coordinate": "(2,3)",
+        "worked_reasoning": [
+          "North/south: +5 − 2 = +3.",
+          "East/west: +3 − 1 = +2.",
+          "The final coordinate is (2,3), which is northeast of the start."
+        ],
+        "distractor_analysis": {
+          "A": "Reverses the sign of the net east-west movement.",
+          "C": "Confuses the remaining north and east values.",
+          "D": "Adds north and south instead of subtracting opposing movements."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "logical_reasoning",
+          "direction_sense",
+          "coordinates",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-verbal-subject-verb-001",
+      "title": "Subject–verb agreement with intervening phrases",
+      "canonical_problem": "Find the true subject before choosing the verb",
+      "learning": {
+        "concept": "The verb agrees with the grammatical subject, not with a nearby noun inside a modifying phrase.",
+        "mental_model": "Temporarily remove phrases such as 'together with', 'along with' or 'as well as' to reveal the subject and its number.",
+        "why_this_matters": "Clear subject–verb agreement matters in project emails, incident summaries and technical documentation. Long noun phrases often distract writers from the true subject.",
+        "real_world": [
+          "A release note describes a list of outstanding defects with additional comments.",
+          "A project update refers to one team along with several reviewers."
+        ],
+        "prerequisites": [
+          "parts_of_speech",
+          "subject_verb_agreement"
+        ],
+        "learning_objective": "Identify the main subject in a sentence with an intervening phrase and select the matching verb."
+      },
+      "reasoning": {
+        "pattern": "subject-verb-agreement-intervening-phrase",
+        "recognition_signals": [
+          "A singular or plural subject is followed by an 'along with' or 'together with' phrase.",
+          "The nearest noun has a different number from the main subject."
+        ],
+        "anti_patterns": [
+          "Matching the verb to the nearest noun.",
+          "Treating 'together with' as if it were 'and'."
+        ],
+        "tradeoffs": [
+          "Removing the intervening phrase reveals the subject quickly.",
+          "A full sentence diagram is more detailed but slower for a short assessment item."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Find the main noun phrase that the sentence is actually about.",
+        "hint_2": "Temporarily remove 'together with two notes' and read the remaining sentence.",
+        "hint_3": "The subject is 'The list' (singular), so the correct verb is 'is'.",
+        "common_mistakes": [
+          "Choosing the plural noun 'notes' as the subject.",
+          "Treating 'together with' as a coordinating conjunction."
+        ]
+      },
+      "assessment": {
+        "difficulty": "easy",
+        "constraints": [
+          "Use standard present-tense agreement.",
+          "The sentence has one main subject."
+        ],
+        "test_cases": [
+          {
+            "input": "The list of tickets, together with two notes, ___ on the desk.",
+            "expected": "is"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "identifies the main subject",
+            "points": 2
+          },
+          {
+            "criterion": "selects the correct verb",
+            "points": 1
+          },
+          {
+            "criterion": "explains the intervening phrase",
+            "points": 2
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "service desk analyst"
+        ],
+        "companies": [
+          "tcs",
+          "cognizant",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "oa",
+          "communication"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original grammar item. Broad verbal-ability preparation, not an official or candidate-reported question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": []
+        }
+      },
+      "progression": {
+        "mastery_skill": "verbal_ability.grammar.subject_verb_agreement",
+        "world": "verbal",
+        "town": "grammar-lab",
+        "mission_id": "subject-verb-agreement",
+        "boss_variant": false,
+        "unlock_condition": "parts_of_speech",
+        "xp_reward": 0
+      },
+      "problem": "Choose the grammatically correct verb: \"The list of unresolved tickets, together with two review notes, ___ on the desk.\"\nA. are\nB. were\nC. is\nD. have been",
+      "solution": {
+        "answer": "C",
+        "worked_reasoning": [
+          "The main subject is 'The list'.",
+          "The phrase 'of unresolved tickets' describes the list; it is not the subject.",
+          "'Together with two review notes' adds information but does not make the subject plural.",
+          "A singular subject takes 'is' in this sentence."
+        ],
+        "distractor_analysis": {
+          "A": "Incorrectly agrees with the nearby plural noun 'tickets' or 'notes'.",
+          "B": "Changes tense and number without support.",
+          "D": "Uses a plural auxiliary with the singular subject."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "verbal",
+          "grammar",
+          "subject_verb_agreement",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-pseudo-array-state-001",
+      "title": "Trace sequential array assignments",
+      "canonical_problem": "State changes happen immediately and in order",
+      "learning": {
+        "concept": "Array assignments update the current state immediately; a later statement reads the updated value, not the original value.",
+        "mental_model": "Treat the array as a row of memory cells. After each assignment, overwrite that cell before evaluating the next statement.",
+        "why_this_matters": "Many pseudocode assessments test aliasing and update order. The same mental model helps debug in-place transformations and mutable state in application code.",
+        "real_world": [
+          "An in-place data transformation updates fields in a record one statement at a time.",
+          "A debugging trace explains why the second assignment uses a value changed by the first."
+        ],
+        "prerequisites": [
+          "arrays_basics",
+          "assignment_operator",
+          "zero_based_indexing"
+        ],
+        "learning_objective": "Trace sequential array mutations and produce the exact final array without treating assignments as simultaneous."
+      },
+      "reasoning": {
+        "pattern": "sequential-array-mutation",
+        "recognition_signals": [
+          "A prompt assigns one array index using the value from another index.",
+          "A later statement reads an index modified earlier in the sequence."
+        ],
+        "anti_patterns": [
+          "Treating assignments as simultaneous swaps.",
+          "Reading the original value after it has already been overwritten.",
+          "Confusing an index with an element position."
+        ],
+        "tradeoffs": [
+          "A state table is safest for multi-step updates; a mental trace is faster for short sequences.",
+          "A temporary variable is needed for a true swap when values would otherwise be overwritten."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Write the original values with their indexes before executing the first assignment.",
+        "hint_2": "Apply each assignment from top to bottom and overwrite the target cell immediately.",
+        "hint_3": "Starting [2,4,6], set index 0 to index 1 → [4,4,6]; set index 1 to index 2 → [4,6,6]; set index 2 to index 0 → [4,6,4].",
+        "common_mistakes": [
+          "Assuming the three assignments perform a rotation automatically.",
+          "Using one-based indexing.",
+          "Failing to update the state table after each line."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Array indexing is zero-based.",
+          "Assignments execute in the written order."
+        ],
+        "test_cases": [
+          {
+            "input": "values=[2,4,6]; values[0]=values[1]; values[1]=values[2]; values[2]=values[0]",
+            "expected": "[4,6,4]"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "records initial state",
+            "points": 1
+          },
+          {
+            "criterion": "applies statements sequentially",
+            "points": 3
+          },
+          {
+            "criterion": "reports final array",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "analyst"
+        ],
+        "companies": [
+          "tcs",
+          "accenture",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original pseudocode state-trace item. Broad programming-logic practice; not claimed to be an employer question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": []
+        }
+      },
+      "progression": {
+        "mastery_skill": "programming_logic.arrays.sequential_assignment_trace",
+        "world": "pseudocode-programming-logic",
+        "town": "array-state-table",
+        "mission_id": "array-mutation-trace",
+        "boss_variant": false,
+        "unlock_condition": "arrays_basics",
+        "xp_reward": 0
+      },
+      "problem": "Given values = [2, 4, 6], execute these statements in order:\n\nvalues[0] = values[1]\nvalues[1] = values[2]\nvalues[2] = values[0]\n\nWhat is the final array?\nA. [4, 6, 2]\nB. [4, 6, 4]\nC. [2, 6, 4]\nD. [6, 4, 2]",
+      "solution": {
+        "answer": "B",
+        "final_array": [
+          4,
+          6,
+          4
+        ],
+        "state_trace": [
+          {
+            "after": "initial",
+            "values": [
+              2,
+              4,
+              6
+            ]
+          },
+          {
+            "after": "values[0] = values[1]",
+            "values": [
+              4,
+              4,
+              6
+            ]
+          },
+          {
+            "after": "values[1] = values[2]",
+            "values": [
+              4,
+              6,
+              6
+            ]
+          },
+          {
+            "after": "values[2] = values[0]",
+            "values": [
+              4,
+              6,
+              4
+            ]
+          }
+        ],
+        "worked_reasoning": [
+          "The first statement overwrites index 0 with 4.",
+          "The second statement reads index 2 (6) and writes it to index 1.",
+          "The third statement reads the now-current index 0 (4) and writes it to index 2.",
+          "No temporary variable is used, so this is not a simultaneous rotation."
+        ],
+        "distractor_analysis": {
+          "A": "Would be the result of a different rotation that preserves the original value 2.",
+          "C": "Does not apply the first assignment to the later reads.",
+          "D": "Reorders the source and destination indexes."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "pseudocode",
+          "arrays",
+          "state_trace",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-coding-second-largest-distinct-001",
+      "title": "Second-largest distinct array value",
+      "canonical_problem": "Track two distinct maximum values",
+      "learning": {
+        "concept": "The second-largest distinct value is not necessarily the second element after sorting and may differ from the largest when duplicates occur.",
+        "mental_model": "Maintain the largest and second-largest distinct values while scanning. A value equal to the largest must not replace the second-largest.",
+        "why_this_matters": "Array scanning and duplicate handling are common building blocks in service-level coding. This problem checks loop invariants and edge-case reasoning without requiring an advanced data structure.",
+        "real_world": [
+          "A monitoring report needs the runner-up distinct latency or transaction value.",
+          "A simple ranking function must skip tied duplicate maximum values."
+        ],
+        "prerequisites": [
+          "arrays_basics",
+          "loops_basics",
+          "comparison_operators"
+        ],
+        "learning_objective": "Return the second-largest distinct integer in one pass using O(1) extra space, and define behavior when fewer than two distinct values exist."
+      },
+      "reasoning": {
+        "pattern": "second-largest-distinct",
+        "recognition_signals": [
+          "The prompt asks for second-largest distinct rather than second position.",
+          "The input may contain duplicates or negative integers."
+        ],
+        "anti_patterns": [
+          "Setting secondLargest to the previous value even when it equals largest.",
+          "Initializing both values to zero, which fails for all-negative inputs.",
+          "Returning the largest when the array contains only one distinct value."
+        ],
+        "tradeoffs": [
+          "A one-pass invariant uses O(n) time and O(1) extra space.",
+          "Sorting is simpler to explain but costs O(n log n) and may mutate or copy the input."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Keep two candidates: the largest distinct value and the best distinct value below it.",
+        "hint_2": "When a new value exceeds largest, shift largest down to secondLargest. Otherwise update secondLargest only if the value is distinct from largest and is larger than the current secondLargest.",
+        "hint_3": "For [5,1,5,3,2], largest remains 5; the best distinct value below it becomes 3.",
+        "common_mistakes": [
+          "Counting duplicate 5 as the second-largest value.",
+          "Using zero as an invalid sentinel for negative arrays.",
+          "Failing to handle arrays with fewer than two distinct values."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Input is a list of integers.",
+          "Return null if fewer than two distinct values exist."
+        ],
+        "test_cases": [
+          {
+            "input": "[5,1,5,3,2]",
+            "expected": "3"
+          },
+          {
+            "input": "[-8,-2,-2,-5]",
+            "expected": "-5"
+          },
+          {
+            "input": "[4,4,4]",
+            "expected": "null"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "tracks distinct largest and second-largest",
+            "points": 2
+          },
+          {
+            "criterion": "handles duplicates",
+            "points": 1
+          },
+          {
+            "criterion": "handles negative values",
+            "points": 1
+          },
+          {
+            "criterion": "handles insufficient distinct values",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer"
+        ],
+        "companies": [
+          "tcs",
+          "accenture",
+          "cognizant",
+          "wipro",
+          "hcltech"
+        ],
+        "placement_stage": [
+          "oa"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original coding candidate. Array problem-solving is pattern-relevant to broad entry-level coding preparation; not an employer question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": []
+        }
+      },
+      "progression": {
+        "mastery_skill": "dsa.arrays.second_largest_distinct",
+        "world": "easy-medium-dsa",
+        "town": "array-scanning",
+        "mission_id": "second-largest-distinct",
+        "boss_variant": false,
+        "unlock_condition": "arrays_basics",
+        "xp_reward": 0
+      },
+      "problem": "Given an integer array, return the second-largest distinct value. Return null if fewer than two distinct values exist.\n\nExamples:\n- [5,1,5,3,2] → 3\n- [-8,-2,-2,-5] → -5\n- [4,4,4] → null\n\nWhich invariant is most useful for a one-pass O(n) solution?\nA. Keep only the last two values seen.\nB. Track the largest and second-largest distinct values.\nC. Sort after every insertion.\nD. Count only how many times the maximum appears.",
+      "solution": {
+        "answer": "B",
+        "algorithm": [
+          "Initialize largest and secondLargest as unset values.",
+          "For each x: if largest is unset or x > largest, move largest into secondLargest and set largest=x.",
+          "Otherwise, if x is distinct from largest and secondLargest is unset or x > secondLargest, set secondLargest=x.",
+          "Return secondLargest, or null if it was never assigned."
+        ],
+        "python_code": "def second_largest_distinct(nums):\n    largest = None\n    second = None\n    for value in nums:\n        if largest is None or value > largest:\n            second = largest\n            largest = value\n        elif value != largest and (second is None or value > second):\n            second = value\n    return second\n",
+        "time_complexity": "O(n)",
+        "space_complexity": "O(1)",
+        "distractor_analysis": {
+          "A": "The final two elements need not be the two largest values.",
+          "C": "Repeated sorting is unnecessary and not O(n).",
+          "D": "The count of the maximum does not reveal the next distinct value."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "coding",
+          "arrays",
+          "duplicates",
+          "edge_cases",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-technical-oop-dispatch-001",
+      "title": "Runtime method dispatch",
+      "canonical_problem": "The actual object determines the overridden method",
+      "learning": {
+        "concept": "When an instance method is overridden, a call through a base-class reference dispatches to the implementation belonging to the object's runtime class.",
+        "mental_model": "The variable's declared type controls which members are available at compile time; the object's runtime type determines which overridden instance-method implementation runs.",
+        "why_this_matters": "Service-company technical interviews often test whether a candidate can explain core OOP concepts precisely. This distinction matters when reading code that uses interfaces, base classes and injected implementations.",
+        "real_world": [
+          "A controller calls a service through an interface while the runtime supplies a concrete implementation.",
+          "A framework uses a base reference to invoke a subclass override."
+        ],
+        "prerequisites": [
+          "oops_basics",
+          "classes_objects",
+          "inheritance"
+        ],
+        "learning_objective": "Predict which overridden instance method executes when a base-class reference refers to a subclass object."
+      },
+      "reasoning": {
+        "pattern": "oop-runtime-polymorphism",
+        "recognition_signals": [
+          "A base-type variable is assigned an object of a derived class.",
+          "The derived class overrides an instance method with the same signature."
+        ],
+        "anti_patterns": [
+          "Choosing the method from the reference variable's declared class.",
+          "Confusing overriding with overloading or static method hiding.",
+          "Assuming every language uses identical dispatch rules for static methods."
+        ],
+        "tradeoffs": [
+          "Runtime dispatch supports substitutable implementations; explicit downcasts reduce flexibility and can be unsafe.",
+          "Static overload resolution and instance-method overriding happen at different stages."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Separate the declared reference type from the runtime object type.",
+        "hint_2": "Check whether the method is an overridden instance method rather than a static or overloaded method.",
+        "hint_3": "The reference is type Base, but the object is Derived; the override in Derived executes for the virtual instance call.",
+        "common_mistakes": [
+          "Confusing reference type and object type.",
+          "Treating overloading as overriding.",
+          "Generalizing virtual dispatch to static methods."
+        ]
+      },
+      "assessment": {
+        "difficulty": "medium",
+        "constraints": [
+          "Assume a language with conventional virtual dispatch for overridden instance methods (such as Java).",
+          "Both methods have the same signature."
+        ],
+        "test_cases": [
+          {
+            "input": "Base ref = new Derived(); ref.run(); where Derived overrides run()",
+            "expected": "Derived.run()"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "identifies runtime object type",
+            "points": 2
+          },
+          {
+            "criterion": "selects the overridden method",
+            "points": 2
+          },
+          {
+            "criterion": "distinguishes instance dispatch from static/overload resolution",
+            "points": 1
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "application developer"
+        ],
+        "companies": [
+          "tcs",
+          "hcltech",
+          "accenture",
+          "cognizant"
+        ],
+        "placement_stage": [
+          "technical-interview"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original OOP technical-interview practice. It reflects a general entry-level engineering skill, not an employer-published question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": []
+        }
+      },
+      "progression": {
+        "mastery_skill": "computer_science.oop.runtime_polymorphism",
+        "world": "technical-foundations",
+        "town": "object-oriented-design",
+        "mission_id": "runtime-dispatch",
+        "boss_variant": false,
+        "unlock_condition": "oops_basics",
+        "xp_reward": 0
+      },
+      "problem": "Consider Java-like code:\n\nclass Base { void run() { System.out.println(\"Base\"); } }\nclass Derived extends Base { @Override void run() { System.out.println(\"Derived\"); } }\nBase ref = new Derived();\nref.run();\n\nWhat is printed?\nA. Base\nB. Derived\nC. BaseDerived\nD. Compile-time error",
+      "solution": {
+        "answer": "B",
+        "worked_reasoning": [
+          "The reference variable is declared as Base, so Base members determine which method can be called.",
+          "The object created at runtime is Derived.",
+          "run() is an overridden instance method, so runtime dispatch selects Derived.run().",
+          "The output is Derived."
+        ],
+        "distractor_analysis": {
+          "A": "Uses the declared reference type as if it selected the runtime implementation.",
+          "C": "Assumes both method bodies execute.",
+          "D": "The override is valid and the reference is compatible with the subclass instance."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "technical_interview",
+          "oops",
+          "polymorphism",
+          "runtime_dispatch",
+          "candidate_unverified"
+        ]
+      }
+    },
+    {
+      "id": "svc-technical-git-pr-workflow-001",
+      "title": "Collaborative Git pull-request workflow",
+      "canonical_problem": "Isolate changes and integrate through review",
+      "learning": {
+        "concept": "A feature branch isolates a developer's work from the shared main branch; a pull request proposes the change for review and controlled integration.",
+        "mental_model": "A branch is a movable pointer to a sequence of commits. A pull request is a collaboration/review workflow around comparing one branch with another; creating the PR does not itself merge the code.",
+        "why_this_matters": "New engineers in service teams routinely work in shared repositories, review changes and handle merge conflicts. Understanding the workflow reduces accidental commits to main and makes code changes traceable.",
+        "real_world": [
+          "Two developers work on separate features without overwriting each other's working branch.",
+          "A team requires review and CI checks before changes are integrated into the protected main branch."
+        ],
+        "prerequisites": [
+          "git_basics",
+          "commit_and_branch"
+        ],
+        "learning_objective": "Select a safe workflow for implementing a feature collaboratively and explain the purpose of a pull request."
+      },
+      "reasoning": {
+        "pattern": "git-feature-branch-pr",
+        "recognition_signals": [
+          "The task changes shared application code.",
+          "A team asks for review and automated checks before integration."
+        ],
+        "anti_patterns": [
+          "Committing unfinished work directly to shared main.",
+          "Assuming a pull request is already merged.",
+          "Treating a branch as a separate copy of the entire repository."
+        ],
+        "tradeoffs": [
+          "Feature branches isolate parallel work; direct commits are simpler only in intentionally single-maintainer workflows.",
+          "Rebase can create a linear history; merge commits preserve an explicit branch integration point. Follow the team's convention."
+        ]
+      },
+      "assistance": {
+        "hint_1": "Start from an up-to-date main and create a dedicated feature branch.",
+        "hint_2": "Commit focused changes on the feature branch, push it, and open a pull request targeting main.",
+        "hint_3": "Review comments and CI checks must be addressed; only then can an authorized maintainer merge the PR.",
+        "common_mistakes": [
+          "Pushing to the wrong branch.",
+          "Merging before review or required checks finish.",
+          "Assuming a PR automatically updates main."
+        ]
+      },
+      "assessment": {
+        "difficulty": "easy",
+        "constraints": [
+          "Assume the repository uses pull requests and main is protected."
+        ],
+        "test_cases": [
+          {
+            "input": "Collaborator implements feature and must receive review before integration.",
+            "expected": "feature branch -> commits -> push -> pull request -> review/CI -> authorized merge"
+          }
+        ],
+        "rubric": [
+          {
+            "criterion": "creates isolated feature branch",
+            "points": 1
+          },
+          {
+            "criterion": "commits and pushes feature",
+            "points": 1
+          },
+          {
+            "criterion": "opens PR for review",
+            "points": 1
+          },
+          {
+            "criterion": "waits for checks/review before merge",
+            "points": 2
+          }
+        ]
+      },
+      "career": {
+        "roles": [
+          "associate software engineer",
+          "application developer"
+        ],
+        "companies": [
+          "tcs",
+          "accenture",
+          "cognizant",
+          "hcltech",
+          "capgemini"
+        ],
+        "placement_stage": [
+          "technical-interview"
+        ],
+        "provenance": {
+          "level": "synthetic",
+          "note": "Original engineering-workflow scenario. This is general teamwork practice and not a named employer interview question.",
+          "company_alignment_level": "pattern_relevant",
+          "evidence_refs": []
+        }
+      },
+      "progression": {
+        "mastery_skill": "software_engineering.version_control.git_collaboration",
+        "world": "technical-foundations",
+        "town": "collaboration-workflow",
+        "mission_id": "git-pull-request",
+        "boss_variant": false,
+        "unlock_condition": "git_basics",
+        "xp_reward": 0
+      },
+      "problem": "A developer must add a feature to a shared repository. The team requires code review and CI checks before integration. Which sequence is safest?\n\nA. Commit directly to main, then ask for review after deployment.\nB. Create a feature branch from up-to-date main, commit and push the work, open a pull request, address review/CI findings, then merge when authorized.\nC. Create a local branch but never push it; ask another developer to copy the files into main.\nD. Open a pull request from main into the feature branch and assume it merges automatically.",
+      "solution": {
+        "answer": "B",
+        "worked_reasoning": [
+          "Starting from up-to-date main reduces avoidable integration conflicts.",
+          "A feature branch isolates changes from the shared base branch.",
+          "A pull request provides a review and CI checkpoint.",
+          "The PR is merged only after required checks and review are satisfied."
+        ],
+        "distractor_analysis": {
+          "A": "Bypasses the review and CI policy and puts unreviewed code directly on main.",
+          "C": "Breaks traceability and makes the change difficult to review or reproduce.",
+          "D": "A pull request is a proposed integration, not an automatic merge."
+        }
+      },
+      "meta": {
+        "created_at": "2026-11-10",
+        "updated_at": "2026-11-10",
+        "authored_by": "ai:OpenAI GPT-6",
+        "version": 1,
+        "status": "draft",
+        "quality_scores": {},
+        "overall_quality": 0,
+        "publishable": false,
+        "tags": [
+          "technical_interview",
+          "git",
+          "collaboration",
+          "version_control",
+          "candidate_unverified"
+        ]
+      }
     }
-  ]
+  ],
+  "pack_version": 2,
+  "updated_at": "2026-11-10"
 }
