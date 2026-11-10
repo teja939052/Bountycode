@@ -36,7 +36,7 @@ Observed issues:
 4. Explanations such as "Solve two sum using an efficient approach", hints such as "Hint 1 for two sum", and reasoning steps such as "Understand problem. Choose approach. Implement. Test. Return result." are templates, not useful pedagogical scaffolding.
 5. The file labels items trust_status=verified and verification_version=automated_checked_v1. That is not itself evidence of human review or a complete independent correctness review.
 
-**Action:** Quarantine these item IDs from trusted mocks until each problem statement, function contract, examples, visible/hidden cases, solution and explanation are reviewed as one unit. Do not delete them in this audit PR.
+**Implemented in this branch:** The three item IDs are now marked `trust_status=unverified` with a quarantine reason and review timestamp. The existing question-store serving predicate rejects them, so company mock selection will exclude them. They remain in the source file for administrative repair; do not delete them. Re-promotion requires a corrected problem contract, examples, independent visible/hidden tests, solution and explanation plus human review.
 
 ### B. Logical reasoning bank
 
@@ -46,7 +46,7 @@ Sample item ID: LR-PRACTICE-001
 
 The prompt is "Continue: A2B4C6D8E_". The options do not contain the next pair F12. The answer key chooses "10F", while the explanation itself says the coherent next pair should be F12 and then attempts to rationalize the reversed option. The item is internally inconsistent and should not be served as a trusted question.
 
-**Action:** Replace only after a human reviewer approves a corrected sequence, answer key and explanation. Otherwise quarantine the item.
+**Action:** Keep the item in the non-serving review queue. Replace only after a human reviewer approves a corrected sequence, answer key and explanation. The trust-preserving loader now leaves the legacy file-level `human_reviewed` label untrusted in the absence of reviewer evidence.
 
 ### C. Verbal bank
 
@@ -56,7 +56,7 @@ Sample item ID: VB-001
 
 The stem "The earth is in great danger because of ____ pollution" with an option "all" is not a well-formed single-blank sentence: "all pollution" is not the grammatical completion. The explanation states a broad opinion rather than explaining a language/reading skill.
 
-**Action:** Rewrite as a precise grammar, vocabulary-in-context or reading-inference task; then review its distractors and explanation.
+**Action:** Keep this legacy item non-serving under the trust-preserving loader until it is rewritten as a precise grammar, vocabulary-in-context or reading-inference task and its distractors and explanation are reviewed.
 
 ### D. Lesson authoring quality
 
