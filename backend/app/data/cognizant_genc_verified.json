@@ -15,8 +15,11 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "unverified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
+    "content_review_status": "quarantined",
+    "content_review_reason": "Quarantined by service-company content audit 2026-11-10: declared Two Sum function expects an array and target but supplied input/expected pairs are scalar and do not validate the stated contract.",
+    "content_reviewed_at": "2026-11-10",
     "constraints": [
       "1 <= n <= 10^5",
       "-10^9 <= val <= 10^9"
@@ -88,10 +91,7 @@
       "Implement.",
       "Test.",
       "Return result."
-    ],
-    "content_review_status": "quarantined",
-    "content_review_reason": "Quarantined by service-company content audit 2026-11-10: declared Two Sum function expects an array and target but supplied input/expected pairs are scalar and do not validate the stated contract.",
-    "content_reviewed_at": "2026-11-10"
+    ]
   },
   {
     "id": "cognizant_coding_002",
@@ -109,8 +109,11 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "unverified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
+    "content_review_status": "quarantined",
+    "content_review_reason": "Quarantined by service-company content audit 2026-11-10: Reverse Array item uses scalar test cases rather than arrays and expected reversed arrays; explanation and hints are template filler.",
+    "content_reviewed_at": "2026-11-10",
     "constraints": [
       "1 <= n <= 10^5",
       "-10^9 <= val <= 10^9"
@@ -182,10 +185,7 @@
       "Implement.",
       "Test.",
       "Return result."
-    ],
-    "content_review_status": "quarantined",
-    "content_review_reason": "Quarantined by service-company content audit 2026-11-10: Reverse Array item uses scalar test cases rather than arrays and expected reversed arrays; explanation and hints are template filler.",
-    "content_reviewed_at": "2026-11-10"
+    ]
   },
   {
     "id": "cognizant_coding_003",
@@ -203,8 +203,11 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "unverified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
+    "content_review_status": "quarantined",
+    "content_review_reason": "Quarantined by service-company content audit 2026-11-10: input n=1 is marked prime in test oracle while supplied solution correctly returns false for n <= 1.",
+    "content_reviewed_at": "2026-11-10",
     "constraints": [
       "1 <= n <= 10^5",
       "-10^9 <= val <= 10^9"
@@ -276,10 +279,7 @@
       "Implement.",
       "Test.",
       "Return result."
-    ],
-    "content_review_status": "quarantined",
-    "content_review_reason": "Quarantined by service-company content audit 2026-11-10: input n=1 is marked prime in test oracle while supplied solution correctly returns false for n <= 1.",
-    "content_reviewed_at": "2026-11-10"
+    ]
   },
   {
     "id": "cognizant_coding_004",
@@ -297,7 +297,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -388,7 +388,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -479,7 +479,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -570,7 +570,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -661,7 +661,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -752,7 +752,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -843,7 +843,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -934,7 +934,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1025,7 +1025,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1116,7 +1116,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1207,7 +1207,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1298,7 +1298,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1389,7 +1389,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1480,7 +1480,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1571,7 +1571,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1662,7 +1662,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1753,7 +1753,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1844,7 +1844,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -1935,7 +1935,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2026,7 +2026,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2117,7 +2117,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2208,7 +2208,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2299,7 +2299,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2390,7 +2390,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2481,7 +2481,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2572,7 +2572,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2663,7 +2663,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2754,7 +2754,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2845,7 +2845,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -2936,7 +2936,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3027,7 +3027,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3118,7 +3118,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3209,7 +3209,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3300,7 +3300,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3391,7 +3391,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3455,7 +3455,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3519,7 +3519,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3583,7 +3583,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3647,7 +3647,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3711,7 +3711,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3775,7 +3775,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3839,7 +3839,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3903,7 +3903,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -3967,7 +3967,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4031,7 +4031,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4095,7 +4095,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4159,7 +4159,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4223,7 +4223,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4287,7 +4287,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4351,7 +4351,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4415,7 +4415,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4479,7 +4479,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4543,7 +4543,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4607,7 +4607,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4671,7 +4671,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4735,7 +4735,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4799,7 +4799,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4863,7 +4863,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4927,7 +4927,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -4991,7 +4991,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5055,7 +5055,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5119,7 +5119,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5183,7 +5183,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5247,7 +5247,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5311,7 +5311,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5375,7 +5375,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5439,7 +5439,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5503,7 +5503,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5567,7 +5567,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5631,7 +5631,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5695,7 +5695,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5759,7 +5759,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5823,7 +5823,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5887,7 +5887,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -5951,7 +5951,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6015,7 +6015,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6079,7 +6079,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6143,7 +6143,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6207,7 +6207,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6271,7 +6271,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6335,7 +6335,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6399,7 +6399,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6463,7 +6463,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6527,7 +6527,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6591,7 +6591,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6655,7 +6655,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6719,7 +6719,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6783,7 +6783,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6847,7 +6847,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6911,7 +6911,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -6975,7 +6975,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7039,7 +7039,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7103,7 +7103,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7167,7 +7167,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7231,7 +7231,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7295,7 +7295,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7359,7 +7359,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7423,7 +7423,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7487,7 +7487,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7551,7 +7551,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7615,7 +7615,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7679,7 +7679,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7743,7 +7743,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
@@ -7807,7 +7807,7 @@
     ],
     "source_bank": "cognizant_genc_verified",
     "trust_status": "verified",
-    "provenance": "Cognizant GenC Pattern — Original Composition",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
     "verification_version": "automated_checked_v1",
     "constraints": [
       "1 <= n <= 10^5",
