@@ -1,0 +1,17 @@
+{
+  "id": "service_oa_problem_bank_v1",
+  "title": "Service company OA problem bank",
+  "description": "Original exam-style MCQs tagged by section, topic, and company. Timed like real OAs (~60–90s per aptitude item).",
+  "parts": [
+    "service_oa_problem_bank_part1.json",
+    "service_oa_problem_bank_part2.json"
+  ],
+  "total_count": 43,
+  "sections": [
+    "numerical_ability",
+    "reasoning_ability",
+    "verbal_ability",
+    "programming_logic"
+  ],
+  "how_to_use": "Filter by companies[] and topic for company mocks. Grade with correct_index. Feed adaptive skill graph on attempt."
+}
