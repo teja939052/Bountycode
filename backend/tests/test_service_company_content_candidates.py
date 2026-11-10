@@ -25,6 +25,15 @@ def test_candidate_pack_is_not_registered_for_student_serving():
     assert CONTENT_ROOT not in CANDIDATE_FILE.parents
     assert LESSONS_ROOT not in CANDIDATE_FILE.parents
 
+    from app.services import question_store
+
+    registered_banks = (
+        question_store.VERIFIED_EXTRA_BANKS
+        + question_store.UNVERIFIED_EXTRA_BANKS
+        + question_store.AUTO_CHECKED_BANKS
+    )
+    assert all("service_company_patterns_v1.json" not in item for item in registered_banks)
+
 
 def test_every_candidate_has_stable_identity_and_unverified_provenance():
     pack = load_pack()
