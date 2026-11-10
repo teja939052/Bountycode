@@ -62,9 +62,9 @@ The stem "The earth is in great danger because of ____ pollution" with an option
 
 File: backend/app/data/lessons/flowchart_basics.json
 
-The iteration-count explanation contains an editorial self-correction ("Wait - let me re-read"). The final count is correct, but an internal drafting note should not appear in the student-facing explanation.
+The iteration-count explanation contained an editorial self-correction ("Wait - let me re-read"). The count was correct, but an internal drafting note appeared in the student-facing explanation. This branch replaces it with a clean trace: print 1, 2 and 3; increment to 4; then exit because 4 <= 3 is false.
 
-**Action:** Replace with a clean state trace and independently check the loop's exact condition and increment order.
+**Implemented:** The explanation was cleaned without changing its answer key or loop semantics.
 
 ## 3. Trust-loader defect
 
