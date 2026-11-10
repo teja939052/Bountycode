@@ -613,6 +613,19 @@ async def get_mock_status(session_id: str, user=Depends(get_current_user)):
         }
         for q in session.get("questions", [])
     ]
+    safe_answers = [
+        {
+            "question_id": answer.get("question_id"),
+            "code": answer.get("code", ""),
+            "language": answer.get("language", "python"),
+            "is_correct": bool(answer.get("passed")),
+            "passed_count": answer.get("passed_count", 0),
+            "total_count": answer.get("total_cases", 0),
+            "score": answer.get("score", 0),
+            "summary": f"{answer.get('passed_count', 0)}/{answer.get('total_cases', 0)} hidden tests passed",
+        }
+        for answer in session.get("answers", [])
+    ]
     return {
         "session_id": session_id,
         "status": session["status"],
@@ -621,7 +634,10 @@ async def get_mock_status(session_id: str, user=Depends(get_current_user)):
         "current_round": session.get("current_round", 0),
         "questions_answered": len(session.get("answers", [])),
         "total_questions": len(session.get("questions", [])),
+        "started_at": session.get("started_at").isoformat() if session.get("started_at") else None,
         "ends_at": session.get("ends_at").isoformat() if session.get("ends_at") else None,
+        "unsupported_rounds": session.get("unsupported_rounds", []),
+        "answers": safe_answers,
         "questions": safe_questions,
     }
 
