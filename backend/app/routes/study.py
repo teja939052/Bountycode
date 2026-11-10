@@ -1,15 +1,11 @@
-"""Study Engine routes — the single canonical daily-learning API.
-
-Curriculum (service-company sprint) decides WHAT is learned.
-Study Engine decides WHAT HAPPENS NEXT.
-Mastery decides WHETHER it was learned.
-"""
+"""Study Engine routes — canonical daily-learning API (sprint-first)."""
 import asyncio
 
 from fastapi import APIRouter, Depends, Query
 
 from app.middleware.auth import get_current_user
-from app.services.study_engine import get_today, record_activity
+from app.services.study_engine import record_activity
+from app.services.study_sprint_bridge import get_today_sprint_first
 
 router = APIRouter(prefix="/api/v1/study", tags=["study-engine"])
 
@@ -19,8 +15,8 @@ async def today(
     force: bool = Query(False, description="Force refresh the daily plan"),
     user=Depends(get_current_user),
 ):
-    """Canonical daily plan — sprint-first for service-company prep."""
-    plan = await get_today(user["id"], force_refresh=force)
+    """Daily plan: service-company sprint is the curriculum source of truth."""
+    plan = await get_today_sprint_first(user["id"], force_refresh=force)
 
     try:
         from app.services.analytics_service import track_event
@@ -30,7 +26,10 @@ async def today(
                 event="beta_activation",
                 path="/api/v1/study/today",
                 user_id=user["id"],
-                meta={"has_next": bool(plan.get("next")), "source": plan.get("curriculum_source")},
+                meta={
+                    "has_next": bool(plan.get("next")),
+                    "source": plan.get("curriculum_source"),
+                },
             )
         )
     except Exception:
@@ -46,7 +45,6 @@ async def log_activity(activity: dict, user=Depends(get_current_user)):
         activity,
         role=user.get("role") or user.get("target_role") or "sde",
     )
-
     try:
         if activity.get("type") == "learn" and activity.get("passed"):
             from app.services.analytics_service import track_event
@@ -65,5 +63,4 @@ async def log_activity(activity: dict, user=Depends(get_current_user)):
             )
     except Exception:
         pass
-
     return {"success": True, "data": result}
