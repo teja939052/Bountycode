@@ -2,7 +2,7 @@
   "id": "service_company_sprint",
   "title": "Service Company Placement Sprint",
   "audience": ["tcs", "infosys", "wipro", "accenture", "cognizant"],
-  "philosophy": "One ordered journey. Diagnose, learn, practice, assess, remediate. Mastery is server-graded only.",
+  "philosophy": "One ordered journey. Diagnose → learn → practice → assess → remediate. Mastery is server-graded only. Dashboard and Academy share this spine.",
   "mastery_threshold": 0.7,
   "sprints": [
     {
@@ -15,11 +15,12 @@
     {
       "id": "sprint_1_foundations",
       "name": "Sprint 1 — Programming foundations",
-      "goal": "Variables through loops and strings",
+      "goal": "Variables through loops, functions, arrays, strings — then a code lab",
       "lessons": [
         "variables_basics",
         "conditions_basics",
         "loops_basics",
+        "loops_code_lab",
         "functions_basics",
         "arrays_basics",
         "strings_basics"
@@ -28,7 +29,7 @@
     {
       "id": "sprint_2_quant_core",
       "name": "Sprint 2 — Quant core (NQT-heavy)",
-      "goal": "High-frequency aptitude topics for service OA",
+      "goal": "High-frequency aptitude for TCS / Infy / Wipro / Cognizant",
       "lessons": [
         "number_systems",
         "percentages",
@@ -40,13 +41,17 @@
         "time_distance",
         "hcf_lcm",
         "simple_compound_interest",
+        "pipes_cisterns",
+        "mixture_alligation",
+        "probability_basics",
+        "data_interpretation",
         "arithmetic_algebra"
       ]
     },
     {
       "id": "sprint_3_reasoning",
       "name": "Sprint 3 — Reasoning core",
-      "goal": "Series, coding-decoding, relations, direction, syllogisms, seating",
+      "goal": "Series, coding-decoding, relations, direction, syllogisms, seating, puzzles",
       "lessons": [
         "number_series",
         "coding_decoding",
@@ -56,7 +61,8 @@
         "analogies_odd_one_out",
         "seating_arrangement",
         "logical_puzzles",
-        "pattern_matching_basics"
+        "pattern_matching_basics",
+        "clocks_calendars"
       ]
     },
     {
@@ -66,28 +72,41 @@
       "lessons": [
         "reading_comprehension",
         "error_spotting",
+        "sentence_correction",
+        "para_jumbles",
         "vocabulary_cloze",
         "grammar_transformations"
       ]
     },
     {
       "id": "sprint_5_coding_oa",
-      "name": "Sprint 5 — Coding for service OA",
-      "goal": "Pattern problems and basic DSA used in InfyTQ / NQT coding",
+      "name": "Sprint 5 — Coding + logic for service OA",
+      "goal": "Pseudocode, DSA basics used in InfyTQ / NQT coding",
       "lessons": [
+        "pseudocode_trace",
         "data_structures_intro",
+        "searching_basics",
+        "sorting_basics",
         "hashing_basics",
         "algorithms_basics",
-        "sorting_basics",
         "recursion_basics"
       ]
     },
     {
-      "id": "sprint_6_mocks",
-      "name": "Sprint 6 — Company mocks + remediation",
-      "goal": "Timed mocks feed readiness; weak skills loop back to lessons",
+      "id": "sprint_6_cs_interview",
+      "name": "Sprint 6 — CS interview floor",
+      "goal": "DBMS + OOP so technical rounds are not a surprise",
+      "lessons": [
+        "dbms_basics",
+        "oops_basics"
+      ]
+    },
+    {
+      "id": "sprint_7_mocks",
+      "name": "Sprint 7 — Company mocks + remediation",
+      "goal": "Timed service-OA mocks; weak skills loop back to lessons",
       "lessons": [],
-      "actions": ["company_mock", "remediate_weak_skills", "retest"]
+      "actions": ["service_oa_mock", "remediate_weak_skills", "retest"]
     }
   ],
   "daily_scrum": {

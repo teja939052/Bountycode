@@ -4,7 +4,7 @@ Source of truth: app/data/service_company_sprint.json
 
 Used by Academy plan and Study "today" surfaces so learners follow one
 ordered path: diagnose → foundations → quant → reasoning → verbal →
-coding OA → mocks — not a random pile of lessons.
+coding OA → CS floor → mocks — not a random pile of lessons.
 """
 
 from __future__ import annotations
@@ -17,14 +17,19 @@ from typing import Any, Dict, List, Optional, Set
 _APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _SPRINT_PATH = os.path.join(_APP_DIR, "data", "service_company_sprint.json")
 
-# Domain tags for adaptive weak-skill → lesson routing.
-LESSON_DOMAIN = {
+# Domain tags for adaptive weak-skill → lesson routing (keep in sync with skill_graph).
+LESSON_DOMAIN: Dict[str, str] = {
+    # programming
     "variables_basics": "programming_fundamentals",
     "conditions_basics": "programming_fundamentals",
     "loops_basics": "programming_fundamentals",
+    "loops_code_lab": "programming_fundamentals",
     "functions_basics": "programming_fundamentals",
-    "arrays_basics": "arrays_hashing",
+    "arrays_basics": "programming_fundamentals",
     "strings_basics": "programming_fundamentals",
+    # quant
+    "number_systems": "quantitative_aptitude",
+    "number_system": "quantitative_aptitude",
     "percentages": "quantitative_aptitude",
     "successive_percentage_change": "quantitative_aptitude",
     "profit_loss": "quantitative_aptitude",
@@ -34,8 +39,12 @@ LESSON_DOMAIN = {
     "time_distance": "quantitative_aptitude",
     "hcf_lcm": "quantitative_aptitude",
     "simple_compound_interest": "quantitative_aptitude",
-    "number_system": "quantitative_aptitude",
-    "number_systems": "quantitative_aptitude",
+    "pipes_cisterns": "quantitative_aptitude",
+    "mixture_alligation": "quantitative_aptitude",
+    "probability_basics": "quantitative_aptitude",
+    "data_interpretation": "quantitative_aptitude",
+    "arithmetic_algebra": "quantitative_aptitude",
+    # reasoning
     "number_series": "logical_reasoning",
     "coding_decoding": "logical_reasoning",
     "blood_relations": "logical_reasoning",
@@ -43,27 +52,44 @@ LESSON_DOMAIN = {
     "syllogisms": "logical_reasoning",
     "analogies_odd_one_out": "logical_reasoning",
     "seating_arrangement": "logical_reasoning",
+    "logical_puzzles": "logical_reasoning",
     "puzzles_basics": "logical_reasoning",
+    "pattern_matching_basics": "logical_reasoning",
+    "clocks_calendars": "logical_reasoning",
+    # verbal
     "reading_comprehension": "verbal_ability",
     "error_spotting": "verbal_ability",
+    "sentence_correction": "verbal_ability",
     "sentence_completion": "verbal_ability",
+    "para_jumbles": "verbal_ability",
+    "vocabulary_cloze": "verbal_ability",
     "grammar_transformations": "verbal_ability",
+    # dsa / logic
+    "pseudocode_trace": "arrays_hashing",
     "data_structures_intro": "arrays_hashing",
+    "searching_basics": "arrays_hashing",
+    "sorting_basics": "arrays_hashing",
     "hashing_basics": "arrays_hashing",
-    "algorithms_basics": "programming_fundamentals",
-    "searching_sorting": "programming_fundamentals",
-    "recursion_basics": "programming_fundamentals",
+    "algorithms_basics": "arrays_hashing",
+    "recursion_basics": "arrays_hashing",
+    "searching_sorting": "arrays_hashing",
+    # cs interview
+    "dbms_basics": "cs_interview",
+    "oops_basics": "cs_interview",
 }
 
 DOMAIN_ENTRY_LESSON = {
     "programming_fundamentals": "variables_basics",
-    "arrays_hashing": "arrays_basics",
+    "arrays_hashing": "pseudocode_trace",
     "quantitative_aptitude": "percentages",
     "logical_reasoning": "number_series",
     "verbal_ability": "reading_comprehension",
+    "cs_interview": "dbms_basics",
     "sql": "dbms_basics",
     "computer_science": "oops_basics",
 }
+
+LESSON_PATH = "/learn/lesson"  # canonical player route
 
 
 @lru_cache(maxsize=1)
@@ -105,7 +131,7 @@ def next_curriculum_lessons(
                     "sprint_id": sprint.get("id"),
                     "sprint_name": sprint.get("name"),
                     "domain": LESSON_DOMAIN.get(slug, "programming_fundamentals"),
-                    "to": f"/academy/lesson/{slug}",
+                    "to": f"{LESSON_PATH}/{slug}",
                     "estimated_minutes": 20,
                     "reason": f"Next step in {sprint.get('name')}: {sprint.get('goal')}",
                 }
@@ -128,13 +154,10 @@ def daily_focus_plan(
     max_tasks = int(policy.get("max_focus_tasks") or 3)
     tasks: List[Dict[str, Any]] = []
 
-    # 1) Remediate weak domains first
     for domain in weak_domains or []:
         slug = DOMAIN_ENTRY_LESSON.get(domain)
-        if not slug or slug in (mastered or set()):
-            # still offer domain entry even if partially mastered
-            if not slug:
-                continue
+        if not slug:
+            continue
         tasks.append(
             {
                 "slug": slug,
@@ -142,7 +165,7 @@ def daily_focus_plan(
                 "kind": "weak_area",
                 "title": f"Strengthen {domain.replace('_', ' ')}",
                 "domain": domain,
-                "to": f"/academy?focus={domain}",
+                "to": f"{LESSON_PATH}/{slug}",
                 "estimated_minutes": 15,
                 "reason": "Recommended because this skill needs more evidence.",
             }
@@ -150,7 +173,6 @@ def daily_focus_plan(
         if len(tasks) >= max_tasks:
             break
 
-    # 2) Next curriculum lessons
     if len(tasks) < max_tasks:
         for lesson in next_curriculum_lessons(mastered, limit=max_tasks):
             if any(t.get("slug") == lesson["slug"] for t in tasks):
@@ -159,7 +181,6 @@ def daily_focus_plan(
             if len(tasks) >= max_tasks:
                 break
 
-    # 3) Spaced reviews
     for card in (reviews or [])[:2]:
         if len(tasks) >= max_tasks + 2:
             break
@@ -174,7 +195,6 @@ def daily_focus_plan(
             }
         )
 
-    # 4) Company mock when ready
     if mock_ready:
         tasks.append(
             {
@@ -182,7 +202,7 @@ def daily_focus_plan(
                 "title": "Service-company mock",
                 "estimated_minutes": 30,
                 "reason": "Measure readiness under exam conditions.",
-                "to": "/quiz",
+                "to": "/service-oa",
             }
         )
 
@@ -203,6 +223,7 @@ def daily_focus_plan(
             }
             for s in (data.get("sprints") or [])
         ],
+        "ordered_lesson_count": len(ordered_lessons()),
     }
 
 

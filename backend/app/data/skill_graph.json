@@ -7,42 +7,100 @@
     {
       "id": "programming_fundamentals",
       "name": "Programming fundamentals",
-      "company_weight": { "tcs": 0.2, "infosys": 0.25, "wipro": 0.2, "accenture": 0.2, "cognizant": 0.2 },
-      "lessons": ["variables_basics", "conditions_basics", "loops_basics", "functions_basics", "arrays_basics", "strings_basics"],
+      "company_weight": { "tcs": 0.18, "infosys": 0.22, "wipro": 0.18, "accenture": 0.18, "cognizant": 0.18 },
+      "lessons": [
+        "variables_basics",
+        "conditions_basics",
+        "loops_basics",
+        "loops_code_lab",
+        "functions_basics",
+        "arrays_basics",
+        "strings_basics"
+      ],
       "prerequisites": [],
       "color": "#22c55e"
     },
     {
       "id": "quantitative_aptitude",
       "name": "Quantitative aptitude",
-      "company_weight": { "tcs": 0.35, "infosys": 0.3, "wipro": 0.3, "accenture": 0.25, "cognizant": 0.3 },
-      "lessons": ["number_systems", "percentages", "successive_percentage_change", "profit_loss", "ratio_proportion", "averages", "time_work", "time_distance", "hcf_lcm", "simple_compound_interest", "arithmetic_algebra"],
+      "company_weight": { "tcs": 0.32, "infosys": 0.28, "wipro": 0.28, "accenture": 0.24, "cognizant": 0.28 },
+      "lessons": [
+        "number_systems",
+        "percentages",
+        "successive_percentage_change",
+        "profit_loss",
+        "ratio_proportion",
+        "averages",
+        "time_work",
+        "time_distance",
+        "hcf_lcm",
+        "simple_compound_interest",
+        "pipes_cisterns",
+        "mixture_alligation",
+        "probability_basics",
+        "data_interpretation",
+        "arithmetic_algebra"
+      ],
       "prerequisites": [],
       "color": "#3b82f6"
     },
     {
       "id": "logical_reasoning",
       "name": "Logical reasoning",
-      "company_weight": { "tcs": 0.25, "infosys": 0.2, "wipro": 0.25, "accenture": 0.25, "cognizant": 0.25 },
-      "lessons": ["number_series", "coding_decoding", "blood_relations", "direction_sense", "syllogisms", "analogies_odd_one_out", "seating_arrangement", "logical_puzzles", "pattern_matching_basics"],
+      "company_weight": { "tcs": 0.22, "infosys": 0.18, "wipro": 0.22, "accenture": 0.22, "cognizant": 0.22 },
+      "lessons": [
+        "number_series",
+        "coding_decoding",
+        "blood_relations",
+        "direction_sense",
+        "syllogisms",
+        "analogies_odd_one_out",
+        "seating_arrangement",
+        "logical_puzzles",
+        "pattern_matching_basics",
+        "clocks_calendars"
+      ],
       "prerequisites": [],
       "color": "#a855f7"
     },
     {
       "id": "verbal_ability",
       "name": "Verbal ability",
-      "company_weight": { "tcs": 0.15, "infosys": 0.15, "wipro": 0.15, "accenture": 0.2, "cognizant": 0.15 },
-      "lessons": ["reading_comprehension", "error_spotting", "vocabulary_cloze", "grammar_transformations"],
+      "company_weight": { "tcs": 0.14, "infosys": 0.14, "wipro": 0.14, "accenture": 0.18, "cognizant": 0.14 },
+      "lessons": [
+        "reading_comprehension",
+        "error_spotting",
+        "sentence_correction",
+        "para_jumbles",
+        "vocabulary_cloze",
+        "grammar_transformations"
+      ],
       "prerequisites": [],
       "color": "#f59e0b"
     },
     {
       "id": "arrays_hashing",
       "name": "DSA for service OA",
-      "company_weight": { "tcs": 0.15, "infosys": 0.2, "wipro": 0.15, "accenture": 0.15, "cognizant": 0.15 },
-      "lessons": ["data_structures_intro", "hashing_basics", "algorithms_basics", "sorting_basics", "recursion_basics"],
+      "company_weight": { "tcs": 0.1, "infosys": 0.12, "wipro": 0.1, "accenture": 0.1, "cognizant": 0.1 },
+      "lessons": [
+        "pseudocode_trace",
+        "data_structures_intro",
+        "searching_basics",
+        "sorting_basics",
+        "hashing_basics",
+        "algorithms_basics",
+        "recursion_basics"
+      ],
       "prerequisites": ["programming_fundamentals"],
       "color": "#ef4444"
+    },
+    {
+      "id": "cs_interview",
+      "name": "CS interview floor",
+      "company_weight": { "tcs": 0.04, "infosys": 0.06, "wipro": 0.08, "accenture": 0.08, "cognizant": 0.08 },
+      "lessons": ["dbms_basics", "oops_basics"],
+      "prerequisites": ["programming_fundamentals"],
+      "color": "#64748b"
     }
   ]
 }
