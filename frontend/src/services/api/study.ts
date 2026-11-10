@@ -1,6 +1,21 @@
 import { requestWithRetry as request } from "./request.ts";
 
 export const studyApi = {
+  /** Canonical daily plan (sprint-first service-company curriculum). */
+  getToday(force = false) {
+    const q = force ? "?force=true" : "";
+    return request<{ date: string; next?: any; practice?: any[]; reviews?: any[]; company_mission?: any; curriculum_source?: string }>(
+      `/api/v1/study/today${q}`,
+    );
+  },
+
+  logActivity(activity: Record<string, unknown>) {
+    return request("/api/v1/study/activity", {
+      method: "POST",
+      body: JSON.stringify(activity),
+    });
+  },
+
   getCategories() {
     return request("/api/v1/study/categories");
   },
