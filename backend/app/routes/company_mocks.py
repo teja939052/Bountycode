@@ -328,37 +328,50 @@ async def start_company_mock(
     else:
         rounds_to_run = config["rounds"]
 
-    # Get questions for each round
+    # Only coding rounds have a trusted grading path in this service today.
+    # Do not advertise unsupported round types as runnable questions.
     all_questions = []
+    executable_rounds = []
+    unsupported_rounds = []
+    from app.services import question_store
+
+    company_bank = question_store.company_verified_bank(company_id)
+    tagged_ids = {q.get("id") for q in company_bank.get("items", [])}
     for round_config in rounds_to_run:
-        if round_config["type"] == "coding":
-            # In-memory canonical store only (Residency Rule, AGENTS.md):
-            # verified company-tagged items first, general verified backfill.
-            # Never MongoDB, never legacy unverified content.
-            from app.services import question_store
-            bank = question_store.company_verified_bank(company_id)
-            tagged_ids = {q.get("id") for q in bank["items"]}
-            pool = question_store.find({
-                "type": "coding",
-                "difficulty": round_config["difficulty"],
-                "topic": {"$in": round_config["focus"]},
-            }).only_verified().to_list()
-            pool.sort(key=lambda q: (0 if q.get("id") in tagged_ids else 1,))
-            for q in random.sample(pool, min(round_config["questions"], len(pool))):
-                doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
-                doc["id"] = q.get("id")
-                doc["round"] = round_config["name"]
-                # Compat keys matching the legacy projection shape.
-                doc.setdefault("topics", [doc.get("topic", "General")])
-                doc.setdefault("company", company_id)
-                all_questions.append(doc)
+        if round_config.get("type") != "coding":
+            unsupported_rounds.append(round_config["name"])
+            continue
+        pool = question_store.find({
+            "type": "coding",
+            "difficulty": round_config["difficulty"],
+            "topic": {"$in": round_config["focus"]},
+        }).only_verified().to_list()
+        pool.sort(key=lambda q: (0 if q.get("id") in tagged_ids else 1,))
+        selected = random.sample(pool, min(round_config["questions"], len(pool)))
+        if not selected:
+            unsupported_rounds.append(round_config["name"])
+            continue
+        executable_rounds.append(round_config)
+        for q in selected:
+            doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+            doc["id"] = q.get("id")
+            doc["round"] = round_config["name"]
+            doc.setdefault("topics", [doc.get("topic", "General")])
+            doc.setdefault("company", company_id)
+            all_questions.append(doc)
+
+    if not all_questions:
+        raise HTTPException(
+            status_code=409,
+            detail="No verified coding questions are currently available for this company mock.",
+        )
 
     # Create mock test session
     session = {
         "user_id": user["id"],
         "company": company_id,
         "config": config,
-        "rounds": rounds_to_run,
+        "rounds": executable_rounds,
         "questions": all_questions,
         "answers": [],
         "current_round": 0,
@@ -367,20 +380,200 @@ async def start_company_mock(
         "started_at": datetime.now(timezone.utc),
         "ends_at": datetime.now(timezone.utc) + timedelta(minutes=config["total_time_minutes"]),
         "total_score": 0,
+        "completed_at": None,
     }
 
     db = get_db()
     result = await db["company_mock_tests"].insert_one(session)
     session_id = str(result.inserted_id)
 
+    # Do not send answer keys or hidden test cases to the browser.
+    safe_questions = [
+        {
+            "id": q.get("id"),
+            "question": q.get("question") or q.get("question_title", ""),
+            "title": q.get("title") or q.get("question_title", ""),
+            "difficulty": q.get("difficulty", "medium"),
+            "topic": q.get("topic", "General"),
+            "round": q.get("round"),
+            "description": q.get("description", ""),
+            "examples": q.get("examples", []),
+            "constraints": q.get("constraints", []),
+            "starter_code": q.get("starter_code", {}),
+            "function_name": q.get("function_name", ""),
+            "time_limit_seconds": q.get("time_limit_seconds", 10),
+            "memory_limit_mb": q.get("memory_limit_mb", 256),
+        }
+        for q in all_questions
+    ]
     return {
         "session_id": session_id,
         "company": company_id,
         "config": config,
-        "rounds": rounds_to_run,
-        "questions": all_questions,
+        "rounds": executable_rounds,
+        "unsupported_rounds": unsupported_rounds,
+        "questions": safe_questions,
         "ends_at": session["ends_at"].isoformat(),
     }
+
+
+def _load_owned_mock_session(session_id: str, user_id: str):
+    """Load a company mock session while enforcing authenticated ownership."""
+    if not ObjectId.is_valid(session_id):
+        raise HTTPException(status_code=400, detail="Invalid session ID")
+    return get_db()["company_mock_tests"].find_one({
+        "_id": ObjectId(session_id),
+        "user_id": user_id,
+    })
+
+
+@router.post("/{session_id}/answer")
+async def submit_company_mock_answer(
+    session_id: str,
+    payload: dict,
+    user=Depends(get_current_user),
+):
+    """Grade an owned mock coding question with the existing hidden-test judge."""
+    session = await _load_owned_mock_session(session_id, user["id"])
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+    if session.get("status") != "in_progress":
+        raise HTTPException(status_code=409, detail="Mock session is not in progress")
+    if datetime.now(timezone.utc) >= session.get("ends_at", datetime.now(timezone.utc)):
+        raise HTTPException(status_code=409, detail="Mock session has expired")
+
+    question_id = str(payload.get("question_id") or "").strip()
+    code = payload.get("code")
+    language = str(payload.get("language") or "python").strip().lower()
+    if not question_id:
+        raise HTTPException(status_code=422, detail="question_id is required")
+    if not isinstance(code, str) or not code.strip():
+        raise HTTPException(status_code=422, detail="code is required")
+    if len(code) > 120000:
+        raise HTTPException(status_code=413, detail="Code submission is too large")
+
+    question = next(
+        (q for q in session.get("questions", []) if str(q.get("id")) == question_id),
+        None,
+    )
+    if not question:
+        raise HTTPException(status_code=404, detail="Question is not part of this session")
+    if any(str(a.get("question_id")) == question_id for a in session.get("answers", [])):
+        raise HTTPException(status_code=409, detail="Question already submitted")
+
+    from app.services import question_store
+    trusted_question = question_store.get_question_for_serving(question_id)
+    if not trusted_question:
+        raise HTTPException(status_code=404, detail="Question content is unavailable")
+    hidden_cases = trusted_question.get("hidden_test_cases") or []
+    if not hidden_cases:
+        raise HTTPException(status_code=409, detail="No hidden grading cases are available")
+
+    from app.services.code_executor import CodeExecutionEngine
+    engine = CodeExecutionEngine()
+    execution = await engine.execute_against_test_cases(
+        source_code=code,
+        language=language,
+        test_cases=[
+            {
+                "input": case.get("input", ""),
+                "expected": case.get("expected", case.get("expected_output", "")),
+                "is_hidden": True,
+            }
+            for case in hidden_cases
+        ],
+        function_name=trusted_question.get("function_name", "") or "",
+    )
+    if not execution.get("success", False):
+        raise HTTPException(status_code=422, detail=execution.get("error") or "Code execution failed")
+
+    passed_count = int(execution.get("passed_count", 0) or 0)
+    total_count = int(execution.get("total_count", len(hidden_cases)) or len(hidden_cases))
+    score = float(execution.get("score", 0) or 0)
+    all_passed = bool(execution.get("all_passed", False))
+    answer = {
+        "question_id": question_id,
+        "round": question.get("round") or "Coding",
+        "language": language,
+        "code": code,
+        "passed": all_passed,
+        "passed_count": passed_count,
+        "total_cases": total_count,
+        "score": score,
+        "submitted_at": datetime.now(timezone.utc),
+    }
+    result = await get_db()["company_mock_tests"].update_one(
+        {
+            "_id": ObjectId(session_id),
+            "user_id": user["id"],
+            "status": "in_progress",
+            "answers.question_id": {"$ne": question_id},
+        },
+        {
+            "$push": {"answers": answer},
+            "$inc": {"total_score": score / max(len(session.get("questions", [])), 1)},
+            "$set": {"updated_at": datetime.now(timezone.utc)},
+        },
+    )
+    if result.modified_count != 1:
+        raise HTTPException(status_code=409, detail="Question already submitted or session ended")
+
+    # Evidence emission is best-effort after authoritative grading/persistence.
+    try:
+        from app.services.study_engine import emit_learning_event
+        from app.services.skill_taxonomy import canonical_skill_id
+        skill_id = canonical_skill_id(trusted_question.get("topic", "")) or "dsa.uncategorized"
+        await emit_learning_event(user["id"], {
+            "activity_type": "question_solve",
+            "source": "question_bank",
+            "skill_id": skill_id,
+            "question_id": question_id,
+            "passed": all_passed,
+            "score": score,
+            "time_spent_seconds": max(0, int(payload.get("time_spent_seconds", 0) or 0)),
+            "attempt_number": 1,
+            "metadata": {
+                "company_mock_session_id": session_id,
+                "company": session.get("company"),
+                "difficulty": trusted_question.get("difficulty", "medium"),
+                "passed_count": passed_count,
+                "total": total_count,
+            },
+        })
+    except Exception:
+        pass
+
+    return {
+        "success": True,
+        "question_id": question_id,
+        "is_correct": all_passed,
+        "passed_count": passed_count,
+        "total_count": total_count,
+        "score": score,
+        "summary": execution.get("summary", f"{passed_count}/{total_count} test cases passed"),
+    }
+
+
+@router.post("/{session_id}/complete")
+async def complete_company_mock(session_id: str, user=Depends(get_current_user)):
+    """Complete a company mock session idempotently."""
+    session = await _load_owned_mock_session(session_id, user["id"])
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+    if session.get("status") == "completed":
+        return await get_mock_results(session_id, user)
+
+    now = datetime.now(timezone.utc)
+    result = await get_db()["company_mock_tests"].update_one(
+        {"_id": ObjectId(session_id), "user_id": user["id"], "status": "in_progress"},
+        {"$set": {"status": "completed", "completed_at": now, "updated_at": now}},
+    )
+    if result.modified_count != 1:
+        current = await _load_owned_mock_session(session_id, user["id"])
+        if current and current.get("status") == "completed":
+            return await get_mock_results(session_id, user)
+        raise HTTPException(status_code=409, detail="Mock session could not be completed")
+    return await get_mock_results(session_id, user)
 
 
 @router.get("/{session_id}/status")
