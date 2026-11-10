@@ -372,7 +372,7 @@ export default function MockOA() {
           duration: item.total_time_minutes,
           questionCount: item.rounds_count,
           difficulty: "medium",
-          sections: [],
+          sections: ["Coding"],
           description: item.description,
           color: "cyber-blue",
           passingScore: item.passing_score,
