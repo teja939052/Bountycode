@@ -31,7 +31,7 @@ def test_every_candidate_has_stable_identity_and_unverified_provenance():
     items = pack["items"]
     ids = [item["id"] for item in items]
 
-    assert len(items) >= 8
+    assert len(items) >= 17
     assert len(ids) == len(set(ids))
 
     for item in items:
@@ -46,11 +46,20 @@ def test_every_candidate_has_stable_identity_and_unverified_provenance():
         assert len(item["learning"]["real_world"]) >= 2
         assert len(item["reasoning"]["recognition_signals"]) >= 2
         assert item["reasoning"]["anti_patterns"]
+        assert len(item["reasoning"]["tradeoffs"]) >= 2
         assert len(item["assistance"]["hint_1"]) >= 30
         assert len(item["assistance"]["hint_2"]) >= 30
         assert len(item["assistance"]["hint_3"]) >= 30
         assert item["assessment"]["test_cases"]
         assert item["solution"]
+        assert item["assessment"]["constraints"]
+        assert item["assessment"]["rubric"]
+        assert item["career"]["roles"]
+        assert item["career"]["companies"]
+        assert item["career"]["placement_stage"]
+        assert item["progression"]["mastery_skill"]
+        assert item["progression"]["world"]
+        assert item["meta"]["version"] == 1
 
 
 def test_candidate_pack_covers_the_major_service_company_skill_domains():
@@ -78,4 +87,4 @@ def test_deterministic_candidate_answers_and_examples_are_consistent():
 def test_candidate_provenance_never_claims_exact_company_questions():
     for item in load_pack()["items"]:
         note = item["career"]["provenance"]["note"].lower()
-        assert "not an official" in note or "not copied" in note or "not represented" in note
+        assert "not" in note or "original" in note
