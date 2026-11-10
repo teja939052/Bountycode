@@ -31,8 +31,8 @@ def _load_json(path: Path) -> Any:
         return json.load(handle)
 
 
-def _looks_like_bank(path: Path) -> bool:
-    rel = path.relative_to(ROOT)
+def _looks_like_bank(path: Path, root: Path = ROOT) -> bool:
+    rel = path.relative_to(root)
     if any(part in SKIP_PARTS for part in rel.parts):
         return False
     if rel.parts and rel.parts[0] == "lessons":
@@ -79,7 +79,7 @@ def _options(item: dict) -> list[str]:
     return []
 
 
-def audit_item(path: Path, item: dict) -> list[dict]:
+def audit_item(path: Path, item: dict, root: Path = ROOT) -> list[dict]:
     issues: list[dict] = []
     item_id = _item_id(item) or "<missing-id>"
     text = _question_text(item)
@@ -88,7 +88,7 @@ def audit_item(path: Path, item: dict) -> list[dict]:
          " ".join(map(str, item.get("reasoning_steps") or []))]
     )
     add = lambda severity, code, detail: issues.append({
-        "file": str(path.relative_to(ROOT)),
+        "file": str(path.relative_to(root)),
         "item_id": item_id,
         "severity": severity,
         "code": code,
@@ -178,7 +178,7 @@ def audit(root: Path = ROOT) -> dict:
     unreadable_files: list[dict] = []
 
     for path in sorted(root.rglob("*.json")):
-        if not _looks_like_bank(path):
+        if not _looks_like_bank(path, root):
             continue
         try:
             payload = _load_json(path)
@@ -191,7 +191,7 @@ def audit(root: Path = ROOT) -> dict:
             item_id = _item_id(item)
             if item_id:
                 seen[item_id].append(str(path.relative_to(root)))
-            all_issues.extend(audit_item(path, item))
+            all_issues.extend(audit_item(path, item, root))
 
     for item_id, locations in seen.items():
         if len(locations) > 1:
