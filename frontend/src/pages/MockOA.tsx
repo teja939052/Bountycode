@@ -334,7 +334,7 @@ function ScoreRing({ percentage, size = 180 }) {
 export default function MockOA() {
   const [step, setStep] = useState("select");
   const [selectedCompany, setSelectedCompany] = useState(null);
-  const [availableCompanies, setAvailableCompanies] = useState(COMPANIES);
+  const [availableCompanies, setAvailableCompanies] = useState([]);
   const [unsupportedRounds, setUnsupportedRounds] = useState([]);
   const [sessionEndsAt, setSessionEndsAt] = useState(null);
   const [codeDrafts, setCodeDrafts] = useState({});
@@ -877,7 +877,7 @@ export default function MockOA() {
   // ═══════════════ RESULTS SCREEN ═══════════════
   if (step === "results" && result) {
     const total = questions.length;
-    const pct = result.percentage || 0;
+    const pct = Math.max(0, Math.min(100, Number(result.total_score) || 0));
 
     return (
       <div className="page-surface min-h-screen py-6 px-4">
@@ -937,7 +937,7 @@ export default function MockOA() {
               </div>
             </div>
             <p className="font-mono text-xs text-gray-500">
-              {company.name} Mock OA — {total} Questions
+              {company.name} Coding Mock — {total} Questions
             </p>
           </motion.div>
 
@@ -953,7 +953,7 @@ export default function MockOA() {
               Section Breakdown
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {company.sections.map((sectionName) => {
+              {["Coding"].map((sectionName) => {
                 const stats = getSectionStats(sectionName);
                 const secPct =
                   stats.total > 0
@@ -1089,53 +1089,13 @@ export default function MockOA() {
                           className="overflow-hidden"
                         >
                           <div className="mt-4 space-y-2 border-t border-black/5 pt-4">
-                            {q.options.map((opt, oi) => {
-                              const isUserAnswer = userAns === oi;
-                              const isCorrectAns =
-                                sub?.correct_answer === oi;
-                              let ringClass = "border-black/5 ";
-                              if (isCorrectAns)
-                                ringClass += "border-cyber-green/40 bg-cyber-green/5 ";
-                              if (isUserAnswer && !wasCorrect && !isCorrectAns)
-                                ringClass += "border-cyber-red/40 bg-cyber-red/5 ";
-
-                              return (
-                                <div
-                                  key={oi}
-                                  className={`flex items-start gap-2 p-2.5 rounded-lg border text-xs font-mono ${ringClass}`}
-                                >
-                                  <span className="text-cyber-blue font-bold shrink-0">
-                                    {String.fromCharCode(65 + oi)}.
-                                  </span>
-                                  <span className="text-gray-300 flex-1">
-                                    {opt}
-                                  </span>
-                                  <span className="shrink-0 flex items-center gap-1">
-                                    {isCorrectAns && (
-                                      <span className="text-cyber-green text-[10px]">
-                                        ✓ Correct
-                                      </span>
-                                    )}
-                                    {isUserAnswer && !isCorrectAns && (
-                                      <span className="text-cyber-red text-[10px]">
-                                        ✗ Your answer
-                                      </span>
-                                    )}
-                                    {isUserAnswer && isCorrectAns && (
-                                      <span className="text-cyber-green text-[10px]">
-                                        ✓ Your answer
-                                      </span>
-                                    )}
-                                  </span>
-                                </div>
-                              );
-                            })}
-                            {sub?.explanation && (
+                            <div className="rounded-lg bg-slate-950 p-3">
+                              <div className="mb-2 text-[10px] font-mono uppercase tracking-wider text-slate-400">Submitted solution</div>
+                              <pre className="max-h-64 overflow-auto whitespace-pre-wrap break-words text-xs text-slate-100">{typeof userAns === "string" ? userAns : "No submission"}</pre>
+                            </div>
+                            {sub && (
                               <p className="text-[11px] font-mono text-gray-500 mt-2 leading-relaxed">
-                                <span className="text-cyber-blue font-bold">
-                                  Explanation:
-                                </span>{" "}
-                                {sub.explanation}
+                                {sub.summary} · {sub.score}% · {sub.passed_count}/{sub.total_count} hidden tests passed
                               </p>
                             )}
                           </div>
