@@ -52,7 +52,9 @@ export interface CompanyMockStatus {
   current_round: number;
   questions_answered: number;
   total_questions: number;
-  questions?: Array<{ id: string; round?: string; title?: string }>;
+  company?: string;
+  ends_at?: string | null;
+  questions?: CompanyMockQuestion[];
 }
 
 export interface CompanyMockAnswerResponse {
