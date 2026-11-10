@@ -333,21 +333,21 @@ function ScoreRing({ percentage, size = 180 }) {
 
 export default function MockOA() {
   const [step, setStep] = useState("select");
-  const [selectedCompany, setSelectedCompany] = useState(null);
-  const [availableCompanies, setAvailableCompanies] = useState([]);
-  const [unsupportedRounds, setUnsupportedRounds] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
+  const [availableCompanies, setAvailableCompanies] = useState<any[]>([]);
+  const [unsupportedRounds, setUnsupportedRounds] = useState<string[]>([]);
   const [sessionEndsAt, setSessionEndsAt] = useState(null);
-  const [codeDrafts, setCodeDrafts] = useState({});
+  const [codeDrafts, setCodeDrafts] = useState<Record<string, string>>({});
   const [language, setLanguage] = useState("python");
   const [customDuration, setCustomDuration] = useState(45);
   const [testId, setTestId] = useState("");
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<any[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [submittedAnswers, setSubmittedAnswers] = useState({});
+  const [answers, setAnswers] = useState<Record<number, any>>({});
+  const [submittedAnswers, setSubmittedAnswers] = useState<Record<number, any>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<any>(null);
   const [timeTaken, setTimeTaken] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [showCelebration, setShowCelebration] = useState(false);
@@ -510,12 +510,10 @@ export default function MockOA() {
   const unattemptedCount = questions.length - answeredCount;
 
   const getSectionStats = (sectionName) => {
-    const cat = SECTION_CATEGORIES[sectionName];
-    if (!cat) return { total: 0, correct: 0, wrong: 0, unattempted: 0 };
-    const sectionQs = questions.map((q, i) => ({ q, i })).filter(({ q }) => q.category === cat || q.category === sectionName.toLowerCase());
-    const total = sectionQs.length;
-    const correct = sectionQs.filter(({ i }) => submittedAnswers[i]?.is_correct).length;
-    const answered = sectionQs.filter(({ i }) => submittedAnswers[i] !== undefined).length;
+    const indices = questions.map((_, index) => index);
+    const total = indices.length;
+    const correct = indices.filter((index) => submittedAnswers[index]?.is_correct).length;
+    const answered = indices.filter((index) => submittedAnswers[index] !== undefined).length;
     return { total, correct, wrong: answered - correct, unattempted: total - answered };
   };
 
