@@ -54,6 +54,18 @@ export interface CompanyMockStatus {
   total_questions: number;
   company?: string;
   ends_at?: string | null;
+  started_at?: string | null;
+  unsupported_rounds?: string[];
+  answers?: Array<{
+    question_id: string;
+    code: string;
+    language: string;
+    is_correct: boolean;
+    passed_count: number;
+    total_count: number;
+    score: number;
+    summary: string;
+  }>;
   questions?: CompanyMockQuestion[];
 }
 
