@@ -372,6 +372,7 @@ async def start_company_mock(
         "company": company_id,
         "config": config,
         "rounds": executable_rounds,
+        "unsupported_rounds": unsupported_rounds,
         "questions": all_questions,
         "answers": [],
         "current_round": 0,
