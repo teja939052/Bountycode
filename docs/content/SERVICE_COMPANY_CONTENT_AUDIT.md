@@ -84,7 +84,15 @@ The branch changes this behavior:
 
 This records an approval trail; it does not prove the human review took place. The review evidence must refer to real review work.
 
-## 4. Existing lesson and pattern inventory
+## 4. Canonical curriculum alignment
+
+The latest mainline defines `docs/SERVICE_COMPANY_CURRICULUM.md` as the canonical ordered service-company curriculum and `docs/learning/LEARNING_EXPERIENCE_STANDARD.md` as the lesson-quality standard. This branch was rebuilt from mainline commit `40b01f5926b9af5eb3c5ab4fd4080fa146634099` after those documents were added.
+
+The mainline content status snapshot (`docs/SERVICE_COMPANY_CONTENT_STATUS.md`, updated 7 November 2026) reports Quant and Logical core/depth complete and Verbal core live. Treat those as reported inventory/status, not independent proof of every item’s correctness.
+
+The new 17-object pack is an editorial review queue. Where it touches already-covered topics (percentages, time/work, direction reasoning and syllogisms), its intent is to supply alternate transfer scenarios and expose review gaps—not create duplicate playable lessons. Do not register it as another world or lesson registry.
+
+## 5. Existing lesson and pattern inventory
 
 The repository already has step-based lessons for many first-wave topics: percentages, ratios, profit/loss, averages, time & work, time/distance, probability, number series, blood relations, directions, syllogisms, coding-decoding, grammar, reading comprehension, para-jumbles, arrays, strings, hashing, sorting/searching, two pointers, sliding window, stacks/queues, recursion, trees, SQL, DBMS, OOP, operating systems and computer networks.
 
@@ -96,7 +104,7 @@ The highest-value next content work is not duplicating those slugs. It is:
 - stronger transfer items and diagnostic distractor feedback;
 - rigorous review of legacy company banks before increasing their serveable count.
 
-## 5. Candidate content added in this branch
+## 6. Candidate content added in this branch
 
 File: backend/app/data/candidates/service_company_patterns_v1.json
 
@@ -121,21 +129,21 @@ Seventeen original learning-object candidates cover:
 
 They use the existing Learning Object shape, stable IDs, worked reasoning, recognition signals, anti-patterns, hint ladders, test/assessment examples and explicit provenance notes.
 
-**Important:** All ten are authored as AI-generated, synthetic, draft, unverified candidates. They are not registered with question_store or the student lesson player. They must not be promoted until independently checked by a human reviewer.
+**Important:** All seventeen are authored as AI-generated, synthetic, draft, unverified candidates. They are not registered with question_store or the student lesson player. They must not be promoted until independently checked by a human reviewer.
 
-## 6. Recommended remediation order
+## 7. Recommended remediation order
 
 | Priority | Work | Acceptance evidence |
 |---|---|---|
 | P0 | Quarantine contradictory coding or MCQ oracles | Exact IDs blocked from trusted mocks; regression test proves exclusion |
 | P0 | Repair content-loader trust upgrades | Tests show metadata-only labels remain unverified |
-| P1 | Human-review the 10 candidate learning objects | Reviewer identity, date, decision, answer/explanation checks |
+| P1 | Human-review the 17 candidate learning objects | Reviewer identity, date, decision, answer/explanation checks |
 | P1 | Build World 4 pseudocode trace lessons deeply | Trace tables, predict steps, code labs, edge cases, transfer and server-recorded evidence |
 | P1 | Expand data interpretation and verbal/communication | Multiple datasets/passages, carefully justified options, evidence-based explanations |
 | P2 | Add role-targeted technical foundations (HTTP, Git, testing, APIs) | Real scenario tasks, not recall-only question dumps |
 | P2 | Version company blueprints separately from question items | Source URL, checked date, scope, effective date and item versions per attempt |
 
-## 7. Re-running the audit
+## 8. Re-running the audit
 
 Run from the repository root:
 
