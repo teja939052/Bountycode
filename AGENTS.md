@@ -609,13 +609,11 @@ BountyCode/
 
 ---
 
-## Verified Landing Page Background Assets
+## Landing Hero Background
 
-The hero background on `frontend/src/pages/Landing.tsx` must use a **confirmed-valid Unsplash photo ID** (a broken ID renders as white/cream). All verified IDs below return HTTP 200. A neutral gradient + base-color fallback is layered behind the image so it never shows plain white.
+The landing hero uses **no stock wallpaper and loads no external image**. Its background is the flat pink base `#fbe4ec` plus a CSS gradient wash and the falling-petal overlay, so it can never render as a broken/white photo. Do not reintroduce a photographic hero background without an explicit product decision.
 
-
-
-Landing hero composition rules (locked): ONE navbar only — the global `Navbar` is hidden on `/` in `App.tsx` (line ~809: `{location.pathname !== "/" && <Navbar />}`), and `Landing.tsx` renders its own minimal `BountyCode / Login / Get started` nav over the photo. No "You are here" marker, no character, no glassmorphism card. Headline: "From your first line of code / to your first offer." with **"first offer." in gold (`#D4A843`)**, not rainbow. Keep the Diagnose → Learn → Practice → Get Hired strip (expedition path with arrows). Soft radial halo behind the headline only. Brand identity: **nostalgic spring adventure** — sakura communicates growth, calm focus, and a fresh start.
+Landing hero composition rules (locked): ONE navbar only — the global `Navbar` is hidden on `/` in `App.tsx` (line ~809: `{location.pathname !== "/" && <Navbar />}`), and `Landing.tsx` renders its own minimal `BountyCode / Login / Get started` nav. No "You are here" marker, no character, no glassmorphism card. Headline: "From your first line of code / to your first offer." with **"first offer." in gold (`#D4A843`)**, not rainbow. Keep the Diagnose → Learn → Practice → Get Hired strip (expedition path with arrows). Soft radial halo behind the headline only. Brand identity: **nostalgic spring adventure** — calm focus and a fresh start.
 
 ---
 
