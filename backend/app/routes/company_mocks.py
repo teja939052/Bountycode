@@ -595,13 +595,34 @@ async def get_mock_status(session_id: str, user=Depends(get_current_user)):
     now = datetime.now(timezone.utc)
     time_remaining = max(0, (session["ends_at"] - now).total_seconds())
 
+    safe_questions = [
+        {
+            "id": q.get("id"),
+            "question": q.get("question") or q.get("question_title", ""),
+            "title": q.get("title") or q.get("question_title", ""),
+            "difficulty": q.get("difficulty", "medium"),
+            "topic": q.get("topic", "General"),
+            "round": q.get("round"),
+            "description": q.get("description", ""),
+            "examples": q.get("examples", []),
+            "constraints": q.get("constraints", ""),
+            "starter_code": q.get("starter_code", {}),
+            "function_name": q.get("function_name", ""),
+            "time_limit_seconds": q.get("time_limit_seconds", 10),
+            "memory_limit_mb": q.get("memory_limit_mb", 256),
+        }
+        for q in session.get("questions", [])
+    ]
     return {
         "session_id": session_id,
         "status": session["status"],
+        "company": session.get("company"),
         "time_remaining_seconds": int(time_remaining),
-        "current_round": session["current_round"],
+        "current_round": session.get("current_round", 0),
         "questions_answered": len(session.get("answers", [])),
-        "total_questions": len(session["questions"]),
+        "total_questions": len(session.get("questions", [])),
+        "ends_at": session.get("ends_at").isoformat() if session.get("ends_at") else None,
+        "questions": safe_questions,
     }
 
 
