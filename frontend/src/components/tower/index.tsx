@@ -85,3 +85,26 @@ export function DailyGoal() {
     </div>
   );
 }
+
+export function getTitleForLevel(level: number): [string, string] {
+  const zones = [
+    { maxLevel: 10, title: "Seedling Grove", emoji: "\u{1F331}" },
+    { maxLevel: 20, title: "Sapling Orchard", emoji: "\u{1F33F}" },
+    { maxLevel: 30, title: "Young Forest", emoji: "\u{1F333}" },
+    { maxLevel: 40, title: "Canopy Trail", emoji: "\u{1F343}" },
+    { maxLevel: 50, title: "Fruiting Tree", emoji: "\u{1F34E}" },
+    { maxLevel: 60, title: "Ancient Woods", emoji: "\u{1F332}" },
+    { maxLevel: 70, title: "Summit Grove", emoji: "\u{26F0}\u{FE0F}" },
+    { maxLevel: 80, title: "Crown Canopy", emoji: "\u{1F451}" },
+    { maxLevel: 90, title: "Legend Tree", emoji: "\u{1F31F}" },
+    { maxLevel: 100, title: "World Tree", emoji: "\u{1F30D}" },
+  ];
+
+  const safeLevel = Number.isFinite(level)
+    ? Math.min(100, Math.max(1, Math.floor(level)))
+    : 1;
+
+  const zone = zones.find((item) => safeLevel <= item.maxLevel) ?? zones[9];
+
+  return [zone.title, zone.emoji];
+}
