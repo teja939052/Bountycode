@@ -135,7 +135,9 @@ def audit_item(path: Path, item: dict) -> list[dict]:
         add("warning", "thin_explanation", "MCQ explanation is missing or too short to teach the reasoning.")
 
     qtype = str(item.get("type") or item.get("question_type") or "").lower()
-    if qtype in {"coding", "sql", "debugging"} or item.get("solution", {}).get("code"):
+    solution = item.get("solution") or {}
+    solution_code = solution.get("code") if isinstance(solution, dict) else None
+    if qtype in {"coding", "sql", "debugging"} or solution_code:
         cases = item.get("hidden_test_cases") or item.get("hidden_testcases") or item.get("testcases") or item.get("test_cases") or []
         if not isinstance(cases, list) or len(cases) < 2:
             add("error", "insufficient_code_tests", "Coding item needs at least two concrete test cases.")
