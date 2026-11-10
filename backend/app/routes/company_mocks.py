@@ -643,6 +643,6 @@ async def get_mock_results(session_id: str, user=Depends(get_current_user)):
         "passing_score": passing_score,
         "passed": passed,
         "round_scores": round_scores,
-        "completed_at": session.get("completed_at", datetime.now(timezone.utc)).isoformat(),
+        "completed_at": (session.get("completed_at") or datetime.now(timezone.utc)).isoformat(),
         "interview_tips": session["config"].get("interview_tips", []),
     }
