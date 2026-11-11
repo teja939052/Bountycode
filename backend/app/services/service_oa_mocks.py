@@ -9,16 +9,16 @@ Questions are original exam-style items tagged by company and topic.
 
 from __future__ import annotations
 
+import glob
 import json
 import os
 import random
 import uuid
 from functools import lru_cache
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 _DATA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 
-# Canonical company keys accepted by the API
 COMPANY_ALIASES = {
     "tcs": "tcs_nqt",
     "tcs_nqt": "tcs_nqt",
@@ -34,21 +34,12 @@ COMPANY_ALIASES = {
     "accenture": "accenture",
 }
 
-# Map ontology company → problem-bank company tag
 BANK_TAG = {
     "tcs_nqt": "tcs",
     "infosys": "infosys",
     "wipro_nlth": "wipro",
     "cognizant_genc": "cognizant",
     "accenture": "accenture",
-}
-
-# Default section mix when ontology does not list counts
-DEFAULT_SECTION_QUOTA = {
-    "numerical_ability": 8,
-    "reasoning_ability": 7,
-    "verbal_ability": 5,
-    "programming_logic": 5,
 }
 
 SECTION_LABELS = {
@@ -68,22 +59,25 @@ def load_ontology() -> Dict[str, Any]:
 
 @lru_cache(maxsize=1)
 def load_problem_bank() -> List[Dict[str, Any]]:
+    """Load all curated service OA parts (part1, part2, part3, …)."""
     problems: List[Dict[str, Any]] = []
-    for name in ("service_oa_problem_bank_part1.json", "service_oa_problem_bank_part2.json"):
-        path = os.path.join(_DATA, name)
-        if not os.path.isfile(path):
-            continue
+    paths = sorted(glob.glob(os.path.join(_DATA, "service_oa_problem_bank_part*.json")))
+    for path in paths:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
         problems.extend(data.get("problems") or [])
-    # de-dupe by id
     seen = set()
     out = []
     for p in problems:
         pid = p.get("id")
-        if pid and pid not in seen:
-            seen.add(pid)
-            out.append(p)
+        if not pid or pid in seen:
+            continue
+        if not p.get("options") or p.get("correct_index") is None:
+            continue
+        if not (p.get("explanation") or "").strip():
+            continue
+        seen.add(pid)
+        out.append(p)
     return out
 
 
@@ -109,10 +103,6 @@ def list_companies() -> List[Dict[str, Any]]:
 
 
 def _section_quota(company_id: str, total: int) -> Dict[str, int]:
-    """Allocate question counts across sections for this company."""
-    ont = load_ontology()
-    meta = (ont.get("companies") or {}).get(company_id) or {}
-    # Prefer foundation-style quant/reasoning/verbal weights for cognitive OAs
     if company_id == "tcs_nqt":
         raw = {"numerical_ability": 8, "reasoning_ability": 7, "verbal_ability": 5, "programming_logic": 5}
     elif company_id == "infosys":
@@ -121,13 +111,11 @@ def _section_quota(company_id: str, total: int) -> Dict[str, int]:
         raw = {"numerical_ability": 7, "reasoning_ability": 7, "verbal_ability": 6, "programming_logic": 5}
     elif company_id == "cognizant_genc":
         raw = {"numerical_ability": 6, "reasoning_ability": 6, "verbal_ability": 8, "programming_logic": 5}
-    else:  # accenture
+    else:
         raw = {"numerical_ability": 6, "reasoning_ability": 6, "verbal_ability": 6, "programming_logic": 7}
 
-    # Scale to requested total while keeping proportions
     base_sum = sum(raw.values())
     scaled = {s: max(1, int(round(total * c / base_sum))) for s, c in raw.items()}
-    # Fix rounding drift
     while sum(scaled.values()) > total:
         k = max(scaled, key=scaled.get)
         if scaled[k] > 1:
@@ -141,7 +129,6 @@ def _section_quota(company_id: str, total: int) -> Dict[str, int]:
 
 
 def _weight_for(problem: Dict[str, Any], company_id: str) -> float:
-    """Higher weight for high-priority topics in the company ontology."""
     ont = load_ontology()
     meta = (ont.get("companies") or {}).get(company_id) or {}
     hw = meta.get("high_weight_topics") or {}
@@ -159,6 +146,8 @@ def _weight_for(problem: Dict[str, Any], company_id: str) -> float:
         w += 0.3
     if section in ("numerical_ability", "reasoning_ability"):
         w += 0.2
+    if "high_freq" in (problem.get("tags") or []):
+        w += 0.5
     return w
 
 
@@ -171,12 +160,10 @@ def _sample_section(
 ) -> List[Dict[str, Any]]:
     candidates = [p for p in pool if p.get("section") == section]
     if not candidates:
-        # fallback any topic
         candidates = list(pool)
     if not candidates:
         return []
     weights = [_weight_for(p, company_id) for p in candidates]
-    # weighted sample without replacement
     chosen: List[Dict[str, Any]] = []
     items = list(zip(candidates, weights))
     for _ in range(min(n, len(items))):
@@ -197,7 +184,6 @@ def _sample_section(
 
 
 def _public_question(p: Dict[str, Any], order: int) -> Dict[str, Any]:
-    """Strip answers for client start payload."""
     return {
         "id": p["id"],
         "order": order,
@@ -243,7 +229,6 @@ def generate_mock(
                 picked.append(p)
                 used_ids.add(p["id"])
 
-    # Top up if short
     if len(picked) < qcount:
         rest = [p for p in bank if p["id"] not in used_ids]
         rng.shuffle(rest)
@@ -257,7 +242,6 @@ def generate_mock(
     picked = picked[:qcount]
 
     duration_sec = sum(int(p.get("time_sec_target") or 75) for p in picked)
-    # Cap mock duration to a realistic OA window
     duration_sec = min(duration_sec, 75 * 60)
     duration_sec = max(duration_sec, qcount * 45)
 
@@ -274,8 +258,8 @@ def generate_mock(
         "duration_min": max(1, duration_sec // 60),
         "section_quota": quota,
         "sections_present": sorted({p.get("section") for p in picked}),
+        "bank_size": len(bank),
         "questions": [_public_question(p, i + 1) for i, p in enumerate(picked)],
-        # server-only; route stores this in memory / returns only on grade
         "_answer_key": answer_key,
         "_explanations": {p["id"]: p.get("explanation") or "" for p in picked},
         "_topics": {p["id"]: p.get("topic") for p in picked},
@@ -294,7 +278,6 @@ def grade_mock(
     duration_sec: int,
     time_spent_sec: Optional[int] = None,
 ) -> Dict[str, Any]:
-    """Server-side grade. answers: {question_id: option_index}."""
     total = len(answer_key)
     correct = 0
     by_section: Dict[str, Dict[str, int]] = {}
@@ -304,7 +287,6 @@ def grade_mock(
     for qid, correct_idx in answer_key.items():
         chosen = answers.get(qid)
         if chosen is None:
-            # also try string keys from JSON
             chosen = answers.get(str(qid))
         try:
             chosen_i = int(chosen) if chosen is not None else None
@@ -352,7 +334,6 @@ def grade_mock(
         key=lambda x: x["score_pct"],
     )
 
-    # Simple readiness heuristic aligned to service OA cutoffs (~70%)
     if score_pct >= 80:
         band = "strong"
         message = "Strong service-OA readiness on this mix. Push advanced coding next."
