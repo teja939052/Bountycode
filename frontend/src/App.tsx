@@ -40,7 +40,7 @@ const BottomNav = lazy(() => import("./components/BottomNav"));
 import {
   Login,
   Register,
-  OnboardingQuest,
+  OnboardingFlow,
   Dashboard,
   Interview,
   InterviewSession,
@@ -171,7 +171,7 @@ function AnimatedRoutes() {
         path="/onboarding"
         element={
           <ProtectedRoute>
-            <OnboardingQuest />
+            <OnboardingFlow />
           </ProtectedRoute>
         }
       />

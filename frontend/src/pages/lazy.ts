@@ -65,6 +65,7 @@ const routeImportFns = {
   LanguageLearning: () => import("./LanguageLearning"),
   OnboardingQuest: () => import("./OnboardingQuest"),
   InterviewBooking: () => import("./InterviewBooking"),
+  OnboardingFlow: () => import("./OnboardingFlow"),
 
   InterviewReplay: () => import("./InterviewReplay"),
   FreeTrial: () => import("./FreeTrial"),
@@ -195,6 +196,7 @@ const CompareVisualizer = lazy(() => import('./CompareVisualizer'));
 const Community = lazy(() => import('./Community'));
 const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
+const OnboardingFlow = lazy(() => import('./OnboardingFlow'));
 const InterviewBooking = lazy(() => import('./InterviewBooking'));
 const InterviewReplay = lazy(() => import('./InterviewReplay'));
 const FreeTrial = lazy(() => import('./FreeTrial'));
@@ -285,6 +287,7 @@ export {
   CodePlayground,
   LanguageLearning,
   OnboardingQuest,
+  OnboardingFlow,
   InterviewBooking,
   InterviewReplay,
   FreeTrial,

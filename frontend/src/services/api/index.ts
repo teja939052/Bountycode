@@ -158,5 +158,4 @@ export {
   freeTrialApi,
   onboardingApi,
   blogApi,
-  lessonsApi,
 };

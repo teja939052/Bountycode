@@ -428,6 +428,8 @@ class OnboardingData(BaseModel):
     klass: Optional[str] = None
     target_companies: list = []
     skill_self_assessment: dict = {}
+    career_goals: list[str] = []
+    tech_interests: list[str] = []
 
 
 @router.get("/onboarding-status")
@@ -437,6 +439,8 @@ async def onboarding_status(user=Depends(get_current_user)):
     return {
         "completed": onboarding.get("completed", False),
         "class": onboarding.get("class"),
+        "career_goals": onboarding.get("career_goals", []),
+        "tech_interests": onboarding.get("tech_interests", []),
     }
 
 
@@ -447,6 +451,8 @@ async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user
         "class": req.klass,
         "target_companies": req.target_companies,
         "skill_self_assessment": req.skill_self_assessment,
+        "career_goals": req.career_goals,
+        "tech_interests": req.tech_interests,
         "completed_at": datetime.now(timezone.utc),
     }
     await users_collection.update_one(

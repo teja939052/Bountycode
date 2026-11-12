@@ -1,8 +1,10 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
   "snapshot": false,
-  // Allow every tool without confirmation prompts (read, edit, bash,
-  // external_directory, webfetch, websearch, task/subagent, skill, lsp, ...).
+  // Project-level: allow every tool without confirmation prompts (read, edit,
+  // bash, glob, grep, list, task/subagent, external_directory, todowrite,
+  // question, webfetch, websearch, lsp, doom_loop, skill, notebooks, ...).
+  // Mirrors the global ~/.config/kilo/kilo.jsonc so nothing prompts either way.
   "permission": {
     "read": "allow",
     "edit": "allow",
@@ -13,6 +15,7 @@
     "task": "allow",
     "external_directory": "allow",
     "todowrite": "allow",
+    "todoread": "allow",
     "question": "allow",
     "webfetch": "allow",
     "websearch": "allow",
@@ -21,6 +24,11 @@
     "skill": "allow",
     "notebook_read": "allow",
     "notebook_edit": "allow",
-    "notebook_execute": "allow"
+    "notebook_execute": "allow",
+    // Forward-compatible: extra tool keys Kilo may add, kept allowed too.
+    "write": "allow",
+    "patch": "allow",
+    "codesearch": "allow",
+    "mcp": "allow"
   }
 }

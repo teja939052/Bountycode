@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 from app.middleware.auth import get_current_user
 from app.database import users_collection
 from bson import ObjectId
@@ -9,6 +9,25 @@ from bson import ObjectId
 logger = __import__("logging").getLogger(__name__)
 
 router = APIRouter(prefix="/api/v1/onboarding", tags=["onboarding"])
+
+ALLOWED_CAREER_GOALS = {
+    "internship", "placements", "learning", "hackathons", "full_stack", "ai_ml",
+}
+
+ALLOWED_TECH_INTERESTS = {
+    "java", "python", "javascript", "react", "nodejs", "spring_boot",
+    "dsa", "ai", "ml", "cybersecurity", "data_science",
+}
+
+
+def _validate_list(values: List[str], allowed: set, field_name: str) -> List[str]:
+    invalid = [v for v in values if v not in allowed]
+    if invalid:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid {field_name}: {', '.join(invalid)}",
+        )
+    return values
 
 QUEST_STEPS = [
     {
@@ -127,3 +146,54 @@ async def onboarding_status(user=Depends(get_current_user)):
         "overall_progress": overall_progress,
         "is_complete": is_complete,
     }
+
+
+class OnboardingPreferences(BaseModel):
+    career_goals: List[str] = []
+    tech_interests: List[str] = []
+
+
+@router.get("/preferences")
+async def get_preferences(user=Depends(get_current_user)):
+    db_user = await users_collection.find_one({"_id": ObjectId(user["id"])})
+    onboarding = db_user.get("onboarding", {}) if db_user else {}
+    return {
+        "career_goals": onboarding.get("career_goals", []),
+        "tech_interests": onboarding.get("tech_interests", []),
+        "completed": onboarding.get("completed", False),
+    }
+
+
+@router.post("/preferences")
+async def save_preferences(req: OnboardingPreferences, user=Depends(get_current_user)):
+    career_goals = _validate_list(req.career_goals, ALLOWED_CAREER_GOALS, "career_goals")
+    tech_interests = _validate_list(req.tech_interests, ALLOWED_TECH_INTERESTS, "tech_interests")
+
+    await users_collection.update_one(
+        {"_id": ObjectId(user["id"])},
+        {
+            "$set": {
+                "onboarding.career_goals": career_goals,
+                "onboarding.tech_interests": tech_interests,
+                "onboarding.updated_at": datetime.now(timezone.utc),
+            }
+        },
+        upsert=True,
+    )
+    return {
+        "career_goals": career_goals,
+        "tech_interests": tech_interests,
+    }
+
+
+@router.post("/restart")
+async def restart_onboarding(user=Depends(get_current_user)):
+    await users_collection.update_one(
+        {"_id": ObjectId(user["id"])},
+        {
+            "$unset": {
+                "onboarding": "",
+            }
+        },
+    )
+    return {"message": "Onboarding restarted"}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuthStore from "../store/authStore";
 import api from "../services/api";
-import { User, Mail, Lock, Save, Shield, CreditCard, Crown } from "lucide-react";
+import { User, Mail, Lock, Save, Shield, CreditCard, Crown, RefreshCw, Loader2, Settings as SettingsIcon } from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
 
 export default function Settings() {
@@ -15,6 +15,7 @@ export default function Settings() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("profile");
+  const [restarting, setRestarting] = useState(false);
   const reduced = useReducedMotion();
 
   const isPremium = user?.plan === "pro" || user?.plan === "lifetime";
@@ -49,10 +50,24 @@ export default function Settings() {
     }
   };
 
+  const handleRestartOnboarding = async () => {
+    setRestarting(true);
+    setMessage("");
+    try {
+      await api.onboarding.restart();
+      setMessage("Onboarding restarted. You will see it again on your next visit.");
+    } catch (err) {
+      setMessage(err.message || "Failed to restart onboarding");
+    } finally {
+      setRestarting(false);
+    }
+  };
+
   const tabs = [
     { id: "profile", label: "Profile", icon: User },
     { id: "security", label: "Security", icon: Shield },
     { id: "billing", label: "Billing", icon: CreditCard },
+    { id: "account", label: "Account", icon: SettingsIcon },
   ];
 
   return (
@@ -216,6 +231,43 @@ export default function Settings() {
                 Upgrade to Pro — $19/month
               </Link>
             )}
+          </motion.div>
+        )}
+
+        {activeTab === "account" && (
+          <motion.div
+            className="card space-y-6"
+            initial={reduced ? {} : { opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            <h2 className="text-xl font-display font-bold text-text-primary">Account</h2>
+            <div className="p-4 rounded-xl border border-border bg-surface">
+              <h3 className="font-bold text-text-primary mb-2">Onboarding</h3>
+              <p className="text-sm text-text-muted mb-4">
+                Restart the onboarding flow to update your career goals and
+                technology interests. You will see it again on your next visit.
+              </p>
+              <motion.button
+                onClick={handleRestartOnboarding}
+                disabled={restarting}
+                className="flex items-center gap-2 w-full btn-primary px-6 py-3"
+                whileHover={reduced ? {} : { scale: 1.02 }}
+                whileTap={reduced ? {} : { scale: 0.98 }}
+              >
+                <RefreshCw size={18} />
+                {restarting ? <Loader2 size={18} className="animate-spin" /> : "Restart Onboarding"}
+              </motion.button>
+              {message && (
+                <p
+                  className="mt-3 text-sm font-medium"
+                  style={{
+                    color: message.includes("restarted") ? "#15803D" : "#EF4444",
+                  }}
+                >
+                  {message}
+                </p>
+              )}
+            </div>
           </motion.div>
         )}
       </div>
