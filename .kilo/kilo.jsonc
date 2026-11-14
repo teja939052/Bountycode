@@ -1,10 +1,9 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
   "snapshot": false,
-  // Project-level: allow every tool without confirmation prompts (read, edit,
-  // bash, glob, grep, list, task/subagent, external_directory, todowrite,
-  // question, webfetch, websearch, lsp, doom_loop, skill, notebooks, ...).
-  // Mirrors the global ~/.config/kilo/kilo.jsonc so nothing prompts either way.
+  // Project-level: every tool auto-approves, nothing prompts.
+  // Kilo 7.x runs on the OpenCode V1 permission shape, so this is the V1
+  // `permission` map (the newer V2 `permissions` ruleset is rejected here).
   "permission": {
     "read": "allow",
     "edit": "allow",
@@ -29,6 +28,8 @@
     "write": "allow",
     "patch": "allow",
     "codesearch": "allow",
-    "mcp": "allow"
+    "mcp": "allow",
+    // Catch-all for any key not listed above.
+    "*": "allow"
   }
 }
