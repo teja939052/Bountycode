@@ -1,0 +1,416 @@
+{
+  "schema_version": "1.0.0",
+  "status": "curated_external_sources_not_yet_served",
+  "policy": {
+    "default_action": "link_to_original_source",
+    "download_or_mirror": "Only when the exact item license explicitly permits redistribution and all attribution/share-alike/non-commercial conditions are satisfied.",
+    "ai_generated_derivatives": "AI summaries, flashcards, shortcuts and quizzes are drafts until fact-checked; they are not trusted question-bank entries.",
+    "company_claims": "Company sample papers are labeled official only when published by the employer; never infer that a third-party question was asked by a company."
+  },
+  "resources": [
+    {
+      "id": "mit-ocw-6006-algorithms",
+      "title": "Introduction to Algorithms (6.006)",
+      "provider": "MIT OpenCourseWare",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+      "format": [
+        "lecture_videos",
+        "lecture_notes",
+        "assignments",
+        "exams",
+        "solutions"
+      ],
+      "domains": [
+        "dsa",
+        "algorithms"
+      ],
+      "topics": [
+        "algorithm-analysis",
+        "sorting",
+        "hashing",
+        "trees",
+        "heaps",
+        "graphs",
+        "shortest-paths",
+        "dynamic-programming"
+      ],
+      "level": "undergraduate",
+      "access": "free",
+      "rights": "Course-specific Creative Commons terms; the Spring 2020 course is listed as CC BY-NC-SA. Link to source; check the item/course license before copying or adapting.",
+      "recommended_use": "Deep teaching, lecture notes, worked problem sets and exam-style practice.",
+      "source_type": "university_course"
+    },
+    {
+      "id": "mit-ocw-open-learning-library",
+      "title": "MIT Open Learning Library",
+      "provider": "MIT Open Learning Library",
+      "url": "https://ocw.mit.edu/collections/mit-open-learning-library/",
+      "format": [
+        "interactive_course",
+        "auto_graded_assessment"
+      ],
+      "domains": [
+        "programming",
+        "computer_science",
+        "mathematics"
+      ],
+      "topics": [
+        "introductory-programming",
+        "algorithms",
+        "computer-science-foundations"
+      ],
+      "level": "beginner_to_advanced",
+      "access": "free",
+      "rights": "Mixed by course: OCW-designated materials may be reusable under stated conditions; MITx items have varying licenses. Verify each item.",
+      "recommended_use": "Interactive supplementary lessons and assessment.",
+      "source_type": "university_platform"
+    },
+    {
+      "id": "nptel-daa",
+      "title": "Design and Analysis of Algorithms",
+      "provider": "NPTEL",
+      "url": "https://onlinecourses-archive.nptel.ac.in/noc18_cs37/preview",
+      "format": [
+        "course_lectures",
+        "course_content",
+        "assignments"
+      ],
+      "domains": [
+        "dsa",
+        "algorithms"
+      ],
+      "topics": [
+        "asymptotic-complexity",
+        "sorting",
+        "searching",
+        "graph-algorithms",
+        "greedy",
+        "dynamic-programming",
+        "heaps",
+        "disjoint-sets"
+      ],
+      "level": "undergraduate",
+      "access": "free_content",
+      "rights": "Free course access is stated; redistribution rights are not established here. Link only.",
+      "recommended_use": "Indian undergraduate-aligned lecture sequence and topic reinforcement.",
+      "source_type": "university_course"
+    },
+    {
+      "id": "ostep",
+      "title": "Operating Systems: Three Easy Pieces",
+      "provider": "Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau",
+      "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+      "format": [
+        "online_textbook",
+        "pdf_chapters",
+        "simulator_exercises"
+      ],
+      "domains": [
+        "operating_systems"
+      ],
+      "topics": [
+        "processes",
+        "threads",
+        "cpu-scheduling",
+        "memory-virtualization",
+        "paging",
+        "concurrency",
+        "locks",
+        "file-systems",
+        "persistence",
+        "security"
+      ],
+      "level": "undergraduate",
+      "access": "free",
+      "rights": "Authors provide the book free online/PDF; no blanket republication license is asserted. Link to the authors' official site.",
+      "recommended_use": "Core OS explanations, diagrams, chapter reading and simulator-based exercises.",
+      "source_type": "open_textbook"
+    },
+    {
+      "id": "luc-computer-networks",
+      "title": "An Introduction to Computer Networks",
+      "provider": "Peter L. Dordal, Loyola University Chicago",
+      "url": "https://intronetworks4.cs.luc.edu/",
+      "format": [
+        "online_textbook",
+        "diagrams",
+        "exercises"
+      ],
+      "domains": [
+        "computer_networks"
+      ],
+      "topics": [
+        "lan",
+        "internetworking",
+        "tcp-ip",
+        "transport-layer",
+        "congestion-control",
+        "network-security"
+      ],
+      "level": "undergraduate",
+      "access": "free",
+      "rights": "CC BY-NC-ND; link to original. Do not adapt or redistribute modified copies; verify any intended commercial use.",
+      "recommended_use": "Concept explanations, protocol diagrams and exercises.",
+      "source_type": "open_textbook"
+    },
+    {
+      "id": "openstax-intro-python",
+      "title": "Introduction to Python Programming",
+      "provider": "OpenStax",
+      "url": "https://openstax.org/books/introduction-python-programming/pages/preface",
+      "format": [
+        "online_textbook",
+        "pdf",
+        "interactive_code_runner",
+        "activities"
+      ],
+      "domains": [
+        "programming",
+        "python"
+      ],
+      "topics": [
+        "programming-fundamentals",
+        "variables",
+        "control-flow",
+        "functions",
+        "collections",
+        "problem-solving"
+      ],
+      "level": "beginner",
+      "access": "free",
+      "rights": "OpenStax states its textbooks are openly licensed; the general OpenStax license is CC BY 4.0 unless otherwise noted. Check book-specific notices.",
+      "recommended_use": "Beginner-friendly explanations, practical activities and independent reading.",
+      "source_type": "open_textbook"
+    },
+    {
+      "id": "openstax-intro-cs",
+      "title": "Introduction to Computer Science",
+      "provider": "OpenStax",
+      "url": "https://openstax.org/books/introduction-computer-science/pages/preface",
+      "format": [
+        "online_textbook",
+        "pdf"
+      ],
+      "domains": [
+        "computer_science_fundamentals",
+        "programming"
+      ],
+      "topics": [
+        "computational-thinking",
+        "computer-systems",
+        "software",
+        "data",
+        "computing-foundations"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "OpenStax states its textbooks are openly licensed; general license is CC BY 4.0 unless otherwise noted. Check book-specific notices.",
+      "recommended_use": "Broad CS foundation reading and supplementary explanations.",
+      "source_type": "open_textbook"
+    },
+    {
+      "id": "practical-intro-databases",
+      "title": "A Practical Introduction to Databases",
+      "provider": "Runestone Academy",
+      "url": "https://runestone.academy/ns/books/published/practical_db/front-matter/preface.html",
+      "format": [
+        "interactive_textbook",
+        "exercises"
+      ],
+      "domains": [
+        "dbms",
+        "sql"
+      ],
+      "topics": [
+        "relational-model",
+        "sql",
+        "database-design",
+        "queries",
+        "transactions"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "CC BY-SA 4.0 as stated by the book; adaptations must preserve attribution and share-alike terms.",
+      "recommended_use": "Structured database learning and interactive exercises.",
+      "source_type": "open_textbook"
+    },
+    {
+      "id": "postgresql-tutorial",
+      "title": "PostgreSQL Tutorial",
+      "provider": "PostgreSQL Global Development Group",
+      "url": "https://www.postgresql.org/docs/current/tutorial.html",
+      "format": [
+        "official_documentation",
+        "hands_on_tutorial"
+      ],
+      "domains": [
+        "sql",
+        "dbms"
+      ],
+      "topics": [
+        "relational-concepts",
+        "create-table",
+        "select",
+        "joins",
+        "aggregates",
+        "views",
+        "foreign-keys",
+        "transactions",
+        "window-functions"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "Documentation is governed by PostgreSQL documentation licensing; link to original unless a specific reuse permission is verified.",
+      "recommended_use": "Hands-on SQL tutorial and authoritative syntax reference.",
+      "source_type": "official_documentation"
+    },
+    {
+      "id": "nptel-courses",
+      "title": "NPTEL Computer Science Courses",
+      "provider": "NPTEL / IITs",
+      "url": "https://nptel.ac.in/courses",
+      "format": [
+        "video_lectures",
+        "course_notes",
+        "assignments"
+      ],
+      "domains": [
+        "programming",
+        "dsa",
+        "dbms",
+        "operating_systems",
+        "computer_architecture",
+        "software_engineering"
+      ],
+      "topics": [
+        "problem-solving-in-c",
+        "java",
+        "data-structures",
+        "algorithms",
+        "database-management",
+        "operating-systems",
+        "computer-architecture"
+      ],
+      "level": "undergraduate",
+      "access": "free_content",
+      "rights": "Course content is freely accessible where stated; do not assume blanket redistribution rights. Link to the course page.",
+      "recommended_use": "IIT faculty lecture series aligned with Indian engineering curricula.",
+      "source_type": "university_platform"
+    },
+    {
+      "id": "khan-academy-math",
+      "title": "Khan Academy Mathematics",
+      "provider": "Khan Academy",
+      "url": "https://www.khanacademy.org/math",
+      "format": [
+        "video_lessons",
+        "interactive_practice",
+        "worked_examples"
+      ],
+      "domains": [
+        "quantitative_aptitude",
+        "mathematics"
+      ],
+      "topics": [
+        "arithmetic",
+        "ratios",
+        "percentages",
+        "algebra",
+        "geometry",
+        "statistics",
+        "probability"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "Use as an external learning link; check the specific content license before reproducing any material.",
+      "recommended_use": "Repair foundational math gaps before timed aptitude practice.",
+      "source_type": "learning_platform"
+    },
+    {
+      "id": "british-council-learnenglish",
+      "title": "LearnEnglish",
+      "provider": "British Council",
+      "url": "https://learnenglish.britishcouncil.org/",
+      "format": [
+        "grammar_practice",
+        "reading",
+        "listening",
+        "vocabulary",
+        "speaking"
+      ],
+      "domains": [
+        "verbal_ability",
+        "communication"
+      ],
+      "topics": [
+        "grammar",
+        "vocabulary",
+        "reading-comprehension",
+        "listening",
+        "speaking",
+        "workplace-communication"
+      ],
+      "level": "beginner_to_advanced",
+      "access": "free",
+      "rights": "Free access does not imply redistribution rights. Link to the original exercises.",
+      "recommended_use": "English skill development beyond placement-style MCQs.",
+      "source_type": "learning_platform"
+    },
+    {
+      "id": "tcs-official-sample-paper",
+      "title": "TCS Smart Hiring Sample Question Paper",
+      "provider": "Tata Consultancy Services",
+      "url": "https://www.tcs.com/content/dam/global-tcs/en/pdfs/who-we-are/careers/tcs-smarthiring-sample-question-paper.pdf",
+      "format": [
+        "official_sample_paper_pdf"
+      ],
+      "domains": [
+        "company_preparation",
+        "verbal_ability"
+      ],
+      "topics": [
+        "verbal-ability",
+        "sentence-ordering",
+        "reading-comprehension",
+        "company-mock-format"
+      ],
+      "level": "placement",
+      "access": "free",
+      "rights": "Official employer sample; link to the PDF. Do not republish the paper without permission.",
+      "recommended_use": "Clearly labeled official sample for format familiarization, not a universal current hiring pattern.",
+      "source_type": "official_employer_sample"
+    },
+    {
+      "id": "open-textbook-library",
+      "title": "Open Textbook Library",
+      "provider": "University of Minnesota / Open Education Network",
+      "url": "https://open.umn.edu/opentextbooks/",
+      "format": [
+        "open_textbooks",
+        "pdf"
+      ],
+      "domains": [
+        "computer_science",
+        "mathematics",
+        "communication"
+      ],
+      "topics": [
+        "subject-specific-foundations",
+        "supplementary-reading"
+      ],
+      "level": "varies",
+      "access": "free",
+      "rights": "Each textbook lists its own open license; check before reuse or adaptation.",
+      "recommended_use": "Discovery source for additional openly licensed textbooks after topic-level review.",
+      "source_type": "open_textbook_directory"
+    }
+  ],
+  "not_yet_covered": [
+    "A complete verified PPT/slide deck inventory for every canonical Bountycode skill",
+    "All 37 skills currently represented in the user's reported question-bank coverage",
+    "Aptitude shortcut sheets and original formula cards per topic",
+    "A complete DSA pattern library mapped to existing skill IDs",
+    "C, C++, Java, Python and web-development topic-by-topic resource coverage",
+    "Company assessment overlays for every target employer and current hiring cycle"
+  ]
+}
