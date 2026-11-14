@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0.0",
-  "status": "curated_external_sources_not_yet_served",
+  "schema_version": "1.1.0",
+  "status": "curated_external_sources_served_by_api",
   "policy": {
     "default_action": "link_to_original_source",
     "download_or_mirror": "Only when the exact item license explicitly permits redistribution and all attribution/share-alike/non-commercial conditions are satisfied.",
@@ -403,14 +403,272 @@
       "rights": "Each textbook lists its own open license; check before reuse or adaptation.",
       "recommended_use": "Discovery source for additional openly licensed textbooks after topic-level review.",
       "source_type": "open_textbook_directory"
+    },
+    {
+      "id": "open-data-structures",
+      "title": "Open Data Structures",
+      "provider": "Pat Morin",
+      "url": "https://opendatastructures.org/",
+      "format": [
+        "online_textbook",
+        "pdf",
+        "source_code",
+        "exercises"
+      ],
+      "domains": [
+        "dsa",
+        "algorithms"
+      ],
+      "topics": [
+        "arrays",
+        "linked-lists",
+        "stacks",
+        "queues",
+        "hash-tables",
+        "binary-search-trees",
+        "heaps",
+        "graphs",
+        "sorting"
+      ],
+      "level": "undergraduate",
+      "access": "free",
+      "rights": "Openly licensed textbook; verify the license notice for the specific edition before adapting or redistributing.",
+      "recommended_use": "A rigorous, implementation-oriented reference for core data structures and algorithm analysis.",
+      "source_type": "open_textbook"
+    },
+    {
+      "id": "think-python",
+      "title": "Think Python, 3rd Edition",
+      "provider": "Allen B. Downey",
+      "url": "https://allendowney.github.io/ThinkPython/",
+      "format": [
+        "online_textbook",
+        "pdf",
+        "notebooks",
+        "exercises"
+      ],
+      "domains": [
+        "programming",
+        "python"
+      ],
+      "topics": [
+        "variables",
+        "expressions",
+        "functions",
+        "conditionals",
+        "iteration",
+        "strings",
+        "lists",
+        "dictionaries",
+        "files",
+        "algorithms"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "The author publishes the book openly; confirm the edition's license page before reproducing or adapting content.",
+      "recommended_use": "Clear explanations and small exercises for learning Python from fundamentals to data structures.",
+      "source_type": "open_textbook"
+    },
+    {
+      "id": "python-for-everybody",
+      "title": "Python for Everybody",
+      "provider": "Charles Severance",
+      "url": "https://www.py4e.com/",
+      "format": [
+        "online_textbook",
+        "video_lectures",
+        "exercises",
+        "downloadable_materials"
+      ],
+      "domains": [
+        "programming",
+        "python"
+      ],
+      "topics": [
+        "programming-fundamentals",
+        "variables",
+        "loops",
+        "functions",
+        "files",
+        "regular-expressions",
+        "networking",
+        "databases"
+      ],
+      "level": "beginner",
+      "access": "free",
+      "rights": "The project provides free learning materials; check the site's stated Creative Commons license and attribution terms before reuse.",
+      "recommended_use": "Beginner-friendly course sequence with videos, text and practical exercises.",
+      "source_type": "open_course"
+    },
+    {
+      "id": "openstax-cs-collection",
+      "title": "OpenStax Computer Science Collection",
+      "provider": "OpenStax / Rice University",
+      "url": "https://www2.openstax.org/openstax-computer-science-2026",
+      "format": [
+        "online_textbooks",
+        "pdf",
+        "instructor_slides",
+        "supplementary_materials"
+      ],
+      "domains": [
+        "computer_science",
+        "programming",
+        "data_science",
+        "information_systems"
+      ],
+      "topics": [
+        "computer-science-foundations",
+        "python",
+        "data-science",
+        "information-systems",
+        "workplace-software"
+      ],
+      "level": "beginner_to_undergraduate",
+      "access": "free_student_textbooks",
+      "rights": "OpenStax states books are openly licensed, but licenses can vary by title. Instructor resources such as slides/test banks may require an educator account; do not assume they are redistributable.",
+      "recommended_use": "Current collection of peer-reviewed CS textbooks and educator support materials.",
+      "source_type": "open_textbook_collection"
+    },
+    {
+      "id": "ossu-cs",
+      "title": "Open Source Society University — Computer Science",
+      "provider": "OSSU",
+      "url": "https://github.com/ossu/computer-science",
+      "format": [
+        "curated_course_path",
+        "video_courses",
+        "textbooks",
+        "projects",
+        "assessments"
+      ],
+      "domains": [
+        "computer_science",
+        "programming",
+        "dsa",
+        "mathematics",
+        "systems"
+      ],
+      "topics": [
+        "introductory-programming",
+        "discrete-mathematics",
+        "data-structures",
+        "algorithms",
+        "operating-systems",
+        "networking",
+        "databases",
+        "software-engineering"
+      ],
+      "level": "undergraduate",
+      "access": "free_course_links",
+      "rights": "A curated index of third-party courses with differing terms. Follow each provider's license and access rules.",
+      "recommended_use": "A broad map for discovering missing CS subjects and sequencing supplementary courses.",
+      "source_type": "curated_curriculum"
+    },
+    {
+      "id": "exercism",
+      "title": "Exercism",
+      "provider": "Exercism",
+      "url": "https://exercism.org/",
+      "format": [
+        "practice_exercises",
+        "automated_feedback",
+        "mentoring"
+      ],
+      "domains": [
+        "programming",
+        "python",
+        "java",
+        "cpp",
+        "javascript",
+        "typescript",
+        "go",
+        "rust"
+      ],
+      "topics": [
+        "language_fundamentals",
+        "problem-solving",
+        "debugging",
+        "idiomatic-programming",
+        "testing"
+      ],
+      "level": "beginner_to_advanced",
+      "access": "free",
+      "rights": "Use the platform's exercises through its own site; check individual track repository licenses before copying exercise content.",
+      "recommended_use": "Language-specific practice and feedback to complement Bountycode's own verified assessments.",
+      "source_type": "practice_platform"
+    },
+    {
+      "id": "freecodecamp",
+      "title": "freeCodeCamp",
+      "provider": "freeCodeCamp",
+      "url": "https://www.freecodecamp.org/learn/",
+      "format": [
+        "interactive_lessons",
+        "projects",
+        "certification_curricula",
+        "articles"
+      ],
+      "domains": [
+        "programming",
+        "web_development",
+        "javascript",
+        "python",
+        "databases"
+      ],
+      "topics": [
+        "html",
+        "css",
+        "javascript",
+        "front_end",
+        "back_end",
+        "python",
+        "relational_databases",
+        "apis"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "Platform content and code repositories have their own licensing terms; link by default and check the specific curriculum repository before reuse.",
+      "recommended_use": "Hands-on web development and programming practice through project-oriented curricula.",
+      "source_type": "learning_platform"
+    },
+    {
+      "id": "saylor-computer-science",
+      "title": "Saylor Academy Computer Science Courses",
+      "provider": "Saylor Academy",
+      "url": "https://www.saylor.org/academics/",
+      "format": [
+        "self_paced_courses",
+        "readings",
+        "videos",
+        "assessments"
+      ],
+      "domains": [
+        "computer_science",
+        "programming",
+        "dsa",
+        "mathematics"
+      ],
+      "topics": [
+        "programming-fundamentals",
+        "data-structures",
+        "algorithms",
+        "computer-systems",
+        "discrete-mathematics"
+      ],
+      "level": "undergraduate",
+      "access": "free",
+      "rights": "Course and item licenses may differ; inspect the course's license and attribution information before copying or adapting.",
+      "recommended_use": "Self-paced course material for structured reinforcement and additional assessments.",
+      "source_type": "open_course"
     }
   ],
   "not_yet_covered": [
-    "A complete verified PPT/slide deck inventory for every canonical Bountycode skill",
-    "All 37 skills currently represented in the user's reported question-bank coverage",
-    "Aptitude shortcut sheets and original formula cards per topic",
-    "A complete DSA pattern library mapped to existing skill IDs",
-    "C, C++, Java, Python and web-development topic-by-topic resource coverage",
-    "Company assessment overlays for every target employer and current hiring cycle"
-  ]
+    "Verified resource links mapped to every individual canonical skill ID and lesson ID",
+    "A complete verified slide/PPT inventory for all subjects and skills",
+    "Original Bountycode-authored shortcut, formula and rapid-revision sheets for each aptitude topic",
+    "Reviewed topic-specific visual explanations and worked examples across the full curriculum",
+    "Current employer-specific assessment resources verified for each active hiring cycle"
+  ],
+  "last_curated_date": "2026-11-14"
 }
