@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "status": "curated_external_sources_served_by_api",
   "policy": {
     "default_action": "link_to_original_source",
@@ -661,6 +661,226 @@
       "rights": "Course and item licenses may differ; inspect the course's license and attribution information before copying or adapting.",
       "recommended_use": "Self-paced course material for structured reinforcement and additional assessments.",
       "source_type": "open_course"
+    },
+    {
+      "id": "aicte-ug-cse-model-curriculum",
+      "title": "AICTE Model Curriculum for UG Computer Science and Engineering",
+      "provider": "All India Council for Technical Education",
+      "url": "https://www.aicte.gov.in/sites/default/files/Updated-AICTE%20-%20UG%20CSE.pdf",
+      "format": [
+        "official_curriculum_pdf",
+        "syllabus",
+        "reference_reading_list"
+      ],
+      "domains": [
+        "computer_science",
+        "programming",
+        "dsa",
+        "operating_systems",
+        "computer_networks",
+        "dbms"
+      ],
+      "topics": [
+        "undergraduate-cse-syllabus",
+        "data-structures",
+        "algorithms",
+        "operating-systems",
+        "computer-networks",
+        "database-systems",
+        "computer-architecture"
+      ],
+      "level": "undergraduate",
+      "access": "free",
+      "rights": "Official curriculum document; link to the AICTE-hosted PDF. Do not assume permission to republish the full document.",
+      "recommended_use": "Use as an Indian undergraduate curriculum reference to map Bountycode topic coverage; it is a model curriculum, not a replacement for each university's current syllabus.",
+      "source_type": "official_curriculum"
+    },
+    {
+      "id": "python-official-tutorial",
+      "title": "The Python Tutorial",
+      "provider": "Python Software Foundation",
+      "url": "https://docs.python.org/3/tutorial/",
+      "format": [
+        "official_documentation",
+        "tutorial",
+        "examples"
+      ],
+      "domains": [
+        "programming",
+        "python"
+      ],
+      "topics": [
+        "python-fundamentals",
+        "control-flow",
+        "data-structures",
+        "modules",
+        "input-output",
+        "exceptions",
+        "classes",
+        "standard-library"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "Python documentation has its own license terms; link to the official documentation and check before reproducing content.",
+      "recommended_use": "Authoritative Python language tutorial and reference for lesson explanations and code examples.",
+      "source_type": "official_documentation"
+    },
+    {
+      "id": "mdn-learn-web-development",
+      "title": "Learn web development",
+      "provider": "MDN Web Docs / Mozilla",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+      "format": [
+        "tutorials",
+        "guides",
+        "examples",
+        "assessments"
+      ],
+      "domains": [
+        "web_development",
+        "javascript",
+        "html",
+        "css"
+      ],
+      "topics": [
+        "html",
+        "css",
+        "javascript",
+        "accessibility",
+        "responsive-design",
+        "forms",
+        "web-apis",
+        "frontend-fundamentals"
+      ],
+      "level": "beginner_to_intermediate",
+      "access": "free",
+      "rights": "MDN content is generally available under Creative Commons Attribution-ShareAlike, with exceptions noted per page; code samples may have separate terms. Verify page notices.",
+      "recommended_use": "Structured frontend learning with practical explanations, examples and knowledge checks.",
+      "source_type": "official_documentation"
+    },
+    {
+      "id": "javascript-mdn-guide",
+      "title": "JavaScript Guide",
+      "provider": "MDN Web Docs / Mozilla",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "format": [
+        "official_documentation",
+        "tutorial",
+        "examples"
+      ],
+      "domains": [
+        "javascript",
+        "programming",
+        "web_development"
+      ],
+      "topics": [
+        "javascript-fundamentals",
+        "functions",
+        "objects",
+        "classes",
+        "promises",
+        "modules",
+        "collections",
+        "regular-expressions"
+      ],
+      "level": "beginner_to_advanced",
+      "access": "free",
+      "rights": "MDN content is generally CC BY-SA with page-level exceptions; code samples may use separate licensing. Link by default and verify before reuse.",
+      "recommended_use": "Reference and deep dive for JavaScript concepts used in frontend and full-stack development.",
+      "source_type": "official_documentation"
+    },
+    {
+      "id": "react-learn",
+      "title": "Learn React",
+      "provider": "Meta / React",
+      "url": "https://react.dev/learn",
+      "format": [
+        "interactive_tutorial",
+        "guides",
+        "examples"
+      ],
+      "domains": [
+        "react",
+        "javascript",
+        "web_development"
+      ],
+      "topics": [
+        "components",
+        "jsx",
+        "props",
+        "state",
+        "events",
+        "hooks",
+        "effects",
+        "forms",
+        "rendering"
+      ],
+      "level": "beginner_to_advanced",
+      "access": "free",
+      "rights": "React documentation is published under its stated documentation license; link to the official source unless reuse terms have been checked.",
+      "recommended_use": "Official React learning path and reference for component-driven frontend development.",
+      "source_type": "official_documentation"
+    },
+    {
+      "id": "typescript-handbook",
+      "title": "TypeScript Handbook",
+      "provider": "Microsoft",
+      "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+      "format": [
+        "official_documentation",
+        "tutorial",
+        "examples"
+      ],
+      "domains": [
+        "typescript",
+        "javascript",
+        "web_development"
+      ],
+      "topics": [
+        "types",
+        "narrowing",
+        "functions",
+        "objects",
+        "generics",
+        "classes",
+        "modules",
+        "type-inference"
+      ],
+      "level": "beginner_to_advanced",
+      "access": "free",
+      "rights": "Documentation and example code have their own licensing terms; link to the official handbook and verify before copying.",
+      "recommended_use": "Structured reference for adding static typing to JavaScript applications.",
+      "source_type": "official_documentation"
+    },
+    {
+      "id": "cppreference",
+      "title": "cppreference.com",
+      "provider": "cppreference contributors",
+      "url": "https://en.cppreference.com/w/",
+      "format": [
+        "language_reference",
+        "examples",
+        "standard_library_reference"
+      ],
+      "domains": [
+        "cpp",
+        "programming"
+      ],
+      "topics": [
+        "cpp-language",
+        "standard-library",
+        "containers",
+        "algorithms",
+        "iterators",
+        "memory",
+        "templates",
+        "concurrency"
+      ],
+      "level": "intermediate_to_advanced",
+      "access": "free",
+      "rights": "The site content and code examples may have different license terms. Link to the reference; do not bulk-copy content.",
+      "recommended_use": "Precise C++ language and standard-library reference for DSA and systems programming.",
+      "source_type": "technical_reference"
     }
   ],
   "not_yet_covered": [
