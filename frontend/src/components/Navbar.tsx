@@ -342,6 +342,9 @@ function UserMenu({ user, onLogout }: { user: NonNullable<AuthState["user"]>; on
             <Link to="/settings" onClick={() => setOpen(false)} role="menuitem" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-text-secondary transition-colors hover:bg-brand-primary/10 hover:text-brand-primary">
               <Settings size={15} aria-hidden="true" /> Settings
             </Link>
+            <Link to="/profile" onClick={() => setOpen(false)} role="menuitem" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-text-secondary transition-colors hover:bg-brand-primary/10 hover:text-brand-primary">
+              <User size={15} aria-hidden="true" /> Profile
+            </Link>
             <button onClick={() => { setOpen(false); onLogout(); }} role="menuitem" className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm text-error transition-colors hover:bg-error/10">
               <LogOut size={15} aria-hidden="true" /> Logout
             </button>

@@ -2,6 +2,7 @@ import { lazy } from "react";
 
 const routeImportFns = {
   CurriculumHub: () => import("./CurriculumHub"),
+  Profile: () => import("./Profile"),
   LearnTrack: () => import("./LearnTrack"),
   LearnLesson: () => import("./LearnLesson"),
   Login: () => import("./Login"),
@@ -133,6 +134,7 @@ window.addEventListener("load", scheduleIdlePreload);
 
 const Login = lazy(() => import("./Login"));
 const CurriculumHub = lazy(() => import("./CurriculumHub"));
+const Profile = lazy(() => import("./Profile"));
 const LearnTrack = lazy(() => import("./LearnTrack"));
 const LearnLesson = lazy(() => import("./LearnLesson"));
 const Register = lazy(() => import("./Register"));
@@ -223,9 +225,10 @@ const GamificationDashboard = lazy(() => import('./GamificationDashboard'));
 const ContentBundles = lazy(() => import('./ContentBundles'));
 const SkillMap = lazy(() => import('./SkillMap'));
 export {
-  CurriculumHub,
-  LearnTrack,
-  LearnLesson,
+   CurriculumHub,
+   LearnTrack,
+   Profile,
+   LearnLesson,
   CompareVisualizer,
   Community,
   ProblemOfTheDay,

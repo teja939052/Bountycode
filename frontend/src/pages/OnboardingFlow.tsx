@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -139,7 +139,7 @@ const LEARNING_PATHS: Record<string, { title: string; desc: string; to: string }
   },
 };
 
-export default function OnboardingFlow() {
+export default function OnboardingFlow({ onComplete, inline }: { onComplete?: () => void; inline?: boolean } = {}) {
   const navigate = useNavigate();
   const reduced = useReducedMotion();
   const [step, setStep] = useState<Step>("welcome");
@@ -149,6 +149,11 @@ export default function OnboardingFlow() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [finished, setFinished] = useState(false);
+
+  // When inline (opened from Profile "Change"), never auto-redirect so the user
+  // can actually see and fill out the form. On the standalone /onboarding route,
+  // auto-redirect completed users to /dashboard.
+  const skipRedirect = !!inline;
 
   const toggleGoal = useCallback((id: string) => {
     setGoals((prev) => (prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]));
@@ -166,7 +171,7 @@ export default function OnboardingFlow() {
         if (mounted) {
           setGoals(prefs.career_goals || []);
           setInterests(prefs.tech_interests || []);
-          if (prefs.completed) {
+          if (!skipRedirect && prefs.completed) {
             navigate("/dashboard", { replace: true });
           }
         }
@@ -180,7 +185,7 @@ export default function OnboardingFlow() {
     return () => {
       mounted = false;
     };
-  }, [navigate]);
+  }, [navigate, skipRedirect]);
 
   const savePrefs = useCallback(async () => {
     setSaving(true);
@@ -203,7 +208,11 @@ export default function OnboardingFlow() {
         tech_interests: interests,
       });
       setFinished(true);
-      navigate("/dashboard", { replace: true });
+      if (inline && onComplete) {
+        onComplete();
+      } else {
+        navigate("/dashboard", { replace: true });
+      }
     } catch (err) {
       setError("Failed to complete onboarding. Please try again.");
     } finally {
@@ -219,13 +228,21 @@ export default function OnboardingFlow() {
         career_goals: [],
         tech_interests: [],
       });
-      navigate("/dashboard", { replace: true });
+      if (inline && onComplete) {
+        onComplete();
+      } else {
+        navigate("/dashboard", { replace: true });
+      }
     } catch {
-      navigate("/dashboard", { replace: true });
+      if (inline && onComplete) {
+        onComplete();
+      } else {
+        navigate("/dashboard", { replace: true });
+      }
     } finally {
       setSaving(false);
     }
-  }, [navigate]);
+  }, [navigate, onComplete, inline]);
 
   const restartOnboarding = useCallback(async () => {
     setSaving(true);
@@ -259,12 +276,20 @@ export default function OnboardingFlow() {
     );
   }
 
-  const StepIcon = GOAL_ICONS[step === "goals" ? "" : ""];
+  const Shell = ({ children }: { children: ReactNode }) => {
+    if (inline) {
+      return <div className="flex flex-col px-4 pt-6">{children}</div>;
+    }
+    return (
+      <PageShell theme="focus">
+        <div className="min-h-screen flex flex-col px-4 pt-6">{children}</div>
+      </PageShell>
+    );
+  };
 
   return (
-    <PageShell theme="focus">
-      <div className="min-h-screen flex flex-col px-4 pt-6">
-        {/* Header */}
+    <Shell>
+      {/* Header */}
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -608,7 +633,6 @@ export default function OnboardingFlow() {
             {error}
           </motion.div>
         )}
-      </div>
-    </PageShell>
+    </Shell>
   );
 }

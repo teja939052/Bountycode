@@ -102,7 +102,8 @@ import {
    LearningModules,
    CurriculumHub,
    LearnTrack,
-  LearnLesson,
+   Profile,
+   LearnLesson,
   FreeTrial,
   PwaSetup,
   AdminContent,
@@ -370,6 +371,7 @@ function AnimatedRoutes() {
         />
 
         <Route path="/settings" element={<Settings />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/history" element={<History />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/contests" element={<MonthlyContests />} />
