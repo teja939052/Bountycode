@@ -14,6 +14,7 @@ import {
   Code2,
   Sparkles,
   LayoutDashboard,
+  Home,
   MessageSquare,
   Calendar,
   Trophy,
@@ -26,14 +27,15 @@ import {
 } from "lucide-react";
 
 /* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
+   Dashboard is the student's home base; Career lives in "More → Your Journey".
    Everything else lives in the "More" menu so users build a fast mental map.
    Resume/ATS/Cover Letter appear ONLY under Career (no duplication). */
 const PRIMARY_LINKS: NavItem[] = [
-  { to: "/hub", label: "Home", icon: LayoutDashboard },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/hub", label: "Home", icon: Home },
   { to: "/prepare", label: "Prepare", icon: BookOpen },
   { to: "/practice", label: "Practice", icon: Code2 },
   { to: "/compete", label: "Compete", icon: Trophy },
-  { to: "/career", label: "Career", icon: Briefcase },
 ];
 
 export default function Navbar() {
@@ -48,6 +50,7 @@ export default function Navbar() {
     {
       label: "Your Journey",
       items: [
+        { to: "/career", label: "Career", icon: Briefcase },
         { to: "/tower", label: "Tower", icon: Castle },
         { to: "/gamification", label: "Gamification", icon: Trophy },
       ],
