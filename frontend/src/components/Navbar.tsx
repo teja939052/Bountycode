@@ -50,20 +50,69 @@ export default function Navbar() {
     {
       label: "Your Journey",
       items: [
-        { to: "/career", label: "Career", icon: Briefcase },
         { to: "/tower", label: "Tower", icon: Castle },
         { to: "/gamification", label: "Gamification", icon: Trophy },
+        { to: "/profile", label: "Profile", icon: User },
+        { to: "/history", label: "History", icon: List },
       ],
     },
     {
-      label: "Tools & Community",
+      label: "Practice",
+      items: [
+        { to: "/question-bank", label: "Question Bank", icon: List },
+        { to: "/solve/:id", label: "Solve Problem", icon: Code2 },
+        { to: "/coding", label: "Coding Challenge", icon: Code2 },
+        { to: "/compiler", label: "Compiler", icon: Code2 },
+        { to: "/daily-drill", label: "Daily Drill", icon: Calendar },
+        { to: "/daily-challenge", label: "Daily Challenge", icon: Trophy },
+        { to: "/challenge-packs", label: "Challenge Packs", icon: List },
+        { to: "/dsa-visualizer", label: "DSA Visualizer", icon: Brain },
+      ],
+    },
+    {
+      label: "Assessments",
+      items: [
+        { to: "/aptitude", label: "Aptitude Test", icon: Brain },
+        { to: "/mock-oa", label: "Mock OA", icon: Castle },
+        { to: "/system-design", label: "System Design", icon: LayoutDashboard },
+        { to: "/predictor", label: "Interview Predictor", icon: Lightbulb },
+      ],
+    },
+    {
+      label: "Career Tools",
+      items: [
+        { to: "/resume", label: "Resume Builder", icon: LayoutDashboard },
+        { to: "/resume-studio", label: "Resume Studio", icon: LayoutDashboard },
+        { to: "/ats", label: "ATS Optimizer", icon: Lightbulb },
+        { to: "/interview", label: "Mock Interview", icon: MessageSquare },
+        { to: "/ai-mentor", label: "AI Mentor", icon: Brain },
+      ],
+    },
+    {
+      label: "Learning",
+      items: [
+        { to: "/learn", label: "Learning Hub", icon: BookOpen },
+        { to: "/languages", label: "Language Paths", icon: Code2 },
+        { to: "/lessons", label: "Lessons", icon: LayoutDashboard },
+        { to: "/content", label: "Content Bundles", icon: List },
+        { to: "/concepts", label: "Concepts", icon: Lightbulb },
+      ],
+    },
+    {
+      label: "Community & Placements",
       items: [
         { to: "/community", label: "Community", icon: MessageSquare },
-        { to: "/ai-mentor", label: "AI Mentor", icon: Brain },
-        { to: "/content", label: "Content Bundles", icon: List },
-        { to: "/project-generator", label: "Project Generator", icon: Sparkles },
-        { to: "/concepts", label: "Concepts", icon: Lightbulb },
+        { to: "/indian-placement", label: "Indian Placement", icon: Briefcase },
         { to: "/placement-calendar", label: "Placement Calendar", icon: Calendar },
+        { to: "/placement-drives", label: "Placement Drives", icon: Calendar },
+        { to: "/alumni-experiences", label: "Alumni Experiences", icon: User },
+        { to: "/leaderboard", label: "Leaderboard", icon: Trophy },
+        { to: "/contests", label: "Contests", icon: Trophy },
+      ],
+    },
+    {
+      label: "Settings",
+      items: [
         { to: "/settings", label: "Settings", icon: Settings },
       ],
     },
@@ -96,7 +145,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-1" role="menubar">
+          <div className="relative hidden lg:flex items-center gap-1" role="menubar">
             {user ? (
               <>
                 {PRIMARY_LINKS.map((item) => (
@@ -116,25 +165,25 @@ export default function Navbar() {
                    </button>
 
                    {toolsOpen && (
-                     <>
-                       <div className="fixed inset-0 z-10" onClick={() => setToolsOpen(false)} aria-hidden="true" />
-                       <div className="absolute right-0 mt-3 w-96 rounded-2xl border border-gray-200 bg-white border-border/95 p-3 shadow-lg z-20 backdrop-blur" role="menu" aria-label="More menu">
-                       <div className="grid grid-cols-1 gap-4">
-                         {MORE_GROUPS.map((group) => (
-                           <div key={group.label}>
-                             <div className="px-3 pb-1 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">{group.label}</div>
-                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                               {group.items.map((item) => (
-                                 <DropdownLink key={item.to} to={item.to} onClick={() => setToolsOpen(false)} icon={item.icon} role="menuitem">
-                                   {item.label}
-                                 </DropdownLink>
-                               ))}
-                             </div>
-                           </div>
-                         ))}
-                       </div>
-                       </div>
-                      </>
+                      <>
+                        <div className="fixed inset-0 z-10" onClick={() => setToolsOpen(false)} aria-hidden="true" />
+                        <div className="absolute right-0 mt-8 w-[420px] rounded-2xl border border-gray-200 bg-white border-border/95 p-4 shadow-xl z-20 backdrop-blur" role="menu" aria-label="More menu">
+                        <div className="grid grid-cols-1 gap-6">
+                          {MORE_GROUPS.map((group) => (
+                            <div key={group.label}>
+                              <div className="px-2 pb-1 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted border-b border-gray-100 pb-2">{group.label}</div>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {group.items.map((item) => (
+                                  <DropdownLink key={item.to} to={item.to} onClick={() => setToolsOpen(false)} icon={item.icon} role="menuitem">
+                                    {item.label}
+                                  </DropdownLink>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        </div>
+                       </>
                     )}
 
                 <Link to="/problems?random=true" className="ml-2 inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice - random question">
