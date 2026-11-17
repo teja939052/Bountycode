@@ -171,7 +171,8 @@ export default function OnboardingFlow({ onComplete, inline }: { onComplete?: ()
         if (mounted) {
           setGoals(prefs.career_goals || []);
           setInterests(prefs.tech_interests || []);
-          if (!skipRedirect && prefs.completed) {
+          const hasSelections = (prefs.career_goals || []).length > 0 || (prefs.tech_interests || []).length > 0;
+          if (!skipRedirect && prefs.completed && hasSelections) {
             navigate("/dashboard", { replace: true });
           }
         }
@@ -244,6 +245,22 @@ export default function OnboardingFlow({ onComplete, inline }: { onComplete?: ()
     }
   }, [navigate, onComplete, inline]);
 
+  const clearPrefs = useCallback(async () => {
+    setSaving(true);
+    setError(null);
+    try {
+      await api.onboarding.savePreferences({ career_goals: [], tech_interests: [] });
+      setGoals([]);
+      setInterests([]);
+      setStep("welcome");
+      setFinished(false);
+    } catch {
+      setError("Failed to clear preferences.");
+    } finally {
+      setSaving(false);
+    }
+  }, []);
+
   const restartOnboarding = useCallback(async () => {
     setSaving(true);
     try {
@@ -305,9 +322,14 @@ export default function OnboardingFlow({ onComplete, inline }: { onComplete?: ()
             </div>
           </div>
           {step !== "welcome" && (
-            <Button variant="ghost" size="sm" onClick={skipOnboarding} disabled={saving}>
-              Skip
-            </Button>
+            <>
+              <Button variant="ghost" size="sm" onClick={clearPrefs} disabled={saving}>
+                Clear
+              </Button>
+              <Button variant="ghost" size="sm" onClick={skipOnboarding} disabled={saving}>
+                Skip
+              </Button>
+            </>
           )}
         </motion.div>
 
