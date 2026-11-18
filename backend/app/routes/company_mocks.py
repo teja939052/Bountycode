@@ -470,7 +470,6 @@ async def submit_company_mock_answer(
     if not hidden_cases:
         raise HTTPException(status_code=409, detail="No hidden grading cases are available")
 
-    from app.services.code_executor import CodeExecutionEngine
     engine = CodeExecutionEngine()
     execution = await engine.execute_against_test_cases(
         source_code=code,
