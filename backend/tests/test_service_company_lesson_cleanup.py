@@ -23,7 +23,8 @@ def test_flowchart_iteration_explanation_is_clean_and_correct():
     explanation = step["explanation"]
 
     assert "Wait - let me re-read" not in explanation
-    assert "prints 1, 2 and 3" in explanation
+    assert "i = 1, 2 and 3" in explanation
+    assert "executes 3 times" in explanation
     assert "4 <= 3 is false" in explanation
     assert "3 times" in explanation
     assert step["correct_index"] == 1
