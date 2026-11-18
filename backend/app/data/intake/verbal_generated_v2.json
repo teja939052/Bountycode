@@ -1,0 +1,3962 @@
+[
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to ABUNDANT.",
+    "options": [
+      "tiny",
+      "rare",
+      "scarce",
+      "plentiful"
+    ],
+    "correct_index": 3,
+    "correct_answer": "plentiful",
+    "explanation": "Abundant means plentiful.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-001"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to CANDID.",
+    "options": [
+      "frank",
+      "shy",
+      "rude",
+      "secretive"
+    ],
+    "correct_index": 0,
+    "correct_answer": "frank",
+    "explanation": "Candid means frank.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-002"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to BRIEF.",
+    "options": [
+      "short",
+      "lengthy",
+      "heavy",
+      "loud"
+    ],
+    "correct_index": 0,
+    "correct_answer": "short",
+    "explanation": "Brief means short.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-003"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to DILIGENT.",
+    "options": [
+      "slow",
+      "careless",
+      "hardworking",
+      "lazy"
+    ],
+    "correct_index": 2,
+    "correct_answer": "hardworking",
+    "explanation": "Diligent means hardworking.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-004"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to OBSOLETE.",
+    "options": [
+      "useful",
+      "fragile",
+      "modern",
+      "outdated"
+    ],
+    "correct_index": 3,
+    "correct_answer": "outdated",
+    "explanation": "Obsolete means outdated.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-005"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to PRUDENT.",
+    "options": [
+      "wasteful",
+      "careless",
+      "cautious",
+      "hasty"
+    ],
+    "correct_index": 2,
+    "correct_answer": "cautious",
+    "explanation": "Prudent means cautious.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-006"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to MITIGATE.",
+    "options": [
+      "delay",
+      "worsen",
+      "reduce",
+      "ignore"
+    ],
+    "correct_index": 2,
+    "correct_answer": "reduce",
+    "explanation": "Mitigate means reduce.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-007"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to VERBOSE.",
+    "options": [
+      "wordy",
+      "clear",
+      "silent",
+      "polite"
+    ],
+    "correct_index": 0,
+    "correct_answer": "wordy",
+    "explanation": "Verbose means wordy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-008"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to EPHEMERAL.",
+    "options": [
+      "lasting",
+      "short-lived",
+      "ancient",
+      "solid"
+    ],
+    "correct_index": 1,
+    "correct_answer": "short-lived",
+    "explanation": "Ephemeral means short-lived.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-009"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to CONCUR.",
+    "options": [
+      "refuse",
+      "disagree",
+      "agree",
+      "argue"
+    ],
+    "correct_index": 2,
+    "correct_answer": "agree",
+    "explanation": "Concur means agree.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-010"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to BENEVOLENT.",
+    "options": [
+      "strict",
+      "kind",
+      "cruel",
+      "selfish"
+    ],
+    "correct_index": 1,
+    "correct_answer": "kind",
+    "explanation": "Benevolent means kind.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-011"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to SCARCE.",
+    "options": [
+      "bulky",
+      "plentiful",
+      "rare",
+      "cheap"
+    ],
+    "correct_index": 2,
+    "correct_answer": "rare",
+    "explanation": "Scarce means rare.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-012"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to FRUGAL.",
+    "options": [
+      "thrifty",
+      "greedy",
+      "generous",
+      "lavish"
+    ],
+    "correct_index": 0,
+    "correct_answer": "thrifty",
+    "explanation": "Frugal means thrifty.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-013"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to AUTHENTIC.",
+    "options": [
+      "old",
+      "rare",
+      "fake",
+      "genuine"
+    ],
+    "correct_index": 3,
+    "correct_answer": "genuine",
+    "explanation": "Authentic means genuine.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-014"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to HINDER.",
+    "options": [
+      "allow",
+      "guide",
+      "help",
+      "obstruct"
+    ],
+    "correct_index": 3,
+    "correct_answer": "obstruct",
+    "explanation": "Hinder means obstruct.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-015"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to AMBIGUOUS.",
+    "options": [
+      "unclear",
+      "certain",
+      "loud",
+      "simple"
+    ],
+    "correct_index": 0,
+    "correct_answer": "unclear",
+    "explanation": "Ambiguous means unclear.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-016"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to RELUCTANT.",
+    "options": [
+      "unwilling",
+      "eager",
+      "ready",
+      "quick"
+    ],
+    "correct_index": 0,
+    "correct_answer": "unwilling",
+    "explanation": "Reluctant means unwilling.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-017"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to VIVID.",
+    "options": [
+      "dull",
+      "vague",
+      "faint",
+      "striking"
+    ],
+    "correct_index": 3,
+    "correct_answer": "striking",
+    "explanation": "Vivid means striking.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-018"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to ENORMOUS.",
+    "options": [
+      "narrow",
+      "average",
+      "huge",
+      "tiny"
+    ],
+    "correct_index": 2,
+    "correct_answer": "huge",
+    "explanation": "Enormous means huge.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-019"
+  },
+  {
+    "type": "verbal",
+    "topic": "synonyms",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to TRANQUIL.",
+    "options": [
+      "stormy",
+      "calm",
+      "noisy",
+      "crowded"
+    ],
+    "correct_index": 1,
+    "correct_answer": "calm",
+    "explanation": "Tranquil means calm.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-synonyms-020"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to EXPAND.",
+    "options": [
+      "grow",
+      "stretch",
+      "contract",
+      "widen"
+    ],
+    "correct_index": 2,
+    "correct_answer": "contract",
+    "explanation": "The opposite of expand is contract.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-021"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to ANCIENT.",
+    "options": [
+      "modern",
+      "old",
+      "historic",
+      "aged"
+    ],
+    "correct_index": 0,
+    "correct_answer": "modern",
+    "explanation": "The opposite of ancient is modern.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-022"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to GENEROUS.",
+    "options": [
+      "stingy",
+      "kind",
+      "noble",
+      "rich"
+    ],
+    "correct_index": 0,
+    "correct_answer": "stingy",
+    "explanation": "The opposite of generous is stingy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-023"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to VICTORY.",
+    "options": [
+      "defeat",
+      "triumph",
+      "win",
+      "success"
+    ],
+    "correct_index": 0,
+    "correct_answer": "defeat",
+    "explanation": "The opposite of victory is defeat.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-024"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to ACCEPT.",
+    "options": [
+      "take",
+      "reject",
+      "receive",
+      "agree"
+    ],
+    "correct_index": 1,
+    "correct_answer": "reject",
+    "explanation": "The opposite of accept is reject.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-025"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to TEMPORARY.",
+    "options": [
+      "passing",
+      "permanent",
+      "brief",
+      "short"
+    ],
+    "correct_index": 1,
+    "correct_answer": "permanent",
+    "explanation": "The opposite of temporary is permanent.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-026"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to OPTIMISTIC.",
+    "options": [
+      "cheerful",
+      "hopeful",
+      "bright",
+      "pessimistic"
+    ],
+    "correct_index": 3,
+    "correct_answer": "pessimistic",
+    "explanation": "The opposite of optimistic is pessimistic.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-027"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to INCREASE.",
+    "options": [
+      "grow",
+      "decrease",
+      "rise",
+      "expand"
+    ],
+    "correct_index": 1,
+    "correct_answer": "decrease",
+    "explanation": "The opposite of increase is decrease.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-028"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to TRANSPARENT.",
+    "options": [
+      "opaque",
+      "clear",
+      "bright",
+      "thin"
+    ],
+    "correct_index": 0,
+    "correct_answer": "opaque",
+    "explanation": "The opposite of transparent is opaque.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-029"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to COURAGEOUS.",
+    "options": [
+      "timid",
+      "bold",
+      "brave",
+      "fearless"
+    ],
+    "correct_index": 0,
+    "correct_answer": "timid",
+    "explanation": "The opposite of courageous is timid.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-030"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to ARTIFICIAL.",
+    "options": [
+      "false",
+      "natural",
+      "fake",
+      "forged"
+    ],
+    "correct_index": 1,
+    "correct_answer": "natural",
+    "explanation": "The opposite of artificial is natural.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-031"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to SCARCE.",
+    "options": [
+      "abundant",
+      "limited",
+      "rare",
+      "few"
+    ],
+    "correct_index": 0,
+    "correct_answer": "abundant",
+    "explanation": "The opposite of scarce is abundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-032"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to HUMBLE.",
+    "options": [
+      "polite",
+      "meek",
+      "modest",
+      "arrogant"
+    ],
+    "correct_index": 3,
+    "correct_answer": "arrogant",
+    "explanation": "The opposite of humble is arrogant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-033"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to DEPART.",
+    "options": [
+      "go",
+      "leave",
+      "arrive",
+      "exit"
+    ],
+    "correct_index": 2,
+    "correct_answer": "arrive",
+    "explanation": "The opposite of depart is arrive.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-034"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to ENCOURAGE.",
+    "options": [
+      "inspire",
+      "support",
+      "discourage",
+      "urge"
+    ],
+    "correct_index": 2,
+    "correct_answer": "discourage",
+    "explanation": "The opposite of encourage is discourage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-035"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to SIMPLE.",
+    "options": [
+      "plain",
+      "complex",
+      "easy",
+      "clear"
+    ],
+    "correct_index": 1,
+    "correct_answer": "complex",
+    "explanation": "The opposite of simple is complex.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-036"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to VICE.",
+    "options": [
+      "virtue",
+      "fault",
+      "crime",
+      "sin"
+    ],
+    "correct_index": 0,
+    "correct_answer": "virtue",
+    "explanation": "The opposite of vice is virtue.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-037"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to MAJORITY.",
+    "options": [
+      "most",
+      "minority",
+      "mass",
+      "bulk"
+    ],
+    "correct_index": 1,
+    "correct_answer": "minority",
+    "explanation": "The opposite of majority is minority.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-038"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to FRAGILE.",
+    "options": [
+      "thin",
+      "delicate",
+      "weak",
+      "sturdy"
+    ],
+    "correct_index": 3,
+    "correct_answer": "sturdy",
+    "explanation": "The opposite of fragile is sturdy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-039"
+  },
+  {
+    "type": "verbal",
+    "topic": "antonyms",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word opposite in meaning to ASCEND.",
+    "options": [
+      "climb",
+      "mount",
+      "rise",
+      "descend"
+    ],
+    "correct_index": 3,
+    "correct_answer": "descend",
+    "explanation": "The opposite of ascend is descend.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-antonyms-040"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "She doesn't likes coffee.",
+      "She not like coffee.",
+      "She doesn't like coffee.",
+      "She don't like coffee."
+    ],
+    "correct_index": 2,
+    "correct_answer": "She doesn't like coffee.",
+    "explanation": "Correct form: \"She doesn't like coffee.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-041"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "Each of the students has submitted the form.",
+      "Each of the students have submitted the form.",
+      "Each of the students are submitted the form.",
+      "Each of the student have submitted the form."
+    ],
+    "correct_index": 0,
+    "correct_answer": "Each of the students has submitted the form.",
+    "explanation": "Correct form: \"Each of the students has submitted the form.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-042"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "Neither of the answer are correct.",
+      "Neither of the answers were correct.",
+      "Neither of the answers is correct.",
+      "Neither of the answers are correct."
+    ],
+    "correct_index": 2,
+    "correct_answer": "Neither of the answers is correct.",
+    "explanation": "Correct form: \"Neither of the answers is correct.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-043"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "He has been working here since five years.",
+      "He has been working here for five years.",
+      "He is working here since five years.",
+      "He has been working here from five years."
+    ],
+    "correct_index": 1,
+    "correct_answer": "He has been working here for five years.",
+    "explanation": "Correct form: \"He has been working here for five years.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-044"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "I have go to the market.",
+      "I have gone to the market.",
+      "I has gone to the market.",
+      "I have went to the market."
+    ],
+    "correct_index": 1,
+    "correct_answer": "I have gone to the market.",
+    "explanation": "Correct form: \"I have gone to the market.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-045"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "The children plays in the garden.",
+      "The children is playing in the garden.",
+      "The children are playing in the garden.",
+      "The childrens are playing in the garden."
+    ],
+    "correct_index": 2,
+    "correct_answer": "The children are playing in the garden.",
+    "explanation": "Correct form: \"The children are playing in the garden.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-046"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "If it rained tomorrow, we will cancel the trip.",
+      "If it rains tomorrow, we would cancelled the trip.",
+      "If it rains tomorrow, we will cancel the trip.",
+      "If it will rain tomorrow, we will cancel the trip."
+    ],
+    "correct_index": 2,
+    "correct_answer": "If it rains tomorrow, we will cancel the trip.",
+    "explanation": "Correct form: \"If it rains tomorrow, we will cancel the trip.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-047"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "He is much more good than his brother.",
+      "He is better than his brother.",
+      "He is more better than his brother.",
+      "He is better than to his brother."
+    ],
+    "correct_index": 1,
+    "correct_answer": "He is better than his brother.",
+    "explanation": "Correct form: \"He is better than his brother.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-048"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "I am looking forward for meeting you.",
+      "I am looking forward to meeting you.",
+      "I am looking forward to met you.",
+      "I am looking forward to meet you."
+    ],
+    "correct_index": 1,
+    "correct_answer": "I am looking forward to meeting you.",
+    "explanation": "Correct form: \"I am looking forward to meeting you.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-049"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "Every boys in the class has a book.",
+      "Every boy in the class are having a book.",
+      "Every boy in the class have a book.",
+      "Every boy in the class has a book."
+    ],
+    "correct_index": 3,
+    "correct_answer": "Every boy in the class has a book.",
+    "explanation": "Correct form: \"Every boy in the class has a book.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-050"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "She advise me to take rest.",
+      "She advised me taking rest.",
+      "She suggested me to take rest.",
+      "She advised me to take rest."
+    ],
+    "correct_index": 3,
+    "correct_answer": "She advised me to take rest.",
+    "explanation": "Correct form: \"She advised me to take rest.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-051"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "He is more senior than me.",
+      "He is senior than me.",
+      "He is senior from me.",
+      "He is senior to me."
+    ],
+    "correct_index": 3,
+    "correct_answer": "He is senior to me.",
+    "explanation": "Correct form: \"He is senior to me.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-052"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "The news is good.",
+      "The news are good.",
+      "The newses are good.",
+      "The news were good."
+    ],
+    "correct_index": 0,
+    "correct_answer": "The news is good.",
+    "explanation": "Correct form: \"The news is good.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-053"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "My brother is engineer.",
+      "My brother is an engineer.",
+      "My brother is a engineer.",
+      "My brother are an engineer."
+    ],
+    "correct_index": 1,
+    "correct_answer": "My brother is an engineer.",
+    "explanation": "Correct form: \"My brother is an engineer.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-054"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "She has few friends than her sister.",
+      "She has fewer friends than her sister.",
+      "She has less friends than her sister.",
+      "She has fewer friend than her sister."
+    ],
+    "correct_index": 1,
+    "correct_answer": "She has fewer friends than her sister.",
+    "explanation": "Correct form: \"She has fewer friends than her sister.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-055"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "Hardly he arrived when the meeting started.",
+      "Hardly had he arrived when the meeting started.",
+      "Hardly had he arrived then the meeting started.",
+      "Hardly he had arrived when the meeting started."
+    ],
+    "correct_index": 1,
+    "correct_answer": "Hardly had he arrived when the meeting started.",
+    "explanation": "Correct form: \"Hardly had he arrived when the meeting started.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-056"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "The teacher, along with the students, was present.",
+      "The teacher, along with the students, were present.",
+      "The teacher, along with the students, are present.",
+      "The teacher, along with the students, have present."
+    ],
+    "correct_index": 0,
+    "correct_answer": "The teacher, along with the students, was present.",
+    "explanation": "Correct form: \"The teacher, along with the students, was present.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-057"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "I prefer tea than coffee.",
+      "I prefer tea to coffee.",
+      "I prefer tea from coffee.",
+      "I prefer more tea to coffee."
+    ],
+    "correct_index": 1,
+    "correct_answer": "I prefer tea to coffee.",
+    "explanation": "Correct form: \"I prefer tea to coffee.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-058"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "He did not know where the station is was.",
+      "He did not know where was the station.",
+      "He did not knew where the station was.",
+      "He did not know where the station was."
+    ],
+    "correct_index": 3,
+    "correct_answer": "He did not know where the station was.",
+    "explanation": "Correct form: \"He did not know where the station was.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-059"
+  },
+  {
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the grammatically correct sentence.",
+    "options": [
+      "He explained me the problem.",
+      "He explained to me the problem about.",
+      "He explain the problem to me.",
+      "He explained the problem to me."
+    ],
+    "correct_index": 3,
+    "correct_answer": "He explained the problem to me.",
+    "explanation": "Correct form: \"He explained the problem to me.\"",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-sentence_correction-060"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: She is good ___ mathematics.",
+    "options": [
+      "in",
+      "with",
+      "on",
+      "at"
+    ],
+    "correct_index": 3,
+    "correct_answer": "at",
+    "explanation": "\"She is good at mathematics.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-061"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: He has been absent ___ Monday.",
+    "options": [
+      "for",
+      "since",
+      "from",
+      "by"
+    ],
+    "correct_index": 1,
+    "correct_answer": "since",
+    "explanation": "\"He has been absent since Monday.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-062"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: The meeting starts ___ 9 a.m.",
+    "options": [
+      "in",
+      "at",
+      "on",
+      "by"
+    ],
+    "correct_index": 1,
+    "correct_answer": "at",
+    "explanation": "\"The meeting starts at 9 a.m.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-063"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: I have lived in Hyderabad ___ 2015.",
+    "options": [
+      "at",
+      "since",
+      "from",
+      "for"
+    ],
+    "correct_index": 1,
+    "correct_answer": "since",
+    "explanation": "\"I have lived in Hyderabad since 2015.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-064"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: We are looking forward ___ the holidays.",
+    "options": [
+      "on",
+      "at",
+      "to",
+      "for"
+    ],
+    "correct_index": 2,
+    "correct_answer": "to",
+    "explanation": "\"We are looking forward to the holidays.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-065"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: He is afraid ___ dogs.",
+    "options": [
+      "of",
+      "at",
+      "from",
+      "with"
+    ],
+    "correct_index": 0,
+    "correct_answer": "of",
+    "explanation": "\"He is afraid of dogs.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-066"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: She apologised ___ being late.",
+    "options": [
+      "on",
+      "of",
+      "for",
+      "to"
+    ],
+    "correct_index": 2,
+    "correct_answer": "for",
+    "explanation": "\"She apologised for being late.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-067"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: This book is different ___ that one.",
+    "options": [
+      "by",
+      "than",
+      "from",
+      "with"
+    ],
+    "correct_index": 2,
+    "correct_answer": "from",
+    "explanation": "\"This book is different from that one.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-068"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: He insisted ___ paying the bill.",
+    "options": [
+      "on",
+      "at",
+      "to",
+      "for"
+    ],
+    "correct_index": 0,
+    "correct_answer": "on",
+    "explanation": "\"He insisted on paying the bill.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-069"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: The thief was caught ___ the police.",
+    "options": [
+      "by",
+      "from",
+      "with",
+      "at"
+    ],
+    "correct_index": 0,
+    "correct_answer": "by",
+    "explanation": "\"The thief was caught by the police.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-070"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: By next year, she ___ her degree.",
+    "options": [
+      "has completed",
+      "will complete",
+      "will have completed",
+      "completed"
+    ],
+    "correct_index": 2,
+    "correct_answer": "will have completed",
+    "explanation": "\"By next year, she will have completed her degree.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-071"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: If I ___ you, I would accept the offer.",
+    "options": [
+      "am",
+      "were",
+      "was",
+      "be"
+    ],
+    "correct_index": 1,
+    "correct_answer": "were",
+    "explanation": "\"If I were you, I would accept the offer.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-072"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: He ___ to the gym every morning.",
+    "options": [
+      "go",
+      "gone",
+      "goes",
+      "going"
+    ],
+    "correct_index": 2,
+    "correct_answer": "goes",
+    "explanation": "\"He goes to the gym every morning.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-073"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: The train ___ before we reached the station.",
+    "options": [
+      "leaving",
+      "leaves",
+      "had left",
+      "has left"
+    ],
+    "correct_index": 2,
+    "correct_answer": "had left",
+    "explanation": "\"The train had left before we reached the station.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-074"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: She is ___ honest girl.",
+    "options": [
+      "an",
+      "a",
+      "the",
+      "no article"
+    ],
+    "correct_index": 0,
+    "correct_answer": "an",
+    "explanation": "\"She is an honest girl.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-075"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: He bought ___ umbrella yesterday.",
+    "options": [
+      "a",
+      "an",
+      "the",
+      "no article"
+    ],
+    "correct_index": 1,
+    "correct_answer": "an",
+    "explanation": "\"He bought an umbrella yesterday.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-076"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: Neither Ravi nor his friends ___ present.",
+    "options": [
+      "is",
+      "has been",
+      "was",
+      "were"
+    ],
+    "correct_index": 3,
+    "correct_answer": "were",
+    "explanation": "\"Neither Ravi nor his friends were present.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-077"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: I wish I ___ more time.",
+    "options": [
+      "have",
+      "had",
+      "having",
+      "has"
+    ],
+    "correct_index": 1,
+    "correct_answer": "had",
+    "explanation": "\"I wish I had more time.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-078"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: The sun ___ in the east.",
+    "options": [
+      "rising",
+      "rise",
+      "rose",
+      "rises"
+    ],
+    "correct_index": 3,
+    "correct_answer": "rises",
+    "explanation": "\"The sun rises in the east.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-079"
+  },
+  {
+    "type": "verbal",
+    "topic": "fill_in_the_blank",
+    "sub_topic": "fill_in_the_blank",
+    "difficulty": "easy",
+    "question": "Fill in the blank: He as well as his sisters ___ coming.",
+    "options": [
+      "is",
+      "have",
+      "were",
+      "are"
+    ],
+    "correct_index": 0,
+    "correct_answer": "is",
+    "explanation": "\"He as well as his sisters is coming.\" is the standard usage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-fill_in_the_blank-080"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A person who loves books",
+    "options": [
+      "bibliographer",
+      "bibliophile",
+      "author",
+      "librarian"
+    ],
+    "correct_index": 1,
+    "correct_answer": "bibliophile",
+    "explanation": "A person who loves books = bibliophile.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-081"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: Government by the people",
+    "options": [
+      "monarchy",
+      "aristocracy",
+      "autocracy",
+      "democracy"
+    ],
+    "correct_index": 3,
+    "correct_answer": "democracy",
+    "explanation": "Government by the people = democracy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-082"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: One who knows everything",
+    "options": [
+      "omnipotent",
+      "omnipresent",
+      "omniscient",
+      "optimist"
+    ],
+    "correct_index": 2,
+    "correct_answer": "omniscient",
+    "explanation": "One who knows everything = omniscient.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-083"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A person who travels on foot",
+    "options": [
+      "commuter",
+      "tourist",
+      "passenger",
+      "pedestrian"
+    ],
+    "correct_index": 3,
+    "correct_answer": "pedestrian",
+    "explanation": "A person who travels on foot = pedestrian.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-084"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: Fear of heights",
+    "options": [
+      "xenophobia",
+      "claustrophobia",
+      "hydrophobia",
+      "acrophobia"
+    ],
+    "correct_index": 3,
+    "correct_answer": "acrophobia",
+    "explanation": "Fear of heights = acrophobia.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-085"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A speech delivered without preparation",
+    "options": [
+      "oration",
+      "extempore",
+      "soliloquy",
+      "monologue"
+    ],
+    "correct_index": 1,
+    "correct_answer": "extempore",
+    "explanation": "A speech delivered without preparation = extempore.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-086"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: The study of birds",
+    "options": [
+      "ecology",
+      "ornithology",
+      "entomology",
+      "zoology"
+    ],
+    "correct_index": 1,
+    "correct_answer": "ornithology",
+    "explanation": "The study of birds = ornithology.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-087"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: That which cannot be read",
+    "options": [
+      "legible",
+      "illegible",
+      "audible",
+      "eligible"
+    ],
+    "correct_index": 1,
+    "correct_answer": "illegible",
+    "explanation": "That which cannot be read = illegible.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-088"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: One who walks in sleep",
+    "options": [
+      "dreamer",
+      "hypnotist",
+      "somniloquist",
+      "somnambulist"
+    ],
+    "correct_index": 3,
+    "correct_answer": "somnambulist",
+    "explanation": "One who walks in sleep = somnambulist.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-089"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A place where birds are kept",
+    "options": [
+      "apiary",
+      "aquarium",
+      "aviary",
+      "zoo"
+    ],
+    "correct_index": 2,
+    "correct_answer": "aviary",
+    "explanation": "A place where birds are kept = aviary.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-090"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A person who is present everywhere at once",
+    "options": [
+      "omniscient",
+      "omnipotent",
+      "omnivorous",
+      "omnipresent"
+    ],
+    "correct_index": 3,
+    "correct_answer": "omnipresent",
+    "explanation": "A person who is present everywhere at once = omnipresent.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-091"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A word that has the same meaning as another",
+    "options": [
+      "antonym",
+      "acronym",
+      "synonym",
+      "homonym"
+    ],
+    "correct_index": 2,
+    "correct_answer": "synonym",
+    "explanation": "A word that has the same meaning as another = synonym.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-092"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A person who eats both plants and animals",
+    "options": [
+      "omnivore",
+      "insectivore",
+      "herbivore",
+      "carnivore"
+    ],
+    "correct_index": 0,
+    "correct_answer": "omnivore",
+    "explanation": "A person who eats both plants and animals = omnivore.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-093"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: Fear of closed spaces",
+    "options": [
+      "hydrophobia",
+      "agoraphobia",
+      "acrophobia",
+      "claustrophobia"
+    ],
+    "correct_index": 3,
+    "correct_answer": "claustrophobia",
+    "explanation": "Fear of closed spaces = claustrophobia.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-094"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: The killing of one's own brother",
+    "options": [
+      "fratricide",
+      "suicide",
+      "patricide",
+      "homicide"
+    ],
+    "correct_index": 0,
+    "correct_answer": "fratricide",
+    "explanation": "The killing of one's own brother = fratricide.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-095"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A person who does not believe in God",
+    "options": [
+      "theist",
+      "atheist",
+      "pagan",
+      "devotee"
+    ],
+    "correct_index": 1,
+    "correct_answer": "atheist",
+    "explanation": "A person who does not believe in God = atheist.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-096"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A government run by one person with absolute power",
+    "options": [
+      "autocracy",
+      "democracy",
+      "bureaucracy",
+      "republic"
+    ],
+    "correct_index": 0,
+    "correct_answer": "autocracy",
+    "explanation": "A government run by one person with absolute power = autocracy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-097"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A list of books referred to in a work",
+    "options": [
+      "bibliography",
+      "glossary",
+      "biography",
+      "index of names"
+    ],
+    "correct_index": 0,
+    "correct_answer": "bibliography",
+    "explanation": "A list of books referred to in a work = bibliography.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-098"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: A person who can use both hands equally well",
+    "options": [
+      "ambitious",
+      "ambiguous",
+      "amphibious",
+      "ambidextrous"
+    ],
+    "correct_index": 3,
+    "correct_answer": "ambidextrous",
+    "explanation": "A person who can use both hands equally well = ambidextrous.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-099"
+  },
+  {
+    "type": "verbal",
+    "topic": "one_word_substitution",
+    "sub_topic": "one_word_substitution",
+    "difficulty": "medium",
+    "question": "One word for: That which can be eaten",
+    "options": [
+      "audible",
+      "legible",
+      "eligible",
+      "edible"
+    ],
+    "correct_index": 3,
+    "correct_answer": "edible",
+    "explanation": "That which can be eaten = edible.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-one_word_substitution-100"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Break the ice\" mean?",
+    "options": [
+      "to break something frozen",
+      "to start a conversation in an awkward situation",
+      "to lose one's temper",
+      "to end a friendship"
+    ],
+    "correct_index": 1,
+    "correct_answer": "to start a conversation in an awkward situation",
+    "explanation": "\"Break the ice\" means to start a conversation in an awkward situation.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-101"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"A piece of cake\" mean?",
+    "options": [
+      "a very easy task",
+      "a cheap gift",
+      "a small dessert",
+      "a difficult job"
+    ],
+    "correct_index": 0,
+    "correct_answer": "a very easy task",
+    "explanation": "\"A piece of cake\" means a very easy task.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-102"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Once in a blue moon\" mean?",
+    "options": [
+      "very often",
+      "every month",
+      "at night",
+      "very rarely"
+    ],
+    "correct_index": 3,
+    "correct_answer": "very rarely",
+    "explanation": "\"Once in a blue moon\" means very rarely.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-103"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Burn the midnight oil\" mean?",
+    "options": [
+      "to sleep early",
+      "to work late into the night",
+      "to start a fire",
+      "to waste fuel"
+    ],
+    "correct_index": 1,
+    "correct_answer": "to work late into the night",
+    "explanation": "\"Burn the midnight oil\" means to work late into the night.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-104"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Hit the nail on the head\" mean?",
+    "options": [
+      "to hurt oneself",
+      "to build a house",
+      "to make a mistake",
+      "to say or do exactly the right thing"
+    ],
+    "correct_index": 3,
+    "correct_answer": "to say or do exactly the right thing",
+    "explanation": "\"Hit the nail on the head\" means to say or do exactly the right thing.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-105"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Spill the beans\" mean?",
+    "options": [
+      "to cook a meal",
+      "to make a mess",
+      "to lose money",
+      "to reveal a secret"
+    ],
+    "correct_index": 3,
+    "correct_answer": "to reveal a secret",
+    "explanation": "\"Spill the beans\" means to reveal a secret.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-106"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Under the weather\" mean?",
+    "options": [
+      "feeling unwell",
+      "standing in the rain",
+      "in a cold place",
+      "very happy"
+    ],
+    "correct_index": 0,
+    "correct_answer": "feeling unwell",
+    "explanation": "\"Under the weather\" means feeling unwell.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-107"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Cost an arm and a leg\" mean?",
+    "options": [
+      "to be very cheap",
+      "to be a bargain",
+      "to cause an injury",
+      "to be very expensive"
+    ],
+    "correct_index": 3,
+    "correct_answer": "to be very expensive",
+    "explanation": "\"Cost an arm and a leg\" means to be very expensive.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-108"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"The ball is in your court\" mean?",
+    "options": [
+      "it is your turn to decide or act",
+      "you have lost the game",
+      "you are good at sports",
+      "you must leave"
+    ],
+    "correct_index": 0,
+    "correct_answer": "it is your turn to decide or act",
+    "explanation": "\"The ball is in your court\" means it is your turn to decide or act.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-109"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Call it a day\" mean?",
+    "options": [
+      "to start a new job",
+      "to name a date",
+      "to stop working for the day",
+      "to wait until morning"
+    ],
+    "correct_index": 2,
+    "correct_answer": "to stop working for the day",
+    "explanation": "\"Call it a day\" means to stop working for the day.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-110"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Bite the bullet\" mean?",
+    "options": [
+      "to get angry",
+      "to give up",
+      "to face a difficult situation bravely",
+      "to eat quickly"
+    ],
+    "correct_index": 2,
+    "correct_answer": "to face a difficult situation bravely",
+    "explanation": "\"Bite the bullet\" means to face a difficult situation bravely.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-111"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Let the cat out of the bag\" mean?",
+    "options": [
+      "to tell a lie",
+      "to adopt a pet",
+      "to lose an animal",
+      "to reveal a secret by mistake"
+    ],
+    "correct_index": 3,
+    "correct_answer": "to reveal a secret by mistake",
+    "explanation": "\"Let the cat out of the bag\" means to reveal a secret by mistake.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-112"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Beat around the bush\" mean?",
+    "options": [
+      "to hunt animals",
+      "to speak very loudly",
+      "to avoid the main point",
+      "to clean a garden"
+    ],
+    "correct_index": 2,
+    "correct_answer": "to avoid the main point",
+    "explanation": "\"Beat around the bush\" means to avoid the main point.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-113"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"On cloud nine\" mean?",
+    "options": [
+      "flying a plane",
+      "very sad",
+      "feeling ill",
+      "extremely happy"
+    ],
+    "correct_index": 3,
+    "correct_answer": "extremely happy",
+    "explanation": "\"On cloud nine\" means extremely happy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-114"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Pull someone's leg\" mean?",
+    "options": [
+      "to joke with someone",
+      "to help someone walk",
+      "to injure someone",
+      "to argue with someone"
+    ],
+    "correct_index": 0,
+    "correct_answer": "to joke with someone",
+    "explanation": "\"Pull someone's leg\" means to joke with someone.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-115"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"A blessing in disguise\" mean?",
+    "options": [
+      "a hidden gift box",
+      "a clever costume",
+      "something good that seemed bad at first",
+      "a religious ritual"
+    ],
+    "correct_index": 2,
+    "correct_answer": "something good that seemed bad at first",
+    "explanation": "\"A blessing in disguise\" means something good that seemed bad at first.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-116"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Cut corners\" mean?",
+    "options": [
+      "to save time by driving",
+      "to do something cheaply or carelessly",
+      "to draw a square",
+      "to build a house"
+    ],
+    "correct_index": 1,
+    "correct_answer": "to do something cheaply or carelessly",
+    "explanation": "\"Cut corners\" means to do something cheaply or carelessly.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-117"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Get cold feet\" mean?",
+    "options": [
+      "to become nervous and back out",
+      "to walk barefoot",
+      "to have a cold",
+      "to feel the winter"
+    ],
+    "correct_index": 0,
+    "correct_answer": "to become nervous and back out",
+    "explanation": "\"Get cold feet\" means to become nervous and back out.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-118"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Back to square one\" mean?",
+    "options": [
+      "to win a game",
+      "to reach the end",
+      "to go home early",
+      "to start again from the beginning"
+    ],
+    "correct_index": 3,
+    "correct_answer": "to start again from the beginning",
+    "explanation": "\"Back to square one\" means to start again from the beginning.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-119"
+  },
+  {
+    "type": "verbal",
+    "topic": "idioms",
+    "sub_topic": "idioms",
+    "difficulty": "easy",
+    "question": "What does the idiom \"Miss the boat\" mean?",
+    "options": [
+      "to travel by sea",
+      "to lose an opportunity",
+      "to go fishing",
+      "to arrive on time"
+    ],
+    "correct_index": 1,
+    "correct_answer": "to lose an opportunity",
+    "explanation": "\"Miss the boat\" means to lose an opportunity.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "capgemini",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "handwritten_verbal_v2",
+    "verification_version": 0,
+    "provenance": "hand-written standard vocabulary/grammar/idiom item; unambiguous by design; needs human review before it is served",
+    "id": "gen2-verbal-idioms-120"
+  }
+]
