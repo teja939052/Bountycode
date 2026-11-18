@@ -19,6 +19,13 @@ KEY = "test-secret-key"
 os.environ["COMPILER_KEY"] = KEY
 
 
+@pytest.fixture(autouse=True)
+def _enable_isolated_test_runner(monkeypatch):
+    # Test-only opt-in for the local subprocess runner; production still requires
+    # operator-verified outbound network isolation before execution is enabled.
+    monkeypatch.setenv("COMPILER_NETWORK_ISOLATION_CONFIRMED", "true")
+
+
 def _client():
     return TestClient(svc.app)
 
