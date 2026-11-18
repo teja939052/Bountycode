@@ -1324,7 +1324,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"She doesn't likes coffee.\"",
     "options": [
       "She doesn't likes coffee.",
       "She not like coffee.",
@@ -1357,7 +1357,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"Each of the students has submitted the form.\"",
     "options": [
       "Each of the students has submitted the form.",
       "Each of the students have submitted the form.",
@@ -1390,7 +1390,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"Neither of the answer are correct.\"",
     "options": [
       "Neither of the answer are correct.",
       "Neither of the answers were correct.",
@@ -1423,7 +1423,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"He has been working here since five years.\"",
     "options": [
       "He has been working here since five years.",
       "He has been working here for five years.",
@@ -1456,7 +1456,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"I have go to the market.\"",
     "options": [
       "I have go to the market.",
       "I have gone to the market.",
@@ -1489,7 +1489,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"The children plays in the garden.\"",
     "options": [
       "The children plays in the garden.",
       "The children is playing in the garden.",
@@ -1522,7 +1522,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"If it rained tomorrow, we will cancel the trip.\"",
     "options": [
       "If it rained tomorrow, we will cancel the trip.",
       "If it rains tomorrow, we would cancelled the trip.",
@@ -1555,7 +1555,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"He is much more good than his brother.\"",
     "options": [
       "He is much more good than his brother.",
       "He is better than his brother.",
@@ -1588,7 +1588,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"I am looking forward for meeting you.\"",
     "options": [
       "I am looking forward for meeting you.",
       "I am looking forward to meeting you.",
@@ -1621,7 +1621,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"Every boys in the class has a book.\"",
     "options": [
       "Every boys in the class has a book.",
       "Every boy in the class are having a book.",
@@ -1654,7 +1654,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"She advise me to take rest.\"",
     "options": [
       "She advise me to take rest.",
       "She advised me taking rest.",
@@ -1687,7 +1687,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"He is more senior than me.\"",
     "options": [
       "He is more senior than me.",
       "He is senior than me.",
@@ -1720,7 +1720,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"The news is good.\"",
     "options": [
       "The news is good.",
       "The news are good.",
@@ -1753,7 +1753,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"My brother is engineer.\"",
     "options": [
       "My brother is engineer.",
       "My brother is an engineer.",
@@ -1786,7 +1786,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"She has few friends than her sister.\"",
     "options": [
       "She has few friends than her sister.",
       "She has fewer friends than her sister.",
@@ -1819,7 +1819,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"Hardly he arrived when the meeting started.\"",
     "options": [
       "Hardly he arrived when the meeting started.",
       "Hardly had he arrived when the meeting started.",
@@ -1852,7 +1852,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"The teacher, along with the students, was present.\"",
     "options": [
       "The teacher, along with the students, was present.",
       "The teacher, along with the students, were present.",
@@ -1885,7 +1885,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"I prefer tea than coffee.\"",
     "options": [
       "I prefer tea than coffee.",
       "I prefer tea to coffee.",
@@ -1918,7 +1918,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"He did not know where the station is was.\"",
     "options": [
       "He did not know where the station is was.",
       "He did not know where was the station.",
@@ -1951,7 +1951,7 @@
     "topic": "sentence_correction",
     "sub_topic": "sentence_correction",
     "difficulty": "medium",
-    "question": "Choose the grammatically correct sentence.",
+    "question": "Choose the grammatically correct version of: \"He explained me the problem.\"",
     "options": [
       "He explained me the problem.",
       "He explained to me the problem about.",
