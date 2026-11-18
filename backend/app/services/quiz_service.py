@@ -53,6 +53,25 @@ def _question_companies(question: Dict[str, Any]) -> List[str]:
     return [str(item).strip() for item in raw if str(item).strip()]
 
 
+def _normalize_company_tag(value: Any) -> str:
+    """Normalize company labels and placement-program variants for matching."""
+    import re
+
+    key = re.sub(r"[^a-z0-9]+", "_", str(value or "").lower()).strip("_")
+    aliases = {
+        "tcs_nqt": "tcs",
+        "tcs_digital": "tcs",
+        "tcs_ninja": "tcs",
+        "infosys_sp": "infosys",
+        "infosys_specialist_programmer": "infosys",
+        "wipro_turbo": "wipro",
+        "wipro_elite": "wipro",
+        "techm": "tech_mahindra",
+        "ltimindtree": "lti_mindtree",
+    }
+    return aliases.get(key, key)
+
+
 def _load_questions() -> List[Dict[str, Any]]:
     """Load all questions from JSON files into memory."""
     global _questions_cache, _questions_by_id, _questions_by_topic, _questions_by_difficulty, _questions_by_company
@@ -95,7 +114,7 @@ def _load_questions() -> List[Dict[str, Any]]:
         if diff:
             _questions_by_difficulty[diff].append(q)
         for company in _question_companies(q):
-            _questions_by_company[company.lower()].append(q)
+            _questions_by_company[_normalize_company_tag(company)].append(q)
 
     return unique
 
@@ -117,7 +136,7 @@ def get_questions_by_difficulty(difficulty: str) -> List[Dict[str, Any]]:
 
 def get_questions_by_company(company: str) -> List[Dict[str, Any]]:
     _load_questions()
-    return _questions_by_company.get(company.lower(), [])
+    return _questions_by_company.get(_normalize_company_tag(company), [])
 
 
 def get_all_questions() -> List[Dict[str, Any]]:
@@ -211,10 +230,11 @@ def build_quiz(
             if str(q.get("difficulty") or "medium").lower() == difficulty.lower()
         ]
     if company:
+        requested_company = _normalize_company_tag(company)
         filtered = [
             q for q in filtered
-            if company.strip().lower() in {
-                item.lower() for item in _question_companies(q)
+            if requested_company in {
+                _normalize_company_tag(item) for item in _question_companies(q)
             }
         ]
 
