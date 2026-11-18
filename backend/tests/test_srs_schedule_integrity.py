@@ -133,3 +133,67 @@ async def test_journey_includes_due_mongo_cards_via_shared_deserializer(monkeypa
 
     assert [card.concept_id for card in due] == ["arrays:two-pointers"]
     assert due[0].user_id == "user-4"
+
+
+@pytest.mark.asyncio
+async def test_study_engine_can_record_mastery_and_srs_without_double_awarding_xp(monkeypatch):
+    from app import database
+    from app.services import skill_assessment, study_engine
+
+    mastery_calls = []
+    srs_writes = []
+    event_writes = []
+
+    async def fake_update_skill_score(user_id, category, subskill, score, passed):
+        mastery_calls.append((user_id, category, subskill, score, passed))
+
+    async def fake_fetch_skill_score(_user_id, _category):
+        return 42.0
+
+    async def forbidden_reward(*_args, **_kwargs):
+        raise AssertionError("award_reward=False must not call record_practice")
+
+    async def no_op_invalidate(_user_id):
+        return None
+
+    class FakeSrsCollection:
+        async def find_one(self, query):
+            assert query == {"user_id": "user-1", "problem_id": "coding.variables"}
+            return None
+
+        async def update_one(self, query, update, upsert=False):
+            srs_writes.append((query, update, upsert))
+
+    class FakeEventsCollection:
+        async def insert_one(self, document):
+            event_writes.append(document)
+
+    monkeypatch.setattr(skill_assessment, "update_skill_score", fake_update_skill_score)
+    monkeypatch.setattr(study_engine, "_fetch_skill_score", fake_fetch_skill_score)
+    monkeypatch.setattr(study_engine, "record_practice", forbidden_reward)
+    monkeypatch.setattr(study_engine, "invalidate_daily_plan", no_op_invalidate)
+    monkeypatch.setattr(database, "srs_cards_collection", lambda: FakeSrsCollection())
+    monkeypatch.setattr(database, "learning_events_collection", lambda: FakeEventsCollection())
+
+    result = await study_engine.record_activity(
+        "user-1",
+        {
+            "type": "learn",
+            "source": "company_lesson_assessment",
+            "skill_id": "coding.variables",
+            "passed": True,
+            "score": 85,
+            "time_spent": 90,
+        },
+        award_reward=False,
+    )
+
+    assert result["recorded"] is True
+    assert result["xp_awarded"] == 0
+    assert result["xp_applied"] is False
+    assert mastery_calls == [("user-1", "coding", "variables", 85.0, True)]
+    assert len(srs_writes) == 1
+    assert srs_writes[0][0] == {"user_id": "user-1", "problem_id": "coding.variables"}
+    assert len(event_writes) == 1
+    assert event_writes[0]["skill_id"] == "coding.variables"
+    assert event_writes[0]["source"] == "company_lesson_assessment"
