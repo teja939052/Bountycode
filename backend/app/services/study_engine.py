@@ -677,8 +677,9 @@ async def record_activity(
     user_id: str,
     activity: Dict[str, Any],
     role: str = "sde",
+    award_reward: bool = True,
 ) -> Dict[str, Any]:
-    """Record one LearningEvent and fan-out to mastery / SRS / Diamonds.
+    """Record one LearningEvent and fan-out to mastery / SRS / optional Diamonds.
 
     This is the *canonical* completion sink.  Existing routes that call
     ``record_practice`` / ``update_skill_score`` directly are left in place
@@ -808,34 +809,42 @@ async def record_activity(
         logger.warning("SRS update skipped for %s: %s", user_id, exc)
 
     # â”€â”€ Gamification / Diamonds â”€â”€
-    diamonds = _xp_for_activity(activity_type, score, passed)
-    try:
-        prac_result = await record_practice(
-            user_id,
-            activity_type=activity_type,
-            score=score,
-            metadata={
-                "skill_id": skill_id,
-                "time_spent": time_spent,
-                "passed": passed,
-                # Content Trust instrumentation (additive): lets the team
-                # measure % of attempts powered by independently verified
-                # content. Present only when the caller supplies it.
-                "question_id": activity.get("question_id"),
-                "trust_status": activity.get("trust_status"),
-                "source_bank": activity.get("source_bank"),
-                "verification_version": activity.get("verification_version"),
-            },
-            role=role,
-            activity_id=idempotency_key or None,
-        )
-        if isinstance(prac_result, dict) and prac_result.get("xp_gained") is not None:
-            diamonds = int(prac_result["xp_gained"])
-        result["xp_awarded"] = diamonds
-        result["xp_applied"] = True
-    except Exception as exc:
-        logger.warning("gamification record failed for %s: %s", user_id, exc)
-        result["xp_awarded"] = diamonds
+    # Most callers award through this canonical sink. Some composed flows
+    # already own their reward boundary (for example, a company module or a
+    # first-mastery lesson claim); those callers still need mastery, SRS,
+    # repair and LearningEvent fan-out without a second XP award.
+    diamonds = _xp_for_activity(activity_type, score, passed) if award_reward else 0
+    if award_reward:
+        try:
+            prac_result = await record_practice(
+                user_id,
+                activity_type=activity_type,
+                score=score,
+                metadata={
+                    "skill_id": skill_id,
+                    "time_spent": time_spent,
+                    "passed": passed,
+                    # Content Trust instrumentation (additive): lets the team
+                    # measure % of attempts powered by independently verified
+                    # content. Present only when the caller supplies it.
+                    "question_id": activity.get("question_id"),
+                    "trust_status": activity.get("trust_status"),
+                    "source_bank": activity.get("source_bank"),
+                    "verification_version": activity.get("verification_version"),
+                },
+                role=role,
+                activity_id=idempotency_key or None,
+            )
+            if isinstance(prac_result, dict) and prac_result.get("xp_gained") is not None:
+                diamonds = int(prac_result["xp_gained"])
+            result["xp_awarded"] = diamonds
+            result["xp_applied"] = True
+        except Exception as exc:
+            logger.warning("gamification record failed for %s: %s", user_id, exc)
+            result["xp_awarded"] = 0
+            result["xp_applied"] = False
+    else:
+        result["xp_awarded"] = 0
         result["xp_applied"] = False
 
     # â”€â”€ Persist canonical LearningEvent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
