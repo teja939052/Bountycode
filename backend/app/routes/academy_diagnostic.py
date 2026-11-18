@@ -2,7 +2,7 @@
 from datetime import datetime, timezone
 import random
 import uuid
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
@@ -42,7 +42,7 @@ DOMAIN_LABELS = {
 }
 
 
-def canonical_domain(question: Dict[str, Any]) -> str:
+def canonical_domain(question: Dict[str, Any]) -> Optional[str]:
     for field in ("domain", "sub_topic", "topic", "pattern"):
         raw = str(question.get(field) or "").strip().lower()
         if not raw:
@@ -58,7 +58,9 @@ def canonical_domain(question: Dict[str, Any]) -> str:
             return "programming_fundamentals"
         if normalized in {"quantitative_aptitude", "logical_reasoning", "verbal_ability", "computer_science", "sql"}:
             return normalized
-    return "programming_fundamentals"
+    # Unknown metadata is not evidence of a programming skill. Keep it
+    # unclassified instead of silently contaminating that domain score.
+    return None
 
 
 def has_deterministic_key(question: Dict[str, Any]) -> bool:
@@ -123,7 +125,9 @@ async def start_diagnostic(payload: DiagnosticStart, user=Depends(get_current_us
     ]
     buckets: Dict[str, List[dict]] = {}
     for question in bank:
-        buckets.setdefault(canonical_domain(question), []).append(question)
+        domain = canonical_domain(question)
+        if domain in DOMAIN_LABELS:
+            buckets.setdefault(domain, []).append(question)
 
     selected = []
     for domain in DOMAIN_LABELS:
@@ -194,10 +198,19 @@ async def answer_diagnostic(
         "confidence": payload.confidence,
         "answered_at": datetime.now(timezone.utc).isoformat(),
     }
-    await _sessions().update_one(
-        {"user_id": user["id"], "diagnostic_id": diagnostic_id, "status": "in_progress"},
+    # Claim the answer atomically. The earlier read is useful for a friendly
+    # error, but cannot prevent two concurrent requests from both passing it.
+    write_result = await _sessions().update_one(
+        {
+            "user_id": user["id"],
+            "diagnostic_id": diagnostic_id,
+            "status": "in_progress",
+            "answers.question_id": {"$ne": payload.question_id},
+        },
         {"$push": {"answers": answer_doc}, "$set": {"updated_at": datetime.now(timezone.utc)}},
     )
+    if not getattr(write_result, "matched_count", 0):
+        raise HTTPException(status_code=409, detail="This question was already answered or the diagnostic has closed.")
     return {"success": True, "data": {"accepted": True, "answered_count": len(session.get("answers", [])) + 1}}
 
 
@@ -218,6 +231,8 @@ async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)
     grouped: Dict[str, Dict[str, int]] = {}
     for answer in answers:
         domain = answer.get("domain_id") or canonical_domain(questions.get(answer["question_id"], {}))
+        if domain not in DOMAIN_LABELS:
+            continue
         grouped.setdefault(domain, {"correct": 0, "total": 0})
         grouped[domain]["total"] += 1
         grouped[domain]["correct"] += int(bool(answer.get("is_correct")))
