@@ -43,6 +43,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
 
   const isAdmin = user?.is_admin || user?.role === "admin" || user?.plan === "pro" || user?.plan === "lifetime";
 
@@ -220,14 +221,30 @@ export default function Navbar() {
             <div className="rounded-3xl border border-gray-200 bg-white border-border/95 p-3 shadow-lg backdrop-blur">
               {user ? (
                 <>
-                  <div className="mb-3 rounded-2xl bg-gradient-to-r from-brand-primary/10 via-brand-secondary/10 to-brand-tertiary/10 p-4">
-                    <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-text-muted">Account</div>
-                    <div className="mt-1 text-lg font-display font-bold text-text-primary">{user.name}</div>
-                    <div className="mt-2 flex items-center gap-2">
-                      <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary">
-                        {user.plan}
-                      </span>
-                    </div>
+                  <div className="mb-3 rounded-2xl border border-border bg-white p-3">
+                    <button
+                      type="button"
+                      onClick={() => setAccountOpen((open) => !open)}
+                      aria-expanded={accountOpen}
+                      aria-controls="mobile-account-details"
+                      className="flex w-full items-center justify-between gap-3 text-left"
+                    >
+                      <span className="truncate text-sm font-semibold text-text-primary">{user.name || "Account"}</span>
+                      <ChevronDown size={16} className={`shrink-0 transition-transform ${accountOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    {accountOpen && (
+                      <div id="mobile-account-details" className="mt-3 border-t border-border pt-3">
+                        <span className="inline-flex rounded-full border border-brand-primary/25 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-primary">
+                          {user.plan || "Free"} plan
+                        </span>
+                        <div className="my-3 rounded-xl bg-brand-primary/5 p-3">
+                          <GamificationWidget xp={user.xp ?? 0} level={user.level ?? 1} streak={user.streak ?? 0} league={(user as any).leagueRank ?? 5} badges={(user as any).badgesCount ?? 0} />
+                        </div>
+                        <Link to="/settings" onClick={() => { setMobileOpen(false); setAccountOpen(false); }} className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-text-secondary hover:bg-brand-primary/10 hover:text-brand-primary">
+                          <Settings size={16} /> Account settings
+                        </Link>
+                      </div>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-2 gap-2">
