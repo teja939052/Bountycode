@@ -1,0 +1,94 @@
+{
+  "slug": "loops_code_lab",
+  "id": "lesson_loops_code_lab_001",
+  "title": "Code lab — sum with a loop",
+  "domain": "Programming Logic",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Mission",
+      "content": "Write a loop that adds numbers from 1 through n. This is a classic service-OA warm-up: trace first, then code.",
+      "tip": "Initialize total = 0 before the loop."
+    },
+    {
+      "step_number": 2,
+      "step_type": "predict_output",
+      "title": "Trace first",
+      "content": "Predict the result before typing code.",
+      "prompt": "What is the sum of 1..4?",
+      "expected_answer": "10",
+      "answer_placeholder": "Enter a number",
+      "explanation": "1+2+3+4 = 10.",
+      "hints": ["Add sequentially.", "1+2=3, +3=6, +4=10."]
+    },
+    {
+      "step_number": 3,
+      "step_type": "code_lab",
+      "title": "Complete the function",
+      "content": "Return the sum of integers from 1 to n inclusive.",
+      "prompt": "Fill the function body (Python-style is fine).",
+      "language": "python",
+      "starter_code": "def sum_to_n(n):\n    total = 0\n    # your loop here\n    return total\n",
+      "expected_answer": "def sum_to_n(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total",
+      "answer_placeholder": "Write a for-loop that adds i into total",
+      "explanation": "Loop i from 1 to n and accumulate into total.",
+      "hints": [
+        "range(1, n+1) visits 1..n.",
+        "total += i inside the loop."
+      ]
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Complexity",
+      "prompt": "A single loop from 1 to n is typically:",
+      "options": ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+      "correct_index": 2,
+      "explanation": "Linear in n.",
+      "hints": ["How many times does the body run?"]
+    },
+    {
+      "step_number": 5,
+      "step_type": "order_steps",
+      "title": "Correct coding order",
+      "prompt": "Order the steps to implement sum_to_n.",
+      "options": [
+        "Return total",
+        "Loop i from 1 to n",
+        "Set total = 0",
+        "Add i to total each iteration"
+      ],
+      "correct_order": [2, 1, 3, 0],
+      "explanation": "Initialize, loop, accumulate, return.",
+      "hints": ["What must exist before you add to it?"]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {"prompt": "Sum 1..5?", "options": ["10", "15", "20", "5"], "correct_index": 1, "explanation": "15."},
+      {"prompt": "total starts at:", "options": ["1", "0", "n", "-1"], "correct_index": 1, "explanation": "0."},
+      {"prompt": "range(1, n+1) in Python covers:", "options": ["0..n", "1..n", "1..n-1", "2..n"], "correct_index": 1, "explanation": "1 through n."},
+      {"prompt": "Loop sum complexity:", "options": ["O(1)", "O(n)", "O(n^2)", "O(log n)"], "correct_index": 1, "explanation": "O(n)."},
+      {"prompt": "Closed form for 1..n?", "options": ["n", "n(n+1)/2", "n^2", "2n"], "correct_index": 1, "explanation": "n(n+1)/2."}
+    ]
+  },
+  "learning_objectives": ["Trace a loop sum", "Write a basic accumulation loop", "Order implementation steps"],
+  "prerequisites": ["loops_basics"],
+  "concepts": ["loop", "accumulator", "code_lab"],
+  "company_applications": [
+    {"company": "Infosys", "skill": "coding fundamentals", "practice": "Small loop traces and sum patterns."},
+    {"company": "TCS NQT", "skill": "programming", "practice": "Predict output of short loops."}
+  ],
+  "srs_cards": [
+    {"type": "formula", "question": "Sum 1..n closed form?", "answer": "n(n+1)/2"}
+  ],
+  "next_lesson_slug": "arrays_basics",
+  "next_lesson_title": "Arrays and lists"
+}
