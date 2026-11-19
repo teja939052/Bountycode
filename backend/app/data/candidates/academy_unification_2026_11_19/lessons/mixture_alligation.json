@@ -1,0 +1,30 @@
+{
+  "slug": "mixture_alligation",
+  "id": "lesson_mixture_alligation_001",
+  "title": "Mixtures and alligation",
+  "domain": "Quantitative Aptitude",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Alligation rule", "content": "Alligation finds the ratio in which two ingredients at different prices/concentrations mix to a desired mean. Ratio of quantities is inverse to gaps from the mean."},
+    {"step_number": 2, "step_type": "interactive", "title": "Equal gaps", "prompt": "Prices 30 and 50; mean 40. Quantity ratio?", "options": ["1:1", "2:1", "1:2", "3:1"], "correct_index": 0, "explanation": "Gaps 10 and 10 → ratio 1:1.", "hints": ["Mean − cheaper and dearer − mean."]},
+    {"step_number": 3, "step_type": "practice", "title": "Unequal gaps", "prompt": "20% and 50% solutions to get 30%. Ratio of 20% to 50%?", "options": ["2:1", "1:2", "3:1", "1:1"], "correct_index": 0, "explanation": "Gaps: 10 and 20 → ratio 20:10 = 2:1 for cheaper:dearer.", "hints": ["Alligation ratio is inverse to distance from mean."]},
+    {"step_number": 4, "step_type": "practice", "title": "Identify use", "prompt": "Alligation is mainly for:", "options": ["Sorting arrays", "Mixing ratios", "Grammar", "Pointers"], "correct_index": 1, "explanation": "Mixing ratios of two grades.", "hints": ["Two prices, one mean."]},
+    {"step_number": 5, "step_type": "explain", "title": "Exam tip", "content": "Label the two values and the mean. Cross-differences give the quantity ratio. Check units (price vs concentration) stay consistent."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Alligation mixes:", "options": ["Two values to a mean", "Only primes", "Only arrays", "Only essays"], "correct_index": 0, "explanation": "Two values to a mean."},
+    {"prompt": "Prices 10 and 20, mean 15 → ratio:", "options": ["1:1", "2:1", "1:2", "3:1"], "correct_index": 0, "explanation": "Equal gaps."},
+    {"prompt": "Ratio is:", "options": ["Same as gaps", "Inverse to gaps from mean", "Always 1:1", "Random"], "correct_index": 1, "explanation": "Inverse to gaps."},
+    {"prompt": "Mean must lie:", "options": ["Outside both", "Between the two values", "At zero", "Above both always"], "correct_index": 1, "explanation": "Between the two."},
+    {"prompt": "First write:", "options": ["Essay", "Two values + mean", "Only LCM", "Only SI"], "correct_index": 1, "explanation": "Two values + mean."}
+  ]},
+  "learning_objectives": ["Apply alligation ratio", "Mix two concentrations/prices"],
+  "concepts": ["alligation", "mixture"],
+  "company_applications": [{"company": "Cognizant", "skill": "mixtures", "practice": "Two-solution concentration mixes."}],
+  "srs_cards": [{"type": "rule", "question": "Alligation ratio?", "answer": "Quantities inverse to differences from the mean."}],
+  "next_lesson_slug": "profit_loss",
+  "next_lesson_title": "Profit and loss"
+}
