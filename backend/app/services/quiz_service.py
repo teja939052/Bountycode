@@ -210,6 +210,9 @@ def build_quiz(
 ) -> Dict[str, Any]:
     """Build a quiz session based on mode and filters."""
     questions = _load_questions()
+    # Seeded attempts remain varied across seeds but reproducible on retry.
+    # A local RNG avoids mutating process-global random state.
+    rng = random.Random(selection_seed) if selection_seed else random
 
     # Filter
     filtered = questions
@@ -299,25 +302,25 @@ def build_quiz(
         for q in filtered:
             by_diff[q.get("difficulty", "medium")].append(q)
         selected = (
-            random.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
-            + random.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
-            + random.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
+            rng.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
+            + rng.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
+            + rng.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
         )
         if randomize:
-            random.shuffle(selected)
+            rng.shuffle(selected)
         time_limit = time_limit_seconds or 90 * 60  # 90 min default
     elif mode == "boss_battle":
         # Hard questions only
         hard_qs = [q for q in filtered if q.get("difficulty") == "hard"]
         if not hard_qs:
             hard_qs = [q for q in filtered if q.get("difficulty") == "medium"]
-        selected = random.sample(hard_qs, min(num_questions, len(hard_qs)))
+        selected = rng.sample(hard_qs, min(num_questions, len(hard_qs)))
         time_limit = time_limit_seconds or 30 * 60
     elif mode == "speed_run":
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds or 10 * 60
     else:  # practice or quiz
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds
 
     # Build quiz session

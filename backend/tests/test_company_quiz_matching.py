@@ -60,3 +60,17 @@ def test_company_tag_normalization_handles_common_display_names():
     assert quiz_service._normalize_company_tag("LTI Mindtree") == "lti_mindtree"
     assert quiz_service._normalize_company_tag("Infosys Specialist Programmer") == "infosys"
     assert quiz_service._normalize_company_tag("Wipro Turbo") == "wipro"
+
+
+def test_seeded_quiz_form_is_reproducible(monkeypatch):
+    questions = [
+        {**_question("TCS"), "id": "q1"},
+        {**_question("TCS"), "id": "q2"},
+        {**_question("TCS"), "id": "q3"},
+    ]
+    monkeypatch.setattr(quiz_service, "_load_questions", lambda: questions)
+
+    first = quiz_service.build_quiz(mode="quiz", company="TCS", num_questions=2, selection_seed="attempt-42")
+    second = quiz_service.build_quiz(mode="quiz", company="TCS", num_questions=2, selection_seed="attempt-42")
+
+    assert [item["id"] for item in first["questions"]] == [item["id"] for item in second["questions"]]
