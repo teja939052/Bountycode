@@ -1,0 +1,30 @@
+{
+  "slug": "reading_comprehension",
+  "id": "lesson_reading_comprehension_001",
+  "title": "Reading comprehension",
+  "domain": "Verbal Ability",
+  "difficulty": "medium",
+  "duration_min": 25,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Stay inside the passage", "content": "RC answers must be supported by the text. Outside knowledge is a trap when it contradicts or goes beyond the passage."},
+    {"step_number": 2, "step_type": "interactive", "title": "Main idea", "prompt": "A passage argues that practice under timed conditions improves mock scores. The main idea is closest to:", "options": ["Mocks are useless", "Timed practice helps performance", "Only theory matters", "Sleep replaces practice"], "correct_index": 1, "explanation": "Main idea tracks the central claim about timed practice.", "hints": ["What does the author emphasize?"]},
+    {"step_number": 3, "step_type": "practice", "title": "Inference limit", "prompt": "If the passage never mentions diet, an answer about diet is:", "options": ["Safe inference", "Unsupported", "Always true", "Main idea"], "correct_index": 1, "explanation": "Unsupported by the passage.", "hints": ["Was diet discussed?"]},
+    {"step_number": 4, "step_type": "practice", "title": "Tone", "prompt": "Words like 'must' and 'clearly failed' often signal:", "options": ["Neutral listing", "Strong judgmental tone", "Humor only", "No tone"], "correct_index": 1, "explanation": "Strong modal and evaluative language marks judgment.", "hints": ["Look at intensifiers."]},
+    {"step_number": 5, "step_type": "explain", "title": "Pacing", "content": "Skim structure first (opening, examples, conclusion), then answer detail questions by scanning back."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "RC answers should be:", "options": ["From general knowledge", "Grounded in the passage", "Guessed", "Longest option"], "correct_index": 1, "explanation": "Passage-grounded."},
+    {"prompt": "Detail questions need:", "options": ["Memory only", "Scan back to the lines", "Skip passage", "Outside blogs"], "correct_index": 1, "explanation": "Scan back."},
+    {"prompt": "Main idea is:", "options": ["A minor example", "Central claim of the passage", "First word", "Author name"], "correct_index": 1, "explanation": "Central claim."},
+    {"prompt": "Unsupported option is:", "options": ["Always correct", "Often a trap", "Never used", "Main idea"], "correct_index": 1, "explanation": "Classic trap."},
+    {"prompt": "Best first read:", "options": ["Every word slowly twice", "Structure then questions", "Only last line", "Only options"], "correct_index": 1, "explanation": "Structure then questions."}
+  ]},
+  "learning_objectives": ["Answer from the passage", "Identify main idea vs detail"],
+  "concepts": ["main idea", "inference", "tone"],
+  "company_applications": [{"company": "Accenture", "skill": "reading_comprehension", "practice": "Short passages with main-idea items."}],
+  "srs_cards": [{"type": "strategy", "question": "RC golden rule?", "answer": "Every answer must be supported by the passage."}],
+  "next_lesson_slug": "error_spotting",
+  "next_lesson_title": "Error spotting"
+}
