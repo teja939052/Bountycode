@@ -1,0 +1,30 @@
+{
+  "slug": "simple_compound_interest",
+  "id": "lesson_simple_compound_interest_001",
+  "title": "Simple and compound interest",
+  "domain": "Quantitative Aptitude",
+  "difficulty": "medium",
+  "duration_min": 26,
+  "xp_reward": 115,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Simple interest", "content": "SI = (P × R × T) / 100. Interest is earned only on the original principal for the whole time.", "formula": "SI = PRT/100", "tip": "P = principal, R = rate % per year, T = time in years."},
+    {"step_number": 2, "step_type": "interactive", "title": "Compute SI", "prompt": "SI on ₹1000 at 10% for 2 years?", "options": ["₹100", "₹200", "₹210", "₹220"], "correct_index": 1, "explanation": "SI = 1000×10×2/100 = 200.", "hints": ["Use PRT/100.", "Substitute carefully."]},
+    {"step_number": 3, "step_type": "explain", "title": "Compound interest idea", "content": "CI earns interest on principal plus previously accrued interest. For 2 years at rate R: Amount = P(1+R/100)^2, CI = Amount − P."},
+    {"step_number": 4, "step_type": "practice", "title": "Two-year CI", "prompt": "Approx CI on ₹1000 at 10% for 2 years (annual compounding)?", "options": ["₹200", "₹210", "₹220", "₹100"], "correct_index": 1, "explanation": "Amount = 1000×1.1×1.1 = 1210; CI = 210.", "hints": ["Multiply by 1.1 twice.", "Subtract principal."]},
+    {"step_number": 5, "step_type": "practice", "title": "SI vs CI", "prompt": "For the same P, R, T>1, generally:", "options": ["SI > CI", "CI > SI", "Always equal", "CI is zero"], "correct_index": 1, "explanation": "Compounding grows the base, so CI exceeds SI for T>1 at positive rates.", "hints": ["Does interest earn interest?"]}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "SI formula?", "options": ["PR/100", "PRT/100", "P+R+T", "P(1+R)^T"], "correct_index": 1, "explanation": "PRT/100."},
+    {"prompt": "SI on 500 at 8% for 1 year?", "options": ["40", "80", "20", "50"], "correct_index": 0, "explanation": "500×8×1/100=40."},
+    {"prompt": "CI compounds on:", "options": ["Principal only always", "Growing amount", "Rate only", "Time only"], "correct_index": 1, "explanation": "Growing amount."},
+    {"prompt": "Amount after 2 years 10% on 1000:", "options": ["1100", "1200", "1210", "1000"], "correct_index": 2, "explanation": "1210."},
+    {"prompt": "For T=1 year, SI and annual CI:", "options": ["Differ a lot", "Are equal", "CI half of SI", "SI zero"], "correct_index": 1, "explanation": "Equal for one year annual compounding."}
+  ]},
+  "learning_objectives": ["Compute SI", "Compute basic CI", "Compare SI and CI"],
+  "concepts": ["simple interest", "compound interest"],
+  "company_applications": [{"company": "TCS NQT", "skill": "interest", "practice": "One-step SI and 2-year CI."}],
+  "srs_cards": [{"type": "formula", "question": "SI formula?", "answer": "SI = PRT/100"}],
+  "next_lesson_slug": "pipes_cisterns",
+  "next_lesson_title": "Pipes and cisterns"
+}
