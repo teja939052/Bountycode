@@ -1,0 +1,30 @@
+{
+  "slug": "data_structures_intro",
+  "id": "lesson_data_structures_intro_001",
+  "title": "Data structures intro",
+  "domain": "DSA",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Choose by access pattern", "content": "Arrays give index access. Stacks are LIFO. Queues are FIFO. Hash maps store key→value for fast lookup. Pick the structure that matches the operations you need most."},
+    {"step_number": 2, "step_type": "interactive", "title": "LIFO", "prompt": "Undo in an editor is best modeled by:", "options": ["Queue", "Stack", "Only unsorted list", "Binary search tree only"], "correct_index": 1, "explanation": "Last action undone first → stack.", "hints": ["Last in, first out?"]},
+    {"step_number": 3, "step_type": "practice", "title": "FIFO", "prompt": "Print jobs in arrival order fit a:", "options": ["Stack", "Queue", "Max-heap only", "Recursion only"], "correct_index": 1, "explanation": "First in, first out → queue.", "hints": ["Who should print first?"]},
+    {"step_number": 4, "step_type": "practice", "title": "Fast key lookup", "prompt": "Check if a user ID exists quickly:", "options": ["Always full array scan only", "Hash set/map", "Only stack pops", "Only queue pops"], "correct_index": 1, "explanation": "Hash-based membership.", "hints": ["Key-based structure."]},
+    {"step_number": 5, "step_type": "explain", "title": "OA tip", "content": "State the structure and why in one sentence before coding. Interviewers care about the match between operations and structure."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Stack order:", "options": ["FIFO", "LIFO", "Random", "Sorted only"], "correct_index": 1, "explanation": "LIFO."},
+    {"prompt": "Queue order:", "options": ["LIFO", "FIFO", "Heap only", "DFS only"], "correct_index": 1, "explanation": "FIFO."},
+    {"prompt": "Index access strength:", "options": ["Linked list only", "Array", "Stack only", "Queue only"], "correct_index": 1, "explanation": "Array."},
+    {"prompt": "Key→value fits:", "options": ["Hash map", "Only queue", "Only stack", "Only DFS"], "correct_index": 0, "explanation": "Hash map."},
+    {"prompt": "Choose structure by:", "options": ["Font color", "Needed operations", "Variable names", "File size only"], "correct_index": 1, "explanation": "Operations."}
+  ]},
+  "learning_objectives": ["Map problems to stack/queue/array/map", "Explain LIFO vs FIFO"],
+  "concepts": ["array", "stack", "queue", "hash map"],
+  "company_applications": [{"company": "Accenture", "skill": "data_structures", "practice": "Pick structure MCQs."}],
+  "srs_cards": [{"type": "concept", "question": "Stack vs queue?", "answer": "Stack LIFO; queue FIFO."}],
+  "next_lesson_slug": "hashing_basics",
+  "next_lesson_title": "Hashing basics"
+}
