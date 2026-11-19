@@ -1,4 +1,3 @@
-from pathlib import Path
 """Readiness engine integration tests — full pipeline with mock MongoDB.
 
 Exercises the actual wrappers:
@@ -10,6 +9,8 @@ Exercises the actual wrappers:
 Uses mongomock_motor for an in-memory async MongoDB.
 """
 from __future__ import annotations
+
+from pathlib import Path
 
 import asyncio
 from copy import deepcopy
