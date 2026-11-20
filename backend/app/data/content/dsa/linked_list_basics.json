@@ -1,0 +1,316 @@
+{
+  "topic": "linked_list_basics",
+  "subject": "dsa",
+  "pattern": "linked_list_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "linked_list_structure",
+      "title": "Linked List Structure",
+      "concept": "A linked list is a linear data structure where elements (nodes) are stored non-contiguously. Each node typically contains data and a reference/pointer to the next node. The list is accessed via a head pointer to the first node; the last node points to null/None.",
+      "formula": "Node = {data, next}. Traversal: start at head, follow next pointers until null.",
+      "worked_example": "List: [10] -> [20] -> [30] -> null. Head points to node with 10. To reach 30, follow head->next->next.",
+      "mistakes": [
+        "Confusing linked list nodes with array indices (no direct random access)",
+        "Forgetting to update the head when inserting/deleting at the beginning",
+        "Losing references and causing unintended list breaks"
+      ]
+    },
+    {
+      "id": "linked_list_operations",
+      "title": "Basic Linked List Operations",
+      "concept": "Common operations include traversal, insertion (at beginning, end, or position), deletion, and search. Insertion/deletion at a known node can be O(1) if pointer is known, but finding a position usually requires traversal (O(n)).",
+      "formula": "Traversal/Search: O(n). Insert/delete at head: O(1). Insert/delete after given node: O(1) (excluding search time).",
+      "worked_example": "Insert 5 at beginning of [10]->[20]: create node(5), set 5.next = head, update head to node(5). Result: [5]->[10]->[20].",
+      "mistakes": [
+        "Not handling empty list or single-element cases",
+        "Updating pointers in wrong order during insertion/deletion",
+        "Assuming O(1) access by index like arrays"
+      ]
+    },
+    {
+      "id": "types_and_tradeoffs",
+      "title": "Types and Trade-offs",
+      "concept": "Singly linked lists have next pointers only. Doubly linked lists have next and previous pointers, enabling bidirectional traversal but using extra memory. Circular linked lists connect the last node back to the first. Linked lists offer efficient insert/delete at known positions but poor cache locality and no constant-time indexing compared to arrays.",
+      "formula": "Singly: next. Doubly: prev + next. Circular: tail.next points to head (or forms a cycle).",
+      "worked_example": "In a doubly linked list [A]<->[B]<->[C], from B you can move to A via prev and to C via next without restarting from head.",
+      "mistakes": [
+        "Confusing singly and doubly linked list pointer requirements",
+        "Ignoring extra memory overhead of doubly linked lists",
+        "Assuming linked lists are always better than arrays for all operations"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "LLB-PRACTICE-001",
+      "question": "In a singly linked list, what does each node typically store (besides data)?",
+      "options": {
+        "A": "Index of the node",
+        "B": "Reference/pointer to the next node",
+        "C": "Reference to all nodes",
+        "D": "Size of the entire list"
+      },
+      "correct_answer": "B",
+      "explanation": "A singly linked list node stores its data and a reference/pointer to the next node in the sequence.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_structure",
+      "misconception_tags": [
+        "node_structure_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-PRACTICE-002",
+      "question": "What is the time complexity to access the k-th element in a singly linked list (by traversal from head)?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "C",
+      "explanation": "Linked lists do not support direct indexing; reaching the k-th element requires traversing nodes from the head, which is O(n) in the worst case.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_operations",
+      "misconception_tags": [
+        "access_complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-PRACTICE-003",
+      "question": "Inserting a new node at the beginning of a singly linked list (given head pointer) has what time complexity?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "A",
+      "explanation": "Insertion at head requires creating a node and updating a couple of pointers (new node's next and head), which takes constant time O(1).",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_operations",
+      "misconception_tags": [
+        "insert_complexity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-PRACTICE-004",
+      "question": "Which linked list type allows traversal in both forward and backward directions?",
+      "options": {
+        "A": "Singly linked list",
+        "B": "Doubly linked list",
+        "C": "Array list",
+        "D": "Stack"
+      },
+      "correct_answer": "B",
+      "explanation": "A doubly linked list stores both next and previous pointers in each node, allowing traversal in both directions.",
+      "difficulty": "easy",
+      "sub_topic": "types_and_tradeoffs",
+      "misconception_tags": [
+        "list_type_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-PRACTICE-005",
+      "question": "What indicates the end of a singly linked list?",
+      "options": {
+        "A": "The head pointer",
+        "B": "A node whose next pointer is null/None",
+        "C": "A node with value 0",
+        "D": "The list size variable only"
+      },
+      "correct_answer": "B",
+      "explanation": "In a standard singly linked list, the last node's next reference is null/None, indicating there are no more nodes.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_structure",
+      "misconception_tags": [
+        "termination_condition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "LLB-001",
+      "question": "Compared to arrays, a key advantage of linked lists is:",
+      "options": {
+        "A": "Constant-time random access by index",
+        "B": "Efficient insertion/deletion at known positions without shifting elements",
+        "C": "Better cache locality in all cases",
+        "D": "No memory overhead per element"
+      },
+      "correct_answer": "B",
+      "explanation": "Linked lists can insert/delete nodes by updating pointers without shifting contiguous elements. However, they lack O(1) indexing and have pointer overhead.",
+      "difficulty": "easy",
+      "sub_topic": "types_and_tradeoffs",
+      "misconception_tags": [
+        "array_vs_linked_list_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-002",
+      "question": "What is the time complexity to search for a value in an unsorted singly linked list of n nodes?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "C",
+      "explanation": "In an unsorted linked list, you may need to check each node sequentially until found or end is reached, which is O(n) in the worst case.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_operations",
+      "misconception_tags": [
+        "search_complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-003",
+      "question": "In a circular linked list, which statement is true?",
+      "options": {
+        "A": "The last node points to null",
+        "B": "The last node points back to the first node (or head)",
+        "C": "Nodes have no pointers",
+        "D": "Traversal is not possible"
+      },
+      "correct_answer": "B",
+      "explanation": "A circular linked list forms a cycle by having the last node's next reference point to the first/head node instead of null.",
+      "difficulty": "easy",
+      "sub_topic": "types_and_tradeoffs",
+      "misconception_tags": [
+        "circular_list_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-004",
+      "question": "Which extra pointer does a node in a doubly linked list have compared to a singly linked list node?",
+      "options": {
+        "A": "A pointer to the head only",
+        "B": "A pointer to the previous node",
+        "C": "A pointer to the middle node",
+        "D": "No extra pointer"
+      },
+      "correct_answer": "B",
+      "explanation": "Doubly linked list nodes store a pointer/reference to the previous node in addition to the next node, enabling backward traversal.",
+      "difficulty": "easy",
+      "sub_topic": "types_and_tradeoffs",
+      "misconception_tags": [
+        "list_type_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-005",
+      "question": "If the head pointer of a non-empty singly linked list is lost and no other references exist, what happens to the list nodes (in typical managed/unmanaged contexts)?",
+      "options": {
+        "A": "They become the first element of an array automatically",
+        "B": "They are still directly accessible by index",
+        "C": "The list becomes inaccessible (and may be garbage collected/leaked depending on environment)",
+        "D": "The last node becomes the new head automatically"
+      },
+      "correct_answer": "C",
+      "explanation": "The head pointer is the entry point to traverse a singly linked list. Losing it without other references makes the nodes unreachable/inaccessible.",
+      "difficulty": "medium",
+      "sub_topic": "linked_list_structure",
+      "misconception_tags": [
+        "head_pointer_importance_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

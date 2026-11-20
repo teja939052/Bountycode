@@ -1,0 +1,325 @@
+{
+  "topic": "venn_diagrams",
+  "subject": "reasoning",
+  "pattern": "venn_diagrams",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "venn_basics",
+      "title": "Venn Diagram Basics",
+      "concept": "Venn diagrams represent relationships between sets using overlapping circles. They help visualize common elements (intersections), total elements (unions), and elements belonging to only one set.",
+      "formula": "For two sets A and B: n(A ∪ B) = n(A) + n(B) - n(A ∩ B). Only A = n(A) - n(A ∩ B).",
+      "worked_example": "In a class, 20 like Math, 15 like Science, and 5 like both. Total who like at least one = 20 + 15 - 5 = 30. Only Math = 20 - 5 = 15.",
+      "mistakes": [
+        "Adding both sets without subtracting the intersection (double counting)",
+        "Confusing 'only A' with total in A",
+        "Misreading 'both/neither' conditions"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "two_set_problems",
+      "title": "Two-Set Venn Problems",
+      "concept": "Two-set problems typically involve people/items belonging to category A, category B, both, or neither. Draw two overlapping circles and fill regions step by step, starting from the intersection when possible.",
+      "formula": "Neither = Total - n(A ∪ B). n(A ∩ B) can be found if total, A, B, and neither (or union) are known.",
+      "worked_example": "Out of 50 students, 30 play cricket, 25 play football, and 10 play both. Union = 30+25-10 = 45. Neither = 50-45 = 5.",
+      "mistakes": [
+        "Placing the 'both' value in the wrong region",
+        "Forgetting to account for 'neither' in total",
+        "Not subtracting intersection when computing only-one regions"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "three_set_intro",
+      "title": "Three-Set Venn Intro",
+      "concept": "Three-set diagrams use three overlapping circles creating regions for only A, only B, only C, pairwise intersections, and intersection of all three. Fill from the innermost region (all three) outward to avoid double counting.",
+      "formula": "n(A ∪ B ∪ C)=n(A)+n(B)+n(C)-n(A∩B)-n(A∩C)-n(B∩C)+n(A∩B∩C).",
+      "worked_example": "If 8 like all three subjects, record 8 in the center first. Then for those who like A and B (say 12 total), only A&B region = 12 - 8 = 4.",
+      "mistakes": [
+        "Treating pairwise intersection values as only-two regions without removing the all-three overlap",
+        "Filling regions in random order causing inconsistencies",
+        "Double counting elements in multiple intersections"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "VENN-PRACTICE-001",
+      "question": "In a group, 12 people like tea, 10 like coffee, and 4 like both. How many like at least one of tea or coffee?",
+      "options": {
+        "A": "18",
+        "B": "22",
+        "C": "26",
+        "D": "14"
+      },
+      "correct_answer": "A",
+      "explanation": "n(Tea ∪ Coffee)=n(Tea)+n(Coffee)-n(both)=12+10-4=18.",
+      "difficulty": "easy",
+      "sub_topic": "venn_basics",
+      "misconception_tags": [
+        "union_double_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-PRACTICE-002",
+      "question": "If 25 students like Math and 9 of them also like Science, how many like only Math?",
+      "options": {
+        "A": "34",
+        "B": "16",
+        "C": "9",
+        "D": "25"
+      },
+      "correct_answer": "B",
+      "explanation": "Only Math = Total Math - Both = 25 - 9 = 16.",
+      "difficulty": "easy",
+      "sub_topic": "venn_basics",
+      "misconception_tags": [
+        "only_region_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-PRACTICE-003",
+      "question": "Out of 40 people, 22 like apples, 18 like oranges, and 6 like both. How many like neither?",
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "10"
+      },
+      "correct_answer": "B",
+      "explanation": "Union = 22+18-6 = 34. Neither = 40 - 34 = 6.",
+      "difficulty": "easy",
+      "sub_topic": "two_set_problems",
+      "misconception_tags": [
+        "neither_calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-PRACTICE-004",
+      "question": "In a survey, 30 like A, 20 like B, and 8 like both. How many like only B?",
+      "options": {
+        "A": "12",
+        "B": "20",
+        "C": "22",
+        "D": "28"
+      },
+      "correct_answer": "A",
+      "explanation": "Only B = n(B) - n(A∩B) = 20 - 8 = 12.",
+      "difficulty": "easy",
+      "sub_topic": "two_set_problems",
+      "misconception_tags": [
+        "only_region_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-PRACTICE-005",
+      "question": "In a three-set problem, 5 people like all three categories and 11 like categories A and B in total. How many like only A and B (but not C)?",
+      "options": {
+        "A": "16",
+        "B": "11",
+        "C": "6",
+        "D": "5"
+      },
+      "correct_answer": "C",
+      "explanation": "Only A and B = n(A∩B) - n(A∩B∩C) = 11 - 5 = 6.",
+      "difficulty": "medium",
+      "sub_topic": "three_set_intro",
+      "misconception_tags": [
+        "pairwise_region_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "VENN-001",
+      "question": "In a class of 60 students, 35 like cricket, 30 like football, and 15 like both. How many like at least one game?",
+      "options": {
+        "A": "45",
+        "B": "50",
+        "C": "55",
+        "D": "65"
+      },
+      "correct_answer": "B",
+      "explanation": "At least one = 35 + 30 - 15 = 50.",
+      "difficulty": "easy",
+      "sub_topic": "venn_basics",
+      "misconception_tags": [
+        "union_double_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-002",
+      "question": "Using the previous class data (60 students, 50 like at least one of cricket or football), how many like neither?",
+      "options": {
+        "A": "5",
+        "B": "10",
+        "C": "15",
+        "D": "20"
+      },
+      "correct_answer": "B",
+      "explanation": "Neither = Total - At least one = 60 - 50 = 10.",
+      "difficulty": "easy",
+      "sub_topic": "two_set_problems",
+      "misconception_tags": [
+        "neither_calculation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-003",
+      "question": "In a group, 18 people read newspaper A, 14 read newspaper B, and 5 read both. How many read only newspaper A?",
+      "options": {
+        "A": "9",
+        "B": "13",
+        "C": "14",
+        "D": "23"
+      },
+      "correct_answer": "B",
+      "explanation": "Only A = n(A) - n(A∩B) = 18 - 5 = 13.",
+      "difficulty": "easy",
+      "sub_topic": "two_set_problems",
+      "misconception_tags": [
+        "only_region_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-004",
+      "question": "If 10 students like both Math and Physics, and 3 of these like Chemistry as well, how many like only Math and Physics?",
+      "options": {
+        "A": "3",
+        "B": "7",
+        "C": "10",
+        "D": "13"
+      },
+      "correct_answer": "B",
+      "explanation": "Only Math and Physics = n(Math∩Physics) - n(all three) = 10 - 3 = 7.",
+      "difficulty": "medium",
+      "sub_topic": "three_set_intro",
+      "misconception_tags": [
+        "pairwise_region_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-005",
+      "question": "Out of 100 people, 45 like tea, 35 like coffee, and 15 like both. How many like only coffee?",
+      "options": {
+        "A": "15",
+        "B": "20",
+        "C": "30",
+        "D": "35"
+      },
+      "correct_answer": "B",
+      "explanation": "Only coffee = n(Coffee) - n(both) = 35 - 15 = 20.",
+      "difficulty": "easy",
+      "sub_topic": "venn_basics",
+      "misconception_tags": [
+        "only_region_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

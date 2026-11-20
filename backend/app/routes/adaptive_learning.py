@@ -2,11 +2,12 @@
 Adaptive Learning Path routes — skill assessment, weak areas, daily plans, recommendations.
 """
 from fastapi import APIRouter, Depends, HTTPException, Query
+
 from app.middleware.auth import get_current_user
+from app.services.study_engine import get_today  # canonical daily-plan entry point
 from app.services.adaptive_learning import (
     assess_user_skills,
     detect_weak_areas,
-    generate_daily_plan,
     generate_personalized_recommendations,
     generate_learning_path,
     record_learning_activity,
@@ -33,8 +34,12 @@ async def get_weak_areas(user=Depends(get_current_user)):
 
 @router.get("/daily-plan")
 async def get_daily_plan(force: bool = Query(False, description="Force refresh the daily plan"), user=Depends(get_current_user)):
-    """Get personalized daily learning plan."""
-    plan = await generate_daily_plan(user["id"], force_refresh=force)
+    """Get personalized daily learning plan.
+
+    Canonical entry point: delegates to ``GET /api/v1/study/today`` (study_engine.get_today).
+    Kept as an alias so existing frontends keep working.
+    """
+    plan = await get_today(user["id"], force_refresh=force)
     return {"success": True, "data": plan}
 
 

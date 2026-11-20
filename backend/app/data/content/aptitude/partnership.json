@@ -1,0 +1,316 @@
+{
+  "topic": "partnership",
+  "subject": "quantitative_aptitude",
+  "pattern": "partnership",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "simple_partnership",
+      "title": "Simple Partnership (Equal Time)",
+      "concept": "In a partnership, two or more people invest money in a business and share profits (or losses). In a simple partnership, all partners invest for the same duration, so profit is divided in the ratio of their investments (capitals).",
+      "formula": "If investments are A and B for same time, profit ratio = A : B.",
+      "worked_example": "A invests 40,000 and B invests 60,000 for the same period. Profit ratio = 40000:60000 = 2:3. If total profit is 25,000, A gets (2/5)*25000 = 10,000 and B gets (3/5)*25000 = 15,000.",
+      "mistakes": [
+        "Adding investments instead of forming a ratio",
+        "Not simplifying the ratio before distributing profit",
+        "Distributing profit equally when investments differ"
+      ]
+    },
+    {
+      "id": "compound_partnership",
+      "title": "Compound Partnership (Different Time Periods)",
+      "concept": "When partners invest for different durations, profit is shared in the ratio of (capital x time) for each partner. This accounts for both how much and how long money was invested.",
+      "formula": "Profit ratio = (C1 * T1) : (C2 * T2) : ... where C is capital and T is time period (in same units).",
+      "worked_example": "A invests 5,000 for 12 months and B invests 6,000 for 8 months. Ratio = (5000*12):(6000*8) = 60000:48000 = 5:4.",
+      "mistakes": [
+        "Using only capital or only time instead of their product",
+        "Mixing time units (months vs years) without conversion",
+        "Arithmetic errors when computing capital-time products"
+      ]
+    },
+    {
+      "id": "profit_distribution",
+      "title": "Profit Distribution and Shares",
+      "concept": "Once the profit-sharing ratio is known, each partner's share is (partner's ratio part / sum of ratio parts) times total profit. Some problems may include a working partner's salary/commission before distributing remaining profit; read conditions carefully.",
+      "formula": "Partner's share = (ratio part of partner / total ratio parts) * distributable profit.",
+      "worked_example": "Profit ratio is 3:2 and total profit is 20,000. Total parts = 5. First partner gets (3/5)*20000 = 12,000, second gets (2/5)*20000 = 8,000.",
+      "mistakes": [
+        "Using wrong total when a fixed amount is paid out before distribution",
+        "Dividing by a partner's own part instead of sum of all parts",
+        "Rounding too early in intermediate steps"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "PART-PRACTICE-001",
+      "question": "A and B invest 20,000 and 30,000 respectively in a business for the same time. In what ratio should they share the profit?",
+      "options": {
+        "A": "2:3",
+        "B": "3:2",
+        "C": "1:2",
+        "D": "4:5"
+      },
+      "correct_answer": "A",
+      "explanation": "For the same time period, profit ratio equals investment ratio: 20000:30000 = 2:3.",
+      "difficulty": "easy",
+      "sub_topic": "simple_partnership",
+      "misconception_tags": [
+        "ratio_simplification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-PRACTICE-002",
+      "question": "A and B invest in the ratio 3:5 for the same duration. If the total profit is 16,000, what is B's share?",
+      "options": {
+        "A": "6,000",
+        "B": "8,000",
+        "C": "10,000",
+        "D": "12,000"
+      },
+      "correct_answer": "C",
+      "explanation": "Total parts = 3 + 5 = 8. B's share = (5/8) * 16000 = 10,000.",
+      "difficulty": "easy",
+      "sub_topic": "profit_distribution",
+      "misconception_tags": [
+        "profit_share_calculation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-PRACTICE-003",
+      "question": "A invests 6,000 for 10 months and B invests 5,000 for 12 months. What is the ratio of their profits?",
+      "options": {
+        "A": "1:1",
+        "B": "5:6",
+        "C": "6:5",
+        "D": "10:12"
+      },
+      "correct_answer": "A",
+      "explanation": "Profit ratio = (capital * time): 6000*10 : 5000*12 = 60000 : 60000 = 1:1.",
+      "difficulty": "easy",
+      "sub_topic": "compound_partnership",
+      "misconception_tags": [
+        "capital_time_product_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-PRACTICE-004",
+      "question": "P invests 8,000 for 6 months and Q invests 4,000 for 12 months. What is the ratio of P's profit to Q's profit?",
+      "options": {
+        "A": "1:2",
+        "B": "2:1",
+        "C": "1:1",
+        "D": "3:2"
+      },
+      "correct_answer": "C",
+      "explanation": "Profit ratio = 8000*6 : 4000*12 = 48000 : 48000 = 1:1.",
+      "difficulty": "easy",
+      "sub_topic": "compound_partnership",
+      "misconception_tags": [
+        "capital_time_product_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-PRACTICE-005",
+      "question": "A, B, and C invest 10,000, 20,000, and 30,000 respectively for the same period. If the total profit is 12,000, what is C's share?",
+      "options": {
+        "A": "2,000",
+        "B": "4,000",
+        "C": "6,000",
+        "D": "8,000"
+      },
+      "correct_answer": "C",
+      "explanation": "Investment ratio = 10000:20000:30000 = 1:2:3. Total parts = 6. C's share = (3/6) * 12000 = 6,000.",
+      "difficulty": "medium",
+      "sub_topic": "profit_distribution",
+      "misconception_tags": [
+        "profit_share_calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PART-001",
+      "question": "X and Y start a business with investments of 15,000 and 25,000 respectively for the same time. What is the ratio of their profits?",
+      "options": {
+        "A": "3:5",
+        "B": "5:3",
+        "C": "2:5",
+        "D": "3:4"
+      },
+      "correct_answer": "A",
+      "explanation": "For equal time, profit ratio = investment ratio = 15000:25000 = 3:5.",
+      "difficulty": "easy",
+      "sub_topic": "simple_partnership",
+      "misconception_tags": [
+        "ratio_simplification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-002",
+      "question": "A invests 4,000 for 9 months and B invests 6,000 for 6 months. Find the ratio in which they should share the profit.",
+      "options": {
+        "A": "1:1",
+        "B": "2:3",
+        "C": "3:2",
+        "D": "4:9"
+      },
+      "correct_answer": "A",
+      "explanation": "Profit ratio = (4000 * 9):(6000 * 6) = 36000:36000 = 1:1.",
+      "difficulty": "easy",
+      "sub_topic": "compound_partnership",
+      "misconception_tags": [
+        "capital_time_product_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-003",
+      "question": "Three partners invest 5,000, 7,000, and 8,000 for the same period. If the total profit is 40,000, what is the share of the partner who invested 7,000?",
+      "options": {
+        "A": "10,000",
+        "B": "12,000",
+        "C": "14,000",
+        "D": "16,000"
+      },
+      "correct_answer": "C",
+      "explanation": "Ratio = 5000:7000:8000 = 5:7:8. Total parts = 20. Share for 7,000 investment = (7/20) * 40000 = 14,000.",
+      "difficulty": "medium",
+      "sub_topic": "profit_distribution",
+      "misconception_tags": [
+        "profit_share_calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-004",
+      "question": "A invests 12,000 for 8 months and B invests 16,000 for 6 months. If the total profit is 22,000, what is A's share?",
+      "options": {
+        "A": "10,000",
+        "B": "11,000",
+        "C": "12,000",
+        "D": "14,000"
+      },
+      "correct_answer": "B",
+      "explanation": "Profit ratio = (12000*8):(16000*6) = 96000:96000 = 1:1. Therefore A's share = (1/2) * 22000 = 11,000.",
+      "difficulty": "medium",
+      "sub_topic": "compound_partnership",
+      "misconception_tags": [
+        "capital_time_product_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-005",
+      "question": "A and B invest 9,000 and 12,000 respectively. A invests for 12 months and B invests for 9 months. What is the ratio of A's profit to B's profit?",
+      "options": {
+        "A": "1:1",
+        "B": "3:4",
+        "C": "4:3",
+        "D": "9:8"
+      },
+      "correct_answer": "A",
+      "explanation": "Profit ratio = (9000 * 12):(12000 * 9) = 108000:108000 = 1:1.",
+      "difficulty": "easy",
+      "sub_topic": "compound_partnership",
+      "misconception_tags": [
+        "capital_time_product_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

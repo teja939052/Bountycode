@@ -102,7 +102,7 @@ async def test_engine_outage_loses_nothing(client, test_user, monkeypatch):
     monkeypatch.setattr(worlds, "_award_xp", _boom)
     token, uid = test_user["token"], test_user["user_id"]
     r = await client.post(
-        "/api/v1/worlds/foundations/levels/level-1/complete",
+        "/api/v1/worlds/foundations/levels/things-1/complete",
         headers=_auth(token),
         json={"code": "apples = 5", "language": "python", "time_spent_seconds": 5},
     )
@@ -112,21 +112,24 @@ async def test_engine_outage_loses_nothing(client, test_user, monkeypatch):
     assert body["rewards_pending"] is True
     assert body["xp_awarded"] == 0
     doc = await gamification_collection().find_one({"user_id": uid})
-    entry = doc["completed_competencies"]["foundations:level-1"]
+    entry = doc["completed_competencies"]["foundations:things-1"]
     assert entry["completed"] is True
     assert entry["rewards_pending"] is True
 
 
 @needs_db
 async def test_rapid_double_activity_counts_combo_once_each(test_user):
-    """Two back-to-back awards: combo 1 then 2 (window 90s), never 3+."""
+    """Two back-to-back awards on the same day: streak stays 1, XP accumulates."""
     from app.services.gamification import record_practice
     uid = test_user["user_id"]
     r1 = await record_practice(uid, "lesson", 10.0, {"skill_id": "qa.combo"})
     r2 = await record_practice(uid, "lesson", 10.0, {"skill_id": "qa.combo"})
-    assert r1["combo"]["current"] == 1
-    assert r2["combo"]["current"] == 2
-    assert r2["combo"]["current"] <= 2
+    # Same-day activity: streak does not double-increment.
+    assert r1["new_streak"] == 1
+    assert r2["new_streak"] == 1
+    # XP accumulates on each activity.
+    assert r2["xp_gained"] > 0
+    assert r1["xp_gained"] > 0
 
 
 @needs_db

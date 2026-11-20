@@ -1,0 +1,317 @@
+{
+  "topic": "operating_systems_basics",
+  "subject": "cs",
+  "pattern": "operating_systems_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "os_role_and_functions",
+      "title": "Role and Functions of an Operating System",
+      "concept": "An operating system (OS) is system software that manages hardware resources and provides services to applications. Core functions include process management, memory management, file system management, device (I/O) management, and providing a user interface.",
+      "formula": "OS responsibilities: process + memory + storage/files + I/O devices + security/protection + user/program interface.",
+      "worked_example": "When you open a program, the OS creates/loads a process, allocates memory, schedules CPU time, and handles file/device access needed by that program.",
+      "mistakes": [
+        "Confusing the OS with application software",
+        "Thinking the OS only provides a graphical interface",
+        "Ignoring resource management as a central OS role"
+      ]
+    },
+    {
+      "id": "processes_and_scheduling",
+      "title": "Processes, Threads, and CPU Scheduling",
+      "concept": "A process is a program in execution with its own address space and resources. A thread is a lightweight unit of execution within a process. The CPU scheduler selects which ready process/thread runs, aiming for fairness, responsiveness, and efficient CPU utilization. Common states include new, ready, running, waiting/blocked, and terminated.",
+      "formula": "Basic cycle: ready -> running (scheduled) -> waiting/ready/terminated depending on events.",
+      "worked_example": "If a running process requests disk I/O, it may move to waiting/blocked state; the scheduler picks another ready process to run so the CPU is not idle.",
+      "mistakes": [
+        "Confusing a program (passive) with a process (active)",
+        "Assuming only one process can exist in memory at a time on multitasking systems",
+        "Mixing up process states and their transitions"
+      ]
+    },
+    {
+      "id": "memory_and_filesystem_basics",
+      "title": "Memory Management and File System Basics",
+      "concept": "Memory management controls allocation of RAM to processes, providing isolation and efficient use (techniques include paging/virtual memory at a high level). The file system organizes data into files/directories on storage and manages access, naming, and metadata. Both are key OS services for safe and organized resource use.",
+      "formula": "Memory: allocate/protect/track; File system: create/read/write/delete files + organize directories + manage permissions/metadata.",
+      "worked_example": "Virtual memory allows a system to run processes whose total memory demand exceeds physical RAM by using disk space as backing storage (with performance trade-offs). A file system maps file names to stored data blocks on disk.",
+      "mistakes": [
+        "Assuming RAM and disk serve the same role with no distinction",
+        "Confusing files (data) with processes (execution)",
+        "Believing file organization is handled by hardware rather than the OS/file system"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "OS-PRACTICE-001",
+      "question": "Which of the following is a primary function of an operating system?",
+      "options": {
+        "A": "Compiling source code into executables only",
+        "B": "Managing hardware and software resources",
+        "C": "Designing web pages",
+        "D": "Manufacturing processors"
+      },
+      "correct_answer": "B",
+      "explanation": "The operating system manages system resources such as CPU, memory, storage, and I/O devices, and provides services to applications.",
+      "difficulty": "easy",
+      "sub_topic": "os_role_and_functions",
+      "misconception_tags": [
+        "os_role_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-PRACTICE-002",
+      "question": "A program in execution is called a:",
+      "options": {
+        "A": "File",
+        "B": "Compiler",
+        "C": "Process",
+        "D": "Directory"
+      },
+      "correct_answer": "C",
+      "explanation": "A process is an active instance of a program in execution, with associated state, memory, and resources.",
+      "difficulty": "easy",
+      "sub_topic": "processes_and_scheduling",
+      "misconception_tags": [
+        "process_vs_program_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-PRACTICE-003",
+      "question": "Which component is responsible for deciding which ready process gets the CPU next?",
+      "options": {
+        "A": "File system",
+        "B": "CPU scheduler",
+        "C": "Device driver",
+        "D": "Text editor"
+      },
+      "correct_answer": "B",
+      "explanation": "The CPU scheduler (part of the OS) selects a process from the ready queue to execute on the CPU according to a scheduling policy.",
+      "difficulty": "easy",
+      "sub_topic": "processes_and_scheduling",
+      "misconception_tags": [
+        "scheduler_role_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-PRACTICE-004",
+      "question": "Which OS function is mainly responsible for organizing data into files and directories on storage?",
+      "options": {
+        "A": "Process scheduling",
+        "B": "Memory allocation",
+        "C": "File system management",
+        "D": "CPU pipelining"
+      },
+      "correct_answer": "C",
+      "explanation": "File system management handles creation, organization, storage, retrieval, and access control of files and directories.",
+      "difficulty": "easy",
+      "sub_topic": "memory_and_filesystem_basics",
+      "misconception_tags": [
+        "os_function_mapping_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-PRACTICE-005",
+      "question": "When a running process needs to wait for an I/O operation to complete, it typically moves to which state?",
+      "options": {
+        "A": "Ready",
+        "B": "Terminated",
+        "C": "Waiting/Blocked",
+        "D": "New"
+      },
+      "correct_answer": "C",
+      "explanation": "A process waiting for an event such as I/O completion enters the waiting/blocked state until the event occurs, after which it can become ready.",
+      "difficulty": "medium",
+      "sub_topic": "processes_and_scheduling",
+      "misconception_tags": [
+        "process_state_transition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "OS-001",
+      "question": "What is the main purpose of an operating system?",
+      "options": {
+        "A": "To act only as a virus scanner",
+        "B": "To manage computer hardware and provide a platform for applications",
+        "C": "To replace all application software",
+        "D": "To increase internet speed directly"
+      },
+      "correct_answer": "B",
+      "explanation": "An OS manages hardware resources and provides services/interfaces that allow application software to run effectively.",
+      "difficulty": "easy",
+      "sub_topic": "os_role_and_functions",
+      "misconception_tags": [
+        "os_role_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-002",
+      "question": "Which of the following best describes a thread?",
+      "options": {
+        "A": "A passive file stored on disk",
+        "B": "A lightweight unit of execution within a process",
+        "C": "A hardware component of the CPU",
+        "D": "A type of secondary storage"
+      },
+      "correct_answer": "B",
+      "explanation": "A thread is a basic unit of CPU execution within a process. Threads in the same process share resources like memory but have their own execution context.",
+      "difficulty": "medium",
+      "sub_topic": "processes_and_scheduling",
+      "misconception_tags": [
+        "thread_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-003",
+      "question": "Which process state indicates that a process is ready to run and waiting for CPU allocation?",
+      "options": {
+        "A": "Running",
+        "B": "Ready",
+        "C": "Waiting/Blocked",
+        "D": "Terminated"
+      },
+      "correct_answer": "B",
+      "explanation": "A process in the ready state is prepared to execute but is waiting for the scheduler to assign the CPU.",
+      "difficulty": "easy",
+      "sub_topic": "processes_and_scheduling",
+      "misconception_tags": [
+        "process_state_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-004",
+      "question": "Virtual memory is primarily used to:",
+      "options": {
+        "A": "Permanently replace physical RAM hardware",
+        "B": "Allow execution of processes that may not fit entirely in physical RAM",
+        "C": "Increase monitor resolution",
+        "D": "Store files without a file system"
+      },
+      "correct_answer": "B",
+      "explanation": "Virtual memory uses a combination of RAM and disk backing to provide processes with a larger logical address space, enabling systems to handle workloads larger than physical memory (with trade-offs).",
+      "difficulty": "medium",
+      "sub_topic": "memory_and_filesystem_basics",
+      "misconception_tags": [
+        "virtual_memory_purpose_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-005",
+      "question": "Which of the following is typically managed by the file system?",
+      "options": {
+        "A": "CPU scheduling queues",
+        "B": "Organization and access of files and directories",
+        "C": "ALU arithmetic operations",
+        "D": "Network packet routing on the internet"
+      },
+      "correct_answer": "B",
+      "explanation": "The file system manages how data is stored and retrieved on storage devices, including file naming, directories/folders, metadata, and access control.",
+      "difficulty": "easy",
+      "sub_topic": "memory_and_filesystem_basics",
+      "misconception_tags": [
+        "os_function_mapping_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

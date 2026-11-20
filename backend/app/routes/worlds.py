@@ -32,7 +32,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.data.worlds_data import WORLD_REGISTRY
-from app.database import gamification_collection, skill_graph_collection, srs_cards_collection
+from app.database import gamification_collection, gamification_events_collection, skill_graph_collection, srs_cards_collection
 from app.middleware.auth import get_current_user
 from app.models.world import (
     Boss,
@@ -125,7 +125,7 @@ def is_world_unlocked(world_id: str, completed: dict) -> bool:
         return True
     for pid in prereqs:
         pre = world_progress(pid, completed)
-        if pre["total"] and pre["done"] < pre["total"]:
+        if pre["total"] == 0 or pre["done"] < pre["total"]:
             return False
     return True
 
@@ -881,6 +881,8 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
 
     await _record_skill_touch(uid, _canonical_skill_for_level(lvl), True)
 
+    difficulty = "hard" if lvl.kind == "boss" else ("medium" if lvl.order >= 4 else "easy")
+
     mastery_after = await _get_skill_score(uid)
     entry["mastery_after"] = mastery_after
     fresh2 = await gamification_collection.find_one({"user_id": uid}) or {}
@@ -889,7 +891,6 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
         fresh_comp2[key]["mastery_after"] = mastery_after
         await gamification_collection.update_one({"user_id": uid}, {"$set": {"completed_competencies": fresh_comp2}}, upsert=True)
 
-    difficulty = "hard" if lvl.kind == "boss" else ("medium" if lvl.order >= 4 else "easy")
     await _ensure_srs_card(uid, f"{world_id}:{level_id}", is_correct=True, difficulty=difficulty)
 
     progress = await _build_progress(world, uid)

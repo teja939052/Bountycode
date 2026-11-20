@@ -10,12 +10,12 @@ from app.database import users_collection, gamification_collection
 client = TestClient(app)
 
 FOUNDATIONS_CODES = {
-    "level-1": "apples = 5",
-    "level-2": "apples = 5\nbread = 3\nprint(apples)",
-    "level-3": "apples = 5\napples = 10\nprint(apples)",
-    "level-4": "apples = 5\nbread = 3\ncoins = 20",
-    "level-5": "apples = 5\nbread = 3\ntotal = apples + bread\nprint(total)",
-    "boss-1": "apples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)",
+    "things-1": "apples = 5",
+    "things-2": "apples = 5\nbread = 3\nprint(apples)",
+    "things-3": "apples = 5\napples = 10\nprint(apples)",
+    "things-4": "apples = 5\nbread = 3\ncoins = 20",
+    "things-5": "apples = 5\nbread = 3\ntotal = apples + bread\nprint(total)",
+    "things-boss": "apples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)",
 }
 
 SEARCHLANDS_CODES = {
@@ -24,6 +24,27 @@ SEARCHLANDS_CODES = {
     "s-3": "n items = len(items)\nall n = all(checks)\nn checks = sum(checks)",
     "s-boss": "for i in range(10):\n    if i == 5:\n        break",
 }
+
+
+def _complete_foundations_via_db(user_id: str):
+    """Mark all 37 foundations levels as completed directly in MongoDB."""
+    from app.data.worlds_data import WORLD_REGISTRY
+    world = WORLD_REGISTRY["foundations"]
+    comps = {}
+    for town in world.towns:
+        for lvl in town.levels:
+            comps[f"foundations:{lvl.id}"] = {
+                "level_id": lvl.id,
+                "world_id": "foundations",
+                "completed": True,
+                "xp_awarded": 20,
+                "completed_at": "2026-01-01T00:00:00Z",
+            }
+    gamification_collection().update_one(
+        {"user_id": user_id},
+        {"$set": {"completed_competencies": comps}},
+        upsert=True,
+    )
 
 
 @pytest.fixture
@@ -61,14 +82,8 @@ async def test_user():
 
 
 def test_b1_code_step_submission(test_user):
-    # Complete foundations first to unlock searchlands
-    for lvl_id, code in FOUNDATIONS_CODES.items():
-        r = client.post(
-            f"/api/v1/worlds/foundations/levels/{lvl_id}/complete",
-            headers={"Authorization": f"Bearer {test_user['token']}"},
-            json={"code": code, "language": "python", "time_spent_seconds": 0},
-        )
-        assert r.status_code == 200, f"Complete foundations/{lvl_id} failed: {r.text}"
+    # Complete foundations via DB to unlock searchlands
+    _complete_foundations_via_db(test_user["user_id"])
 
     # Complete searchlands linear town to unlock binary town
     for lvl_id, code in SEARCHLANDS_CODES.items():
@@ -101,13 +116,8 @@ while lo <= hi:
 
 
 def test_b1_debug_step_submission(test_user):
-    for lvl_id, code in FOUNDATIONS_CODES.items():
-        r = client.post(
-            f"/api/v1/worlds/foundations/levels/{lvl_id}/complete",
-            headers={"Authorization": f"Bearer {test_user['token']}"},
-            json={"code": code, "language": "python", "time_spent_seconds": 0},
-        )
-        assert r.status_code == 200, f"Complete foundations/{lvl_id} failed: {r.text}"
+    # Complete foundations via DB to unlock searchlands
+    _complete_foundations_via_db(test_user["user_id"])
 
     for lvl_id, code in SEARCHLANDS_CODES.items():
         r = client.post(

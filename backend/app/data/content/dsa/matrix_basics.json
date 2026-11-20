@@ -1,0 +1,325 @@
+{
+  "topic": "matrix_basics",
+  "subject": "dsa",
+  "pattern": "matrix_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "MAT-L1",
+      "title": "Matrix Representation and Traversal",
+      "concept": "A matrix (2D array) is a collection of elements arranged in rows and columns. Elements are accessed using row and column indices (commonly 0-based). Traversal patterns include row-wise, column-wise, and diagonal traversals depending on the problem.",
+      "formula": "For matrix with R rows and C columns: element at (i,j) where 0 <= i < R, 0 <= j < C. Row-wise: for i in rows: for j in cols. Column-wise: for j in cols: for i in rows.",
+      "worked_example": "Matrix [[1,2,3],[4,5,6]] has 2 rows, 3 cols. Row-wise traversal visits 1,2,3,4,5,6. Element at (1,2) is 6 (0-based).",
+      "mistakes": [
+        "Swapping row and column indices",
+        "Out-of-bounds access when loop limits are incorrect",
+        "Assuming all matrices are square"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "MAT-L2",
+      "title": "Common Matrix Operations",
+      "concept": "Basic operations include transpose (swap rows and columns), searching, summing rows/columns, and boundary/spiral traversal patterns. Transpose of an R x C matrix becomes C x R with element (i,j) mapped to (j,i).",
+      "formula": "Transpose: T[j][i] = M[i][j]. For square matrix in-place transpose swaps M[i][j] with M[j][i] for j > i. Boundary traversal visits top row, right column, bottom row, left column in order.",
+      "worked_example": "M=[[1,2],[3,4],[5,6]] (3x2) transpose is [[1,3,5],[2,4,6]] (2x3).",
+      "mistakes": [
+        "Trying in-place transpose on non-square matrix without proper storage",
+        "Visiting corner elements twice in boundary traversal",
+        "Incorrect index mapping in transpose"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "MAT-L3",
+      "title": "Matrix Search and Patterns",
+      "concept": "Some problems exploit matrix properties for efficient search. For example, in a matrix where each row and column is sorted, searching can be done by starting at a corner and eliminating a row or column at each step. Other problems involve rotations or layer-wise processing.",
+      "formula": "Sorted row/col matrix search (ascending): start at top-right; if value > target move left, if value < target move down (O(R+C)). 90-degree rotation (square) often done by transpose + reverse rows (or layer cycles).",
+      "worked_example": "In [[1,4,7],[2,5,8],[3,6,9]] to find 5: start at 7 (>5 move left to 4, <5 move down to 5) found.",
+      "mistakes": [
+        "Applying sorted-matrix search technique to unsorted matrices",
+        "Off-by-one in spiral/layer boundaries",
+        "Modifying matrix while still needing original values"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "MAT-PRACTICE-001",
+      "question": "In a 2D matrix accessed as M[i][j] (0-based), i typically represents:",
+      "options": {
+        "A": "Column index",
+        "B": "Row index",
+        "C": "Diagonal index",
+        "D": "Matrix size"
+      },
+      "correct_answer": "B",
+      "explanation": "By common convention, M[i][j] refers to the element in row i and column j.",
+      "difficulty": "easy",
+      "sub_topic": "representation",
+      "misconception_tags": [
+        "index_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-PRACTICE-002",
+      "question": "How many elements are in a matrix with 3 rows and 4 columns?",
+      "options": {
+        "A": "7",
+        "B": "12",
+        "C": "1",
+        "D": "34"
+      },
+      "correct_answer": "B",
+      "explanation": "Total elements = rows * columns = 3 * 4 = 12.",
+      "difficulty": "easy",
+      "sub_topic": "representation",
+      "misconception_tags": [
+        "count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-PRACTICE-003",
+      "question": "Transpose of a matrix means:",
+      "options": {
+        "A": "Reversing each row only",
+        "B": "Swapping rows and columns (M[i][j] becomes T[j][i])",
+        "C": "Sorting all elements",
+        "D": "Multiplying all elements by 2"
+      },
+      "correct_answer": "B",
+      "explanation": "The transpose maps element at (i,j) to (j,i), effectively converting rows into columns and columns into rows.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "transpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-PRACTICE-004",
+      "question": "What is the transpose of [[1,2,3],[4,5,6]]?",
+      "options": {
+        "A": "[[1,2],[3,4],[5,6]]",
+        "B": "[[1,4],[2,5],[3,6]]",
+        "C": "[[6,5,4],[3,2,1]]",
+        "D": "[[4,5,6],[1,2,3]]"
+      },
+      "correct_answer": "B",
+      "explanation": "Rows become columns: first column [1,4], second [2,5], third [3,6], giving [[1,4],[2,5],[3,6]].",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "transpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-PRACTICE-005",
+      "question": "In a matrix sorted in ascending order by rows and columns, starting search from the top-right corner allows you to:",
+      "options": {
+        "A": "Eliminate a row or column based on comparison with target",
+        "B": "Always find target in O(1)",
+        "C": "Search only diagonals",
+        "D": "Avoid comparisons"
+      },
+      "correct_answer": "A",
+      "explanation": "If current value > target move left (smaller), if < target move down (larger), eliminating one row/column each step.",
+      "difficulty": "medium",
+      "sub_topic": "search",
+      "misconception_tags": [
+        "search_strategy_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "MAT-001",
+      "question": "For matrix M with 2 rows and 3 columns, valid 0-based row indices are:",
+      "options": {
+        "A": "0,1,2",
+        "B": "0,1",
+        "C": "1,2,3",
+        "D": "1,2"
+      },
+      "correct_answer": "B",
+      "explanation": "With 2 rows, 0-based row indices are 0 and 1.",
+      "difficulty": "easy",
+      "sub_topic": "representation",
+      "misconception_tags": [
+        "index_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-002",
+      "question": "If a matrix is R x C, its transpose is:",
+      "options": {
+        "A": "R x C",
+        "B": "C x R",
+        "C": "R x R",
+        "D": "C x C"
+      },
+      "correct_answer": "B",
+      "explanation": "Transposing swaps dimensions: rows become columns and columns become rows, so R x C becomes C x R.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "dimension_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-003",
+      "question": "Row-wise traversal of [[1,2],[3,4]] visits elements in order:",
+      "options": {
+        "A": "1,3,2,4",
+        "B": "1,2,3,4",
+        "C": "4,3,2,1",
+        "D": "2,1,4,3"
+      },
+      "correct_answer": "B",
+      "explanation": "Row-wise traversal visits each row from left to right: first row 1,2 then second row 3,4.",
+      "difficulty": "easy",
+      "sub_topic": "representation",
+      "misconception_tags": [
+        "traversal_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-004",
+      "question": "In-place transpose (without extra matrix of same size) is straightforward when the matrix is:",
+      "options": {
+        "A": "Rectangular only",
+        "B": "Square",
+        "C": "Empty only",
+        "D": "1 x N only"
+      },
+      "correct_answer": "B",
+      "explanation": "For a square matrix, elements across the main diagonal can be swapped in place. Rectangular matrices require different dimensions (C x R).",
+      "difficulty": "medium",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "transpose_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAT-005",
+      "question": "Which traversal visits the outermost elements of a matrix in a loop order (top, right, bottom, left)?",
+      "options": {
+        "A": "Diagonal traversal",
+        "B": "Spiral/boundary traversal",
+        "C": "Column-wise traversal",
+        "D": "Random traversal"
+      },
+      "correct_answer": "B",
+      "explanation": "Boundary or spiral traversal processes matrix elements layer by layer around the edges in a cyclic order.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "traversal_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

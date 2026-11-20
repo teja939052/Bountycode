@@ -1,0 +1,325 @@
+{
+  "topic": "dynamic_programming_basics",
+  "subject": "dsa",
+  "pattern": "dynamic_programming_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "DP-L1",
+      "title": "Dynamic Programming Intuition",
+      "concept": "Dynamic Programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. It is useful when a problem has optimal substructure and overlapping subproblems.",
+      "formula": "Two key properties: (1) overlapping subproblems, (2) optimal substructure. Approaches: top-down (memoization) and bottom-up (tabulation).",
+      "worked_example": "Fibonacci: naive recursion recomputes F(2), F(3) many times. DP stores computed values so each F(i) is computed once.",
+      "mistakes": [
+        "Using DP when subproblems do not overlap (plain divide-and-conquer may suffice)",
+        "Defining state incorrectly (missing parameters needed for subproblem)",
+        "Confusing greedy choices with DP optimal substructure"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "DP-L2",
+      "title": "Memoization vs Tabulation",
+      "concept": "Memoization is a top-down approach: write a recursive solution and cache results for states already solved. Tabulation is a bottom-up approach: solve smaller subproblems first and fill a table iteratively up to the target.",
+      "formula": "Memoization: if state in cache return cache[state]; else compute, store, return. Tabulation: initialize base cases, iterate states in dependency order, compute dp[state].",
+      "worked_example": "Climbing stairs (1 or 2 steps): memoized function returns cached ways(n). Tabulation sets dp[0]=1, dp[1]=1 and computes dp[i]=dp[i-1]+dp[i-2].",
+      "mistakes": [
+        "Wrong base cases leading to incorrect table/recursion results",
+        "Iterating in wrong order in tabulation so dependencies are not ready",
+        "Forgetting to cache before returning in memoization"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "DP-L3",
+      "title": "State, Transition, and Answer",
+      "concept": "Designing a DP solution involves defining the state (what dp[i] represents), the transition (how to compute it from smaller states), and the final answer (which state/value to return). Clear definitions prevent off-by-one and logic errors.",
+      "formula": "Template: State dp[i]=...; Transition dp[i]=f(dp[smaller states]); Base cases; Answer = dp[target] or max/min over states.",
+      "worked_example": "Min cost to reach step i (conceptual): dp[i]=cost[i]+min(dp[i-1],dp[i-2]) with base cases dp[0]=cost[0], dp[1]=cost[1], answer=min(dp[n-1],dp[n-2]).",
+      "mistakes": [
+        "Vague state meaning causing wrong transitions",
+        "Returning intermediate state instead of required final answer",
+        "Not handling boundary indices/base states"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "DP-PRACTICE-001",
+      "question": "Dynamic Programming is most appropriate when a problem has:",
+      "options": {
+        "A": "Overlapping subproblems and optimal substructure",
+        "B": "No repeated subproblems",
+        "C": "Only random access requirements",
+        "D": "No base cases"
+      },
+      "correct_answer": "A",
+      "explanation": "DP exploits overlapping subproblems by caching results and relies on optimal substructure to build optimal/global solutions from subproblem solutions.",
+      "difficulty": "easy",
+      "sub_topic": "dp_intuition",
+      "misconception_tags": [
+        "property_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-PRACTICE-002",
+      "question": "Which approach is top-down with caching of recursive results?",
+      "options": {
+        "A": "Tabulation",
+        "B": "Memoization",
+        "C": "Greedy scan",
+        "D": "Binary search"
+      },
+      "correct_answer": "B",
+      "explanation": "Memoization uses recursion (top-down) and stores results of solved states to avoid recomputation.",
+      "difficulty": "easy",
+      "sub_topic": "memo_tab",
+      "misconception_tags": [
+        "approach_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-PRACTICE-003",
+      "question": "Which approach builds solutions iteratively from base cases upward?",
+      "options": {
+        "A": "Memoization",
+        "B": "Tabulation",
+        "C": "Backtracking without cache",
+        "D": "Linear search"
+      },
+      "correct_answer": "B",
+      "explanation": "Tabulation is a bottom-up DP approach that fills a table starting from base cases in an order that satisfies dependencies.",
+      "difficulty": "easy",
+      "sub_topic": "memo_tab",
+      "misconception_tags": [
+        "approach_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-PRACTICE-004",
+      "question": "In DP design, dp[i] represents:",
+      "options": {
+        "A": "Only the input array",
+        "B": "The state/solution value for subproblem i as defined",
+        "C": "Always the final answer",
+        "D": "A random cache entry"
+      },
+      "correct_answer": "B",
+      "explanation": "The DP state dp[i] must have a clear definition describing what subproblem it solves or what value it stores.",
+      "difficulty": "easy",
+      "sub_topic": "state_transition",
+      "misconception_tags": [
+        "state_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-PRACTICE-005",
+      "question": "Why are base cases important in DP?",
+      "options": {
+        "A": "They are optional decorations",
+        "B": "They provide starting values needed to compute larger states",
+        "C": "They remove the need for transitions",
+        "D": "They only matter in greedy algorithms"
+      },
+      "correct_answer": "B",
+      "explanation": "Base cases anchor the recurrence/tabulation so that dependent states can be computed correctly.",
+      "difficulty": "easy",
+      "sub_topic": "state_transition",
+      "misconception_tags": [
+        "base_case_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "DP-001",
+      "question": "What problem characteristic indicates overlapping subproblems?",
+      "options": {
+        "A": "The same subproblems are solved multiple times",
+        "B": "Every subproblem is unique and never reused",
+        "C": "The problem has no recursion",
+        "D": "Inputs are always sorted"
+      },
+      "correct_answer": "A",
+      "explanation": "Overlapping subproblems occur when a recursive/structured solution recomputes identical subproblems, which DP can optimize by caching or tabulating results.",
+      "difficulty": "easy",
+      "sub_topic": "dp_intuition",
+      "misconception_tags": [
+        "property_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-002",
+      "question": "Memoization primarily avoids:",
+      "options": {
+        "A": "Defining base cases",
+        "B": "Recomputing previously solved subproblems",
+        "C": "Using memory",
+        "D": "Writing transitions"
+      },
+      "correct_answer": "B",
+      "explanation": "By caching results of states that have already been computed, memoization prevents repeated work on the same subproblems.",
+      "difficulty": "easy",
+      "sub_topic": "memo_tab",
+      "misconception_tags": [
+        "memoization_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-003",
+      "question": "In bottom-up tabulation, the computation order must:",
+      "options": {
+        "A": "Be random",
+        "B": "Ensure dependencies (smaller/needed states) are computed before current state",
+        "C": "Always be descending regardless of recurrence",
+        "D": "Skip base cases"
+      },
+      "correct_answer": "B",
+      "explanation": "Tabulation fills entries iteratively, so each state can only be computed after the states it depends on are already known.",
+      "difficulty": "medium",
+      "sub_topic": "memo_tab",
+      "misconception_tags": [
+        "order_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-004",
+      "question": "Which is NOT a typical component of a DP solution?",
+      "options": {
+        "A": "State definition",
+        "B": "Transition/recurrence",
+        "C": "Base case(s)",
+        "D": "Ignoring dependencies between subproblems"
+      },
+      "correct_answer": "D",
+      "explanation": "A correct DP solution depends on clearly defined states, transitions based on dependencies, and base cases; ignoring dependencies would break correctness.",
+      "difficulty": "easy",
+      "sub_topic": "state_transition",
+      "misconception_tags": [
+        "design_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-005",
+      "question": "Optimal substructure means:",
+      "options": {
+        "A": "An optimal solution can be constructed from optimal solutions of its subproblems",
+        "B": "Subproblems never overlap",
+        "C": "Only greedy algorithms work",
+        "D": "The problem has exactly one state"
+      },
+      "correct_answer": "A",
+      "explanation": "Optimal substructure is the property that an optimal solution to the whole problem contains (or can be built from) optimal solutions to subproblems.",
+      "difficulty": "medium",
+      "sub_topic": "dp_intuition",
+      "misconception_tags": [
+        "property_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

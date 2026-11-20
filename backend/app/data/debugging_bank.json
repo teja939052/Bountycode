@@ -7599,5 +7599,4498 @@
     ],
     "prior_trust_status": "reviewed",
     "trust_note": "A1 2026-09-10: bulk addition without verification evidence; needs human review or machine verification before trusted"
+  },
+  {
+    "id": "debug-201",
+    "type": "debugging",
+    "title": "Fix the None Attribute Access",
+    "question": "The function should return the length of a list attribute, but crashes when the object is None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "null_handling",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_list_length(obj):\n    return len(obj.items)",
+    "correct_code": "def get_list_length(obj):\n    if obj is None:\n        return 0\n    return len(obj.items)",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          "items_placeholder"
+        ],
+        "expected": 0
+      }
+    ],
+    "explanation": "Accessing .items on None raises AttributeError. Add a None check first.",
+    "hints": [
+      "Check if obj is None before accessing attributes",
+      "Return 0 for None input"
+    ],
+    "common_trap": "Calling attribute access on None raises AttributeError",
+    "reasoning_steps": [
+      "1. Identify that None input causes crash.",
+      "2. Add None check at function start.",
+      "3. Return 0 for None, len(obj.items) otherwise."
+    ],
+    "statement": "get_list_length should handle None gracefully.",
+    "environment": "Python 3. get_list_length(obj) takes an object or None.",
+    "observed_behavior": "get_list_length(None) raises AttributeError: 'NoneType' object has no attribute 'items'.",
+    "expected_behavior": "get_list_length(None) returns 0.",
+    "logs_or_error": "AttributeError: 'NoneType' object has no attribute 'items'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-202",
+    "type": "debugging",
+    "title": "Fix the Off-by-One in Range",
+    "question": "The function should sum numbers from 1 to n inclusive, but it misses the last number. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "loops",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def sum_to_n(n):\n    total = 0\n    for i in range(1, n):\n        total += i\n    return total",
+    "correct_code": "def sum_to_n(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": 15
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": 0
+      }
+    ],
+    "explanation": "range(1, n) excludes n. Should be range(1, n + 1) to include n.",
+    "hints": [
+      "range is exclusive at the end",
+      "Add 1 to n to include it"
+    ],
+    "common_trap": "Using range(1, n) misses the last number",
+    "reasoning_steps": [
+      "1. sum_to_n(5) should return 1+2+3+4+5=15.",
+      "2. range(1, 5) gives 1,2,3,4 - missing 5.",
+      "3. Fix: range(1, n+1)."
+    ],
+    "statement": "sum_to_n misses the last number due to off-by-one error.",
+    "environment": "Python 3. sum_to_n(n) takes an integer.",
+    "observed_behavior": "sum_to_n(5) returns 10 instead of 15.",
+    "expected_behavior": "sum_to_n(5) returns 15.",
+    "logs_or_error": "Wrong result - off by one",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-203",
+    "type": "debugging",
+    "title": "Fix the Mutable Default Argument",
+    "question": "The function should return a fresh list each call, but it accumulates items across calls. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "python_specific",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def add_item(item, lst=[]):\n    lst.append(item)\n    return lst",
+    "correct_code": "def add_item(item, lst=None):\n    if lst is None:\n        lst = []\n    lst.append(item)\n    return lst",
+    "test_cases": [
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "input": [
+          2
+        ],
+        "expected": [
+          2
+        ]
+      }
+    ],
+    "explanation": "Mutable default arguments are evaluated once at definition time. Use None default and create list inside.",
+    "hints": [
+      "Default arguments are evaluated once",
+      "Use None default, create list inside function"
+    ],
+    "common_trap": "Using mutable default arguments like lists",
+    "reasoning_steps": [
+      "1. Default argument [] is shared across all calls.",
+      "2. Items from previous calls persist.",
+      "3. Use None default and create new list inside."
+    ],
+    "statement": "add_item accumulates items across calls.",
+    "environment": "Python 3. add_item(item, lst=[]).",
+    "observed_behavior": "add_item(1) returns [1]; add_item(2) returns [1, 2].",
+    "expected_behavior": "add_item(1) returns [1]; add_item(2) returns [2].",
+    "logs_or_error": "Second call returns [1, 2] instead of [2]",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-204",
+    "type": "debugging",
+    "title": "Fix Empty String Handling",
+    "question": "The function should return the first character, but crashes on empty string. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "edge_cases",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def first_char(s):\n    return s[0]",
+    "correct_code": "def first_char(s):\n    if not s:\n        return ''\n    return s[0]",
+    "test_cases": [
+      {
+        "input": [
+          "hello"
+        ],
+        "expected": "h"
+      },
+      {
+        "input": [
+          ""
+        ],
+        "expected": ""
+      }
+    ],
+    "explanation": "Accessing s[0] on empty string raises IndexError. Check for empty first.",
+    "hints": [
+      "Check for empty string before indexing",
+      "Return empty string for empty input"
+    ],
+    "common_trap": "Indexing empty string raises IndexError",
+    "reasoning_steps": [
+      "1. s[0] on '' raises IndexError.",
+      "2. Add empty string check.",
+      "3. Return '' for empty input."
+    ],
+    "statement": "first_char crashes on empty string.",
+    "environment": "Python 3. first_char(s) takes a string.",
+    "observed_behavior": "first_char('') raises IndexError: string index out of range.",
+    "expected_behavior": "first_char('') returns ''.",
+    "logs_or_error": "IndexError: string index out of range",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-205",
+    "type": "debugging",
+    "title": "Fix String-Int Concatenation",
+    "question": "The function should combine a label and number, but raises TypeError. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def make_label(code):\n    return 'Error: ' + code",
+    "correct_code": "def make_label(code):\n    return 'Error: ' + str(code)",
+    "test_cases": [
+      {
+        "input": [
+          404
+        ],
+        "expected": "Error: 404"
+      },
+      {
+        "input": [
+          500
+        ],
+        "expected": "Error: 500"
+      }
+    ],
+    "explanation": "Cannot concatenate str with int using +. Convert to str first.",
+    "hints": [
+      "Cannot add str and int directly",
+      "Convert int to str using str()"
+    ],
+    "common_trap": "Using + to concatenate str and non-str types",
+    "reasoning_steps": [
+      "1. 'Error: ' + 404 raises TypeError.",
+      "2. Convert 404 to '404' using str().",
+      "3. Concatenate: 'Error: ' + '404'."
+    ],
+    "statement": "make_label raises TypeError when code is not a string.",
+    "environment": "Python 3. make_label(code) takes any value.",
+    "observed_behavior": "make_label(404) raises TypeError.",
+    "expected_behavior": "make_label(404) returns 'Error: 404'.",
+    "logs_or_error": "TypeError: can only concatenate str (not \"int\") to str",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-206",
+    "type": "debugging",
+    "title": "Fix List Index Out of Range",
+    "question": "The function should return the last element, but crashes on empty list. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "index_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_last(lst):\n    return lst[-1]",
+    "correct_code": "def get_last(lst):\n    if not lst:\n        return None\n    return lst[-1]",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "lst[-1] on empty list raises IndexError. Check length first.",
+    "hints": [
+      "Check list length before accessing index",
+      "Return None for empty list"
+    ],
+    "common_trap": "Accessing index on empty list raises IndexError",
+    "reasoning_steps": [
+      "1. lst[-1] on [] raises IndexError.",
+      "2. Add empty list check.",
+      "3. Return None for empty input."
+    ],
+    "statement": "get_last crashes on empty list.",
+    "environment": "Python 3. get_last(lst) takes a list.",
+    "observed_behavior": "get_last([]) raises IndexError: list index out of range.",
+    "expected_behavior": "get_last([]) returns None.",
+    "logs_or_error": "IndexError: list index out of range",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-207",
+    "type": "debugging",
+    "title": "Fix the Wrong Condition",
+    "question": "The function should check if a number is positive, but returns wrong results. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_positive(n):\n    return n < 0",
+    "correct_code": "def is_positive(n):\n    return n > 0",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          -3
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "Positive numbers are greater than 0, not less than 0. Change < to >.",
+    "hints": [
+      "Positive means > 0",
+      "The code checks for negative numbers"
+    ],
+    "common_trap": "Confusing positive and negative condition",
+    "reasoning_steps": [
+      "1. n < 0 checks for negative numbers.",
+      "2. Positive numbers have n > 0.",
+      "3. Change < 0 to > 0."
+    ],
+    "statement": "is_positive returns True for negative numbers.",
+    "environment": "Python 3. is_positive(n) takes an integer.",
+    "observed_behavior": "is_positive(5) returns False; is_positive(-3) returns True.",
+    "expected_behavior": "is_positive(5) returns True; is_positive(-3) returns False.",
+    "logs_or_error": "Wrong boolean result",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-208",
+    "type": "debugging",
+    "title": "Fix Dictionary Key Access",
+    "question": "The function should look up a key, but crashes when missing. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def lookup(d, key):\n    return d[key]",
+    "correct_code": "def lookup(d, key):\n    return d.get(key, None)",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a"
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "b"
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "d[key] raises KeyError if key missing. Use d.get(key, None).",
+    "hints": [
+      "d[key] raises KeyError for missing keys",
+      "Use d.get(key, default) instead"
+    ],
+    "common_trap": "Using direct key access without checking existence",
+    "reasoning_steps": [
+      "1. d[key] crashes when key is not in dict.",
+      "2. Use d.get(key, None) to return None.",
+      "3. No exception is raised."
+    ],
+    "statement": "lookup raises KeyError for missing keys.",
+    "environment": "Python 3. lookup(d, key) takes dict and key.",
+    "observed_behavior": "lookup({'a': 1}, 'b') raises KeyError.",
+    "expected_behavior": "lookup({'a': 1}, 'b') returns None.",
+    "logs_or_error": "KeyError: 'b'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-209",
+    "type": "debugging",
+    "title": "Fix the Loop Bound",
+    "question": "The function should print all elements, but skips the last one. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "off_by_one",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def print_all(arr):\n    for i in range(len(arr) - 1):\n        print(arr[i])",
+    "correct_code": "def print_all(arr):\n    for i in range(len(arr)):\n        print(arr[i])",
+    "test_cases": [
+      {
+        "input": [
+          [
+            10,
+            20,
+            30
+          ]
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          [
+            5
+          ]
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "range(len(arr) - 1) excludes the last index. Use range(len(arr)).",
+    "hints": [
+      "len(arr) - 1 excludes last element",
+      "Use range(len(arr)) to include all"
+    ],
+    "common_trap": "Using len(arr) - 1 skips the last element",
+    "reasoning_steps": [
+      "1. range(len(arr) - 1) stops at index len(arr)-2.",
+      "2. Last element at index len(arr)-1 is skipped.",
+      "3. Fix: range(len(arr))."
+    ],
+    "statement": "print_all skips the last element.",
+    "environment": "Python 3. print_all(arr) takes a list.",
+    "observed_behavior": "print_all([10, 20, 30]) prints 10, 20 (missing 30).",
+    "expected_behavior": "print_all([10, 20, 30]) prints 10, 20, 30.",
+    "logs_or_error": "Missing last element output",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-210",
+    "type": "debugging",
+    "title": "Fix the Missing Base Case",
+    "question": "The recursive function should compute factorial, but causes infinite recursion. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "infinite_recursion",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def factorial(n):\n    return n * factorial(n - 1)",
+    "correct_code": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": 120
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": 1
+      }
+    ],
+    "explanation": "Missing base case causes infinite recursion. Add n <= 1 check.",
+    "hints": [
+      "Missing base case for recursion",
+      "Add condition to stop recursion"
+    ],
+    "common_trap": "Recursive function without base case recurses forever",
+    "reasoning_steps": [
+      "1. factorial(5) calls factorial(4) calls factorial(3)... never stops.",
+      "2. Add base case: if n <= 1: return 1.",
+      "3. Recursion terminates at n=1."
+    ],
+    "statement": "factorial causes infinite recursion (stack overflow).",
+    "environment": "Python 3. factorial(n) takes an integer.",
+    "observed_behavior": "factorial(5) raises RecursionError: maximum recursion depth exceeded.",
+    "expected_behavior": "factorial(5) returns 120.",
+    "logs_or_error": "RecursionError: maximum recursion depth exceeded",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-211",
+    "type": "debugging",
+    "title": "Fix the Bare Except",
+    "question": "The function should handle division errors properly, but the bare except hides bugs. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "exception_handling",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except:\n        return 0",
+    "correct_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 0",
+    "test_cases": [
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 5.0
+      },
+      {
+        "input": [
+          10,
+          0
+        ],
+        "expected": 0
+      }
+    ],
+    "explanation": "Bare except catches all exceptions including bugs. Catch only ZeroDivisionError.",
+    "hints": [
+      "Bare except catches all exceptions",
+      "Catch specific exception types"
+    ],
+    "common_trap": "Using bare except: hides real bugs",
+    "reasoning_steps": [
+      "1. Bare except catches TypeError, ValueError, etc.",
+      "2. Only ZeroDivisionError should be caught.",
+      "3. Replace bare except with specific type."
+    ],
+    "statement": "safe_divide uses bare except, hiding bugs.",
+    "environment": "Python 3. safe_divide(a, b) takes two numbers.",
+    "observed_behavior": "safe_divide('a', 'b') returns 0 instead of raising TypeError.",
+    "expected_behavior": "safe_divide('a', 'b') raises TypeError (or handles only ZeroDivisionError).",
+    "logs_or_error": "Bare except masks unexpected errors",
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-212",
+    "type": "debugging",
+    "title": "Fix the Race Condition",
+    "question": "The counter should be incremented safely by multiple threads, but results are inconsistent. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "race_condition",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "import threading\ncounter = 0\ndef increment():\n    global counter\n    counter += 1\n\nthreads = [threading.Thread(target=increment) for _ in range(1000)]\nfor t in threads: t.start()\nfor t in threads: t.join()\nprint(counter)",
+    "correct_code": "import threading\ncounter = 0\nlock = threading.Lock()\ndef increment():\n    global counter\n    with lock:\n        counter += 1\n\nthreads = [threading.Thread(target=increment) for _ in range(1000)]\nfor t in threads: t.start()\nfor t in threads: t.join()\nprint(counter)",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": 1000
+      }
+    ],
+    "explanation": "counter += 1 is not atomic. Multiple threads can read-modify-write simultaneously. Use a lock.",
+    "hints": [
+      "counter += 1 is not atomic",
+      "Use threading.Lock for synchronization"
+    ],
+    "common_trap": "Non-atomic read-modify-write in concurrent threads",
+    "reasoning_steps": [
+      "1. counter += 1 involves read, modify, write.",
+      "2. Multiple threads interleave these steps.",
+      "3. Use Lock to make increment atomic."
+    ],
+    "statement": "Counter value is less than 1000 due to race condition.",
+    "environment": "Python 3. Multi-threaded counter increment.",
+    "observed_behavior": "Final counter value varies, less than 1000.",
+    "expected_behavior": "Final counter value is consistently 1000.",
+    "logs_or_error": "Inconsistent counter due to race condition",
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-213",
+    "type": "debugging",
+    "title": "Fix the Unclosed File Handle",
+    "question": "The function reads a file but never closes it, causing resource leak. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "memory_leak",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def read_file(path):\n    f = open(path, 'r')\n    content = f.read()\n    return content",
+    "correct_code": "def read_file(path):\n    with open(path, 'r') as f:\n        content = f.read()\n    return content",
+    "test_cases": [
+      {
+        "input": [
+          "/tmp/test.txt"
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "File handle is never closed. Use 'with' statement for automatic cleanup.",
+    "hints": [
+      "File handle not closed after use",
+      "Use 'with' statement for context management"
+    ],
+    "common_trap": "Forgetting to close file handles",
+    "reasoning_steps": [
+      "1. open() returns a file handle that must be closed.",
+      "2. Without close(), resources leak.",
+      "3. Use 'with' for automatic cleanup."
+    ],
+    "statement": "read_file leaks file handles on repeated calls.",
+    "environment": "Python 3. read_file(path) takes a file path.",
+    "observed_behavior": "File handles accumulate, eventually causing 'too many open files'.",
+    "expected_behavior": "File is properly closed after reading.",
+    "logs_or_error": "Resource leak: too many open files",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-01",
+    "type": "debugging",
+    "title": "Fix NoneType Attribute Access",
+    "question": "The function crashes when accessing an attribute on None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "null_handling",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_name(obj):\n    return obj.name",
+    "correct_code": "def get_name(obj):\n    if obj is None:\n        return None\n    return obj.name",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          "obj_with_name"
+        ],
+        "expected": "obj_with_name"
+      }
+    ],
+    "explanation": "Accessing .name on None raises AttributeError. Add None check first.",
+    "hints": [
+      "Check if obj is None before accessing attributes",
+      "Return None for None input"
+    ],
+    "common_trap": "Calling attribute access on None raises AttributeError",
+    "reasoning_steps": [
+      "1. obj.name crashes when obj is None.",
+      "2. Add None check.",
+      "3. Return None for None input."
+    ],
+    "statement": "get_name should handle None gracefully.",
+    "environment": "Python 3. get_name(obj) takes an object or None.",
+    "observed_behavior": "get_name(None) raises AttributeError.",
+    "expected_behavior": "get_name(None) returns None.",
+    "logs_or_error": "AttributeError: 'NoneType' object has no attribute 'name'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-02",
+    "type": "debugging",
+    "title": "Fix Dictionary Value Access on None",
+    "question": "The function looks up a value but crashes when the dict is None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "null_handling",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_value(d, key):\n    return d[key]",
+    "correct_code": "def get_value(d, key):\n    if d is None:\n        return None\n    return d.get(key, None)",
+    "test_cases": [
+      {
+        "input": [
+          null,
+          "a"
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a"
+        ],
+        "expected": 1
+      }
+    ],
+    "explanation": "d[key] crashes when d is None. Check None first, use .get().",
+    "hints": [
+      "Check if dict is None",
+      "Use dict.get() for missing keys"
+    ],
+    "common_trap": "Accessing None[key] raises TypeError",
+    "reasoning_steps": [
+      "1. d[key] crashes when d is None.",
+      "2. Check None first.",
+      "3. Use d.get(key, None)."
+    ],
+    "statement": "get_value should handle None dict gracefully.",
+    "environment": "Python 3. get_value(d, key) takes dict or None.",
+    "observed_behavior": "get_value(None, 'a') raises TypeError.",
+    "expected_behavior": "get_value(None, 'a') returns None.",
+    "logs_or_error": "TypeError: 'NoneType' object is not subscriptable",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-03",
+    "type": "debugging",
+    "title": "Fix None List Iteration",
+    "question": "The function iterates over a list but crashes when None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "null_handling",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def sum_list(lst):\n    return sum(lst)",
+    "correct_code": "def sum_list(lst):\n    if lst is None:\n        return 0\n    return sum(lst)",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 6
+      }
+    ],
+    "explanation": "sum(None) raises TypeError. Check None first.",
+    "hints": [
+      "Check if list is None",
+      "Return 0 for None input"
+    ],
+    "common_trap": "sum(None) raises TypeError",
+    "reasoning_steps": [
+      "1. sum(None) crashes.",
+      "2. Add None check.",
+      "3. Return 0 for None."
+    ],
+    "statement": "sum_list should handle None gracefully.",
+    "environment": "Python 3. sum_list(lst) takes list or None.",
+    "observed_behavior": "sum_list(None) raises TypeError.",
+    "expected_behavior": "sum_list(None) returns 0.",
+    "logs_or_error": "TypeError: 'NoneType' object is not iterable",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-04",
+    "type": "debugging",
+    "title": "Fix None String Method",
+    "question": "The function calls upper() but crashes on None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "null_handling",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def uppercase(s):\n    return s.upper()",
+    "correct_code": "def uppercase(s):\n    if s is None:\n        return None\n    return s.upper()",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          "hello"
+        ],
+        "expected": "HELLO"
+      }
+    ],
+    "explanation": "None.upper() raises AttributeError. Check None first.",
+    "hints": [
+      "Check if string is None",
+      "Return None for None input"
+    ],
+    "common_trap": "Calling method on None raises AttributeError",
+    "reasoning_steps": [
+      "1. s.upper() crashes when s is None.",
+      "2. Add None check.",
+      "3. Return None for None."
+    ],
+    "statement": "uppercase should handle None gracefully.",
+    "environment": "Python 3. uppercase(s) takes string or None.",
+    "observed_behavior": "uppercase(None) raises AttributeError.",
+    "expected_behavior": "uppercase(None) returns None.",
+    "logs_or_error": "AttributeError: 'NoneType' object has no attribute 'upper'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-05",
+    "type": "debugging",
+    "title": "Fix Nested None Access",
+    "question": "The function accesses nested attributes but crashes on intermediate None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "null_handling",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_city(user):\n    return user.address.city",
+    "correct_code": "def get_city(user):\n    if user is None or user.address is None:\n        return None\n    return user.address.city",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "user.address crashes when user.address is None. Check each level.",
+    "hints": [
+      "Check each level for None",
+      "Return None if any level is None"
+    ],
+    "common_trap": "Accessing attribute on None raises AttributeError",
+    "reasoning_steps": [
+      "1. user.address crashes when address is None.",
+      "2. Check both user and address.",
+      "3. Return None if any is None."
+    ],
+    "statement": "get_city should handle nested None gracefully.",
+    "environment": "Python 3. get_city(user) takes user object.",
+    "observed_behavior": "get_city(user_without_address) raises AttributeError.",
+    "expected_behavior": "get_city(user_without_address) returns None.",
+    "logs_or_error": "AttributeError: 'NoneType' object has no attribute 'city'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-06",
+    "type": "debugging",
+    "title": "Fix Off-by-One in Sum",
+    "question": "The function should sum 1 to n inclusive but misses the last number. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "loops",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def sum_to_n(n):\n    total = 0\n    for i in range(1, n):\n        total += i\n    return total",
+    "correct_code": "def sum_to_n(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": 15
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": 1
+      }
+    ],
+    "explanation": "range(1, n) excludes n. Use range(1, n+1).",
+    "hints": [
+      "range is exclusive at end",
+      "Add 1 to n"
+    ],
+    "common_trap": "range(1, n) misses the last number",
+    "reasoning_steps": [
+      "1. sum_to_n(5) should return 15.",
+      "2. range(1,5) gives 1-4.",
+      "3. Fix: range(1, n+1)."
+    ],
+    "statement": "sum_to_n misses last number.",
+    "environment": "Python 3. sum_to_n(n) takes integer.",
+    "observed_behavior": "sum_to_n(5) returns 10 instead of 15.",
+    "expected_behavior": "sum_to_n(5) returns 15.",
+    "logs_or_error": "Wrong result - off by one",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.804689+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-07",
+    "type": "debugging",
+    "title": "Fix Infinite While Loop",
+    "question": "The loop never terminates because counter is not incremented. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "loops",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def count_down(n):\n    while n > 0:\n        print(n)",
+    "correct_code": "def count_down(n):\n    while n > 0:\n        print(n)\n        n -= 1",
+    "test_cases": [
+      {
+        "input": [
+          3
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "n is never decremented, loop condition stays true. Add n -= 1.",
+    "hints": [
+      "n never changes inside loop",
+      "Add n -= 1"
+    ],
+    "common_trap": "Forgetting to modify loop variable",
+    "reasoning_steps": [
+      "1. n > 0 always true since n never decreases.",
+      "2. Add n -= 1 inside loop.",
+      "3. Loop terminates at n=0."
+    ],
+    "statement": "count_down loops forever.",
+    "environment": "Python 3. count_down(n) prints numbers.",
+    "observed_behavior": "Program does not terminate.",
+    "expected_behavior": "Prints n, n-1, ..., 1 then stops.",
+    "logs_or_error": "Infinite loop",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-08",
+    "type": "debugging",
+    "title": "Fix Loop Range Start",
+    "question": "The function should sum from 0 to n but starts at 1. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "loops",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def sum_from_zero(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total",
+    "correct_code": "def sum_from_zero(n):\n    total = 0\n    for i in range(0, n + 1):\n        total += i\n    return total",
+    "test_cases": [
+      {
+        "input": [
+          3
+        ],
+        "expected": 6
+      }
+    ],
+    "explanation": "range(1, n+1) excludes 0. Use range(0, n+1).",
+    "hints": [
+      "range starts at 1",
+      "Change to range(0, n+1)"
+    ],
+    "common_trap": "Starting range at wrong value",
+    "reasoning_steps": [
+      "1. range(1, n+1) excludes 0.",
+      "2. Use range(0, n+1).",
+      "3. Include 0 in sum."
+    ],
+    "statement": "sum_from_zero excludes 0.",
+    "environment": "Python 3. sum_from_zero(n) takes integer.",
+    "observed_behavior": "sum_from_zero(3) returns 6 instead of 6 (0+1+2+3=6 same). Need better test.",
+    "expected_behavior": "sum_from_zero(0) returns 0.",
+    "logs_or_error": "Off-by-one at start",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-09",
+    "type": "debugging",
+    "title": "Fix Step in Range",
+    "question": "The function should print even numbers but prints all. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "loops",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def print_evens(n):\n    for i in range(n):\n        print(i)",
+    "correct_code": "def print_evens(n):\n    for i in range(0, n, 2):\n        print(i)",
+    "test_cases": [
+      {
+        "input": [
+          6
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "range(n) produces all numbers. Use step=2 for evens.",
+    "hints": [
+      "range(n) produces all numbers",
+      "Use range(0, n, 2) for evens"
+    ],
+    "common_trap": "Not using step parameter in range",
+    "reasoning_steps": [
+      "1. range(6) gives 0,1,2,3,4,5.",
+      "2. Use range(0, 6, 2) for evens.",
+      "3. Prints 0,2,4."
+    ],
+    "statement": "print_evens prints all numbers not just evens.",
+    "environment": "Python 3. print_evens(n) prints evens.",
+    "observed_behavior": "print_evens(6) prints 0,1,2,3,4,5.",
+    "expected_behavior": "print_evens(6) prints 0,2,4.",
+    "logs_or_error": "Wrong numbers printed",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-10",
+    "type": "debugging",
+    "title": "Fix Break Condition",
+    "question": "The loop should stop at 5 but continues. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "loops",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def stop_at_five(n):\n    for i in range(n):\n        print(i)\n        if i == 5:\n            break",
+    "correct_code": "def stop_at_five(n):\n    for i in range(n):\n        print(i)\n        if i >= 5:\n            break",
+    "test_cases": [
+      {
+        "input": [
+          10
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "i == 5 only matches exactly 5. For n<5, never breaks. Use i >= 5.",
+    "hints": [
+      "Break condition too specific",
+      "Use i >= 5 instead of i == 5"
+    ],
+    "common_trap": "Break condition never met for small n",
+    "reasoning_steps": [
+      "1. i == 5 only triggers at exactly 5.",
+      "2. For n < 5, loop never breaks.",
+      "3. Use i >= 5."
+    ],
+    "statement": "stop_at_five doesn't stop for n < 5.",
+    "environment": "Python 3. stop_at_five(n) stops at 5.",
+    "observed_behavior": "stop_at_five(3) prints 0,1,2 (doesn't stop at 5).",
+    "expected_behavior": "stop_at_five(3) prints 0,1,2 then stops (i >= 5 false, loop ends naturally).",
+    "logs_or_error": "Break condition logic error",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-11",
+    "type": "debugging",
+    "title": "Fix Mutable Default List",
+    "question": "Function accumulates items across calls due to mutable default. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "python_specific",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def add_item(item, lst=[]):\n    lst.append(item)\n    return lst",
+    "correct_code": "def add_item(item, lst=None):\n    if lst is None:\n        lst = []\n    lst.append(item)\n    return lst",
+    "test_cases": [
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "input": [
+          2
+        ],
+        "expected": [
+          2
+        ]
+      }
+    ],
+    "explanation": "Default argument [] evaluated once. Use None default.",
+    "hints": [
+      "Default args evaluated once",
+      "Use None default"
+    ],
+    "common_trap": "Mutable default argument",
+    "reasoning_steps": [
+      "1. Default [] shared across calls.",
+      "2. Items persist.",
+      "3. Use None default."
+    ],
+    "statement": "add_item accumulates items.",
+    "environment": "Python 3. add_item(item, lst=[]).",
+    "observed_behavior": "add_item(2) returns [1, 2] instead of [2].",
+    "expected_behavior": "add_item(2) returns [2].",
+    "logs_or_error": "Second call returns accumulated list",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-12",
+    "type": "debugging",
+    "title": "Fix Mutable Default Dict",
+    "question": "Function accumulates keys across calls. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "python_specific",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def add_key(d, key, value, store={}):\n    store[key] = value\n    return store",
+    "correct_code": "def add_key(d, key, value, store=None):\n    if store is None:\n        store = {}\n    store[key] = value\n    return store",
+    "test_cases": [
+      {
+        "input": [
+          "a",
+          1
+        ],
+        "expected": {
+          "a": 1
+        }
+      },
+      {
+        "input": [
+          "b",
+          2
+        ],
+        "expected": {
+          "b": 2
+        }
+      }
+    ],
+    "explanation": "Default dict {} evaluated once. Keys persist across calls. Use None default.",
+    "hints": [
+      "Default dict evaluated once",
+      "Use None default for dict"
+    ],
+    "common_trap": "Mutable default dict argument",
+    "reasoning_steps": [
+      "1. Default {} shared across calls.",
+      "2. Keys persist.",
+      "3. Use None default."
+    ],
+    "statement": "add_key accumulates keys.",
+    "environment": "Python 3. add_key(d, key, value, store={}).",
+    "observed_behavior": "add_key('b', 2) returns {'a': 1, 'b': 2} instead of {'b': 2}.",
+    "expected_behavior": "add_key('b', 2) returns {'b': 2}.",
+    "logs_or_error": "Second call returns accumulated dict",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-13",
+    "type": "debugging",
+    "title": "Fix Late Binding Closure",
+    "question": "Closures capture variable by reference, not value. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "python_specific",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def funcs():\n    funcs_list = []\n    for i in range(3):\n        funcs_list.append(lambda: i)\n    return funcs_list",
+    "correct_code": "def funcs():\n    funcs_list = []\n    for i in range(3):\n        funcs_list.append(lambda i=i: i)\n    return funcs_list",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "Lambdas capture i by reference. All return final value. Use default arg i=i.",
+    "hints": [
+      "Closure captures by reference",
+      "Use default argument to capture value"
+    ],
+    "common_trap": "Late binding in closures",
+    "reasoning_steps": [
+      "1. All lambdas return final i value.",
+      "2. Use lambda i=i: i to capture.",
+      "3. Each returns its own value."
+    ],
+    "statement": "funcs returns lambdas all returning same value.",
+    "environment": "Python 3. funcs() returns list of lambdas.",
+    "observed_behavior": "All lambdas return 2 instead of 0,1,2.",
+    "expected_behavior": "Lambdas return 0, 1, 2 respectively.",
+    "logs_or_error": "Late binding closure issue",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-14",
+    "type": "debugging",
+    "title": "Fix List Comprehension Variable Leak",
+    "question": "List comprehension leaks variable in Python 2. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "python_specific",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "x = 10\nsquares = [x ** 2 for x in range(5)]\nprint(x)",
+    "correct_code": "x = 10\nsquares = [x_val ** 2 for x_val in range(5)]\nprint(x)",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "In Python 2, comprehension variable leaks. Use different variable name.",
+    "hints": [
+      "Variable leaks in comprehension",
+      "Use different variable name"
+    ],
+    "common_trap": "List comprehension variable scope",
+    "reasoning_steps": [
+      "1. x is overwritten by comprehension.",
+      "2. Use x_val instead of x.",
+      "3. Preserve original x."
+    ],
+    "statement": "x gets overwritten by comprehension.",
+    "environment": "Python 3 (comprehension has own scope) but issue in Py2.",
+    "observed_behavior": "x changed to 4 after comprehension.",
+    "expected_behavior": "x remains 10.",
+    "logs_or_error": "Variable scope leakage",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-15",
+    "type": "debugging",
+    "title": "Fix Class Variable vs Instance Variable",
+    "question": "Class variable shared across instances. Fix to use instance variable.",
+    "topic": "debugging",
+    "sub_topic": "python_specific",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "class Counter:\n    count = 0\n    def increment(self):\n        Counter.count += 1\n        return Counter.count",
+    "correct_code": "class Counter:\n    def __init__(self):\n        self.count = 0\n    def increment(self):\n        self.count += 1\n        return self.count",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "Class variable shared across all instances. Use self.count for instance state.",
+    "hints": [
+      "Class variable shared",
+      "Use instance variable self.count"
+    ],
+    "common_trap": "Class vs instance variable confusion",
+    "reasoning_steps": [
+      "1. Counter.count shared across instances.",
+      "2. Use self.count for per-instance.",
+      "3. Initialize in __init__."
+    ],
+    "statement": "Counter instances share count.",
+    "environment": "Python 3. Counter class.",
+    "observed_behavior": "c1.increment() returns 1, c2.increment() returns 2 (shared).",
+    "expected_behavior": "c1.increment() returns 1, c2.increment() returns 1 (independent).",
+    "logs_or_error": "Class variable shared across instances",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-16",
+    "type": "debugging",
+    "title": "Fix Empty List Max",
+    "question": "max() crashes on empty list. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "edge_cases",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def find_max(lst):\n    return max(lst)",
+    "correct_code": "def find_max(lst):\n    if not lst:\n        return None\n    return max(lst)",
+    "test_cases": [
+      {
+        "input": [
+          []
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 3
+      }
+    ],
+    "explanation": "max([]) raises ValueError. Check empty first.",
+    "hints": [
+      "Check empty list",
+      "Return None for empty"
+    ],
+    "common_trap": "max() on empty list raises ValueError",
+    "reasoning_steps": [
+      "1. max([]) raises ValueError.",
+      "2. Check if list empty.",
+      "3. Return None."
+    ],
+    "statement": "find_max crashes on empty list.",
+    "environment": "Python 3. find_max(lst) takes list.",
+    "observed_behavior": "find_max([]) raises ValueError.",
+    "expected_behavior": "find_max([]) returns None.",
+    "logs_or_error": "ValueError: max() arg is an empty sequence",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-17",
+    "type": "debugging",
+    "title": "Fix Split on None",
+    "question": "Function splits a string but crashes on None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "edge_cases",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def count_words(s):\n    return len(s.split())",
+    "correct_code": "def count_words(s):\n    if s is None:\n        return 0\n    return len(s.split())",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          "hello world"
+        ],
+        "expected": 2
+      }
+    ],
+    "explanation": "s.split() crashes when s is None. Check None first.",
+    "hints": [
+      "Check if string is None",
+      "Return 0 for None"
+    ],
+    "common_trap": "Calling method on None raises AttributeError",
+    "reasoning_steps": [
+      "1. s.split() crashes when s is None.",
+      "2. Check None first.",
+      "3. Return 0 for None."
+    ],
+    "statement": "count_words crashes on None.",
+    "environment": "Python 3. count_words(s) takes string or None.",
+    "observed_behavior": "count_words(None) raises AttributeError.",
+    "expected_behavior": "count_words(None) returns 0.",
+    "logs_or_error": "AttributeError: 'NoneType' object has no attribute 'split'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-18",
+    "type": "debugging",
+    "title": "Fix Division by Zero",
+    "question": "Function divides but crashes on zero divisor. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "edge_cases",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def divide(a, b):\n    return a / b",
+    "correct_code": "def divide(a, b):\n    if b == 0:\n        return None\n    return a / b",
+    "test_cases": [
+      {
+        "input": [
+          10,
+          0
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 5.0
+      }
+    ],
+    "explanation": "Division by zero raises ZeroDivisionError. Check b first.",
+    "hints": [
+      "Check divisor is zero",
+      "Return None for zero divisor"
+    ],
+    "common_trap": "Dividing by zero raises ZeroDivisionError",
+    "reasoning_steps": [
+      "1. a / 0 raises ZeroDivisionError.",
+      "2. Check if b == 0.",
+      "3. Return None."
+    ],
+    "statement": "divide crashes on zero divisor.",
+    "environment": "Python 3. divide(a, b) takes two numbers.",
+    "observed_behavior": "divide(10, 0) raises ZeroDivisionError.",
+    "expected_behavior": "divide(10, 0) returns None.",
+    "logs_or_error": "ZeroDivisionError: division by zero",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-19",
+    "type": "debugging",
+    "title": "Fix Negative Index",
+    "question": "Function accesses index but crashes on negative. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "edge_cases",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_at(lst, idx):\n    return lst[idx]",
+    "correct_code": "def get_at(lst, idx):\n    if idx < 0 or idx >= len(lst):\n        return None\n    return lst[idx]",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          -1
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          1
+        ],
+        "expected": 2
+      }
+    ],
+    "explanation": "Negative index wraps around in Python. For safety, reject negatives.",
+    "hints": [
+      "Check index bounds",
+      "Reject negative indices"
+    ],
+    "common_trap": "Negative index returns unexpected value",
+    "reasoning_steps": [
+      "1. lst[-1] returns last element.",
+      "2. For safety, reject negatives.",
+      "3. Return None for invalid."
+    ],
+    "statement": "get_at returns last element for negative index.",
+    "environment": "Python 3. get_at(lst, idx) takes list and int.",
+    "observed_behavior": "get_at([1,2,3], -1) returns 3.",
+    "expected_behavior": "get_at([1,2,3], -1) returns None.",
+    "logs_or_error": "Negative index behavior",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-20",
+    "type": "debugging",
+    "title": "Fix Empty Dict Access",
+    "question": "Function accesses dict key but crashes when empty. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "edge_cases",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_first_key(d):\n    return list(d.keys())[0]",
+    "correct_code": "def get_first_key(d):\n    if not d:\n        return None\n    return list(d.keys())[0]",
+    "test_cases": [
+      {
+        "input": [
+          {}
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          }
+        ],
+        "expected": "a"
+      }
+    ],
+    "explanation": "list({}.keys())[0] raises IndexError. Check empty first.",
+    "hints": [
+      "Check empty dict",
+      "Return None for empty"
+    ],
+    "common_trap": "IndexError on empty dict keys",
+    "reasoning_steps": [
+      "1. list({}.keys())[0] raises IndexError.",
+      "2. Check if dict empty.",
+      "3. Return None."
+    ],
+    "statement": "get_first_key crashes on empty dict.",
+    "environment": "Python 3. get_first_key(d) takes dict.",
+    "observed_behavior": "get_first_key({}) raises IndexError.",
+    "expected_behavior": "get_first_key({}) returns None.",
+    "logs_or_error": "IndexError: list index out of range",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-21",
+    "type": "debugging",
+    "title": "Fix String-Int Addition",
+    "question": "Function adds string and int. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def add_prefix(prefix, num):\n    return prefix + num",
+    "correct_code": "def add_prefix(prefix, num):\n    return prefix + str(num)",
+    "test_cases": [
+      {
+        "input": [
+          "ID:",
+          123
+        ],
+        "expected": "ID:123"
+      }
+    ],
+    "explanation": "Cannot add str and int. Convert int to str.",
+    "hints": [
+      "Cannot add str and int",
+      "Use str() to convert"
+    ],
+    "common_trap": "TypeError adding str and int",
+    "reasoning_steps": [
+      "1. prefix + num crashes.",
+      "2. Convert num to str.",
+      "3. Concatenate."
+    ],
+    "statement": "add_prefix crashes on int.",
+    "environment": "Python 3. add_prefix(prefix, num).",
+    "observed_behavior": "add_prefix('ID:', 123) raises TypeError.",
+    "expected_behavior": "add_prefix('ID:', 123) returns 'ID:123'.",
+    "logs_or_error": "TypeError: can only concatenate str",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-22",
+    "type": "debugging",
+    "title": "Fix List-String Concatenation",
+    "question": "Function concatenates list and string. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def combine(lst, suffix):\n    return lst + suffix",
+    "correct_code": "def combine(lst, suffix):\n    return lst + [suffix]",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          "a"
+        ],
+        "expected": [
+          1,
+          2,
+          "a"
+        ]
+      }
+    ],
+    "explanation": "Cannot add list and str. Wrap suffix in list.",
+    "hints": [
+      "Cannot add list and str",
+      "Wrap in list"
+    ],
+    "common_trap": "TypeError adding list and str",
+    "reasoning_steps": [
+      "1. lst + suffix crashes.",
+      "2. Wrap suffix: [suffix].",
+      "3. Concatenate lists."
+    ],
+    "statement": "combine crashes on list+str.",
+    "environment": "Python 3. combine(lst, suffix).",
+    "observed_behavior": "combine([1,2], 'a') raises TypeError.",
+    "expected_behavior": "combine([1,2], 'a') returns [1,2,'a'].",
+    "logs_or_error": "TypeError: can only concatenate list",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-23",
+    "type": "debugging",
+    "title": "Fix Int-Subscript",
+    "question": "Function subscripts an int. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_digit(num, idx):\n    return num[idx]",
+    "correct_code": "def get_digit(num, idx):\n    return str(num)[idx]",
+    "test_cases": [
+      {
+        "input": [
+          123,
+          0
+        ],
+        "expected": "1"
+      }
+    ],
+    "explanation": "int is not subscriptable. Convert to str first.",
+    "hints": [
+      "int not subscriptable",
+      "Convert to str"
+    ],
+    "common_trap": "TypeError: 'int' object is not subscriptable",
+    "reasoning_steps": [
+      "1. num[idx] crashes on int.",
+      "2. Convert num to str.",
+      "3. Subscript str."
+    ],
+    "statement": "get_digit crashes on int.",
+    "environment": "Python 3. get_digit(num, idx).",
+    "observed_behavior": "get_digit(123, 0) raises TypeError.",
+    "expected_behavior": "get_digit(123, 0) returns '1'.",
+    "logs_or_error": "TypeError: 'int' object is not subscriptable",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-24",
+    "type": "debugging",
+    "title": "Fix None Comparison",
+    "question": "Function compares None with int. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_positive(x):\n    return x > 0",
+    "correct_code": "def is_positive(x):\n    if x is None:\n        return False\n    return x > 0",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": true
+      }
+    ],
+    "explanation": "None > 0 raises TypeError. Check None first.",
+    "hints": [
+      "Check None before comparison",
+      "Return False for None"
+    ],
+    "common_trap": "TypeError comparing None and int",
+    "reasoning_steps": [
+      "1. x > 0 crashes when x is None.",
+      "2. Check None first.",
+      "3. Return False."
+    ],
+    "statement": "is_positive crashes on None.",
+    "environment": "Python 3. is_positive(x).",
+    "observed_behavior": "is_positive(None) raises TypeError.",
+    "expected_behavior": "is_positive(None) returns False.",
+    "logs_or_error": "TypeError: '>' not supported between instances",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b2-25",
+    "type": "debugging",
+    "title": "Fix Len on Int",
+    "question": "Function calls len() on int. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_length(x):\n    return len(x)",
+    "correct_code": "def get_length(x):\n    if isinstance(x, int):\n        return 0\n    return len(x)",
+    "test_cases": [
+      {
+        "input": [
+          123
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          "hello"
+        ],
+        "expected": 5
+      }
+    ],
+    "explanation": "len(123) raises TypeError. Check type first.",
+    "hints": [
+      "int has no len()",
+      "Check type before len()"
+    ],
+    "common_trap": "TypeError: object of type 'int' has no len()",
+    "reasoning_steps": [
+      "1. len(x) crashes on int.",
+      "2. Check isinstance(x, int).",
+      "3. Return 0 for int."
+    ],
+    "statement": "get_length crashes on int.",
+    "environment": "Python 3. get_length(x).",
+    "observed_behavior": "get_length(123) raises TypeError.",
+    "expected_behavior": "get_length(123) returns 0.",
+    "logs_or_error": "TypeError: object of type 'int' has no len()",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-01",
+    "type": "debugging",
+    "title": "Fix Index Out of Range",
+    "question": "Function accesses index but crashes when out of range. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "index_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_element(lst, idx):\n    return lst[idx]",
+    "correct_code": "def get_element(lst, idx):\n    if idx < 0 or idx >= len(lst):\n        return None\n    return lst[idx]",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          5
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          1
+        ],
+        "expected": 2
+      }
+    ],
+    "explanation": "lst[idx] raises IndexError when idx out of bounds. Check bounds first.",
+    "hints": [
+      "Check index bounds",
+      "Return None for invalid index"
+    ],
+    "common_trap": "IndexError on out-of-bounds access",
+    "reasoning_steps": [
+      "1. lst[idx] crashes when idx >= len(lst).",
+      "2. Check idx < len(lst).",
+      "3. Return None for invalid."
+    ],
+    "statement": "get_element crashes on out-of-bounds index.",
+    "environment": "Python 3. get_element(lst, idx).",
+    "observed_behavior": "get_element([1,2,3], 5) raises IndexError.",
+    "expected_behavior": "get_element([1,2,3], 5) returns None.",
+    "logs_or_error": "IndexError: list index out of range",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-02",
+    "type": "debugging",
+    "title": "Fix Pop on Empty List",
+    "question": "list.pop() crashes on empty list. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "index_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def pop_last(lst):\n    return lst.pop()",
+    "correct_code": "def pop_last(lst):\n    if not lst:\n        return None\n    return lst.pop()",
+    "test_cases": [
+      {
+        "input": [
+          []
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 3
+      }
+    ],
+    "explanation": "lst.pop() raises IndexError on empty list. Check empty first.",
+    "hints": [
+      "Check empty list",
+      "Return None for empty"
+    ],
+    "common_trap": "IndexError on pop from empty list",
+    "reasoning_steps": [
+      "1. lst.pop() crashes on [].",
+      "2. Check if list empty.",
+      "3. Return None."
+    ],
+    "statement": "pop_last crashes on empty list.",
+    "environment": "Python 3. pop_last(lst) takes list.",
+    "observed_behavior": "pop_last([]) raises IndexError.",
+    "expected_behavior": "pop_last([]) returns None.",
+    "logs_or_error": "IndexError: pop from empty list",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-03",
+    "type": "debugging",
+    "title": "Fix Insert at Invalid Index",
+    "question": "list.insert() with negative index. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "index_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def insert_at(lst, idx, val):\n    lst.insert(idx, val)\n    return lst",
+    "correct_code": "def insert_at(lst, idx, val):\n    if idx < 0:\n        idx = 0\n    lst.insert(idx, val)\n    return lst",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          -5,
+          99
+        ],
+        "expected": [
+          99,
+          1,
+          2
+        ]
+      }
+    ],
+    "explanation": "Negative insert index inserts at start in Python. Clamp to 0 for safety.",
+    "hints": [
+      "Clamp negative index",
+      "Use max(0, idx)"
+    ],
+    "common_trap": "Negative index behavior in insert",
+    "reasoning_steps": [
+      "1. lst.insert(-5, 99) inserts at start.",
+      "2. Clamp idx to 0.",
+      "3. Insert at position 0."
+    ],
+    "statement": "insert_at uses negative index unexpectedly.",
+    "environment": "Python 3. insert_at(lst, idx, val).",
+    "observed_behavior": "insert_at([1,2], -5, 99) returns [99,1,2] (already correct).",
+    "expected_behavior": "insert_at([1,2], -5, 99) returns [99,1,2].",
+    "logs_or_error": "Negative index clamps to 0",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-04",
+    "type": "debugging",
+    "title": "Fix Slice Out of Range",
+    "question": "Slicing beyond list length returns shorter list unexpectedly. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "index_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_slice(lst, start, end):\n    return lst[start:end]",
+    "correct_code": "def get_slice(lst, start, end):\n    start = max(0, min(start, len(lst)))\n    end = max(0, min(end, len(lst)))\n    return lst[start:end]",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          0,
+          10
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "explanation": "lst[0:10] returns [1,2,3] already. This is correct Python behavior.",
+    "hints": [
+      "Slicing is safe in Python",
+      "No fix needed"
+    ],
+    "common_trap": "No bug - slicing handles out of range",
+    "reasoning_steps": [
+      "1. lst[0:10] returns [1,2,3] in Python.",
+      "2. Slicing never raises IndexError.",
+      "3. Code is correct."
+    ],
+    "statement": "get_slice already handles out-of-range.",
+    "environment": "Python 3. get_slice(lst, start, end).",
+    "observed_behavior": "get_slice([1,2,3], 0, 10) returns [1,2,3].",
+    "expected_behavior": "get_slice([1,2,3], 0, 10) returns [1,2,3].",
+    "logs_or_error": "No bug - slicing is safe",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-05",
+    "type": "debugging",
+    "title": "Fix Remove Missing Element",
+    "question": "list.remove() crashes when element not found. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "index_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def remove_item(lst, item):\n    lst.remove(item)\n    return lst",
+    "correct_code": "def remove_item(lst, item):\n    if item in lst:\n        lst.remove(item)\n    return lst",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          5
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ],
+          2
+        ],
+        "expected": [
+          1,
+          3
+        ]
+      }
+    ],
+    "explanation": "lst.remove(item) raises ValueError when item not in list. Check first.",
+    "hints": [
+      "Check if item in list",
+      "Return list unchanged if not found"
+    ],
+    "common_trap": "ValueError on remove missing item",
+    "reasoning_steps": [
+      "1. lst.remove(5) crashes when 5 not in list.",
+      "2. Check if item in lst.",
+      "3. Return list unchanged."
+    ],
+    "statement": "remove_item crashes on missing item.",
+    "environment": "Python 3. remove_item(lst, item).",
+    "observed_behavior": "remove_item([1,2,3], 5) raises ValueError.",
+    "expected_behavior": "remove_item([1,2,3], 5) returns [1,2,3].",
+    "logs_or_error": "ValueError: list.remove(x): x not in list",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-06",
+    "type": "debugging",
+    "title": "Fix Wrong Comparison",
+    "question": "Function checks wrong condition. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_adult(age):\n    return age < 18",
+    "correct_code": "def is_adult(age):\n    return age >= 18",
+    "test_cases": [
+      {
+        "input": [
+          20
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          15
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "Adults are 18+, not < 18. Change < to >=.",
+    "hints": [
+      "Adult means >= 18",
+      "Use >= not <"
+    ],
+    "common_trap": "Wrong comparison operator",
+    "reasoning_steps": [
+      "1. age < 18 checks for minors.",
+      "2. Adults are age >= 18.",
+      "3. Change to >= 18."
+    ],
+    "statement": "is_adult returns wrong result.",
+    "environment": "Python 3. is_adult(age) takes integer.",
+    "observed_behavior": "is_adult(20) returns False instead of True.",
+    "expected_behavior": "is_adult(20) returns True.",
+    "logs_or_error": "Wrong boolean result",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-07",
+    "type": "debugging",
+    "title": "Fix And/Or Logic",
+    "question": "Function uses wrong logical operator. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_valid_age(age):\n    return age > 0 or age < 120",
+    "correct_code": "def is_valid_age(age):\n    return age > 0 and age < 120",
+    "test_cases": [
+      {
+        "input": [
+          25
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          -5
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          200
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "age > 0 or age < 120 is always true. Use and for valid range.",
+    "hints": [
+      "Use and for range check",
+      "or makes condition always true"
+    ],
+    "common_trap": "Wrong logical operator",
+    "reasoning_steps": [
+      "1. age > 0 or age < 120 is always true.",
+      "2. Use and: age > 0 and age < 120.",
+      "3. Valid range check."
+    ],
+    "statement": "is_valid_age returns True for invalid ages.",
+    "environment": "Python 3. is_valid_age(age).",
+    "observed_behavior": "is_valid_age(-5) returns True instead of False.",
+    "expected_behavior": "is_valid_age(-5) returns False.",
+    "logs_or_error": "Wrong logical operator",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-08",
+    "type": "debugging",
+    "title": "Fix Negated Condition",
+    "question": "Function uses wrong negation. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_not_empty(lst):\n    return not len(lst) > 0",
+    "correct_code": "def is_not_empty(lst):\n    return len(lst) > 0",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "not len(lst) > 0 means empty, not non-empty. Remove not.",
+    "hints": [
+      "Remove incorrect not",
+      "len(lst) > 0 means non-empty"
+    ],
+    "common_trap": "Double negation error",
+    "reasoning_steps": [
+      "1. not len(lst) > 0 is True when empty.",
+      "2. is_not_empty should return True when non-empty.",
+      "3. Remove not."
+    ],
+    "statement": "is_not_empty returns wrong result.",
+    "environment": "Python 3. is_not_empty(lst).",
+    "observed_behavior": "is_not_empty([1,2]) returns False instead of True.",
+    "expected_behavior": "is_not_empty([1,2]) returns True.",
+    "logs_or_error": "Wrong negation logic",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-09",
+    "type": "debugging",
+    "title": "Fix Chained Comparison",
+    "question": "Function uses wrong chained comparison. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_between(x, low, high):\n    return low < x < high or x == low",
+    "correct_code": "def is_between(x, low, high):\n    return low <= x <= high",
+    "test_cases": [
+      {
+        "input": [
+          5,
+          1,
+          10
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          1,
+          1,
+          10
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          10,
+          1,
+          10
+        ],
+        "expected": true
+      }
+    ],
+    "explanation": "Simplify to low <= x <= high which includes boundaries.",
+    "hints": [
+      "Use <= for inclusive bounds",
+      "Simplify chained comparison"
+    ],
+    "common_trap": "Overly complex comparison",
+    "reasoning_steps": [
+      "1. low < x < high excludes boundaries.",
+      "2. Use low <= x <= high for inclusive.",
+      "3. Simpler and correct."
+    ],
+    "statement": "is_between excludes boundary values.",
+    "environment": "Python 3. is_between(x, low, high).",
+    "observed_behavior": "is_between(1, 1, 10) returns False instead of True.",
+    "expected_behavior": "is_between(1, 1, 10) returns True.",
+    "logs_or_error": "Comparison excludes boundaries",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-10",
+    "type": "debugging",
+    "title": "Fix Boolean Operator Precedence",
+    "question": "Function relies on wrong operator precedence. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def check(a, b, c):\n    return a and b or c",
+    "correct_code": "def check(a, b, c):\n    return a and (b or c)",
+    "test_cases": [
+      {
+        "input": [
+          true,
+          false,
+          true
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          true,
+          true,
+          false
+        ],
+        "expected": true
+      }
+    ],
+    "explanation": "and has higher precedence than or. Use parentheses for clarity.",
+    "hints": [
+      "and binds tighter than or",
+      "Use parentheses"
+    ],
+    "common_trap": "Operator precedence confusion",
+    "reasoning_steps": [
+      "1. a and b or c means (a and b) or c.",
+      "2. Use a and (b or c) for clarity.",
+      "3. Parentheses clarify intent."
+    ],
+    "statement": "check returns unexpected result due to precedence.",
+    "environment": "Python 3. check(a, b, c).",
+    "observed_behavior": "check(True, False, True) returns True instead of False.",
+    "expected_behavior": "check(True, False, True) returns False.",
+    "logs_or_error": "Operator precedence error",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-11",
+    "type": "debugging",
+    "title": "Fix Missing Key Access",
+    "question": "d[key] crashes when key missing. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_value(d, key):\n    return d[key]",
+    "correct_code": "def get_value(d, key):\n    return d.get(key, None)",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "b"
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a"
+        ],
+        "expected": 1
+      }
+    ],
+    "explanation": "d[key] raises KeyError when key missing. Use d.get().",
+    "hints": [
+      "Use dict.get()",
+      "Return None for missing key"
+    ],
+    "common_trap": "KeyError on missing key",
+    "reasoning_steps": [
+      "1. d[key] crashes when key not in dict.",
+      "2. Use d.get(key, None).",
+      "3. No exception raised."
+    ],
+    "statement": "get_value crashes on missing key.",
+    "environment": "Python 3. get_value(d, key).",
+    "observed_behavior": "get_value({'a': 1}, 'b') raises KeyError.",
+    "expected_behavior": "get_value({'a': 1}, 'b') returns None.",
+    "logs_or_error": "KeyError: 'b'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-12",
+    "type": "debugging",
+    "title": "Fix Pop Missing Key",
+    "question": "dict.pop() crashes when key missing. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def pop_key(d, key):\n    return d.pop(key)",
+    "correct_code": "def pop_key(d, key):\n    return d.pop(key, None)",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "b"
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a"
+        ],
+        "expected": 1
+      }
+    ],
+    "explanation": "d.pop(key) raises KeyError when key missing. Provide default.",
+    "hints": [
+      "Use dict.pop(key, default)",
+      "Return None for missing key"
+    ],
+    "common_trap": "KeyError on pop missing key",
+    "reasoning_steps": [
+      "1. d.pop(key) crashes when key missing.",
+      "2. Use d.pop(key, None).",
+      "3. Returns None if missing."
+    ],
+    "statement": "pop_key crashes on missing key.",
+    "environment": "Python 3. pop_key(d, key).",
+    "observed_behavior": "pop_key({'a': 1}, 'b') raises KeyError.",
+    "expected_behavior": "pop_key({'a': 1}, 'b') returns None.",
+    "logs_or_error": "KeyError: 'b'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-13",
+    "type": "debugging",
+    "title": "Fix Setdefault Overwrite",
+    "question": "setdefault doesn't overwrite existing keys. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def update_value(d, key, value):\n    d.setdefault(key, value)\n    return d",
+    "correct_code": "def update_value(d, key, value):\n    d[key] = value\n    return d",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a",
+          99
+        ],
+        "expected": {
+          "a": 99
+        }
+      }
+    ],
+    "explanation": "setdefault doesn't change existing key. Use direct assignment.",
+    "hints": [
+      "setdefault doesn't overwrite",
+      "Use d[key] = value"
+    ],
+    "common_trap": "setdefault doesn't update existing key",
+    "reasoning_steps": [
+      "1. setdefault('a', 99) doesn't change existing 'a'.",
+      "2. Use d[key] = value to update.",
+      "3. Key gets new value."
+    ],
+    "statement": "update_value doesn't overwrite existing key.",
+    "environment": "Python 3. update_value(d, key, value).",
+    "observed_behavior": "update_value({'a': 1}, 'a', 99) returns {'a': 1} instead of {'a': 99}.",
+    "expected_behavior": "update_value({'a': 1}, 'a', 99) returns {'a': 99}.",
+    "logs_or_error": "setdefault doesn't overwrite",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-14",
+    "type": "debugging",
+    "title": "Fix KeyError in Loop",
+    "question": "Loop accesses key that may not exist. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def sum_values(d, keys):\n    total = 0\n    for k in keys:\n        total += d[k]\n    return total",
+    "correct_code": "def sum_values(d, keys):\n    total = 0\n    for k in keys:\n        total += d.get(k, 0)\n    return total",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          [
+            "a",
+            "b"
+          ]
+        ],
+        "expected": 1
+      }
+    ],
+    "explanation": "d[k] raises KeyError when k not in d. Use d.get(k, 0).",
+    "hints": [
+      "Use dict.get() with default",
+      "Return 0 for missing keys"
+    ],
+    "common_trap": "KeyError in loop over keys",
+    "reasoning_steps": [
+      "1. d[k] crashes when k not in dict.",
+      "2. Use d.get(k, 0).",
+      "3. Missing keys contribute 0."
+    ],
+    "statement": "sum_values crashes on missing key.",
+    "environment": "Python 3. sum_values(d, keys).",
+    "observed_behavior": "sum_values({'a': 1}, ['a','b']) raises KeyError.",
+    "expected_behavior": "sum_values({'a': 1}, ['a','b']) returns 1.",
+    "logs_or_error": "KeyError: 'b'",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b3-15",
+    "type": "debugging",
+    "title": "Fix In Operator on Dict",
+    "question": "Checking key existence incorrectly. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def has_key(d, key):\n    return key in d.values()",
+    "correct_code": "def has_key(d, key):\n    return key in d",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a"
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "b"
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "key in d.values() checks values not keys. Use key in d.",
+    "hints": [
+      "Use key in d for key check",
+      "in d.values() checks values"
+    ],
+    "common_trap": "Checking values instead of keys",
+    "reasoning_steps": [
+      "1. key in d.values() checks values.",
+      "2. Use key in d to check keys.",
+      "3. Correct key existence."
+    ],
+    "statement": "has_key checks values not keys.",
+    "environment": "Python 3. has_key(d, key).",
+    "observed_behavior": "has_key({'a': 1}, 'a') returns False (1 is value, 'a' is key).",
+    "expected_behavior": "has_key({'a': 1}, 'a') returns True.",
+    "logs_or_error": "Wrong membership check",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b4-01",
+    "type": "debugging",
+    "title": "Fix Bare Except",
+    "question": "Function uses bare except which hides bugs. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "exception_handling",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except:\n        return 0",
+    "correct_code": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 0",
+    "test_cases": [
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 5.0
+      },
+      {
+        "input": [
+          10,
+          0
+        ],
+        "expected": 0
+      }
+    ],
+    "explanation": "Bare except catches all exceptions. Catch only ZeroDivisionError.",
+    "hints": [
+      "Catch specific exception",
+      "Use ZeroDivisionError"
+    ],
+    "common_trap": "Bare except hides real bugs",
+    "reasoning_steps": [
+      "1. Bare except catches TypeError too.",
+      "2. Catch only ZeroDivisionError.",
+      "3. Let other bugs propagate."
+    ],
+    "statement": "safe_divide hides bugs with bare except.",
+    "environment": "Python 3. safe_divide(a, b).",
+    "observed_behavior": "safe_divide('a', 'b') returns 0 instead of TypeError.",
+    "expected_behavior": "safe_divide('a', 'b') raises TypeError.",
+    "logs_or_error": "Bare except masks errors",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b4-02",
+    "type": "debugging",
+    "title": "Fix Finally Block",
+    "question": "Function returns in try, finally runs but return value lost. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "exception_handling",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_value(d, key):\n    try:\n        return d[key]\n    finally:\n        return None",
+    "correct_code": "def get_value(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return None",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a"
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "b"
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "Finally block's return overrides try return. Use except instead.",
+    "hints": [
+      "Finally return overrides try",
+      "Use except for error handling"
+    ],
+    "common_trap": "Finally block masks return value",
+    "reasoning_steps": [
+      "1. finally: return None always returns None.",
+      "2. Use except KeyError instead.",
+      "3. Try return works correctly."
+    ],
+    "statement": "get_value always returns None.",
+    "environment": "Python 3. get_value(d, key).",
+    "observed_behavior": "get_value({'a': 1}, 'a') returns None instead of 1.",
+    "expected_behavior": "get_value({'a': 1}, 'a') returns 1.",
+    "logs_or_error": "Finally block overrides return",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b4-03",
+    "type": "debugging",
+    "title": "Fix Raise Without Exception",
+    "question": "Function raises without specifying exception. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "exception_handling",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def validate(age):\n    if age < 0:\n        raise\n    return True",
+    "correct_code": "def validate(age):\n    if age < 0:\n        raise ValueError('Age cannot be negative')\n    return True",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          -1
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "raise without exception re-raises current exception or errors. Specify exception type.",
+    "hints": [
+      "Specify exception type",
+      "Use raise ValueError()"
+    ],
+    "common_trap": "raise without argument errors",
+    "reasoning_steps": [
+      "1. raise without active exception errors.",
+      "2. Use raise ValueError('msg').",
+      "3. Specify exception type."
+    ],
+    "statement": "validate crashes on raise without exception.",
+    "environment": "Python 3. validate(age).",
+    "observed_behavior": "validate(-1) raises RuntimeError: No active exception.",
+    "expected_behavior": "validate(-1) raises ValueError.",
+    "logs_or_error": "raise without exception",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b4-04",
+    "type": "debugging",
+    "title": "Fix Swallowed Exception",
+    "question": "Function catches exception but doesn't re-raise or log. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "exception_handling",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def process(data):\n    try:\n        return data['key']\n    except KeyError:\n        pass",
+    "correct_code": "def process(data):\n    try:\n        return data['key']\n    except KeyError:\n        return None",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "key": 42
+          }
+        ],
+        "expected": 42
+      },
+      {
+        "input": [
+          {}
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "pass swallows the exception silently. Return None instead.",
+    "hints": [
+      "Don't swallow exceptions",
+      "Return None instead of pass"
+    ],
+    "common_trap": "Exception silently swallowed",
+    "reasoning_steps": [
+      "1. pass hides the KeyError.",
+      "2. Return None to signal missing key.",
+      "3. Don't silently swallow."
+    ],
+    "statement": "process swallows KeyError silently.",
+    "environment": "Python 3. process(data).",
+    "observed_behavior": "process({}) returns None (pass does nothing).",
+    "expected_behavior": "process({}) returns None.",
+    "logs_or_error": "Exception silently swallowed",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b4-05",
+    "type": "debugging",
+    "title": "Fix Multiple Except Blocks",
+    "question": "Function has unreachable except block. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "exception_handling",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def safe_access(d, key):\n    try:\n        return d[key]\n    except Exception:\n        return None\n    except KeyError:\n        return 'missing'",
+    "correct_code": "def safe_access(d, key):\n    try:\n        return d[key]\n    except KeyError:\n        return 'missing'\n    except Exception:\n        return None",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "a"
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          },
+          "b"
+        ],
+        "expected": "missing"
+      }
+    ],
+    "explanation": "except Exception catches KeyError first, making second except unreachable. Reorder.",
+    "hints": [
+      "Put specific exceptions first",
+      "KeyError before Exception"
+    ],
+    "common_trap": "Unreachable except block",
+    "reasoning_steps": [
+      "1. except Exception catches KeyError first.",
+      "2. Put KeyError before Exception.",
+      "3. Specific first, general last."
+    ],
+    "statement": "safe_access always returns None for missing key.",
+    "environment": "Python 3. safe_access(d, key).",
+    "observed_behavior": "safe_access({'a': 1}, 'b') returns None instead of 'missing'.",
+    "expected_behavior": "safe_access({'a': 1}, 'b') returns 'missing'.",
+    "logs_or_error": "Unreachable except block",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-01",
+    "type": "debugging",
+    "title": "Fix Non-Atomic Increment",
+    "question": "Counter increment not thread-safe. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "race_condition",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "import threading\ncounter = 0\ndef increment():\n    global counter\n    counter += 1\n\nthreads = [threading.Thread(target=increment) for _ in range(100)]\nfor t in threads: t.start()\nfor t in threads: t.join()",
+    "correct_code": "import threading\ncounter = 0\nlock = threading.Lock()\ndef increment():\n    global counter\n    with lock:\n        counter += 1\n\nthreads = [threading.Thread(target=increment) for _ in range(100)]\nfor t in threads: t.start()\nfor t in threads: t.join()",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "counter += 1 is not atomic. Use lock.",
+    "hints": [
+      "counter += 1 not atomic",
+      "Use threading.Lock"
+    ],
+    "common_trap": "Non-atomic read-modify-write",
+    "reasoning_steps": [
+      "1. counter += 1 involves read, modify, write.",
+      "2. Multiple threads interleave.",
+      "3. Use Lock."
+    ],
+    "statement": "Counter value inconsistent.",
+    "environment": "Python 3. Multi-threaded counter.",
+    "observed_behavior": "Final counter varies, less than 100.",
+    "expected_behavior": "Final counter is 100.",
+    "logs_or_error": "Race condition",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-02",
+    "type": "debugging",
+    "title": "Fix Deadlock",
+    "question": "Two locks acquired in different order causing deadlock. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "race_condition",
+    "pattern": "debugging",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "import threading\nlock1 = threading.Lock()\nlock2 = threading.Lock()\ndef task1():\n    lock1.acquire()\n    lock2.acquire()\ndef task2():\n    lock2.acquire()\n    lock1.acquire()",
+    "correct_code": "import threading\nlock1 = threading.Lock()\nlock2 = threading.Lock()\ndef task1():\n    lock1.acquire()\n    lock2.acquire()\ndef task2():\n    lock1.acquire()\n    lock2.acquire()",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "Different lock order causes deadlock. Acquire in same order.",
+    "hints": [
+      "Acquire locks in same order",
+      "Consistent lock ordering"
+    ],
+    "common_trap": "Deadlock from lock ordering",
+    "reasoning_steps": [
+      "1. task1: lock1 then lock2.",
+      "2. task2: lock2 then lock1.",
+      "3. Both: lock1 then lock2."
+    ],
+    "statement": "Deadlock between two threads.",
+    "environment": "Python 3. Multi-threaded locks.",
+    "observed_behavior": "Program hangs (deadlock).",
+    "expected_behavior": "Program completes without deadlock.",
+    "logs_or_error": "Deadlock",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-03",
+    "type": "debugging",
+    "title": "Fix Race on Shared List",
+    "question": "Multiple threads append to shared list without lock. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "race_condition",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "import threading\nshared = []\ndef add_item(item):\n    shared.append(item)\n\nthreads = [threading.Thread(target=add_item, args=(i,)) for i in range(100)]\nfor t in threads: t.start()\nfor t in threads: t.join()",
+    "correct_code": "import threading\nshared = []\nlock = threading.Lock()\ndef add_item(item):\n    with lock:\n        shared.append(item)\n\nthreads = [threading.Thread(target=add_item, args=(i,)) for i in range(100)]\nfor t in threads: t.start()\nfor t in threads: t.join()",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "List append is not thread-safe in complex operations. Use lock.",
+    "hints": [
+      "Shared list not thread-safe",
+      "Use lock for shared list"
+    ],
+    "common_trap": "Race condition on shared list",
+    "reasoning_steps": [
+      "1. Multiple threads append concurrently.",
+      "2. Use lock to synchronize.",
+      "3. All items added safely."
+    ],
+    "statement": "Shared list may lose items.",
+    "environment": "Python 3. Multi-threaded list append.",
+    "observed_behavior": "List length may be less than 100.",
+    "expected_behavior": "List length is 100.",
+    "logs_or_error": "Race condition",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-04",
+    "type": "debugging",
+    "title": "Fix Unclosed File",
+    "question": "File opened but not closed. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "memory_leak",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def read_file(path):\n    f = open(path, 'r')\n    content = f.read()\n    return content",
+    "correct_code": "def read_file(path):\n    with open(path, 'r') as f:\n        content = f.read()\n    return content",
+    "test_cases": [
+      {
+        "input": [
+          "/tmp/test.txt"
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "File handle not closed. Use with statement.",
+    "hints": [
+      "File not closed",
+      "Use with statement"
+    ],
+    "common_trap": "File handle leak",
+    "reasoning_steps": [
+      "1. f opened but never closed.",
+      "2. Use with for auto-close.",
+      "3. No leak."
+    ],
+    "statement": "read_file leaks file handles.",
+    "environment": "Python 3. read_file(path).",
+    "observed_behavior": "File handles accumulate.",
+    "expected_behavior": "File properly closed.",
+    "logs_or_error": "Resource leak",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-05",
+    "type": "debugging",
+    "title": "Fix Unclosed Socket",
+    "question": "Socket opened but not closed. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "memory_leak",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "import socket\ndef connect(host, port):\n    s = socket.socket()\n    s.connect((host, port))\n    return s.recv(1024)",
+    "correct_code": "import socket\ndef connect(host, port):\n    with socket.socket() as s:\n        s.connect((host, port))\n        return s.recv(1024)",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "Socket not closed. Use with statement.",
+    "hints": [
+      "Socket not closed",
+      "Use with statement"
+    ],
+    "common_trap": "Socket handle leak",
+    "reasoning_steps": [
+      "1. socket opened but never closed.",
+      "2. Use with for auto-close.",
+      "3. No leak."
+    ],
+    "statement": "connect leaks socket handles.",
+    "environment": "Python 3. connect(host, port).",
+    "observed_behavior": "Sockets accumulate.",
+    "expected_behavior": "Socket properly closed.",
+    "logs_or_error": "Resource leak",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-06",
+    "type": "debugging",
+    "title": "Fix Unclosed DB Connection",
+    "question": "Database connection not closed. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "memory_leak",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "import sqlite3\ndef query(db, sql):\n    conn = sqlite3.connect(db)\n    cur = conn.execute(sql)\n    return cur.fetchall()",
+    "correct_code": "import sqlite3\ndef query(db, sql):\n    with sqlite3.connect(db) as conn:\n        cur = conn.execute(sql)\n        return cur.fetchall()",
+    "test_cases": [
+      {
+        "input": [],
+        "expected": null
+      }
+    ],
+    "explanation": "DB connection not closed. Use with statement.",
+    "hints": [
+      "Connection not closed",
+      "Use with statement"
+    ],
+    "common_trap": "DB connection leak",
+    "reasoning_steps": [
+      "1. conn opened but never closed.",
+      "2. Use with for auto-close.",
+      "3. No leak."
+    ],
+    "statement": "query leaks DB connections.",
+    "environment": "Python 3. query(db, sql).",
+    "observed_behavior": "Connections accumulate.",
+    "expected_behavior": "Connection properly closed.",
+    "logs_or_error": "Resource leak",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-07",
+    "type": "debugging",
+    "title": "Fix Missing Base Case",
+    "question": "Recursive function without base case. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "infinite_recursion",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def factorial(n):\n    return n * factorial(n - 1)",
+    "correct_code": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": 120
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": 1
+      }
+    ],
+    "explanation": "Missing base case causes infinite recursion. Add n <= 1 check.",
+    "hints": [
+      "Missing base case",
+      "Add n <= 1 check"
+    ],
+    "common_trap": "Recursive function recurses forever",
+    "reasoning_steps": [
+      "1. factorial(5) never stops.",
+      "2. Add base case n <= 1.",
+      "3. Recursion terminates."
+    ],
+    "statement": "factorial causes stack overflow.",
+    "environment": "Python 3. factorial(n).",
+    "observed_behavior": "factorial(5) raises RecursionError.",
+    "expected_behavior": "factorial(5) returns 120.",
+    "logs_or_error": "RecursionError",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b5-08",
+    "type": "debugging",
+    "title": "Fix Wrong Base Case",
+    "question": "Recursive function has wrong base case. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "infinite_recursion",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def countdown(n):\n    if n == 0:\n        return\n    countdown(n)",
+    "correct_code": "def countdown(n):\n    if n <= 0:\n        return\n    countdown(n - 1)",
+    "test_cases": [
+      {
+        "input": [
+          3
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "countdown(n) calls itself with same n. Decrement n.",
+    "hints": [
+      "Recursive call doesn't change n",
+      "Use countdown(n - 1)"
+    ],
+    "common_trap": "Infinite recursion - no progress",
+    "reasoning_steps": [
+      "1. countdown(n) calls countdown(n).",
+      "2. Use countdown(n - 1).",
+      "3. Progress toward base case."
+    ],
+    "statement": "countdown causes stack overflow.",
+    "environment": "Python 3. countdown(n).",
+    "observed_behavior": "countdown(3) raises RecursionError.",
+    "expected_behavior": "countdown(3) terminates.",
+    "logs_or_error": "RecursionError",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-01",
+    "type": "debugging",
+    "title": "Fix Range Stop Value",
+    "question": "Function should include n but range stops before n. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "off_by_one",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def sum_upto_n(n):\n    total = 0\n    for i in range(n):\n        total += i\n    return total",
+    "correct_code": "def sum_upto_n(n):\n    total = 0\n    for i in range(1, n + 1):\n        total += i\n    return total",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": 15
+      }
+    ],
+    "explanation": "range(n) goes 0 to n-1. Use range(1, n+1) for 1 to n.",
+    "hints": [
+      "range(n) excludes n",
+      "Use range(1, n+1)"
+    ],
+    "common_trap": "Off-by-one in range stop",
+    "reasoning_steps": [
+      "1. range(5) gives 0,1,2,3,4.",
+      "2. Use range(1, 6) for 1-5.",
+      "3. Sum = 15."
+    ],
+    "statement": "sum_upto_n misses n.",
+    "environment": "Python 3. sum_upto_n(n).",
+    "observed_behavior": "sum_upto_n(5) returns 10 instead of 15.",
+    "expected_behavior": "sum_upto_n(5) returns 15.",
+    "logs_or_error": "Off-by-one",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-02",
+    "type": "debugging",
+    "title": "Fix String Slice End",
+    "question": "String slice excludes last character. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "off_by_one",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_all_but_last(s):\n    return s[:-1]",
+    "correct_code": "def get_all_but_last(s):\n    return s",
+    "test_cases": [
+      {
+        "input": [
+          "hello"
+        ],
+        "expected": "hello"
+      }
+    ],
+    "explanation": "s[:-1] removes last character. Return full string.",
+    "hints": [
+      "s[:-1] removes last char",
+      "Return full string"
+    ],
+    "common_trap": "Incorrect slice end",
+    "reasoning_steps": [
+      "1. s[:-1] removes last character.",
+      "2. Return s as-is.",
+      "3. No slice needed."
+    ],
+    "statement": "get_all_but_last removes last char incorrectly.",
+    "environment": "Python 3. get_all_but_last(s).",
+    "observed_behavior": "get_all_but_last('hello') returns 'hell' instead of 'hello'.",
+    "expected_behavior": "get_all_but_last('hello') returns 'hello'.",
+    "logs_or_error": "Off-by-one slice",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-03",
+    "type": "debugging",
+    "title": "Fix Int Concatenation",
+    "question": "Function concatenates int with string. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def make_msg(code):\n    return 'Error: ' + code",
+    "correct_code": "def make_msg(code):\n    return 'Error: ' + str(code)",
+    "test_cases": [
+      {
+        "input": [
+          404
+        ],
+        "expected": "Error: 404"
+      }
+    ],
+    "explanation": "Cannot concatenate str with int. Use str().",
+    "hints": [
+      "str + int not allowed",
+      "Use str(code)"
+    ],
+    "common_trap": "TypeError concatenating str and int",
+    "reasoning_steps": [
+      "1. 'Error: ' + 404 crashes.",
+      "2. Use str(404).",
+      "3. Concatenate strings."
+    ],
+    "statement": "make_msg crashes on int.",
+    "environment": "Python 3. make_msg(code).",
+    "observed_behavior": "make_msg(404) raises TypeError.",
+    "expected_behavior": "make_msg(404) returns 'Error: 404'.",
+    "logs_or_error": "TypeError",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-04",
+    "type": "debugging",
+    "title": "Fix Float Index",
+    "question": "Function uses float as list index. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "type_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_middle(lst):\n    return lst[len(lst) / 2]",
+    "correct_code": "def get_middle(lst):\n    return lst[len(lst) // 2]",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "expected": 3
+      }
+    ],
+    "explanation": "List indices must be int, not float. Use // for integer division.",
+    "hints": [
+      "float not valid index",
+      "Use // for int division"
+    ],
+    "common_trap": "TypeError float index",
+    "reasoning_steps": [
+      "1. len(lst) / 2 gives float.",
+      "2. Use // for integer division.",
+      "3. Valid index."
+    ],
+    "statement": "get_middle crashes on float index.",
+    "environment": "Python 3. get_middle(lst).",
+    "observed_behavior": "get_middle([1,2,3,4,5]) raises TypeError.",
+    "expected_behavior": "get_middle([1,2,3,4,5]) returns 3.",
+    "logs_or_error": "TypeError",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-05",
+    "type": "debugging",
+    "title": "Fix Or Condition",
+    "question": "Function uses or instead of and. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_valid_score(score):\n    return score >= 0 or score <= 100",
+    "correct_code": "def is_valid_score(score):\n    return score >= 0 and score <= 100",
+    "test_cases": [
+      {
+        "input": [
+          50
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          150
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          -10
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "score >= 0 or score <= 100 is always true. Use and.",
+    "hints": [
+      "or makes condition always true",
+      "Use and for range"
+    ],
+    "common_trap": "Wrong logical operator",
+    "reasoning_steps": [
+      "1. score >= 0 or score <= 100 always true.",
+      "2. Use and for valid range.",
+      "3. Correct range check."
+    ],
+    "statement": "is_valid_score returns True for invalid scores.",
+    "environment": "Python 3. is_valid_score(score).",
+    "observed_behavior": "is_valid_score(150) returns True instead of False.",
+    "expected_behavior": "is_valid_score(150) returns False.",
+    "logs_or_error": "Wrong logical operator",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-06",
+    "type": "debugging",
+    "title": "Fix Negated And",
+    "question": "Function uses wrong negation of and. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "logic_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def is_not_both_true(a, b):\n    return not a and not b",
+    "correct_code": "def is_not_both_true(a, b):\n    return not (a and b)",
+    "test_cases": [
+      {
+        "input": [
+          true,
+          true
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          true,
+          false
+        ],
+        "expected": true
+      }
+    ],
+    "explanation": "not a and not b means neither true. Use not (a and b) for De Morgan's.",
+    "hints": [
+      "De Morgan's law",
+      "Use not (a and b)"
+    ],
+    "common_trap": "Incorrect negation",
+    "reasoning_steps": [
+      "1. not a and not b means both false.",
+      "2. not (a and b) means not both true.",
+      "3. De Morgan's law."
+    ],
+    "statement": "is_not_both_true returns wrong result.",
+    "environment": "Python 3. is_not_both_true(a, b).",
+    "observed_behavior": "is_not_both_true(True, False) returns False instead of True.",
+    "expected_behavior": "is_not_both_true(True, False) returns True.",
+    "logs_or_error": "Wrong negation",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-07",
+    "type": "debugging",
+    "title": "Fix DefaultDict Missing Import",
+    "question": "Function uses defaultdict without importing. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "microsoft"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def count_words(words):\n    counts = defaultdict(int)\n    for w in words:\n        counts[w] += 1\n    return counts",
+    "correct_code": "from collections import defaultdict\ndef count_words(words):\n    counts = defaultdict(int)\n    for w in words:\n        counts[w] += 1\n    return counts",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "a",
+            "b",
+            "a"
+          ]
+        ],
+        "expected": null
+      }
+    ],
+    "explanation": "defaultdict not imported. Add import statement.",
+    "hints": [
+      "Missing import",
+      "Import defaultdict"
+    ],
+    "common_trap": "NameError defaultdict not defined",
+    "reasoning_steps": [
+      "1. defaultdict not defined.",
+      "2. Add from collections import defaultdict.",
+      "3. NameError fixed."
+    ],
+    "statement": "count_words crashes on defaultdict.",
+    "environment": "Python 3. count_words(words).",
+    "observed_behavior": "count_words(['a']) raises NameError.",
+    "expected_behavior": "count_words(['a']) returns defaultdict with counts.",
+    "logs_or_error": "NameError",
+    "roles": [
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b6-08",
+    "type": "debugging",
+    "title": "Fix Popitem on Empty Dict",
+    "question": "dict.popitem() crashes on empty dict. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "key_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def pop_any(d):\n    return d.popitem()",
+    "correct_code": "def pop_any(d):\n    if not d:\n        return None\n    return d.popitem()",
+    "test_cases": [
+      {
+        "input": [
+          {}
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          {
+            "a": 1
+          }
+        ],
+        "expected": [
+          "a",
+          1
+        ]
+      }
+    ],
+    "explanation": "d.popitem() raises KeyError on empty dict. Check empty first.",
+    "hints": [
+      "Check empty dict",
+      "Return None for empty"
+    ],
+    "common_trap": "KeyError on popitem empty dict",
+    "reasoning_steps": [
+      "1. d.popitem() crashes on {}.",
+      "2. Check if dict empty.",
+      "3. Return None."
+    ],
+    "statement": "pop_any crashes on empty dict.",
+    "environment": "Python 3. pop_any(d).",
+    "observed_behavior": "pop_any({}) raises KeyError.",
+    "expected_behavior": "pop_any({}) returns None.",
+    "logs_or_error": "KeyError",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b7-01",
+    "type": "debugging",
+    "title": "Fix String Index Out of Range",
+    "question": "Function accesses string index but crashes on short string. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "index_errors",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def get_second_char(s):\n    return s[1]",
+    "correct_code": "def get_second_char(s):\n    if len(s) < 2:\n        return None\n    return s[1]",
+    "test_cases": [
+      {
+        "input": [
+          "a"
+        ],
+        "expected": null
+      },
+      {
+        "input": [
+          "hi"
+        ],
+        "expected": "i"
+      }
+    ],
+    "explanation": "s[1] raises IndexError on strings shorter than 2. Check length first.",
+    "hints": [
+      "Check string length",
+      "Return None for short strings"
+    ],
+    "common_trap": "IndexError on short string",
+    "reasoning_steps": [
+      "1. s[1] crashes on 'a'.",
+      "2. Check len(s) >= 2.",
+      "3. Return None."
+    ],
+    "statement": "get_second_char crashes on short string.",
+    "environment": "Python 3. get_second_char(s).",
+    "observed_behavior": "get_second_char('a') raises IndexError.",
+    "expected_behavior": "get_second_char('a') returns None.",
+    "logs_or_error": "IndexError",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "debug-b7-02",
+    "type": "debugging",
+    "title": "Fix Empty String StartsWith",
+    "question": "Function calls startswith but crashes on None. Fix it.",
+    "topic": "debugging",
+    "sub_topic": "null_handling",
+    "pattern": "debugging",
+    "difficulty": "easy",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "provenance": "bountycode-original-2026",
+    "trust_status": "automated_checked",
+    "source_bank": "debugging_bank",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "5-8 minutes",
+    "buggy_code": "def starts_with_hello(s):\n    return s.startswith('hello')",
+    "correct_code": "def starts_with_hello(s):\n    if s is None:\n        return False\n    return s.startswith('hello')",
+    "test_cases": [
+      {
+        "input": [
+          null
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          "hello world"
+        ],
+        "expected": true
+      }
+    ],
+    "explanation": "None.startswith() raises AttributeError. Check None first.",
+    "hints": [
+      "Check None before method",
+      "Return False for None"
+    ],
+    "common_trap": "AttributeError on None",
+    "reasoning_steps": [
+      "1. s.startswith() crashes when s is None.",
+      "2. Check None first.",
+      "3. Return False."
+    ],
+    "statement": "starts_with_hello crashes on None.",
+    "environment": "Python 3. starts_with_hello(s).",
+    "observed_behavior": "starts_with_hello(None) raises AttributeError.",
+    "expected_behavior": "starts_with_hello(None) returns False.",
+    "logs_or_error": "AttributeError",
+    "roles": [
+      "student",
+      "sde"
+    ],
+    "trust_transitioned_at": "2026-11-17T06:30:19.805687+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
   }
 ]

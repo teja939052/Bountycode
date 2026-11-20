@@ -1,0 +1,325 @@
+{
+  "topic": "sql_normalization_basics",
+  "subject": "sql",
+  "pattern": "sql_normalization_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "NORM-L1",
+      "title": "Normalization Purpose and Anomalies",
+      "concept": "Normalization is the process of organizing relational database tables to reduce redundancy and improve data integrity. It helps prevent anomalies: insertion anomalies (cannot add data without other data), update anomalies (inconsistent updates), and deletion anomalies (unintended loss of data).",
+      "formula": "Goal: minimize redundancy, preserve dependencies, avoid anomalies through well-structured relations and keys.",
+      "worked_example": "Storing customer address in every order row can cause update anomalies if address changes in some rows but not others. Separating customers into their own table avoids this.",
+      "mistakes": [
+        "Thinking normalization is only about splitting tables randomly",
+        "Ignoring functional dependencies",
+        "Assuming more tables always mean better performance in every scenario"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "NORM-L2",
+      "title": "First, Second, and Third Normal Forms (Basics)",
+      "concept": "1NF requires atomic (indivisible) attribute values and no repeating groups. 2NF requires 1NF and that non-key attributes are fully functionally dependent on the whole primary key (relevant for composite keys). 3NF requires 2NF and that non-key attributes are not transitively dependent on the primary key.",
+      "formula": "1NF: atomic values. 2NF: no partial dependency on part of composite key. 3NF: no transitive dependency (non-key -> non-key).",
+      "worked_example": "If (OrderID, ProductID) is key and ProductName depends only on ProductID, that partial dependency violates 2NF; move product details to a separate Products table.",
+      "mistakes": [
+        "Applying 2NF concerns when there is no composite key (partial dependency issue doesn't arise)",
+        "Confusing transitive dependency with partial dependency",
+        "Believing 1NF allows multiple values in a single cell"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "NORM-L3",
+      "title": "Trade-offs and Denormalization Awareness",
+      "concept": "Higher normalization improves integrity and reduces redundancy but may require more joins for queries. In some read-heavy scenarios, controlled denormalization is used for performance, with care to manage consistency. Design should balance integrity, complexity, and workload needs.",
+      "formula": "Normalized: integrity/reduced redundancy, more joins possible. Denormalized: fewer joins/faster reads sometimes, higher redundancy/update risk.",
+      "worked_example": "A reporting table may store precomputed aggregates (denormalized) for speed, while source-of-truth tables remain normalized.",
+      "mistakes": [
+        "Assuming normalization always degrades performance",
+        "Denormalizing without considering consistency mechanisms",
+        "Skipping normalization analysis entirely"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "NORM-PRACTICE-001",
+      "question": "Normalization primarily aims to:",
+      "options": {
+        "A": "Increase data redundancy",
+        "B": "Reduce redundancy and improve data integrity",
+        "C": "Remove all keys",
+        "D": "Eliminate the need for SQL"
+      },
+      "correct_answer": "B",
+      "explanation": "Normalization organizes tables to minimize redundancy and prevent data anomalies, improving integrity.",
+      "difficulty": "easy",
+      "sub_topic": "purpose",
+      "misconception_tags": [
+        "purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-PRACTICE-002",
+      "question": "A table is in 1NF when:",
+      "options": {
+        "A": "It has no primary key",
+        "B": "All attributes contain atomic (indivisible) values and no repeating groups",
+        "C": "It has no foreign keys",
+        "D": "All columns are numeric"
+      },
+      "correct_answer": "B",
+      "explanation": "First Normal Form requires that each field holds atomic values and there are no repeating groups/arrays in a single attribute.",
+      "difficulty": "easy",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "1nf_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-PRACTICE-003",
+      "question": "Partial dependency (relevant to 2NF) occurs when:",
+      "options": {
+        "A": "A non-key attribute depends on part of a composite primary key",
+        "B": "A table has one column",
+        "C": "A key depends on a non-key attribute",
+        "D": "All attributes depend on the full key"
+      },
+      "correct_answer": "A",
+      "explanation": "2NF removes partial dependencies, where a non-key attribute depends on only part of a composite key rather than the whole key.",
+      "difficulty": "medium",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "2nf_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-PRACTICE-004",
+      "question": "Transitive dependency (addressed in 3NF) means:",
+      "options": {
+        "A": "A non-key attribute depends on another non-key attribute",
+        "B": "A table depends on another database",
+        "C": "The primary key has multiple columns",
+        "D": "All values are NULL"
+      },
+      "correct_answer": "A",
+      "explanation": "In 3NF, non-key attributes must depend only on the key; a non-key depending on another non-key indicates transitive dependency.",
+      "difficulty": "medium",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "3nf_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-PRACTICE-005",
+      "question": "An update anomaly is:",
+      "options": {
+        "A": "Inability to insert any row",
+        "B": "Inconsistent data due to the same fact updated in some places but not others",
+        "C": "Loss of table schema",
+        "D": "Automatic index creation"
+      },
+      "correct_answer": "B",
+      "explanation": "Redundant storage of the same information can lead to inconsistencies when updates are applied partially, causing update anomalies.",
+      "difficulty": "easy",
+      "sub_topic": "purpose",
+      "misconception_tags": [
+        "anomaly_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "NORM-001",
+      "question": "Which anomaly occurs when deleting a row also removes unintended important information?",
+      "options": {
+        "A": "Insertion anomaly",
+        "B": "Deletion anomaly",
+        "C": "Update anomaly",
+        "D": "Connection anomaly"
+      },
+      "correct_answer": "B",
+      "explanation": "A deletion anomaly happens when removing one piece of data inadvertently deletes other necessary data due to poor table design.",
+      "difficulty": "easy",
+      "sub_topic": "purpose",
+      "misconception_tags": [
+        "anomaly_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-002",
+      "question": "Storing multiple phone numbers in a single column as '111,222,333' violates:",
+      "options": {
+        "A": "1NF (atomicity)",
+        "B": "3NF only",
+        "C": "BCNF only",
+        "D": "No normal form"
+      },
+      "correct_answer": "A",
+      "explanation": "1NF requires atomic values; a single field containing multiple values is not atomic.",
+      "difficulty": "easy",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "1nf_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-003",
+      "question": "2NF is primarily concerned with removing:",
+      "options": {
+        "A": "Transitive dependencies",
+        "B": "Partial dependencies (for composite keys)",
+        "C": "All foreign keys",
+        "D": "All indexes"
+      },
+      "correct_answer": "B",
+      "explanation": "Second Normal Form addresses partial dependency of non-key attributes on part of a composite primary key.",
+      "difficulty": "medium",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "2nf_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-004",
+      "question": "3NF eliminates:",
+      "options": {
+        "A": "Repeating groups only",
+        "B": "Transitive dependencies of non-key attributes on the key",
+        "C": "Primary keys",
+        "D": "All joins"
+      },
+      "correct_answer": "B",
+      "explanation": "Third Normal Form requires that non-key attributes depend on the key, the whole key, and nothing but the key (no transitive dependency).",
+      "difficulty": "medium",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "3nf_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NORM-005",
+      "question": "Denormalization may be used to:",
+      "options": {
+        "A": "Always increase redundancy without reason",
+        "B": "Improve read/query performance in some cases at the cost of added redundancy",
+        "C": "Replace primary keys",
+        "D": "Enforce 1NF automatically"
+      },
+      "correct_answer": "B",
+      "explanation": "Denormalization intentionally introduces redundancy in controlled ways to reduce joins or speed certain reads, but it requires managing consistency.",
+      "difficulty": "easy",
+      "sub_topic": "purpose",
+      "misconception_tags": [
+        "tradeoff_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

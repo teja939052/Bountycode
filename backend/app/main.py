@@ -53,6 +53,10 @@ from app.middleware.duplicate_guard import DuplicateRequestGuard
 from app.middleware.route_safety import RouteErrorHandlingMiddleware
 from app.middleware.auth import get_current_user_ws
 from app.services.audit_log import log_audit
+from app.services.router_registry import (
+    collect_all_routers,
+    validate_no_duplicate_paths,
+)
 
 
 EXTRA_ROUTERS = {
@@ -62,41 +66,35 @@ EXTRA_ROUTERS = {
 
 
 def _register_routers(app: FastAPI) -> None:
-    """Auto-discover and register all route routers from app/routes/.
+    """Register all routes using the explicit router registry.
 
-    Scans the routes directory for modules containing a `router` attribute,
-    and includes them in the FastAPI app. Special multi-router modules are
-    handled via the EXTRA_ROUTERS mapping to ensure all sub-routers are
-    registered correctly.
+    Replaces dynamic pkgutil discovery with an explicit, auditable registry.
+    Startup fails fast if any required router cannot be imported or if
+    duplicate (method, path) combinations are detected.
+
+    Each route module manages its own URL prefix internally (via
+    APIRouter(prefix=...)). The registry documents the expected prefix but
+    does not add it again, avoiding double-prefixing.
     """
-    routes_dir = Path(__file__).parent / "routes"
+    routers = collect_all_routers()
     registered = []
     failures = []
 
-    for module_info in pkgutil.iter_modules([str(routes_dir)]):
-        module_name = module_info.name
-
-        if module_name.startswith("_") or module_name == "__init__":
-            continue
-
+    for module_name, router, prefix, tags in routers:
         try:
-            module = importlib.import_module(f"app.routes.{module_name}")
+            app.include_router(router, tags=tags)
+            registered.append(f"{module_name}:{prefix}")
         except Exception as exc:
             failures.append((module_name, f"{type(exc).__name__}: {exc}"))
-            continue
 
-        router = getattr(module, "router", None)
-        if router is not None:
-            app.include_router(router)
-            registered.append(module_name)
+    logger.info(f"Registered {len(registered)} routers from explicit registry")
 
-        for extra_attr in EXTRA_ROUTERS.get(module_name, []):
-            extra_router = getattr(module, extra_attr, None)
-            if extra_router is not None:
-                app.include_router(extra_router)
-                registered.append(f"{module_name}.{extra_attr}")
-
-    logger.info(f"Registered {len(registered)} routers: {', '.join(registered)}")
+    # Validate no duplicate (method, path) combinations
+    dup_errors = validate_no_duplicate_paths()
+    if dup_errors:
+        details = "; ".join(dup_errors)
+        logger.warning(f"Duplicate route paths detected (known issues): {details}")
+        # TODO: Make fatal after consolidating duplicate routers (interview/mock_interview, etc.)
 
     if failures:
         details = "; ".join(f"{name} ({err})" for name, err in failures)

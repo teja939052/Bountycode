@@ -1,0 +1,319 @@
+{
+  "topic": "coding_decoding",
+  "subject": "reasoning",
+  "pattern": "coding_decoding",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "letter_shift_coding",
+      "title": "Letter Shift (Caesar-style) Coding",
+      "concept": "In letter shift coding, each letter in a word is replaced by another letter a fixed number of positions forward or backward in the alphabet. To decode, identify the consistent shift applied to all letters and reverse it.",
+      "formula": "If coded letter = original letter shifted by +k positions (wrapping A-Z), then decoded letter = coded letter shifted by -k positions.",
+      "worked_example": "If CAT is coded as FDW, observe C->F (+3), A->D (+3), T->W (+3). So shift is +3. To code DOG with +3: D->G, O->R, G->J, giving GRJ.",
+      "mistakes": [
+        "Assuming the same shift without checking all letters",
+        "Forgetting to wrap around the alphabet (e.g., after Z comes A when shifting forward)",
+        "Confusing forward and backward shifts when decoding"
+      ]
+    },
+    {
+      "id": "letter_number_mapping",
+      "title": "Letter-Number and Positional Mapping",
+      "concept": "Sometimes letters are coded using their alphabetical positions (A=1, B=2, ..., Z=26) or by reversing positions (A=26, B=25, ..., Z=1, also called opposite letters). Recognizing these mappings helps solve coding-decoding questions quickly.",
+      "formula": "Forward position: A=1 to Z=26. Opposite letter position: A<->Z, B<->Y, etc., value = 27 - forward position.",
+      "worked_example": "If B=2 and D=4 in a simple positional code, the word BAD is 2,1,4. If using opposite letters, A becomes Z, B becomes Y, C becomes X.",
+      "mistakes": [
+        "Mixing up forward positions with opposite-letter mapping",
+        "Off-by-one errors when counting letter positions",
+        "Applying number mapping to some letters and shift mapping to others inconsistently"
+      ]
+    },
+    {
+      "id": "pattern_based_coding",
+      "title": "Pattern and Substitution Coding",
+      "concept": "Some codes follow patterns such as reversing the word, rearranging letters, or substituting letters based on a fixed but non-uniform mapping shown in examples. The key is to infer the exact rule from the given example(s) and apply it consistently.",
+      "formula": "Infer rule from example: identify transformation per letter/position -> apply same transformation to target word.",
+      "worked_example": "If 'ROAD' is coded as 'DAOR' (letters reversed), then 'BOOK' coded by the same rule becomes 'KOOB'.",
+      "mistakes": [
+        "Guessing a rule from one letter without verifying it on the whole word",
+        "Applying reversal or rearrangement in the wrong order",
+        "Overlooking that a different example implies a different rule"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "CODE-PRACTICE-001",
+      "question": "If each letter is shifted forward by 2 positions (A->C, B->D, ..., Y->A, Z->B), how is 'CAT' coded?",
+      "options": {
+        "A": "ECV",
+        "B": "DCU",
+        "C": "ECU",
+        "D": "FCV"
+      },
+      "correct_answer": "A",
+      "explanation": "Shift each letter forward by 2: C->E, A->C, T->V. So CAT becomes ECV.",
+      "difficulty": "easy",
+      "sub_topic": "letter_shift_coding",
+      "misconception_tags": [
+        "shift_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-PRACTICE-002",
+      "question": "In a certain code, 'DOG' is written as 'FQI'. How is 'CAT' written in the same code?",
+      "options": {
+        "A": "ECV",
+        "B": "DBU",
+        "C": "ECU",
+        "D": "DCV"
+      },
+      "correct_answer": "A",
+      "explanation": "D(4)->F(6), O(15)->Q(17), G(7)->I(9): each letter is shifted forward by 2. Apply to CAT: C->E, A->C, T->V, giving ECV.",
+      "difficulty": "easy",
+      "sub_topic": "letter_shift_coding",
+      "misconception_tags": [
+        "rule_inference_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-PRACTICE-003",
+      "question": "If A=1, B=2, C=3, ..., Z=26, what is the positional sum of the letters in 'BAD'?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "9"
+      },
+      "correct_answer": "B",
+      "explanation": "B=2, A=1, D=4. Sum = 2 + 1 + 4 = 7.",
+      "difficulty": "easy",
+      "sub_topic": "letter_number_mapping",
+      "misconception_tags": [
+        "letter_position_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-PRACTICE-004",
+      "question": "In a certain code, 'STOP' is written as 'POTS'. Using the same rule, how is 'TIME' written?",
+      "options": {
+        "A": "EMIT",
+        "B": "ITEM",
+        "C": "MITE",
+        "D": "ETIM"
+      },
+      "correct_answer": "A",
+      "explanation": "STOP reversed is POTS, so the rule is to reverse the letters of the word. TIME reversed is EMIT.",
+      "difficulty": "easy",
+      "sub_topic": "pattern_based_coding",
+      "misconception_tags": [
+        "pattern_application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-PRACTICE-005",
+      "question": "If 'BALL' is coded as 'ABKK' by shifting each letter backward by 1 position, how is 'GAME' coded in the same way?",
+      "options": {
+        "A": "FZLD",
+        "B": "HZLD",
+        "C": "FBLD",
+        "D": "FZMD"
+      },
+      "correct_answer": "A",
+      "explanation": "Shift each letter backward by 1: G->F, A->Z (wrap around), M->L, E->D. So GAME becomes FZLD.",
+      "difficulty": "medium",
+      "sub_topic": "letter_shift_coding",
+      "misconception_tags": [
+        "wraparound_error",
+        "shift_direction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CODE-001",
+      "question": "If in a certain code 'PEN' is written as 'QFO', how is 'INK' written in that code?",
+      "options": {
+        "A": "JOL",
+        "B": "JOH",
+        "C": "HML",
+        "D": "JNL"
+      },
+      "correct_answer": "A",
+      "explanation": "P->Q, E->F, N->O: each letter shifts forward by 1. Apply to INK: I->J, N->O, K->L, giving JOL.",
+      "difficulty": "easy",
+      "sub_topic": "letter_shift_coding",
+      "misconception_tags": [
+        "rule_inference_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-002",
+      "question": "If letters are assigned numbers A=1 to Z=26, what is the code for 'FACE' as a sequence of numbers?",
+      "options": {
+        "A": "6,1,3,5",
+        "B": "6,1,2,5",
+        "C": "5,1,3,6",
+        "D": "6,2,3,5"
+      },
+      "correct_answer": "A",
+      "explanation": "F is 6, A is 1, C is 3, E is 5. So FACE is coded as 6,1,3,5.",
+      "difficulty": "easy",
+      "sub_topic": "letter_number_mapping",
+      "misconception_tags": [
+        "letter_position_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-003",
+      "question": "In a certain code, 'LAMP' is written as 'PMAL'. Which rule is used?",
+      "options": {
+        "A": "Each letter shifted forward by 1",
+        "B": "Letters written in reverse order",
+        "C": "Each letter replaced by its opposite letter",
+        "D": "First and last letters removed"
+      },
+      "correct_answer": "B",
+      "explanation": "Reversing L, A, M, P gives P, M, A, L which matches PMAL. The rule is to reverse the order of letters.",
+      "difficulty": "easy",
+      "sub_topic": "pattern_based_coding",
+      "misconception_tags": [
+        "pattern_identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-004",
+      "question": "If 'MIND' is coded as 'OKPF' (each letter shifted forward by 2), what is the code for 'WORK'?",
+      "options": {
+        "A": "YQTM",
+        "B": "YPRM",
+        "C": "XQTM",
+        "D": "YQSL"
+      },
+      "correct_answer": "A",
+      "explanation": "Shift each letter of WORK forward by 2: W->Y, O->Q, R->T, K->M. So WORK becomes YQTM.",
+      "difficulty": "medium",
+      "sub_topic": "letter_shift_coding",
+      "misconception_tags": [
+        "shift_count_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-005",
+      "question": "If 'ZEBRA' is coded by shifting each letter backward by 1 (with wrap-around), what is the coded form?",
+      "options": {
+        "A": "YDAQZ",
+        "B": "YFAQZ",
+        "C": "ADCSB",
+        "D": "YDAQY"
+      },
+      "correct_answer": "A",
+      "explanation": "Shift backward by 1: Z->Y, E->D, B->A, R->Q, A->Z (wrap-around). So ZEBRA becomes YDAQZ.",
+      "difficulty": "medium",
+      "sub_topic": "letter_shift_coding",
+      "misconception_tags": [
+        "wraparound_error",
+        "shift_direction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

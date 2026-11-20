@@ -1,0 +1,215 @@
+﻿{
+  "topic": "strings_basics",
+  "subject": "dsa",
+  "pattern": "strings_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "string_fundamentals",
+      "title": "String Fundamentals",
+      "concept": "A string is a sequence of characters (letters, digits, symbols). Strings support indexing (access by position), length queries, and traversal. In many languages strings are immutable (operations create new strings), while in others they can be mutable; understanding this affects performance of repeated modifications.",
+      "formula": "Indexing: s[i] gives character at position i (0-based in most languages). Length: n = len(s). Traversal: visit each index 0..n-1 in O(n).",
+      "worked_example": "s = \"hello\" has length 5. s[0]='h', s[4]='o'. Reversing by traversal builds 'olleh'. Concatenating strings repeatedly in immutable-string languages can cost more than building with a buffer/list of characters.",
+      "mistakes": [
+        "Off-by-one errors when using 0-based indexing or end bounds",
+        "Assuming in-place character modification works the same in all languages",
+        "Ignoring case sensitivity when comparing strings unless specified"
+      ]
+    },
+    {
+      "id": "common_string_operations",
+      "title": "Common String Operations and Complexity",
+      "concept": "Frequent operations include comparison, substring extraction/search, concatenation, and case conversion. Naive substring search compares characters at possible positions. Comparing two strings typically checks characters until a mismatch or end.",
+      "formula": "Comparison/equality: O(min(n,m)) to find mismatch or confirm equal. Naive substring search: O(n*m) worst case. Substring copy/extract: O(k) for k characters extracted.",
+      "worked_example": "Checking if \"code\" is in \"decode\": align 'c','o','d','e' at index 2 -> match in 4 comparisons after earlier mismatches. Building a string by appending one character at a time may be O(n^2) in immutable models but O(n) amortized with dynamic builders/buffers.",
+      "mistakes": [
+        "Assuming substring search is always O(n) (depends on algorithm)",
+        "Confusing string length with byte size in all contexts (encoding matters)",
+        "Not accounting for immutability cost in repeated concatenation"
+      ]
+    },
+    {
+      "id": "palindrome_and_frequency",
+      "title": "Palindrome and Character Frequency Patterns",
+      "concept": "A palindrome reads the same forward and backward (after optional normalization like ignoring case/spaces as defined). Frequency counting tracks how many times each character appears, useful for anagrams and character-based checks. These patterns use two pointers or hash maps/arrays.",
+      "formula": "Palindrome check (two pointers): compare s[left] and s[right], move inward; O(n) time, O(1) extra space. Frequency map: count chars in O(n), compare counts for anagrams.",
+      "worked_example": "\"level\" is a palindrome: l==l, e==e, center v matches. \"listen\" and \"silent\" are anagrams if character frequencies match (assuming same character set and case handling): both have l,i,s,t,e,n once.",
+      "mistakes": [
+        "Not clarifying normalization rules (spaces, punctuation, case) before palindrome/anagram checks",
+        "Using O(n^2) approaches when two pointers/frequency counting gives O(n)",
+        "Mismatching character sets/unicode assumptions in frequency counting"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "STR-PRACTICE-001",
+      "question": "Given string s = \"algorithm\" (0-based indexing), what is s[3]?",
+      "options": {"A": "g", "B": "o", "C": "r", "D": "i"},
+      "correct_answer": "B",
+      "explanation": "Indexing from 0: s[0]='a', s[1]='l', s[2]='g', s[3]='o', s[4]='r', etc. So s[3] is 'o'.",
+      "difficulty": "easy",
+      "sub_topic": "string_fundamentals",
+      "misconception_tags": ["off_by_one_indexing_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-PRACTICE-002",
+      "question": "What is the time complexity to traverse all characters of a string of length n once?",
+      "options": {"A": "O(1)", "B": "O(log n)", "C": "O(n)", "D": "O(n^2)"},
+      "correct_answer": "C",
+      "explanation": "Visiting each character exactly once requires n operations, so traversal is O(n).",
+      "difficulty": "easy",
+      "sub_topic": "string_fundamentals",
+      "misconception_tags": ["traversal_complexity_error"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-PRACTICE-003",
+      "question": "Which string is a palindrome (reads the same forward and backward)?",
+      "options": {"A": "apple", "B": "radar", "C": "codes", "D": "hello"},
+      "correct_answer": "B",
+      "explanation": "'radar' reversed is 'radar', so it is a palindrome. The others do not read the same forward and backward.",
+      "difficulty": "easy",
+      "sub_topic": "palindrome_and_frequency",
+      "misconception_tags": ["palindrome_check_error"],
+      "company_tags": ["infosys", "wipro", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-PRACTICE-004",
+      "question": "Two strings are anagrams if they:",
+      "options": {
+        "A": "Have the same length only",
+        "B": "Are palindromes of each other",
+        "C": "Contain the same characters with the same frequencies (order can differ)",
+        "D": "Start and end with the same character"
+      },
+      "correct_answer": "C",
+      "explanation": "Anagrams are formed by rearranging letters: the multiset/frequency of characters is identical, though order differs (e.g., 'listen' and 'silent').",
+      "difficulty": "easy",
+      "sub_topic": "palindrome_and_frequency",
+      "misconception_tags": ["anagram_definition_error"],
+      "company_tags": ["tcs", "cognizant"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-PRACTICE-005",
+      "question": "Comparing two strings of lengths n and m character by character to check equality takes what time in the worst case (until mismatch or end)?",
+      "options": {"A": "O(1)", "B": "O(log n)", "C": "O(min(n,m))", "D": "O(n*m)"},
+      "correct_answer": "C",
+      "explanation": "Character-by-character comparison proceeds until a mismatch is found or one/both strings end. In the worst case (equal strings or mismatch at end), it checks up to min(n,m) characters.",
+      "difficulty": "medium",
+      "sub_topic": "common_string_operations",
+      "misconception_tags": ["string_comparison_complexity_error"],
+      "company_tags": ["infosys", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "STR-001",
+      "question": "What is the output length after reversing the string \"bounty\"?",
+      "options": {"A": "5", "B": "6", "C": "7", "D": "12"},
+      "correct_answer": "B",
+      "explanation": "\"bounty\" has 6 characters (b,o,u,n,t,y). Reversing produces \"ytnuob\", which also has length 6; reversal changes order, not length.",
+      "difficulty": "easy",
+      "sub_topic": "string_fundamentals",
+      "misconception_tags": ["string_length_after_operation_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-002",
+      "question": "Using the two-pointer method, what is the time and extra space complexity to check if a string of length n is a palindrome?",
+      "options": {"A": "Time O(n), Space O(1)", "B": "Time O(n^2), Space O(1)", "C": "Time O(n), Space O(n)", "D": "Time O(log n), Space O(1)"},
+      "correct_answer": "A",
+      "explanation": "Two pointers start at both ends and move inward, comparing characters; each character is checked at most once -> O(n) time. Only a few index variables are needed -> O(1) extra space.",
+      "difficulty": "medium",
+      "sub_topic": "palindrome_and_frequency",
+      "misconception_tags": ["two_pointer_complexity_error"],
+      "company_tags": ["accenture", "capgemini", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-003",
+      "question": "Which pair of strings are anagrams (ignoring spaces and case as a common convention)?",
+      "options": {"A": "\"night\" and \"thing\"", "B": "\"hello\" and \"world\"", "C": "\"apple\" and \"apply\"", "D": "\"abc\" and \"abca\""},
+      "correct_answer": "A",
+      "explanation": "\"night\" and \"thing\" contain the same letters n,i,g,h,t with the same frequencies in different order, so they are anagrams. The other pairs differ in character counts/sets.",
+      "difficulty": "easy",
+      "sub_topic": "palindrome_and_frequency",
+      "misconception_tags": ["anagram_definition_error"],
+      "company_tags": ["infosys", "tcs", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-004",
+      "question": "If strings are immutable in a language, repeatedly concatenating one character at a time to build a string of length n can take approximately:",
+      "options": {"A": "O(n) time", "B": "O(n log n) time", "C": "O(n^2) time", "D": "O(1) time"},
+      "correct_answer": "C",
+      "explanation": "With immutable strings, each concatenation may create a new string and copy existing characters, leading to roughly 1+2+...+n copies = O(n^2) time. Using a mutable buffer/list then joining is typically O(n).",
+      "difficulty": "medium",
+      "sub_topic": "common_string_operations",
+      "misconception_tags": ["immutability_concatenation_cost_error"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STR-005",
+      "question": "How many character comparisons are needed in the worst case to confirm that \"test\" is not equal to \"tent\" (comparing from left to right)?",
+      "options": {"A": "1", "B": "2", "C": "3", "D": "4"},
+      "correct_answer": "C",
+      "explanation": "Compare index 0: 't' == 't' (1st comparison). Index 1: 'e' == 'e' (2nd comparison). Index 2: 's' != 'n' (3rd comparison finds the mismatch). Therefore, 3 character comparisons are needed.",
+      "difficulty": "easy",
+      "sub_topic": "common_string_operations",
+      "misconception_tags": ["comparison_count_error"],
+      "company_tags": ["cognizant", "wipro"],
+      "frequency_tier": 1,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

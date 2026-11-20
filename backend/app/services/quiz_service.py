@@ -16,33 +16,18 @@ Each mode tracks:
   - Diamonds earned, badges unlocked
   - Streak progress
   - Weak areas for recommendation
+
+Canonical question ownership: all question loading flows through
+``app.services.question_store`` (verified + executable only). This module
+never independently scans or loads question files.
 """
-import json
-import os
 import random
 import time
 from datetime import datetime, timezone
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, List, Optional, Any
 from collections import defaultdict
 
-
-# =============================================================
-# QUESTION LOADING & INDEXING
-# =============================================================
-
-QUESTION_FILES = [
-    "app/content/questions/curated/curated.json",
-    "app/content/questions/curated/learning_objects.json",
-    "app/content/questions/curated/placement_questions.json",
-    "app/data/sql_practice_bank.json",
-    "app/data/interview_practice_bank.json",
-]
-
-_questions_cache = None
-_questions_by_id = None
-_questions_by_topic = None
-_questions_by_difficulty = None
-_questions_by_company = None
+from app.services import question_store as _qs
 
 
 def _question_companies(question: Dict[str, Any]) -> List[str]:
@@ -53,80 +38,60 @@ def _question_companies(question: Dict[str, Any]) -> List[str]:
     return [str(item).strip() for item in raw if str(item).strip()]
 
 
-def _load_questions() -> List[Dict[str, Any]]:
-    """Load all questions from JSON files into memory."""
-    global _questions_cache, _questions_by_id, _questions_by_topic, _questions_by_difficulty, _questions_by_company
-    if _questions_cache is not None:
-        return _questions_cache
+def _servable_questions() -> List[Dict[str, Any]]:
+    """Return the canonical, trust-gated question pool from question_store.
 
-    all_questions = []
-    for f in QUESTION_FILES:
-        if not os.path.exists(f):
-            continue
-        try:
-            with open(f, encoding="utf-8") as fp:
-                data = json.load(fp)
-            if isinstance(data, list):
-                all_questions.extend(data)
-            elif isinstance(data, dict) and "questions" in data:
-                all_questions.extend(data["questions"])
-        except Exception as e:
-            print(f"Error loading {f}: {e}")
-
-    # Deduplicate by ID
-    seen = set()
-    unique = []
-    for q in all_questions:
-        qid = q.get("id", "")
-        if qid and qid not in seen:
-            seen.add(qid)
-            unique.append(q)
-
-    _questions_cache = unique
-    _questions_by_id = {q["id"]: q for q in unique if q.get("id")}
-    _questions_by_topic = defaultdict(list)
-    _questions_by_difficulty = defaultdict(list)
-    _questions_by_company = defaultdict(list)
-    for q in unique:
-        topic = q.get("topic", "")
-        if topic:
-            _questions_by_topic[topic].append(q)
-        diff = q.get("difficulty", "medium")
-        if diff:
-            _questions_by_difficulty[diff].append(q)
-        for company in _question_companies(q):
-            _questions_by_company[company.lower()].append(q)
-
-    return unique
+    Only independently verified + executable questions are servable.
+    Question content never lives in MongoDB; it is loaded once at startup
+    from versioned files under backend/app/data/.
+    """
+    _qs.load_all()
+    return [q for q in _qs._questions if _qs._is_servable(q)]
 
 
 def get_question_by_id(qid: str) -> Optional[Dict[str, Any]]:
-    _load_questions()
-    return _questions_by_id.get(qid)
+    """Fetch one complete question from the canonical store (verified only)."""
+    return _qs.find_one_verified({"id": str(qid)})
 
 
 def get_questions_by_topic(topic: str) -> List[Dict[str, Any]]:
-    _load_questions()
-    return _questions_by_topic.get(topic, [])
+    """Return servable questions matching a topic."""
+    _qs.load_all()
+    return [
+        dict(q) for q in _qs._questions
+        if _qs._is_servable(q) and str(q.get("topic", "")).strip().lower() == topic.strip().lower()
+    ]
 
 
 def get_questions_by_difficulty(difficulty: str) -> List[Dict[str, Any]]:
-    _load_questions()
-    return _questions_by_difficulty.get(difficulty, [])
+    """Return servable questions matching a difficulty."""
+    _qs.load_all()
+    return [
+        dict(q) for q in _qs._questions
+        if _qs._is_servable(q) and str(q.get("difficulty") or "medium").strip().lower() == difficulty.strip().lower()
+    ]
 
 
 def get_questions_by_company(company: str) -> List[Dict[str, Any]]:
-    _load_questions()
-    return _questions_by_company.get(company.lower(), [])
+    """Return servable questions matching a company."""
+    _qs.load_all()
+    company_lower = company.strip().lower()
+    return [
+        dict(q) for q in _qs._questions
+        if _qs._is_servable(q) and company_lower in {
+            item.lower() for item in _question_companies(q)
+        }
+    ]
 
 
 def get_all_questions() -> List[Dict[str, Any]]:
-    return _load_questions()
+    """Return all servable questions from the canonical store."""
+    return _servable_questions()
 
 
 def get_question_stats() -> Dict[str, Any]:
-    """Get overall question bank statistics."""
-    questions = _load_questions()
+    """Get overall question bank statistics for servable (verified + executable) questions."""
+    questions = _servable_questions()
     if not questions:
         return {"total": 0}
 
@@ -142,7 +107,7 @@ def get_question_stats() -> Dict[str, Any]:
         by_topic[topic] += 1
         pattern = q.get("pattern", "general")
         by_pattern[pattern] += 1
-        for company in (q.get("companies") or []):
+        for company in _question_companies(q):
             by_company[company] += 1
 
     def has_solution(q):
@@ -155,7 +120,6 @@ def get_question_stats() -> Dict[str, Any]:
         hints = q.get("hints", [])
         if not hints:
             return False
-        # Count only if at least 3 hints
         return len(hints) >= 3
 
     return {
@@ -190,7 +154,7 @@ def build_quiz(
     target_skills: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     """Build a quiz session based on mode and filters."""
-    questions = _load_questions()
+    questions = _servable_questions()
 
     # Filter
     filtered = questions
@@ -500,7 +464,7 @@ def build_learning_path(
     num_questions: int = 10,
 ) -> Dict[str, Any]:
     """Build an adaptive learning path based on user level and weak areas."""
-    questions = _load_questions()
+    questions = _servable_questions()
 
     # Role-based topic priorities
     role_topics = {
@@ -568,7 +532,7 @@ def build_boss_battle(
     user_level: int = 1,
 ) -> Dict[str, Any]:
     """Build a boss battle session."""
-    questions = _load_questions()
+    questions = _servable_questions()
 
     # Boss level determines difficulty mix
     difficulty_mix = {
@@ -726,18 +690,4 @@ def calculate_quiz_results(
         "badge_earned": score >= 0.9,
         "perfect_run": correct == total and total_hints == 0,
     }
-
-
-# =============================================================
-# CACHE MANAGEMENT
-# =============================================================
-
-def clear_cache():
-    """Clear the question cache (for testing)."""
-    global _questions_cache, _questions_by_id, _questions_by_topic
-    global _questions_by_difficulty, _questions_by_company
-    _questions_cache = None
-    _questions_by_id = None
-    _questions_by_topic = None
-    _questions_by_difficulty = None
     _questions_by_company = None

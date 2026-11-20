@@ -1,0 +1,325 @@
+{
+  "topic": "sql_functions_basics",
+  "subject": "sql",
+  "pattern": "sql_functions_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "SQLF-L1",
+      "title": "Aggregate Functions",
+      "concept": "Aggregate functions perform calculations on a set of rows and return a single value. Common aggregates include COUNT, SUM, AVG, MIN, and MAX. They are often used with GROUP BY to compute values per group.",
+      "formula": "COUNT(*) counts rows; COUNT(col) counts non-NULL values; SUM(col), AVG(col), MIN(col), MAX(col) operate on column values (NULL handling varies by function).",
+      "worked_example": "SELECT COUNT(*) FROM orders; returns total rows. SELECT AVG(salary) FROM employees; returns average of non-NULL salary values.",
+      "mistakes": [
+        "Confusing COUNT(*) with COUNT(column) when NULLs exist",
+        "Using aggregate functions in WHERE instead of HAVING for group conditions",
+        "Assuming AVG includes NULL values in the same way as zeros"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLF-L2",
+      "title": "Scalar/String/Numeric Functions Basics",
+      "concept": "Scalar functions operate on individual values and return a value per row. Common examples include string functions (UPPER, LOWER, LENGTH), numeric functions (ROUND, ABS), and date/time functions (depending on DBMS). Syntax and available functions can vary by database system.",
+      "formula": "Examples: SELECT UPPER(name) FROM users; SELECT ROUND(price, 2) FROM products; SELECT LENGTH(title) FROM posts;",
+      "worked_example": "SELECT UPPER('sql') returns 'SQL'. SELECT ROUND(12.345, 2) returns 12.35 (rounding behavior may vary by DBMS/settings).",
+      "mistakes": [
+        "Assuming all function names/behaviors are identical across DBMSs",
+        "Applying string functions to incompatible types without conversion",
+        "Confusing scalar functions (per row) with aggregate functions (per group/set)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLF-L3",
+      "title": "Using Functions in Queries",
+      "concept": "Functions can be used in SELECT lists, WHERE clauses, ORDER BY, and other parts of queries (subject to rules). Using functions on indexed columns in WHERE may affect index usage in some cases. Aliases can make function results clearer.",
+      "formula": "SELECT ROUND(salary,0) AS rounded_salary FROM employees WHERE UPPER(dept) = 'HR'; (index usage depends on DBMS/expression indexes)",
+      "worked_example": "SELECT dept, COUNT(*) AS emp_count FROM employees GROUP BY dept HAVING COUNT(*) > 5; uses aggregate function in SELECT and HAVING.",
+      "mistakes": [
+        "Placing group-level conditions in WHERE instead of HAVING",
+        "Forgetting aliases make results easier to read",
+        "Overusing functions in predicates without considering performance implications"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLF-PRACTICE-001",
+      "question": "Which function returns the number of rows?",
+      "options": {
+        "A": "SUM()",
+        "B": "COUNT()",
+        "C": "AVG()",
+        "D": "ROUND()"
+      },
+      "correct_answer": "B",
+      "explanation": "COUNT() is an aggregate function used to count rows or non-NULL values depending on usage.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate",
+      "misconception_tags": [
+        "function_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-PRACTICE-002",
+      "question": "Which function calculates the average of a numeric column?",
+      "options": {
+        "A": "AVG()",
+        "B": "MAX()",
+        "C": "MIN()",
+        "D": "UPPER()"
+      },
+      "correct_answer": "A",
+      "explanation": "AVG() computes the mean of numeric values in a set of rows (typically ignoring NULLs).",
+      "difficulty": "easy",
+      "sub_topic": "aggregate",
+      "misconception_tags": [
+        "function_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-PRACTICE-003",
+      "question": "UPPER('sql') returns:",
+      "options": {
+        "A": "sql",
+        "B": "SQL",
+        "C": "Sql",
+        "D": "Error in all DBMS"
+      },
+      "correct_answer": "B",
+      "explanation": "UPPER converts alphabetic characters in a string to uppercase, so 'sql' becomes 'SQL'.",
+      "difficulty": "easy",
+      "sub_topic": "scalar",
+      "misconception_tags": [
+        "string_function_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-PRACTICE-004",
+      "question": "To filter groups after GROUP BY based on an aggregate condition, you should use:",
+      "options": {
+        "A": "WHERE",
+        "B": "HAVING",
+        "C": "ORDER BY",
+        "D": "LIMIT"
+      },
+      "correct_answer": "B",
+      "explanation": "HAVING filters groups after aggregation, whereas WHERE filters rows before grouping/aggregation.",
+      "difficulty": "easy",
+      "sub_topic": "usage",
+      "misconception_tags": [
+        "where_having_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-PRACTICE-005",
+      "question": "Which is a scalar function example (returns value per row)?",
+      "options": {
+        "A": "SUM(salary)",
+        "B": "COUNT(*)",
+        "C": "ROUND(price,2)",
+        "D": "AVG(marks)"
+      },
+      "correct_answer": "C",
+      "explanation": "ROUND operates on individual values and returns a result per row; SUM/COUNT/AVG are aggregate functions over sets of rows.",
+      "difficulty": "easy",
+      "sub_topic": "scalar",
+      "misconception_tags": [
+        "aggregate_scalar_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLF-001",
+      "question": "What does MAX(price) return?",
+      "options": {
+        "A": "Total of all prices",
+        "B": "Highest price value",
+        "C": "Number of prices",
+        "D": "Average price"
+      },
+      "correct_answer": "B",
+      "explanation": "MAX() is an aggregate function that returns the maximum value from a set of values.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate",
+      "misconception_tags": [
+        "function_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-002",
+      "question": "COUNT(column_name) typically:",
+      "options": {
+        "A": "Counts all rows including NULLs in that column",
+        "B": "Counts non-NULL values in that column",
+        "C": "Counts only unique values always",
+        "D": "Returns the sum"
+      },
+      "correct_answer": "B",
+      "explanation": "COUNT(column_name) counts rows where that column value is not NULL; COUNT(*) counts all rows.",
+      "difficulty": "medium",
+      "sub_topic": "aggregate",
+      "misconception_tags": [
+        "count_null_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-003",
+      "question": "Which query correctly shows departments with more than 10 employees?",
+      "options": {
+        "A": "SELECT dept, COUNT(*) FROM employees WHERE COUNT(*) > 10 GROUP BY dept;",
+        "B": "SELECT dept, COUNT(*) FROM employees GROUP BY dept HAVING COUNT(*) > 10;",
+        "C": "SELECT dept FROM employees HAVING COUNT(*) > 10;",
+        "D": "SELECT dept, COUNT(*) FROM employees GROUP BY dept WHERE COUNT(*) > 10;"
+      },
+      "correct_answer": "B",
+      "explanation": "Aggregate conditions on groups must be specified in HAVING after GROUP BY, not in WHERE.",
+      "difficulty": "medium",
+      "sub_topic": "usage",
+      "misconception_tags": [
+        "where_having_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-004",
+      "question": "LOWER('HeLLo') returns:",
+      "options": {
+        "A": "HELLO",
+        "B": "hello",
+        "C": "HeLLo",
+        "D": "Error"
+      },
+      "correct_answer": "B",
+      "explanation": "LOWER converts letters in the string to lowercase, producing 'hello'.",
+      "difficulty": "easy",
+      "sub_topic": "scalar",
+      "misconception_tags": [
+        "string_function_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLF-005",
+      "question": "Aggregate functions are most commonly used with:",
+      "options": {
+        "A": "GROUP BY (to compute per-group results)",
+        "B": "PRIMARY KEY only",
+        "C": "DROP TABLE",
+        "D": "CREATE INDEX"
+      },
+      "correct_answer": "A",
+      "explanation": "Aggregates like COUNT/SUM/AVG are often combined with GROUP BY to compute summary values for each group of rows.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate",
+      "misconception_tags": [
+        "usage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

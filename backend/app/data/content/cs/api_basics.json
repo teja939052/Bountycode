@@ -1,0 +1,325 @@
+{
+  "topic": "api_basics",
+  "subject": "cs",
+  "pattern": "api_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "API-L1",
+      "title": "What Is an API",
+      "concept": "An API (Application Programming Interface) is a defined set of rules and interfaces that allows software components to communicate. APIs specify how to request services or data and what responses to expect, enabling integration between systems, applications, or services.",
+      "formula": "Client sends request (endpoint + method + data) -> API processes -> returns response (status + data).",
+      "worked_example": "A weather app calls a weather service API endpoint to request current temperature for a city and receives a structured response (e.g., JSON) with the data.",
+      "mistakes": [
+        "Thinking APIs are only for web/HTTP (APIs exist at many levels)",
+        "Confusing API with the underlying implementation/database",
+        "Assuming all APIs are public"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "API-L2",
+      "title": "REST Basics and HTTP Methods",
+      "concept": "REST (Representational State Transfer) is a common architectural style for web APIs. RESTful APIs typically use HTTP methods to perform operations on resources identified by URLs: GET (read), POST (create), PUT/PATCH (update), DELETE (remove). Responses include status codes indicating outcome.",
+      "formula": "Common: GET /items (list), GET /items/1 (read), POST /items (create), PUT/PATCH /items/1 (update), DELETE /items/1 (delete). Status codes: 2xx success, 4xx client error, 5xx server error.",
+      "worked_example": "GET /users/42 retrieves user 42; POST /users creates a new user; DELETE /users/42 removes user 42 (subject to API design/permissions).",
+      "mistakes": [
+        "Using GET for operations that modify state inappropriately",
+        "Ignoring HTTP status codes in error handling",
+        "Assuming all APIs strictly follow REST constraints"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "API-L3",
+      "title": "Requests, Responses, and Authentication Basics",
+      "concept": "API requests often include headers (metadata, content type, auth tokens) and optionally a body (e.g., JSON). Responses return data and status codes. Many APIs require authentication/authorization (e.g., API keys, tokens) to control access and protect resources.",
+      "formula": "Request: method + URL + headers + body. Response: status code + headers + body. Auth examples: Authorization header with token/key (mechanisms vary).",
+      "worked_example": "A POST request with header Content-Type: application/json and body {\"name\":\"A\"} creates a resource; server responds 201 Created with the created object.",
+      "mistakes": [
+        "Exposing API keys/secrets in client-side/public code",
+        "Not validating or handling error responses",
+        "Confusing authentication (who you are) with authorization (what you can do)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "API-PRACTICE-001",
+      "question": "API stands for:",
+      "options": {
+        "A": "Application Programming Interface",
+        "B": "Applied Program Internet",
+        "C": "Application Process Integration",
+        "D": "Automated Programming Index"
+      },
+      "correct_answer": "A",
+      "explanation": "API stands for Application Programming Interface, a contract for how software components communicate.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-PRACTICE-002",
+      "question": "Which HTTP method is commonly used to retrieve/read a resource?",
+      "options": {
+        "A": "POST",
+        "B": "GET",
+        "C": "DELETE",
+        "D": "PUT"
+      },
+      "correct_answer": "B",
+      "explanation": "GET is typically used to request/read data from a server without modifying it.",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "method_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-PRACTICE-003",
+      "question": "Which HTTP status code range generally indicates a client error?",
+      "options": {
+        "A": "2xx",
+        "B": "3xx",
+        "C": "4xx",
+        "D": "5xx"
+      },
+      "correct_answer": "C",
+      "explanation": "4xx status codes indicate client-side errors (e.g., 400 Bad Request, 404 Not Found), while 5xx indicate server-side errors.",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "status_code_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-PRACTICE-004",
+      "question": "Which method is commonly used to create a new resource in RESTful APIs?",
+      "options": {
+        "A": "GET",
+        "B": "POST",
+        "C": "DELETE",
+        "D": "TRACE"
+      },
+      "correct_answer": "B",
+      "explanation": "POST is commonly used to submit data to create a new resource on the server.",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "method_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-PRACTICE-005",
+      "question": "Authentication in an API context is primarily about:",
+      "options": {
+        "A": "Formatting JSON",
+        "B": "Verifying the identity of the caller",
+        "C": "Sorting responses",
+        "D": "Compressing images"
+      },
+      "correct_answer": "B",
+      "explanation": "Authentication confirms who the user/client is; authorization determines what that identity is allowed to do.",
+      "difficulty": "easy",
+      "sub_topic": "auth",
+      "misconception_tags": [
+        "auth_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "API-001",
+      "question": "A 200 OK response generally means:",
+      "options": {
+        "A": "Resource not found",
+        "B": "Request succeeded",
+        "C": "Server crashed",
+        "D": "Authentication required"
+      },
+      "correct_answer": "B",
+      "explanation": "HTTP 200 OK indicates that the request was successful (specific meaning can depend on method/context).",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "status_code_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-002",
+      "question": "Which HTTP method is typically used to delete a resource?",
+      "options": {
+        "A": "GET",
+        "B": "POST",
+        "C": "DELETE",
+        "D": "HEAD"
+      },
+      "correct_answer": "C",
+      "explanation": "DELETE requests removal of the specified resource (subject to server implementation and permissions).",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "method_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-003",
+      "question": "JSON in web APIs is commonly used as:",
+      "options": {
+        "A": "A database engine",
+        "B": "A data format for request/response bodies",
+        "C": "A network protocol",
+        "D": "A password hashing algorithm"
+      },
+      "correct_answer": "B",
+      "explanation": "JSON (JavaScript Object Notation) is a lightweight data-interchange format widely used to structure API payloads.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "format_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-004",
+      "question": "A 404 status code indicates:",
+      "options": {
+        "A": "Success",
+        "B": "Resource not found",
+        "C": "Server internal error",
+        "D": "Created"
+      },
+      "correct_answer": "B",
+      "explanation": "HTTP 404 Not Found means the server cannot find the requested resource/endpoint.",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "status_code_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-005",
+      "question": "Authorization differs from authentication because authorization determines:",
+      "options": {
+        "A": "Who the user is",
+        "B": "What actions/resources the user is allowed to access",
+        "C": "The network speed",
+        "D": "The response format only"
+      },
+      "correct_answer": "B",
+      "explanation": "Authentication verifies identity, while authorization controls permissions and access rights for that identity.",
+      "difficulty": "easy",
+      "sub_topic": "auth",
+      "misconception_tags": [
+        "auth_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

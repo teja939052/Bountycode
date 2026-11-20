@@ -1,0 +1,325 @@
+{
+  "topic": "logarithms_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "logarithms_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "log_definition",
+      "title": "Definition of Logarithm",
+      "concept": "A logarithm is the inverse operation of exponentiation. If a^x = N (with a > 0, a != 1, N > 0), then x is the logarithm of N to base a, written as log_a(N) = x.",
+      "formula": "a^x = N <=> log_a(N) = x. Common examples: log_10(100)=2 because 10^2=100.",
+      "worked_example": "Since 2^5 = 32, log_2(32) = 5. Since 3^4 = 81, log_3(81) = 4.",
+      "mistakes": [
+        "Confusing base and argument (log_a(N) vs log_N(a))",
+        "Thinking log_a(0) or log of a negative number is defined in real numbers",
+        "Forgetting base restrictions (a > 0, a != 1)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "log_laws",
+      "title": "Basic Laws of Logarithms",
+      "concept": "Logarithm laws simplify expressions and equations. They convert multiplication/division/powers into addition/subtraction/multiplication, provided logs are defined and bases are valid and consistent.",
+      "formula": "log_a(MN)=log_a(M)+log_a(N); log_a(M/N)=log_a(M)-log_a(N); log_a(M^k)=k*log_a(M); log_a(a)=1; log_a(1)=0.",
+      "worked_example": "log_10(1000)=log_10(10^3)=3*log_10(10)=3*1=3. Also log_2(8*4)=log_2(8)+log_2(4)=3+2=5.",
+      "mistakes": [
+        "Assuming log(M+N)=log(M)+log(N) (incorrect)",
+        "Applying laws when arguments are not positive or bases mismatch",
+        "Dropping the base inconsistently in multi-base expressions"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "change_of_base_intro",
+      "title": "Change of Base (Intro)",
+      "concept": "Sometimes logs are given in one base but needed in another. The change of base rule lets you rewrite a logarithm using a convenient base (often 10 or e, or another base in aptitude problems).",
+      "formula": "log_a(N) = log_b(N) / log_b(a), for valid a,b,N. Also log_a(b) = 1 / log_b(a).",
+      "worked_example": "log_4(8) can be computed via base 2: log_4(8)=log_2(8)/log_2(4)=3/2.",
+      "mistakes": [
+        "Inverting numerator and denominator in change of base formula",
+        "Using different bases in numerator and denominator unintentionally",
+        "Arithmetic errors when simplifying powers"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "LOG-PRACTICE-001",
+      "question": "If 2^3 = 8, then log_2(8) equals:",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "8",
+        "D": "16"
+      },
+      "correct_answer": "B",
+      "explanation": "By definition, a^x = N means log_a(N)=x. Since 2^3=8, log_2(8)=3.",
+      "difficulty": "easy",
+      "sub_topic": "log_definition",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-PRACTICE-002",
+      "question": "What is the value of log_10(1)?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "10",
+        "D": "Undefined"
+      },
+      "correct_answer": "A",
+      "explanation": "For any valid base a, log_a(1)=0 because a^0=1.",
+      "difficulty": "easy",
+      "sub_topic": "log_laws",
+      "misconception_tags": [
+        "log_of_one_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-PRACTICE-003",
+      "question": "What is the value of log_5(5)?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "5",
+        "D": "25"
+      },
+      "correct_answer": "B",
+      "explanation": "log_a(a)=1 for any valid base a, so log_5(5)=1.",
+      "difficulty": "easy",
+      "sub_topic": "log_laws",
+      "misconception_tags": [
+        "log_base_same_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-PRACTICE-004",
+      "question": "Simplify: log_2(8) + log_2(4)",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "32"
+      },
+      "correct_answer": "B",
+      "explanation": "log_2(8)=3 and log_2(4)=2, so sum = 5. (Also log_2(8*4)=log_2(32)=5.)",
+      "difficulty": "easy",
+      "sub_topic": "log_laws",
+      "misconception_tags": [
+        "product_law_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-PRACTICE-005",
+      "question": "Using change of base idea, log_4(16) equals:",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "4",
+        "D": "8"
+      },
+      "correct_answer": "B",
+      "explanation": "Since 4^2 = 16, log_4(16)=2. (Or log_4(16)=log_2(16)/log_2(4)=4/2=2.)",
+      "difficulty": "easy",
+      "sub_topic": "change_of_base_intro",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "LOG-001",
+      "question": "If log_3(81) = x, then x equals:",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "9",
+        "D": "27"
+      },
+      "correct_answer": "B",
+      "explanation": "3^4 = 81, so log_3(81)=4.",
+      "difficulty": "easy",
+      "sub_topic": "log_definition",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-002",
+      "question": "Evaluate: log_10(1000)",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "10",
+        "D": "100"
+      },
+      "correct_answer": "B",
+      "explanation": "10^3 = 1000, therefore log_10(1000)=3.",
+      "difficulty": "easy",
+      "sub_topic": "log_definition",
+      "misconception_tags": [
+        "power_of_ten_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-003",
+      "question": "Simplify: log_2(32) - log_2(4)",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "8"
+      },
+      "correct_answer": "B",
+      "explanation": "log_2(32)=5 and log_2(4)=2, so difference = 3. (Using quotient law: log_2(32/4)=log_2(8)=3.)",
+      "difficulty": "easy",
+      "sub_topic": "log_laws",
+      "misconception_tags": [
+        "quotient_law_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-004",
+      "question": "Which identity is correct (for valid positive M, N and base a)?",
+      "options": {
+        "A": "log_a(M+N)=log_a(M)+log_a(N)",
+        "B": "log_a(MN)=log_a(M)+log_a(N)",
+        "C": "log_a(M/N)=log_a(M)+log_a(N)",
+        "D": "log_a(M^k)=log_a(M)+k"
+      },
+      "correct_answer": "B",
+      "explanation": "The product law states log_a(MN)=log_a(M)+log_a(N). The other options are incorrect forms.",
+      "difficulty": "medium",
+      "sub_topic": "log_laws",
+      "misconception_tags": [
+        "log_law_misapplication"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-005",
+      "question": "Evaluate: log_9(27)",
+      "options": {
+        "A": "1/2",
+        "B": "2/3",
+        "C": "3/2",
+        "D": "2"
+      },
+      "correct_answer": "C",
+      "explanation": "Using base 3: log_9(27)=log_3(27)/log_3(9)=3/2.",
+      "difficulty": "medium",
+      "sub_topic": "change_of_base_intro",
+      "misconception_tags": [
+        "change_of_base_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

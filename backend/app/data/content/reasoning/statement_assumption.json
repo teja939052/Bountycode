@@ -1,0 +1,325 @@
+{
+  "topic": "statement_assumption",
+  "subject": "reasoning",
+  "pattern": "statement_assumption",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "assumption_basics",
+      "title": "Understanding Assumptions",
+      "concept": "An assumption is something taken for granted or supposed to be true in a statement/argument, even if not explicitly stated. In statement-assumption questions, you must identify which assumption(s) are implicit and necessary for the statement to make sense.",
+      "formula": "Test: If the assumption is false, does the statement lose its basis or purpose? If yes, it is implicit.",
+      "worked_example": "Statement: 'Please switch off the lights when leaving the room.' Assumption: Lights consume electricity / keeping lights on unnecessarily is undesirable. This is implicit because the request is made to save power/avoid waste.",
+      "mistakes": [
+        "Treating general knowledge as an assumption when it is not required by the statement",
+        "Choosing assumptions that are too extreme or far-fetched",
+        "Confusing assumptions with conclusions"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "implicit_vs_explicit",
+      "title": "Implicit vs Explicit Ideas",
+      "concept": "Explicit information is directly stated. Implicit assumptions are unstated but necessary. A valid assumption should be closely connected to the statement and not introduce new, unrelated ideas.",
+      "formula": "Implicit assumption: necessary and unstated. Not implicit: explicitly stated, irrelevant, or merely possible but not required.",
+      "worked_example": "Statement: 'Use this app to book tickets quickly.' Explicit: app can book tickets. Implicit: booking tickets quickly is desirable or possible through this app compared to alternatives.",
+      "mistakes": [
+        "Marking restatements of the statement as assumptions",
+        "Assuming details that are possible but not necessary",
+        "Bringing outside opinions not supported by the statement"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "evaluating_multiple_assumptions",
+      "title": "Evaluating Multiple Assumptions",
+      "concept": "Some questions provide two assumptions and ask whether I, II, both, or neither are implicit. Evaluate each assumption independently against the statement. An assumption can be valid even if the other is not.",
+      "formula": "Check assumption I independently; check assumption II independently; then choose: only I, only II, both, either, or neither as per options.",
+      "worked_example": "Statement: 'Students should practice mock tests to improve exam performance.' Assumption I: Practice can improve performance (implicit). Assumption II: Mock tests are the only way to improve performance (too strong, not implicit). So only I is implicit.",
+      "mistakes": [
+        "Assuming both are implicit because one is clearly true",
+        "Accepting absolute words like 'only/always/never' without support",
+        "Failing to test each assumption separately"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "STAS-PRACTICE-001",
+      "question": "Statement: 'Please wear a helmet while riding a bike.' Which assumption is implicit?\nAssumption: Wearing a helmet can improve safety.",
+      "options": {
+        "A": "Assumption is implicit",
+        "B": "Assumption is not implicit",
+        "C": "Cannot be determined",
+        "D": "Statement is invalid"
+      },
+      "correct_answer": "A",
+      "explanation": "The advice to wear a helmet is based on the implicit assumption that helmets provide protection/improve safety.",
+      "difficulty": "easy",
+      "sub_topic": "assumption_basics",
+      "misconception_tags": [
+        "assumption_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-PRACTICE-002",
+      "question": "Statement: 'Use this online portal to pay your electricity bill.' Which assumption is implicit?\nAssumption: The portal supports electricity bill payments.",
+      "options": {
+        "A": "Assumption is implicit",
+        "B": "Assumption is not implicit",
+        "C": "Cannot be determined",
+        "D": "Statement contradicts assumption"
+      },
+      "correct_answer": "A",
+      "explanation": "The statement instructs users to pay electricity bills through the portal, implicitly assuming the portal has that capability.",
+      "difficulty": "easy",
+      "sub_topic": "implicit_vs_explicit",
+      "misconception_tags": [
+        "implicit_explicit_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-PRACTICE-003",
+      "question": "Statement: 'Candidates are advised to reach the exam center 30 minutes early.' Which assumption is implicit?\nAssumption: Reaching early may help candidates complete pre-exam formalities on time.",
+      "options": {
+        "A": "Assumption is implicit",
+        "B": "Assumption is not implicit",
+        "C": "Both statement and assumption are conclusions",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "The advice implies that arriving early is beneficial, likely for formalities or avoiding delay, so this assumption is implicit.",
+      "difficulty": "easy",
+      "sub_topic": "assumption_basics",
+      "misconception_tags": [
+        "assumption_identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-PRACTICE-004",
+      "question": "Statement: 'Company X has launched a new training program for employees.'\nAssumptions:\nI. Training can help improve employee skills.\nII. All employees lack skills.\nWhich assumption(s) is/are implicit?",
+      "options": {
+        "A": "Only I",
+        "B": "Only II",
+        "C": "Both I and II",
+        "D": "Neither I nor II"
+      },
+      "correct_answer": "A",
+      "explanation": "Launching training implicitly assumes it can improve skills/performance (I). Saying all employees lack skills (II) is an extreme claim not implied.",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_multiple_assumptions",
+      "misconception_tags": [
+        "extreme_assumption_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-PRACTICE-005",
+      "question": "Statement: 'Read the instructions carefully before starting the test.' Which assumption is implicit?\nAssumption: Reading instructions can help avoid mistakes during the test.",
+      "options": {
+        "A": "Assumption is implicit",
+        "B": "Assumption is not implicit",
+        "C": "Assumption is a conclusion",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "The instruction to read carefully implies that doing so is useful and may help prevent errors or confusion.",
+      "difficulty": "easy",
+      "sub_topic": "implicit_vs_explicit",
+      "misconception_tags": [
+        "assumption_identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "STAS-001",
+      "question": "Statement: 'Government should promote cycling to reduce traffic congestion.'\nAssumption: Cycling can help reduce traffic congestion.",
+      "options": {
+        "A": "Assumption is implicit",
+        "B": "Assumption is not implicit",
+        "C": "Assumption is irrelevant",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "The recommendation is meaningful only if cycling can contribute to reducing congestion; hence this assumption is implicit.",
+      "difficulty": "easy",
+      "sub_topic": "assumption_basics",
+      "misconception_tags": [
+        "assumption_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-002",
+      "question": "Statement: 'Install antivirus software to protect your computer.'\nAssumption: Antivirus software can provide some protection against threats.",
+      "options": {
+        "A": "Assumption is implicit",
+        "B": "Assumption is not implicit",
+        "C": "Assumption contradicts statement",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "The advice presumes antivirus software is effective to some extent in protecting computers; this is implicit.",
+      "difficulty": "easy",
+      "sub_topic": "implicit_vs_explicit",
+      "misconception_tags": [
+        "assumption_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-003",
+      "question": "Statement: 'The school has introduced extra classes for students who need support in mathematics.'\nAssumptions:\nI. Some students may need additional support in mathematics.\nII. Extra classes can help those students improve.\nWhich assumption(s) is/are implicit?",
+      "options": {
+        "A": "Only I",
+        "B": "Only II",
+        "C": "Both I and II",
+        "D": "Neither I nor II"
+      },
+      "correct_answer": "C",
+      "explanation": "Introducing extra classes for students who need support assumes both that such students exist (I) and that extra classes can help them (II).",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_multiple_assumptions",
+      "misconception_tags": [
+        "partial_assumption_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-004",
+      "question": "Statement: 'Apply for the scholarship before the deadline.'\nAssumption: Applications submitted after the deadline will always be accepted.",
+      "options": {
+        "A": "Assumption is implicit",
+        "B": "Assumption is not implicit",
+        "C": "Assumption is the same as statement",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "B",
+      "explanation": "The statement urges applying before the deadline, which does not assume late applications are always accepted; if anything, it implies timely submission matters.",
+      "difficulty": "easy",
+      "sub_topic": "assumption_basics",
+      "misconception_tags": [
+        "opposite_assumption_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-005",
+      "question": "Statement: 'Employees are encouraged to use public transport to reduce fuel expenses.'\nAssumptions:\nI. Using public transport may reduce fuel expenses.\nII. Public transport is available to all employees at all times.\nWhich assumption(s) is/are implicit?",
+      "options": {
+        "A": "Only I",
+        "B": "Only II",
+        "C": "Both I and II",
+        "D": "Neither I nor II"
+      },
+      "correct_answer": "A",
+      "explanation": "The encouragement is based on possible reduction in fuel expenses (I). Claiming availability to all employees at all times (II) is too absolute and not implied.",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_multiple_assumptions",
+      "misconception_tags": [
+        "extreme_assumption_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

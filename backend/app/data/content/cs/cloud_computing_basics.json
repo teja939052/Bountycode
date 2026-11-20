@@ -1,0 +1,325 @@
+{
+  "topic": "cloud_computing_basics",
+  "subject": "cs",
+  "pattern": "cloud_computing_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "CLOUD-L1",
+      "title": "Cloud Computing Fundamentals",
+      "concept": "Cloud computing delivers computing resources (servers, storage, databases, networking, software) over the internet on-demand, typically with pay-as-you-go pricing. It enables scalability, flexibility, and reduced need for owning/maintaining physical infrastructure.",
+      "formula": "Key ideas: on-demand self-service, broad network access, resource pooling, rapid elasticity, measured service (common characteristics).",
+      "worked_example": "Instead of buying and maintaining physical servers, a company can rent virtual machines or managed services from a cloud provider and scale capacity up or down based on demand.",
+      "mistakes": [
+        "Assuming cloud means data is always stored on your local machine",
+        "Thinking cloud eliminates all security responsibilities (shared responsibility model applies)",
+        "Confusing cloud computing with just internet access"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CLOUD-L2",
+      "title": "Service Models: IaaS, PaaS, SaaS",
+      "concept": "Cloud service models define the level of abstraction and responsibility. IaaS (Infrastructure as a Service) provides virtualized infrastructure (VMs, storage, networks). PaaS (Platform as a Service) provides a platform/runtime for developing and deploying applications. SaaS (Software as a Service) delivers ready-to-use applications over the internet.",
+      "formula": "Responsibility shifts: IaaS -> more user control of OS/apps; PaaS -> manage app/data, provider manages platform; SaaS -> provider manages most layers, user uses software.",
+      "worked_example": "IaaS: virtual machines. PaaS: managed app hosting platform. SaaS: email or CRM applications accessed via browser.",
+      "mistakes": [
+        "Confusing IaaS with SaaS responsibilities",
+        "Assuming SaaS users manage underlying servers",
+        "Thinking one model fits all use cases"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CLOUD-L3",
+      "title": "Deployment Models and Benefits/Considerations",
+      "concept": "Deployment models include public cloud (shared infrastructure, provider-managed), private cloud (dedicated to one organization), hybrid cloud (combination), and multi-cloud (multiple providers). Benefits include scalability and cost flexibility; considerations include security, compliance, latency, and vendor lock-in.",
+      "formula": "Public: shared, scalable. Private: dedicated/control. Hybrid: mix of environments. Multi-cloud: multiple cloud providers.",
+      "worked_example": "A hybrid setup may keep sensitive data in a private environment while using public cloud for scalable web workloads.",
+      "mistakes": [
+        "Assuming public cloud is always insecure or always secure without context",
+        "Ignoring data residency/compliance requirements",
+        "Overlooking network/latency and integration complexity"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "CLOUD-PRACTICE-001",
+      "question": "Cloud computing is best described as:",
+      "options": {
+        "A": "Running software only on personal offline computers",
+        "B": "Delivering computing resources over the internet on-demand",
+        "C": "A type of programming language",
+        "D": "Only data backup on USB drives"
+      },
+      "correct_answer": "B",
+      "explanation": "Cloud computing provides on-demand access to computing resources (compute, storage, services) via the internet.",
+      "difficulty": "easy",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-PRACTICE-002",
+      "question": "Which service model provides virtualized infrastructure like VMs and storage?",
+      "options": {
+        "A": "SaaS",
+        "B": "PaaS",
+        "C": "IaaS",
+        "D": "DBaaS only"
+      },
+      "correct_answer": "C",
+      "explanation": "IaaS (Infrastructure as a Service) offers fundamental infrastructure resources such as virtual machines, storage, and networking.",
+      "difficulty": "easy",
+      "sub_topic": "service_models",
+      "misconception_tags": [
+        "model_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-PRACTICE-003",
+      "question": "Gmail accessed via browser is an example of:",
+      "options": {
+        "A": "IaaS",
+        "B": "PaaS",
+        "C": "SaaS",
+        "D": "On-prem hardware"
+      },
+      "correct_answer": "C",
+      "explanation": "SaaS delivers ready-to-use software applications over the internet; users consume the application without managing underlying infrastructure.",
+      "difficulty": "easy",
+      "sub_topic": "service_models",
+      "misconception_tags": [
+        "model_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-PRACTICE-004",
+      "question": "A hybrid cloud combines:",
+      "options": {
+        "A": "Only public clouds",
+        "B": "Only private clouds",
+        "C": "Private and public (or on-prem and cloud) environments",
+        "D": "Only multiple SaaS apps"
+      },
+      "correct_answer": "C",
+      "explanation": "Hybrid cloud integrates different environments (e.g., private/on-premises and public cloud) to work together.",
+      "difficulty": "easy",
+      "sub_topic": "deployment_models",
+      "misconception_tags": [
+        "deployment_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-PRACTICE-005",
+      "question": "Which is a common benefit of cloud computing?",
+      "options": {
+        "A": "No internet required",
+        "B": "Scalability and elasticity of resources",
+        "C": "Guaranteed zero downtime in all cases",
+        "D": "No need for any security practices"
+      },
+      "correct_answer": "B",
+      "explanation": "Cloud platforms enable scaling resources up or down based on demand (elasticity), which is a key benefit.",
+      "difficulty": "easy",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "benefit_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CLOUD-001",
+      "question": "PaaS primarily provides:",
+      "options": {
+        "A": "Only end-user applications",
+        "B": "A platform/runtime for building and deploying applications",
+        "C": "Physical data center access to customers",
+        "D": "Only network cables"
+      },
+      "correct_answer": "B",
+      "explanation": "Platform as a Service offers a managed platform (runtime, middleware, tools) so developers can build and deploy apps without managing underlying infrastructure.",
+      "difficulty": "easy",
+      "sub_topic": "service_models",
+      "misconception_tags": [
+        "model_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-002",
+      "question": "A public cloud is typically:",
+      "options": {
+        "A": "Owned and used exclusively by one organization on its premises only",
+        "B": "Provided by a third party over the internet with shared infrastructure",
+        "C": "Not accessible over network",
+        "D": "Always free"
+      },
+      "correct_answer": "B",
+      "explanation": "Public cloud services are delivered by providers over the internet using multi-tenant/shared infrastructure (with logical isolation).",
+      "difficulty": "easy",
+      "sub_topic": "deployment_models",
+      "misconception_tags": [
+        "deployment_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-003",
+      "question": "Elasticity in cloud computing refers to:",
+      "options": {
+        "A": "Fixed resource allocation forever",
+        "B": "Ability to scale resources up or down based on demand",
+        "C": "Physical stretching of servers",
+        "D": "Only data encryption"
+      },
+      "correct_answer": "B",
+      "explanation": "Elasticity is the capability to rapidly provision and release resources to match workload demand.",
+      "difficulty": "easy",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "term_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-004",
+      "question": "In the shared responsibility model, security is:",
+      "options": {
+        "A": "Entirely the cloud provider's responsibility in all cases",
+        "B": "Shared between provider and customer depending on service model",
+        "C": "Never important in cloud",
+        "D": "Only the customer's responsibility for all layers always"
+      },
+      "correct_answer": "B",
+      "explanation": "Cloud security responsibilities are divided between provider and customer; the split varies by IaaS/PaaS/SaaS.",
+      "difficulty": "medium",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "responsibility_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOUD-005",
+      "question": "Which deployment model uses services from multiple cloud providers?",
+      "options": {
+        "A": "Private cloud",
+        "B": "Public cloud only",
+        "C": "Multi-cloud",
+        "D": "Local cloud"
+      },
+      "correct_answer": "C",
+      "explanation": "Multi-cloud refers to using cloud services from more than one cloud provider.",
+      "difficulty": "easy",
+      "sub_topic": "deployment_models",
+      "misconception_tags": [
+        "deployment_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

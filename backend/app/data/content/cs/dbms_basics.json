@@ -1,0 +1,222 @@
+﻿{
+  "topic": "dbms_basics",
+  "subject": "cs",
+  "pattern": "dbms_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "dbms_purpose_and_components",
+      "title": "What a DBMS Does",
+      "concept": "A Database Management System (DBMS) is software that stores, organizes, retrieves, and manages data while enforcing rules for consistency, security, and concurrent access. Compared to ad-hoc file storage, a DBMS provides structured schemas, query languages, transactions, and controlled multi-user access.",
+      "formula": "Core responsibilities: data definition (schema), data manipulation (queries/updates), integrity constraints, concurrency control, recovery/backup, and access control.",
+      "worked_example": "In a college system, student records, enrollments, and grades can be stored in tables with constraints (e.g., unique student_id, valid course references). A DBMS lets multiple staff query/update safely while preserving relationships and recovering from failures.",
+      "mistakes": [
+        "Thinking a DBMS is only 'where data is stored' and ignoring integrity, concurrency, and recovery roles.",
+        "Confusing a database (the data) with a DBMS (the software managing it).",
+        "Assuming file systems provide the same transactional guarantees as a DBMS by default."
+      ]
+    },
+    {
+      "id": "keys_and_relationships",
+      "title": "Keys and Relationships",
+      "concept": "Keys identify rows and connect tables. A primary key uniquely identifies each row in a table and should not be NULL. A candidate key is any column/set that could uniquely identify rows; one is chosen as primary. A foreign key in one table references a primary/candidate key in another table to enforce referential integrity.",
+      "formula": "Primary key: unique + not null (per row identity). Foreign key: values must match referenced key values or be NULL if allowed by design.",
+      "worked_example": "students(student_id PK, name), courses(course_id PK, title), enrollments(student_id FK, course_id FK, semester). enrollments.student_id must exist in students.student_id, preventing orphan enrollment records.",
+      "mistakes": [
+        "Using non-unique or frequently changing attributes as primary keys without care.",
+        "Assuming foreign keys are optional for correctness (they are critical for referential integrity).",
+        "Confusing primary key (identity) with unique descriptive attributes that may change."
+      ]
+    },
+    {
+      "id": "normalization_basics",
+      "title": "Normalization (Practical Basics)",
+      "concept": "Normalization organizes tables to reduce redundancy and update anomalies. In practice: 1NF requires atomic values (no repeating groups in a single column). 2NF removes partial dependency on part of a composite key. 3NF removes non-key attributes depending on other non-key attributes. The goal is consistency and maintainability, balanced with query performance needs.",
+      "formula": "1NF: atomic values. 2NF: 1NF + no partial dependency (for composite keys). 3NF: 2NF + no transitive dependency among non-key attributes.",
+      "worked_example": "If an orders table stores customer_name and customer_address repeated for every order, updating an address requires many rows. Better: customers(customer_id, name, address) and orders(order_id, customer_id, ...), linked by customer_id.",
+      "mistakes": [
+        "Thinking normalization means 'split every table as much as possible' without considering use case.",
+        "Ignoring anomalies: update anomaly, insertion anomaly, deletion anomaly.",
+        "Confusing normalization levels or assuming 3NF eliminates all design trade-offs."
+      ]
+    },
+    {
+      "id": "transactions_acid",
+      "title": "Transactions and ACID",
+      "concept": "A transaction is a logical unit of work that must be treated as a whole (all-or-nothing in effect). ACID properties describe reliable transaction behavior: Atomicity (all or none), Consistency (moves database from one valid state to another), Isolation (concurrent transactions don't improperly interfere), Durability (committed changes survive failures).",
+      "formula": "Transaction control (common SQL): BEGIN/START TRANSACTION; ... COMMIT; or ROLLBACK; ACID = Atomicity, Consistency, Isolation, Durability.",
+      "worked_example": "Transferring money: debit account A and credit account B. Both steps must succeed or both must be rolled back; otherwise money is lost/created. Atomicity ensures this all-or-nothing behavior.",
+      "mistakes": [
+        "Assuming each SQL statement is automatically part of a larger multi-step transaction without explicit control (behavior depends on autocommit/settings).",
+        "Confusing consistency (rules/invariants preserved) with isolation (concurrency visibility).",
+        "Believing durability means 'never any failure' rather than 'committed data persists after commit despite crashes'."
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "DB-PRACTICE-001",
+      "question": "Which key uniquely identifies each row in a table and should not be NULL?",
+      "options": {"A": "Foreign key", "B": "Primary key", "C": "Index key", "D": "Alternate description"},
+      "correct_answer": "B",
+      "explanation": "A primary key uniquely identifies each record in a table and enforces entity integrity by not allowing NULL values (in standard relational design). A foreign key references a key in another table.",
+      "difficulty": "easy",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": ["primary_vs_foreign_key"],
+      "company_tags": ["tcs", "infosys", "wipro", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-PRACTICE-002",
+      "question": "What is the main purpose of a foreign key?",
+      "options": {"A": "Speed up all queries automatically", "B": "Store large binary data", "C": "Enforce referential integrity between tables", "D": "Replace primary keys"},
+      "correct_answer": "C",
+      "explanation": "A foreign key creates a link between tables by referencing a primary/candidate key in another table, helping ensure that relationships remain valid (e.g., you cannot reference a non-existent parent record).",
+      "difficulty": "easy",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": ["foreign_key_purpose_error"],
+      "company_tags": ["tcs", "cognizant", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-PRACTICE-003",
+      "question": "Which ACID property ensures that a transaction is treated as all-or-nothing?",
+      "options": {"A": "Consistency", "B": "Isolation", "C": "Durability", "D": "Atomicity"},
+      "correct_answer": "D",
+      "explanation": "Atomicity means either all operations in a transaction are applied, or none are. If any part fails, the transaction is rolled back to preserve a consistent state.",
+      "difficulty": "easy",
+      "sub_topic": "transactions_acid",
+      "misconception_tags": ["acid_property_confusion"],
+      "company_tags": ["infosys", "wipro", "tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-PRACTICE-004",
+      "question": "A table stores multiple phone numbers in a single column as '111,222,333'. This violates which normal form most directly?",
+      "options": {"A": "1NF", "B": "2NF", "C": "3NF", "D": "BCNF only"},
+      "correct_answer": "A",
+      "explanation": "First Normal Form (1NF) requires atomic (indivisible) attribute values and no repeating groups in a single field. Storing multiple values in one column violates atomicity; a better design is a separate related table/rows for phone numbers.",
+      "difficulty": "medium",
+      "sub_topic": "normalization_basics",
+      "misconception_tags": ["normal_form_identification_error"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-PRACTICE-005",
+      "question": "Which statement best distinguishes a database from a DBMS?",
+      "options": {"A": "Database is software; DBMS is the stored data", "B": "Database is the collection of data; DBMS is the software that manages it", "C": "Both terms mean exactly the same thing", "D": "DBMS is only a backup file format"},
+      "correct_answer": "B",
+      "explanation": "A database refers to the organized collection of data. A DBMS (Database Management System) is the software system used to create, access, manage, and secure that data.",
+      "difficulty": "easy",
+      "sub_topic": "dbms_purpose_and_components",
+      "misconception_tags": ["db_vs_dbms_confusion"],
+      "company_tags": ["wipro", "capgemini", "cognizant"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "DB-001",
+      "question": "In a bank transfer transaction, money is debited from account A but not credited to account B due to a failure. Which property requires the system to undo the debit?",
+      "options": {"A": "Durability", "B": "Isolation", "C": "Atomicity", "D": "Normalization"},
+      "correct_answer": "C",
+      "explanation": "Atomicity guarantees all-or-nothing execution of a transaction. If any step fails, completed steps in that transaction must be rolled back so partial effects do not persist.",
+      "difficulty": "easy",
+      "sub_topic": "transactions_acid",
+      "misconception_tags": ["acid_property_confusion"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-002",
+      "question": "If every employee belongs to one department and department details are repeated in every employee row, updating a department's location may require many row updates. This is an example of:",
+      "options": {"A": "Insertion anomaly", "B": "Update anomaly", "C": "Deletion anomaly", "D": "Index anomaly"},
+      "correct_answer": "B",
+      "explanation": "An update anomaly occurs when the same fact is stored redundantly in multiple places, so a change must be applied in many rows and inconsistency can occur if any are missed. Normalization (separating department data) reduces this risk.",
+      "difficulty": "medium",
+      "sub_topic": "normalization_basics",
+      "misconception_tags": ["anomaly_type_confusion"],
+      "company_tags": ["accenture", "wipro", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-003",
+      "question": "Which of the following can be a valid reason to choose a surrogate primary key (e.g., auto-increment id)?",
+      "options": {"A": "Natural keys are never unique", "B": "It can provide a stable, simple unique identifier when natural attributes may change", "C": "It removes the need for foreign keys", "D": "It guarantees 3NF automatically"},
+      "correct_answer": "B",
+      "explanation": "Surrogate keys are often used when natural keys are composite, long, or subject to change. They do not eliminate the need for foreign keys or guarantee normalization; they primarily provide a stable identifier.",
+      "difficulty": "medium",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": ["surrogate_key_myths"],
+      "company_tags": ["infosys", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-004",
+      "question": "After a successful COMMIT, a power failure occurs. Which ACID property guarantees the committed changes are not lost?",
+      "options": {"A": "Atomicity", "B": "Consistency", "C": "Isolation", "D": "Durability"},
+      "correct_answer": "D",
+      "explanation": "Durability ensures that once a transaction is committed, its effects persist in non-volatile storage and survive subsequent system failures.",
+      "difficulty": "easy",
+      "sub_topic": "transactions_acid",
+      "misconception_tags": ["acid_property_confusion"],
+      "company_tags": ["cognizant", "wipro", "tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-005",
+      "question": "A relationship where one department has many employees is best represented by:",
+      "options": {"A": "Storing all employee names in one department column", "B": "Putting a department_id foreign key in the employees table", "C": "Duplicating the departments table for each employee", "D": "Removing primary keys from both tables"},
+      "correct_answer": "B",
+      "explanation": "In a one-to-many relationship, the 'many' side (employees) typically stores a foreign key referencing the primary key of the 'one' side (departments). This preserves normalization and referential integrity.",
+      "difficulty": "easy",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": ["relationship_modeling_error"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

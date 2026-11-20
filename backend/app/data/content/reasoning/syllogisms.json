@@ -1,0 +1,210 @@
+﻿{
+  "topic": "syllogisms",
+  "subject": "reasoning",
+  "pattern": "syllogisms",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "syllogism_statements",
+      "title": "Understanding Syllogism Statements",
+      "concept": "A syllogism gives statements (premises) and asks which conclusions logically follow. Common statement forms: All A are B (universal affirmative), No A are B (universal negative), Some A are B (particular affirmative), Some A are not B (particular negative). Conclusions must follow from given statements only, not from real-world assumptions.",
+      "formula": "Validity rule: a conclusion is valid only if it is necessarily true in every diagram/case consistent with all premises.",
+      "worked_example": "Statements: All cats are animals. All animals are living beings. Conclusion: All cats are living beings. This follows because the set of cats is inside animals, and animals inside living beings.",
+      "mistakes": [
+        "Using outside knowledge instead of only the given statements",
+        "Assuming 'Some A are B' means 'Some A are not B' (it does not necessarily)",
+        "Reversing statements incorrectly (All A are B does not imply All B are A)"
+      ]
+    },
+    {
+      "id": "venn_diagram_method",
+      "title": "Venn Diagram Method",
+      "concept": "Venn diagrams represent sets and relationships visually. 'All A are B' places A entirely inside B. 'No A are B' keeps A and B separate. 'Some A are B' shows overlap (at least one element common). To test a conclusion, see if any valid diagram can make it false; if yes, conclusion does not follow.",
+      "formula": "Test by possibility: if a conclusion can be false in any case allowed by premises, it is not a definite conclusion.",
+      "worked_example": "Statements: Some pens are books. All books are papers. Valid conclusion: Some pens are papers (the pens that are books must be papers). Not definite: All pens are papers (some pens may be outside books).",
+      "mistakes": [
+        "Drawing only one convenient diagram and ignoring other valid arrangements",
+        "Treating 'some' as 'some but not all' unless stated",
+        "Missing the minimum overlap implied by chaining statements"
+      ]
+    },
+    {
+      "id": "common_patterns",
+      "title": "Common Valid and Invalid Patterns",
+      "concept": "Chaining works when the middle term connects sets properly: All A are B and All B are C implies All A are C. But All A are B and All C are B does not imply any relation between A and C. 'Some' statements give limited definite conclusions; check carefully for what must be true versus what may be true.",
+      "formula": "Valid chain: A subset of B, B subset of C => A subset of C. Invalid conversion: All A are B !=> All B are A.",
+      "worked_example": "Statements: All roses are flowers. Some flowers fade quickly. Conclusion 'Some roses fade quickly' is not definite because the fading flowers may be non-rose flowers.",
+      "mistakes": [
+        "Assuming the converse of an 'All' statement",
+        "Forcing a definite conclusion when only possibility exists",
+        "Confusing 'Some A are not B' with 'No A are B'"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SYL-PRACTICE-001",
+      "question": "Statements: All dogs are animals. All animals breathe. Conclusion: All dogs breathe.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Cannot be determined", "D": "Only sometimes true"},
+      "correct_answer": "A",
+      "explanation": "Dogs are a subset of animals, and animals are a subset of beings that breathe. Therefore every dog must breathe.",
+      "difficulty": "easy",
+      "sub_topic": "syllogism_statements",
+      "misconception_tags": ["chain_inference_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-PRACTICE-002",
+      "question": "Statements: All apples are fruits. All fruits are sweet. Conclusion: All sweet things are apples.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Both conclusions follow", "D": "Conclusion is definitely false by premises"},
+      "correct_answer": "B",
+      "explanation": "Premises imply apples are inside sweet things, but other sweet things may exist that are not apples. The converse does not follow.",
+      "difficulty": "easy",
+      "sub_topic": "common_patterns",
+      "misconception_tags": ["invalid_converse"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-PRACTICE-003",
+      "question": "Statements: Some cats are black. All black things are dark. Conclusion: Some cats are dark.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Cannot be determined", "D": "No cats are dark"},
+      "correct_answer": "A",
+      "explanation": "The cats that are black must also be dark because all black things are dark. So at least those cats are dark.",
+      "difficulty": "easy",
+      "sub_topic": "venn_diagram_method",
+      "misconception_tags": ["missed_overlap_chain"],
+      "company_tags": ["infosys", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-PRACTICE-004",
+      "question": "Statements: No birds are mammals. All sparrows are birds. Conclusion: No sparrows are mammals.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Some sparrows are mammals", "D": "Cannot be determined"},
+      "correct_answer": "A",
+      "explanation": "Sparrows are entirely within birds, and birds have no overlap with mammals. Therefore sparrows cannot be mammals.",
+      "difficulty": "easy",
+      "sub_topic": "venn_diagram_method",
+      "misconception_tags": ["universal_negative_chain_error"],
+      "company_tags": ["wipro", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-PRACTICE-005",
+      "question": "Statements: Some books are pens. Some pens are pencils. Conclusion: Some books are pencils.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "All books are pencils", "D": "No books are pencils"},
+      "correct_answer": "B",
+      "explanation": "The pens that are books may be different from the pens that are pencils. No definite overlap between books and pencils is forced.",
+      "difficulty": "medium",
+      "sub_topic": "common_patterns",
+      "misconception_tags": ["false_transitive_some"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SYL-001",
+      "question": "Statements: All managers are employees. Some employees are trainees. Conclusions: I. Some managers are trainees. II. Some employees are managers.",
+      "options": {"A": "Only I follows", "B": "Only II follows", "C": "Both I and II follow", "D": "Neither follows"},
+      "correct_answer": "B",
+      "explanation": "Since all managers are employees, there are definitely employees who are managers (II follows). Trainees among employees may or may not include managers, so I does not definitely follow.",
+      "difficulty": "medium",
+      "sub_topic": "common_patterns",
+      "misconception_tags": ["assuming_overlap_from_some"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-002",
+      "question": "Statements: No car is a bike. All bikes are vehicles. Conclusion: Some vehicles are not cars.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "All vehicles are bikes", "D": "Some cars are vehicles"},
+      "correct_answer": "A",
+      "explanation": "Bikes are vehicles, and no bike is a car. Therefore those bikes (which are vehicles) are definitely not cars, so some vehicles are not cars.",
+      "difficulty": "medium",
+      "sub_topic": "venn_diagram_method",
+      "misconception_tags": ["missed_definite_exclusion"],
+      "company_tags": ["wipro", "cognizant", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-003",
+      "question": "Statements: All phones are devices. All devices need power. Conclusion: All phones need power.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Only some phones need power", "D": "Cannot be determined"},
+      "correct_answer": "A",
+      "explanation": "This is a direct universal chain: phones subset of devices subset of things needing power, so all phones need power.",
+      "difficulty": "easy",
+      "sub_topic": "syllogism_statements",
+      "misconception_tags": ["chain_inference_error"],
+      "company_tags": ["infosys", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-004",
+      "question": "Statements: Some artists are painters. All painters are creative. Conclusions: I. Some artists are creative. II. All creative people are painters.",
+      "options": {"A": "Only I follows", "B": "Only II follows", "C": "Both follow", "D": "Neither follows"},
+      "correct_answer": "A",
+      "explanation": "Artists who are painters must be creative, so I follows. II is the invalid converse of 'All painters are creative'.",
+      "difficulty": "easy",
+      "sub_topic": "common_patterns",
+      "misconception_tags": ["invalid_converse"],
+      "company_tags": ["tcs", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-005",
+      "question": "Statements: All squares are rectangles. No rectangle is a circle. Conclusion: No square is a circle.",
+      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Some squares are circles", "D": "Cannot be determined"},
+      "correct_answer": "A",
+      "explanation": "All squares lie inside rectangles, and rectangles have no overlap with circles. Therefore no square can be a circle.",
+      "difficulty": "easy",
+      "sub_topic": "venn_diagram_method",
+      "misconception_tags": ["universal_negative_chain_error"],
+      "company_tags": ["accenture", "infosys", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

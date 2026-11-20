@@ -1,0 +1,325 @@
+{
+  "topic": "active_passive_voice",
+  "subject": "verbal",
+  "pattern": "active_passive_voice",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "active_vs_passive",
+      "title": "Active vs Passive Voice",
+      "concept": "In active voice, the subject performs the action (e.g., 'The teacher explains the lesson'). In passive voice, the subject receives the action (e.g., 'The lesson is explained by the teacher'). The object of the active sentence often becomes the subject in the passive sentence.",
+      "formula": "Active: Subject + verb + object. Passive: Object (as subject) + form of 'be' + past participle (+ by + agent).",
+      "worked_example": "Active: 'Rita wrote a letter.' Passive: 'A letter was written by Rita.'",
+      "mistakes": [
+        "Keeping the same subject position without changing verb form",
+        "Forgetting to use past participle in passive voice",
+        "Dropping or misusing 'by' when the agent is needed"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "tense_changes",
+      "title": "Tense Changes in Passive Voice",
+      "concept": "When converting active to passive, the tense is preserved using an appropriate form of 'be' plus the past participle. The main verb changes form, but the time meaning remains the same.",
+      "formula": "Simple present: is/am/are + V3. Simple past: was/were + V3. Present continuous: is/am/are + being + V3. Present perfect: has/have + been + V3.",
+      "worked_example": "Active (simple present): 'She cleans the room.' Passive: 'The room is cleaned by she' (incorrect pronoun form in by-phrase) -> 'The room is cleaned by her.' Active (simple past): 'He repaired the car.' Passive: 'The car was repaired by him.'",
+      "mistakes": [
+        "Changing tense unintentionally during conversion",
+        "Using wrong 'be' form (is/are/was/were) for subject and tense",
+        "Using base verb instead of past participle (V3)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "when_to_use_passive",
+      "title": "Using Passive Voice Appropriately",
+      "concept": "Passive voice is useful when the doer is unknown, unimportant, or obvious, or when focus is on the action/receiver. Not all sentences should be converted; choose voice based on clarity and emphasis.",
+      "formula": "Use passive when focus is on receiver/action: 'The window was broken.' (doer unknown) Active when doer is important: 'The child broke the window.'",
+      "worked_example": "Unknown doer: 'My phone was stolen yesterday.' Focus on process/result: 'The results will be announced tomorrow.'",
+      "mistakes": [
+        "Assuming passive voice is always better/formal",
+        "Creating unclear sentences by omitting necessary agent information",
+        "Forcing passive conversion where object is absent (intransitive verbs)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "APV-PRACTICE-001",
+      "question": "Change to passive voice: 'The chef cooks the meal.'",
+      "options": {
+        "A": "The meal is cooked by the chef.",
+        "B": "The meal was cooked by the chef.",
+        "C": "The meal cooks by the chef.",
+        "D": "The chef is cooked the meal."
+      },
+      "correct_answer": "A",
+      "explanation": "Simple present active becomes is/am/are + past participle in passive: 'cooks' -> 'is cooked'. Object 'the meal' becomes subject.",
+      "difficulty": "easy",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "tense_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-PRACTICE-002",
+      "question": "Change to passive voice: 'She wrote a poem.'",
+      "options": {
+        "A": "A poem is written by her.",
+        "B": "A poem was written by her.",
+        "C": "A poem has written by her.",
+        "D": "A poem wrote by her."
+      },
+      "correct_answer": "B",
+      "explanation": "Simple past active ('wrote') becomes was/were + past participle ('was written') in passive voice.",
+      "difficulty": "easy",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "tense_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-PRACTICE-003",
+      "question": "Identify the voice: 'The window was broken by the children.'",
+      "options": {
+        "A": "Active voice",
+        "B": "Passive voice",
+        "C": "Neither",
+        "D": "Imperative voice"
+      },
+      "correct_answer": "B",
+      "explanation": "The subject 'The window' receives the action and the verb form is 'was broken' (be + past participle), indicating passive voice.",
+      "difficulty": "easy",
+      "sub_topic": "active_vs_passive",
+      "misconception_tags": [
+        "voice_identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-PRACTICE-004",
+      "question": "Change to passive voice: 'They are painting the house.'",
+      "options": {
+        "A": "The house is painted by them.",
+        "B": "The house was being painted by them.",
+        "C": "The house is being painted by them.",
+        "D": "The house has been painted by them."
+      },
+      "correct_answer": "C",
+      "explanation": "Present continuous active becomes is/am/are + being + past participle in passive: 'are painting' -> 'is being painted'.",
+      "difficulty": "medium",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "continuous_tense_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-PRACTICE-005",
+      "question": "Which sentence is in active voice?",
+      "options": {
+        "A": "The report was submitted yesterday.",
+        "B": "A new policy has been introduced.",
+        "C": "The manager approved the request.",
+        "D": "The tickets were sold out."
+      },
+      "correct_answer": "C",
+      "explanation": "In option C, the subject 'The manager' performs the action 'approved', so it is active voice. The others are passive constructions.",
+      "difficulty": "easy",
+      "sub_topic": "active_vs_passive",
+      "misconception_tags": [
+        "voice_identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "APV-001",
+      "question": "Change to passive voice: 'The company launched a new product.'",
+      "options": {
+        "A": "A new product is launched by the company.",
+        "B": "A new product was launched by the company.",
+        "C": "A new product has launched by the company.",
+        "D": "A new product launched by the company."
+      },
+      "correct_answer": "B",
+      "explanation": "Simple past 'launched' becomes 'was launched' in passive voice, with the object becoming the subject.",
+      "difficulty": "easy",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "tense_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-002",
+      "question": "Change to active voice: 'The homework was completed by Anil.'",
+      "options": {
+        "A": "Anil completed the homework.",
+        "B": "Anil completes the homework.",
+        "C": "The homework completed Anil.",
+        "D": "Anil was completing the homework."
+      },
+      "correct_answer": "A",
+      "explanation": "Passive 'was completed' (simple past passive) corresponds to active simple past 'completed'. Subject becomes Anil (doer).",
+      "difficulty": "easy",
+      "sub_topic": "active_vs_passive",
+      "misconception_tags": [
+        "active_passive_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-003",
+      "question": "Change to passive voice: 'People speak English in many countries.'",
+      "options": {
+        "A": "English was spoken in many countries.",
+        "B": "English is spoken in many countries.",
+        "C": "English is being spoken in many countries.",
+        "D": "English has been spoken in many countries."
+      },
+      "correct_answer": "B",
+      "explanation": "Simple present active 'speak' becomes 'is spoken' in passive voice (general fact).",
+      "difficulty": "easy",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "tense_conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-004",
+      "question": "Change to passive voice: 'She has finished the project.'",
+      "options": {
+        "A": "The project is finished by her.",
+        "B": "The project was finished by her.",
+        "C": "The project has been finished by her.",
+        "D": "The project had been finished by her."
+      },
+      "correct_answer": "C",
+      "explanation": "Present perfect active 'has finished' becomes 'has been finished' in passive voice.",
+      "difficulty": "medium",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "perfect_tense_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "APV-005",
+      "question": "Which option correctly converts to passive voice? Active: 'The teacher will announce the results tomorrow.'",
+      "options": {
+        "A": "The results will be announced by the teacher tomorrow.",
+        "B": "The results will announce by the teacher tomorrow.",
+        "C": "The results are announced by the teacher tomorrow.",
+        "D": "The results were announced by the teacher tomorrow."
+      },
+      "correct_answer": "A",
+      "explanation": "Future simple active 'will announce' becomes 'will be announced' in passive voice, keeping the same time reference.",
+      "difficulty": "medium",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "future_tense_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

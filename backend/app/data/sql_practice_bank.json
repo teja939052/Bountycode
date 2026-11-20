@@ -60,7 +60,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT, age INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25);",
+      "expected_query": "SELECT name FROM Employees WHERE department = 'Engineering' AND salary > 60000;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-002",
@@ -121,7 +127,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Products (id INT PRIMARY KEY, name VARCHAR(100), price INT, category VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Products VALUES (1,'A',100,'X'),(2,'B',200,'Y'),(3,'C',150,'X');",
+      "expected_query": "SELECT * FROM Products ORDER BY price DESC;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-003",
@@ -182,7 +194,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT, order_date DATE);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200,'2024-01-01'),(2,102,300,'2024-01-02'),(3,101,150,'2024-01-03');",
+      "expected_query": "SELECT COUNT(*) FROM Orders;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-004",
@@ -244,7 +262,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',70000),(2,'B','HR',50000),(3,'C','Eng',80000),(4,'D','HR',60000);",
+      "expected_query": "SELECT department, COUNT(*) as employee_count FROM Employees GROUP BY department;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-005",
@@ -303,7 +327,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200),(2,102,300),(3,101,150);",
+      "expected_query": "SELECT COUNT(DISTINCT customer_id) FROM Orders;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-006",
@@ -366,7 +396,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',10),(2,'B',20); INSERT INTO Departments VALUES (10,'Eng'),(20,'HR');",
+      "expected_query": "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-007",
@@ -425,7 +461,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), manager_id INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',NULL),(2,'B',1),(3,'C',NULL);",
+      "expected_query": "SELECT name FROM Employees WHERE manager_id IS NULL;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-008",
@@ -485,7 +527,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, order_date DATE, amount INT);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,'2024-01-15',100),(2,'2023-12-31',200),(3,'2024-06-20',150);",
+      "expected_query": "SELECT * FROM Orders WHERE YEAR(order_date) = 2024;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-009",
@@ -548,7 +596,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200),(2,102,300),(3,101,150),(4,101,100),(5,102,250),(6,102,180),(7,102,220),(8,103,300);",
+      "expected_query": "SELECT customer_id, COUNT(*) as order_count FROM Orders GROUP BY customer_id HAVING COUNT(*) > 3;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-010",
@@ -610,7 +664,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',70000),(2,'B','Eng',50000),(3,'C','HR',60000),(4,'D','HR',55000);",
+      "expected_query": "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-011",
@@ -671,7 +731,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',10),(2,'B',NULL); INSERT INTO Departments VALUES (10,'Eng');",
+      "expected_query": "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-012",
@@ -734,7 +800,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), manager_id INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',NULL),(2,'B',1),(3,'C',1);",
+      "expected_query": "SELECT e.name AS employee, m.name AS manager FROM Employees e LEFT JOIN Employees m ON e.manager_id = m.id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-013",
@@ -796,7 +868,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT, order_date DATE);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200,'2024-01-01'),(2,102,300,'2024-01-02'),(3,101,150,'2024-01-03');",
+      "expected_query": "WITH CustomerTotal AS (SELECT customer_id, SUM(amount) as total FROM Orders GROUP BY customer_id) SELECT customer_id, total FROM CustomerTotal;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-014",
@@ -858,7 +936,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',90000),(2,'B',60000),(3,'C',40000);",
+      "expected_query": "SELECT name, CASE WHEN salary > 80000 THEN 'High' WHEN salary > 50000 THEN 'Medium' ELSE 'Low' END as grade FROM Employees;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-015",
@@ -917,7 +1001,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), bonus INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',1000),(2,'B',NULL),(3,'C',500);",
+      "expected_query": "SELECT name, COALESCE(bonus, 0) as bonus FROM Employees;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-016",
@@ -979,7 +1069,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',70000),(2,'B','HR',60000),(3,'C','Eng',80000),(4,'D','HR',55000);",
+      "expected_query": "SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-017",
@@ -1041,7 +1137,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',70000),(2,'B','Eng',70000),(3,'C','HR',60000);",
+      "expected_query": "SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-018",
@@ -1103,7 +1205,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, order_date DATE, amount INT);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,'2024-01-01',100),(2,'2024-01-02',200),(3,'2024-01-03',150);",
+      "expected_query": "SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) as running_total FROM Orders;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-019",
@@ -1166,7 +1274,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',90000),(2,'B','Eng',80000),(3,'C','HR',70000),(4,'D','HR',60000),(5,'E','HR',65000);",
+      "expected_query": "SELECT name, department, salary FROM (SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees) t WHERE rn <= 2;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-020",
@@ -1229,7 +1343,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',90000),(2,'B','Eng',70000),(3,'C','HR',50000),(4,'D','HR',40000);",
+      "expected_query": "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-021",
@@ -1292,7 +1412,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50), location VARCHAR(50)); CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT, salary INT); CREATE TABLE Projects (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT, budget INT);",
+      "seed_inserts": "INSERT INTO Departments VALUES (10,'Eng','NY'); INSERT INTO Employees VALUES (1,'A',10,70000),(2,'B',10,80000); INSERT INTO Projects VALUES (1,'X',10,50000);",
+      "expected_query": "SELECT d.dept_name, COUNT(e.id) as emp_count, COALESCE(SUM(p.budget), 0) as total_budget FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id LEFT JOIN Projects p ON d.dept_id = p.dept_id GROUP BY d.dept_id, d.dept_name;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-022",
@@ -1356,7 +1482,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), manager_id INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'CEO',NULL),(2,'VP',1),(3,'Mgr',2),(4,'Dev',3);",
+      "expected_query": "WITH RECURSIVE OrgChart AS (SELECT id, name, manager_id, 1 as level FROM Employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.name, e.manager_id, oc.level + 1 FROM Employees e INNER JOIN OrgChart oc ON e.manager_id = oc.id) SELECT id, name, level FROM OrgChart ORDER BY level, id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-023",
@@ -1418,7 +1550,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, product_id INT, order_date DATE, amount INT);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,1,'2024-01-01',100),(2,101,1,'2024-01-01',100),(3,102,2,'2024-01-02',200);",
+      "expected_query": "SELECT customer_id, product_id, order_date, COUNT(*) as duplicate_count FROM Orders GROUP BY customer_id, product_id, order_date HAVING COUNT(*) > 1;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-024",
@@ -1480,7 +1618,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, order_date DATE, amount INT); CREATE INDEX idx_orders_date ON Orders(order_date);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,'2024-01-01',100);",
+      "expected_query": "SELECT * FROM Orders WHERE order_date >= '2024-01-01' AND order_date < '2025-01-01';",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-025",
@@ -1540,7 +1684,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(100));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','alice@example.com'),(2,'B','bob@test.org');",
+      "expected_query": "SELECT name, SUBSTRING_INDEX(email, '@', -1) as domain FROM Employees;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-026",
@@ -1602,7 +1752,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',100000),(2,'B',80000),(3,'C',60000);",
+      "expected_query": "SELECT MAX(salary) as second_highest FROM Employees WHERE salary < (SELECT MAX(salary) FROM Employees);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-027",
@@ -1665,7 +1821,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Customers (customer_id INT PRIMARY KEY, name VARCHAR(100), address VARCHAR(255)); CREATE TABLE Orders (order_id INT PRIMARY KEY, customer_id INT, product_id INT, order_date DATE, FOREIGN KEY (customer_id) REFERENCES Customers(customer_id));",
+      "seed_inserts": "INSERT INTO Customers VALUES (1,'Alice','123 Main St'); INSERT INTO Orders VALUES (100,1,1,'2024-01-01');",
+      "expected_query": "CREATE TABLE Customers (customer_id INT PRIMARY KEY, name VARCHAR(100), address VARCHAR(255)); CREATE TABLE Orders (order_id INT PRIMARY KEY, customer_id INT, product_id INT, order_date DATE, FOREIGN KEY (customer_id) REFERENCES Customers(customer_id));",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-028",
@@ -1727,7 +1889,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Sales (id INT PRIMARY KEY, product VARCHAR(100), units_sold INT, units_returned INT);",
+      "seed_inserts": "INSERT INTO Sales VALUES (1,'A',100,20),(2,'B',200,NULL),(3,'C',150,50);",
+      "expected_query": "SELECT product, units_sold - COALESCE(units_returned, 0) as net_units FROM Sales;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-029",
@@ -1789,7 +1957,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',90000),(2,'B','Eng',90000),(3,'C','Eng',80000);",
+      "expected_query": "SELECT name, department, salary, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-030",
@@ -1850,7 +2024,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50)); CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT);",
+      "seed_inserts": "INSERT INTO Departments VALUES (10,'Eng'),(20,'HR'); INSERT INTO Employees VALUES (1,'A',10);",
+      "expected_query": "SELECT d.dept_name, e.name FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-031",
@@ -1910,7 +2090,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'alice'),(2,'Bob');",
+      "expected_query": "SELECT id, UPPER(name) as name FROM Employees;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-032",
@@ -1972,7 +2158,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, product_name VARCHAR(100));",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,'A'),(2,101,'B'),(3,102,'C');",
+      "expected_query": "SELECT customer_id, GROUP_CONCAT(product_name ORDER BY product_name SEPARATOR ', ') as products FROM Orders GROUP BY customer_id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-033",
@@ -2034,7 +2226,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Customers (id INT PRIMARY KEY, name VARCHAR(100)); CREATE TABLE PremiumCustomers (id INT PRIMARY KEY, name VARCHAR(100));",
+      "seed_inserts": "INSERT INTO Customers VALUES (1,'A'),(2,'B'),(3,'C'); INSERT INTO PremiumCustomers VALUES (2,'B');",
+      "expected_query": "SELECT id, name FROM Customers EXCEPT SELECT id, name FROM PremiumCustomers;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-034",
@@ -2096,7 +2294,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT, order_date DATE); CREATE TABLE Customers (id INT PRIMARY KEY, name VARCHAR(100)); CREATE INDEX idx_orders_customer ON Orders(customer_id);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200,'2024-01-01'); INSERT INTO Customers VALUES (101,'Alice');",
+      "expected_query": "CREATE INDEX idx_orders_customer_id ON Orders(customer_id);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-035",
@@ -2158,7 +2362,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE ProductsA (id INT PRIMARY KEY, name VARCHAR(100)); CREATE TABLE ProductsB (id INT PRIMARY KEY, name VARCHAR(100));",
+      "seed_inserts": "INSERT INTO ProductsA VALUES (1,'X'),(2,'Y'),(3,'Z'); INSERT INTO ProductsB VALUES (2,'Y'),(3,'Z'),(4,'W');",
+      "expected_query": "SELECT id, name FROM ProductsA INTERSECT SELECT id, name FROM ProductsB;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-036",
@@ -2220,7 +2430,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT, order_date DATE);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200,'2024-01-01'),(2,102,300,'2024-01-02'),(3,101,150,'2024-01-03'),(4,103,400,'2024-01-04'),(5,102,250,'2024-01-05');",
+      "expected_query": "WITH CustomerSpending AS (SELECT customer_id, SUM(amount) as total_spent FROM Orders GROUP BY customer_id), TopCustomers AS (SELECT customer_id FROM CustomerSpending ORDER BY total_spent DESC LIMIT 3) SELECT cs.customer_id, cs.total_spent FROM CustomerSpending cs INNER JOIN TopCustomers tc ON cs.customer_id = tc.customer_id;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-037",
@@ -2282,7 +2498,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',10),(2,'B',NULL); INSERT INTO Departments VALUES (10,'Eng'),(20,'HR');",
+      "expected_query": "SELECT e.name, d.dept_name FROM Employees e FULL OUTER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-038",
@@ -2343,7 +2565,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Accounts (id INT PRIMARY KEY, balance INT);",
+      "seed_inserts": "INSERT INTO Accounts VALUES (1,500),(2,500);",
+      "expected_query": "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE; BEGIN; UPDATE Accounts SET balance = balance - 100 WHERE id = 1; UPDATE Accounts SET balance = balance + 100 WHERE id = 2; COMMIT;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-039",
@@ -2405,7 +2633,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE StockPrices (id INT PRIMARY KEY, symbol VARCHAR(20), price_date DATE, price INT);",
+      "seed_inserts": "INSERT INTO StockPrices VALUES (1,'AAPL','2024-01-01',150),(2,'AAPL','2024-01-02',155),(3,'AAPL','2024-01-03',153);",
+      "expected_query": "SELECT symbol, price_date, price, LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as prev_price, price - LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as price_change FROM StockPrices;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-040",
@@ -2467,7 +2701,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT, status VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,100,'completed'),(2,101,200,'pending'),(3,101,150,'completed'),(4,102,300,'pending');",
+      "expected_query": "SELECT customer_id, SUM(amount) as total_amount, SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed_orders, SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_orders FROM Orders GROUP BY customer_id;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-041",
@@ -2530,7 +2770,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) UNIQUE, age INT CHECK (age > 18));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','alice@example.com',25);",
+      "expected_query": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) UNIQUE, age INT CHECK (age > 18));",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-042",
@@ -2591,7 +2837,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Accounts (id INT PRIMARY KEY, balance INT);",
+      "seed_inserts": "INSERT INTO Accounts VALUES (1,500),(2,300);",
+      "expected_query": "BEGIN; UPDATE Accounts SET balance = balance - 100 WHERE id = 1; UPDATE Accounts SET balance = balance + 100 WHERE id = 2; COMMIT;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-043",
@@ -2653,7 +2905,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Users (id INT PRIMARY KEY, email VARCHAR(100));",
+      "seed_inserts": "INSERT INTO Users VALUES (1,'alice@example.com');",
+      "expected_query": "CREATE INDEX idx_users_email ON Users(email);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-044",
@@ -2713,7 +2971,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Accounts (id INT PRIMARY KEY, balance DECIMAL(10,2));",
+      "seed_inserts": "INSERT INTO Accounts VALUES (1,500),(2,300);",
+      "expected_query": "CREATE PROCEDURE TransferFunds(IN from_id INT, IN to_id INT, IN amount DECIMAL(10,2)) BEGIN DECLARE source_balance DECIMAL(10,2); START TRANSACTION; SELECT balance INTO source_balance FROM Accounts WHERE id = from_id FOR UPDATE; IF source_balance < amount THEN ROLLBACK; SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insufficient funds'; ELSE UPDATE Accounts SET balance = balance - amount WHERE id = from_id; UPDATE Accounts SET balance = balance + amount WHERE id = to_id; COMMIT; END IF; END;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-045",
@@ -2776,7 +3040,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Users (user_id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(100)); CREATE TABLE Products (product_id INT PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2)); CREATE TABLE Orders (order_id INT PRIMARY KEY, user_id INT, order_date DATE, FOREIGN KEY (user_id) REFERENCES Users(user_id)); CREATE TABLE OrderItems (order_item_id INT PRIMARY KEY, order_id INT, product_id INT, quantity INT, FOREIGN KEY (order_id) REFERENCES Orders(order_id), FOREIGN KEY (product_id) REFERENCES Products(product_id));",
+      "seed_inserts": "INSERT INTO Users VALUES (1,'Alice','alice@example.com'); INSERT INTO Products VALUES (1,'Widget',10.00); INSERT INTO Orders VALUES (100,1,'2024-01-01',10.00); INSERT INTO OrderItems VALUES (1000,100,1,1);",
+      "expected_query": "CREATE TABLE Users (user_id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(100)); CREATE TABLE Products (product_id INT PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2)); CREATE TABLE Orders (order_id INT PRIMARY KEY, user_id INT, order_date DATE, FOREIGN KEY (user_id) REFERENCES Users(user_id)); CREATE TABLE OrderItems (order_item_id INT PRIMARY KEY, order_id INT, product_id INT, quantity INT, FOREIGN KEY (order_id) REFERENCES Orders(order_id), FOREIGN KEY (product_id) REFERENCES Products(product_id));",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-046",
@@ -2838,7 +3108,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT, order_date DATE); CREATE TABLE OrderItems (id INT PRIMARY KEY, order_id INT, product_id INT, quantity INT);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200,'2024-01-01'),(2,102,300,'2024-01-02'); INSERT INTO OrderItems VALUES (1,1,1,2),(2,2,1,1);",
+      "expected_query": "CREATE INDEX idx_orders_customer_date ON Orders(customer_id, order_date); CREATE INDEX idx_orderitems_order_id ON OrderItems(order_id);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-047",
@@ -2900,7 +3176,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200);",
+      "expected_query": "EXPLAIN SELECT * FROM Orders WHERE customer_id = 101; CREATE INDEX idx_orders_customer ON Orders(customer_id);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-048",
@@ -2961,7 +3243,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, customer_id INT, amount INT, order_date DATE) PARTITION BY RANGE (YEAR(order_date)) (PARTITION p2024 VALUES LESS THAN (2025), PARTITION p2025 VALUES LESS THAN (2026));",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,200,'2024-01-01');",
+      "expected_query": "CREATE TABLE Orders (...) PARTITION BY RANGE (YEAR(order_date)) (PARTITION p2024 VALUES LESS THAN (2024), PARTITION p2025 VALUES LESS THAN (2025), PARTITION p2026 VALUES LESS THAN (2026));",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-049",
@@ -3023,7 +3311,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Sales (id INT PRIMARY KEY, region VARCHAR(50), product VARCHAR(100), sales_amount INT);",
+      "seed_inserts": "INSERT INTO Sales VALUES (1,'North','Widget',100),(2,'North','Gadget',200),(3,'South','Widget',150);",
+      "expected_query": "SELECT region, product, SUM(sales_amount) FROM Sales GROUP BY CUBE (region, product);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-050",
@@ -3085,7 +3379,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Sales (sale_id INT PRIMARY KEY, product_id INT, store_id INT, time_id INT, quantity INT, revenue DECIMAL(10,2)); CREATE TABLE Product (product_id INT PRIMARY KEY, name VARCHAR(100), category VARCHAR(50)); CREATE TABLE Store (store_id INT PRIMARY KEY, location VARCHAR(100), region VARCHAR(50)); CREATE TABLE Time (time_id INT PRIMARY KEY, date DATE, month INT, quarter INT, year INT);",
+      "seed_inserts": "INSERT INTO Product VALUES (1,'Widget','Gadgets'); INSERT INTO Store VALUES (1,'NY','East'); INSERT INTO Time VALUES (1,'2024-01-01',1,1,2024); INSERT INTO Sales VALUES (100,1,1,1,5,50.00);",
+      "expected_query": "CREATE TABLE Sales (sale_id INT PRIMARY KEY, product_id INT, store_id INT, time_id INT, quantity INT, revenue DECIMAL(10,2)); CREATE TABLE Product (product_id INT PRIMARY KEY, name VARCHAR(100), category VARCHAR(50)); CREATE TABLE Store (store_id INT PRIMARY KEY, location VARCHAR(100), region VARCHAR(50)); CREATE TABLE Time (time_id INT PRIMARY KEY, date DATE, month INT, quarter INT, year INT);",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-051",
@@ -3146,7 +3446,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Sales (id INT PRIMARY KEY, product VARCHAR(100), amount INT);",
+      "seed_inserts": "INSERT INTO Sales VALUES (1,'Widget',100);",
+      "expected_query": "GRANT SELECT ON ALL TABLES IN SCHEMA Sales TO analyst_role;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-052",
@@ -3208,7 +3514,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT, salary INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, location VARCHAR(100));",
+      "seed_inserts": "INSERT INTO Departments VALUES (10,'Building A');",
+      "expected_query": "BEGIN; INSERT INTO Employees (name, dept_id, salary) VALUES ('Alice', 10, 70000); UPDATE Departments SET location = 'Building B' WHERE dept_id = 10; COMMIT;",
+      "enforce_order": false
+    }
   },
   {
     "id": "sql-053",
@@ -3271,7 +3583,13 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (order_id INT PRIMARY KEY, customer_id INT, product_id INT, amount INT); CREATE TABLE Customers (customer_id INT PRIMARY KEY, name VARCHAR(100), country VARCHAR(50)); CREATE TABLE Products (product_id INT PRIMARY KEY, name VARCHAR(100), category VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,101,1,200); INSERT INTO Customers VALUES (101,'A','US'); INSERT INTO Products VALUES (1,'Bike','Sports');",
+      "expected_query": "SELECT o.order_id, c.name AS customer, p.name AS product, p.category FROM Orders o INNER JOIN Customers c ON o.customer_id = c.customer_id INNER JOIN Products p ON o.product_id = p.product_id;",
+      "enforce_order": true
+    }
   },
   {
     "id": "sql-054",
@@ -3332,6 +3650,1282 @@
       "2. Determine join conditions.",
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
-    ]
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT, salary INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Departments VALUES (10,'Eng'); INSERT INTO Employees VALUES (1,'Alice',10,70000),(2,'Bob',10,50000);",
+      "expected_query": "CREATE VIEW ActiveEmployees AS SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id WHERE e.salary > 60000; SELECT * FROM ActiveEmployees;",
+      "enforce_order": false
+    }
+  },
+  {
+    "id": "sql-055",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "exists_not_exists",
+    "difficulty": "medium",
+    "question": "Given Employees(id, name, dept_id) and Departments(dept_id, dept_name), write a query to find departments that have NO employees using NOT EXISTS.",
+    "correct_answer": "SELECT dept_id, dept_name FROM Departments d WHERE NOT EXISTS (SELECT 1 FROM Employees e WHERE e.dept_id = d.dept_id);",
+    "options": [
+      "SELECT dept_id, dept_name FROM Departments WHERE dept_id NOT IN (SELECT dept_id FROM Employees);",
+      "SELECT dept_id, dept_name FROM Departments d WHERE NOT EXISTS (SELECT 1 FROM Employees e WHERE e.dept_id = d.dept_id);",
+      "SELECT dept_id, dept_name FROM Departments LEFT JOIN Employees ON Departments.dept_id = Employees.dept_id WHERE Employees.dept_id IS NULL;",
+      "SELECT dept_id, dept_name FROM Departments EXCEPT SELECT dept_id, dept_name FROM Employees;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT dept_id, dept_name FROM Departments d WHERE NOT EXISTS (SELECT 1 FROM Employees e WHERE e.dept_id = d.dept_id);",
+      "explanation": "NOT EXISTS checks for the absence of matching rows. It's NULL-safe and often more efficient than NOT IN when the subquery might contain NULLs."
+    },
+    "testcases": [
+      {
+        "input": "Departments: [(10,'Eng'),(20,'HR'),(30,'Sales')]; Employees: [(1,'A',10),(2,'B',10)]",
+        "expected": "20-HR, 30-Sales"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Departments: [(10,'Eng')]; Employees: [(1,'A',10),(2,'B',10)]",
+        "expected": "empty"
+      }
+    ],
+    "hints": [
+      "Use NOT EXISTS to check for absence of rows",
+      "Correlated subquery references outer table",
+      "NOT EXISTS is NULL-safe unlike NOT IN"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Find departments with no employees using NOT EXISTS.",
+    "common_trap": "Using NOT IN with NULLs can return unexpected results.",
+    "reasoning_steps": [
+      "1. Identify the table to check for missing rows.",
+      "2. Write a correlated subquery referencing the outer table.",
+      "3. Use NOT EXISTS to filter departments without employees."
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Departments VALUES (10,'Eng'),(20,'HR'),(30,'Sales'); INSERT INTO Employees VALUES (1,'A',10),(2,'B',10);",
+      "expected_query": "SELECT dept_id, dept_name FROM Departments d WHERE NOT EXISTS (SELECT 1 FROM Employees e WHERE e.dept_id = d.dept_id);",
+      "enforce_order": false
+    }
+  },
+  {
+    "id": "sql-056",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "date_diff",
+    "difficulty": "easy",
+    "question": "Given a table Orders(id, order_date, ship_date), write a query to find the number of days between order_date and ship_date for each order.",
+    "correct_answer": "SELECT id, DATEDIFF(ship_date, order_date) as days_to_ship FROM Orders;",
+    "options": [
+      "SELECT id, ship_date - order_date as days_to_ship FROM Orders;",
+      "SELECT id, DATEDIFF(ship_date, order_date) as days_to_ship FROM Orders;",
+      "SELECT id, DATE_DIFF(ship_date, order_date) FROM Orders;",
+      "SELECT id, DAYS_BETWEEN(order_date, ship_date) FROM Orders;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT id, DATEDIFF(ship_date, order_date) as days_to_ship FROM Orders;",
+      "explanation": "DATEDIFF(end_date, start_date) returns the number of days between two dates. Argument order matters: DATEDIFF(date1, date2) = date1 - date2."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,'2024-01-01','2024-01-05'),(2,'2024-01-10','2024-01-10')]",
+        "expected": "1: 4 days, 2: 0 days"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,'2024-01-05','2024-01-01')]",
+        "expected": "1: -4 days (negative, shipped before ordered)"
+      }
+    ],
+    "hints": [
+      "Use DATEDIFF to compute date differences",
+      "First argument is the end date, second is start date",
+      "Result can be negative if end < start"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes",
+    "explanation": "Calculate days between order and ship dates.",
+    "common_trap": "Reversing argument order in DATEDIFF gives negative results.",
+    "reasoning_steps": [
+      "1. Identify the two date columns.",
+      "2. Apply DATEDIFF(ship_date, order_date).",
+      "3. Alias the result for clarity."
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Orders (id INT PRIMARY KEY, order_date DATE, ship_date DATE);",
+      "seed_inserts": "INSERT INTO Orders VALUES (1,'2024-01-01','2024-01-05'),(2,'2024-01-10','2024-01-10');",
+      "expected_query": "SELECT id, DATEDIFF(ship_date, order_date) as days_to_ship FROM Orders;",
+      "enforce_order": true
+    }
+  },
+  {
+    "id": "sql-057",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "having_count",
+    "difficulty": "medium",
+    "question": "Given a table OrderItems(order_id, product_id, quantity), write a query to find products that appear in more than 5 different orders.",
+    "correct_answer": "SELECT product_id, COUNT(DISTINCT order_id) as order_count FROM OrderItems GROUP BY product_id HAVING COUNT(DISTINCT order_id) > 5;",
+    "options": [
+      "SELECT product_id, COUNT(order_id) FROM OrderItems GROUP BY product_id HAVING COUNT(order_id) > 5;",
+      "SELECT product_id, COUNT(DISTINCT order_id) as order_count FROM OrderItems GROUP BY product_id HAVING COUNT(DISTINCT order_id) > 5;",
+      "SELECT product_id FROM OrderItems GROUP BY product_id HAVING COUNT(*) > 5;",
+      "SELECT product_id, COUNT(DISTINCT order_id) FROM OrderItems WHERE COUNT(DISTINCT order_id) > 5 GROUP BY product_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT product_id, COUNT(DISTINCT order_id) as order_count FROM OrderItems GROUP BY product_id HAVING COUNT(DISTINCT order_id) > 5;",
+      "explanation": "COUNT(DISTINCT order_id) counts unique orders per product. HAVING filters groups after aggregation. Using COUNT(*) would count line items, not distinct orders."
+    },
+    "testcases": [
+      {
+        "input": "OrderItems: [(1,101,2),(2,101,1),(3,102,3),(4,101,1),(5,101,2),(6,101,1),(7,101,3)]",
+        "expected": "101 appears in 6 orders"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "OrderItems: [(1,101,2),(2,101,1),(3,102,3)]",
+        "expected": "empty (no product in > 5 orders)"
+      }
+    ],
+    "hints": [
+      "Group by product_id",
+      "Use COUNT(DISTINCT order_id) for unique orders",
+      "HAVING filters groups, WHERE filters rows"
+    ],
+    "companies": [
+      "amazon",
+      "walmart",
+      "target"
+    ],
+    "role": [
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Find products appearing in more than 5 distinct orders.",
+    "common_trap": "Using COUNT(*) instead of COUNT(DISTINCT order_id) counts line items, not orders.",
+    "reasoning_steps": [
+      "1. Group OrderItems by product_id.",
+      "2. Count distinct order_id per group.",
+      "3. Filter groups with count > 5 using HAVING."
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE OrderItems (order_id INT, product_id INT, quantity INT, PRIMARY KEY (order_id, product_id));",
+      "seed_inserts": "INSERT INTO OrderItems VALUES (1,101,2),(2,101,1),(3,102,3),(4,101,1),(5,101,2),(6,101,1),(7,101,3);",
+      "expected_query": "SELECT product_id, COUNT(DISTINCT order_id) as order_count FROM OrderItems GROUP BY product_id HAVING COUNT(DISTINCT order_id) > 5;",
+      "enforce_order": false
+    }
+  },
+  {
+    "id": "sql-058",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "percentile_rank",
+    "difficulty": "hard",
+    "question": "Given a table Employees(id, name, salary, department), write a query to assign a percentile rank to each employee's salary within their department using PERCENT_RANK().",
+    "correct_answer": "SELECT name, department, salary, PERCENT_RANK() OVER (PARTITION BY department ORDER BY salary) as pct_rank FROM Employees;",
+    "options": [
+      "SELECT name, PERCENT_RANK(salary) FROM Employees GROUP BY department;",
+      "SELECT name, department, salary, PERCENT_RANK() OVER (PARTITION BY department ORDER BY salary) as pct_rank FROM Employees;",
+      "SELECT name, CUME_DIST() OVER (PARTITION BY department ORDER BY salary) as pct_rank FROM Employees;",
+      "SELECT name, NTILE(100) OVER (PARTITION BY department ORDER BY salary) as pct_rank FROM Employees;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name, department, salary, PERCENT_RANK() OVER (PARTITION BY department ORDER BY salary) as pct_rank FROM Employees;",
+      "explanation": "PERCENT_RANK() computes (rank - 1) / (total_rows - 1), giving a value from 0 to 1. PARTITION BY restarts per department. CUME_DIST() includes the current row; PERCENT_RANK() does not."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',50000),(2,'B','Eng',70000),(3,'C','Eng',90000)]",
+        "expected": "A: 0.0, B: 0.5, C: 1.0"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',50000)]",
+        "expected": "A: 0.0 (single row in partition)"
+      }
+    ],
+    "hints": [
+      "Use PERCENT_RANK() window function",
+      "PARTITION BY department for per-department ranking",
+      "ORDER BY salary determines the ranking order"
+    ],
+    "companies": [
+      "google",
+      "amazon",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "data-analyst",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "20-25 minutes",
+    "explanation": "Assign percentile rank to salaries within departments.",
+    "common_trap": "Confusing PERCENT_RANK with CUME_DIST or NTILE.",
+    "reasoning_steps": [
+      "1. Use PERCENT_RANK() as a window function.",
+      "2. PARTITION BY department to restart per dept.",
+      "3. ORDER BY salary to rank within each partition."
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',50000),(2,'B','Eng',70000),(3,'C','Eng',90000);",
+      "expected_query": "SELECT name, department, salary, PERCENT_RANK() OVER (PARTITION BY department ORDER BY salary) as pct_rank FROM Employees;",
+      "enforce_order": true
+    }
+  },
+  {
+    "id": "sql-059",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "first_last_value",
+    "difficulty": "medium",
+    "question": "Given a table StockPrices(symbol, price_date, price), write a query to show each stock's first and last price using FIRST_VALUE() and LAST_VALUE() window functions.",
+    "correct_answer": "SELECT symbol, price_date, price, FIRST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date) as first_price, LAST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as last_price FROM StockPrices;",
+    "options": [
+      "SELECT symbol, FIRST_VALUE(price), LAST_VALUE(price) FROM StockPrices GROUP BY symbol;",
+      "SELECT symbol, price_date, price, FIRST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date) as first_price, LAST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as last_price FROM StockPrices;",
+      "SELECT symbol, MIN(price), MAX(price) FROM StockPrices GROUP BY symbol;",
+      "SELECT symbol, price_date, FIRST_VALUE(price) OVER (ORDER BY price_date) FROM StockPrices;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT symbol, price_date, price, FIRST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date) as first_price, LAST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as last_price FROM StockPrices;",
+      "explanation": "FIRST_VALUE() returns the first row in the window. LAST_VALUE() needs the explicit frame clause ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING to see the last row; otherwise it defaults to the current row."
+    },
+    "testcases": [
+      {
+        "input": "StockPrices: [('AAPL','2024-01-01',150),('AAPL','2024-01-02',155),('AAPL','2024-01-03',153)]",
+        "expected": "AAPL: first=150, last=153"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "StockPrices: [('AAPL','2024-01-01',150)]",
+        "expected": "AAPL: first=150, last=150"
+      }
+    ],
+    "hints": [
+      "Use FIRST_VALUE() for first row in partition",
+      "LAST_VALUE() needs explicit frame clause for full window",
+      "PARTITION BY symbol for per-stock analysis"
+    ],
+    "companies": [
+      "goldman-sachs",
+      "jpmorgan",
+      "morgan-stanley"
+    ],
+    "role": [
+      "data-analyst",
+      "quant-developer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes",
+    "explanation": "Show first and last price per stock using window functions.",
+    "common_trap": "LAST_VALUE() without frame clause returns current row, not last row.",
+    "reasoning_steps": [
+      "1. Use FIRST_VALUE() with PARTITION BY symbol ORDER BY price_date.",
+      "2. Use LAST_VALUE() with full frame clause.",
+      "3. Without frame, LAST_VALUE defaults to current row."
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE StockPrices (symbol VARCHAR(20), price_date DATE, price DECIMAL(10,2), PRIMARY KEY (symbol, price_date));",
+      "seed_inserts": "INSERT INTO StockPrices VALUES ('AAPL','2024-01-01',150),('AAPL','2024-01-02',155),('AAPL','2024-01-03',153);",
+      "expected_query": "SELECT symbol, price_date, price, FIRST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date) as first_price, LAST_VALUE(price) OVER (PARTITION BY symbol ORDER BY price_date ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as last_price FROM StockPrices;",
+      "enforce_order": true
+    }
+  },
+  {
+    "id": "sql-060",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "ntile_buckets",
+    "difficulty": "medium",
+    "question": "Given a table Sales(salesperson_id, sale_amount), divide salespeople into 4 equal buckets (quartiles) by sale_amount using NTILE(4).",
+    "correct_answer": "SELECT salesperson_id, sale_amount, NTILE(4) OVER (ORDER BY sale_amount DESC) as quartile FROM Sales;",
+    "options": [
+      "SELECT salesperson_id, NTILE(4) FROM Sales GROUP BY salesperson_id;",
+      "SELECT salesperson_id, sale_amount, NTILE(4) OVER (ORDER BY sale_amount DESC) as quartile FROM Sales;",
+      "SELECT salesperson_id, sale_amount, QUARTILE(sale_amount) FROM Sales;",
+      "SELECT salesperson_id, sale_amount, PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY sale_amount) FROM Sales;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT salesperson_id, sale_amount, NTILE(4) OVER (ORDER BY sale_amount DESC) as quartile FROM Sales;",
+      "explanation": "NTILE(n) divides rows into n approximately equal buckets. ORDER BY determines the sort order. Bucket 1 has the highest values (DESC), bucket n has the lowest."
+    },
+    "testcases": [
+      {
+        "input": "Sales: [(1,1000),(2,2000),(3,3000),(4,4000),(5,5000)]",
+        "expected": "5: q1, 4: q1, 3: q2, 2: q3, 1: q4"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Sales: [(1,100),(2,200)]",
+        "expected": "2: q1, 1: q2"
+      }
+    ],
+    "hints": [
+      "Use NTILE(n) for equal-sized buckets",
+      "ORDER BY determines bucket assignment order",
+      "NTILE(4) = quartiles"
+    ],
+    "companies": [
+      "salesforce",
+      "hubspot",
+      "oracle"
+    ],
+    "role": [
+      "sales-analyst",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Divide salespeople into quartiles by sales amount.",
+    "common_trap": "Forgetting ORDER BY in NTILE makes bucket assignment nondeterministic.",
+    "reasoning_steps": [
+      "1. Use NTILE(4) as a window function.",
+      "2. ORDER BY sale_amount DESC for highest first.",
+      "3. No PARTITION needed for global quartiles."
+    ],
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Sales (salesperson_id INT PRIMARY KEY, sale_amount DECIMAL(10,2));",
+      "seed_inserts": "INSERT INTO Sales VALUES (1,1000),(2,2000),(3,3000),(4,4000),(5,5000);",
+      "expected_query": "SELECT salesperson_id, sale_amount, NTILE(4) OVER (ORDER BY sale_amount DESC) as quartile FROM Sales;",
+      "enforce_order": true
+    }
+  },
+  {
+    "id": "sql-b2-01",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "basic_select",
+    "difficulty": "easy",
+    "question": "Write a query to select all employees from the Engineering department.",
+    "options": {
+      "A": "SELECT * FROM Employees WHERE department = 'Engineering'",
+      "B": "SELECT * FROM Employees WHERE department = 'HR'",
+      "C": "SELECT * FROM Employees",
+      "D": "SELECT name FROM Employees"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT * FROM Employees WHERE department = 'Engineering';",
+      "explanation": "Filter rows where department equals 'Engineering'."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25)]",
+        "expected": "1-Alice-Engineering-70000-28, 3-Charlie-Engineering-55000-25",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25)]",
+        "expected": "1-Alice-Engineering-70000-28, 3-Charlie-Engineering-55000-25",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Filter rows where department equals 'Engineering'.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT, age INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25);",
+      "expected_query": "SELECT * FROM Employees WHERE department = 'Engineering';",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-02",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "basic_select",
+    "difficulty": "easy",
+    "question": "Write a query to select names and salaries of all employees.",
+    "options": {
+      "A": "SELECT name, salary FROM Employees",
+      "B": "SELECT * FROM Employees",
+      "C": "SELECT name FROM Employees",
+      "D": "SELECT salary FROM Employees"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT name, salary FROM Employees;",
+      "explanation": "Select specific columns name and salary from Employees table."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30)]",
+        "expected": "Alice-70000, Bob-50000",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30)]",
+        "expected": "Alice-70000, Bob-50000",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Select specific columns name and salary from Employees table.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT, age INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30);",
+      "expected_query": "SELECT name, salary FROM Employees;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-03",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "basic_select",
+    "difficulty": "medium",
+    "question": "Write a query to find employees with salary greater than 60000.",
+    "options": {
+      "A": "SELECT * FROM Employees WHERE salary > 60000",
+      "B": "SELECT * FROM Employees WHERE salary < 60000",
+      "C": "SELECT * FROM Employees WHERE salary = 60000",
+      "D": "SELECT * FROM Employees"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT * FROM Employees WHERE salary > 60000;",
+      "explanation": "Filter employees whose salary exceeds 60000 using WHERE clause."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25)]",
+        "expected": "1-Alice-Engineering-70000-28",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25)]",
+        "expected": "1-Alice-Engineering-70000-28",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Filter employees whose salary exceeds 60000 using WHERE clause.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT, age INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25);",
+      "expected_query": "SELECT * FROM Employees WHERE salary > 60000;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-04",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "aggregation",
+    "difficulty": "medium",
+    "question": "Write a query to count total number of employees.",
+    "options": {
+      "A": "SELECT COUNT(*) FROM Employees",
+      "B": "SELECT COUNT(name) FROM Employees",
+      "C": "SELECT SUM(*) FROM Employees",
+      "D": "SELECT COUNT(id) FROM Employees"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT COUNT(*) FROM Employees;",
+      "explanation": "COUNT(*) returns total number of rows in the table."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000)]",
+        "expected": "3",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000)]",
+        "expected": "3",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "COUNT(*) returns total number of rows in the table.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000);",
+      "expected_query": "SELECT COUNT(*) FROM Employees;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-05",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "aggregation",
+    "difficulty": "medium",
+    "question": "Write a query to find average salary by department.",
+    "options": {
+      "A": "SELECT department, AVG(salary) FROM Employees GROUP BY department",
+      "B": "SELECT AVG(salary) FROM Employees",
+      "C": "SELECT department, SUM(salary) FROM Employees",
+      "D": "SELECT department, MAX(salary) FROM Employees"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT department, AVG(salary) FROM Employees GROUP BY department;",
+      "explanation": "Group by department and compute average salary per group."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000)]",
+        "expected": "Engineering-62500, HR-50000",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000)]",
+        "expected": "Engineering-62500, HR-50000",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Group by department and compute average salary per group.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000);",
+      "expected_query": "SELECT department, AVG(salary) FROM Employees GROUP BY department;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-06",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "aggregation",
+    "difficulty": "hard",
+    "question": "Write a query to find departments with more than 1 employee using HAVING.",
+    "options": {
+      "A": "SELECT department, COUNT(*) FROM Employees GROUP BY department HAVING COUNT(*) > 1",
+      "B": "SELECT department FROM Employees WHERE COUNT(*) > 1",
+      "C": "SELECT COUNT(*) FROM Employees GROUP BY department",
+      "D": "SELECT department FROM Employees GROUP BY department"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT department, COUNT(*) FROM Employees GROUP BY department HAVING COUNT(*) > 1;",
+      "explanation": "HAVING filters groups after aggregation. WHERE cannot be used with aggregate functions."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000),(4,'David','HR',60000)]",
+        "expected": "Engineering-2, HR-2",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000),(4,'David','HR',60000)]",
+        "expected": "Engineering-2, HR-2",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "HAVING filters groups after aggregation. WHERE cannot be used with aggregate functions.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'Alice','Engineering',70000),(2,'Bob','HR',50000),(3,'Charlie','Engineering',55000),(4,'David','HR',60000);",
+      "expected_query": "SELECT department, COUNT(*) FROM Employees GROUP BY department HAVING COUNT(*) > 1;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-07",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "inner_join",
+    "difficulty": "medium",
+    "question": "Write a query to get employee names and their department names using INNER JOIN.",
+    "options": {
+      "A": "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id",
+      "B": "SELECT e.name, d.dept_name FROM Employees e JOIN Departments d",
+      "C": "SELECT e.name FROM Employees e",
+      "D": "SELECT d.dept_name FROM Departments d"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "explanation": "INNER JOIN combines rows from both tables where the join condition matches."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',20)], Departments: [(10,'Eng'),(20,'HR')]",
+        "expected": "A-Eng, B-HR",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',20)], Departments: [(10,'Eng'),(20,'HR')]",
+        "expected": "A-Eng, B-HR",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "INNER JOIN combines rows from both tables where the join condition matches.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',10),(2,'B',20); INSERT INTO Departments VALUES (10,'Eng'),(20,'HR');",
+      "expected_query": "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-08",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "left_join",
+    "difficulty": "medium",
+    "question": "Write a query to get all employees and their department names, including employees without a department.",
+    "options": {
+      "A": "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id",
+      "B": "SELECT e.name, d.dept_name FROM Employees e RIGHT JOIN Departments d",
+      "C": "SELECT e.name FROM Employees e",
+      "D": "SELECT d.dept_name FROM Departments d"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "explanation": "LEFT JOIN returns all rows from left table (Employees) and matched rows from right table."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',NULL)], Departments: [(10,'Eng')]",
+        "expected": "A-Eng, B-NULL",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',NULL)], Departments: [(10,'Eng')]",
+        "expected": "A-Eng, B-NULL",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "LEFT JOIN returns all rows from left table (Employees) and matched rows from right table.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',10),(2,'B',NULL); INSERT INTO Departments VALUES (10,'Eng');",
+      "expected_query": "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-09",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "subquery_where",
+    "difficulty": "hard",
+    "question": "Write a query to find employees earning more than the average salary.",
+    "options": {
+      "A": "SELECT * FROM Employees WHERE salary > (SELECT AVG(salary) FROM Employees)",
+      "B": "SELECT * FROM Employees WHERE salary > AVG(salary)",
+      "C": "SELECT * FROM Employees WHERE salary > (SELECT MAX(salary) FROM Employees)",
+      "D": "SELECT * FROM Employees WHERE salary > (SELECT MIN(salary) FROM Employees)"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT * FROM Employees WHERE salary > (SELECT AVG(salary) FROM Employees);",
+      "explanation": "Use a correlated/uncorrelated subquery to compute average salary, then compare each employee's salary."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','Eng',50000),(3,'C','HR',60000),(4,'D','HR',55000)]",
+        "expected": "1-A-Eng-70000",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','Eng',50000),(3,'C','HR',60000),(4,'D','HR',55000)]",
+        "expected": "1-A-Eng-70000",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Use a correlated/uncorrelated subquery to compute average salary, then compare each employee's salary.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), salary INT, department VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',70000),(2,'B','Eng',50000),(3,'C','HR',60000),(4,'D','HR',55000);",
+      "expected_query": "SELECT * FROM Employees WHERE salary > (SELECT AVG(salary) FROM Employees);",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-10",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "exists_not_exists",
+    "difficulty": "medium",
+    "question": "Write a query to find departments with no employees using NOT EXISTS.",
+    "options": {
+      "A": "SELECT * FROM Departments d WHERE NOT EXISTS (SELECT 1 FROM Employees e WHERE e.dept_id = d.dept_id)",
+      "B": "SELECT * FROM Departments WHERE dept_id NOT IN (SELECT dept_id FROM Employees)",
+      "C": "SELECT * FROM Departments",
+      "D": "SELECT * FROM Employees"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT * FROM Departments d WHERE NOT EXISTS (SELECT 1 FROM Employees e WHERE e.dept_id = d.dept_id);",
+      "explanation": "NOT EXISTS checks for absence of matching rows in the subquery."
+    },
+    "testcases": [
+      {
+        "input": "Departments: [(10,'Eng'),(20,'HR'),(30,'Sales')], Employees: [(1,'A',10),(2,'B',10)]",
+        "expected": "20-HR, 30-Sales",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Departments: [(10,'Eng'),(20,'HR'),(30,'Sales')], Employees: [(1,'A',10),(2,'B',10)]",
+        "expected": "20-HR, 30-Sales",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "NOT EXISTS checks for absence of matching rows in the subquery.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), dept_id INT); CREATE TABLE Departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));",
+      "seed_inserts": "INSERT INTO Departments VALUES (10,'Eng'),(20,'HR'),(30,'Sales'); INSERT INTO Employees VALUES (1,'A',10),(2,'B',10);",
+      "expected_query": "SELECT * FROM Departments d WHERE NOT EXISTS (SELECT 1 FROM Employees e WHERE e.dept_id = d.dept_id);",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-11",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "group_by_having",
+    "difficulty": "medium",
+    "question": "Write a query to find departments and count of employees in each.",
+    "options": {
+      "A": "SELECT department, COUNT(*) FROM Employees GROUP BY department",
+      "B": "SELECT department FROM Employees GROUP BY department",
+      "C": "SELECT COUNT(*) FROM Employees",
+      "D": "SELECT department, SUM(salary) FROM Employees GROUP BY department"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT department, COUNT(*) FROM Employees GROUP BY department;",
+      "explanation": "GROUP BY groups rows by department, COUNT(*) counts employees per group."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','HR',50000),(3,'C','Eng',55000),(4,'D','HR',60000)]",
+        "expected": "Eng-2, HR-2",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','HR',50000),(3,'C','Eng',55000),(4,'D','HR',60000)]",
+        "expected": "Eng-2, HR-2",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "GROUP BY groups rows by department, COUNT(*) counts employees per group.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), department VARCHAR(50), salary INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A','Eng',70000),(2,'B','HR',50000),(3,'C','Eng',55000),(4,'D','HR',60000);",
+      "expected_query": "SELECT department, COUNT(*) FROM Employees GROUP BY department;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
+  },
+  {
+    "id": "sql-b2-12",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "null_handling",
+    "difficulty": "easy",
+    "question": "Write a query to find employees with NULL manager_id.",
+    "options": {
+      "A": "SELECT * FROM Employees WHERE manager_id IS NULL",
+      "B": "SELECT * FROM Employees WHERE manager_id = NULL",
+      "C": "SELECT * FROM Employees WHERE manager_id != NULL",
+      "D": "SELECT * FROM Employees"
+    },
+    "correct_answer": "A",
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT * FROM Employees WHERE manager_id IS NULL;",
+      "explanation": "Use IS NULL to check for NULL values, not = NULL."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',NULL),(2,'B',1),(3,'C',NULL)]",
+        "expected": "1-A-NULL, 3-C-NULL",
+        "hidden": false
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "Employees: [(1,'A',NULL),(2,'B',1),(3,'C',NULL)]",
+        "expected": "1-A-NULL, 3-C-NULL",
+        "hidden": false
+      }
+    ],
+    "hidden_testcases": [],
+    "hints": [
+      "Use the sql_schema provided",
+      "Write a query matching expected_query"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes",
+    "explanation": "Use IS NULL to check for NULL values, not = NULL.",
+    "common_trap": "Pay attention to SQL syntax and table names",
+    "reasoning_steps": [
+      "1. Identify tables from schema.",
+      "2. Write query matching requirements.",
+      "3. Verify against expected output."
+    ],
+    "frequency": "medium",
+    "dsa_guide": "sql",
+    "pattern": "sql",
+    "sql_schema": {
+      "schema_ddl": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), manager_id INT);",
+      "seed_inserts": "INSERT INTO Employees VALUES (1,'A',NULL),(2,'B',1),(3,'C',NULL);",
+      "expected_query": "SELECT * FROM Employees WHERE manager_id IS NULL;",
+      "enforce_order": false
+    },
+    "trust_transitioned_at": "2026-11-17T00:00:00Z",
+    "trust_transition_reason": "Batch-added question lacked human review; downgraded to automated_checked pending review"
   }
 ]

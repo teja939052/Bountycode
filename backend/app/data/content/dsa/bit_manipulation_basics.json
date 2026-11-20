@@ -1,0 +1,325 @@
+{
+  "topic": "bit_manipulation_basics",
+  "subject": "dsa",
+  "pattern": "bit_manipulation_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "BIT-L1",
+      "title": "Binary Representation and Bitwise Operators",
+      "concept": "Bit manipulation operates directly on binary representations of integers. Common bitwise operators include AND (&), OR (|), XOR (^), NOT (~), left shift (<<), and right shift (>>). These operations are useful for low-level tasks and efficient tricks.",
+      "formula": "AND: 1&1=1 else 0. OR: 0|0=0 else 1. XOR: same bits -> 0, different -> 1. Left shift x<<k multiplies by 2^k (for non-overflowing integers). Right shift divides by powers of two (implementation details vary by language/sign).",
+      "worked_example": "5 is 0101, 3 is 0011 (4-bit view). 5&3=0001 (1), 5|3=0111 (7), 5^3=0110 (6), 5<<1=1010 (10).",
+      "mistakes": [
+        "Confusing bitwise operators (&,|,^) with logical operators (&&,||)",
+        "Assuming shift behavior is identical across languages for negative numbers",
+        "Off-by-one in bit positions (0-indexed from least significant bit is common)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "BIT-L2",
+      "title": "Common Bit Tricks",
+      "concept": "Bit tricks solve common tasks efficiently: check if a number is odd/even (n&1), test/set/clear/toggle a specific bit using masks, and check power of two. Masks are integers with particular bit patterns used with bitwise operations.",
+      "formula": "Test bit k: (n & (1<<k)) != 0. Set bit k: n | (1<<k). Clear bit k: n & ~(1<<k). Toggle bit k: n ^ (1<<k). Power of two (positive n): (n & (n-1)) == 0.",
+      "worked_example": "n=8 (1000). n-1=7 (0111), n&(n-1)=0 so 8 is a power of two. n=10 (1010), n-1=9 (1001), n&(n-1)=1000 != 0 so not a power of two.",
+      "mistakes": [
+        "Using wrong mask (1<<k vs k) for bit position",
+        "Applying power-of-two test without handling n <= 0 as required by definition",
+        "Confusing set/clear/toggle operations"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "BIT-L3",
+      "title": "XOR Properties and Applications",
+      "concept": "XOR has useful properties: x^x=0, x^0=x, commutative and associative. These enable tasks like finding a unique element when others appear twice, swapping values (conceptually), and toggling bits.",
+      "formula": "Properties: a^a=0, a^0=a, a^b=b^a, (a^b)^c=a^(b^c). XOR of all elements where pairs cancel leaves the single unique element.",
+      "worked_example": "Array [2,1,4,1,2]: XOR all -> 2^1^4^1^2 = (2^2)^(1^1)^4 = 0^0^4 = 4, so unique element is 4.",
+      "mistakes": [
+        "Using XOR uniqueness trick when elements appear other than twice/once pattern assumed",
+        "Assuming XOR gives sum or maximum",
+        "Operator precedence issues when mixing bitwise and comparison operators"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "BIT-PRACTICE-001",
+      "question": "What is the result of 5 & 3? (5=0101, 3=0011)",
+      "options": {
+        "A": "1",
+        "B": "6",
+        "C": "7",
+        "D": "8"
+      },
+      "correct_answer": "A",
+      "explanation": "Bitwise AND keeps 1 only where both bits are 1: 0101 & 0011 = 0001, which is 1.",
+      "difficulty": "easy",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "operator_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-PRACTICE-002",
+      "question": "Which expression checks if integer n is odd (common method)?",
+      "options": {
+        "A": "n & 1 == 1",
+        "B": "n | 1 == 0",
+        "C": "n ^ 1 == n",
+        "D": "n << 1 == 1"
+      },
+      "correct_answer": "A",
+      "explanation": "The least significant bit is 1 for odd numbers and 0 for even numbers, so n & 1 yields 1 for odd and 0 for even.",
+      "difficulty": "easy",
+      "sub_topic": "tricks",
+      "misconception_tags": [
+        "odd_even_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-PRACTICE-003",
+      "question": "What is the value of x ^ x for any integer x?",
+      "options": {
+        "A": "x",
+        "B": "0",
+        "C": "1",
+        "D": "-x"
+      },
+      "correct_answer": "B",
+      "explanation": "XOR of identical bits is 0, so XORing a number with itself produces 0 in all bit positions.",
+      "difficulty": "easy",
+      "sub_topic": "xor_properties",
+      "misconception_tags": [
+        "xor_property_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-PRACTICE-004",
+      "question": "Left shifting a positive integer x by 1 (x << 1) is equivalent to:",
+      "options": {
+        "A": "x / 2",
+        "B": "x * 2",
+        "C": "x + 1",
+        "D": "x - 1"
+      },
+      "correct_answer": "B",
+      "explanation": "A left shift by 1 moves all bits one position higher, which multiplies the value by 2 when no overflow/representation issues occur.",
+      "difficulty": "easy",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "shift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-PRACTICE-005",
+      "question": "For positive integer n, (n & (n - 1)) == 0 indicates that n is:",
+      "options": {
+        "A": "Always odd",
+        "B": "A power of two",
+        "C": "A prime number",
+        "D": "Always zero"
+      },
+      "correct_answer": "B",
+      "explanation": "Powers of two have a single set bit (e.g., 1000). Subtracting 1 flips that bit and sets lower bits (0111), so AND becomes 0.",
+      "difficulty": "medium",
+      "sub_topic": "tricks",
+      "misconception_tags": [
+        "power_of_two_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "BIT-001",
+      "question": "What is the result of 6 | 3? (6=0110, 3=0011)",
+      "options": {
+        "A": "2",
+        "B": "5",
+        "C": "7",
+        "D": "3"
+      },
+      "correct_answer": "C",
+      "explanation": "Bitwise OR sets a bit to 1 if either operand has 1: 0110 | 0011 = 0111, which is 7.",
+      "difficulty": "easy",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "operator_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-002",
+      "question": "XOR of 1 and 0 is:",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "Undefined"
+      },
+      "correct_answer": "B",
+      "explanation": "XOR returns 1 when bits are different and 0 when they are the same, so 1 ^ 0 = 1.",
+      "difficulty": "easy",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "operator_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-003",
+      "question": "Which operation can be used to toggle bit k of n?",
+      "options": {
+        "A": "n & (1<<k)",
+        "B": "n | (1<<k)",
+        "C": "n ^ (1<<k)",
+        "D": "n & ~(1<<k)"
+      },
+      "correct_answer": "C",
+      "explanation": "XOR with a mask having bit k set flips that bit (1 becomes 0, 0 becomes 1) while leaving other bits unchanged.",
+      "difficulty": "medium",
+      "sub_topic": "tricks",
+      "misconception_tags": [
+        "bit_operation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-004",
+      "question": "Given array [4,1,2,1,2], XOR of all elements gives:",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "4"
+      },
+      "correct_answer": "D",
+      "explanation": "Pairs cancel out: (1^1)=0, (2^2)=0, leaving 4. So 4^1^2^1^2 = 4.",
+      "difficulty": "easy",
+      "sub_topic": "xor_properties",
+      "misconception_tags": [
+        "xor_application_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BIT-005",
+      "question": "Which statement is true about bitwise AND (&)?",
+      "options": {
+        "A": "It returns 1 if any bit is 1",
+        "B": "It returns 1 only when both corresponding bits are 1",
+        "C": "It always inverts bits",
+        "D": "It is the same as addition"
+      },
+      "correct_answer": "B",
+      "explanation": "Bitwise AND compares corresponding bits and produces 1 only if both bits are 1; otherwise it produces 0.",
+      "difficulty": "easy",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "operator_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

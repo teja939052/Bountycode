@@ -1,0 +1,325 @@
+{
+  "topic": "input_output_basics",
+  "subject": "reasoning",
+  "pattern": "input_output_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "IO-L1",
+      "title": "Machine Input-Output Pattern Basics",
+      "concept": "Input-output (machine arrangement) questions show a sequence of steps where words/numbers are rearranged by a fixed rule in each step until a final arrangement is reached. The task is to infer the pattern (e.g., move smallest/largest number or alphabetically first/last word to a position each step) and answer questions about intermediate steps or outcomes.",
+      "formula": "Approach: compare Input vs Step 1 to detect what moved where; verify same rule applies in subsequent steps; track positions step-by-step.",
+      "worked_example": "Input: 42 dog 17 cat. Step 1: 17 42 dog cat (smallest number moved to front). Step 2: 17 42 cat dog (alphabetically first word moved next). Pattern alternates number-then-word.",
+      "mistakes": [
+        "Assuming pattern from one step without verifying later steps",
+        "Confusing leftward and rightward arrangement directions",
+        "Mixing number and word ordering rules"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "IO-L2",
+      "title": "Identifying Step-by-Step Rules",
+      "concept": "Common rules include arranging numbers in ascending/descending order one per step, arranging words alphabetically, or alternating between number and word. Note which elements are fixed after being placed and which positions remain for rearrangement.",
+      "formula": "For each step: identify newly fixed element(s) and its/their position(s); confirm remaining elements keep relative or new order as per rule.",
+      "worked_example": "If Step 1 places smallest number at leftmost and Step 2 places next smallest at second-left, numbers are being sorted ascending from left, one per step.",
+      "mistakes": [
+        "Not noticing alternating patterns (number, word, number, word)",
+        "Thinking all elements are rearranged freely every step",
+        "Missing that already placed elements stay fixed"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "IO-L3",
+      "title": "Tracing Steps and Answering Questions",
+      "concept": "To answer questions, trace the arrangement stepwise from input or from a given step. Some questions ask for a specific step, number of steps to completion, position of an element in a step, or which step matches a given arrangement.",
+      "formula": "Trace carefully: write each step; count steps from input as Step 1, Step 2, etc. (as defined); verify final step when no more changes needed.",
+      "worked_example": "If final arrangement is reached at Step 4, then 'last but one step' is Step 3 and 'step before final' refers to Step 3.",
+      "mistakes": [
+        "Off-by-one in step counting",
+        "Applying one extra step after arrangement is already complete",
+        "Losing track of element positions across steps"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "IO-PRACTICE-001",
+      "question": "In input-output problems, the main task is usually to:",
+      "options": {
+        "A": "Memorize the input",
+        "B": "Identify the rearrangement rule applied in each step",
+        "C": "Sort without any rule",
+        "D": "Ignore intermediate steps"
+      },
+      "correct_answer": "B",
+      "explanation": "You must infer the consistent rule used by the machine across steps to determine arrangements or answer questions.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-PRACTICE-002",
+      "question": "Input: 9 3 7. Step 1: 3 9 7. Step 2: 3 7 9. What rule is applied?",
+      "options": {
+        "A": "Move largest number left each step",
+        "B": "Move smallest remaining number to its correct ascending position from left",
+        "C": "Reverse the list each step",
+        "D": "Swap first and last only"
+      },
+      "correct_answer": "B",
+      "explanation": "Step 1 places 3 at front (smallest). Step 2 places 7 next, giving ascending order 3,7,9.",
+      "difficulty": "easy",
+      "sub_topic": "rule_identification",
+      "misconception_tags": [
+        "pattern_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-PRACTICE-003",
+      "question": "If an element is placed in its final position in Step 1, in later steps it usually:",
+      "options": {
+        "A": "Moves randomly",
+        "B": "Remains fixed in that position",
+        "C": "Is removed",
+        "D": "Doubles"
+      },
+      "correct_answer": "B",
+      "explanation": "In standard input-output arrangements, once an element is placed correctly according to the rule, it stays fixed in subsequent steps.",
+      "difficulty": "easy",
+      "sub_topic": "rule_identification",
+      "misconception_tags": [
+        "fixed_element_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-PRACTICE-004",
+      "question": "Input: cat 2 ant 5. Step 1: 2 cat ant 5. Step 2: 2 5 cat ant. Step 3: 2 5 ant cat. How many steps are needed to complete arrangement?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+      },
+      "correct_answer": "C",
+      "explanation": "Arrangement becomes fully ordered by Step 3 (2,5,ant,cat assuming numbers ascending then words ascending pattern), so 3 steps are required.",
+      "difficulty": "medium",
+      "sub_topic": "tracing",
+      "misconception_tags": [
+        "step_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-PRACTICE-005",
+      "question": "Why should you verify the suspected rule with more than one step?",
+      "options": {
+        "A": "Because Step 1 is always wrong",
+        "B": "To confirm the pattern is consistent and not a coincidence",
+        "C": "To avoid reading the input",
+        "D": "Because rules change every step"
+      },
+      "correct_answer": "B",
+      "explanation": "A rule inferred from a single transition may be misleading; checking multiple steps confirms consistency.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "verification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "IO-001",
+      "question": "Input: 8 1 6. Step 1: 1 8 6. Step 2: 1 6 8. What is Step 2?",
+      "options": {
+        "A": "1 8 6",
+        "B": "1 6 8",
+        "C": "6 1 8",
+        "D": "8 6 1"
+      },
+      "correct_answer": "B",
+      "explanation": "Numbers are arranged in ascending order from left one step at a time: after placing 1, next smallest 6 is placed to get 1,6,8.",
+      "difficulty": "easy",
+      "sub_topic": "tracing",
+      "misconception_tags": [
+        "step_trace_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-002",
+      "question": "If the machine alternates arranging a number and a word each step, Step 3 will arrange:",
+      "options": {
+        "A": "A number (if Step 1 arranged a number)",
+        "B": "A word always",
+        "C": "Nothing",
+        "D": "Both simultaneously with no pattern"
+      },
+      "correct_answer": "A",
+      "explanation": "Alternating pattern means Step 1 number, Step 2 word, Step 3 number, etc.",
+      "difficulty": "easy",
+      "sub_topic": "rule_identification",
+      "misconception_tags": [
+        "alternation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-003",
+      "question": "An input-output arrangement is complete when:",
+      "options": {
+        "A": "Step 1 is done",
+        "B": "No further rearrangement is needed according to the rule",
+        "C": "All elements are removed",
+        "D": "The input is reversed once"
+      },
+      "correct_answer": "B",
+      "explanation": "The final step is reached when the arrangement satisfies the target order/pattern and no more moves are required.",
+      "difficulty": "easy",
+      "sub_topic": "tracing",
+      "misconception_tags": [
+        "completion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-004",
+      "question": "Input: pen 4 ink 1. Step 1: 1 pen 4 ink. Step 2: 1 4 pen ink. Step 3: 1 4 ink pen. Which element is placed in Step 2?",
+      "options": {
+        "A": "1",
+        "B": "4",
+        "C": "ink",
+        "D": "pen"
+      },
+      "correct_answer": "B",
+      "explanation": "Step 1 places 1 at the front. Step 2 places the next number 4 in position, so 4 is the element arranged in Step 2.",
+      "difficulty": "easy",
+      "sub_topic": "tracing",
+      "misconception_tags": [
+        "step_trace_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IO-005",
+      "question": "Which is a common mistake in input-output questions?",
+      "options": {
+        "A": "Verifying the pattern across steps",
+        "B": "Assuming a rule without checking consistency in later steps",
+        "C": "Tracking fixed positions",
+        "D": "Writing steps clearly"
+      },
+      "correct_answer": "B",
+      "explanation": "Assuming a rule too early can lead to wrong answers if the pattern differs or alternates in subsequent steps.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "assumption_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

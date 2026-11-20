@@ -1,0 +1,325 @@
+{
+  "topic": "heaps_basics",
+  "subject": "dsa",
+  "pattern": "heaps_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "HEAP-L1",
+      "title": "Heap Concept and Properties",
+      "concept": "A heap is a complete binary tree that satisfies the heap property. In a max-heap, every parent node is greater than or equal to its children; in a min-heap, every parent node is less than or equal to its children. The root always holds the maximum (max-heap) or minimum (min-heap).",
+      "formula": "Complete binary tree: all levels filled except possibly last, filled left to right. Max-heap: parent >= children. Min-heap: parent <= children. Array indexing (0-based): parent(i)=(i-1)//2, left(i)=2*i+1, right(i)=2*i+2.",
+      "worked_example": "Array [10, 7, 9, 3, 5] represents a max-heap: 10 at root, children 7 and 9, and 3,5 under 7. Root 10 is the maximum element.",
+      "mistakes": [
+        "Confusing heap with a fully sorted structure (heap is partially ordered)",
+        "Assuming left child is always smaller than right child in a max-heap",
+        "Forgetting the complete binary tree requirement"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "HEAP-L2",
+      "title": "Heap Operations: Insert and Extract",
+      "concept": "Insertion adds a new element at the end (to maintain completeness) and then heapifies up (bubble up) to restore heap property. Extracting the root removes the top element, moves the last element to root, and heapifies down (sift down) to restore order.",
+      "formula": "Insert: append -> while node > parent (max-heap) swap up. Extract-max: save root, move last to root, reduce size, while node < larger child swap down. Time: O(log n) per operation.",
+      "worked_example": "Insert 12 into max-heap [10,7,9,3,5]: append -> [10,7,9,3,5,12], swap 12 with 9 -> [10,7,12,3,5,9], swap 12 with 10 -> [12,7,10,3,5,9].",
+      "mistakes": [
+        "Heapifying in the wrong direction (up vs down) for the operation",
+        "Not comparing with the correct child during sift down (use larger child in max-heap)",
+        "Breaking completeness by inserting at an arbitrary position"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "HEAP-L3",
+      "title": "Heap Applications and Complexity",
+      "concept": "Heaps efficiently support priority queue operations, where the highest (or lowest) priority element is accessed quickly. Common uses include heap sort, finding k largest/smallest elements, and algorithms like Dijkstra/Prim (conceptually with priority queues).",
+      "formula": "Peek root: O(1). Insert/extract: O(log n). Build heap: O(n). Heap sort: O(n log n) time, O(1) extra (in-place array heap) or O(n) if counting output separately.",
+      "worked_example": "To get the 3 largest elements from a stream, a min-heap of size 3 can keep candidates: push elements and if size > 3 pop the minimum, leaving the 3 largest.",
+      "mistakes": [
+        "Using a max-heap when a min-heap is needed for k-largest maintenance (or vice versa)",
+        "Assuming heap provides sorted iteration order without repeated extracts",
+        "Confusing build-heap complexity O(n) with repeated insertion O(n log n)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "HEAP-PRACTICE-001",
+      "question": "In a max-heap, which element is always at the root?",
+      "options": {
+        "A": "The smallest element",
+        "B": "The largest element",
+        "C": "The median element",
+        "D": "A random element"
+      },
+      "correct_answer": "B",
+      "explanation": "By the max-heap property, every parent is >= its children, so the maximum element resides at the root.",
+      "difficulty": "easy",
+      "sub_topic": "heap_properties",
+      "misconception_tags": [
+        "heap_property_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-PRACTICE-002",
+      "question": "A heap is based on which type of binary tree?",
+      "options": {
+        "A": "Binary search tree only",
+        "B": "Complete binary tree",
+        "C": "Skewed binary tree only",
+        "D": "Full but not necessarily complete binary tree"
+      },
+      "correct_answer": "B",
+      "explanation": "A heap must be a complete binary tree (all levels filled except possibly last, filled left to right) and satisfy the heap property.",
+      "difficulty": "easy",
+      "sub_topic": "heap_properties",
+      "misconception_tags": [
+        "structure_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-PRACTICE-003",
+      "question": "What is the time complexity of inserting an element into a binary heap of n elements?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "Insertion appends at the end and may bubble up along the height of the heap; height of a complete binary tree is O(log n).",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-PRACTICE-004",
+      "question": "In a 0-based array representation of a heap, the left child of index i is at:",
+      "options": {
+        "A": "i/2",
+        "B": "2*i",
+        "C": "2*i + 1",
+        "D": "2*i + 2"
+      },
+      "correct_answer": "C",
+      "explanation": "For 0-based indexing, left child is 2*i + 1, right child is 2*i + 2, and parent is (i-1)//2.",
+      "difficulty": "easy",
+      "sub_topic": "heap_properties",
+      "misconception_tags": [
+        "index_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-PRACTICE-005",
+      "question": "A heap is commonly used to implement which abstract data type?",
+      "options": {
+        "A": "Stack",
+        "B": "Priority queue",
+        "C": "Hash set",
+        "D": "Deque only"
+      },
+      "correct_answer": "B",
+      "explanation": "Heaps efficiently provide access to the highest/lowest priority element, making them a standard implementation for priority queues.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "HEAP-001",
+      "question": "In a min-heap, the relationship between a parent node and its children is:",
+      "options": {
+        "A": "Parent >= children",
+        "B": "Parent <= children",
+        "C": "Parent == children always",
+        "D": "No ordering constraint"
+      },
+      "correct_answer": "B",
+      "explanation": "In a min-heap, each parent node's key is less than or equal to the keys of its children, so the minimum element is at the root.",
+      "difficulty": "easy",
+      "sub_topic": "heap_properties",
+      "misconception_tags": [
+        "heap_property_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-002",
+      "question": "What is the time complexity to get (peek) the maximum element from a max-heap?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "A",
+      "explanation": "The maximum element in a max-heap is at the root, so peeking/reading it takes constant time O(1).",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-003",
+      "question": "After removing the root from a heap, which step restores the heap property?",
+      "options": {
+        "A": "Sort the entire array",
+        "B": "Move last element to root and heapify down",
+        "C": "Insert all elements again randomly",
+        "D": "Reverse the array"
+      },
+      "correct_answer": "B",
+      "explanation": "Extract-root replaces the root with the last element to keep the tree complete, then sifts it down (heapify down) to restore the heap property.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "extract_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-004",
+      "question": "Which statement about a heap is TRUE?",
+      "options": {
+        "A": "A heap is always fully sorted like a sorted array",
+        "B": "A heap is a complete binary tree with heap-order property",
+        "C": "In a max-heap, every left child is greater than right child",
+        "D": "Heaps cannot be stored in arrays"
+      },
+      "correct_answer": "B",
+      "explanation": "Heaps are complete binary trees satisfying heap order; they are partially ordered, not fully sorted, and can be efficiently stored in arrays.",
+      "difficulty": "easy",
+      "sub_topic": "heap_properties",
+      "misconception_tags": [
+        "heap_property_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-005",
+      "question": "Heap sort has a typical time complexity of:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(log n)",
+        "D": "O(n^2) in all cases"
+      },
+      "correct_answer": "B",
+      "explanation": "Heap sort builds a heap and performs n extract operations, each taking O(log n), resulting in O(n log n) overall time.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

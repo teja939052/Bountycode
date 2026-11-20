@@ -34,7 +34,7 @@ def quiz_collection(monkeypatch):
 
 
 def test_company_or_topic_filters_never_fall_back_to_global_questions(monkeypatch):
-    monkeypatch.setattr(quiz_service, "_load_questions", lambda: [_question()])
+    monkeypatch.setattr(quiz_service, "_servable_questions", lambda: [_question()])
 
     result = quiz_service.build_quiz(
         mode="quiz",
@@ -48,7 +48,7 @@ def test_company_or_topic_filters_never_fall_back_to_global_questions(monkeypatc
 
 
 def test_practice_quiz_does_not_reveal_hints_or_solution_before_answer(monkeypatch):
-    monkeypatch.setattr(quiz_service, "_load_questions", lambda: [_question()])
+    monkeypatch.setattr(quiz_service, "_servable_questions", lambda: [_question()])
 
     result = quiz_service.build_quiz(mode="practice", num_questions=1)
     served = result["questions"][0]
@@ -252,7 +252,7 @@ def test_company_filter_supports_legacy_singular_company_field(monkeypatch):
         "company": ["TCS"],
         "correct_answer": "4",
     }
-    monkeypatch.setattr(quiz_service, "_load_questions", lambda: [question])
+    monkeypatch.setattr(quiz_service, "_servable_questions", lambda: [question])
 
     result = quiz_service.build_quiz(
         mode="practice",

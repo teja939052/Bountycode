@@ -3,6 +3,9 @@
 Maintains an in-memory (and file-persisted) set of request hashes to block
 identical POST/PUT/DELETE requests within a configurable deduplication window.
 Skips telemetry and auth endpoints to avoid blocking legitimate retries.
+
+In test environments (TESTING=1), the guard is bypassed so tests can repeat
+identical requests without triggering the 429 response.
 """
 import asyncio
 import time
@@ -14,6 +17,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
 PERSISTENCE_FILE = Path(__file__).parent.parent.parent.parent / "data" / "duplicate_hashes.json"
+TESTING = os.environ.get("TESTING", "").lower() in ("1", "true", "yes")
 
 
 class DuplicateRequestGuard(BaseHTTPMiddleware):
@@ -73,6 +77,10 @@ class DuplicateRequestGuard(BaseHTTPMiddleware):
             Response: 429 JSONResponse if duplicate, otherwise downstream response.
         """
         if request.method not in ("POST", "PUT", "DELETE"):
+            return await call_next(request)
+
+        # Bypass dedup in test environments so tests can repeat requests.
+        if TESTING:
             return await call_next(request)
 
         # Fire-and-forget telemetry is sent repeatedly with identical bodies

@@ -1,0 +1,325 @@
+{
+  "topic": "progressions_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "progressions_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "arithmetic_progression",
+      "title": "Arithmetic Progression (AP)",
+      "concept": "An arithmetic progression is a sequence where the difference between consecutive terms is constant. This constant is called the common difference (d).",
+      "formula": "nth term: a_n = a + (n-1)d. Sum of first n terms: S_n = n/2 [2a + (n-1)d] = n/2 (a + l), where a is first term and l is last term.",
+      "worked_example": "AP: 2, 5, 8, 11,... has a=2, d=3. 5th term = 2 + (5-1)*3 = 14. Sum of first 5 terms = 5/2 (2 + 14) = 40.",
+      "mistakes": [
+        "Using n instead of (n-1) in the nth term formula",
+        "Sign errors when common difference is negative",
+        "Confusing term value with term index"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "geometric_progression",
+      "title": "Geometric Progression (GP)",
+      "concept": "A geometric progression is a sequence where each term after the first is obtained by multiplying the previous term by a constant called the common ratio (r).",
+      "formula": "nth term: a_n = a*r^(n-1). Sum of first n terms (r != 1): S_n = a*(r^n - 1)/(r - 1).",
+      "worked_example": "GP: 3, 6, 12, 24,... has a=3, r=2. 4th term = 3*2^(3)=24. Sum of first 4 terms = 3*(2^4 - 1)/(2 - 1)=3*15=45.",
+      "mistakes": [
+        "Confusing common ratio with common difference",
+        "Exponent errors in r^(n-1)",
+        "Applying GP sum formula incorrectly when r=1"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "identifying_progressions",
+      "title": "Identifying AP and GP",
+      "concept": "To identify the type of progression, check differences and ratios between consecutive terms. Constant difference indicates AP; constant ratio indicates GP. Some sequences may be neither.",
+      "formula": "AP check: a2-a1 = a3-a2 = ... = d. GP check: a2/a1 = a3/a2 = ... = r (terms non-zero).",
+      "worked_example": "Sequence 4, 7, 10, 13 has constant difference +3, so AP. Sequence 2, 6, 18, 54 has constant ratio 3, so GP.",
+      "mistakes": [
+        "Checking only one pair of terms and assuming the pattern holds",
+        "Arithmetic errors in difference/ratio calculation",
+        "Labeling a non-constant sequence as AP/GP"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "PROG-PRACTICE-001",
+      "question": "What is the 10th term of the AP: 3, 7, 11, ...?",
+      "options": {
+        "A": "36",
+        "B": "39",
+        "C": "43",
+        "D": "40"
+      },
+      "correct_answer": "B",
+      "explanation": "a=3, d=4. a_10 = a + (10-1)d = 3 + 9*4 = 39.",
+      "difficulty": "easy",
+      "sub_topic": "arithmetic_progression",
+      "misconception_tags": [
+        "nth_term_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-PRACTICE-002",
+      "question": "Find the sum of first 5 terms of the AP: 2, 4, 6, 8, 10.",
+      "options": {
+        "A": "20",
+        "B": "25",
+        "C": "30",
+        "D": "35"
+      },
+      "correct_answer": "C",
+      "explanation": "Sum = 2+4+6+8+10 = 30. Using formula: S_5 = 5/2 (2 + 10) = 5/2 * 12 = 30.",
+      "difficulty": "easy",
+      "sub_topic": "arithmetic_progression",
+      "misconception_tags": [
+        "sum_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-PRACTICE-003",
+      "question": "What is the 5th term of the GP: 2, 6, 18, ...?",
+      "options": {
+        "A": "54",
+        "B": "108",
+        "C": "162",
+        "D": "486"
+      },
+      "correct_answer": "C",
+      "explanation": "a=2, r=3. a_5 = a*r^(4) = 2*3^4 = 2*81 = 162.",
+      "difficulty": "medium",
+      "sub_topic": "geometric_progression",
+      "misconception_tags": [
+        "gp_nth_term_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-PRACTICE-004",
+      "question": "The sequence 5, 10, 20, 40 is:",
+      "options": {
+        "A": "An AP with d=5",
+        "B": "An AP with d=10",
+        "C": "A GP with r=2",
+        "D": "Neither AP nor GP"
+      },
+      "correct_answer": "C",
+      "explanation": "Ratios are 10/5=2, 20/10=2, 40/20=2 (constant), so it is a GP with common ratio 2.",
+      "difficulty": "easy",
+      "sub_topic": "identifying_progressions",
+      "misconception_tags": [
+        "ap_gp_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-PRACTICE-005",
+      "question": "For the AP 1, 4, 7, 10, what is the common difference?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4"
+      },
+      "correct_answer": "C",
+      "explanation": "Common difference d = 4-1 = 3 (also 7-4=3, 10-7=3).",
+      "difficulty": "easy",
+      "sub_topic": "identifying_progressions",
+      "misconception_tags": [
+        "common_difference_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PROG-001",
+      "question": "Find the 7th term of the AP: 5, 9, 13, ...",
+      "options": {
+        "A": "25",
+        "B": "29",
+        "C": "33",
+        "D": "37"
+      },
+      "correct_answer": "B",
+      "explanation": "a=5, d=4. a_7 = 5 + (7-1)*4 = 5 + 24 = 29.",
+      "difficulty": "easy",
+      "sub_topic": "arithmetic_progression",
+      "misconception_tags": [
+        "nth_term_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-002",
+      "question": "What is the sum of first 4 terms of the GP: 1, 2, 4, 8?",
+      "options": {
+        "A": "12",
+        "B": "14",
+        "C": "15",
+        "D": "16"
+      },
+      "correct_answer": "C",
+      "explanation": "Sum = 1+2+4+8 = 15. Using formula: a=1, r=2, S_4 = 1*(2^4 - 1)/(2 - 1)=15.",
+      "difficulty": "easy",
+      "sub_topic": "geometric_progression",
+      "misconception_tags": [
+        "gp_sum_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-003",
+      "question": "The sequence 10, 7, 4, 1 is:",
+      "options": {
+        "A": "AP with d=3",
+        "B": "AP with d=-3",
+        "C": "GP with r=-3",
+        "D": "Neither"
+      },
+      "correct_answer": "B",
+      "explanation": "Differences: 7-10=-3, 4-7=-3, 1-4=-3. Constant difference -3 means it is an AP with d=-3.",
+      "difficulty": "easy",
+      "sub_topic": "identifying_progressions",
+      "misconception_tags": [
+        "negative_difference_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-004",
+      "question": "Find the common ratio of the GP: 3, 12, 48, ...",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "9",
+        "D": "36"
+      },
+      "correct_answer": "B",
+      "explanation": "Common ratio r = 12/3 = 4 (also 48/12=4).",
+      "difficulty": "easy",
+      "sub_topic": "geometric_progression",
+      "misconception_tags": [
+        "common_ratio_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PROG-005",
+      "question": "What is the 6th term of the AP: 4, 9, 14, ...?",
+      "options": {
+        "A": "24",
+        "B": "29",
+        "C": "34",
+        "D": "39"
+      },
+      "correct_answer": "B",
+      "explanation": "a=4, d=5. a_6 = 4 + (6-1)*5 = 4 + 25 = 29.",
+      "difficulty": "easy",
+      "sub_topic": "arithmetic_progression",
+      "misconception_tags": [
+        "nth_term_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

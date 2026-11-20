@@ -1,0 +1,325 @@
+{
+  "topic": "software_development_lifecycle",
+  "subject": "cs",
+  "pattern": "software_development_lifecycle",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "SDLC-L1",
+      "title": "SDLC Overview",
+      "concept": "The Software Development Life Cycle (SDLC) is a structured process for planning, creating, testing, deploying, and maintaining software. It provides phases and activities that help teams deliver quality software systematically.",
+      "formula": "Common phases: Requirements -> Design -> Implementation -> Testing -> Deployment -> Maintenance.",
+      "worked_example": "For a banking app: gather requirements (features/security), design architecture/UI, implement code, test functionality/security, deploy to users, and maintain with updates/fixes.",
+      "mistakes": [
+        "Thinking SDLC ends at deployment (maintenance is ongoing)",
+        "Skipping requirements/design and jumping directly to coding",
+        "Assuming one rigid process fits all projects"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SDLC-L2",
+      "title": "Common SDLC Models",
+      "concept": "Different SDLC models organize phases differently. Waterfall is linear and sequential; iterative/incremental builds in cycles; Agile emphasizes adaptive planning, short iterations, and continuous feedback. Model choice depends on project needs, uncertainty, and stakeholder involvement.",
+      "formula": "Waterfall: sequential phases. Agile: iterative sprints/increments with feedback. Iterative: repeated refinement cycles.",
+      "worked_example": "A project with stable, well-defined requirements may suit a more sequential approach, while evolving product requirements may benefit from iterative/Agile delivery.",
+      "mistakes": [
+        "Believing Agile means no planning or documentation",
+        "Assuming Waterfall allows easy late changes without cost",
+        "Treating model names as strict without understanding their practices"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SDLC-L3",
+      "title": "Quality, Testing, and Maintenance",
+      "concept": "Quality activities span the SDLC, including reviews, testing, and change management. Testing verifies behavior against requirements at different levels. Maintenance addresses bug fixes, enhancements, and adaptation to changing environments after release.",
+      "formula": "Maintenance types (common): corrective (fix bugs), adaptive (environment changes), perfective (improvements), preventive (reduce future issues).",
+      "worked_example": "After release, a security patch is corrective/preventive maintenance, while adding a new feature requested by users is perfective/enhancement work.",
+      "mistakes": [
+        "Treating testing as a single end-phase activity only",
+        "Ignoring maintenance effort and cost",
+        "Confusing deployment with project completion"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SDLC-PRACTICE-001",
+      "question": "SDLC stands for:",
+      "options": {
+        "A": "Software Design Logic Cycle",
+        "B": "Software Development Life Cycle",
+        "C": "System Data Link Control",
+        "D": "Software Deployment Level Check"
+      },
+      "correct_answer": "B",
+      "explanation": "SDLC stands for Software Development Life Cycle, a structured process for developing and maintaining software.",
+      "difficulty": "easy",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-PRACTICE-002",
+      "question": "Which is typically the first phase in many SDLC descriptions?",
+      "options": {
+        "A": "Deployment",
+        "B": "Requirements gathering/analysis",
+        "C": "Maintenance",
+        "D": "Testing"
+      },
+      "correct_answer": "B",
+      "explanation": "Understanding and documenting requirements is usually the initial phase before design and implementation.",
+      "difficulty": "easy",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "phase_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-PRACTICE-003",
+      "question": "Which SDLC model is characterized by linear, sequential phases?",
+      "options": {
+        "A": "Waterfall",
+        "B": "Agile Scrum only",
+        "C": "Spiral only",
+        "D": "Big Bang"
+      },
+      "correct_answer": "A",
+      "explanation": "The Waterfall model follows a sequential flow where each phase is completed before moving to the next.",
+      "difficulty": "easy",
+      "sub_topic": "models",
+      "misconception_tags": [
+        "model_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-PRACTICE-004",
+      "question": "Agile development primarily emphasizes:",
+      "options": {
+        "A": "No customer involvement",
+        "B": "Iterative delivery and continuous feedback",
+        "C": "Single final delivery only after years",
+        "D": "Eliminating testing"
+      },
+      "correct_answer": "B",
+      "explanation": "Agile approaches focus on iterative/incremental development, collaboration, and adapting to feedback.",
+      "difficulty": "easy",
+      "sub_topic": "models",
+      "misconception_tags": [
+        "model_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-PRACTICE-005",
+      "question": "Fixing bugs after software release is part of:",
+      "options": {
+        "A": "Requirements analysis",
+        "B": "Maintenance",
+        "C": "Initial design",
+        "D": "Compilation"
+      },
+      "correct_answer": "B",
+      "explanation": "Post-release bug fixes and updates are handled during the maintenance phase of the SDLC.",
+      "difficulty": "easy",
+      "sub_topic": "maintenance",
+      "misconception_tags": [
+        "phase_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SDLC-001",
+      "question": "Which sequence best represents a common SDLC flow?",
+      "options": {
+        "A": "Testing -> Requirements -> Deployment -> Design",
+        "B": "Requirements -> Design -> Implementation -> Testing -> Deployment -> Maintenance",
+        "C": "Deployment -> Maintenance -> Requirements -> Coding",
+        "D": "Design -> Deployment -> Requirements -> Testing"
+      },
+      "correct_answer": "B",
+      "explanation": "A common SDLC flow begins with requirements and design, followed by implementation, testing, deployment, and ongoing maintenance.",
+      "difficulty": "easy",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "phase_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-002",
+      "question": "In Agile, work is typically delivered in:",
+      "options": {
+        "A": "One single phase at the end only",
+        "B": "Small iterative increments/sprints",
+        "C": "No planned increments",
+        "D": "Only documentation milestones"
+      },
+      "correct_answer": "B",
+      "explanation": "Agile methodologies deliver value through short iterations or increments, enabling frequent feedback and adaptation.",
+      "difficulty": "easy",
+      "sub_topic": "models",
+      "misconception_tags": [
+        "model_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-003",
+      "question": "Adding enhancements to an existing released product is generally considered:",
+      "options": {
+        "A": "Maintenance",
+        "B": "Initial requirements gathering only",
+        "C": "Compilation",
+        "D": "Unit testing definition"
+      },
+      "correct_answer": "A",
+      "explanation": "Enhancements and improvements after release fall under software maintenance (often perfective maintenance).",
+      "difficulty": "easy",
+      "sub_topic": "maintenance",
+      "misconception_tags": [
+        "phase_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-004",
+      "question": "Why is the requirements phase important?",
+      "options": {
+        "A": "It replaces testing",
+        "B": "It defines what the system should do and constraints, guiding later phases",
+        "C": "It is only for UI colors",
+        "D": "It guarantees zero defects"
+      },
+      "correct_answer": "B",
+      "explanation": "Clear requirements establish scope, functionality, and constraints, reducing rework and guiding design, implementation, and testing.",
+      "difficulty": "easy",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "phase_purpose_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SDLC-005",
+      "question": "Which statement about SDLC models is correct?",
+      "options": {
+        "A": "One model is best for every project",
+        "B": "Different models suit different project needs and constraints",
+        "C": "Models are irrelevant to software quality",
+        "D": "Maintenance is excluded from all models"
+      },
+      "correct_answer": "B",
+      "explanation": "Project size, requirement stability, risk, and stakeholder needs influence which SDLC model/process is most appropriate.",
+      "difficulty": "easy",
+      "sub_topic": "models",
+      "misconception_tags": [
+        "model_selection_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

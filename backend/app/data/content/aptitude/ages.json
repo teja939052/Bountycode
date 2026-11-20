@@ -1,0 +1,317 @@
+{
+  "topic": "ages",
+  "subject": "quantitative_aptitude",
+  "pattern": "ages",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "present_age_equations",
+      "title": "Present Age Equations",
+      "concept": "Age problems often give relationships between present ages (differences, sums, or multiples). Represent unknown ages with variables and form linear equations from the statements, then solve step by step.",
+      "formula": "If A is n years older than B: A = B + n. If sum of ages is S: A + B = S. Use substitution or elimination to solve.",
+      "worked_example": "A is 5 years older than B and the sum of their ages is 35. Let B = x, then A = x + 5. So x + (x + 5) = 35 => 2x = 30 => x = 15. Thus B is 15 years and A is 20 years.",
+      "mistakes": [
+        "Reversing the age difference (subtracting instead of adding)",
+        "Setting up the sum equation incorrectly",
+        "Arithmetic errors when solving linear equations"
+      ]
+    },
+    {
+      "id": "age_ratios",
+      "title": "Ratios of Ages",
+      "concept": "When ages are given in a ratio, represent them as multiples of a common variable (e.g., 3x and 5x). Use additional information such as sum, difference, or a future/past condition to find the value of the variable.",
+      "formula": "If ages are in ratio a:b, take ages as ax and bx. Then apply given condition to solve for x.",
+      "worked_example": "The ages of P and Q are in ratio 3:4 and their sum is 28. Let ages be 3x and 4x. Then 3x + 4x = 28 => 7x = 28 => x = 4. So ages are 12 and 16 years.",
+      "mistakes": [
+        "Using the ratio numbers as actual ages without a common multiplier",
+        "Simplifying ratios incorrectly when forming equations",
+        "Forgetting to multiply back by x to get actual ages"
+      ]
+    },
+    {
+      "id": "past_future_ages",
+      "title": "Past and Future Age Relationships",
+      "concept": "Age changes are uniform over time: every person ages by the same number of years. For n years ago subtract n from present ages; for n years later add n. Build equations using the stated relationship at that time.",
+      "formula": "Age n years ago = present age - n. Age n years hence = present age + n.",
+      "worked_example": "Ten years ago, a father was 3 times as old as his son. If the son is now 20, son's age 10 years ago was 10, so father's age then was 30. Father's present age = 30 + 10 = 40 years.",
+      "mistakes": [
+        "Adding/subtracting years from only one person instead of both",
+        "Applying the time shift in the wrong direction (past vs future)",
+        "Forming the ratio/multiple equation using present ages instead of shifted ages"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "AGE-PRACTICE-001",
+      "question": "The present age of A is 20 years and B is 4 years younger than A. What is B's present age?",
+      "options": {
+        "A": "14 years",
+        "B": "16 years",
+        "C": "18 years",
+        "D": "24 years"
+      },
+      "correct_answer": "B",
+      "explanation": "B is 4 years younger than A, so B's age = 20 - 4 = 16 years.",
+      "difficulty": "easy",
+      "sub_topic": "present_age_equations",
+      "misconception_tags": [
+        "age_difference_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-PRACTICE-002",
+      "question": "The sum of the ages of A and B is 36 years. If A is 22 years old, how old is B?",
+      "options": {
+        "A": "12 years",
+        "B": "14 years",
+        "C": "16 years",
+        "D": "18 years"
+      },
+      "correct_answer": "B",
+      "explanation": "B's age = total sum - A's age = 36 - 22 = 14 years.",
+      "difficulty": "easy",
+      "sub_topic": "present_age_equations",
+      "misconception_tags": [
+        "sum_equation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-PRACTICE-003",
+      "question": "The ratio of the ages of P and Q is 3:5. If P is 15 years old, what is Q's age?",
+      "options": {
+        "A": "20 years",
+        "B": "25 years",
+        "C": "30 years",
+        "D": "35 years"
+      },
+      "correct_answer": "B",
+      "explanation": "Let ages be 3x and 5x. Given 3x = 15, so x = 5. Therefore Q's age = 5x = 25 years.",
+      "difficulty": "easy",
+      "sub_topic": "age_ratios",
+      "misconception_tags": [
+        "ratio_multiplier_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-PRACTICE-004",
+      "question": "A father is 3 times as old as his son. If the sum of their ages is 48 years, what is the son's age?",
+      "options": {
+        "A": "10 years",
+        "B": "12 years",
+        "C": "14 years",
+        "D": "16 years"
+      },
+      "correct_answer": "B",
+      "explanation": "Let son's age be x years, then father's age is 3x. Sum: x + 3x = 48 => 4x = 48 => x = 12. So the son is 12 years old.",
+      "difficulty": "easy",
+      "sub_topic": "age_ratios",
+      "misconception_tags": [
+        "equation_setup_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-PRACTICE-005",
+      "question": "The present ages of two persons are in the ratio 4:5. After 5 years, their ages will be in the ratio 5:6. What is the present age of the younger person?",
+      "options": {
+        "A": "15 years",
+        "B": "20 years",
+        "C": "25 years",
+        "D": "30 years"
+      },
+      "correct_answer": "B",
+      "explanation": "Let present ages be 4x and 5x. After 5 years: (4x + 5)/(5x + 5) = 5/6. Cross-multiplying: 6(4x + 5) = 5(5x + 5) => 24x + 30 = 25x + 25 => x = 5. Younger person's present age = 4x = 20 years.",
+      "difficulty": "medium",
+      "sub_topic": "past_future_ages",
+      "misconception_tags": [
+        "time_shift_equation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "AGE-001",
+      "question": "Ravi is 8 years older than Sita. If Sita is 17 years old, what is Ravi's age?",
+      "options": {
+        "A": "23 years",
+        "B": "25 years",
+        "C": "27 years",
+        "D": "29 years"
+      },
+      "correct_answer": "B",
+      "explanation": "Ravi's age = Sita's age + 8 = 17 + 8 = 25 years.",
+      "difficulty": "easy",
+      "sub_topic": "present_age_equations",
+      "misconception_tags": [
+        "age_difference_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-002",
+      "question": "The ages of X and Y are in the ratio 2:3 and their sum is 40 years. What is Y's age?",
+      "options": {
+        "A": "16 years",
+        "B": "20 years",
+        "C": "24 years",
+        "D": "28 years"
+      },
+      "correct_answer": "C",
+      "explanation": "Let ages be 2x and 3x. Sum: 2x + 3x = 40 => 5x = 40 => x = 8. Y's age = 3x = 24 years.",
+      "difficulty": "easy",
+      "sub_topic": "age_ratios",
+      "misconception_tags": [
+        "ratio_multiplier_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-003",
+      "question": "Ten years ago, a man was 3 times as old as his son. If the son is 20 years old now, what is the man's present age?",
+      "options": {
+        "A": "40 years",
+        "B": "45 years",
+        "C": "50 years",
+        "D": "55 years"
+      },
+      "correct_answer": "A",
+      "explanation": "Son's age 10 years ago = 20 - 10 = 10 years. Man's age 10 years ago = 3 * 10 = 30 years. Man's present age = 30 + 10 = 40 years.",
+      "difficulty": "medium",
+      "sub_topic": "past_future_ages",
+      "misconception_tags": [
+        "time_shift_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-004",
+      "question": "The sum of the present ages of a mother and daughter is 50 years. After 5 years, the mother will be twice as old as the daughter. What is the daughter's present age?",
+      "options": {
+        "A": "10 years",
+        "B": "15 years",
+        "C": "20 years",
+        "D": "25 years"
+      },
+      "correct_answer": "B",
+      "explanation": "Let daughter's present age be d, then mother's is 50 - d. After 5 years: mother = 55 - d, daughter = d + 5. Given 55 - d = 2(d + 5) => 55 - d = 2d + 10 => 45 = 3d => d = 15. So the daughter is 15 years old now.",
+      "difficulty": "medium",
+      "sub_topic": "past_future_ages",
+      "misconception_tags": [
+        "time_shift_equation_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-005",
+      "question": "The ratio of the present ages of A and B is 5:7. Four years ago, the ratio was 3:5. What is A's present age?",
+      "options": {
+        "A": "10 years",
+        "B": "15 years",
+        "C": "20 years",
+        "D": "25 years"
+      },
+      "correct_answer": "A",
+      "explanation": "Let present ages be 5x and 7x. Four years ago: (5x - 4)/(7x - 4) = 3/5. Cross-multiplying: 5(5x - 4) = 3(7x - 4) => 25x - 20 = 21x - 12 => 4x = 8 => x = 2. A's present age = 5x = 10 years.",
+      "difficulty": "medium",
+      "sub_topic": "past_future_ages",
+      "misconception_tags": [
+        "ratio_time_shift_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

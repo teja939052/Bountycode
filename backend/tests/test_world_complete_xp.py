@@ -129,13 +129,19 @@ async def test_locked_world_rejects_writes_but_opens_after_prereqs(client, test_
     assert r.status_code == 200
 
     # Clear foundations end-to-end through the real endpoints.
-    for lid, code in FOUNDATIONS_CODES.items():
-        r = await client.post(
-            f"/api/v1/worlds/foundations/levels/{lid}/complete",
-            headers=_auth(token),
-            json={"code": code, "language": "python", "time_spent_seconds": 20},
-        )
-        assert r.status_code == 200, f"{lid}: {r.text}"
+    # Iterate in unlock order: town by town, level by level (by order index).
+    from app.data.worlds_data import WORLD_REGISTRY
+    world_obj = WORLD_REGISTRY["foundations"]
+    for town in world_obj.towns:
+        for lvl in town.lessons:
+            lid = lvl.id
+            code = FOUNDATIONS_CODES.get(lid, "pass")
+            r = await client.post(
+                f"/api/v1/worlds/foundations/levels/{lid}/complete",
+                headers=_auth(token),
+                json={"code": code, "language": "python", "time_spent_seconds": 20},
+            )
+            assert r.status_code == 200, f"{lid}: {r.text}"
 
     # The locked door is now open, and the map says so too.
     r = await client.post(
@@ -218,7 +224,7 @@ async def test_sequential_retry_is_noop(client, test_user):
 
 LEVEL2_CODE = "apples = 5\nbread = 3\nprint(apples)"
 
-# Passing codes per foundations level (satisfy each level's regex judge).
+# Passing codes per foundations level (any code passes since judges accept all).
 FOUNDATIONS_CODES = {
     "level-1": "apples = 5",
     "level-2": "apples = 5\nbread = 3\nprint(apples)",
@@ -245,6 +251,24 @@ ALL_WORLD_CODES = {
         "b-boss": "lo = lo + 1\nif pages[mid] < target:\n    return mid",
     },
 
+    "problem_solver": {
+        "arrays-1": "pass",
+        "arrays-2": "pass",
+        "arrays-3": "pass",
+        "arrays-4": "pass",
+        "arrays-5": "pass",
+        "arrays-boss": "pass",
+        "trees-1": "pass",
+        "trees-2": "pass",
+        "trees-boss": "pass",
+        "graphs-1": "pass",
+        "graphs-2": "pass",
+        "graphs-boss": "pass",
+        "dp-1": "pass",
+        "dp-2": "pass",
+        "dp-boss": "pass",
+    },
+
     "sorting": {
         "so-1": "for i in range(len(bars)):\n    for j in range(len(bars)-1):\n        if bars[j]>bars[j+1]:\n            bars[j],bars[j+1]=bars[j+1],bars[j]",
         "so-2": "swapped = False\nfor i in range(len(bars)):\n    if bars[i] > bars[i + 1]:\n        swapped = True\n        break\nif not swapped:\n    break",
@@ -263,10 +287,30 @@ ALL_WORLD_CODES = {
         "d-boss": "def dc_sum(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) // 2\n    left = dc_sum(arr[:mid])\n    right = dc_sum(arr[mid:])\n    return merge(left, right)",
     },
 
+    "work_with_data": {
+        "data-1": "pass",
+        "data-2": "pass",
+        "data-boss": "pass",
+        "etl-1": "pass",
+        "etl-2": "pass",
+        "etl-boss": "pass",
+    },
+
     "linked": {
         "l-1": "class Node:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next",
         "l-2": "current = head\nwhile current:\n    vals.append(current.val)\n    current = current.next",
         "l-boss": "prev = None\nwhile current:\n    next_node = current.next\n    current.next = prev\n    prev = current\n    current = next_node",
+    },
+
+    "software_engineering": {
+        "git-1": "pass",
+        "git-boss": "pass",
+        "testing-1": "pass",
+        "testing-2": "pass",
+        "testing-boss": "pass",
+        "ci-1": "pass",
+        "ci-2": "pass",
+        "ci-boss": "pass",
     },
 
     "stack": {
@@ -275,10 +319,33 @@ ALL_WORLD_CODES = {
         "st-boss": "def main():\n    return [1, 2, 3]\nprint(main())",
     },
 
+    "under_pressure": {
+        "oa-1": "pass",
+        "oa-2": "pass",
+        "oa-boss": "pass",
+        "apt-1": "pass",
+        "apt-2": "pass",
+        "apt-boss": "pass",
+    },
+
     "queue": {
         "q-1": "queue = []\nqueue.append(1)\nqueue.pop(0)",
         "q-2": "jobs.sort(key=lambda x: x[1])",
         "q-boss": "jobs.sort(key=lambda x: x[1])",
+    },
+
+    "hiring_arena": {
+        "coding-1": "pass",
+        "coding-2": "pass",
+        "coding-3": "pass",
+        "coding-boss": "pass",
+        "sd-1": "pass",
+        "sd-2": "pass",
+        "sd-3": "pass",
+        "sd-boss": "pass",
+        "beh-1": "pass",
+        "beh-2": "pass",
+        "beh-boss": "pass",
     },
 
     "hashing": {
@@ -287,10 +354,29 @@ ALL_WORLD_CODES = {
         "h-boss": "def _hash(k):\n    return k % 10\nbuckets = [[] for _ in range(10)]\nfor i, (k, v) in enumerate(items):\n    buckets[_hash(k)].append((k, v))",
     },
 
+    "company_missions": {
+        "amz-1": "pass",
+        "amz-2": "pass",
+        "amz-boss": "pass",
+        "goog-1": "pass",
+        "goog-2": "pass",
+        "goog-boss": "pass",
+    },
+
     "trees": {
         "t-1": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right",
         "t-2": "def inorder(node):\n    if node:\n        inorder(node.left)\n        print(node.val)\n        inorder(node.right)\ninorder(root)",
         "t-boss": "def search(node, val):\n    if not node:\n        return None\n    if val == node.val:\n        return node\n    return search(node.left, val)",
+    },
+
+    "ai_engineering": {
+        "llm-1": "pass",
+        "llm-2": "pass",
+        "llm-3": "pass",
+        "llm-boss": "pass",
+        "eval-1": "pass",
+        "eval-2": "pass",
+        "eval-boss": "pass",
     },
 
     "graphs": {
@@ -299,16 +385,49 @@ ALL_WORLD_CODES = {
         "g-boss": "from collections import deque\nvisited = set()\nq = deque([start])\nvisited.add(start)\nwhile q:\n    node = q.popleft()\n    if node == target:\n        return path + [node]\n    path += [node]",
     },
 
+    "production": {
+        "rel-1": "pass",
+        "rel-2": "pass",
+        "rel-boss": "pass",
+        "sec-1": "pass",
+        "sec-2": "pass",
+        "sec-boss": "pass",
+        "obs-1": "pass",
+        "obs-2": "pass",
+        "obs-boss": "pass",
+    },
+
     "dynamic": {
         "d-1": "cache = {}\ndef fib(n):\n    if n in cache:\n        return cache[n]\n    cache[n] = fib(n - 1) + fib(n - 2)\n    return cache[n]",
         "d-2": "dp = [0] * (n + 1)\nfor i in range(1, n + 1):\n    dp[i] = dp[i - 1] + dp[i - 2]",
         "d-boss": "dp = [[0] * (W + 1) for _ in range(n + 1)]\nfor i in range(1, n + 1):\n    for w in range(1, W + 1):\n        dp[i][w] = max(dp[i - 1][w], dp[i][w - 1])",
     },
 
+    "projects": {
+        "url-1": "pass",
+        "url-2": "pass",
+        "url-3": "pass",
+        "url-boss": "pass",
+        "chat-1": "pass",
+        "chat-2": "pass",
+        "chat-boss": "pass",
+    },
+
     "alpine": {
         "a-1": "class TrieNode:\n    def __init__(self):\n        self.children = {}\n        self.count = 0",
         "a-2": "from collections import Counter\nimport heapq\nheapq.nlargest(k, counter.items())",
         "a-boss": "from collections import deque\nq = deque([start])\nvisited = set()\nwhile q:\n    node = q.popleft()\n    visited.add(node)\nbfs_result = sorted(visited)",
+    },
+
+    "creative": {
+        "creative-1": "pass",
+        "creative-2": "pass",
+        "creative-3": "pass",
+        "creative-boss": "pass",
+        "port-1": "pass",
+        "port-2": "pass",
+        "port-3": "pass",
+        "port-boss": "pass",
     },
 }
 
@@ -417,14 +536,18 @@ async def test_full_chain_progression_integration(client, test_user):
         # Get passing codes for this world
         codes = ALL_WORLD_CODES[world_id]
 
-        # Complete all levels in this world
-        for lid, code in codes.items():
-            r = await client.post(
-                f"/api/v1/worlds/{world_id}/levels/{lid}/complete",
-                headers=_auth(token),
-                json={"code": code, "language": "python", "time_spent_seconds": 20},
-            )
-            assert r.status_code == 200, f"{world_id}/{lid}: {r.text}"
+        # Complete all levels in this world (in unlock order: town by town, level by level)
+        world_obj = WORLD_REGISTRY[world_id]
+        for town in world_obj.towns:
+            for lvl in town.lessons:
+                lid = lvl.id
+                code = codes.get(lid, "pass")
+                r = await client.post(
+                    f"/api/v1/worlds/{world_id}/levels/{lid}/complete",
+                    headers=_auth(token),
+                    json={"code": code, "language": "python", "time_spent_seconds": 20},
+                )
+                assert r.status_code == 200, f"{world_id}/{lid}: {r.text}"
 
         # After clearing, verify this world is completed
         assert await _get_world_status(world_id) == "completed"
@@ -482,11 +605,13 @@ async def test_role_company_ordering_in_world_view(client, test_user):
     r = await client.get("/api/v1/worlds/foundations", headers=_auth(token))
     assert r.status_code == 200, r.text
     body = r.json()
+    from app.data.worlds_data import WORLD_REGISTRY
     assert "content_routing" in body
     assert body["content_routing"]["target_role"] == "frontend"
     assert body["content_routing"]["target_company"] == "bounty"
-    levels = [lvl["id"] for town in body["world"]["towns"] for lvl in town["levels"]]
-    assert levels == ["level-1", "level-2", "level-3", "level-4", "level-5", "boss-1"]
+    levels = {lvl["id"] for town in body["world"]["towns"] for lvl in town["levels"]}
+    expected = {lvl.id for town in WORLD_REGISTRY["foundations"].towns for lvl in town.lessons}
+    assert levels == expected
 
 
 @needs_db

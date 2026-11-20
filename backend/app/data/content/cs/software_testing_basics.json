@@ -1,0 +1,325 @@
+{
+  "topic": "software_testing_basics",
+  "subject": "cs",
+  "pattern": "software_testing_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "testing_fundamentals",
+      "title": "Software Testing Fundamentals",
+      "concept": "Software testing is the process of evaluating software to find defects and verify that it meets specified requirements. Testing helps reduce risk and improve quality, but it cannot prove the complete absence of bugs except in trivial cases.",
+      "formula": "Goal: detect defects + verify behavior against requirements. Testing != proof of zero defects.",
+      "worked_example": "Testing a login feature includes checking valid credentials, invalid passwords, empty fields, and lockout behavior to verify expected outcomes.",
+      "mistakes": [
+        "Assuming passing tests means software is bug-free",
+        "Testing only happy paths and ignoring edge cases",
+        "Confusing testing with debugging (debugging finds/fixes cause after failure)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "testing_levels",
+      "title": "Levels of Testing",
+      "concept": "Common testing levels include unit testing (individual components), integration testing (interactions between components), system testing (end-to-end system behavior), and acceptance testing (validation against user/business needs).",
+      "formula": "Typical progression: Unit -> Integration -> System -> Acceptance.",
+      "worked_example": "Unit test verifies a function that calculates discount. Integration test verifies checkout module with payment service. System test verifies full purchase flow. Acceptance test confirms business requirements are met.",
+      "mistakes": [
+        "Confusing unit and integration testing scopes",
+        "Skipping lower-level tests and relying only on system/UI tests",
+        "Assuming acceptance testing is only about technical correctness"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "test_types_and_cases",
+      "title": "Test Types and Test Case Design",
+      "concept": "Testing can be functional (what system does) or non-functional (performance, security, usability). Good test cases include clear inputs, steps, and expected results, and cover normal, boundary, and invalid scenarios.",
+      "formula": "Test case elements: preconditions, input/steps, expected result, actual result. Cover equivalence classes and boundary values.",
+      "worked_example": "For age input 18-60, boundary tests include 17, 18, 60, 61 along with typical valid values to check edges and normal behavior.",
+      "mistakes": [
+        "Writing vague expected results",
+        "Not testing boundary conditions",
+        "Ignoring negative/invalid inputs"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "STEST-PRACTICE-001",
+      "question": "What is a primary purpose of software testing?",
+      "options": {
+        "A": "To prove software has no bugs",
+        "B": "To find defects and verify requirements",
+        "C": "To write source code",
+        "D": "To deploy software to production"
+      },
+      "correct_answer": "B",
+      "explanation": "Testing aims to detect defects and verify that software behaves according to requirements. It reduces risk but cannot guarantee zero bugs.",
+      "difficulty": "easy",
+      "sub_topic": "testing_fundamentals",
+      "misconception_tags": [
+        "testing_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-PRACTICE-002",
+      "question": "Testing individual functions or modules in isolation is called:",
+      "options": {
+        "A": "System testing",
+        "B": "Integration testing",
+        "C": "Unit testing",
+        "D": "Acceptance testing"
+      },
+      "correct_answer": "C",
+      "explanation": "Unit testing focuses on small, individual units of code (such as functions or classes) in isolation.",
+      "difficulty": "easy",
+      "sub_topic": "testing_levels",
+      "misconception_tags": [
+        "testing_level_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-PRACTICE-003",
+      "question": "Which testing level verifies interactions between integrated modules?",
+      "options": {
+        "A": "Unit testing",
+        "B": "Integration testing",
+        "C": "Acceptance testing only",
+        "D": "Static review"
+      },
+      "correct_answer": "B",
+      "explanation": "Integration testing checks that combined modules/components work correctly together and that interfaces between them behave as expected.",
+      "difficulty": "easy",
+      "sub_topic": "testing_levels",
+      "misconception_tags": [
+        "testing_level_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-PRACTICE-004",
+      "question": "Which is an example of a boundary value test for an input range 1 to 100 (inclusive)?",
+      "options": {
+        "A": "50 only",
+        "B": "0, 1, 100, 101",
+        "C": "25 and 75 only",
+        "D": "-10 only"
+      },
+      "correct_answer": "B",
+      "explanation": "Boundary value analysis tests at and around edges of valid ranges: just below, minimum, maximum, and just above (0, 1, 100, 101).",
+      "difficulty": "medium",
+      "sub_topic": "test_types_and_cases",
+      "misconception_tags": [
+        "boundary_testing_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-PRACTICE-005",
+      "question": "Which statement about testing is correct?",
+      "options": {
+        "A": "Testing guarantees zero defects",
+        "B": "Testing can show presence of defects but not prove absence of all defects",
+        "C": "Testing is unnecessary if code compiles",
+        "D": "Only system testing is needed"
+      },
+      "correct_answer": "B",
+      "explanation": "Testing can reveal defects and increase confidence in quality, but it cannot prove that no defects remain in all cases.",
+      "difficulty": "easy",
+      "sub_topic": "testing_fundamentals",
+      "misconception_tags": [
+        "testing_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "STEST-001",
+      "question": "Acceptance testing is primarily focused on:",
+      "options": {
+        "A": "Checking whether individual functions return correct values only",
+        "B": "Validating the system against user/business requirements",
+        "C": "Testing compiler internals",
+        "D": "Only measuring code coverage percentage"
+      },
+      "correct_answer": "B",
+      "explanation": "Acceptance testing evaluates whether the software satisfies business/user requirements and is acceptable for delivery/use.",
+      "difficulty": "easy",
+      "sub_topic": "testing_levels",
+      "misconception_tags": [
+        "acceptance_testing_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-002",
+      "question": "A test case should generally include which of the following?",
+      "options": {
+        "A": "Only the test case ID",
+        "B": "Inputs/steps and expected results",
+        "C": "Only the developer's name",
+        "D": "Only production deployment date"
+      },
+      "correct_answer": "B",
+      "explanation": "A good test case specifies conditions/inputs or steps and the expected outcome so results can be compared objectively.",
+      "difficulty": "easy",
+      "sub_topic": "test_types_and_cases",
+      "misconception_tags": [
+        "test_case_design_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-003",
+      "question": "Which pair correctly matches the testing level with its focus?",
+      "options": {
+        "A": "Unit testing - whole system behavior",
+        "B": "Integration testing - interaction between modules",
+        "C": "System testing - single function in isolation",
+        "D": "Acceptance testing - code syntax checking"
+      },
+      "correct_answer": "B",
+      "explanation": "Integration testing verifies that modules/components work together correctly. Unit tests isolate units; system testing checks the full system; acceptance validates requirements.",
+      "difficulty": "easy",
+      "sub_topic": "testing_levels",
+      "misconception_tags": [
+        "testing_level_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-004",
+      "question": "Performance and security testing are examples of:",
+      "options": {
+        "A": "Non-functional testing",
+        "B": "Unit testing only",
+        "C": "Syntax testing",
+        "D": "Compilation checks"
+      },
+      "correct_answer": "A",
+      "explanation": "Non-functional testing evaluates quality attributes such as performance, security, usability, and reliability rather than specific functional behaviors alone.",
+      "difficulty": "easy",
+      "sub_topic": "test_types_and_cases",
+      "misconception_tags": [
+        "test_type_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-005",
+      "question": "Why is it important to include negative/invalid test cases?",
+      "options": {
+        "A": "They are never useful in real systems",
+        "B": "They help verify how the system handles errors and unexpected inputs",
+        "C": "They replace all positive tests",
+        "D": "They only test UI colors"
+      },
+      "correct_answer": "B",
+      "explanation": "Negative and invalid input tests ensure the system handles errors gracefully, validates inputs, and behaves correctly under unexpected conditions.",
+      "difficulty": "easy",
+      "sub_topic": "test_types_and_cases",
+      "misconception_tags": [
+        "negative_testing_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

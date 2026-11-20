@@ -11,6 +11,7 @@ from app.database import get_collection
 from app.middleware.auth import get_current_user
 from app.services.quiz_service import get_all_questions, get_question_by_id
 from app.services.adaptive_learning import record_learning_activity
+from app.services.observability import record_event
 
 router = APIRouter(prefix="/api/v1/academy/diagnostic", tags=["academy-diagnostic"])
 _sessions = lambda: get_collection("academy_diagnostic_sessions")
@@ -276,6 +277,11 @@ async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)
         {"user_id": user["id"], "diagnostic_id": diagnostic_id, "status": "in_progress"},
         {"$set": {"status": "completed", "result": result, "completed_at": datetime.now(timezone.utc)}},
     )
+    # Record diagnostic completion for funnel observability.
+    try:
+        await record_event(user["id"], "diagnostic_completed", {"score": result.get("overall_score")})
+    except Exception:
+        pass
     return {"success": True, "result": result}
 
 

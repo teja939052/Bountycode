@@ -1,0 +1,325 @@
+{
+  "topic": "puzzles_basics",
+  "subject": "reasoning",
+  "pattern": "puzzles_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "PUZ-L1",
+      "title": "Approaching Logical Puzzles",
+      "concept": "Logical puzzles require deducing information from a set of clues. A systematic approach—reading all clues, identifying direct facts, using tables/diagrams, and eliminating impossibilities—helps avoid confusion and missed constraints.",
+      "formula": "Steps: list entities/attributes -> note direct clues -> represent with table/grid -> apply constraints -> deduce stepwise -> verify all clues.",
+      "worked_example": "If A sits left of B and B sits left of C in a row of three, arrangement is A, B, C. Each clue reduces possible positions until the answer is determined.",
+      "mistakes": [
+        "Guessing without using all clues",
+        "Assuming positions/relations not stated",
+        "Not revisiting earlier clues after new deductions"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "PUZ-L2",
+      "title": "Using Elimination and Constraints",
+      "concept": "Many puzzles are solved by eliminating options that violate constraints. Track what is possible and impossible for each entity. Contradictions indicate an incorrect assumption or missed clue interpretation.",
+      "formula": "Constraint handling: mark definite matches, cross out impossible matches, propagate implications from each deduction.",
+      "worked_example": "Three people P,Q,R have different pets cat,dog,fish. If P does not have cat and R has dog, then P cannot have dog/cat so P has fish, and Q has cat.",
+      "mistakes": [
+        "Failing to eliminate derived impossibilities",
+        "Confusing 'not' clues with positive assignments",
+        "Stopping before all clues are satisfied"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "PUZ-L3",
+      "title": "Verification and Consistency",
+      "concept": "After reaching a solution, verify it against every given clue. A valid solution must satisfy all constraints simultaneously. If any clue is violated, revisit deductions to find the error or missed case.",
+      "formula": "Final check: for each clue -> solution satisfies clue? All must be true.",
+      "worked_example": "If a seating answer states X is left of Y but a clue requires Y to be left of X, the arrangement is inconsistent and must be corrected.",
+      "mistakes": [
+        "Checking only some clues",
+        "Ignoring implicit relations derived from multiple clues",
+        "Accepting first arrangement found without full verification"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "PUZ-PRACTICE-001",
+      "question": "A good first step in solving a logical puzzle is to:",
+      "options": {
+        "A": "Guess the answer",
+        "B": "Read all clues and organize information",
+        "C": "Ignore negative clues",
+        "D": "Assume missing details"
+      },
+      "correct_answer": "B",
+      "explanation": "Understanding all clues and organizing entities/attributes systematically helps make correct deductions.",
+      "difficulty": "easy",
+      "sub_topic": "approach",
+      "misconception_tags": [
+        "strategy_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-PRACTICE-002",
+      "question": "Three friends A,B,C stand in a row. A is left of B, and C is right of B. The order from left to right is:",
+      "options": {
+        "A": "A, C, B",
+        "B": "C, B, A",
+        "C": "A, B, C",
+        "D": "B, A, C"
+      },
+      "correct_answer": "C",
+      "explanation": "A left of B and C right of B gives A, B, C from left to right.",
+      "difficulty": "easy",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "ordering_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-PRACTICE-003",
+      "question": "If a clue states 'P is not in room 1' and there are only rooms 1 and 2, then:",
+      "options": {
+        "A": "P is in room 1",
+        "B": "P is in room 2",
+        "C": "P could be in either room",
+        "D": "No conclusion possible"
+      },
+      "correct_answer": "B",
+      "explanation": "Eliminating room 1 leaves only room 2 as the possible option.",
+      "difficulty": "easy",
+      "sub_topic": "elimination",
+      "misconception_tags": [
+        "elimination_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-PRACTICE-004",
+      "question": "After finding a candidate solution to a puzzle, you should:",
+      "options": {
+        "A": "Submit without checking",
+        "B": "Verify it against all clues",
+        "C": "Change it randomly",
+        "D": "Check only one clue"
+      },
+      "correct_answer": "B",
+      "explanation": "A correct solution must satisfy every given clue; full verification catches missed constraints or errors.",
+      "difficulty": "easy",
+      "sub_topic": "verification",
+      "misconception_tags": [
+        "verification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-PRACTICE-005",
+      "question": "In a puzzle, A, B, C have colors red, blue, green. A has red, B does not have green. What color does B have?",
+      "options": {
+        "A": "Red",
+        "B": "Blue",
+        "C": "Green",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "B",
+      "explanation": "A has red, so B cannot have red. B does not have green, so B must have blue (and C has green).",
+      "difficulty": "easy",
+      "sub_topic": "elimination",
+      "misconception_tags": [
+        "deduction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PUZ-001",
+      "question": "Which tool is commonly useful for solving matching-type puzzles?",
+      "options": {
+        "A": "A table/grid to track possibilities",
+        "B": "A compiler",
+        "C": "A random number generator",
+        "D": "A calculator only"
+      },
+      "correct_answer": "A",
+      "explanation": "Tables/grids help record definite matches and eliminations clearly, making deductions easier and less error-prone.",
+      "difficulty": "easy",
+      "sub_topic": "approach",
+      "misconception_tags": [
+        "strategy_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-002",
+      "question": "Four people sit in a row facing north: P, Q, R, S. P is at the left end, S is at the right end. Q is left of R. The arrangement is:",
+      "options": {
+        "A": "P, R, Q, S",
+        "B": "P, Q, R, S",
+        "C": "Q, P, R, S",
+        "D": "P, Q, S, R"
+      },
+      "correct_answer": "B",
+      "explanation": "Ends fixed as P, _, _, S. Q left of R places Q before R in the middle: P, Q, R, S.",
+      "difficulty": "easy",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "ordering_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-003",
+      "question": "A deduction is valid in a puzzle only if it:",
+      "options": {
+        "A": "Seems likely",
+        "B": "Follows logically from given clues and prior deductions",
+        "C": "Uses outside knowledge",
+        "D": "Matches a guess"
+      },
+      "correct_answer": "B",
+      "explanation": "Puzzle solutions must be logically derived from stated clues/constraints, not from assumptions or external information.",
+      "difficulty": "easy",
+      "sub_topic": "verification",
+      "misconception_tags": [
+        "logic_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-004",
+      "question": "If all clues are satisfied by arrangement X but one clue is violated by arrangement Y, then:",
+      "options": {
+        "A": "Y can still be correct",
+        "B": "Y is not a valid solution",
+        "C": "Both are equally correct",
+        "D": "Clues are irrelevant"
+      },
+      "correct_answer": "B",
+      "explanation": "A valid puzzle solution must satisfy every clue; violating any clue makes the arrangement incorrect.",
+      "difficulty": "easy",
+      "sub_topic": "verification",
+      "misconception_tags": [
+        "verification_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PUZ-005",
+      "question": "X, Y, Z each like a different fruit: apple, banana, mango. X does not like apple. Z likes mango. What does X like?",
+      "options": {
+        "A": "Apple",
+        "B": "Banana",
+        "C": "Mango",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "B",
+      "explanation": "Z likes mango, so X cannot like mango. X does not like apple, therefore X likes banana (and Y likes apple).",
+      "difficulty": "easy",
+      "sub_topic": "elimination",
+      "misconception_tags": [
+        "deduction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

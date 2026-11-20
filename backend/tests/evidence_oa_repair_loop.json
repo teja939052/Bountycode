@@ -1,15 +1,15 @@
 {
-  "run_at": "2026-09-20T14:05:00.566407+00:00",
-  "email": "evidence-355e32e3@example.com",
+  "run_at": "2026-11-20T10:07:49.857273+00:00",
+  "email": "evidence-5f905c74@example.com",
   "target_topic": "percentages",
   "chain": [
     {
       "label": "1 register",
       "payload": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmFhZmU4MDcyNDI1MTQ3Nzk0OGFmOWJhIiwiZXhwIjoxNzkwNTE3ODk1LCJpYXQiOjE3ODk5MTMwOTUsInR5cGUiOiJhY2Nlc3MifQ.HEVSxdoHFCr5piewhIifEY_bMFavW056w-Ckz_6G-aM",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmIwMDFiZjNhMTY5NDk4ZjBkNWVhNzUwIiwiZXhwIjoxNzk1Nzc0MDY3LCJpYXQiOjE3OTUxNjkyNjcsInR5cGUiOiJhY2Nlc3MifQ.nMPPhMOzdXu_ADPWD7DPgX5yH75JasJV3i2gl_8zgpg",
         "user": {
-          "id": "6aafe80724251477948af9ba",
-          "email": "evidence-355e32e3@example.com",
+          "id": "6b001bf3a169498f0d5ea750",
+          "email": "evidence-5f905c74@example.com",
           "name": "E2E Evidence",
           "plan": "free"
         }
@@ -18,8 +18,11 @@
     {
       "label": "2 start",
       "payload": {
-        "session_id": "6aafe80724251477948af9bf",
+        "session_id": "6b001bf4a169498f0d5ea755",
         "company": "tcs",
+        "track": null,
+        "engine_version": "2026.11",
+        "blueprint_version": "tcs:2026.11",
         "mode": "calm",
         "blueprint": {
           "aptitude": 0.2,
@@ -74,7 +77,7 @@
           "provenance": "pattern_relevant"
         },
         "duration_minutes": 60,
-        "ends_at": "2026-09-20T15:04:55.915151+00:00",
+        "ends_at": "2026-11-20T11:07:48.195855+00:00",
         "integrity_enabled": false,
         "total_questions": 12,
         "questions": [
@@ -417,14 +420,17 @@
       "label": "3 submit answers",
       "payload": {
         "received": 12,
-        "session_id": "6aafe80724251477948af9bf"
+        "session_id": "6b001bf4a169498f0d5ea755"
       }
     },
     {
       "label": "4 complete",
       "payload": {
-        "session_id": "6aafe80724251477948af9bf",
+        "session_id": "6b001bf4a169498f0d5ea755",
         "company": "tcs",
+        "track": null,
+        "engine_version": "2026.11",
+        "blueprint_version": "tcs:2026.11",
         "mode": "calm",
         "overall_readiness": 78.3,
         "verdict": "INTERVIEW READY",
@@ -670,6 +676,12 @@
             "action": "drill"
           }
         ],
+        "review_metadata": {
+          "flagged_question_count": 0,
+          "flagged_question_ids": [],
+          "client_resume_used": false,
+          "autosave_available": false
+        },
         "diagnosis": {
           "overall_score": 91.66666666666666,
           "correct": 11,
@@ -770,8 +782,8 @@
         "has_repairs": true,
         "missions": [
           {
-            "id": "repair:6aafe80724251477948af9ba:1789913099",
-            "user_id": "6aafe80724251477948af9ba",
+            "id": "repair:6b001bf3a169498f0d5ea750:1795169269",
+            "user_id": "6b001bf3a169498f0d5ea750",
             "title": "Repair: percentages",
             "weaknesses": [
               "percentages"
@@ -786,7 +798,7 @@
               "ml-quiz-1"
             ],
             "status": "pending",
-            "created_at": "2026-09-20T14:04:59.897498+00:00",
+            "created_at": "2026-11-20T10:07:49.601300+00:00",
             "completed_at": "",
             "misconception_tag": null,
             "remediation_steps": [],
@@ -795,8 +807,8 @@
         ],
         "total_weaknesses": 1,
         "next_recommended": {
-          "id": "repair:6aafe80724251477948af9ba:1789913099",
-          "user_id": "6aafe80724251477948af9ba",
+          "id": "repair:6b001bf3a169498f0d5ea750:1795169269",
+          "user_id": "6b001bf3a169498f0d5ea750",
           "title": "Repair: percentages",
           "weaknesses": [
             "percentages"
@@ -811,7 +823,7 @@
             "ml-quiz-1"
           ],
           "status": "pending",
-          "created_at": "2026-09-20T14:04:59.897498+00:00",
+          "created_at": "2026-11-20T10:07:49.601300+00:00",
           "completed_at": "",
           "misconception_tag": null,
           "remediation_steps": [],
@@ -827,40 +839,55 @@
         "retest_condition": ">=80% across retest questions on this weakness",
         "questions": [
           {
-            "id": "q_03496",
-            "type": "system_design",
-            "question": "Design a Write-Through Distributed Cache",
-            "topic": "system_design",
-            "sub_topic": "distributed_cache_write",
-            "difficulty": "hard",
-            "provenance": "",
+            "id": "apt-046",
+            "type": "aptitude",
+            "question": "(Percent) 25% of 200 equals:",
+            "topic": "percentages",
+            "sub_topic": "basic",
+            "difficulty": "easy",
+            "provenance": "pattern_relevant to TCS NQT / Infosys",
             "trust_status": "verified",
             "kind": "mcq",
-            "options": []
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            }
           },
           {
-            "id": "q_03495",
-            "type": "system_design",
-            "question": "Design an E-commerce Inventory System",
-            "topic": "system_design",
-            "sub_topic": "inventory",
-            "difficulty": "hard",
-            "provenance": "",
+            "id": "apt-037",
+            "type": "aptitude",
+            "question": "(Successive %) Price 100, +20% then -20%. Final?",
+            "topic": "percentages",
+            "sub_topic": "successive",
+            "difficulty": "medium",
+            "provenance": "pattern_relevant to TCS NQT / Infosys",
             "trust_status": "verified",
             "kind": "mcq",
-            "options": []
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            }
           },
           {
-            "id": "q_03494",
-            "type": "system_design",
-            "question": "Design a Distributed Cache",
-            "topic": "system_design",
-            "sub_topic": "distributed_cache",
-            "difficulty": "hard",
-            "provenance": "",
+            "id": "apt-028",
+            "type": "aptitude",
+            "question": "(Marks) Scored 312 out of 400. Percentage?",
+            "topic": "percentages",
+            "sub_topic": "marks",
+            "difficulty": "easy",
+            "provenance": "pattern_relevant to TCS NQT / Infosys",
             "trust_status": "verified",
             "kind": "mcq",
-            "options": []
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            }
           }
         ]
       }
@@ -876,20 +903,20 @@
         "verdict": "advance",
         "results": [
           {
-            "question_id": "q_03496",
-            "topic": "system_design",
+            "question_id": "apt-046",
+            "topic": "percentages",
             "kind": "mcq",
             "correct": true
           },
           {
-            "question_id": "q_03495",
-            "topic": "system_design",
+            "question_id": "apt-037",
+            "topic": "percentages",
             "kind": "mcq",
             "correct": true
           },
           {
-            "question_id": "q_03494",
-            "topic": "system_design",
+            "question_id": "apt-028",
+            "topic": "percentages",
             "kind": "mcq",
             "correct": true
           }
@@ -900,7 +927,7 @@
       "label": "8 mission complete",
       "payload": {
         "completed": true,
-        "mission_id": "repair:6aafe80724251477948af9ba:1789913099"
+        "mission_id": "repair:6b001bf3a169498f0d5ea750:1795169269"
       }
     }
   ]

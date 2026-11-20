@@ -1,0 +1,317 @@
+{
+  "topic": "recursion_basics",
+  "subject": "dsa",
+  "pattern": "recursion_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "recursion_definition",
+      "title": "What is Recursion",
+      "concept": "Recursion is a technique where a function solves a problem by calling itself on smaller subproblems. A correct recursive solution must define a base case (to stop recursion) and a recursive case (to reduce the problem toward the base case).",
+      "formula": "Recursive solution = base case(s) + recursive case(s) that progress toward base case.",
+      "worked_example": "Factorial: n! = 1 if n == 0 (base case), else n! = n * (n-1)! (recursive case). factorial(3) = 3 * factorial(2) = 3 * 2 * factorial(1) = 3 * 2 * 1 * factorial(0) = 6.",
+      "mistakes": [
+        "Missing or incorrect base case causing infinite recursion/stack overflow",
+        "Recursive step that does not move toward the base case",
+        "Confusing the order of work done before and after the recursive call"
+      ]
+    },
+    {
+      "id": "call_stack_and_tracing",
+      "title": "Call Stack and Tracing Recursion",
+      "concept": "Each recursive call creates a new stack frame storing parameters and local state. Calls are resolved in last-in, first-out (LIFO) order. Tracing recursion involves following calls down to the base case and then combining results as calls return.",
+      "formula": "Execution: push frames until base case -> return values unwind stack in reverse call order.",
+      "worked_example": "For factorial(3): calls stack as fact(3)->fact(2)->fact(1)->fact(0). fact(0) returns 1, fact(1) returns 1, fact(2) returns 2, fact(3) returns 6.",
+      "mistakes": [
+        "Assuming all recursive calls run in parallel (they are sequential with stack frames)",
+        "Losing track of which instance of variables belongs to which call",
+        "Expecting the first call to finish before deeper calls are made"
+      ]
+    },
+    {
+      "id": "recursion_complexity",
+      "title": "Time and Space in Recursion",
+      "concept": "Recursive time complexity depends on number of calls and work per call. Space complexity includes recursion stack depth in addition to any extra data structures. Some naive recursions (like Fibonacci) recompute subproblems, leading to exponential time.",
+      "formula": "Total time ~ (number of recursive calls) * (work per call). Stack space ~ maximum recursion depth.",
+      "worked_example": "factorial(n) makes n+1 calls total with O(1) work each -> O(n) time and O(n) stack space. Naive Fibonacci fib(n)=fib(n-1)+fib(n-2) makes many repeated calls -> exponential time, with O(n) max depth.",
+      "mistakes": [
+        "Counting only the first call and ignoring recursive subcalls",
+        "Forgetting stack space in space complexity analysis",
+        "Assuming recursion is always slower/worse without considering problem structure"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "REC-PRACTICE-001",
+      "question": "What is the base case in a correct recursive definition of factorial for n >= 0?",
+      "options": {
+        "A": "n! = n * (n-1)!",
+        "B": "0! = 1",
+        "C": "n! = n^2",
+        "D": "1! = 2"
+      },
+      "correct_answer": "B",
+      "explanation": "The base case stops recursion. For factorial, 0! is defined as 1, which provides a non-recursive stopping point.",
+      "difficulty": "easy",
+      "sub_topic": "recursion_definition",
+      "misconception_tags": [
+        "base_case_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-PRACTICE-002",
+      "question": "What is the value of factorial(4) given factorial(0)=1 and factorial(n)=n*factorial(n-1)?",
+      "options": {
+        "A": "12",
+        "B": "16",
+        "C": "24",
+        "D": "32"
+      },
+      "correct_answer": "C",
+      "explanation": "factorial(4)=4*3*2*1*factorial(0)=24*1=24.",
+      "difficulty": "easy",
+      "sub_topic": "recursion_definition",
+      "misconception_tags": [
+        "recurrence_computation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-PRACTICE-003",
+      "question": "In which order do recursive call stack frames complete/return?",
+      "options": {
+        "A": "First-in, first-out (FIFO)",
+        "B": "Last-in, first-out (LIFO)",
+        "C": "Random order",
+        "D": "Alphabetical order"
+      },
+      "correct_answer": "B",
+      "explanation": "The call stack is LIFO: the most recent (deepest) call returns first, then control returns to the previous call.",
+      "difficulty": "easy",
+      "sub_topic": "call_stack_and_tracing",
+      "misconception_tags": [
+        "call_stack_order_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-PRACTICE-004",
+      "question": "A recursive function makes one call to itself with input n-1 until n reaches 0, doing O(1) work per call. What is its time complexity?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "C",
+      "explanation": "There are about n+1 calls total and each does constant work, so total time is O(n).",
+      "difficulty": "easy",
+      "sub_topic": "recursion_complexity",
+      "misconception_tags": [
+        "recursion_complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-PRACTICE-005",
+      "question": "What happens if a recursive function has no base case (or never reaches it)?",
+      "options": {
+        "A": "It returns 0 immediately",
+        "B": "It runs once and stops",
+        "C": "It may recurse indefinitely until stack/resources are exhausted",
+        "D": "It automatically converts to a loop"
+      },
+      "correct_answer": "C",
+      "explanation": "Without a reachable base case, recursive calls continue without stopping, typically leading to infinite recursion and a stack overflow or resource exhaustion.",
+      "difficulty": "easy",
+      "sub_topic": "recursion_definition",
+      "misconception_tags": [
+        "missing_base_case_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "REC-001",
+      "question": "Consider: f(n) = 0 if n == 0 else n + f(n-1). What is f(5)?",
+      "options": {
+        "A": "10",
+        "B": "15",
+        "C": "20",
+        "D": "5"
+      },
+      "correct_answer": "B",
+      "explanation": "f(5)=5+f(4)=5+4+f(3)=5+4+3+f(2)=5+4+3+2+f(1)=5+4+3+2+1+f(0)=15.",
+      "difficulty": "easy",
+      "sub_topic": "recursion_definition",
+      "misconception_tags": [
+        "recurrence_computation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-002",
+      "question": "For a recursive function that calls itself twice per invocation (e.g., naive Fibonacci) without memoization, the time complexity is typically:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(2^n) (exponential)",
+        "D": "O(log n)"
+      },
+      "correct_answer": "C",
+      "explanation": "Each call branches into two more calls and subproblems are recomputed, leading to an exponential number of calls in the naive form (commonly expressed as O(2^n)).",
+      "difficulty": "medium",
+      "sub_topic": "recursion_complexity",
+      "misconception_tags": [
+        "branching_recursion_complexity_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "capgemini",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-003",
+      "question": "What is the maximum recursion stack depth for computing factorial(n) recursively (with base case at 0)?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "C",
+      "explanation": "factorial(n) calls factorial(n-1), ..., factorial(0), so at most n+1 frames are on the stack at once, which is O(n) space.",
+      "difficulty": "medium",
+      "sub_topic": "call_stack_and_tracing",
+      "misconception_tags": [
+        "stack_space_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-004",
+      "question": "Which component is essential to stop recursion?",
+      "options": {
+        "A": "A loop",
+        "B": "A base case",
+        "C": "A global variable",
+        "D": "A print statement"
+      },
+      "correct_answer": "B",
+      "explanation": "A base case provides a condition where the function returns without making a further recursive call, preventing infinite recursion.",
+      "difficulty": "easy",
+      "sub_topic": "recursion_definition",
+      "misconception_tags": [
+        "base_case_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-005",
+      "question": "Consider: sumDigits(n) returns n if n < 10 else (n % 10) + sumDigits(n / 10) using integer division. What is sumDigits(123)?",
+      "options": {
+        "A": "3",
+        "B": "5",
+        "C": "6",
+        "D": "123"
+      },
+      "correct_answer": "C",
+      "explanation": "sumDigits(123)=3 + sumDigits(12)=3 + 2 + sumDigits(1)=3 + 2 + 1 = 6.",
+      "difficulty": "medium",
+      "sub_topic": "call_stack_and_tracing",
+      "misconception_tags": [
+        "recurrence_tracing_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

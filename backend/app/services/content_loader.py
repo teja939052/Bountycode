@@ -68,9 +68,10 @@ def load_content_file(path: str) -> Dict[str, int]:
             "company_tags": item.get("company_tags") or [],
             "frequency_tier": item.get("frequency_tier") or 2,
             "misconception_tags": item.get("misconception_tags") or [],
-            "trust_status": "human_reviewed",
-            "source": item.get("source") or "bountycode_original",
-            "type": "mcq",
+            "trust_status": item.get("trust_status") or data.get("trust_status") or "human_reviewed",
+            "provenance": item.get("provenance") or data.get("provenance"),
+            "source": item.get("source") or data.get("source") or "bountycode_original",
+            "type": item.get("type") or "mcq",
         }
         insert_question(doc)
         inserted += 1

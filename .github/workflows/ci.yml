@@ -15,6 +15,26 @@ jobs:
       run:
         working-directory: backend
 
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v4
 
@@ -38,8 +58,30 @@ jobs:
       - name: Compile check
         run: python -m compileall app/ -q
 
-      - name: Run tests
-        run: python -m pytest tests/ -v --tb=short
+      # ── Test stages (mirror Makefile) ────────────────────────────────
+      - name: test-backend-unit
+        run: make test-backend-unit
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
+
+      - name: test-backend-integration
+        run: make test-backend-integration
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
+
+      - name: test-e2e
+        run: make test-e2e
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
+
+      - name: test-content
+        run: make test-content
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
 
       - name: Check alembic migrations
         run: |
@@ -62,13 +104,15 @@ jobs:
           cache: "npm"
           cache-dependency-path: frontend/package-lock.json
 
-      # Reconcile the lock before clean installation. The checked-in lockfile
-      # predates the current package manifest and npm ci currently rejects it.
+      # Reconcile the lock before clean installation.
       - name: Reconcile frontend lockfile
         run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
 
       - name: Build
         run: npm run build
