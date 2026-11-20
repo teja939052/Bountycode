@@ -18,7 +18,6 @@ Each mode tracks:
   - Weak areas for recommendation
 """
 import json
-import os
 import random
 import time
 from datetime import datetime, timezone
@@ -29,14 +28,6 @@ from collections import defaultdict
 # =============================================================
 # QUESTION LOADING & INDEXING
 # =============================================================
-
-QUESTION_FILES = [
-    "app/content/questions/curated/curated.json",
-    "app/content/questions/curated/learning_objects.json",
-    "app/content/questions/curated/placement_questions.json",
-    "app/data/sql_practice_bank.json",
-    "app/data/interview_practice_bank.json",
-]
 
 _questions_cache = None
 _questions_by_id = None
@@ -73,34 +64,19 @@ def _normalize_company_tag(value: Any) -> str:
 
 
 def _load_questions() -> List[Dict[str, Any]]:
-    """Load all questions from JSON files into memory."""
+    """Load only student-servable questions from the canonical question store.
+
+    The question store owns residency, deduplication, trust and executability.
+    Quiz composition must never independently scan JSON banks or bypass that
+    governance gate.
+    """
     global _questions_cache, _questions_by_id, _questions_by_topic, _questions_by_difficulty, _questions_by_company
     if _questions_cache is not None:
         return _questions_cache
 
-    all_questions = []
-    for f in QUESTION_FILES:
-        if not os.path.exists(f):
-            continue
-        try:
-            with open(f, encoding="utf-8") as fp:
-                data = json.load(fp)
-            if isinstance(data, list):
-                all_questions.extend(data)
-            elif isinstance(data, dict) and "questions" in data:
-                all_questions.extend(data["questions"])
-        except Exception as e:
-            print(f"Error loading {f}: {e}")
+    from app.services import question_store
 
-    # Deduplicate by ID
-    seen = set()
-    unique = []
-    for q in all_questions:
-        qid = q.get("id", "")
-        if qid and qid not in seen:
-            seen.add(qid)
-            unique.append(q)
-
+    unique = question_store.find().prefer_verified().to_list()
     _questions_cache = unique
     _questions_by_id = {q["id"]: q for q in unique if q.get("id")}
     _questions_by_topic = defaultdict(list)
