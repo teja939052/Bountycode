@@ -21,6 +21,10 @@ export const studyApi = {
     return request(`/api/v1/study/categories/${categoryId}/articles`);
   },
 
+  getCompanyLearningPath(company: string) {
+    return request(`/api/v1/study/company-path/${encodeURIComponent(company)}`);
+  },
+
   getRelatedArticles(params: { language?: string; q?: string; limit?: number } = {}) {
     const query = new URLSearchParams();
     if (params.language) query.append("language", params.language);
@@ -28,13 +32,5 @@ export const studyApi = {
     if (params.limit) query.append("limit", String(params.limit));
     const qs = query.toString();
     return request(`/api/v1/study/related${qs ? `?${qs}` : ""}`);
-  },
-
-  getNextAction(params: { target_skill_id?: string; time_budget_minutes?: number } = {}) {
-    const query = new URLSearchParams();
-    if (params.target_skill_id) query.append("target_skill_id", params.target_skill_id);
-    if (params.time_budget_minutes !== undefined) query.append("time_budget_minutes", String(params.time_budget_minutes));
-    const qs = query.toString();
-    return request(`/api/v1/study/next-action${qs ? `?${qs}` : ""}`);
   },
 };

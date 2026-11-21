@@ -1,0 +1,30 @@
+{
+  "slug": "searching_basics",
+  "id": "lesson_searching_basics_001",
+  "title": "Searching basics",
+  "domain": "DSA",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 115,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Linear vs binary", "content": "Linear search checks elements one by one — O(n). Binary search halves a sorted range each step — O(log n)."},
+    {"step_number": 2, "step_type": "interactive", "title": "Prerequisite", "prompt": "Binary search requires:", "options": ["Random hash only", "Sorted data", "Graph input", "Unsorted always"], "correct_index": 1, "explanation": "The midpoint test needs sorted order.", "hints": ["What property does mid comparison need?"]},
+    {"step_number": 3, "step_type": "practice", "title": "Worst linear", "prompt": "Linear search worst-case comparisons for n elements:", "options": ["1", "log n", "n", "n^2"], "correct_index": 2, "explanation": "May scan all n elements.", "hints": ["Target at the end or missing."]},
+    {"step_number": 4, "step_type": "practice", "title": "Binary idea", "prompt": "Sorted [1,3,5,7,9], search 7. First mid (0-based L=0,R=4) index 2 value 5. Next search:", "options": ["Left half only", "Right half only", "Entire array again", "Stop fail"], "correct_index": 1, "explanation": "7 > 5 → search right half.", "hints": ["Compare target to mid."]},
+    {"step_number": 5, "step_type": "explain", "title": "OA tip", "content": "If the problem allows sorting first, binary search or two-pointers often beat repeated linear scans."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Binary search needs:", "options": ["Sorted data", "Stack only", "Queue only", "Unsorted"], "correct_index": 0, "explanation": "Sorted."},
+    {"prompt": "Linear search complexity:", "options": ["O(1)", "O(log n)", "O(n)", "O(n^2)"], "correct_index": 2, "explanation": "O(n)."},
+    {"prompt": "Binary search complexity:", "options": ["O(n)", "O(log n)", "O(n^2)", "O(1) always"], "correct_index": 1, "explanation": "O(log n)."},
+    {"prompt": "If mid < target in ascending array:", "options": ["Search left", "Search right", "Done", "Error"], "correct_index": 1, "explanation": "Search right."},
+    {"prompt": "Unsorted data, need one find:", "options": ["Binary only", "Linear (or sort first)", "Impossible", "Only hash mandatory"], "correct_index": 1, "explanation": "Linear or sort then binary."}
+  ]},
+  "learning_objectives": ["Contrast linear and binary search", "Apply binary on sorted arrays"],
+  "concepts": ["linear search", "binary search"],
+  "company_applications": [{"company": "Infosys", "skill": "searching", "practice": "Complexity + mid-step traces."}],
+  "srs_cards": [{"type": "concept", "question": "Binary search needs?", "answer": "Sorted data; O(log n) halvings."}],
+  "next_lesson_slug": "recursion_basics",
+  "next_lesson_title": "Recursion basics"
+}

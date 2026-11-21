@@ -1,0 +1,33 @@
+{
+  "slug": "strings_basics",
+  "id": "lesson_strings_basics_001",
+  "title": "Strings basics",
+  "domain": "Programming Logic",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Text as sequences", "content": "A string is a sequence of characters. You can read by index and measure length, similar to arrays."},
+    {"step_number": 2, "step_type": "interactive", "title": "Character at index", "prompt": "s = \"code\". s[0] is:", "options": ["c", "o", "e", "code"], "correct_index": 0, "explanation": "Index 0 is 'c'.", "hints": ["Zero-based indexing."]},
+    {"step_number": 3, "step_type": "explain", "title": "Concatenation", "content": "Joining strings with + glues them end to end: \"a\"+\"b\" = \"ab\"."},
+    {"step_number": 4, "step_type": "practice", "title": "Length", "prompt": "len(\"hi!\") is:", "options": ["2", "3", "4", "1"], "correct_index": 1, "explanation": "h, i, ! → 3 characters.", "hints": ["Count each character including punctuation."]},
+    {"step_number": 5, "step_type": "practice", "title": "Compare carefully", "prompt": "\"10\" < \"2\" as strings may be true because:", "options": ["Numbers compare by value always", "Lexicographic digit character order", "Strings cannot compare", "10 is smaller"], "correct_index": 1, "explanation": "String compare uses character order, not integer magnitude.", "hints": ["Are these numbers or text?"]}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "\"ab\"+\"c\" =", "options": ["ab c", "abc", "a b c", "error always"], "correct_index": 1, "explanation": "Concatenation yields abc."},
+    {"prompt": "\"cat\"[2] =", "options": ["c", "a", "t", "cat"], "correct_index": 2, "explanation": "Index 2 is t."},
+    {"prompt": "Empty string length", "options": ["0", "1", "null", "undefined only"], "correct_index": 0, "explanation": "No characters → length 0."},
+    {"prompt": "Strings are best thought of as:", "options": ["Unordered sets", "Character sequences", "Booleans", "Only digits"], "correct_index": 1, "explanation": "Sequences of characters."},
+    {"prompt": "\"7\"+\"8\" as strings:", "options": ["15", "78", "7 8", "56"], "correct_index": 1, "explanation": "Digit characters concatenate to 78."}
+  ]},
+  "learning_objectives": ["Index strings", "Concatenate", "Avoid numeric assumptions on digit strings"],
+  "prerequisites": ["variables_basics"],
+  "concepts": ["string", "concatenation", "index"],
+  "common_misconceptions": [{"misconception": "\"10\" < \"2\" is false", "correction": "Lexicographic compare can make \"10\" < \"2\" true."}],
+  "company_applications": [{"company": "Infosys", "skill": "string handling", "practice": "Trace small string index questions."}],
+  "srs_cards": [{"type": "trace", "question": "len(\"OA\")?", "answer": "2"}],
+  "quest": {"chapter": "Programming Logic", "mission": "Strings basics", "success_criteria": ["Index strings", "Concatenate", "Avoid numeric assumptions on digit strings"]},
+  "next_lesson_slug": "data_structures_intro",
+  "next_lesson_title": "Intro to data structures"
+}

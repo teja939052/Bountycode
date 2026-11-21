@@ -142,7 +142,6 @@
       "step_type": "debug_choice",
       "title": "Find the wrong base",
       "content": "A student calculates profit percentage using selling price as the base and gets a different answer from the official key.",
-      "code": "cost_price = 100\nselling_price = 120\nprofit_percent = (selling_price - cost_price) / cost_price * 100\nprint(profit_percent)",
       "prompt": "CP = ₹500, SP = ₹600. A student computes 600 − 500 = 100 and then 100/600 × 100 ≈ 16.7%. Why is this wrong for a standard profit-% question?",
       "options": [
         "Profit percentage should use cost price as the base: 100/500 × 100 = 20%",
@@ -161,7 +160,9 @@
       "hints": [
         "Recall the standard definition of profit percentage.",
         "Check which amount is in the denominator."
-      ]
+      ],
+      "code": "cost_price = 800\nselling_price = 1000\n\nprofit = selling_price - cost_price\n\n# Bug: profit percentage uses selling price as the denominator.\nwrong_percentage = profit / selling_price * 100\nprint(wrong_percentage)  # 20%\n\n# Correct: profit percentage is based on cost price.\ncorrect_percentage = profit / cost_price * 100\nprint(correct_percentage)  # 25%",
+      "language": "python"
     }
   ],
   "assessment": {

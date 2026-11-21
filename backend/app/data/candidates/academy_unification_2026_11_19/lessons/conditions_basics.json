@@ -1,0 +1,33 @@
+{
+  "slug": "conditions_basics",
+  "id": "lesson_conditions_basics_001",
+  "title": "Conditions and branching",
+  "domain": "Programming Logic",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "If statements", "content": "An if statement runs a block only when a condition is true. else covers the remaining case."},
+    {"step_number": 2, "step_type": "interactive", "title": "True branch", "prompt": "x = 7. Which condition is true?", "options": ["x < 5", "x == 8", "x >= 7", "x != 7"], "correct_index": 2, "explanation": "7 >= 7 is true.", "hints": ["Substitute 7 into each condition."]},
+    {"step_number": 3, "step_type": "explain", "title": "Comparison operators", "content": "<, >, <=, >=, ==, != compare values and produce booleans."},
+    {"step_number": 4, "step_type": "practice", "title": "Else path", "prompt": "if n > 0 print Positive else print Non-positive. For n = 0 the output is:", "options": ["Positive", "Non-positive", "Error", "Nothing"], "correct_index": 1, "explanation": "0 is not > 0, so the else branch runs.", "hints": ["Is 0 greater than 0?"]},
+    {"step_number": 5, "step_type": "practice", "title": "Compound condition", "prompt": "Which is true when age is 20?", "options": ["age < 18", "age >= 18 and age < 60", "age > 60", "age == 18 only"], "correct_index": 1, "explanation": "20 is between 18 and 60.", "hints": ["Check both sides of and."]}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "if a > b is false when:", "options": ["a is larger", "a equals b", "a is smaller or equal", "Only when a is smaller"], "correct_index": 2, "explanation": "Not greater means smaller or equal."},
+    {"prompt": "== checks:", "options": ["Assignment", "Equality", "Inequality only", "Type only"], "correct_index": 1, "explanation": "== tests equality."},
+    {"prompt": "else runs when:", "options": ["Condition is true", "Condition is false", "Always", "Never"], "correct_index": 1, "explanation": "else is the false branch."},
+    {"prompt": "Which is a boolean expression?", "options": ["x = 3", "x > 3", "print(x)", "int x"], "correct_index": 1, "explanation": "Comparisons yield true/false."},
+    {"prompt": "n = 5; if n % 2 == 0 even else odd →", "options": ["even", "odd", "error", "5"], "correct_index": 1, "explanation": "5 is odd."}
+  ]},
+  "learning_objectives": ["Write if/else conditions", "Use comparison operators", "Trace both branches"],
+  "prerequisites": ["variables_basics"],
+  "concepts": ["if", "else", "boolean"],
+  "common_misconceptions": [{"misconception": "else runs together with if", "correction": "Only one of if/else runs for a given input."}],
+  "company_applications": [{"company": "Infosys", "skill": "programming logic", "practice": "Predict output of nested conditions."}],
+  "srs_cards": [{"type": "concept", "question": "When does else run?", "answer": "When the if condition is false."}],
+  "quest": {"chapter": "Programming Logic", "mission": "Conditions and branching", "success_criteria": ["Write if/else conditions", "Use comparison operators", "Trace both branches"]},
+  "next_lesson_slug": "loops_basics",
+  "next_lesson_title": "Loops and repetition"
+}

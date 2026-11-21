@@ -22,6 +22,7 @@ import api from "../services/api";
 import { useBrowserRuntime } from "../hooks/useBrowserRuntime";
 import { Card } from "../components/design-system/Card";
 import CodeTracer from "../components/learning/CodeTracer";
+import LearningResourcesPanel from "../components/learning/LearningResourcesPanel";
 
 type Step = {
   step_number: number;
@@ -766,6 +767,8 @@ export default function LessonPlayer() {
           {lesson.prerequisites?.length ? <p className="mt-3 text-xs text-text-secondary">Recommended first: {lesson.prerequisites.join(", ").split("_").join(" ")}</p> : null}
         </section>
       ) : null}
+
+      <LearningResourcesPanel domain={lesson.domain} topic={[lessonSlug, lesson.title, ...(lesson.concepts || [])].join(" ")} />
 
       {(lesson.worked_examples?.length || lesson.common_misconceptions?.length || lesson.company_applications?.length || lesson.srs_cards?.length) ? (
         <details open={learningPreference !== "hands_on"} className="mb-4 rounded-2xl border border-white/10 bg-surface-base/70 p-4">

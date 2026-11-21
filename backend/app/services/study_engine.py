@@ -27,6 +27,7 @@ than duplicating their logic.  The existing
 from __future__ import annotations
 
 import logging
+import hashlib
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from dataclasses import asdict
@@ -87,6 +88,16 @@ def _now() -> datetime:
 
 def _today_key() -> str:
     return _now().strftime("%Y-%m-%d")
+
+
+def _stable_choice_key(seed: str, value: Any) -> str:
+    """Return a stable ordering key for a recommendation candidate.
+
+    Recommendations are cached, audited, and shown as learner commitments.
+    Random selection made a page refresh silently change today's work, so all
+    equivalent candidates are now ordered by a deterministic hash instead.
+    """
+    return hashlib.sha256(f"{seed}:{value}".encode("utf-8")).hexdigest()
 
 
 async def invalidate_daily_plan(user_id: str) -> None:
@@ -324,9 +335,10 @@ async def _get_practice_tasks(
                 hay_l = [str(h).lower() for h in hay if h]
                 return any(t in hay_l for t in lowered)
 
-            company_pool = [q for q in pool if _tagged(q)]
-            if company_pool:
-                pool = company_pool
+            # Company-track practice is a strict filter. If the bank has no
+            # matching question, do not silently substitute an unrelated one.
+            # The caller will receive a non-question weak-area task instead.
+            pool = [q for q in pool if _tagged(q)]
 
         if not pool:
             tasks.append({
@@ -345,8 +357,16 @@ async def _get_practice_tasks(
             })
             continue
 
-        import random as _random
-        pick = _random.sample(pool, min(1, len(pool)))[0]
+        # Keep the same recommendation for the same learner/day/skill while
+        # still rotating fairly across candidates on a later day.
+        selection_seed = f"{user_id}:{_today_key()}:{domain_id}"
+        pick = min(
+            pool,
+            key=lambda question: _stable_choice_key(
+                selection_seed,
+                question.get("id") or question.get("_id") or question.get("question", ""),
+            ),
+        )
         tasks.append({
             "type": "practice",
             "kind": "question",
@@ -356,6 +376,7 @@ async def _get_practice_tasks(
             "difficulty": pick.get("difficulty", "medium"),
             "skill": domain_id,
             "reason": area.get("reason"),
+            "selection_reason": "stable_daily_rotation",
             "estimated_minutes": pick.get("estimated_minutes", 10),
             "xp_reward": 25,
         })
@@ -379,8 +400,11 @@ async def _get_optional_challenge(
     if len(mastered) < 3:
         return None
 
-    import random as _random
-    pick = _random.choice(mastered)
+    # Deterministic rotation prevents the challenge from changing on refresh.
+    pick = min(
+        mastered,
+        key=lambda skill: _stable_choice_key(f"{user_id}:{_today_key()}:challenge", skill),
+    )
     return {
         "type": "challenge",
         "kind": "timed_debug",
@@ -389,6 +413,7 @@ async def _get_optional_challenge(
         "estimated_minutes": 12,
         "xp_reward": 60,
         "skill": pick,
+        "selection_reason": "stable_daily_rotation",
     }
 
 
@@ -575,6 +600,49 @@ async def _get_company_mission(
 
 # â”€â”€â”€ Orchestrator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
+def _build_prerequisite_guidance(
+    assessment: Dict[str, Any],
+    weak_areas: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    """Attach prerequisite diagnostics only where canonical skill IDs exist.
+
+    The graph consumes canonical, independently assessed skill evidence.
+    Broad domain scores are not copied onto individual concepts because that
+    would falsely certify prerequisites the learner may not know.
+    """
+    from app.services.prerequisite_graph import build_prerequisite_plan
+
+    evidence = (
+        assessment.get("canonical_skills")
+        or assessment.get("skill_graph")
+        or {}
+    )
+    if not isinstance(evidence, dict):
+        evidence = {}
+
+    guidance: List[Dict[str, Any]] = []
+    for area in weak_areas:
+        raw_skill = (
+            area.get("canonical_skill_id")
+            or area.get("skill_id")
+            or area.get("skill")
+            or area.get("domain_id")
+        )
+        skill_id = canonical_skill_id(str(raw_skill or ""))
+        if not skill_id:
+            continue
+        plan = build_prerequisite_plan(skill_id, evidence)
+        if plan.get("status") == "unknown_skill" or not plan.get("prerequisites"):
+            continue
+        guidance.append({
+            **plan,
+            "reason": area.get("reason") or "Prioritized from your demonstrated skill evidence.",
+        })
+        if len(guidance) >= 3:
+            break
+    return guidance
+
+
 async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]:
     """Return the canonical daily learning plan for *user_id*.
 
@@ -610,6 +678,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     # â”€â”€ Inputs from the canonical subsystems â”€â”€
     assessment = await assess_user_skills(user_id)
     weak_areas = await detect_weak_areas(user_id)
+    prerequisite_guidance = _build_prerequisite_guidance(assessment, weak_areas)
 
     next_mission = await _get_next_mission(user_id)
     reviews = await _get_due_reviews(user_id)
@@ -645,6 +714,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
         "challenge": challenge,
         "role_activity": role_activity,
         "company_mission": company_mission,
+        "prerequisite_guidance": prerequisite_guidance,
     }
 
     est = 0
@@ -677,6 +747,7 @@ async def record_activity(
     user_id: str,
     activity: Dict[str, Any],
     role: str = "sde",
+    award_reward: bool = True,
 ) -> Dict[str, Any]:
     """Record one LearningEvent and fan-out to mastery / SRS / Diamonds.
 
@@ -808,34 +879,42 @@ async def record_activity(
         logger.warning("SRS update skipped for %s: %s", user_id, exc)
 
     # â”€â”€ Gamification / Diamonds â”€â”€
-    diamonds = _xp_for_activity(activity_type, score, passed)
-    try:
-        prac_result = await record_practice(
-            user_id,
-            activity_type=activity_type,
-            score=score,
-            metadata={
-                "skill_id": skill_id,
-                "time_spent": time_spent,
-                "passed": passed,
-                # Content Trust instrumentation (additive): lets the team
-                # measure % of attempts powered by independently verified
-                # content. Present only when the caller supplies it.
-                "question_id": activity.get("question_id"),
-                "trust_status": activity.get("trust_status"),
-                "source_bank": activity.get("source_bank"),
-                "verification_version": activity.get("verification_version"),
-            },
-            role=role,
-            activity_id=idempotency_key or None,
-        )
-        if isinstance(prac_result, dict) and prac_result.get("xp_gained") is not None:
-            diamonds = int(prac_result["xp_gained"])
-        result["xp_awarded"] = diamonds
-        result["xp_applied"] = True
-    except Exception as exc:
-        logger.warning("gamification record failed for %s: %s", user_id, exc)
-        result["xp_awarded"] = diamonds
+    # Most callers award through this canonical sink. Some composed flows
+    # already own their reward boundary (for example, a company module or a
+    # first-mastery lesson claim); those callers still need mastery, SRS,
+    # repair and LearningEvent fan-out without a second XP award.
+    diamonds = _xp_for_activity(activity_type, score, passed) if award_reward else 0
+    if award_reward:
+        try:
+            prac_result = await record_practice(
+                user_id,
+                activity_type=activity_type,
+                score=score,
+                metadata={
+                    "skill_id": skill_id,
+                    "time_spent": time_spent,
+                    "passed": passed,
+                    # Content Trust instrumentation (additive): lets the team
+                    # measure % of attempts powered by independently verified
+                    # content. Present only when the caller supplies it.
+                    "question_id": activity.get("question_id"),
+                    "trust_status": activity.get("trust_status"),
+                    "source_bank": activity.get("source_bank"),
+                    "verification_version": activity.get("verification_version"),
+                },
+                role=role,
+                activity_id=idempotency_key or None,
+            )
+            if isinstance(prac_result, dict) and prac_result.get("xp_gained") is not None:
+                diamonds = int(prac_result["xp_gained"])
+            result["xp_awarded"] = diamonds
+            result["xp_applied"] = True
+        except Exception as exc:
+            logger.warning("gamification record failed for %s: %s", user_id, exc)
+            result["xp_awarded"] = 0
+            result["xp_applied"] = False
+    else:
+        result["xp_awarded"] = 0
         result["xp_applied"] = False
 
     # â”€â”€ Persist canonical LearningEvent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

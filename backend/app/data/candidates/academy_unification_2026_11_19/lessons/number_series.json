@@ -1,0 +1,30 @@
+{
+  "slug": "number_series",
+  "id": "lesson_number_series_001",
+  "title": "Number series",
+  "domain": "Logical Reasoning",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Find the rule", "content": "Series questions hide a rule: constant difference, changing difference, multiply, alternate patterns, or squares/cubes. Write the rule before choosing."},
+    {"step_number": 2, "step_type": "interactive", "title": "Constant difference", "prompt": "2, 5, 8, 11, ?", "options": ["12", "13", "14", "15"], "correct_index": 2, "explanation": "Add 3 each time → 14.", "hints": ["Check consecutive differences."]},
+    {"step_number": 3, "step_type": "practice", "title": "Multiply pattern", "prompt": "3, 6, 12, 24, ?", "options": ["36", "48", "42", "30"], "correct_index": 1, "explanation": "×2 each step → 48.", "hints": ["Is it adding or multiplying?"]},
+    {"step_number": 4, "step_type": "practice", "title": "Squares", "prompt": "1, 4, 9, 16, ?", "options": ["20", "24", "25", "36"], "correct_index": 2, "explanation": "1²,2²,3²,4²,5² → 25.", "hints": ["Compare to perfect squares."]},
+    {"step_number": 5, "step_type": "explain", "title": "Verify all terms", "content": "A rule must fit every given term. If two rules fit early terms, test which one predicts the next option uniquely."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "4, 7, 10, 13, ?", "options": ["15", "16", "17", "14"], "correct_index": 1, "explanation": "+3 → 16."},
+    {"prompt": "2, 4, 8, 16, ?", "options": ["18", "24", "32", "20"], "correct_index": 2, "explanation": "×2 → 32."},
+    {"prompt": "Best first check:", "options": ["Differences", "Ignore pattern", "Always squares", "Random"], "correct_index": 0, "explanation": "Differences often reveal the rule."},
+    {"prompt": "1, 8, 27, ?", "options": ["36", "64", "125", "81"], "correct_index": 1, "explanation": "Cubes: 1,8,27,64."},
+    {"prompt": "If two patterns fit:", "options": ["Pick either", "Test which fits all terms", "Skip", "Use average"], "correct_index": 1, "explanation": "Fit all terms."}
+  ]},
+  "learning_objectives": ["Detect arithmetic and geometric series", "Verify rules against all terms"],
+  "concepts": ["series", "pattern"],
+  "company_applications": [{"company": "Wipro", "skill": "number_series", "practice": "Mixed +n and ×n series."}],
+  "srs_cards": [{"type": "strategy", "question": "First step in series?", "answer": "Compute consecutive differences or ratios."}],
+  "next_lesson_slug": "coding_decoding",
+  "next_lesson_title": "Coding decoding"
+}

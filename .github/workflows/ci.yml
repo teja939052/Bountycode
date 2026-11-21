@@ -11,6 +11,16 @@ on:
 jobs:
   backend:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     defaults:
       run:
         working-directory: backend
@@ -38,8 +48,13 @@ jobs:
       - name: Compile check
         run: python -m compileall app/ -q
 
-      - name: Run tests
-        run: python -m pytest tests/ -v --tb=short
+      - name: Run isolated unit and integration tests
+        run: python -m pytest tests/ --ignore=tests/test_e2e_learner_journey.py -v --tb=short
+
+      - name: Run isolated end-to-end learner journey
+        env:
+          TEST_MONGODB_URL: mongodb://127.0.0.1:27017
+        run: python -m pytest tests/test_e2e_learner_journey.py -v --tb=short
 
       - name: Check alembic migrations
         run: |

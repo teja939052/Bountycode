@@ -103,7 +103,7 @@ class BossBattleRequest(BaseModel):
 # Quiz Endpoints
 # =============================================================
 
-def _quiz_skill_domain(question: Dict[str, Any]) -> str:
+def _quiz_skill_domain(question: Dict[str, Any]) -> Optional[str]:
     """Map a bank question to the adaptive engine's canonical skill domain."""
     from app.services.adaptive_learning import SKILL_DOMAINS, COMPANY_TOPIC_DOMAINS
 
@@ -139,7 +139,9 @@ def _quiz_skill_domain(question: Dict[str, Any]) -> str:
         mapped = COMPANY_TOPIC_DOMAINS.get(normalized)
         if mapped in SKILL_DOMAINS:
             return mapped
-    return "programming_fundamentals"
+    # Unknown metadata must remain unclassified; assigning it to programming
+    # fundamentals would corrupt mastery and company-readiness evidence.
+    return None
 
 
 def _quiz_time_expired(session: Dict[str, Any], now: Optional[datetime] = None) -> bool:
@@ -176,21 +178,30 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
         "seen_question_ids": [],
     }
     try:
-        graphs = await skill_graph_collection.find({"user_id": user_id}).to_list(500)
-        for doc in graphs:
-            skill = doc.get("skill_id") or doc.get("canonical_skill") or doc.get("topic") or doc.get("sub_topic")
-            if not skill:
-                continue
-            raw_score = doc.get("mastery_score", doc.get("score", doc.get("current_score", 0.5)))
-            try:
-                score = float(raw_score)
-                score = score / 100 if score > 1 else score
-                score = max(0.0, min(1.0, score))
-            except (TypeError, ValueError):
-                score = 0.5
-            evidence["skill_scores"][str(skill)] = score
-            if score < 0.6:
-                evidence["weak_skills"].append(str(skill))
+        # skill_graphs stores one document per learner with per-skill
+        # records nested under "skills" (see record_learning_activity).
+        # Reading the document as a flat list of skill rows silently produced
+        # an empty evidence map, disabling weakness-first selection.
+        graph = await skill_graph_collection.find_one({"user_id": user_id})
+        skill_records = (graph or {}).get("skills") or {}
+        if isinstance(skill_records, dict):
+            for skill, record in skill_records.items():
+                if isinstance(record, dict):
+                    raw_score = record.get(
+                        "mastery_score",
+                        record.get("score", record.get("current_score", 0.5)),
+                    )
+                else:
+                    raw_score = record
+                try:
+                    score = float(raw_score)
+                    score = score / 100 if score > 1 else score
+                    score = max(0.0, min(1.0, score))
+                except (TypeError, ValueError):
+                    score = 0.5
+                evidence["skill_scores"][str(skill)] = score
+                if score < 0.6:
+                    evidence["weak_skills"].append(str(skill))
 
         events = await learning_events_collection.find({"user_id": user_id}).sort("timestamp", -1).to_list(500)
         evidence["seen_question_ids"] = [
@@ -212,7 +223,19 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
                 if due_at.tzinfo is None:
                     due_at = due_at.replace(tzinfo=timezone.utc)
                 if due_at <= now and card.get("concept_id"):
-                    evidence["due_skills"].append(str(card["concept_id"]))
+                    concept_id = str(card["concept_id"])
+                    evidence["due_skills"].append(concept_id)
+                    # Quiz-created SRS cards are keyed by question ID; map
+                    # them back to the question's skill tags so the composer
+                    # can prioritise due concepts instead of comparing an ID
+                    # against a skill label.
+                    due_question = get_question_by_id(concept_id)
+                    if due_question:
+                        from app.services.adaptive_quiz_composer import question_skills
+                        evidence["due_skills"].extend(question_skills(due_question))
+                        due_domain = _quiz_skill_domain(due_question)
+                        if due_domain:
+                            evidence["due_skills"].append(due_domain)
     except Exception:
         # Practice remains available if evidence storage is temporarily down.
         logger.exception("Could not load quiz evidence for %s", user_id)
@@ -220,6 +243,48 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
     evidence["due_skills"] = sorted(set(evidence["due_skills"]))
     evidence["seen_question_ids"] = list(dict.fromkeys(evidence["seen_question_ids"]))
     return evidence
+
+
+async def _update_quiz_srs(user_id: str, question_id: str, passed: bool) -> bool:
+    """Update the question's spaced-repetition schedule after a graded answer."""
+    try:
+        from dataclasses import asdict
+        from app.services.spaced_repetition import (
+            SpacedRepetitionEngine,
+            ReviewGrade,
+            deserialize_state,
+        )
+
+        existing = await srs_cards_collection.find_one({
+            "user_id": user_id,
+            "problem_id": question_id,
+        })
+        engine = SpacedRepetitionEngine()
+        state = (
+            deserialize_state(existing, user_id=user_id)
+            if existing
+            else engine.create_new_card(concept_id=question_id, user_id=user_id)
+        )
+        state = engine.review(
+            state,
+            ReviewGrade.GOOD if passed else ReviewGrade.AGAIN,
+        )
+        state_doc = asdict(state)
+        state_doc["problem_id"] = question_id
+        await srs_cards_collection.update_one(
+            {"user_id": user_id, "problem_id": question_id},
+            {"$set": state_doc},
+            upsert=True,
+        )
+        try:
+            from app.services.study_engine import invalidate_daily_plan
+            await invalidate_daily_plan(user_id)
+        except Exception:
+            logger.debug("Could not invalidate study plan after SRS update for %s", user_id)
+        return True
+    except Exception:
+        logger.exception("Could not update quiz SRS card for %s", question_id)
+        return False
 
 
 def _ordered_quiz_attempts(session: Dict[str, Any]) -> tuple[list, list]:
@@ -359,26 +424,112 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     if claimed.modified_count == 0:
         raise HTTPException(status_code=409, detail="This answer was already submitted or the quiz has closed.")
 
+    raw_companies = question.get("companies") or question.get("company") or []
+    if isinstance(raw_companies, str):
+        raw_companies = [raw_companies]
+    if not isinstance(raw_companies, (list, tuple)):
+        raw_companies = []
+    primary_company = str(raw_companies[0]).strip() if raw_companies else None
+
     # Adaptive evidence is recorded for correct and incorrect answers. XP is
     # only awarded for server-graded correct answers through the canonical
     # gamification service, not by trusting the client.
-    try:
-        await record_learning_activity(
-            user["id"],
-            {
-                "domain_id": _quiz_skill_domain(question),
-                "type": "quiz_answer",
-                "success": bool(result.get("is_correct")),
-                "score_impact": 1,
+    domain_id = _quiz_skill_domain(question)
+    if domain_id:
+        try:
+            await record_learning_activity(
+                user["id"],
+                {
+                    "domain_id": domain_id,
+                    "type": "quiz_answer",
+                    "success": bool(result.get("is_correct")),
+                    "score_impact": 1,
+                    "question_id": submission.question_id,
+                    "assessment_id": submission.quiz_id,
+                    "time_spent_seconds": answer_record["time_taken_seconds"],
+                    "hints_used": answer_record["hints_used"],
+                    "company": primary_company,
+                },
+            )
+        except Exception:
+            logger.exception("Could not record adaptive evidence for quiz %s", submission.quiz_id)
+
+    # Turn a failed, server-graded answer into an explainable repair loop.
+    # The misconception tag is deduplicated per learner while an active repair
+    # exists, so repeated retries do not flood the learner with duplicate cards.
+    diagnosis_codes = []
+    repair_id = None
+    if not result.get("is_correct") and domain_id:
+        try:
+            from app.services.diagnosis import diagnose_question_failure, DIAGNOSIS_LABELS
+            from app.services.repair_service import create_repair_mission_from_misconception
+
+            diagnosis = diagnose_question_failure(
+                score=0,
+                answer_text=submission.user_answer,
+                q_type=question.get("type") or ("mcq" if question.get("options") else "text"),
+                question=question,
+                metadata={"all_passed": False, "passed_count": 0, "total": 1},
+            )
+            diagnosis_codes = diagnosis.get("codes") or []
+            if diagnosis_codes:
+                primary_code = diagnosis_codes[0]
+                label = DIAGNOSIS_LABELS.get(primary_code, primary_code.replace("_", " ").title())
+                mission = await create_repair_mission_from_misconception(
+                    user_id=user["id"],
+                    misconception_tag=f"{domain_id}:{primary_code}",
+                    repair_title=f"Repair {question.get('topic') or domain_id}: {label}",
+                    remediation_steps=[
+                        "Read the question explanation and identify the exact concept you missed.",
+                        "Review the prerequisite lesson before attempting another question.",
+                        "Solve a different verified question from this skill without hints.",
+                        "Explain why the correct approach works and why your selected answer failed.",
+                    ],
+                    interactive_drill={
+                        "type": "adaptive_retest",
+                        "skill_id": domain_id,
+                        "topic": question.get("topic"),
+                        "difficulty": question.get("difficulty", "medium"),
+                        "exclude_question_ids": [submission.question_id],
+                        "diagnosis_codes": diagnosis_codes,
+                        "source": "quiz",
+                    },
+                    source_question_id=submission.question_id,
+                )
+                repair_id = mission.id if mission else None
+        except Exception:
+            logger.exception("Could not create quiz repair mission for %s", submission.question_id)
+
+    # Update spaced repetition independently of XP. Correct answers move
+    # the card forward; failures return it to the short learning step.
+    srs_updated = await _update_quiz_srs(
+        user["id"], submission.question_id, bool(result.get("is_correct"))
+    )
+
+    # Persist every graded quiz answer into the canonical longitudinal
+    # evidence stream. This event is separate from XP and is useful for
+    # readiness, retention and future recommendation explanations.
+    if domain_id:
+        try:
+            from app.services.study_engine import emit_learning_event
+
+            await emit_learning_event(user["id"], {
+                "activity_type": "practice",
+                "source": "question_bank",
+                "skill_id": domain_id,
                 "question_id": submission.question_id,
                 "assessment_id": submission.quiz_id,
-                "time_spent_seconds": answer_record["time_taken_seconds"],
+                "company": primary_company,
+                "passed": bool(result.get("is_correct")),
+                "score": 100 if result.get("is_correct") else 0,
+                "time_spent_seconds": int(answer_record["time_taken_seconds"]),
                 "hints_used": answer_record["hints_used"],
-                "company": (question.get("companies") or [None])[0],
-            },
-        )
-    except Exception:
-        logger.exception("Could not record adaptive evidence for quiz %s", submission.quiz_id)
+                "attempt_number": 1,
+                "diagnosis_codes": diagnosis_codes,
+                "repair_id": repair_id,
+            })
+        except Exception:
+            logger.exception("Could not emit canonical quiz evidence for %s", submission.question_id)
 
     reward = None
     if result.get("is_correct"):
@@ -407,6 +558,9 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     result["hints_used"] = server_hints_used
     result["xp_earned"] = xp_earned
     result["reward"] = reward
+    result["diagnosis_codes"] = diagnosis_codes
+    result["repair_id"] = repair_id
+    result["srs_updated"] = srs_updated
     return {"success": True, "result": result}
 
 

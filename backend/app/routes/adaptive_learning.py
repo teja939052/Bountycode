@@ -61,13 +61,26 @@ async def get_readiness(company: str = Query(None, description="Company-specific
 
 @router.post("/activity")
 async def record_activity(activity: dict, user=Depends(get_current_user)):
-    """Record a learning activity and update skill scores."""
-    required = ["domain_id", "type"]
-    for field in required:
-        if field not in activity:
-            return {"success": False, "error": f"Missing required field: {field}"}
-    result = await record_learning_activity(user["id"], activity)
-    return {"success": True, "data": result}
+    """Accept client telemetry without allowing it to certify skill mastery.
+
+    Mastery evidence is emitted only by server-graded lesson, quiz and
+    diagnostic flows. This compatibility endpoint remains available for
+    engagement telemetry, but client-supplied correctness and score fields are
+    deliberately discarded.
+    """
+    domain_id = activity.get("domain_id")
+    if not isinstance(domain_id, str) or domain_id not in SKILL_DOMAINS:
+        raise HTTPException(status_code=422, detail="A valid domain_id is required.")
+
+    safe_activity = {
+        "domain_id": domain_id,
+        "type": "self_reported",
+        "success": False,
+        "score_impact": 0,
+        "source": "client_self_reported",
+    }
+    result = await record_learning_activity(user["id"], safe_activity)
+    return {"success": True, "data": result, "mastery_updated": False}
 
 
 @router.get("/domains")

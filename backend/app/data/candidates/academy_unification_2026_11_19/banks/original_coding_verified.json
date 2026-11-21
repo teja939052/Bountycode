@@ -1,0 +1,167 @@
+[
+  {
+    "id": "orig_two_sum_sorted",
+    "type": "coding",
+    "question": "Two Sum in a Sorted Array",
+    "question_title": "Two Sum in a Sorted Array",
+    "description": "Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Return the indices of the two numbers (1-indexed) as an array [index1, index2] of length 2. Exactly one solution exists. You may not use the same element twice. Use O(1) extra space beyond the output.",
+    "difficulty": "easy",
+    "topic": "Two Pointers",
+    "sub_topic": "sorted two sum",
+    "pattern": "Two Pointers",
+    "companies": ["tcs", "infosys", "wipro", "amazon"],
+    "constraints": "2 <= numbers.length <= 30000; -1000 <= numbers[i] <= 1000; numbers is sorted; -1000 <= target <= 1000",
+    "examples": [
+      {"input": "numbers = [2,7,11,15], target = 9", "output": "[1,2]", "explanation": "2+7=9"}
+    ],
+    "testcases": [
+      {"input": "[2,7,11,15]\n9", "output": "[1, 2]"},
+      {"input": "[2,3,4]\n6", "output": "[1, 3]"},
+      {"input": "[-1,0]\n-1", "output": "[1, 2]"},
+      {"input": "[1,2,3,4,4,9,56,90]\n8", "output": "[4, 5]"}
+    ],
+    "solution": {
+      "language": "python",
+      "code": "def two_sum(numbers, target):\n    lo, hi = 0, len(numbers) - 1\n    while lo < hi:\n        s = numbers[lo] + numbers[hi]\n        if s == target:\n            return [lo + 1, hi + 1]\n        if s < target:\n            lo += 1\n        else:\n            hi -= 1\n    return []\n"
+    },
+    "explanation": "Because the array is sorted, move two pointers inward: increase the left pointer when the sum is too small, decrease the right when too large.",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)",
+    "trust_status": "verified",
+    "provenance": "original_bountycode",
+    "source_bank": "original_coding_verified.json"
+  },
+  {
+    "id": "orig_valid_parens",
+    "type": "coding",
+    "question": "Valid Parentheses",
+    "question_title": "Valid Parentheses",
+    "description": "Given a string s containing only the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if open brackets are closed by the same type of brackets and in the correct order.",
+    "difficulty": "easy",
+    "topic": "Stacks & Queues",
+    "sub_topic": "parentheses",
+    "pattern": "Stacks & Queues",
+    "companies": ["tcs", "infosys", "accenture", "amazon"],
+    "constraints": "1 <= s.length <= 10000; s consists of parentheses only",
+    "examples": [
+      {"input": "s = ()[]{}", "output": "true"},
+      {"input": "s = (]", "output": "false"}
+    ],
+    "testcases": [
+      {"input": "()", "output": "true"},
+      {"input": "()[]{}", "output": "true"},
+      {"input": "(]", "output": "false"},
+      {"input": "([)]", "output": "false"},
+      {"input": "{[]}", "output": "true"},
+      {"input": "", "output": "true"}
+    ],
+    "solution": {
+      "language": "python",
+      "code": "def is_valid(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for ch in s:\n        if ch in '([{':\n            stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack[-1] != pairs[ch]:\n                return False\n            stack.pop()\n        else:\n            return False\n    return not stack\n"
+    },
+    "explanation": "Push opening brackets; on a closer, the top of the stack must be the matching opener.",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(n)",
+    "trust_status": "verified",
+    "provenance": "original_bountycode",
+    "source_bank": "original_coding_verified.json"
+  },
+  {
+    "id": "orig_max_subarray",
+    "type": "coding",
+    "question": "Maximum Subarray Sum",
+    "question_title": "Maximum Subarray Sum",
+    "description": "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return that sum. Implement Kadane's algorithm.",
+    "difficulty": "medium",
+    "topic": "Arrays",
+    "sub_topic": "kadane",
+    "pattern": "Arrays",
+    "companies": ["tcs", "infosys", "wipro", "amazon", "microsoft"],
+    "constraints": "1 <= nums.length <= 100000; -10000 <= nums[i] <= 10000",
+    "examples": [
+      {"input": "nums = [-2,1,-3,4,-1,2,1,-5,4]", "output": "6", "explanation": "[4,-1,2,1]"}
+    ],
+    "testcases": [
+      {"input": "[-2,1,-3,4,-1,2,1,-5,4]", "output": "6"},
+      {"input": "[1]", "output": "1"},
+      {"input": "[5,4,-1,7,8]", "output": "23"},
+      {"input": "[-1]", "output": "-1"},
+      {"input": "[-2,-1]", "output": "-1"}
+    ],
+    "solution": {
+      "language": "python",
+      "code": "def max_sub_array(nums):\n    best = cur = nums[0]\n    for x in nums[1:]:\n        cur = max(x, cur + x)\n        best = max(best, cur)\n    return best\n"
+    },
+    "explanation": "At each index either start a new subarray at x or extend the previous best ending sum.",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)",
+    "trust_status": "verified",
+    "provenance": "original_bountycode",
+    "source_bank": "original_coding_verified.json"
+  },
+  {
+    "id": "orig_binary_search",
+    "type": "coding",
+    "question": "Binary Search",
+    "question_title": "Binary Search",
+    "description": "Given a sorted array of distinct integers nums and a target, return the index of target if it exists, otherwise return -1. Algorithm must run in O(log n).",
+    "difficulty": "easy",
+    "topic": "Binary Search",
+    "sub_topic": "classic",
+    "pattern": "Binary Search",
+    "companies": ["tcs", "cognizant", "accenture"],
+    "constraints": "1 <= nums.length <= 10000; -10000 <= nums[i], target <= 10000; nums strictly increasing",
+    "examples": [
+      {"input": "nums = [-1,0,3,5,9,12], target = 9", "output": "4"}
+    ],
+    "testcases": [
+      {"input": "[-1,0,3,5,9,12]\n9", "output": "4"},
+      {"input": "[-1,0,3,5,9,12]\n2", "output": "-1"},
+      {"input": "[5]\n5", "output": "0"},
+      {"input": "[5]\n-5", "output": "-1"}
+    ],
+    "solution": {
+      "language": "python",
+      "code": "def search(nums, target):\n    lo, hi = 0, len(nums) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == target:\n            return mid\n        if nums[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\n"
+    },
+    "explanation": "Classic binary search on a sorted array.",
+    "time_complexity": "O(log n)",
+    "space_complexity": "O(1)",
+    "trust_status": "verified",
+    "provenance": "original_bountycode",
+    "source_bank": "original_coding_verified.json"
+  },
+  {
+    "id": "orig_first_unique_char",
+    "type": "coding",
+    "question": "First Unique Character in a String",
+    "question_title": "First Unique Character in a String",
+    "description": "Given a string s, find the first non-repeating character and return its index. If it does not exist, return -1. Use a frequency map.",
+    "difficulty": "easy",
+    "topic": "Hashing / Hash Map",
+    "sub_topic": "frequency",
+    "pattern": "Hashing / Hash Map",
+    "companies": ["infosys", "wipro", "cognizant"],
+    "constraints": "1 <= s.length <= 100000; s consists of lowercase English letters",
+    "examples": [
+      {"input": "s = leetcode", "output": "0"},
+      {"input": "s = loveleetcode", "output": "2"}
+    ],
+    "testcases": [
+      {"input": "leetcode", "output": "0"},
+      {"input": "loveleetcode", "output": "2"},
+      {"input": "aabb", "output": "-1"},
+      {"input": "z", "output": "0"}
+    ],
+    "solution": {
+      "language": "python",
+      "code": "def first_uniq_char(s):\n    from collections import Counter\n    freq = Counter(s)\n    for i, ch in enumerate(s):\n        if freq[ch] == 1:\n            return i\n    return -1\n"
+    },
+    "explanation": "Count frequencies, then scan left-to-right for the first character with count 1.",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1) for fixed alphabet",
+    "trust_status": "verified",
+    "provenance": "original_bountycode",
+    "source_bank": "original_coding_verified.json"
+  }
+]
