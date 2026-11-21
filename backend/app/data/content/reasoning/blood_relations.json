@@ -1,0 +1,210 @@
+{
+  "topic": "blood_relations",
+  "subject": "reasoning",
+  "pattern": "blood_relations",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "relation_basics",
+      "title": "Basic Family Relations",
+      "concept": "Blood relation problems describe family links and ask you to identify how two people are related. Core relations include parent-child, siblings, spouse, grandparents-grandchildren, uncle/aunt, nephew/niece, and cousins. Gender matters for terms like brother/sister, son/daughter, uncle/aunt.",
+      "formula": "Map each statement to a generation and gender: parent = +1 generation, child = -1, sibling/spouse = same generation.",
+      "worked_example": "A is the father of B. B is the sister of C. Therefore A is the father of C as well (same parent). C's gender is not specified unless stated.",
+      "mistakes": [
+        "Assuming gender when not stated (e.g., 'child' could be son or daughter)",
+        "Confusing maternal and paternal relations when side is specified",
+        "Mixing same-generation relations (sibling vs spouse) incorrectly"
+      ]
+    },
+    {
+      "id": "chain_and_pointing_relations",
+      "title": "Chained and Pointing Relations",
+      "concept": "Many questions chain relations ('X is the son of Y, who is the daughter of Z') or use pointing/introductions ('He is the son of my father's only son'). Solve step by step from a known reference person, often yourself or a clearly identified person, and simplify the phrase before mapping generations.",
+      "formula": "Resolve inner phrases first and track perspective ('my', 'his', 'her') and conditions like 'only son/daughter' carefully.",
+      "worked_example": "Pointing to a man, Riya says, 'He is the son of my mother's only daughter.' If Riya is that only daughter, the man is Riya's son.",
+      "mistakes": [
+        "Skipping the 'only' condition in phrases like only son/only daughter",
+        "Losing track of whose perspective ('my', 'his', 'her') is used",
+        "Not breaking long chains into smaller steps"
+      ]
+    },
+    {
+      "id": "coded_and_puzzle_relations",
+      "title": "Solving with Diagrams and Codes",
+      "concept": "Drawing a simple family tree (generations vertically, spouses/siblings horizontally) reduces confusion. In coded relations, replace each symbol with its meaning and evaluate in the correct order as defined. Always confirm the final relation asked (of A to B vs B to A).",
+      "formula": "Direction check: 'A is brother of B' means A is male sibling of B; relation of B to A may be brother or sister depending on B's gender.",
+      "worked_example": "If P is brother of Q and Q is mother of R, then P is maternal uncle of R (brother of R's mother). Relation of R to P is niece/nephew depending on R's gender.",
+      "mistakes": [
+        "Answering inverse relation (uncle instead of nephew/niece) when question asks the reverse",
+        "Ignoring generation shifts in uncle/aunt/grandparent relations",
+        "Assuming spouse gender from name in exam logic unless explicitly stated"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "BR-PRACTICE-001",
+      "question": "A is the brother of B. B is the sister of C. How is A related to C?",
+      "options": {"A": "Father", "B": "Brother", "C": "Uncle", "D": "Cousin"},
+      "correct_answer": "B",
+      "explanation": "A and B are siblings, and B and C are siblings. Therefore A is a brother of C (A is male).",
+      "difficulty": "easy",
+      "sub_topic": "relation_basics",
+      "misconception_tags": ["sibling_chain_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-PRACTICE-002",
+      "question": "P is the father of Q. Q is the mother of R. How is P related to R?",
+      "options": {"A": "Father", "B": "Uncle", "C": "Grandfather", "D": "Brother"},
+      "correct_answer": "C",
+      "explanation": "P is parent of Q and Q is parent of R, so P is one generation above Q and two above R: grandfather (paternal grandfather of R, since Q is R's mother and P is Q's father).",
+      "difficulty": "easy",
+      "sub_topic": "relation_basics",
+      "misconception_tags": ["generation_count_error"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-PRACTICE-003",
+      "question": "Pointing to a woman, Rahul said, 'She is the daughter of my father's only son.' How is the woman related to Rahul?",
+      "options": {"A": "Sister", "B": "Daughter", "C": "Niece", "D": "Mother"},
+      "correct_answer": "B",
+      "explanation": "Rahul's father's only son is Rahul himself (in this context). So the woman is the daughter of Rahul, i.e., Rahul's daughter.",
+      "difficulty": "medium",
+      "sub_topic": "chain_and_pointing_relations",
+      "misconception_tags": ["self_reference_error"],
+      "company_tags": ["infosys", "wipro", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-PRACTICE-004",
+      "question": "M is the sister of N. N is the father of O. How is M related to O?",
+      "options": {"A": "Mother", "B": "Sister", "C": "Aunt", "D": "Grandmother"},
+      "correct_answer": "C",
+      "explanation": "M is N's sister and N is O's father, so M is the sister of O's father, which makes M O's aunt.",
+      "difficulty": "easy",
+      "sub_topic": "relation_basics",
+      "misconception_tags": ["uncle_aunt_relation_error"],
+      "company_tags": ["tcs", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-PRACTICE-005",
+      "question": "A is B's mother. C is B's father. D is C's father. How is D related to A?",
+      "options": {"A": "Father", "B": "Father-in-law", "C": "Brother", "D": "Uncle"},
+      "correct_answer": "B",
+      "explanation": "C is A's spouse (both parents of B). D is C's father, so D is the father of A's husband, i.e., A's father-in-law.",
+      "difficulty": "medium",
+      "sub_topic": "coded_and_puzzle_relations",
+      "misconception_tags": ["in_law_relation_error"],
+      "company_tags": ["infosys", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "BR-001",
+      "question": "X is the son of Y. Y is the daughter of Z. Z is the wife of W. How is X related to W?",
+      "options": {"A": "Son", "B": "Grandson", "C": "Nephew", "D": "Brother"},
+      "correct_answer": "B",
+      "explanation": "Y is daughter of Z and W, so Y is their child. X is son of Y, making X a grandchild of Z and W. Since X is male, X is W's grandson.",
+      "difficulty": "easy",
+      "sub_topic": "relation_basics",
+      "misconception_tags": ["generation_count_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-002",
+      "question": "Pointing to a boy, Ritu said, 'He is the son of my mother's daughter.' Ritu has no sister. How is the boy related to Ritu?",
+      "options": {"A": "Brother", "B": "Son", "C": "Nephew", "D": "Cousin"},
+      "correct_answer": "B",
+      "explanation": "Ritu's mother's daughter could be Ritu or Ritu's sister. Since Ritu has no sister, 'my mother's daughter' refers to Ritu herself. Therefore the boy is the son of Ritu, i.e., Ritu's son.",
+      "difficulty": "medium",
+      "sub_topic": "chain_and_pointing_relations",
+      "misconception_tags": ["self_reference_error", "only_sibling_condition_error"],
+      "company_tags": ["accenture", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-003",
+      "question": "If A is the brother of B, B is the sister of C, and C is the father of D, how is A related to D?",
+      "options": {"A": "Father", "B": "Brother", "C": "Uncle", "D": "Grandfather"},
+      "correct_answer": "C",
+      "explanation": "A is sibling of B and C (same generation). C is father of D, so A is brother of D's father, i.e., D's uncle.",
+      "difficulty": "easy",
+      "sub_topic": "coded_and_puzzle_relations",
+      "misconception_tags": ["uncle_aunt_relation_error"],
+      "company_tags": ["tcs", "infosys", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-004",
+      "question": "P is Q's brother. R is Q's mother. S is R's father. How is P related to S?",
+      "options": {"A": "Son", "B": "Grandson", "C": "Father", "D": "Great-grandson"},
+      "correct_answer": "B",
+      "explanation": "R is mother of P and Q. S is father of R, so S is grandfather of R's children. Therefore P is grandson of S.",
+      "difficulty": "easy",
+      "sub_topic": "relation_basics",
+      "misconception_tags": ["generation_count_error"],
+      "company_tags": ["wipro", "tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BR-005",
+      "question": "Looking at a photograph, Anil said, 'She is the only daughter of my mother's father.' How is the woman in the photograph related to Anil?",
+      "options": {"A": "Sister", "B": "Mother", "C": "Aunt", "D": "Daughter"},
+      "correct_answer": "B",
+      "explanation": "Anil's mother's father is Anil's maternal grandfather. The only daughter of Anil's maternal grandfather is Anil's mother (in this stated context).",
+      "difficulty": "medium",
+      "sub_topic": "chain_and_pointing_relations",
+      "misconception_tags": ["self_reference_error"],
+      "company_tags": ["infosys", "accenture", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

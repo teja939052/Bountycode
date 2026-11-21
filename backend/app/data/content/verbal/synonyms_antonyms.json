@@ -1,0 +1,316 @@
+{
+  "topic": "synonyms_antonyms",
+  "subject": "verbal",
+  "pattern": "synonyms_antonyms",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "synonyms_basics",
+      "title": "Understanding Synonyms",
+      "concept": "Synonyms are words with similar meanings. In aptitude tests, choose the option closest in meaning to the given word in common usage. Context matters because some words have multiple senses; pick the synonym matching the most typical meaning unless a context is given.",
+      "formula": "Approach: identify meaning of target word -> compare options -> select closest meaning (consider tone/intensity).",
+      "worked_example": "Word: 'Brief' — meaning short in duration or extent. A close synonym is 'Concise' or 'Short' depending on options. In general usage, 'short' matches well for duration.",
+      "mistakes": [
+        "Choosing a word related by topic but not by meaning",
+        "Ignoring differences in intensity (e.g., happy vs ecstatic)",
+        "Confusing synonyms with words that merely look/sound similar"
+      ]
+    },
+    {
+      "id": "antonyms_basics",
+      "title": "Understanding Antonyms",
+      "concept": "Antonyms are words with opposite meanings. Determine the core meaning of the given word and select the option that expresses the opposite idea. Watch for words with prefixes (un-, in-, dis-) but verify meaning, as not all prefixed forms are true antonyms in usage.",
+      "formula": "Approach: define target word -> identify opposite concept -> choose option that best represents that opposite.",
+      "worked_example": "Word: 'Expand' — to increase in size/extent. Opposite idea: to make smaller. Antonym: 'Contract' or 'Shrink'.",
+      "mistakes": [
+        "Selecting a negative word that is not the direct opposite in meaning",
+        "Choosing an antonym for the wrong sense of a polysemous word",
+        "Assuming a prefix always creates the correct antonym answer among options"
+      ]
+    },
+    {
+      "id": "context_and_usage",
+      "title": "Context and Degree of Meaning",
+      "concept": "Synonym/antonym questions may test nuance: degree (mild/strong), connotation (positive/negative), or usage. When options are close, prefer the word that best matches meaning and intensity. Eliminate options that are unrelated or only loosely connected.",
+      "formula": "Eliminate unrelated options -> compare remaining by meaning and intensity -> pick best fit.",
+      "worked_example": "Word: 'Tiny' (very small). 'Small' is similar but weaker; 'Minute' can be a close synonym in sense of very small. Choose based on closest degree among options.",
+      "mistakes": [
+        "Not distinguishing degree/intensity between close options",
+        "Overlooking connotation differences",
+        "Picking a familiar word without checking precise meaning fit"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SYN-PRACTICE-001",
+      "question": "Choose the synonym of: ABUNDANT",
+      "options": {
+        "A": "Scarce",
+        "B": "Plentiful",
+        "C": "Empty",
+        "D": "Rare"
+      },
+      "correct_answer": "B",
+      "explanation": "Abundant means existing in large quantities; plentiful. 'Plentiful' has the same meaning. The others indicate lack or small amount.",
+      "difficulty": "easy",
+      "sub_topic": "synonyms_basics",
+      "misconception_tags": [
+        "synonym_vs_antonym_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-PRACTICE-002",
+      "question": "Choose the antonym of: GENEROUS",
+      "options": {
+        "A": "Kind",
+        "B": "Helpful",
+        "C": "Selfish",
+        "D": "Polite"
+      },
+      "correct_answer": "C",
+      "explanation": "Generous means willing to give or share. The opposite is selfish, meaning concerned mainly with oneself and unwilling to give/share.",
+      "difficulty": "easy",
+      "sub_topic": "antonyms_basics",
+      "misconception_tags": [
+        "antonym_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-PRACTICE-003",
+      "question": "Choose the synonym of: RAPID",
+      "options": {
+        "A": "Slow",
+        "B": "Quick",
+        "C": "Late",
+        "D": "Calm"
+      },
+      "correct_answer": "B",
+      "explanation": "Rapid means happening in a short time or at great speed. 'Quick' is the closest synonym. 'Slow' and 'late' are opposite in sense.",
+      "difficulty": "easy",
+      "sub_topic": "synonyms_basics",
+      "misconception_tags": [
+        "synonym_selection_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-PRACTICE-004",
+      "question": "Choose the antonym of: VICTORY",
+      "options": {
+        "A": "Success",
+        "B": "Triumph",
+        "C": "Defeat",
+        "D": "Achievement"
+      },
+      "correct_answer": "C",
+      "explanation": "Victory means success in a contest or struggle. The opposite is defeat, meaning loss in a contest or struggle.",
+      "difficulty": "easy",
+      "sub_topic": "antonyms_basics",
+      "misconception_tags": [
+        "antonym_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-PRACTICE-005",
+      "question": "Choose the synonym of: FRAGILE",
+      "options": {
+        "A": "Strong",
+        "B": "Durable",
+        "C": "Delicate",
+        "D": "Rigid"
+      },
+      "correct_answer": "C",
+      "explanation": "Fragile means easily broken or damaged. 'Delicate' is a close synonym. 'Strong', 'durable', and 'rigid' suggest resistance to breaking.",
+      "difficulty": "easy",
+      "sub_topic": "context_and_usage",
+      "misconception_tags": [
+        "synonym_degree_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SYN-001",
+      "question": "Choose the synonym of: RELUCTANT",
+      "options": {
+        "A": "Eager",
+        "B": "Unwilling",
+        "C": "Ready",
+        "D": "Confident"
+      },
+      "correct_answer": "B",
+      "explanation": "Reluctant means unwilling or hesitant to do something. 'Unwilling' is the closest synonym in meaning.",
+      "difficulty": "easy",
+      "sub_topic": "synonyms_basics",
+      "misconception_tags": [
+        "synonym_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-002",
+      "question": "Choose the antonym of: TRANSPARENT",
+      "options": {
+        "A": "Clear",
+        "B": "Obvious",
+        "C": "Opaque",
+        "D": "Visible"
+      },
+      "correct_answer": "C",
+      "explanation": "Transparent means allowing light to pass through so objects can be seen clearly. The opposite is opaque, meaning not able to be seen through.",
+      "difficulty": "easy",
+      "sub_topic": "antonyms_basics",
+      "misconception_tags": [
+        "antonym_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-003",
+      "question": "Choose the synonym of: ACCURATE",
+      "options": {
+        "A": "Wrong",
+        "B": "Precise",
+        "C": "Rough",
+        "D": "Doubtful"
+      },
+      "correct_answer": "B",
+      "explanation": "Accurate means correct and exact, without errors. 'Precise' is a close synonym indicating exactness.",
+      "difficulty": "easy",
+      "sub_topic": "synonyms_basics",
+      "misconception_tags": [
+        "synonym_selection_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-004",
+      "question": "Choose the antonym of: EXPAND",
+      "options": {
+        "A": "Increase",
+        "B": "Widen",
+        "C": "Stretch",
+        "D": "Contract"
+      },
+      "correct_answer": "D",
+      "explanation": "Expand means to become larger or more extensive. The opposite is contract, meaning to become smaller or reduce in size.",
+      "difficulty": "easy",
+      "sub_topic": "antonyms_basics",
+      "misconception_tags": [
+        "antonym_selection_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-005",
+      "question": "Choose the synonym of: HOSTILE",
+      "options": {
+        "A": "Friendly",
+        "B": "Unfriendly",
+        "C": "Calm",
+        "D": "Helpful"
+      },
+      "correct_answer": "B",
+      "explanation": "Hostile means showing opposition or unfriendliness. 'Unfriendly' is the closest synonym among the options. 'Friendly', 'calm', and 'helpful' are opposite in tone.",
+      "difficulty": "medium",
+      "sub_topic": "context_and_usage",
+      "misconception_tags": [
+        "synonym_vs_antonym_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

@@ -4,11 +4,13 @@ from pydantic import BaseModel
 from typing import Optional, List
 from app.database import users_collection, coding_challenges_collection
 from app.middleware.auth import get_current_user
+from app.services import question_store
 from app.services.ai_coding import generate_coding_challenge
 from app.services.coding_engine import CodingEngine
-from app.services.usage import check_and_reset_monthly_usage, can_use_feature
 from app.services.code_executor import CodeExecutionEngine
 from app.services.gamification import record_practice
+from app.services.question_quality import score_question
+from app.services.mastery_engine import record_solve
 from app.config import get_settings
 from bson import ObjectId
 
@@ -162,7 +164,35 @@ async def submit_coding_answer(req: SubmitCodingAnswer, user=Depends(get_current
         {"$set": {"user_code": req.code, "time_taken": req.time_taken, "status": status, "score": score}},
     )
 
+    # Score question quality and record mastery
+    question = None
+    for q in question_store._questions:
+        if str(q.get("id", "")) == req.challenge_id:
+            question = dict(q)
+            break
+    if not question:
+        question = await coding_challenges_collection.find_one({"_id": req.challenge_id})
+
+    quality_tier = "unknown"
+    question_quality_score = 0
+    if question:
+        quality_result = score_question(question)
+        question_quality_score = quality_result["score"]
+        quality_tier = quality_result["quality_tier"]
+
     gamification_result = await record_practice(user["id"], "coding", score, role=user.get("role") or user.get("target_role") or "sde")
+
+    mastery_result = None
+    if question:
+        mastery_result = await record_solve(
+            topic=str(question.get("topic", "")),
+            sub_topic=str(question.get("sub_topic", "")),
+            question_id=req.challenge_id,
+            question_type=str(question.get("type", "coding")).lower(),
+            difficulty=str(question.get("difficulty", "medium")).lower(),
+            is_correct=score >= 80,
+            trust_status=str(question.get("trust_status", "unverified")).lower(),
+        )
 
     return {
         "status": status,

@@ -1,0 +1,316 @@
+{
+  "topic": "hash_tables_basics",
+  "subject": "dsa",
+  "pattern": "hash_tables_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "hash_table_concept",
+      "title": "Hash Table Concept",
+      "concept": "A hash table (hash map) stores key-value pairs and uses a hash function to compute an index (bucket) from the key for fast access. On average, insertion, deletion, and lookup can be O(1), but performance depends on hash quality and collision handling.",
+      "formula": "index = hash(key) mod table_size. Operations: put(key,value), get(key), delete(key).",
+      "worked_example": "If hash('cat') mod 10 = 3, the pair ('cat', value) is stored in bucket 3. To look up 'cat', compute the same index and inspect bucket 3.",
+      "mistakes": [
+        "Assuming hash tables always guarantee O(1) in all cases (worst case can degrade)",
+        "Confusing keys with bucket indices",
+        "Forgetting that different keys can map to the same index (collision)"
+      ]
+    },
+    {
+      "id": "collisions_and_handling",
+      "title": "Collisions and Handling",
+      "concept": "A collision occurs when two different keys produce the same bucket index. Common handling strategies include chaining (store multiple entries in a list/structure at the bucket) and open addressing (probe for another empty slot using a sequence).",
+      "formula": "Chaining: bucket holds a collection of entries. Open addressing: try index, index+1, etc. according to probe scheme.",
+      "worked_example": "With chaining, if keys K1 and K2 both hash to bucket 5, bucket 5 stores entries for both (e.g., a linked list). Lookup checks entries in that bucket for the matching key.",
+      "mistakes": [
+        "Thinking collisions mean data is lost (proper handling preserves entries)",
+        "Confusing chaining with simply overwriting existing values",
+        "Not comparing keys during lookup in a bucket (hash match alone is not enough)"
+      ]
+    },
+    {
+      "id": "use_cases_and_complexity",
+      "title": "Use Cases and Complexity",
+      "concept": "Hash tables are ideal for fast key-based lookups, counting frequencies, membership tests, and implementing maps/sets. Average-case time is O(1) for basic operations with a good hash and load factor; worst-case can be O(n) if many collisions occur. Space usage is typically O(n).",
+      "formula": "Average: insert/search/delete ~ O(1). Worst: O(n) with heavy collisions. Space: O(n).",
+      "worked_example": "To count word frequencies in a list, use words as keys and counts as values: for each word, update table[word] = table[word] + 1 in average O(1) per update.",
+      "mistakes": [
+        "Using hash tables when ordered traversal/sorting by key is primarily required",
+        "Ignoring that poor hash functions can degrade performance",
+        "Assuming iteration order is always sorted (depends on implementation; many are unordered)"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "HASH-PRACTICE-001",
+      "question": "What is the primary purpose of a hash function in a hash table?",
+      "options": {
+        "A": "To sort keys alphabetically",
+        "B": "To compute an index/bucket from a key",
+        "C": "To encrypt stored values",
+        "D": "To count total elements"
+      },
+      "correct_answer": "B",
+      "explanation": "A hash function maps a key to an index (bucket) in the hash table, enabling efficient placement and lookup.",
+      "difficulty": "easy",
+      "sub_topic": "hash_table_concept",
+      "misconception_tags": [
+        "hash_function_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-PRACTICE-002",
+      "question": "What is a collision in a hash table?",
+      "options": {
+        "A": "When the table becomes empty",
+        "B": "When two different keys map to the same index",
+        "C": "When a key maps to index 0",
+        "D": "When a value is deleted twice"
+      },
+      "correct_answer": "B",
+      "explanation": "A collision occurs when the hash function produces the same bucket index for two different keys.",
+      "difficulty": "easy",
+      "sub_topic": "collisions_and_handling",
+      "misconception_tags": [
+        "collision_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-PRACTICE-003",
+      "question": "Which technique handles collisions by storing multiple entries in the same bucket using a linked structure/list?",
+      "options": {
+        "A": "Chaining",
+        "B": "Sorting",
+        "C": "Binary search",
+        "D": "Recursion"
+      },
+      "correct_answer": "A",
+      "explanation": "Chaining resolves collisions by keeping a collection (such as a linked list) of all entries that hash to the same bucket.",
+      "difficulty": "easy",
+      "sub_topic": "collisions_and_handling",
+      "misconception_tags": [
+        "collision_handling_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-PRACTICE-004",
+      "question": "What is the average-case time complexity for lookup in a well-implemented hash table?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "A",
+      "explanation": "With a good hash function and reasonable load factor, hash table lookups take average-case constant time O(1).",
+      "difficulty": "easy",
+      "sub_topic": "use_cases_and_complexity",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-PRACTICE-005",
+      "question": "Which task is a good fit for a hash table?",
+      "options": {
+        "A": "Finding an element by key quickly",
+        "B": "Keeping elements in sorted order by default",
+        "C": "Storing data only sequentially in contiguous memory",
+        "D": "Always guaranteeing O(1) worst-case for all operations"
+      },
+      "correct_answer": "A",
+      "explanation": "Hash tables are designed for fast key-based access (lookup/insert/delete) on average. They do not inherently maintain sorted order or guarantee worst-case O(1).",
+      "difficulty": "easy",
+      "sub_topic": "use_cases_and_complexity",
+      "misconception_tags": [
+        "use_case_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "HASH-001",
+      "question": "In a hash table, if two keys hash to the same bucket, this situation is called:",
+      "options": {
+        "A": "Overflow",
+        "B": "Collision",
+        "C": "Underflow",
+        "D": "Duplication"
+      },
+      "correct_answer": "B",
+      "explanation": "When different keys produce the same hash index/bucket, it is called a collision.",
+      "difficulty": "easy",
+      "sub_topic": "collisions_and_handling",
+      "misconception_tags": [
+        "collision_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-002",
+      "question": "Which of the following is true about hash table performance?",
+      "options": {
+        "A": "Average-case lookup is O(1) but worst-case can be O(n)",
+        "B": "Average and worst-case lookup are always O(log n)",
+        "C": "Lookup is always O(n)",
+        "D": "Lookup is always O(1) in all cases"
+      },
+      "correct_answer": "A",
+      "explanation": "Hash tables provide average-case constant time for basic operations with a good hash function, but worst-case can degrade to O(n) due to collisions.",
+      "difficulty": "medium",
+      "sub_topic": "use_cases_and_complexity",
+      "misconception_tags": [
+        "worst_case_misconception"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-003",
+      "question": "During lookup in a chained hash bucket containing multiple entries, why must the key be compared?",
+      "options": {
+        "A": "Because bucket index alone does not guarantee key equality",
+        "B": "To compute the hash again for sorting",
+        "C": "Because values cannot be stored without comparison",
+        "D": "To resize the table"
+      },
+      "correct_answer": "A",
+      "explanation": "Multiple keys can hash to the same bucket (collision). After reaching the bucket, the actual key must be compared to find the correct entry.",
+      "difficulty": "medium",
+      "sub_topic": "collisions_and_handling",
+      "misconception_tags": [
+        "lookup_process_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-004",
+      "question": "A hash table is most suitable for which of the following?",
+      "options": {
+        "A": "Maintaining elements in sorted order automatically",
+        "B": "Implementing fast key-value lookups",
+        "C": "Random access by numeric index in contiguous memory",
+        "D": "Guaranteed logarithmic search without hashing"
+      },
+      "correct_answer": "B",
+      "explanation": "Hash tables are optimized for key-value storage and fast average-case lookup/insert/delete by key.",
+      "difficulty": "easy",
+      "sub_topic": "use_cases_and_complexity",
+      "misconception_tags": [
+        "use_case_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HASH-005",
+      "question": "If hash(key) mod 7 = 2, into which bucket index (0-based in that range) is the key mapped?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "7"
+      },
+      "correct_answer": "C",
+      "explanation": "The expression hash(key) mod 7 gives the bucket index. A result of 2 means the key maps to bucket index 2.",
+      "difficulty": "easy",
+      "sub_topic": "hash_table_concept",
+      "misconception_tags": [
+        "index_computation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

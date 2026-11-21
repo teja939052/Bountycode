@@ -1,0 +1,325 @@
+{
+  "topic": "computer_architecture_basics",
+  "subject": "cs",
+  "pattern": "computer_architecture_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "cpu_components",
+      "title": "Basic CPU Components",
+      "concept": "Computer architecture describes how hardware components are organized and interact. The CPU executes instructions and typically includes the ALU (arithmetic/logic operations), control unit (instruction coordination), and registers (small fast storage).",
+      "formula": "CPU core components: ALU + Control Unit + Registers. Performance also depends on clock, cache, pipeline, etc.",
+      "worked_example": "When adding two numbers, operands may be loaded into registers, the ALU performs addition, and the result is stored back to a register or memory.",
+      "mistakes": [
+        "Confusing CPU with RAM or storage devices",
+        "Thinking registers are the same as main memory (registers are smaller and faster)",
+        "Assuming ALU controls instruction flow (control unit coordinates it)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "memory_hierarchy",
+      "title": "Memory Hierarchy",
+      "concept": "Memory hierarchy organizes storage by speed, cost, and capacity: registers and caches are fastest/smallest, main memory (RAM) is larger/slower, and secondary storage (SSD/HDD) is largest/slower. Faster levels reduce average access time.",
+      "formula": "Typical hierarchy (fast to slow): Registers -> Cache (L1/L2/L3) -> RAM -> Secondary storage.",
+      "worked_example": "Frequently used data may be kept in cache so the CPU can access it faster than fetching from RAM each time.",
+      "mistakes": [
+        "Assuming all memory types have the same speed/cost",
+        "Confusing cache with RAM as separate but same-level components",
+        "Believing secondary storage is part of CPU"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "instruction_cycle",
+      "title": "Instruction Cycle (Fetch-Decode-Execute)",
+      "concept": "The CPU processes instructions through a cycle commonly described as fetch, decode, and execute (sometimes with additional stages like write-back). The control unit fetches instructions from memory, decodes them, and coordinates execution by appropriate components.",
+      "formula": "Basic cycle: Fetch -> Decode -> Execute (-> Store/Write-back in many implementations).",
+      "worked_example": "Fetch instruction from memory address in program counter, decode opcode to determine operation (e.g., ADD), execute using ALU/registers, then update program counter for next instruction.",
+      "mistakes": [
+        "Thinking instructions are executed directly from disk without being loaded into memory",
+        "Mixing up fetch and decode responsibilities",
+        "Assuming the cycle is always a single step in modern pipelined CPUs"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "CA-PRACTICE-001",
+      "question": "Which CPU component performs arithmetic and logical operations?",
+      "options": {
+        "A": "Control Unit",
+        "B": "ALU",
+        "C": "Hard Disk",
+        "D": "Cache only"
+      },
+      "correct_answer": "B",
+      "explanation": "The Arithmetic Logic Unit (ALU) performs arithmetic operations (add, subtract, etc.) and logical operations (AND, OR, comparisons).",
+      "difficulty": "easy",
+      "sub_topic": "cpu_components",
+      "misconception_tags": [
+        "component_role_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-PRACTICE-002",
+      "question": "Which memory is typically fastest and smallest in the hierarchy?",
+      "options": {
+        "A": "Secondary storage",
+        "B": "RAM",
+        "C": "Registers",
+        "D": "Hard disk"
+      },
+      "correct_answer": "C",
+      "explanation": "Registers are located within the CPU and are the fastest, smallest storage elements in the memory hierarchy.",
+      "difficulty": "easy",
+      "sub_topic": "memory_hierarchy",
+      "misconception_tags": [
+        "hierarchy_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-PRACTICE-003",
+      "question": "The basic instruction cycle is commonly described as:",
+      "options": {
+        "A": "Compile-Link-Run",
+        "B": "Fetch-Decode-Execute",
+        "C": "Input-Process-Output-Store only",
+        "D": "Read-Write-Delete"
+      },
+      "correct_answer": "B",
+      "explanation": "The CPU instruction cycle is commonly described as fetch, decode, and execute (with additional stages in some architectures).",
+      "difficulty": "easy",
+      "sub_topic": "instruction_cycle",
+      "misconception_tags": [
+        "cycle_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-PRACTICE-004",
+      "question": "Which component coordinates and controls the execution of instructions in the CPU?",
+      "options": {
+        "A": "Control Unit",
+        "B": "ALU",
+        "C": "SSD",
+        "D": "Monitor"
+      },
+      "correct_answer": "A",
+      "explanation": "The Control Unit directs the operation of the processor by managing instruction fetch/decode and coordinating CPU components.",
+      "difficulty": "easy",
+      "sub_topic": "cpu_components",
+      "misconception_tags": [
+        "component_role_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-PRACTICE-005",
+      "question": "Cache memory is primarily used to:",
+      "options": {
+        "A": "Permanently store user files",
+        "B": "Reduce average time to access data/instructions from memory",
+        "C": "Replace the CPU",
+        "D": "Increase disk capacity"
+      },
+      "correct_answer": "B",
+      "explanation": "Cache stores frequently accessed data/instructions closer to the CPU to reduce average memory access latency compared to fetching from RAM repeatedly.",
+      "difficulty": "easy",
+      "sub_topic": "memory_hierarchy",
+      "misconception_tags": [
+        "cache_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CA-001",
+      "question": "Which of the following correctly orders memory from fastest to slowest (typical)?",
+      "options": {
+        "A": "RAM -> Cache -> Registers -> HDD",
+        "B": "Registers -> Cache -> RAM -> Secondary storage",
+        "C": "HDD -> RAM -> Cache -> Registers",
+        "D": "Cache -> Registers -> HDD -> RAM"
+      },
+      "correct_answer": "B",
+      "explanation": "A typical memory hierarchy from fastest/smallest to slowest/largest is Registers, Cache, RAM, then secondary storage (e.g., HDD/SSD).",
+      "difficulty": "easy",
+      "sub_topic": "memory_hierarchy",
+      "misconception_tags": [
+        "hierarchy_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-002",
+      "question": "During the fetch stage of the instruction cycle, the CPU primarily:",
+      "options": {
+        "A": "Executes arithmetic operations in ALU",
+        "B": "Retrieves the next instruction from memory",
+        "C": "Stores final output to disk",
+        "D": "Compiles source code"
+      },
+      "correct_answer": "B",
+      "explanation": "In the fetch stage, the CPU retrieves the next instruction (typically using the program counter) from memory for decoding/execution.",
+      "difficulty": "easy",
+      "sub_topic": "instruction_cycle",
+      "misconception_tags": [
+        "fetch_stage_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-003",
+      "question": "Registers are best described as:",
+      "options": {
+        "A": "Large, slow permanent storage devices",
+        "B": "Small, very fast storage locations inside the CPU",
+        "C": "External input devices",
+        "D": "Network communication units"
+      },
+      "correct_answer": "B",
+      "explanation": "Registers are small, high-speed storage elements within the CPU used to hold data, addresses, and instructions temporarily during processing.",
+      "difficulty": "easy",
+      "sub_topic": "cpu_components",
+      "misconception_tags": [
+        "register_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-004",
+      "question": "Which statement about cache memory is correct?",
+      "options": {
+        "A": "Cache is slower than RAM but larger",
+        "B": "Cache is faster than RAM and helps reduce memory access time",
+        "C": "Cache permanently stores all programs",
+        "D": "Cache replaces secondary storage"
+      },
+      "correct_answer": "B",
+      "explanation": "Cache memory is faster (and smaller) than main memory (RAM) and stores frequently used data/instructions to reduce average access time.",
+      "difficulty": "easy",
+      "sub_topic": "memory_hierarchy",
+      "misconception_tags": [
+        "cache_purpose_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CA-005",
+      "question": "The decode stage in the instruction cycle is mainly responsible for:",
+      "options": {
+        "A": "Interpreting the instruction to determine required actions",
+        "B": "Printing output to the screen",
+        "C": "Saving files to disk",
+        "D": "Increasing clock speed"
+      },
+      "correct_answer": "A",
+      "explanation": "During decode, the CPU interprets the fetched instruction (opcode/operands) to determine what operation to perform and which resources are needed.",
+      "difficulty": "medium",
+      "sub_topic": "instruction_cycle",
+      "misconception_tags": [
+        "decode_stage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

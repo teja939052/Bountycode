@@ -1,0 +1,325 @@
+{
+  "topic": "mensuration_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "mensuration_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "perimeter_area_2d",
+      "title": "Perimeter and Area of 2D Shapes",
+      "concept": "Mensuration deals with measuring lengths, areas, and volumes. For 2D shapes, perimeter is the total boundary length and area is the surface enclosed. Common shapes include rectangle, square, triangle, and circle.",
+      "formula": "Rectangle: P = 2(l + w), A = l*w. Square: P = 4a, A = a^2. Triangle: A = (1/2)*b*h. Circle: C = 2*pi*r, A = pi*r^2.",
+      "worked_example": "A rectangle has length 10 cm and width 4 cm. Perimeter = 2(10+4)=28 cm. Area = 10*4=40 cm^2.",
+      "mistakes": [
+        "Mixing perimeter and area units/formulas",
+        "Using diameter in place of radius in circle formulas (or vice versa)",
+        "Forgetting to divide by 2 for triangle area"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "surface_area_volume_3d",
+      "title": "Surface Area and Volume of 3D Solids",
+      "concept": "3D solids have surface area (total area of outer faces/surfaces) and volume (space occupied). Basic solids in aptitude include cube, cuboid, cylinder, and sphere.",
+      "formula": "Cube (side a): TSA = 6a^2, V = a^3. Cuboid (l,w,h): TSA = 2(lw+lh+wh), V = l*w*h. Cylinder (r,h): CSA = 2*pi*r*h, TSA = 2*pi*r*(h+r), V = pi*r^2*h.",
+      "worked_example": "Cube with side 3 cm: volume = 3^3 = 27 cm^3, total surface area = 6*3^2 = 54 cm^2.",
+      "mistakes": [
+        "Confusing total surface area with curved/lateral surface area",
+        "Using wrong units (cm^2 for volume or cm^3 for area)",
+        "Substituting diameter directly as r in cylinder formulas"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "unit_conversion",
+      "title": "Units and Conversions in Mensuration",
+      "concept": "Correct units are essential: lengths use cm/m, areas use cm^2/m^2, and volumes use cm^3/m^3. When converting units, square or cube the linear conversion factor for area and volume respectively.",
+      "formula": "1 m = 100 cm => 1 m^2 = 100^2 cm^2 = 10,000 cm^2; 1 m^3 = 100^3 cm^3 = 1,000,000 cm^3.",
+      "worked_example": "Convert 2 m^2 to cm^2: 2 * 10,000 = 20,000 cm^2. Convert 5000 cm^3 to m^3: 5000 / 1,000,000 = 0.005 m^3.",
+      "mistakes": [
+        "Converting area/volume using linear factor only (not squared/cubed)",
+        "Mixing units in the same calculation",
+        "Misplacing decimal point during metric conversion"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "MENS-PRACTICE-001",
+      "question": "What is the area of a rectangle with length 12 cm and width 5 cm?",
+      "options": {
+        "A": "34 cm^2",
+        "B": "60 cm^2",
+        "C": "17 cm^2",
+        "D": "120 cm^2"
+      },
+      "correct_answer": "B",
+      "explanation": "Area of rectangle = length * width = 12 * 5 = 60 cm^2.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "area_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-PRACTICE-002",
+      "question": "What is the perimeter of a square with side 7 cm?",
+      "options": {
+        "A": "14 cm",
+        "B": "28 cm",
+        "C": "49 cm",
+        "D": "21 cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Perimeter of square = 4 * side = 4 * 7 = 28 cm.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "perimeter_area_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-PRACTICE-003",
+      "question": "Find the area of a circle with radius 7 cm. (Use pi = 22/7)",
+      "options": {
+        "A": "44 cm^2",
+        "B": "154 cm^2",
+        "C": "308 cm^2",
+        "D": "49 cm^2"
+      },
+      "correct_answer": "B",
+      "explanation": "Area = pi*r^2 = (22/7) * 7 * 7 = 22 * 7 = 154 cm^2.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "circle_formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-PRACTICE-004",
+      "question": "What is the volume of a cube with side 4 cm?",
+      "options": {
+        "A": "16 cm^3",
+        "B": "48 cm^3",
+        "C": "64 cm^3",
+        "D": "96 cm^3"
+      },
+      "correct_answer": "C",
+      "explanation": "Volume of cube = a^3 = 4^3 = 64 cm^3.",
+      "difficulty": "easy",
+      "sub_topic": "surface_area_volume_3d",
+      "misconception_tags": [
+        "volume_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-PRACTICE-005",
+      "question": "1 m^2 is equal to how many cm^2?",
+      "options": {
+        "A": "100 cm^2",
+        "B": "1000 cm^2",
+        "C": "10,000 cm^2",
+        "D": "1,000,000 cm^2"
+      },
+      "correct_answer": "C",
+      "explanation": "1 m = 100 cm, so 1 m^2 = (100 cm)^2 = 10,000 cm^2.",
+      "difficulty": "easy",
+      "sub_topic": "unit_conversion",
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "MENS-001",
+      "question": "Find the perimeter of a rectangle with length 15 cm and width 6 cm.",
+      "options": {
+        "A": "21 cm",
+        "B": "42 cm",
+        "C": "90 cm",
+        "D": "45 cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Perimeter = 2(l + w) = 2(15 + 6) = 2 * 21 = 42 cm.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "perimeter_area_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-002",
+      "question": "The area of a triangle with base 10 cm and height 8 cm is:",
+      "options": {
+        "A": "80 cm^2",
+        "B": "40 cm^2",
+        "C": "18 cm^2",
+        "D": "20 cm^2"
+      },
+      "correct_answer": "B",
+      "explanation": "Area of triangle = (1/2) * base * height = (1/2) * 10 * 8 = 40 cm^2.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "triangle_area_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-003",
+      "question": "What is the volume of a cuboid with length 5 cm, width 4 cm, and height 3 cm?",
+      "options": {
+        "A": "12 cm^3",
+        "B": "47 cm^3",
+        "C": "60 cm^3",
+        "D": "94 cm^3"
+      },
+      "correct_answer": "C",
+      "explanation": "Volume of cuboid = l * w * h = 5 * 4 * 3 = 60 cm^3.",
+      "difficulty": "easy",
+      "sub_topic": "surface_area_volume_3d",
+      "misconception_tags": [
+        "volume_formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-004",
+      "question": "A circle has diameter 14 cm. What is its circumference? (Use pi = 22/7)",
+      "options": {
+        "A": "44 cm",
+        "B": "88 cm",
+        "C": "154 cm",
+        "D": "22 cm"
+      },
+      "correct_answer": "A",
+      "explanation": "Radius r = 14/2 = 7 cm. Circumference = 2*pi*r = 2 * (22/7) * 7 = 44 cm.",
+      "difficulty": "medium",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "radius_diameter_confusion"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-005",
+      "question": "1 m^3 is equal to how many cm^3?",
+      "options": {
+        "A": "10,000 cm^3",
+        "B": "100,000 cm^3",
+        "C": "1,000,000 cm^3",
+        "D": "1,000 cm^3"
+      },
+      "correct_answer": "C",
+      "explanation": "1 m = 100 cm, so 1 m^3 = (100 cm)^3 = 1,000,000 cm^3.",
+      "difficulty": "easy",
+      "sub_topic": "unit_conversion",
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

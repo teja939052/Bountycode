@@ -1,0 +1,2840 @@
+{
+  "generated_at": "2026-11-17T05:14:50.547842+00:00",
+  "by_topic": {
+    "arrays": {
+      "total": 19990,
+      "servable": 431,
+      "by_difficulty": {
+        "medium": 9420,
+        "easy": 9279,
+        "hard": 1291
+      }
+    },
+    "General": {
+      "total": 16921,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 15278,
+        "easy": 1616,
+        "hard": 27
+      }
+    },
+    "strings": {
+      "total": 8696,
+      "servable": 249,
+      "by_difficulty": {
+        "easy": 4280,
+        "medium": 3765,
+        "hard": 651
+      }
+    },
+    "Arrays": {
+      "total": 8071,
+      "servable": 503,
+      "by_difficulty": {
+        "medium": 5804,
+        "easy": 1615,
+        "hard": 652
+      }
+    },
+    "Trees": {
+      "total": 6808,
+      "servable": 387,
+      "by_difficulty": {
+        "medium": 4940,
+        "hard": 981,
+        "easy": 887
+      }
+    },
+    "dynamic-programming": {
+      "total": 6764,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4245,
+        "easy": 1398,
+        "hard": 1121
+      }
+    },
+    "aptitude": {
+      "total": 6725,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 3476,
+        "medium": 2725,
+        "hard": 524
+      }
+    },
+    "Graphs": {
+      "total": 6541,
+      "servable": 129,
+      "by_difficulty": {
+        "medium": 3520,
+        "hard": 2970,
+        "easy": 51
+      }
+    },
+    "Strings": {
+      "total": 6423,
+      "servable": 480,
+      "by_difficulty": {
+        "medium": 3616,
+        "easy": 2323,
+        "hard": 484
+      }
+    },
+    "Dynamic Programming": {
+      "total": 6356,
+      "servable": 81,
+      "by_difficulty": {
+        "medium": 3659,
+        "hard": 2068,
+        "easy": 629
+      }
+    },
+    "sql": {
+      "total": 5799,
+      "servable": 72,
+      "by_difficulty": {
+        "easy": 3619,
+        "medium": 1653,
+        "hard": 527
+      }
+    },
+    "graphs": {
+      "total": 5762,
+      "servable": 13,
+      "by_difficulty": {
+        "medium": 3223,
+        "hard": 1282,
+        "easy": 1257
+      }
+    },
+    "trees": {
+      "total": 5194,
+      "servable": 55,
+      "by_difficulty": {
+        "medium": 3278,
+        "easy": 1358,
+        "hard": 558
+      }
+    },
+    "Stack": {
+      "total": 5180,
+      "servable": 303,
+      "by_difficulty": {
+        "medium": 2561,
+        "easy": 1499,
+        "hard": 1120
+      }
+    },
+    "Aptitude": {
+      "total": 4930,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 3852,
+        "medium": 924,
+        "hard": 154
+      }
+    },
+    "logical": {
+      "total": 4590,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 2809,
+        "medium": 1481,
+        "hard": 300
+      }
+    },
+    "math": {
+      "total": 4564,
+      "servable": 95,
+      "by_difficulty": {
+        "medium": 2156,
+        "easy": 2078,
+        "hard": 330
+      }
+    },
+    "greedy": {
+      "total": 2989,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 2212,
+        "easy": 573,
+        "hard": 204
+      }
+    },
+    "verbal": {
+      "total": 2029,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 1625,
+        "medium": 268,
+        "hard": 136
+      }
+    },
+    "linked-lists": {
+      "total": 1766,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1022,
+        "easy": 505,
+        "hard": 239
+      }
+    },
+    "sorting": {
+      "total": 1717,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 1465,
+        "easy": 172,
+        "hard": 80
+      }
+    },
+    "bit-manipulation": {
+      "total": 1700,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 963,
+        "medium": 563,
+        "hard": 174
+      }
+    },
+    "stacks-queues": {
+      "total": 1679,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1083,
+        "easy": 376,
+        "hard": 220
+      }
+    },
+    "Logical Reasoning": {
+      "total": 1678,
+      "servable": 245,
+      "by_difficulty": {
+        "medium": 1045,
+        "hard": 362,
+        "easy": 271
+      }
+    },
+    "Python Basics": {
+      "total": 1656,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 1656,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "backtracking": {
+      "total": 1520,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 978,
+        "easy": 408,
+        "hard": 134
+      }
+    },
+    "Linked Lists": {
+      "total": 1508,
+      "servable": 60,
+      "by_difficulty": {
+        "medium": 763,
+        "easy": 585,
+        "hard": 160
+      }
+    },
+    "Quantitative Aptitude": {
+      "total": 1325,
+      "servable": 256,
+      "by_difficulty": {
+        "medium": 906,
+        "hard": 212,
+        "easy": 207
+      }
+    },
+    "Verbal": {
+      "total": 1321,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1277,
+        "easy": 39,
+        "hard": 5
+      }
+    },
+    "CS Fundamentals": {
+      "total": 1290,
+      "servable": 290,
+      "by_difficulty": {
+        "easy": 1090,
+        "medium": 138,
+        "hard": 62
+      }
+    },
+    "two-pointers": {
+      "total": 1203,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 669,
+        "easy": 390,
+        "hard": 144
+      }
+    },
+    "binary-search": {
+      "total": 1203,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 789,
+        "easy": 288,
+        "hard": 126
+      }
+    },
+    "cs_fundamentals": {
+      "total": 1041,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 861,
+        "medium": 120,
+        "hard": 60
+      }
+    },
+    "Logical": {
+      "total": 1000,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 700,
+        "medium": 300,
+        "hard": 0
+      }
+    },
+    "heaps": {
+      "total": 988,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 614,
+        "easy": 279,
+        "hard": 95
+      }
+    },
+    "Verbal Ability": {
+      "total": 894,
+      "servable": 186,
+      "by_difficulty": {
+        "medium": 388,
+        "easy": 316,
+        "hard": 190
+      }
+    },
+    "debugging": {
+      "total": 870,
+      "servable": 92,
+      "by_difficulty": {
+        "medium": 475,
+        "hard": 267,
+        "easy": 128
+      }
+    },
+    "sliding-window": {
+      "total": 803,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 431,
+        "easy": 216,
+        "hard": 156
+      }
+    },
+    "stack": {
+      "total": 776,
+      "servable": 19,
+      "by_difficulty": {
+        "medium": 501,
+        "hard": 150,
+        "easy": 125
+      }
+    },
+    "Quantitative": {
+      "total": 652,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 652,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Reasoning": {
+      "total": 636,
+      "servable": 25,
+      "by_difficulty": {
+        "medium": 625,
+        "easy": 11,
+        "hard": 0
+      }
+    },
+    "behavioral": {
+      "total": 573,
+      "servable": 44,
+      "by_difficulty": {
+        "medium": 351,
+        "easy": 137,
+        "hard": 85
+      }
+    },
+    "general": {
+      "total": 540,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 389,
+        "hard": 151,
+        "easy": 0
+      }
+    },
+    "Heap": {
+      "total": 529,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 431,
+        "hard": 98,
+        "easy": 0
+      }
+    },
+    "Arrays & Hashing": {
+      "total": 512,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 239,
+        "easy": 212,
+        "hard": 61
+      }
+    },
+    "dp": {
+      "total": 510,
+      "servable": 65,
+      "by_difficulty": {
+        "medium": 340,
+        "easy": 170,
+        "hard": 0
+      }
+    },
+    "Computer Fundamentals": {
+      "total": 501,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 203,
+        "easy": 166,
+        "hard": 132
+      }
+    },
+    "technical": {
+      "total": 490,
+      "servable": 84,
+      "by_difficulty": {
+        "medium": 265,
+        "hard": 193,
+        "easy": 32
+      }
+    },
+    "Dynamic Programming [Patterns and Problems]": {
+      "total": 479,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 238,
+        "easy": 126,
+        "hard": 115
+      }
+    },
+    "Learn the basics": {
+      "total": 474,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 237,
+        "easy": 125,
+        "hard": 112
+      }
+    },
+    "Programming Logic": {
+      "total": 462,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 314,
+        "medium": 121,
+        "hard": 27
+      }
+    },
+    "Graphs [Concepts & Problems]": {
+      "total": 460,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 233,
+        "hard": 117,
+        "easy": 110
+      }
+    },
+    "linked_lists": {
+      "total": 438,
+      "servable": 6,
+      "by_difficulty": {
+        "easy": 420,
+        "medium": 15,
+        "hard": 3
+      }
+    },
+    "intervals": {
+      "total": 429,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 322,
+        "easy": 70,
+        "hard": 37
+      }
+    },
+    "tries": {
+      "total": 413,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 240,
+        "easy": 117,
+        "hard": 56
+      }
+    },
+    "Bit Manipulation": {
+      "total": 410,
+      "servable": 72,
+      "by_difficulty": {
+        "medium": 282,
+        "easy": 128,
+        "hard": 0
+      }
+    },
+    "prefix-sum": {
+      "total": 403,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 226,
+        "easy": 147,
+        "hard": 30
+      }
+    },
+    "monotonic-stack": {
+      "total": 403,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 244,
+        "easy": 123,
+        "hard": 36
+      }
+    },
+    "union-find": {
+      "total": 403,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 226,
+        "easy": 108,
+        "hard": 69
+      }
+    },
+    "hashing": {
+      "total": 343,
+      "servable": 132,
+      "by_difficulty": {
+        "medium": 212,
+        "easy": 102,
+        "hard": 29
+      }
+    },
+    "Solve Problems on Arrays [Easy -> Medium -> Hard]": {
+      "total": 340,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 164,
+        "hard": 95,
+        "easy": 81
+      }
+    },
+    "Binary Trees [Traversals, Medium and Hard Problems]": {
+      "total": 334,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 167,
+        "easy": 84,
+        "hard": 83
+      }
+    },
+    "Binary Search": {
+      "total": 329,
+      "servable": 19,
+      "by_difficulty": {
+        "medium": 157,
+        "easy": 133,
+        "hard": 39
+      }
+    },
+    "matrix": {
+      "total": 322,
+      "servable": 11,
+      "by_difficulty": {
+        "medium": 307,
+        "easy": 10,
+        "hard": 5
+      }
+    },
+    "Programming": {
+      "total": 318,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 113,
+        "hard": 105,
+        "medium": 100
+      }
+    },
+    "design": {
+      "total": 299,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 292,
+        "easy": 5,
+        "hard": 2
+      }
+    },
+    "Two Pointers": {
+      "total": 295,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 140,
+        "medium": 130,
+        "hard": 25
+      }
+    },
+    "Binary Search [1D, 2D Arrays, Search Space]": {
+      "total": 281,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 135,
+        "easy": 77,
+        "hard": 69
+      }
+    },
+    "Sliding Window": {
+      "total": 280,
+      "servable": 9,
+      "by_difficulty": {
+        "medium": 164,
+        "hard": 79,
+        "easy": 37
+      }
+    },
+    "searching": {
+      "total": 280,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 140,
+        "easy": 140,
+        "hard": 0
+      }
+    },
+    "stacks_queues": {
+      "total": 280,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 140,
+        "easy": 140,
+        "hard": 0
+      }
+    },
+    "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]": {
+      "total": 272,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 132,
+        "easy": 70,
+        "hard": 70
+      }
+    },
+    "Loops": {
+      "total": 271,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 255,
+        "medium": 16,
+        "hard": 0
+      }
+    },
+    "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]": {
+      "total": 261,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 137,
+        "hard": 69,
+        "easy": 55
+      }
+    },
+    "Math": {
+      "total": 259,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 150,
+        "medium": 94,
+        "hard": 15
+      }
+    },
+    "Linked List": {
+      "total": 255,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 152,
+        "easy": 65,
+        "hard": 38
+      }
+    },
+    "Array": {
+      "total": 222,
+      "servable": 3,
+      "by_difficulty": {
+        "medium": 163,
+        "easy": 46,
+        "hard": 13
+      }
+    },
+    "Recursion [PatternWise]": {
+      "total": 217,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 108,
+        "easy": 55,
+        "hard": 54
+      }
+    },
+    "Analytical Reasoning": {
+      "total": 191,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 79,
+        "easy": 64,
+        "medium": 48
+      }
+    },
+    "Tree": {
+      "total": 180,
+      "servable": 6,
+      "by_difficulty": {
+        "medium": 165,
+        "easy": 15,
+        "hard": 0
+      }
+    },
+    "Coding Challenges": {
+      "total": 177,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 99,
+        "hard": 58,
+        "easy": 20
+      }
+    },
+    "Backtracking": {
+      "total": 172,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 160,
+        "hard": 12,
+        "easy": 0
+      }
+    },
+    "Profit and Loss": {
+      "total": 170,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 67,
+        "hard": 60,
+        "medium": 43
+      }
+    },
+    "Matrix": {
+      "total": 167,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 133,
+        "hard": 34,
+        "easy": 0
+      }
+    },
+    "Time and Distance": {
+      "total": 162,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 69,
+        "easy": 49,
+        "hard": 44
+      }
+    },
+    "Probability": {
+      "total": 161,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 63,
+        "medium": 50,
+        "easy": 48
+      }
+    },
+    "Bit Manipulation [Concepts & Problems]": {
+      "total": 159,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 75,
+        "easy": 42,
+        "hard": 42
+      }
+    },
+    "Strings [Basic and Medium]": {
+      "total": 155,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 77,
+        "easy": 42,
+        "hard": 36
+      }
+    },
+    "Recursion & Backtracking": {
+      "total": 152,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 140,
+        "hard": 12,
+        "easy": 0
+      }
+    },
+    "Heaps [Learning, Medium, Hard Problems]": {
+      "total": 148,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 73,
+        "easy": 42,
+        "hard": 33
+      }
+    },
+    "Binary Search Trees [Concept and Problems]": {
+      "total": 140,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 70,
+        "easy": 42,
+        "hard": 28
+      }
+    },
+    "hr": {
+      "total": 139,
+      "servable": 20,
+      "by_difficulty": {
+        "easy": 118,
+        "medium": 21,
+        "hard": 0
+      }
+    },
+    "Design": {
+      "total": 138,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 86,
+        "easy": 41,
+        "hard": 11
+      }
+    },
+    "Time and Work": {
+      "total": 137,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 56,
+        "medium": 54,
+        "easy": 27
+      }
+    },
+    "Tries": {
+      "total": 136,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 99,
+        "hard": 23,
+        "easy": 14
+      }
+    },
+    "Intervals": {
+      "total": 135,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 94,
+        "easy": 27,
+        "hard": 14
+      }
+    },
+    "Dynamic Programming 1D": {
+      "total": 133,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 91,
+        "easy": 42,
+        "hard": 0
+      }
+    },
+    "Heap / Priority Queue": {
+      "total": 133,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 59,
+        "easy": 38,
+        "hard": 36
+      }
+    },
+    "system_design": {
+      "total": 132,
+      "servable": 48,
+      "by_difficulty": {
+        "hard": 110,
+        "medium": 22,
+        "easy": 0
+      }
+    },
+    "Graph": {
+      "total": 130,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 118,
+        "hard": 12,
+        "easy": 0
+      }
+    },
+    "Greedy Algorithms [Easy, Medium/Hard]": {
+      "total": 128,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 58,
+        "hard": 42,
+        "easy": 28
+      }
+    },
+    "Hash Table": {
+      "total": 125,
+      "servable": 4,
+      "by_difficulty": {
+        "easy": 72,
+        "medium": 37,
+        "hard": 16
+      }
+    },
+    "Sorting": {
+      "total": 105,
+      "servable": 14,
+      "by_difficulty": {
+        "medium": 80,
+        "easy": 22,
+        "hard": 3
+      }
+    },
+    "Averages": {
+      "total": 101,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 44,
+        "medium": 39,
+        "easy": 18
+      }
+    },
+    "String": {
+      "total": 96,
+      "servable": 8,
+      "by_difficulty": {
+        "easy": 72,
+        "medium": 24,
+        "hard": 0
+      }
+    },
+    "Sliding Window & Two Pointer Combined Problems": {
+      "total": 96,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 50,
+        "easy": 25,
+        "hard": 21
+      }
+    },
+    "os": {
+      "total": 81,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 50,
+        "easy": 31,
+        "hard": 0
+      }
+    },
+    "Heaps / Priority Queue": {
+      "total": 78,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 56,
+        "easy": 11,
+        "hard": 11
+      }
+    },
+    "networking": {
+      "total": 77,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 77,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Stacks & Queues": {
+      "total": 75,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 29,
+        "easy": 28,
+        "hard": 18
+      }
+    },
+    "Numbers": {
+      "total": 72,
+      "servable": 72,
+      "by_difficulty": {
+        "easy": 61,
+        "medium": 11,
+        "hard": 0
+      }
+    },
+    "Greedy": {
+      "total": 67,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 57,
+        "easy": 10,
+        "hard": 0
+      }
+    },
+    "dbms": {
+      "total": 67,
+      "servable": 3,
+      "by_difficulty": {
+        "easy": 40,
+        "medium": 27,
+        "hard": 0
+      }
+    },
+    "data-structures": {
+      "total": 64,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 64,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "bit manipulation": {
+      "total": 63,
+      "servable": 14,
+      "by_difficulty": {
+        "easy": 36,
+        "medium": 27,
+        "hard": 0
+      }
+    },
+    "Learn Important Sorting Techniques": {
+      "total": 63,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 35,
+        "easy": 14,
+        "hard": 14
+      }
+    },
+    "Permutation and Combination": {
+      "total": 62,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 28,
+        "medium": 20,
+        "easy": 14
+      }
+    },
+    "Coding Decoding": {
+      "total": 61,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 26,
+        "easy": 23,
+        "hard": 12
+      }
+    },
+    "bit_manipulation": {
+      "total": 59,
+      "servable": 27,
+      "by_difficulty": {
+        "easy": 40,
+        "medium": 19,
+        "hard": 0
+      }
+    },
+    "Percentages": {
+      "total": 54,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 25,
+        "medium": 16,
+        "easy": 13
+      }
+    },
+    "Series": {
+      "total": 53,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 20,
+        "medium": 18,
+        "easy": 15
+      }
+    },
+    "Math & Number Theory": {
+      "total": 49,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 26,
+        "medium": 23,
+        "hard": 0
+      }
+    },
+    "Ratio and Proportion": {
+      "total": 47,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 18,
+        "easy": 15,
+        "hard": 14
+      }
+    },
+    "binary search": {
+      "total": 47,
+      "servable": 14,
+      "by_difficulty": {
+        "easy": 32,
+        "medium": 12,
+        "hard": 3
+      }
+    },
+    "DP on Subsequences": {
+      "total": 43,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 43,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Trie": {
+      "total": 43,
+      "servable": 3,
+      "by_difficulty": {
+        "medium": 31,
+        "hard": 12,
+        "easy": 0
+      }
+    },
+    "Mixtures and Alligations": {
+      "total": 42,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 21,
+        "hard": 15,
+        "medium": 6
+      }
+    },
+    "coding challenges": {
+      "total": 42,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 28,
+        "hard": 10,
+        "easy": 4
+      }
+    },
+    "Dynamic Programming on Strings": {
+      "total": 41,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 41,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "binary_search": {
+      "total": 39,
+      "servable": 14,
+      "by_difficulty": {
+        "medium": 27,
+        "easy": 9,
+        "hard": 3
+      }
+    },
+    "percentages": {
+      "total": 38,
+      "servable": 14,
+      "by_difficulty": {
+        "easy": 25,
+        "medium": 13,
+        "hard": 0
+      }
+    },
+    "heap": {
+      "total": 38,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 30,
+        "hard": 8,
+        "easy": 0
+      }
+    },
+    "System Design": {
+      "total": 38,
+      "servable": 38,
+      "by_difficulty": {
+        "medium": 16,
+        "hard": 14,
+        "easy": 8
+      }
+    },
+    "profit-loss": {
+      "total": 36,
+      "servable": 11,
+      "by_difficulty": {
+        "easy": 18,
+        "medium": 12,
+        "hard": 6
+      }
+    },
+    "compound-interest": {
+      "total": 36,
+      "servable": 11,
+      "by_difficulty": {
+        "hard": 18,
+        "medium": 12,
+        "easy": 6
+      }
+    },
+    "arrays & hashing": {
+      "total": 31,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 14,
+        "easy": 12,
+        "hard": 5
+      }
+    },
+    "array": {
+      "total": 31,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 24,
+        "easy": 5,
+        "hard": 2
+      }
+    },
+    "linked_list": {
+      "total": 30,
+      "servable": 21,
+      "by_difficulty": {
+        "easy": 30,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "time-work": {
+      "total": 30,
+      "servable": 10,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 12,
+        "hard": 6
+      }
+    },
+    "logical reasoning": {
+      "total": 30,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 13,
+        "hard": 9,
+        "easy": 8
+      }
+    },
+    "logical_reasoning": {
+      "total": 30,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 30,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "oops": {
+      "total": 29,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 29,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "linked list": {
+      "total": 29,
+      "servable": 5,
+      "by_difficulty": {
+        "medium": 16,
+        "easy": 10,
+        "hard": 3
+      }
+    },
+    "General DSA": {
+      "total": 28,
+      "servable": 28,
+      "by_difficulty": {
+        "easy": 13,
+        "medium": 12,
+        "hard": 3
+      }
+    },
+    "graph": {
+      "total": 28,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 26,
+        "hard": 2,
+        "easy": 0
+      }
+    },
+    "Binary Search Trees": {
+      "total": 27,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 27,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Number System": {
+      "total": 26,
+      "servable": 23,
+      "by_difficulty": {
+        "easy": 19,
+        "medium": 7,
+        "hard": 0
+      }
+    },
+    "two pointers": {
+      "total": 26,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 13,
+        "medium": 11,
+        "hard": 2
+      }
+    },
+    "probability": {
+      "total": 25,
+      "servable": 8,
+      "by_difficulty": {
+        "easy": 13,
+        "medium": 6,
+        "hard": 6
+      }
+    },
+    "series": {
+      "total": 25,
+      "servable": 9,
+      "by_difficulty": {
+        "easy": 19,
+        "medium": 6,
+        "hard": 0
+      }
+    },
+    "Recursion": {
+      "total": 25,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 13,
+        "medium": 12,
+        "easy": 0
+      }
+    },
+    "Conditionals": {
+      "total": 25,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 14,
+        "easy": 11,
+        "hard": 0
+      }
+    },
+    "sliding window": {
+      "total": 25,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 15,
+        "hard": 7,
+        "easy": 3
+      }
+    },
+    "speed-distance-time": {
+      "total": 24,
+      "servable": 7,
+      "by_difficulty": {
+        "medium": 24,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "synonym": {
+      "total": 24,
+      "servable": 7,
+      "by_difficulty": {
+        "easy": 18,
+        "medium": 6,
+        "hard": 0
+      }
+    },
+    "Functions": {
+      "total": 24,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 13,
+        "easy": 11,
+        "hard": 0
+      }
+    },
+    "Searching": {
+      "total": 24,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 12,
+        "hard": 0
+      }
+    },
+    "Design / OOP": {
+      "total": 23,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 23,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "recursion & backtracking": {
+      "total": 23,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 21,
+        "hard": 2,
+        "easy": 0
+      }
+    },
+    "Dynamic Programming 2D": {
+      "total": 22,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 22,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "tree": {
+      "total": 21,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 20,
+        "easy": 1,
+        "hard": 0
+      }
+    },
+    "grammar": {
+      "total": 20,
+      "servable": 8,
+      "by_difficulty": {
+        "easy": 20,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "verbal ability": {
+      "total": 20,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 11,
+        "easy": 9,
+        "hard": 0
+      }
+    },
+    "hash table": {
+      "total": 20,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 9,
+        "easy": 9,
+        "hard": 2
+      }
+    },
+    "verbal_ability": {
+      "total": 20,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 20,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Written Communication": {
+      "total": 20,
+      "servable": 20,
+      "by_difficulty": {
+        "medium": 14,
+        "easy": 6,
+        "hard": 0
+      }
+    },
+    "dynamic programming": {
+      "total": 19,
+      "servable": 14,
+      "by_difficulty": {
+        "easy": 10,
+        "medium": 9,
+        "hard": 0
+      }
+    },
+    "averages": {
+      "total": 19,
+      "servable": 6,
+      "by_difficulty": {
+        "easy": 13,
+        "medium": 6,
+        "hard": 0
+      }
+    },
+    "syllogism": {
+      "total": 19,
+      "servable": 5,
+      "by_difficulty": {
+        "medium": 19,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "number-system": {
+      "total": 18,
+      "servable": 5,
+      "by_difficulty": {
+        "easy": 18,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "ratio-proportion": {
+      "total": 18,
+      "servable": 5,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 6,
+        "hard": 0
+      }
+    },
+    "coding-decoding": {
+      "total": 18,
+      "servable": 4,
+      "by_difficulty": {
+        "easy": 12,
+        "medium": 6,
+        "hard": 0
+      }
+    },
+    "blood-relation": {
+      "total": 18,
+      "servable": 4,
+      "by_difficulty": {
+        "easy": 12,
+        "medium": 6,
+        "hard": 0
+      }
+    },
+    "analogy": {
+      "total": 18,
+      "servable": 4,
+      "by_difficulty": {
+        "easy": 18,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "idioms": {
+      "total": 18,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 6,
+        "hard": 0
+      }
+    },
+    "spelling": {
+      "total": 18,
+      "servable": 4,
+      "by_difficulty": {
+        "easy": 18,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "sentence-completion": {
+      "total": 18,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 6,
+        "hard": 0
+      }
+    },
+    "one-word": {
+      "total": 18,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 18,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "antonym": {
+      "total": 18,
+      "servable": 5,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 6,
+        "hard": 0
+      }
+    },
+    "simple-interest": {
+      "total": 18,
+      "servable": 6,
+      "by_difficulty": {
+        "easy": 18,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Synonyms": {
+      "total": 17,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 7,
+        "easy": 5,
+        "hard": 5
+      }
+    },
+    "complexity": {
+      "total": 16,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 16,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "two_pointers": {
+      "total": 16,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 14,
+        "hard": 2,
+        "easy": 0
+      }
+    },
+    "SQL": {
+      "total": 15,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 7,
+        "medium": 5,
+        "hard": 3
+      }
+    },
+    "Analogy": {
+      "total": 15,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 7,
+        "easy": 4,
+        "hard": 4
+      }
+    },
+    "BFS": {
+      "total": 15,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 15,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Stacks": {
+      "total": 15,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 15,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "sliding_window": {
+      "total": 15,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 11,
+        "hard": 4,
+        "easy": 0
+      }
+    },
+    "Java": {
+      "total": 14,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 8,
+        "easy": 5,
+        "medium": 1
+      }
+    },
+    "Fill in the blanks": {
+      "total": 14,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 8,
+        "medium": 4,
+        "easy": 2
+      }
+    },
+    "dynamic programming 1d": {
+      "total": 14,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 2,
+        "hard": 0
+      }
+    },
+    "Direction Sense": {
+      "total": 13,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 6,
+        "medium": 4,
+        "easy": 3
+      }
+    },
+    "operating-systems": {
+      "total": 13,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 13,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "databases": {
+      "total": 13,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 13,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Pointers": {
+      "total": 13,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 13,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Error Spotting": {
+      "total": 12,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 3,
+        "hard": 3
+      }
+    },
+    "calendar": {
+      "total": 12,
+      "servable": 3,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 6,
+        "hard": 0
+      }
+    },
+    "ages": {
+      "total": 12,
+      "servable": 3,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "mixture-alligation": {
+      "total": 12,
+      "servable": 3,
+      "by_difficulty": {
+        "medium": 6,
+        "hard": 6,
+        "easy": 0
+      }
+    },
+    "seating": {
+      "total": 12,
+      "servable": 3,
+      "by_difficulty": {
+        "medium": 6,
+        "hard": 6,
+        "easy": 0
+      }
+    },
+    "ordering": {
+      "total": 12,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "clock": {
+      "total": 12,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 6,
+        "hard": 6,
+        "easy": 0
+      }
+    },
+    "sentence-correction": {
+      "total": 12,
+      "servable": 3,
+      "by_difficulty": {
+        "medium": 12,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "direction": {
+      "total": 12,
+      "servable": 4,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 6,
+        "hard": 0
+      }
+    },
+    "stacks & queues": {
+      "total": 11,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 7,
+        "easy": 2,
+        "hard": 2
+      }
+    },
+    "string": {
+      "total": 11,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 9,
+        "medium": 2,
+        "hard": 0
+      }
+    },
+    "C Programming": {
+      "total": 10,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 5,
+        "medium": 3,
+        "easy": 2
+      }
+    },
+    "Pseudocode": {
+      "total": 10,
+      "servable": 10,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 4,
+        "hard": 0
+      }
+    },
+    "Puzzles": {
+      "total": 10,
+      "servable": 10,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 3,
+        "hard": 1
+      }
+    },
+    "heap / priority queue": {
+      "total": 10,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4,
+        "easy": 3,
+        "hard": 3
+      }
+    },
+    "BFS & DFS": {
+      "total": 8,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 8,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Antonyms": {
+      "total": 7,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 4,
+        "hard": 2,
+        "medium": 1
+      }
+    },
+    "Sentence Completion": {
+      "total": 7,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 5,
+        "hard": 2,
+        "easy": 0
+      }
+    },
+    "Python": {
+      "total": 6,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 3,
+        "medium": 2,
+        "hard": 1
+      }
+    },
+    "set-relations": {
+      "total": 6,
+      "servable": 1,
+      "by_difficulty": {
+        "hard": 6,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "direction-sense": {
+      "total": 6,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "odd-one-out": {
+      "total": 6,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "preposition": {
+      "total": 6,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "geometry": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "average": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "hard": 6,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "blood-relations": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "hard": 6,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "ratios": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "time-speed": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "hard": 6,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "mixtures": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "average-speed": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "number-series": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "perimeter-area": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "ratio-time": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "hard": 6,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "number-puzzles": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "analogy-numbers": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "cubes": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "hard": 6,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "ratio": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "time-distance": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "numbers": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 6,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "synonyms": {
+      "total": 6,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Simple Interest": {
+      "total": 6,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 4,
+        "medium": 1,
+        "easy": 1
+      }
+    },
+    "Number Series": {
+      "total": 6,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 4,
+        "medium": 2,
+        "easy": 0
+      }
+    },
+    "heaps / priority queue": {
+      "total": 6,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 3,
+        "hard": 2,
+        "easy": 1
+      }
+    },
+    "math & number theory": {
+      "total": 6,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4,
+        "easy": 2,
+        "hard": 0
+      }
+    },
+    "design / oop": {
+      "total": 6,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 6,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "trie": {
+      "total": 6,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4,
+        "hard": 2,
+        "easy": 0
+      }
+    },
+    "Grammar": {
+      "total": 5,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 2,
+        "easy": 2,
+        "hard": 1
+      }
+    },
+    "Coding-Decoding": {
+      "total": 5,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 3,
+        "medium": 2,
+        "easy": 0
+      }
+    },
+    "Blood Relations": {
+      "total": 5,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 4,
+        "medium": 1,
+        "easy": 0
+      }
+    },
+    "dp on subsequences": {
+      "total": 5,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 5,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "dynamic programming on strings": {
+      "total": 5,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 5,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Arrangements": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 2,
+        "hard": 2,
+        "medium": 0
+      }
+    },
+    "Syllogisms": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 3,
+        "medium": 1,
+        "easy": 0
+      }
+    },
+    "Reading Comprehension": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 2,
+        "easy": 1,
+        "hard": 1
+      }
+    },
+    "Time Speed Distance": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 3,
+        "hard": 1,
+        "easy": 0
+      }
+    },
+    "Geometry": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Mensuration": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Passage Recall": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 2,
+        "hard": 2,
+        "easy": 0
+      }
+    },
+    "Error Identification": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "dynamic_programming": {
+      "total": 4,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 4,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Blood Relation": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 1,
+        "hard": 1
+      }
+    },
+    "Vocabulary": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 3,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Letter Series": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 3,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Seating Arrangement": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 3,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Calendar & Clock": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 2,
+        "medium": 1,
+        "easy": 0
+      }
+    },
+    "Operators": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 3,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "binary search trees": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 3,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "dynamic programming 2d": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 3,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "bfs": {
+      "total": 3,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 3,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "oop": {
+      "total": 3,
+      "servable": 3,
+      "by_difficulty": {
+        "easy": 2,
+        "medium": 1,
+        "hard": 0
+      }
+    },
+    "Sentence Correction": {
+      "total": 2,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 1,
+        "hard": 1,
+        "medium": 0
+      }
+    },
+    "Data Interpretation": {
+      "total": 2,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "hard": 1,
+        "easy": 0
+      }
+    },
+    "Permutations and Combinations": {
+      "total": 2,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 2,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Puzzle Types": {
+      "total": 2,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 2,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Email Writing": {
+      "total": 2,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 2,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Para Jumbles": {
+      "total": 2,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 2,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Synonyms / Antonyms": {
+      "total": 2,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 2,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "profit_loss": {
+      "total": 2,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 1,
+        "hard": 0
+      }
+    },
+    "time_work": {
+      "total": 2,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 1,
+        "hard": 0
+      }
+    },
+    "computer_networks": {
+      "total": 2,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 1,
+        "hard": 0
+      }
+    },
+    "computer_architecture": {
+      "total": 2,
+      "servable": 2,
+      "by_difficulty": {
+        "medium": 1,
+        "hard": 1,
+        "easy": 0
+      }
+    },
+    "vocabulary": {
+      "total": 2,
+      "servable": 2,
+      "by_difficulty": {
+        "easy": 2,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Allegations and Mixtures": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Data Sufficiency": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Dice Problems": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Venn Diagrams": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Statement and Assumption": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Non-Verbal Reasoning": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "stacks": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Cultural Fit": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Time Management": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Teamwork": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Conflict Resolution": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "Adaptability": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Hiring": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Communication": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Leadership": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "Decision Making": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "Problem Solving": {
+      "total": 1,
+      "servable": 0,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "ratio_proportion": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "time_speed_distance": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "simple_compound_interest": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "number_system": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "permutations_combinations": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "mixtures_alligation": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "data_interpretation": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "blood_relations": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "direction_sense": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "coding_decoding": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "seating_arrangement": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "inequalities": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "easy": 1,
+        "medium": 0,
+        "hard": 0
+      }
+    },
+    "clocks_calendars": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "data_sufficiency": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "non_verbal": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "sentence_correction": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "reading_comprehension": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "sentence_completion": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "para_jumbles": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    },
+    "error_identification": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "medium": 1,
+        "easy": 0,
+        "hard": 0
+      }
+    },
+    "critical_reasoning": {
+      "total": 1,
+      "servable": 1,
+      "by_difficulty": {
+        "hard": 1,
+        "medium": 0,
+        "easy": 0
+      }
+    }
+  }
+}

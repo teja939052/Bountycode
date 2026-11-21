@@ -1,55 +1,63 @@
-.PHONY: help dev backend frontend test lint typecheck clean docker-up docker-down
+# BountyCode — platform validation Makefile
+#
+# Targets:
+#   make test                # complete validation suite (all stages)
+#   make test-backend-unit   # fast unit tests (no external services)
+#   make test-backend-integration # integration tests with real DB
+#   make test-e2e            # end-to-end learner lifecycle tests
+#   make test-frontend       # TypeScript typecheck + build
+#   make test-content        # content contract validation
+#
+# Stages run in CI; locally you can run any subset.
 
-help:
-	@echo "BountyCode Development Commands"
-	@echo "  make dev          - Start both backend and frontend"
-	@echo "  make backend      - Start backend dev server"
-	@echo "  make frontend     - Start frontend dev server"
-	@echo "  make test         - Run backend tests"
-	@echo "  make lint         - Run linters (black, flake8, isort)"
-	@echo "  make typecheck    - Run TypeScript type checking"
-	@echo "  make check        - Run lint + typecheck"
-	@echo "  make clean        - Remove build artifacts"
-	@echo "  make docker-up    - Start services with Docker Compose"
-	@echo "  make docker-down  - Stop Docker Compose services"
+PYTHON ?= python
+PYTEST ?= $(PYTHON) -m pytest
+NPM ?= npm
 
-dev:
-	@echo "Starting BountyCode development environment..."
-	@docker-compose up mongodb redis -d
-	@$(MAKE) backend &
-	@$(MAKE) frontend
+BACKEND_DIR := backend
+FRONTEND_DIR := frontend
 
-backend:
-	cd backend && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+# Isolated test database for the core-loop E2E suite.
+TEST_DB_NAME := placementpro_test_core_loop
+export DATABASE_NAME := $(TEST_DB_NAME)
+export MONGODB_URL := mongodb://127.0.0.1:27017
 
-frontend:
-	cd frontend && npm run dev
+.PHONY: test test-backend-unit test-backend-integration test-e2e test-frontend test-content test-backend clean
 
-test:
-	cd backend && pytest tests/ -v
+test: test-backend-unit test-backend-integration test-e2e test-content
+	@echo "=== All backend stages passed ==="
 
-lint:
-	@echo "Running Python linters..."
-	cd backend && black . && isort . && flake8 app/ tests/ --max-line-length=127 --extend-ignore=E203,W503
-	@echo "Running pre-commit..."
-	pre-commit run --all-files || true
+# ── Unit stage ──────────────────────────────────────────────────────────
+# Fast, deterministic tests that run against mongomock / in-memory state.
+test-backend-unit:
+	cd $(BACKEND_DIR) && $(PYTEST) tests/ -q --tb=short \
+		--ignore=tests/test_e2e_learner_journey.py \
+		--ignore=tests/test_e2e_core_loop.py \
+		--ignore=tests/test_oa_repair_loop_evidence.py \
+		--ignore=tests/test_compiler_service.py \
+		--ignore=tests/test_world_complete_xp.py
 
-typecheck:
-	cd frontend && npm run check:ts
+# ── Integration stage ───────────────────────────────────────────────────
+# Integration tests requiring a real MongoDB (compiler, OA, world progression).
+test-backend-integration:
+	cd $(BACKEND_DIR) && $(PYTEST) tests/test_compiler_service.py tests/test_oa_repair_loop_evidence.py tests/test_world_complete_xp.py -q --tb=short
 
-check: lint typecheck
+# ── E2E stage ───────────────────────────────────────────────────────────
+# The definitive learner lifecycle test. Runs in its own pytest process
+# against an isolated test database (production data is never touched).
+test-e2e:
+	cd $(BACKEND_DIR) && $(PYTEST) tests/test_e2e_core_loop.py tests/test_e2e_learner_journey.py -q --tb=short
+
+# ── Content stage ───────────────────────────────────────────────────────
+# Content contract validation: question store trust gate, servable counts.
+test-content:
+	cd $(BACKEND_DIR) && $(PYTEST) tests/test_quiz_session_integrity.py tests/test_quiz_time_limits.py tests/test_core.py -q --tb=short
+
+# ── Frontend stage ──────────────────────────────────────────────────────
+test-frontend:
+	cd $(FRONTEND_DIR) && $(NPM) run typecheck
+	cd $(FRONTEND_DIR) && $(NPM) run build
 
 clean:
-	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-	find . -type d -name .pytest_cache -exec rm -rf {} + 2>/dev/null || true
-	find . -type d -name node_modules -exec rm -rf {} + 2>/dev/null || true
-	find . -type d -name dist -exec rm -rf {} + 2>/dev/null || true
-	find . -type d -name build -exec rm -rf {} + 2>/dev/null || true
-	find . -name "*.pyc" -delete 2>/dev/null || true
-	find . -name ".coverage" -delete 2>/dev/null || true
-
-docker-up:
-	docker-compose up --build
-
-docker-down:
-	docker-compose down
+	cd $(BACKEND_DIR) && rm -rf .pytest_cache __pycache__ app/**/__pycache__ tests/__pycache__ 2>/dev/null || true
+	cd $(FRONTEND_DIR) && rm -rf node_modules/.cache dist 2>/dev/null || true

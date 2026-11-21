@@ -1,0 +1,325 @@
+{
+  "topic": "sql_views_basics",
+  "subject": "sql",
+  "pattern": "sql_views_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "SQLV-L1",
+      "title": "What Is a View",
+      "concept": "A view is a virtual table based on the result of a SQL query. It does not store data itself (in most basic cases) but presents data from one or more underlying tables. Views can simplify complex queries, provide a consistent interface, and help with access control.",
+      "formula": "CREATE VIEW view_name AS SELECT ...; Query: SELECT * FROM view_name; Drop: DROP VIEW view_name;",
+      "worked_example": "CREATE VIEW active_users AS SELECT id,name FROM users WHERE status='active'; then SELECT * FROM active_users returns only active users without repeating the filter.",
+      "mistakes": [
+        "Assuming a view always stores a physical copy of data",
+        "Expecting all views to be updatable in every case",
+        "Forgetting that changes in base tables are reflected in view results"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLV-L2",
+      "title": "Benefits and Limitations",
+      "concept": "Views simplify repeated query logic, improve readability, and can restrict exposure to specific columns/rows. However, complex views may impact performance, and not all views support INSERT/UPDATE/DELETE operations (especially those with joins, aggregates, or derived columns).",
+      "formula": "Use cases: abstraction, security (column/row filtering), reuse. Limitation: updatability depends on view definition and DBMS rules.",
+      "worked_example": "A view selecting only non-sensitive columns (id,name,department) from employees can be shared instead of the full employees table containing salary details.",
+      "mistakes": [
+        "Using views as a guaranteed performance optimization without checking execution plans",
+        "Assuming every view is directly writable",
+        "Over-nesting views making debugging difficult"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLV-L3",
+      "title": "Creating and Using Views Safely",
+      "concept": "Define views with clear names and explicit column lists when helpful. Understand whether the view is meant for read-only reporting or for updates. When replacing definitions, use DBMS-supported syntax (e.g., CREATE OR REPLACE VIEW where available).",
+      "formula": "Readable pattern: CREATE VIEW v_name (colA,colB) AS SELECT colA,colB FROM t WHERE ...;",
+      "worked_example": "If business logic changes, updating the view definition can centralize the change so dependent queries using the view remain consistent.",
+      "mistakes": [
+        "Not documenting intent (read-only vs updatable)",
+        "Relying on SELECT * in view definitions when schema evolution can break consumers",
+        "Ignoring permissions on underlying tables/views"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLV-PRACTICE-001",
+      "question": "A SQL view is best described as:",
+      "options": {
+        "A": "A physical copy of a table always stored separately",
+        "B": "A virtual table based on a query",
+        "C": "An index on a table",
+        "D": "A backup file"
+      },
+      "correct_answer": "B",
+      "explanation": "A view is a virtual table defined by a SELECT query; querying the view runs/uses that definition over underlying data (in basic cases).",
+      "difficulty": "easy",
+      "sub_topic": "view_concept",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-PRACTICE-002",
+      "question": "Which statement creates a view named emp_names?",
+      "options": {
+        "A": "CREATE VIEW emp_names AS SELECT name FROM employees;",
+        "B": "MAKE VIEW emp_names FROM employees;",
+        "C": "CREATE TABLE emp_names AS VIEW employees;",
+        "D": "SELECT VIEW emp_names AS name FROM employees;"
+      },
+      "correct_answer": "A",
+      "explanation": "The standard syntax is CREATE VIEW view_name AS followed by a SELECT statement.",
+      "difficulty": "easy",
+      "sub_topic": "syntax",
+      "misconception_tags": [
+        "syntax_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-PRACTICE-003",
+      "question": "One common benefit of views is:",
+      "options": {
+        "A": "They eliminate the need for base tables",
+        "B": "They can simplify complex queries and restrict exposed columns/rows",
+        "C": "They always make every query faster",
+        "D": "They automatically fix data errors"
+      },
+      "correct_answer": "B",
+      "explanation": "Views provide abstraction and can limit visible data, improving usability and security; performance effects depend on the case.",
+      "difficulty": "easy",
+      "sub_topic": "benefits",
+      "misconception_tags": [
+        "benefit_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-PRACTICE-004",
+      "question": "Are all SQL views updatable?",
+      "options": {
+        "A": "Yes, always",
+        "B": "No, updatability depends on the view definition and DBMS rules",
+        "C": "Yes, if they have a name",
+        "D": "No, views can never be queried"
+      },
+      "correct_answer": "B",
+      "explanation": "Simple views may be updatable, but views with joins, aggregates, DISTINCT, or derived columns often are not directly updatable.",
+      "difficulty": "medium",
+      "sub_topic": "limitations",
+      "misconception_tags": [
+        "updatability_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-PRACTICE-005",
+      "question": "Which command removes a view?",
+      "options": {
+        "A": "DELETE VIEW view_name;",
+        "B": "DROP VIEW view_name;",
+        "C": "REMOVE VIEW view_name;",
+        "D": "ERASE VIEW view_name;"
+      },
+      "correct_answer": "B",
+      "explanation": "DROP VIEW is used to remove a view definition from the database.",
+      "difficulty": "easy",
+      "sub_topic": "syntax",
+      "misconception_tags": [
+        "syntax_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLV-001",
+      "question": "If base table data changes, a basic view over that table will typically:",
+      "options": {
+        "A": "Show outdated data forever",
+        "B": "Reflect the changes when queried",
+        "C": "Delete itself",
+        "D": "Convert into a base table"
+      },
+      "correct_answer": "B",
+      "explanation": "A view is defined by a query on base tables, so querying it reflects current underlying data (for standard non-materialized views).",
+      "difficulty": "easy",
+      "sub_topic": "view_concept",
+      "misconception_tags": [
+        "behavior_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-002",
+      "question": "A view that selects only certain columns from a table can be used for:",
+      "options": {
+        "A": "Column-level access restriction/abstraction",
+        "B": "Increasing disk failure recovery",
+        "C": "Replacing all constraints",
+        "D": "Creating duplicate primary keys"
+      },
+      "correct_answer": "A",
+      "explanation": "Exposing only selected columns through a view is a common way to limit visible data and provide a simpler interface.",
+      "difficulty": "easy",
+      "sub_topic": "benefits",
+      "misconception_tags": [
+        "benefit_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-003",
+      "question": "Which view is less likely to be directly updatable?",
+      "options": {
+        "A": "A view selecting a few columns from one table without aggregates",
+        "B": "A view with GROUP BY and aggregate functions",
+        "C": "A simple view on a single table",
+        "D": "A view that maps columns directly"
+      },
+      "correct_answer": "B",
+      "explanation": "Aggregations and grouping make row-to-base-row mapping ambiguous, so such views are commonly not directly updatable.",
+      "difficulty": "medium",
+      "sub_topic": "limitations",
+      "misconception_tags": [
+        "updatability_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-004",
+      "question": "To query data from an existing view named sales_summary, you can use:",
+      "options": {
+        "A": "SELECT * FROM sales_summary;",
+        "B": "OPEN VIEW sales_summary;",
+        "C": "RUN sales_summary;",
+        "D": "CALL VIEW sales_summary;"
+      },
+      "correct_answer": "A",
+      "explanation": "Views are queried like tables using SELECT statements.",
+      "difficulty": "easy",
+      "sub_topic": "syntax",
+      "misconception_tags": [
+        "usage_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLV-005",
+      "question": "Which statement is correct?",
+      "options": {
+        "A": "Views always store data and never depend on base tables",
+        "B": "Views can encapsulate query logic for reuse",
+        "C": "DROP VIEW deletes base table data",
+        "D": "Views cannot be used in SELECT queries"
+      },
+      "correct_answer": "B",
+      "explanation": "Views encapsulate SELECT logic so it can be reused easily. They do not inherently store independent data and dropping a view does not drop base tables.",
+      "difficulty": "easy",
+      "sub_topic": "benefits",
+      "misconception_tags": [
+        "behavior_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

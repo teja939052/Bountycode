@@ -1,0 +1,325 @@
+{
+  "topic": "two_pointers_basics",
+  "subject": "dsa",
+  "pattern": "two_pointers_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "TP-L1",
+      "title": "Two Pointers Pattern Overview",
+      "concept": "The two pointers technique uses two indices (pointers) to traverse a data structure, often an array or string, to reduce unnecessary work. Depending on the problem, pointers may move toward each other, in the same direction, or at different speeds.",
+      "formula": "Common forms: (1) opposite ends: left=0,right=n-1 move inward; (2) slow/fast or read/write: both move forward. Often reduces O(n^2) brute force to O(n) on sorted or linear scans.",
+      "worked_example": "Check if sorted array [1,2,3,4,6] has two numbers summing to 7: left=1,right=6 sum=7 -> found. If sum too small move left++, if too large move right--.",
+      "mistakes": [
+        "Applying opposite-end two pointers on an unsorted array when sorting/order assumption is required",
+        "Moving the wrong pointer for the condition",
+        "Off-by-one errors in loop bounds (e.g., using left <= right vs left < right)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "TP-L2",
+      "title": "Opposite-End Pointers",
+      "concept": "Opposite-end pointers start at both ends of a sequence and move inward based on comparisons. This is common for pair problems in sorted arrays (like pair sum) and palindrome checks.",
+      "formula": "Initialize left=0, right=n-1. While left < right: evaluate condition; if need larger value left++; if need smaller value right--; if match record/return.",
+      "worked_example": "Palindrome check for 'racecar': compare r==r, a==a, c==c, e==e moving inward -> palindrome. For 'hello', h!=o at ends -> not a palindrome.",
+      "mistakes": [
+        "Forgetting input must be sorted for pair-sum logic to be correct",
+        "Not handling duplicate values when the problem requires unique pairs",
+        "Infinite loops when pointers are not updated in all branches"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "TP-L3",
+      "title": "Same-Direction (Fast/Slow or Read/Write) Pointers",
+      "concept": "Same-direction pointers move forward through the array, often at different roles or speeds. A common use is in-place filtering/removal (read pointer scans, write pointer tracks position for kept elements) or cycle detection in linked lists (fast/slow).",
+      "formula": "Read/write: write=0; for read in range(n): if keep(arr[read]): arr[write]=arr[read]; write+=1. Fast/slow (linked list): slow=slow.next, fast=fast.next.next.",
+      "worked_example": "Remove value 2 in-place from [1,2,2,3]: read scans all, write keeps [1,3]; result prefix length 2.",
+      "mistakes": [
+        "Advancing write pointer even when element should be skipped",
+        "Confusing array read/write pointer use with linked-list fast/slow use",
+        "Not returning/using the new logical length after in-place compaction"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "TP-PRACTICE-001",
+      "question": "The two pointers technique is especially useful for:",
+      "options": {
+        "A": "Replacing all recursion with loops",
+        "B": "Reducing unnecessary comparisons/traversals in linear structures",
+        "C": "Sorting any array in O(1)",
+        "D": "Storing data permanently"
+      },
+      "correct_answer": "B",
+      "explanation": "Two pointers often optimize problems by scanning with two indices strategically, reducing redundant work (e.g., from O(n^2) to O(n)) in suitable cases.",
+      "difficulty": "easy",
+      "sub_topic": "pattern_overview",
+      "misconception_tags": [
+        "purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-PRACTICE-002",
+      "question": "In a sorted array, to find a pair with a larger sum using opposite-end pointers, which move is correct when current sum is too small?",
+      "options": {
+        "A": "Move right pointer left",
+        "B": "Move left pointer right",
+        "C": "Move both pointers left",
+        "D": "Stop immediately"
+      },
+      "correct_answer": "B",
+      "explanation": "In an ascending sorted array, increasing the left pointer can increase the sum, while decreasing the right pointer would make it smaller.",
+      "difficulty": "easy",
+      "sub_topic": "opposite_end",
+      "misconception_tags": [
+        "pointer_move_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-PRACTICE-003",
+      "question": "For opposite-end pair search, why is a sorted array often required?",
+      "options": {
+        "A": "Because pointers cannot index unsorted arrays",
+        "B": "Because pointer movement decisions rely on order to know how sum/value changes",
+        "C": "Because sorting makes memory O(1)",
+        "D": "Because unsorted arrays cannot have pairs"
+      },
+      "correct_answer": "B",
+      "explanation": "The correctness of moving left/right depends on monotonic ordering: moving left up increases values, moving right down decreases values.",
+      "difficulty": "medium",
+      "sub_topic": "opposite_end",
+      "misconception_tags": [
+        "precondition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-PRACTICE-004",
+      "question": "In an in-place array compaction using read/write pointers, the write pointer advances when:",
+      "options": {
+        "A": "Every element is read",
+        "B": "Only when an element should be kept",
+        "C": "Only when an element should be removed",
+        "D": "At the end of the array only"
+      },
+      "correct_answer": "B",
+      "explanation": "The write index marks the next position for a retained element, so it increments only after writing/keeping a valid element.",
+      "difficulty": "easy",
+      "sub_topic": "same_direction",
+      "misconception_tags": [
+        "write_pointer_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-PRACTICE-005",
+      "question": "Fast and slow pointers in a linked list are commonly used to:",
+      "options": {
+        "A": "Sort the list in O(1)",
+        "B": "Detect cycles or find middle elements",
+        "C": "Convert list to array automatically",
+        "D": "Allocate more nodes"
+      },
+      "correct_answer": "B",
+      "explanation": "Different pointer speeds help detect cycles (they meet) and locate the middle (fast reaches end when slow reaches middle).",
+      "difficulty": "easy",
+      "sub_topic": "same_direction",
+      "misconception_tags": [
+        "fast_slow_use_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "TP-001",
+      "question": "Which scenario best fits the opposite-end two pointers pattern?",
+      "options": {
+        "A": "Finding a pair with target sum in a sorted array",
+        "B": "Building a hash map of frequencies in random order only",
+        "C": "Representing a graph adjacency list",
+        "D": "Balancing a binary search tree"
+      },
+      "correct_answer": "A",
+      "explanation": "Sorted pair-sum problems use left/right pointers moving inward based on whether the current sum is too small or too large.",
+      "difficulty": "easy",
+      "sub_topic": "opposite_end",
+      "misconception_tags": [
+        "pattern_recognition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-002",
+      "question": "In a sorted array [2,4,6,8], target sum 10, starting with left=2 and right=8 (sum 10), the algorithm should:",
+      "options": {
+        "A": "Move left to 4 only",
+        "B": "Move right to 6 only",
+        "C": "Report/found the pair (2,8)",
+        "D": "Declare no pair exists"
+      },
+      "correct_answer": "C",
+      "explanation": "The current pair sums to the target, so the pair is found immediately.",
+      "difficulty": "easy",
+      "sub_topic": "opposite_end",
+      "misconception_tags": [
+        "termination_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-003",
+      "question": "What is a common time complexity benefit of using two pointers instead of checking all pairs in a sorted array pair-sum problem?",
+      "options": {
+        "A": "O(n^2) to O(n)",
+        "B": "O(n) to O(1)",
+        "C": "O(log n) to O(1)",
+        "D": "O(n log n) to O(n^2)"
+      },
+      "correct_answer": "A",
+      "explanation": "A brute-force pair check is O(n^2), while the opposite-end two-pointer scan over a sorted array runs in O(n).",
+      "difficulty": "easy",
+      "sub_topic": "pattern_overview",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-004",
+      "question": "When using read/write pointers to remove elements in-place, what does the write index typically represent at the end?",
+      "options": {
+        "A": "The sum of elements",
+        "B": "The count/length of elements kept",
+        "C": "The index of the maximum element always",
+        "D": "The number of removed elements only"
+      },
+      "correct_answer": "B",
+      "explanation": "Since write increments after placing each kept element, its final value equals the number of retained elements (new logical length).",
+      "difficulty": "medium",
+      "sub_topic": "same_direction",
+      "misconception_tags": [
+        "write_pointer_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TP-005",
+      "question": "Which statement about fast/slow pointers in linked lists is correct?",
+      "options": {
+        "A": "Fast pointer moves one step, slow moves two steps",
+        "B": "If there is a cycle, fast and slow pointers can eventually meet",
+        "C": "They require random access indexing",
+        "D": "They only work on arrays"
+      },
+      "correct_answer": "B",
+      "explanation": "Typically slow moves 1 step and fast moves 2; in a cycle, fast gains on slow and they will meet inside the cycle.",
+      "difficulty": "easy",
+      "sub_topic": "same_direction",
+      "misconception_tags": [
+        "fast_slow_use_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

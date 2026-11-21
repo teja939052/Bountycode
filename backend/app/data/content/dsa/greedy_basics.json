@@ -1,0 +1,325 @@
+{
+  "topic": "greedy_basics",
+  "subject": "dsa",
+  "pattern": "greedy_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "GRDY-L1",
+      "title": "Greedy Strategy Fundamentals",
+      "concept": "A greedy algorithm builds a solution step by step by choosing the option that looks best at the current moment (locally optimal choice), hoping this leads to a globally optimal solution. Greedy methods are efficient but correct only for problems with suitable properties.",
+      "formula": "Greedy choice: pick best local option now + reduce problem. Correctness often needs greedy-choice property and optimal substructure (problem-dependent).",
+      "worked_example": "Coin change with denominations [1,2,5,10] for amount 18: repeatedly pick largest coin <= remaining (10,5,2,1) gives 4 coins. This works for canonical coin systems but not for all arbitrary denominations.",
+      "mistakes": [
+        "Assuming greedy always yields optimal solution for every problem",
+        "Not proving or recognizing when local choice is safe",
+        "Confusing greedy with dynamic programming"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "GRDY-L2",
+      "title": "Common Greedy Patterns",
+      "concept": "Typical greedy patterns include activity/interval selection (choose earliest finishing compatible activity), fractional knapsack (take highest value/weight ratio first), minimum platforms/resources by sorting events, and Huffman-like merging (conceptually). Sorting is often a preprocessing step.",
+      "formula": "Pattern examples: interval scheduling -> sort by finish time, pick non-overlapping. Fractional knapsack -> sort by value/weight desc, take as much as possible.",
+      "worked_example": "Activities with (start,end): (1,3),(2,5),(4,6). Sort by end: (1,3),(4,6),(2,5). Pick (1,3), skip (2,5) (overlaps), pick (4,6). Max non-overlapping = 2.",
+      "mistakes": [
+        "Sorting by the wrong key (e.g., start time instead of finish time for activity selection)",
+        "Applying fractional knapsack logic to 0/1 knapsack",
+        "Ignoring feasibility constraints after making a greedy choice"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "GRDY-L3",
+      "title": "When Greedy Works and When It Fails",
+      "concept": "Greedy algorithms work when a locally optimal choice can be part of some globally optimal solution and the problem has optimal substructure. They fail when early choices block better overall combinations; in such cases, dynamic programming or exhaustive search may be required.",
+      "formula": "Check: greedy-choice property + optimal substructure. Counterexample testing is useful to detect failure cases.",
+      "worked_example": "0/1 knapsack with items (w,v): (10,60),(20,100),(30,120), capacity 50. Greedy by ratio picks (10,60) and (20,100) value 160, but optimal is (20,100)+(30,120) value 220. Greedy fails here.",
+      "mistakes": [
+        "Not testing counterexamples for a proposed greedy rule",
+        "Believing a few correct examples prove correctness",
+        "Using greedy for 0/1 knapsack instead of DP/backtracking as appropriate"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "GRDY-PRACTICE-001",
+      "question": "A greedy algorithm makes decisions by:",
+      "options": {
+        "A": "Exploring all possibilities first",
+        "B": "Choosing the best local option at each step",
+        "C": "Always using a DP table",
+        "D": "Sorting only at the end"
+      },
+      "correct_answer": "B",
+      "explanation": "Greedy algorithms select the locally optimal choice at each step with the aim of reaching a global optimum (when the problem allows).",
+      "difficulty": "easy",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-PRACTICE-002",
+      "question": "In activity selection to maximize number of non-overlapping activities, a common greedy strategy is to pick the activity that:",
+      "options": {
+        "A": "Starts latest",
+        "B": "Finishes earliest",
+        "C": "Has longest duration",
+        "D": "Appears first in input"
+      },
+      "correct_answer": "B",
+      "explanation": "Choosing the activity with the earliest finishing time leaves the maximum room for remaining activities, which is the standard greedy strategy.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "strategy_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-PRACTICE-003",
+      "question": "Fractional knapsack can be solved greedily by prioritizing items with:",
+      "options": {
+        "A": "Lowest weight only",
+        "B": "Highest total value only",
+        "C": "Highest value-to-weight ratio",
+        "D": "Random order"
+      },
+      "correct_answer": "C",
+      "explanation": "In fractional knapsack, taking items with the highest value per unit weight first yields the optimal total value because fractions are allowed.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "knapsack_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-PRACTICE-004",
+      "question": "Greedy algorithms are guaranteed to be optimal for:",
+      "options": {
+        "A": "All optimization problems",
+        "B": "Only problems where greedy-choice property and suitable structure hold",
+        "C": "No problems at all",
+        "D": "Only sorting problems"
+      },
+      "correct_answer": "B",
+      "explanation": "Greedy correctness depends on problem properties (such as greedy-choice property and optimal substructure). It is not universally optimal.",
+      "difficulty": "medium",
+      "sub_topic": "correctness",
+      "misconception_tags": [
+        "overgeneralization_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-PRACTICE-005",
+      "question": "Which problem is a classic example where a simple greedy by ratio fails?",
+      "options": {
+        "A": "Fractional knapsack",
+        "B": "0/1 knapsack",
+        "C": "Activity selection by finish time",
+        "D": "Finding minimum in an array"
+      },
+      "correct_answer": "B",
+      "explanation": "In 0/1 knapsack, items cannot be split; choosing by value/weight ratio greedily can miss the optimal combination, so DP is typically used.",
+      "difficulty": "medium",
+      "sub_topic": "correctness",
+      "misconception_tags": [
+        "knapsack_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "GRDY-001",
+      "question": "Which step is commonly part of many greedy algorithms?",
+      "options": {
+        "A": "Backtracking through all choices",
+        "B": "Sorting input based on a key and making sequential choices",
+        "C": "Filling a 2D DP table for all states",
+        "D": "Randomly selecting elements"
+      },
+      "correct_answer": "B",
+      "explanation": "Many greedy solutions sort data by a relevant criterion (e.g., finish time, ratio) and then make locally optimal selections in that order.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "process_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-002",
+      "question": "A counterexample to a greedy strategy shows that:",
+      "options": {
+        "A": "The strategy is always correct",
+        "B": "The strategy does not produce an optimal solution for all cases",
+        "C": "The input was unsorted",
+        "D": "The algorithm runs in O(1)"
+      },
+      "correct_answer": "B",
+      "explanation": "Finding even one case where the greedy choice leads to a suboptimal result disproves general optimality of that greedy strategy.",
+      "difficulty": "easy",
+      "sub_topic": "correctness",
+      "misconception_tags": [
+        "proof_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-003",
+      "question": "In fractional knapsack, if an item cannot fit entirely, the greedy approach:",
+      "options": {
+        "A": "Skips it and stops",
+        "B": "Takes the fraction that fits",
+        "C": "Switches to 0/1 knapsack automatically",
+        "D": "Discards all previous items"
+      },
+      "correct_answer": "B",
+      "explanation": "Fractional knapsack allows taking part of an item, so the algorithm takes as much of the next best ratio item as capacity permits.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "knapsack_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-004",
+      "question": "Greedy algorithms are often preferred when valid because they are typically:",
+      "options": {
+        "A": "More complex than brute force",
+        "B": "Simple and efficient",
+        "C": "Guaranteed for all problems",
+        "D": "Always slower than DP"
+      },
+      "correct_answer": "B",
+      "explanation": "When applicable, greedy solutions are usually simpler to implement and run efficiently compared to exhaustive or DP approaches.",
+      "difficulty": "easy",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "tradeoff_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-005",
+      "question": "The greedy-choice property means:",
+      "options": {
+        "A": "Every local choice is bad",
+        "B": "A locally optimal choice can be part of a globally optimal solution",
+        "C": "No optimal substructure exists",
+        "D": "All choices must be tried"
+      },
+      "correct_answer": "B",
+      "explanation": "Greedy-choice property indicates that making a locally optimal choice at a step is safe and can lead to a globally optimal solution.",
+      "difficulty": "medium",
+      "sub_topic": "correctness",
+      "misconception_tags": [
+        "property_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

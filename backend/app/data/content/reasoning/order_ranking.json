@@ -1,0 +1,316 @@
+{
+  "topic": "order_ranking",
+  "subject": "reasoning",
+  "pattern": "order_ranking",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "rank_from_other_end",
+      "title": "Finding Rank from the Other End",
+      "concept": "In a row (or ordered list) of N people, a person's position from one end can be converted to position from the other end. This uses the total count and the given rank.",
+      "formula": "Rank from other end = Total persons - Rank from given end + 1.",
+      "worked_example": "In a class of 40 students, if Ravi is 12th from the top, his rank from the bottom = 40 - 12 + 1 = 29th.",
+      "mistakes": [
+        "Forgetting to add 1 after subtracting from total",
+        "Confusing top/bottom or left/right ends",
+        "Using the wrong total count"
+      ]
+    },
+    {
+      "id": "total_from_both_ranks",
+      "title": "Finding Total from Ranks of One Person",
+      "concept": "If the same person's rank from both ends is known, the total number of persons can be calculated. The person is counted in both ranks, so 1 is subtracted to avoid double counting.",
+      "formula": "Total persons = Rank from left/top + Rank from right/bottom - 1.",
+      "worked_example": "If a student is 7th from the left and 9th from the right in a row, total students = 7 + 9 - 1 = 15.",
+      "mistakes": [
+        "Adding ranks without subtracting 1",
+        "Applying the formula when ranks are of different persons",
+        "Mixing up positions and counts between people"
+      ]
+    },
+    {
+      "id": "persons_between",
+      "title": "Finding Number of Persons Between Two",
+      "concept": "When positions of two different people are known from the same end in a row of known total, or from opposite ends, you can determine how many people sit between them. Convert positions to the same reference if needed, then compute the gap.",
+      "formula": "If positions from same end are p and q (p < q), persons between = q - p - 1. If from opposite ends in total N, convert one rank: position from left of right-end person = N - rank_from_right + 1, then apply same formula.",
+      "worked_example": "In a row of 20, A is 4th from left and B is 6th from right. B's position from left = 20 - 6 + 1 = 15. Persons between A(4th) and B(15th) = 15 - 4 - 1 = 10.",
+      "mistakes": [
+        "Not converting both positions to the same end before finding the gap",
+        "Off-by-one errors when subtracting positions",
+        "Assuming the two people are in a particular order without checking"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "ORDR-PRACTICE-001",
+      "question": "In a row of 30 students, a student is 8th from the left. What is the student's position from the right?",
+      "options": {
+        "A": "22nd",
+        "B": "23rd",
+        "C": "24th",
+        "D": "21st"
+      },
+      "correct_answer": "B",
+      "explanation": "Position from right = Total - Position from left + 1 = 30 - 8 + 1 = 23rd.",
+      "difficulty": "easy",
+      "sub_topic": "rank_from_other_end",
+      "misconception_tags": [
+        "rank_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-PRACTICE-002",
+      "question": "In a queue, a person is 10th from the front and 15th from the back. How many persons are there in the queue?",
+      "options": {
+        "A": "24",
+        "B": "25",
+        "C": "26",
+        "D": "23"
+      },
+      "correct_answer": "A",
+      "explanation": "Total = Rank from front + Rank from back - 1 = 10 + 15 - 1 = 24.",
+      "difficulty": "easy",
+      "sub_topic": "total_from_both_ranks",
+      "misconception_tags": [
+        "total_count_double_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-PRACTICE-003",
+      "question": "In a row of 20 people, A is 5th from the left. What is A's position from the right?",
+      "options": {
+        "A": "15th",
+        "B": "16th",
+        "C": "14th",
+        "D": "17th"
+      },
+      "correct_answer": "B",
+      "explanation": "Position from right = 20 - 5 + 1 = 16th.",
+      "difficulty": "easy",
+      "sub_topic": "rank_from_other_end",
+      "misconception_tags": [
+        "rank_conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-PRACTICE-004",
+      "question": "In a row, Ramesh is 6th from the left and Suresh is 8th from the right. If there are 18 persons in the row, how many persons are between Ramesh and Suresh?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5"
+      },
+      "correct_answer": "C",
+      "explanation": "Suresh's position from left = 18 - 8 + 1 = 11th. Ramesh is 6th from left. Persons between = 11 - 6 - 1 = 4.",
+      "difficulty": "medium",
+      "sub_topic": "persons_between",
+      "misconception_tags": [
+        "between_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-PRACTICE-005",
+      "question": "In a line of children, Meena is 9th from the left and 12th from the right. How many children are in the line?",
+      "options": {
+        "A": "19",
+        "B": "20",
+        "C": "21",
+        "D": "22"
+      },
+      "correct_answer": "B",
+      "explanation": "Total children = 9 + 12 - 1 = 20.",
+      "difficulty": "easy",
+      "sub_topic": "total_from_both_ranks",
+      "misconception_tags": [
+        "total_count_double_count_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ORDR-001",
+      "question": "In a row of 25 students, Priya is 7th from the left end. What is her position from the right end?",
+      "options": {
+        "A": "18th",
+        "B": "19th",
+        "C": "20th",
+        "D": "17th"
+      },
+      "correct_answer": "B",
+      "explanation": "Position from right = 25 - 7 + 1 = 19th.",
+      "difficulty": "easy",
+      "sub_topic": "rank_from_other_end",
+      "misconception_tags": [
+        "rank_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-002",
+      "question": "Amit is 14th from the top and 11th from the bottom in his class. How many students are there in the class?",
+      "options": {
+        "A": "23",
+        "B": "24",
+        "C": "25",
+        "D": "26"
+      },
+      "correct_answer": "B",
+      "explanation": "Total students = Rank from top + Rank from bottom - 1 = 14 + 11 - 1 = 24.",
+      "difficulty": "easy",
+      "sub_topic": "total_from_both_ranks",
+      "misconception_tags": [
+        "total_count_double_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-003",
+      "question": "In a row of 16 persons, P is 3rd from the left and Q is 4th from the right. How many persons are between P and Q?",
+      "options": {
+        "A": "7",
+        "B": "8",
+        "C": "9",
+        "D": "10"
+      },
+      "correct_answer": "C",
+      "explanation": "Q's position from left = 16 - 4 + 1 = 13th. Persons between P (3rd) and Q (13th) = 13 - 3 - 1 = 9.",
+      "difficulty": "medium",
+      "sub_topic": "persons_between",
+      "misconception_tags": [
+        "between_count_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-004",
+      "question": "In a row of 50 people, Karan is 20th from the right end. What is his position from the left end?",
+      "options": {
+        "A": "30th",
+        "B": "31st",
+        "C": "32nd",
+        "D": "29th"
+      },
+      "correct_answer": "B",
+      "explanation": "Position from left = 50 - 20 + 1 = 31st.",
+      "difficulty": "easy",
+      "sub_topic": "rank_from_other_end",
+      "misconception_tags": [
+        "rank_conversion_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ORDR-005",
+      "question": "In a line, Neha is 5th from the front and 18th from the back. How many people are there in the line?",
+      "options": {
+        "A": "21",
+        "B": "22",
+        "C": "23",
+        "D": "24"
+      },
+      "correct_answer": "B",
+      "explanation": "Total people = 5 + 18 - 1 = 22.",
+      "difficulty": "easy",
+      "sub_topic": "total_from_both_ranks",
+      "misconception_tags": [
+        "total_count_double_count_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

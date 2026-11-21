@@ -1,0 +1,325 @@
+{
+  "topic": "sql_transactions_basics",
+  "subject": "sql",
+  "pattern": "sql_transactions_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "SQLT-L1",
+      "title": "Transaction Concept and ACID",
+      "concept": "A transaction is a sequence of one or more SQL operations executed as a single logical unit of work. Transactions follow ACID properties: Atomicity (all or nothing), Consistency (valid state transitions), Isolation (concurrent transactions don't improperly interfere), and Durability (committed changes persist).",
+      "formula": "COMMIT saves changes permanently. ROLLBACK undoes changes since transaction start/savepoint (DBMS-dependent behavior).",
+      "worked_example": "Transferring money: debit account A and credit account B should either both succeed (COMMIT) or both be undone (ROLLBACK) if any step fails.",
+      "mistakes": [
+        "Assuming partial success is acceptable in atomic operations",
+        "Confusing COMMIT with ROLLBACK",
+        "Thinking transactions are only for SELECT statements"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLT-L2",
+      "title": "COMMIT, ROLLBACK, and Savepoints",
+      "concept": "COMMIT makes transaction changes permanent and visible according to isolation rules. ROLLBACK reverts uncommitted changes. Some DBMSs support savepoints to roll back to an intermediate point within a transaction without undoing the entire transaction.",
+      "formula": "BEGIN/START TRANSACTION -> operations -> COMMIT or ROLLBACK. Savepoint (where supported): SAVEPOINT sp1; ROLLBACK TO sp1;",
+      "worked_example": "START TRANSACTION; UPDATE accounts...; SAVEPOINT s1; UPDATE logs...; ROLLBACK TO s1; COMMIT; keeps account update but undoes log update after savepoint (if supported).",
+      "mistakes": [
+        "Forgetting to COMMIT in environments without auto-commit",
+        "Assuming savepoint syntax/behavior is identical in every DBMS",
+        "Rolling back after commit (cannot undo committed transaction with ROLLBACK)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLT-L3",
+      "title": "Concurrency and Isolation Basics",
+      "concept": "When multiple transactions run concurrently, isolation levels control visibility of uncommitted/committed changes and phenomena like dirty reads, non-repeatable reads, and phantom reads. Higher isolation reduces anomalies but may reduce concurrency/performance.",
+      "formula": "Common isolation levels (SQL standard): READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE (availability/semantics vary by DBMS).",
+      "worked_example": "At READ COMMITTED, a transaction does not see uncommitted changes from others, reducing dirty reads compared to READ UNCOMMITTED.",
+      "mistakes": [
+        "Assuming all DBMSs implement isolation levels identically",
+        "Using highest isolation by default without considering performance trade-offs",
+        "Confusing atomicity with isolation"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLT-PRACTICE-001",
+      "question": "A transaction in SQL is:",
+      "options": {
+        "A": "A single SELECT only",
+        "B": "A logical unit of work that may include multiple operations",
+        "C": "A type of index",
+        "D": "A database backup"
+      },
+      "correct_answer": "B",
+      "explanation": "A transaction groups one or more operations into a single unit that should succeed or fail together.",
+      "difficulty": "easy",
+      "sub_topic": "transaction_concept",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-PRACTICE-002",
+      "question": "Which command permanently saves changes made in a transaction?",
+      "options": {
+        "A": "ROLLBACK",
+        "B": "COMMIT",
+        "C": "SAVEPOINT",
+        "D": "SELECT"
+      },
+      "correct_answer": "B",
+      "explanation": "COMMIT makes the transaction's changes permanent (durable) according to database rules.",
+      "difficulty": "easy",
+      "sub_topic": "commit_rollback",
+      "misconception_tags": [
+        "command_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-PRACTICE-003",
+      "question": "Which command undoes uncommitted transaction changes?",
+      "options": {
+        "A": "COMMIT",
+        "B": "ROLLBACK",
+        "C": "GRANT",
+        "D": "CREATE"
+      },
+      "correct_answer": "B",
+      "explanation": "ROLLBACK reverts changes made in the current transaction that have not been committed.",
+      "difficulty": "easy",
+      "sub_topic": "commit_rollback",
+      "misconception_tags": [
+        "command_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-PRACTICE-004",
+      "question": "Atomicity in ACID means:",
+      "options": {
+        "A": "Transactions run faster",
+        "B": "All operations in a transaction succeed or none are applied",
+        "C": "Data is always encrypted",
+        "D": "Only one user can access database"
+      },
+      "correct_answer": "B",
+      "explanation": "Atomicity ensures the transaction is treated as an indivisible unit: either fully completed (commit) or fully undone (rollback).",
+      "difficulty": "easy",
+      "sub_topic": "acid",
+      "misconception_tags": [
+        "acid_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-PRACTICE-005",
+      "question": "Durability in ACID refers to:",
+      "options": {
+        "A": "Queries never fail",
+        "B": "Committed changes persist even after failures",
+        "C": "Transactions never wait",
+        "D": "All tables have indexes"
+      },
+      "correct_answer": "B",
+      "explanation": "Durability guarantees that once a transaction is committed, its changes survive subsequent system failures.",
+      "difficulty": "easy",
+      "sub_topic": "acid",
+      "misconception_tags": [
+        "acid_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLT-001",
+      "question": "If an error occurs midway through a transfer transaction, the safest outcome is to:",
+      "options": {
+        "A": "COMMIT completed steps only",
+        "B": "ROLLBACK the transaction",
+        "C": "Ignore the error",
+        "D": "Drop the database"
+      },
+      "correct_answer": "B",
+      "explanation": "Rolling back ensures atomicity by undoing partial changes so the database does not remain in an inconsistent intermediate state.",
+      "difficulty": "easy",
+      "sub_topic": "transaction_concept",
+      "misconception_tags": [
+        "atomicity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-002",
+      "question": "Isolation in ACID primarily deals with:",
+      "options": {
+        "A": "Physical storage durability only",
+        "B": "How concurrent transactions interact/see each other's changes",
+        "C": "Syntax of SQL queries",
+        "D": "Backup scheduling"
+      },
+      "correct_answer": "B",
+      "explanation": "Isolation defines the degree to which concurrently executing transactions are separated from one another's intermediate states.",
+      "difficulty": "easy",
+      "sub_topic": "acid",
+      "misconception_tags": [
+        "acid_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-003",
+      "question": "What is the purpose of a SAVEPOINT (where supported)?",
+      "options": {
+        "A": "To permanently delete all data",
+        "B": "To mark a point within a transaction for partial rollback",
+        "C": "To replace COMMIT",
+        "D": "To create a new table"
+      },
+      "correct_answer": "B",
+      "explanation": "A savepoint allows rolling back part of a transaction to a specific intermediate point without undoing the entire transaction.",
+      "difficulty": "medium",
+      "sub_topic": "commit_rollback",
+      "misconception_tags": [
+        "savepoint_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-004",
+      "question": "Which ACID property ensures the database moves from one valid state to another valid state?",
+      "options": {
+        "A": "Consistency",
+        "B": "Durability",
+        "C": "Isolation only",
+        "D": "Availability"
+      },
+      "correct_answer": "A",
+      "explanation": "Consistency ensures transactions preserve database integrity constraints/rules, moving the database between valid states.",
+      "difficulty": "easy",
+      "sub_topic": "acid",
+      "misconception_tags": [
+        "acid_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLT-005",
+      "question": "After a transaction is committed, issuing ROLLBACK will:",
+      "options": {
+        "A": "Undo the committed transaction",
+        "B": "Not undo the committed transaction (it is already permanent)",
+        "C": "Delete the table",
+        "D": "Create a savepoint automatically"
+      },
+      "correct_answer": "B",
+      "explanation": "ROLLBACK affects uncommitted changes in the current transaction; once committed, changes are durable and cannot be reverted by ROLLBACK.",
+      "difficulty": "easy",
+      "sub_topic": "commit_rollback",
+      "misconception_tags": [
+        "commit_rollback_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

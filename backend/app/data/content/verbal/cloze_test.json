@@ -1,0 +1,316 @@
+{
+  "topic": "cloze_test",
+  "subject": "verbal",
+  "pattern": "cloze_test",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "contextual_vocabulary",
+      "title": "Using Context to Choose Words",
+      "concept": "Cloze tests present a passage with blanks and require selecting words that fit grammatically and contextually. Read the surrounding sentences to understand tone, meaning, and logical flow before choosing an option.",
+      "formula": "Approach: read full sentence/passage context -> determine required meaning/part of speech -> test options in the blank.",
+      "worked_example": "Sentence: 'Despite the heavy rain, the match continued _____ schedule.' The context implies no delay, so 'on schedule' fits; 'behind schedule' would contradict 'continued despite the heavy rain'.",
+      "mistakes": [
+        "Choosing a word that fits locally but not the overall meaning",
+        "Ignoring tone (positive/negative/formal) of the passage",
+        "Not reading beyond the immediate sentence when context spans multiple sentences"
+      ]
+    },
+    {
+      "id": "grammar_and_collocation",
+      "title": "Grammar and Collocation in Blanks",
+      "concept": "Correct cloze answers must satisfy grammar (tense, subject-verb agreement, articles, prepositions) and natural word combinations (collocations). Even if meaning seems close, an option may be wrong if it breaks grammar or common usage.",
+      "formula": "Check: tense/time markers, agreement, preposition/article use, and common collocations (e.g., 'make a decision', not 'do a decision').",
+      "worked_example": "Sentence: 'She is interested _____ learning new skills.' Correct preposition is 'in': 'interested in learning'.",
+      "mistakes": [
+        "Focusing only on meaning and missing grammatical fit",
+        "Using incorrect prepositions with common adjectives/verbs",
+        "Selecting words that form unnatural collocations"
+      ]
+    },
+    {
+      "id": "logical_flow",
+      "title": "Logical Flow and Connectors",
+      "concept": "Blanks may require connectors (however, therefore, although) or words that maintain logical flow (cause-effect, contrast, addition). Identify the relationship between clauses/sentences to choose the appropriate connector or transition word.",
+      "formula": "Contrast -> however/although/but; cause-effect -> therefore/because/so; addition -> moreover/and/also.",
+      "worked_example": "Sentence: 'He studied hard; _____, he scored well.' The second clause is a result, so 'therefore' fits: 'He studied hard; therefore, he scored well.'",
+      "mistakes": [
+        "Using contrast connectors for cause-effect relationships (or vice versa)",
+        "Ignoring punctuation clues (semicolon/comma) that signal connector usage",
+        "Choosing a connector that reverses the intended logic"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "CLOZE-PRACTICE-001",
+      "question": "Choose the correct word: 'She was tired, _____ she completed the work on time.'",
+      "options": {
+        "A": "so",
+        "B": "but",
+        "C": "because",
+        "D": "unless"
+      },
+      "correct_answer": "B",
+      "explanation": "The sentence shows contrast: being tired vs completing work on time. 'But' correctly expresses this contrast.",
+      "difficulty": "easy",
+      "sub_topic": "logical_flow",
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-PRACTICE-002",
+      "question": "Choose the correct word: 'He is good _____ mathematics.'",
+      "options": {
+        "A": "in",
+        "B": "at",
+        "C": "on",
+        "D": "for"
+      },
+      "correct_answer": "B",
+      "explanation": "The correct preposition/collocation is 'good at' when referring to skill or ability in a subject/activity: 'good at mathematics'.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "preposition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-PRACTICE-003",
+      "question": "Choose the correct word: 'It rained heavily; _____, the streets were flooded.'",
+      "options": {
+        "A": "however",
+        "B": "although",
+        "C": "therefore",
+        "D": "but"
+      },
+      "correct_answer": "C",
+      "explanation": "Flooded streets are a result of heavy rain. 'Therefore' indicates cause and effect and fits after a semicolon in this structure.",
+      "difficulty": "easy",
+      "sub_topic": "logical_flow",
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-PRACTICE-004",
+      "question": "Choose the correct word: 'The manager asked everyone to _____ attention to the new guidelines.'",
+      "options": {
+        "A": "pay",
+        "B": "give",
+        "C": "put",
+        "D": "make"
+      },
+      "correct_answer": "A",
+      "explanation": "The correct collocation is 'pay attention' (to give notice or focus). 'Give', 'put', and 'make' do not form the standard phrase here.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "collocation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-PRACTICE-005",
+      "question": "Choose the correct word: 'Although he was new to the team, he adapted _____.'",
+      "options": {
+        "A": "quick",
+        "B": "quickly",
+        "C": "quickness",
+        "D": "quicker"
+      },
+      "correct_answer": "B",
+      "explanation": "The verb 'adapted' is modified by an adverb describing how he adapted. 'Quickly' is the correct adverb form.",
+      "difficulty": "easy",
+      "sub_topic": "contextual_vocabulary",
+      "misconception_tags": [
+        "word_form_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CLOZE-001",
+      "question": "Choose the correct option: 'The instructions were clear, _____ everyone understood what to do.'",
+      "options": {
+        "A": "but",
+        "B": "so",
+        "C": "although",
+        "D": "yet"
+      },
+      "correct_answer": "B",
+      "explanation": "Clear instructions led to understanding; this is a cause-effect/result relationship. 'So' correctly connects the clauses.",
+      "difficulty": "easy",
+      "sub_topic": "logical_flow",
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-002",
+      "question": "Choose the correct option: 'She has been working here _____ 2019.'",
+      "options": {
+        "A": "for",
+        "B": "since",
+        "C": "from",
+        "D": "by"
+      },
+      "correct_answer": "B",
+      "explanation": "'Since' is used with a specific point in time (2019) to indicate when an action started and continues. 'For' is used with a duration.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "since_for_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-003",
+      "question": "Choose the correct option: 'He did not study for the test; _____, he failed.'",
+      "options": {
+        "A": "however",
+        "B": "nevertheless",
+        "C": "consequently",
+        "D": "although"
+      },
+      "correct_answer": "C",
+      "explanation": "Failing is the result/consequence of not studying. 'Consequently' expresses this cause-effect relationship appropriately.",
+      "difficulty": "medium",
+      "sub_topic": "logical_flow",
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-004",
+      "question": "Choose the correct option: 'Please _____ a look at this document before the meeting.'",
+      "options": {
+        "A": "do",
+        "B": "take",
+        "C": "make",
+        "D": "put"
+      },
+      "correct_answer": "B",
+      "explanation": "The correct collocation is 'take a look', meaning to examine or view something briefly.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "collocation_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLOZE-005",
+      "question": "Choose the correct option: 'The new policy aims to improve efficiency _____ reducing unnecessary delays.'",
+      "options": {
+        "A": "by",
+        "B": "from",
+        "C": "with",
+        "D": "on"
+      },
+      "correct_answer": "A",
+      "explanation": "'By' + gerund ('by reducing') is used to indicate the method or means through which the aim is achieved.",
+      "difficulty": "medium",
+      "sub_topic": "contextual_vocabulary",
+      "misconception_tags": [
+        "preposition_usage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

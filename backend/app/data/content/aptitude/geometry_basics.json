@@ -1,0 +1,317 @@
+{
+  "topic": "geometry_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "geometry_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "perimeter_and_area",
+      "title": "Perimeter and Area of Basic Shapes",
+      "concept": "Perimeter is the total length around a 2D shape, while area is the space enclosed within it. Common shapes in aptitude include rectangles, squares, triangles, and circles. Use consistent units and apply the correct formula for each shape.",
+      "formula": "Rectangle: perimeter = 2(l+w), area = l*w. Square: perimeter = 4a, area = a^2. Triangle: area = (1/2)*base*height. Circle: circumference = 2*pi*r, area = pi*r^2.",
+      "worked_example": "A rectangle has length 12 cm and width 5 cm. Perimeter = 2*(12+5) = 34 cm. Area = 12*5 = 60 cm^2.",
+      "mistakes": [
+        "Mixing perimeter and area formulas",
+        "Using diameter where radius is required (or vice versa)",
+        "Forgetting to use the perpendicular height for triangle area"
+      ]
+    },
+    {
+      "id": "triangle_properties",
+      "title": "Triangle Properties and Pythagoras Theorem",
+      "concept": "The sum of interior angles of any triangle is 180 degrees. In a right-angled triangle, the square of the hypotenuse equals the sum of squares of the other two sides. These properties help find unknown angles and side lengths.",
+      "formula": "Angle sum: A + B + C = 180 degrees. Pythagoras (right triangle): c^2 = a^2 + b^2, where c is hypotenuse.",
+      "worked_example": "A triangle has angles 50 degrees and 60 degrees. Third angle = 180 - (50+60) = 70 degrees. For a right triangle with legs 6 and 8, hypotenuse = sqrt(6^2 + 8^2) = sqrt(100) = 10.",
+      "mistakes": [
+        "Applying Pythagoras theorem to non-right triangles",
+        "Using a non-hypotenuse side as c in a^2 + b^2 = c^2",
+        "Arithmetic errors when summing/subtracting angles from 180 degrees"
+      ]
+    },
+    {
+      "id": "circle_basics",
+      "title": "Circles: Radius, Diameter, and Pi",
+      "concept": "A circle is defined by its radius (distance from center to boundary). Diameter is twice the radius. Circumference and area involve pi (commonly approximated as 22/7 or 3.14 in aptitude problems).",
+      "formula": "d = 2r, circumference = 2*pi*r = pi*d, area = pi*r^2.",
+      "worked_example": "If r = 7 cm and pi = 22/7, circumference = 2*(22/7)*7 = 44 cm and area = (22/7)*7*7 = 154 cm^2.",
+      "mistakes": [
+        "Confusing radius and diameter in formulas",
+        "Using 2*pi*r for area instead of pi*r^2",
+        "Calculation errors when simplifying with pi = 22/7"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "GEO-PRACTICE-001",
+      "question": "What is the area of a rectangle with length 9 cm and width 4 cm?",
+      "options": {
+        "A": "13 cm^2",
+        "B": "26 cm^2",
+        "C": "36 cm^2",
+        "D": "45 cm^2"
+      },
+      "correct_answer": "C",
+      "explanation": "Area of rectangle = length * width = 9 * 4 = 36 cm^2.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_and_area",
+      "misconception_tags": [
+        "area_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-PRACTICE-002",
+      "question": "The perimeter of a square is 48 cm. What is the length of one side?",
+      "options": {
+        "A": "8 cm",
+        "B": "10 cm",
+        "C": "12 cm",
+        "D": "16 cm"
+      },
+      "correct_answer": "C",
+      "explanation": "Perimeter of square = 4 * side. So side = 48 / 4 = 12 cm.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_and_area",
+      "misconception_tags": [
+        "perimeter_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-PRACTICE-003",
+      "question": "Two angles of a triangle are 45 degrees and 55 degrees. What is the third angle?",
+      "options": {
+        "A": "70 degrees",
+        "B": "80 degrees",
+        "C": "90 degrees",
+        "D": "100 degrees"
+      },
+      "correct_answer": "B",
+      "explanation": "Sum of angles in a triangle is 180 degrees. Third angle = 180 - (45 + 55) = 180 - 100 = 80 degrees.",
+      "difficulty": "easy",
+      "sub_topic": "triangle_properties",
+      "misconception_tags": [
+        "triangle_angle_sum_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-PRACTICE-004",
+      "question": "A right-angled triangle has legs of lengths 9 cm and 12 cm. What is the length of the hypotenuse?",
+      "options": {
+        "A": "13 cm",
+        "B": "14 cm",
+        "C": "15 cm",
+        "D": "21 cm"
+      },
+      "correct_answer": "C",
+      "explanation": "By Pythagoras theorem, hypotenuse = sqrt(9^2 + 12^2) = sqrt(81 + 144) = sqrt(225) = 15 cm.",
+      "difficulty": "medium",
+      "sub_topic": "triangle_properties",
+      "misconception_tags": [
+        "pythagoras_application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-PRACTICE-005",
+      "question": "Find the circumference of a circle with radius 14 cm. (Use pi = 22/7)",
+      "options": {
+        "A": "44 cm",
+        "B": "88 cm",
+        "C": "154 cm",
+        "D": "616 cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Circumference = 2 * pi * r = 2 * (22/7) * 14 = 2 * 22 * 2 = 88 cm.",
+      "difficulty": "easy",
+      "sub_topic": "circle_basics",
+      "misconception_tags": [
+        "radius_diameter_confusion",
+        "circumference_formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "GEO-001",
+      "question": "What is the area of a triangle with base 10 cm and height 8 cm?",
+      "options": {
+        "A": "18 cm^2",
+        "B": "40 cm^2",
+        "C": "80 cm^2",
+        "D": "160 cm^2"
+      },
+      "correct_answer": "B",
+      "explanation": "Area of triangle = (1/2) * base * height = (1/2) * 10 * 8 = 40 cm^2.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_and_area",
+      "misconception_tags": [
+        "triangle_area_half_missing"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-002",
+      "question": "A rectangular garden is 20 m long and 15 m wide. What is its perimeter?",
+      "options": {
+        "A": "35 m",
+        "B": "70 m",
+        "C": "300 m",
+        "D": "140 m"
+      },
+      "correct_answer": "B",
+      "explanation": "Perimeter of rectangle = 2 * (length + width) = 2 * (20 + 15) = 2 * 35 = 70 m.",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_and_area",
+      "misconception_tags": [
+        "perimeter_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-003",
+      "question": "Find the area of a circle with radius 7 cm. (Use pi = 22/7)",
+      "options": {
+        "A": "44 cm^2",
+        "B": "88 cm^2",
+        "C": "154 cm^2",
+        "D": "308 cm^2"
+      },
+      "correct_answer": "C",
+      "explanation": "Area = pi * r^2 = (22/7) * 7 * 7 = 22 * 7 = 154 cm^2.",
+      "difficulty": "easy",
+      "sub_topic": "circle_basics",
+      "misconception_tags": [
+        "area_vs_circumference_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-004",
+      "question": "A right-angled triangle has hypotenuse 13 cm and one leg 5 cm. What is the length of the other leg?",
+      "options": {
+        "A": "8 cm",
+        "B": "10 cm",
+        "C": "12 cm",
+        "D": "14 cm"
+      },
+      "correct_answer": "C",
+      "explanation": "By Pythagoras theorem, other leg^2 = hypotenuse^2 - leg^2 = 13^2 - 5^2 = 169 - 25 = 144. So other leg = sqrt(144) = 12 cm.",
+      "difficulty": "medium",
+      "sub_topic": "triangle_properties",
+      "misconception_tags": [
+        "pythagoras_rearrangement_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-005",
+      "question": "The diameter of a circle is 20 cm. What is its area? (Use pi = 3.14)",
+      "options": {
+        "A": "62.8 cm^2",
+        "B": "125.6 cm^2",
+        "C": "314 cm^2",
+        "D": "628 cm^2"
+      },
+      "correct_answer": "C",
+      "explanation": "Radius = diameter / 2 = 10 cm. Area = pi * r^2 = 3.14 * 10^2 = 3.14 * 100 = 314 cm^2.",
+      "difficulty": "medium",
+      "sub_topic": "circle_basics",
+      "misconception_tags": [
+        "radius_diameter_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

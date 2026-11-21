@@ -11,7 +11,7 @@ from app.content.lesson_definitions import LessonDefinition, LessonStep, TownDef
 TIME_SPEED_DISTANCE_TOWN = TownDefinition(
     id="time_speed_distance",
     name="Time, Speed & Distance",
-    icon="⏱️",
+    icon="🚗",
     description="Distance = Speed \u00d7 Time. Master the triangle and every train, boat and race problem becomes arithmetic.",
     order=4,
     mental_model="The three quantities are locked: D = S \u00d7 T. If you know any two, the third is fixed. Units must match.",

@@ -1,0 +1,317 @@
+{
+  "topic": "boats_streams",
+  "subject": "quantitative_aptitude",
+  "pattern": "boats_streams",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "downstream_upstream_basics",
+      "title": "Downstream and Upstream Speeds",
+      "concept": "In boats and streams problems, the speed of a boat in still water and the speed of the stream combine. Downstream means moving with the stream, so speeds add. Upstream means moving against the stream, so the stream speed subtracts from the boat's speed.",
+      "formula": "Downstream speed = b + s, Upstream speed = b - s, where b = speed in still water and s = stream speed (b > s).",
+      "worked_example": "A boat's speed in still water is 12 km/h and stream speed is 3 km/h. Downstream speed = 12 + 3 = 15 km/h. Upstream speed = 12 - 3 = 9 km/h.",
+      "mistakes": [
+        "Adding stream speed for upstream instead of subtracting",
+        "Assuming boat speed changes in still water (it is the stream that affects effective speed)",
+        "Not ensuring b > s for upstream motion to be possible"
+      ]
+    },
+    {
+      "id": "find_boat_and_stream",
+      "title": "Finding Boat and Stream Speeds",
+      "concept": "If downstream and upstream speeds are known, you can find the boat's speed in still water and the stream speed by solving the two linear relations. This is a common inverse form of the basic formulas.",
+      "formula": "b = (Downstream + Upstream) / 2, s = (Downstream - Upstream) / 2.",
+      "worked_example": "Downstream speed is 20 km/h and upstream speed is 12 km/h. Boat speed in still water = (20 + 12) / 2 = 16 km/h. Stream speed = (20 - 12) / 2 = 4 km/h.",
+      "mistakes": [
+        "Swapping formulas for boat speed and stream speed",
+        "Using difference/2 for boat speed instead of sum/2",
+        "Arithmetic errors when averaging the two speeds"
+      ]
+    },
+    {
+      "id": "time_distance_in_streams",
+      "title": "Time and Distance in Boats and Streams",
+      "concept": "Once effective speed (downstream or upstream) is known, use time = distance / speed. Many problems give times for going downstream and upstream over the same or different distances to derive speeds or distances.",
+      "formula": "Time = Distance / Speed. For same distance D: downstream time = D/(b+s), upstream time = D/(b-s).",
+      "worked_example": "A boat goes 30 km downstream at 15 km/h and returns upstream at 10 km/h. Downstream time = 30/15 = 2 hours. Upstream time = 30/10 = 3 hours. Total time = 5 hours.",
+      "mistakes": [
+        "Using still-water speed instead of effective downstream/upstream speed",
+        "Averaging speeds incorrectly for round trips (use total distance/total time)",
+        "Unit mismatches between distance and speed"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "BOAT-PRACTICE-001",
+      "question": "A boat travels at 15 km/h in still water. If the stream flows at 3 km/h, what is the downstream speed?",
+      "options": {
+        "A": "12 km/h",
+        "B": "15 km/h",
+        "C": "18 km/h",
+        "D": "45 km/h"
+      },
+      "correct_answer": "C",
+      "explanation": "Downstream speed = speed in still water + stream speed = 15 + 3 = 18 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "downstream_upstream_basics",
+      "misconception_tags": [
+        "downstream_sign_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-PRACTICE-002",
+      "question": "A boat's speed in still water is 10 km/h and the stream speed is 2 km/h. What is the upstream speed?",
+      "options": {
+        "A": "8 km/h",
+        "B": "10 km/h",
+        "C": "12 km/h",
+        "D": "20 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "Upstream speed = speed in still water - stream speed = 10 - 2 = 8 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "downstream_upstream_basics",
+      "misconception_tags": [
+        "upstream_sign_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-PRACTICE-003",
+      "question": "A boat goes downstream at 22 km/h and upstream at 14 km/h. What is the speed of the boat in still water?",
+      "options": {
+        "A": "4 km/h",
+        "B": "8 km/h",
+        "C": "18 km/h",
+        "D": "36 km/h"
+      },
+      "correct_answer": "C",
+      "explanation": "Speed in still water = (Downstream + Upstream) / 2 = (22 + 14) / 2 = 36 / 2 = 18 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "find_boat_and_stream",
+      "misconception_tags": [
+        "boat_stream_formula_swap"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-PRACTICE-004",
+      "question": "A boat goes downstream at 22 km/h and upstream at 14 km/h. What is the speed of the stream?",
+      "options": {
+        "A": "4 km/h",
+        "B": "8 km/h",
+        "C": "18 km/h",
+        "D": "36 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "Stream speed = (Downstream - Upstream) / 2 = (22 - 14) / 2 = 8 / 2 = 4 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "find_boat_and_stream",
+      "misconception_tags": [
+        "boat_stream_formula_swap"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-PRACTICE-005",
+      "question": "A boat travels 24 km downstream at 12 km/h. How much time does it take?",
+      "options": {
+        "A": "1 hour",
+        "B": "2 hours",
+        "C": "3 hours",
+        "D": "4 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Time = Distance / Speed = 24 / 12 = 2 hours.",
+      "difficulty": "easy",
+      "sub_topic": "time_distance_in_streams",
+      "misconception_tags": [
+        "time_distance_formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "BOAT-001",
+      "question": "A boat can travel at 13 km/h in still water. If the speed of the stream is 4 km/h, what is the upstream speed?",
+      "options": {
+        "A": "9 km/h",
+        "B": "13 km/h",
+        "C": "17 km/h",
+        "D": "52 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "Upstream speed = speed in still water - stream speed = 13 - 4 = 9 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "downstream_upstream_basics",
+      "misconception_tags": [
+        "upstream_sign_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-002",
+      "question": "Downstream speed of a boat is 18 km/h and upstream speed is 10 km/h. Find the speed of the stream.",
+      "options": {
+        "A": "2 km/h",
+        "B": "4 km/h",
+        "C": "8 km/h",
+        "D": "14 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Stream speed = (Downstream - Upstream) / 2 = (18 - 10) / 2 = 8 / 2 = 4 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "find_boat_and_stream",
+      "misconception_tags": [
+        "boat_stream_formula_swap"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-003",
+      "question": "A man rows downstream 32 km in 4 hours and upstream 24 km in 6 hours. What is the speed of the boat in still water?",
+      "options": {
+        "A": "4 km/h",
+        "B": "6 km/h",
+        "C": "8 km/h",
+        "D": "10 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Downstream speed = 32/4 = 8 km/h. Upstream speed = 24/6 = 4 km/h. Speed in still water = (8 + 4) / 2 = 12 / 2 = 6 km/h.",
+      "difficulty": "medium",
+      "sub_topic": "time_distance_in_streams",
+      "misconception_tags": [
+        "effective_speed_calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-004",
+      "question": "A boat's speed in still water is 9 km/h and stream speed is 3 km/h. How long will it take to travel 36 km upstream?",
+      "options": {
+        "A": "3 hours",
+        "B": "4 hours",
+        "C": "6 hours",
+        "D": "12 hours"
+      },
+      "correct_answer": "C",
+      "explanation": "Upstream speed = 9 - 3 = 6 km/h. Time = Distance / Speed = 36 / 6 = 6 hours.",
+      "difficulty": "easy",
+      "sub_topic": "time_distance_in_streams",
+      "misconception_tags": [
+        "using_still_water_speed"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BOAT-005",
+      "question": "A boat takes 2 hours to go 20 km downstream and 4 hours to return the same distance upstream. What is the speed of the stream?",
+      "options": {
+        "A": "1.5 km/h",
+        "B": "2.5 km/h",
+        "C": "5 km/h",
+        "D": "7.5 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Downstream speed = 20/2 = 10 km/h. Upstream speed = 20/4 = 5 km/h. Stream speed = (Downstream - Upstream) / 2 = (10 - 5) / 2 = 2.5 km/h.",
+      "difficulty": "medium",
+      "sub_topic": "time_distance_in_streams",
+      "misconception_tags": [
+        "effective_speed_calculation_error",
+        "boat_stream_formula_swap"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

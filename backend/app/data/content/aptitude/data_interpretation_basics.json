@@ -1,0 +1,316 @@
+{
+  "topic": "data_interpretation_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "data_interpretation_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "reading_tables",
+      "title": "Reading and Interpreting Tables",
+      "concept": "Data interpretation questions present information in tables, charts, or graphs. Start by reading titles, headings, units, and totals carefully. Identify exactly what the question asks for before performing calculations, and locate the correct row/column values.",
+      "formula": "Steps: understand labels/units -> locate required data -> apply arithmetic (sum, difference, ratio, percentage) -> verify against options.",
+      "worked_example": "If a table shows sales of A=120, B=80, C=100 units, total = 120+80+100 = 300. Share of B = (80/300)*100 = 26.67% (approx).",
+      "mistakes": [
+        "Reading values from the wrong row or column",
+        "Ignoring units (thousands, lakhs, %, kg, etc.)",
+        "Calculating percentage of the wrong base/total"
+      ]
+    },
+    {
+      "id": "percentage_and_ratio_from_data",
+      "title": "Percentages and Ratios from Data",
+      "concept": "Many DI questions require converting table values into percentages, ratios, or comparisons. Percentage = (part/whole)*100. Ratio compares two quantities in simplest form. Always confirm the base (which total or which category) used for comparison.",
+      "formula": "Percentage = (value / base) * 100. Ratio a:b = a/b simplified. Percentage change = ((new-old)/old)*100.",
+      "worked_example": "Company sales in 2023 = 200, in 2024 = 250. Percentage increase = ((250-200)/200)*100 = (50/200)*100 = 25%. Ratio 2023:2024 = 200:250 = 4:5.",
+      "mistakes": [
+        "Using the new value as denominator for percentage increase instead of the original value",
+        "Not simplifying ratios to lowest terms",
+        "Confusing percentage points with percentage change"
+      ]
+    },
+    {
+      "id": "averages_and_comparisons",
+      "title": "Averages and Comparisons",
+      "concept": "DI sets often ask for averages across categories/years or comparisons (highest/lowest/difference). Average = sum of values / number of values. For comparisons, compute or estimate carefully and avoid assumptions not supported by data.",
+      "formula": "Average = (sum of observations) / (count of observations). Difference = |value1 - value2|.",
+      "worked_example": "Values 40, 55, 65, 80 over 4 years: average = (40+55+65+80)/4 = 240/4 = 60. Highest-lowest difference = 80 - 40 = 40.",
+      "mistakes": [
+        "Dividing by wrong count (including/excluding categories incorrectly)",
+        "Comparing values without aligning to the same unit/base",
+        "Rounding too early and selecting the wrong option"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "DI-PRACTICE-001",
+      "question": "The table shows number of students in three courses: Course A = 120, Course B = 150, Course C = 130. What is the total number of students?",
+      "options": {
+        "A": "380",
+        "B": "390",
+        "C": "400",
+        "D": "410"
+      },
+      "correct_answer": "C",
+      "explanation": "Total = 120 + 150 + 130 = 400 students.",
+      "difficulty": "easy",
+      "sub_topic": "reading_tables",
+      "misconception_tags": [
+        "addition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-PRACTICE-002",
+      "question": "Using the same data (Course A = 120, Course B = 150, Course C = 130, total 400), what percentage of students are in Course B?",
+      "options": {
+        "A": "30%",
+        "B": "32.5%",
+        "C": "35%",
+        "D": "37.5%"
+      },
+      "correct_answer": "D",
+      "explanation": "Percentage in Course B = (150 / 400) * 100 = 37.5%.",
+      "difficulty": "easy",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "percentage_base_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-PRACTICE-003",
+      "question": "Using the same data (Course A = 120, Course B = 150, Course C = 130), what is the ratio of students in Course A to Course C?",
+      "options": {
+        "A": "12:13",
+        "B": "13:12",
+        "C": "6:7",
+        "D": "7:6"
+      },
+      "correct_answer": "A",
+      "explanation": "Ratio A:C = 120:130 = 12:13 after dividing both terms by 10.",
+      "difficulty": "easy",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "ratio_simplification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-PRACTICE-004",
+      "question": "Sales (in units) over four months are: Jan = 40, Feb = 50, Mar = 70, Apr = 80. What is the average monthly sales?",
+      "options": {
+        "A": "55",
+        "B": "60",
+        "C": "65",
+        "D": "70"
+      },
+      "correct_answer": "B",
+      "explanation": "Average = (40 + 50 + 70 + 80) / 4 = 240 / 4 = 60 units.",
+      "difficulty": "easy",
+      "sub_topic": "averages_and_comparisons",
+      "misconception_tags": [
+        "average_calculation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-PRACTICE-005",
+      "question": "A company's revenue was 200 (in lakh) in 2023 and 250 (in lakh) in 2024. What is the percentage increase from 2023 to 2024?",
+      "options": {
+        "A": "20%",
+        "B": "25%",
+        "C": "30%",
+        "D": "50%"
+      },
+      "correct_answer": "B",
+      "explanation": "Increase = 250 - 200 = 50. Percentage increase = (50 / 200) * 100 = 25%.",
+      "difficulty": "easy",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "percentage_change_base_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "DI-001",
+      "question": "The table shows production (in units): Factory X = 450, Factory Y = 300, Factory Z = 250. What is the total production of all three factories?",
+      "options": {
+        "A": "900",
+        "B": "950",
+        "C": "1000",
+        "D": "1050"
+      },
+      "correct_answer": "C",
+      "explanation": "Total production = 450 + 300 + 250 = 1000 units.",
+      "difficulty": "easy",
+      "sub_topic": "reading_tables",
+      "misconception_tags": [
+        "addition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-002",
+      "question": "Using the same data (Factory X = 450, Factory Y = 300, Factory Z = 250, total 1000), what percentage of total production comes from Factory Y?",
+      "options": {
+        "A": "25%",
+        "B": "30%",
+        "C": "35%",
+        "D": "45%"
+      },
+      "correct_answer": "B",
+      "explanation": "Factory Y share = (300 / 1000) * 100 = 30%.",
+      "difficulty": "easy",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "percentage_base_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-003",
+      "question": "A store sold 80, 120, 100, and 100 items in four weeks. What is the average number of items sold per week?",
+      "options": {
+        "A": "90",
+        "B": "95",
+        "C": "100",
+        "D": "105"
+      },
+      "correct_answer": "C",
+      "explanation": "Average = (80 + 120 + 100 + 100) / 4 = 400 / 4 = 100 items per week.",
+      "difficulty": "easy",
+      "sub_topic": "averages_and_comparisons",
+      "misconception_tags": [
+        "average_calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-004",
+      "question": "The number of visitors to a park was 500 in May and 400 in June. What is the percentage decrease from May to June?",
+      "options": {
+        "A": "10%",
+        "B": "20%",
+        "C": "25%",
+        "D": "80%"
+      },
+      "correct_answer": "B",
+      "explanation": "Decrease = 500 - 400 = 100. Percentage decrease = (100 / 500) * 100 = 20%.",
+      "difficulty": "medium",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "percentage_change_base_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-005",
+      "question": "Marks obtained by a student in five subjects are 70, 80, 65, 75, and 90. What is the difference between the highest and lowest marks?",
+      "options": {
+        "A": "15",
+        "B": "20",
+        "C": "25",
+        "D": "30"
+      },
+      "correct_answer": "C",
+      "explanation": "Highest mark = 90, lowest mark = 65. Difference = 90 - 65 = 25.",
+      "difficulty": "easy",
+      "sub_topic": "averages_and_comparisons",
+      "misconception_tags": [
+        "comparison_reading_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

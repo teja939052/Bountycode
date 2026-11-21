@@ -1,0 +1,325 @@
+{
+  "topic": "graph_basics",
+  "subject": "dsa",
+  "pattern": "graph_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "graph_terminology",
+      "title": "Graph Terminology and Types",
+      "concept": "A graph consists of vertices (nodes) and edges (connections). Graphs can be directed or undirected, weighted or unweighted, and cyclic or acyclic. Degree, path, and connectivity are basic properties used to describe graphs.",
+      "formula": "Graph G = (V, E). Undirected edge {u,v}; directed edge (u,v). In undirected graph, degree is number of incident edges.",
+      "worked_example": "Vertices {A,B,C} with edges {A-B, B-C} form an undirected path graph. A points to B, B to C in a directed version.",
+      "mistakes": [
+        "Confusing directed and undirected edges",
+        "Treating a path as a cycle without returning to start appropriately",
+        "Miscounting degree in directed graphs (in-degree vs out-degree)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "graph_representations",
+      "title": "Graph Representations",
+      "concept": "Graphs are commonly represented using adjacency matrices or adjacency lists. Adjacency matrix uses a VxV table to mark edges; adjacency list stores neighbors for each vertex. Choice depends on graph density and operations.",
+      "formula": "Adjacency matrix: matrix[u][v]=1 (or weight) if edge exists. Adjacency list: for each u store list of adjacent vertices v.",
+      "worked_example": "For edges A-B, A-C in undirected graph, adjacency list: A:[B,C], B:[A], C:[A]. Matrix has 1s at (A,B),(B,A),(A,C),(C,A).",
+      "mistakes": [
+        "Using matrix for very sparse large graphs without considering memory (O(V^2))",
+        "Forgetting to add both directions for undirected graphs in adjacency list/matrix",
+        "Confusing vertex indices and values"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "bfs_dfs_intro",
+      "title": "BFS and DFS Introduction",
+      "concept": "Breadth-First Search (BFS) explores neighbors level by level using a queue, useful for shortest path in unweighted graphs. Depth-First Search (DFS) explores as deep as possible before backtracking using recursion or a stack.",
+      "formula": "BFS: enqueue start, mark visited, while queue not empty dequeue and enqueue unvisited neighbors. DFS: visit node, recursively/stack-visit unvisited neighbors.",
+      "worked_example": "From A connected to B,C and B connected to D: BFS order from A can be A,B,C,D (level-wise). DFS order can be A,B,D,C (depth-first).",
+      "mistakes": [
+        "Not marking nodes visited, causing infinite loops in cyclic graphs",
+        "Using stack logic mentally but implementing queue (or vice versa)",
+        "Assuming BFS/DFS give same traversal order"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "GRAPH-PRACTICE-001",
+      "question": "In graph terminology, the connections between nodes are called:",
+      "options": {
+        "A": "Vertices",
+        "B": "Edges",
+        "C": "Roots",
+        "D": "Leaves"
+      },
+      "correct_answer": "B",
+      "explanation": "A graph is defined as G=(V,E), where V is the set of vertices (nodes) and E is the set of edges (connections).",
+      "difficulty": "easy",
+      "sub_topic": "graph_terminology",
+      "misconception_tags": [
+        "terminology_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-PRACTICE-002",
+      "question": "Which representation stores, for each vertex, a list of its adjacent vertices?",
+      "options": {
+        "A": "Adjacency matrix",
+        "B": "Adjacency list",
+        "C": "Incidence array only",
+        "D": "Hash table of edges only"
+      },
+      "correct_answer": "B",
+      "explanation": "An adjacency list represents a graph by maintaining a list/collection of neighboring vertices for each vertex.",
+      "difficulty": "easy",
+      "sub_topic": "graph_representations",
+      "misconception_tags": [
+        "representation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-PRACTICE-003",
+      "question": "Which data structure is typically used for BFS traversal?",
+      "options": {
+        "A": "Stack",
+        "B": "Queue",
+        "C": "Priority queue always",
+        "D": "Array without indexing"
+      },
+      "correct_answer": "B",
+      "explanation": "BFS explores nodes level by level and uses a queue (FIFO) to process vertices in the order they are discovered.",
+      "difficulty": "easy",
+      "sub_topic": "bfs_dfs_intro",
+      "misconception_tags": [
+        "bfs_structure_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-PRACTICE-004",
+      "question": "What is the space complexity of an adjacency matrix for a graph with V vertices?",
+      "options": {
+        "A": "O(V)",
+        "B": "O(E)",
+        "C": "O(V + E)",
+        "D": "O(V^2)"
+      },
+      "correct_answer": "D",
+      "explanation": "An adjacency matrix is a V x V table, requiring O(V^2) space regardless of the number of edges.",
+      "difficulty": "easy",
+      "sub_topic": "graph_representations",
+      "misconception_tags": [
+        "space_complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-PRACTICE-005",
+      "question": "DFS can be implemented using recursion or which explicit data structure?",
+      "options": {
+        "A": "Queue",
+        "B": "Stack",
+        "C": "Heap only",
+        "D": "Deque only"
+      },
+      "correct_answer": "B",
+      "explanation": "DFS goes deep before backtracking, which matches LIFO behavior. It can be implemented with recursion (call stack) or an explicit stack.",
+      "difficulty": "easy",
+      "sub_topic": "bfs_dfs_intro",
+      "misconception_tags": [
+        "dfs_structure_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "GRAPH-001",
+      "question": "A graph where edges have a direction (from one vertex to another) is called:",
+      "options": {
+        "A": "Undirected graph",
+        "B": "Directed graph (digraph)",
+        "C": "Complete undirected graph",
+        "D": "Null graph"
+      },
+      "correct_answer": "B",
+      "explanation": "In a directed graph (digraph), each edge has a direction, typically represented as an ordered pair (u, v).",
+      "difficulty": "easy",
+      "sub_topic": "graph_terminology",
+      "misconception_tags": [
+        "terminology_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-002",
+      "question": "For a sparse graph with many vertices but few edges, which representation is usually more space-efficient?",
+      "options": {
+        "A": "Adjacency matrix",
+        "B": "Adjacency list",
+        "C": "Both always equal",
+        "D": "Neither can represent sparse graphs"
+      },
+      "correct_answer": "B",
+      "explanation": "Adjacency lists store only existing edges/neighbors (O(V+E) space), which is more efficient than an adjacency matrix (O(V^2)) for sparse graphs.",
+      "difficulty": "easy",
+      "sub_topic": "graph_representations",
+      "misconception_tags": [
+        "representation_choice_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-003",
+      "question": "BFS is commonly used to find the shortest path (in number of edges) in which type of graph?",
+      "options": {
+        "A": "Unweighted graph",
+        "B": "Any negatively weighted graph without changes",
+        "C": "Only trees with weights",
+        "D": "Only complete graphs"
+      },
+      "correct_answer": "A",
+      "explanation": "BFS explores vertices in increasing order of edge distance from the source, so it finds shortest paths in terms of fewest edges in unweighted graphs.",
+      "difficulty": "medium",
+      "sub_topic": "bfs_dfs_intro",
+      "misconception_tags": [
+        "bfs_use_case_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-004",
+      "question": "Why is a visited set/array important in BFS/DFS on graphs that may contain cycles?",
+      "options": {
+        "A": "To sort vertices",
+        "B": "To avoid revisiting nodes and infinite loops",
+        "C": "To convert graph to tree automatically",
+        "D": "To store edge weights only"
+      },
+      "correct_answer": "B",
+      "explanation": "In graphs with cycles, without tracking visited nodes the traversal can revisit the same vertices repeatedly, leading to infinite loops or redundant work.",
+      "difficulty": "easy",
+      "sub_topic": "bfs_dfs_intro",
+      "misconception_tags": [
+        "visited_tracking_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-005",
+      "question": "In an undirected edge between vertices U and V, adjacency should be recorded as:",
+      "options": {
+        "A": "Only U -> V",
+        "B": "Only V -> U",
+        "C": "Both U -> V and V -> U",
+        "D": "Neither direction"
+      },
+      "correct_answer": "C",
+      "explanation": "An undirected edge means the connection works both ways, so both vertices must list each other as adjacent (or the matrix must mark both entries).",
+      "difficulty": "easy",
+      "sub_topic": "graph_representations",
+      "misconception_tags": [
+        "undirected_edge_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

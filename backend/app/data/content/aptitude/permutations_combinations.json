@@ -1,0 +1,210 @@
+﻿{
+  "topic": "permutations_combinations",
+  "subject": "quantitative_aptitude",
+  "pattern": "permutations_combinations",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "factorial_and_counting",
+      "title": "Factorial and Counting Principle",
+      "concept": "Counting problems often use the multiplication principle: if one task can be done in m ways and another in n ways, together they can be done in m*n ways (when choices are independent in sequence). Factorial n! = n*(n-1)*...*1 counts arrangements of n distinct objects in a row, with 0! defined as 1.",
+      "formula": "n! = n x (n-1) x ... x 1, 0! = 1; sequential choices: total ways = product of ways at each step",
+      "worked_example": "Arrange 4 distinct books on a shelf: 4! = 24 ways. If you choose a shirt (3 options) and pants (2 options), outfits = 3 x 2 = 6.",
+      "mistakes": [
+        "Adding instead of multiplying when choices happen in sequence",
+        "Forgetting that 0! = 1 in formulas",
+        "Miscounting when constraints reduce options at later steps"
+      ]
+    },
+    {
+      "id": "permutations",
+      "title": "Permutations (Arrangements)",
+      "concept": "A permutation is an arrangement where order matters. The number of permutations of n distinct objects taken r at a time is the number of ordered selections of r from n.",
+      "formula": "P(n,r) = n! / (n-r)! for 0 <= r <= n. Special case: arranging all n distinct objects gives n!.",
+      "worked_example": "How many 3-letter arrangements from letters A,B,C,D with no repetition? P(4,3)=4!/(1!)=24. First position 4 choices, second 3, third 2: 4x3x2=24.",
+      "mistakes": [
+        "Using permutations when order does not matter (should use combinations)",
+        "Forgetting to reduce available choices when repetition is not allowed",
+        "Confusing nPr with nCr formulas"
+      ]
+    },
+    {
+      "id": "combinations",
+      "title": "Combinations (Selections)",
+      "concept": "A combination is a selection where order does not matter. Choosing r objects from n is the same group regardless of arrangement, so combinations count fewer outcomes than permutations for r >= 2.",
+      "formula": "C(n,r) = n! / (r!(n-r)!) and C(n,r)=C(n,n-r)",
+      "worked_example": "Select 2 students from 5 for a team: C(5,2)=5!/(2!3!)=10. The pair (A,B) is the same team as (B,A), so order is ignored.",
+      "mistakes": [
+        "Treating selections as ordered when the problem states committee/team/group",
+        "Arithmetic errors in factorial simplification",
+        "Using C(n,r) when positions/roles make order important"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "PC-PRACTICE-001",
+      "question": "What is the value of 5!?",
+      "options": {"A": "25", "B": "60", "C": "120", "D": "720"},
+      "correct_answer": "C",
+      "explanation": "5! = 5 x 4 x 3 x 2 x 1 = 120.",
+      "difficulty": "easy",
+      "sub_topic": "factorial_and_counting",
+      "misconception_tags": ["factorial_computation_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-PRACTICE-002",
+      "question": "In how many ways can 3 different people stand in a line?",
+      "options": {"A": "3", "B": "6", "C": "9", "D": "27"},
+      "correct_answer": "B",
+      "explanation": "Arranging 3 distinct people in a row is 3! = 6 ways.",
+      "difficulty": "easy",
+      "sub_topic": "permutations",
+      "misconception_tags": ["order_vs_selection_confusion"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-PRACTICE-003",
+      "question": "How many ways can 2 students be selected from 6 students for a committee?",
+      "options": {"A": "12", "B": "15", "C": "30", "D": "36"},
+      "correct_answer": "B",
+      "explanation": "Committee selection is order-independent: C(6,2)=6!/(2!4!)=(6x5)/(2x1)=15.",
+      "difficulty": "easy",
+      "sub_topic": "combinations",
+      "misconception_tags": ["using_permutation_for_selection"],
+      "company_tags": ["infosys", "wipro", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-PRACTICE-004",
+      "question": "How many 2-digit numbers can be formed using digits 1, 2, 3, 4 without repetition?",
+      "options": {"A": "8", "B": "12", "C": "16", "D": "24"},
+      "correct_answer": "B",
+      "explanation": "Order matters (12 differs from 21) and no repetition: P(4,2)=4x3=12.",
+      "difficulty": "easy",
+      "sub_topic": "permutations",
+      "misconception_tags": ["repetition_not_considered"],
+      "company_tags": ["tcs", "cognizant"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-PRACTICE-005",
+      "question": "A pizza shop offers 5 toppings. How many ways can you choose 3 different toppings?",
+      "options": {"A": "10", "B": "15", "C": "20", "D": "60"},
+      "correct_answer": "A",
+      "explanation": "Choosing toppings is a selection where order does not matter: C(5,3)=C(5,2)=10.",
+      "difficulty": "easy",
+      "sub_topic": "combinations",
+      "misconception_tags": ["order_vs_selection_confusion"],
+      "company_tags": ["wipro", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PC-001",
+      "question": "From 7 different books, in how many ways can 3 books be arranged on a shelf?",
+      "options": {"A": "35", "B": "210", "C": "343", "D": "5040"},
+      "correct_answer": "B",
+      "explanation": "Arrangements mean order matters: P(7,3)=7x6x5=210.",
+      "difficulty": "easy",
+      "sub_topic": "permutations",
+      "misconception_tags": ["using_combination_for_arrangement"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-002",
+      "question": "How many different 4-member committees can be formed from 8 people?",
+      "options": {"A": "56", "B": "70", "C": "1680", "D": "4096"},
+      "correct_answer": "B",
+      "explanation": "Committee formation is selection: C(8,4)=8!/(4!4!)=(8x7x6x5)/(4x3x2x1)=70.",
+      "difficulty": "medium",
+      "sub_topic": "combinations",
+      "misconception_tags": ["factorial_simplification_error"],
+      "company_tags": ["tcs", "wipro", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-003",
+      "question": "How many 3-digit numbers can be formed from digits 1,2,3,4,5 if repetition is not allowed?",
+      "options": {"A": "60", "B": "125", "C": "243", "D": "10"},
+      "correct_answer": "A",
+      "explanation": "Hundreds place: 5 choices, tens: 4, units: 3. Total = 5x4x3 = 60 (which is P(5,3)).",
+      "difficulty": "medium",
+      "sub_topic": "permutations",
+      "misconception_tags": ["allowing_repetition_by_mistake"],
+      "company_tags": ["infosys", "tcs", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-004",
+      "question": "From 5 men and 4 women, a team of 3 people is to be formed with exactly 2 men and 1 woman. How many such teams are possible?",
+      "options": {"A": "20", "B": "30", "C": "40", "D": "60"},
+      "correct_answer": "C",
+      "explanation": "Choose 2 men from 5: C(5,2)=10. Choose 1 woman from 4: C(4,1)=4. Total teams = 10 x 4 = 40.",
+      "difficulty": "medium",
+      "sub_topic": "combinations",
+      "misconception_tags": ["missing_multiplication_principle"],
+      "company_tags": ["accenture", "capgemini", "wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-005",
+      "question": "In how many ways can the letters of the word 'CAT' be arranged?",
+      "options": {"A": "3", "B": "6", "C": "9", "D": "27"},
+      "correct_answer": "B",
+      "explanation": "All three letters are distinct, so arrangements = 3! = 6 (CAT, CTA, ACT, ATC, TCA, TAC).",
+      "difficulty": "easy",
+      "sub_topic": "permutations",
+      "misconception_tags": ["factorial_computation_error"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

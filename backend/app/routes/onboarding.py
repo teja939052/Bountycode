@@ -5,6 +5,7 @@ from typing import Optional, List
 from app.middleware.auth import get_current_user
 from app.database import users_collection
 from bson import ObjectId
+from app.services.observability import record_event
 
 logger = __import__("logging").getLogger(__name__)
 
@@ -115,6 +116,12 @@ async def complete_step(req: CompleteStepRequest, user=Depends(get_current_user)
         },
         upsert=True,
     )
+
+    # Record onboarding progress event.
+    try:
+        await record_event(user["id"], "onboarding_step_completed", {"step_id": req.step_id})
+    except Exception:
+        pass  # Observability is best-effort; never blocks the onboarding flow
 
     return {
         "step_id": req.step_id,

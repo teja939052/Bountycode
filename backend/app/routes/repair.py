@@ -34,6 +34,7 @@ from app.services.repair_service import (
     create_repair_mission,
     get_repair_recommendations,
 )
+from app.services.observability import record_event
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +54,9 @@ _SECTION_TO_TYPE = {
 
 def _verified_questions_for_skill(skill: str, count: int = 3) -> List[dict]:
     """Pull `count` verified questions for a weakness skill. Returns [] on any
-    failure — never falls back to unverified/legacy content (Content Trust)."""
+    failure — never falls back to unverified/legacy content (Content Trust).
+    Only topic-matching questions are returned; if fewer than `count` exist,
+    the retest is smaller (never padded with unrelated questions)."""
     try:
         from app.services import question_store as qs
     except Exception:
@@ -63,12 +66,12 @@ def _verified_questions_for_skill(skill: str, count: int = 3) -> List[dict]:
         query: Dict[str, Any] = {}
         if type_key:
             query["type"] = type_key
-        rows = qs.find(query).prefer_verified().to_list(count * 4)
-        # Prioritise by topic match so the retest targets the actual weakness.
+        # Fetch the full servable pool so topic matches aren't missed due to
+        # an arbitrary count cap. Topic match is the only selection criterion.
+        rows = qs.find(query).prefer_verified().to_list()
         topic = skill.split("/")[0].lower()
         hits = [q for q in rows if topic in str(q.get("topic", "")).lower()]
-        rest = [q for q in rows if q not in hits]
-        return (hits + rest)[:count]
+        return hits[:count]
     except Exception:
         return []
 
@@ -245,6 +248,11 @@ async def get_retest(skill: str, count: int = 3, user=Depends(get_current_user))
     if not skill:
         raise HTTPException(status_code=422, detail="'skill' query parameter is required")
     questions = _verified_questions_for_skill(skill, count)
+    # Record repair mission started for funnel observability.
+    try:
+        await record_event(user["id"], "repair_mission_started", {"skill": skill})
+    except Exception:
+        pass
     payload = [_to_retest_item(q, i) for i, q in enumerate(questions)]
     return {
         "skill": skill,
@@ -341,6 +349,16 @@ async def submit_retest(req: RetestSubmitRequest, user=Depends(get_current_user)
         })
     except Exception as exc:
         logger.warning("retest LearningEvent emission failed: %s", exc)
+
+    # Record retest completion for funnel observability.
+    try:
+        await record_event(user["id"], "retest_completed", {
+            "skill": req.skill,
+            "pct": pct,
+            "passed": passed,
+        })
+    except Exception:
+        pass
 
     return {
         "skill": req.skill,

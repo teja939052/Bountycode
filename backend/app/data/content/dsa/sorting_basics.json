@@ -1,0 +1,220 @@
+﻿{
+  "topic": "sorting_basics",
+  "subject": "dsa",
+  "pattern": "sorting_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "sorting_fundamentals",
+      "title": "Sorting Fundamentals",
+      "concept": "Sorting arranges elements in a defined order (ascending/descending) based on a comparison key. Important properties: time complexity (best/average/worst), space complexity, stability (whether equal elements keep original relative order), and whether it is in-place (uses constant extra space).",
+      "formula": "For n elements, comparison-based lower bound for worst/average is O(n log n) in general, but simple algorithms like bubble/selection/insertion are O(n^2).",
+      "worked_example": "Array [5,2,4,2,1] sorted ascending becomes [1,2,2,4,5]. A stable sort keeps the first '2' before the second '2' as they appeared originally; an unstable sort may swap their relative order.",
+      "mistakes": [
+        "Assuming all sorting algorithms have the same time complexity",
+        "Confusing stability with correctness of sorted output",
+        "Ignoring best-case behavior of adaptive algorithms like insertion/bubble (optimized)"
+      ]
+    },
+    {
+      "id": "bubble_selection_insertion",
+      "title": "Bubble, Selection, and Insertion Sort",
+      "concept": "Bubble sort repeatedly swaps adjacent out-of-order elements, bubbling larger elements to the end. Selection sort repeatedly selects the minimum (or maximum) from the unsorted part and places it at the beginning. Insertion sort builds a sorted prefix by inserting each next element into its correct position.",
+      "formula": "Bubble: O(n^2) worst/avg, O(n) best optimized, stable, in-place. Selection: O(n^2) all cases, not stable (typical), in-place. Insertion: O(n^2) worst/avg, O(n) best (nearly sorted), stable, in-place.",
+      "worked_example": "Insertion sort on [4,3,1]: take 3 insert before 4 -> [3,4,1]; take 1 insert before 3 -> [1,3,4]. It works well when data is nearly sorted because few shifts are needed.",
+      "mistakes": [
+        "Thinking selection sort becomes faster on nearly sorted data (comparisons remain similar)",
+        "Assuming bubble sort is always O(n^2) even with early-exit optimization",
+        "Mixing up which algorithm swaps adjacent elements vs selects minimum"
+      ]
+    },
+    {
+      "id": "choosing_simple_sorts",
+      "title": "Choosing a Simple Sort",
+      "concept": "Simple O(n^2) sorts are useful for small datasets, teaching, or specific cases. Insertion sort is often preferred for small or nearly sorted arrays due to low overhead and adaptiveness. Selection sort minimizes swaps. Bubble sort is mainly educational unless optimized for early termination.",
+      "formula": "Use-case guide: nearly sorted/small -> insertion; minimize writes/swaps -> selection; need stable simple sort -> insertion/bubble (stable forms).",
+      "worked_example": "Sorting 10 elements in memory: any simple sort is fine. Sorting an almost-sorted list of 1000 elements: insertion sort may run close to O(n), outperforming naive selection/bubble in practice for that case.",
+      "mistakes": [
+        "Choosing an algorithm only by name without considering data characteristics",
+        "Using O(n^2) sorts for large random datasets when O(n log n) sorts are available",
+        "Forgetting stability requirement when equal keys have meaningful original order"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SORT-PRACTICE-001",
+      "question": "What is the worst-case time complexity of bubble sort for n elements?",
+      "options": {"A": "O(n)", "B": "O(n log n)", "C": "O(n^2)", "D": "O(log n)"},
+      "correct_answer": "C",
+      "explanation": "In the worst case (e.g., reverse sorted), bubble sort performs about n(n-1)/2 comparisons/swaps, which is O(n^2).",
+      "difficulty": "easy",
+      "sub_topic": "bubble_selection_insertion",
+      "misconception_tags": ["sorting_complexity_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-PRACTICE-002",
+      "question": "Which sorting algorithm repeatedly selects the minimum element from the unsorted portion and places it at the beginning?",
+      "options": {"A": "Bubble sort", "B": "Selection sort", "C": "Insertion sort", "D": "Merge sort"},
+      "correct_answer": "B",
+      "explanation": "Selection sort finds the minimum in the unsorted region each pass and swaps it into its correct position at the start of that region.",
+      "difficulty": "easy",
+      "sub_topic": "bubble_selection_insertion",
+      "misconception_tags": ["algorithm_mechanism_confusion"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-PRACTICE-003",
+      "question": "Insertion sort has best-case time complexity of O(n) when:",
+      "options": {"A": "The array is reverse sorted", "B": "The array is already sorted", "C": "All elements are distinct random values", "D": "The array size is a power of two"},
+      "correct_answer": "B",
+      "explanation": "If the array is already sorted, each element is compared once (or a constant few checks) and no shifts are needed, so insertion sort runs in O(n).",
+      "difficulty": "easy",
+      "sub_topic": "bubble_selection_insertion",
+      "misconception_tags": ["best_case_condition_error"],
+      "company_tags": ["infosys", "wipro", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-PRACTICE-004",
+      "question": "A sorting algorithm is called stable if:",
+      "options": {
+        "A": "It always runs in O(n log n)",
+        "B": "It uses no extra memory",
+        "C": "It preserves the relative order of equal elements",
+        "D": "It works only on numbers"
+      },
+      "correct_answer": "C",
+      "explanation": "Stability means elements with equal keys appear in the same relative order in the sorted output as they appeared in the input.",
+      "difficulty": "easy",
+      "sub_topic": "sorting_fundamentals",
+      "misconception_tags": ["stability_definition_error"],
+      "company_tags": ["tcs", "cognizant"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-PRACTICE-005",
+      "question": "Which simple sorting algorithm is generally most efficient for a small and nearly sorted array?",
+      "options": {"A": "Selection sort", "B": "Insertion sort", "C": "Naive bubble sort without optimization", "D": "None of these"},
+      "correct_answer": "B",
+      "explanation": "Insertion sort is adaptive: when the array is nearly sorted, it performs few comparisons and shifts, often approaching O(n). Selection sort still does many comparisons regardless of order.",
+      "difficulty": "medium",
+      "sub_topic": "choosing_simple_sorts",
+      "misconception_tags": ["algorithm_selection_error"],
+      "company_tags": ["infosys", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SORT-001",
+      "question": "After one full pass of bubble sort (largest element bubbled to end) on [5, 1, 4, 2], what is the array?",
+      "options": {"A": "[1, 4, 2, 5]", "B": "[1, 2, 4, 5]", "C": "[5, 1, 2, 4]", "D": "[1, 5, 4, 2]"},
+      "correct_answer": "A",
+      "explanation": "Pass 1 comparisons/swaps: [5,1,4,2]->swap 5,1->[1,5,4,2]; compare 5,4->swap->[1,4,5,2]; compare 5,2->swap->[1,4,2,5]. End of pass: [1,4,2,5].",
+      "difficulty": "medium",
+      "sub_topic": "bubble_selection_insertion",
+      "misconception_tags": ["bubble_pass_trace_error"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-002",
+      "question": "Which of the following is true about selection sort (typical implementation)?",
+      "options": {"A": "Best-case time complexity is O(n)", "B": "It performs O(n^2) comparisons in all cases", "C": "It is always stable", "D": "It requires O(n) extra space"},
+      "correct_answer": "B",
+      "explanation": "Selection sort scans the unsorted portion to find the minimum each pass, resulting in roughly n(n-1)/2 comparisons regardless of initial order -> O(n^2) in best/average/worst cases. Typical in-place implementation uses O(1) extra space and is not stable.",
+      "difficulty": "medium",
+      "sub_topic": "bubble_selection_insertion",
+      "misconception_tags": ["selection_sort_properties_error"],
+      "company_tags": ["wipro", "capgemini", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-003",
+      "question": "After inserting 2 into the sorted prefix [1, 3, 4] during insertion sort, what is the resulting array segment?",
+      "options": {"A": "[1, 3, 4, 2]", "B": "[1, 2, 3, 4]", "C": "[2, 1, 3, 4]", "D": "[1, 3, 2, 4]"},
+      "correct_answer": "B",
+      "explanation": "Insertion sort places 2 in its correct position within [1,3,4]: compare with 4 (shift), compare with 3 (shift), compare with 1 (stop) -> insert 2 to get [1,2,3,4].",
+      "difficulty": "easy",
+      "sub_topic": "bubble_selection_insertion",
+      "misconception_tags": ["insertion_step_error"],
+      "company_tags": ["infosys", "tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-004",
+      "question": "If preserving the original relative order of records with equal keys is required, which property must the sorting algorithm have?",
+      "options": {"A": "In-place", "B": "Adaptive", "C": "Stable", "D": "Recursive"},
+      "correct_answer": "C",
+      "explanation": "Stability ensures that when two elements have equal keys, their relative order in the output is the same as in the input.",
+      "difficulty": "easy",
+      "sub_topic": "sorting_fundamentals",
+      "misconception_tags": ["stability_definition_error"],
+      "company_tags": ["tcs", "wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SORT-005",
+      "question": "Which statement best describes bubble sort with an optimization that stops if no swaps occur in a pass?",
+      "options": {
+        "A": "Its worst-case time complexity becomes O(n)",
+        "B": "Its best-case time complexity becomes O(n) for an already sorted array",
+        "C": "It becomes unstable",
+        "D": "It requires extra O(n) space"
+      },
+      "correct_answer": "B",
+      "explanation": "With early-exit optimization, a single pass over an already sorted array makes no swaps, so the algorithm stops after O(n) comparisons. Worst-case remains O(n^2), stability and in-place nature are preserved.",
+      "difficulty": "medium",
+      "sub_topic": "bubble_selection_insertion",
+      "misconception_tags": ["optimized_bubble_sort_error"],
+      "company_tags": ["infosys", "cognizant", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

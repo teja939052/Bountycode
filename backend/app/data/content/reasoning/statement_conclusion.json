@@ -1,0 +1,325 @@
+{
+  "topic": "statement_conclusion",
+  "subject": "reasoning",
+  "pattern": "statement_conclusion",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "conclusion_basics",
+      "title": "Drawing Valid Conclusions",
+      "concept": "A conclusion is a judgment or inference that logically follows from the given statement(s). In statement-conclusion questions, accept the statement as true and decide whether the conclusion definitely follows, without adding outside assumptions.",
+      "formula": "Valid conclusion: must be true if statement is true. Invalid: may be possible but not certain, or contradicts statement.",
+      "worked_example": "Statement: 'All employees must carry their ID cards inside the office.' Conclusion: 'Employees without ID cards are not following the rule inside the office.' This follows logically.",
+      "mistakes": [
+        "Treating a possible inference as a definite conclusion",
+        "Using outside knowledge not given in the statement",
+        "Choosing extreme conclusions not supported by the statement"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "definite_vs_probable",
+      "title": "Definite vs Probable Inferences",
+      "concept": "A conclusion must follow definitely from the statement. Probable, likely, or sometimes-true inferences are not valid conclusions unless the statement guarantees them.",
+      "formula": "Ask: Is there any case where the statement is true but the conclusion is false? If yes, conclusion does not follow.",
+      "worked_example": "Statement: 'Some students in the class scored above 90.' Conclusion: 'All students in the class are good at studies.' This is not definite and does not follow.",
+      "mistakes": [
+        "Generalizing from 'some' to 'all'",
+        "Assuming cause-effect not stated",
+        "Confusing 'can happen' with 'must happen'"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "evaluating_two_conclusions",
+      "title": "Evaluating Two Conclusions",
+      "concept": "Questions may give two conclusions and ask which follow: only I, only II, both, either, or neither. Evaluate each conclusion independently against the statement(s).",
+      "formula": "Check I independently, check II independently, then select the combined answer option.",
+      "worked_example": "Statement: 'Due to heavy rain, the match was postponed.' I: 'It rained heavily.' (follows) II: 'The match will never be played.' (does not follow, postponed != cancelled forever).",
+      "mistakes": [
+        "Letting one conclusion influence judgment of the other",
+        "Reading extra meaning into words like 'postponed', 'may', 'some'",
+        "Picking both when only one is definite"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "STCN-PRACTICE-001",
+      "question": "Statement: 'All roses are flowers.' Conclusion: 'Some flowers are roses.'",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Statement is false"
+      },
+      "correct_answer": "A",
+      "explanation": "If all roses are flowers, then roses form a subset of flowers, so some flowers (those roses) are roses. The conclusion follows.",
+      "difficulty": "easy",
+      "sub_topic": "conclusion_basics",
+      "misconception_tags": [
+        "subset_conclusion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-PRACTICE-002",
+      "question": "Statement: 'Some books are novels.' Conclusion: 'All novels are books.'",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Both are same"
+      },
+      "correct_answer": "B",
+      "explanation": "The statement says some books are novels, but it does not guarantee that every novel is a book in the given logical context or that all novels fall under that stated relation as a definite conclusion. The conclusion does not definitely follow from the statement alone.",
+      "difficulty": "easy",
+      "sub_topic": "definite_vs_probable",
+      "misconception_tags": [
+        "some_all_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-PRACTICE-003",
+      "question": "Statement: 'The library will remain closed on Sunday.' Conclusion: 'Books cannot be borrowed from the library on Sunday.'",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Conclusion is an assumption"
+      },
+      "correct_answer": "A",
+      "explanation": "If the library is closed on Sunday, borrowing books (which requires access/services) cannot happen on Sunday. The conclusion follows.",
+      "difficulty": "easy",
+      "sub_topic": "conclusion_basics",
+      "misconception_tags": [
+        "practical_inference_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-PRACTICE-004",
+      "question": "Statement: 'Company Y announced a bonus for its employees this month.'\nConclusions:\nI. Employees of Company Y will receive extra money this month.\nII. Company Y will announce a bonus every month.\nWhich conclusion(s) follow(s)?",
+      "options": {
+        "A": "Only I",
+        "B": "Only II",
+        "C": "Both I and II",
+        "D": "Neither I nor II"
+      },
+      "correct_answer": "A",
+      "explanation": "A bonus announcement implies extra money/payment (I follows). It does not imply this will happen every month (II does not follow).",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_two_conclusions",
+      "misconception_tags": [
+        "overgeneralization_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-PRACTICE-005",
+      "question": "Statement: 'No cars are bicycles.' Conclusion: 'No bicycles are cars.'",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Only sometimes true"
+      },
+      "correct_answer": "A",
+      "explanation": "The relation 'no A are B' is equivalent to 'no B are A'. Therefore, if no cars are bicycles, no bicycles are cars.",
+      "difficulty": "easy",
+      "sub_topic": "conclusion_basics",
+      "misconception_tags": [
+        "conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "STCN-001",
+      "question": "Statement: 'All engineers in the team attended the meeting.' Conclusion: 'Some people who attended the meeting are engineers.'",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Conclusion contradicts statement"
+      },
+      "correct_answer": "A",
+      "explanation": "If all engineers in the team attended, then attendees include those engineers; hence some attendees are engineers. The conclusion follows.",
+      "difficulty": "easy",
+      "sub_topic": "conclusion_basics",
+      "misconception_tags": [
+        "subset_conclusion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-002",
+      "question": "Statement: 'Some teachers are writers.' Conclusion: 'All writers are teachers.'",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Conclusion is definitely true"
+      },
+      "correct_answer": "B",
+      "explanation": "From 'some teachers are writers' we cannot conclude that all writers are teachers. The conclusion is not definite.",
+      "difficulty": "easy",
+      "sub_topic": "definite_vs_probable",
+      "misconception_tags": [
+        "some_all_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-003",
+      "question": "Statement: 'The office cafeteria serves lunch from 12 PM to 2 PM.'\nConclusions:\nI. Lunch is available in the office cafeteria at 1 PM.\nII. Lunch is available in the office cafeteria at 3 PM.\nWhich conclusion(s) follow(s)?",
+      "options": {
+        "A": "Only I",
+        "B": "Only II",
+        "C": "Both I and II",
+        "D": "Neither I nor II"
+      },
+      "correct_answer": "A",
+      "explanation": "1 PM is within 12 PM-2 PM, so I follows. 3 PM is outside the stated serving time, so II does not follow.",
+      "difficulty": "easy",
+      "sub_topic": "evaluating_two_conclusions",
+      "misconception_tags": [
+        "time_range_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-004",
+      "question": "Statement: 'Due to a technical issue, the website is temporarily unavailable.' Conclusion: 'The website will never be available again.'",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Conclusion is certain"
+      },
+      "correct_answer": "B",
+      "explanation": "'Temporarily unavailable' indicates a short-term issue, not permanent unavailability. The conclusion does not follow.",
+      "difficulty": "easy",
+      "sub_topic": "definite_vs_probable",
+      "misconception_tags": [
+        "word_meaning_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STCN-005",
+      "question": "Statement: 'Every candidate who passed the written test was called for an interview.'\nConclusions:\nI. Some candidates called for an interview passed the written test.\nII. Candidates who did not pass the written test were not called for an interview (based only on this statement). \nWhich conclusion(s) follow(s)?",
+      "options": {
+        "A": "Only I",
+        "B": "Only II",
+        "C": "Both I and II",
+        "D": "Neither I nor II"
+      },
+      "correct_answer": "A",
+      "explanation": "I follows because interviewees include those who passed. II does not definitely follow from the statement alone; it states who was called but does not explicitly exclude others.",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_two_conclusions",
+      "misconception_tags": [
+        "converse_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

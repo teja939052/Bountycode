@@ -1,0 +1,316 @@
+{
+  "topic": "idioms_phrases",
+  "subject": "verbal",
+  "pattern": "idioms_phrases",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "idiom_meanings",
+      "title": "Understanding Idioms",
+      "concept": "Idioms are expressions whose meanings are not directly deducible from the individual words. In verbal ability tests, you must recognize the figurative meaning. Learning common idioms and their standard meanings helps answer such questions accurately.",
+      "formula": "Approach: recall or infer figurative meaning of the idiom -> match with the option that conveys the same idea.",
+      "worked_example": "Idiom: 'Break the ice' — means to initiate conversation in a social setting to relieve tension or awkwardness, not literally breaking ice.",
+      "mistakes": [
+        "Interpreting idioms literally from the words",
+        "Choosing an option that relates to only one word in the idiom",
+        "Confusing similar-sounding idioms with different meanings"
+      ]
+    },
+    {
+      "id": "common_phrases_usage",
+      "title": "Phrases and Their Usage",
+      "concept": "Phrases in aptitude/verbal questions may test standard meanings or correct usage in context. Focus on the conventional meaning of the phrase as a whole and how it is typically used in sentences.",
+      "formula": "Read the phrase as a unit -> identify its accepted meaning/usage -> select the option consistent with that meaning.",
+      "worked_example": "Phrase: 'Once in a blue moon' means very rarely. Example: 'He visits his hometown once in a blue moon' implies infrequent visits.",
+      "mistakes": [
+        "Taking figurative phrases literally",
+        "Ignoring frequency/intensity implied by the phrase",
+        "Picking an option that fits context loosely but not the phrase's meaning"
+      ]
+    },
+    {
+      "id": "contextual_selection",
+      "title": "Selecting Idioms/Phrases by Context",
+      "concept": "Some questions give a situation or sentence and ask for the idiom/phrase that best fits. Understand the situation's key idea (e.g., difficulty, success, secrecy) and choose the expression that conveys that idea accurately.",
+      "formula": "Identify situation key idea -> map to idiom meaning -> verify it fits tone and context.",
+      "worked_example": "Situation: Someone revealed a secret unintentionally. The idiom 'let the cat out of the bag' fits because it means to disclose a secret.",
+      "mistakes": [
+        "Choosing an idiom with related theme but wrong nuance",
+        "Not matching the idiom's tone to the situation",
+        "Relying on keyword overlap instead of meaning"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "IDIOM-PRACTICE-001",
+      "question": "What is the meaning of the idiom 'a piece of cake'?",
+      "options": {
+        "A": "A small portion of food",
+        "B": "Something very easy to do",
+        "C": "Something very expensive",
+        "D": "A confusing task"
+      },
+      "correct_answer": "B",
+      "explanation": "The idiom 'a piece of cake' means a task that is very easy to accomplish.",
+      "difficulty": "easy",
+      "sub_topic": "idiom_meanings",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-PRACTICE-002",
+      "question": "What does the phrase 'once in a blue moon' mean?",
+      "options": {
+        "A": "Every day",
+        "B": "Very rarely",
+        "C": "At midnight",
+        "D": "During full moon only"
+      },
+      "correct_answer": "B",
+      "explanation": "'Once in a blue moon' means something that happens very rarely or infrequently.",
+      "difficulty": "easy",
+      "sub_topic": "common_phrases_usage",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-PRACTICE-003",
+      "question": "Choose the correct meaning of 'hit the nail on the head'.",
+      "options": {
+        "A": "To cause injury",
+        "B": "To do carpentry work",
+        "C": "To describe exactly what is causing a situation or problem",
+        "D": "To avoid answering"
+      },
+      "correct_answer": "C",
+      "explanation": "'Hit the nail on the head' means to identify or describe something accurately and precisely.",
+      "difficulty": "easy",
+      "sub_topic": "idiom_meanings",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-PRACTICE-004",
+      "question": "What does 'under the weather' mean?",
+      "options": {
+        "A": "Standing in rain",
+        "B": "Feeling slightly ill",
+        "C": "Enjoying good climate",
+        "D": "Being very energetic"
+      },
+      "correct_answer": "B",
+      "explanation": "'Under the weather' is an idiom that means feeling unwell or slightly sick.",
+      "difficulty": "easy",
+      "sub_topic": "idiom_meanings",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-PRACTICE-005",
+      "question": "If someone 'lets the cat out of the bag', they have:",
+      "options": {
+        "A": "Released a pet",
+        "B": "Revealed a secret",
+        "C": "Solved a puzzle",
+        "D": "Made a mistake in counting"
+      },
+      "correct_answer": "B",
+      "explanation": "'Let the cat out of the bag' means to reveal a secret or disclose information that was meant to be kept hidden.",
+      "difficulty": "easy",
+      "sub_topic": "contextual_selection",
+      "misconception_tags": [
+        "idiom_context_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "IDIOM-001",
+      "question": "What is the meaning of the idiom 'burn the midnight oil'?",
+      "options": {
+        "A": "To waste resources",
+        "B": "To work late into the night",
+        "C": "To start a fire",
+        "D": "To sleep early"
+      },
+      "correct_answer": "B",
+      "explanation": "'Burn the midnight oil' means to work or study late into the night.",
+      "difficulty": "easy",
+      "sub_topic": "idiom_meanings",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-002",
+      "question": "The phrase 'costs an arm and a leg' means:",
+      "options": {
+        "A": "Causes physical harm",
+        "B": "Is very expensive",
+        "C": "Is very cheap",
+        "D": "Requires hard labor"
+      },
+      "correct_answer": "B",
+      "explanation": "'Costs an arm and a leg' is an idiom used to say that something is extremely expensive.",
+      "difficulty": "easy",
+      "sub_topic": "common_phrases_usage",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-003",
+      "question": "If a plan is 'up in the air', it is:",
+      "options": {
+        "A": "Completed successfully",
+        "B": "Uncertain or undecided",
+        "C": "Impossible to do",
+        "D": "Very popular"
+      },
+      "correct_answer": "B",
+      "explanation": "'Up in the air' means undecided or uncertain; not yet settled.",
+      "difficulty": "easy",
+      "sub_topic": "idiom_meanings",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-004",
+      "question": "What does 'spill the beans' mean?",
+      "options": {
+        "A": "To cook food carelessly",
+        "B": "To reveal secret information",
+        "C": "To waste time",
+        "D": "To make a mess intentionally"
+      },
+      "correct_answer": "B",
+      "explanation": "'Spill the beans' means to disclose secret information, often unintentionally or prematurely.",
+      "difficulty": "easy",
+      "sub_topic": "contextual_selection",
+      "misconception_tags": [
+        "idiom_context_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-005",
+      "question": "If someone is asked to 'keep an eye on' something, they should:",
+      "options": {
+        "A": "Ignore it",
+        "B": "Watch or monitor it carefully",
+        "C": "Throw it away",
+        "D": "Paint it"
+      },
+      "correct_answer": "B",
+      "explanation": "'Keep an eye on' means to watch, observe, or monitor something carefully.",
+      "difficulty": "easy",
+      "sub_topic": "common_phrases_usage",
+      "misconception_tags": [
+        "literal_interpretation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

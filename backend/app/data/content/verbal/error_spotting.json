@@ -1,0 +1,317 @@
+{
+  "topic": "error_spotting",
+  "subject": "verbal",
+  "pattern": "error_spotting",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "subject_verb_agreement",
+      "title": "Subject-Verb Agreement",
+      "concept": "In a sentence, the verb must agree with its subject in number (singular/plural) and person. Identify the true subject (not words in between like prepositional phrases) and choose a verb form that matches it.",
+      "formula": "Singular subject -> singular verb; plural subject -> plural verb. Ignore intervening phrases when identifying the subject.",
+      "worked_example": "Incorrect: 'The list of items are on the table.' Subject is 'list' (singular), so correct: 'The list of items is on the table.'",
+      "mistakes": [
+        "Making the verb agree with a nearby noun instead of the actual subject",
+        "Confusing collective nouns or indefinite pronouns in context",
+        "Missing agreement errors in longer sentences with clauses"
+      ]
+    },
+    {
+      "id": "tense_and_consistency",
+      "title": "Tense and Consistency",
+      "concept": "Verb tense indicates time of action. Sentences should maintain consistent tense unless there is a clear reason to shift (e.g., describing a past event and a general truth). Check sequence of events and time markers.",
+      "formula": "Maintain tense consistency within a context; shift tense only when time meaning changes.",
+      "worked_example": "Incorrect: 'She finished her work and goes home.' Both actions are in the same past context, so correct: 'She finished her work and went home.'",
+      "mistakes": [
+        "Unnecessary tense shifts within the same clause/sequence",
+        "Using wrong tense with time indicators (yesterday, tomorrow, since)",
+        "Confusing present perfect with simple past in given contexts"
+      ]
+    },
+    {
+      "id": "prepositions_articles_pronouns",
+      "title": "Prepositions, Articles, and Pronouns",
+      "concept": "Common errors include wrong preposition choice (in/on/at, by/with), incorrect or missing articles (a/an/the), and pronoun errors (case, number, unclear reference). Read carefully for idiomatic usage and clear reference.",
+      "formula": "Check: preposition fits the phrase/verb; article matches countability/specificity; pronoun agrees with antecedent and has correct case.",
+      "worked_example": "Incorrect: 'She is good in mathematics.' Correct idiomatic form: 'She is good at mathematics.' Incorrect: 'Each of the players must bring their own kit.' In strict formal agreement: 'Each of the players must bring his or her own kit' (usage may vary, but exams often test clear agreement).",
+      "mistakes": [
+        "Using prepositions based on native-language patterns instead of standard usage",
+        "Confusing 'a' and 'an' by spelling instead of sound",
+        "Ambiguous or mismatched pronoun references"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "ERR-PRACTICE-001",
+      "question": "Identify the part with an error: (A) The bouquet of roses (B) smell very pleasant (C) in the morning. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "B",
+      "explanation": "The subject is 'bouquet' (singular), not 'roses'. So the verb should be singular: 'smells very pleasant'. Error is in part B.",
+      "difficulty": "easy",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "nearby_noun_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-PRACTICE-002",
+      "question": "Identify the part with an error: (A) She completed the assignment (B) yesterday and (C) submits it today. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "C",
+      "explanation": "The action 'submits it today' conflicts with the past time frame established by 'yesterday' in the same context; it should be 'submitted it today' (or the sentence should be restructured consistently). Error is in part C.",
+      "difficulty": "easy",
+      "sub_topic": "tense_and_consistency",
+      "misconception_tags": [
+        "tense_shift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-PRACTICE-003",
+      "question": "Identify the part with an error: (A) He is interested (B) on learning (C) new languages. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "B",
+      "explanation": "The correct preposition is 'interested in', not 'interested on'. Correct form: 'interested in learning'. Error is in part B.",
+      "difficulty": "easy",
+      "sub_topic": "prepositions_articles_pronouns",
+      "misconception_tags": [
+        "preposition_usage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-PRACTICE-004",
+      "question": "Identify the part with an error: (A) Each of the students (B) have submitted (C) their project report. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "B",
+      "explanation": "'Each' is singular, so the verb should be 'has submitted' (not 'have submitted'). Error is in part B.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "indefinite_pronoun_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-PRACTICE-005",
+      "question": "Identify the part with an error: (A) She is (B) an university student (C) in her final year. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "B",
+      "explanation": "The article 'an' is used before vowel sounds, but 'university' begins with a /juː/ (consonant) sound, so it should be 'a university student'. Error is in part B.",
+      "difficulty": "easy",
+      "sub_topic": "prepositions_articles_pronouns",
+      "misconception_tags": [
+        "article_sound_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ERR-001",
+      "question": "Identify the part with an error: (A) The quality of these products (B) have improved (C) over the years. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "B",
+      "explanation": "The subject is 'quality' (singular), so the verb should be 'has improved'. Part B contains the error.",
+      "difficulty": "easy",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "nearby_noun_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-002",
+      "question": "Identify the part with an error: (A) He did not knew (B) the answer (C) to the question. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "A",
+      "explanation": "After 'did not', the base form of the verb is used: 'did not know'. 'Knew' in part A is incorrect.",
+      "difficulty": "easy",
+      "sub_topic": "tense_and_consistency",
+      "misconception_tags": [
+        "auxiliary_verb_form_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-003",
+      "question": "Identify the part with an error: (A) She prefers tea (B) than coffee (C) in the evening. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "B",
+      "explanation": "The correct construction is 'prefers tea to coffee' (not 'than coffee'). Error is in part B.",
+      "difficulty": "medium",
+      "sub_topic": "prepositions_articles_pronouns",
+      "misconception_tags": [
+        "preposition_usage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-004",
+      "question": "Identify the part with an error: (A) Neither the teacher (B) nor the students (C) was ready for the test. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "C",
+      "explanation": "With 'neither...nor', the verb agrees with the nearer subject. 'Students' (plural) is nearer, so the verb should be 'were ready'. Error is in part C.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "correlative_conjunction_agreement_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-005",
+      "question": "Identify the part with an error: (A) I have been waiting (B) for you (C) since two hours. (D) No error",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "C",
+      "explanation": "'Since' is used with a point in time, while 'for' is used with a duration. It should be 'for two hours'. Error is in part C.",
+      "difficulty": "easy",
+      "sub_topic": "prepositions_articles_pronouns",
+      "misconception_tags": [
+        "since_for_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

@@ -6,7 +6,8 @@ Replaces the 12-level definitions in curriculum.py.
 #pylint: skip-file
 
 import random
-from .curriculum import LANGUAGES, _L, LEVEL_THEMES as _OLD_THEMES
+from .curriculum import LANGUAGES
+from .curriculum_base import _L, LEVEL_THEMES
 
 random.seed(42)
 
@@ -249,6 +250,7 @@ def _build_50_level_language(lang_id, lang_name, icon, color, desc):
                 "id": f"{lang_id}-{raw['id']}-{j+1:02d}",
                 "title": l["title"],
                 "diamonds": l["diamonds"],
+                "xp": l["diamonds"],
                 "difficulty": l["difficulty"],
                 "type": l["type"],
             })
@@ -282,9 +284,9 @@ def _build_50_level_language(lang_id, lang_name, icon, color, desc):
 def install_50_level_curriculum():
     """Replace existing language entries with 50-level versions."""
     # Patch LEVEL_THEMES to 50 entries
-    _OLD_THEMES.clear()
+    LEVEL_THEMES.clear()
     for t in LEVELS_50:
-        _OLD_THEMES.append({
+        LEVEL_THEMES.append({
             "id": f"l{t[0].split()[0].lower()[:3]}" if len(t[0].split()) > 1 else f"l{t[0][:3].lower()}",
             "name": t[0],
             "emoji": t[1],

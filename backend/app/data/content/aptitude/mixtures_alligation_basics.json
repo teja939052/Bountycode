@@ -1,0 +1,325 @@
+{
+  "topic": "mixtures_alligation_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "mixtures_alligation_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "MIX-L1",
+      "title": "Mixtures: Weighted Average Concept",
+      "concept": "When two or more quantities are mixed, the overall value (such as price, concentration, or average) is the weighted average based on their amounts. If quantities q1,q2 with values v1,v2 are mixed, mean value = (q1*v1 + q2*v2)/(q1+q2).",
+      "formula": "Mean value = (sum of quantity×value) / (sum of quantities).",
+      "worked_example": "Mix 2 kg tea at ₹100/kg with 3 kg at ₹150/kg. Mean price = (2*100 + 3*150)/(2+3) = (200+450)/5 = ₹130/kg.",
+      "mistakes": [
+        "Taking simple average instead of weighted average when quantities differ",
+        "Mixing incompatible units",
+        "Adding values without weighting by quantities"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "MIX-L2",
+      "title": "Alligation Rule",
+      "concept": "Alligation is a shortcut to find the ratio in which two ingredients with different values must be mixed to obtain a mixture of a given mean value. Place cheaper value (C), mean (M), dearer (D) and take differences diagonally: ratio (quantity of cheaper):(quantity of dearer) = (D-M):(M-C).",
+      "formula": "If C < M < D, ratio C:D = (D - M) : (M - C).",
+      "worked_example": "Mix items at ₹20/kg and ₹50/kg to get ₹30/kg. Ratio = (50-30):(30-20) = 20:10 = 2:1 (cheaper:dearer).",
+      "mistakes": [
+        "Placing mean outside the range of the two values (impossible for simple mixture)",
+        "Subtracting in wrong order and getting negative/incorrect ratio",
+        "Swapping which difference corresponds to which ingredient"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "MIX-L3",
+      "title": "Replacement in Mixtures",
+      "concept": "In replacement problems, a part of a mixture is removed and replaced by another substance (often water). After each operation, the fraction of the original substance remaining is multiplied by (1 - removed/total). For n operations with same quantity replaced: remaining original = V*(1 - r/V)^n.",
+      "formula": "Remaining quantity of original = Initial * (1 - replaced_amount/total_volume)^n.",
+      "worked_example": "A 20 L vessel full of milk: remove 5 L and replace with water once. Milk left = 20*(1-5/20)=20*(3/4)=15 L.",
+      "mistakes": [
+        "Using replaced amount in numerator incorrectly relative to current/total volume as stated",
+        "Forgetting to apply the factor repeatedly for multiple replacements",
+        "Confusing amount removed with amount remaining"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "MIX-PRACTICE-001",
+      "question": "2 kg of rice at ₹40/kg is mixed with 3 kg at ₹60/kg. The mean price per kg is:",
+      "options": {
+        "A": "₹48",
+        "B": "₹50",
+        "C": "₹52",
+        "D": "₹55"
+      },
+      "correct_answer": "C",
+      "explanation": "Weighted average = (2*40 + 3*60)/(5) = (80 + 180)/5 = 260/5 = ₹52/kg.",
+      "difficulty": "easy",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "simple_average_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-PRACTICE-002",
+      "question": "In what ratio must tea at ₹30/kg and ₹50/kg be mixed to get ₹36/kg?",
+      "options": {
+        "A": "7:3",
+        "B": "3:7",
+        "C": "2:1",
+        "D": "1:2"
+      },
+      "correct_answer": "A",
+      "explanation": "By alligation: (50-36):(36-30)=14:6=7:3 (cheaper:dearer).",
+      "difficulty": "easy",
+      "sub_topic": "alligation",
+      "misconception_tags": [
+        "ratio_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-PRACTICE-003",
+      "question": "A 10 L mixture has milk and water. 2 L is removed and replaced with water. Fraction of mixture removed is:",
+      "options": {
+        "A": "1/10",
+        "B": "1/5",
+        "C": "1/4",
+        "D": "2/5"
+      },
+      "correct_answer": "B",
+      "explanation": "2 L out of 10 L is removed, so fraction removed = 2/10 = 1/5.",
+      "difficulty": "easy",
+      "sub_topic": "replacement",
+      "misconception_tags": [
+        "fraction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-PRACTICE-004",
+      "question": "20 L of milk: 5 L replaced with water once. Milk remaining is:",
+      "options": {
+        "A": "10 L",
+        "B": "12 L",
+        "C": "15 L",
+        "D": "16 L"
+      },
+      "correct_answer": "C",
+      "explanation": "Remaining milk = 20*(1 - 5/20)=20*(3/4)=15 L.",
+      "difficulty": "easy",
+      "sub_topic": "replacement",
+      "misconception_tags": [
+        "replacement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-PRACTICE-005",
+      "question": "Alligation can be applied when the desired mean value is:",
+      "options": {
+        "A": "Greater than both ingredient values",
+        "B": "Less than both ingredient values",
+        "C": "Between the two ingredient values",
+        "D": "Equal to zero only"
+      },
+      "correct_answer": "C",
+      "explanation": "For mixing two ingredients, the mean must lie between the cheaper and dearer values to obtain a valid ratio.",
+      "difficulty": "easy",
+      "sub_topic": "alligation",
+      "misconception_tags": [
+        "range_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "MIX-001",
+      "question": "3 L at ₹20/L mixed with 2 L at ₹30/L gives mean price:",
+      "options": {
+        "A": "₹22/L",
+        "B": "₹24/L",
+        "C": "₹25/L",
+        "D": "₹26/L"
+      },
+      "correct_answer": "B",
+      "explanation": "Mean = (3*20 + 2*30)/(5) = (60 + 60)/5 = ₹24/L.",
+      "difficulty": "easy",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "simple_average_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-002",
+      "question": "Mix ₹10/kg and ₹16/kg to get ₹12/kg. Ratio (₹10:₹16) is:",
+      "options": {
+        "A": "1:2",
+        "B": "2:1",
+        "C": "3:1",
+        "D": "1:3"
+      },
+      "correct_answer": "B",
+      "explanation": "Alligation: (16-12):(12-10)=4:2=2:1.",
+      "difficulty": "easy",
+      "sub_topic": "alligation",
+      "misconception_tags": [
+        "ratio_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-003",
+      "question": "A 40 L vessel of milk: 10 L removed and replaced by water once. Milk left:",
+      "options": {
+        "A": "25 L",
+        "B": "30 L",
+        "C": "32 L",
+        "D": "35 L"
+      },
+      "correct_answer": "B",
+      "explanation": "Milk left = 40*(1 - 10/40)=40*(3/4)=30 L.",
+      "difficulty": "easy",
+      "sub_topic": "replacement",
+      "misconception_tags": [
+        "replacement_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-004",
+      "question": "If equal quantities are mixed, the mean is the:",
+      "options": {
+        "A": "Product of values",
+        "B": "Simple average of values",
+        "C": "Difference of values",
+        "D": "Ratio of values"
+      },
+      "correct_answer": "B",
+      "explanation": "With equal weights, weighted average equals simple average: (v1+v2)/2.",
+      "difficulty": "easy",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "concept_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-005",
+      "question": "After replacing 1/4 of a mixture with water once, fraction of original substance remaining is:",
+      "options": {
+        "A": "1/4",
+        "B": "1/2",
+        "C": "3/4",
+        "D": "1"
+      },
+      "correct_answer": "C",
+      "explanation": "Remaining fraction = 1 - 1/4 = 3/4 of the original substance.",
+      "difficulty": "easy",
+      "sub_topic": "replacement",
+      "misconception_tags": [
+        "fraction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

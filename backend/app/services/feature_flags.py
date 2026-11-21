@@ -94,6 +94,11 @@ FEATURE_FLAGS: dict[str, dict] = {
     "offline_mode": {"enabled": True, "description": "Offline mode"},
 
     "retention_admin": {"enabled": True, "description": "Retention analytics admin", "allowed_plans": ["pro", "lifetime"]},
+
+    # Closed beta flags (RC1 staging release)
+    "readiness_report_beta": {"enabled": True, "status": "beta", "description": "Enhanced readiness report with blockers and next actions", "rollout_percentage": 100},
+    "closed_beta_lessons": {"enabled": True, "status": "beta", "description": "Closed beta access to promoted service-company lessons", "rollout_percentage": 100},
+    "beta_access": {"enabled": True, "status": "beta", "description": "Closed beta user access", "rollout_percentage": 0},
 }
 
 
@@ -107,7 +112,25 @@ def is_feature_enabled(flag_key: str, plan: Plan = "free") -> bool:
     if allowed_plans and plan not in allowed_plans:
         return False
 
+    # Beta features require explicit beta access unless rollout is 100%.
+    if flag.get("status") == "beta":
+        rollout = flag.get("rollout_percentage", 0)
+        if rollout < 100:
+            # Requires explicit beta_access grant (checked at call site via
+            # is_user_in_beta()). Default to disabled for safety.
+            return False
+
     return True
+
+
+def is_user_in_beta(user_id: str, beta_user_ids: set[str] | None = None) -> bool:
+    """Check if a user is in the closed beta.
+
+    Beta user IDs come from the closed beta enrollment list (admin-managed).
+    """
+    if beta_user_ids is None:
+        beta_user_ids = set()
+    return user_id in beta_user_ids
 
 
 def get_enabled_features(plan: Plan = "free") -> list[str]:

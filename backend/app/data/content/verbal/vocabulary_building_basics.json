@@ -1,0 +1,325 @@
+{
+  "topic": "vocabulary_building_basics",
+  "subject": "verbal",
+  "pattern": "vocabulary_building_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "VOC-L1",
+      "title": "Word Roots and Meaning",
+      "concept": "Many English words are built from roots (core meaning units), often from Latin or Greek origins. Recognizing common roots can help infer meanings of unfamiliar words. For example, 'dict' relates to saying/speaking (predict, dictionary), and 'port' relates to carrying (transport, portable).",
+      "formula": "Strategy: break word into parts (prefix + root + suffix) -> infer meaning from known parts -> confirm with context.",
+      "worked_example": "'Inspect' can be seen as in- (into) + spect (look) -> to look into/examine. 'Export' = ex- (out) + port (carry) -> carry out/send out.",
+      "mistakes": [
+        "Assuming every word's meaning is fully determined by parts (etymology can shift)",
+        "Confusing similar-looking roots",
+        "Ignoring context when inferring meaning"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "VOC-L2",
+      "title": "Prefixes and Suffixes",
+      "concept": "Prefixes modify meaning at the beginning of a word (e.g., un- = not, re- = again, pre- = before). Suffixes attach at the end and can change meaning or word form/part of speech (e.g., -ful = full of, -less = without, -tion = noun form of action).",
+      "formula": "Common prefixes: un-/in-/im-/non- (negation), re- (again), pre- (before), mis- (wrongly). Common suffixes: -able/-ible (can be), -er/-or (doer), -ness (state/quality).",
+      "worked_example": "'Unhappy' = un (not) + happy. 'Readable' = read + able (can be read). 'Kindness' = kind + ness (quality of being kind).",
+      "mistakes": [
+        "Misreading prefix meaning (e.g., 'incredible' historically means hard to believe, though usage varies)",
+        "Assuming suffix always keeps same meaning across all words",
+        "Ignoring spelling changes when affixes are added"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "VOC-L3",
+      "title": "Context Clues and Word Usage",
+      "concept": "Context clues in a sentence help determine the meaning of an unfamiliar word. Clues may include definitions, synonyms/antonyms nearby, examples, or overall tone. Vocabulary building also involves understanding collocations and choosing words that fit meaning and usage.",
+      "formula": "Use context: look for signal words (but/however for contrast, such as/for example for examples), surrounding meaning, and sentence logic.",
+      "worked_example": "Sentence: 'The arid region received almost no rain for months.' Context 'almost no rain' suggests 'arid' means dry.",
+      "mistakes": [
+        "Choosing a dictionary meaning that doesn't fit context",
+        "Ignoring tone/formality",
+        "Memorizing words without learning usage/collocations"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "VOC-PRACTICE-001",
+      "question": "The prefix 'un-' in 'unknown' most nearly means:",
+      "options": {
+        "A": "again",
+        "B": "not",
+        "C": "before",
+        "D": "very"
+      },
+      "correct_answer": "B",
+      "explanation": "'Un-' commonly indicates negation, so 'unknown' means not known.",
+      "difficulty": "easy",
+      "sub_topic": "prefixes_suffixes",
+      "misconception_tags": [
+        "affix_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-PRACTICE-002",
+      "question": "The suffix '-less' in 'careless' indicates:",
+      "options": {
+        "A": "full of",
+        "B": "without",
+        "C": "one who",
+        "D": "in the past"
+      },
+      "correct_answer": "B",
+      "explanation": "'-less' means without, so 'careless' means without care.",
+      "difficulty": "easy",
+      "sub_topic": "prefixes_suffixes",
+      "misconception_tags": [
+        "affix_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-PRACTICE-003",
+      "question": "'Preview' most nearly means:",
+      "options": {
+        "A": "View again",
+        "B": "View before",
+        "C": "View wrongly",
+        "D": "View after"
+      },
+      "correct_answer": "B",
+      "explanation": "Prefix 'pre-' means before, so 'preview' means to view beforehand.",
+      "difficulty": "easy",
+      "sub_topic": "roots_affixes",
+      "misconception_tags": [
+        "prefix_meaning_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-PRACTICE-004",
+      "question": "In 'The teacher gave a lucid explanation that everyone understood', 'lucid' most nearly means:",
+      "options": {
+        "A": "Confusing",
+        "B": "Clear",
+        "C": "Lengthy",
+        "D": "Angry"
+      },
+      "correct_answer": "B",
+      "explanation": "Context 'everyone understood' indicates the explanation was clear, so 'lucid' means clear/easy to understand.",
+      "difficulty": "easy",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "context_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-PRACTICE-005",
+      "question": "The root 'port' generally relates to:",
+      "options": {
+        "A": "Carry",
+        "B": "Write",
+        "C": "Hear",
+        "D": "Break"
+      },
+      "correct_answer": "A",
+      "explanation": "The root 'port' (as in transport, import, portable) is associated with carrying.",
+      "difficulty": "easy",
+      "sub_topic": "roots_affixes",
+      "misconception_tags": [
+        "root_meaning_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "VOC-001",
+      "question": "The prefix 're-' in 'rewrite' means:",
+      "options": {
+        "A": "not",
+        "B": "before",
+        "C": "again",
+        "D": "under"
+      },
+      "correct_answer": "C",
+      "explanation": "'Re-' means again, so 'rewrite' means to write again.",
+      "difficulty": "easy",
+      "sub_topic": "prefixes_suffixes",
+      "misconception_tags": [
+        "affix_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-002",
+      "question": "A 'fearless' person is someone who is:",
+      "options": {
+        "A": "full of fear",
+        "B": "without fear",
+        "C": "afraid of fear",
+        "D": "causing fear"
+      },
+      "correct_answer": "B",
+      "explanation": "Suffix '-less' means without, so 'fearless' means without fear.",
+      "difficulty": "easy",
+      "sub_topic": "prefixes_suffixes",
+      "misconception_tags": [
+        "affix_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-003",
+      "question": "In 'Despite the heavy rain, the match continued; the players were resilient', 'resilient' most nearly means:",
+      "options": {
+        "A": "Unable to recover",
+        "B": "Able to recover or keep going",
+        "C": "Uninterested",
+        "D": "Careless"
+      },
+      "correct_answer": "B",
+      "explanation": "Continuing despite heavy rain suggests the players could withstand difficulty and keep going, so 'resilient' means able to recover/persist.",
+      "difficulty": "medium",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "context_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-004",
+      "question": "'Misplace' most nearly means:",
+      "options": {
+        "A": "Place correctly",
+        "B": "Place again",
+        "C": "Place wrongly or lose by putting in wrong place",
+        "D": "Place before"
+      },
+      "correct_answer": "C",
+      "explanation": "Prefix 'mis-' means wrongly/badly, so 'misplace' means to put in the wrong place.",
+      "difficulty": "easy",
+      "sub_topic": "roots_affixes",
+      "misconception_tags": [
+        "prefix_meaning_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VOC-005",
+      "question": "Which strategy best helps infer the meaning of an unfamiliar word in a sentence?",
+      "options": {
+        "A": "Ignore surrounding words",
+        "B": "Use context clues and word parts together",
+        "C": "Always choose the longest meaning",
+        "D": "Assume it means the same as the previous word"
+      },
+      "correct_answer": "B",
+      "explanation": "Combining context clues from the sentence with knowledge of roots/prefixes/suffixes improves accurate meaning inference.",
+      "difficulty": "easy",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "strategy_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

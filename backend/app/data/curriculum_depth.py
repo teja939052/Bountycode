@@ -269,6 +269,7 @@ def _build_level_dict(lang_id, raw, theme, order):
             "id": f"{lang_id}-{raw['id']}-{j+1:02d}",
             "title": l["title"],
             "diamonds": l["diamonds"],
+            "xp": l["diamonds"],
             "difficulty": l["difficulty"],
             "type": l["type"],
         })

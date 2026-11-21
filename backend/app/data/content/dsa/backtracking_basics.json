@@ -1,0 +1,325 @@
+{
+  "topic": "backtracking_basics",
+  "subject": "dsa",
+  "pattern": "backtracking_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "BT-L1",
+      "title": "Backtracking Concept",
+      "concept": "Backtracking is a recursive problem-solving technique that builds candidates to a solution incrementally and abandons (backtracks) a candidate as soon as it determines the candidate cannot lead to a valid solution. It systematically explores decision spaces such as permutations, combinations, and constraint satisfaction problems.",
+      "formula": "General pattern: choose -> explore (recurse) -> un-choose (backtrack). Prune when constraints violated.",
+      "worked_example": "Generate subsets/permutations: place a choice, recurse to extend, then remove the choice to try alternatives. For permutations, swap/mark used elements and revert after recursion.",
+      "mistakes": [
+        "Forgetting to undo the choice (state not restored after recursion)",
+        "Missing base case to record/return a complete solution",
+        "Not pruning invalid states early, causing unnecessary exploration"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "BT-L2",
+      "title": "State, Choices, and Constraints",
+      "concept": "A backtracking solution defines the current state (partial solution), available choices at each step, and constraints that determine validity. Pruning uses constraints to cut off branches that cannot produce valid or optimal results.",
+      "formula": "At each step: for choice in valid_choices(state): apply(choice); backtrack(new_state); revert(choice).",
+      "worked_example": "N-Queens (concept): place a queen row by row; a choice (column) is valid if no other queen attacks it. If no valid column, backtrack to previous row and try a different column.",
+      "mistakes": [
+        "Checking constraints incorrectly (allowing invalid placements)",
+        "Not considering all valid choices at a step",
+        "Mutating shared state without proper revert/copy"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "BT-L3",
+      "title": "Complexity and Use Cases",
+      "concept": "Backtracking can explore exponential search spaces in the worst case, but pruning often reduces practical runtime. It is used for puzzles and combinatorial problems like permutations, combinations, Sudoku solving, N-Queens, and path finding with constraints.",
+      "formula": "Worst-case often exponential/factorial depending on branching factor and depth (e.g., permutations ~O(n!)). Pruning effectiveness is problem/data dependent.",
+      "worked_example": "Permutations of n distinct elements generate n! arrangements. Backtracking builds them by choosing unused elements at each position and backtracking after recursion.",
+      "mistakes": [
+        "Assuming backtracking is always polynomial time",
+        "Skipping pruning opportunities that enforce constraints early",
+        "Confusing backtracking with simple brute force that never abandons partial states"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "BT-PRACTICE-001",
+      "question": "Backtracking is best described as:",
+      "options": {
+        "A": "A greedy single-pass algorithm",
+        "B": "Incremental solution building with rollback on invalid paths",
+        "C": "A sorting technique",
+        "D": "A hashing method"
+      },
+      "correct_answer": "B",
+      "explanation": "Backtracking builds candidates step by step and undoes choices (backtracks) when a path cannot lead to a valid solution.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-PRACTICE-002",
+      "question": "The 'un-choose' step in backtracking is important because:",
+      "options": {
+        "A": "It speeds up sorting",
+        "B": "It restores state so other choices can be explored correctly",
+        "C": "It deletes the input permanently",
+        "D": "It avoids recursion"
+      },
+      "correct_answer": "B",
+      "explanation": "After exploring a choice, reverting state ensures sibling branches see the correct prior state.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "state_restore_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-PRACTICE-003",
+      "question": "Pruning in backtracking means:",
+      "options": {
+        "A": "Exploring every possible path fully",
+        "B": "Stopping exploration of paths that violate constraints/cannot succeed",
+        "C": "Converting recursion to iteration always",
+        "D": "Removing nodes from the input graph"
+      },
+      "correct_answer": "B",
+      "explanation": "Pruning cuts off branches early when they are invalid or cannot lead to a desired solution, reducing unnecessary work.",
+      "difficulty": "easy",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "pruning_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-PRACTICE-004",
+      "question": "Which problem is commonly solved using backtracking?",
+      "options": {
+        "A": "Finding minimum of an array in one pass",
+        "B": "Generating permutations/combinations with constraints",
+        "C": "Binary search in sorted array",
+        "D": "Computing prefix sums only"
+      },
+      "correct_answer": "B",
+      "explanation": "Backtracking is widely used for combinatorial generation and constraint satisfaction problems like permutations, combinations, and puzzles.",
+      "difficulty": "easy",
+      "sub_topic": "use_cases",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-PRACTICE-005",
+      "question": "Worst-case time complexity of backtracking algorithms is often:",
+      "options": {
+        "A": "Always O(n)",
+        "B": "Exponential or factorial depending on the problem",
+        "C": "Always O(log n)",
+        "D": "Always O(1)"
+      },
+      "correct_answer": "B",
+      "explanation": "Backtracking may explore many branches; without strong pruning, complexity can be exponential or factorial (e.g., permutations).",
+      "difficulty": "medium",
+      "sub_topic": "complexity",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "BT-001",
+      "question": "In the choose-explore-unchoose pattern, 'explore' typically means:",
+      "options": {
+        "A": "Undo the previous choice",
+        "B": "Recurse/move deeper with the current choice applied",
+        "C": "Sort the choices",
+        "D": "Terminate the program"
+      },
+      "correct_answer": "B",
+      "explanation": "After making a choice, the algorithm explores further by recursing/advancing to build on that partial solution.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "pattern_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-002",
+      "question": "A base case in backtracking usually:",
+      "options": {
+        "A": "Creates infinite recursion",
+        "B": "Detects a complete/valid solution or dead end and stops deeper recursion",
+        "C": "Removes all constraints",
+        "D": "Randomizes choices"
+      },
+      "correct_answer": "B",
+      "explanation": "Base cases handle termination conditions, such as recording a complete valid solution or returning when no further valid extension is possible.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "base_case_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-003",
+      "question": "Why is backtracking different from naive brute force?",
+      "options": {
+        "A": "It never tries wrong choices",
+        "B": "It can abandon partial candidates early using constraints (pruning)",
+        "C": "It does not use recursion",
+        "D": "It always finds solution in linear time"
+      },
+      "correct_answer": "B",
+      "explanation": "Backtracking prunes branches when constraints are violated, avoiding exploration of all complete candidates in many cases, unlike naive exhaustive enumeration.",
+      "difficulty": "medium",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "comparison_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-004",
+      "question": "If a choice is applied to shared state during backtracking, what must happen after recursion returns?",
+      "options": {
+        "A": "Keep the change permanently",
+        "B": "Revert the change to restore previous state",
+        "C": "Delete the state structure",
+        "D": "Ignore the result"
+      },
+      "correct_answer": "B",
+      "explanation": "State must be restored (un-choose) so that alternative choices at the same level are evaluated from the correct prior state.",
+      "difficulty": "easy",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "state_restore_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BT-005",
+      "question": "N-Queens is a typical backtracking problem because it requires:",
+      "options": {
+        "A": "Sorting numbers",
+        "B": "Placing items under constraints and undoing invalid placements",
+        "C": "Finding shortest path in weighted graph only",
+        "D": "Computing hash values"
+      },
+      "correct_answer": "B",
+      "explanation": "N-Queens places queens one by one with non-attacking constraints; when placement fails, the algorithm backtracks to try different positions.",
+      "difficulty": "easy",
+      "sub_topic": "use_cases",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

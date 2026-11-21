@@ -1,0 +1,316 @@
+{
+  "topic": "oop_basics",
+  "subject": "cs",
+  "pattern": "oop_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "classes_and_objects",
+      "title": "Classes and Objects",
+      "concept": "Object-Oriented Programming (OOP) organizes code around objects that combine data (attributes/fields) and behavior (methods). A class is a blueprint/template that defines the structure and behavior, while an object is an instance created from that class.",
+      "formula": "Class defines attributes + methods; Object = instance of a class with specific state.",
+      "worked_example": "A 'Car' class may define attributes like color and speed and methods like accelerate(). An object car1 might be a red Car instance with speed 0 initially.",
+      "mistakes": [
+        "Confusing a class (blueprint) with an object (instance)",
+        "Thinking methods exist without being associated with class/object behavior",
+        "Assuming all objects of a class must have identical attribute values"
+      ]
+    },
+    {
+      "id": "encapsulation_abstraction",
+      "title": "Encapsulation and Abstraction",
+      "concept": "Encapsulation bundles data and methods together and restricts direct access to some of an object's components (often via access control), helping protect internal state. Abstraction hides complex implementation details and exposes only essential features/interfaces.",
+      "formula": "Encapsulation: data + methods + controlled access. Abstraction: expose 'what' an object does, hide 'how' it does it.",
+      "worked_example": "A BankAccount class may keep balance private and provide deposit()/withdraw() methods. Users interact with these methods without directly modifying internal balance representation details.",
+      "mistakes": [
+        "Treating encapsulation and abstraction as identical concepts",
+        "Assuming encapsulation means data must never be accessed (it means controlled access)",
+        "Exposing internal implementation unnecessarily, breaking abstraction"
+      ]
+    },
+    {
+      "id": "inheritance_polymorphism",
+      "title": "Inheritance and Polymorphism",
+      "concept": "Inheritance allows a class (child/subclass) to derive properties and behavior from another class (parent/superclass), promoting reuse. Polymorphism allows entities to take multiple forms, commonly method overriding (same method name, different behavior in subclasses) or method overloading (same name, different parameters, language-dependent).",
+      "formula": "Inheritance: subclass extends superclass. Polymorphism: one interface/name, multiple behaviors/forms.",
+      "worked_example": "A base class Shape may define area(); subclasses Circle and Rectangle implement area() differently. Calling area() on a Shape reference can invoke the appropriate subclass implementation (runtime polymorphism in many languages).",
+      "mistakes": [
+        "Assuming inheritance is always the best way to reuse code",
+        "Confusing overriding with overloading",
+        "Expecting child classes to automatically change parent private implementation details"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "OOP-PRACTICE-001",
+      "question": "In OOP, what is a class?",
+      "options": {
+        "A": "A specific object in memory",
+        "B": "A blueprint/template for creating objects",
+        "C": "A type of loop",
+        "D": "A database table only"
+      },
+      "correct_answer": "B",
+      "explanation": "A class defines the attributes and methods that its objects will have; it serves as a blueprint for creating instances (objects).",
+      "difficulty": "easy",
+      "sub_topic": "classes_and_objects",
+      "misconception_tags": [
+        "class_vs_object_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-PRACTICE-002",
+      "question": "What is an object in OOP?",
+      "options": {
+        "A": "A blueprint of a class",
+        "B": "An instance of a class",
+        "C": "A compiler directive",
+        "D": "A function outside any class"
+      },
+      "correct_answer": "B",
+      "explanation": "An object is a concrete instance created from a class, having its own state (attribute values) and access to behaviors (methods).",
+      "difficulty": "easy",
+      "sub_topic": "classes_and_objects",
+      "misconception_tags": [
+        "class_vs_object_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-PRACTICE-003",
+      "question": "Which OOP concept involves bundling data and methods together and controlling access to internal state?",
+      "options": {
+        "A": "Inheritance",
+        "B": "Encapsulation",
+        "C": "Compilation",
+        "D": "Iteration"
+      },
+      "correct_answer": "B",
+      "explanation": "Encapsulation combines data and methods within a unit (class/object) and restricts direct access to internal details through controlled interfaces.",
+      "difficulty": "easy",
+      "sub_topic": "encapsulation_abstraction",
+      "misconception_tags": [
+        "concept_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-PRACTICE-004",
+      "question": "Which concept allows a subclass to acquire properties and behaviors of a superclass?",
+      "options": {
+        "A": "Encapsulation",
+        "B": "Abstraction",
+        "C": "Inheritance",
+        "D": "Polymorphism only"
+      },
+      "correct_answer": "C",
+      "explanation": "Inheritance enables a subclass to derive/reuse attributes and methods from a superclass, supporting hierarchical relationships.",
+      "difficulty": "easy",
+      "sub_topic": "inheritance_polymorphism",
+      "misconception_tags": [
+        "concept_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-PRACTICE-005",
+      "question": "Polymorphism in OOP most closely means:",
+      "options": {
+        "A": "Storing data in files",
+        "B": "Having many forms/behaviors through a common interface or name",
+        "C": "Using only one class in a program",
+        "D": "Hiding all methods"
+      },
+      "correct_answer": "B",
+      "explanation": "Polymorphism allows the same operation or interface to behave differently in different contexts (e.g., different subclasses implementing the same method).",
+      "difficulty": "easy",
+      "sub_topic": "inheritance_polymorphism",
+      "misconception_tags": [
+        "concept_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "OOP-001",
+      "question": "Which statement best describes abstraction?",
+      "options": {
+        "A": "Exposing all internal implementation details",
+        "B": "Hiding complex details and showing only essential features",
+        "C": "Copying code between files",
+        "D": "Preventing object creation"
+      },
+      "correct_answer": "B",
+      "explanation": "Abstraction focuses on exposing essential characteristics and behaviors while hiding unnecessary implementation details.",
+      "difficulty": "easy",
+      "sub_topic": "encapsulation_abstraction",
+      "misconception_tags": [
+        "abstraction_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-002",
+      "question": "A 'Dog' object created from an 'Animal' class hierarchy is an example of a class being used to create a(n):",
+      "options": {
+        "A": "Method",
+        "B": "Instance",
+        "C": "Compiler",
+        "D": "Package only"
+      },
+      "correct_answer": "B",
+      "explanation": "Objects are instances of classes. A specific Dog created from a class definition is an instance/object.",
+      "difficulty": "easy",
+      "sub_topic": "classes_and_objects",
+      "misconception_tags": [
+        "class_vs_object_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-003",
+      "question": "Method overriding is most closely associated with which OOP concept?",
+      "options": {
+        "A": "Polymorphism (often with inheritance)",
+        "B": "File handling",
+        "C": "Database normalization",
+        "D": "Compilation only"
+      },
+      "correct_answer": "A",
+      "explanation": "Method overriding allows a subclass to provide a specific implementation of a method defined in a superclass, enabling polymorphic behavior.",
+      "difficulty": "medium",
+      "sub_topic": "inheritance_polymorphism",
+      "misconception_tags": [
+        "overriding_polymorphism_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-004",
+      "question": "Which pair correctly matches the concept with its idea?",
+      "options": {
+        "A": "Encapsulation - acquiring features from parent class",
+        "B": "Inheritance - bundling data and methods with access control",
+        "C": "Abstraction - hiding implementation details and exposing essentials",
+        "D": "Polymorphism - creating only one fixed behavior for all objects"
+      },
+      "correct_answer": "C",
+      "explanation": "Abstraction hides complex implementation details and exposes essential features. Encapsulation bundles and protects data/methods; inheritance derives from parent classes; polymorphism allows multiple behaviors.",
+      "difficulty": "medium",
+      "sub_topic": "encapsulation_abstraction",
+      "misconception_tags": [
+        "concept_mapping_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-005",
+      "question": "If a 'SavingsAccount' class extends a 'BankAccount' class to reuse common features, this is an example of:",
+      "options": {
+        "A": "Inheritance",
+        "B": "Abstraction only",
+        "C": "Encapsulation only",
+        "D": "Recursion"
+      },
+      "correct_answer": "A",
+      "explanation": "Extending a base/parent class to reuse and specialize its features is inheritance.",
+      "difficulty": "easy",
+      "sub_topic": "inheritance_polymorphism",
+      "misconception_tags": [
+        "inheritance_identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

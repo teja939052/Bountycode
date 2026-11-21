@@ -14,12 +14,12 @@ Intended modular split (follow-up refactor):
 - gamification_challenges.py: weekly/monthly challenge logic
 """
 from datetime import datetime, timezone, timedelta
-from app.database import users_collection, gamification_collection, get_client
+from app.database import users_collection, gamification_collection, gamification_events_collection, get_client
 from bson import ObjectId
 import math
 import logging
 from app.services.usage import can_use_feature, mark_feature_used
-from app.services.gamification_core import normalize_badge_ids
+from app.services.gamification_core import normalize_badge_ids, voyage_rank_for_level
 
 logger = logging.getLogger(__name__)
 
@@ -671,6 +671,34 @@ async def record_practice(
         await gamification_collection.update_one({"user_id": user_id}, {"$set": missing})
         profile.update(missing)
 
+    # ─── Weekly league reset (lazy, on activity) ───
+    # When the user's stored league week is stale, snapshot the old period
+    # and reset the counter. This keeps leagues honest without a cron job.
+    current_week = _league_week_id()
+    stored_week = profile.get("weekly_league_week")
+    if stored_week and stored_week != current_week:
+        await gamification_collection.update_one(
+            {"user_id": user_id},
+            {
+                "$set": {
+                    "weekly_league_last": {
+                        "week": stored_week,
+                        "diamonds": profile.get("weekly_league_xp", 0),
+                        "rank": None,
+                    },
+                    "weekly_league_week": current_week,
+                    "weekly_league_xp": 0,
+                }
+            },
+        )
+        profile["weekly_league_last"] = {
+            "week": stored_week,
+            "diamonds": profile.get("weekly_league_xp", 0),
+            "rank": None,
+        }
+        profile["weekly_league_week"] = current_week
+        profile["weekly_league_xp"] = 0
+
     # Capture the pre-activity streak for milestone-chest detection (the
     # profile object is re-read with the *new* streak after the writes below).
     old_streak = profile.get("streak", 0)
@@ -753,6 +781,7 @@ async def record_practice(
         },
         "$inc": {
             "xp": xp_gained,
+            "diamonds": xp_gained,
             "coins": coins_earned,
             "stars_total": stars,
             counter_field: 1,
@@ -812,6 +841,21 @@ async def record_practice(
                 {"$set": {"level": new_level}},
             )
         await _update_challenge_progress(user_id, activity_type, score, new_streak, new_level)
+
+    # Emit a gamification event for this award (Law #4).
+    try:
+        await gamification_events_collection.insert_one({
+            "user_id": user_id,
+            "activity_type": activity_type,
+            "score": round(score, 2),
+            "xp_awarded": xp_gained,
+            "coins_awarded": coins_earned,
+            "metadata": metadata or {},
+            "reward_policy_version": "2026.1",
+            "created_at": now.isoformat(),
+        })
+    except Exception:
+        pass  # Event emission is best-effort; never blocks the award
 
     # Check for new badges
     new_badges = await _check_badges(user_id, activity_type, score, new_streak)
@@ -1347,8 +1391,10 @@ async def get_gamification_profile(user_id: str) -> dict:
     # used to raise `TypeError: unhashable type: 'dict'` on the membership test.
     profile["badges"] = normalize_badge_ids(profile.get("badges", []))
 
-    level = _calculate_level(profile.get("xp", 0))
-    title, emoji = get_title_for_level(level)
+    xp_val = profile.get("xp", 0)
+    diamond_val = profile.get("diamonds", 0)
+    level = _calculate_level(max(xp_val, diamond_val))
+    title, emoji, _tier = voyage_rank_for_level(level)
     mult, bonus = calculate_streak_multiplier(profile.get("streak", 0))
 
     # Current boss info
@@ -1360,7 +1406,7 @@ async def get_gamification_profile(user_id: str) -> dict:
     profile["id"] = str(profile.pop("_id"))
     profile["badges_details"] = [BADGES[b] for b in profile["badges"] if b in BADGES]
     profile["level"] = level
-    profile["xp_to_next_level"] = xp_for_next_level(level) - profile.get("xp", 0)
+    profile["xp_to_next_level"] = xp_for_next_level(level) - profile.get("diamonds", 0)
     profile["xp_for_current_level"] = xp_for_level(level)
     profile["title"] = title
     profile["title_emoji"] = emoji
@@ -1905,16 +1951,22 @@ async def claim_challenge_reward(user_id: str, challenge_type: str, challenge_id
     return {"success": False, "message": "Challenge not completed or already claimed"}
 
 
-async def get_leaderboard(limit: int = 10) -> list:
+async def get_leaderboard(limit: int = 10, timeframe: str = "all") -> list:
     """Get the top users by XP."""
-    cursor = gamification_collection.find().sort("xp", -1).limit(limit)
+    cursor = gamification_collection.find().sort("diamonds", -1).limit(limit)
 
     leaderboard = []
     async for doc in cursor:
+        xp_val = doc.get("xp", 0)
+        diamond_val = doc.get("diamonds", 0)
+        level = _calculate_level(max(xp_val, diamond_val))
+        title, emoji, _tier = voyage_rank_for_level(level)
         leaderboard.append({
             "user_id": doc.get("user_id", ""),
-            "xp": doc.get("xp", 0),
-            "level": _calculate_level(doc.get("xp", 0)),
+            "xp": max(xp_val, diamond_val),
+            "level": level,
+            "title": title,
+            "title_emoji": emoji,
             "streak": doc.get("streak", 0),
             "badges_count": len(doc.get("badges", [])),
         })
@@ -1948,7 +2000,7 @@ async def get_nearby_leaderboard(user_id: str, radius: int = 5, limit: int = 10)
                 {
                     "user_id": doc.get("user_id", ""),
                     "xp": doc.get("xp", 0),
-                    "level": _calculate_level(doc.get("xp", 0)),
+            "level": _calculate_level(doc.get("diamonds", 0)),
                     "streak": doc.get("streak", 0),
                     "badges_count": len(doc.get("badges", [])),
                 }

@@ -37,6 +37,7 @@ except Exception:
 
 from app.services.readiness_report import generate_readiness_pdf
 from app.services.readiness_engine import compute_readiness
+from app.services.observability import record_event
 
 router = APIRouter(prefix="/api/v1/oa", tags=["oa"])
 settings = get_settings()
@@ -1649,6 +1650,16 @@ async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(def
     try:
         section_trust = _section_trust_ratios(sess.get("questions") or [])
         await _update_readiness(user["id"], sess.get("company"), overall, section_avg, section_trust=section_trust)
+    except Exception:
+        pass
+
+    # Record OA completion for funnel observability.
+    try:
+        await record_event(user["id"], "first_assessment_submitted", {
+            "company": sess.get("company"),
+            "overall_readiness": overall,
+            "questions_answered": len(per_question),
+        })
     except Exception:
         pass
 

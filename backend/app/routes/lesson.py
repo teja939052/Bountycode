@@ -17,6 +17,7 @@ from typing import List, Optional, Dict, Any
 from app.middleware.auth import get_current_user
 from app.services.lesson import LessonService
 from app.content.curriculum.registry import get_lesson_dict
+from app.services.observability import record_event
 
 router = APIRouter(
     prefix="/api/v1/lesson",
@@ -171,4 +172,13 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         role=user.get("role") or user.get("target_role") or "sde",
     )
     result["lesson_completed"] = req.score >= svc.get_lesson()["assessment"]["mastery_threshold"]
+    # Record lesson completion for funnel observability.
+    try:
+        await record_event(
+            user["id"],
+            "first_lesson_completed",
+            {"lesson_slug": slug, "score": req.score},
+        )
+    except Exception:
+        pass
     return result

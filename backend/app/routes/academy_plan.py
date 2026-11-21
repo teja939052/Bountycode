@@ -10,6 +10,7 @@ from app.services.learning_paths import get_all_company_tracks
 from app.services.adaptive_learning import assess_user_skills
 from app.services.spaced_repetition import deserialize_state, get_due_cards
 from app.services.service_company_sprint import DOMAIN_ENTRY_LESSON, daily_focus_plan
+from app.services.observability import record_event
 
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
 _profiles = lambda: get_collection("academy_learner_profiles")
@@ -351,4 +352,9 @@ async def get_personalized_plan(user=Depends(get_current_user)):
         {"$set": {"user_id": user["id"], "plan": plan, "updated_at": datetime.now(timezone.utc)}},
         upsert=True,
     )
+    # Record plan view for funnel observability.
+    try:
+        await record_event(user["id"], "first_plan_viewed", {"task_count": len(plan.get("curriculum", []))})
+    except Exception:
+        pass
     return {"success": True, "plan": plan}

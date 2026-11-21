@@ -156,6 +156,17 @@ CANONICAL_SKILL_DOMAINS: Dict[str, Dict[str, str]] = {
         "sql": "SQL",
         "complexity": "Complexity Analysis",
     },
+    # ── SDLC & Agile ──
+    "sdlc": {
+        "agile": "Agile",
+        "scrum": "Scrum",
+        "waterfall": "Waterfall",
+        "sdlc_phases": "SDLC Phases",
+        "requirements": "Requirements Engineering",
+        "testing": "Software Testing",
+        "deployment": "Deployment & CI/CD",
+        "maintenance": "Maintenance & Support",
+    },
 }
 
 

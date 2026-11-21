@@ -1,0 +1,317 @@
+{
+  "topic": "reading_comprehension",
+  "subject": "verbal",
+  "pattern": "reading_comprehension",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "main_idea_and_purpose",
+      "title": "Main Idea and Author's Purpose",
+      "concept": "The main idea is the central point the passage conveys. The author's purpose may be to inform, explain, persuade, or describe. Identify what the whole passage is mostly about rather than focusing on a single detail.",
+      "formula": "Ask: What is the passage mainly about? Why did the author write it? Choose the option that covers the overall message.",
+      "worked_example": "If a passage describes benefits of regular exercise and encourages people to stay active, the main idea is the importance/benefits of regular exercise, and the purpose is persuasive/informative encouragement.",
+      "mistakes": [
+        "Choosing an option that is too narrow (a detail) or too broad",
+        "Confusing the topic with the main idea (topic is what it's about; main idea is what is said about it)",
+        "Ignoring the overall tone and intent of the passage"
+      ]
+    },
+    {
+      "id": "inference_and_detail",
+      "title": "Inference and Detail Questions",
+      "concept": "Detail questions ask for information explicitly stated in the passage. Inference questions ask what can be reasonably concluded from the passage, even if not directly stated. Base answers only on passage evidence, not outside assumptions.",
+      "formula": "Detail: locate/support in text. Inference: stated facts -> logical conclusion supported by text.",
+      "worked_example": "If a passage states 'The library extended its hours after student requests increased,' an inference is that student demand influenced the change. A detail question would ask when/what changed as stated.",
+      "mistakes": [
+        "Bringing outside knowledge not supported by the passage",
+        "Choosing extreme inferences not justified by the text",
+        "Missing keywords while locating explicit details"
+      ]
+    },
+    {
+      "id": "vocabulary_in_context",
+      "title": "Vocabulary in Context",
+      "concept": "A word's meaning in a passage depends on context. Even familiar words can have specific meanings. Use surrounding sentences and the overall idea to infer the intended meaning rather than relying on the most common dictionary sense.",
+      "formula": "Substitute each option into the sentence; pick the one that preserves meaning and tone in context.",
+      "worked_example": "In 'The manager addressed the issue promptly,' 'addressed' means dealt with or handled, not gave a speech to. Context (issue promptly) signals problem-solving.",
+      "mistakes": [
+        "Choosing the most common meaning without checking context",
+        "Ignoring tone or logical fit of the word in the sentence",
+        "Not reading the sentence before and after for clues"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "RC-PRACTICE-001",
+      "question": "Passage: 'Regular reading improves vocabulary and comprehension skills. People who read often are exposed to new ideas and different writing styles, which can also enhance their communication abilities.'\nWhat is the main idea of the passage?",
+      "options": {
+        "A": "Reading is only useful for writers",
+        "B": "Regular reading offers several cognitive and communication benefits",
+        "C": "New ideas are found only in books",
+        "D": "Vocabulary cannot improve without classes"
+      },
+      "correct_answer": "B",
+      "explanation": "The passage highlights multiple benefits of regular reading (vocabulary, comprehension, exposure to ideas/styles, communication). Option B best captures the overall message.",
+      "difficulty": "easy",
+      "sub_topic": "main_idea_and_purpose",
+      "misconception_tags": [
+        "too_narrow_main_idea"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-PRACTICE-002",
+      "question": "Passage: 'The city introduced more bicycle lanes after surveys showed that many residents wanted safer commuting options. Within a year, the number of cyclists during peak hours increased.'\nWhat can be inferred from the passage?",
+      "options": {
+        "A": "No residents use cars anymore",
+        "B": "Safer infrastructure may have encouraged more people to cycle",
+        "C": "Cycling is the fastest mode of transport in all cities",
+        "D": "Surveys were conducted for ten years"
+      },
+      "correct_answer": "B",
+      "explanation": "The passage links added bicycle lanes (safer commuting options) with increased cyclists. It is reasonable to infer the infrastructure encouraged cycling; the other options are unsupported or extreme.",
+      "difficulty": "easy",
+      "sub_topic": "inference_and_detail",
+      "misconception_tags": [
+        "unsupported_inference"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-PRACTICE-003",
+      "question": "Passage: 'Although the task was complex, the team remained composed and completed it before the deadline.'\nIn this context, the word 'composed' most nearly means:",
+      "options": {
+        "A": "Written",
+        "B": "Calm",
+        "C": "Musical",
+        "D": "Confused"
+      },
+      "correct_answer": "B",
+      "explanation": "Despite complexity, the team completed the task before deadline, suggesting they stayed calm and in control. So 'composed' means calm here.",
+      "difficulty": "easy",
+      "sub_topic": "vocabulary_in_context",
+      "misconception_tags": [
+        "context_meaning_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-PRACTICE-004",
+      "question": "Passage: 'Drinking enough water helps regulate body temperature and supports digestion. It also helps transport nutrients throughout the body.'\nWhich of the following is explicitly stated in the passage?",
+      "options": {
+        "A": "Water is the only factor needed for good health",
+        "B": "Water helps transport nutrients throughout the body",
+        "C": "Everyone should drink exactly five liters daily",
+        "D": "Water replaces the need for food"
+      },
+      "correct_answer": "B",
+      "explanation": "The passage directly states that water 'helps transport nutrients throughout the body'. The other options are not stated or are exaggerated.",
+      "difficulty": "easy",
+      "sub_topic": "inference_and_detail",
+      "misconception_tags": [
+        "detail_vs_inference_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-PRACTICE-005",
+      "question": "Passage: 'The new training program was designed to help employees adapt to updated software. By providing hands-on practice, the company aimed to reduce errors and improve productivity.'\nWhat is the author's primary purpose?",
+      "options": {
+        "A": "To entertain readers with a story",
+        "B": "To explain the purpose and intended benefits of a training program",
+        "C": "To criticize employees for making errors",
+        "D": "To describe the history of software"
+      },
+      "correct_answer": "B",
+      "explanation": "The passage explains why the program was designed and what it aimed to achieve (reduce errors, improve productivity). This is explanatory/informative about the program's purpose.",
+      "difficulty": "easy",
+      "sub_topic": "main_idea_and_purpose",
+      "misconception_tags": [
+        "author_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "RC-001",
+      "question": "Passage: 'Public parks provide spaces for recreation and relaxation. They also support community well-being by offering areas where people of all ages can gather and stay active.'\nWhat is the main idea of the passage?",
+      "options": {
+        "A": "Public parks are useful only for children",
+        "B": "Public parks contribute to recreation and community well-being",
+        "C": "Public parks replace the need for exercise at home",
+        "D": "Only large cities have public parks"
+      },
+      "correct_answer": "B",
+      "explanation": "The passage states that parks provide recreation/relaxation and support community well-being. Option B summarizes these points accurately.",
+      "difficulty": "easy",
+      "sub_topic": "main_idea_and_purpose",
+      "misconception_tags": [
+        "too_narrow_main_idea"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-002",
+      "question": "Passage: 'After the store rearranged its shelves to make products easier to find, customers spent less time searching and reported a better shopping experience.'\nWhat can be inferred from the passage?",
+      "options": {
+        "A": "The store reduced all its prices",
+        "B": "Better organization improved customer convenience",
+        "C": "Customers stopped visiting other stores completely",
+        "D": "The store hired more staff than before"
+      },
+      "correct_answer": "B",
+      "explanation": "Easier-to-find products, less searching time, and better experience suggest improved convenience due to better organization. Other options are not supported.",
+      "difficulty": "easy",
+      "sub_topic": "inference_and_detail",
+      "misconception_tags": [
+        "unsupported_inference"
+      ],
+      "company_tags": [
+        "wipro",
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-003",
+      "question": "Passage: 'The teacher's clear explanation helped to illuminate the difficult concept for the students.'\nIn this context, the word 'illuminate' most nearly means:",
+      "options": {
+        "A": "Decorate with lights",
+        "B": "Confuse",
+        "C": "Clarify",
+        "D": "Ignore"
+      },
+      "correct_answer": "C",
+      "explanation": "A clear explanation making a difficult concept easier for students means it clarified the concept. So 'illuminate' means clarify in this context.",
+      "difficulty": "easy",
+      "sub_topic": "vocabulary_in_context",
+      "misconception_tags": [
+        "context_meaning_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-004",
+      "question": "Passage: 'Timely feedback allows learners to understand their mistakes and improve their performance. When feedback is delayed, the opportunity to correct errors effectively may be reduced.'\nWhich statement is best supported by the passage?",
+      "options": {
+        "A": "Feedback has no effect on learning",
+        "B": "Timely feedback can be more useful for improvement than delayed feedback",
+        "C": "Learners never make mistakes without feedback",
+        "D": "Delayed feedback always prevents learning"
+      },
+      "correct_answer": "B",
+      "explanation": "The passage contrasts timely feedback (helps understand and improve) with delayed feedback (reduced opportunity to correct). Option B is supported without being absolute/extreme.",
+      "difficulty": "medium",
+      "sub_topic": "inference_and_detail",
+      "misconception_tags": [
+        "extreme_option_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-005",
+      "question": "Passage: 'The community garden started as a small project but soon became a shared space where residents grew vegetables, exchanged tips, and built stronger relationships.'\nWhat is the author's primary purpose in this passage?",
+      "options": {
+        "A": "To explain how a small project grew into a beneficial shared space",
+        "B": "To argue that gardening is difficult",
+        "C": "To list types of vegetables",
+        "D": "To compare cities and villages"
+      },
+      "correct_answer": "A",
+      "explanation": "The passage describes the garden's growth from a small project into a shared space with social and practical benefits, explaining its positive development.",
+      "difficulty": "easy",
+      "sub_topic": "main_idea_and_purpose",
+      "misconception_tags": [
+        "author_purpose_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "topic": "sql_subqueries_basics",
+  "subject": "sql",
+  "pattern": "sql_subqueries_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "subquery_concept",
+      "title": "What Is a Subquery",
+      "concept": "A subquery is a query nested inside another SQL query. It can appear in SELECT, FROM, WHERE, or HAVING clauses depending on purpose. The inner query executes to provide a value, set of values, or result set used by the outer query.",
+      "formula": "Example form: SELECT ... FROM t WHERE col IN (SELECT col2 FROM t2 WHERE ...);",
+      "worked_example": "To find employees with salary above the average: SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees); the subquery computes the average used by the outer query.",
+      "mistakes": [
+        "Expecting a subquery that returns multiple rows where a single value is required",
+        "Forgetting parentheses around the subquery",
+        "Confusing subquery result usage with JOIN without considering context"
+      ]
+    },
+    {
+      "id": "subqueries_in_where",
+      "title": "Subqueries in WHERE Clause",
+      "concept": "Subqueries in WHERE are commonly used with operators like =, >, < (for single-value results) and IN, ANY/ALL, EXISTS (for multi-row or existence checks). Choose the operator based on whether the subquery returns one value, multiple values, or checks existence.",
+      "formula": "Single value: WHERE col = (subquery). Set membership: WHERE col IN (subquery). Existence: WHERE EXISTS (subquery).",
+      "worked_example": "SELECT id FROM orders WHERE customer_id IN (SELECT id FROM customers WHERE city = 'Delhi'); returns orders whose customer is in Delhi.",
+      "mistakes": [
+        "Using = when the subquery can return multiple rows (can cause errors)",
+        "Misunderstanding EXISTS (it checks for row existence, not returned values)",
+        "Not correlating subqueries correctly when referencing outer query columns"
+      ]
+    },
+    {
+      "id": "correlated_and_nested",
+      "title": "Correlated vs Non-Correlated Subqueries",
+      "concept": "A non-correlated subquery can run independently of the outer query. A correlated subquery references columns from the outer query and is evaluated in relation to each row (or iteration) processed by the outer query. Both are useful but have different execution behavior.",
+      "formula": "Non-correlated: inner query independent. Correlated: inner query uses outer table alias/column (e.g., WHERE e.dept_id = d.id).",
+      "worked_example": "Correlated example: SELECT e.name FROM employees e WHERE e.salary > (SELECT AVG(salary) FROM employees WHERE dept_id = e.dept_id); compares each employee to their department's average.",
+      "mistakes": [
+        "Assuming correlated subqueries run only once total",
+        "Missing table aliases leading to ambiguous column references",
+        "Using correlation when an independent aggregate would suffice"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLSUB-PRACTICE-001",
+      "question": "What is a subquery in SQL?",
+      "options": {
+        "A": "A query that creates a database",
+        "B": "A query nested inside another query",
+        "C": "A query that only deletes rows",
+        "D": "A backup of a query"
+      },
+      "correct_answer": "B",
+      "explanation": "A subquery is an SQL query placed inside another query (the outer query) to provide intermediate results.",
+      "difficulty": "easy",
+      "sub_topic": "subquery_concept",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-PRACTICE-002",
+      "question": "Which operator is commonly used when a subquery returns multiple values for comparison in WHERE?",
+      "options": {
+        "A": "IN",
+        "B": "=",
+        "C": "<>",
+        "D": "LIKE only"
+      },
+      "correct_answer": "A",
+      "explanation": "IN is used to test whether a value matches any value in a set returned by a subquery. '=' is typically for single-value comparisons.",
+      "difficulty": "easy",
+      "sub_topic": "subqueries_in_where",
+      "misconception_tags": [
+        "operator_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-PRACTICE-003",
+      "question": "A subquery that can be executed independently of the outer query is called:",
+      "options": {
+        "A": "Correlated subquery",
+        "B": "Non-correlated subquery",
+        "C": "Recursive query only",
+        "D": "Join query"
+      },
+      "correct_answer": "B",
+      "explanation": "A non-correlated subquery does not depend on the outer query's columns and can run on its own. A correlated subquery references outer query columns.",
+      "difficulty": "easy",
+      "sub_topic": "correlated_and_nested",
+      "misconception_tags": [
+        "correlated_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-PRACTICE-004",
+      "question": "Which clause can contain a subquery to check for existence of rows?",
+      "options": {
+        "A": "WHERE with EXISTS",
+        "B": "ORDER BY only",
+        "C": "LIMIT only",
+        "D": "None of these"
+      },
+      "correct_answer": "A",
+      "explanation": "EXISTS is used in a WHERE clause with a subquery to test whether the subquery returns any rows.",
+      "difficulty": "easy",
+      "sub_topic": "subqueries_in_where",
+      "misconception_tags": [
+        "exists_usage_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-PRACTICE-005",
+      "question": "What must enclose a subquery in SQL syntax?",
+      "options": {
+        "A": "Square brackets []",
+        "B": "Curly braces {}",
+        "C": "Parentheses ()",
+        "D": "Quotation marks \"\""
+      },
+      "correct_answer": "C",
+      "explanation": "Subqueries are written inside parentheses so the SQL engine can identify them as nested queries.",
+      "difficulty": "easy",
+      "sub_topic": "subquery_concept",
+      "misconception_tags": [
+        "syntax_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLSUB-001",
+      "question": "A correlated subquery is one that:",
+      "options": {
+        "A": "Runs only once and never references the outer query",
+        "B": "References column(s) from the outer query",
+        "C": "Must always return multiple columns",
+        "D": "Cannot be used in WHERE"
+      },
+      "correct_answer": "B",
+      "explanation": "A correlated subquery depends on the outer query because it references one or more columns from the outer query's tables.",
+      "difficulty": "easy",
+      "sub_topic": "correlated_and_nested",
+      "misconception_tags": [
+        "correlated_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-002",
+      "question": "Which query correctly uses a subquery to find products priced above the average price?",
+      "options": {
+        "A": "SELECT * FROM products WHERE price > AVG(price);",
+        "B": "SELECT * FROM products WHERE price > (SELECT AVG(price) FROM products);",
+        "C": "SELECT * FROM products HAVING price > (SELECT price FROM products);",
+        "D": "SELECT AVG(price) > price FROM products;"
+      },
+      "correct_answer": "B",
+      "explanation": "The average must be computed via a subquery returning a single value: (SELECT AVG(price) FROM products). The outer WHERE compares each product's price to that value.",
+      "difficulty": "medium",
+      "sub_topic": "subqueries_in_where",
+      "misconception_tags": [
+        "aggregate_in_where_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-003",
+      "question": "The EXISTS operator in a subquery condition evaluates to true when:",
+      "options": {
+        "A": "The subquery returns at least one row",
+        "B": "The subquery returns NULL only",
+        "C": "The subquery returns exactly one column value of 0",
+        "D": "The outer query has no rows"
+      },
+      "correct_answer": "A",
+      "explanation": "EXISTS returns true if the subquery result set contains one or more rows; otherwise it returns false.",
+      "difficulty": "easy",
+      "sub_topic": "subqueries_in_where",
+      "misconception_tags": [
+        "exists_usage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-004",
+      "question": "When a subquery is used with the '=' operator in WHERE, the subquery should typically return:",
+      "options": {
+        "A": "Multiple rows and multiple columns always",
+        "B": "A single value (one row, one column)",
+        "C": "No rows always",
+        "D": "Only table names"
+      },
+      "correct_answer": "B",
+      "explanation": "The '=' operator compares against a single scalar value, so the subquery must return exactly one value (one row, one column) in that context.",
+      "difficulty": "easy",
+      "sub_topic": "subqueries_in_where",
+      "misconception_tags": [
+        "scalar_subquery_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-005",
+      "question": "Which statement best differentiates correlated and non-correlated subqueries?",
+      "options": {
+        "A": "Correlated subqueries cannot use WHERE",
+        "B": "Non-correlated subqueries reference outer query columns, correlated do not",
+        "C": "Correlated subqueries reference outer query columns; non-correlated subqueries can run independently",
+        "D": "They are identical in execution and syntax always"
+      },
+      "correct_answer": "C",
+      "explanation": "A correlated subquery depends on values from the outer query (referencing its columns), whereas a non-correlated subquery is independent and can be executed on its own.",
+      "difficulty": "medium",
+      "sub_topic": "correlated_and_nested",
+      "misconception_tags": [
+        "correlated_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

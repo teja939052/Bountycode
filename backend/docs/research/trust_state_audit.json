@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-11-17T05:14:50.547842+00:00",
+  "by_trust": {
+    "verified": {
+      "total": 5138,
+      "executable": 3250,
+      "not_executable": 1888
+    },
+    "reviewed": {
+      "total": 1866,
+      "executable": 1858,
+      "not_executable": 8
+    },
+    "automated_checked": {
+      "total": 52121,
+      "executable": 32556,
+      "not_executable": 19565
+    },
+    "needs_review": {
+      "total": 5467,
+      "executable": 4170,
+      "not_executable": 1297
+    },
+    "unverified": {
+      "total": 85916,
+      "executable": 49986,
+      "not_executable": 35930
+    },
+    "placement_grade": {
+      "total": 3825,
+      "executable": 1532,
+      "not_executable": 2293
+    },
+    "main": {
+      "total": 5798,
+      "executable": 5438,
+      "not_executable": 360
+    },
+    "promoted": {
+      "total": 42,
+      "executable": 42,
+      "not_executable": 0
+    },
+    "auto_checked": {
+      "total": 7353,
+      "executable": 4465,
+      "not_executable": 2888
+    },
+    "pending": {
+      "total": 589,
+      "executable": 431,
+      "not_executable": 158
+    },
+    "pending_learning_object_review": {
+      "total": 158,
+      "executable": 0,
+      "not_executable": 158
+    },
+    "approved": {
+      "total": 61,
+      "executable": 61,
+      "not_executable": 0
+    },
+    "pending_review_duplicate": {
+      "total": 2157,
+      "executable": 2157,
+      "not_executable": 0
+    },
+    "quarantined": {
+      "total": 12298,
+      "executable": 10984,
+      "not_executable": 1314
+    }
+  }
+}

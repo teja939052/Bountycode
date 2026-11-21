@@ -78,8 +78,30 @@ def get_topic_content(topic: str) -> Optional[Dict[str, Any]]:
     subject = data.get("subject") or "general"
     pattern = data.get("pattern") or topic
     lessons = data.get("lessons") or []
-    # Practice questions from question_store (verified MCQs)
-    qs = list(find({"topic": topic, "trust_status": "human_reviewed", "question_type": "mcq"}).prefer_verified().to_list())
+    # Practice questions from question_store (verified/original MCQs)
+    qs = list(
+        find(
+            {
+                "topic": topic,
+                "trust_status": {"$in": ["human_reviewed", "TRUSTED", "trusted"]},
+                "question_type": "mcq",
+            }
+        )
+        .prefer_verified()
+        .to_list()
+    )
+    if not qs:
+        qs = list(
+            find(
+                {
+                    "topic": topic,
+                    "source": "bountycode_original",
+                    "question_type": "mcq",
+                }
+            )
+            .prefer_verified()
+            .to_list()
+        )
     practice = []
     for q in qs:
         practice.append({

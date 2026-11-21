@@ -1,0 +1,316 @@
+{
+  "topic": "one_word_substitution",
+  "subject": "verbal",
+  "pattern": "one_word_substitution",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "people_and_roles",
+      "title": "Substitutions for People and Roles",
+      "concept": "One-word substitution replaces a phrase describing a person, habit, or role with a single precise word. These questions test vocabulary and understanding of common descriptive phrases.",
+      "formula": "Approach: understand the key meaning of the phrase -> recall or identify the single word that best represents it.",
+      "worked_example": "Phrase: 'A person who does not believe in God' -> Atheist. Phrase: 'A person who loves mankind' -> Philanthropist (in broad usage; in common aptitude contexts, 'philanthropist' refers to one who helps others, but check options carefully). A clearer example: 'A person who is unable to read or write' -> Illiterate.",
+      "mistakes": [
+        "Choosing a word with related meaning but not exact substitution",
+        "Confusing similar terms (e.g., optimist/pessimist)",
+        "Ignoring the specific scope of the phrase"
+      ]
+    },
+    {
+      "id": "places_and_things",
+      "title": "Substitutions for Places and Things",
+      "concept": "Many substitutions describe places, objects, or conditions using a single noun or adjective. Focus on the defining characteristic in the phrase (where, what purpose, what quality).",
+      "formula": "Identify defining feature (location/purpose/quality) -> match to precise term.",
+      "worked_example": "Phrase: 'A place where books are kept' -> Library. Phrase: 'That which cannot be heard' -> Inaudible.",
+      "mistakes": [
+        "Picking a general term instead of the specific one",
+        "Confusing place-based terms (e.g., library/museum/archive) when phrase is specific",
+        "Selecting an adjective when a noun is required by meaning (or vice versa)"
+      ]
+    },
+    {
+      "id": "actions_and_qualities",
+      "title": "Substitutions for Actions and Qualities",
+      "concept": "Some phrases describe actions, time periods, or qualities that can be expressed in one word (e.g., something that happens every year -> annual). Pay attention to time/frequency, possibility, and manner implied in the phrase.",
+      "formula": "Check modifiers like 'cannot be', 'every', 'one who' -> map to precise word form (impossible/inevitable, annual, etc.).",
+      "worked_example": "Phrase: 'That which cannot be avoided' -> Inevitable. Phrase: 'A life story written by oneself' -> Autobiography.",
+      "mistakes": [
+        "Confusing 'cannot be avoided' (inevitable) with 'cannot be solved' (insolvable)",
+        "Mixing up biography (written by someone else) and autobiography (by oneself)",
+        "Overlooking negative/absolute words like 'cannot', 'never', 'all'"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "OWS-PRACTICE-001",
+      "question": "One word substitution for: 'A person who is unable to read or write'",
+      "options": {
+        "A": "Literate",
+        "B": "Illiterate",
+        "C": "Scholar",
+        "D": "Orator"
+      },
+      "correct_answer": "B",
+      "explanation": "A person who cannot read or write is called illiterate. 'Literate' means able to read and write.",
+      "difficulty": "easy",
+      "sub_topic": "people_and_roles",
+      "misconception_tags": [
+        "vocabulary_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-PRACTICE-002",
+      "question": "One word substitution for: 'A place where books are kept'",
+      "options": {
+        "A": "Museum",
+        "B": "Library",
+        "C": "Laboratory",
+        "D": "Theatre"
+      },
+      "correct_answer": "B",
+      "explanation": "A library is a place where books and other reading materials are kept for use or lending.",
+      "difficulty": "easy",
+      "sub_topic": "places_and_things",
+      "misconception_tags": [
+        "vocabulary_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-PRACTICE-003",
+      "question": "One word substitution for: 'That which cannot be avoided'",
+      "options": {
+        "A": "Impossible",
+        "B": "Inevitable",
+        "C": "Invisible",
+        "D": "Unbearable"
+      },
+      "correct_answer": "B",
+      "explanation": "Inevitable means certain to happen and cannot be avoided. 'Impossible' means cannot be done.",
+      "difficulty": "easy",
+      "sub_topic": "actions_and_qualities",
+      "misconception_tags": [
+        "inevitable_vs_impossible_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-PRACTICE-004",
+      "question": "One word substitution for: 'A life story written by oneself'",
+      "options": {
+        "A": "Biography",
+        "B": "Autobiography",
+        "C": "Novel",
+        "D": "Essay"
+      },
+      "correct_answer": "B",
+      "explanation": "An autobiography is an account of a person's life written by that person. A biography is written by someone else.",
+      "difficulty": "easy",
+      "sub_topic": "actions_and_qualities",
+      "misconception_tags": [
+        "bio_auto_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-PRACTICE-005",
+      "question": "One word substitution for: 'A person who looks on the bright side of things'",
+      "options": {
+        "A": "Pessimist",
+        "B": "Optimist",
+        "C": "Realist",
+        "D": "Critic"
+      },
+      "correct_answer": "B",
+      "explanation": "An optimist is someone who tends to be hopeful and confident, focusing on the positive or bright side of situations.",
+      "difficulty": "easy",
+      "sub_topic": "people_and_roles",
+      "misconception_tags": [
+        "optimist_pessimist_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "OWS-001",
+      "question": "One word substitution for: 'That which cannot be heard'",
+      "options": {
+        "A": "Invisible",
+        "B": "Inaudible",
+        "C": "Illegible",
+        "D": "Inaccessible"
+      },
+      "correct_answer": "B",
+      "explanation": "Inaudible means unable to be heard. Invisible means cannot be seen, and illegible means cannot be read.",
+      "difficulty": "easy",
+      "sub_topic": "places_and_things",
+      "misconception_tags": [
+        "prefix_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-002",
+      "question": "One word substitution for: 'A person who speaks two languages fluently'",
+      "options": {
+        "A": "Bilingual",
+        "B": "Linguist",
+        "C": "Orator",
+        "D": "Translator"
+      },
+      "correct_answer": "A",
+      "explanation": "Bilingual describes a person able to speak two languages fluently. A linguist studies languages; a translator converts text/speech between languages.",
+      "difficulty": "easy",
+      "sub_topic": "people_and_roles",
+      "misconception_tags": [
+        "vocabulary_meaning_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-003",
+      "question": "One word substitution for: 'A year that happens every four years (with an extra day in February)'",
+      "options": {
+        "A": "Annual year",
+        "B": "Leap year",
+        "C": "Decade",
+        "D": "Century"
+      },
+      "correct_answer": "B",
+      "explanation": "A leap year occurs every four years (with exceptions in century rules) and includes February 29 as an extra day.",
+      "difficulty": "easy",
+      "sub_topic": "actions_and_qualities",
+      "misconception_tags": [
+        "time_term_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-004",
+      "question": "One word substitution for: 'A person who draws maps'",
+      "options": {
+        "A": "Cartographer",
+        "B": "Calligrapher",
+        "C": "Geologist",
+        "D": "Architect"
+      },
+      "correct_answer": "A",
+      "explanation": "A cartographer is a person who draws or produces maps. A calligrapher specializes in decorative handwriting.",
+      "difficulty": "medium",
+      "sub_topic": "people_and_roles",
+      "misconception_tags": [
+        "vocabulary_meaning_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-005",
+      "question": "One word substitution for: 'That which cannot be corrected'",
+      "options": {
+        "A": "Incorrigible",
+        "B": "Invisible",
+        "C": "Incredible",
+        "D": "Incurable"
+      },
+      "correct_answer": "A",
+      "explanation": "Incorrigible describes something (often behavior) that cannot be corrected or reformed. Incurable means cannot be cured (of disease).",
+      "difficulty": "medium",
+      "sub_topic": "actions_and_qualities",
+      "misconception_tags": [
+        "vocabulary_nuance_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

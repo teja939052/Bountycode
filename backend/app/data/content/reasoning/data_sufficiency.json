@@ -1,0 +1,325 @@
+{
+  "topic": "data_sufficiency",
+  "subject": "reasoning",
+  "pattern": "data_sufficiency",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "DSR-L1",
+      "title": "Data Sufficiency Basics",
+      "concept": "Data sufficiency questions ask whether the given statements provide enough information to answer a question, not necessarily to compute the final answer. You evaluate each statement alone and then together, choosing the option that correctly describes sufficiency.",
+      "formula": "Typical options: (1) Statement I alone sufficient, II alone not; (2) II alone sufficient, I alone not; (3) Both together sufficient but neither alone; (4) Each alone sufficient; (5) Even together not sufficient (formats vary).",
+      "worked_example": "Question: What is x? I: x+2=5. II: x is even. Statement I alone gives x=3 (sufficient). Statement II alone is not sufficient. So answer is I alone sufficient.",
+      "mistakes": [
+        "Solving fully instead of checking sufficiency",
+        "Assuming a statement is insufficient because it looks short",
+        "Not testing statements independently before combining"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "DSR-L2",
+      "title": "Evaluating Statements Independently and Together",
+      "concept": "First test Statement I alone using only that information plus the question. Then test Statement II alone. Only if neither is sufficient alone, test I and II together. Do not carry information from one statement into the other during individual evaluation.",
+      "formula": "Process: Test I alone -> sufficient/not. Test II alone -> sufficient/not. If needed, test (I+II) together -> sufficient/not.",
+      "worked_example": "Question: Is n > 10? I: n > 8. II: n < 12. Alone neither sufficient (n could be 9 or 11). Together still not sufficient (n could be 9 or 11). So even together not sufficient.",
+      "mistakes": [
+        "Leaking information from statement II while evaluating I alone",
+        "Concluding together sufficient without checking all possibilities",
+        "Ignoring that multiple values can satisfy a statement"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "DSR-L3",
+      "title": "Common Traps in Data Sufficiency",
+      "concept": "Traps include assuming integers unless stated, assuming positive numbers, assuming distinct values, or using real-world assumptions not given. Also, for yes/no questions, a statement is sufficient if it gives a definite yes or a definite no.",
+      "formula": "Sufficient for yes/no: answer is always Yes or always No. Not sufficient: sometimes Yes, sometimes No.",
+      "worked_example": "Question: Is x positive? I: x^2 = 9. x could be 3 or -3, so I alone is not sufficient because answer can be Yes or No.",
+      "mistakes": [
+        "Assuming variables are positive or integers by default",
+        "Treating a definite 'No' as insufficient (it is sufficient for yes/no)",
+        "Using unstated constraints from common sense"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "DSR-PRACTICE-001",
+      "question": "Data sufficiency questions primarily ask you to determine:",
+      "options": {
+        "A": "The exact numeric value only",
+        "B": "Whether given information is sufficient to answer the question",
+        "C": "The fastest calculation method",
+        "D": "The source of data"
+      },
+      "correct_answer": "B",
+      "explanation": "The goal is to judge sufficiency of statements (alone or together), not necessarily to compute the final answer in full.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-PRACTICE-002",
+      "question": "Question: What is the value of x? Statement I: x = 7. Statement II: x > 0. Which is sufficient?",
+      "options": {
+        "A": "Statement I alone",
+        "B": "Statement II alone",
+        "C": "Both together but neither alone",
+        "D": "Even together not sufficient"
+      },
+      "correct_answer": "A",
+      "explanation": "Statement I directly gives x=7 (sufficient). Statement II allows many values, so it is not sufficient alone.",
+      "difficulty": "easy",
+      "sub_topic": "independent_eval",
+      "misconception_tags": [
+        "sufficiency_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-PRACTICE-003",
+      "question": "For a yes/no data sufficiency question, a statement is sufficient if it leads to:",
+      "options": {
+        "A": "Always Yes or always No",
+        "B": "Sometimes Yes and sometimes No",
+        "C": "Only a numeric value",
+        "D": "No conclusion possible"
+      },
+      "correct_answer": "A",
+      "explanation": "A definite Yes or a definite No is sufficient because the question is answered unambiguously.",
+      "difficulty": "easy",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "yes_no_sufficiency_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-PRACTICE-004",
+      "question": "Question: Is n > 5? Statement I: n > 3. Statement II: n < 10. Together are they sufficient?",
+      "options": {
+        "A": "Yes, together sufficient",
+        "B": "No, even together not sufficient",
+        "C": "Statement I alone sufficient",
+        "D": "Statement II alone sufficient"
+      },
+      "correct_answer": "B",
+      "explanation": "Together n can be 4 (No) or 6 (Yes), so the answer is not determined. Even together not sufficient.",
+      "difficulty": "medium",
+      "sub_topic": "independent_eval",
+      "misconception_tags": [
+        "combined_eval_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-PRACTICE-005",
+      "question": "When evaluating Statement I alone, you should:",
+      "options": {
+        "A": "Use information from Statement II",
+        "B": "Use only Statement I and the question",
+        "C": "Assume all variables are positive integers",
+        "D": "Skip it if Statement II looks stronger"
+      },
+      "correct_answer": "B",
+      "explanation": "Each statement must be evaluated independently first, without importing information from the other statement.",
+      "difficulty": "easy",
+      "sub_topic": "independent_eval",
+      "misconception_tags": [
+        "information_leak_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "DSR-001",
+      "question": "Question: What is the value of y? I: y - 3 = 4. II: y^2 = 49. Which is correct?",
+      "options": {
+        "A": "I alone sufficient, II alone not",
+        "B": "II alone sufficient, I alone not",
+        "C": "Both together sufficient, neither alone",
+        "D": "Each alone sufficient"
+      },
+      "correct_answer": "A",
+      "explanation": "I gives y=7 (sufficient). II gives y=7 or y=-7 (not sufficient). So I alone sufficient.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "sufficiency_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-002",
+      "question": "Question: Is x positive? I: x^2 = 16. Sufficiency of I alone?",
+      "options": {
+        "A": "Sufficient (answer is Yes)",
+        "B": "Sufficient (answer is No)",
+        "C": "Not sufficient",
+        "D": "Cannot evaluate"
+      },
+      "correct_answer": "C",
+      "explanation": "From x^2=16, x can be 4 or -4, so the answer could be Yes or No. Statement I alone is not sufficient.",
+      "difficulty": "easy",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "sign_assumption_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-003",
+      "question": "Question: What is the area of rectangle R? I: Length is 10. II: Width is 4. Which is correct?",
+      "options": {
+        "A": "I alone sufficient",
+        "B": "II alone sufficient",
+        "C": "Both together sufficient, neither alone",
+        "D": "Even together not sufficient"
+      },
+      "correct_answer": "C",
+      "explanation": "Area requires both length and width. Neither alone gives both dimensions, but together area = 10*4 = 40.",
+      "difficulty": "easy",
+      "sub_topic": "independent_eval",
+      "misconception_tags": [
+        "combined_eval_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-004",
+      "question": "A statement that gives a definite 'No' to a yes/no question is:",
+      "options": {
+        "A": "Not sufficient",
+        "B": "Sufficient",
+        "C": "Contradictory",
+        "D": "Invalid"
+      },
+      "correct_answer": "B",
+      "explanation": "Definite No answers the question conclusively, so the statement is sufficient for a yes/no data sufficiency question.",
+      "difficulty": "easy",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "yes_no_sufficiency_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSR-005",
+      "question": "Question: What is x? I: x > 2. II: x < 4. If x is an integer, what is correct?",
+      "options": {
+        "A": "I alone sufficient",
+        "B": "II alone sufficient",
+        "C": "Both together sufficient, neither alone",
+        "D": "Even together not sufficient"
+      },
+      "correct_answer": "C",
+      "explanation": "Alone each allows multiple integer values. Together with integer condition, x must be 3, so both together are sufficient.",
+      "difficulty": "medium",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "assumption_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

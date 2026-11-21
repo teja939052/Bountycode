@@ -18,7 +18,6 @@ Each mode tracks:
   - Weak areas for recommendation
 """
 import json
-import os
 import random
 import time
 from datetime import datetime, timezone
@@ -29,14 +28,6 @@ from collections import defaultdict
 # =============================================================
 # QUESTION LOADING & INDEXING
 # =============================================================
-
-QUESTION_FILES = [
-    "app/content/questions/curated/curated.json",
-    "app/content/questions/curated/learning_objects.json",
-    "app/content/questions/curated/placement_questions.json",
-    "app/data/sql_practice_bank.json",
-    "app/data/interview_practice_bank.json",
-]
 
 _questions_cache = None
 _questions_by_id = None
@@ -73,34 +64,19 @@ def _normalize_company_tag(value: Any) -> str:
 
 
 def _load_questions() -> List[Dict[str, Any]]:
-    """Load all questions from JSON files into memory."""
+    """Load only student-servable questions from the canonical question store.
+
+    The question store owns residency, deduplication, trust and executability.
+    Quiz composition must never independently scan JSON banks or bypass that
+    governance gate.
+    """
     global _questions_cache, _questions_by_id, _questions_by_topic, _questions_by_difficulty, _questions_by_company
     if _questions_cache is not None:
         return _questions_cache
 
-    all_questions = []
-    for f in QUESTION_FILES:
-        if not os.path.exists(f):
-            continue
-        try:
-            with open(f, encoding="utf-8") as fp:
-                data = json.load(fp)
-            if isinstance(data, list):
-                all_questions.extend(data)
-            elif isinstance(data, dict) and "questions" in data:
-                all_questions.extend(data["questions"])
-        except Exception as e:
-            print(f"Error loading {f}: {e}")
+    from app.services import question_store
 
-    # Deduplicate by ID
-    seen = set()
-    unique = []
-    for q in all_questions:
-        qid = q.get("id", "")
-        if qid and qid not in seen:
-            seen.add(qid)
-            unique.append(q)
-
+    unique = question_store.find().prefer_verified().to_list()
     _questions_cache = unique
     _questions_by_id = {q["id"]: q for q in unique if q.get("id")}
     _questions_by_topic = defaultdict(list)
@@ -117,6 +93,11 @@ def _load_questions() -> List[Dict[str, Any]]:
             _questions_by_company[_normalize_company_tag(company)].append(q)
 
     return unique
+
+
+def _servable_questions() -> List[Dict[str, Any]]:
+    """Compatibility seam backed exclusively by the canonical question store."""
+    return _load_questions()
 
 
 def get_question_by_id(qid: str) -> Optional[Dict[str, Any]]:
@@ -209,7 +190,10 @@ def build_quiz(
     target_skills: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     """Build a quiz session based on mode and filters."""
-    questions = _load_questions()
+    questions = _servable_questions()
+    # Seeded attempts remain varied across seeds but reproducible on retry.
+    # A local RNG avoids mutating process-global random state.
+    rng = random.Random(selection_seed) if selection_seed else random
 
     # Filter
     filtered = questions
@@ -299,25 +283,25 @@ def build_quiz(
         for q in filtered:
             by_diff[q.get("difficulty", "medium")].append(q)
         selected = (
-            random.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
-            + random.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
-            + random.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
+            rng.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
+            + rng.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
+            + rng.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
         )
         if randomize:
-            random.shuffle(selected)
+            rng.shuffle(selected)
         time_limit = time_limit_seconds or 90 * 60  # 90 min default
     elif mode == "boss_battle":
         # Hard questions only
         hard_qs = [q for q in filtered if q.get("difficulty") == "hard"]
         if not hard_qs:
             hard_qs = [q for q in filtered if q.get("difficulty") == "medium"]
-        selected = random.sample(hard_qs, min(num_questions, len(hard_qs)))
+        selected = rng.sample(hard_qs, min(num_questions, len(hard_qs)))
         time_limit = time_limit_seconds or 30 * 60
     elif mode == "speed_run":
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds or 10 * 60
     else:  # practice or quiz
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds
 
     # Build quiz session

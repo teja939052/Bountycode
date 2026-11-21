@@ -1,0 +1,325 @@
+{
+  "topic": "sliding_window_basics",
+  "subject": "dsa",
+  "pattern": "sliding_window_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "SW-L1",
+      "title": "Sliding Window Concept",
+      "concept": "The sliding window technique maintains a contiguous range (window) over an array or string and moves it to satisfy a condition or compute an aggregate efficiently. Instead of recomputing from scratch for every window, it updates incrementally as the window expands or shrinks.",
+      "formula": "Maintain window [left, right]. Expand right to include elements; shrink left when window violates condition or to optimize. Update answer during valid states.",
+      "worked_example": "Max sum of subarray of size 3 in [2,1,5,1,3,2]: first window sum 8 (2,1,5), slide -> 7 (1,5,1), -> 9 (5,1,3), -> 6 (1,3,2). Max is 9.",
+      "mistakes": [
+        "Recomputing window sum/state fully on every move instead of incremental update",
+        "Using sliding window on problems requiring non-contiguous elements",
+        "Off-by-one errors in window size or boundaries"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SW-L2",
+      "title": "Fixed-Size Window",
+      "concept": "In a fixed-size window, the window length k stays constant. You compute the initial window result, then slide by removing the outgoing element and adding the incoming element to get the next window result in O(1) per step.",
+      "formula": "window_sum = sum(arr[0..k-1]); for i>=k: window_sum += arr[i] - arr[i-k]; track max/min/condition.",
+      "worked_example": "Average-like rolling sum for k=2 in [4,2,6]: windows [4,2]=6, [2,6]=8. Update by subtracting left element and adding right element.",
+      "mistakes": [
+        "Forgetting to remove the element leaving the window",
+        "Starting sliding updates before the first full window is formed",
+        "Incorrect index for outgoing element (i-k errors)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SW-L3",
+      "title": "Variable-Size Window",
+      "concept": "In a variable-size (dynamic) window, the window grows and shrinks to meet constraints, such as longest/shortest subarray with a property. Typically expand with right pointer and shrink with left pointer while condition is violated or to find optimal size.",
+      "formula": "left=0; for right in range(n): add arr[right] to state; while state invalid: remove arr[left]; left++; update answer using current window [left,right].",
+      "worked_example": "Longest subarray with sum <= 5 for [1,2,1,1]: expand to [1,2,1] sum 4 ok, add next 1 sum 5 ok (len 4), if next made invalid shrink from left.",
+      "mistakes": [
+        "Shrinking with if instead of while when multiple removals may be needed",
+        "Updating answer at the wrong time (before window becomes valid)",
+        "Not maintaining auxiliary state (counts/sum) correctly on expand/shrink"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SW-PRACTICE-001",
+      "question": "Sliding window is most suitable for problems involving:",
+      "options": {
+        "A": "Contiguous subarrays/substrings",
+        "B": "Random non-adjacent element subsets only",
+        "C": "Tree traversals only",
+        "D": "Disk scheduling"
+      },
+      "correct_answer": "A",
+      "explanation": "The sliding window technique operates on contiguous ranges (windows) in sequences like arrays or strings.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "applicability_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-PRACTICE-002",
+      "question": "In a fixed-size window of size k, when sliding one step to the right you should:",
+      "options": {
+        "A": "Recompute sum of all k elements from scratch",
+        "B": "Add incoming element and subtract outgoing element",
+        "C": "Sort the window",
+        "D": "Reset the window to empty"
+      },
+      "correct_answer": "B",
+      "explanation": "Incremental update (add new, remove old) gives the new window aggregate efficiently without recomputing the entire window.",
+      "difficulty": "easy",
+      "sub_topic": "fixed_size",
+      "misconception_tags": [
+        "update_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-PRACTICE-003",
+      "question": "For array [1,3,2,6] and k=2, the sums of fixed windows are:",
+      "options": {
+        "A": "4,5,8",
+        "B": "3,5,8",
+        "C": "4,6,8",
+        "D": "1,3,2"
+      },
+      "correct_answer": "A",
+      "explanation": "Windows of size 2: [1,3]=4, [3,2]=5, [2,6]=8.",
+      "difficulty": "easy",
+      "sub_topic": "fixed_size",
+      "misconception_tags": [
+        "window_compute_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-PRACTICE-004",
+      "question": "In a variable-size window, the left pointer is typically moved to:",
+      "options": {
+        "A": "Expand the window always",
+        "B": "Shrink the window when constraints are violated or to optimize",
+        "C": "Random positions",
+        "D": "The end of array"
+      },
+      "correct_answer": "B",
+      "explanation": "Expanding is usually done with the right pointer; the left pointer shrinks the window to restore validity or reduce size as needed.",
+      "difficulty": "easy",
+      "sub_topic": "variable_size",
+      "misconception_tags": [
+        "pointer_role_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-PRACTICE-005",
+      "question": "Why might a while loop be used when shrinking a variable-size window?",
+      "options": {
+        "A": "Because only one element can ever violate constraints",
+        "B": "Because multiple elements may need removal to restore validity",
+        "C": "Because for-loops cannot move pointers",
+        "D": "Because windows must always be empty"
+      },
+      "correct_answer": "B",
+      "explanation": "After adding a new element, the window may remain invalid until several left elements are removed, requiring repeated shrinking.",
+      "difficulty": "medium",
+      "sub_topic": "variable_size",
+      "misconception_tags": [
+        "shrink_logic_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SW-001",
+      "question": "What is the main advantage of sliding window over recomputing each contiguous window from scratch?",
+      "options": {
+        "A": "It uses more memory",
+        "B": "It reuses previous computation with incremental updates",
+        "C": "It works on non-contiguous elements",
+        "D": "It removes the need for loops"
+      },
+      "correct_answer": "B",
+      "explanation": "Sliding window updates the window state by adding/removing boundary elements, avoiding repeated full recomputation and improving efficiency.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-002",
+      "question": "For a fixed window of size 3 in [5,2,1,4], what is the maximum window sum?",
+      "options": {
+        "A": "7",
+        "B": "8",
+        "C": "9",
+        "D": "12"
+      },
+      "correct_answer": "B",
+      "explanation": "Windows: [5,2,1]=8 and [2,1,4]=7. The maximum is 8.",
+      "difficulty": "easy",
+      "sub_topic": "fixed_size",
+      "misconception_tags": [
+        "window_compute_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-003",
+      "question": "Which pointer movement pattern is typical in variable-size sliding window?",
+      "options": {
+        "A": "Right expands, left shrinks as needed",
+        "B": "Left expands, right shrinks as needed",
+        "C": "Both move only backward",
+        "D": "Pointers never move"
+      },
+      "correct_answer": "A",
+      "explanation": "A common pattern is to grow the window by advancing right and contract by advancing left when constraints require shrinking.",
+      "difficulty": "easy",
+      "sub_topic": "variable_size",
+      "misconception_tags": [
+        "pointer_role_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-004",
+      "question": "Sliding window techniques generally apply to:",
+      "options": {
+        "A": "Contiguous sequences",
+        "B": "Arbitrary graph edges",
+        "C": "Unordered hash set membership only",
+        "D": "Only sorted arrays"
+      },
+      "correct_answer": "A",
+      "explanation": "Windows represent contiguous segments of a sequence (array/string). They do not inherently apply to non-contiguous selections or graph structures.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "applicability_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SW-005",
+      "question": "If a fixed window slides from indices [i-k, i-1] to [i-k+1, i], the element removed from the window state is:",
+      "options": {
+        "A": "arr[i]",
+        "B": "arr[i-k]",
+        "C": "arr[i-k+1]",
+        "D": "arr[0] always"
+      },
+      "correct_answer": "B",
+      "explanation": "When the window advances by one, the leftmost element of the previous window (index i-k) leaves and the new element arr[i] enters.",
+      "difficulty": "medium",
+      "sub_topic": "fixed_size",
+      "misconception_tags": [
+        "index_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

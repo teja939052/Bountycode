@@ -9,6 +9,8 @@ from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, asdict
 from enum import Enum
 import json
+from app.database import get_db
+from bson import ObjectId
 
 
 class ReviewGrade(Enum):
@@ -428,3 +430,80 @@ if __name__ == "__main__":
     # Stats
     stats = engine.get_stats([state])
     print(f"Stats: {stats}")
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# MongoDB persistence layer (canonical SRS storage)
+# ══════════════════════════════════════════════════════════════════════════
+
+SRS_COLLECTION = "srs_cards"
+
+
+async def _srs_collection():
+    db = get_db()
+    return db[SRS_COLLECTION]
+
+
+async def create_card(user_id: str, lesson_id: str, card_data: dict = None) -> dict:
+    """Create an SRS card for a lesson (MongoDB persistence).
+
+    Compatibility wrapper for code migrating from srs_engine.py.
+    Stores concept_id from card_data if present, otherwise uses lesson_id.
+    """
+    col = await _srs_collection()
+    concept_id = (card_data or {}).get("concept_id", lesson_id)
+    topic = (card_data or {}).get("topic", "")
+    difficulty = (card_data or {}).get("difficulty", "")
+    metadata = (card_data or {}).get("metadata", {})
+
+    state = SpacedRepetitionEngine().create_new_card(concept_id, user_id)
+    doc = {
+        "user_id": user_id,
+        "lesson_id": lesson_id,
+        "concept_id": concept_id,
+        "topic": topic,
+        "difficulty": difficulty,
+        "metadata": metadata,
+        "interval": state.interval,
+        "repetition": state.repetitions,
+        "ease_factor": state.ease_factor,
+        "next_review": state.next_review,
+        "last_reviewed": state.last_reviewed,
+        "created_at": state.created_at,
+        "updated_at": state.updated_at,
+        "data": card_data or {},
+    }
+    result = await col.insert_one(doc)
+    doc["_id"] = result.inserted_id
+    return doc
+
+
+async def get_due_cards_from_db(user_id: str, limit: int = 10) -> list:
+    """Get cards due for review from MongoDB."""
+    col = await _srs_collection()
+    now = datetime.now(timezone.utc)
+    cursor = col.find(
+        {"user_id": user_id, "next_review": {"$lte": now}}
+    ).limit(limit)
+    cards = []
+    async for card in cursor:
+        cards.append(card)
+    return cards
+
+
+async def get_card(user_id: str, lesson_id: str) -> dict | None:
+    """Get a specific SRS card from MongoDB."""
+    col = await _srs_collection()
+    return await col.find_one({"user_id": user_id, "lesson_id": lesson_id})
+
+
+async def update_card(card_id: str, update_data: dict) -> dict | None:
+    """Update an SRS card in MongoDB."""
+    col = await _srs_collection()
+    result = await col.update_one(
+        {"_id": ObjectId(card_id)},
+        {"$set": update_data},
+    )
+    if result.modified_count > 0:
+        return await col.find_one({"_id": ObjectId(card_id)})
+    return None
