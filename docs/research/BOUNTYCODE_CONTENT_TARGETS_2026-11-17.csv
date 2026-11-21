@@ -1,0 +1,11 @@
+domain,target_unique_items,breakdown,acceptance_rule,priority
+DSA coding,460,23 skills x 20 (5 easy 10 medium 5 hard),Unique problem statement plus independent solution oracle and hidden edge tests,P1
+Programming foundations,200,25 concepts x 8,Executable code tracing or concept assessment with explanations,P1
+Quantitative aptitude,300,15 subtopics x 20,Verified answer and step-by-step method with difficulty label,P1
+Logical reasoning,180,12 subtopics x 15,Unique reasoning path and unambiguous answer,P1
+Verbal ability,150,10 subtopics x 15,Source-safe passage or original item plus answer rationale,P1
+CS fundamentals,300,5 subjects x 60 (OS DBMS Networks OOP Architecture),Verified answer plus explanation and misconception review,P1
+SQL,120,6 areas x 20,Schema and seed fixture plus executable expected result,P1
+Debugging,80,8 bug classes x 10,Buggy code plus fixed behavior and regression tests,P1
+System design,60,6 dimensions x 10,Evaluation rubric with trade-off criteria,P1
+Behavioral/interview,60,6 competency groups x 10,Behavioral rubric; no single fabricated model answer,P1

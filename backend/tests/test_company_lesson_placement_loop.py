@@ -253,6 +253,15 @@ class _FakeLearningProgressCollection:
 def fake_learning_progress(monkeypatch):
     collection = _FakeLearningProgressCollection()
     monkeypatch.setattr(company_lessons, "learning_progress_collection", collection)
+
+    # Lesson-route tests isolate the HTTP flow. A focused test below verifies
+    # that final-assessment evidence is handed to the canonical Study Engine.
+    from app.services import study_engine
+
+    async def no_op_study_activity(*_args, **_kwargs):
+        return {"recorded": True, "xp_awarded": 0}
+
+    monkeypatch.setattr(study_engine, "record_activity", no_op_study_activity)
     return collection
 
 
@@ -719,3 +728,131 @@ def test_programming_foundation_lessons_map_to_company_topics_and_skill_evidence
     assert "operators" in company_lessons.LESSON_MODULE_TOPICS["operators_basics"]
     assert "conditional_logic" in company_lessons.LESSON_MODULE_TOPICS["conditions_basics"]
     assert "functions" in company_lessons.LESSON_MODULE_TOPICS["functions_basics"]
+
+
+class _AtomicCompletionClaimCollection:
+    """Minimal Mongo-like fake for the standalone lesson reward claim."""
+
+    def __init__(self):
+        self.document = None
+
+    async def find_one(self, query):
+        if self.document and self.document.get("user_id") == query.get("user_id"):
+            return self.document
+        return None
+
+    @staticmethod
+    def _get_path(document, dotted_path):
+        value = document
+        for part in dotted_path.split("."):
+            if not isinstance(value, dict) or part not in value:
+                return None
+            value = value[part]
+        return value
+
+    @staticmethod
+    def _set_path(document, dotted_path, value):
+        cursor = document
+        parts = dotted_path.split(".")
+        for part in parts[:-1]:
+            cursor = cursor.setdefault(part, {})
+        cursor[parts[-1]] = value
+
+    async def update_one(self, query, update, upsert=False):
+        if self.document is None:
+            if not upsert:
+                return type("UpdateResult", (), {"matched_count": 0, "modified_count": 0})()
+            self.document = {"user_id": query["user_id"]}
+
+        for key, condition in query.items():
+            if key == "user_id":
+                continue
+            if isinstance(condition, dict) and "$ne" in condition:
+                if self._get_path(self.document, key) == condition["$ne"]:
+                    return type("UpdateResult", (), {"matched_count": 0, "modified_count": 0})()
+
+        for key, value in update.get("$setOnInsert", {}).items():
+            if key not in self.document:
+                self.document[key] = value
+        for key, value in update.get("$set", {}).items():
+            self._set_path(self.document, key, value)
+
+        return type("UpdateResult", (), {"matched_count": 1, "modified_count": 1})()
+
+
+@pytest.mark.asyncio
+async def test_standalone_lesson_reward_is_claimed_only_once(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"] = [{
+        "step_number": 1,
+        "step_type": "explain",
+        "title": "Read the concept",
+        "content": "A standalone lesson with no required interactive step.",
+    }]
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    monkeypatch.setattr(
+        company_lessons,
+        "learning_progress_collection",
+        _AtomicCompletionClaimCollection(),
+    )
+    monkeypatch.setattr(company_lessons, "record_learning_activity", _fake_record_learning_activity)
+
+    reward_calls = []
+
+    async def fake_record_practice(**kwargs):
+        reward_calls.append(kwargs)
+        return {"xp_gained": 75}
+
+    monkeypatch.setattr(company_lessons, "record_practice", fake_record_practice)
+    request = company_lessons.CompleteRequest(answers={"0": 1, "1": 2})
+
+    first = await company_lessons.complete_lesson(
+        lesson["slug"], request, user={"id": "test-user", "target_role": "sde"}
+    )
+    replay = await company_lessons.complete_lesson(
+        lesson["slug"], request, user={"id": "test-user", "target_role": "sde"}
+    )
+
+    assert first["data"]["passed"] is True
+    assert first["data"]["xp_earned"] == 75
+    assert first["data"]["reward_already_claimed"] is False
+    assert replay["data"]["passed"] is True
+    assert replay["data"]["xp_earned"] == 0
+    assert replay["data"]["reward_already_claimed"] is True
+    assert len(reward_calls) == 1
+    assert reward_calls[0]["activity_id"] == f"lesson:{lesson['slug']}:first_mastery"
+
+
+@pytest.mark.asyncio
+async def test_failed_lesson_assessment_fans_out_to_canonical_study_engine_without_xp(monkeypatch, fake_learning_progress):
+    lesson = _lesson()
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    _seed_passed_required_steps(fake_learning_progress, lesson)
+    monkeypatch.setattr(company_lessons, "record_learning_activity", _fake_record_learning_activity)
+
+    from app.services import study_engine
+    calls = []
+
+    async def fake_record_study_activity(user_id, activity, role="sde", award_reward=True):
+        calls.append((user_id, activity, role, award_reward))
+        return {"recorded": True, "xp_awarded": 0, "repair_id": "repair-1"}
+
+    monkeypatch.setattr(study_engine, "record_activity", fake_record_study_activity)
+
+    result = await company_lessons.complete_lesson(
+        lesson["slug"],
+        company_lessons.CompleteRequest(answers={"0": 0, "1": 0}, time_spent_seconds=120),
+        user={"id": "test-user", "target_role": "sde"},
+    )
+
+    assert result["data"]["passed"] is False
+    assert len(calls) == 1
+    user_id, activity, role, award_reward = calls[0]
+    assert user_id == "test-user"
+    assert activity["type"] == "learn"
+    assert activity["source"] == "company_lesson_assessment"
+    assert activity["skill_id"] == "aptitude.quantitative"
+    assert activity["passed"] is False
+    assert activity["score"] == 0.0
+    assert role == "sde"
+    assert award_reward is False

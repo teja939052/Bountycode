@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import api from "../services/api";
+import api, { companyMocksApi } from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import {
@@ -104,12 +104,7 @@ const COMPANIES = [
   },
 ];
 
-const SECTION_CATEGORIES = {
-  Quant: "quantitative",
-  Logical: "logical",
-  Verbal: "verbal",
-  Technical: "technical",
-};
+const SECTION_CATEGORIES = { Coding: "coding" };
 
 const DURATION_OPTIONS = [
   { value: 30, label: "30 min" },
@@ -338,28 +333,111 @@ function ScoreRing({ percentage, size = 180 }) {
 
 export default function MockOA() {
   const [step, setStep] = useState("select");
-  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
+  const [availableCompanies, setAvailableCompanies] = useState<any[]>([]);
+  const [unsupportedRounds, setUnsupportedRounds] = useState<string[]>([]);
+  const [sessionEndsAt, setSessionEndsAt] = useState(null);
+  const [codeDrafts, setCodeDrafts] = useState<Record<string, string>>({});
+  const [language, setLanguage] = useState("python");
   const [customDuration, setCustomDuration] = useState(45);
   const [testId, setTestId] = useState("");
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<any[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [submittedAnswers, setSubmittedAnswers] = useState({});
+  const [answers, setAnswers] = useState<Record<number, any>>({});
+  const [submittedAnswers, setSubmittedAnswers] = useState<Record<number, any>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<any>(null);
   const [timeTaken, setTimeTaken] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
   const [reviewMode, setReviewMode] = useState(false);
   const [showExplanation, setShowExplanation] = useState({});
-  const timerRef = useRef(null);
+
+  const [resumableSessionId, setResumableSessionId] = useState<string | null>(() => {
+    try {
+      return window.sessionStorage.getItem("bountycode:active-company-mock");
+    } catch {
+      return null;
+    }
+  });
+
+  useEffect(() => {
+    let active = true;
+    if (!resumableSessionId) return () => { active = false; };
+    companyMocksApi.getStatus(resumableSessionId)
+      .then((data) => {
+        if (!active) return;
+        if (data.status !== "in_progress" || !data.questions?.length) {
+          window.sessionStorage.removeItem("bountycode:active-company-mock");
+          setResumableSessionId(null);
+          return;
+        }
+        setTestId(data.session_id);
+        setSelectedCompany(data.company || null);
+        setQuestions(data.questions || []);
+        setUnsupportedRounds(data.unsupported_rounds || []);
+        const restoredAnswers: Record<number, string> = {};
+        const restoredSubmissions: Record<number, any> = {};
+        (data.answers || []).forEach((answer) => {
+          const questionIndex = data.questions?.findIndex((question) => question.id === answer.question_id) ?? -1;
+          if (questionIndex < 0) return;
+          restoredAnswers[questionIndex] = answer.code || "";
+          restoredSubmissions[questionIndex] = {
+            is_correct: answer.is_correct,
+            passed_count: answer.passed_count,
+            total_count: answer.total_count,
+            score: answer.score,
+            summary: answer.summary,
+          };
+        });
+        setAnswers(restoredAnswers);
+        setSubmittedAnswers(restoredSubmissions);
+        const firstUnanswered = (data.questions || []).findIndex((_, index) => !restoredSubmissions[index]);
+        setCurrentQ(firstUnanswered >= 0 ? firstUnanswered : Math.max((data.questions || []).length - 1, 0));
+        const startedAt = data.started_at ? new Date(data.started_at).getTime() : Date.now();
+        setStartTime(startedAt);
+        setTimeTaken(Math.max(0, Math.floor((Date.now() - startedAt) / 1000)));
+        setSessionEndsAt(data.ends_at || null);
+        setStep("test");
+      })
+      .catch(() => {
+        try { window.sessionStorage.removeItem("bountycode:active-company-mock"); } catch {}
+        setResumableSessionId(null);
+      });
+    return () => { active = false; };
+  }, [resumableSessionId]);
 
   const company = useMemo(
-    () => COMPANIES.find((c) => c.id === selectedCompany) || COMPANIES[0],
-    [selectedCompany]
+    () => availableCompanies.find((c) => c.id === selectedCompany) || availableCompanies[0] || COMPANIES[0],
+    [selectedCompany, availableCompanies]
   );
+
+  useEffect(() => {
+    let active = true;
+    companyMocksApi.getCompanies()
+      .then((data) => {
+        if (!active) return;
+        const mapped = (data.companies || []).map((item) => ({
+          id: item.id,
+          name: item.name,
+          logo: "🏢",
+          duration: item.total_time_minutes,
+          questionCount: item.rounds_count,
+          difficulty: "medium",
+          sections: ["Coding"],
+          description: item.description,
+          color: "cyber-blue",
+          passingScore: item.passing_score,
+        }));
+        setAvailableCompanies(mapped);
+      })
+      .catch((err) => {
+        if (active) setError(err.message || "Unable to load company mock configurations.");
+      });
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     let interval;
@@ -390,64 +468,89 @@ export default function MockOA() {
   }, [step, testId, timeTaken]);
 
   const startTest = async () => {
+    if (!selectedCompany) {
+      setError("Choose a company before starting the mock.");
+      return;
+    }
     setLoading(true);
     setError("");
     try {
-      const data = await (api as any).startAptitudeTest(
-        "mixed",
-        company.difficulty,
-        company.questionCount
-      );
-      setTestId(data.test_id);
+      const data = await companyMocksApi.start(selectedCompany);
+      if (!data.questions?.length) {
+        throw new Error("No verified coding questions are currently available for this company.");
+      }
+      setTestId(data.session_id);
+      try { window.sessionStorage.setItem("bountycode:active-company-mock", data.session_id); } catch {}
+      setResumableSessionId(data.session_id);
       setQuestions(data.questions);
+      setUnsupportedRounds(data.unsupported_rounds || []);
+      setSessionEndsAt(data.ends_at || null);
       setCurrentQ(0);
       setAnswers({});
       setSubmittedAnswers({});
+      setCodeDrafts({});
       setShowExplanation({});
       setStartTime(Date.now());
       setTimeTaken(0);
       setReviewMode(false);
       setResult(null);
+      setCustomDuration(
+        Math.max(1, Math.ceil((new Date(data.ends_at).getTime() - Date.now()) / 60000))
+      );
       setStep("test");
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Could not start this mock assessment.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
-  const submitAnswer = async (answer) => {
-    if (submittedAnswers[currentQ] !== undefined) return;
+  const submitAnswer = async () => {
+    if (!questions[currentQ] || submittedAnswers[currentQ] !== undefined) return;
+    const q = questions[currentQ];
+    const code = codeDrafts[q.id] || "";
+    if (!code.trim()) {
+      setError("Write your solution before submitting.");
+      return;
+    }
     setLoading(true);
     setError("");
     try {
-      const data = await (api as any).submitAptitudeAnswer(testId, currentQ, answer);
-      setAnswers((prev) => ({ ...prev, [currentQ]: answer }));
+      const data = await companyMocksApi.submitAnswer(testId, {
+        question_id: q.id,
+        code,
+        language,
+        time_spent_seconds: timeTaken,
+      });
+      setAnswers((prev) => ({ ...prev, [currentQ]: code }));
       setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: data }));
+      setShowExplanation((prev) => ({ ...prev, [currentQ]: true }));
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Submission failed. Your code has not been recorded.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const submitTest = async () => {
+    if (!testId || loading) return;
     setLoading(true);
+    setError("");
     try {
-      const answersArray = questions.map((_, i) => answers[i] ?? null);
-      const data = await (api as any).completeAptitudeTest(testId, timeTaken);
-      setResult({
-        ...data,
-        answers: submittedAnswers,
-        timeTaken,
-      });
+      const data = await companyMocksApi.complete(testId);
+      setResult({ ...data, timeTaken });
+      try { window.sessionStorage.removeItem("bountycode:active-company-mock"); } catch {}
+      setResumableSessionId(null);
       setStep("results");
-      if (data.percentage >= 70) {
+      if (data.total_score >= data.passing_score) {
         setShowCelebration(true);
         setTimeout(() => setShowCelebration(false), 3000);
       }
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Unable to complete this mock session.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const navigateQuestion = (idx) => {
@@ -465,12 +568,10 @@ export default function MockOA() {
   const unattemptedCount = questions.length - answeredCount;
 
   const getSectionStats = (sectionName) => {
-    const cat = SECTION_CATEGORIES[sectionName];
-    if (!cat) return { total: 0, correct: 0, wrong: 0, unattempted: 0 };
-    const sectionQs = questions.map((q, i) => ({ q, i })).filter(({ q }) => q.category === cat || q.category === sectionName.toLowerCase());
-    const total = sectionQs.length;
-    const correct = sectionQs.filter(({ i }) => submittedAnswers[i]?.is_correct).length;
-    const answered = sectionQs.filter(({ i }) => submittedAnswers[i] !== undefined).length;
+    const indices = questions.map((_, index) => index);
+    const total = indices.length;
+    const correct = indices.filter((index) => submittedAnswers[index]?.is_correct).length;
+    const answered = indices.filter((index) => submittedAnswers[index] !== undefined).length;
     return { total, correct, wrong: answered - correct, unattempted: total - answered };
   };
 
@@ -509,109 +610,45 @@ export default function MockOA() {
           )}
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            {COMPANIES.map((c, i) => (
+            {availableCompanies.map((c, i) => (
               <motion.button
                 key={c.id}
-                onClick={() => {
-                  setSelectedCompany(c.id);
-                  setCustomDuration(c.duration);
-                }}
-                className={`card text-left transition-all border-2 ${
-                  selectedCompany === c.id
-                    ? `border-${c.color} bg-${c.color}/10`
-                    : "border-transparent hover:border-black/5"
-                }`}
+                onClick={() => setSelectedCompany(c.id)}
+                className={`card text-left transition-all border-2 ${selectedCompany === c.id ? "border-cyber-blue bg-cyber-blue/10" : "border-transparent hover:border-black/5"}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04 }}
-                style={
-                  selectedCompany === c.id
-                    ? {
-                        borderColor: `var(--tw-${c.color}-border, rgba(76,201,240,0.5))`,
-                        backgroundColor: `rgba(76,201,240,0.06)`,
-                      }
-                    : {}
-                }
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-3xl">{c.logo}</span>
                   <div>
-                    <h3 className="font-display font-bold text-text-primary text-sm">
-                      {c.name}
-                    </h3>
-                    <p className="text-[10px] font-mono text-gray-500">
-                      {c.description}
-                    </p>
+                    <h3 className="font-display font-bold text-text-primary text-sm">{c.name}</h3>
+                    <p className="text-[10px] font-mono text-gray-500">{c.description}</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {c.sections.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded border border-black/5 bg-surface-2 px-2 py-0.5 text-[10px] font-mono text-text-muted"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
                 <div className="flex items-center justify-between text-[10px] font-mono text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <Clock size={10} /> {c.duration} min
-                  </span>
-                  <span>{c.questionCount} Qs</span>
-                  <span className="capitalize">{c.difficulty}</span>
+                  <span><Clock size={10} className="inline mr-1" />{c.duration} min</span>
+                  <span>{c.questionCount} configured rounds</span>
+                  <span>Pass target {c.passingScore}%</span>
                 </div>
               </motion.button>
             ))}
           </div>
 
           {selectedCompany && (
-            <motion.div
-              className="card"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
+            <motion.div className="card" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <h3 className="font-display font-bold text-text-primary text-sm mb-1">
-                    <span className="mr-2">{company.logo}</span>
-                    {company.name} — Mock OA
+                    <span className="mr-2">{company.logo}</span>{company.name} — Coding Mock
                   </h3>
                   <p className="text-xs font-mono text-gray-500">
-                    {company.questionCount} questions across{" "}
-                    {company.sections.length} sections
+                    The executable mock currently uses verified coding questions. Unsupported configured rounds are disclosed after the session starts.
                   </p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    <Timer size={14} className="text-gray-500" />
-                    <select
-                      value={customDuration}
-                      onChange={(e) => setCustomDuration(Number(e.target.value))}
-                      className="rounded-lg border border-black/5 bg-white px-3 py-2 font-mono text-xs text-text-secondary focus:border-cyber-blue/50 focus:outline-none"
-                    >
-                      {DURATION_OPTIONS.map((d) => (
-                        <option key={d.value} value={d.value}>
-                          {d.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <button
-                    onClick={startTest}
-                    disabled={loading}
-                    className="btn-primary flex items-center gap-2"
-                  >
-                    {loading ? (
-                      <Spinner size="sm" className="text-space-void" />
-                    ) : (
-                      <>
-                        Start Mock OA
-                        <ArrowRight size={16} />
-                      </>
-                    )}
-                  </button>
-                </div>
+                <button onClick={startTest} disabled={loading} className="btn-primary flex items-center gap-2">
+                  {loading ? <Spinner size="sm" className="text-space-void" /> : <>Start Mock OA <ArrowRight size={16} /></>}
+                </button>
               </div>
             </motion.div>
           )}
@@ -619,7 +656,6 @@ export default function MockOA() {
       </div>
     );
   }
-
   // ═══════════════ TEST SCREEN ═══════════════
   if (step === "test" && questions.length > 0) {
     const q = questions[currentQ];
@@ -643,7 +679,7 @@ export default function MockOA() {
               </span>
               <span className="w-px h-4 bg-space-border" />
               <span className="font-mono text-xs text-cyber-blue">
-                {currentSection}
+                {q.round || "Coding"}
               </span>
               <span className="font-mono text-[10px] text-gray-500">
                 Q{currentQ + 1}–{sectionEnd} of {questions.length}
@@ -654,7 +690,7 @@ export default function MockOA() {
                 {answeredCount}/{questions.length} answered
               </span>
               <CountdownTimer
-                totalSeconds={customDuration * 60}
+                totalSeconds={sessionEndsAt ? Math.max(1, Math.floor((new Date(sessionEndsAt).getTime() - (Date.now() - timeTaken * 1000)) / 1000)) : customDuration * 60}
                 onTimeUp={handleTimeUp}
                 isActive={step === "test"}
               />
@@ -712,103 +748,75 @@ export default function MockOA() {
                   </p>
                 </div>
 
-                <div className="space-y-2.5 mb-6">
-                  {q.options.map((option, idx) => {
-                    const isSelected = answers[currentQ] === idx;
-                    const isSubmitted = submittedAnswers[currentQ] !== undefined;
-                    const isCorrectOption =
-                      isSubmitted &&
-                      submittedAnswers[currentQ].correct_answer === idx;
-                    const isWrongSelected =
-                      isSubmitted &&
-                      isSelected &&
-                      !submittedAnswers[currentQ].is_correct;
-
-                    let optClass =
-                      "w-full text-left p-4 rounded-xl border-2 transition-all font-mono text-sm flex items-start gap-3 ";
-
-                    if (isSubmitted) {
-                      if (isCorrectOption) {
-                        optClass +=
-                          "border-cyber-green bg-cyber-green/5 text-cyber-green";
-                      } else if (isWrongSelected) {
-                        optClass +=
-                          "border-cyber-red bg-cyber-red/5 text-cyber-red";
-                      } else {
-                        optClass +=
-                          "border-black/5 bg-white border-border/70 text-text-muted cursor-not-allowed";
-                      }
-                    } else if (isSelected) {
-                      optClass +=
-                        "border-cyber-blue bg-cyber-blue/10 text-text-primary shadow-cyber-blue";
-                    } else {
-                      optClass +=
-                        "border-black/5 hover:border-gray-500 text-text-muted hover:text-text-primary hover:bg-surface-2 cursor-pointer";
-                    }
-
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => !isSubmitted && submitAnswer(idx)}
-                        disabled={isSubmitted || loading}
-                        className={optClass}
-                      >
-                        <span className="font-bold text-cyber-blue shrink-0 w-6 h-6 rounded-full border border-current flex items-center justify-center text-[10px]">
-                          {String.fromCharCode(65 + idx)}
-                        </span>
-                        <span className="leading-relaxed">{option}</span>
-                        {isCorrectOption && (
-                          <CheckCircle
-                            size={18}
-                            className="text-cyber-green shrink-0 ml-auto mt-0.5"
-                          />
-                        )}
-                        {isWrongSelected && (
-                          <XCircle
-                            size={18}
-                            className="text-cyber-red shrink-0 ml-auto mt-0.5"
-                          />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Explanation */}
-                {submittedAnswers[currentQ] && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`card mb-4 ${
-                      submittedAnswers[currentQ].is_correct
-                        ? "border-cyber-green/20"
-                        : "border-cyber-red/20"
-                    }`}
-                  >
-                    <button
-                      onClick={() =>
-                        setShowExplanation((prev) => ({
-                          ...prev,
-                          [currentQ]: !prev[currentQ],
-                        }))
-                      }
-                      className="flex items-center gap-2 text-xs font-mono text-gray-400 hover:text-text-primary transition-colors w-full"
-                    >
-                      {showExplanation[currentQ] ? (
-                        <EyeOff size={14} />
-                      ) : (
-                        <Eye size={14} />
-                      )}
-                      {showExplanation[currentQ] ? "Hide" : "Show"} Explanation
-                    </button>
-                    {showExplanation[currentQ] && (
-                      <p className="text-xs font-mono text-gray-400 mt-3 leading-relaxed">
-                        {submittedAnswers[currentQ].explanation}
-                      </p>
-                    )}
-                  </motion.div>
+                {unsupportedRounds.length > 0 && (
+                  <div className="mb-4 rounded-lg border border-cyber-amber/20 bg-cyber-amber/5 px-4 py-3 text-xs text-amber-700">
+                    Not yet available in this session: {unsupportedRounds.join(", ")}.
+                    This mock currently includes only verified coding rounds.
+                  </div>
                 )}
-
+                <div className="card mb-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <div className="text-xs font-mono text-gray-500">
+                      {q.round || "Coding"} · {q.topic || "General"} · {q.difficulty || "medium"}
+                    </div>
+                    <select
+                      value={language}
+                      onChange={(event) => setLanguage(event.target.value)}
+                      disabled={submittedAnswers[currentQ] !== undefined}
+                      className="rounded-lg border border-black/10 bg-white px-3 py-2 text-xs"
+                    >
+                      {["python", "javascript", "typescript", "java", "cpp", "c"].map((item) => (
+                        <option key={item} value={item}>{item}</option>
+                      ))}
+                    </select>
+                  </div>
+                  {q.description && <p className="text-sm text-text-secondary mb-3">{q.description}</p>}
+                  {q.examples?.length > 0 && (
+                    <div className="mb-4 space-y-2">
+                      {q.examples.map((example, index) => (
+                        <div key={index} className="rounded-lg bg-surface-2 p-3 text-xs font-mono">
+                          <div><strong>Input:</strong> {example.input || "—"}</div>
+                          <div><strong>Output:</strong> {example.output || "—"}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {q.constraints && (
+                    <p className="text-xs text-gray-500 mb-3">
+                      Constraints: {Array.isArray(q.constraints) ? q.constraints.join(" · ") : q.constraints}
+                    </p>
+                  )}
+                  <textarea
+                    value={codeDrafts[q.id] || ""}
+                    onChange={(event) => setCodeDrafts((prev) => ({ ...prev, [q.id]: event.target.value }))}
+                    disabled={submittedAnswers[currentQ] !== undefined}
+                    spellCheck={false}
+                    rows={16}
+                    placeholder={language === "python" ? "def solve():\n    # Write your solution\n    pass" : "// Write your solution"}
+                    className="w-full rounded-xl border border-black/10 bg-slate-950 p-4 font-mono text-sm text-slate-100 focus:border-cyber-blue focus:outline-none"
+                  />
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                    <span className="text-[11px] text-gray-500">Submitted code is graded against server-side hidden test cases.</span>
+                    <button
+                      onClick={submitAnswer}
+                      disabled={loading || submittedAnswers[currentQ] !== undefined}
+                      className="btn-primary flex items-center gap-2"
+                    >
+                      {loading ? <Spinner size="sm" className="text-space-void" /> : <><CheckCircle size={16} /> Submit solution</>}
+                    </button>
+                  </div>
+                </div>
+                {submittedAnswers[currentQ] && (
+                  <div className={`card mb-4 ${submittedAnswers[currentQ].is_correct ? "border-cyber-green/20" : "border-cyber-red/20"}`}>
+                    <div className="flex items-center gap-2 text-sm font-semibold">
+                      {submittedAnswers[currentQ].is_correct ? <CheckCircle className="text-cyber-green" /> : <XCircle className="text-cyber-red" />}
+                      {submittedAnswers[currentQ].is_correct ? "All hidden tests passed" : "Some hidden tests failed"}
+                    </div>
+                    <p className="mt-2 text-xs text-gray-500">
+                      {submittedAnswers[currentQ].summary} · Score {submittedAnswers[currentQ].score}%
+                    </p>
+                  </div>
+                )}
                 {/* Navigation */}
                 <div className="flex items-center justify-between">
                   <button
@@ -924,7 +932,7 @@ export default function MockOA() {
   // ═══════════════ RESULTS SCREEN ═══════════════
   if (step === "results" && result) {
     const total = questions.length;
-    const pct = result.percentage || 0;
+    const pct = Math.max(0, Math.min(100, Number(result.total_score) || 0));
 
     return (
       <div className="page-surface min-h-screen py-6 px-4">
@@ -984,7 +992,7 @@ export default function MockOA() {
               </div>
             </div>
             <p className="font-mono text-xs text-gray-500">
-              {company.name} Mock OA — {total} Questions
+              {company.name} Coding Mock — {total} Questions
             </p>
           </motion.div>
 
@@ -1000,7 +1008,7 @@ export default function MockOA() {
               Section Breakdown
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {company.sections.map((sectionName) => {
+              {["Coding"].map((sectionName) => {
                 const stats = getSectionStats(sectionName);
                 const secPct =
                   stats.total > 0
@@ -1136,53 +1144,13 @@ export default function MockOA() {
                           className="overflow-hidden"
                         >
                           <div className="mt-4 space-y-2 border-t border-black/5 pt-4">
-                            {q.options.map((opt, oi) => {
-                              const isUserAnswer = userAns === oi;
-                              const isCorrectAns =
-                                sub?.correct_answer === oi;
-                              let ringClass = "border-black/5 ";
-                              if (isCorrectAns)
-                                ringClass += "border-cyber-green/40 bg-cyber-green/5 ";
-                              if (isUserAnswer && !wasCorrect && !isCorrectAns)
-                                ringClass += "border-cyber-red/40 bg-cyber-red/5 ";
-
-                              return (
-                                <div
-                                  key={oi}
-                                  className={`flex items-start gap-2 p-2.5 rounded-lg border text-xs font-mono ${ringClass}`}
-                                >
-                                  <span className="text-cyber-blue font-bold shrink-0">
-                                    {String.fromCharCode(65 + oi)}.
-                                  </span>
-                                  <span className="text-gray-300 flex-1">
-                                    {opt}
-                                  </span>
-                                  <span className="shrink-0 flex items-center gap-1">
-                                    {isCorrectAns && (
-                                      <span className="text-cyber-green text-[10px]">
-                                        ✓ Correct
-                                      </span>
-                                    )}
-                                    {isUserAnswer && !isCorrectAns && (
-                                      <span className="text-cyber-red text-[10px]">
-                                        ✗ Your answer
-                                      </span>
-                                    )}
-                                    {isUserAnswer && isCorrectAns && (
-                                      <span className="text-cyber-green text-[10px]">
-                                        ✓ Your answer
-                                      </span>
-                                    )}
-                                  </span>
-                                </div>
-                              );
-                            })}
-                            {sub?.explanation && (
+                            <div className="rounded-lg bg-slate-950 p-3">
+                              <div className="mb-2 text-[10px] font-mono uppercase tracking-wider text-slate-400">Submitted solution</div>
+                              <pre className="max-h-64 overflow-auto whitespace-pre-wrap break-words text-xs text-slate-100">{typeof userAns === "string" ? userAns : "No submission"}</pre>
+                            </div>
+                            {sub && (
                               <p className="text-[11px] font-mono text-gray-500 mt-2 leading-relaxed">
-                                <span className="text-cyber-blue font-bold">
-                                  Explanation:
-                                </span>{" "}
-                                {sub.explanation}
+                                {sub.summary} · {sub.score}% · {sub.passed_count}/{sub.total_count} hidden tests passed
                               </p>
                             )}
                           </div>

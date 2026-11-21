@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, Trophy, Briefcase, Castle, Brain, Calendar, Lightbulb, type LucideIcon } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, Trophy, Briefcase, Castle, Brain, Calendar, Lightbulb, Home, type LucideIcon } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { useGamification } from '../hooks/useGamification';
 
@@ -12,13 +12,13 @@ interface NavItem {
 }
 
 /* 5 core destinations + a "More" drawer (Material/Apple guideline).
-   Resume/ATS/Cover Letter live under the Career tab (no duplication). */
+   Dashboard is the student's home base; Career lives in More → Your Journey. */
 const NAV_ITEMS: NavItem[] = [
-  { to: '/hub', icon: LayoutDashboard, label: 'Home' },
+  { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/hub', icon: Home, label: 'Home' },
   { to: '/prepare', icon: BookOpen, label: 'Prepare' },
   { to: '/practice', icon: Code2, label: 'Practice' },
   { to: '/compete', icon: Trophy, label: 'Compete' },
-  { to: '/career', icon: Briefcase, label: 'Career' },
   { to: '#', icon: Menu, label: 'More' },
 ];
 
@@ -26,6 +26,7 @@ const MORE_GROUPS: { label: string; items: NavItem[] }[] = [
   {
     label: 'Your Journey',
     items: [
+      { to: '/career', icon: Briefcase, label: 'Career' },
       { to: '/tower', icon: Castle, label: 'Tower' },
     ],
   },

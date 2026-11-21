@@ -234,22 +234,20 @@ export default function Pricing() {
   };
 
   return (
-    <div className="min-h-screen py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50/70 via-white to-slate-50 py-14 px-4 text-slate-800">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-10 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <span className="section-subheader mb-3 block">Mission Tiers</span>
-          <h1 className="section-header text-4xl mb-4">Command <span className="text-cyber-blue">Clearance</span></h1>
-          <p className="text-gray-500 font-mono text-sm">
-            Start free. Upgrade when ready. Cancel anytime.
-          </p>
-          <div className="flex items-center justify-center gap-4 mt-4 text-xs font-mono text-gray-500 flex-wrap">
+          <span className="mb-3 inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Simple, transparent plans</span>
+          <h1 className="mt-4 mb-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Choose the plan that helps you <span className="text-emerald-600">move forward</span></h1>
+          <p className="mx-auto max-w-2xl text-base leading-7 text-slate-600">Build skills, practise for interviews, and prepare for placements at your own pace. Start free and upgrade only when you need more.</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
             <span className="flex items-center gap-1"><CreditCard size={12} /> Cards accepted</span>
             {isIndia && <span className="flex items-center gap-1"><Smartphone size={12} /> UPI for India</span>}
-            <span className="flex items-center gap-1"><Shield size={12} /> 2M ARR goal — enterprise-grade</span>
+            <span className="flex items-center gap-2 rounded-full bg-white px-3 py-2 shadow-sm ring-1 ring-slate-200"><Shield size={15} className="text-emerald-600" /> Secure checkout</span>
           </div>
           {isIndia && (
             <div className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyber-green/10 border border-cyber-green/20">
@@ -260,7 +258,7 @@ export default function Pricing() {
         </motion.div>
 
         {error && (
-          <div className="bg-cyber-red/10 border border-cyber-red/20 text-cyber-red px-4 py-3 rounded-lg mb-6 text-center max-w-md mx-auto font-mono text-sm">
+          <div className="mx-auto mb-6 max-w-md rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-center text-sm text-rose-700">
             {error}
           </div>
         )}
@@ -270,7 +268,7 @@ export default function Pricing() {
             <button
               onClick={handleStartTrial}
               disabled={trialLoading}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all"
+              className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-emerald-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               {trialLoading ? "Starting..." : <><Zap size={18} /> Start 7-Day Free Trial</>}
             </button>
@@ -311,27 +309,25 @@ export default function Pricing() {
           </div>
         )}
 
-        {/* V3 §7 — ONE tier ₹99/mo. Student code STUDENT50 → ₹49/mo with .edu.in/.ac.in email. Coupon box below applies it. */}
-        <div className="text-center mb-4 text-xs font-mono text-text-muted">
-          Job Seeker — ₹99/mo · Students: enter <span className="font-bold text-primary">STUDENT50</span> below with your college email → ₹49/mo
+        <div className="mb-4 text-center text-sm text-slate-600">
+          Have a promo code? Apply it here before choosing your plan.
         </div>
         {/* Coupon code input */}
-        <div className="flex justify-center mb-8">
-          <div className="flex items-center gap-2 max-w-sm w-full">
+        <div className="mx-auto mb-8 flex w-full max-w-md justify-center">
+          <div className="flex w-full items-center gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm">
             <input
               type="text"
               placeholder="Promo code"
               value={couponCode}
               onChange={(e) => setCouponCode(e.target.value)}
-              className="flex-1 px-4 py-2 bg-space-panel border border-space-border rounded-lg text-sm text-gray-700 focus:border-cyber-blue focus:outline-none font-mono"
+              className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-100"
             />
             <button
               onClick={() => {
-                const plan = plans.find((p) => p.id === "pro");
                 const price = isIndia ? 99 : 19;
                 handleValidateCoupon("pro", price);
               }}
-              className="px-4 py-2 bg-cyber-blue/10 text-cyber-blue border border-cyber-blue/30 rounded-lg text-sm font-medium hover:bg-cyber-blue/20 transition-colors"
+              className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
             >
               Apply
             </button>
@@ -344,14 +340,14 @@ export default function Pricing() {
           <div className="text-center mb-4 text-green-600 text-xs font-mono">✓ Coupon applied — discount active</div>
         )}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
-              className={`${plan.className} flex flex-col p-6 shadow-lg border border-border/60 rounded-2xl bg-white`}
+              className={`relative flex h-full flex-col rounded-3xl border bg-white p-6 shadow-[0_12px_40px_-24px_rgba(15,23,42,0.28)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_20px_50px_-24px_rgba(15,23,42,0.35)] ${plan.id === "pro" ? "border-emerald-400 ring-2 ring-emerald-100" : "border-slate-200"}`}
             >
               {plan.badge && (
                 <div className={`absolute -top-3 left-1/2 -translate-x-1/2 text-space-void px-3 py-1 rounded-full text-[10px] font-display font-bold uppercase tracking-wider flex items-center gap-1 ${
@@ -367,27 +363,27 @@ export default function Pricing() {
                   <plan.icon size={24} className="text-cyber-blue" />
                 </div>
               )}
-              <h3 className="font-display font-bold text-text-primary text-sm mb-2">{plan.name}</h3>
+              <h3 className="mb-2 text-lg font-bold text-slate-900">{plan.name}</h3>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-[32px] font-display font-black text-text-primary">
+                <span className="text-4xl font-extrabold tracking-tight text-slate-900">
                   {plan.price}
                 </span>
                 {plan.period.startsWith("/") && (
-                  <span className="text-xs font-mono text-gray-500">{plan.period}</span>
+                  <span className="text-sm text-slate-500">{plan.period}</span>
                 )}
               </div>
               {isIndia && plan.priceInr && (
-                <p className="text-xs text-cyber-green font-mono mb-1">🇮🇳 {plan.priceInr}</p>
+                <p className="mb-1 text-sm font-semibold text-emerald-700">🇮🇳 {plan.priceInr}</p>
               )}
               {!isIndia && plan.priceUsd && (
                 <p className="text-xs text-cyber-green font-mono mb-1">{plan.priceUsd}</p>
               )}
-              <p className="text-gray-500 text-xs font-mono mb-4">{plan.desc}</p>
-              <ul className="space-y-2 mb-6 flex-1">
+              <p className="mb-5 min-h-10 text-sm leading-6 text-slate-600">{plan.desc}</p>
+              <ul className="mb-7 flex-1 space-y-3">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-gray-500 text-xs">
-                    <Check size={12} className="text-cyber-green mt-0.5 shrink-0" />
-                    <span className="font-mono">{f}</span>
+                  <li key={f} className="flex items-start gap-2 text-sm leading-5 text-slate-600">
+                    <Check size={16} className="mt-0.5 shrink-0 text-emerald-600" />
+                    <span>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -400,7 +396,7 @@ export default function Pricing() {
                   }
                 }}
                 disabled={loading}
-                className={`w-full ${
+                className={`mt-auto w-full rounded-xl py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 ${
                   plan.id === "pro" ? "btn-primary" : plan.id === "lifetime" ? "btn-pro" : plan.id === "yearly" ? "btn-pro" : "btn-secondary"
                 }`}
               >
@@ -411,7 +407,7 @@ export default function Pricing() {
         </div>
 
         {isIndia && (
-          <div className="text-center mt-6 bg-space-panel/80 border border-space-border rounded-xl p-4 max-w-md mx-auto">
+          <div className="mx-auto mt-6 max-w-md rounded-2xl border border-emerald-100 bg-emerald-50 p-5 text-center">
             <p className="text-xs font-mono text-cyber-blue mb-1">🇮🇳 India Student Special</p>
             <p className="text-xs font-mono text-gray-500">
               Lifetime plan at just <span className="text-text-primary font-bold">₹1,499 one-time</span> — less than 2 months of coffee!
@@ -419,15 +415,15 @@ export default function Pricing() {
           </div>
         )}
 
-        <div className="text-center mt-10 text-gray-500 flex items-center justify-center gap-2 text-xs font-mono">
+        <div className="mt-10 flex items-center justify-center gap-2 text-center text-sm text-slate-500">
           <Shield size={14} />
           <span>Secure payments via PayPal & Stripe. Financial data never stored on servers.</span>
         </div>
 
         {/* FAQ */}
-        <div className="mt-12 bg-space-panel/80 border border-space-border rounded-2xl p-8 max-w-3xl mx-auto">
-          <h3 className="font-display font-bold text-text-primary text-lg mb-4 text-center">Mission Briefing</h3>
-          <div className="space-y-4">
+        <div className="mx-auto mt-14 max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <h3 className="mb-6 text-center text-2xl font-bold text-slate-900">Frequently asked questions</h3>
+          <div className="divide-y divide-slate-100">
             {[
               { q: "Can I cancel my subscription?", a: "Yes, cancel anytime. You keep access until the end of your billing period." },
               { q: isIndia ? "Do you accept UPI?" : "What payment methods are accepted?", a: isIndia ? "Yes! UPI, credit/debit cards, and net banking via PayPal." : "Credit/debit cards via PayPal & Stripe. Secure and encrypted." },
@@ -436,9 +432,9 @@ export default function Pricing() {
               { q: "Do you offer promo codes?", a: "Yes — enter a promo code on the pricing page to apply discounts to your next purchase." },
               { q: "How many companies are covered?", a: "53 companies including TCS, Infosys, Wipro, Google, Amazon, Microsoft, Flipkart, Zomato, and more — all with real exam patterns." },
             ].map((faq) => (
-              <div key={faq.q}>
-                <p className="font-display font-bold text-text-primary text-sm">{faq.q}</p>
-                <p className="text-gray-500 font-mono text-xs mt-1">{faq.a}</p>
+              <div key={faq.q} className="py-4 first:pt-0 last:pb-0">
+                <p className="font-semibold text-slate-900">{faq.q}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{faq.a}</p>
               </div>
             ))}
           </div>

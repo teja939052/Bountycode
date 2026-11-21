@@ -1154,7 +1154,19 @@ def build_target_profile(role: Optional[str] = None, company: Optional[str] = No
         })
 
     # Company overlay: rescale by the company's domain weight, renormalize.
-    company_key = (company or "").lower().strip() or None
+    # Accept the labels commonly shown in the UI as well as canonical
+    # profile keys ("Tech Mahindra" -> "tech_mahindra", "LTI Mindtree" ->
+    # "lti_mindtree"). Without normalization the company overlay silently
+    # falls back to generic role weights.
+    company_key = _slug(company) if company else None
+    company_aliases = {
+        "techm": "tech_mahindra",
+        "ltimindtree": "lti_mindtree",
+        "tcs_nqt": "tcs",
+        "infosys_sp": "infosys",
+        "wipro_turbo": "wipro",
+    }
+    company_key = company_aliases.get(company_key, company_key)
     match_weights: Optional[Dict[str, float]] = None
     if company_key and company_key in COMPANY_PROFILES:
         match_weights = COMPANY_PROFILES[company_key].get("match_weights") or {}

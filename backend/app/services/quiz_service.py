@@ -16,18 +16,24 @@ Each mode tracks:
   - Diamonds earned, badges unlocked
   - Streak progress
   - Weak areas for recommendation
-
-Canonical question ownership: all question loading flows through
-``app.services.question_store`` (verified + executable only). This module
-never independently scans or loads question files.
 """
+import json
 import random
 import time
 from datetime import datetime, timezone
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Tuple
 from collections import defaultdict
 
-from app.services import question_store as _qs
+
+# =============================================================
+# QUESTION LOADING & INDEXING
+# =============================================================
+
+_questions_cache = None
+_questions_by_id = None
+_questions_by_topic = None
+_questions_by_difficulty = None
+_questions_by_company = None
 
 
 def _question_companies(question: Dict[str, Any]) -> List[str]:
@@ -38,60 +44,89 @@ def _question_companies(question: Dict[str, Any]) -> List[str]:
     return [str(item).strip() for item in raw if str(item).strip()]
 
 
-def _servable_questions() -> List[Dict[str, Any]]:
-    """Return the canonical, trust-gated question pool from question_store.
+def _normalize_company_tag(value: Any) -> str:
+    """Normalize company labels and placement-program variants for matching."""
+    import re
 
-    Only independently verified + executable questions are servable.
-    Question content never lives in MongoDB; it is loaded once at startup
-    from versioned files under backend/app/data/.
+    key = re.sub(r"[^a-z0-9]+", "_", str(value or "").lower()).strip("_")
+    aliases = {
+        "tcs_nqt": "tcs",
+        "tcs_digital": "tcs",
+        "tcs_ninja": "tcs",
+        "infosys_sp": "infosys",
+        "infosys_specialist_programmer": "infosys",
+        "wipro_turbo": "wipro",
+        "wipro_elite": "wipro",
+        "techm": "tech_mahindra",
+        "ltimindtree": "lti_mindtree",
+    }
+    return aliases.get(key, key)
+
+
+def _load_questions() -> List[Dict[str, Any]]:
+    """Load only student-servable questions from the canonical question store.
+
+    The question store owns residency, deduplication, trust and executability.
+    Quiz composition must never independently scan JSON banks or bypass that
+    governance gate.
     """
-    _qs.load_all()
-    return [q for q in _qs._questions if _qs._is_servable(q)]
+    global _questions_cache, _questions_by_id, _questions_by_topic, _questions_by_difficulty, _questions_by_company
+    if _questions_cache is not None:
+        return _questions_cache
+
+    from app.services import question_store
+
+    unique = question_store.find().prefer_verified().to_list()
+    _questions_cache = unique
+    _questions_by_id = {q["id"]: q for q in unique if q.get("id")}
+    _questions_by_topic = defaultdict(list)
+    _questions_by_difficulty = defaultdict(list)
+    _questions_by_company = defaultdict(list)
+    for q in unique:
+        topic = q.get("topic", "")
+        if topic:
+            _questions_by_topic[topic].append(q)
+        diff = q.get("difficulty", "medium")
+        if diff:
+            _questions_by_difficulty[diff].append(q)
+        for company in _question_companies(q):
+            _questions_by_company[_normalize_company_tag(company)].append(q)
+
+    return unique
+
+
+def _servable_questions() -> List[Dict[str, Any]]:
+    """Compatibility seam backed exclusively by the canonical question store."""
+    return _load_questions()
 
 
 def get_question_by_id(qid: str) -> Optional[Dict[str, Any]]:
-    """Fetch one complete question from the canonical store (verified only)."""
-    return _qs.find_one_verified({"id": str(qid)})
+    _load_questions()
+    return _questions_by_id.get(qid)
 
 
 def get_questions_by_topic(topic: str) -> List[Dict[str, Any]]:
-    """Return servable questions matching a topic."""
-    _qs.load_all()
-    return [
-        dict(q) for q in _qs._questions
-        if _qs._is_servable(q) and str(q.get("topic", "")).strip().lower() == topic.strip().lower()
-    ]
+    _load_questions()
+    return _questions_by_topic.get(topic, [])
 
 
 def get_questions_by_difficulty(difficulty: str) -> List[Dict[str, Any]]:
-    """Return servable questions matching a difficulty."""
-    _qs.load_all()
-    return [
-        dict(q) for q in _qs._questions
-        if _qs._is_servable(q) and str(q.get("difficulty") or "medium").strip().lower() == difficulty.strip().lower()
-    ]
+    _load_questions()
+    return _questions_by_difficulty.get(difficulty, [])
 
 
 def get_questions_by_company(company: str) -> List[Dict[str, Any]]:
-    """Return servable questions matching a company."""
-    _qs.load_all()
-    company_lower = company.strip().lower()
-    return [
-        dict(q) for q in _qs._questions
-        if _qs._is_servable(q) and company_lower in {
-            item.lower() for item in _question_companies(q)
-        }
-    ]
+    _load_questions()
+    return _questions_by_company.get(_normalize_company_tag(company), [])
 
 
 def get_all_questions() -> List[Dict[str, Any]]:
-    """Return all servable questions from the canonical store."""
-    return _servable_questions()
+    return _load_questions()
 
 
 def get_question_stats() -> Dict[str, Any]:
-    """Get overall question bank statistics for servable (verified + executable) questions."""
-    questions = _servable_questions()
+    """Get overall question bank statistics."""
+    questions = _load_questions()
     if not questions:
         return {"total": 0}
 
@@ -107,7 +142,7 @@ def get_question_stats() -> Dict[str, Any]:
         by_topic[topic] += 1
         pattern = q.get("pattern", "general")
         by_pattern[pattern] += 1
-        for company in _question_companies(q):
+        for company in (q.get("companies") or []):
             by_company[company] += 1
 
     def has_solution(q):
@@ -120,6 +155,7 @@ def get_question_stats() -> Dict[str, Any]:
         hints = q.get("hints", [])
         if not hints:
             return False
+        # Count only if at least 3 hints
         return len(hints) >= 3
 
     return {
@@ -155,6 +191,9 @@ def build_quiz(
 ) -> Dict[str, Any]:
     """Build a quiz session based on mode and filters."""
     questions = _servable_questions()
+    # Seeded attempts remain varied across seeds but reproducible on retry.
+    # A local RNG avoids mutating process-global random state.
+    rng = random.Random(selection_seed) if selection_seed else random
 
     # Filter
     filtered = questions
@@ -175,10 +214,11 @@ def build_quiz(
             if str(q.get("difficulty") or "medium").lower() == difficulty.lower()
         ]
     if company:
+        requested_company = _normalize_company_tag(company)
         filtered = [
             q for q in filtered
-            if company.strip().lower() in {
-                item.lower() for item in _question_companies(q)
+            if requested_company in {
+                _normalize_company_tag(item) for item in _question_companies(q)
             }
         ]
 
@@ -243,25 +283,25 @@ def build_quiz(
         for q in filtered:
             by_diff[q.get("difficulty", "medium")].append(q)
         selected = (
-            random.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
-            + random.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
-            + random.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
+            rng.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
+            + rng.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
+            + rng.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
         )
         if randomize:
-            random.shuffle(selected)
+            rng.shuffle(selected)
         time_limit = time_limit_seconds or 90 * 60  # 90 min default
     elif mode == "boss_battle":
         # Hard questions only
         hard_qs = [q for q in filtered if q.get("difficulty") == "hard"]
         if not hard_qs:
             hard_qs = [q for q in filtered if q.get("difficulty") == "medium"]
-        selected = random.sample(hard_qs, min(num_questions, len(hard_qs)))
+        selected = rng.sample(hard_qs, min(num_questions, len(hard_qs)))
         time_limit = time_limit_seconds or 30 * 60
     elif mode == "speed_run":
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds or 10 * 60
     else:  # practice or quiz
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds
 
     # Build quiz session
@@ -464,7 +504,7 @@ def build_learning_path(
     num_questions: int = 10,
 ) -> Dict[str, Any]:
     """Build an adaptive learning path based on user level and weak areas."""
-    questions = _servable_questions()
+    questions = _load_questions()
 
     # Role-based topic priorities
     role_topics = {
@@ -532,7 +572,7 @@ def build_boss_battle(
     user_level: int = 1,
 ) -> Dict[str, Any]:
     """Build a boss battle session."""
-    questions = _servable_questions()
+    questions = _load_questions()
 
     # Boss level determines difficulty mix
     difficulty_mix = {
@@ -690,4 +730,18 @@ def calculate_quiz_results(
         "badge_earned": score >= 0.9,
         "perfect_run": correct == total and total_hints == 0,
     }
+
+
+# =============================================================
+# CACHE MANAGEMENT
+# =============================================================
+
+def clear_cache():
+    """Clear the question cache (for testing)."""
+    global _questions_cache, _questions_by_id, _questions_by_topic
+    global _questions_by_difficulty, _questions_by_company
+    _questions_cache = None
+    _questions_by_id = None
+    _questions_by_topic = None
+    _questions_by_difficulty = None
     _questions_by_company = None

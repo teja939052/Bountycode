@@ -7,9 +7,8 @@ Lesson ID format: {lang}-l{level:02d}-{lesson:02d}
 Example: c-l01-01 = C, level 1, lesson 1
 """
 
-import copy
-import re
 from typing import Any
+import re
 
 
 HAND_CRAFTED_LESSONS: dict[str, dict[str, Any]] = {}
@@ -3132,6 +3131,24 @@ def generate_template_content(
 
     config = lang_configs.get(language_id, lang_configs["c"])
     lang_label = language_id.upper() if language_id != "cpp" else "C++"
+    if language_id == "c":
+        from app.data.lesson_content_c_core import get_c_core_lesson
+        authored_core = get_c_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
+    if language_id == "cpp":
+        from app.data.lesson_content_cpp_core import get_cpp_core_lesson
+        authored_core = get_cpp_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
+    if language_id == "java":
+        from app.data.lesson_content_java_core import get_java_core_lesson
+        authored_core = get_java_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
     if language_id == "python":
         lang_label = "Python"
     elif language_id == "java":
@@ -3443,6 +3460,12 @@ def get_lesson_content(
     if lesson_id in HAND_CRAFTED_PYTHON_LESSONS:
         return HAND_CRAFTED_PYTHON_LESSONS[lesson_id]
 
+    if language_id == "python":
+        from app.data.lesson_content_python_core import get_python_core_lesson
+        authored_core = get_python_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
     if language_id in {"c", "cpp", "java", "python"}:
         return generate_template_content(language_id, lesson_title, lesson_type, lesson_id)
 
@@ -3488,32 +3511,3 @@ def get_lesson_content(
         ],
         "next_steps": f"Continue practicing {lesson_title} in your own projects.",
     }
-
-
-# ═════════════════════════════════════════════════════════════════════
-# Public (answer-key-free) view of lesson content
-# ═════════════════════════════════════════════════════════════════════
-
-def lesson_quizzes(content: dict) -> list:
-    """Return every quiz a lesson presents, in display order."""
-    quizzes = []
-    first = content.get("quiz")
-    if isinstance(first, dict):
-        quizzes.append(first)
-    for quiz in content.get("quizzes") or []:
-        if isinstance(quiz, dict) and all(quiz is not known for known in quizzes):
-            quizzes.append(quiz)
-    return quizzes
-
-
-def public_lesson_content(content: dict) -> dict:
-    """Deep copy content with quiz answer keys removed.
-
-    Quizzes carry ``correct`` (option index) and an ``explanation`` that states
-    the answer. Grading happens server-side, so neither may reach a client.
-    """
-    clean = copy.deepcopy(content)
-    for quiz in lesson_quizzes(clean):
-        quiz.pop("correct", None)
-        quiz.pop("explanation", None)
-    return clean
