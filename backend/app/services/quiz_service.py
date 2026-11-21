@@ -47,9 +47,6 @@ def _servable_questions() -> List[Dict[str, Any]]:
     """
     _qs.load_all()
     return [q for q in _qs._questions if _qs._is_servable(q)]
-
-
-def get_question_by_id(qid: str) -> Optional[Dict[str, Any]]:
     """Fetch one complete question from the canonical store (verified only)."""
     return _qs.find_one_verified({"id": str(qid)})
 
@@ -82,7 +79,6 @@ def get_questions_by_company(company: str) -> List[Dict[str, Any]]:
             item.lower() for item in _question_companies(q)
         }
     ]
-
 
 def get_all_questions() -> List[Dict[str, Any]]:
     """Return all servable questions from the canonical store."""
@@ -175,10 +171,11 @@ def build_quiz(
             if str(q.get("difficulty") or "medium").lower() == difficulty.lower()
         ]
     if company:
+        requested_company = _normalize_company_tag(company)
         filtered = [
             q for q in filtered
-            if company.strip().lower() in {
-                item.lower() for item in _question_companies(q)
+            if requested_company in {
+                _normalize_company_tag(item) for item in _question_companies(q)
             }
         ]
 
@@ -243,25 +240,25 @@ def build_quiz(
         for q in filtered:
             by_diff[q.get("difficulty", "medium")].append(q)
         selected = (
-            random.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
-            + random.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
-            + random.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
+            rng.sample(by_diff.get("easy", []), min(1, len(by_diff.get("easy", []))))
+            + rng.sample(by_diff.get("medium", []), min(2, len(by_diff.get("medium", []))))
+            + rng.sample(by_diff.get("hard", []), min(2, len(by_diff.get("hard", []))))
         )
         if randomize:
-            random.shuffle(selected)
+            rng.shuffle(selected)
         time_limit = time_limit_seconds or 90 * 60  # 90 min default
     elif mode == "boss_battle":
         # Hard questions only
         hard_qs = [q for q in filtered if q.get("difficulty") == "hard"]
         if not hard_qs:
             hard_qs = [q for q in filtered if q.get("difficulty") == "medium"]
-        selected = random.sample(hard_qs, min(num_questions, len(hard_qs)))
+        selected = rng.sample(hard_qs, min(num_questions, len(hard_qs)))
         time_limit = time_limit_seconds or 30 * 60
     elif mode == "speed_run":
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds or 10 * 60
     else:  # practice or quiz
-        selected = random.sample(filtered, min(num_questions, len(filtered)))
+        selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds
 
     # Build quiz session

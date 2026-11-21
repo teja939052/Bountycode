@@ -1,0 +1,157 @@
+{
+  "slug": "seating_arrangement",
+  "id": "lesson_seating_arrangement_001",
+  "title": "Seating Arrangement Basics",
+  "domain": "Logical Reasoning",
+  "difficulty": "medium",
+  "duration_min": 32,
+  "xp_reward": 125,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Linear vs circular",
+      "content": "Linear arrangements place people in a row (often facing north or south). Circular arrangements place them around a table; left/right depend on facing direction. Service papers love fixed clues plus one ‘who sits second to the left’ question.",
+      "tip": "Draw the diagram every time. Never try to hold five positions in working memory."
+    },
+    {
+      "step_number": 2,
+      "step_type": "explain",
+      "title": "Left and right in a row",
+      "content": "If people face north in a single row, your left is their left when you stand behind them facing the same way. Standard exam convention: ‘A is second to the left of B’ means from the perspective of the people in the row facing you or as marked — always follow the facing direction given in the problem.",
+      "example": "Facing north: left is west, right is east."
+    },
+    {
+      "step_number": 3,
+      "step_type": "interactive",
+      "title": "Place from a clue",
+      "prompt": "Five seats in a row facing north: A, B, C, D, E. B sits at one end. A sits second to the right of B. If B is at the left end, who is in the middle?",
+      "options": ["A", "C", "Cannot be determined from this alone", "B"],
+      "correct_index": 2,
+      "explanation": "With only B at left end and A second to B’s right, seats are B, ?, A, ?, ?. The middle seat is still unknown without more clues.",
+      "hints": ["Sketch five positions.", "Place B, then A, then see what remains open."]
+    },
+    {
+      "step_number": 4,
+      "step_type": "explain",
+      "title": "Definite vs indefinite clues",
+      "content": "A definite clue pins a person to a unique seat (or unique relative seat). An indefinite clue leaves two or more possibilities. Good solvers mark both possibilities lightly until a later clue eliminates one.",
+      "tip": "Never force a unique placement when the clue still allows two cases."
+    },
+    {
+      "step_number": 5,
+      "step_type": "practice",
+      "title": "Second to the left",
+      "prompt": "In a row of six facing north, P is second to the left of Q. Q is not at either end. How many seats are between P and Q?",
+      "options": ["None", "One", "Two", "Three"],
+      "correct_index": 1,
+      "explanation": "‘Second to the left’ means exactly one person sits between them on that side — so one seat between P and Q.",
+      "hints": ["Second to the left ≠ immediately left.", "Count positions carefully on a sketch."]
+    },
+    {
+      "step_number": 6,
+      "step_type": "practice",
+      "title": "Circular facing centre",
+      "prompt": "Eight people sit around a circular table facing the centre. Who is to the immediate left of a person?",
+      "options": [
+        "The person clockwise from them",
+        "The person anti-clockwise from them",
+        "Either, randomly",
+        "Cannot define left in a circle"
+      ],
+      "correct_index": 1,
+      "explanation": "When facing the centre, immediate left is anti-clockwise for the standard top-view diagram used in most keys.",
+      "hints": ["Imagine sitting facing inward.", "Your left hand points anti-clockwise in the usual top view."]
+    },
+    {
+      "step_number": 7,
+      "step_type": "debug_choice",
+      "title": "Catch the flawed assumption",
+      "prompt": "A student assumes ‘A sits between B and C’ means A is exactly in the middle of the whole row. What is wrong?",
+      "options": [
+        "‘Between B and C’ only means B and C are on either side of A (adjacent or with others, depending on wording)",
+        "Between always means ends of the row",
+        "A cannot sit between two people",
+        "The statement is never used in exams"
+      ],
+      "correct_index": 0,
+      "explanation": "‘Between’ is a relative clue about B, A, C — not a claim that A is the global middle unless stated.",
+      "hints": ["Relative vs absolute placement.", "Sketch B–A–C as a block when clues say immediate between."]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 360,
+    "questions": [
+      {
+        "prompt": "Best first step for any seating puzzle?",
+        "options": [
+          "Memorise all names",
+          "Draw positions and mark facing direction",
+          "Assume everyone faces north",
+          "Start from the longest name"
+        ],
+        "correct_index": 1,
+        "explanation": "A diagram with facing direction prevents left/right errors."
+      },
+      {
+        "prompt": "‘Second to the right’ of X means:",
+        "options": [
+          "Immediate neighbour on the right",
+          "Skip one seat on X’s right",
+          "Two seats on the left",
+          "Opposite to X"
+        ],
+        "correct_index": 1,
+        "explanation": "Second to the right skips exactly one person/seat on that side."
+      },
+      {
+        "prompt": "In a circle facing the centre, immediate right is commonly:",
+        "options": ["Clockwise", "Anti-clockwise", "Across the table", "Undefined"],
+        "correct_index": 0,
+        "explanation": "Facing centre → immediate right is clockwise in standard top-view convention."
+      },
+      {
+        "prompt": "A clue still allows two placements. You should:",
+        "options": [
+          "Pick one at random",
+          "Mark both cases until another clue decides",
+          "Ignore the clue",
+          "Place the person at an end"
+        ],
+        "correct_index": 1,
+        "explanation": "Carry dual cases; elimination comes from later definite clues."
+      },
+      {
+        "prompt": "Five in a row; A at left end; B second to the right of A. Position of B?",
+        "options": ["2nd from left", "3rd from left", "4th from left", "Right end"],
+        "correct_index": 1,
+        "explanation": "Seats: A, _, B, _, _. B is third from the left."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Draw linear and circular seating diagrams",
+    "Interpret left/right with facing direction",
+    "Distinguish definite and indefinite clues"
+  ],
+  "concepts": ["linear arrangement", "circular arrangement", "left-right", "facing centre"],
+  "common_misconceptions": [
+    {
+      "misconception": "Left and right are absolute on the page.",
+      "correction": "Left and right follow the facing direction of the people."
+    }
+  ],
+  "company_applications": [
+    { "company": "TCS NQT", "skill": "seating arrangement", "practice": "Short linear sets with 4–5 definite clues." },
+    { "company": "Infosys", "skill": "puzzles", "practice": "Circular facing-centre with ‘who sits second to the left’." },
+    { "company": "Accenture", "skill": "logical reasoning", "practice": "Mixed indefinite clues requiring dual cases." }
+  ],
+  "srs_cards": [
+    { "type": "rule", "question": "Facing centre, which way is immediate left?", "answer": "Anti-clockwise in the standard top-view diagram." },
+    { "type": "strategy", "question": "What if a clue allows two seats?", "answer": "Mark both possibilities until a later clue eliminates one." }
+  ],
+  "next_lesson_slug": "logical_puzzles",
+  "next_lesson_title": "Logical puzzles"
+}

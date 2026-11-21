@@ -127,7 +127,6 @@
       "step_type": "debug_choice",
       "title": "Catch the addition mistake",
       "content": "A student treats successive percentage changes like ordinary addition and subtraction.",
-      "code": "value = 100\nvalue *= 1.10\nvalue *= 0.90\nprint(value)",
       "prompt": "Price rises 20% and then falls 20%. A student says the net change is 0%. What is wrong?",
       "options": [
         "The second 20% acts on a larger intermediate price, so the net result is a 4% loss",
@@ -146,7 +145,9 @@
       "hints": [
         "Compute the intermediate value after the increase.",
         "Apply the decrease to that intermediate value."
-      ]
+      ],
+      "code": "price = 100\n\n# Bug: this adds +20% and -20% as if both use the original base.\nnaive_change = 20 - 20\nprint(naive_change)  # 0% (incorrect)\n\n# Correct: apply each percentage to the current value.\nprice *= 1.20\nprice *= 0.80\nnet_change = (price - 100) / 100 * 100\nprint(price)       # 96\nprint(net_change)  # -4.0%",
+      "language": "python"
     },
     {
       "step_number": 9,

@@ -36,3 +36,8 @@ def test_skill_level_uses_conservative_bands():
     assert skill_level(70, 4) == "developing"
     assert skill_level(90, 4) == "strong"
     assert skill_level(100, 0) == "not_assessed"
+
+
+def test_unrecognized_question_metadata_stays_unclassified():
+    assert canonical_domain({"topic": "Unmapped specialist topic"}) is None
+    assert canonical_domain({"question": "No topic metadata"}) is None

@@ -2,6 +2,7 @@ import { lazy } from "react";
 
 const routeImportFns = {
   CurriculumHub: () => import("./CurriculumHub"),
+  Profile: () => import("./Profile"),
   LearnTrack: () => import("./LearnTrack"),
   LearnLesson: () => import("./LearnLesson"),
   Login: () => import("./Login"),
@@ -65,6 +66,7 @@ const routeImportFns = {
   LanguageLearning: () => import("./LanguageLearning"),
   OnboardingQuest: () => import("./OnboardingQuest"),
   InterviewBooking: () => import("./InterviewBooking"),
+  OnboardingFlow: () => import("./OnboardingFlow"),
 
   InterviewReplay: () => import("./InterviewReplay"),
   FreeTrial: () => import("./FreeTrial"),
@@ -132,6 +134,7 @@ window.addEventListener("load", scheduleIdlePreload);
 
 const Login = lazy(() => import("./Login"));
 const CurriculumHub = lazy(() => import("./CurriculumHub"));
+const Profile = lazy(() => import("./Profile"));
 const LearnTrack = lazy(() => import("./LearnTrack"));
 const LearnLesson = lazy(() => import("./LearnLesson"));
 const Register = lazy(() => import("./Register"));
@@ -195,6 +198,7 @@ const CompareVisualizer = lazy(() => import('./CompareVisualizer'));
 const Community = lazy(() => import('./Community'));
 const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
+const OnboardingFlow = lazy(() => import('./OnboardingFlow'));
 const InterviewBooking = lazy(() => import('./InterviewBooking'));
 const InterviewReplay = lazy(() => import('./InterviewReplay'));
 const FreeTrial = lazy(() => import('./FreeTrial'));
@@ -221,9 +225,10 @@ const GamificationDashboard = lazy(() => import('./GamificationDashboard'));
 const ContentBundles = lazy(() => import('./ContentBundles'));
 const SkillMap = lazy(() => import('./SkillMap'));
 export {
-  CurriculumHub,
-  LearnTrack,
-  LearnLesson,
+   CurriculumHub,
+   LearnTrack,
+   Profile,
+   LearnLesson,
   CompareVisualizer,
   Community,
   ProblemOfTheDay,
@@ -285,6 +290,7 @@ export {
   CodePlayground,
   LanguageLearning,
   OnboardingQuest,
+  OnboardingFlow,
   InterviewBooking,
   InterviewReplay,
   FreeTrial,

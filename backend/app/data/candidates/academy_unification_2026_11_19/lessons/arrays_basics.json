@@ -1,0 +1,33 @@
+{
+  "slug": "arrays_basics",
+  "id": "lesson_arrays_basics_001",
+  "title": "Arrays and lists",
+  "domain": "Programming Logic",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Indexed storage", "content": "An array/list stores an ordered sequence. Index 0 is usually the first element."},
+    {"step_number": 2, "step_type": "interactive", "title": "Zero-based index", "prompt": "a = [10, 20, 30]. a[1] is:", "options": ["10", "20", "30", "Error"], "correct_index": 1, "explanation": "Index 1 is the second element: 20.", "hints": ["Counting starts at 0."]},
+    {"step_number": 3, "step_type": "explain", "title": "Length", "content": "len(a) is the number of elements. Valid indices are 0 through len(a)-1."},
+    {"step_number": 4, "step_type": "practice", "title": "Last element", "prompt": "For a list of length 5, the last index is:", "options": ["5", "4", "0", "6"], "correct_index": 1, "explanation": "0..4 are valid; last index is 4.", "hints": ["Last index = length - 1."]},
+    {"step_number": 5, "step_type": "practice", "title": "Sum with a loop", "prompt": "a=[2,4,6]; s=0; for x in a: s+=x. s is:", "options": ["6", "12", "24", "2"], "correct_index": 1, "explanation": "2+4+6=12.", "hints": ["Add each element."]}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "[1,2,3][0] =", "options": ["1", "2", "3", "0"], "correct_index": 0, "explanation": "First element is index 0."},
+    {"prompt": "Length of [7,8]?", "options": ["1", "2", "3", "0"], "correct_index": 1, "explanation": "Two elements."},
+    {"prompt": "Valid index for length 3:", "options": ["3", "2", "4", "-10 always"], "correct_index": 1, "explanation": "0,1,2 are valid."},
+    {"prompt": "Arrays store:", "options": ["Only numbers", "An ordered collection", "Only unique values", "Key-value pairs only"], "correct_index": 1, "explanation": "Ordered collection."},
+    {"prompt": "[5,5,5] sum via loop:", "options": ["5", "10", "15", "0"], "correct_index": 2, "explanation": "5+5+5=15."}
+  ]},
+  "learning_objectives": ["Index into lists", "Use length safely", "Traverse with loops"],
+  "prerequisites": ["loops_basics"],
+  "concepts": ["array", "index", "length"],
+  "common_misconceptions": [{"misconception": "First index is 1", "correction": "In most languages used in OA, the first index is 0."}],
+  "company_applications": [{"company": "TCS NQT", "skill": "arrays", "practice": "Trace indexing and simple traversals."}],
+  "srs_cards": [{"type": "concept", "question": "Last index of length n?", "answer": "n-1"}],
+  "quest": {"chapter": "Programming Logic", "mission": "Arrays and lists", "success_criteria": ["Index into lists", "Use length safely", "Traverse with loops"]},
+  "next_lesson_slug": "strings_basics",
+  "next_lesson_title": "Strings basics"
+}

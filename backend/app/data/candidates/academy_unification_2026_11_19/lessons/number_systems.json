@@ -1,0 +1,146 @@
+{
+  "slug": "number_systems",
+  "id": "lesson_number_systems_001",
+  "title": "Number Systems for Placement",
+  "domain": "Quantitative Aptitude",
+  "difficulty": "easy",
+  "duration_min": 30,
+  "xp_reward": 115,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Natural, whole, integers, rationals",
+      "content": "Natural numbers start at 1. Whole numbers include 0. Integers include negatives. Rational numbers can be written as p/q with q ≠ 0. Service-company papers mix classification with divisibility and remainders.",
+      "tip": "0 is whole but not natural in the standard Indian exam convention."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Classify the number",
+      "prompt": "Which statement is true about −3?",
+      "options": [
+        "Natural and integer",
+        "Whole number only",
+        "Integer but not natural",
+        "Not an integer"
+      ],
+      "correct_index": 2,
+      "explanation": "−3 is an integer. It is not natural or whole.",
+      "hints": ["Natural numbers are positive counting numbers.", "Integers include negatives."]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Divisibility shortcuts",
+      "content": "A number is divisible by 2 if the last digit is even; by 3 if digit-sum is divisible by 3; by 4 if the last two digits form a number divisible by 4; by 5 if it ends in 0 or 5; by 9 if digit-sum is divisible by 9; by 11 using alternating digit sum.",
+      "example": "2178: 2−1+7−8 = 0, divisible by 11."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Apply the rule",
+      "prompt": "Which number is divisible by 9?",
+      "options": ["2345", "2358", "2367", "2371"],
+      "correct_index": 1,
+      "explanation": "2+3+5+8 = 18, which is divisible by 9.",
+      "hints": ["Sum the digits.", "Check which digit-sum is a multiple of 9."]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Remainders",
+      "content": "When a = bq + r with 0 ≤ r < b, r is the remainder. Remainder questions often combine modular thinking: if n = 5k + 2, then n+3 = 5k + 5 = 5(k+1), remainder 0 when divided by 5.",
+      "formula": "a = bq + r,  0 ≤ r < b"
+    },
+    {
+      "step_number": 6,
+      "step_type": "practice",
+      "title": "Remainder chain",
+      "prompt": "A number leaves remainder 3 when divided by 7. What is the remainder when the same number plus 11 is divided by 7?",
+      "options": ["0", "1", "2", "3"],
+      "correct_index": 0,
+      "explanation": "n = 7k+3. n+11 = 7k+14 = 7(k+2). Remainder 0.",
+      "hints": ["Write n as 7k + 3.", "Add 11 and regroup multiples of 7."]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Check divisibility by 11",
+      "prompt": "Order the steps to test whether 918082 is divisible by 11.",
+      "options": [
+        "Compare the alternating sum to a multiple of 11",
+        "Compute alternating sum: 9−1+8−0+8−2",
+        "Write the digits in order",
+        "Conclude divisibility if the result is 0, ±11, ±22, …"
+      ],
+      "correct_order": [2, 1, 0, 3],
+      "explanation": "Alternating sum 9−1+8−0+8−2 = 22, divisible by 11.",
+      "hints": ["Start from the digits themselves.", "Alternating means + − + − pattern."]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which set contains only integers?",
+        "options": ["{1, 2, 2.5}", "{−2, 0, 4}", "{√2, 3}", "{1/2, 2}"],
+        "correct_index": 1,
+        "explanation": "−2, 0 and 4 are all integers."
+      },
+      {
+        "prompt": "A number is divisible by 4 if:",
+        "options": [
+          "Its digit sum is divisible by 4",
+          "Its last digit is divisible by 4",
+          "The number formed by its last two digits is divisible by 4",
+          "It ends with 0"
+        ],
+        "correct_index": 2,
+        "explanation": "Divisibility by 4 depends on the last two digits."
+      },
+      {
+        "prompt": "n leaves remainder 5 when divided by 8. Remainder when n+3 is divided by 8?",
+        "options": ["0", "1", "2", "5"],
+        "correct_index": 0,
+        "explanation": "n=8k+5; n+3=8k+8=8(k+1)."
+      },
+      {
+        "prompt": "Digit sum of 4572 is 18. Divisible by 9?",
+        "options": ["Yes", "No", "Only by 3", "Cannot say"],
+        "correct_index": 0,
+        "explanation": "18 is divisible by 9, so 4572 is."
+      },
+      {
+        "prompt": "In standard placement convention, 0 is:",
+        "options": ["Natural only", "Whole but not natural", "Neither", "Irrational"],
+        "correct_index": 1,
+        "explanation": "0 is a whole number, not a natural number."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Classify numbers into natural, whole, integer, rational",
+    "Apply divisibility rules for 2,3,4,5,9,11",
+    "Solve basic remainder problems"
+  ],
+  "concepts": ["divisibility", "remainder", "number classification"],
+  "common_misconceptions": [
+    {
+      "misconception": "0 is a natural number.",
+      "correction": "In most Indian exam keys, natural numbers start at 1; 0 is whole."
+    }
+  ],
+  "company_applications": [
+    { "company": "TCS NQT", "skill": "number system", "practice": "Divisibility + remainder in one multi-choice item." },
+    { "company": "Cognizant", "skill": "quantitative", "practice": "Quick classification questions under time." }
+  ],
+  "srs_cards": [
+    { "type": "rule", "question": "Rule for divisibility by 3?", "answer": "Sum of digits is divisible by 3." },
+    { "type": "rule", "question": "Rule for divisibility by 11?", "answer": "Alternating digit sum is a multiple of 11 (including 0)." }
+  ],
+  "next_lesson_slug": "percentages",
+  "next_lesson_title": "Percentages — Foundations"
+}

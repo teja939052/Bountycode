@@ -1,0 +1,219 @@
+{
+  "_readme": "Blueprint DRAFTS for companies missing from company_blueprints.json (Cognizant GenC, Tech Mahindra, LTIMindtree) plus a corrected Infosys pseudocode structure. NOT wired into the app. Figures come from unofficial prep sites that sometimes contradict themselves; every field marked 'conflict' must be checked against the company's official notice or recent student reports before a mock is shown as 'real format'.",
+  "checked_on": "2026-11-06",
+  "company_blueprints_additions": {
+    "cognizant_genc": {
+      "name": "Cognizant GenC",
+      "negative_marking": false,
+      "rounds": [
+        {
+          "id": "communication",
+          "questions": 60,
+          "minutes": 58,
+          "elimination": true,
+          "parts": {
+            "reading_sentences": 8,
+            "repeat_sentences": 16,
+            "jumbled_sentences": 10,
+            "question_and_answer": 24,
+            "story_telling": 2
+          }
+        },
+        {
+          "id": "aptitude",
+          "questions": 80,
+          "minutes": 100,
+          "parts": {
+            "numerical": {
+              "q": 25,
+              "min": 35
+            },
+            "logical": {
+              "q": 35,
+              "min": 45
+            },
+            "verbal": {
+              "q": 20,
+              "min": 20
+            }
+          }
+        },
+        {
+          "id": "technical",
+          "questions": 3,
+          "clusters": {
+            "cluster_1": {
+              "minutes": 120,
+              "topics": [
+                "java",
+                "ansi_sql",
+                "web_ui_html_css_js"
+              ]
+            },
+            "cluster_2": {
+              "minutes": 105,
+              "topics": [
+                "python",
+                "ansi_sql",
+                "cloud_fundamentals_mcq"
+              ]
+            }
+          }
+        }
+      ],
+      "conflict": "Source counts 3 rounds in the table and 4 in its FAQ; total minutes differ (278 vs 283).",
+      "source": {
+        "url": "https://www.placementpreparation.io/cognizant-genc/syllabus-and-test-pattern/",
+        "kind": "coaching/prep site (unofficial)",
+        "note": ""
+      }
+    },
+    "tech_mahindra": {
+      "name": "Tech Mahindra",
+      "negative_marking": "reported for aptitude and technical MCQs; penalty size unknown",
+      "rounds": [
+        {
+          "id": "aptitude",
+          "parts": {
+            "logical": {
+              "q": 12,
+              "min": 15
+            },
+            "quantitative": {
+              "q": 12,
+              "min": 15
+            },
+            "verbal": {
+              "q": "10-12",
+              "min": 15,
+              "note": "some campus drives only"
+            }
+          }
+        },
+        {
+          "id": "essay",
+          "questions": 1,
+          "words": "200-400",
+          "minutes": "15-25"
+        },
+        {
+          "id": "psychometric",
+          "questions": 72,
+          "minutes": 15,
+          "scored": false
+        },
+        {
+          "id": "technical_mcq",
+          "parts": {
+            "programming": {
+              "q": 12,
+              "min": 15
+            },
+            "computer_science": {
+              "q": 12,
+              "min": 15
+            }
+          }
+        },
+        {
+          "id": "coding",
+          "format": "fix-the-code (about 70% pre-written)",
+          "questions": 2,
+          "minutes": 45,
+          "languages": [
+            "c",
+            "cpp",
+            "java",
+            "python"
+          ]
+        },
+        {
+          "id": "spoken_english",
+          "minutes": "20-30",
+          "evaluated_by": "AI",
+          "parts": [
+            "pronunciation",
+            "fluency",
+            "grammar",
+            "listening"
+          ]
+        }
+      ],
+      "conflict": "Page totals do not add up (155 min stated vs about 165-190 from parts); no date on page.",
+      "source": {
+        "url": "https://www.placementpreparation.io/tech-mahindra/syllabus-and-test-pattern/",
+        "kind": "coaching/prep site (unofficial)",
+        "note": ""
+      }
+    },
+    "ltimindtree": {
+      "name": "LTIMindtree",
+      "negative_marking": false,
+      "coding_questions": 0,
+      "rounds": [
+        {
+          "id": "online_test",
+          "total_questions": "about 111",
+          "total_minutes": "about 130",
+          "parts": {
+            "quantitative": {
+              "q": 12,
+              "min": 15
+            },
+            "logical": {
+              "q": 12,
+              "min": 15
+            },
+            "english_comprehension": {
+              "q": "2-3"
+            },
+            "spoken_english_grammar": {
+              "q": 20,
+              "min": 20
+            },
+            "cs_mcq_set_1": {
+              "q": 30
+            },
+            "cs_mcq_set_2": {
+              "q": 30
+            },
+            "problem_solving": {
+              "q": "6-8",
+              "note": "not in every drive"
+            }
+          }
+        }
+      ],
+      "conflict": "Page title says 2026 but its heading says 2025. This contradicts the 'coding-heavy' label used earlier in the project.",
+      "source": {
+        "url": "https://www.placementpreparation.io/ltimindtree/syllabus-and-test-pattern/",
+        "kind": "coaching/prep site (unofficial)",
+        "note": ""
+      }
+    },
+    "infosys_general_pseudocode": {
+      "name": "Infosys online test (general pipeline)",
+      "negative_marking": false,
+      "coding_questions": 0,
+      "parts": {
+        "logical_reasoning": 15,
+        "mathematical_ability": 10,
+        "verbal_ability": 20,
+        "pseudocode": {
+          "q": 5,
+          "min": 10
+        },
+        "numerical_puzzle": 4,
+        "english_essay": 1
+      },
+      "minutes": "90 or 120 (conflict)",
+      "note": "Specialist Programmer and Digital Specialist Engineer pipelines differ and are not covered by this source.",
+      "map_pseudocode_to_section": "cs_fundamentals (labelled Programming Logic); see backend/app/data/intake/pseudocode_generated_v2.json",
+      "source": {
+        "url": "https://www.placementpreparation.io/infosys/syllabus-and-test-pattern/",
+        "kind": "coaching/prep site (unofficial)",
+        "note": ""
+      }
+    }
+  }
+}

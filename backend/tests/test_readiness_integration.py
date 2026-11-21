@@ -10,6 +10,8 @@ Uses mongomock_motor for an in-memory async MongoDB.
 """
 from __future__ import annotations
 
+from pathlib import Path
+
 import asyncio
 from copy import deepcopy
 
@@ -289,7 +291,7 @@ async def test_05_repair_retest_lifts_score(db_fixture):
 # ── 6. AI independence ─────────────────────────────────────────────────────
 
 def test_06_no_ai_imports_in_readiness_engine():
-    path = "D:/Project-Fremen/backend/app/services/readiness_engine.py"
+    path = Path(__file__).resolve().parents[1] / "app" / "services" / "readiness_engine.py"
     with open(path, encoding="utf-8") as f:
         source = f.read()
     import ast

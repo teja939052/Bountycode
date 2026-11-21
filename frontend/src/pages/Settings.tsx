@@ -100,7 +100,7 @@ export default function Settings() {
             initial={reduced ? {} : { opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h2 className="text-xl font-display font-bold text-text-primary">Profile Information</h2>
+            <h2 className="text-xl font-display font-bold text-text-primary">Account</h2>
             <div>
               <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Full Name</label>
               <div className="relative">

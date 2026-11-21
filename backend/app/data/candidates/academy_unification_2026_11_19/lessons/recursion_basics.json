@@ -1,0 +1,30 @@
+{
+  "slug": "recursion_basics",
+  "id": "lesson_recursion_basics_001",
+  "title": "Recursion basics",
+  "domain": "DSA",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Base case first", "content": "Recursion solves a problem by calling the same function on a smaller input. Every recursion needs a base case that stops the chain."},
+    {"step_number": 2, "step_type": "interactive", "title": "Factorial idea", "prompt": "fact(1)=1; fact(n)=n*fact(n-1). fact(3)=", "options": ["3", "6", "9", "1"], "correct_index": 1, "explanation": "3*2*1=6.", "hints": ["Expand fact(3)=3*fact(2)."]},
+    {"step_number": 3, "step_type": "practice", "title": "Missing base case", "prompt": "Recursion without a base case typically:", "options": ["Finishes instantly", "Risks infinite recursion / stack overflow", "Sorts faster", "Uses no memory"], "correct_index": 1, "explanation": "It may never stop.", "hints": ["What stops the calls?"]},
+    {"step_number": 4, "step_type": "practice", "title": "Smaller input", "prompt": "Each recursive call should:", "options": ["Grow the problem always", "Move toward the base case", "Ignore parameters", "Print only"], "correct_index": 1, "explanation": "Progress toward the base case.", "hints": ["How do you eventually stop?"]},
+    {"step_number": 5, "step_type": "explain", "title": "OA tip", "content": "Trace small n on paper. Prefer iteration if the recursion depth can be huge and tail calls are not optimized."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Base case:", "options": ["Optional", "Stops recursion", "Only for loops", "Increases n"], "correct_index": 1, "explanation": "Stops recursion."},
+    {"prompt": "fact(4) with fact(1)=1:", "options": ["10", "24", "12", "4"], "correct_index": 1, "explanation": "24."},
+    {"prompt": "Recursive call should:", "options": ["Avoid smaller cases", "Approach base case", "Randomize n", "Delete base case"], "correct_index": 1, "explanation": "Approach base."},
+    {"prompt": "No base case:", "options": ["Safe", "Dangerous non-termination", "Faster always", "Required by law"], "correct_index": 1, "explanation": "Non-termination risk."},
+    {"prompt": "Good practice:", "options": ["Trace small n", "Never test", "Ignore stack", "Only recurse on larger n"], "correct_index": 0, "explanation": "Trace small n."}
+  ]},
+  "learning_objectives": ["Write base cases", "Trace simple recursion"],
+  "concepts": ["recursion", "base case"],
+  "company_applications": [{"company": "Infosys", "skill": "recursion", "practice": "Trace fact/fib style snippets."}],
+  "srs_cards": [{"type": "concept", "question": "What must every recursion have?", "answer": "A base case that stops further calls."}],
+  "next_lesson_slug": "searching_basics",
+  "next_lesson_title": "Searching basics"
+}

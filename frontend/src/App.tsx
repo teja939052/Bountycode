@@ -40,7 +40,7 @@ const BottomNav = lazy(() => import("./components/BottomNav"));
 import {
   Login,
   Register,
-  OnboardingQuest,
+  OnboardingFlow,
   Dashboard,
   Interview,
   InterviewSession,
@@ -102,7 +102,8 @@ import {
    LearningModules,
    CurriculumHub,
    LearnTrack,
-  LearnLesson,
+   Profile,
+   LearnLesson,
   FreeTrial,
   PwaSetup,
   AdminContent,
@@ -171,7 +172,7 @@ function AnimatedRoutes() {
         path="/onboarding"
         element={
           <ProtectedRoute>
-            <OnboardingQuest />
+            <OnboardingFlow />
           </ProtectedRoute>
         }
       />
@@ -370,6 +371,7 @@ function AnimatedRoutes() {
         />
 
         <Route path="/settings" element={<Settings />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/history" element={<History />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/contests" element={<MonthlyContests />} />

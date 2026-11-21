@@ -64,7 +64,7 @@
         "Infinite times"
       ],
       "correct_index": 1,
-      "explanation": "The loop prints i=1, then checks i<=3 (1<=3 is true), loops back, prints i=2, checks, loops back, prints i=3, checks (3<=3 is true), loops back, prints i=4, checks (4<=3 is false), exits. Wait - let me re-read: i starts at 1, prints 1, increments to 2, checks 2<=3 (yes), prints 2, increments to 3, checks 3<=3 (yes), prints 3, increments to 4, checks 4<=3 (no), exits. So 'Print i' executes 3 times."
+      "explanation": "The flow prints i = 1, 2 and 3. After printing 3, it increments i to 4. The condition 4 <= 3 is false, so the loop exits. Therefore, 'Print i' executes 3 times."
     }
   ],
   "practice_questions": [

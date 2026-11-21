@@ -643,6 +643,13 @@ export interface OnboardingStatus {
   completed: boolean;
   step?: string;
   progress?: number;
+  career_goals?: string[];
+  tech_interests?: string[];
+}
+
+export interface OnboardingPreferences {
+  career_goals: string[];
+  tech_interests: string[];
 }
 
 export interface OnboardingData {
@@ -654,6 +661,8 @@ export interface OnboardingData {
   skills?: string[];
   goals?: string[];
   experience?: string;
+  career_goals?: string[];
+  tech_interests?: string[];
 }
 
 export interface StreakRepairResult {

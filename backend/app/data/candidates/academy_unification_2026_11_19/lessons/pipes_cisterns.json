@@ -1,0 +1,30 @@
+{
+  "slug": "pipes_cisterns",
+  "id": "lesson_pipes_cisterns_001",
+  "title": "Pipes and cisterns",
+  "domain": "Quantitative Aptitude",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Work rates", "content": "If a pipe fills a tank in n hours, its rate is 1/n tank per hour. Inlet rates add; outlet rates subtract."},
+    {"step_number": 2, "step_type": "interactive", "title": "Single pipe", "prompt": "A pipe fills in 4 hours. Rate per hour?", "options": ["1/2", "1/3", "1/4", "4"], "correct_index": 2, "explanation": "Rate = 1/4 tank per hour.", "hints": ["Rate is reciprocal of time."]},
+    {"step_number": 3, "step_type": "practice", "title": "Two inlets", "prompt": "Pipes A and B fill in 3h and 6h. Together time?", "options": ["1h", "2h", "3h", "4.5h"], "correct_index": 1, "explanation": "Rates 1/3+1/6=1/2 → 2 hours.", "hints": ["Add rates.", "Time = 1 / combined rate."]},
+    {"step_number": 4, "step_type": "practice", "title": "Inlet and outlet", "prompt": "A fills in 4h, B empties in 6h. Net rate when both open?", "options": ["1/4", "1/6", "1/12", "1/3"], "correct_index": 2, "explanation": "1/4 − 1/6 = 1/12 tank per hour.", "hints": ["Subtract outlet rate."]},
+    {"step_number": 5, "step_type": "explain", "title": "Exam tip", "content": "Always convert to rates first. Combined time is 1 divided by net rate when net rate is positive."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Fill in 5h → rate?", "options": ["5", "1/5", "1/10", "2/5"], "correct_index": 1, "explanation": "1/5."},
+    {"prompt": "1/3+1/6 =", "options": ["1/2", "1/3", "1/9", "1"], "correct_index": 0, "explanation": "1/2."},
+    {"prompt": "Net rate 1/12 → time to fill?", "options": ["6h", "12h", "24h", "1h"], "correct_index": 1, "explanation": "12 hours."},
+    {"prompt": "Outlet does what?", "options": ["Adds rate", "Subtracts rate", "Squares rate", "Ignores time"], "correct_index": 1, "explanation": "Subtracts."},
+    {"prompt": "First step in pipes problems?", "options": ["Guess", "Write rates", "Ignore outlet", "Use SI formula"], "correct_index": 1, "explanation": "Write rates."}
+  ]},
+  "learning_objectives": ["Convert times to rates", "Combine inlet and outlet"],
+  "concepts": ["work rate", "pipes"],
+  "company_applications": [{"company": "Wipro", "skill": "pipes_cisterns", "practice": "Two-pipe net rate items."}],
+  "srs_cards": [{"type": "formula", "question": "Pipe fills in n hours → rate?", "answer": "1/n tank per hour."}],
+  "next_lesson_slug": "mixture_alligation",
+  "next_lesson_title": "Mixtures and alligation"
+}

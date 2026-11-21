@@ -353,7 +353,7 @@ QUESTION TYPES (mix these):
 - "coding": Specific coding problems, algorithm design, debugging
 
 {history_text}
-{('STUDENT CONTEXT (personalize the next question to this student — target their weak areas and reinforce what they are currently repairing; do not repeat topics they already mastered):\n' + student_context) if student_context else ''}
+        {('STUDENT CONTEXT (personalize the next question to this student):' + chr(10) + student_context) if student_context else ''}
  
 Generate the NEXT question. Avoid repeating topics from history.
 {company_context}

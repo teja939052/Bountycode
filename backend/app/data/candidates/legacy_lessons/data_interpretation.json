@@ -1,0 +1,36 @@
+{
+  "slug": "data_interpretation",
+  "id": "lesson_data_interpretation_001",
+  "title": "Data interpretation basics",
+  "domain": "Quantitative Aptitude",
+  "difficulty": "medium",
+  "duration_min": 26,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "What DI tests", "content": "TCS/Infy DI asks you to read tables or simple charts and compute totals, averages, ratios, or % shares under time pressure. Extract only the numbers you need."},
+    {"step_number": 2, "step_type": "interactive", "title": "Table average", "prompt": "Sales: 40, 50, 60. Average?", "options": ["40", "50", "55", "150"], "correct_index": 1, "explanation": "150/3=50.", "hints": ["Sum then divide by count."]},
+    {"step_number": 3, "step_type": "practice", "title": "Percentage share", "prompt": "A=30, B=70. A's share of total?", "options": ["30%", "70%", "3/7", "43%"], "correct_index": 0, "explanation": "30/100=30%.", "hints": ["Part/total × 100."]},
+    {"step_number": 4, "step_type": "practice", "title": "Growth", "prompt": "From 50 to 60, % increase?", "options": ["10%", "20%", "16.7%", "12%"], "correct_index": 1, "explanation": "10/50×100=20%.", "hints": ["Base is original 50."]},
+    {"step_number": 5, "step_type": "explain", "title": "Exam tip", "content": "In 25-minute numerical sections, DI sets can eat time. Compute only asked metrics; avoid recalculating the whole table."}
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {"prompt": "Values 10,20,30 average?", "options": ["20", "30", "15", "60"], "correct_index": 0, "explanation": "20."},
+      {"prompt": "% share of 25 in 100?", "options": ["20%", "25%", "40%", "4%"], "correct_index": 1, "explanation": "25%."},
+      {"prompt": "DI first step:", "options": ["Memorise chart", "Read the exact question", "Ignore units", "Guess"], "correct_index": 1, "explanation": "Read question first."},
+      {"prompt": "From 80 to 100, % increase?", "options": ["20%", "25%", "18%", "12.5%"], "correct_index": 1, "explanation": "20/80=25%."},
+      {"prompt": "High-weight in TCS numerical?", "options": ["Only puzzles", "DI + arithmetic", "Only essays", "Only DBMS"], "correct_index": 1, "explanation": "DI + arithmetic."}
+    ]
+  },
+  "learning_objectives": ["Read tables quickly", "Compute average, share, % change"],
+  "concepts": ["average", "percentage share", "table reading"],
+  "company_applications": [
+    {"company": "TCS NQT", "skill": "data_interpretation", "practice": "Table/chart MCQs under 75s each."},
+    {"company": "Infosys", "skill": "mathematical_ability", "practice": "DI mixed with arithmetic."}
+  ],
+  "srs_cards": [{"type": "strategy", "question": "DI under time?", "answer": "Read question first; pull only needed cells."}],
+  "next_lesson_slug": "percentages",
+  "next_lesson_title": "Percentages"
+}
