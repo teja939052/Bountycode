@@ -28,10 +28,17 @@ def test_weakness_tiers():
     assert weakness_tier(0.9) == "strong"
 
 
-def test_deterministic():
+def test_assessment_values_are_deterministic():
     qs = [{"id": "q1", "topic": "percentages", "correct_answer": "B", "difficulty": "easy"}]
     ans = {"q1": "B"}
-    assert diagnose_exam(qs, ans, {}, "exam1", None) == diagnose_exam(qs, ans, {}, "exam1", None)
+    first = diagnose_exam(qs, ans, {}, "exam1", None)
+    second = diagnose_exam(qs, ans, {}, "exam1", None)
+
+    # Assessment time is intentionally generated per invocation; all scoring
+    # and evidence fields must remain deterministic for identical inputs.
+    stable_fields = lambda row: {key: value for key, value in row.items() if key != "assessed_at"}
+    assert [stable_fields(row) for row in first] == [stable_fields(row) for row in second]
+    assert all(row.get("assessed_at") for row in first + second)
 
 
 def test_linkage():
