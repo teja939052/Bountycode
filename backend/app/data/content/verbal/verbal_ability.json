@@ -9,7 +9,10 @@
       "concept": "Synonym = same meaning; Antonym = opposite meaning. Choose the word closest in meaning (or opposite).",
       "formula": "Match meaning precisely",
       "worked_example": "Synonym of Abundant = Plentiful. Antonym of Permanent = Temporary.",
-      "mistakes": ["Choosing related but not same word", "Ignoring context/part of speech"]
+      "mistakes": [
+        "Choosing related but not same word",
+        "Ignoring context/part of speech"
+      ]
     },
     {
       "id": "reading_comprehension",
@@ -17,7 +20,10 @@
       "concept": "Read passage and answer based ONLY on given info. True/False/Can't tell. Don't use outside knowledge.",
       "formula": "Answer from passage only",
       "worked_example": "Statement supported by passage = True; contradicts = False; insufficient info = Can't tell.",
-      "mistakes": ["Using outside knowledge", "Inferring beyond passage"]
+      "mistakes": [
+        "Using outside knowledge",
+        "Inferring beyond passage"
+      ]
     },
     {
       "id": "sentence_correction",
@@ -25,20 +31,32 @@
       "concept": "Identify grammatical error / choose correct sentence. Subject-verb agreement, tense, articles, prepositions.",
       "formula": "Check grammar rules",
       "worked_example": "She go to school → She goes to school (3rd person singular).",
-      "mistakes": ["Ignoring subject-verb agreement", "Choosing by 'sounds right' without rule"]
+      "mistakes": [
+        "Ignoring subject-verb agreement",
+        "Choosing by 'sounds right' without rule"
+      ]
     }
   ],
   "practice": [
     {
       "id": "VB-PRACTICE-001",
       "question": "Synonym of Abundant?",
-      "options": {"A": "Scarce", "B": "Plentiful", "C": "Rare", "D": "Empty"},
+      "options": {
+        "A": "Scarce",
+        "B": "Plentiful",
+        "C": "Rare",
+        "D": "Empty"
+      },
       "correct_answer": "B",
       "explanation": "Abundant = plentiful, existing in large quantities.",
       "difficulty": "easy",
       "sub_topic": "synonym_antonym",
-      "misconception_tags": ["wrong_meaning"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_meaning"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -46,29 +64,182 @@
     {
       "id": "VB-PRACTICE-002",
       "question": "Antonym of Permanent?",
-      "options": {"A": "Lasting", "B": "Temporary", "C": "Fixed", "D": "Stable"},
+      "options": {
+        "A": "Lasting",
+        "B": "Temporary",
+        "C": "Fixed",
+        "D": "Stable"
+      },
       "correct_answer": "B",
       "explanation": "Permanent = lasting; opposite = temporary.",
       "difficulty": "easy",
       "sub_topic": "synonym_antonym",
-      "misconception_tags": ["wrong_meaning"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "wrong_meaning"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "Each of the students have submitted the form.",
+        "B": "Each of the students has submitted the form.",
+        "C": "Each of the students are submitting.",
+        "D": "Each students has submitted."
+      },
+      "correct_answer": "B",
+      "explanation": "'Each of + plural noun' takes a singular verb: 'has'. The headword 'Each' is singular regardless of the prepositional phrase after it.",
+      "difficulty": "easy",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": [
+        "subject_verb_agreement"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-PRACTICE-003"
+    },
+    {
+      "question": "Choose the correct word: 'The two candidates were equally _____ for the post.'",
+      "options": {
+        "A": "eligible",
+        "B": "able",
+        "C": "capable",
+        "D": "intelligent"
+      },
+      "correct_answer": "A",
+      "explanation": "'Eligible for a post/position' is the fixed collocation for meeting formal qualifications; 'able' requires a to-infinitive (able to work), 'capable of' takes a noun/gerund, and 'intelligent for the post' is not idiomatic.",
+      "difficulty": "easy",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": [
+        "collocation_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-PRACTICE-004"
+    },
+    {
+      "question": "Choose the grammatically correct sentence.",
+      "options": {
+        "A": "The committee are divide in their opinions.",
+        "B": "The committee is divided on the issue.",
+        "C": "The committee is divide on the issue.",
+        "D": "The committee were divide on the issue."
+      },
+      "correct_answer": "B",
+      "explanation": "A collective noun acting as a single unit takes a singular verb ('is'), and 'divided' is the correct past-participle form; the other options use the base form 'divide'.",
+      "difficulty": "easy",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": [
+        "collective_noun_agreement"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-PRACTICE-005"
+    },
+    {
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "Neither of the answers are correct.",
+        "B": "Neither of the answers is correct.",
+        "C": "Neither of the answer is correct.",
+        "D": "Neither answers is correct."
+      },
+      "correct_answer": "B",
+      "explanation": "'Neither of + plural noun' takes a singular verb in standard usage: 'is correct'. 'Neither answers' is ungrammatical.",
+      "difficulty": "medium",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": [
+        "neither_nor_agreement"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-PRACTICE-006"
+    },
+    {
+      "question": "Antonym of 'ABUNDANT':",
+      "options": {
+        "A": "Plentiful",
+        "B": "Scarce",
+        "C": "Ample",
+        "D": "Copious"
+      },
+      "correct_answer": "B",
+      "explanation": "Abundant = plentiful/ample/copious (all synonyms); scarce = insufficient/rare - the only antonym here.",
+      "difficulty": "easy",
+      "sub_topic": "synonym_antonym",
+      "misconception_tags": [
+        "synonym_antonym_mixup"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "VB-001",
       "question": "The earth is in great danger because of ______ pollution.",
-      "options": {"A": "air", "B": "water", "C": "sound", "D": "all"},
+      "options": {
+        "A": "air",
+        "B": "water",
+        "C": "sound",
+        "D": "all"
+      },
       "correct_answer": "D",
       "explanation": "All forms of pollution endanger the earth.",
       "difficulty": "easy",
       "sub_topic": "sentence_correction",
-      "misconception_tags": ["context_error"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "context_error"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -76,13 +247,22 @@
     {
       "id": "VB-002",
       "question": "Choose correctly spelled word?",
-      "options": {"A": "Recieve", "B": "Receive", "C": "Reiceve", "D": "Receve"},
+      "options": {
+        "A": "Recieve",
+        "B": "Receive",
+        "C": "Reiceve",
+        "D": "Receve"
+      },
       "correct_answer": "B",
       "explanation": "Receive follows 'i before e except after c'.",
       "difficulty": "easy",
       "sub_topic": "sentence_correction",
-      "misconception_tags": ["spelling"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "spelling"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -90,16 +270,187 @@
     {
       "id": "VB-003",
       "question": "Grammatically correct: \"She go to school\"?",
-      "options": {"A": "She go to school", "B": "She goes to school", "C": "She going to school", "D": "She went to school"},
+      "options": {
+        "A": "She go to school",
+        "B": "She goes to school",
+        "C": "She going to school",
+        "D": "She went to school"
+      },
       "correct_answer": "B",
       "explanation": "Third person singular present → goes.",
       "difficulty": "easy",
       "sub_topic": "sentence_correction",
-      "misconception_tags": ["subject_verb_agreement"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "subject_verb_agreement"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Synonym of 'BENEVOLENT':",
+      "options": {
+        "A": "Cruel",
+        "B": "Kind",
+        "C": "Strict",
+        "D": "Silent"
+      },
+      "correct_answer": "B",
+      "explanation": "Benevolent = well-wishing, generous, kind (Latin bene = good). Cruel is its antonym; strict and silent are unrelated.",
+      "difficulty": "easy",
+      "sub_topic": "synonym_antonym",
+      "misconception_tags": [
+        "root_meaning_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-004"
+    },
+    {
+      "question": "Antonym of 'TRANSIENT':",
+      "options": {
+        "A": "Fleeting",
+        "B": "Brief",
+        "C": "Permanent",
+        "D": "Changing"
+      },
+      "correct_answer": "C",
+      "explanation": "Transient = lasting only a short time; its opposite is permanent/lasting. Fleeting and brief are near-synonyms, not antonyms.",
+      "difficulty": "medium",
+      "sub_topic": "synonym_antonym",
+      "misconception_tags": [
+        "synonym_antonym_mixup"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-005"
+    },
+    {
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "He is one of the best player in the team.",
+        "B": "He is one of the best players in the team.",
+        "C": "He is one of the best players in the teams.",
+        "D": "He is one of best players in a team."
+      },
+      "correct_answer": "B",
+      "explanation": "'One of the' requires a plural noun (players) followed by a singular verb on the main subject (is): 'one of the best players in the team'.",
+      "difficulty": "medium",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": [
+        "one_of_the_rule"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-006"
+    },
+    {
+      "question": "Synonym of 'CANDID':",
+      "options": {
+        "A": "Secretive",
+        "B": "Frank",
+        "C": "Careful",
+        "D": "Silent"
+      },
+      "correct_answer": "B",
+      "explanation": "Candid means straightforward and honest - frank. Secretive is closer to an antonym.",
+      "difficulty": "easy",
+      "sub_topic": "synonym_antonym",
+      "misconception_tags": [
+        "synonym_recall"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-007"
+    },
+    {
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "Hardly he had left when it started raining.",
+        "B": "Hardly had he left when it started raining.",
+        "C": "Hardly he left than it started raining.",
+        "D": "Hardly did he left when it started raining."
+      },
+      "correct_answer": "B",
+      "explanation": "After a negative adverb (hardly, rarely, never, seldom) at the start of a sentence, English uses inversion: 'Hardly had he left when...'. 'Than' pairs with 'no sooner', and 'did he left' misuses the base form.",
+      "difficulty": "hard",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": [
+        "inversion_after_negative"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-008"
+    },
+    {
+      "question": "Antonym of 'BENEVOLENT':",
+      "options": {
+        "A": "Generous",
+        "B": "Malevolent",
+        "C": "Benign",
+        "D": "Kind"
+      },
+      "correct_answer": "B",
+      "explanation": "Benevolent (well-wishing) opposes malevolent (wishing harm): bene- vs mal-. Generous, benign and kind are synonyms or near-synonyms.",
+      "difficulty": "medium",
+      "sub_topic": "synonym_antonym",
+      "misconception_tags": [
+        "root_meaning_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VB-009"
     }
   ],
   "trust_status": "human_reviewed",

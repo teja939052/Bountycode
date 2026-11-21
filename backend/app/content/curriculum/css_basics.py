@@ -1,6 +1,6 @@
 """
 Promoted Lesson: CSS Basics
-=================================================
+=======================================
 
 Service-company web development foundation. Follows the full content contract:
 
@@ -21,7 +21,7 @@ from typing import Dict, List, Any
 
 LESSON_ID = "css_basics_01"
 VERSION = "1.0.0"
-SKILL_ID = "css.css_basics"
+SKILL_ID = "css_selectors"
 COMPANY_RELEVANCE = ["tcs", "infosys", "wipro", "cognizant", "capgemini", "accenture"]
 EST_MINUTES = 15
 XP_REWARD = 120
@@ -31,11 +31,11 @@ CSS_BASICS_LESSON: Dict[str, Any] = {
     "version": VERSION,
     "module_id": "computer_science:css_basics",
     "title": "CSS Basics",
-    "description": "Master CSS fundamentals: selectors, box model, layout, and responsive design.",
+    "description": "Master CSS fundamentals: selectors, box model, layout, responsive design.",
     "difficulty": "beginner",
     "est_minutes": EST_MINUTES,
     "xp_reward": XP_REWARD,
-    "skills_taught": ["css_selectors", "box_model", "flexbox", "grid", "responsive_design"],
+    "skills_taught": ["css_selectors", "box_model", "flexbox", "responsive_design"],
     "srs_concept_tag": SKILL_ID,
     "company_relevance": COMPANY_RELEVANCE,
     "learning_objectives": [
@@ -47,12 +47,11 @@ CSS_BASICS_LESSON: Dict[str, Any] = {
     ],
     "prerequisites": ["cs_html_basics"],
     "concept_explanation": {
-        "title": "What is CSS?",
+        "title": "CSS Fundamentals",
         "text": (
-            "CSS (Cascading Style Sheets) styles HTML elements. A CSS rule has a selector "
-            "that picks elements, and a declaration block with property:value pairs that "
-            "define how those elements look. The cascade determines which rule wins when "
-            "multiple rules target the same element."
+            "CSS (Cascading Style Sheets) styles HTML elements. A CSS rule has a "
+            "selector that picks elements, and a declaration block with "
+            "property:value pairs that define how those elements look."
         ),
         "key_formula": "selector { property: value; }",
     },
@@ -60,7 +59,7 @@ CSS_BASICS_LESSON: Dict[str, Any] = {
         "title": "Style a paragraph",
         "problem": "Make all paragraphs blue with 16px font.",
         "code": "p {\n  color: blue;\n  font-size: 16px;\n}",
-        "output": "All paragraph text turns blue with 16px font size.",
+        "expected_output": "All paragraph text turns blue with 16px font size.",
         "explanation": "The selector p targets all paragraph elements. The declaration block sets color to blue and font-size to 16px.",
     },
     "interactive_practice": [
@@ -124,14 +123,14 @@ CSS_BASICS_LESSON: Dict[str, Any] = {
             "Use box-shadow for the subtle shadow.",
             "Use display: flex with justify-content: center to center horizontally.",
         ],
-        "answer": ".card { background-color: #f5f5f5; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; justify-content: center; }",
+        "code": ".card {\n  background-color: #f5f5f5;\n  border-radius: 8px;\n  padding: 20px;\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n  display: flex;\n  justify-content: center;\n}",
     },
     "deterministic_answer_key": {
         "css_practice_1": 2,
         "css_practice_2": 1,
         "css_assess_1": 1,
         "css_assess_2": 1,
-        "transfer_task": ".card { background-color: #f5f5f5; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; justify-content: center; }",
+        "transfer_task": ".card {\n  background-color: #f5f5f5;\n  border-radius: 8px;\n  padding: 20px;\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n  display: flex;\n  justify-content: center;\n}",
     },
     "source_provenance": {
         "source": "pattern-relevant",
@@ -157,29 +156,33 @@ CSS_BASICS_LESSON: Dict[str, Any] = {
     },
     "steps": [
         {
-            "step_id": "discovery",
+            "id": "discovery",
             "step_type": "discover",
             "title": "Why CSS?",
-            "content": "HTML structures content, CSS styles it. Without CSS, every webpage looks like a plain text document from the 1990s.",
+            "content": "HTML structures content; CSS styles it. Without CSS, every webpage looks like a plain text document from the 1990s.",
         },
         {
             "step_id": "manipulate",
             "step_type": "manipulate",
-            "content": "Open any webpage, right-click an element, and select \"Inspect\" to see its HTML and applied CSS styles.",
+            "title": "Inspect an element",
+            "content": "Open any webpage, right-click an element, and select 'Inspect' to see its HTML and applied CSS styles.",
             "predict": "What happens when you change an element's color in DevTools?",
         },
         {
             "step_id": "predict",
             "step_type": "predict",
-            "content": "What does this CSS do?\n\np {\n    color: blue;\n    font-size: 16px;\n}",
+            "content": "What does this CSS do?\n\np {\n  color: blue;\n  font-size: 16px;\n}",
             "options": ["Makes all paragraphs blue with 16px font", "Makes the page background blue", "Changes the page title", "Hides paragraphs"],
             "correct_index": 0,
         },
         {
             "step_id": "break_debug",
             "step_type": "debug",
-            "content": "Find the bug:\n\np {\n  color: blue;\n  font-size: 16px;\n  color: red;\n}\n\nThe text appears red, not blue. Why?",
-            "checks": ["Later rules override earlier ones - last rule wins"],
+            "title": "Find the bug",
+            "content": "This code should make text red but doesn't work. Why?\n\np {\n  colr: red;\n}",
+            "bug": "colr is not a valid CSS property name. The correct property name is color.",
+            "fix": "Change colr to color",
+            "explanation": "CSS property names are case-sensitive and must be spelled exactly correctly.",
         },
         {
             "step_id": "transfer",

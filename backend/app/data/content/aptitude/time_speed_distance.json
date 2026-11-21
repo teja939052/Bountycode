@@ -9,7 +9,10 @@
       "concept": "Distance = Speed × Time. Speed = Distance/Time. Time = Distance/Speed. km/h to m/s: multiply by 5/18.",
       "formula": "Distance = Speed × Time; km/h → m/s: × 5/18",
       "worked_example": "90 km/h = 90 × 5/18 = 25 m/s. Train crosses bridge in 36 s → length+speed = 25×36 = 900 m.",
-      "mistakes": ["Forgetting unit conversion km/h ↔ m/s", "Using wrong quantity as distance"]
+      "mistakes": [
+        "Forgetting unit conversion km/h ↔ m/s",
+        "Using wrong quantity as distance"
+      ]
     },
     {
       "id": "relative_speed",
@@ -17,20 +20,32 @@
       "concept": "Same direction: relative speed = difference. Opposite direction: relative speed = sum. Trains crossing: distance = sum of lengths.",
       "formula": "Same dir: |v1−v2|; Opposite dir: v1+v2; Train+bridge: L_train + L_bridge",
       "worked_example": "Train A 90 km/h (25 m/s) crosses bridge in 36 s → L+bridge = 900 m. Train B 100 m shorter, 45 km/h (12.5 m/s) → t = 800/12.5 = 64 s.",
-      "mistakes": ["Adding instead of subtracting for same direction", "Forgetting train length in crossing problems"]
+      "mistakes": [
+        "Adding instead of subtracting for same direction",
+        "Forgetting train length in crossing problems"
+      ]
     }
   ],
   "practice": [
     {
       "id": "TSD-PRACTICE-001",
       "question": "90 km/h in m/s?",
-      "options": {"A": "20", "B": "25", "C": "30", "D": "35"},
+      "options": {
+        "A": "20",
+        "B": "25",
+        "C": "30",
+        "D": "35"
+      },
       "correct_answer": "B",
       "explanation": "90 × 5/18 = 25 m/s.",
       "difficulty": "easy",
       "sub_topic": "tsd_basics",
-      "misconception_tags": ["unit_conversion_error"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -38,29 +53,182 @@
     {
       "id": "TSD-PRACTICE-002",
       "question": "Train 90 km/h crosses bridge in 36 s. Train 100 m shorter at 45 km/h time?",
-      "options": {"A": "61", "B": "63", "C": "62", "D": "64"},
+      "options": {
+        "A": "61",
+        "B": "63",
+        "C": "62",
+        "D": "64"
+      },
       "correct_answer": "D",
       "explanation": "A: 25 m/s × 36 = 900 m (L+bridge). B: L+bridge−100 = 800 m. 45 km/h = 12.5 m/s. t = 800/12.5 = 64 s.",
       "difficulty": "medium",
       "sub_topic": "relative_speed",
-      "misconception_tags": ["unit_conversion_error"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "A car travels 150 km in 3 hours. Its average speed =",
+      "options": {
+        "A": "30 km/h",
+        "B": "45 km/h",
+        "C": "50 km/h",
+        "D": "60 km/h"
+      },
+      "correct_answer": "C",
+      "explanation": "Speed = distance / time = 150 / 3 = 50 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": [
+        "formula_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-PRACTICE-003"
+    },
+    {
+      "question": "A train moving at 60 km/h covers 1 km in:",
+      "options": {
+        "A": "60 seconds",
+        "B": "72 seconds",
+        "C": "90 seconds",
+        "D": "100 seconds"
+      },
+      "correct_answer": "A",
+      "explanation": "60 km/h = 60 * 5/18 = 16.67 m/s. Time = 1000 m / 16.67 m/s = 60 seconds.",
+      "difficulty": "easy",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": [
+        "unit_conversion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-PRACTICE-004"
+    },
+    {
+      "question": "A cyclist covers 30 km in 2 hours. Speed =",
+      "options": {
+        "A": "10 km/h",
+        "B": "15 km/h",
+        "C": "20 km/h",
+        "D": "60 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Speed = 30/2 = 15 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": [
+        "formula_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-PRACTICE-005"
+    },
+    {
+      "question": "A 150 m long train at 54 km/h crosses a pole in:",
+      "options": {
+        "A": "5 seconds",
+        "B": "10 seconds",
+        "C": "15 seconds",
+        "D": "20 seconds"
+      },
+      "correct_answer": "B",
+      "explanation": "54 km/h = 54 * 5/18 = 15 m/s. Time = 150/15 = 10 seconds.",
+      "difficulty": "medium",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": [
+        "unit_conversion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-PRACTICE-006"
+    },
+    {
+      "question": "Two cars travelling toward each other at 40 and 60 km/h are 200 km apart. Time to meet =",
+      "options": {
+        "A": "1 hour",
+        "B": "2 hours",
+        "C": "2.5 hours",
+        "D": "4 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Closing speed = 100 km/h. Time = 200/100 = 2 hours.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed",
+      "misconception_tags": [
+        "relative_speed_direction"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "TSD-001",
       "question": "Train with 90 km/h crosses bridge in 36 seconds. Another train 100 m shorter crosses same bridge at 45 km/h. Time?",
-      "options": {"A": "61", "B": "63", "C": "62", "D": "64"},
+      "options": {
+        "A": "61",
+        "B": "63",
+        "C": "62",
+        "D": "64"
+      },
       "correct_answer": "D",
       "explanation": "A: 25 m/s × 36 = 900 m (L+bridge). B: 800 m at 12.5 m/s → 64 s.",
       "difficulty": "medium",
       "sub_topic": "relative_speed",
-      "misconception_tags": ["unit_conversion_error"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -68,16 +236,187 @@
     {
       "id": "TSD-002",
       "question": "A car travels 60 km at 40 km/h and 60 km at 60 km/h. Average speed?",
-      "options": {"A": "48", "B": "50", "C": "52", "D": "55"},
+      "options": {
+        "A": "48",
+        "B": "50",
+        "C": "52",
+        "D": "55"
+      },
       "correct_answer": "A",
       "explanation": "Total distance = 120. Total time = 60/40 + 60/60 = 1.5 + 1 = 2.5 h. Avg = 120/2.5 = 48 km/h.",
       "difficulty": "medium",
       "sub_topic": "tsd_basics",
-      "misconception_tags": ["averaging_speeds_incorrectly"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "averaging_speeds_incorrectly"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Two trains start 200 km apart toward each other at 50 km/h and 30 km/h. Time to meet =",
+      "options": {
+        "A": "2 hours",
+        "B": "2.5 hours",
+        "C": "3 hours",
+        "D": "4 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Relative speed (opposite directions) = 50 + 30 = 80 km/h. Time = 200 / 80 = 2.5 hours.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed",
+      "misconception_tags": [
+        "relative_speed_direction"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-003"
+    },
+    {
+      "question": "A person walks at 4 km/h instead of 5 km/h and reaches work 12 minutes late. Distance =",
+      "options": {
+        "A": "1 km",
+        "B": "2 km",
+        "C": "3 km",
+        "D": "4 km"
+      },
+      "correct_answer": "D",
+      "explanation": "Slower speed takes longer: time diff = d/4 - d/5 = d/20 hours. Setting d/20 = 12 min = 0.2 h gives d = 4 km. Check: 4 km at 4 km/h = 60 min, at 5 km/h = 48 min, difference = 12 min late.",
+      "difficulty": "medium",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": [
+        "relative_time_equation"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-004"
+    },
+    {
+      "question": "A boat travels 24 km downstream in 3 hours and back upstream in 6 hours. Speed in still water =",
+      "options": {
+        "A": "4 km/h",
+        "B": "6 km/h",
+        "C": "8 km/h",
+        "D": "10 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Downstream = 8 km/h, upstream = 4 km/h. Still water = (8 + 4)/2 = 6 km/h (stream = (8 - 4)/2 = 2 km/h).",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed",
+      "misconception_tags": [
+        "boat_speed_formula"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-005"
+    },
+    {
+      "question": "A train 200 m long crosses a 300 m platform in 25 seconds. Its speed =",
+      "options": {
+        "A": "40 km/h",
+        "B": "54 km/h",
+        "C": "60 km/h",
+        "D": "72 km/h"
+      },
+      "correct_answer": "D",
+      "explanation": "The train must clear its own length plus the platform: distance = 200 + 300 = 500 m. Speed = 500/25 = 20 m/s = 20 * 18/5 = 72 km/h.",
+      "difficulty": "medium",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": [
+        "train_length_added"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-006"
+    },
+    {
+      "question": "A boat's downstream speed is 14 km/h and upstream is 10 km/h. Speed of the stream =",
+      "options": {
+        "A": "2 km/h",
+        "B": "4 km/h",
+        "C": "12 km/h",
+        "D": "24 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "Stream = (downstream - upstream)/2 = (14 - 10)/2 = 2 km/h (boat in still water = 12 km/h).",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed",
+      "misconception_tags": [
+        "boat_speed_formula"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-007"
+    },
+    {
+      "question": "A person travels from A to B at 30 km/h and returns at 20 km/h. Average speed for the whole journey =",
+      "options": {
+        "A": "24 km/h",
+        "B": "25 km/h",
+        "C": "26 km/h",
+        "D": "28 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "For equal distances, average speed is the harmonic mean: 2*30*20/(30+20) = 1200/50 = 24 km/h. Taking the arithmetic mean (25 km/h) is the classic trap.",
+      "difficulty": "medium",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": [
+        "average_speed_trap"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TSD-008"
     }
   ],
   "trust_status": "human_reviewed",

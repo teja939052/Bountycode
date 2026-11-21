@@ -9,7 +9,10 @@
       "concept": "Stack is LIFO (Last In, First Out). Operations: push (add), pop (remove top), peek (view top). All O(1). Used for undo, back, function calls, expression evaluation.",
       "formula": "push/pop/peek: O(1)",
       "worked_example": "Push 1,2,3 → top=3. Pop → 3, top=2. Peek → 2.",
-      "mistakes": ["Popping empty stack → underflow", "Confusing stack with queue (FIFO)"]
+      "mistakes": [
+        "Popping empty stack → underflow",
+        "Confusing stack with queue (FIFO)"
+      ]
     },
     {
       "id": "queue_basics",
@@ -17,20 +20,32 @@
       "concept": "Queue is FIFO (First In, First Out). Operations: enqueue (rear), dequeue (front), peek. All O(1) with proper impl. Used for BFS, task scheduling.",
       "formula": "enqueue/dequeue/peek: O(1)",
       "worked_example": "Enqueue 1,2,3 → front=1. Dequeue → 1, front=2. Peek → 2.",
-      "mistakes": ["Confusing queue with stack (LIFO)", "Using wrong end for enqueue/dequeue"]
+      "mistakes": [
+        "Confusing queue with stack (LIFO)",
+        "Using wrong end for enqueue/dequeue"
+      ]
     }
   ],
   "practice": [
     {
       "id": "SQ-PRACTICE-001",
       "question": "Which allows enqueue and dequeue both O(1)?",
-      "options": {"A": "Array", "B": "Linked List", "C": "Circular Buffer", "D": "Stack"},
+      "options": {
+        "A": "Array",
+        "B": "Linked List",
+        "C": "Circular Buffer",
+        "D": "Stack"
+      },
       "correct_answer": "C",
       "explanation": "Circular buffer supports O(1) enqueue/dequeue with fixed capacity.",
       "difficulty": "easy",
       "sub_topic": "queue_basics",
-      "misconception_tags": ["wrong_structure"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_structure"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -38,29 +53,182 @@
     {
       "id": "SQ-PRACTICE-002",
       "question": "Stack vs Queue difference?",
-      "options": {"A": "Stack LIFO, Queue FIFO", "B": "Stack FIFO, Queue LIFO", "C": "Both FIFO", "D": "Both LIFO"},
+      "options": {
+        "A": "Stack LIFO, Queue FIFO",
+        "B": "Stack FIFO, Queue LIFO",
+        "C": "Both FIFO",
+        "D": "Both LIFO"
+      },
       "correct_answer": "A",
       "explanation": "Stack = Last-In-First-Out. Queue = First-In-First-Out.",
       "difficulty": "easy",
       "sub_topic": "stack_basics",
-      "misconception_tags": ["fifo_vs_lifo"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "fifo_vs_lifo"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "A stack follows which discipline?",
+      "options": {
+        "A": "FIFO",
+        "B": "LIFO - last in, first out",
+        "C": "Priority order",
+        "D": "Random"
+      },
+      "correct_answer": "B",
+      "explanation": "Stacks push/pop at the same end: the most recently added element is removed first (LIFO).",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": [
+        "stack_queue_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-PRACTICE-003"
+    },
+    {
+      "question": "A queue follows which discipline?",
+      "options": {
+        "A": "LIFO",
+        "B": "FIFO - first in, first out",
+        "C": "Sorted order",
+        "D": "Depth first"
+      },
+      "correct_answer": "B",
+      "explanation": "Elements are enqueued at the rear and dequeued from the front: earliest first (FIFO).",
+      "difficulty": "easy",
+      "sub_topic": "queue_basics",
+      "misconception_tags": [
+        "stack_queue_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-PRACTICE-004"
+    },
+    {
+      "question": "Which real-world process is modelled most naturally by a stack?",
+      "options": {
+        "A": "Print jobs on a shared printer",
+        "B": "Undo history in an editor",
+        "C": "Customer service first-come-first-served",
+        "D": "CPU job scheduler queue"
+      },
+      "correct_answer": "B",
+      "explanation": "Undo reverts the most recent action first - LIFO. Printer and FCFS service are FIFO queues; scheduling queues are queues too.",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": [
+        "stack_queue_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-PRACTICE-005"
+    },
+    {
+      "question": "Pushing 3 items and then popping once removes:",
+      "options": {
+        "A": "The bottom item",
+        "B": "The middle item",
+        "C": "The most recently pushed item",
+        "D": "A random item"
+      },
+      "correct_answer": "C",
+      "explanation": "LIFO: the last item pushed is at the top and is popped first.",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": [
+        "lifo_order"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-PRACTICE-006"
+    },
+    {
+      "question": "Evaluating a postfix expression uses which structure?",
+      "options": {
+        "A": "Queue",
+        "B": "Stack",
+        "C": "Heap",
+        "D": "Linked list only"
+      },
+      "correct_answer": "B",
+      "explanation": "Scan left to right: push operands; on an operator pop two operands, compute, push the result. The final stack top is the value.",
+      "difficulty": "medium",
+      "sub_topic": "stack_basics",
+      "misconception_tags": [
+        "expression_evaluation"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "SQ-001",
       "question": "Structure commonly used for managing function calls and local variables?",
-      "options": {"A": "Queue", "B": "Linked List", "C": "Stack", "D": "Array"},
+      "options": {
+        "A": "Queue",
+        "B": "Linked List",
+        "C": "Stack",
+        "D": "Array"
+      },
       "correct_answer": "C",
       "explanation": "Function call stack uses LIFO → stack.",
       "difficulty": "easy",
       "sub_topic": "stack_basics",
-      "misconception_tags": ["wrong_structure"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_structure"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -68,13 +236,22 @@
     {
       "id": "SQ-002",
       "question": "Structure for BFS graph traversal?",
-      "options": {"A": "Stack", "B": "Array", "C": "Linked List", "D": "Queue"},
+      "options": {
+        "A": "Stack",
+        "B": "Array",
+        "C": "Linked List",
+        "D": "Queue"
+      },
       "correct_answer": "D",
       "explanation": "BFS uses queue (FIFO) to explore level by level.",
       "difficulty": "easy",
       "sub_topic": "queue_basics",
-      "misconception_tags": ["wrong_structure"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "wrong_structure"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -82,16 +259,214 @@
     {
       "id": "SQ-003",
       "question": "Which sorting algorithm has best worst-case for large list?",
-      "options": {"A": "Bubble Sort", "B": "Merge Sort", "C": "Quick Sort", "D": "Selection Sort"},
+      "options": {
+        "A": "Bubble Sort",
+        "B": "Merge Sort",
+        "C": "Quick Sort",
+        "D": "Selection Sort"
+      },
       "correct_answer": "B",
       "explanation": "Merge sort worst-case O(n log n); quick sort worst O(n²).",
       "difficulty": "easy",
       "sub_topic": "stack_basics",
-      "misconception_tags": ["wrong_algorithm"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_algorithm"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Which data structure is used by recursion's implicit mechanism?",
+      "options": {
+        "A": "Queue",
+        "B": "Stack (call stack)",
+        "C": "Heap",
+        "D": "Deque"
+      },
+      "correct_answer": "B",
+      "explanation": "Function calls are pushed onto the call stack and returned from in reverse order - exactly LIFO behaviour.",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": [
+        "call_stack_link"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-004"
+    },
+    {
+      "question": "Which traversal uses a stack explicitly or implicitly?",
+      "options": {
+        "A": "BFS only",
+        "B": "DFS / pre-order traversal",
+        "C": "Level-order only",
+        "D": "Queue-based level order"
+      },
+      "correct_answer": "B",
+      "explanation": "Depth-first traversal explores deep first, deferring siblings - stack behaviour (recursion uses the call stack; iterative DFS uses an explicit one).",
+      "difficulty": "medium",
+      "sub_topic": "stack_basics",
+      "misconception_tags": [
+        "traversal_structure"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-005"
+    },
+    {
+      "question": "A circular queue mainly solves which problem of a simple array queue?",
+      "options": {
+        "A": "Sorting the elements",
+        "B": "Wasting space at the front after repeated dequeue cycles",
+        "C": "Duplicate insertion",
+        "D": "Locking the rear"
+      },
+      "correct_answer": "B",
+      "explanation": "In a plain array queue, dequeueing advances the front and leaves unusable gaps even when empty at the back; wrapping indices (mod n) reuses that space.",
+      "difficulty": "medium",
+      "sub_topic": "queue_basics",
+      "misconception_tags": [
+        "circular_queue_purpose"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-006"
+    },
+    {
+      "question": "In a standard stack, insertion and deletion both happen at the:",
+      "options": {
+        "A": "Front only",
+        "B": "Rear only",
+        "C": "Same end (top)",
+        "D": "Both ends simultaneously"
+      },
+      "correct_answer": "C",
+      "explanation": "A stack has one accessible end - the top - where both push and pop operate, which is what makes it LIFO.",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": [
+        "top_operations"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-007"
+    },
+    {
+      "question": "Which traversal uses an explicit QUEUE?",
+      "options": {
+        "A": "In-order traversal",
+        "B": "Level-order (BFS) traversal",
+        "C": "Post-order with recursion only",
+        "D": "Pre-order stack-free"
+      },
+      "correct_answer": "B",
+      "explanation": "Level-order processes nodes level by level with FIFO enqueue/dequeue; DFS traversals use stacks (or recursion).",
+      "difficulty": "medium",
+      "sub_topic": "queue_basics",
+      "misconception_tags": [
+        "traversal_structure"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-008"
+    },
+    {
+      "question": "In a two-stack queue, elements are dequeued by:",
+      "options": {
+        "A": "Popping the input stack's top",
+        "B": "Popping the output stack; refill it from the input stack when empty",
+        "C": "Sorting both stacks",
+        "D": "Merging stacks into a list"
+      },
+      "correct_answer": "B",
+      "explanation": "In-stack receives enqueues; out-stack serves dequeues. When out-stack empties, all of in-stack is transferred - each element moves twice total: amortised O(1).",
+      "difficulty": "hard",
+      "sub_topic": "queue_basics",
+      "misconception_tags": [
+        "two_stack_queue"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-009"
+    },
+    {
+      "question": "A priority queue differs from a normal queue because it:",
+      "options": {
+        "A": "Removes elements in FIFO order",
+        "B": "Removes the highest/lowest priority element first",
+        "C": "Rejects duplicates",
+        "D": "Must be implemented as an array"
+      },
+      "correct_answer": "B",
+      "explanation": "Priority queues dequeue by key (usually via a heap), not arrival order - O(log n) enqueue/dequeue with O(1) peek of the extreme.",
+      "difficulty": "medium",
+      "sub_topic": "queue_basics",
+      "misconception_tags": [
+        "priority_queue_definition"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQ-010"
     }
   ],
   "trust_status": "human_reviewed",

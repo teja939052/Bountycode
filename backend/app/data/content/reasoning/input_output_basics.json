@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In input-output reasoning problems, the first correct step is to:",
+      "options": {
+        "A": "Guess the final arrangement",
+        "B": "Determine the exact rule the machine applies at each step",
+        "C": "Arrange alphabetically always",
+        "D": "Count the words"
+      },
+      "correct_answer": "B",
+      "explanation": "These problems simulate a machine rearranging input step by step; identify the per-step rule (e.g. smallest word moves to front) before predicting later steps.",
+      "difficulty": "easy",
+      "sub_topic": "rule_identification",
+      "misconception_tags": [
+        "rule_before_prediction"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "IO-PRACTICE-006"
+    },
+    {
+      "question": "A machine sorts each step by moving the alphabetically first remaining word to the front. Input: 'cat dog ant'. Step 1 result:",
+      "options": {
+        "A": "ant cat dog",
+        "B": "cat dog ant",
+        "C": "dog ant cat",
+        "D": "ant dog cat"
+      },
+      "correct_answer": "A",
+      "explanation": "The first remaining word in alphabetical order ('ant') is moved to the front while the relative order of the others is preserved: ant cat dog.",
+      "difficulty": "medium",
+      "sub_topic": "tracing",
+      "misconception_tags": [
+        "step_tracing_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "IO-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which skill matters most when the rule differs between step 1 and later steps?",
+      "options": {
+        "A": "Speed reading",
+        "B": "Careful per-step tracing with an explicit working table",
+        "C": "Memorising word lists",
+        "D": "Ignoring intermediate steps"
+      },
+      "correct_answer": "B",
+      "explanation": "Multi-stage machines change state; writing each intermediate arrangement prevents the common error of applying the step-1 rule to every step.",
+      "difficulty": "medium",
+      "sub_topic": "tracing",
+      "misconception_tags": [
+        "step_tracing_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "IO-006"
+    },
+    {
+      "question": "After the final arrangement is reached, which additional question is often asked?",
+      "options": {
+        "A": "How long the machine ran",
+        "B": "The position of a particular element in the final output",
+        "C": "The machine's memory size",
+        "D": "The input's word count only"
+      },
+      "correct_answer": "B",
+      "explanation": "Typical follow-ups ask for the index of a given word/number in the final arrangement, or which input produces a given output - both require the fully traced arrangement.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "followup_question_type"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "IO-007"
+    },
+    {
+      "question": "For a fixed input and deterministic machine, how many possible final arrangements exist?",
+      "options": {
+        "A": "Infinite",
+        "B": "Exactly one",
+        "C": "One per word",
+        "D": "Depends on the reader's mood"
+      },
+      "correct_answer": "B",
+      "explanation": "The rule is deterministic: the same input always produces the same unique sequence of steps and final arrangement - which is why these problems have a single keyed answer.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "determinism"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "IO-008"
     }
   ]
 }

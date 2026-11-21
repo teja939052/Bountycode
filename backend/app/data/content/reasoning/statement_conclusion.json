@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "A conclusion must be drawn only if it:",
+      "options": {
+        "A": "Is generally true in real life",
+        "B": "Follows logically from the given statement(s) with certainty",
+        "C": "Sounds impressive",
+        "D": "Contradicts common sense"
+      },
+      "correct_answer": "B",
+      "explanation": "Statement-conclusion questions test deductive entailment, not plausibility: a conclusion that is merely probable or real-world-typical does not 'follow'.",
+      "difficulty": "easy",
+      "sub_topic": "conclusion_basics",
+      "misconception_tags": [
+        "plausible_vs_entailed"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "STCN-PRACTICE-006"
+    },
+    {
+      "question": "Statement: 'All students passed the exam.' Conclusion I: 'Some who passed were students.' Conclusion II: 'No student failed.' Which follows?",
+      "options": {
+        "A": "Only I",
+        "B": "Only II",
+        "C": "Both I and II",
+        "D": "Neither"
+      },
+      "correct_answer": "C",
+      "explanation": "If all students passed, then every student is among those who passed - making II certain and the 'some' statement I valid (some includes all in inclusive logic).",
+      "difficulty": "easy",
+      "sub_topic": "definite_vs_probable",
+      "misconception_tags": [
+        "some_all_logic"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "STCN-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Statement: 'Some doctors are teachers.' Conclusion: 'Some teachers are doctors.' This conclusion:",
+      "options": {
+        "A": "Does not follow - direction matters",
+        "B": "Follows - 'some' relationships are symmetric",
+        "C": "Follows only if all doctors teach",
+        "D": "Is certainly false"
+      },
+      "correct_answer": "B",
+      "explanation": "'Some A are B' means at least one A is also B; that overlapping set is equally 'some B that are A', so the reversed statement is valid (subaltern conversion).",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_two_conclusions",
+      "misconception_tags": [
+        "conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "STCN-006"
+    },
+    {
+      "question": "Statement: 'It may rain tomorrow.' Conclusion: 'It will rain tomorrow.' This conclusion is:",
+      "options": {
+        "A": "Definite",
+        "B": "Not definite - possibility was stated, not certainty",
+        "C": "Impossible",
+        "D": "Already proven"
+      },
+      "correct_answer": "B",
+      "explanation": "Possibility language ('may', 'can') never upgrades to certainty. Treating a probability as a guarantee is the core trap of this question type.",
+      "difficulty": "medium",
+      "sub_topic": "definite_vs_probable",
+      "misconception_tags": [
+        "possibility_vs_certainty"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "STCN-007"
+    },
+    {
+      "question": "Statement: 'No hard work is useless.' Conclusion I: 'Some useful things are not hard work.' Which follows?",
+      "options": {
+        "A": "I follows",
+        "B": "I does not follow - 'no hard work is useless' only excludes usefulness for hard work, giving no claim about what is useful",
+        "C": "Both follow",
+        "D": "Neither can ever follow"
+      },
+      "correct_answer": "B",
+      "explanation": "The statement says hard work ∩ useless = ∅. Its contrapositive constrains 'useless' things, not 'useful' ones: useful things may or may not involve hard work. No definite 'some useful...' claim is entailed.",
+      "difficulty": "hard",
+      "sub_topic": "evaluating_two_conclusions",
+      "misconception_tags": [
+        "contrapositive_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "STCN-008"
     }
   ]
 }

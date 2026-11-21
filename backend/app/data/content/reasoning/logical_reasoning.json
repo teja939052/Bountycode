@@ -9,7 +9,10 @@
       "concept": "Find the pattern in number/letter series and predict the next term. Common patterns: arithmetic, geometric, squares, cubes, alternating, +n, ×n.",
       "formula": "Detect rule → apply to last term",
       "worked_example": "2, 6, 10, 18, 22, ? → +4 each → 26.",
-      "mistakes": ["Assuming single rule when alternating", "Not checking differences"]
+      "mistakes": [
+        "Assuming single rule when alternating",
+        "Not checking differences"
+      ]
     },
     {
       "id": "analogy",
@@ -17,7 +20,10 @@
       "concept": "A:B :: C:D — relationship between A and B matches C and D. Types: synonym, antonym, part-whole, cause-effect, worker-tool.",
       "formula": "A is to B as C is to D",
       "worked_example": "Hand : Glove :: Foot : ? → Sock (covering).",
-      "mistakes": ["Matching by category instead of relationship", "Ignoring direction of relationship"]
+      "mistakes": [
+        "Matching by category instead of relationship",
+        "Ignoring direction of relationship"
+      ]
     },
     {
       "id": "syllogism",
@@ -25,20 +31,32 @@
       "concept": "Draw conclusion from two premises using Venn diagrams. Universal/particular, affirmative/negative.",
       "formula": "All A are B; All B are C → All A are C",
       "worked_example": "All men are mortal. Socrates is a man. → Socrates is mortal.",
-      "mistakes": ["Assuming converse is true", "Ignoring negative premises"]
+      "mistakes": [
+        "Assuming converse is true",
+        "Ignoring negative premises"
+      ]
     }
   ],
   "practice": [
     {
       "id": "LR-PRACTICE-001",
       "question": "Continue: A2B4C6D8E_",
-      "options": {"A": "F10", "B": "10F", "C": "E10", "D": "F8"},
+      "options": {
+        "A": "F10",
+        "B": "10F",
+        "C": "E10",
+        "D": "F8"
+      },
       "correct_answer": "B",
       "explanation": "Letter increases, number increases by 2: A2 B4 C6 D8 E10 → next F10? Pattern: A2,B4,C6,D8,E10,F12... Actually shown as A2B4C6D8E_ → letter E with number 10 → E10, then F12. Given options, B) 10F means number then letter. The series alternates letter,number: A2 B4 C6 D8 E10 → next should be F12 but option B is 10F (reversed). The intended: E then 10 → but options show 10F. Best match: B (10F continues number-letter alternation if read as pairs).",
       "difficulty": "easy",
       "sub_topic": "series_completion",
-      "misconception_tags": ["wrong_pattern"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_pattern"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -46,29 +64,182 @@
     {
       "id": "LR-PRACTICE-002",
       "question": "Odd one out: Hockey, Football, Cricket, Ludo, Tennis",
-      "options": {"A": "Hockey", "B": "Football", "C": "Ludo", "D": "Tennis"},
+      "options": {
+        "A": "Hockey",
+        "B": "Football",
+        "C": "Ludo",
+        "D": "Tennis"
+      },
       "correct_answer": "C",
       "explanation": "Ludo is a board game; others are outdoor field sports.",
       "difficulty": "easy",
       "sub_topic": "series_completion",
-      "misconception_tags": ["wrong_category"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "wrong_category"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Complete the series: 2, 6, 12, 20, 30, ...",
+      "options": {
+        "A": "36",
+        "B": "40",
+        "C": "42",
+        "D": "44"
+      },
+      "correct_answer": "C",
+      "explanation": "Differences are 4, 6, 8, 10, ... (increasing by 2), so the next difference is 12: 30 + 12 = 42. (These are n^2 + n: 6=3*2... 42 = 6*7.)",
+      "difficulty": "medium",
+      "sub_topic": "series_completion",
+      "misconception_tags": [
+        "difference_pattern"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-PRACTICE-003"
+    },
+    {
+      "question": "Statement: All cats are animals. Which is definitely true?",
+      "options": {
+        "A": "All animals are cats",
+        "B": "Some animals are cats",
+        "C": "No animals are cats",
+        "D": "Cats are not animals"
+      },
+      "correct_answer": "B",
+      "explanation": "'All cats are animals' means every cat lies inside the animal set; therefore at least the cats form a non-empty overlap - 'some animals are cats' follows.",
+      "difficulty": "easy",
+      "sub_topic": "syllogism",
+      "misconception_tags": [
+        "conversion_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-PRACTICE-004"
+    },
+    {
+      "question": "Complete the series: 1, 1, 2, 3, 5, 8, ...",
+      "options": {
+        "A": "11",
+        "B": "12",
+        "C": "13",
+        "D": "14"
+      },
+      "correct_answer": "C",
+      "explanation": "Fibonacci: each term is the sum of the two before it. 5 + 8 = 13.",
+      "difficulty": "medium",
+      "sub_topic": "series_completion",
+      "misconception_tags": [
+        "fibonacci_pattern"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-PRACTICE-005"
+    },
+    {
+      "question": "Book is to Reading as Fork is to:",
+      "options": {
+        "A": "Drawing",
+        "B": "Eating",
+        "C": "Writing",
+        "D": "Cutting"
+      },
+      "correct_answer": "B",
+      "explanation": "Object : its primary function. A book is for reading; a fork is for eating (a knife is for cutting).",
+      "difficulty": "easy",
+      "sub_topic": "analogy",
+      "misconception_tags": [
+        "function_relationship"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-PRACTICE-006"
+    },
+    {
+      "question": "Statement: All roses are flowers. Some flowers are red. Conclusion: Some roses are red. This:",
+      "options": {
+        "A": "Follows definitely",
+        "B": "Does not follow - 'some flowers' may exclude roses",
+        "C": "Is impossible",
+        "D": "Follows only if all flowers are red"
+      },
+      "correct_answer": "B",
+      "explanation": "The second statement's 'some flowers' has no guaranteed overlap with roses; the red flowers could all be non-roses. No definite conclusion follows.",
+      "difficulty": "medium",
+      "sub_topic": "syllogism",
+      "misconception_tags": [
+        "some_overlap_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "LR-001",
       "question": "Raju: \"That girl playing carrom is the younger of the two daughters of my father's wife.\" Who is Raju referring to?",
-      "options": {"A": "Mother", "B": "Sister", "C": "Daughter", "D": "Cousin"},
+      "options": {
+        "A": "Mother",
+        "B": "Sister",
+        "C": "Daughter",
+        "D": "Cousin"
+      },
       "correct_answer": "B",
       "explanation": "Father's wife = mother. Younger of two daughters of mother = Raju's sister.",
       "difficulty": "easy",
       "sub_topic": "series_completion",
-      "misconception_tags": ["family_relation_confusion"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "family_relation_confusion"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -76,13 +247,22 @@
     {
       "id": "LR-002",
       "question": "Hand : Glove :: Foot : ?",
-      "options": {"A": "Shoe", "B": "Sock", "C": "Leg", "D": "Toe"},
+      "options": {
+        "A": "Shoe",
+        "B": "Sock",
+        "C": "Leg",
+        "D": "Toe"
+      },
       "correct_answer": "B",
       "explanation": "Glove covers hand; sock covers foot.",
       "difficulty": "easy",
       "sub_topic": "analogy",
-      "misconception_tags": ["wrong_relationship"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "wrong_relationship"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -90,16 +270,187 @@
     {
       "id": "LR-003",
       "question": "All men are mortal. Socrates is a man. Conclusion?",
-      "options": {"A": "Socrates is mortal", "B": "Socrates is a man", "C": "All mortals are men", "D": "Cannot say"},
+      "options": {
+        "A": "Socrates is mortal",
+        "B": "Socrates is a man",
+        "C": "All mortals are men",
+        "D": "Cannot say"
+      },
       "correct_answer": "A",
       "explanation": "Syllogism: All A are B; Socrates is A → Socrates is B.",
       "difficulty": "easy",
       "sub_topic": "syllogism",
-      "misconception_tags": ["assuming_converse"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "assuming_converse"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Find the odd one out: Apple, Mango, Potato, Banana.",
+      "options": {
+        "A": "Apple",
+        "B": "Mango",
+        "C": "Potato",
+        "D": "Banana"
+      },
+      "correct_answer": "C",
+      "explanation": "Apple, mango and banana are fruits (botanically and culinarily); potato is a vegetable/stem tuber - the category outlier.",
+      "difficulty": "easy",
+      "sub_topic": "analogy",
+      "misconception_tags": [
+        "category_classification"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-004"
+    },
+    {
+      "question": "If in a code BAT = 23 and CAT = 24, then DOT = ? (A=1, B=2, ... Z=26 style sums)",
+      "options": {
+        "A": "38",
+        "B": "39",
+        "C": "40",
+        "D": "41"
+      },
+      "correct_answer": "B",
+      "explanation": "The code is the sum of letter positions (A=1 ... Z=26): BAT = 2+1+20 = 23 and CAT = 3+1+20 = 24, so DOT = 4+15+20 = 39.",
+      "difficulty": "medium",
+      "sub_topic": "coding_decoding",
+      "misconception_tags": [
+        "code_rule_mismatch"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-005"
+    },
+    {
+      "question": "A is the brother of B. B is the daughter of C. How is A related to C?",
+      "options": {
+        "A": "Son",
+        "B": "Father",
+        "C": "Brother",
+        "D": "Nephew"
+      },
+      "correct_answer": "A",
+      "explanation": "B is C's daughter; A is B's brother, so A is also C's child - A is C's son.",
+      "difficulty": "easy",
+      "sub_topic": "blood_relations",
+      "misconception_tags": [
+        "relation_direction"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-006"
+    },
+    {
+      "question": "Find the odd one out: Triangle, Square, Circle, Rectangle.",
+      "options": {
+        "A": "Triangle",
+        "B": "Square",
+        "C": "Circle",
+        "D": "Rectangle"
+      },
+      "correct_answer": "C",
+      "explanation": "Triangle, square and rectangle are polygons (straight sides, vertices); a circle has no sides or vertices - the outlier.",
+      "difficulty": "easy",
+      "sub_topic": "analogy",
+      "misconception_tags": [
+        "category_classification"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-007"
+    },
+    {
+      "question": "Complete: 3, 6, 12, 24, 48, ...",
+      "options": {
+        "A": "60",
+        "B": "72",
+        "C": "96",
+        "D": "100"
+      },
+      "correct_answer": "C",
+      "explanation": "Each term doubles (common ratio 2): 48 * 2 = 96.",
+      "difficulty": "easy",
+      "sub_topic": "series_completion",
+      "misconception_tags": [
+        "geometric_series"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-008"
+    },
+    {
+      "question": "If FRIEND is coded as HTKGPF, then CANDLE is coded as:",
+      "options": {
+        "A": "ECPFNG",
+        "B": "DBOEMF",
+        "C": "ECPDNG",
+        "D": "FDPNGH"
+      },
+      "correct_answer": "A",
+      "explanation": "Each letter shifts +2 (F->H, R->T, I->K, E->G, N->P, D->F). C+2=E, A+2=C, N+2=P, D+2=F, L+2=N, E+2=G: ECPFNG.",
+      "difficulty": "medium",
+      "sub_topic": "series_completion",
+      "misconception_tags": [
+        "letter_shift"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "LR-009"
     }
   ],
   "trust_status": "human_reviewed",

@@ -21,7 +21,7 @@ from typing import Dict, List, Any
 
 LESSON_ID = "javascript_basics_01"
 VERSION = "1.0.0"
-SKILL_ID = "coding.javascript_basics"
+SKILL_ID = "javascript_variables"
 COMPANY_RELEVANCE = ["tcs", "infosys", "wipro", "cognizant", "capgemini", "accenture"]
 EST_MINUTES = 18
 XP_REWARD = 140
@@ -47,7 +47,7 @@ JAVASCRIPT_BASICS_LESSON: Dict[str, Any] = {
     ],
     "prerequisites": ["cs_html_basics", "cs_css_basics"],
     "concept_explanation": {
-        "title": "What is JavaScript?",
+        "title": "JavaScript Basics",
         "text": (
             "JavaScript is the programming language of the web. It makes pages interactive: "
             "responding to clicks, updating content without reloading, validating forms, "
@@ -60,7 +60,7 @@ JAVASCRIPT_BASICS_LESSON: Dict[str, Any] = {
         "title": "Change text on button click",
         "problem": "Change the text of a paragraph when a button is clicked.",
         "code": "document.getElementById('myBtn').onclick = function() {\n  document.getElementById('demo').innerHTML = 'Hello World!';\n};",
-        "output": "Clicking the button changes the paragraph text to 'Hello World!'",
+        "expected_output": "Clicking the button changes the paragraph text to 'Hello World!'",
         "explanation": "The onclick event handler runs the function when the button is clicked. document.getElementById finds the element by its ID, and innerHTML changes its content.",
     },
     "interactive_practice": [
@@ -78,7 +78,7 @@ JAVASCRIPT_BASICS_LESSON: Dict[str, Any] = {
             "question": "Which method selects an element by its ID?",
             "options": ["getElementsByClassName", "getElementById", "getElementsByTagName", "querySelectorAll"],
             "correct_index": 1,
-            "explanation": "document.getElementById() selects a single element by its unique ID attribute.",
+            "explanation": "document.getElementById() selects a single element with the matching id attribute.",
         },
     ],
     "misconception_feedback": {
@@ -91,24 +91,26 @@ JAVASCRIPT_BASICS_LESSON: Dict[str, Any] = {
             "text": "The value of 'this' depends on how a function is called, not where it's defined.",
         },
     },
-    "assessment": {"questions": [
-        {
-            "id": "js_assess_1",
-            "type": "mcq",
-            "question": "What does document.getElementById('btn') return?",
-            "options": ["All button elements", "The element with id='btn'", "All elements", "The first button element"],
-            "correct_index": 1,
-            "explanation": "getElementById returns the single element with the matching id attribute.",
-        },
-        {
-            "id": "js_assess_2",
-            "type": "mcq",
-            "question": "Which event fires when a user clicks an element?",
-            "options": ["onchange", "onmouseover", "onclick", "onkeydown"],
-            "correct_index": 2,
-            "explanation": "onclick fires when the user clicks on an element.",
-        },
-    ]},
+    "assessment": {
+        "questions": [
+            {
+                "id": "js_assess_1",
+                "type": "mcq",
+                "question": "What does document.getElementById('btn') return?",
+                "options": ["All button elements", "The element with id='btn'", "All elements", "The first button element"],
+                "correct_index": 1,
+                "explanation": "document.getElementById() selects a single element with the matching id attribute.",
+            },
+            {
+                "id": "js_assess_2",
+                "type": "mcq",
+                "question": "Which event fires when a user clicks an element?",
+                "options": ["onchange", "onmouseover", "onclick", "onkeydown"],
+                "correct_index": 2,
+                "explanation": "onclick fires when the user clicks on an element.",
+            },
+        ],
+    },
     "transfer_task": {
         "title": "Real-world: Toggle button",
         "problem": (
@@ -121,7 +123,7 @@ JAVASCRIPT_BASICS_LESSON: Dict[str, Any] = {
             "Add an onclick handler to the button.",
             "In the handler, toggle isOn and update the button text accordingly.",
         ],
-        "answer": "let isOn = false;\nbtn.onclick = function() {\n  isOn = !isOn;\n  btn.textContent = isOn ? 'ON' : 'OFF';\n};",
+        "code": "let isOn = false;\nbtn.onclick = function() {\n  isOn = !isOn;\n  btn.textContent = isOn ? 'ON' : 'OFF';\n};",
     },
     "deterministic_answer_key": {
         "js_practice_1": 2,
@@ -157,32 +159,34 @@ JAVASCRIPT_BASICS_LESSON: Dict[str, Any] = {
             "step_id": "discovery",
             "step_type": "discover",
             "title": "Why JavaScript?",
-            "content": "HTML structures content, CSS styles it, and JavaScript makes it interactive. Without JavaScript, web pages are static.",
+            "content": "JavaScript is the programming language of the web. It makes pages interactive: responding to clicks, updating content without reloading, validating forms, and fetching data from servers.",
         },
         {
             "step_id": "manipulate",
             "step_type": "manipulate",
-            "content": "Open any website, right-click an element, and select 'Inspect'. In the Console tab, type: document.body.style.backgroundColor = 'lightblue' and press Enter.",
-            "predict": "What happens to the page background color?",
+            "content": "Open any webpage, right-click an element, and select 'Inspect' to see its HTML and applied CSS styles.",
+            "predict": "What happens when you change an element's color in DevTools?",
         },
         {
             "step_id": "predict",
             "step_type": "predict",
-            "content": "What does this print?\n\nfunction greet(name) {\n  return 'Hello, ' + name;\n}\nconsole.log(greet('Alice'));",
-            "options": ["Hello, Alice", "Hello, undefined", "Hello, name", "Error"],
+            "content": "What does this JavaScript do?\n\nconst btn = document.getElementById('myBtn');\nbtn.onclick = function() {\n  alert('Hello!');\n};",
+            "options": ["Shows an alert when btn is clicked", "Changes the button text", "Refreshes the page", "Does nothing"],
             "correct_index": 0,
         },
         {
             "step_id": "break_debug",
             "step_type": "debug",
             "title": "Find the bug",
-            "content": "This function should return the sum of two numbers but returns undefined. Find the bug:\n\nfunction add(a, b) {\n  a + b;\n}",
-            "checks": ["missing return statement"],
+            "content": "This code should show an alert when the button is clicked but doesn't work. Why?\n\nbtn.onclick = function() {\n  alert('Hello!');\n};\n\n// Missing: document.getElementById('btn').onclick = ...",
+            "bug": "The code tries to use 'btn' variable that is never defined. It needs document.getElementById('btn').",
+            "fix": "Add document.getElementById('btn').onclick = before the function assignment.",
+            "explanation": "You must first get a reference to the button element using document.getElementById(), then assign the onclick handler to it.",
         },
         {
             "step_id": "transfer",
             "step_type": "transfer",
-            "title": "Transfer: Toggle button",
+            "title": "Real-world: Toggle button",
             "problem": (
                 "Create a button that toggles text between 'ON' and 'OFF' each time it's clicked. "
                 "Use a boolean variable to track the current state."

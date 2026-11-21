@@ -9,7 +9,10 @@
       "concept": "Average = Sum of values ÷ Number of values. Weighted average accounts for different group sizes.",
       "formula": "Average = Sum / Count",
       "worked_example": "Mean monthly salary of 75 workers = 5680. Mean of 25 = 5400, of 30 = 5700. Remaining (20) = (5680×75 − 5400×25 − 5700×30)/20 = 6000.",
-      "mistakes": ["Averaging averages without weights", "Using wrong count as denominator"]
+      "mistakes": [
+        "Averaging averages without weights",
+        "Using wrong count as denominator"
+      ]
     },
     {
       "id": "weighted_average",
@@ -17,20 +20,32 @@
       "concept": "Combined average = (sum of all values) / (total count), accounting for group sizes.",
       "formula": "Combined avg = (n1×avg1 + n2×avg2)/(n1+n2)",
       "worked_example": "Boys avg 71 (count b), girls avg 73 (count g). Combined = (71b+73g)/(b+g).",
-      "mistakes": ["Simple average of two group averages", "Ignoring group sizes"]
+      "mistakes": [
+        "Simple average of two group averages",
+        "Ignoring group sizes"
+      ]
     }
   ],
   "practice": [
     {
       "id": "AV-PRACTICE-001",
       "question": "Mean of 75 workers = 5680. Mean of 25 = 5400, of 30 = 5700. Mean of remaining?",
-      "options": {"A": "5000", "B": "6000", "C": "7000", "D": "8000"},
+      "options": {
+        "A": "5000",
+        "B": "6000",
+        "C": "7000",
+        "D": "8000"
+      },
       "correct_answer": "B",
       "explanation": "Remaining = (5680×75 − 5400×25 − 5700×30)/(75−25−30) = (426000 − 135000 − 171000)/20 = 120000/20 = 6000.",
       "difficulty": "medium",
       "sub_topic": "weighted_average",
-      "misconception_tags": ["averaging_averages"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "averaging_averages"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -38,29 +53,183 @@
     {
       "id": "AV-PRACTICE-002",
       "question": "Average of 5 numbers is 20. One number 30 removed. New average of 4?",
-      "options": {"A": "15", "B": "17.5", "C": "20", "D": "22.5"},
+      "options": {
+        "A": "15",
+        "B": "17.5",
+        "C": "20",
+        "D": "22.5"
+      },
       "correct_answer": "B",
       "explanation": "Sum = 100. Remove 30 → 70. 70/4 = 17.5.",
       "difficulty": "easy",
       "sub_topic": "average_basics",
-      "misconception_tags": ["wrong_count"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "wrong_count"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "The average of 10, 20 and 30 is:",
+      "options": {
+        "A": "15",
+        "B": "20",
+        "C": "25",
+        "D": "60"
+      },
+      "correct_answer": "B",
+      "explanation": "Average = sum / count = (10 + 20 + 30) / 3 = 60 / 3 = 20.",
+      "difficulty": "easy",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "sum_vs_average"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-PRACTICE-003"
+    },
+    {
+      "question": "If a student's average over 4 tests is 60, the total marks scored =",
+      "options": {
+        "A": "60",
+        "B": "120",
+        "C": "180",
+        "D": "240"
+      },
+      "correct_answer": "D",
+      "explanation": "Total = average * count = 60 * 4 = 240.",
+      "difficulty": "easy",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "average_vs_total"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-PRACTICE-004"
+    },
+    {
+      "question": "The average of 4, 8 and 12 is:",
+      "options": {
+        "A": "6",
+        "B": "8",
+        "C": "9",
+        "D": "24"
+      },
+      "correct_answer": "B",
+      "explanation": "Average = (4 + 8 + 12)/3 = 24/3 = 8.",
+      "difficulty": "easy",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "sum_vs_average"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-PRACTICE-005"
+    },
+    {
+      "question": "If the average of 6 numbers is 30, their sum is:",
+      "options": {
+        "A": "30",
+        "B": "90",
+        "C": "150",
+        "D": "180"
+      },
+      "correct_answer": "D",
+      "explanation": "Sum = average * count = 30 * 6 = 180.",
+      "difficulty": "easy",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "average_vs_total"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-PRACTICE-006"
+    },
+    {
+      "question": "A weighted average differs from a simple average because it:",
+      "options": {
+        "A": "Ignores some values",
+        "B": "Assigns each value an importance (weight) before averaging",
+        "C": "Only works with two values",
+        "D": "Rounds the result"
+      },
+      "correct_answer": "B",
+      "explanation": "Weighted averages multiply each value by its weight; when weights (e.g. group sizes) differ, the result differs from the unweighted mean.",
+      "difficulty": "medium",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "weight_ignored"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "AV-001",
       "question": "Mean monthly salary of 75 workers = 5680. Mean of 25 = 5400, of 30 = 5700. Mean of remaining workers?",
-      "options": {"A": "5000", "B": "6000", "C": "7000", "D": "8000"},
+      "options": {
+        "A": "5000",
+        "B": "6000",
+        "C": "7000",
+        "D": "8000"
+      },
       "correct_answer": "B",
       "explanation": "(5680×75 − 5400×25 − 5700×30)/20 = (426000 − 135000 − 171000)/20 = 6000.",
       "difficulty": "medium",
       "sub_topic": "weighted_average",
-      "misconception_tags": ["averaging_averages"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "averaging_averages"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -68,16 +237,187 @@
     {
       "id": "AV-002",
       "question": "Average age of 30 boys = 14. Average of 20 girls = 13. Combined average?",
-      "options": {"A": "13.4", "B": "13.5", "C": "13.6", "D": "13.8"},
+      "options": {
+        "A": "13.4",
+        "B": "13.5",
+        "C": "13.6",
+        "D": "13.8"
+      },
       "correct_answer": "A",
       "explanation": "Combined = (30×14 + 20×13)/50 = (420+260)/50 = 680/50 = 13.6.",
       "difficulty": "easy",
       "sub_topic": "weighted_average",
-      "misconception_tags": ["averaging_averages"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "averaging_averages"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "A class has 20 students with average 50 and another has 30 students with average 70. Combined average =",
+      "options": {
+        "A": "60",
+        "B": "62",
+        "C": "64",
+        "D": "65"
+      },
+      "correct_answer": "B",
+      "explanation": "Combined total = 20*50 + 30*70 = 1000 + 2100 = 3100 over 50 students. Average = 3100/50 = 62 (weighted, not the simple mean of 50 and 70).",
+      "difficulty": "medium",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "average_of_averages_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-003"
+    },
+    {
+      "question": "The average of 5 numbers is 40. If one number, 50, is removed, the new average of the remaining 4 numbers is:",
+      "options": {
+        "A": "35",
+        "B": "37.5",
+        "C": "40",
+        "D": "45"
+      },
+      "correct_answer": "B",
+      "explanation": "Total = 40*5 = 200. Removing 50 leaves 150 over 4 numbers: 150/4 = 37.5.",
+      "difficulty": "medium",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "removal_effect"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-004"
+    },
+    {
+      "question": "The average of the first 10 natural numbers (1 to 10) is:",
+      "options": {
+        "A": "5",
+        "B": "5.5",
+        "C": "6",
+        "D": "55"
+      },
+      "correct_answer": "B",
+      "explanation": "Sum 1..10 = 55, count = 10, average = 5.5. For 1..n the average is (n+1)/2 = 11/2 = 5.5.",
+      "difficulty": "medium",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "series_average"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-005"
+    },
+    {
+      "question": "The average of the first 20 natural numbers is:",
+      "options": {
+        "A": "10",
+        "B": "10.5",
+        "C": "11",
+        "D": "21"
+      },
+      "correct_answer": "B",
+      "explanation": "For 1..n the average is (n+1)/2 = 21/2 = 10.5 (sum 210 / 20 = 10.5).",
+      "difficulty": "medium",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "series_average"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-006"
+    },
+    {
+      "question": "The mean of 12, 15, x and 21 is 16. Value of x =",
+      "options": {
+        "A": "14",
+        "B": "15",
+        "C": "16",
+        "D": "18"
+      },
+      "correct_answer": "C",
+      "explanation": "Total = 16 * 4 = 64. x = 64 - (12 + 15 + 21) = 64 - 48 = 16.",
+      "difficulty": "medium",
+      "sub_topic": "average_basics",
+      "misconception_tags": [
+        "missing_value_setup"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-007"
+    },
+    {
+      "question": "Five numbers have average 40. If one number, 30, is replaced by 50, the new average is:",
+      "options": {
+        "A": "40",
+        "B": "42",
+        "C": "44",
+        "D": "38"
+      },
+      "correct_answer": "C",
+      "explanation": "Replacement raises the total by 20: new total = 40*5 + 20 = 220, new average = 220/5 = 44.",
+      "difficulty": "medium",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "replacement_effect"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "AV-008"
     }
   ],
   "trust_status": "human_reviewed",

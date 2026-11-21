@@ -65,7 +65,8 @@ SORTING_BASICS_LESSON: Dict[str, Any] = {
             "25 is already in place: [11, 12, 22, 25, 64]",
             "64 is last element, already sorted: [11, 12, 22, 25, 64]",
         ],
-        "answer": [11, 12, 22, 25, 64],
+        "expected_output": [11, 12, 22, 25, 64],
+        "explanation": "Selection sort repeatedly finds the minimum element from the unsorted part and puts it at the beginning.",
     },
     "interactive_practice": [
         {
@@ -166,7 +167,7 @@ SORTING_BASICS_LESSON: Dict[str, Any] = {
         {
             "step_id": "manipulate",
             "step_type": "manipulate",
-            "content": "Array: [64, 25, 12, 22, 11]\nFind minimum (11) in unsorted part, swap with position 0: [11, 25, 12, 22, 64]\nFind minimum (12) in unsorted part [25, 12, 22, 64], swap with position 1: [11, 12, 25, 22, 64]\nContinue until sorted.",
+            "content": "Array: [64, 25, 12, 22, 11]\nFind minimum (11) in unsorted part, swap with position 0: [11, 25, 12, 22, 64]\nFind minimum (12) in unsorted part [25, 12, 22, 64], swap with position 1: [11, 12, 25, 22, 64]\nFind minimum (22) in unsorted part [25, 22, 64], swap with position 2: [11, 12, 22, 25, 64]",
             "predict": "After sorting [64, 25, 12, 22, 11] with selection sort, what is the first element?",
         },
         {
@@ -179,8 +180,11 @@ SORTING_BASICS_LESSON: Dict[str, Any] = {
         {
             "step_id": "break_debug",
             "step_type": "debug",
-            "content": "Selection sort finds minimum but puts it in wrong position:\n\nfor i = 0 to n-1:\n    min_idx = i\n    for j = i+1 to n-1:\n        if arr[j] < arr[min_idx]:\n            min_idx = j\n  swap(arr[min_idx], arr[i])  // WRONG: swapped arguments!",
-            "checks": ["swap arguments are swapped: should be swap(arr[i], arr[min_idx])"],
+            "title": "Find the bug",
+            "content": "This selection sort code has a bug:\n\nfor i = 0 to n-1:\n    min_idx = i\n    for j = i+1 to n-1:\n        if arr[j] < arr[min_idx]:\n            min_idx = j\n    swap(arr[min_idx], arr[i])  // WRONG: swapped arguments!",
+            "bug": "swap arguments are swapped: should be swap(arr[i], arr[min_idx]).",
+            "fix": "Change swap(arr[min_idx], arr[i]) to swap(arr[i], arr[min_idx]).",
+            "explanation": "The swap arguments are swapped, which would swap min_idx with itself instead of swapping arr[min_idx] into position i.",
         },
         {
             "step_id": "transfer",

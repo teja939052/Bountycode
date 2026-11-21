@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In a word analogy, the first step is always to:",
+      "options": {
+        "A": "Pick the longest option",
+        "B": "Identify the exact relationship between the first pair",
+        "C": "Eliminate grammatically wrong options only",
+        "D": "Memorise the answer"
+      },
+      "correct_answer": "B",
+      "explanation": "The tested skill is transferring a precisely stated relationship; guessing options without first naming the rule leads to plausible-but-wrong traps.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "relationship_first"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANAB-PRACTICE-006"
+    },
+    {
+      "question": "Book : Pages :: Movie : ?",
+      "options": {
+        "A": "Director",
+        "B": "Scenes",
+        "C": "Tickets",
+        "D": "Actor"
+      },
+      "correct_answer": "B",
+      "explanation": "Whole : constituent units. A book is made of pages; a movie is made of scenes (director/actor are people, ticket is the access token).",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "part_whole_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANAB-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which relationship best describes Pen : Writer?",
+      "options": {
+        "A": "Tool : user",
+        "B": "Object : material",
+        "C": "Cause : effect",
+        "D": "Container : content"
+      },
+      "correct_answer": "A",
+      "explanation": "A pen is the instrument a writer uses. Trap options: 'object:material' would be like book:paper; here the direction is tool used by a professional.",
+      "difficulty": "medium",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "relationship_direction"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANAB-006"
+    },
+    {
+      "question": "Two options both look plausible for an analogy. What is the correct tie-breaker?",
+      "options": {
+        "A": "Choose the first option you like",
+        "B": "Apply the relationship in the SAME direction and degree as the original pair",
+        "C": "Choose the more common word",
+        "D": "Random selection is acceptable"
+      },
+      "correct_answer": "B",
+      "explanation": "Both direction (A:B vs B:A) and degree (exact vs partial similarity) must match. The option preserving both the direction and exactness wins.",
+      "difficulty": "hard",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "relationship_direction"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANAB-007"
+    },
+    {
+      "question": "Odd one out logic is used in analogies when:",
+      "options": {
+        "A": "The options form three of one category and one of another",
+        "B": "All options are synonyms",
+        "C": "The question stem is incomplete",
+        "D": "Numbers are involved"
+      },
+      "correct_answer": "A",
+      "explanation": "Sometimes the discrimination works by category: three options share the stem's relationship and one belongs to a different class (or three are of one family and one is not).",
+      "difficulty": "medium",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "odd_one_out"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANAB-008"
     }
   ]
 }

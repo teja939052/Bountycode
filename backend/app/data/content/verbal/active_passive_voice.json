@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Convert to passive: 'The chef cooked the meal.'",
+      "options": {
+        "A": "The meal cooked the chef.",
+        "B": "The meal was cooked by the chef.",
+        "C": "The meal is cooked by the chef.",
+        "D": "The chef was cooked the meal."
+      },
+      "correct_answer": "B",
+      "explanation": "Past simple active (cooked) becomes past simple passive: object + was/were + past participle + by + agent. The meal was cooked by the chef.",
+      "difficulty": "easy",
+      "sub_topic": "active_vs_passive",
+      "misconception_tags": [
+        "voice_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "APV-PRACTICE-006"
+    },
+    {
+      "question": "In a passive sentence, the subject receives the:",
+      "options": {
+        "A": "Action",
+        "B": "Action performed on it",
+        "C": "Adverb",
+        "D": "Object complement only"
+      },
+      "correct_answer": "B",
+      "explanation": "Passive voice makes the receiver of the action the subject (Subject + be + past participle), unlike active where the subject performs it.",
+      "difficulty": "easy",
+      "sub_topic": "active_vs_passive",
+      "misconception_tags": [
+        "voice_definition"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "APV-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Choose the correct passive of: 'She will finish the project.'",
+      "options": {
+        "A": "The project will finish by her.",
+        "B": "The project will be finished by her.",
+        "C": "The project will be finishing by her.",
+        "D": "The project would finish by her."
+      },
+      "correct_answer": "B",
+      "explanation": "Future simple passive = will be + past participle: The project will be finished by her.",
+      "difficulty": "medium",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "tense_passive_pattern"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "APV-006"
+    },
+    {
+      "question": "Which tense conversion is INCORRECT for passive?",
+      "options": {
+        "A": "Present simple: is/are + done",
+        "B": "Past continuous: was/were + being + done",
+        "C": "Present perfect: has/have + been + done",
+        "D": "Simple present: was/were + done"
+      },
+      "correct_answer": "D",
+      "explanation": "Simple present passive uses is/are + past participle; was/were + done is the past simple passive. The other three mappings are all correct.",
+      "difficulty": "medium",
+      "sub_topic": "tense_changes",
+      "misconception_tags": [
+        "tense_passive_pattern"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "APV-007"
+    },
+    {
+      "question": "In a passive construction with no agent mentioned, this is called:",
+      "options": {
+        "A": "A dangling participle",
+        "B": "Agentless passive (by-phrase omitted)",
+        "C": "An imperative",
+        "D": "A reflexive"
+      },
+      "correct_answer": "B",
+      "explanation": "English often drops the agent when it is unknown, obvious or unimportant ('The letter was written'), producing an agentless/by-less passive - common in scientific and formal writing.",
+      "difficulty": "medium",
+      "sub_topic": "active_vs_passive",
+      "misconception_tags": [
+        "agent_omission"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "APV-008"
     }
   ]
 }

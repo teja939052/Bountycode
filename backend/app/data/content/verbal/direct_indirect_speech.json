@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Change to indirect: He said, 'I am tired.'",
+      "options": {
+        "A": "He said that he was tired.",
+        "B": "He said that he is tired.",
+        "C": "He says that he was tired.",
+        "D": "He told that I am tired."
+      },
+      "correct_answer": "A",
+      "explanation": "Reporting past speech backshifts present 'am' to past 'was', and first-person 'I' changes to third-person 'he'. 'That' is optional; 'told' needs an object.",
+      "difficulty": "easy",
+      "sub_topic": "direct_vs_indirect",
+      "misconception_tags": [
+        "backshift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DIS-PRACTICE-006"
+    },
+    {
+      "question": "In indirect speech, the reporting verb is usually placed:",
+      "options": {
+        "A": "After the conjunction",
+        "B": "Before the reported clause, with a comma removed and 'that' optionally added",
+        "C": "Inside a quotation mark",
+        "D": "Only at paragraph end"
+      },
+      "correct_answer": "B",
+      "explanation": "Structure becomes: reporter + said (that) + clause. Quotation marks disappear and the comma of direct speech is removed.",
+      "difficulty": "easy",
+      "sub_topic": "direct_vs_indirect",
+      "misconception_tags": [
+        "punctuation_change"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DIS-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Change to indirect: The teacher said to the students, 'You must submit the assignment.'",
+      "options": {
+        "A": "The teacher told the students that you must submit the assignment.",
+        "B": "The teacher told the students that they must/had to submit the assignment.",
+        "C": "The teacher said students to must submit the assignment.",
+        "D": "The teacher said to students to submitted the assignment."
+      },
+      "correct_answer": "B",
+      "explanation": "'Said to' with an addressee becomes 'told'; second-person 'you' becomes 'they' (the students); the modal can stay 'must' or shift to 'had to'. Option B is the only complete, grammatical conversion.",
+      "difficulty": "medium",
+      "sub_topic": "questions_and_commands",
+      "misconception_tags": [
+        "said_to_vs_told"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DIS-006"
+    },
+    {
+      "question": "The pronoun change from 'I' to 'he' in indirect speech is driven by:",
+      "options": {
+        "A": "The reporting verb's tense only",
+        "B": "Change of person/deixis relative to the reporter",
+        "C": "The length of the sentence",
+        "D": "Whether the sentence has a question mark"
+      },
+      "correct_answer": "B",
+      "explanation": "Person shifts relative to the new speaker: first person becomes third when the reporter differs from the original speaker; second person maps to the listener's identity.",
+      "difficulty": "medium",
+      "sub_topic": "tense_and_pronoun_changes",
+      "misconception_tags": [
+        "person_shift"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DIS-007"
+    },
+    {
+      "question": "Convert: She said to him, 'What are you doing?' (indirect)",
+      "options": {
+        "A": "She asked him what he was doing.",
+        "B": "She asked him what are you doing.",
+        "C": "She told him what he is doing.",
+        "D": "She said him what was he doing."
+      },
+      "correct_answer": "A",
+      "explanation": "Wh-questions become indirect with statement word order (no inversion): asked + object + what + subject + verb. 'Are' backshifts to 'was'; 'you' becomes 'he'.",
+      "difficulty": "hard",
+      "sub_topic": "questions_and_commands",
+      "misconception_tags": [
+        "word_order_inversion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DIS-008"
     }
   ]
 }

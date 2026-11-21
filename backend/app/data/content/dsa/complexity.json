@@ -9,7 +9,10 @@
       "concept": "Big O describes the upper bound of running time (worst case) as input size grows. Common: O(1), O(log n), O(n), O(n log n), O(n²).",
       "formula": "O(f(n)) = upper bound",
       "worked_example": "Single loop over n → O(n). Nested loop → O(n²). Binary search → O(log n).",
-      "mistakes": ["Confusing Big O with exact time", "Ignoring that constants are dropped"]
+      "mistakes": [
+        "Confusing Big O with exact time",
+        "Ignoring that constants are dropped"
+      ]
     },
     {
       "id": "complexity_reference",
@@ -17,20 +20,33 @@
       "concept": "Array: access O(1), search O(n). BST: search O(log n) avg. Hash: O(1) avg. Merge sort O(n log n). Quick sort worst O(n²).",
       "formula": "See table",
       "worked_example": "Hash table avg O(1), worst O(n). Binary search requires sorted array.",
-      "mistakes": ["Assuming BST always O(log n) (degenerate → O(n))", "Assuming quick sort always O(n log n)"]
+      "mistakes": [
+        "Assuming BST always O(log n) (degenerate → O(n))",
+        "Assuming quick sort always O(n log n)"
+      ]
     }
   ],
   "practice": [
     {
       "id": "CX-PRACTICE-001",
       "question": "What does Big O describe?",
-      "options": {"A": "Max space", "B": "Min time", "C": "Upper bound of running time", "D": "Bugs"},
+      "options": {
+        "A": "Max space",
+        "B": "Min time",
+        "C": "Upper bound of running time",
+        "D": "Bugs"
+      },
       "correct_answer": "C",
       "explanation": "Big O = upper bound of running time (worst case).",
       "difficulty": "easy",
       "sub_topic": "big_o_basics",
-      "misconception_tags": ["wrong_definition"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "wrong_definition"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -38,29 +54,182 @@
     {
       "id": "CX-PRACTICE-002",
       "question": "Hash table average time complexity?",
-      "options": {"A": "O(1)", "B": "O(n)", "C": "O(log n)", "D": "O(n^2)"},
+      "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(log n)",
+        "D": "O(n^2)"
+      },
       "correct_answer": "A",
       "explanation": "Hash table average O(1); worst O(n) with collisions.",
       "difficulty": "easy",
       "sub_topic": "complexity_reference",
-      "misconception_tags": ["avg_vs_worst"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "avg_vs_worst"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Big-O notation describes:",
+      "options": {
+        "A": "Exact running time in seconds",
+        "B": "Asymptotic upper bound on growth as input size increases",
+        "C": "Memory address of the code",
+        "D": "Number of lines of code"
+      },
+      "correct_answer": "B",
+      "explanation": "Big-O bounds how resource usage grows for large inputs, ignoring constants and lower-order terms - not wall-clock seconds.",
+      "difficulty": "easy",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": [
+        "big_o_misread"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-PRACTICE-003"
+    },
+    {
+      "question": "Dropping constants, 3n + 20 is:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(20)",
+        "C": "O(3n + 20) always kept",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "A",
+      "explanation": "Big-O keeps only the dominant growth term: 3n + 20 -> O(n) (the constant 3 and additive 20 are asymptotically irrelevant).",
+      "difficulty": "easy",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": [
+        "constant_term_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-PRACTICE-004"
+    },
+    {
+      "question": "What is the space complexity of an iterative binary search?",
+      "options": {
+        "A": "O(n)",
+        "B": "O(1) - only a few index variables",
+        "C": "O(log n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "The iterative version keeps only lo, hi and mid: constant extra space. (Recursion adds O(log n) call-stack frames.)",
+      "difficulty": "easy",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": [
+        "space_complexity"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-PRACTICE-005"
+    },
+    {
+      "question": "Amortised O(1) append on a dynamic array means:",
+      "options": {
+        "A": "Every append is exactly one instruction",
+        "B": "Occasional O(n) resizes average out to constant time per append",
+        "C": "Appends never allocate memory",
+        "D": "The array never grows"
+      },
+      "correct_answer": "B",
+      "explanation": "Doubling capacity makes the total copy cost over n appends linear, so average cost per append is O(1) even though a single append occasionally costs O(n).",
+      "difficulty": "medium",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": [
+        "amortised_confusion"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-PRACTICE-006"
+    },
+    {
+      "question": "Two sequential loops of n iterations each give complexity:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n^2)",
+        "C": "O(2n) kept as is",
+        "D": "O(log n)"
+      },
+      "correct_answer": "A",
+      "explanation": "Sequential loops add: n + n = 2n, which is O(n). Only nested loops multiply into O(n^2).",
+      "difficulty": "easy",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": [
+        "nested_vs_sequential"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "CX-001",
       "question": "Merge sort worst-case?",
-      "options": {"A": "O(n)", "B": "O(n log n)", "C": "O(n^2)", "D": "O(log n)"},
+      "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(n^2)",
+        "D": "O(log n)"
+      },
       "correct_answer": "B",
       "explanation": "Merge sort always O(n log n), stable, needs extra space.",
       "difficulty": "easy",
       "sub_topic": "complexity_reference",
-      "misconception_tags": ["wrong_algorithm"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_algorithm"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -68,13 +237,22 @@
     {
       "id": "CX-002",
       "question": "Quick sort worst case?",
-      "options": {"A": "O(n log n)", "B": "O(n)", "C": "O(n^2)", "D": "O(log n)"},
+      "options": {
+        "A": "O(n log n)",
+        "B": "O(n)",
+        "C": "O(n^2)",
+        "D": "O(log n)"
+      },
       "correct_answer": "C",
       "explanation": "Quick sort worst O(n²) (e.g., sorted input with bad pivot).",
       "difficulty": "medium",
       "sub_topic": "complexity_reference",
-      "misconception_tags": ["avg_vs_worst"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "avg_vs_worst"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -82,16 +260,214 @@
     {
       "id": "CX-003",
       "question": "Binary search requirement?",
-      "options": {"A": "Sorted array", "B": "Linked list", "C": "Unsorted array", "D": "Tree"},
+      "options": {
+        "A": "Sorted array",
+        "B": "Linked list",
+        "C": "Unsorted array",
+        "D": "Tree"
+      },
       "correct_answer": "A",
       "explanation": "Binary search requires a sorted array.",
       "difficulty": "easy",
       "sub_topic": "big_o_basics",
-      "misconception_tags": ["wrong_structure"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_structure"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "What is the time complexity of binary search?",
+      "options": {
+        "A": "O(n)",
+        "B": "O(log n)",
+        "C": "O(n log n)",
+        "D": "O(1)"
+      },
+      "correct_answer": "B",
+      "explanation": "Each step halves the range: after k steps the range is n/2^k = 1, so k = log2 n -> O(log n).",
+      "difficulty": "easy",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": [
+        "complexity_recall"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-004"
+    },
+    {
+      "question": "Sorting n elements with comparison-based algorithms has a best-known worst case of:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(n^2)",
+        "D": "O(log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "The comparison-model lower bound is Omega(n log n); merge sort and heap sort achieve O(n log n) worst case (quick sort: average case).",
+      "difficulty": "medium",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": [
+        "sorting_bound"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-005"
+    },
+    {
+      "question": "Nested loops of n iterations each over the same input imply complexity:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(2n)",
+        "C": "O(n^2)",
+        "D": "O(log n)"
+      },
+      "correct_answer": "C",
+      "explanation": "Two nested n-iteration loops perform about n*n = n^2 body executions: O(n^2). Sequential loops add (O(2n) = O(n)); only nesting multiplies.",
+      "difficulty": "easy",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": [
+        "nested_loop_complexity"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-006"
+    },
+    {
+      "question": "Which pair is correctly ordered from slowest to fastest growth?",
+      "options": {
+        "A": "O(n^2), O(n log n), O(n), O(log n), O(1)",
+        "B": "O(1), O(log n), O(n), O(n log n), O(n^2)",
+        "C": "O(1), O(n), O(log n), O(n^2), O(n log n)",
+        "D": "O(log n), O(1), O(n), O(n^2), O(n log n)"
+      },
+      "correct_answer": "A",
+      "explanation": "Slowest to fastest growth: polynomial first - O(n^2) > O(n log n) > O(n) > O(log n) > O(1). Option A lists exactly this decreasing order (slowest first).",
+      "difficulty": "medium",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": [
+        "growth_ordering"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-007"
+    },
+    {
+      "question": "What is the space complexity of merge sort (excluding the output array)?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n) recursion stack",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "Merge sort recurses log n levels deep, using O(log n) stack space; the temporary merge buffers (if allocated per call) can add O(n).",
+      "difficulty": "medium",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": [
+        "space_complexity"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-008"
+    },
+    {
+      "question": "Which growth rate is O(n log n)?",
+      "options": {
+        "A": "Comparison-based sorting",
+        "B": "Binary search",
+        "C": "Hash table lookup",
+        "D": "Array index access"
+      },
+      "correct_answer": "A",
+      "explanation": "Efficient comparison sorts (merge/heap sort) are O(n log n). Binary search is O(log n); hash lookup average O(1); array access O(1).",
+      "difficulty": "easy",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": [
+        "complexity_recall"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-009"
+    },
+    {
+      "question": "Recurrence T(n) = 2T(n/2) + n (merge sort) solves to:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(n^2)",
+        "D": "O(log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "The master theorem case 2 (a=2, b=2, f(n)=n): T(n) = Theta(n log n).",
+      "difficulty": "hard",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": [
+        "master_theorem"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CX-010"
     }
   ],
   "trust_status": "human_reviewed",

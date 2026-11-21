@@ -13,7 +13,7 @@ Service-company DSA foundation. Follows the full content contract:
 - Source/provenance metadata, review state, accessibility metadata
 - Estimated time, spaced-repetition metadata
 
-Provenance: Pattern-relevant for service-company coding assessments (TCS, Infosys,
+Provenance: Pattern-relevant for service-company technical aptitude (TCS, Infosys,
 Wipro, Cognizant, Capgemini, Accenture). Not a claim about any private employer
 question bank.
 """
@@ -32,16 +32,16 @@ BINARY_SEARCH_LESSON: Dict[str, Any] = {
     "module_id": "data_structures:binary_search",
     "title": "Binary Search",
     "description": "Master binary search - the classic O(log n) search algorithm for sorted arrays.",
-    "difficulty": "medium",
+    "difficulty": "beginner",
     "est_minutes": EST_MINUTES,
     "xp_reward": XP_REWARD,
-    "skills_taught": ["binary_search", "divide_and_conquer", "sorted_array_search"],
+    "skills_taught": ["binary_search", "pattern_repetition", "array_traversal"],
     "srs_concept_tag": SKILL_ID,
     "company_relevance": COMPANY_RELEVANCE,
     "learning_objectives": [
         "Explain how binary search works and why it's O(log n).",
-        "Implement binary search iteratively and recursively.",
-        "Identify when binary search can be applied (sorted data).",
+        "Implement binary search iteratively.",
+        "Identify when binary search can be applied (sorted data only).",
         "Trace binary search execution step by step.",
     ],
     "prerequisites": ["coding.loops_basics", "dsa.arrays"],
@@ -50,20 +50,21 @@ BINARY_SEARCH_LESSON: Dict[str, Any] = {
         "text": (
             "Binary search finds a target value in a sorted array by repeatedly dividing "
             "the search interval in half. Start with the middle element: if it matches the "
-            "target, return its index. If the target is smaller, search the left half; if "
-            "larger, search the right half. Repeat until found or the interval is empty."
+            "target, return its index. If the target is smaller, search the left half; "
+            "if larger, search the right half. Repeat until found or the interval is empty."
         ),
         "key_formula": "mid = (low + high) / 2; if arr[mid] == target return mid; if arr[mid] > target search left; else search right",
     },
     "worked_example": {
         "title": "Binary search for 7 in [1, 3, 5, 7, 9, 11]",
-        "problem": "Find index of 7 in [1, 3, 5, 7, 9, 11].",
+        "problem": "Find index of 7 in [1, 3, 5, 7, 9, 11] using binary search.",
         "steps": [
             "low=0, high=5, mid=2. arr[2]=5. 5 < 7, so search right half: low=3.",
             "low=3, high=5, mid=4. arr[4]=9. 9 > 7, so search left half: high=3.",
             "low=3, high=3, mid=3. arr[3]=7. Found! Return index 3.",
         ],
-        "answer": 3,
+        "expected_output": 3,
+        "explanation": "Binary search finds the target in O(log n) time by repeatedly halving the search interval.",
     },
     "interactive_practice": [
         {
@@ -80,49 +81,51 @@ BINARY_SEARCH_LESSON: Dict[str, Any] = {
             "question": "Which condition must be true for binary search to work?",
             "options": ["Array must be sorted", "Array must be unsorted", "Array must contain unique elements", "Array must have even length"],
             "correct_index": 0,
-            "explanation": "Binary search requires a sorted array because it relies on comparing values to eliminate half the search space.",
+            "explanation": "Binary search only works on sorted arrays because it relies on comparing values to eliminate half the search space.",
         },
     ],
     "misconception_feedback": {
-        "off_by_one": {
-            "title": "Common mistake: Off-by-one in boundary updates",
-            "text": "When the target is less than mid, set high = mid - 1 (not mid). When greater, set low = mid + 1 (not mid). Including mid causes infinite loops.",
-        },
         "unsorted_array": {
-            "title": "Common mistake: Binary search on unsorted data",
-            "text": "Binary search only works on sorted data. Applying it to unsorted arrays gives incorrect results.",
+            "title": "Common mistake: Binary search on unsorted array",
+            "text": "Binary search only works on sorted data. Applying it to unsorted arrays gives incorrect results because the comparison-based elimination logic no longer works.",
+        },
+        "off_by_one": {
+            "title": "Common mistake: Off-by-one in binary search bounds",
+            "text": "When target < arr[mid], set high = mid - 1. When target > arr[mid], set low = mid + 1. Off-by-one errors cause infinite loops.",
         },
     },
-    "assessment": {"questions": [
-        {
-            "id": "bs_assess_1",
-            "type": "mcq",
-            "question": "In binary search for target 7 in [1, 3, 5, 7, 9], what is the first mid index?",
-            "options": ["0", "1", "2", "3"],
-            "correct_index": 2,
-            "explanation": "mid = (0 + 4) / 2 = 2. arr[2] = 5.",
-        },
-        {
-            "id": "bs_assess_2",
-            "type": "mcq",
-            "question": "If target < arr[mid], which half should be searched next?",
-            "options": ["Right half", "Left half", "Both halves", "Neither half"],
-            "correct_index": 1,
-            "explanation": "If target < arr[mid], the target (if present) must be in the left half.",
-        },
-    ]},
+    "assessment": {
+        "questions": [
+            {
+                "id": "bs_assess_1",
+                "type": "mcq",
+                "question": "In binary search for target 7 in [1, 3, 5, 7, 9], what is the first mid index?",
+                "options": ["0", "1", "2", "3"],
+                "correct_index": 2,
+                "explanation": "mid = (0 + 4) / 2 = 2. arr[2] = 5.",
+            },
+            {
+                "id": "bs_assess_2",
+                "type": "mcq",
+                "question": "If target < arr[mid], which half should be searched next?",
+                "options": ["Right half", "Left half", "Both halves", "Neither half"],
+                "correct_index": 1,
+                "explanation": "If target < arr[mid], the target (if present) must be in the left half.",
+            },
+        ],
+    },
     "transfer_task": {
         "title": "Real-world: Find first occurrence",
         "problem": (
-            "Given a sorted array with duplicates, find the FIRST occurrence of a target value. "
+            "Given a sorted array with duplicates, find the first occurrence of a target value. "
             "For example, in [1, 2, 2, 2, 3], find the first index of 2 (answer: 1)."
         ),
         "steps": [
             "Use binary search but don't stop when you find the target.",
-            "When arr[mid] == target, record mid as a candidate and search left (high = mid - 1) to find earlier occurrences.",
-            "Return the leftmost occurrence found.",
+            "When arr[mid] == target, record mid as candidate and search left (high = mid - 1) to find earlier occurrences.",
+            "Return leftmost occurrence found.",
         ],
-        "answer": "int left = 0, right = n - 1, result = -1;\nwhile (left <= right) {\n  int mid = (left + right) / 2;\n  if (arr[mid] == target) { result = mid; right = mid - 1; }\n  else if (arr[mid] < target) left = mid + 1;\n  else right = mid - 1;\n}\nreturn result;",
+        "code": "int left = 0, right = n - 1, result = -1;\nwhile (left <= right) {\n  int mid = (left + right) / 2;\n  if (arr[mid] == target) { result = mid; right = mid - 1; }\n  else if (arr[mid] < target) left = mid + 1;\n  else right = mid - 1;\n}\nreturn result;",
     },
     "deterministic_answer_key": {
         "bs_practice_1": 1,
@@ -158,36 +161,42 @@ BINARY_SEARCH_LESSON: Dict[str, Any] = {
             "step_id": "discovery",
             "step_type": "discover",
             "title": "Why binary search?",
-            "content": "Finding a name in a phone book: you don't start from page 1. You open the middle, check if your target is before or after, and eliminate half the book each time.",
+            "content": "Binary search finds a target value in a sorted array by repeatedly dividing the search interval in half. Start with the middle element: if it matches the target, return its index. If the target is smaller, search the left half; if larger, search the right half.",
         },
         {
             "step_id": "manipulate",
             "step_type": "manipulate",
-            "content": "Array: [1, 3, 5, 7, 9, 11]. Search for 7.\nStart: low=0, high=5. mid = (0+5)/2 = 2. arr[2] = 5.\nSince 5 < 7, search right: low = mid + 1 = 3.\nNext: low=3, high=5. mid = (3+5)/2 = 4. arr[4] = 9.\nSince 9 > 7, search left: high = mid - 1 = 3.\nNext: low=3, high=3. mid = 3. arr[3] = 7. Found!",
-            "predict": "If searching for 11 in [1, 3, 5, 7, 9, 11], what is the first mid index?",
+            "content": "Array: [1, 3, 5, 7, 9, 11]. Search for 7.\nStart: low=0, high=5, mid=2. arr[2]=5. 5 < 7, search right: low=3.\nNext: low=3, high=5, mid=4. arr[4]=9. 9 > 7, search left: high=3.\nNext: low=3, high=3, mid=3. arr[3]=7. Found! Return index 3.",
+            "predict": "In binary search for 7 in [1, 3, 5, 7, 9], what is the first mid index?",
         },
         {
             "step_id": "predict",
             "step_type": "predict",
-            "content": "Array: [1, 3, 5, 7, 9, 11]. Target: 11. What is the first mid index?",
-            "options": ["2", "3", "4", "5"],
+            "content": "In binary search for 7 in [1, 3, 5, 7, 9], what is the first mid index?",
+            "options": ["0", "1", "2", "3"],
             "correct_index": 2,
         },
         {
             "step_id": "break_debug",
             "step_type": "debug",
-            "content": "This binary search loops forever. Find the bug:\n\nint left = 0, right = n - 1;\nwhile (left <= right) {\n  int mid = (left + right) / 2;\n  if (arr[mid] == target) return mid;\n  if (arr[mid] < target) left = mid;  // BUG\n  else right = mid - 1;\n}",
-            "checks": ["left = mid should be left = mid + 1"],
+            "title": "Find the bug",
+            "content": "This binary search code has a bug:\n\nint left = 0, right = n - 1;\nwhile (left <= right) {\n  int mid = (left + right) / 2;\n  if (arr[mid] == target) return mid;\n  else if (arr[mid] < target) left = mid;\n  else right = mid - 1;\n}",
+            "bug": "When target < arr[mid], setting left = mid causes an infinite loop because mid is already checked.",
+            "fix": "Change left = mid to left = mid + 1.",
+            "explanation": "When target > arr[mid], we know arr[mid] is not the target, so we can safely set left = mid + 1 to exclude mid from the next search range.",
         },
         {
             "step_id": "transfer",
             "step_type": "transfer",
-            "title": "Find first occurrence",
-            "problem": "Given [1, 2, 2, 2, 3], find first index of 2.",
+            "title": "Real-world: Find first occurrence",
+            "problem": (
+                "Given a sorted array with duplicates, find the first occurrence of a target value. "
+                "For example, in [1, 2, 2, 2, 3], find the first index of 2 (answer: 1)."
+            ),
             "steps": [
-                "Binary search for 2.",
-                "When arr[mid] == 2, record mid but keep searching left for earlier occurrences.",
-                "Return the leftmost occurrence.",
+                "Use binary search but don't stop when you find the target.",
+                "When arr[mid] == target, record mid as candidate and search left (high = mid - 1) to find earlier occurrences.",
+                "Return leftmost occurrence found.",
             ],
             "code": "int left = 0, right = n - 1, result = -1;\nwhile (left <= right) {\n  int mid = (left + right) / 2;\n  if (arr[mid] == target) { result = mid; right = mid - 1; }\n  else if (arr[mid] < target) left = mid + 1;\n  else right = mid - 1;\n}\nreturn result;",
         },

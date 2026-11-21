@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In data sufficiency, 'sufficient' means the statements:",
+      "options": {
+        "A": "Give a unique, unambiguous answer",
+        "B": "Mention the topic of the question",
+        "C": "Are long enough to be convincing",
+        "D": "Can be combined only with the options"
+      },
+      "correct_answer": "A",
+      "explanation": "A statement set is sufficient only when exactly one answer value fits logically; multiple possible values (even two) mean insufficiency.",
+      "difficulty": "easy",
+      "sub_topic": "basics",
+      "misconception_tags": [
+        "sufficiency_definition"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DSR-PRACTICE-006"
+    },
+    {
+      "question": "Statement alone: 'All roses are flowers.' Does this alone tell you whether a given tulip is a rose?",
+      "options": {
+        "A": "Yes - all flowers are roses",
+        "B": "No - the statement says nothing about tulips",
+        "C": "Yes - tulips are flowers",
+        "D": "Only with a diagram"
+      },
+      "correct_answer": "B",
+      "explanation": "The statement only constrains roses. Tulips are not mentioned, so their membership is undetermined - classic 'irrelevant direction of information' trap.",
+      "difficulty": "medium",
+      "sub_topic": "independent_eval",
+      "misconception_tags": [
+        "irrelevant_statement_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DSR-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Is n even? Statement 1: n is divisible by 4. Statement 2: n + 1 is odd. Which is sufficient?",
+      "options": {
+        "A": "Statement 1 alone only",
+        "B": "Statement 2 alone only",
+        "C": "Either statement alone",
+        "D": "Neither alone, but both together"
+      },
+      "correct_answer": "C",
+      "explanation": "Divisible by 4 implies even (S1 sufficient). n+1 odd implies n is even (S2 also sufficient). Each alone settles it, so either statement alone suffices.",
+      "difficulty": "medium",
+      "sub_topic": "independent_eval",
+      "misconception_tags": [
+        "either_alone_sufficiency"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DSR-006"
+    },
+    {
+      "question": "What is x? Statement 1: x > 0. Statement 2: x < 10. Conclusion about sufficiency:",
+      "options": {
+        "A": "Together sufficient (x = 5)",
+        "B": "Together still insufficient - x could be any value in (0, 10)",
+        "C": "S1 alone sufficient",
+        "D": "S2 alone sufficient"
+      },
+      "correct_answer": "B",
+      "explanation": "Inequalities rarely pin a unique value: x could be 1, 2.5, 9.9... Range bounds are not a value - both statements together still leave infinitely many candidates.",
+      "difficulty": "medium",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "range_vs_value"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DSR-007"
+    },
+    {
+      "question": "Is A the mother of B? Statement 1: A has a child. Statement 2: B is a child. Which is sufficient (alone or together)?",
+      "options": {
+        "A": "S1 alone",
+        "B": "S2 alone",
+        "C": "Both together - A's child and B is a child implies A is B's mother",
+        "D": "Neither alone nor together - B could be someone else's child"
+      },
+      "correct_answer": "D",
+      "explanation": "Even combined, the statements never link A's child to B (B could be another person's child; A's child could be someone else; gender unknown). Individuation of the link is missing.",
+      "difficulty": "hard",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "missing_link"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "DSR-008"
     }
   ]
 }

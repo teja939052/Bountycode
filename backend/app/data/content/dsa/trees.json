@@ -9,7 +9,10 @@
       "concept": "A tree is a non-linear, hierarchical data structure with nodes connected by edges. Binary tree: each node has at most 2 children. BST: left < root < right.",
       "formula": "BST: left subtree < node < right subtree",
       "worked_example": "BST Inorder traversal (Left → Root → Right) visits nodes in ascending order.",
-      "mistakes": ["Confusing tree with graph", "Thinking BST inorder is unsorted"]
+      "mistakes": [
+        "Confusing tree with graph",
+        "Thinking BST inorder is unsorted"
+      ]
     },
     {
       "id": "tree_traversal",
@@ -17,20 +20,33 @@
       "concept": "Preorder (Root-Left-Right), Inorder (Left-Root-Right), Postorder (Left-Right-Root), Level-order (BFS).",
       "formula": "Inorder BST → sorted ascending",
       "worked_example": "BST Inorder visits nodes in non-decreasing (ascending) order.",
-      "mistakes": ["Mixing up traversal orders", "Forgetting BST property in inorder"]
+      "mistakes": [
+        "Mixing up traversal orders",
+        "Forgetting BST property in inorder"
+      ]
     }
   ],
   "practice": [
     {
       "id": "TR-PRACTICE-001",
       "question": "Which is not a linear data structure?",
-      "options": {"A": "Array", "B": "Linked list", "C": "Queue", "D": "Tree"},
+      "options": {
+        "A": "Array",
+        "B": "Linked list",
+        "C": "Queue",
+        "D": "Tree"
+      },
       "correct_answer": "D",
       "explanation": "Tree is non-linear (hierarchical). Others are linear.",
       "difficulty": "easy",
       "sub_topic": "tree_basics",
-      "misconception_tags": ["linear_vs_nonlinear"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "linear_vs_nonlinear"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -38,29 +54,182 @@
     {
       "id": "TR-PRACTICE-002",
       "question": "BST Inorder traversal visits nodes in?",
-      "options": {"A": "Preorder", "B": "Inorder", "C": "Postorder", "D": "Level Order"},
+      "options": {
+        "A": "Preorder",
+        "B": "Inorder",
+        "C": "Postorder",
+        "D": "Level Order"
+      },
       "correct_answer": "B",
       "explanation": "Inorder (Left → Root → Right) of a BST visits in ascending order.",
       "difficulty": "easy",
       "sub_topic": "tree_traversal",
-      "misconception_tags": ["wrong_traversal"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "wrong_traversal"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "The topmost node of a tree is called the:",
+      "options": {
+        "A": "Leaf",
+        "B": "Root",
+        "C": "Child",
+        "D": "Sibling"
+      },
+      "correct_answer": "B",
+      "explanation": "The root is the ancestor of all nodes (the entry point of the tree); leaves are nodes with no children.",
+      "difficulty": "easy",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "terminology_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-PRACTICE-003"
+    },
+    {
+      "question": "A node with no children is called a:",
+      "options": {
+        "A": "Root",
+        "B": "Parent",
+        "C": "Leaf",
+        "D": "Branch"
+      },
+      "correct_answer": "C",
+      "explanation": "Leaves (external nodes) have no children; internal nodes have at least one child.",
+      "difficulty": "easy",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "terminology_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-PRACTICE-004"
+    },
+    {
+      "question": "A binary tree node contains at most how many children?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "Unlimited"
+      },
+      "correct_answer": "B",
+      "explanation": "Binary = two: each node has at most a left and a right child.",
+      "difficulty": "easy",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "definition_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-PRACTICE-005"
+    },
+    {
+      "question": "The depth (height) of a single-node tree is:",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "-1",
+        "D": "Undefined"
+      },
+      "correct_answer": "A",
+      "explanation": "With edges counting levels, a lone root has height 0 (some texts use 1 node-count convention; edge convention gives 0).",
+      "difficulty": "easy",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "height_convention"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-PRACTICE-006"
+    },
+    {
+      "question": "Pre-order traversal visits nodes in which order?",
+      "options": {
+        "A": "Left, Root, Right",
+        "B": "Root, Left, Right",
+        "C": "Left, Right, Root",
+        "D": "Level by level"
+      },
+      "correct_answer": "B",
+      "explanation": "Pre-order = Root first, then subtrees (Left, Right). In-order = Left, Root, Right; post-order = Left, Right, Root.",
+      "difficulty": "easy",
+      "sub_topic": "tree_traversal",
+      "misconception_tags": [
+        "traversal_order"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "TR-001",
       "question": "AVL balance factor range?",
-      "options": {"A": "{-1,0,1}", "B": "{0,1,2}", "C": "{-2,-1,0}", "D": "{-1,0}"},
+      "options": {
+        "A": "{-1,0,1}",
+        "B": "{0,1,2}",
+        "C": "{-2,-1,0}",
+        "D": "{-1,0}"
+      },
       "correct_answer": "A",
       "explanation": "AVL balance factor = height(left) − height(right) ∈ {-1, 0, 1}.",
       "difficulty": "medium",
       "sub_topic": "tree_basics",
-      "misconception_tags": ["wrong_range"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_range"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -68,16 +237,241 @@
     {
       "id": "TR-002",
       "question": "Graph BFS/DFS time complexity?",
-      "options": {"A": "O(V)", "B": "O(E)", "C": "O(V+E)", "D": "O(V×E)"},
+      "options": {
+        "A": "O(V)",
+        "B": "O(E)",
+        "C": "O(V+E)",
+        "D": "O(V×E)"
+      },
       "correct_answer": "C",
       "explanation": "BFS/DFS visit each vertex once and each edge once → O(V+E).",
       "difficulty": "medium",
       "sub_topic": "tree_traversal",
-      "misconception_tags": ["missing_edges"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "missing_edges"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Level-order traversal of a binary tree uses which structure?",
+      "options": {
+        "A": "Stack",
+        "B": "Queue",
+        "C": "Heap only",
+        "D": "Trie"
+      },
+      "correct_answer": "B",
+      "explanation": "Level-order (BFS) processes nodes left-to-right level by level: enqueue the root, then enqueue children of each dequeued node.",
+      "difficulty": "medium",
+      "sub_topic": "tree_traversal",
+      "misconception_tags": [
+        "traversal_structure"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-003"
+    },
+    {
+      "question": "How many nodes does a FULL binary tree of height h have (root at height 0)?",
+      "options": {
+        "A": "h",
+        "B": "2^h - 1",
+        "C": "2^(h+1) - 1",
+        "D": "2h + 1"
+      },
+      "correct_answer": "C",
+      "explanation": "A full tree of height h (levels 0..h) has 1 + 2 + 4 + ... + 2^h = 2^(h+1) - 1 nodes. If h is defined as the number of levels, the formula is 2^h - 1; with root height 0 it is 2^(h+1) - 1.",
+      "difficulty": "medium",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "height_vs_levels"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-004"
+    },
+    {
+      "question": "In-order traversal of a binary SEARCH tree yields elements in:",
+      "options": {
+        "A": "Reverse sorted order",
+        "B": "Ascending sorted order",
+        "C": "Level order",
+        "D": "Random order"
+      },
+      "correct_answer": "B",
+      "explanation": "In-order (left, root, right) visits smaller keys before the root and larger after, producing sorted ascending output - the standard BST property check.",
+      "difficulty": "medium",
+      "sub_topic": "tree_traversal",
+      "misconception_tags": [
+        "bst_inorder_property"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-005"
+    },
+    {
+      "question": "The maximum number of nodes at level k of a binary tree is:",
+      "options": {
+        "A": "k",
+        "B": "2^k",
+        "C": "k^2",
+        "D": "2k"
+      },
+      "correct_answer": "B",
+      "explanation": "Level k (root = level 0) can hold up to 2^k nodes since each level doubles the branching capacity.",
+      "difficulty": "medium",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "level_count"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-006"
+    },
+    {
+      "question": "Post-order traversal of a binary tree is useful for:",
+      "options": {
+        "A": "Printing a directory listing with sub-folder sizes (process children first)",
+        "B": "Immediate root-first output",
+        "C": "Level-order search",
+        "D": "Heap construction only"
+      },
+      "correct_answer": "A",
+      "explanation": "Post-order processes children before the parent - exactly what recursive deletion, expression evaluation (operands then operator) and subtree aggregation need.",
+      "difficulty": "medium",
+      "sub_topic": "tree_traversal",
+      "misconception_tags": [
+        "traversal_use_case"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-007"
+    },
+    {
+      "question": "A binary tree with height h (root at 0) can have at most how many nodes?",
+      "options": {
+        "A": "2^h",
+        "B": "2^(h+1) - 1",
+        "C": "h^2",
+        "D": "h + 1"
+      },
+      "correct_answer": "B",
+      "explanation": "Levels 0..h hold 1 + 2 + 4 + ... + 2^h = 2^(h+1) - 1 nodes maximum (full tree).",
+      "difficulty": "medium",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "height_vs_levels"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-008"
+    },
+    {
+      "question": "In a binary SEARCH tree, for every node all keys in the left subtree are:",
+      "options": {
+        "A": "Greater than the node",
+        "B": "Smaller than the node",
+        "C": "Equal to the node",
+        "D": "Randomly placed"
+      },
+      "correct_answer": "B",
+      "explanation": "BST invariant: left subtree keys < node key < right subtree keys (with a consistent duplicate policy), which is what makes search O(h).",
+      "difficulty": "easy",
+      "sub_topic": "tree_basics",
+      "misconception_tags": [
+        "bst_property"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-009"
+    },
+    {
+      "question": "Searching a balanced BST of n nodes takes:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(log n)",
+        "C": "O(n log n)",
+        "D": "O(1)"
+      },
+      "correct_answer": "B",
+      "explanation": "Each comparison descends one level; a balanced tree has O(log n) height, giving O(log n) search (degenerating to O(n) when skewed).",
+      "difficulty": "medium",
+      "sub_topic": "tree_traversal",
+      "misconception_tags": [
+        "bst_search_complexity"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TR-010"
     }
   ],
   "trust_status": "human_reviewed",

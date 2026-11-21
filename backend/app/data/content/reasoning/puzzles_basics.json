@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "The most reliable first move in a seating/arrangement puzzle is to:",
+      "options": {
+        "A": "Place people randomly to fill the grid",
+        "B": "Anchor a definite clue (relative position with no freedom) as your starting point",
+        "C": "Ignore negative clues",
+        "D": "Solve option by option without a table"
+      },
+      "correct_answer": "B",
+      "explanation": "Definite clues ('X sits opposite Y', 'A is immediately next to B on the left') fix positions with zero ambiguity; building from them constrains the rest of the puzzle quickly.",
+      "difficulty": "easy",
+      "sub_topic": "approach",
+      "misconception_tags": [
+        "anchor_clue_missing"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "PUZ-PRACTICE-006"
+    },
+    {
+      "question": "Negative clues such as 'C does not sit next to D' are used mainly to:",
+      "options": {
+        "A": "Increase the number of candidates",
+        "B": "Eliminate placements already suggested by positive clues",
+        "C": "Replace all positive clues",
+        "D": "Decide the answer order"
+      },
+      "correct_answer": "B",
+      "explanation": "Positive clues construct possibilities; negative clues prune them. Both are required - pruning is what makes contradictory placements detectable.",
+      "difficulty": "easy",
+      "sub_topic": "elimination",
+      "misconception_tags": [
+        "negative_clue_usage"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "PUZ-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Two candidate placements remain after applying all clues. What should you do next?",
+      "options": {
+        "A": "Guess the first one",
+        "B": "Test each against every remaining clue; keep only fully consistent assignments",
+        "C": "Average the two",
+        "D": "Discard the puzzle"
+      },
+      "correct_answer": "B",
+      "explanation": "Consistency verification against ALL constraints (including negative ones) is the final filter; only assignments satisfying every clue can be the keyed solution.",
+      "difficulty": "medium",
+      "sub_topic": "verification",
+      "misconception_tags": [
+        "verification_step"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "infosys"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "PUZ-006"
+    },
+    {
+      "question": "A puzzle states there is exactly one valid arrangement. What does that imply about the clues?",
+      "options": {
+        "A": "Any subset of clues suffices",
+        "B": "The clue set must be sufficient to reduce candidates to exactly one",
+        "C": "Some clues may contradict each other",
+        "D": "Order of clue application does not matter only by luck"
+      },
+      "correct_answer": "B",
+      "explanation": "Uniqueness means the clues jointly eliminate every arrangement but one; exam setters check sufficiency. Contradictions (zero solutions) or ambiguity (many solutions) both indicate a solving error.",
+      "difficulty": "medium",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "uniqueness_reasoning"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "PUZ-007"
+    },
+    {
+      "question": "Which clue type is most dangerous to misread in arrangement puzzles?",
+      "options": {
+        "A": "Colour of the shirts",
+        "B": "Immediate-neighbour vs left/right-adjacent distinctions (direction-sensitive adjacency)",
+        "C": "Number of people total",
+        "D": "The starting anchor clue only"
+      },
+      "correct_answer": "B",
+      "explanation": "'Immediately to the left of' is directional and unique; 'is a neighbour of' allows either side. Confusing them creates phantom placements - the most common puzzle error.",
+      "difficulty": "hard",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "adjacency_direction"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "PUZ-008"
     }
   ]
 }

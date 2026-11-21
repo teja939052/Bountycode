@@ -41,16 +41,16 @@ LINKED_LIST_LESSON: Dict[str, Any] = {
     "learning_objectives": [
         "Explain linked list structure (nodes with data and next pointer).",
         "Implement insertion and deletion at head, tail, and specific positions.",
+        "Implement linked list traversal and search.",
         "Compare linked list vs array trade-offs.",
-        "Implement basic linked list traversal and search.",
     ],
     "prerequisites": ["coding.loops_basics", "dsa.arrays"],
     "concept_explanation": {
-        "title": "What is a Linked List?",
+        "title": "Linked Lists",
         "text": (
             "A linked list is a linear data structure where elements (nodes) are not stored "
             "in contiguous memory. Each node contains data and a pointer (reference) to the "
-            "next node. The first node is called the head, and the last node points to null/nullptr."
+            "next node. The first node is called the head, and the last node points to null."
         ),
         "key_formula": "node = { data: value, next: next_node_or_null }",
     },
@@ -61,9 +61,10 @@ LINKED_LIST_LESSON: Dict[str, Any] = {
             "Create new node with data = 5.",
             "Set new_node.next = current head (10).",
             "Update head to point to new node (5).",
-            "Result: [5, 10, 20, 30].",
+            "Result: [5, 20, 30]",
         ],
-        "answer": "[5, 10, 20, 30]",
+        "expected_output": "[5, 20, 30]",
+        "explanation": "Creating a new node, setting its next pointer to current head, then updating head makes it the first element.",
     },
     "interactive_practice": [
         {
@@ -90,31 +91,33 @@ LINKED_LIST_LESSON: Dict[str, Any] = {
         },
         "memory_layout": {
             "title": "Common mistake: Memory layout",
-            "text": "Arrays store elements contiguously; linked list nodes can be scattered in memory, connected via pointers.",
+            "text": "Arrays store elements contiguously in memory. Linked list nodes can be scattered in memory, connected via pointers.",
         },
     },
-    "assessment": {"questions": [
-        {
-            "id": "ll_assess_1",
-            "type": "mcq",
-            "question": "Which operation is O(1) for linked list but O(n) for array?",
-            "options": ["Access element at index i", "Insert at beginning", "Delete last element", "Search for value"],
-            "correct_index": 1,
-            "explanation": "Insert at beginning is O(1) for linked list (just update head pointer) but O(n) for array (shift all elements).",
-        },
-        {
-            "id": "ll_assess_2",
-            "type": "mcq",
-            "question": "What does the 'next' pointer of the last node point to?",
-            "options": ["First node (head)", "None/null", "Itself", "Random node"],
-            "correct_index": 1,
-            "explanation": "The last node's next pointer is null/None, indicating the end of the list.",
-        },
-    ]},
+    "assessment": {
+        "questions": [
+            {
+                "id": "ll_assess_1",
+                "type": "mcq",
+                "question": "In a linked list, each node contains:",
+                "options": ["Only data", "Only next pointer", "Data and next pointer", "Data, next pointer, and previous pointer"],
+                "correct_index": 2,
+                "explanation": "A singly linked list node contains data and a next pointer to the next node.",
+            },
+            {
+                "id": "ll_assess_2",
+                "type": "mcq",
+                "question": "What is the time complexity to insert at the beginning of a linked list?",
+                "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+                "correct_index": 0,
+                "explanation": "Insertion at the beginning is O(1) - create node, point it to current head, update head pointer.",
+            },
+        ],
+    },
     "transfer_task": {
-        "title": "Real-world: Implement undo functionality",
+        "title": "Real-world: Undo functionality",
         "problem": (
-            "Implement an undo feature for a text editor using a linked list. "
+            "Implement undo functionality for a text editor using a linked list. "
             "Each text state is a node. When user presses undo, move to previous state."
         ),
         "steps": [
@@ -122,7 +125,7 @@ LINKED_LIST_LESSON: Dict[str, Any] = {
             "Maintain a 'current' pointer to current state.",
             "Undo: move current pointer to previous node (requires doubly linked list or maintain history stack).",
         ],
-        "answer": "Use a doubly linked list where each node has prev and next pointers. To undo, move current = current.prev.",
+        "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ncurrent = head  # current state\n# To undo:\ncurrent = current.prev",
     },
     "deterministic_answer_key": {
         "ll_practice_1": 2,
@@ -135,7 +138,7 @@ LINKED_LIST_LESSON: Dict[str, Any] = {
         "source": "pattern-relevant",
         "source_urls": [
             "https://en.wikipedia.org/wiki/Linked_list",
-            "https://www.geeksforgeeks.org/data-structures/linked-list/",
+            "https://www.geeksforgeeks.org/linked-list/",
         ],
         "note": (
             "This preparation path targets commonly reported patterns and role expectations. "
@@ -158,38 +161,44 @@ LINKED_LIST_LESSON: Dict[str, Any] = {
             "step_id": "discovery",
             "step_type": "discover",
             "title": "Why linked lists?",
-            "content": "Arrays store elements contiguously. Linked lists store nodes anywhere in memory, connected by pointers. This makes insertion/deletion efficient but access slower.",
+            "content": "Arrays store elements contiguously in memory. Linked lists store nodes anywhere in memory, connected via pointers. This makes insertion/deletion efficient but access slower.",
         },
         {
             "step_id": "manipulate",
             "step_type": "manipulate",
-            "content": "Node structure: { data: value, next: next_node }\nHead -> [data: 10, next: node2] -> [data: 20, next: node3] -> [data: 30, next: null]\n\nTo insert 5 at beginning: create node(5), set its next to current head, update head to new node.",
-            "predict": "After inserting 5 at beginning of [10, 20, 30], what is the new head's data?",
+            "content": "Node structure: { data: value, next: next_node }\nHead -> [data: 10, next: node2] -> [data: 20, next: node3] -> [data: 30, next: null]\n\nTo insert 5 at beginning of [10, 20, 30]:\n1. Create node(5)\n2. Set new_node.next = current head (10)\n3. Update head to point to new node (5)\nResult: [5, 20, 30]",
+            "predict": "After inserting 5 at beginning of [10, 20, 30], what is head.data?",
         },
         {
             "step_id": "predict",
             "step_type": "predict",
-            "content": "After inserting 5 at beginning of linked list [10, 20, 30], what is head.data?",
+            "content": "After inserting 5 at beginning of [10, 20, 30], what is head.data?",
             "options": ["10", "20", "30", "5"],
             "correct_index": 3,
         },
         {
             "step_id": "break_debug",
             "step_type": "debug",
-            "content": "Linked list insertion has a bug:\n\nnew_node.next = head\nhead = new_node\nnew_node.next = head  // BUG: overwrites the just-set next!\n",
-            "checks": ["Order matters: set new_node.next = head BEFORE setting head = new_node"],
+            "title": "Find the bug",
+            "content": "Linked list traversal has a bug:\n\ncurrent = head\nwhile current.next != null:\n    print(current.data)\n    current = current.next\n\nThis misses the last node because it stops when current.next is null, not when current is null.",
+            "bug": "The loop condition checks current.next != null, so it stops before processing the last node.",
+            "fix": "Change condition to while (current != null) and print current.data inside loop.",
+            "explanation": "You need to process the current node before moving to the next one, so check current != null, not current.next != null.",
         },
         {
             "step_id": "transfer",
             "step_type": "transfer",
-            "title": "Undo functionality",
-            "problem": "Implement undo using linked list where each node stores a text state.",
+            "title": "Real-world: Undo functionality",
+            "problem": (
+                "Implement undo functionality for a text editor using a linked list. "
+                "Each text state is a node. When user presses undo, move to previous state."
+            ),
             "steps": [
-                "Each node stores text state and prev pointer (doubly linked list).",
-                "Current pointer points to current state.",
-                "To undo: current = current.prev.",
+                "Each text state is a node with data (text content) and next pointer.",
+                "Maintain a 'current' pointer to current state.",
+                "Undo: move current pointer to previous node (requires doubly linked list or maintain history stack).",
             ],
-            "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.prev = None\n        self.next = None\n\ncurrent = head  # current state\n# To undo:\ncurrent = current.prev",
+            "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\ncurrent = head  # current state\n# To undo:\ncurrent = current.prev",
         },
     ],
 }

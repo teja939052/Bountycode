@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In a row of 10, Ravi is 4th from the left. What is his position from the right?",
+      "options": {
+        "A": "5th",
+        "B": "6th",
+        "C": "7th",
+        "D": "8th"
+      },
+      "correct_answer": "C",
+      "explanation": "Position from right = total - position from left + 1 = 10 - 4 + 1 = 7th.",
+      "difficulty": "easy",
+      "sub_topic": "rank_from_other_end",
+      "misconception_tags": [
+        "rank_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ORDR-PRACTICE-006"
+    },
+    {
+      "question": "Meena is 12th from the top and 15th from the bottom in a column. Total number of people =",
+      "options": {
+        "A": "27",
+        "B": "26",
+        "C": "25",
+        "D": "28"
+      },
+      "correct_answer": "B",
+      "explanation": "Total = top rank + bottom rank - 1 = 12 + 15 - 1 = 26 (Meena is counted from both ends).",
+      "difficulty": "easy",
+      "sub_topic": "total_from_both_ranks",
+      "misconception_tags": [
+        "double_counting"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ORDR-PRACTICE-007"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In a row, A is 10th from the left and B is 12th from the right. After they interchange positions, A becomes 15th from the left. Total people =?",
+      "options": {
+        "A": "24",
+        "B": "26",
+        "C": "27",
+        "D": "25"
+      },
+      "correct_answer": "B",
+      "explanation": "After the interchange, A sits at B's old position, which is 12th from the right and (now) 15th from the left. Total = position from left + position from right - 1 = 15 + 12 - 1 = 26.",
+      "difficulty": "medium",
+      "sub_topic": "rank_from_other_end",
+      "misconception_tags": [
+        "interchange_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ORDR-006"
+    },
+    {
+      "question": "How many persons are between A and B if A is 8th from the left and B is 13th from the left in the same row?",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "3"
+      },
+      "correct_answer": "A",
+      "explanation": "Persons strictly between two ranks m and n = |n - m| - 1 = 13 - 8 - 1 = 4 (positions 9, 10, 11 and 12 lie between 8 and 13).",
+      "difficulty": "medium",
+      "sub_topic": "persons_between",
+      "misconception_tags": [
+        "between_count_off_by_one"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ORDR-007"
+    },
+    {
+      "question": "Deepa is 20th from the right end of a row of 50 students. What is her position from the left end?",
+      "options": {
+        "A": "29th",
+        "B": "30th",
+        "C": "31st",
+        "D": "32nd"
+      },
+      "correct_answer": "C",
+      "explanation": "From left = total - from right + 1 = 50 - 20 + 1 = 31st.",
+      "difficulty": "easy",
+      "sub_topic": "rank_from_other_end",
+      "misconception_tags": [
+        "rank_formula_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ORDR-008"
     }
   ]
 }

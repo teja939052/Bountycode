@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "The prefix 'mis-' most often means:",
+      "options": {
+        "A": "Again",
+        "B": "Badly/incorrectly",
+        "C": "Before",
+        "D": "Not"
+      },
+      "correct_answer": "B",
+      "explanation": "mis- + judge = judge wrongly; mis- + spell = spell incorrectly. 'Again' is re-, 'before' is pre-, 'not' is un-/in-.",
+      "difficulty": "easy",
+      "sub_topic": "prefixes_suffixes",
+      "misconception_tags": [
+        "prefix_meaning_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VOC-PRACTICE-006"
+    },
+    {
+      "question": "When a word's meaning is unclear in a passage, the best first move is to:",
+      "options": {
+        "A": "Guess randomly",
+        "B": "Use surrounding context clues (contrast, restatement, examples)",
+        "C": "Skip the whole passage",
+        "D": "Assume it is a proper noun"
+      },
+      "correct_answer": "B",
+      "explanation": "Context clues - definition nearby, contrast markers (but/however), examples (such as), tone - are the reliable way to infer unfamiliar vocabulary.",
+      "difficulty": "easy",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "context_clue_ignored"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VOC-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "A word meaning 'one who speaks many languages' is built with the suffix:",
+      "options": {
+        "A": "-ist",
+        "B": "-lingual/-glott (polyglot)",
+        "C": "-ology",
+        "D": "-icide"
+      },
+      "correct_answer": "B",
+      "explanation": "poly- (many) + -glott/tongue gives polyglot; -ology is 'study of', -ist is 'practitioner of a craft', -icide is 'killing of'.",
+      "difficulty": "medium",
+      "sub_topic": "roots_affixes",
+      "misconception_tags": [
+        "suffix_meaning_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VOC-006"
+    },
+    {
+      "question": "The root 'bene-' (as in benefit, benevolent) means:",
+      "options": {
+        "A": "Harm",
+        "B": "Good/well",
+        "C": "Against",
+        "D": "Small"
+      },
+      "correct_answer": "B",
+      "explanation": "Latin bene = well/good: bene-volent (wishing well), bene-fit (good outcome), bene-volence. Contrast mal- (bad): malevolent.",
+      "difficulty": "medium",
+      "sub_topic": "roots_affixes",
+      "misconception_tags": [
+        "root_meaning_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VOC-007"
+    },
+    {
+      "question": "In 'He was elated after hearing the good news', 'elated' most likely means:",
+      "options": {
+        "A": "Depressed",
+        "B": "Overjoyed",
+        "C": "Confused",
+        "D": "Indifferent"
+      },
+      "correct_answer": "B",
+      "explanation": "The positive frame ('good news') plus the cause-effect link signals a positive emotion: elated = extremely happy. Context eliminates the negative/neutral options.",
+      "difficulty": "easy",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "context_clue_ignored"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "VOC-008"
     }
   ]
 }

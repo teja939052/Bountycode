@@ -9,7 +9,10 @@
       "concept": "A ratio a:b compares two quantities of the same kind. Equivalent ratios: multiply/divide both terms by the same number.",
       "formula": "a:b = a/b; a:b = (ka):(kb)",
       "worked_example": "Boys:Girls = 71:73 ratio 71:73. If total 144, boys = 71/144 × 144 = 71.",
-      "mistakes": ["Inverting the ratio", "Using wrong total as base"]
+      "mistakes": [
+        "Inverting the ratio",
+        "Using wrong total as base"
+      ]
     },
     {
       "id": "proportion",
@@ -17,20 +20,32 @@
       "concept": "If a:b = c:d, then a×d = b×c (product of means = product of extremes).",
       "formula": "a:b :: c:d → ad = bc",
       "worked_example": "2:3 = 4:x → 2x = 12 → x = 6.",
-      "mistakes": ["Cross-multiplying incorrectly", "Setting up proportion with wrong terms"]
+      "mistakes": [
+        "Cross-multiplying incorrectly",
+        "Setting up proportion with wrong terms"
+      ]
     }
   ],
   "practice": [
     {
       "id": "RT-PRACTICE-001",
       "question": "Ratio of boys to girls is 71:73. Total students 144. Boys?",
-      "options": {"A": "71", "B": "73", "C": "72", "D": "144"},
+      "options": {
+        "A": "71",
+        "B": "73",
+        "C": "72",
+        "D": "144"
+      },
       "correct_answer": "A",
       "explanation": "Boys = 71/(71+73) × 144 = 71/144 × 144 = 71.",
       "difficulty": "easy",
       "sub_topic": "ratio_basics",
-      "misconception_tags": ["wrong_base"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_base"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -38,29 +53,183 @@
     {
       "id": "RT-PRACTICE-002",
       "question": "2:3 = 4:x. x?",
-      "options": {"A": "4", "B": "6", "C": "8", "D": "12"},
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "12"
+      },
       "correct_answer": "B",
       "explanation": "2x = 12 → x = 6.",
       "difficulty": "easy",
       "sub_topic": "proportion",
-      "misconception_tags": ["cross_multiply_error"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "cross_multiply_error"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Simplify the ratio 18 : 24.",
+      "options": {
+        "A": "2 : 3",
+        "B": "3 : 4",
+        "C": "4 : 3",
+        "D": "9 : 12"
+      },
+      "correct_answer": "B",
+      "explanation": "Divide both terms by the HCF (6): 18/6 = 3, 24/6 = 4, giving 3 : 4 (9 : 12 is equivalent but not in lowest terms).",
+      "difficulty": "easy",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "simplification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-PRACTICE-003"
+    },
+    {
+      "question": "If a : b = 2 : 3, then the fraction a/b equals:",
+      "options": {
+        "A": "2/3",
+        "B": "3/2",
+        "C": "5",
+        "D": "6"
+      },
+      "correct_answer": "A",
+      "explanation": "The ratio a : b corresponds directly to the fraction a/b = 2/3.",
+      "difficulty": "easy",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "ratio_order_reversal"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-PRACTICE-004"
+    },
+    {
+      "question": "Which ratio is equivalent to 5 : 7?",
+      "options": {
+        "A": "10 : 14",
+        "B": "10 : 13",
+        "C": "15 : 22",
+        "D": "25 : 49"
+      },
+      "correct_answer": "A",
+      "explanation": "Multiply both terms by the same factor: 5*2 : 7*2 = 10 : 14. 10:13 and 15:22 change the ratio; 25:49 is 5^2 : 7^2, also not equivalent.",
+      "difficulty": "easy",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "equivalent_ratio"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-PRACTICE-005"
+    },
+    {
+      "question": "In a class the ratio of boys to girls is 3 : 5 and there are 40 students. Boys =",
+      "options": {
+        "A": "15",
+        "B": "20",
+        "C": "25",
+        "D": "30"
+      },
+      "correct_answer": "A",
+      "explanation": "Parts = 8, each part = 40/8 = 5, boys = 3*5 = 15 (girls = 25).",
+      "difficulty": "easy",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "share_calculation"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-PRACTICE-006"
+    },
+    {
+      "question": "If a/b = 3/4 and b/c = 2/5, then a/c =",
+      "options": {
+        "A": "6/20",
+        "B": "3/5",
+        "C": "7/9",
+        "D": "6/5"
+      },
+      "correct_answer": "A",
+      "explanation": "a/c = (a/b) * (b/c) = (3/4) * (2/5) = (3*2)/(4*5) = 6/20, which simplifies to 3/10. Option A gives 6/20, the correct value.",
+      "difficulty": "medium",
+      "sub_topic": "proportion",
+      "misconception_tags": [
+        "chain_ratio_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "RT-001",
       "question": "Average score of boys 71, girls 73, school average 71.8. Ratio boys:girls?",
-      "options": {"A": "1:2", "B": "3:2", "C": "2:2", "D": "4:2"},
+      "options": {
+        "A": "1:2",
+        "B": "3:2",
+        "C": "2:2",
+        "D": "4:2"
+      },
       "correct_answer": "B",
       "explanation": "71.8 = (71b + 73g)/(b+g) → 71.8b + 71.8g = 71b + 73g → 0.8b = 1.2g → b:g = 1.2:0.8 = 3:2.",
       "difficulty": "medium",
       "sub_topic": "proportion",
-      "misconception_tags": ["wrong_base"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "wrong_base"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -68,16 +237,214 @@
     {
       "id": "RT-002",
       "question": "Two numbers are 20% and 50% less than a third. Second is what % less than first?",
-      "options": {"A": "25%", "B": "30%", "C": "37.5%", "D": "40%"},
+      "options": {
+        "A": "25%",
+        "B": "30%",
+        "C": "37.5%",
+        "D": "40%"
+      },
       "correct_answer": "C",
       "explanation": "Third=100. First=80, Second=50. (80−50)/80 × 100 = 37.5%.",
       "difficulty": "hard",
       "sub_topic": "ratio_basics",
-      "misconception_tags": ["incorrect_denominator"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "incorrect_denominator"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Divide 120 in the ratio 3 : 5. The two shares are:",
+      "options": {
+        "A": "40 and 80",
+        "B": "45 and 75",
+        "C": "50 and 70",
+        "D": "60 and 60"
+      },
+      "correct_answer": "B",
+      "explanation": "Parts = 8, each part = 120/8 = 15. Shares = 3*15 = 45 and 5*15 = 75.",
+      "difficulty": "easy",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "share_calculation"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-003"
+    },
+    {
+      "question": "If 4/7 = 16/x, then x =",
+      "options": {
+        "A": "21",
+        "B": "28",
+        "C": "32",
+        "D": "44"
+      },
+      "correct_answer": "B",
+      "explanation": "Cross-multiply: 4x = 112, x = 28. Equivalently the numerator quadrupled (4 -> 16), so the denominator does too (7 * 4 = 28).",
+      "difficulty": "medium",
+      "sub_topic": "proportion",
+      "misconception_tags": [
+        "cross_multiplication_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-004"
+    },
+    {
+      "question": "A : B = 2 : 3 and B : C = 4 : 5. Then A : B : C =",
+      "options": {
+        "A": "2 : 3 : 5",
+        "B": "8 : 12 : 15",
+        "C": "6 : 8 : 10",
+        "D": "2 : 4 : 5"
+      },
+      "correct_answer": "B",
+      "explanation": "Make B common: LCM(3, 4) = 12, so A : B = 8 : 12 and B : C = 12 : 15, giving A : B : C = 8 : 12 : 15.",
+      "difficulty": "medium",
+      "sub_topic": "proportion",
+      "misconception_tags": [
+        "chain_ratio_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-005"
+    },
+    {
+      "question": "Which ratio pair is equivalent to 3 : 4?",
+      "options": {
+        "A": "6 : 7",
+        "B": "9 : 12",
+        "C": "9 : 16",
+        "D": "12 : 20"
+      },
+      "correct_answer": "B",
+      "explanation": "Equivalent ratios multiply BOTH terms by the same number: 3*3 : 4*3 = 9 : 12. 6:7 changes the ratio, 9:16 squares only one side, and 12:20 = 3:5.",
+      "difficulty": "easy",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "equivalent_ratio"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-006"
+    },
+    {
+      "question": "Two numbers are in the ratio 7 : 3 and their HCF is 6. The larger number is:",
+      "options": {
+        "A": "18",
+        "B": "21",
+        "C": "42",
+        "D": "24"
+      },
+      "correct_answer": "B",
+      "explanation": "Ratios are stated in lowest terms, so the common multiplier equals the HCF: k = 6. Numbers = 7*6 = 42 and 3*6 = 18; the larger is 42.",
+      "difficulty": "medium",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "hcf_ratio_link"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-007"
+    },
+    {
+      "question": "If 3A = 4B = 6C, then A : B : C =",
+      "options": {
+        "A": "4 : 3 : 5",
+        "B": "12 : 9 : 6",
+        "C": "6 : 4 : 3",
+        "D": "3 : 4 : 6"
+      },
+      "correct_answer": "B",
+      "explanation": "Let 3A = 4B = 6C = k, so A = k/3, B = k/4, C = k/6. Multiplying by the LCM 12 gives A:B:C = 4 : 3 : 2; scaling that by 3 gives 12 : 9 : 6 - option B (12:9:6) is the only choice equal to 4:3:2.",
+      "difficulty": "hard",
+      "sub_topic": "proportion",
+      "misconception_tags": [
+        "common_value_ratio"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-008"
+    },
+    {
+      "question": "A basket has red and blue marbles in ratio 4 : 5. If 6 blue marbles are removed, the ratio becomes 4 : 3. Total marbles originally =",
+      "options": {
+        "A": "24",
+        "B": "27",
+        "C": "30",
+        "D": "36"
+      },
+      "correct_answer": "B",
+      "explanation": "Red = 4k, blue = 5k. After removing 6 blue: 4k : (5k - 6) = 4 : 3 -> 12k = 4(5k - 6) -> 12k = 20k - 24 -> 8k = 24 -> k = 3. Total = 9k = 27 (check: red 12, blue 15; after removal 12 : 9 = 4 : 3).",
+      "difficulty": "hard",
+      "sub_topic": "ratio_basics",
+      "misconception_tags": [
+        "variable_setting"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "RT-009"
     }
   ],
   "trust_status": "human_reviewed",

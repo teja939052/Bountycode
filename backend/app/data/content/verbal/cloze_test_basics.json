@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Before looking at options in a cloze blank, you should:",
+      "options": {
+        "A": "Guess from option length",
+        "B": "Predict the meaning/grammatical role the blank must fill",
+        "C": "Always pick a conjunction",
+        "D": "Skip the sentence"
+      },
+      "correct_answer": "B",
+      "explanation": "Prediction from context ('this blank needs a positive adverb connecting a contrast') prevents being misled by plausible-sounding distractors.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "prediction_step"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLZ-PRACTICE-006"
+    },
+    {
+      "question": "A blank between two clauses joined by 'but' most likely needs a word expressing:",
+      "options": {
+        "A": "Addition only",
+        "B": "Contrast",
+        "C": "Cause",
+        "D": "Example"
+      },
+      "correct_answer": "B",
+      "explanation": "'But' signals contrast, so the surrounding sentence structure demands a contrast-consistent completion; choosing an additive word would clash with the connector.",
+      "difficulty": "easy",
+      "sub_topic": "context_flow",
+      "misconception_tags": [
+        "connector_meaning"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLZ-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which is the best strategy when two options both seem grammatically correct?",
+      "options": {
+        "A": "Take the first correct one",
+        "B": "Check collocation strength and paragraph-level logic",
+        "C": "Pick the longer word",
+        "D": "Skip the question"
+      },
+      "correct_answer": "B",
+      "explanation": "Tie-breakers are natural collocation ('take a decision' vs 'make a decision' register) and how well the option sustains the paragraph's argument and tone.",
+      "difficulty": "medium",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "tie_break_method"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "infosys"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLZ-006"
+    },
+    {
+      "question": "Fill in: 'The manager, along with his team members, _____ attending the review.'",
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "is",
+        "D": "have been"
+      },
+      "correct_answer": "C",
+      "explanation": "The verb agrees with the subject 'manager', not the intervening 'along with' phrase: singular subject -> is. The present continuous 'is attending' fits.",
+      "difficulty": "medium",
+      "sub_topic": "grammar_collocation",
+      "misconception_tags": [
+        "subject_verb_agreement"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLZ-007"
+    },
+    {
+      "question": "In a passage-level cloze, repeated references to the same idea often require which kind of word?",
+      "options": {
+        "A": "A contrasting transition",
+        "B": "A cohesive reference or synonym chain (coherence device)",
+        "C": "An unrelated new topic",
+        "D": "An exclamation"
+      },
+      "correct_answer": "B",
+      "explanation": "Coherence is maintained through reference (it/this/those), substitution and synonym chains that tie sentences together rather than breaking to a new topic.",
+      "difficulty": "medium",
+      "sub_topic": "context_flow",
+      "misconception_tags": [
+        "coherence_device"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLZ-008"
     }
   ]
 }

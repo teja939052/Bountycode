@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In a figure series, the correct answer must continue every transformation rule observed so far:",
+      "options": {
+        "A": "Only the most recent change",
+        "B": "All rules simultaneously (rotation, count, shading, etc.)",
+        "C": "Whichever rule the options suggest",
+        "D": "None of the rules"
+      },
+      "correct_answer": "B",
+      "explanation": "Series items typically run several independent rules at once (position, number, orientation, fill); the correct next figure satisfies all of them together.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "single_rule_trap"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "FSB-PRACTICE-006"
+    },
+    {
+      "question": "A figure's element rotates 45 degrees clockwise each step. After 4 steps it has turned:",
+      "options": {
+        "A": "45 degrees",
+        "B": "90 degrees",
+        "C": "180 degrees",
+        "D": "225 degrees"
+      },
+      "correct_answer": "C",
+      "explanation": "Total rotation = 45 * 4 = 180 degrees - the figure is upside down relative to the start.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "rotation_accumulation"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "FSB-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Shapes appear in sequence: 3, 4, 5, 6 sides. What comes next?",
+      "options": {
+        "A": "5-sided",
+        "B": "7-sided",
+        "C": "4-sided",
+        "D": "8-sided"
+      },
+      "correct_answer": "B",
+      "explanation": "The rule is +1 side per step (triangle, quadrilateral, pentagon, hexagon), so the next figure has 7 sides (heptagon).",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "count_progression"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "FSB-006"
+    },
+    {
+      "question": "Which is the safest way to verify a candidate next figure in a complex series?",
+      "options": {
+        "A": "Pick the visually similar option",
+        "B": "Test the figure against each identified rule independently and eliminate failures",
+        "C": "Choose the option with most shading",
+        "D": "Ignore earlier items and compare only the last two"
+      },
+      "correct_answer": "B",
+      "explanation": "Systematic elimination per rule (rotation, count, position, alternation) removes options that violate any single rule, leaving the figure that satisfies all of them.",
+      "difficulty": "medium",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "verification_method"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "FSB-007"
+    },
+    {
+      "question": "Elements alternate between filled and unfilled in successive figures. The 7th figure should be:",
+      "options": {
+        "A": "Always filled",
+        "B": "Same as figure 1 (odd positions filled)",
+        "C": "Unfilled - even positions are filled",
+        "D": "Random"
+      },
+      "correct_answer": "B",
+      "explanation": "Alternation has period 2: odd positions share one state, even positions the other. The 7th is odd, so it matches figures 1, 3 and 5.",
+      "difficulty": "medium",
+      "sub_topic": "transformations",
+      "misconception_tags": [
+        "alternation_period"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "FSB-008"
     }
   ]
 }

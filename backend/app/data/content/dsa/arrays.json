@@ -9,7 +9,10 @@
       "concept": "An array stores values in contiguous memory locations for fast direct index access. Access is O(1); search/insert/delete are O(n) unless at the end.",
       "formula": "Access: O(1); Search/Insert/Delete: O(n)",
       "worked_example": "arr = [10, 20, 30]. arr[1] = 20 in O(1). Insert at index 0 requires shifting all elements → O(n).",
-      "mistakes": ["Confusing array access O(1) with search O(n)", "Forgetting arrays are fixed-size in many languages"]
+      "mistakes": [
+        "Confusing array access O(1) with search O(n)",
+        "Forgetting arrays are fixed-size in many languages"
+      ]
     },
     {
       "id": "array_traversal",
@@ -17,20 +20,33 @@
       "concept": "Visit each element once using a loop. Time O(n), space O(1). Use for finding max, sum, search.",
       "formula": "for i in 0..n-1: process arr[i]",
       "worked_example": "Find max: initialize max = arr[0]; loop i=1..n-1; if arr[i] > max, max = arr[i].",
-      "mistakes": ["Off-by-one in loop bounds", "Accessing arr[n] instead of arr[n-1]"]
+      "mistakes": [
+        "Off-by-one in loop bounds",
+        "Accessing arr[n] instead of arr[n-1]"
+      ]
     }
   ],
   "practice": [
     {
       "id": "ARR-PRACTICE-001",
       "question": "Time complexity of accessing an element in an array?",
-      "options": {"A": "O(1)", "B": "O(n)", "C": "O(log n)", "D": "O(n^2)"},
+      "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(log n)",
+        "D": "O(n^2)"
+      },
       "correct_answer": "A",
       "explanation": "Arrays support direct index access → O(1).",
       "difficulty": "easy",
       "sub_topic": "array_basics",
-      "misconception_tags": ["confusing_access_with_search"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "confusing_access_with_search"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -38,29 +54,182 @@
     {
       "id": "ARR-PRACTICE-002",
       "question": "Which is NOT a linear data structure?",
-      "options": {"A": "Array", "B": "Linked list", "C": "Queue", "D": "Tree"},
+      "options": {
+        "A": "Array",
+        "B": "Linked list",
+        "C": "Queue",
+        "D": "Tree"
+      },
       "correct_answer": "D",
       "explanation": "Tree is non-linear (hierarchical). Array, linked list, queue are linear.",
       "difficulty": "easy",
       "sub_topic": "array_basics",
-      "misconception_tags": ["linear_vs_nonlinear"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "linear_vs_nonlinear"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "In a 0-indexed array of length n, the last element is at index:",
+      "options": {
+        "A": "n",
+        "B": "n - 1",
+        "C": "n + 1",
+        "D": "n / 2"
+      },
+      "correct_answer": "B",
+      "explanation": "0-based indexing runs 0..n-1, so the final element is at n - 1 (using n causes an out-of-bounds error).",
+      "difficulty": "easy",
+      "sub_topic": "array_basics",
+      "misconception_tags": [
+        "off_by_one_index"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-PRACTICE-003"
+    },
+    {
+      "question": "Average time to access an array element by index is:",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "A",
+      "explanation": "Arrays provide random access: the address is computed directly (base + index * size), giving constant-time access.",
+      "difficulty": "easy",
+      "sub_topic": "array_basics",
+      "misconception_tags": [
+        "access_complexity"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-PRACTICE-004"
+    },
+    {
+      "question": "Which of these is NOT a typical array operation?",
+      "options": {
+        "A": "Index access",
+        "B": "Traversal",
+        "C": "Push to front in O(1)",
+        "D": "In-place reverse"
+      },
+      "correct_answer": "C",
+      "explanation": "Inserting at the front shifts every element: O(n), not O(1). Index access, traversal and in-place reverse (two-pointer swap) are standard.",
+      "difficulty": "easy",
+      "sub_topic": "array_basics",
+      "misconception_tags": [
+        "operation_complexity"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-PRACTICE-005"
+    },
+    {
+      "question": "In column-major storage of an R x C matrix, elements of the same _____ are contiguous.",
+      "options": {
+        "A": "Row",
+        "B": "Column",
+        "C": "Diagonal",
+        "D": "Rectangle"
+      },
+      "correct_answer": "B",
+      "explanation": "Column-major lays out each column's elements adjacently (Fortran/MATLAB style); row-major is the C/C++ default.",
+      "difficulty": "easy",
+      "sub_topic": "array_traversal",
+      "misconception_tags": [
+        "layout_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-PRACTICE-006"
+    },
+    {
+      "question": "Rotating an array right by k positions optimally runs in:",
+      "options": {
+        "A": "O(n) with O(1) extra space using reversals",
+        "B": "O(n^2) always",
+        "C": "O(1) by changing only the index base",
+        "D": "O(n log n) required"
+      },
+      "correct_answer": "A",
+      "explanation": "Reverse-all, then reverse first k, then reverse the rest: three O(n) passes in O(1) space (or use an O(k) extra array).",
+      "difficulty": "medium",
+      "sub_topic": "array_traversal",
+      "misconception_tags": [
+        "rotation_algorithm"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-PRACTICE-007"
     }
   ],
   "questions": [
     {
       "id": "ARR-001",
       "question": "What does this do for array arr of size n? for(i=0;i<n;i++) arr[i]=i;",
-      "options": {"A": "Initializes with zeros", "B": "Initializes with indices", "C": "Checks all zero", "D": "Prints each"},
+      "options": {
+        "A": "Initializes with zeros",
+        "B": "Initializes with indices",
+        "C": "Checks all zero",
+        "D": "Prints each"
+      },
       "correct_answer": "B",
       "explanation": "Each element arr[i] is set to its own index i.",
       "difficulty": "easy",
       "sub_topic": "array_traversal",
-      "misconception_tags": ["off_by_one"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "off_by_one"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -68,13 +237,22 @@
     {
       "id": "ARR-002",
       "question": "Best for implementing back functionality in a web browser?",
-      "options": {"A": "Queue", "B": "Stack", "C": "Array", "D": "Linked List"},
+      "options": {
+        "A": "Queue",
+        "B": "Stack",
+        "C": "Array",
+        "D": "Linked List"
+      },
       "correct_answer": "B",
       "explanation": "Back uses LIFO (last visited page first) → stack.",
       "difficulty": "easy",
       "sub_topic": "array_traversal",
-      "misconception_tags": ["wrong_structure"],
-      "company_tags": ["infosys"],
+      "misconception_tags": [
+        "wrong_structure"
+      ],
+      "company_tags": [
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
@@ -82,16 +260,187 @@
     {
       "id": "ARR-003",
       "question": "Stable sorting algorithm?",
-      "options": {"A": "Quick sort", "B": "Heap sort", "C": "Merge sort", "D": "Selection sort"},
+      "options": {
+        "A": "Quick sort",
+        "B": "Heap sort",
+        "C": "Merge sort",
+        "D": "Selection sort"
+      },
       "correct_answer": "C",
       "explanation": "Merge sort is stable (preserves relative order of equal elements).",
       "difficulty": "easy",
       "sub_topic": "array_traversal",
-      "misconception_tags": ["wrong_algorithm"],
-      "company_tags": ["tcs"],
+      "misconception_tags": [
+        "wrong_algorithm"
+      ],
+      "company_tags": [
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq"
+    },
+    {
+      "question": "Which operation is typically O(n) on an array (shifting elements)?",
+      "options": {
+        "A": "Reading arr[i]",
+        "B": "Inserting at the beginning",
+        "C": "Updating arr[i]",
+        "D": "Appending at the end (amortised)"
+      },
+      "correct_answer": "B",
+      "explanation": "Insertion at position 0 shifts all n elements right: O(n). Index reads/updates are O(1); end append is O(1) amortised; deletion at an index also shifts (O(n)).",
+      "difficulty": "medium",
+      "sub_topic": "array_basics",
+      "misconception_tags": [
+        "operation_complexity"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-004"
+    },
+    {
+      "question": "To traverse an array once and print each element, the loop runs how many iterations?",
+      "options": {
+        "A": "n/2",
+        "B": "log n",
+        "C": "n",
+        "D": "n - 1 always"
+      },
+      "correct_answer": "C",
+      "explanation": "A full forward traversal visits every one of the n elements exactly once: n iterations (0 to n-1 inclusive).",
+      "difficulty": "easy",
+      "sub_topic": "array_traversal",
+      "misconception_tags": [
+        "traversal_count"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-005"
+    },
+    {
+      "question": "Reverse an array of length n in place with optimal time complexity. Best achievable =",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n^2)",
+        "C": "O(log n)",
+        "D": "O(1)"
+      },
+      "correct_answer": "A",
+      "explanation": "Swap element i with element n-1-i for i < n/2: n/2 swaps = O(n) time, O(1) extra space (every element must move at least once, so O(n) is optimal).",
+      "difficulty": "medium",
+      "sub_topic": "array_traversal",
+      "misconception_tags": [
+        "inplace_algorithm"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-006"
+    },
+    {
+      "question": "Frequency counting of array elements with a hash map costs:",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n^2)",
+        "C": "O(log n)",
+        "D": "O(1) only"
+      },
+      "correct_answer": "A",
+      "explanation": "One pass updating a map with O(1) average operations: O(n) time, O(distinct) extra space.",
+      "difficulty": "medium",
+      "sub_topic": "array_traversal",
+      "misconception_tags": [
+        "frequency_pattern"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-007"
+    },
+    {
+      "question": "Two-sum on an UNSORTED array can be solved in O(n) using:",
+      "options": {
+        "A": "Binary search only",
+        "B": "A hash set of seen values",
+        "C": "Sorting in place then stopping",
+        "D": "Nested loops"
+      },
+      "correct_answer": "B",
+      "explanation": "As you scan, check whether (target - x) was already seen; if not, store x. Sorting would also give O(n log n), not pure O(n).",
+      "difficulty": "medium",
+      "sub_topic": "array_basics",
+      "misconception_tags": [
+        "two_sum_pattern"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-008"
+    },
+    {
+      "question": "What is the best-case complexity of checking whether an array is sorted?",
+      "options": {
+        "A": "O(1) only if you trust metadata",
+        "B": "O(n) - every adjacent pair may need comparison",
+        "C": "O(log n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "B",
+      "explanation": "You must verify all n-1 adjacent pairs (an early exit gives best case O(n) early, but still linear in the checked prefix); no sublinear method can certify sortedness of arbitrary data.",
+      "difficulty": "medium",
+      "sub_topic": "array_basics",
+      "misconception_tags": [
+        "complexity_underestimate"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ARR-009"
     }
   ],
   "trust_status": "human_reviewed",

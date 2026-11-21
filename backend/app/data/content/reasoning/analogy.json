@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Bird : Nest :: Man : ?",
+      "options": {
+        "A": "Food",
+        "B": "House",
+        "C": "Clothes",
+        "D": "Tool"
+      },
+      "correct_answer": "B",
+      "explanation": "The relationship is creature : its shelter. A bird lives in a nest; a man lives in a house.",
+      "difficulty": "easy",
+      "sub_topic": "function_and_category",
+      "misconception_tags": [
+        "relationship_identification"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANA-PRACTICE-006"
+    },
+    {
+      "question": "Thermometer : Temperature :: Barometer : ?",
+      "options": {
+        "A": "Humidity",
+        "B": "Pressure",
+        "C": "Rainfall",
+        "D": "Wind speed"
+      },
+      "correct_answer": "B",
+      "explanation": "Instrument : what it measures. A thermometer measures temperature; a barometer measures atmospheric pressure.",
+      "difficulty": "easy",
+      "sub_topic": "function_and_category",
+      "misconception_tags": [
+        "relationship_identification"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANA-PRACTICE-007"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Complete the analogy: 8 : 64 :: 27 : ?",
+      "options": {
+        "A": "81",
+        "B": "54",
+        "C": "216",
+        "D": "125"
+      },
+      "correct_answer": "C",
+      "explanation": "8 = 2^3 and 64 = 4^3: the bases double (2 -> 4). Applying the same rule to 27 = 3^3 gives base 6, so the answer is 6^3 = 216.",
+      "difficulty": "medium",
+      "sub_topic": "degree_and_sequence",
+      "misconception_tags": [
+        "rule_testing"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANA-006"
+    },
+    {
+      "question": "Doctor : Hospital :: Teacher : ?",
+      "options": {
+        "A": "Library",
+        "B": "School",
+        "C": "Office",
+        "D": "Market"
+      },
+      "correct_answer": "B",
+      "explanation": "Professional : usual workplace. A doctor works in a hospital; a teacher works in a school.",
+      "difficulty": "easy",
+      "sub_topic": "function_and_category",
+      "misconception_tags": [
+        "relationship_identification"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANA-007"
+    },
+    {
+      "question": "Complete: Painful : Pain :: Hopeful : ?",
+      "options": {
+        "A": "Hopeless",
+        "B": "Hope",
+        "C": "Future",
+        "D": "Desire"
+      },
+      "correct_answer": "B",
+      "explanation": "Adjective meaning 'full of X' is derived from noun X: painful = full of pain; hopeful = full of hope (suffix -ful pattern).",
+      "difficulty": "medium",
+      "sub_topic": "word_relationships",
+      "misconception_tags": [
+        "suffix_pattern"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "ANA-008"
     }
   ]
 }

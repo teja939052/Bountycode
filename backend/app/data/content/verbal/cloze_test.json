@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In a cloze test, the blank must be filled so the sentence is grammatically correct AND connects logically with surrounding sentences:",
+      "options": {
+        "A": "Only grammar matters",
+        "B": "Only vocabulary richness matters",
+        "C": "Both grammar and context/logic must hold",
+        "D": "Either one is enough"
+      },
+      "correct_answer": "C",
+      "explanation": "Cloze items test the seam between grammar and discourse: the correct option must fit the sentence's form and the paragraph's meaning and flow.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "single_aspect_trap"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOZE-PRACTICE-006"
+    },
+    {
+      "question": "Fill in: 'The committee _____ its decision yesterday.' (announce)",
+      "options": {
+        "A": "announces",
+        "B": "announced",
+        "C": "has announce",
+        "D": "announcing"
+      },
+      "correct_answer": "B",
+      "explanation": "'Yesterday' fixes simple past: announced (subject-verb agreement also rules out nothing here, but tense marker decides). 'has announce' is ungrammatical (needs announced).",
+      "difficulty": "easy",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "tense_marker_ignored"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOZE-PRACTICE-007"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Fill in: 'Despite _____ heavy rain, the match continued as scheduled.'",
+      "options": {
+        "A": "of",
+        "B": "on",
+        "C": "to",
+        "D": "no preposition needed - 'Despite' takes a noun phrase directly"
+      },
+      "correct_answer": "D",
+      "explanation": "'Despite' (unlike 'in spite of') is a preposition that takes a noun phrase directly: 'Despite heavy rain'. Adding 'of' or an article is the classic error.",
+      "difficulty": "medium",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "preposition_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOZE-006"
+    },
+    {
+      "question": "Which word most naturally collocates with 'make a _____'?",
+      "options": {
+        "A": "mistake",
+        "B": "commit",
+        "C": "do",
+        "D": "put"
+      },
+      "correct_answer": "A",
+      "explanation": "English collocation: 'make a mistake' (not 'do/commit a mistake'; 'commit' collocates with crimes/errors in other patterns). Fixed verb-noun pairs are a core cloze target.",
+      "difficulty": "medium",
+      "sub_topic": "grammar_and_collocation",
+      "misconception_tags": [
+        "collocation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOZE-007"
+    },
+    {
+      "question": "Fill in: 'The new policy will come _____ force from next Monday.'",
+      "options": {
+        "A": "at",
+        "B": "on",
+        "C": "to",
+        "D": "into"
+      },
+      "correct_answer": "D",
+      "explanation": "The idiom is 'come into force' (also 'take effect'). 'Come at/on force' is not a standard expression, making this a lexical-idiom blank.",
+      "difficulty": "medium",
+      "sub_topic": "contextual_vocabulary",
+      "misconception_tags": [
+        "idiom_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOZE-008"
     }
   ]
 }
