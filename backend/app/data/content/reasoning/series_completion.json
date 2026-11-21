@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-PRACTICE-006",
+      "question": "Find the next term: 2, 6, 12, 20, 30, ?",
+      "options": {
+        "A": "36",
+        "B": "40",
+        "C": "42",
+        "D": "44"
+      },
+      "correct_answer": "C",
+      "explanation": "Differences are 4, 6, 8, 10 (increasing by 2), so next difference is 12. 30 + 12 = 42. (These are n(n+1) terms: 2, 6, 12, 20, 30, 42.)",
+      "difficulty": "medium",
+      "sub_topic": "difference_series",
+      "misconception_tags": [
+        "difference_pattern_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-PRACTICE-007",
+      "question": "Find the next term: 3, 9, 27, 81, ?",
+      "options": {
+        "A": "162",
+        "B": "213",
+        "C": "243",
+        "D": "324"
+      },
+      "correct_answer": "C",
+      "explanation": "Each term is multiplied by 3 (geometric series with ratio 3): 81 * 3 = 243.",
+      "difficulty": "easy",
+      "sub_topic": "geometric_series",
+      "misconception_tags": [
+        "ratio_vs_difference_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-006",
+      "question": "Find the next term: 1, 4, 9, 16, 25, ?",
+      "options": {
+        "A": "30",
+        "B": "36",
+        "C": "42",
+        "D": "49"
+      },
+      "correct_answer": "B",
+      "explanation": "The series is perfect squares: 1^2, 2^2, 3^2, 4^2, 5^2, so next is 6^2 = 36.",
+      "difficulty": "easy",
+      "sub_topic": "square_series",
+      "misconception_tags": [
+        "series_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-007",
+      "question": "Find the next term: 2, 3, 5, 8, 12, 17, ?",
+      "options": {
+        "A": "20",
+        "B": "22",
+        "C": "23",
+        "D": "24"
+      },
+      "correct_answer": "C",
+      "explanation": "Differences are 1, 2, 3, 4, 5, so next difference is 6. 17 + 6 = 23.",
+      "difficulty": "medium",
+      "sub_topic": "difference_series",
+      "misconception_tags": [
+        "difference_pattern_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-008",
+      "question": "Find the next term: 7, 10, 8, 11, 9, 12, ?",
+      "options": {
+        "A": "10",
+        "B": "13",
+        "C": "14",
+        "D": "15"
+      },
+      "correct_answer": "A",
+      "explanation": "The series alternates +3, -2: 7+3=10, 10-2=8, 8+3=11, 11-2=9, 9+3=12, then 12-2=10.",
+      "difficulty": "medium",
+      "sub_topic": "alternating_series",
+      "misconception_tags": [
+        "alternating_pattern_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

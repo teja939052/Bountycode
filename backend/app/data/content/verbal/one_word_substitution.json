@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-PRACTICE-006",
+      "question": "Choose the one-word substitution: 'A person who is new to a profession or activity'",
+      "options": {
+        "A": "Veteran",
+        "B": "Expert",
+        "C": "Novice",
+        "D": "Consultant"
+      },
+      "correct_answer": "C",
+      "explanation": "A novice is a beginner new to a profession or activity; veteran and expert imply experience, consultant implies advisory role.",
+      "difficulty": "easy",
+      "sub_topic": "people_and_roles",
+      "misconception_tags": [
+        "word_meaning_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-PRACTICE-007",
+      "question": "Choose the one-word substitution: 'A place where weapons and ammunition are stored'",
+      "options": {
+        "A": "Library",
+        "B": "Arsenal",
+        "C": "Hospital",
+        "D": "Museum"
+      },
+      "correct_answer": "B",
+      "explanation": "An arsenal is a facility where weapons and military equipment are stored or manufactured.",
+      "difficulty": "easy",
+      "sub_topic": "places_and_things",
+      "misconception_tags": [
+        "word_meaning_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-006",
+      "question": "Choose the one-word substitution: 'A person who cannot read or write'",
+      "options": {
+        "A": "Illiterate",
+        "B": "Innocent",
+        "C": "Innovator",
+        "D": "Inspector"
+      },
+      "correct_answer": "A",
+      "explanation": "Illiterate describes a person lacking the ability to read and write; the other words are unrelated in meaning.",
+      "difficulty": "easy",
+      "sub_topic": "people_and_roles",
+      "misconception_tags": [
+        "word_meaning_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-007",
+      "question": "Choose the one-word substitution: 'A person who can speak two languages'",
+      "options": {
+        "A": "Monolingual",
+        "B": "Bilingual",
+        "C": "Illiterate",
+        "D": "Anonymous"
+      },
+      "correct_answer": "B",
+      "explanation": "Bilingual means able to use two languages. Monolingual means knowing only one language; the others do not relate to language ability.",
+      "difficulty": "easy",
+      "sub_topic": "people_and_roles",
+      "misconception_tags": [
+        "prefix_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OWS-008",
+      "question": "Choose the one-word substitution: 'Something that is easily broken or damaged'",
+      "options": {
+        "A": "Fragile",
+        "B": "Flexible",
+        "C": "Durable",
+        "D": "Elastic"
+      },
+      "correct_answer": "A",
+      "explanation": "Fragile means easily broken or damaged; durable and elastic suggest the opposite quality, and flexible means bendable without breaking.",
+      "difficulty": "easy",
+      "sub_topic": "actions_and_qualities",
+      "misconception_tags": [
+        "antonym_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

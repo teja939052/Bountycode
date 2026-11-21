@@ -47,13 +47,24 @@
     {
       "id": "DIR-PRACTICE-001",
       "question": "A man is facing North. He turns right. Which direction is he facing now?",
-      "options": {"A": "North", "B": "South", "C": "East", "D": "West"},
+      "options": {
+        "A": "North",
+        "B": "South",
+        "C": "East",
+        "D": "West"
+      },
       "correct_answer": "C",
       "explanation": "When facing North, a right turn leads to East.",
       "difficulty": "easy",
       "sub_topic": "directions_and_turns",
-      "misconception_tags": ["left_right_from_facing_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "left_right_from_facing_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "DIR-PRACTICE-002",
       "question": "A person faces East, turns left, then turns left again. Which direction is he facing now?",
-      "options": {"A": "North", "B": "South", "C": "East", "D": "West"},
+      "options": {
+        "A": "North",
+        "B": "South",
+        "C": "East",
+        "D": "West"
+      },
       "correct_answer": "D",
       "explanation": "Facing East, first left turn -> North. Facing North, second left turn -> West.",
       "difficulty": "easy",
       "sub_topic": "directions_and_turns",
-      "misconception_tags": ["sequential_turn_error"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "sequential_turn_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,24 @@
     {
       "id": "DIR-PRACTICE-003",
       "question": "Rita walks 4 km North and then 3 km East. How far is she from the starting point (shortest distance)?",
-      "options": {"A": "5 km", "B": "7 km", "C": "12 km", "D": "1 km"},
+      "options": {
+        "A": "5 km",
+        "B": "7 km",
+        "C": "12 km",
+        "D": "1 km"
+      },
       "correct_answer": "A",
       "explanation": "North and East are perpendicular. Shortest distance = sqrt(4^2 + 3^2) = sqrt(16 + 9) = sqrt(25) = 5 km.",
       "difficulty": "easy",
       "sub_topic": "distance_and_displacement",
-      "misconception_tags": ["path_vs_displacement_confusion"],
-      "company_tags": ["infosys", "wipro", "capgemini"],
+      "misconception_tags": [
+        "path_vs_displacement_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +127,23 @@
     {
       "id": "DIR-PRACTICE-004",
       "question": "A boy walks 10 m South, turns right and walks 6 m, then turns right and walks 10 m. How far and in which direction is he from the starting point?",
-      "options": {"A": "6 m East", "B": "6 m West", "C": "10 m West", "D": "16 m South"},
+      "options": {
+        "A": "6 m East",
+        "B": "6 m West",
+        "C": "10 m West",
+        "D": "16 m South"
+      },
       "correct_answer": "B",
       "explanation": "Starts facing South (implied by first move): walks 10 m South. Turns right from South -> faces West, walks 6 m. Turns right from West -> faces North, walks 10 m. Net South-North = 10-10 = 0, net West = 6 m. So he is 6 m West of start.",
       "difficulty": "medium",
       "sub_topic": "stepwise_movement",
-      "misconception_tags": ["turn_after_move_error"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "turn_after_move_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +153,81 @@
     {
       "id": "DIR-PRACTICE-005",
       "question": "If you are facing West, which direction will be to your left?",
-      "options": {"A": "North", "B": "South", "C": "East", "D": "West"},
+      "options": {
+        "A": "North",
+        "B": "South",
+        "C": "East",
+        "D": "West"
+      },
       "correct_answer": "B",
       "explanation": "When facing West, left side points to South and right side points to North.",
       "difficulty": "easy",
       "sub_topic": "directions_and_turns",
-      "misconception_tags": ["left_right_from_facing_error"],
-      "company_tags": ["infosys", "tcs"],
+      "misconception_tags": [
+        "left_right_from_facing_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIR-PRACTICE-006",
+      "question": "If you are facing north and turn right, which direction will you face?",
+      "options": {
+        "A": "West",
+        "B": "East",
+        "C": "South",
+        "D": "North"
+      },
+      "correct_answer": "B",
+      "explanation": "Facing north, a right turn points you east (left turn would point west).",
+      "difficulty": "easy",
+      "sub_topic": "directions_and_turns",
+      "misconception_tags": [
+        "turn_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIR-PRACTICE-007",
+      "question": "If you are facing east and turn left, which direction will you face?",
+      "options": {
+        "A": "South",
+        "B": "North",
+        "C": "East",
+        "D": "West"
+      },
+      "correct_answer": "B",
+      "explanation": "Facing east, a left turn points you north (right turn would point south).",
+      "difficulty": "easy",
+      "sub_topic": "directions_and_turns",
+      "misconception_tags": [
+        "turn_direction_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +235,24 @@
     {
       "id": "DIR-001",
       "question": "A man walks 5 km North, then turns right and walks 5 km, then turns right and walks 5 km. How far is he from the starting point and in which direction?",
-      "options": {"A": "5 km East", "B": "5 km West", "C": "5 km North", "D": "10 km East"},
+      "options": {
+        "A": "5 km East",
+        "B": "5 km West",
+        "C": "5 km North",
+        "D": "10 km East"
+      },
       "correct_answer": "A",
       "explanation": "Walk 5 km North. Turn right from North -> East, walk 5 km. Turn right from East -> South, walk 5 km. Net North-South = 5-5 = 0, net East = 5 km. He is 5 km East of the starting point.",
       "difficulty": "easy",
       "sub_topic": "stepwise_movement",
-      "misconception_tags": ["net_displacement_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "net_displacement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +262,23 @@
     {
       "id": "DIR-002",
       "question": "Starting from a point, Meena walks 12 m towards North, turns left and walks 5 m, then turns left and walks 12 m. What is the shortest distance between her final position and the starting point?",
-      "options": {"A": "5 m", "B": "12 m", "C": "17 m", "D": "13 m"},
+      "options": {
+        "A": "5 m",
+        "B": "12 m",
+        "C": "17 m",
+        "D": "13 m"
+      },
       "correct_answer": "A",
       "explanation": "12 m North, left from North -> West 5 m, left from West -> South 12 m. Net North-South = 12-12 = 0, net West = 5 m. Shortest distance = 5 m.",
       "difficulty": "easy",
       "sub_topic": "distance_and_displacement",
-      "misconception_tags": ["path_vs_displacement_confusion"],
-      "company_tags": ["accenture", "tcs"],
+      "misconception_tags": [
+        "path_vs_displacement_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +288,24 @@
     {
       "id": "DIR-003",
       "question": "A person starts facing South, turns right, walks 4 km, turns left, walks 3 km. Which direction is he facing at the end?",
-      "options": {"A": "South", "B": "North", "C": "East", "D": "West"},
+      "options": {
+        "A": "South",
+        "B": "North",
+        "C": "East",
+        "D": "West"
+      },
       "correct_answer": "A",
       "explanation": "Initially facing South. Right turn from South -> faces West and walks 4 km. Left turn from West -> faces South and walks 3 km. Final facing direction is South.",
       "difficulty": "easy",
       "sub_topic": "directions_and_turns",
-      "misconception_tags": ["confusing_position_with_facing"],
-      "company_tags": ["infosys", "capgemini", "cognizant"],
+      "misconception_tags": [
+        "confusing_position_with_facing"
+      ],
+      "company_tags": [
+        "infosys",
+        "capgemini",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +315,23 @@
     {
       "id": "DIR-004",
       "question": "Karan walks 8 km East, then 6 km South. What is the shortest distance from his starting point?",
-      "options": {"A": "10 km", "B": "14 km", "C": "2 km", "D": "48 km"},
+      "options": {
+        "A": "10 km",
+        "B": "14 km",
+        "C": "2 km",
+        "D": "48 km"
+      },
       "correct_answer": "A",
       "explanation": "East and South movements are perpendicular. Shortest distance = sqrt(8^2 + 6^2) = sqrt(64 + 36) = sqrt(100) = 10 km.",
       "difficulty": "easy",
       "sub_topic": "distance_and_displacement",
-      "misconception_tags": ["path_vs_displacement_confusion"],
-      "company_tags": ["tcs", "wipro"],
+      "misconception_tags": [
+        "path_vs_displacement_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +341,110 @@
     {
       "id": "DIR-005",
       "question": "A girl walks 7 m West, turns left and walks 4 m, turns left and walks 7 m. How far is she from the starting point?",
-      "options": {"A": "4 m", "B": "7 m", "C": "11 m", "D": "18 m"},
+      "options": {
+        "A": "4 m",
+        "B": "7 m",
+        "C": "11 m",
+        "D": "18 m"
+      },
       "correct_answer": "A",
       "explanation": "7 m West. Left from West -> South, 4 m. Left from South -> East, 7 m. Net West-East = 7-7 = 0, net South = 4 m. She is 4 m from the starting point.",
       "difficulty": "medium",
       "sub_topic": "stepwise_movement",
-      "misconception_tags": ["turn_after_move_error", "net_displacement_error"],
-      "company_tags": ["infosys", "accenture", "tcs"],
+      "misconception_tags": [
+        "turn_after_move_error",
+        "net_displacement_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIR-006",
+      "question": "A person walks 3 km north and then 4 km east. What is the shortest displacement from the starting point?",
+      "options": {
+        "A": "5 km",
+        "B": "7 km",
+        "C": "1 km",
+        "D": "12 km"
+      },
+      "correct_answer": "A",
+      "explanation": "The path forms a right angle; displacement is the hypotenuse: sqrt(3^2 + 4^2) = sqrt(9+16) = sqrt(25) = 5 km (Pythagoras, 3-4-5 triangle).",
+      "difficulty": "easy",
+      "sub_topic": "distance_and_displacement",
+      "misconception_tags": [
+        "distance_vs_displacement_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIR-007",
+      "question": "A man walks 5 km north and then 5 km back south to the start. What are his total distance walked and net displacement?",
+      "options": {
+        "A": "Distance 10 km, displacement 0 km",
+        "B": "Distance 5 km, displacement 5 km",
+        "C": "Distance 0 km, displacement 10 km",
+        "D": "Distance 10 km, displacement 10 km"
+      },
+      "correct_answer": "A",
+      "explanation": "Distance sums all movement: 5 + 5 = 10 km. Displacement is straight-line change from start to end: he ends at the start, so 0 km.",
+      "difficulty": "medium",
+      "sub_topic": "distance_and_displacement",
+      "misconception_tags": [
+        "distance_vs_displacement_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIR-008",
+      "question": "A man walks 20 m towards south, then turns left and walks 20 m. In which direction is he facing now?",
+      "options": {
+        "A": "North",
+        "B": "South",
+        "C": "East",
+        "D": "West"
+      },
+      "correct_answer": "C",
+      "explanation": "Facing south, a left turn points east. After walking 20 m east he is facing east (and is south-east of the start).",
+      "difficulty": "medium",
+      "sub_topic": "stepwise_movement",
+      "misconception_tags": [
+        "turn_direction_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

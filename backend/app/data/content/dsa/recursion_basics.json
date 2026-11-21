@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-PRACTICE-006",
+      "question": "What is the purpose of the base case in a recursive function?",
+      "options": {
+        "A": "To repeat the function forever",
+        "B": "To increase recursion depth",
+        "C": "To terminate the recursion",
+        "D": "To sort the input"
+      },
+      "correct_answer": "C",
+      "explanation": "The base case is the condition under which the function returns without making further recursive calls, stopping the chain of calls.",
+      "difficulty": "easy",
+      "sub_topic": "recursion_definition",
+      "misconception_tags": [
+        "base_case_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-PRACTICE-007",
+      "question": "What typically happens if a recursive function never reaches a base case?",
+      "options": {
+        "A": "It returns immediately",
+        "B": "Stack overflow (infinite recursion)",
+        "C": "It sorts the data",
+        "D": "It compiles successfully with a warning"
+      },
+      "correct_answer": "B",
+      "explanation": "Each pending call occupies a call stack frame; without termination the stack grows until it is exhausted, causing a stack overflow / runtime error.",
+      "difficulty": "easy",
+      "sub_topic": "call_stack_and_tracing",
+      "misconception_tags": [
+        "termination_assumption"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-006",
+      "question": "Under the standard mathematical definition, what does factorial(0) return?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "It is undefined"
+      },
+      "correct_answer": "B",
+      "explanation": "0! = 1 by convention, and this serves as the base case for recursive factorial implementations (factorial(n) = n * factorial(n-1)).",
+      "difficulty": "easy",
+      "sub_topic": "recursion_definition",
+      "misconception_tags": [
+        "zero_factorial_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-007",
+      "question": "What is the approximate time complexity of the naive recursive Fibonacci function (no memoization) for input n?",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n^2)",
+        "C": "O(2^n)",
+        "D": "O(log n)"
+      },
+      "correct_answer": "C",
+      "explanation": "T(n) = T(n-1) + T(n-2) grows exponentially; the call tree roughly doubles per level, giving exponential time (about O(1.618^n), bounded by O(2^n)).",
+      "difficulty": "medium",
+      "sub_topic": "recursion_complexity",
+      "misconception_tags": [
+        "exponential_growth_underestimated"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "REC-008",
+      "question": "Where are a function's local variables and return address stored during its execution (including recursive calls)?",
+      "options": {
+        "A": "On the heap only",
+        "B": "In the queue",
+        "C": "On the call stack",
+        "D": "In the register file permanently"
+      },
+      "correct_answer": "C",
+      "explanation": "Each active call's frame (parameters, locals, return address) is pushed onto the call stack; recursive calls create nested frames until they return.",
+      "difficulty": "medium",
+      "sub_topic": "call_stack_and_tracing",
+      "misconception_tags": [
+        "memory_region_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

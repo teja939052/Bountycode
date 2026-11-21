@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-PRACTICE-006",
+      "question": "Black-box testing is based on:",
+      "options": {
+        "A": "Internal code structure and paths",
+        "B": "Inputs and expected outputs without knowledge of internal code",
+        "C": "Compiler warnings only",
+        "D": "User documentation only"
+      },
+      "correct_answer": "B",
+      "explanation": "Black-box testing evaluates functionality from the outside using requirements and test cases on inputs/outputs, without inspecting internal implementation.",
+      "difficulty": "easy",
+      "sub_topic": "test_types_and_cases",
+      "misconception_tags": [
+        "blackbox_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-PRACTICE-007",
+      "question": "Unit testing verifies:",
+      "options": {
+        "A": "The entire system end-to-end in production",
+        "B": "Individual functions/methods in isolation",
+        "C": "Only the user manual",
+        "D": "Hardware manufacturing quality"
+      },
+      "correct_answer": "B",
+      "explanation": "Unit tests target the smallest testable components (functions/methods) in isolation, usually with mocked dependencies, to validate their logic.",
+      "difficulty": "easy",
+      "sub_topic": "testing_levels",
+      "misconception_tags": [
+        "test_level_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-006",
+      "question": "Boundary value analysis suggests testing:",
+      "options": {
+        "A": "Only middle values of an input range",
+        "B": "Values at and just beyond the edges of input boundaries",
+        "C": "Only randomly chosen values",
+        "D": "Only completely invalid inputs"
+      },
+      "correct_answer": "B",
+      "explanation": "Defects cluster at boundaries; boundary value analysis targets minimum, maximum, and just-outside values of ranges (e.g. 0, 1, max-1, max, max+1).",
+      "difficulty": "medium",
+      "sub_topic": "test_types_and_cases",
+      "misconception_tags": [
+        "boundary_test_selection"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-007",
+      "question": "Regression testing means:",
+      "options": {
+        "A": "Testing a product for the first time",
+        "B": "Re-running existing tests after changes to ensure previously working features still work",
+        "C": "Testing only performance under load",
+        "D": "Exploratory testing without a plan"
+      },
+      "correct_answer": "B",
+      "explanation": "After code changes (fixes or features), regression testing re-executes existing test suites to catch newly introduced defects in unchanged areas.",
+      "difficulty": "easy",
+      "sub_topic": "testing_fundamentals",
+      "misconception_tags": [
+        "regression_vs_retest_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STEST-008",
+      "question": "White-box testing requires knowledge of:",
+      "options": {
+        "A": "Internal code structure and logic",
+        "B": "Only the user interface",
+        "C": "Only production servers",
+        "D": "Nothing; it is random testing"
+      },
+      "correct_answer": "A",
+      "explanation": "White-box (structural) testing examines internal paths, branches, and statements; code coverage metrics (statement/branch) are commonly used to guide it.",
+      "difficulty": "medium",
+      "sub_topic": "test_types_and_cases",
+      "misconception_tags": [
+        "whitebox_definition_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

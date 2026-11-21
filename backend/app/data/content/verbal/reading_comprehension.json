@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-PRACTICE-006",
+      "question": "When a passage presents an argument, the 'main idea' of the passage is best described as:",
+      "options": {
+        "A": "The first sentence only",
+        "B": "The central point the author wants the reader to accept",
+        "C": "The most interesting detail",
+        "D": "The last sentence only"
+      },
+      "correct_answer": "B",
+      "explanation": "The main idea is the controlling thought that unifies the passage, typically the author's central claim or purpose, not any single sentence in isolation.",
+      "difficulty": "easy",
+      "sub_topic": "main_idea",
+      "misconception_tags": [
+        "main_idea_vs_detail_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-PRACTICE-007",
+      "question": "A detail question in a reading comprehension passage is best answered by:",
+      "options": {
+        "A": "Relying on outside knowledge",
+        "B": "Locating the specific information explicitly stated in the passage",
+        "C": "Choosing the longest option",
+        "D": "Guessing based on topic"
+      },
+      "correct_answer": "B",
+      "explanation": "Detail (explicit) questions ask for information directly stated in the text; the correct answer must be supported by a specific line or statement in the passage.",
+      "difficulty": "easy",
+      "sub_topic": "question_types",
+      "misconception_tags": [
+        "using_prior_knowledge_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-006",
+      "question": "The tone of a passage that presents balanced pros and cons without strong personal emotion is best described as:",
+      "options": {
+        "A": "Sarcastic",
+        "B": "Objective / neutral",
+        "C": "Hostile",
+        "D": "Humorous"
+      },
+      "correct_answer": "B",
+      "explanation": "A balanced presentation of both sides with measured language and little emotional charge indicates an objective, neutral tone.",
+      "difficulty": "easy",
+      "sub_topic": "tone",
+      "misconception_tags": [
+        "tone_vs_mood_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-007",
+      "question": "An inference question requires the test taker to:",
+      "options": {
+        "A": "Repeat the passage verbatim",
+        "B": "Draw a conclusion logically supported by the passage but not directly stated",
+        "C": "Use information from other sources",
+        "D": "Disagree with the author"
+      },
+      "correct_answer": "B",
+      "explanation": "Inferences must be implied by evidence in the passage: a reasonable conclusion that follows from what is stated, without adding outside information.",
+      "difficulty": "medium",
+      "sub_topic": "question_types",
+      "misconception_tags": [
+        "inference_vs_stated_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "RC-008",
+      "question": "If a passage's vocabulary word 'meticulous' is used to describe someone's work, the context suggests the person is:",
+      "options": {
+        "A": "Careless about details",
+        "B": "Extremely careful and precise about details",
+        "C": "Fast but sloppy",
+        "D": "Unwilling to work"
+      },
+      "correct_answer": "B",
+      "explanation": "Context clues around 'meticulous' (careful attention to detail) indicate thoroughness and precision, which is the intended meaning in such usage.",
+      "difficulty": "easy",
+      "sub_topic": "vocabulary_in_context",
+      "misconception_tags": [
+        "context_clue_ignorance"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

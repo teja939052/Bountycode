@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-PRACTICE-006",
+      "question": "What is the meaning of the idiom 'to hit the nail on the head'?",
+      "options": {
+        "A": "To make a careless mistake",
+        "B": "To be exactly right about something",
+        "C": "To work without stopping",
+        "D": "To avoid a difficult topic"
+      },
+      "correct_answer": "B",
+      "explanation": "The idiom means to describe a situation or identify a problem exactly and correctly.",
+      "difficulty": "easy",
+      "sub_topic": "idiom_meanings",
+      "misconception_tags": [
+        "literal_interpretation"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-PRACTICE-007",
+      "question": "What does 'once in a blue moon' mean?",
+      "options": {
+        "A": "Every night",
+        "B": "Very rarely",
+        "C": "Only on full moons",
+        "D": "Suddenly"
+      },
+      "correct_answer": "B",
+      "explanation": "The phrase means something happens very infrequently, almost never.",
+      "difficulty": "easy",
+      "sub_topic": "common_phrases_usage",
+      "misconception_tags": [
+        "literal_interpretation"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-006",
+      "question": "What is the meaning of 'to break the ice'?",
+      "options": {
+        "A": "To start a fire",
+        "B": "To initiate conversation in an awkward situation",
+        "C": "To cool down an argument physically",
+        "D": "To cancel an event"
+      },
+      "correct_answer": "B",
+      "explanation": "Breaking the ice means doing or saying something to relieve initial tension and start friendly conversation among strangers.",
+      "difficulty": "medium",
+      "sub_topic": "idiom_meanings",
+      "misconception_tags": [
+        "literal_interpretation"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-007",
+      "question": "What is the meaning of 'to spill the beans'?",
+      "options": {
+        "A": "To cook a meal",
+        "B": "To reveal a secret",
+        "C": "To waste food",
+        "D": "To make a mess intentionally"
+      },
+      "correct_answer": "B",
+      "explanation": "Spilling the beans means disclosing information that was meant to be kept secret.",
+      "difficulty": "easy",
+      "sub_topic": "common_phrases_usage",
+      "misconception_tags": [
+        "literal_interpretation"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "IDIOM-008",
+      "question": "In the sentence 'The plan is still in the air, so we cannot commit yet', the phrase 'in the air' means:",
+      "options": {
+        "A": "Flying above us",
+        "B": "Undecided and likely to change",
+        "C": "Very successful",
+        "D": "Already completed"
+      },
+      "correct_answer": "B",
+      "explanation": "Something 'in the air' is unsettled or not yet decided, which explains why no commitment can be made.",
+      "difficulty": "medium",
+      "sub_topic": "contextual_selection",
+      "misconception_tags": [
+        "context_idiom_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

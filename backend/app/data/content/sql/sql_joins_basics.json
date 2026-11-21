@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-PRACTICE-006",
+      "question": "Which JOIN returns only rows that have matching values in both tables?",
+      "options": {
+        "A": "LEFT JOIN",
+        "B": "RIGHT JOIN",
+        "C": "INNER JOIN",
+        "D": "FULL OUTER JOIN"
+      },
+      "correct_answer": "C",
+      "explanation": "INNER JOIN produces rows where the join condition is satisfied in both tables. LEFT/RIGHT/FULL outer joins can include non-matching rows from one or both sides with NULLs.",
+      "difficulty": "easy",
+      "sub_topic": "join_types",
+      "misconception_tags": [
+        "join_type_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-PRACTICE-007",
+      "question": "In a LEFT JOIN of employees to departments on department_id, what happens for an employee with no matching department?",
+      "options": {
+        "A": "The employee row is excluded",
+        "B": "The employee row appears with NULL department columns",
+        "C": "The query fails",
+        "D": "A random department is assigned"
+      },
+      "correct_answer": "B",
+      "explanation": "LEFT JOIN keeps all rows from the left table; when there is no match in the right table, the right-side columns are filled with NULL for that row.",
+      "difficulty": "easy",
+      "sub_topic": "join_types",
+      "misconception_tags": [
+        "outer_join_null_behavior_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-006",
+      "question": "What is a CROSS JOIN?",
+      "options": {
+        "A": "A join that matches on primary keys only",
+        "B": "A join that returns the Cartesian product of two tables",
+        "C": "A join that excludes duplicates",
+        "D": "Same as INNER JOIN with condition"
+      },
+      "correct_answer": "B",
+      "explanation": "CROSS JOIN combines every row of the first table with every row of the second table (Cartesian product). If table A has m rows and B has n rows, result has m*n rows.",
+      "difficulty": "medium",
+      "sub_topic": "join_types",
+      "misconception_tags": [
+        "cross_join_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-007",
+      "question": "Which condition is commonly used in JOIN clauses to relate tables?",
+      "options": {
+        "A": "ON table1.key = table2.key",
+        "B": "ORDER table1.key = table2.key",
+        "C": "SORT table1.key = table2.key",
+        "D": "GROUP table1.key = table2.key"
+      },
+      "correct_answer": "A",
+      "explanation": "The ON clause specifies the join predicate that determines how rows from tables are matched, e.g. matching foreign key to primary key.",
+      "difficulty": "easy",
+      "sub_topic": "join_syntax",
+      "misconception_tags": [
+        "join_clause_keyword_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-008",
+      "question": "A RIGHT JOIN returns:",
+      "options": {
+        "A": "Only unmatched rows from left table",
+        "B": "All rows from right table and matched rows from left table",
+        "C": "Only matched rows from both tables",
+        "D": "All rows from both tables always without NULLs"
+      },
+      "correct_answer": "B",
+      "explanation": "RIGHT JOIN preserves every row from the right table; matching rows from the left table are included, and non-matching left-side columns become NULL.",
+      "difficulty": "easy",
+      "sub_topic": "join_types",
+      "misconception_tags": [
+        "left_right_join_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

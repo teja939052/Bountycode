@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "probability_basics",
   "subject": "quantitative_aptitude",
   "pattern": "probability_basics",
@@ -47,13 +47,24 @@
     {
       "id": "PRB-PRACTICE-001",
       "question": "A fair coin is tossed once. What is the probability of getting a head?",
-      "options": {"A": "0", "B": "1/4", "C": "1/2", "D": "1"},
+      "options": {
+        "A": "0",
+        "B": "1/4",
+        "C": "1/2",
+        "D": "1"
+      },
       "correct_answer": "C",
       "explanation": "Sample space = {Head, Tail}, total outcomes = 2, favorable = 1. Probability = 1/2.",
       "difficulty": "easy",
       "sub_topic": "probability_foundations",
-      "misconception_tags": ["sample_space_count_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "sample_space_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "PRB-PRACTICE-002",
       "question": "A card is drawn at random from a standard deck of 52 cards. What is the probability of drawing a king?",
-      "options": {"A": "1/52", "B": "1/26", "C": "1/13", "D": "4/13"},
+      "options": {
+        "A": "1/52",
+        "B": "1/26",
+        "C": "1/13",
+        "D": "4/13"
+      },
       "correct_answer": "C",
       "explanation": "There are 4 kings in 52 cards. Probability = 4/52 = 1/13.",
       "difficulty": "easy",
       "sub_topic": "probability_foundations",
-      "misconception_tags": ["favorable_count_error"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "favorable_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,23 @@
     {
       "id": "PRB-PRACTICE-003",
       "question": "The probability that it will rain tomorrow is 0.3. What is the probability that it will not rain tomorrow?",
-      "options": {"A": "0.3", "B": "0.5", "C": "0.7", "D": "1.3"},
+      "options": {
+        "A": "0.3",
+        "B": "0.5",
+        "C": "0.7",
+        "D": "1.3"
+      },
       "correct_answer": "C",
       "explanation": "Not raining is the complement of raining. P(not rain) = 1 - P(rain) = 1 - 0.3 = 0.7.",
       "difficulty": "easy",
       "sub_topic": "complementary_and_union_events",
-      "misconception_tags": ["complement_rule_error"],
-      "company_tags": ["infosys", "wipro"],
+      "misconception_tags": [
+        "complement_rule_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +126,23 @@
     {
       "id": "PRB-PRACTICE-004",
       "question": "A fair die is rolled once. What is the probability of getting a number less than 5?",
-      "options": {"A": "1/6", "B": "1/3", "C": "1/2", "D": "2/3"},
+      "options": {
+        "A": "1/6",
+        "B": "1/3",
+        "C": "1/2",
+        "D": "2/3"
+      },
       "correct_answer": "D",
       "explanation": "Numbers less than 5 are {1,2,3,4} = 4 outcomes out of 6. Probability = 4/6 = 2/3.",
       "difficulty": "easy",
       "sub_topic": "probability_foundations",
-      "misconception_tags": ["boundary_condition_error"],
-      "company_tags": ["tcs", "capgemini"],
+      "misconception_tags": [
+        "boundary_condition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +152,81 @@
     {
       "id": "PRB-PRACTICE-005",
       "question": "Two fair coins are tossed together. What is the probability of getting exactly one head?",
-      "options": {"A": "1/4", "B": "1/3", "C": "1/2", "D": "3/4"},
+      "options": {
+        "A": "1/4",
+        "B": "1/3",
+        "C": "1/2",
+        "D": "3/4"
+      },
       "correct_answer": "C",
       "explanation": "Sample space = {HH, HT, TH, TT}, 4 equally likely outcomes. Exactly one head occurs in {HT, TH} = 2 outcomes. Probability = 2/4 = 1/2.",
       "difficulty": "easy",
       "sub_topic": "probability_foundations",
-      "misconception_tags": ["incomplete_sample_space"],
-      "company_tags": ["infosys", "cognizant"],
+      "misconception_tags": [
+        "incomplete_sample_space"
+      ],
+      "company_tags": [
+        "infosys",
+        "cognizant"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PB-PRACTICE-006",
+      "question": "A fair coin is tossed once. What is the probability of getting a head?",
+      "options": {
+        "A": "0",
+        "B": "1/4",
+        "C": "1/2",
+        "D": "1"
+      },
+      "correct_answer": "C",
+      "explanation": "A fair coin has 2 equally likely outcomes {H,T}. Favorable outcomes for head = 1. Probability = 1/2.",
+      "difficulty": "easy",
+      "sub_topic": "basic_probability",
+      "misconception_tags": [
+        "sample_space_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PB-PRACTICE-007",
+      "question": "A die is rolled once. What is the probability of getting an even number?",
+      "options": {
+        "A": "1/6",
+        "B": "1/3",
+        "C": "1/2",
+        "D": "2/3"
+      },
+      "correct_answer": "C",
+      "explanation": "Even outcomes are {2,4,6} = 3 outcomes out of 6 equally likely outcomes. Probability = 3/6 = 1/2.",
+      "difficulty": "easy",
+      "sub_topic": "basic_probability",
+      "misconception_tags": [
+        "counting_favorable_outcomes_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +234,24 @@
     {
       "id": "PRB-001",
       "question": "A bag contains 4 red, 5 blue, and 3 green balls. If one ball is drawn at random, what is the probability that it is blue?",
-      "options": {"A": "1/4", "B": "5/12", "C": "1/3", "D": "7/12"},
+      "options": {
+        "A": "1/4",
+        "B": "5/12",
+        "C": "1/3",
+        "D": "7/12"
+      },
       "correct_answer": "B",
       "explanation": "Total balls = 4 + 5 + 3 = 12. Favorable (blue) = 5. Probability = 5/12.",
       "difficulty": "easy",
       "sub_topic": "probability_foundations",
-      "misconception_tags": ["total_count_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "total_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +261,24 @@
     {
       "id": "PRB-002",
       "question": "A number is chosen at random from 1 to 20. What is the probability that it is a prime number?",
-      "options": {"A": "7/20", "B": "2/5", "C": "9/20", "D": "1/2"},
+      "options": {
+        "A": "7/20",
+        "B": "2/5",
+        "C": "9/20",
+        "D": "1/2"
+      },
       "correct_answer": "B",
       "explanation": "Primes from 1 to 20 are {2,3,5,7,11,13,17,19} = 8 numbers. Total = 20. Probability = 8/20 = 2/5.",
       "difficulty": "medium",
       "sub_topic": "probability_foundations",
-      "misconception_tags": ["prime_identification_error"],
-      "company_tags": ["tcs", "accenture", "capgemini"],
+      "misconception_tags": [
+        "prime_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +288,24 @@
     {
       "id": "PRB-003",
       "question": "Two fair dice are rolled. What is the probability that the sum is 7?",
-      "options": {"A": "1/12", "B": "1/9", "C": "1/6", "D": "5/36"},
+      "options": {
+        "A": "1/12",
+        "B": "1/9",
+        "C": "1/6",
+        "D": "5/36"
+      },
       "correct_answer": "C",
       "explanation": "Total outcomes = 6 x 6 = 36. Favorable pairs with sum 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 outcomes. Probability = 6/36 = 1/6.",
       "difficulty": "medium",
       "sub_topic": "probability_foundations",
-      "misconception_tags": ["dice_sample_space_error"],
-      "company_tags": ["infosys", "tcs", "cognizant"],
+      "misconception_tags": [
+        "dice_sample_space_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +315,24 @@
     {
       "id": "PRB-004",
       "question": "A box contains 3 defective and 7 non-defective bulbs. Two bulbs are drawn at random without replacement. What is the probability that both are non-defective?",
-      "options": {"A": "7/15", "B": "21/50", "C": "49/100", "D": "7/10"},
+      "options": {
+        "A": "7/15",
+        "B": "21/50",
+        "C": "49/100",
+        "D": "7/10"
+      },
       "correct_answer": "A",
       "explanation": "Total bulbs = 10. P(first non-defective)=7/10. Without replacement, remaining non-defective=6 out of 9. P(second non-defective | first non-defective)=6/9. So probability = (7/10)*(6/9)=42/90=7/15.",
       "difficulty": "medium",
       "sub_topic": "independent_and_dependent_events",
-      "misconception_tags": ["replacement_assumption_error"],
-      "company_tags": ["wipro", "capgemini", "tcs"],
+      "misconception_tags": [
+        "replacement_assumption_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +342,109 @@
     {
       "id": "PRB-005",
       "question": "From 1 to 30, a number is selected at random. What is the probability that it is divisible by 3 or 5?",
-      "options": {"A": "1/3", "B": "7/15", "C": "8/15", "D": "2/3"},
+      "options": {
+        "A": "1/3",
+        "B": "7/15",
+        "C": "8/15",
+        "D": "2/3"
+      },
       "correct_answer": "B",
       "explanation": "Multiples of 3 in 1-30: 10 numbers. Multiples of 5: 6 numbers. Multiples of both (15): 2 numbers {15,30}. Using union: (10 + 6 - 2)/30 = 14/30 = 7/15.",
       "difficulty": "medium",
       "sub_topic": "complementary_and_union_events",
-      "misconception_tags": ["double_counting_union"],
-      "company_tags": ["infosys", "tcs", "accenture"],
+      "misconception_tags": [
+        "double_counting_union"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PB-006",
+      "question": "A bag contains 3 red and 5 blue balls. One ball is drawn at random. What is the probability it is red?",
+      "options": {
+        "A": "3/5",
+        "B": "3/8",
+        "C": "5/8",
+        "D": "1/3"
+      },
+      "correct_answer": "B",
+      "explanation": "Total balls = 3+5 = 8. Favorable (red) = 3. Probability = 3/8.",
+      "difficulty": "easy",
+      "sub_topic": "basic_probability",
+      "misconception_tags": [
+        "total_outcomes_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PB-007",
+      "question": "Two fair coins are tossed. What is the probability of getting exactly one head?",
+      "options": {
+        "A": "1/4",
+        "B": "1/3",
+        "C": "1/2",
+        "D": "3/4"
+      },
+      "correct_answer": "C",
+      "explanation": "Sample space: {HH,HT,TH,TT} (4 outcomes). Exactly one head: {HT,TH} = 2 outcomes. Probability = 2/4 = 1/2.",
+      "difficulty": "medium",
+      "sub_topic": "compound_events",
+      "misconception_tags": [
+        "sample_space_enumeration_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PB-008",
+      "question": "A card is drawn at random from a standard deck of 52 cards. What is the probability of drawing a king?",
+      "options": {
+        "A": "1/13",
+        "B": "1/26",
+        "C": "1/52",
+        "D": "4/13"
+      },
+      "correct_answer": "A",
+      "explanation": "There are 4 kings in 52 cards. Probability = 4/52 = 1/13.",
+      "difficulty": "easy",
+      "sub_topic": "basic_probability",
+      "misconception_tags": [
+        "deck_composition_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-PRACTICE-006",
+      "question": "Which constraint ensures each row has a unique and non-null identifier?",
+      "options": {
+        "A": "FOREIGN KEY",
+        "B": "PRIMARY KEY",
+        "C": "CHECK",
+        "D": "DEFAULT"
+      },
+      "correct_answer": "B",
+      "explanation": "A primary key uniquely identifies each row and does not allow NULL values (entity integrity). Foreign keys reference keys in other tables.",
+      "difficulty": "easy",
+      "sub_topic": "constraints_overview",
+      "misconception_tags": [
+        "constraint_type_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-PRACTICE-007",
+      "question": "Which constraint prevents NULL values from being stored in a column?",
+      "options": {
+        "A": "UNIQUE",
+        "B": "NOT NULL",
+        "C": "DEFAULT",
+        "D": "FOREIGN KEY"
+      },
+      "correct_answer": "B",
+      "explanation": "NOT NULL requires every row to have a value for that column. UNIQUE allows (typically) NULLs in most databases; DEFAULT supplies a value when none is given.",
+      "difficulty": "easy",
+      "sub_topic": "check_default_notnull",
+      "misconception_tags": [
+        "constraint_type_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-006",
+      "question": "A FOREIGN KEY constraint primarily enforces:",
+      "options": {
+        "A": "Uniqueness of values in one table",
+        "B": "Referential integrity between tables",
+        "C": "Automatic sorting of queries",
+        "D": "Index creation on every column"
+      },
+      "correct_answer": "B",
+      "explanation": "A foreign key ensures values in one table match existing referenced key values in another table (or NULL where allowed), enforcing referential integrity.",
+      "difficulty": "medium",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": [
+        "foreign_key_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-007",
+      "question": "Compared with a PRIMARY KEY constraint, a UNIQUE constraint typically differs in that:",
+      "options": {
+        "A": "It can never be indexed",
+        "B": "It commonly allows NULLs (implementation-dependent, often multiple)",
+        "C": "It must cover multiple columns always",
+        "D": "It disallows all duplicate rows and NULLs identically"
+      },
+      "correct_answer": "B",
+      "explanation": "Both enforce uniqueness and are indexed, but a table has one primary key while unique constraints may allow NULLs (e.g. PostgreSQL and SQL Server permit multiple NULLs in a UNIQUE column, MySQL too).",
+      "difficulty": "medium",
+      "sub_topic": "constraints_overview",
+      "misconception_tags": [
+        "primary_vs_unique_null_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-008",
+      "question": "Which constraint restricts a column to values satisfying a condition such as age >= 18?",
+      "options": {
+        "A": "DEFAULT",
+        "B": "CHECK",
+        "C": "REFERENCES",
+        "D": "INDEX"
+      },
+      "correct_answer": "B",
+      "explanation": "A CHECK constraint validates a boolean condition per row; rows violating the condition are rejected on insert/update.",
+      "difficulty": "easy",
+      "sub_topic": "check_default_notnull",
+      "misconception_tags": [
+        "constraint_type_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

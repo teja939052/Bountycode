@@ -7,7 +7,7 @@
   "trust_status": "UNVERIFIED",
   "lessons": [
     {
-      "id": "MIX-L1",
+      "id": "MAB-L1",
       "title": "Mixtures: Weighted Average Concept",
       "concept": "When two or more quantities are mixed, the overall value (such as price, concentration, or average) is the weighted average based on their amounts. If quantities q1,q2 with values v1,v2 are mixed, mean value = (q1*v1 + q2*v2)/(q1+q2).",
       "formula": "Mean value = (sum of quantity×value) / (sum of quantities).",
@@ -22,7 +22,7 @@
       "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
     },
     {
-      "id": "MIX-L2",
+      "id": "MAB-L2",
       "title": "Alligation Rule",
       "concept": "Alligation is a shortcut to find the ratio in which two ingredients with different values must be mixed to obtain a mixture of a given mean value. Place cheaper value (C), mean (M), dearer (D) and take differences diagonally: ratio (quantity of cheaper):(quantity of dearer) = (D-M):(M-C).",
       "formula": "If C < M < D, ratio C:D = (D - M) : (M - C).",
@@ -37,7 +37,7 @@
       "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
     },
     {
-      "id": "MIX-L3",
+      "id": "MAB-L3",
       "title": "Replacement in Mixtures",
       "concept": "In replacement problems, a part of a mixture is removed and replaced by another substance (often water). After each operation, the fraction of the original substance remaining is multiplied by (1 - removed/total). For n operations with same quantity replaced: remaining original = V*(1 - r/V)^n.",
       "formula": "Remaining quantity of original = Initial * (1 - replaced_amount/total_volume)^n.",
@@ -54,7 +54,7 @@
   ],
   "practice": [
     {
-      "id": "MIX-PRACTICE-001",
+      "id": "MAB-PRACTICE-001",
       "question": "2 kg of rice at ₹40/kg is mixed with 3 kg at ₹60/kg. The mean price per kg is:",
       "options": {
         "A": "₹48",
@@ -81,7 +81,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-PRACTICE-002",
+      "id": "MAB-PRACTICE-002",
       "question": "In what ratio must tea at ₹30/kg and ₹50/kg be mixed to get ₹36/kg?",
       "options": {
         "A": "7:3",
@@ -107,7 +107,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-PRACTICE-003",
+      "id": "MAB-PRACTICE-003",
       "question": "A 10 L mixture has milk and water. 2 L is removed and replaced with water. Fraction of mixture removed is:",
       "options": {
         "A": "1/10",
@@ -134,7 +134,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-PRACTICE-004",
+      "id": "MAB-PRACTICE-004",
       "question": "20 L of milk: 5 L replaced with water once. Milk remaining is:",
       "options": {
         "A": "10 L",
@@ -160,7 +160,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-PRACTICE-005",
+      "id": "MAB-PRACTICE-005",
       "question": "Alligation can be applied when the desired mean value is:",
       "options": {
         "A": "Greater than both ingredient values",
@@ -188,7 +188,7 @@
   ],
   "questions": [
     {
-      "id": "MIX-001",
+      "id": "MAB-001",
       "question": "3 L at ₹20/L mixed with 2 L at ₹30/L gives mean price:",
       "options": {
         "A": "₹22/L",
@@ -215,7 +215,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-002",
+      "id": "MAB-002",
       "question": "Mix ₹10/kg and ₹16/kg to get ₹12/kg. Ratio (₹10:₹16) is:",
       "options": {
         "A": "1:2",
@@ -242,7 +242,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-003",
+      "id": "MAB-003",
       "question": "A 40 L vessel of milk: 10 L removed and replaced by water once. Milk left:",
       "options": {
         "A": "25 L",
@@ -269,7 +269,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-004",
+      "id": "MAB-004",
       "question": "If equal quantities are mixed, the mean is the:",
       "options": {
         "A": "Product of values",
@@ -295,7 +295,7 @@
       "trust_status": "UNVERIFIED"
     },
     {
-      "id": "MIX-005",
+      "id": "MAB-005",
       "question": "After replacing 1/4 of a mixture with water once, fraction of original substance remaining is:",
       "options": {
         "A": "1/4",

@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-PRACTICE-006",
+      "question": "Choose the synonym of: CANDID",
+      "options": {
+        "A": "Secretive",
+        "B": "Frank",
+        "C": "Silent",
+        "D": "Rude"
+      },
+      "correct_answer": "B",
+      "explanation": "Candid means honest and straightforward in speech. 'Frank' has the same meaning. Secretive is opposite in spirit; rude and silent are not synonyms.",
+      "difficulty": "medium",
+      "sub_topic": "synonyms_basics",
+      "misconception_tags": [
+        "synonym_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-PRACTICE-007",
+      "question": "Choose the antonym of: ABUNDANT",
+      "options": {
+        "A": "Plentiful",
+        "B": "Rare",
+        "C": "Ample",
+        "D": "Generous"
+      },
+      "correct_answer": "B",
+      "explanation": "Abundant means existing in large quantities. The opposite is 'scarce/rare', indicating small availability. Plentiful and ample are synonyms, not antonyms.",
+      "difficulty": "easy",
+      "sub_topic": "antonyms_basics",
+      "misconception_tags": [
+        "antonym_selection_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-006",
+      "question": "Choose the synonym of: METICULOUS",
+      "options": {
+        "A": "Careless",
+        "B": "Thorough",
+        "C": "Hasty",
+        "D": "Sloppy"
+      },
+      "correct_answer": "B",
+      "explanation": "Meticulous means showing great attention to detail and thoroughness. Careless, hasty, and sloppy are closer to its antonym.",
+      "difficulty": "medium",
+      "sub_topic": "synonyms_basics",
+      "misconception_tags": [
+        "synonym_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-007",
+      "question": "Choose the antonym of: TRANQUIL",
+      "options": {
+        "A": "Peaceful",
+        "B": "Calm",
+        "C": "Stormy",
+        "D": "Serene"
+      },
+      "correct_answer": "C",
+      "explanation": "Tranquil means calm and peaceful. 'Stormy' (agitated, turbulent) is the opposite among the options; peaceful, calm, and serene are synonyms.",
+      "difficulty": "medium",
+      "sub_topic": "antonyms_basics",
+      "misconception_tags": [
+        "antonym_selection_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYN-008",
+      "question": "Choose the synonym of: PRUDENT",
+      "options": {
+        "A": "Reckless",
+        "B": "Cautious",
+        "C": "Hasty",
+        "D": "Ignorant"
+      },
+      "correct_answer": "B",
+      "explanation": "Prudent means showing care and thought for the future; 'cautious' is the closest synonym. Reckless is the antonym.",
+      "difficulty": "easy",
+      "sub_topic": "synonyms_basics",
+      "misconception_tags": [
+        "synonym_vs_antonym_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

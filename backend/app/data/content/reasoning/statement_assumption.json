@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-PRACTICE-006",
+      "question": "In statement-based reasoning, an assumption is:",
+      "options": {
+        "A": "A fact explicitly proved with data",
+        "B": "Something implicitly taken for granted as true by the speaker",
+        "C": "A conclusion the reader disagrees with",
+        "D": "A statistical figure cited in the statement"
+      },
+      "correct_answer": "B",
+      "explanation": "An assumption is an unstated premise the speaker relies on; it is not directly expressed but is necessary for the statement to hold.",
+      "difficulty": "easy",
+      "sub_topic": "assumption_basics",
+      "misconception_tags": [
+        "assumption_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-PRACTICE-007",
+      "question": "A common technique to test whether an assumption is necessary is to:",
+      "options": {
+        "A": "Negate it and see if the statement's conclusion still holds",
+        "B": "Double the length of the statement",
+        "C": "Ignore it entirely",
+        "D": "Rewrite it as a question"
+      },
+      "correct_answer": "A",
+      "explanation": "The negation test: if denying the assumption weakens or destroys the conclusion, the assumption is necessary; if the conclusion survives, it is not necessary.",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_multiple_assumptions",
+      "misconception_tags": [
+        "negation_test_unknown"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-006",
+      "question": "Statement: 'The company opened a new branch in the city.' Which of the following is a necessary assumption?",
+      "options": {
+        "A": "The branch will definitely be profitable",
+        "B": "The company has the resources to run the new branch",
+        "C": "Every customer will visit the branch daily",
+        "D": "All employees prefer the new city"
+      },
+      "correct_answer": "B",
+      "explanation": "Opening a branch presupposes resources (staff, funds, space) to run it. Profitability, daily visits, and employee preferences are not required for the action to be taken.",
+      "difficulty": "medium",
+      "sub_topic": "implicit_vs_explicit",
+      "misconception_tags": [
+        "assumption_vs_expectation_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-007",
+      "question": "Statement: 'The government should provide free laptops to students to improve education.' Which is a necessary assumption?",
+      "options": {
+        "A": "Laptops alone guarantee higher marks",
+        "B": "Students can use laptops meaningfully given basic supporting infrastructure",
+        "C": "Every student already owns a smartphone",
+        "D": "Teachers are against using laptops"
+      },
+      "correct_answer": "B",
+      "explanation": "The proposal assumes laptops will actually be usable to aid learning (electricity, connectivity, basic digital literacy). Guaranteed marks and existing devices are not assumed.",
+      "difficulty": "medium",
+      "sub_topic": "evaluating_multiple_assumptions",
+      "misconception_tags": [
+        "assumption_vs_extreme"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "STAS-008",
+      "question": "Statement: 'Since the roads were flooded, the trains were cancelled.' Which of the following is NOT an assumption of the statement?",
+      "options": {
+        "A": "The flooding disrupted travel in the area",
+        "B": "Trains run on the same roads as cars",
+        "C": "Commuters were affected by the cancellation",
+        "D": "Alternative arrangements were needed"
+      },
+      "correct_answer": "B",
+      "explanation": "The statement assumes flood disrupted travel and affected commuters, but it does not assume trains run on roads (trains run on rails; that is false and not relied upon).",
+      "difficulty": "easy",
+      "sub_topic": "implicit_vs_explicit",
+      "misconception_tags": [
+        "not_assumption_identification"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

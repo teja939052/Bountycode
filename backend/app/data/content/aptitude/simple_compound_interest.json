@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "simple_compound_interest",
   "subject": "quantitative_aptitude",
   "pattern": "simple_compound_interest",
@@ -47,13 +47,24 @@
     {
       "id": "SCI-PRACTICE-001",
       "question": "What is the simple interest on Rs. 6,000 at 4% per annum for 5 years?",
-      "options": {"A": "Rs. 1,000", "B": "Rs. 1,200", "C": "Rs. 1,400", "D": "Rs. 1,500"},
+      "options": {
+        "A": "Rs. 1,000",
+        "B": "Rs. 1,200",
+        "C": "Rs. 1,400",
+        "D": "Rs. 1,500"
+      },
       "correct_answer": "B",
       "explanation": "SI = (P x R x T) / 100 = (6000 x 4 x 5) / 100 = 120000 / 100 = Rs. 1,200.",
       "difficulty": "easy",
       "sub_topic": "simple_interest",
-      "misconception_tags": ["percentage_division_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "percentage_division_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "SCI-PRACTICE-002",
       "question": "A sum of Rs. 2,000 amounts to Rs. 2,400 in 4 years at simple interest. The rate of interest per annum is:",
-      "options": {"A": "4%", "B": "5%", "C": "6%", "D": "8%"},
+      "options": {
+        "A": "4%",
+        "B": "5%",
+        "C": "6%",
+        "D": "8%"
+      },
       "correct_answer": "B",
       "explanation": "SI = Amount - Principal = 2400 - 2000 = Rs. 400. Using SI = (P x R x T)/100: 400 = (2000 x R x 4)/100 = 80R. So R = 400/80 = 5% per annum.",
       "difficulty": "easy",
       "sub_topic": "simple_interest",
-      "misconception_tags": ["using_amount_as_principal"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "using_amount_as_principal"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,24 @@
     {
       "id": "SCI-PRACTICE-003",
       "question": "The compound interest on Rs. 5,000 for 2 years at 10% per annum, compounded annually, is:",
-      "options": {"A": "Rs. 1,000", "B": "Rs. 1,025", "C": "Rs. 1,050", "D": "Rs. 1,100"},
+      "options": {
+        "A": "Rs. 1,000",
+        "B": "Rs. 1,025",
+        "C": "Rs. 1,050",
+        "D": "Rs. 1,100"
+      },
       "correct_answer": "C",
       "explanation": "Amount = 5000(1 + 10/100)^2 = 5000(1.1)^2 = 5000 x 1.21 = Rs. 6,050. CI = Amount - Principal = 6050 - 5000 = Rs. 1,050.",
       "difficulty": "easy",
       "sub_topic": "compound_interest",
-      "misconception_tags": ["using_simple_interest_formula"],
-      "company_tags": ["infosys", "wipro", "capgemini"],
+      "misconception_tags": [
+        "using_simple_interest_formula"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +127,23 @@
     {
       "id": "SCI-PRACTICE-004",
       "question": "The difference between compound interest and simple interest on Rs. 4,000 for 2 years at 5% per annum is:",
-      "options": {"A": "Rs. 5", "B": "Rs. 10", "C": "Rs. 20", "D": "Rs. 25"},
+      "options": {
+        "A": "Rs. 5",
+        "B": "Rs. 10",
+        "C": "Rs. 20",
+        "D": "Rs. 25"
+      },
       "correct_answer": "B",
       "explanation": "For 2 years, Difference = P(R/100)^2 = 4000 x (5/100)^2 = 4000 x (1/400) = Rs. 10.",
       "difficulty": "medium",
       "sub_topic": "difference_and_comparison",
-      "misconception_tags": ["manual_ci_si_subtraction_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "manual_ci_si_subtraction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +153,81 @@
     {
       "id": "SCI-PRACTICE-005",
       "question": "In how many years will Rs. 1,000 amount to Rs. 1,331 at 10% compound interest per annum, compounded annually?",
-      "options": {"A": "2 years", "B": "3 years", "C": "4 years", "D": "5 years"},
+      "options": {
+        "A": "2 years",
+        "B": "3 years",
+        "C": "4 years",
+        "D": "5 years"
+      },
       "correct_answer": "B",
       "explanation": "Amount = P(1 + R/100)^T => 1331 = 1000(1.1)^T => (1.1)^T = 1.331. Since 1.1^3 = 1.331, T = 3 years.",
       "difficulty": "medium",
       "sub_topic": "compound_interest",
-      "misconception_tags": ["exponent_calculation_error"],
-      "company_tags": ["cognizant", "wipro"],
+      "misconception_tags": [
+        "exponent_calculation_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-PRACTICE-006",
+      "question": "Find the simple interest on 2000 at 5% per annum for 3 years.",
+      "options": {
+        "A": "250",
+        "B": "300",
+        "C": "350",
+        "D": "400"
+      },
+      "correct_answer": "B",
+      "explanation": "SI = P*R*T/100 = 2000*5*3/100 = 30000/100 = 300.",
+      "difficulty": "easy",
+      "sub_topic": "simple_interest",
+      "misconception_tags": [
+        "formula_application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-PRACTICE-007",
+      "question": "Find the compound interest on 1000 at 10% per annum for 2 years (annual compounding).",
+      "options": {
+        "A": "200",
+        "B": "210",
+        "C": "220",
+        "D": "250"
+      },
+      "correct_answer": "B",
+      "explanation": "Amount = P(1 + R/100)^T = 1000*(1.1)^2 = 1000*1.21 = 1210. CI = Amount - Principal = 1210 - 1000 = 210 (interest on interest adds 10 over simple interest of 200).",
+      "difficulty": "medium",
+      "sub_topic": "compound_interest",
+      "misconception_tags": [
+        "compounding_vs_simple_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +235,23 @@
     {
       "id": "SCI-001",
       "question": "At what rate percent per annum will Rs. 2,500 amount to Rs. 3,000 in 4 years at simple interest?",
-      "options": {"A": "4%", "B": "5%", "C": "6%", "D": "8%"},
+      "options": {
+        "A": "4%",
+        "B": "5%",
+        "C": "6%",
+        "D": "8%"
+      },
       "correct_answer": "B",
       "explanation": "SI = 3000 - 2500 = 500. R = (SI x 100)/(P x T) = (500 x 100)/(2500 x 4) = 50000/10000 = 5% per annum.",
       "difficulty": "easy",
       "sub_topic": "simple_interest",
-      "misconception_tags": ["rate_formula_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "rate_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +261,23 @@
     {
       "id": "SCI-002",
       "question": "The simple interest on a certain sum for 2 years at 6% per annum is Rs. 240. The compound interest on the same sum for the same period and rate is:",
-      "options": {"A": "Rs. 247.20", "B": "Rs. 246.00", "C": "Rs. 248.40", "D": "Rs. 252.00"},
+      "options": {
+        "A": "Rs. 247.20",
+        "B": "Rs. 246.00",
+        "C": "Rs. 248.40",
+        "D": "Rs. 252.00"
+      },
       "correct_answer": "A",
       "explanation": "SI for 2 years = 240 => SI for 1 year = 120. So P = (SI x 100)/(R x T) = (240 x 100)/(6 x 2) = 2000. CI = 2000[(1.06)^2 - 1] = 2000(1.1236 - 1) = 2000 x 0.1236 = Rs. 247.20. (Alternatively, CI = SI + P(R/100)^2 = 240 + 2000x0.0036 = 247.20.)",
       "difficulty": "medium",
       "sub_topic": "difference_and_comparison",
-      "misconception_tags": ["principal_recovery_error"],
-      "company_tags": ["tcs", "wipro"],
+      "misconception_tags": [
+        "principal_recovery_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +287,23 @@
     {
       "id": "SCI-003",
       "question": "A sum becomes Rs. 1,210 in 2 years at 10% per annum compound interest, compounded annually. The principal is:",
-      "options": {"A": "Rs. 900", "B": "Rs. 1,000", "C": "Rs. 1,050", "D": "Rs. 1,100"},
+      "options": {
+        "A": "Rs. 900",
+        "B": "Rs. 1,000",
+        "C": "Rs. 1,050",
+        "D": "Rs. 1,100"
+      },
       "correct_answer": "B",
       "explanation": "A = P(1 + R/100)^T => 1210 = P(1.1)^2 = P(1.21). So P = 1210/1.21 = Rs. 1,000.",
       "difficulty": "easy",
       "sub_topic": "compound_interest",
-      "misconception_tags": ["reverse_ci_error"],
-      "company_tags": ["infosys", "accenture"],
+      "misconception_tags": [
+        "reverse_ci_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +313,23 @@
     {
       "id": "SCI-004",
       "question": "If the simple interest on a sum for 3 years at 8% per annum is Rs. 720, the principal is:",
-      "options": {"A": "Rs. 2,500", "B": "Rs. 3,000", "C": "Rs. 3,200", "D": "Rs. 3,600"},
+      "options": {
+        "A": "Rs. 2,500",
+        "B": "Rs. 3,000",
+        "C": "Rs. 3,200",
+        "D": "Rs. 3,600"
+      },
       "correct_answer": "B",
       "explanation": "P = (SI x 100)/(R x T) = (720 x 100)/(8 x 3) = 72000/24 = Rs. 3,000.",
       "difficulty": "easy",
       "sub_topic": "simple_interest",
-      "misconception_tags": ["principal_formula_error"],
-      "company_tags": ["wipro", "capgemini"],
+      "misconception_tags": [
+        "principal_formula_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +339,108 @@
     {
       "id": "SCI-005",
       "question": "The amount on Rs. 8,000 at 5% compound interest per annum for 3 years (compounded annually) is closest to:",
-      "options": {"A": "Rs. 9,200", "B": "Rs. 9,261", "C": "Rs. 9,300", "D": "Rs. 9,331"},
+      "options": {
+        "A": "Rs. 9,200",
+        "B": "Rs. 9,261",
+        "C": "Rs. 9,300",
+        "D": "Rs. 9,331"
+      },
       "correct_answer": "B",
       "explanation": "A = 8000(1.05)^3. Compute stepwise: 1.05^2 = 1.1025, 1.05^3 = 1.1025 x 1.05 = 1.157625. A = 8000 x 1.157625 = Rs. 9,261 (approximately).",
       "difficulty": "medium",
       "sub_topic": "compound_interest",
-      "misconception_tags": ["compounding_arithmetic_error"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "compounding_arithmetic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-006",
+      "question": "The difference between compound interest and simple interest on a sum for 2 years at 10% per annum is 80. What is the sum?",
+      "options": {
+        "A": "8000",
+        "B": "6400",
+        "C": "10000",
+        "D": "7200"
+      },
+      "correct_answer": "A",
+      "explanation": "For 2 years, CI - SI = P*(R/100)^2. So 80 = P*(0.1)^2 = P*0.01, giving P = 80/0.01 = 8000.",
+      "difficulty": "medium",
+      "sub_topic": "difference_and_comparison",
+      "misconception_tags": [
+        "difference_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-007",
+      "question": "What is the simple interest on 12000 at 8% per annum for 2.5 years?",
+      "options": {
+        "A": "1920",
+        "B": "2400",
+        "C": "2880",
+        "D": "3000"
+      },
+      "correct_answer": "B",
+      "explanation": "SI = P*R*T/100 = 12000*8*2.5/100 = 240000/100 = 2400.",
+      "difficulty": "easy",
+      "sub_topic": "simple_interest",
+      "misconception_tags": [
+        "fractional_time_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-008",
+      "question": "Find the amount after 2 years on 5000 at 20% per annum compounded annually.",
+      "options": {
+        "A": "7000",
+        "B": "7200",
+        "C": "7500",
+        "D": "8000"
+      },
+      "correct_answer": "B",
+      "explanation": "Amount = 5000*(1 + 20/100)^2 = 5000*(1.2)^2 = 5000*1.44 = 7200.",
+      "difficulty": "medium",
+      "sub_topic": "compound_interest",
+      "misconception_tags": [
+        "compounding_vs_simple_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

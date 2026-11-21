@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-PRACTICE-006",
+      "question": "In a circular arrangement of 4 people, how many distinct arrangements are possible (rotations considered identical)?",
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "12",
+        "D": "24"
+      },
+      "correct_answer": "B",
+      "explanation": "For circular arrangements, fix one person's position; the remaining (n-1)! arrangements are distinct: (4-1)! = 3! = 6.",
+      "difficulty": "medium",
+      "sub_topic": "circular_arrangement_basics",
+      "misconception_tags": [
+        "linear_vs_circular_counting"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-PRACTICE-007",
+      "question": "Five friends sit in a row. P sits to the immediate left of Q, and Q is third from the left. Which position does P occupy?",
+      "options": {
+        "A": "1st",
+        "B": "2nd",
+        "C": "4th",
+        "D": "5th"
+      },
+      "correct_answer": "B",
+      "explanation": "Q is at position 3; P is immediately to Q's left, i.e. position 2 in the row.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "left_right_direction_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-006",
+      "question": "Seven people sit in a row and one person is exactly in the middle. Which position from the left is that person in?",
+      "options": {
+        "A": "3rd",
+        "B": "4th",
+        "C": "5th",
+        "D": "7th"
+      },
+      "correct_answer": "B",
+      "explanation": "With 7 positions, the middle position is (7+1)/2 = 4th from either end.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "middle_position_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-007",
+      "question": "In a circular table of 4, A sits opposite C. Who must sit opposite B (assuming distinct seats)?",
+      "options": {
+        "A": "D",
+        "B": "A",
+        "C": "C",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "With 4 seats, A opposite C leaves the remaining pair B and D opposite each other.",
+      "difficulty": "medium",
+      "sub_topic": "circular_arrangement_basics",
+      "misconception_tags": [
+        "opposite_pairs_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-008",
+      "question": "Five people sit in a row facing north. R sits at the extreme right. If T sits immediately to the left of R, which position is T in from the left?",
+      "options": {
+        "A": "1st",
+        "B": "3rd",
+        "C": "4th",
+        "D": "5th"
+      },
+      "correct_answer": "C",
+      "explanation": "Facing north, extreme right is position 5. T is immediately to R's left, i.e. position 4 from the left.",
+      "difficulty": "medium",
+      "sub_topic": "deduction_strategies",
+      "misconception_tags": [
+        "left_right_direction_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

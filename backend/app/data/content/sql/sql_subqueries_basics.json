@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-PRACTICE-006",
+      "question": "A subquery is:",
+      "options": {
+        "A": "A query that creates a table permanently",
+        "B": "A query nested inside another SQL query",
+        "C": "A query that only works with JOIN",
+        "D": "An alternative name for an index"
+      },
+      "correct_answer": "B",
+      "explanation": "A subquery (inner query) is placed within another query (outer query), often in WHERE, FROM, or SELECT, to provide values or a derived result set.",
+      "difficulty": "easy",
+      "sub_topic": "subquery_basics",
+      "misconception_tags": [
+        "subquery_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-PRACTICE-007",
+      "question": "Which operator is commonly used with subqueries that may return multiple values?",
+      "options": {
+        "A": "=",
+        "B": "IN",
+        "C": "LIKE only",
+        "D": "BETWEEN only"
+      },
+      "correct_answer": "B",
+      "explanation": "IN compares a value to a set/list returned by a subquery (or literal list). '=' expects a single scalar value; using '=' with multi-row subquery causes errors in most databases.",
+      "difficulty": "easy",
+      "sub_topic": "subquery_operators",
+      "misconception_tags": [
+        "scalar_vs_set_subquery_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-006",
+      "question": "SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees); returns:",
+      "options": {
+        "A": "Employees with below average salary",
+        "B": "Employees with salary greater than the average salary",
+        "C": "All employees",
+        "D": "Only the average salary"
+      },
+      "correct_answer": "B",
+      "explanation": "The inner subquery computes the overall average salary (a scalar), and the outer query filters employees whose salary exceeds that average.",
+      "difficulty": "easy",
+      "sub_topic": "subquery_basics",
+      "misconception_tags": [
+        "subquery_logic_misread"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-007",
+      "question": "A correlated subquery is one that:",
+      "options": {
+        "A": "Runs only once independent of outer query",
+        "B": "References columns from the outer query and may execute per row",
+        "C": "Cannot use WHERE",
+        "D": "Always returns multiple columns"
+      },
+      "correct_answer": "B",
+      "explanation": "Correlated subqueries depend on values from the outer query (e.g. outer.id = inner.id), so they are evaluated in relation to each candidate row/context of the outer query.",
+      "difficulty": "medium",
+      "sub_topic": "correlated_subqueries",
+      "misconception_tags": [
+        "correlated_vs_uncorrelated_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUB-008",
+      "question": "Which is true about subqueries in the FROM clause?",
+      "options": {
+        "A": "They are not allowed in SQL",
+        "B": "They act as derived tables and usually require an alias",
+        "C": "They can only return one row",
+        "D": "They replace GROUP BY"
+      },
+      "correct_answer": "B",
+      "explanation": "A subquery in FROM produces a temporary/derived table for the outer query to use; many SQL dialects require giving it an alias to reference its columns.",
+      "difficulty": "medium",
+      "sub_topic": "subquery_usage",
+      "misconception_tags": [
+        "derived_table_alias_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

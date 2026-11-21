@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "sql_select_basics",
   "subject": "sql",
   "pattern": "sql_select_basics",
@@ -59,13 +59,25 @@
     {
       "id": "SQLS-PRACTICE-001",
       "question": "Which query returns only unique department values from an employees table?",
-      "options": {"A": "SELECT department FROM employees;", "B": "SELECT UNIQUE department FROM employees;", "C": "SELECT DISTINCT department FROM employees;", "D": "SELECT DIFFERENT department FROM employees;"},
+      "options": {
+        "A": "SELECT department FROM employees;",
+        "B": "SELECT UNIQUE department FROM employees;",
+        "C": "SELECT DISTINCT department FROM employees;",
+        "D": "SELECT DIFFERENT department FROM employees;"
+      },
       "correct_answer": "C",
       "explanation": "DISTINCT removes duplicate values from the result set for the selected columns. SELECT department returns all rows including duplicates. UNIQUE is a constraint concept in some contexts, but the standard query keyword for unique result rows is DISTINCT.",
       "difficulty": "easy",
       "sub_topic": "select_and_projection",
-      "misconception_tags": ["distinct_keyword_confusion"],
-      "company_tags": ["tcs", "infosys", "wipro", "accenture"],
+      "misconception_tags": [
+        "distinct_keyword_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -75,13 +87,24 @@
     {
       "id": "SQLS-PRACTICE-002",
       "question": "Which condition correctly finds rows where manager_id has no value (NULL)?",
-      "options": {"A": "manager_id = NULL", "B": "manager_id == NULL", "C": "manager_id IS NULL", "D": "manager_id EQUALS NULL"},
+      "options": {
+        "A": "manager_id = NULL",
+        "B": "manager_id == NULL",
+        "C": "manager_id IS NULL",
+        "D": "manager_id EQUALS NULL"
+      },
       "correct_answer": "C",
       "explanation": "NULL represents unknown/missing value and cannot be compared with = in standard SQL. IS NULL checks for NULL values; IS NOT NULL checks for non-NULL values.",
       "difficulty": "easy",
       "sub_topic": "where_filtering",
-      "misconception_tags": ["null_comparison_error"],
-      "company_tags": ["tcs", "infosys", "cognizant"],
+      "misconception_tags": [
+        "null_comparison_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "cognizant"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -91,13 +114,24 @@
     {
       "id": "SQLS-PRACTICE-003",
       "question": "What does this query return? SELECT name FROM employees WHERE salary > 50000 ORDER BY salary DESC LIMIT 5;",
-      "options": {"A": "5 employees with lowest salaries above 50000", "B": "5 employees with highest salaries above 50000", "C": "All employees with salary above 50000 in random order", "D": "First 5 employees inserted with salary above 50000"},
+      "options": {
+        "A": "5 employees with lowest salaries above 50000",
+        "B": "5 employees with highest salaries above 50000",
+        "C": "All employees with salary above 50000 in random order",
+        "D": "First 5 employees inserted with salary above 50000"
+      },
       "correct_answer": "B",
       "explanation": "WHERE filters employees with salary > 50000. ORDER BY salary DESC sorts them from highest to lowest salary. LIMIT 5 returns the first 5 rows of that sorted result, i.e., the 5 highest-paid among those matching the filter.",
       "difficulty": "easy",
       "sub_topic": "order_by_and_limit",
-      "misconception_tags": ["order_limit_misread"],
-      "company_tags": ["tcs", "wipro", "capgemini"],
+      "misconception_tags": [
+        "order_limit_misread"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -107,13 +141,23 @@
     {
       "id": "SQLS-PRACTICE-004",
       "question": "In a LIKE pattern, what does '%' represent?",
-      "options": {"A": "Exactly one character", "B": "Zero or more characters", "C": "Only numeric characters", "D": "A space character"},
+      "options": {
+        "A": "Exactly one character",
+        "B": "Zero or more characters",
+        "C": "Only numeric characters",
+        "D": "A space character"
+      },
       "correct_answer": "B",
       "explanation": "In SQL LIKE patterns, '%' matches any sequence of zero or more characters, and '_' matches exactly one character. For example, 'A%' matches 'A', 'An', 'Alice'.",
       "difficulty": "easy",
       "sub_topic": "where_filtering",
-      "misconception_tags": ["like_wildcard_confusion"],
-      "company_tags": ["infosys", "accenture"],
+      "misconception_tags": [
+        "like_wildcard_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -123,17 +167,82 @@
     {
       "id": "SQLS-PRACTICE-005",
       "question": "Which query correctly selects employees in either IT or HR departments with salary at least 30000?",
-      "options": {"A": "SELECT * FROM employees WHERE department = 'IT' OR department = 'HR' AND salary >= 30000;", "B": "SELECT * FROM employees WHERE (department = 'IT' OR department = 'HR') AND salary >= 30000;", "C": "SELECT * FROM employees WHERE department = 'IT' AND 'HR' AND salary >= 30000;", "D": "SELECT * FROM employees WHERE department IN 'IT','HR' AND salary >= 30000;"},
+      "options": {
+        "A": "SELECT * FROM employees WHERE department = 'IT' OR department = 'HR' AND salary >= 30000;",
+        "B": "SELECT * FROM employees WHERE (department = 'IT' OR department = 'HR') AND salary >= 30000;",
+        "C": "SELECT * FROM employees WHERE department = 'IT' AND 'HR' AND salary >= 30000;",
+        "D": "SELECT * FROM employees WHERE department IN 'IT','HR' AND salary >= 30000;"
+      },
       "correct_answer": "B",
       "explanation": "AND has higher precedence than OR in SQL, so option A would be interpreted as department='IT' OR (department='HR' AND salary>=30000), which can include IT employees below 30000. Parentheses in option B make the intent explicit and correct. A clearer alternative is WHERE department IN ('IT','HR') AND salary >= 30000.",
       "difficulty": "medium",
       "sub_topic": "where_filtering",
-      "misconception_tags": ["and_or_precedence"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "and_or_precedence"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLS-PRACTICE-006",
+      "question": "Which clause is used to filter rows before grouping in a SQL query?",
+      "options": {
+        "A": "HAVING",
+        "B": "ORDER BY",
+        "C": "WHERE",
+        "D": "GROUP BY"
+      },
+      "correct_answer": "C",
+      "explanation": "WHERE filters individual rows based on conditions before any GROUP BY aggregation occurs. HAVING filters groups after aggregation.",
+      "difficulty": "easy",
+      "sub_topic": "where_filtering",
+      "misconception_tags": [
+        "where_vs_having_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLS-PRACTICE-007",
+      "question": "What does SELECT COUNT(*) FROM employees; return when the table has 10 rows including rows with NULLs in some columns?",
+      "options": {
+        "A": "Count of non-NULL rows in first column only",
+        "B": "10",
+        "C": "0",
+        "D": "Error because of NULLs"
+      },
+      "correct_answer": "B",
+      "explanation": "COUNT(*) counts all rows in the result set regardless of NULL values in columns. Only COUNT(column_name) skips NULLs in that specific column.",
+      "difficulty": "easy",
+      "sub_topic": "select_and_projection",
+      "misconception_tags": [
+        "count_star_vs_column_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -141,13 +250,23 @@
     {
       "id": "SQLS-001",
       "question": "Given table students(id, name, marks), which query returns names of students scoring between 60 and 80 inclusive?",
-      "options": {"A": "SELECT name FROM students WHERE marks > 60 AND marks < 80;", "B": "SELECT name FROM students WHERE marks BETWEEN 60 AND 80;", "C": "SELECT name FROM students WHERE marks IN (60, 80);", "D": "SELECT name FROM students WHERE marks = 60 OR 80;"},
+      "options": {
+        "A": "SELECT name FROM students WHERE marks > 60 AND marks < 80;",
+        "B": "SELECT name FROM students WHERE marks BETWEEN 60 AND 80;",
+        "C": "SELECT name FROM students WHERE marks IN (60, 80);",
+        "D": "SELECT name FROM students WHERE marks = 60 OR 80;"
+      },
       "correct_answer": "B",
       "explanation": "BETWEEN 60 AND 80 is inclusive of both endpoints in standard SQL. Option A excludes 60 and 80. Option C matches only exactly 60 or 80. Option D is invalid logic/syntax for this intent.",
       "difficulty": "easy",
       "sub_topic": "where_filtering",
-      "misconception_tags": ["between_boundary_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "between_boundary_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -157,13 +276,24 @@
     {
       "id": "SQLS-002",
       "question": "What is the result of SELECT 5 + NULL; in standard SQL behavior?",
-      "options": {"A": "5", "B": "0", "C": "NULL", "D": "Error in all databases"},
+      "options": {
+        "A": "5",
+        "B": "0",
+        "C": "NULL",
+        "D": "Error in all databases"
+      },
       "correct_answer": "C",
       "explanation": "In standard SQL, arithmetic or comparison with NULL generally yields NULL because NULL means unknown. Some environments may display it differently, but the logical result is NULL.",
       "difficulty": "medium",
       "sub_topic": "aliases_and_expressions",
-      "misconception_tags": ["null_arithmetic_error"],
-      "company_tags": ["accenture", "capgemini", "tcs"],
+      "misconception_tags": [
+        "null_arithmetic_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "capgemini",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -173,13 +303,23 @@
     {
       "id": "SQLS-003",
       "question": "Which query lists products sorted by category ascending and, within each category, by price descending?",
-      "options": {"A": "SELECT * FROM products ORDER BY category, price;", "B": "SELECT * FROM products ORDER BY category ASC, price DESC;", "C": "SELECT * FROM products ORDER BY price DESC, category ASC;", "D": "SELECT * FROM products ORDER BY DESC category, ASC price;"},
+      "options": {
+        "A": "SELECT * FROM products ORDER BY category, price;",
+        "B": "SELECT * FROM products ORDER BY category ASC, price DESC;",
+        "C": "SELECT * FROM products ORDER BY price DESC, category ASC;",
+        "D": "SELECT * FROM products ORDER BY DESC category, ASC price;"
+      },
       "correct_answer": "B",
       "explanation": "ORDER BY supports multiple keys in priority order. category ASC sorts categories alphabetically/ascending first; for rows with same category, price DESC sorts higher prices first. Option A defaults price to ASC. Option D has invalid syntax.",
       "difficulty": "easy",
       "sub_topic": "order_by_and_limit",
-      "misconception_tags": ["multi_column_sort_error"],
-      "company_tags": ["wipro", "infosys"],
+      "misconception_tags": [
+        "multi_column_sort_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -189,13 +329,24 @@
     {
       "id": "SQLS-004",
       "question": "Which statement about SELECT * is most accurate?",
-      "options": {"A": "It is always faster than selecting specific columns", "B": "It returns all columns from the referenced table(s)", "C": "It automatically removes duplicate rows", "D": "It sorts rows by primary key"},
+      "options": {
+        "A": "It is always faster than selecting specific columns",
+        "B": "It returns all columns from the referenced table(s)",
+        "C": "It automatically removes duplicate rows",
+        "D": "It sorts rows by primary key"
+      },
       "correct_answer": "B",
       "explanation": "SELECT * projects all columns available from the source in the query context. It does not remove duplicates (DISTINCT does) and does not guarantee order (ORDER BY does). It can be less efficient than selecting needed columns, especially with wide tables or joins.",
       "difficulty": "easy",
       "sub_topic": "select_and_projection",
-      "misconception_tags": ["select_star_myths"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "select_star_myths"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -205,17 +356,109 @@
     {
       "id": "SQLS-005",
       "question": "Table orders has columns (id, customer_id, amount, status). Which query returns customer_id and amount for delivered orders with amount over 1000?",
-      "options": {"A": "SELECT customer_id, amount FROM orders WHERE status = 'delivered' OR amount > 1000;", "B": "SELECT customer_id, amount FROM orders WHERE status = 'delivered' AND amount > 1000;", "C": "SELECT customer_id AND amount FROM orders WHERE status = 'delivered', amount > 1000;", "D": "SELECT (customer_id, amount) WHERE orders.status = delivered AND amount > 1000;"},
+      "options": {
+        "A": "SELECT customer_id, amount FROM orders WHERE status = 'delivered' OR amount > 1000;",
+        "B": "SELECT customer_id, amount FROM orders WHERE status = 'delivered' AND amount > 1000;",
+        "C": "SELECT customer_id AND amount FROM orders WHERE status = 'delivered', amount > 1000;",
+        "D": "SELECT (customer_id, amount) WHERE orders.status = delivered AND amount > 1000;"
+      },
       "correct_answer": "B",
       "explanation": "We need both conditions true: status is delivered and amount exceeds 1000, so use AND. Option A uses OR and would include non-delivered orders above 1000 or delivered orders at/below 1000. Options C and D are not valid SQL syntax for this query.",
       "difficulty": "easy",
       "sub_topic": "where_filtering",
-      "misconception_tags": ["and_or_logic_error"],
-      "company_tags": ["wipro", "cognizant", "capgemini"],
+      "misconception_tags": [
+        "and_or_logic_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "cognizant",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLS-006",
+      "question": "Which query returns employees whose names start with 'A'?",
+      "options": {
+        "A": "SELECT * FROM employees WHERE name = 'A%';",
+        "B": "SELECT * FROM employees WHERE name LIKE 'A%';",
+        "C": "SELECT * FROM employees WHERE name LIKE '%A';",
+        "D": "SELECT * FROM employees WHERE name IN ('A%');"
+      },
+      "correct_answer": "B",
+      "explanation": "LIKE with pattern 'A%' matches strings beginning with A followed by zero or more characters. '=' compares exact strings and IN checks membership, not patterns.",
+      "difficulty": "easy",
+      "sub_topic": "where_filtering",
+      "misconception_tags": [
+        "like_vs_equals_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLS-007",
+      "question": "Which statement about ORDER BY is correct?",
+      "options": {
+        "A": "It changes stored table order permanently",
+        "B": "It sorts the result set of a query",
+        "C": "It cannot be used with WHERE",
+        "D": "It always requires DESC"
+      },
+      "correct_answer": "B",
+      "explanation": "ORDER BY arranges rows in the query output (ascending by default or descending with DESC). It does not modify stored data and can be combined with WHERE.",
+      "difficulty": "easy",
+      "sub_topic": "order_by_and_limit",
+      "misconception_tags": [
+        "order_by_effect_misconception"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLS-008",
+      "question": "Given salaries 3000, NULL, 5000, what does SELECT AVG(salary) FROM employees; typically compute (ignoring NULL)?",
+      "options": {
+        "A": "(3000+0+5000)/3",
+        "B": "(3000+5000)/2",
+        "C": "NULL",
+        "D": "(3000+5000)/3"
+      },
+      "correct_answer": "B",
+      "explanation": "Aggregate functions like AVG, SUM, COUNT(column) generally ignore NULL values. So AVG is computed over 3000 and 5000 only: (3000+5000)/2 = 4000.",
+      "difficulty": "medium",
+      "sub_topic": "aliases_and_expressions",
+      "misconception_tags": [
+        "null_in_aggregate_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

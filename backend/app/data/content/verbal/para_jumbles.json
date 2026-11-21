@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "para_jumbles",
   "subject": "verbal",
   "pattern": "para_jumbles",
@@ -47,13 +47,24 @@
     {
       "id": "PJ-PRACTICE-001",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: It converts sunlight into electricity.\nQ: Solar energy is a renewable source of power.\nR: This makes it useful for reducing dependence on fossil fuels.\nS: A solar panel is a device used to capture this energy.",
-      "options": {"A": "Q, S, P, R", "B": "S, Q, P, R", "C": "Q, P, S, R", "D": "P, Q, S, R"},
+      "options": {
+        "A": "Q, S, P, R",
+        "B": "S, Q, P, R",
+        "C": "Q, P, S, R",
+        "D": "P, Q, S, R"
+      },
       "correct_answer": "A",
       "explanation": "Q introduces solar energy. S introduces the device that captures it ('this energy' refers to solar energy). P explains what it does. R concludes with its usefulness. Order: Q, S, P, R.",
       "difficulty": "easy",
       "sub_topic": "identify_opening_and_closing",
-      "misconception_tags": ["pronoun_reference_order_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "pronoun_reference_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "PJ-PRACTICE-002",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: As a result, employees can collaborate more efficiently.\nQ: Many companies now use cloud-based tools.\nR: These tools allow teams to share files and communicate in real time.\nS: However, proper training is needed to use them effectively.",
-      "options": {"A": "Q, R, P, S", "B": "Q, P, R, S", "C": "R, Q, P, S", "D": "Q, R, S, P"},
+      "options": {
+        "A": "Q, R, P, S",
+        "B": "Q, P, R, S",
+        "C": "R, Q, P, S",
+        "D": "Q, R, S, P"
+      },
       "correct_answer": "A",
       "explanation": "Q introduces cloud-based tools. R explains what these tools do. P states the positive result. S adds a contrasting/limiting point ('However') after the benefits. Order: Q, R, P, S.",
       "difficulty": "easy",
       "sub_topic": "mandatory_pairs_and_connectors",
-      "misconception_tags": ["connector_logic_error"],
-      "company_tags": ["accenture", "cognizant"],
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,23 @@
     {
       "id": "PJ-PRACTICE-003",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: It also helps in retaining information for longer periods.\nQ: Regular revision is an important part of effective study.\nR: Therefore, students should schedule time to review what they learn.\nS: It strengthens understanding by revisiting concepts.",
-      "options": {"A": "Q, S, P, R", "B": "Q, P, S, R", "C": "S, Q, P, R", "D": "Q, S, R, P"},
+      "options": {
+        "A": "Q, S, P, R",
+        "B": "Q, P, S, R",
+        "C": "S, Q, P, R",
+        "D": "Q, S, R, P"
+      },
       "correct_answer": "A",
       "explanation": "Q introduces the topic (regular revision). S explains one benefit, P adds another ('also'). R concludes with a recommendation ('Therefore'). Order: Q, S, P, R.",
       "difficulty": "easy",
       "sub_topic": "coherence_and_sequence",
-      "misconception_tags": ["conclusion_placement_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "conclusion_placement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +126,23 @@
     {
       "id": "PJ-PRACTICE-004",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: For example, it can suggest routes based on traffic conditions.\nQ: Artificial intelligence is increasingly used in everyday applications.\nR: These suggestions save time for commuters.\nS: Navigation apps are one common use case.",
-      "options": {"A": "Q, S, P, R", "B": "Q, P, S, R", "C": "S, Q, P, R", "D": "Q, S, R, P"},
+      "options": {
+        "A": "Q, S, P, R",
+        "B": "Q, P, S, R",
+        "C": "S, Q, P, R",
+        "D": "Q, S, R, P"
+      },
       "correct_answer": "A",
       "explanation": "Q gives a general introduction. S provides a specific use case. P gives an example ('For example') of that use case. R states the benefit of those suggestions. Order: Q, S, P, R.",
       "difficulty": "medium",
       "sub_topic": "mandatory_pairs_and_connectors",
-      "misconception_tags": ["example_before_claim_error"],
-      "company_tags": ["capgemini", "wipro"],
+      "misconception_tags": [
+        "example_before_claim_error"
+      ],
+      "company_tags": [
+        "capgemini",
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +152,81 @@
     {
       "id": "PJ-PRACTICE-005",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: Once the seeds germinate, small shoots appear above the soil.\nQ: With enough sunlight and water, the plant continues to grow.\nR: Plant growth begins when a seed is placed in suitable soil.\nS: Eventually, it develops leaves and becomes a mature plant.",
-      "options": {"A": "R, P, Q, S", "B": "P, R, Q, S", "C": "R, Q, P, S", "D": "R, P, S, Q"},
+      "options": {
+        "A": "R, P, Q, S",
+        "B": "P, R, Q, S",
+        "C": "R, Q, P, S",
+        "D": "R, P, S, Q"
+      },
       "correct_answer": "A",
       "explanation": "R states the beginning. P follows germination. Q describes conditions for continued growth. S gives the final stage ('Eventually'). Order: R, P, Q, S.",
       "difficulty": "easy",
       "sub_topic": "coherence_and_sequence",
-      "misconception_tags": ["sequence_order_error"],
-      "company_tags": ["infosys", "tcs"],
+      "misconception_tags": [
+        "sequence_order_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PJ-PRACTICE-006",
+      "question": "In a jumbled paragraph, the opening sentence usually:",
+      "options": {
+        "A": "Introduces the topic and gives the main idea",
+        "B": "Concludes the discussion",
+        "C": "Is unrelated to other sentences",
+        "D": "Contains only examples"
+      },
+      "correct_answer": "A",
+      "explanation": "The opening sentence typically sets context and states the topic so the remaining sentences can develop or support it.",
+      "difficulty": "easy",
+      "sub_topic": "identify_opening_and_closing",
+      "misconception_tags": [
+        "opening_closing_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PJ-PRACTICE-007",
+      "question": "The closing sentence of a coherent paragraph usually:",
+      "options": {
+        "A": "Introduces a brand-new topic",
+        "B": "Concludes or summarizes the discussion",
+        "C": "Contradicts every earlier sentence",
+        "D": "Is always a question"
+      },
+      "correct_answer": "B",
+      "explanation": "A closing sentence wraps up the idea, often with a result, summary, or implication of what preceded it.",
+      "difficulty": "easy",
+      "sub_topic": "identify_opening_and_closing",
+      "misconception_tags": [
+        "opening_closing_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +234,25 @@
     {
       "id": "PJ-001",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: This helps them make informed financial decisions.\nQ: Financial literacy means understanding how money works.\nR: It includes skills like budgeting, saving, and investing.\nS: As a result, individuals can manage their resources more effectively.",
-      "options": {"A": "Q, R, P, S", "B": "Q, P, R, S", "C": "R, Q, P, S", "D": "Q, R, S, P"},
+      "options": {
+        "A": "Q, R, P, S",
+        "B": "Q, P, R, S",
+        "C": "R, Q, P, S",
+        "D": "Q, R, S, P"
+      },
       "correct_answer": "A",
       "explanation": "Q defines financial literacy. R explains what it includes. P states an immediate benefit ('This helps them...'). S gives a broader concluding result ('As a result...'). Order: Q, R, P, S.",
       "difficulty": "medium",
       "sub_topic": "coherence_and_sequence",
-      "misconception_tags": ["pronoun_reference_order_error", "conclusion_placement_error"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "pronoun_reference_order_error",
+        "conclusion_placement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +262,24 @@
     {
       "id": "PJ-002",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: However, excessive screen time can affect sleep quality.\nQ: Digital devices have become part of daily life.\nR: They are used for work, education, and entertainment.\nS: Therefore, balancing usage is important for health.",
-      "options": {"A": "Q, R, P, S", "B": "Q, P, R, S", "C": "R, Q, P, S", "D": "Q, R, S, P"},
+      "options": {
+        "A": "Q, R, P, S",
+        "B": "Q, P, R, S",
+        "C": "R, Q, P, S",
+        "D": "Q, R, S, P"
+      },
       "correct_answer": "A",
       "explanation": "Q introduces digital devices. R explains their uses. P presents a contrast/problem ('However'). S concludes with a recommendation ('Therefore'). Order: Q, R, P, S.",
       "difficulty": "easy",
       "sub_topic": "mandatory_pairs_and_connectors",
-      "misconception_tags": ["connector_logic_error"],
-      "company_tags": ["wipro", "cognizant", "tcs"],
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "cognizant",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +289,23 @@
     {
       "id": "PJ-003",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: The data is then analyzed to identify patterns.\nQ: Businesses collect information from various sources.\nR: These patterns help in making better decisions.\nS: For instance, sales records can show customer preferences.",
-      "options": {"A": "Q, P, S, R", "B": "Q, S, P, R", "C": "Q, P, R, S", "D": "P, Q, S, R"},
+      "options": {
+        "A": "Q, P, S, R",
+        "B": "Q, S, P, R",
+        "C": "Q, P, R, S",
+        "D": "P, Q, S, R"
+      },
       "correct_answer": "A",
       "explanation": "Q introduces collection. P describes the next step (analysis). S gives an example ('For instance') supporting patterns/data use. R concludes with the benefit of patterns. Order: Q, P, S, R.",
       "difficulty": "medium",
       "sub_topic": "coherence_and_sequence",
-      "misconception_tags": ["sequence_order_error"],
-      "company_tags": ["infosys", "capgemini"],
+      "misconception_tags": [
+        "sequence_order_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +315,24 @@
     {
       "id": "PJ-004",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: It protects the body from harmful germs and diseases.\nQ: A healthy immune system is essential for overall well-being.\nR: Good nutrition, sleep, and exercise can strengthen it.\nS: Thus, daily habits play an important role in maintaining immunity.",
-      "options": {"A": "Q, P, R, S", "B": "Q, R, P, S", "C": "P, Q, R, S", "D": "Q, P, S, R"},
+      "options": {
+        "A": "Q, P, R, S",
+        "B": "Q, R, P, S",
+        "C": "P, Q, R, S",
+        "D": "Q, P, S, R"
+      },
       "correct_answer": "A",
       "explanation": "Q introduces the immune system. P explains its function. R states ways to strengthen it ('it' refers to immune system). S concludes ('Thus') linking habits to immunity. Order: Q, P, R, S.",
       "difficulty": "easy",
       "sub_topic": "identify_opening_and_closing",
-      "misconception_tags": ["pronoun_reference_order_error"],
-      "company_tags": ["tcs", "wipro", "infosys"],
+      "misconception_tags": [
+        "pronoun_reference_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +342,108 @@
     {
       "id": "PJ-005",
       "question": "Arrange the sentences to form a coherent paragraph.\nP: First, identify the main problem clearly.\nQ: Solving a complex issue becomes easier with a structured approach.\nR: Finally, evaluate the results and make improvements if needed.\nS: Next, break it into smaller steps and work on each one.",
-      "options": {"A": "Q, P, S, R", "B": "P, Q, S, R", "C": "Q, S, P, R", "D": "Q, P, R, S"},
+      "options": {
+        "A": "Q, P, S, R",
+        "B": "P, Q, S, R",
+        "C": "Q, S, P, R",
+        "D": "Q, P, R, S"
+      },
       "correct_answer": "A",
       "explanation": "Q introduces the idea of a structured approach. P, S, R follow sequence markers 'First', 'Next', 'Finally' in logical order. Order: Q, P, S, R.",
       "difficulty": "easy",
       "sub_topic": "mandatory_pairs_and_connectors",
-      "misconception_tags": ["sequence_marker_error"],
-      "company_tags": ["accenture", "tcs"],
+      "misconception_tags": [
+        "sequence_marker_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PJ-006",
+      "question": "A 'mandatory pair' in sentence rearrangement refers to:",
+      "options": {
+        "A": "Two sentences that can appear in any order",
+        "B": "Two sentences that must be adjacent due to reference or connector links",
+        "C": "Two sentences with identical meaning",
+        "D": "Only the first and last sentences"
+      },
+      "correct_answer": "B",
+      "explanation": "Mandatory pairs are sentences locked together by pronoun reference, connector words, or cause-effect links; breaking them apart breaks coherence.",
+      "difficulty": "medium",
+      "sub_topic": "mandatory_pairs_and_connectors",
+      "misconception_tags": [
+        "mandatory_pair_identification"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PJ-007",
+      "question": "If sentence B contains the pronoun 'he', the sentence that introduces the person named should generally come:",
+      "options": {
+        "A": "After B",
+        "B": "Before B",
+        "C": "Anywhere in the paragraph",
+        "D": "Cannot be determined ever"
+      },
+      "correct_answer": "B",
+      "explanation": "Pronouns follow their antecedents: the noun being referred to must appear before the pronoun, so the introducing sentence precedes B.",
+      "difficulty": "medium",
+      "sub_topic": "mandatory_pairs_and_connectors",
+      "misconception_tags": [
+        "pronoun_reference_order"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PJ-008",
+      "question": "In a sentence sequence, the word 'however' typically signals that the next sentence:",
+      "options": {
+        "A": "Adds a similar idea",
+        "B": "Contrasts with the previous statement",
+        "C": "Gives an example of it",
+        "D": "Repeats it"
+      },
+      "correct_answer": "B",
+      "explanation": "'However' is a contrast connector: it introduces an idea that qualifies or opposes what was just stated.",
+      "difficulty": "easy",
+      "sub_topic": "coherence_and_sequence",
+      "misconception_tags": [
+        "connector_meaning_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

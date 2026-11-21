@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-PRACTICE-006",
+      "question": "Two sets that have no elements in common are called:",
+      "options": {
+        "A": "Disjoint sets",
+        "B": "Intersecting sets",
+        "C": "Subsets",
+        "D": "Universal sets"
+      },
+      "correct_answer": "A",
+      "explanation": "Disjoint sets have an empty intersection (A intersection B = empty). Intersecting sets share at least one element.",
+      "difficulty": "easy",
+      "sub_topic": "venn_basics",
+      "misconception_tags": [
+        "set_terminology_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-PRACTICE-007",
+      "question": "If |A| = 30, |B| = 25 and |A intersection B| = 10, what is |A union B|?",
+      "options": {
+        "A": "45",
+        "B": "55",
+        "C": "65",
+        "D": "15"
+      },
+      "correct_answer": "A",
+      "explanation": "Inclusion-exclusion: |A union B| = |A| + |B| - |A intersection B| = 30 + 25 - 10 = 45.",
+      "difficulty": "easy",
+      "sub_topic": "two_set_problems",
+      "misconception_tags": [
+        "double_counting_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-006",
+      "question": "In a survey, 40 people like tea, 35 like coffee and 60 like at least one. How many like both?",
+      "options": {
+        "A": "10",
+        "B": "15",
+        "C": "20",
+        "D": "75"
+      },
+      "correct_answer": "B",
+      "explanation": "|A union B| = |A| + |B| - |both| => 60 = 40 + 35 - both => both = 75 - 60 = 15.",
+      "difficulty": "medium",
+      "sub_topic": "two_set_problems",
+      "misconception_tags": [
+        "double_counting_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-007",
+      "question": "Three sets each have 10 elements, every pair shares 4 elements, and exactly 2 elements are common to all three. What is |A union B union C|?",
+      "options": {
+        "A": "16",
+        "B": "18",
+        "C": "20",
+        "D": "22"
+      },
+      "correct_answer": "C",
+      "explanation": "Inclusion-exclusion for 3 sets: 30 - (4+4+4) + 2 = 30 - 12 + 2 = 20.",
+      "difficulty": "medium",
+      "sub_topic": "three_set_intro",
+      "misconception_tags": [
+        "three_set_inclusion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "VENN-008",
+      "question": "How is the statement 'All A are B' represented in a Venn diagram?",
+      "options": {
+        "A": "A and B partially overlap",
+        "B": "A lies entirely inside B",
+        "C": "B lies entirely inside A",
+        "D": "A and B are separate"
+      },
+      "correct_answer": "B",
+      "explanation": "'All A are B' means every element of A is also in B, so the A circle is drawn completely within the B circle.",
+      "difficulty": "easy",
+      "sub_topic": "venn_basics",
+      "misconception_tags": [
+        "all_statement_representation_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

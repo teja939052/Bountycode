@@ -1,0 +1,325 @@
+{
+  "topic": "cloze_test_basics",
+  "subject": "verbal",
+  "pattern": "cloze_test_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "CLZ-L1",
+      "title": "Cloze Test Basics",
+      "concept": "A cloze test is a passage with blanks where words are removed. You must choose the most appropriate word for each blank based on grammar, vocabulary, context, tone, and logical flow. Each blank should fit both the local sentence and the overall passage meaning.",
+      "formula": "For each blank: read full passage -> understand context/tone -> check grammar fit -> check meaning/collocation -> choose best option.",
+      "worked_example": "Passage: 'She was very ___ to help.' Options: eager, anger, eagle. 'Eager' fits meaning and grammar (adjective) in context of willingness to help.",
+      "mistakes": [
+        "Filling blanks without reading the whole passage",
+        "Choosing a word that is grammatically correct but contextually wrong",
+        "Ignoring connectors and tone"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CLZ-L2",
+      "title": "Using Grammar and Collocations",
+      "concept": "Grammar clues include tense, subject-verb agreement, articles, prepositions, and part of speech required by the blank. Collocations (words that commonly go together, e.g., 'make a decision', 'heavy rain') help select natural-sounding choices.",
+      "formula": "Check: tense consistency, singular/plural, preposition after verb/adjective, article usage, fixed phrases/collocations.",
+      "worked_example": "Blank: 'He is interested ___ science.' Correct preposition is 'in' (interested in), not 'on' or 'at'.",
+      "mistakes": [
+        "Ignoring preposition patterns",
+        "Choosing wrong part of speech",
+        "Breaking tense sequence of passage"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CLZ-L3",
+      "title": "Context, Tone, and Logical Flow",
+      "concept": "Beyond grammar, the correct word must match the passage's meaning and tone (formal/informal, positive/negative). Transition words (however, therefore, although) signal contrast, cause-effect, or addition, guiding which word fits logically.",
+      "formula": "Use signal words: however/but = contrast, therefore/so = result, moreover/and = addition, although/despite = concession.",
+      "worked_example": "Passage: 'It was raining; ___, they continued the match.' Contrast/continuation suggests 'however' or 'nevertheless' depending on options.",
+      "mistakes": [
+        "Picking a word with opposite meaning to passage intent",
+        "Ignoring transition signals",
+        "Not re-reading sentence after filling to confirm flow"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "CLZ-PRACTICE-001",
+      "question": "Choose the best word: 'She is good ___ mathematics.'",
+      "options": {
+        "A": "in",
+        "B": "at",
+        "C": "on",
+        "D": "for"
+      },
+      "correct_answer": "B",
+      "explanation": "The common collocation is 'good at' a subject/skill, so 'at' is correct.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_collocation",
+      "misconception_tags": [
+        "preposition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-PRACTICE-002",
+      "question": "Choose the best word: 'He worked hard; ___, he passed the exam.'",
+      "options": {
+        "A": "however",
+        "B": "therefore",
+        "C": "although",
+        "D": "but"
+      },
+      "correct_answer": "B",
+      "explanation": "Working hard led to passing; 'therefore' indicates result/cause-effect.",
+      "difficulty": "easy",
+      "sub_topic": "context_flow",
+      "misconception_tags": [
+        "connector_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-PRACTICE-003",
+      "question": "Choose the best word: 'The weather was bad; ___, the flight was not cancelled.'",
+      "options": {
+        "A": "therefore",
+        "B": "so",
+        "C": "however",
+        "D": "because"
+      },
+      "correct_answer": "C",
+      "explanation": "'However' signals contrast: despite bad weather, flight was not cancelled.",
+      "difficulty": "easy",
+      "sub_topic": "context_flow",
+      "misconception_tags": [
+        "connector_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-PRACTICE-004",
+      "question": "In a cloze test, the best first step is to:",
+      "options": {
+        "A": "Fill blanks randomly",
+        "B": "Read the entire passage to understand context",
+        "C": "Look only at options",
+        "D": "Ignore grammar"
+      },
+      "correct_answer": "B",
+      "explanation": "Understanding the overall context and tone helps choose words that fit meaning and flow, not just individual sentences.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "strategy_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-PRACTICE-005",
+      "question": "Choose the best word: 'She made a ___ to study daily.'",
+      "options": {
+        "A": "decision",
+        "B": "decide",
+        "C": "decisive",
+        "D": "deciding"
+      },
+      "correct_answer": "A",
+      "explanation": "The collocation is 'make a decision' (noun) rather than verb/adjective forms here.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_collocation",
+      "misconception_tags": [
+        "word_form_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CLZ-001",
+      "question": "Choose the best word: 'I am looking forward ___ meeting you.'",
+      "options": {
+        "A": "to",
+        "B": "for",
+        "C": "at",
+        "D": "on"
+      },
+      "correct_answer": "A",
+      "explanation": "The fixed expression is 'looking forward to' (followed by gerund/noun).",
+      "difficulty": "easy",
+      "sub_topic": "grammar_collocation",
+      "misconception_tags": [
+        "preposition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-002",
+      "question": "Choose the best word: 'He is ___ honest man.'",
+      "options": {
+        "A": "a",
+        "B": "an",
+        "C": "the",
+        "D": "no article"
+      },
+      "correct_answer": "B",
+      "explanation": "'Honest' begins with a vowel sound (silent 'h'), so 'an' is used before it.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_collocation",
+      "misconception_tags": [
+        "article_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-003",
+      "question": "Choose the best word: 'Although he was tired, he ___ the work.'",
+      "options": {
+        "A": "complete",
+        "B": "completes",
+        "C": "completed",
+        "D": "completing"
+      },
+      "correct_answer": "C",
+      "explanation": "Past context ('was tired') and sentence structure require past tense 'completed'.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_collocation",
+      "misconception_tags": [
+        "tense_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-004",
+      "question": "Transition word 'because' is used to indicate:",
+      "options": {
+        "A": "Contrast",
+        "B": "Reason/cause",
+        "C": "Addition",
+        "D": "Time order only"
+      },
+      "correct_answer": "B",
+      "explanation": "'Because' introduces a reason or cause for something stated.",
+      "difficulty": "easy",
+      "sub_topic": "context_flow",
+      "misconception_tags": [
+        "connector_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLZ-005",
+      "question": "A word that is grammatically correct in a blank may still be wrong if it:",
+      "options": {
+        "A": "Fits the passage meaning and tone",
+        "B": "Does not fit the context or collocation",
+        "C": "Is a common word",
+        "D": "Is short"
+      },
+      "correct_answer": "B",
+      "explanation": "Cloze answers must satisfy grammar, meaning, tone, and natural word combinations/collocations within context.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "context_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

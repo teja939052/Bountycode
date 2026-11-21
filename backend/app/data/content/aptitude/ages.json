@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-PRACTICE-006",
+      "question": "The ratio of the present ages of A and B is 4:5. After 5 years, the ratio becomes 5:6. What is A's present age?",
+      "options": {
+        "A": "15 years",
+        "B": "20 years",
+        "C": "25 years",
+        "D": "30 years"
+      },
+      "correct_answer": "B",
+      "explanation": "Let present ages be 4x and 5x. After 5 years: (4x+5)/(5x+5)=5/6. Cross-multiply: 6(4x+5)=5(5x+5) => 24x+30=25x+25 => x=5. A's present age = 4x = 20 years.",
+      "difficulty": "medium",
+      "sub_topic": "ratio_of_ages",
+      "misconception_tags": [
+        "ratio_setup_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-PRACTICE-007",
+      "question": "A father is 3 times as old as his son. After 12 years, he will be twice as old as his son. What is the son's present age?",
+      "options": {
+        "A": "10 years",
+        "B": "12 years",
+        "C": "14 years",
+        "D": "15 years"
+      },
+      "correct_answer": "B",
+      "explanation": "Let son's age be x, father's 3x. After 12 years: 3x+12 = 2(x+12) => 3x+12 = 2x+24 => x=12. So the son is 12 years old now.",
+      "difficulty": "easy",
+      "sub_topic": "present_future_age",
+      "misconception_tags": [
+        "equation_setup_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-006",
+      "question": "The sum of the ages of a mother and daughter is 50 years. Five years ago, the mother was 7 times as old as the daughter. What is the mother's present age?",
+      "options": {
+        "A": "35 years",
+        "B": "38 years",
+        "C": "40 years",
+        "D": "42 years"
+      },
+      "correct_answer": "C",
+      "explanation": "Let present ages be M and D with M+D=50. Five years ago: M-5 = 7(D-5) => M-5 = 7D-35 => M = 7D-30. Substitute: 7D-30 + D = 50 => 8D = 80 => D=10, M=40.",
+      "difficulty": "medium",
+      "sub_topic": "past_age_relation",
+      "misconception_tags": [
+        "past_time_adjustment_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-007",
+      "question": "Present ages of X and Y are in the ratio 5:7. Four years from now, the ratio will be 3:4. What is Y's present age?",
+      "options": {
+        "A": "21 years",
+        "B": "24 years",
+        "C": "28 years",
+        "D": "35 years"
+      },
+      "correct_answer": "C",
+      "explanation": "Let ages be 5x and 7x. After 4 years: (5x+4)/(7x+4)=3/4 => 4(5x+4)=3(7x+4) => 20x+16=21x+12 => x=4. Y's present age = 7x = 28 years.",
+      "difficulty": "medium",
+      "sub_topic": "ratio_of_ages",
+      "misconception_tags": [
+        "ratio_cross_multiply_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "AGE-008",
+      "question": "Ten years ago, A was half of B in age. If the ratio of their present ages is 3:4, what is A's present age?",
+      "options": {
+        "A": "15 years",
+        "B": "18 years",
+        "C": "20 years",
+        "D": "24 years"
+      },
+      "correct_answer": "A",
+      "explanation": "Let present ages be 3x and 4x. Ten years ago: 3x-10 = (1/2)(4x-10) => 2(3x-10)=4x-10 => 6x-20=4x-10 => 2x=10 => x=5. A's present age = 3x = 15 years.",
+      "difficulty": "medium",
+      "sub_topic": "past_age_relation",
+      "misconception_tags": [
+        "fraction_equation_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

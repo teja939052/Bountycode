@@ -57,8 +57,14 @@
       "explanation": "The subject is 'bouquet' (singular), so the singular verb 'is' is correct. 'Of roses' is a prepositional phrase and does not determine the verb.",
       "difficulty": "easy",
       "sub_topic": "subject_verb_agreement",
-      "misconception_tags": ["nearby_noun_agreement_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "nearby_noun_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -78,8 +84,13 @@
       "explanation": "Both actions are completed in the past and should use consistent past tense: 'finished' and 'went'.",
       "difficulty": "easy",
       "sub_topic": "tense_consistency",
-      "misconception_tags": ["tense_shift_error"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "tense_shift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -99,8 +110,14 @@
       "explanation": "The introductory modifier 'While driving to work' should describe Sam. Option B correctly makes Sam the subject being delayed while driving.",
       "difficulty": "medium",
       "sub_topic": "pronouns_modifiers_articles",
-      "misconception_tags": ["dangling_modifier"],
-      "company_tags": ["infosys", "wipro", "capgemini"],
+      "misconception_tags": [
+        "dangling_modifier"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -110,13 +127,23 @@
     {
       "id": "SENC-PRACTICE-004",
       "question": "Choose the correct option: 'Each of the students ___ submitted the assignment.'",
-      "options": {"A": "have", "B": "has", "C": "are", "D": "were"},
+      "options": {
+        "A": "have",
+        "B": "has",
+        "C": "are",
+        "D": "were"
+      },
       "correct_answer": "B",
       "explanation": "'Each' is singular, so it takes the singular verb 'has': 'Each of the students has submitted the assignment.'",
       "difficulty": "easy",
       "sub_topic": "subject_verb_agreement",
-      "misconception_tags": ["indefinite_pronoun_agreement_error"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "indefinite_pronoun_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -136,12 +163,71 @@
       "explanation": "The correct preposition in this expression is 'interested in'. Preposition choice depends on standard usage with specific adjectives/verbs.",
       "difficulty": "easy",
       "sub_topic": "pronouns_modifiers_articles",
-      "misconception_tags": ["preposition_usage_error"],
-      "company_tags": ["infosys", "tcs"],
+      "misconception_tags": [
+        "preposition_usage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-PRACTICE-006",
+      "question": "Choose the grammatically correct sentence:",
+      "options": {
+        "A": "The team are winning their matches.",
+        "B": "The team is winning its matches.",
+        "C": "The team is winning their matches.",
+        "D": "The team are winning its match."
+      },
+      "correct_answer": "B",
+      "explanation": "'Team' is a collective noun acting as a single unit here, so it takes the singular verb 'is' and the singular pronoun 'its' in standard formal usage.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "collective_noun_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-PRACTICE-007",
+      "question": "Identify the correct form: 'He has been working here ____ 2019.'",
+      "options": {
+        "A": "since",
+        "B": "from",
+        "C": "for",
+        "D": "by"
+      },
+      "correct_answer": "A",
+      "explanation": "'Since' is used with a point in time (2019) for an action continuing to the present with perfect tenses. 'For' would be used with a duration (e.g. for five years).",
+      "difficulty": "easy",
+      "sub_topic": "prepositions",
+      "misconception_tags": [
+        "since_vs_for_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -159,8 +245,14 @@
       "explanation": "With 'neither/nor', the verb agrees with the nearer subject. 'Students' is plural and nearest to the verb, so 'were' is correct.",
       "difficulty": "medium",
       "sub_topic": "subject_verb_agreement",
-      "misconception_tags": ["nearer_subject_rule_error"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "nearer_subject_rule_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -180,8 +272,14 @@
       "explanation": "The movie starting happened before another past event (our arrival). Past perfect 'had started' correctly shows the earlier past action.",
       "difficulty": "medium",
       "sub_topic": "tense_consistency",
-      "misconception_tags": ["past_perfect_sequence_error"],
-      "company_tags": ["wipro", "capgemini", "tcs"],
+      "misconception_tags": [
+        "past_perfect_sequence_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -201,8 +299,14 @@
       "explanation": "When treated as a single unit, 'committee' takes a singular verb and singular pronoun: 'has reached its decision'.",
       "difficulty": "medium",
       "sub_topic": "subject_verb_agreement",
-      "misconception_tags": ["collective_noun_agreement_error", "pronoun_agreement_error"],
-      "company_tags": ["infosys", "accenture"],
+      "misconception_tags": [
+        "collective_noun_agreement_error",
+        "pronoun_agreement_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -222,8 +326,13 @@
       "explanation": "The phrase 'covered in chocolate' describes the strawberries, so it should be placed next to 'strawberries'. Option B removes the misplaced-modifier ambiguity.",
       "difficulty": "easy",
       "sub_topic": "pronouns_modifiers_articles",
-      "misconception_tags": ["misplaced_modifier"],
-      "company_tags": ["tcs", "wipro"],
+      "misconception_tags": [
+        "misplaced_modifier"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -233,17 +342,109 @@
     {
       "id": "SENC-005",
       "question": "Choose the correct option: 'Ramesh, along with his friends, ___ going to the seminar.'",
-      "options": {"A": "are", "B": "were", "C": "is", "D": "have been"},
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "is",
+        "D": "have been"
+      },
       "correct_answer": "C",
       "explanation": "The main subject is 'Ramesh' (singular). The phrase 'along with his friends' does not make the subject plural, so the singular verb 'is' is correct.",
       "difficulty": "easy",
       "sub_topic": "subject_verb_agreement",
-      "misconception_tags": ["interrupting_phrase_agreement_error"],
-      "company_tags": ["infosys", "cognizant", "tcs"],
+      "misconception_tags": [
+        "interrupting_phrase_agreement_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "cognizant",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-006",
+      "question": "Choose the correct sentence:",
+      "options": {
+        "A": "Each of the students have completed the assignment.",
+        "B": "Each of the students has completed the assignment.",
+        "C": "Each of the students are completing the assignment.",
+        "D": "Each students has completed the assignment."
+      },
+      "correct_answer": "B",
+      "explanation": "'Each' is singular and takes a singular verb ('has'). 'Each students' is also wrong because 'each' requires a singular noun phrase here.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "each_singular_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-007",
+      "question": "Which sentence uses the correct past participle?",
+      "options": {
+        "A": "He has went to the office.",
+        "B": "He has gone to the office.",
+        "C": "He has go to the office.",
+        "D": "He has gotted to the office."
+      },
+      "correct_answer": "B",
+      "explanation": "The past participle of 'go' is 'gone', used with auxiliary 'has/have': 'He has gone to the office.' The other forms are non-standard.",
+      "difficulty": "easy",
+      "sub_topic": "verb_forms",
+      "misconception_tags": [
+        "past_participle_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-008",
+      "question": "Identify the correct form: 'The report, along with the attachments, ____ submitted.'",
+      "options": {
+        "A": "were",
+        "B": "was",
+        "C": "have been",
+        "D": "are"
+      },
+      "correct_answer": "B",
+      "explanation": "The subject is 'The report' (singular); the phrase 'along with the attachments' is parenthetical and does not change the number, so singular 'was' is correct.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "parenthetical_phrase_agreement_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

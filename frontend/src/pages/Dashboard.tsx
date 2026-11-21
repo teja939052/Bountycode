@@ -1,30 +1,34 @@
-import { useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { motion } from "framer-motion";
-import useAuthStore from "../store/authStore";
-import { useDashboard } from "../hooks/useDashboard";
+import { motion, AnimatePresence } from "framer-motion";
+import { useAuthStore } from "../store/authStore";
 import api from "../services/api";
 import {
   Flame, ArrowRight, Clock, Briefcase, BarChart3,
-  GraduationCap, RefreshCw, AlertCircle, Play,
+  GraduationCap, RefreshCw, AlertCircle, Play, CheckCircle2,
+  Rocket, Brain, ShieldCheck, Target, Calendar, BookOpen,
 } from "lucide-react";
 import { Button } from "../design-system/Button";
 import { Card } from "../design-system/Card";
 import { ReadinessRing } from "../design-system/Progress";
 import { placementRank } from "../lib/placementRank";
-import { DashboardSupportPanel } from "./dashboard/DashboardSupportPanel";
+import { journeyApi } from "../services/api/journey";
+import { missionApi } from "../services/api/missions";
 
 type PlanTask = {
   type?: string; kind?: string; title?: string; description?: string;
   reason?: string; estimated_minutes?: number; question_id?: string;
   to?: string; label?: string; minutes?: number;
+  mission_id?: string;
 };
 
 function taskHref(t: PlanTask): string {
   if (t.to) return t.to;
   if (t.question_id) return `/question/${t.question_id}`;
   if (t.type === "practice" || t.kind === "question") return "/practice";
+  if (t.type === "repair") return `/repair/${t.mission_id || ""}`;
+  if (t.type === "retest") return `/retest/${t.mission_id || ""}`;
+  if (t.type === "lesson" || t.type === "lesson_complete") return `/lessons/${t.question_id || ""}`;
   return "/academy";
 }
 function taskLabel(t: PlanTask, i: number) {
@@ -35,6 +39,8 @@ function taskReason(t: PlanTask) {
   if (t.description) return t.description;
   if (t.type === "practice") return "This skill needs more evidence.";
   if (t.type === "review") return "Due for spaced repetition.";
+  if (t.type === "repair") return "Repair mission — fix the gap before retesting.";
+  if (t.type === "retest") return "Retest to confirm mastery.";
   if (t.type === "company_mission" || t.type === "company_focus") return "Aligned to your target company.";
   return "Part of today's personalized plan.";
 }
@@ -44,11 +50,10 @@ function taskMinutes(t: PlanTask) {
 
 export default function Dashboard() {
   const storeUser = useAuthStore((s) => s.user);
-  const firstName = (storeUser?.name || "there").split(" ")[0];
-  const { gamification, readinessScore, streakStatus, isLoading: dLoad, isError, refetch } = useDashboard();
+  const { gamification, readinessScore, streakStatus, isLoading: dLoad } = useDashboard();
   const { data: todayPlanRaw, isLoading: pLoad, isError: pErr, refetch: refetchPlan } = useQuery({
     queryKey: ["study", "today"],
-    queryFn: () => api.journey.getToday(),
+    queryFn: () => journeyApi.getToday(),
     staleTime: 30_000,
     retry: 1,
   });
@@ -95,7 +100,7 @@ export default function Dashboard() {
       .slice(0, 8);
   }, [plan]);
 
-  const totalMinutes = useMemo(() => tasks.reduce((s, t) => s + taskMinutes(t), 0), [tasks]);
+  const totalMinutes = useMemo(() => tasks.reduce((s, t) => s + (Number(t.estimated_minutes ?? t.minutes ?? 12) || 12), 0), [tasks]);
   const weakSkills = useMemo(
     () =>
       Object.entries(skills)
@@ -106,29 +111,19 @@ export default function Dashboard() {
     [skills],
   );
 
-  const assessedDomains = Number(
-    skillsPayload.assessed_domains ?? skillsPayload.assessment?.assessed_domains ?? 0,
-  );
-  const domainCoverage = Math.max(
-    0,
-    Math.min(
-      100,
-      Number(skillsPayload.domain_coverage_pct ?? skillsPayload.assessment?.domain_coverage_pct ?? 0),
-    ),
-  );
-  const gradedAttempts = Number(
-    skillsPayload.total_attempts ?? skillsPayload.assessment?.total_attempts ?? 0,
-  );
   const readiness = readinessScore?.score ?? plan.overall_score ?? skillsPayload.overall_score ?? null;
   const streak = streakStatus?.current_streak ?? gamification?.streak ?? plan.streak ?? storeUser?.streak ?? 0;
   const level = gamification?.level ?? plan.level ?? storeUser?.level ?? 1;
   const rank = placementRank(Number(level));
-  const greeting = useMemo(() => {
-    const h = new Date().getHours();
-    return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
-  }, []);
-  const primaryHref = tasks[0] ? taskHref(tasks[0]) : "/academy";
+
+  // Sort tasks: repair first, then lesson, then review, then practice
+  const sortedTasks = useMemo(() => {
+    const priority: Record<string, number> = { repair: 0, lesson: 1, retest: 1, practice: 2, mock: 3, review: 3 };
+    return [...tasks].sort((a, b) => (priority[a.type ?? "practice"] ?? 5) - (priority[b.type ?? "practice"] ?? 5));
+  }, [tasks]);
+
   const loading = dLoad || pLoad || sLoad;
+  const primaryTask = sortedTasks[0];
 
   if (loading) {
     return (
@@ -141,17 +136,14 @@ export default function Dashboard() {
     );
   }
 
-  if (isError && pErr) {
+  if (pErr) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <AlertCircle className="mx-auto text-rose-500 mb-3" size={32} />
           <h2 className="text-lg font-bold text-slate-900">Could not load your dashboard</h2>
           <button
-            onClick={() => {
-              void refetch();
-              void refetchPlan();
-            }}
+            onClick={() => { void refetchPlan(); }}
             className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold"
           >
             <RefreshCw size={16} /> Retry
@@ -161,191 +153,204 @@ export default function Dashboard() {
     );
   }
 
+  const firstName = (storeUser?.name || "there").split(" ")[0];
+  const greeting = (() => {
+    const h = new Date().getHours();
+    return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+  })();
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <div className="mx-auto max-w-5xl px-4 py-6 sm:py-10">
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-          <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <p className="text-sm text-slate-500">
-                {greeting}, {firstName}
-              </p>
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight mt-1">
-                {readiness == null
-                  ? "Your placement journey starts here."
-                  : `You are ${Math.round(Number(readiness))}% placement-ready.`}
-              </h1>
-              <p className="mt-1 text-sm text-slate-600">
-                Progress is measured by evidence — not coins, XP, or time spent.
-              </p>
+        {/* ===== GREETING + READINESS ===== */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p className="text-sm text-slate-500">
+              {greeting}, {firstName}
+            </p>
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight mt-1">
+              Today's mission
+            </h1>
+            <p className="mt-1 text-sm text-slate-600">
+              Build one skill at a time. Every action is evidence toward readiness.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="rounded-2xl border border-emerald-200/80 bg-white p-3 shadow-sm">
+              <ReadinessRing value={Number(readiness ?? 0)} size={72} />
             </div>
-            <div className="flex items-center gap-3 shrink-0">
-              {readiness != null && (
-                <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
-                  <ReadinessRing value={Number(readiness)} size={72} />
+            <div className="flex flex-col gap-1 text-right text-xs text-slate-500">
+              <span className="inline-flex items-center justify-end gap-1 font-semibold text-orange-600">
+                <Flame size={14} /> {streak} day habit
+              </span>
+              <span className="font-semibold text-slate-800">{rank.title}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ===== TODAY'S MISSION - ONE PRIMARY ACTION ===== */}
+        <Card className="border border-emerald-100 bg-gradient-to-br from-white via-emerald-50/40 to-emerald-100 p-5 sm:p-6 shadow-sm mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">
+                <Rocket size={14} /> Today's mission
+              </div>
+              <h2 className="mt-1 text-xl font-black">
+                {sortedTasks.length > 0
+                  ? sortedTasks[0].title || sortedTasks[0].label || "Continue learning"
+                  : "All caught up — take a break or explore"}
+              </h2>
+              <p className="mt-1 text-sm text-slate-600">
+                {sortedTasks[0]?.reason || sortedTasks[0]?.description || "You're all caught up for today."}
+                <span className="ml-2 text-xs text-emerald-600 font-semibold">
+                  {totalMinutes > 0 ? `~${totalMinutes} min` : ""}
+                </span>
+              </div>
+            </div>
+            <div className="flex gap-2 sm:flex-col w-full sm:w-auto">
+              {sortedTasks.length > 0 ? (
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    const t = sortedTasks[0];
+                    if (t.to) window.location.href = t.to;
+                    else if (t.question_id) window.location.href = `/question/${t.question_id}`;
+                    else if (t.type === "practice" || t.kind === "question") window.location.href = "/practice";
+                    else if (t.type === "repair") window.location.href = `/repair/${t.mission_id || ""}`;
+                    else if (t.type === "retest") window.location.href = `/retest/${t.mission_id || ""}`;
+                    else if (t.type === "lesson" || t.type === "lesson_complete") window.location.href = `/lessons/${t.question_id || ""}`;
+                    else window.location.href = "/academy";
+                  }}
+                  className="w-full sm:w-auto min-h-11 bg-emerald-600 text-white px-6 py-3 text-lg font-bold shadow-lg shadow-emerald-200 hover:bg-emerald-700"
+                >
+                  {sortedTasks[0].type === "repair" ? "Start repair mission" : sortedTasks[0].type === "retest" ? "Start retest" : "Continue today's mission"}
+                  <ArrowRight size={16} className="ml-2" />
+                </Button>
+              ) : (
+                <Button variant="outline" asChild className="w-full sm:w-auto min-h-11 px-6 py-3 text-lg font-semibold">
+                  <Link to="/academy" className="flex items-center gap-2">
+                    Explore academy <ArrowRight size={16} />
+                  </Link>
+                </Button>
+              )}
+            </div>
+          </div>
+          {sortedTasks.length > 0 && (
+            <div className="mt-4 flex flex-col sm:flex-row gap-3 sm:items-end">
+              {sortedTasks.slice(1, 4).map((t, i) => (
+                <Link
+                  key={t.question_id || t.title || i}
+                  to={taskHref(t)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50"
+                >
+                  <ArrowRight size={14} className="text-slate-400" />
+                  <span>{t.title || t.label}</span>
+                  <span className="ml-auto text-[10px] text-slate-400">{taskMinutes(t)} min</span>
+                </Link>
+              ))}
+              {sortedTasks.length > 4 && (
+                <div className="px-3 py-2 flex items-center text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                  +{sortedTasks.length - 4} more
                 </div>
               )}
-              <div className="hidden sm:flex flex-col gap-1 text-right text-xs text-slate-500">
-                <span className="inline-flex items-center justify-end gap-1 font-semibold text-orange-600">
-                  <Flame size={14} /> {streak} day habit
-                </span>
-                <span className="font-semibold text-slate-800">{rank.title}</span>
-                <span className="text-[11px]">{rank.blurb}</span>
-              </div>
             </div>
-          </header>
+          )}
+        </Card>
 
-          <Card className="border border-emerald-200/80 bg-gradient-to-br from-white via-[#fbfaf6] to-emerald-50/40 p-5 sm:p-6 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
-              <div>
-                <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">
-                  <GraduationCap size={14} /> Today's learning plan
-                </p>
-                <h2 className="mt-1 text-xl font-black">
-                  {tasks.length
-                    ? `${tasks.length} focused task${tasks.length === 1 ? "" : "s"} · ~${totalMinutes} min`
-                    : "Your next step is ready"}
-                </h2>
-              </div>
-              <Link to={primaryHref} className="shrink-0">
-                <Button variant="primary" rightIcon={<Play size={16} />} className="w-full sm:w-auto min-h-11">
-                  Continue learning
-                </Button>
-              </Link>
-            </div>
-            {tasks.length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-slate-200 p-6 text-center">
-                <Link to="/academy" className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
-                  Open Academy <ArrowRight size={14} />
+        {/* ===== QUICK ACTIONS ===== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Weak skills quick repair */}
+          {weakSkills.length > 0 && (
+            <Card className="border border-amber-100 bg-amber-50 p-4 sm:p-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700 flex items-center gap-2">
+                    <AlertCircle size={14} /> Repair weak skills
+                  </p>
+                  <h3 className="mt-1 text-sm font-semibold text-slate-900">
+                    Focus on {weakSkills[0].id.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                  </h3>
+                  <p className="mt-0.5 text-xs text-amber-700">
+                    Accuracy: {(weakSkills[0].score ?? 0)}% — repair recommended
+                  </p>
+                </div>
+                <Link
+                  to="/practice"
+                  className="inline-flex items-center gap-2 rounded-md bg-amber-600 px-3 py-2 text-xs font-semibold text-white hover:bg-amber-700"
+                >
+                  Start practice <ArrowRight size={14} />
                 </Link>
               </div>
-            ) : (
-              <ol className="space-y-3">
-                {tasks.map((task, index) => {
-                  const primary = index === 0;
-                  return (
-                    <li key={`${task.type}-${task.title}-${index}`}>
-                      <Link
-                        to={taskHref(task)}
-                        className={`group flex items-start gap-3 rounded-2xl border p-3.5 ${
-                          primary ? "border-emerald-300 bg-white shadow-sm" : "border-slate-200 bg-white/80"
-                        }`}
-                      >
-                        <div
-                          className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
-                            primary ? "bg-emerald-600 text-white" : "bg-slate-100 text-slate-600"
-                          }`}
-                        >
-                          {index + 1}
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h3 className="font-bold text-slate-900">{taskLabel(task, index)}</h3>
-                          <p className="mt-1 text-sm text-slate-600 line-clamp-2">{taskReason(task)}</p>
-                          <div className="mt-2 text-xs text-slate-500 inline-flex items-center gap-1">
-                            <Clock size={12} /> ~{taskMinutes(task)} min
-                          </div>
-                        </div>
-                        <ArrowRight size={18} className="mt-1 shrink-0 text-slate-300" />
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ol>
-            )}
-          </Card>
+            </Card>
+          )}
 
-          <Card className="border border-indigo-200/80 bg-gradient-to-br from-white via-indigo-50/30 to-white p-5 sm:p-6 shadow-sm">
+          <Card className="border border-blue-100 bg-blue-50 p-4 sm:p-6 shadow-sm">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-indigo-700">
-                  <Briefcase size={14} /> Service-company mock
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700 flex items-center gap-2">
+                  <Target size={14} /> Readiness checkpoint
                 </p>
-                <h2 className="mt-1 text-lg font-black">Measure readiness under exam conditions</h2>
-                <p className="mt-1 text-sm text-slate-600">
-                  TCS / Infosys / Wipro style mocks feed the same readiness engine as lessons.
+                <h3 className="mt-1 text-sm font-semibold text-slate-900">
+                  {Math.round(readiness ?? 0)}% readiness
+                </h3>
+                <p className="mt-0.5 text-xs text-blue-700">
+                  Evidence-based — not just lesson completion
                 </p>
               </div>
-              <div className="flex flex-wrap gap-2 shrink-0">
-                <Link to="/quiz" className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-indigo-700 px-4 text-sm font-semibold text-white">
-                  Start company mock <ArrowRight size={15} />
-                </Link>
-                <Link to="/target" className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700">
-                  Choose target
-                </Link>
-              </div>
+              <Link
+                to="/readiness"
+                className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-700"
+              >
+                View report <ArrowRight size={14} />
+              </Link>
             </div>
           </Card>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <Card className="lg:col-span-2 border border-slate-200 bg-white p-5 sm:p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <BarChart3 size={18} className="text-rose-500" />
-                <h3 className="font-bold">Skills that need attention</h3>
-              </div>
-              <div className="mb-4 rounded-xl border border-slate-100 bg-slate-50 p-3.5">
-                <div className="flex items-center justify-between gap-3 text-xs">
-                  <span className="font-semibold text-slate-700">Assessment coverage</span>
-                  <span className="font-bold tabular-nums text-slate-900">
-                    {assessedDomains} skill areas · {Math.round(domainCoverage)}%
-                  </span>
-                </div>
-                <div
-                  className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"
-                  role="progressbar"
-                  aria-label="Assessment coverage"
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={Math.round(domainCoverage)}
-                >
-                  <div
-                    className="h-full rounded-full bg-indigo-600 transition-all"
-                    style={{ width: `${domainCoverage}%` }}
-                  />
-                </div>
-                <p className="mt-2 text-xs text-slate-500">
-                  {gradedAttempts > 0
-                    ? `${gradedAttempts} server-graded outcomes contribute to your skill evidence. Coverage shows how broadly your skills have been assessed.`
-                    : "Complete a baseline assessment to start building reliable skill evidence. XP and lesson completion do not count as mastery."}
+          <Card className="border border-purple-100 bg-purple-50 p-4 sm:p-6 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-purple-700 flex items-center gap-2">
+                  <BookOpen size={14} /> Next lesson
+                </p>
+                <h3 className="mt-1 text-sm font-semibold text-slate-900">
+                  Continue curriculum
+                </h3>
+                <p className="mt-0.5 text-xs text-purple-700">
+                  Mastery through practice, not just watching
                 </p>
               </div>
-              {weakSkills.length === 0 ? (
-                <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
-                  Mastery updates from assessments, not time spent.{" "}
-                  <Link to="/academy" className="font-semibold text-emerald-700 hover:underline">
-                    Go to Academy →
-                  </Link>
-                </div>
-              ) : (
-                <ul className="space-y-2">
-                  {weakSkills.map((skill) => (
-                    <li key={skill.id}>
-                      <Link
-                        to={`/academy?focus=${encodeURIComponent(skill.id)}`}
-                        className="flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2.5 hover:border-rose-200 transition"
-                      >
-                        <div className="min-w-0">
-                          <p className="text-sm font-semibold truncate">{skill.id.replace(/_/g, " ")}</p>
-                          <p className="text-xs text-slate-500">
-                            {skill.mastery_label || "Needs work"} · {Math.round(skill.score ?? 0)}%
-                          </p>
-                        </div>
-                        <span className="shrink-0 text-xs font-semibold text-rose-700">Practise →</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Card>
-            <DashboardSupportPanel streak={Number(streak)} rank={rank} readiness={readiness == null ? null : Number(readiness)} />
-          </div>
+              <Link
+                to="/academy"
+                className="inline-flex items-center gap-2 rounded-md bg-purple-600 px-3 py-2 text-xs font-semibold text-white hover:bg-purple-700"
+              >
+                Browse lessons <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Card>
+        </div>
 
-          <footer className="rounded-2xl border border-slate-200 bg-white p-4 text-center text-sm text-slate-600">
-            Mastery comes from server-graded assessments — not streaks, coins, or time spent.{" "}
-            <Link to="/academy" className="font-semibold text-emerald-700 hover:underline">
-              Continue in Academy
+        {/* ===== SKILL HEATMAP (small) ===== */}
+        <div className="mt-8">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-sm font-bold text-slate-900">Skill evidence</h3>
+            <Link to="/skills" className="text-xs font-semibold text-emerald-600 hover:underline">
+              View full skill graph <ArrowRight size={14} />
             </Link>
-          </footer>
-        </motion.div>
+          </div>
+          <div className="grid grid-cols-5 gap-2">
+            {Object.entries(skills).slice(0, 5).map(([id, s]) => (
+              <div key={id} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white border border-slate-200 shadow-sm">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-1 text-xs font-bold"
+                  style={{ backgroundColor: (s.score ?? 0) >= 70 ? "#dcfce7" : (s.score ?? 0) >= 40 ? "#fef3c7" : "#fee2e2" }}
+                >
+                  {(s.score ?? 0) >= 70 ? "✓" : (s.score ?? 0) >= 40 ? "⚡" : "●"}
+                </div>
+                <span className="text-xs font-semibold text-slate-900 truncate" title={id}>{id.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}</span>
+                <span className="text-[10px] text-slate-500">{s.score ?? 0}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

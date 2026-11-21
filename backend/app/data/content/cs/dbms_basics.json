@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "dbms_basics",
   "subject": "cs",
   "pattern": "dbms_basics",
@@ -59,13 +59,25 @@
     {
       "id": "DB-PRACTICE-001",
       "question": "Which key uniquely identifies each row in a table and should not be NULL?",
-      "options": {"A": "Foreign key", "B": "Primary key", "C": "Index key", "D": "Alternate description"},
+      "options": {
+        "A": "Foreign key",
+        "B": "Primary key",
+        "C": "Index key",
+        "D": "Alternate description"
+      },
       "correct_answer": "B",
       "explanation": "A primary key uniquely identifies each record in a table and enforces entity integrity by not allowing NULL values (in standard relational design). A foreign key references a key in another table.",
       "difficulty": "easy",
       "sub_topic": "keys_and_relationships",
-      "misconception_tags": ["primary_vs_foreign_key"],
-      "company_tags": ["tcs", "infosys", "wipro", "accenture"],
+      "misconception_tags": [
+        "primary_vs_foreign_key"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -75,13 +87,24 @@
     {
       "id": "DB-PRACTICE-002",
       "question": "What is the main purpose of a foreign key?",
-      "options": {"A": "Speed up all queries automatically", "B": "Store large binary data", "C": "Enforce referential integrity between tables", "D": "Replace primary keys"},
+      "options": {
+        "A": "Speed up all queries automatically",
+        "B": "Store large binary data",
+        "C": "Enforce referential integrity between tables",
+        "D": "Replace primary keys"
+      },
       "correct_answer": "C",
       "explanation": "A foreign key creates a link between tables by referencing a primary/candidate key in another table, helping ensure that relationships remain valid (e.g., you cannot reference a non-existent parent record).",
       "difficulty": "easy",
       "sub_topic": "keys_and_relationships",
-      "misconception_tags": ["foreign_key_purpose_error"],
-      "company_tags": ["tcs", "cognizant", "capgemini"],
+      "misconception_tags": [
+        "foreign_key_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -91,13 +114,24 @@
     {
       "id": "DB-PRACTICE-003",
       "question": "Which ACID property ensures that a transaction is treated as all-or-nothing?",
-      "options": {"A": "Consistency", "B": "Isolation", "C": "Durability", "D": "Atomicity"},
+      "options": {
+        "A": "Consistency",
+        "B": "Isolation",
+        "C": "Durability",
+        "D": "Atomicity"
+      },
       "correct_answer": "D",
       "explanation": "Atomicity means either all operations in a transaction are applied, or none are. If any part fails, the transaction is rolled back to preserve a consistent state.",
       "difficulty": "easy",
       "sub_topic": "transactions_acid",
-      "misconception_tags": ["acid_property_confusion"],
-      "company_tags": ["infosys", "wipro", "tcs"],
+      "misconception_tags": [
+        "acid_property_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -107,13 +141,24 @@
     {
       "id": "DB-PRACTICE-004",
       "question": "A table stores multiple phone numbers in a single column as '111,222,333'. This violates which normal form most directly?",
-      "options": {"A": "1NF", "B": "2NF", "C": "3NF", "D": "BCNF only"},
+      "options": {
+        "A": "1NF",
+        "B": "2NF",
+        "C": "3NF",
+        "D": "BCNF only"
+      },
       "correct_answer": "A",
       "explanation": "First Normal Form (1NF) requires atomic (indivisible) attribute values and no repeating groups in a single field. Storing multiple values in one column violates atomicity; a better design is a separate related table/rows for phone numbers.",
       "difficulty": "medium",
       "sub_topic": "normalization_basics",
-      "misconception_tags": ["normal_form_identification_error"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "normal_form_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -123,17 +168,82 @@
     {
       "id": "DB-PRACTICE-005",
       "question": "Which statement best distinguishes a database from a DBMS?",
-      "options": {"A": "Database is software; DBMS is the stored data", "B": "Database is the collection of data; DBMS is the software that manages it", "C": "Both terms mean exactly the same thing", "D": "DBMS is only a backup file format"},
+      "options": {
+        "A": "Database is software; DBMS is the stored data",
+        "B": "Database is the collection of data; DBMS is the software that manages it",
+        "C": "Both terms mean exactly the same thing",
+        "D": "DBMS is only a backup file format"
+      },
       "correct_answer": "B",
       "explanation": "A database refers to the organized collection of data. A DBMS (Database Management System) is the software system used to create, access, manage, and secure that data.",
       "difficulty": "easy",
       "sub_topic": "dbms_purpose_and_components",
-      "misconception_tags": ["db_vs_dbms_confusion"],
-      "company_tags": ["wipro", "capgemini", "cognizant"],
+      "misconception_tags": [
+        "db_vs_dbms_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-PRACTICE-006",
+      "question": "Which of the following best describes a candidate key?",
+      "options": {
+        "A": "Any column in a table",
+        "B": "A minimal set of attributes that can uniquely identify a tuple",
+        "C": "A key used only for sorting",
+        "D": "A foreign key in another table"
+      },
+      "correct_answer": "B",
+      "explanation": "A candidate key uniquely identifies rows and is minimal (no proper subset is unique). One candidate key is chosen as the primary key.",
+      "difficulty": "medium",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": [
+        "candidate_key_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-PRACTICE-007",
+      "question": "Which anomaly occurs when deleting a row causes unintended loss of other important data due to poor design?",
+      "options": {
+        "A": "Update anomaly",
+        "B": "Insertion anomaly",
+        "C": "Deletion anomaly",
+        "D": "Redundancy anomaly"
+      },
+      "correct_answer": "C",
+      "explanation": "A deletion anomaly happens when removing one fact (e.g. last student in a course) also removes unrelated facts stored only in that row. Proper normalization separates entities to avoid this.",
+      "difficulty": "medium",
+      "sub_topic": "normalization_basics",
+      "misconception_tags": [
+        "anomaly_type_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -141,13 +251,23 @@
     {
       "id": "DB-001",
       "question": "In a bank transfer transaction, money is debited from account A but not credited to account B due to a failure. Which property requires the system to undo the debit?",
-      "options": {"A": "Durability", "B": "Isolation", "C": "Atomicity", "D": "Normalization"},
+      "options": {
+        "A": "Durability",
+        "B": "Isolation",
+        "C": "Atomicity",
+        "D": "Normalization"
+      },
       "correct_answer": "C",
       "explanation": "Atomicity guarantees all-or-nothing execution of a transaction. If any step fails, completed steps in that transaction must be rolled back so partial effects do not persist.",
       "difficulty": "easy",
       "sub_topic": "transactions_acid",
-      "misconception_tags": ["acid_property_confusion"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "acid_property_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -157,13 +277,24 @@
     {
       "id": "DB-002",
       "question": "If every employee belongs to one department and department details are repeated in every employee row, updating a department's location may require many row updates. This is an example of:",
-      "options": {"A": "Insertion anomaly", "B": "Update anomaly", "C": "Deletion anomaly", "D": "Index anomaly"},
+      "options": {
+        "A": "Insertion anomaly",
+        "B": "Update anomaly",
+        "C": "Deletion anomaly",
+        "D": "Index anomaly"
+      },
       "correct_answer": "B",
       "explanation": "An update anomaly occurs when the same fact is stored redundantly in multiple places, so a change must be applied in many rows and inconsistency can occur if any are missed. Normalization (separating department data) reduces this risk.",
       "difficulty": "medium",
       "sub_topic": "normalization_basics",
-      "misconception_tags": ["anomaly_type_confusion"],
-      "company_tags": ["accenture", "wipro", "tcs"],
+      "misconception_tags": [
+        "anomaly_type_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "wipro",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -173,13 +304,23 @@
     {
       "id": "DB-003",
       "question": "Which of the following can be a valid reason to choose a surrogate primary key (e.g., auto-increment id)?",
-      "options": {"A": "Natural keys are never unique", "B": "It can provide a stable, simple unique identifier when natural attributes may change", "C": "It removes the need for foreign keys", "D": "It guarantees 3NF automatically"},
+      "options": {
+        "A": "Natural keys are never unique",
+        "B": "It can provide a stable, simple unique identifier when natural attributes may change",
+        "C": "It removes the need for foreign keys",
+        "D": "It guarantees 3NF automatically"
+      },
       "correct_answer": "B",
       "explanation": "Surrogate keys are often used when natural keys are composite, long, or subject to change. They do not eliminate the need for foreign keys or guarantee normalization; they primarily provide a stable identifier.",
       "difficulty": "medium",
       "sub_topic": "keys_and_relationships",
-      "misconception_tags": ["surrogate_key_myths"],
-      "company_tags": ["infosys", "capgemini"],
+      "misconception_tags": [
+        "surrogate_key_myths"
+      ],
+      "company_tags": [
+        "infosys",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -189,13 +330,24 @@
     {
       "id": "DB-004",
       "question": "After a successful COMMIT, a power failure occurs. Which ACID property guarantees the committed changes are not lost?",
-      "options": {"A": "Atomicity", "B": "Consistency", "C": "Isolation", "D": "Durability"},
+      "options": {
+        "A": "Atomicity",
+        "B": "Consistency",
+        "C": "Isolation",
+        "D": "Durability"
+      },
       "correct_answer": "D",
       "explanation": "Durability ensures that once a transaction is committed, its effects persist in non-volatile storage and survive subsequent system failures.",
       "difficulty": "easy",
       "sub_topic": "transactions_acid",
-      "misconception_tags": ["acid_property_confusion"],
-      "company_tags": ["cognizant", "wipro", "tcs"],
+      "misconception_tags": [
+        "acid_property_confusion"
+      ],
+      "company_tags": [
+        "cognizant",
+        "wipro",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -205,17 +357,109 @@
     {
       "id": "DB-005",
       "question": "A relationship where one department has many employees is best represented by:",
-      "options": {"A": "Storing all employee names in one department column", "B": "Putting a department_id foreign key in the employees table", "C": "Duplicating the departments table for each employee", "D": "Removing primary keys from both tables"},
+      "options": {
+        "A": "Storing all employee names in one department column",
+        "B": "Putting a department_id foreign key in the employees table",
+        "C": "Duplicating the departments table for each employee",
+        "D": "Removing primary keys from both tables"
+      },
       "correct_answer": "B",
       "explanation": "In a one-to-many relationship, the 'many' side (employees) typically stores a foreign key referencing the primary key of the 'one' side (departments). This preserves normalization and referential integrity.",
       "difficulty": "easy",
       "sub_topic": "keys_and_relationships",
-      "misconception_tags": ["relationship_modeling_error"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "relationship_modeling_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-006",
+      "question": "Which normal form removes transitive dependency of non-key attributes on the primary key (assuming 2NF)?",
+      "options": {
+        "A": "1NF",
+        "B": "2NF",
+        "C": "3NF",
+        "D": "Unnormalized form"
+      },
+      "correct_answer": "C",
+      "explanation": "Third Normal Form (3NF) requires that non-key attributes depend only on the key, not on other non-key attributes (no transitive dependency), given 1NF and 2NF are satisfied.",
+      "difficulty": "medium",
+      "sub_topic": "normalization_basics",
+      "misconception_tags": [
+        "normal_form_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-007",
+      "question": "Which ACID property ensures concurrent transactions do not lead to inconsistent intermediate visibility as per isolation level guarantees?",
+      "options": {
+        "A": "Atomicity",
+        "B": "Consistency",
+        "C": "Isolation",
+        "D": "Durability"
+      },
+      "correct_answer": "C",
+      "explanation": "Isolation controls how/when changes made by one transaction become visible to others, preventing unwanted interference; actual behavior depends on the isolation level.",
+      "difficulty": "easy",
+      "sub_topic": "transactions_acid",
+      "misconception_tags": [
+        "acid_property_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DB-008",
+      "question": "A table with a composite primary key (order_id, product_id) has a non-key attribute product_name depending only on product_id. This indicates violation related to:",
+      "options": {
+        "A": "1NF",
+        "B": "2NF (partial dependency)",
+        "C": "Referential integrity only",
+        "D": "Domain constraint only"
+      },
+      "correct_answer": "B",
+      "explanation": "In 2NF, non-key attributes must depend on the whole composite key, not part of it. product_name depending only on product_id is a partial dependency, suggesting decomposition (e.g. a products table).",
+      "difficulty": "medium",
+      "sub_topic": "normalization_basics",
+      "misconception_tags": [
+        "partial_dependency_missed"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

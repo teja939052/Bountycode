@@ -1,0 +1,325 @@
+{
+  "topic": "trie_basics",
+  "subject": "dsa",
+  "pattern": "trie_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "TRIE-L1",
+      "title": "Trie Structure and Purpose",
+      "concept": "A trie (prefix tree) is a tree-like data structure used to store strings where each node represents a character/prefix. Paths from root to nodes form prefixes of stored strings. Tries are efficient for prefix-based operations like search, autocomplete, and dictionary lookups.",
+      "formula": "Each edge/child corresponds to a character; a node may mark end-of-word. Search/insert/prefix-check time: O(L) where L is length of the string/prefix.",
+      "worked_example": "Storing 'cat', 'car', 'dog': root branches 'c' and 'd'; under 'c' branch 'a', then 't' (end of cat) and 'r' (end of car); under 'd' -> 'o' -> 'g' (end of dog). Prefix 'ca' is found by traversing c,a.",
+      "mistakes": [
+        "Confusing trie with binary search tree",
+        "Assuming trie stores full strings only at leaves (end markers can be on any node)",
+        "Ignoring memory overhead of many child pointers/references"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "TRIE-L2",
+      "title": "Insert, Search, and Prefix Operations",
+      "concept": "Insert: traverse/create nodes for each character of the word and mark the final node as end-of-word. Search: traverse characters; if path breaks return not found, else return true only if final node is marked end-of-word. Prefix search (startsWith): similar to search but success if path exists regardless of end marker.",
+      "formula": "Insert(word): for ch in word create child if missing, move; mark end. Search(word): traverse all chars and check end marker. StartsWith(prefix): traverse all chars.",
+      "worked_example": "After inserting 'apple', search('apple')=true, search('app')=false (unless inserted), startsWith('app')=true.",
+      "mistakes": [
+        "Returning true for prefix search when end-of-word is required",
+        "Not marking end-of-word, causing false positives for shorter prefixes as words",
+        "Case sensitivity/character set handling assumptions"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "TRIE-L3",
+      "title": "Applications and Complexity",
+      "concept": "Tries are used in autocomplete, spell checkers, IP routing (variants), and prefix matching. They offer predictable O(L) operations independent of number of stored keys (aside from traversal), but can use significant memory. Variants like compressed tries/radix trees reduce space.",
+      "formula": "Time: O(L) per operation. Space: depends on alphabet size and shared prefixes; worst case can be high for many non-sharing strings.",
+      "worked_example": "Autocomplete for prefix 'pro': traverse 'p','r','o' in trie, then collect all words in that subtree as suggestions.",
+      "mistakes": [
+        "Assuming trie is always more space-efficient than hash table",
+        "Using trie when simple hash set lookup suffices and prefixes not needed",
+        "Not considering alphabet size impact on node structure"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "TRIE-PRACTICE-001",
+      "question": "A trie is especially useful for:",
+      "options": {
+        "A": "Prefix-based string searches and autocomplete",
+        "B": "Sorting numbers in O(1)",
+        "C": "Matrix multiplication",
+        "D": "Finding shortest path in weighted graphs"
+      },
+      "correct_answer": "A",
+      "explanation": "Tries store strings by prefixes, making prefix lookup and autocomplete operations efficient (O(L) per query).",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-PRACTICE-002",
+      "question": "Time complexity to search a word of length L in a trie is:",
+      "options": {
+        "A": "O(1)",
+        "B": "O(L)",
+        "C": "O(N log N) where N is total words",
+        "D": "O(L^2) always"
+      },
+      "correct_answer": "B",
+      "explanation": "Searching traverses at most one node per character of the word/prefix, so time is proportional to L.",
+      "difficulty": "easy",
+      "sub_topic": "complexity",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-PRACTICE-003",
+      "question": "In a trie, an end-of-word marker indicates:",
+      "options": {
+        "A": "The trie is full",
+        "B": "A complete word terminates at that node",
+        "C": "The node has no children ever",
+        "D": "The character is uppercase"
+      },
+      "correct_answer": "B",
+      "explanation": "End-of-word flags distinguish complete stored words from nodes that are only prefixes of longer words.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "marker_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-PRACTICE-004",
+      "question": "If 'app' and 'apple' are inserted into a trie, searching for prefix 'app' (startsWith) should return:",
+      "options": {
+        "A": "False",
+        "B": "True",
+        "C": "Only if 'app' was marked as word",
+        "D": "Error"
+      },
+      "correct_answer": "B",
+      "explanation": "Prefix search succeeds if the path for the prefix exists in the trie, regardless of whether 'app' itself is a stored word.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "prefix_search_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-PRACTICE-005",
+      "question": "Compared to a hash set for exact word lookup, a trie is particularly advantageous when you need:",
+      "options": {
+        "A": "Prefix queries like autocomplete",
+        "B": "Random number generation",
+        "C": "Floating point arithmetic",
+        "D": "Disk defragmentation"
+      },
+      "correct_answer": "A",
+      "explanation": "Hash sets excel at exact membership checks, while tries naturally support prefix-based queries and enumeration of words with a given prefix.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "comparison_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "TRIE-001",
+      "question": "A trie is also known as a:",
+      "options": {
+        "A": "Prefix tree",
+        "B": "Binary heap",
+        "C": "AVL tree only",
+        "D": "Hash map"
+      },
+      "correct_answer": "A",
+      "explanation": "A trie is commonly called a prefix tree because it stores strings based on their shared prefixes.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-002",
+      "question": "To insert a word of length L into a trie, you process:",
+      "options": {
+        "A": "All stored words",
+        "B": "Each character of the word once (O(L))",
+        "C": "Only the first character",
+        "D": "The word length squared times"
+      },
+      "correct_answer": "B",
+      "explanation": "Insertion walks/creates nodes along the path defined by the word's characters, taking O(L) time.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-003",
+      "question": "Exact word search in a trie returns true only if:",
+      "options": {
+        "A": "Any prefix matches",
+        "B": "The full path exists and the terminal node is marked end-of-word",
+        "C": "The first character matches",
+        "D": "The trie is balanced"
+      },
+      "correct_answer": "B",
+      "explanation": "The entire word must be traversed and the last node must indicate completion of a stored word, not just a prefix.",
+      "difficulty": "easy",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "search_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-004",
+      "question": "Which factor can significantly affect trie memory usage?",
+      "options": {
+        "A": "Alphabet size and number/length of stored strings",
+        "B": "Color of nodes",
+        "C": "Network latency",
+        "D": "CPU clock speed only"
+      },
+      "correct_answer": "A",
+      "explanation": "Each node may store references/children for possible characters; memory grows with branching and stored content.",
+      "difficulty": "medium",
+      "sub_topic": "complexity",
+      "misconception_tags": [
+        "space_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRIE-005",
+      "question": "Autocomplete suggestions for a prefix in a trie can be generated by:",
+      "options": {
+        "A": "Traversing to the prefix node and exploring its subtree",
+        "B": "Sorting the entire database each time only",
+        "C": "Deleting the prefix",
+        "D": "Ignoring the trie structure"
+      },
+      "correct_answer": "A",
+      "explanation": "After reaching the node representing the prefix, all words with that prefix are found in the subtree rooted at that node.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

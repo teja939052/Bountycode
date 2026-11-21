@@ -16,6 +16,7 @@ import {
   Play,
   RotateCcw,
   Layers,
+  Rocket,
 } from "lucide-react";
 import { compilerApi } from "../services/api/coding";
 import api from "../services/api";
@@ -461,12 +462,19 @@ export default function LessonPlayer() {
           `You scored ${result?.score ?? 0}%. You need ${result?.mastery_threshold ?? 70}% to pass. Review the explanations and retry.`
         );
       }
-    } catch (error: any) {
-      setAssessmentError(error?.message || "Assessment submission failed. Please try again.");
-    } finally {
-      setSaving(false);
-    }
-  }, [lesson, lessonSlug, assessmentAnswers, trackId, moduleId, topicId, saving, queryClient]);
+      } catch (error: any) {
+        setAssessmentError(error?.message || "Assessment submission failed. Please try again.");
+      } finally {
+        setSaving(false);
+      }
+    }, [lesson, lessonSlug, assessmentAnswers, trackId, moduleId, topicId, saving, queryClient]);
+
+    const handleRepairAndRetest = useCallback(async () => {
+      if (!lesson) return;
+      // Navigate to repair mission for this lesson's skill
+      const skill = lesson.skill_id || lesson.id;
+      window.location.href = `/repair/${encodeURIComponent(skill)}`;
+    }, [lesson]);
 
   if (loading) {
     return (
@@ -626,17 +634,27 @@ export default function LessonPlayer() {
         </div>
 
         {assessmentResult && !assessmentResult.passed && (
-          <button
-            type="button"
-            onClick={() => {
-              setAssessmentAnswers({});
-              setAssessmentResult(null);
-              setAssessmentError("");
-            }}
-            className="mt-5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm font-semibold text-amber-200"
-          >
-            Retry assessment
-          </button>
+          <div className="flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setAssessmentAnswers({});
+                setAssessmentResult(null);
+                setAssessmentError("");
+              }}
+              className="mt-5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm font-semibold text-amber-200"
+            >
+              Retry assessment
+            </button>
+            <button
+              type="button"
+              onClick={handleRepairAndRetest}
+              className="mt-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-200 hover:bg-emerald-500/20"
+            >
+              <Rocket size={14} className="mr-2" />
+              Repair this skill → retest
+            </button>
+          </div>
         )}
 
         <div className="mt-6 flex items-center justify-between gap-3">

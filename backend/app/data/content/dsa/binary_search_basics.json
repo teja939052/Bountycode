@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-PRACTICE-006",
+      "question": "Binary search can be applied directly to which of the following?",
+      "options": {
+        "A": "Any unsorted array",
+        "B": "A sorted array",
+        "C": "A hash table",
+        "D": "An unstructured linked list without ordering"
+      },
+      "correct_answer": "B",
+      "explanation": "Binary search relies on ordering to discard half the search space each step, so the data must be sorted (and support random/indexed access efficiently, as in arrays).",
+      "difficulty": "easy",
+      "sub_topic": "binary_search_preconditions",
+      "misconception_tags": [
+        "precondition_missed"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-PRACTICE-007",
+      "question": "What is the time complexity of binary search on a sorted array of n elements?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "Each comparison halves the remaining search interval, so the number of steps is proportional to log2(n), i.e. O(log n).",
+      "difficulty": "easy",
+      "sub_topic": "binary_search_complexity",
+      "misconception_tags": [
+        "log_complexity_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-006",
+      "question": "In binary search, if the target is smaller than the middle element, the algorithm should:",
+      "options": {
+        "A": "Search the right half",
+        "B": "Search the left half",
+        "C": "Stop and return not found",
+        "D": "Search both halves"
+      },
+      "correct_answer": "B",
+      "explanation": "In a sorted (ascending) array, elements smaller than mid lie to the left of mid, so the search continues in the left subarray and discards the right half including mid.",
+      "difficulty": "easy",
+      "sub_topic": "binary_search_steps",
+      "misconception_tags": [
+        "direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-007",
+      "question": "What happens if binary search is used on an unsorted array?",
+      "options": {
+        "A": "It still guarantees correct result",
+        "B": "It becomes O(1)",
+        "C": "It may return incorrect/not-found results",
+        "D": "It automatically sorts the array first"
+      },
+      "correct_answer": "C",
+      "explanation": "Binary search's decision to go left or right assumes sorted order. On unsorted data that assumption is violated, so it can discard the half containing the target and produce wrong results.",
+      "difficulty": "medium",
+      "sub_topic": "binary_search_preconditions",
+      "misconception_tags": [
+        "applying_without_sorted_order"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-008",
+      "question": "Binary search on an array of 1024 elements requires at most about how many comparisons in the worst case?",
+      "options": {
+        "A": "10",
+        "B": "32",
+        "C": "512",
+        "D": "1024"
+      },
+      "correct_answer": "A",
+      "explanation": "Each step halves the range: 1024 -> 512 -> ... -> 1 takes 10 halving steps since 2^10 = 1024. Thus worst-case comparisons are about log2(1024)=10.",
+      "difficulty": "medium",
+      "sub_topic": "binary_search_complexity",
+      "misconception_tags": [
+        "log_calculation_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

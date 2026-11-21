@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "number_systems",
   "subject": "quantitative_aptitude",
   "pattern": "number_systems",
@@ -59,13 +59,24 @@
     {
       "id": "NS-PRACTICE-001",
       "question": "What is the place value of 7 in 47,382?",
-      "options": {"A": "7", "B": "70", "C": "700", "D": "7,000"},
+      "options": {
+        "A": "7",
+        "B": "70",
+        "C": "700",
+        "D": "7,000"
+      },
       "correct_answer": "D",
       "explanation": "In 47,382 the digits are 4 (ten-thousands), 7 (thousands), 3 (hundreds), 8 (tens), 2 (ones). So the place value of 7 is 7 x 1,000 = 7,000.",
       "difficulty": "easy",
       "sub_topic": "number_types_and_place_value",
-      "misconception_tags": ["face_value_vs_place_value"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "face_value_vs_place_value"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -75,13 +86,23 @@
     {
       "id": "NS-PRACTICE-002",
       "question": "Which of the following numbers is divisible by 9?",
-      "options": {"A": "4,523", "B": "5,274", "C": "6,145", "D": "7,321"},
+      "options": {
+        "A": "4,523",
+        "B": "5,274",
+        "C": "6,145",
+        "D": "7,321"
+      },
       "correct_answer": "B",
       "explanation": "A number is divisible by 9 if the sum of its digits is divisible by 9. 4,523: 4+5+2+3=14. 5,274: 5+2+7+4=18 (divisible by 9). 6,145: 6+1+4+5=16. 7,321: 7+3+2+1=13. So 5,274 is divisible by 9.",
       "difficulty": "easy",
       "sub_topic": "divisibility_rules",
-      "misconception_tags": ["wrong_divisibility_test"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "wrong_divisibility_test"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -91,13 +112,23 @@
     {
       "id": "NS-PRACTICE-003",
       "question": "When 125 is divided by 11, what is the remainder?",
-      "options": {"A": "2", "B": "3", "C": "4", "D": "5"},
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5"
+      },
       "correct_answer": "C",
       "explanation": "11 x 11 = 121. Remainder = 125 - 121 = 4. Check: 125 = 11 x 11 + 4 and 0 <= 4 < 11.",
       "difficulty": "easy",
       "sub_topic": "remainders_and_modular_thinking",
-      "misconception_tags": ["remainder_greater_than_divisor"],
-      "company_tags": ["wipro", "accenture"],
+      "misconception_tags": [
+        "remainder_greater_than_divisor"
+      ],
+      "company_tags": [
+        "wipro",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -107,13 +138,23 @@
     {
       "id": "NS-PRACTICE-004",
       "question": "How many distinct prime factors does 84 have?",
-      "options": {"A": "2", "B": "3", "C": "4", "D": "5"},
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5"
+      },
       "correct_answer": "B",
       "explanation": "Prime factorize 84: 84 = 2 x 42 = 2^2 x 21 = 2^2 x 3 x 7. The distinct prime factors are 2, 3, and 7, so there are 3 distinct prime factors.",
       "difficulty": "medium",
       "sub_topic": "factors_multiples_primes",
-      "misconception_tags": ["counting_repeated_prime_powers"],
-      "company_tags": ["tcs", "capgemini"],
+      "misconception_tags": [
+        "counting_repeated_prime_powers"
+      ],
+      "company_tags": [
+        "tcs",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -123,17 +164,81 @@
     {
       "id": "NS-PRACTICE-005",
       "question": "A number is divisible by 6 if it is divisible by:",
-      "options": {"A": "2 and 4", "B": "2 and 3", "C": "3 and 9", "D": "1 and 6 only"},
+      "options": {
+        "A": "2 and 4",
+        "B": "2 and 3",
+        "C": "3 and 9",
+        "D": "1 and 6 only"
+      },
       "correct_answer": "B",
       "explanation": "6 = 2 x 3 and 2 and 3 are coprime. Therefore a number is divisible by 6 if and only if it is divisible by both 2 and 3.",
       "difficulty": "easy",
       "sub_topic": "divisibility_rules",
-      "misconception_tags": ["incomplete_divisibility_condition"],
-      "company_tags": ["infosys", "wipro"],
+      "misconception_tags": [
+        "incomplete_divisibility_condition"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-PRACTICE-006",
+      "question": "What is the remainder when 47 is divided by 6?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6"
+      },
+      "correct_answer": "C",
+      "explanation": "6*7=42 and 47-42=5. So the remainder is 5.",
+      "difficulty": "easy",
+      "sub_topic": "division_remainder",
+      "misconception_tags": [
+        "remainder_calculation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-PRACTICE-007",
+      "question": "Which of the following is a prime number?",
+      "options": {
+        "A": "21",
+        "B": "27",
+        "C": "29",
+        "D": "33"
+      },
+      "correct_answer": "C",
+      "explanation": "29 has no positive divisors other than 1 and 29. 21=3*7, 27=3^3, 33=3*11 are composite.",
+      "difficulty": "easy",
+      "sub_topic": "primes",
+      "misconception_tags": [
+        "prime_identification_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -141,13 +246,23 @@
     {
       "id": "NS-001",
       "question": "The smallest 4-digit number exactly divisible by 36 is:",
-      "options": {"A": "1000", "B": "1004", "C": "1008", "D": "1026"},
+      "options": {
+        "A": "1000",
+        "B": "1004",
+        "C": "1008",
+        "D": "1026"
+      },
       "correct_answer": "C",
       "explanation": "Smallest 4-digit number is 1000. Divide 1000 by 36: 36 x 27 = 972, remainder = 28. To reach the next multiple of 36, add (36 - 28) = 8. So 1000 + 8 = 1008. Check: 1008 / 36 = 28.",
       "difficulty": "medium",
       "sub_topic": "divisibility_rules",
-      "misconception_tags": ["nearest_multiple_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "nearest_multiple_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -157,13 +272,24 @@
     {
       "id": "NS-002",
       "question": "What is the unit digit of 7^103? (Find the last digit.)",
-      "options": {"A": "1", "B": "3", "C": "7", "D": "9"},
+      "options": {
+        "A": "1",
+        "B": "3",
+        "C": "7",
+        "D": "9"
+      },
       "correct_answer": "B",
       "explanation": "Unit digits of powers of 7 cycle every 4: 7^1->7, 7^2->9, 7^3->3, 7^4->1, then repeats. Find remainder of 103 divided by 4: 4 x 25 = 100, remainder 3. So unit digit is same as 7^3, which is 3.",
       "difficulty": "medium",
       "sub_topic": "remainders_and_modular_thinking",
-      "misconception_tags": ["cycle_length_error"],
-      "company_tags": ["tcs", "accenture", "cognizant"],
+      "misconception_tags": [
+        "cycle_length_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "cognizant"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -173,13 +299,23 @@
     {
       "id": "NS-003",
       "question": "If a number leaves remainder 5 when divided by 8, what remainder can it leave when divided by 4?",
-      "options": {"A": "0", "B": "1", "C": "2", "D": "3"},
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "3"
+      },
       "correct_answer": "B",
       "explanation": "Let N = 8k + 5. Write 8k as 4(2k), so N = 4(2k) + 5 = 4(2k) + 4 + 1 = 4(2k + 1) + 1. Therefore remainder when divided by 4 is 1.",
       "difficulty": "medium",
       "sub_topic": "remainders_and_modular_thinking",
-      "misconception_tags": ["remainder_transfer_error"],
-      "company_tags": ["infosys", "capgemini"],
+      "misconception_tags": [
+        "remainder_transfer_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -189,13 +325,22 @@
     {
       "id": "NS-004",
       "question": "The sum of all factors of 28 is:",
-      "options": {"A": "28", "B": "56", "C": "56 minus 28", "D": "56"},
+      "options": {
+        "A": "28",
+        "B": "56",
+        "C": "56 minus 28",
+        "D": "56"
+      },
       "correct_answer": "B",
       "explanation": "Factors of 28 are 1, 2, 4, 7, 14, 28. Their sum is 1+2+4+7+14+28 = 56. (28 is a perfect number because the sum of its proper factors 1+2+4+7+14 equals 28, but the question asks for sum of all factors.)",
       "difficulty": "easy",
       "sub_topic": "factors_multiples_primes",
-      "misconception_tags": ["proper_vs_all_factors"],
-      "company_tags": ["wipro"],
+      "misconception_tags": [
+        "proper_vs_all_factors"
+      ],
+      "company_tags": [
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -205,17 +350,109 @@
     {
       "id": "NS-005",
       "question": "Which statement is true?",
-      "options": {"A": "1 is a prime number", "B": "2 is the only even prime number", "C": "All odd numbers are prime", "D": "9 is a prime number"},
+      "options": {
+        "A": "1 is a prime number",
+        "B": "2 is the only even prime number",
+        "C": "All odd numbers are prime",
+        "D": "9 is a prime number"
+      },
       "correct_answer": "B",
       "explanation": "A prime number has exactly two positive factors: 1 and itself. 1 has only one factor, so it is not prime. 2 has factors 1 and 2 and is even; every other even number is divisible by 2 and thus not prime. 9 = 3x3 is composite, and many odd numbers (9, 15, 21, ...) are composite.",
       "difficulty": "easy",
       "sub_topic": "factors_multiples_primes",
-      "misconception_tags": ["prime_definition_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "prime_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-006",
+      "question": "What is the unit digit of 7^4?",
+      "options": {
+        "A": "1",
+        "B": "3",
+        "C": "7",
+        "D": "9"
+      },
+      "correct_answer": "A",
+      "explanation": "Powers of 7 cycle in unit digits: 7,9,3,1,... Exponent 4 gives unit digit 1 (7^4=2401).",
+      "difficulty": "medium",
+      "sub_topic": "unit_digit_cycles",
+      "misconception_tags": [
+        "cycle_length_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-007",
+      "question": "If a number is divisible by both 3 and 4, it must be divisible by:",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "12",
+        "D": "24"
+      },
+      "correct_answer": "C",
+      "explanation": "Since lcm(3,4)=12, any number divisible by both 3 and 4 is divisible by 12.",
+      "difficulty": "easy",
+      "sub_topic": "divisibility",
+      "misconception_tags": [
+        "lcm_divisibility_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-008",
+      "question": "How many factors does 36 have?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "9"
+      },
+      "correct_answer": "D",
+      "explanation": "Prime factorization: 36 = 2^2 * 3^2. Number of factors = (2+1)(2+1)=3*3=9. They are 1,2,3,4,6,9,12,18,36.",
+      "difficulty": "medium",
+      "sub_topic": "counting_factors",
+      "misconception_tags": [
+        "factor_count_formula_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

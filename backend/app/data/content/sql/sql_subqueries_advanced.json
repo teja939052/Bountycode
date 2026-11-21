@@ -1,0 +1,325 @@
+{
+  "topic": "sql_subqueries_advanced",
+  "subject": "sql",
+  "pattern": "sql_subqueries_advanced",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "SQLSUBADV-L1",
+      "title": "Correlated Subqueries",
+      "concept": "A correlated subquery references columns from the outer query and is evaluated once per row (conceptually) of the outer query. It is useful for row-by-row comparisons such as finding rows greater than their group's average or employees earning more than their department average.",
+      "formula": "Example: SELECT e1.* FROM emp e1 WHERE salary > (SELECT AVG(salary) FROM emp e2 WHERE e2.dept = e1.dept); inner query depends on e1.",
+      "worked_example": "For each employee row, compute average salary of that employee's department and compare; correlated because inner query uses e1.dept from outer row.",
+      "mistakes": [
+        "Assuming correlated subqueries run only once like non-correlated ones",
+        "Missing correlation condition causing incorrect results or full rescans",
+        "Performance issues on large data without proper indexing"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLSUBADV-L2",
+      "title": "EXISTS, IN, and ANY/ALL",
+      "concept": "EXISTS tests whether a subquery returns any rows (often efficient with correlation). IN compares a value to a list/set from subquery. ANY/SOME and ALL compare a value to each value returned (e.g., > ANY means greater than at least one; > ALL means greater than every value).",
+      "formula": "WHERE EXISTS (SELECT 1 FROM ... WHERE correlated). WHERE x IN (subquery). WHERE x > ANY (subquery). WHERE x > ALL (subquery).",
+      "worked_example": "Customers who placed orders: SELECT * FROM customers c WHERE EXISTS (SELECT 1 FROM orders o WHERE o.cust_id=c.id). Salary > ALL (subquery of manager salaries) means higher than every manager salary (i.e., higher than max).",
+      "mistakes": [
+        "Confusing > ANY with > ALL",
+        "NULL handling differences with NOT IN vs NOT EXISTS in some cases",
+        "Using IN with subqueries returning unintended duplicates/NULLs without care"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLSUBADV-L3",
+      "title": "Subqueries in FROM and SELECT (Derived/Scalar)",
+      "concept": "Subqueries in FROM act as derived tables (inline views) and must usually have an alias. Scalar subqueries in SELECT return a single value per outer row (or NULL) and can compute related aggregates. These forms help structure complex queries.",
+      "formula": "SELECT a, (SELECT MAX(b) FROM t2 WHERE t2.id=t1.id) AS mx FROM t1; SELECT * FROM (SELECT dept, AVG(sal) av FROM emp GROUP BY dept) d WHERE d.av > 50000;",
+      "worked_example": "Derived table computes department averages, outer query filters departments above threshold. Scalar subquery can attach a per-row computed value.",
+      "mistakes": [
+        "Forgetting alias for derived table in FROM (required in many DBMSs)",
+        "Scalar subquery returning more than one row causing error",
+        "Over-nesting reducing readability/performance"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLSUBADV-PRACTICE-001",
+      "question": "A correlated subquery is one that:",
+      "options": {
+        "A": "Never references the outer query",
+        "B": "References columns from the outer query",
+        "C": "Always returns multiple columns",
+        "D": "Cannot be used in WHERE"
+      },
+      "correct_answer": "B",
+      "explanation": "Correlated subqueries depend on values from the outer query and are evaluated in relation to outer rows.",
+      "difficulty": "easy",
+      "sub_topic": "correlated",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-PRACTICE-002",
+      "question": "EXISTS returns true when the subquery:",
+      "options": {
+        "A": "Returns no rows",
+        "B": "Returns at least one row",
+        "C": "Returns NULL only",
+        "D": "Returns more than one column"
+      },
+      "correct_answer": "B",
+      "explanation": "EXISTS checks for the existence of rows in the subquery result; it is true if any row is returned.",
+      "difficulty": "easy",
+      "sub_topic": "exists_in",
+      "misconception_tags": [
+        "exists_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-PRACTICE-003",
+      "question": "`x > ALL (subquery)` means x is greater than:",
+      "options": {
+        "A": "At least one value returned",
+        "B": "Every value returned",
+        "C": "The average only",
+        "D": "No values"
+      },
+      "correct_answer": "B",
+      "explanation": "ALL requires the comparison to be true for all values in the subquery result set.",
+      "difficulty": "easy",
+      "sub_topic": "exists_in",
+      "misconception_tags": [
+        "any_all_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-PRACTICE-004",
+      "question": "A subquery in the FROM clause is commonly called a:",
+      "options": {
+        "A": "Trigger",
+        "B": "Derived table (inline view)",
+        "C": "Primary key",
+        "D": "Stored procedure"
+      },
+      "correct_answer": "B",
+      "explanation": "Subqueries used as table sources in FROM produce temporary result sets often called derived tables or inline views.",
+      "difficulty": "easy",
+      "sub_topic": "derived_scalar",
+      "misconception_tags": [
+        "term_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-PRACTICE-005",
+      "question": "A scalar subquery used in SELECT should return:",
+      "options": {
+        "A": "Multiple rows and columns",
+        "B": "At most one value (one row, one column)",
+        "C": "Only table names",
+        "D": "Only DDL statements"
+      },
+      "correct_answer": "B",
+      "explanation": "Scalar subqueries must produce a single scalar value for each outer row context (or NULL); multiple rows typically cause an error.",
+      "difficulty": "medium",
+      "sub_topic": "derived_scalar",
+      "misconception_tags": [
+        "scalar_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLSUBADV-001",
+      "question": "`x > ANY (subquery)` is true if x is greater than:",
+      "options": {
+        "A": "All values returned",
+        "B": "At least one value returned",
+        "C": "No values returned",
+        "D": "Only NULL values"
+      },
+      "correct_answer": "B",
+      "explanation": "ANY (or SOME) means the condition holds for at least one element in the subquery result.",
+      "difficulty": "easy",
+      "sub_topic": "exists_in",
+      "misconception_tags": [
+        "any_all_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-002",
+      "question": "Which is a typical use of a correlated subquery?",
+      "options": {
+        "A": "Compare each row to an aggregate computed for its related group",
+        "B": "Create a database user",
+        "C": "Drop a table",
+        "D": "Change DBMS version"
+      },
+      "correct_answer": "A",
+      "explanation": "Correlated subqueries can compute per-row/group-related values (e.g., department average) for comparison with each outer row.",
+      "difficulty": "easy",
+      "sub_topic": "correlated",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-003",
+      "question": "Why might EXISTS be preferred in some correlated cases?",
+      "options": {
+        "A": "It always returns all matching rows",
+        "B": "It can stop searching after finding a match (existence check)",
+        "C": "It sorts the entire table",
+        "D": "It requires no indexes ever"
+      },
+      "correct_answer": "B",
+      "explanation": "EXISTS only needs to determine whether any qualifying row exists, which can be efficient for semi-join style checks.",
+      "difficulty": "medium",
+      "sub_topic": "exists_in",
+      "misconception_tags": [
+        "performance_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-004",
+      "question": "In many SQL dialects, a derived table in FROM requires:",
+      "options": {
+        "A": "An alias",
+        "B": "A primary key constraint",
+        "C": "A trigger",
+        "D": "No SELECT statement"
+      },
+      "correct_answer": "A",
+      "explanation": "Derived tables are treated as table sources and typically must be given an alias name for reference.",
+      "difficulty": "easy",
+      "sub_topic": "derived_scalar",
+      "misconception_tags": [
+        "syntax_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLSUBADV-005",
+      "question": "`WHERE salary > (SELECT AVG(salary) FROM emp e2 WHERE e2.dept = e1.dept)` is:",
+      "options": {
+        "A": "A non-correlated subquery",
+        "B": "A correlated subquery",
+        "C": "A DDL statement",
+        "D": "Invalid SQL"
+      },
+      "correct_answer": "B",
+      "explanation": "The inner query references e1.dept from the outer query (e1), making it correlated.",
+      "difficulty": "easy",
+      "sub_topic": "correlated",
+      "misconception_tags": [
+        "identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-PRACTICE-006",
+      "question": "Which HTTP method is normally used to retrieve a resource without modifying it?",
+      "options": {
+        "A": "POST",
+        "B": "GET",
+        "C": "DELETE",
+        "D": "PATCH"
+      },
+      "correct_answer": "B",
+      "explanation": "GET requests are used to retrieve data and should be safe (no side effects) and idempotent. POST creates, PATCH partially updates, DELETE removes.",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "http_method_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-PRACTICE-007",
+      "question": "What does HTTP status code 404 indicate?",
+      "options": {
+        "A": "Request succeeded",
+        "B": "Redirect to a new location",
+        "C": "Requested resource was not found",
+        "D": "Server failed internally"
+      },
+      "correct_answer": "C",
+      "explanation": "404 Not Found means the server could not locate the requested resource. 200 is success, 301/302 are redirects, 500 is a server error.",
+      "difficulty": "easy",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "status_code_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-006",
+      "question": "Which status code conventionally indicates that a resource was successfully created by a POST request?",
+      "options": {
+        "A": "200 OK",
+        "B": "201 Created",
+        "C": "400 Bad Request",
+        "D": "500 Internal Server Error"
+      },
+      "correct_answer": "B",
+      "explanation": "201 Created signals successful creation (often with a Location header for the new resource). 200 indicates a generic success, 400 a client error, 500 a server error.",
+      "difficulty": "medium",
+      "sub_topic": "rest_http",
+      "misconception_tags": [
+        "status_code_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-007",
+      "question": "An API returns 401 Unauthorized. This means the request:",
+      "options": {
+        "A": "Lacks valid authentication credentials",
+        "B": "Used the wrong HTTP method only",
+        "C": "Was sent over HTTPS only",
+        "D": "Exceeded the server's storage capacity"
+      },
+      "correct_answer": "A",
+      "explanation": "401 means the client must authenticate (missing/invalid credentials). 403 means authenticated but not permitted for the resource.",
+      "difficulty": "medium",
+      "sub_topic": "auth",
+      "misconception_tags": [
+        "401_vs_403_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "API-008",
+      "question": "In token-based authentication (e.g. JWT bearer tokens), the client typically sends the token in:",
+      "options": {
+        "A": "The URL query string only",
+        "B": "The Authorization request header",
+        "C": "The response body only",
+        "D": "A custom TCP packet outside HTTP"
+      },
+      "correct_answer": "B",
+      "explanation": "The standard pattern is 'Authorization: Bearer <token>' in the request header, keeping credentials out of URLs and logs.",
+      "difficulty": "medium",
+      "sub_topic": "auth",
+      "misconception_tags": [
+        "token_transport_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

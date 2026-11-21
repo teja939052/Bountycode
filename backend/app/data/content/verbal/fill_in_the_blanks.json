@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-PRACTICE-006",
+      "question": "She has been working here ____ 2015.",
+      "options": {
+        "A": "for",
+        "B": "since",
+        "C": "by",
+        "D": "until"
+      },
+      "correct_answer": "B",
+      "explanation": "'Since' is used with a point in time (2015) for actions continuing to the present; 'for' takes a duration (e.g. for eight years).",
+      "difficulty": "easy",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "since_vs_for_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-PRACTICE-007",
+      "question": "The meeting was postponed ____ the heavy rain.",
+      "options": {
+        "A": "despite",
+        "B": "due to",
+        "C": "although",
+        "D": "in spite"
+      },
+      "correct_answer": "B",
+      "explanation": "'Due to' introduces the cause of the postponement. 'Despite'/'in spite' require a noun phrase but express contrast (and 'although' needs a clause), which does not fit the causal meaning here.",
+      "difficulty": "medium",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "contrast_vs_cause_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-006",
+      "question": "He is ____ honest man that everyone trusts him.",
+      "options": {
+        "A": "a",
+        "B": "so",
+        "C": "such an",
+        "D": "very"
+      },
+      "correct_answer": "C",
+      "explanation": "The pattern 'such + (a/an) + adjective + noun' fits: 'such an honest man'. 'So' would require 'so honest a man' (or 'so honest that...').",
+      "difficulty": "medium",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "such_so_structures_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-007",
+      "question": "The coach, along with the players, ____ arrived early.",
+      "options": {
+        "A": "has",
+        "B": "have",
+        "C": "were",
+        "D": "are"
+      },
+      "correct_answer": "A",
+      "explanation": "The subject is 'The coach' (singular); 'along with the players' is parenthetical, so the singular verb 'has' agrees with the subject.",
+      "difficulty": "medium",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "parenthetical_phrase_agreement_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-008",
+      "question": "Her ____ explanation clarified every doubt of the students.",
+      "options": {
+        "A": "vague",
+        "B": "lucid",
+        "C": "tedious",
+        "D": "hostile"
+      },
+      "correct_answer": "B",
+      "explanation": "'Lucid' means clear and easy to understand, which fits a doubt-clarifying explanation. Vague, tedious, and hostile do not fit the positive context.",
+      "difficulty": "easy",
+      "sub_topic": "vocabulary_precision",
+      "misconception_tags": [
+        "context_vocabulary_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

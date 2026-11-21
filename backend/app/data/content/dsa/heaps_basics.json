@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-PRACTICE-006",
+      "question": "What is the time complexity to get the minimum element from a min-heap?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "A",
+      "explanation": "In a min-heap the smallest element is always at the root, so it can be accessed directly in O(1) time without restructuring the heap.",
+      "difficulty": "easy",
+      "sub_topic": "heap_properties",
+      "misconception_tags": [
+        "confusing_access_with_extraction"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-PRACTICE-007",
+      "question": "After inserting a new element into a binary heap of n elements, what is the worst-case time complexity to restore the heap property?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "Insertion places the element at the end and performs heapify-up, which may travel from a leaf to the root. The height of a complete binary tree is O(log n), so worst-case time is O(log n).",
+      "difficulty": "easy",
+      "sub_topic": "heap_operations",
+      "misconception_tags": [
+        "height_complexity_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-006",
+      "question": "Which array representation corresponds to a valid max-heap (0-based indexing)?",
+      "options": {
+        "A": "[5, 10, 15, 20]",
+        "B": "[20, 15, 10, 5]",
+        "C": "[10, 20, 15, 5]",
+        "D": "[15, 5, 20, 10]"
+      },
+      "correct_answer": "B",
+      "explanation": "In a max-heap every parent must be >= its children. For [20,15,10,5]: 20>=15 and 20>=10, 15>=5, so it satisfies the property. Other options violate parent-child ordering (e.g. [5,10,...] has root smaller than children).",
+      "difficulty": "medium",
+      "sub_topic": "heap_properties",
+      "misconception_tags": [
+        "heap_property_check_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-007",
+      "question": "Building a binary heap from an unsorted array of n elements using the efficient heapify (bottom-up) method takes:",
+      "options": {
+        "A": "O(n log n)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "C",
+      "explanation": "The bottom-up build-heap processes nodes from last internal node to root and performs sift-down; most nodes are near leaves with small heights. The total work sums to O(n), which is more efficient than n insertions of O(log n) each.",
+      "difficulty": "medium",
+      "sub_topic": "heap_operations",
+      "misconception_tags": [
+        "build_heap_complexity_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HEAP-008",
+      "question": "If you want to repeatedly retrieve the largest element from a dynamic set, which data structure is most appropriate?",
+      "options": {
+        "A": "Min-heap",
+        "B": "Max-heap",
+        "C": "Stack",
+        "D": "Queue"
+      },
+      "correct_answer": "B",
+      "explanation": "A max-heap keeps the largest element at the root, allowing O(1) access to the maximum and O(log n) removal/reheapify, which is ideal for repeated max extraction (e.g. priority scheduling).",
+      "difficulty": "easy",
+      "sub_topic": "heap_applications",
+      "misconception_tags": [
+        "heap_type_selection_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

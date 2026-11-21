@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-PRACTICE-006",
+      "question": "Which OOP principle allows a subclass to provide a specific implementation of a method already defined in its superclass?",
+      "options": {
+        "A": "Encapsulation",
+        "B": "Abstraction",
+        "C": "Inheritance/Polymorphism (overriding)",
+        "D": "Compilation"
+      },
+      "correct_answer": "C",
+      "explanation": "Method overriding lets a subclass redefine a superclass method with the same signature to provide specialized behavior, which is a form of runtime polymorphism enabled by inheritance.",
+      "difficulty": "easy",
+      "sub_topic": "polymorphism",
+      "misconception_tags": [
+        "oop_pillar_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-PRACTICE-007",
+      "question": "Wrapping data and methods that operate on that data within a single unit and restricting direct access is called:",
+      "options": {
+        "A": "Inheritance",
+        "B": "Encapsulation",
+        "C": "Polymorphism",
+        "D": "Overloading"
+      },
+      "correct_answer": "B",
+      "explanation": "Encapsulation bundles state and behavior together (e.g. in a class) and often uses access control to protect internal data, exposing interaction through methods/interfaces.",
+      "difficulty": "easy",
+      "sub_topic": "encapsulation",
+      "misconception_tags": [
+        "oop_pillar_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-006",
+      "question": "Which concept refers to using a single interface to represent different underlying forms (data types/behaviors)?",
+      "options": {
+        "A": "Encapsulation",
+        "B": "Abstraction",
+        "C": "Polymorphism",
+        "D": "Coupling"
+      },
+      "correct_answer": "C",
+      "explanation": "Polymorphism means 'many forms' - the same operation or interface can behave differently depending on the object/type (e.g. method overriding, interface implementations).",
+      "difficulty": "easy",
+      "sub_topic": "polymorphism",
+      "misconception_tags": [
+        "oop_pillar_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-007",
+      "question": "Hiding complex implementation details and showing only essential features is known as:",
+      "options": {
+        "A": "Abstraction",
+        "B": "Inheritance",
+        "C": "Instantiation",
+        "D": "Recursion"
+      },
+      "correct_answer": "A",
+      "explanation": "Abstraction focuses on what an object does rather than how it does it, exposing a simplified interface while concealing internal complexity.",
+      "difficulty": "easy",
+      "sub_topic": "abstraction",
+      "misconception_tags": [
+        "abstraction_vs_encapsulation_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OOP-008",
+      "question": "Which relationship is best described by 'is-a' between classes?",
+      "options": {
+        "A": "Composition",
+        "B": "Aggregation",
+        "C": "Inheritance",
+        "D": "Association only"
+      },
+      "correct_answer": "C",
+      "explanation": "Inheritance models an 'is-a' relationship (e.g. Dog is an Animal). Composition/aggregation model 'has-a' relationships where one object contains or uses others.",
+      "difficulty": "easy",
+      "sub_topic": "inheritance",
+      "misconception_tags": [
+        "is_a_vs_has_a_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

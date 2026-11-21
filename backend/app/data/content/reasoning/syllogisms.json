@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "syllogisms",
   "subject": "reasoning",
   "pattern": "syllogisms",
@@ -47,13 +47,24 @@
     {
       "id": "SYL-PRACTICE-001",
       "question": "Statements: All dogs are animals. All animals breathe. Conclusion: All dogs breathe.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Cannot be determined", "D": "Only sometimes true"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "Only sometimes true"
+      },
       "correct_answer": "A",
       "explanation": "Dogs are a subset of animals, and animals are a subset of beings that breathe. Therefore every dog must breathe.",
       "difficulty": "easy",
       "sub_topic": "syllogism_statements",
-      "misconception_tags": ["chain_inference_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "chain_inference_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "SYL-PRACTICE-002",
       "question": "Statements: All apples are fruits. All fruits are sweet. Conclusion: All sweet things are apples.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Both conclusions follow", "D": "Conclusion is definitely false by premises"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Both conclusions follow",
+        "D": "Conclusion is definitely false by premises"
+      },
       "correct_answer": "B",
       "explanation": "Premises imply apples are inside sweet things, but other sweet things may exist that are not apples. The converse does not follow.",
       "difficulty": "easy",
       "sub_topic": "common_patterns",
-      "misconception_tags": ["invalid_converse"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "invalid_converse"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,23 @@
     {
       "id": "SYL-PRACTICE-003",
       "question": "Statements: Some cats are black. All black things are dark. Conclusion: Some cats are dark.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Cannot be determined", "D": "No cats are dark"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Cannot be determined",
+        "D": "No cats are dark"
+      },
       "correct_answer": "A",
       "explanation": "The cats that are black must also be dark because all black things are dark. So at least those cats are dark.",
       "difficulty": "easy",
       "sub_topic": "venn_diagram_method",
-      "misconception_tags": ["missed_overlap_chain"],
-      "company_tags": ["infosys", "cognizant"],
+      "misconception_tags": [
+        "missed_overlap_chain"
+      ],
+      "company_tags": [
+        "infosys",
+        "cognizant"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +126,23 @@
     {
       "id": "SYL-PRACTICE-004",
       "question": "Statements: No birds are mammals. All sparrows are birds. Conclusion: No sparrows are mammals.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Some sparrows are mammals", "D": "Cannot be determined"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Some sparrows are mammals",
+        "D": "Cannot be determined"
+      },
       "correct_answer": "A",
       "explanation": "Sparrows are entirely within birds, and birds have no overlap with mammals. Therefore sparrows cannot be mammals.",
       "difficulty": "easy",
       "sub_topic": "venn_diagram_method",
-      "misconception_tags": ["universal_negative_chain_error"],
-      "company_tags": ["wipro", "capgemini"],
+      "misconception_tags": [
+        "universal_negative_chain_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +152,79 @@
     {
       "id": "SYL-PRACTICE-005",
       "question": "Statements: Some books are pens. Some pens are pencils. Conclusion: Some books are pencils.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "All books are pencils", "D": "No books are pencils"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "All books are pencils",
+        "D": "No books are pencils"
+      },
       "correct_answer": "B",
       "explanation": "The pens that are books may be different from the pens that are pencils. No definite overlap between books and pencils is forced.",
       "difficulty": "medium",
       "sub_topic": "common_patterns",
-      "misconception_tags": ["false_transitive_some"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "false_transitive_some"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-PRACTICE-006",
+      "question": "Statements: All flowers are plants. Some plants are trees. Conclusion: Some flowers are trees.",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "All flowers are trees",
+        "D": "No flowers are trees"
+      },
+      "correct_answer": "B",
+      "explanation": "The plants that are trees may be a different subset of plants from the flowers. No definite overlap between flowers and trees is forced by the premises.",
+      "difficulty": "medium",
+      "sub_topic": "common_patterns",
+      "misconception_tags": [
+        "false_transitive_some"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-PRACTICE-007",
+      "question": "Statements: No stones are metals. All coins are metals. Conclusion: No coins are stones.",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Some coins are stones",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "Coins are entirely inside metals, and metals have no overlap with stones, so no coin can be a stone. This follows by chaining a universal negative with a universal affirmative.",
+      "difficulty": "easy",
+      "sub_topic": "venn_diagram_method",
+      "misconception_tags": [
+        "universal_negative_chain_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +232,24 @@
     {
       "id": "SYL-001",
       "question": "Statements: All managers are employees. Some employees are trainees. Conclusions: I. Some managers are trainees. II. Some employees are managers.",
-      "options": {"A": "Only I follows", "B": "Only II follows", "C": "Both I and II follow", "D": "Neither follows"},
+      "options": {
+        "A": "Only I follows",
+        "B": "Only II follows",
+        "C": "Both I and II follow",
+        "D": "Neither follows"
+      },
       "correct_answer": "B",
       "explanation": "Since all managers are employees, there are definitely employees who are managers (II follows). Trainees among employees may or may not include managers, so I does not definitely follow.",
       "difficulty": "medium",
       "sub_topic": "common_patterns",
-      "misconception_tags": ["assuming_overlap_from_some"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "assuming_overlap_from_some"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +259,24 @@
     {
       "id": "SYL-002",
       "question": "Statements: No car is a bike. All bikes are vehicles. Conclusion: Some vehicles are not cars.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "All vehicles are bikes", "D": "Some cars are vehicles"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "All vehicles are bikes",
+        "D": "Some cars are vehicles"
+      },
       "correct_answer": "A",
       "explanation": "Bikes are vehicles, and no bike is a car. Therefore those bikes (which are vehicles) are definitely not cars, so some vehicles are not cars.",
       "difficulty": "medium",
       "sub_topic": "venn_diagram_method",
-      "misconception_tags": ["missed_definite_exclusion"],
-      "company_tags": ["wipro", "cognizant", "tcs"],
+      "misconception_tags": [
+        "missed_definite_exclusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "cognizant",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +286,23 @@
     {
       "id": "SYL-003",
       "question": "Statements: All phones are devices. All devices need power. Conclusion: All phones need power.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Only some phones need power", "D": "Cannot be determined"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Only some phones need power",
+        "D": "Cannot be determined"
+      },
       "correct_answer": "A",
       "explanation": "This is a direct universal chain: phones subset of devices subset of things needing power, so all phones need power.",
       "difficulty": "easy",
       "sub_topic": "syllogism_statements",
-      "misconception_tags": ["chain_inference_error"],
-      "company_tags": ["infosys", "capgemini"],
+      "misconception_tags": [
+        "chain_inference_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +312,23 @@
     {
       "id": "SYL-004",
       "question": "Statements: Some artists are painters. All painters are creative. Conclusions: I. Some artists are creative. II. All creative people are painters.",
-      "options": {"A": "Only I follows", "B": "Only II follows", "C": "Both follow", "D": "Neither follows"},
+      "options": {
+        "A": "Only I follows",
+        "B": "Only II follows",
+        "C": "Both follow",
+        "D": "Neither follows"
+      },
       "correct_answer": "A",
       "explanation": "Artists who are painters must be creative, so I follows. II is the invalid converse of 'All painters are creative'.",
       "difficulty": "easy",
       "sub_topic": "common_patterns",
-      "misconception_tags": ["invalid_converse"],
-      "company_tags": ["tcs", "wipro"],
+      "misconception_tags": [
+        "invalid_converse"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +338,109 @@
     {
       "id": "SYL-005",
       "question": "Statements: All squares are rectangles. No rectangle is a circle. Conclusion: No square is a circle.",
-      "options": {"A": "Conclusion follows", "B": "Conclusion does not follow", "C": "Some squares are circles", "D": "Cannot be determined"},
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Some squares are circles",
+        "D": "Cannot be determined"
+      },
       "correct_answer": "A",
       "explanation": "All squares lie inside rectangles, and rectangles have no overlap with circles. Therefore no square can be a circle.",
       "difficulty": "easy",
       "sub_topic": "venn_diagram_method",
-      "misconception_tags": ["universal_negative_chain_error"],
-      "company_tags": ["accenture", "infosys", "tcs"],
+      "misconception_tags": [
+        "universal_negative_chain_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "infosys",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-006",
+      "question": "Statements: Some students are writers. All writers are creative. Conclusions: I. Some students are creative. II. All students are creative.",
+      "options": {
+        "A": "Only I follows",
+        "B": "Only II follows",
+        "C": "Both follow",
+        "D": "Neither follows"
+      },
+      "correct_answer": "A",
+      "explanation": "The students who are writers must be creative (so I follows). II is too strong: students who are not writers may be non-creative, so 'all students are creative' does not follow.",
+      "difficulty": "medium",
+      "sub_topic": "common_patterns",
+      "misconception_tags": [
+        "invalid_converse_strength"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-007",
+      "question": "Statements: All cats are mammals. No mammals are reptiles. Conclusion: No cats are reptiles.",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "Some cats are reptiles",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "Cats are a subset of mammals, and mammals do not overlap reptiles at all, therefore cats cannot be reptiles. Valid chain of subset with exclusion.",
+      "difficulty": "easy",
+      "sub_topic": "venn_diagram_method",
+      "misconception_tags": [
+        "universal_negative_chain_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SYL-008",
+      "question": "Statements: All pens are blue. Some blue things are expensive. Conclusion: All pens are expensive.",
+      "options": {
+        "A": "Conclusion follows",
+        "B": "Conclusion does not follow",
+        "C": "No pens are expensive",
+        "D": "Only some pens are expensive"
+      },
+      "correct_answer": "B",
+      "explanation": "Being blue does not guarantee being expensive; the expensive blue things may be a different subset. 'All pens are expensive' is not definite from the premises.",
+      "difficulty": "medium",
+      "sub_topic": "common_patterns",
+      "misconception_tags": [
+        "some_premise_overgeneralization"
+      ],
+      "company_tags": [
+        "wipro",
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

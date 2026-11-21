@@ -1,0 +1,325 @@
+{
+  "topic": "chain_rule_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "chain_rule_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "CR-L1",
+      "title": "Chain Rule and Compound Proportion",
+      "concept": "Chain rule in aptitude extends direct and inverse proportion to situations involving more than two quantities. To find an unknown, compare each quantity with the quantity of interest and determine whether the relationship is direct or inverse, then multiply factors accordingly.",
+      "formula": "M1*D1*H1/W1 = M2*D2*H2/W2 for work problems (men, days, hours, work) when efficiency constant; adjust for direct/inverse relations as needed.",
+      "worked_example": "If 5 workers do a job in 12 days, 10 workers (double, direct inverse with days for same work) take 6 days. If also work doubles, days double again to 12.",
+      "mistakes": [
+        "Treating all relationships as direct",
+        "Not identifying which quantity is held constant conceptually",
+        "Arithmetic errors when combining multiple ratios"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CR-L2",
+      "title": "Applying Direct and Inverse Relations",
+      "concept": "A relation is direct if increasing one increases the other (e.g., more work -> more days at same rate). It is inverse if increasing one decreases the other (e.g., more workers -> fewer days for same work). Set up the equation by writing the ratio of the target quantity and multiplying by ratios of other quantities (>1 or <1) based on effect.",
+      "formula": "x2 = x1 * (factor1) * (factor2) ..., where factor > 1 if change increases x, factor < 1 if change decreases x (for direct/inverse accordingly).",
+      "worked_example": "10 men build a wall in 8 days. How many days for 16 men? More men -> fewer days (inverse): days = 8 * (10/16) = 5 days.",
+      "mistakes": [
+        "Using 16/10 instead of 10/16 for inverse relation",
+        "Mixing up which quantity changes",
+        "Ignoring units/consistency"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CR-L3",
+      "title": "Multi-step Chain Rule Problems",
+      "concept": "Complex problems involve several variables (men, days, hours/day, efficiency, work amount). Handle one factor at a time or use the compound formula. Ensure all compared scenarios are consistent in units.",
+      "formula": "Work proportional to men*days*hours*efficiency (general form). Keep ratios consistent.",
+      "worked_example": "6 machines produce 120 units in 4 days. Units by 9 machines in 5 days (same rate) = 120 * (9/6) * (5/4) = 120 * 1.5 * 1.25 = 225 units.",
+      "mistakes": [
+        "Forgetting one of the factors (e.g., hours per day)",
+        "Applying inverse factor when relation is direct",
+        "Not simplifying stepwise"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "CR-PRACTICE-001",
+      "question": "If 4 workers finish a task in 10 days, 8 workers (same efficiency) will finish in:",
+      "options": {
+        "A": "20 days",
+        "B": "10 days",
+        "C": "5 days",
+        "D": "2 days"
+      },
+      "correct_answer": "C",
+      "explanation": "More workers means fewer days (inverse proportion): 10 * (4/8) = 5 days.",
+      "difficulty": "easy",
+      "sub_topic": "inverse_proportion",
+      "misconception_tags": [
+        "direct_inverse_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-PRACTICE-002",
+      "question": "If 3 machines make 60 items in a day, 5 machines (same rate) make:",
+      "options": {
+        "A": "36",
+        "B": "60",
+        "C": "100",
+        "D": "300"
+      },
+      "correct_answer": "C",
+      "explanation": "Direct proportion: 60 * (5/3) = 100 items.",
+      "difficulty": "easy",
+      "sub_topic": "direct_proportion",
+      "misconception_tags": [
+        "direct_inverse_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-PRACTICE-003",
+      "question": "More workers for the same work implies:",
+      "options": {
+        "A": "More days (direct)",
+        "B": "Fewer days (inverse)",
+        "C": "Same days always",
+        "D": "No relation"
+      },
+      "correct_answer": "B",
+      "explanation": "Workers and days are inversely proportional when total work is constant: doubling workers halves days.",
+      "difficulty": "easy",
+      "sub_topic": "inverse_proportion",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-PRACTICE-004",
+      "question": "6 men complete work in 12 days. 9 men complete same work in:",
+      "options": {
+        "A": "6 days",
+        "B": "8 days",
+        "C": "18 days",
+        "D": "9 days"
+      },
+      "correct_answer": "B",
+      "explanation": "Days = 12 * (6/9) = 12 * (2/3) = 8 days.",
+      "difficulty": "easy",
+      "sub_topic": "inverse_proportion",
+      "misconception_tags": [
+        "calculation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-PRACTICE-005",
+      "question": "If work doubles and workers stay same (same rate), time required:",
+      "options": {
+        "A": "Halves",
+        "B": "Doubles",
+        "C": "Stays same",
+        "D": "Becomes zero"
+      },
+      "correct_answer": "B",
+      "explanation": "Work and time are directly proportional for constant workers/rate, so double work needs double time.",
+      "difficulty": "easy",
+      "sub_topic": "direct_proportion",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CR-001",
+      "question": "5 pumps fill a tank in 8 hours. 10 pumps fill it in:",
+      "options": {
+        "A": "16 h",
+        "B": "8 h",
+        "C": "4 h",
+        "D": "2 h"
+      },
+      "correct_answer": "C",
+      "explanation": "Inverse relation: 8 * (5/10) = 4 hours.",
+      "difficulty": "easy",
+      "sub_topic": "inverse_proportion",
+      "misconception_tags": [
+        "direct_inverse_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-002",
+      "question": "4 people earn ₹2000 in a day (total). 6 people (same rate) earn:",
+      "options": {
+        "A": "₹1000",
+        "B": "₹2000",
+        "C": "₹3000",
+        "D": "₹4000"
+      },
+      "correct_answer": "C",
+      "explanation": "Direct proportion with people: 2000 * (6/4) = ₹3000.",
+      "difficulty": "easy",
+      "sub_topic": "direct_proportion",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-003",
+      "question": "If 12 men take 15 days, 20 men take:",
+      "options": {
+        "A": "9 days",
+        "B": "10 days",
+        "C": "25 days",
+        "D": "12 days"
+      },
+      "correct_answer": "A",
+      "explanation": "Days = 15 * (12/20) = 15 * 0.6 = 9 days.",
+      "difficulty": "easy",
+      "sub_topic": "inverse_proportion",
+      "misconception_tags": [
+        "calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-004",
+      "question": "Chain rule problems with men-days-work can be handled using:",
+      "options": {
+        "A": "Random guessing",
+        "B": "Compound proportion (direct/inverse factors)",
+        "C": "Only addition of values",
+        "D": "Ignoring some quantities"
+      },
+      "correct_answer": "B",
+      "explanation": "Chain rule applies compound proportion by considering each quantity's direct/inverse effect on the unknown.",
+      "difficulty": "easy",
+      "sub_topic": "chain_rule",
+      "misconception_tags": [
+        "method_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-005",
+      "question": "8 machines produce 400 units in 5 days. 4 machines in 5 days produce:",
+      "options": {
+        "A": "100",
+        "B": "200",
+        "C": "400",
+        "D": "800"
+      },
+      "correct_answer": "B",
+      "explanation": "Machines halved, days same, output direct with machines: 400 * (4/8) = 200 units.",
+      "difficulty": "easy",
+      "sub_topic": "direct_proportion",
+      "misconception_tags": [
+        "calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

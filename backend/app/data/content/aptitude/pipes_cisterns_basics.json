@@ -1,0 +1,325 @@
+{
+  "topic": "pipes_cisterns_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "pipes_cisterns_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "PCB-L1",
+      "title": "Pipes and Cisterns: Rates",
+      "concept": "Pipes and cistern problems are similar to work-rate problems. An inlet pipe fills a tank at a certain rate, and an outlet/leak empties it. Rates are usually expressed as fraction of tank filled or emptied per unit time. If a pipe fills a tank in x hours, its rate is 1/x tank per hour.",
+      "formula": "Fill rate = 1/time_to_fill. Empty rate = 1/time_to_empty. Net rate = sum of inlet rates - sum of outlet rates.",
+      "worked_example": "Pipe A fills a tank in 10 hours and Pipe B fills it in 15 hours. Together rate = 1/10 + 1/15 = 1/6 tank/hour, so time = 6 hours.",
+      "mistakes": [
+        "Adding times instead of rates",
+        "Forgetting to subtract outlet/leak rates",
+        "Mixing units (minutes vs hours)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "PCB-L2",
+      "title": "Combined Pipes and Leaks",
+      "concept": "When inlet and outlet pipes operate together, compute net effective rate. If net rate is positive, tank fills; if negative, it empties. Time = 1 / |net rate| for one full tank (assuming constant rates).",
+      "formula": "Net rate = (1/x_inlet + ...) - (1/y_outlet + ...). Time = 1/net_rate when net_rate > 0.",
+      "worked_example": "Inlet fills in 12 h (1/12), outlet empties in 18 h (1/18). Net = 1/12 - 1/18 = 1/36, so tank fills in 36 hours.",
+      "mistakes": [
+        "Subtracting times instead of rates",
+        "Assuming tank always fills when any inlet is open",
+        "Sign confusion when leak is faster than inlet"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "PCB-L3",
+      "title": "Partial Filling and Sequential Operation",
+      "concept": "Sometimes pipes operate for different durations or open/close at different times. Calculate work done (fraction filled/emptied) in each interval as rate × time, then find remaining work and time needed at the applicable net rate.",
+      "formula": "Work done in t hours = rate × t. Remaining = 1 - work done (for filling).",
+      "worked_example": "Pipe A (1/8 per h) runs for 2 h: fills 2/8=1/4. Remaining 3/4. If B (1/12 per h) then runs alone: time = (3/4)/(1/12)=9 h.",
+      "mistakes": [
+        "Assuming all pipes run for the full duration",
+        "Not tracking cumulative fraction correctly",
+        "Arithmetic errors with fractions"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "PCB-PRACTICE-001",
+      "question": "A pipe fills a tank in 20 hours. Its filling rate per hour is:",
+      "options": {
+        "A": "20 tanks",
+        "B": "1/20 tank",
+        "C": "1/10 tank",
+        "D": "2 tanks"
+      },
+      "correct_answer": "B",
+      "explanation": "Rate = 1/time = 1/20 of the tank per hour.",
+      "difficulty": "easy",
+      "sub_topic": "rates",
+      "misconception_tags": [
+        "rate_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-PRACTICE-002",
+      "question": "Pipes A and B fill a tank in 6 h and 12 h respectively. Together they fill it in:",
+      "options": {
+        "A": "3 h",
+        "B": "4 h",
+        "C": "9 h",
+        "D": "18 h"
+      },
+      "correct_answer": "B",
+      "explanation": "Combined rate = 1/6 + 1/12 = 3/12 = 1/4 tank/h, so time = 4 hours.",
+      "difficulty": "easy",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "add_times_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-PRACTICE-003",
+      "question": "An inlet fills in 10 h and a leak empties in 15 h. Net time to fill the tank is:",
+      "options": {
+        "A": "5 h",
+        "B": "25 h",
+        "C": "30 h",
+        "D": "12.5 h"
+      },
+      "correct_answer": "C",
+      "explanation": "Net rate = 1/10 - 1/15 = (3-2)/30 = 1/30, so time = 30 hours.",
+      "difficulty": "easy",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "sign_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-PRACTICE-004",
+      "question": "If net rate is 1/8 tank per hour, the tank will be filled in:",
+      "options": {
+        "A": "4 h",
+        "B": "8 h",
+        "C": "16 h",
+        "D": "1/8 h"
+      },
+      "correct_answer": "B",
+      "explanation": "Time = 1/rate = 1/(1/8) = 8 hours.",
+      "difficulty": "easy",
+      "sub_topic": "rates",
+      "misconception_tags": [
+        "rate_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-PRACTICE-005",
+      "question": "A pipe fills 1/5 of a tank in 1 hour. Time to fill the whole tank is:",
+      "options": {
+        "A": "1 h",
+        "B": "4 h",
+        "C": "5 h",
+        "D": "10 h"
+      },
+      "correct_answer": "C",
+      "explanation": "If 1/5 tank is filled per hour, full tank takes 5 hours.",
+      "difficulty": "easy",
+      "sub_topic": "rates",
+      "misconception_tags": [
+        "fraction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PCB-001",
+      "question": "Two pipes fill a tank in 4 h and 6 h. Together time is:",
+      "options": {
+        "A": "2 h",
+        "B": "2.4 h",
+        "C": "5 h",
+        "D": "10 h"
+      },
+      "correct_answer": "B",
+      "explanation": "Rate = 1/4 + 1/6 = 5/12 tank/h. Time = 12/5 = 2.4 hours.",
+      "difficulty": "easy",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "add_times_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-002",
+      "question": "A fill pipe takes 8 h, an empty pipe takes 12 h. If both open, net effect is:",
+      "options": {
+        "A": "Empties in 24 h",
+        "B": "Fills in 24 h",
+        "C": "Fills in 20 h",
+        "D": "Never fills"
+      },
+      "correct_answer": "B",
+      "explanation": "Net rate = 1/8 - 1/12 = 1/24 (positive), so tank fills in 24 hours.",
+      "difficulty": "easy",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "sign_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-003",
+      "question": "Pipe A fills 1/12 per hour. In 3 hours it fills:",
+      "options": {
+        "A": "1/36",
+        "B": "1/4",
+        "C": "1/3",
+        "D": "3/4"
+      },
+      "correct_answer": "B",
+      "explanation": "Work = rate × time = (1/12) × 3 = 3/12 = 1/4 of the tank.",
+      "difficulty": "easy",
+      "sub_topic": "rates",
+      "misconception_tags": [
+        "fraction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-004",
+      "question": "To solve pipes problems, we should primarily work with:",
+      "options": {
+        "A": "Times added directly",
+        "B": "Rates (work per unit time)",
+        "C": "Volumes only without time",
+        "D": "Random values"
+      },
+      "correct_answer": "B",
+      "explanation": "Rates are additive/subtractive for simultaneous pipes; times are not directly additive.",
+      "difficulty": "easy",
+      "sub_topic": "rates",
+      "misconception_tags": [
+        "method_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-005",
+      "question": "Three inlets fill a tank in 10, 12, 15 h. Combined rate per hour is:",
+      "options": {
+        "A": "1/4",
+        "B": "1/5",
+        "C": "1/6",
+        "D": "1/3"
+      },
+      "correct_answer": "A",
+      "explanation": "Combined rate = 1/10 + 1/12 + 1/15 = (6+5+4)/60 = 15/60 = 1/4 tank per hour.",
+      "difficulty": "medium",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "fraction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

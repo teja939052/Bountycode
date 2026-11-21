@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "permutations_combinations",
   "subject": "quantitative_aptitude",
   "pattern": "permutations_combinations",
@@ -47,13 +47,24 @@
     {
       "id": "PC-PRACTICE-001",
       "question": "What is the value of 5!?",
-      "options": {"A": "25", "B": "60", "C": "120", "D": "720"},
+      "options": {
+        "A": "25",
+        "B": "60",
+        "C": "120",
+        "D": "720"
+      },
       "correct_answer": "C",
       "explanation": "5! = 5 x 4 x 3 x 2 x 1 = 120.",
       "difficulty": "easy",
       "sub_topic": "factorial_and_counting",
-      "misconception_tags": ["factorial_computation_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "factorial_computation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "PC-PRACTICE-002",
       "question": "In how many ways can 3 different people stand in a line?",
-      "options": {"A": "3", "B": "6", "C": "9", "D": "27"},
+      "options": {
+        "A": "3",
+        "B": "6",
+        "C": "9",
+        "D": "27"
+      },
       "correct_answer": "B",
       "explanation": "Arranging 3 distinct people in a row is 3! = 6 ways.",
       "difficulty": "easy",
       "sub_topic": "permutations",
-      "misconception_tags": ["order_vs_selection_confusion"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "order_vs_selection_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,24 @@
     {
       "id": "PC-PRACTICE-003",
       "question": "How many ways can 2 students be selected from 6 students for a committee?",
-      "options": {"A": "12", "B": "15", "C": "30", "D": "36"},
+      "options": {
+        "A": "12",
+        "B": "15",
+        "C": "30",
+        "D": "36"
+      },
       "correct_answer": "B",
       "explanation": "Committee selection is order-independent: C(6,2)=6!/(2!4!)=(6x5)/(2x1)=15.",
       "difficulty": "easy",
       "sub_topic": "combinations",
-      "misconception_tags": ["using_permutation_for_selection"],
-      "company_tags": ["infosys", "wipro", "capgemini"],
+      "misconception_tags": [
+        "using_permutation_for_selection"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +127,23 @@
     {
       "id": "PC-PRACTICE-004",
       "question": "How many 2-digit numbers can be formed using digits 1, 2, 3, 4 without repetition?",
-      "options": {"A": "8", "B": "12", "C": "16", "D": "24"},
+      "options": {
+        "A": "8",
+        "B": "12",
+        "C": "16",
+        "D": "24"
+      },
       "correct_answer": "B",
       "explanation": "Order matters (12 differs from 21) and no repetition: P(4,2)=4x3=12.",
       "difficulty": "easy",
       "sub_topic": "permutations",
-      "misconception_tags": ["repetition_not_considered"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "repetition_not_considered"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +153,81 @@
     {
       "id": "PC-PRACTICE-005",
       "question": "A pizza shop offers 5 toppings. How many ways can you choose 3 different toppings?",
-      "options": {"A": "10", "B": "15", "C": "20", "D": "60"},
+      "options": {
+        "A": "10",
+        "B": "15",
+        "C": "20",
+        "D": "60"
+      },
       "correct_answer": "A",
       "explanation": "Choosing toppings is a selection where order does not matter: C(5,3)=C(5,2)=10.",
       "difficulty": "easy",
       "sub_topic": "combinations",
-      "misconception_tags": ["order_vs_selection_confusion"],
-      "company_tags": ["wipro", "infosys"],
+      "misconception_tags": [
+        "order_vs_selection_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-PRACTICE-006",
+      "question": "What is the value of 5! (5 factorial)?",
+      "options": {
+        "A": "60",
+        "B": "100",
+        "C": "120",
+        "D": "150"
+      },
+      "correct_answer": "C",
+      "explanation": "5! = 5*4*3*2*1 = 120.",
+      "difficulty": "easy",
+      "sub_topic": "factorial_and_counting",
+      "misconception_tags": [
+        "factorial_computation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-PRACTICE-007",
+      "question": "How many ways can 2 letters be chosen and arranged from 5 distinct letters (order matters)?",
+      "options": {
+        "A": "10",
+        "B": "15",
+        "C": "20",
+        "D": "25"
+      },
+      "correct_answer": "C",
+      "explanation": "Arrangement with order matters: 5P2 = 5!/(5-2)! = 5*4 = 20.",
+      "difficulty": "easy",
+      "sub_topic": "permutations",
+      "misconception_tags": [
+        "permutation_vs_combination_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +235,24 @@
     {
       "id": "PC-001",
       "question": "From 7 different books, in how many ways can 3 books be arranged on a shelf?",
-      "options": {"A": "35", "B": "210", "C": "343", "D": "5040"},
+      "options": {
+        "A": "35",
+        "B": "210",
+        "C": "343",
+        "D": "5040"
+      },
       "correct_answer": "B",
       "explanation": "Arrangements mean order matters: P(7,3)=7x6x5=210.",
       "difficulty": "easy",
       "sub_topic": "permutations",
-      "misconception_tags": ["using_combination_for_arrangement"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "using_combination_for_arrangement"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +262,24 @@
     {
       "id": "PC-002",
       "question": "How many different 4-member committees can be formed from 8 people?",
-      "options": {"A": "56", "B": "70", "C": "1680", "D": "4096"},
+      "options": {
+        "A": "56",
+        "B": "70",
+        "C": "1680",
+        "D": "4096"
+      },
       "correct_answer": "B",
       "explanation": "Committee formation is selection: C(8,4)=8!/(4!4!)=(8x7x6x5)/(4x3x2x1)=70.",
       "difficulty": "medium",
       "sub_topic": "combinations",
-      "misconception_tags": ["factorial_simplification_error"],
-      "company_tags": ["tcs", "wipro", "capgemini"],
+      "misconception_tags": [
+        "factorial_simplification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +289,24 @@
     {
       "id": "PC-003",
       "question": "How many 3-digit numbers can be formed from digits 1,2,3,4,5 if repetition is not allowed?",
-      "options": {"A": "60", "B": "125", "C": "243", "D": "10"},
+      "options": {
+        "A": "60",
+        "B": "125",
+        "C": "243",
+        "D": "10"
+      },
       "correct_answer": "A",
       "explanation": "Hundreds place: 5 choices, tens: 4, units: 3. Total = 5x4x3 = 60 (which is P(5,3)).",
       "difficulty": "medium",
       "sub_topic": "permutations",
-      "misconception_tags": ["allowing_repetition_by_mistake"],
-      "company_tags": ["infosys", "tcs", "cognizant"],
+      "misconception_tags": [
+        "allowing_repetition_by_mistake"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +316,24 @@
     {
       "id": "PC-004",
       "question": "From 5 men and 4 women, a team of 3 people is to be formed with exactly 2 men and 1 woman. How many such teams are possible?",
-      "options": {"A": "20", "B": "30", "C": "40", "D": "60"},
+      "options": {
+        "A": "20",
+        "B": "30",
+        "C": "40",
+        "D": "60"
+      },
       "correct_answer": "C",
       "explanation": "Choose 2 men from 5: C(5,2)=10. Choose 1 woman from 4: C(4,1)=4. Total teams = 10 x 4 = 40.",
       "difficulty": "medium",
       "sub_topic": "combinations",
-      "misconception_tags": ["missing_multiplication_principle"],
-      "company_tags": ["accenture", "capgemini", "wipro"],
+      "misconception_tags": [
+        "missing_multiplication_principle"
+      ],
+      "company_tags": [
+        "accenture",
+        "capgemini",
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +343,108 @@
     {
       "id": "PC-005",
       "question": "In how many ways can the letters of the word 'CAT' be arranged?",
-      "options": {"A": "3", "B": "6", "C": "9", "D": "27"},
+      "options": {
+        "A": "3",
+        "B": "6",
+        "C": "9",
+        "D": "27"
+      },
       "correct_answer": "B",
       "explanation": "All three letters are distinct, so arrangements = 3! = 6 (CAT, CTA, ACT, ATC, TCA, TAC).",
       "difficulty": "easy",
       "sub_topic": "permutations",
-      "misconception_tags": ["factorial_computation_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "factorial_computation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-006",
+      "question": "In how many ways can a committee of 2 be chosen from 5 people?",
+      "options": {
+        "A": "5",
+        "B": "10",
+        "C": "15",
+        "D": "20"
+      },
+      "correct_answer": "B",
+      "explanation": "Order does not matter: C(5,2) = 5!/(2!*3!) = (5*4)/2 = 10.",
+      "difficulty": "easy",
+      "sub_topic": "combinations",
+      "misconception_tags": [
+        "permutation_vs_combination_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-007",
+      "question": "How many 3-letter codes can be formed from the letters A, B, C, D if no letter is repeated?",
+      "options": {
+        "A": "12",
+        "B": "16",
+        "C": "24",
+        "D": "64"
+      },
+      "correct_answer": "C",
+      "explanation": "Order matters without repetition: 4*3*2 = 24 (which is 4P3).",
+      "difficulty": "medium",
+      "sub_topic": "permutations",
+      "misconception_tags": [
+        "repetition_condition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PC-008",
+      "question": "How many handshakes occur if each of 6 people shakes hands with every other person exactly once?",
+      "options": {
+        "A": "6",
+        "B": "12",
+        "C": "15",
+        "D": "30"
+      },
+      "correct_answer": "C",
+      "explanation": "A handshake is a pair of people where order does not matter: C(6,2) = 6*5/2 = 15.",
+      "difficulty": "medium",
+      "sub_topic": "combinations",
+      "misconception_tags": [
+        "double_counting_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

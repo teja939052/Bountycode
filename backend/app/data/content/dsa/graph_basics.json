@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-PRACTICE-006",
+      "question": "In an undirected graph, the sum of degrees of all vertices equals:",
+      "options": {
+        "A": "Number of vertices",
+        "B": "Number of edges",
+        "C": "Twice the number of edges",
+        "D": "Square of number of edges"
+      },
+      "correct_answer": "C",
+      "explanation": "Each undirected edge contributes 1 to the degree of each of its two endpoints, so every edge is counted twice in the total degree sum: sum(deg)=2|E| (handshaking lemma).",
+      "difficulty": "medium",
+      "sub_topic": "graph_properties",
+      "misconception_tags": [
+        "handshaking_lemma_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-PRACTICE-007",
+      "question": "Which traversal uses a queue data structure in its standard implementation?",
+      "options": {
+        "A": "Depth First Search (DFS)",
+        "B": "Breadth First Search (BFS)",
+        "C": "Inorder tree traversal",
+        "D": "Binary search"
+      },
+      "correct_answer": "B",
+      "explanation": "BFS explores vertices level by level, enqueuing neighbors and dequeuing in FIFO order, which naturally uses a queue. DFS typically uses a stack or recursion.",
+      "difficulty": "easy",
+      "sub_topic": "graph_traversals",
+      "misconception_tags": [
+        "bfs_dfs_structure_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-006",
+      "question": "A graph with n vertices and no cycles that is connected is called a:",
+      "options": {
+        "A": "Complete graph",
+        "B": "Tree",
+        "C": "Bipartite graph always",
+        "D": "Directed acyclic graph only"
+      },
+      "correct_answer": "B",
+      "explanation": "A connected acyclic undirected graph is a tree. It has exactly n-1 edges and a unique simple path between any pair of vertices.",
+      "difficulty": "easy",
+      "sub_topic": "graph_types",
+      "misconception_tags": [
+        "tree_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-007",
+      "question": "Which representation is generally more space-efficient for a sparse graph?",
+      "options": {
+        "A": "Adjacency matrix",
+        "B": "Adjacency list",
+        "C": "Incidence cube",
+        "D": "Full edge table per vertex pair"
+      },
+      "correct_answer": "B",
+      "explanation": "Adjacency lists store only existing edges (O(V+E) space), which is efficient for sparse graphs (E much smaller than V^2). An adjacency matrix always uses O(V^2) space regardless of sparsity.",
+      "difficulty": "medium",
+      "sub_topic": "graph_representation",
+      "misconception_tags": [
+        "representation_space_tradeoff_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRAPH-008",
+      "question": "In a directed graph, an edge from u to v is different from an edge from v to u because:",
+      "options": {
+        "A": "Edges have no direction",
+        "B": "Direction matters and represents a one-way relationship",
+        "C": "It becomes an undirected edge automatically",
+        "D": "Vertices must be equal"
+      },
+      "correct_answer": "B",
+      "explanation": "Directed edges (arcs) have an orientation: (u,v) goes from u to v only. This models asymmetric relationships like one-way roads or prerequisite links, unlike undirected edges.",
+      "difficulty": "easy",
+      "sub_topic": "graph_basics",
+      "misconception_tags": [
+        "directed_vs_undirected_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

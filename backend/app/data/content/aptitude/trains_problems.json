@@ -176,6 +176,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-PRACTICE-006",
+      "question": "Convert 72 km/h to m/s.",
+      "options": {
+        "A": "18 m/s",
+        "B": "20 m/s",
+        "C": "25 m/s",
+        "D": "30 m/s"
+      },
+      "correct_answer": "B",
+      "explanation": "km/h to m/s: multiply by 5/18. 72 * 5/18 = 20 m/s.",
+      "difficulty": "easy",
+      "sub_topic": "speed_distance_time_trains",
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-PRACTICE-007",
+      "question": "A 150 m long train crosses a pole in 15 seconds. What is its speed?",
+      "options": {
+        "A": "5 m/s",
+        "B": "10 m/s",
+        "C": "15 m/s",
+        "D": "100 m/s"
+      },
+      "correct_answer": "B",
+      "explanation": "To cross a pole, the train covers its own length: speed = 150/15 = 10 m/s.",
+      "difficulty": "easy",
+      "sub_topic": "speed_distance_time_trains",
+      "misconception_tags": [
+        "distance_basis_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -315,6 +369,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-006",
+      "question": "A 200 m long train at 20 m/s crosses a 300 m long platform. How long does it take?",
+      "options": {
+        "A": "10 s",
+        "B": "25 s",
+        "C": "30 s",
+        "D": "50 s"
+      },
+      "correct_answer": "B",
+      "explanation": "Distance to cover = train length + platform length = 200 + 300 = 500 m. Time = 500/20 = 25 s.",
+      "difficulty": "medium",
+      "sub_topic": "crossing_platforms_and_objects",
+      "misconception_tags": [
+        "forgetting_train_length"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-007",
+      "question": "Two trains 120 m and 180 m long run towards each other at 20 m/s and 10 m/s. How long to completely cross each other?",
+      "options": {
+        "A": "6 s",
+        "B": "9 s",
+        "C": "10 s",
+        "D": "12 s"
+      },
+      "correct_answer": "C",
+      "explanation": "Opposite directions: relative speed = 20 + 10 = 30 m/s. Total distance = 120 + 180 = 300 m. Time = 300/30 = 10 s.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed_two_trains",
+      "misconception_tags": [
+        "wrong_relative_speed"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-008",
+      "question": "A 150 m long train at 20 m/s overtakes a man running at 5 m/s in the same direction. How long does it take to pass him?",
+      "options": {
+        "A": "7.5 s",
+        "B": "10 s",
+        "C": "12 s",
+        "D": "15 s"
+      },
+      "correct_answer": "B",
+      "explanation": "Same direction: relative speed = 20 - 5 = 15 m/s. Distance = train length = 150 m. Time = 150/15 = 10 s.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed_two_trains",
+      "misconception_tags": [
+        "same_direction_subtraction_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

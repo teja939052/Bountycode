@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-PRACTICE-006",
+      "question": "Which property is essential for a greedy algorithm to produce a globally optimal solution?",
+      "options": {
+        "A": "Overlapping subproblems only",
+        "B": "Greedy-choice property and optimal substructure",
+        "C": "Randomized choices",
+        "D": "Backtracking on all paths"
+      },
+      "correct_answer": "B",
+      "explanation": "Greedy algorithms work when a locally optimal choice leads to a global optimum (greedy-choice property) and optimal solutions contain optimal solutions to subproblems (optimal substructure). Without these, greedy choices may be wrong.",
+      "difficulty": "medium",
+      "sub_topic": "greedy_properties",
+      "misconception_tags": [
+        "greedy_applicability_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-PRACTICE-007",
+      "question": "In the activity selection problem (maximize number of non-overlapping activities), which greedy choice is optimal?",
+      "options": {
+        "A": "Pick activity with earliest start time",
+        "B": "Pick activity with shortest duration",
+        "C": "Pick activity with earliest finish time",
+        "D": "Pick activity with latest finish time"
+      },
+      "correct_answer": "C",
+      "explanation": "Selecting the activity that finishes earliest leaves maximum remaining time for other activities. This greedy choice can be proven to yield an optimal set for the standard activity selection problem.",
+      "difficulty": "medium",
+      "sub_topic": "activity_selection",
+      "misconception_tags": [
+        "wrong_greedy_criterion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-006",
+      "question": "Greedy algorithms differ from dynamic programming mainly because greedy algorithms:",
+      "options": {
+        "A": "Always try all possibilities",
+        "B": "Make an irrevocable choice at each step without reconsidering",
+        "C": "Never work on optimization problems",
+        "D": "Require exponential memory"
+      },
+      "correct_answer": "B",
+      "explanation": "A greedy algorithm commits to a locally best choice at each step and does not backtrack or evaluate all subproblem combinations like DP might; correctness depends on problem properties.",
+      "difficulty": "easy",
+      "sub_topic": "greedy_properties",
+      "misconception_tags": [
+        "greedy_vs_dp_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-007",
+      "question": "Fractional Knapsack can be solved optimally by a greedy strategy by prioritizing items with:",
+      "options": {
+        "A": "Highest weight first",
+        "B": "Lowest value first",
+        "C": "Highest value-to-weight ratio first",
+        "D": "Lowest value-to-weight ratio first"
+      },
+      "correct_answer": "C",
+      "explanation": "In fractional knapsack, taking items (or fractions) with highest value per unit weight maximizes total value for given capacity. This differs from 0/1 knapsack, where greedy by ratio is not always optimal.",
+      "difficulty": "medium",
+      "sub_topic": "knapsack_greedy",
+      "misconception_tags": [
+        "knapsack_variant_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GRDY-008",
+      "question": "Which problem is typically NOT solved correctly by a simple greedy algorithm in general?",
+      "options": {
+        "A": "Activity selection by earliest finish time",
+        "B": "Fractional knapsack by value/weight ratio",
+        "C": "0/1 knapsack by value/weight ratio",
+        "D": "Huffman coding"
+      },
+      "correct_answer": "C",
+      "explanation": "0/1 knapsack requires choosing or excluding whole items; a locally best ratio choice can block a better combination. It is usually solved with dynamic programming, unlike fractional knapsack and Huffman coding which have valid greedy solutions.",
+      "difficulty": "medium",
+      "sub_topic": "greedy_applicability",
+      "misconception_tags": [
+        "assuming_greedy_always_optimal"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

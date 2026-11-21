@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-PRACTICE-006",
+      "question": "What does a null head pointer indicate in a singly linked list?",
+      "options": {
+        "A": "The list is empty",
+        "B": "The list has one node",
+        "C": "The list is full",
+        "D": "The list is circular"
+      },
+      "correct_answer": "A",
+      "explanation": "The head points to the first node; if it is null, there is no first node, so the list is empty.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_structure",
+      "misconception_tags": [
+        "null_head_misread"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-PRACTICE-007",
+      "question": "What is the time complexity of inserting a node at the beginning of a singly linked list (given head pointer)?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(log n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "A",
+      "explanation": "Insertion at the front only requires updating the new node's next pointer and the head, which is constant time O(1).",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_operations",
+      "misconception_tags": [
+        "traversal_assumed"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-006",
+      "question": "What is the time complexity of searching for a value in an unsorted singly linked list of n nodes?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(log n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "Without random access, each node must be visited in sequence until the value is found, so worst case requires visiting all n nodes: O(n).",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_operations",
+      "misconception_tags": [
+        "random_access_assumed"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-007",
+      "question": "Which capability does a singly linked list lack compared to an array?",
+      "options": {
+        "A": "Dynamic size",
+        "B": "O(1) insertion at a known position",
+        "C": "Direct random access by index",
+        "D": "Efficient deletion given the node"
+      },
+      "correct_answer": "C",
+      "explanation": "Linked lists do not support O(1) access by index; reaching the k-th element requires traversal. Arrays provide direct indexed access in O(1).",
+      "difficulty": "medium",
+      "sub_topic": "types_and_tradeoffs",
+      "misconception_tags": [
+        "tradeoff_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LLB-008",
+      "question": "How many pointer fields does a typical node of a doubly linked list store?",
+      "options": {
+        "A": "One",
+        "B": "Two (prev and next)",
+        "C": "A fixed-size array",
+        "D": "A hash table"
+      },
+      "correct_answer": "B",
+      "explanation": "Doubly linked list nodes store two pointers: one to the previous node and one to the next node, allowing bidirectional traversal at extra space cost.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_structure",
+      "misconception_tags": [
+        "doubly_vs_singly_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

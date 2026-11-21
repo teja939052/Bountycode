@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-PRACTICE-006",
+      "question": "Adding an index generally speeds up reads but can slow down which operations?",
+      "options": {
+        "A": "SELECT queries",
+        "B": "INSERT/UPDATE/DELETE operations",
+        "C": "Connection establishment only",
+        "D": "Nothing; indexes only help"
+      },
+      "correct_answer": "B",
+      "explanation": "Indexes must be maintained on every data change, so writes become slower and storage increases, in exchange for faster lookups on indexed columns.",
+      "difficulty": "easy",
+      "sub_topic": "index_concept",
+      "misconception_tags": [
+        "index_tradeoff_missed"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-PRACTICE-007",
+      "question": "An index on a database table is most similar in purpose to:",
+      "options": {
+        "A": "The index at the back of a book",
+        "B": "A full copy of the table",
+        "C": "A backup file",
+        "D": "A database view"
+      },
+      "correct_answer": "A",
+      "explanation": "Like a book index, a database index maps key values to locations so the engine can find rows quickly without scanning the whole table.",
+      "difficulty": "easy",
+      "sub_topic": "index_concept",
+      "misconception_tags": [
+        "index_purpose_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-006",
+      "question": "Which column is typically the best candidate for an index?",
+      "options": {
+        "A": "A column rarely used in queries",
+        "B": "A column frequently used in WHERE, JOIN and ORDER BY",
+        "C": "A column with only one distinct value",
+        "D": "Every column without exception"
+      },
+      "correct_answer": "B",
+      "explanation": "Columns that filter, join, or sort frequently benefit most from indexes; low-cardinality or unused columns give little benefit and add write cost.",
+      "difficulty": "medium",
+      "sub_topic": "index_types_and_usage",
+      "misconception_tags": [
+        "index_candidate_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-007",
+      "question": "A plain index on the column name may not be used efficiently by the query optimizer in which case?",
+      "options": {
+        "A": "WHERE name = 'John'",
+        "B": "WHERE LOWER(name) = 'john'",
+        "C": "ORDER BY name",
+        "D": "WHERE name LIKE 'Jo%'"
+      },
+      "correct_answer": "B",
+      "explanation": "Applying a function like LOWER() to the indexed column transforms the expression; a plain index on name does not match the expression, so an expression index or rewrite would be needed.",
+      "difficulty": "medium",
+      "sub_topic": "when_not_to_index",
+      "misconception_tags": [
+        "function_on_indexed_column"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-008",
+      "question": "A main drawback of creating too many indexes on a table is:",
+      "options": {
+        "A": "Reduced query accuracy",
+        "B": "Increased storage and slower write operations",
+        "C": "Inability to use JOINs",
+        "D": "Violation of third normal form"
+      },
+      "correct_answer": "B",
+      "explanation": "Each index consumes storage and must be updated on INSERT/UPDATE/DELETE, so excessive indexes degrade write performance and increase maintenance cost.",
+      "difficulty": "medium",
+      "sub_topic": "when_not_to_index",
+      "misconception_tags": [
+        "index_overuse_tradeoff"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

@@ -24,6 +24,7 @@ from app.content.curriculum.cs_debugging import DEBUGGING_LESSON
 from app.content.curriculum.dsa_arrays_strings import ARRAYS_STRINGS_LESSON
 from app.content.curriculum.cs_git_testing import GIT_TESTING_LESSON
 from app.content.curriculum.cs_http_api import HTTP_API_LESSON
+from app.content.curriculum.python_loops import PYTHON_LOOPS_LESSON
 from app.data.worlds_data import WORLD_REGISTRY
 
 LESSON_REGISTRY: Dict[str, Dict[str, Any]] = {
@@ -48,6 +49,7 @@ LESSON_REGISTRY: Dict[str, Dict[str, Any]] = {
     "dsa_arrays_strings": ARRAYS_STRINGS_LESSON,
     "cs_git_testing": GIT_TESTING_LESSON,
     "cs_http_api": HTTP_API_LESSON,
+    "python_loops": PYTHON_LOOPS_LESSON,
     # Sprint-compatible aliases (service_company_sprint.json references these slugs)
     "number_systems": NUMBER_SYSTEMS_LESSON,
     "ratio_proportion": RATIO_PROPORTION_LESSON,

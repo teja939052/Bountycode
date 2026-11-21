@@ -90,7 +90,6 @@ import {
   LearningHub,
   LanguageJourney,
   LessonView,
-  LessonPlayer,
   Lessons,
   StudyLibrary,
   AdminDashboard,
@@ -98,37 +97,38 @@ import {
   TopicProblems,
   PersonalDashboard,
   StudentDashboard,
-   AdaptivePath,
-   LearningModules,
-   CurriculumHub,
-   LearnTrack,
-   Profile,
-   LearnLesson,
-  FreeTrial,
-  PwaSetup,
-  AdminContent,
-  MyAssignments,
-  AIMentor,
-  ChallengePacks,
-  Home,
-  Prepare,
-  Practice,
-  Compete,
-  Career,
-  Community,
-  Concepts,
-  Terms,
-  Privacy,
-  Blogs,
-  ArticlePage,
-  PercentagesAcademy,
-  CodingAcademy,
-  TargetPage,
-  LoopsVertical,
-  GamificationDashboard,
-  ContentBundles,
-  SkillMap,
-} from "./pages/lazy";
+    AdaptivePath,
+    LearningModules,
+    CurriculumHub,
+    LearnTrack,
+    Profile,
+    LearnLesson,
+   FreeTrial,
+   PwaSetup,
+   AdminContent,
+   MyAssignments,
+   AIMentor,
+   ChallengePacks,
+   Home,
+   Prepare,
+   Practice,
+   Compete,
+   Career,
+   Community,
+   Concepts,
+   Terms,
+   Privacy,
+   Blogs,
+   ArticlePage,
+   PercentagesAcademy,
+   CodingAcademy,
+   TargetPage,
+   LoopsVertical,
+   GamificationDashboard,
+   SkillMap,
+   RepairMission,
+   ReadinessPage,
+ } from "./pages/lazy";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -204,6 +204,22 @@ function AnimatedRoutes() {
         <Route path="/lessons" element={<Lessons />} />
         <Route path="/lessons/:lessonId" element={<LessonPlayer />} />
         <Route path="/skills" element={<SkillMap />} />
+        <Route
+          path="/repair/:skillId"
+          element={
+            <FeatureErrorBoundary featureName="Repair">
+              <RepairMission />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/readiness"
+          element={
+            <FeatureErrorBoundary featureName="Readiness">
+              <ReadinessPage />
+            </FeatureErrorBoundary>
+          }
+        />
         <Route
           path="/analytics"
           element={<Navigate to="/dashboard" replace />}

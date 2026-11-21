@@ -1,0 +1,325 @@
+{
+  "topic": "cybersecurity_basics",
+  "subject": "cs",
+  "pattern": "cybersecurity_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "CYB-L1",
+      "title": "Cybersecurity Principles: CIA Triad",
+      "concept": "Cybersecurity protects systems, networks, and data from attacks, damage, or unauthorized access. Core principles are the CIA triad: Confidentiality (prevent unauthorized disclosure), Integrity (prevent unauthorized modification), and Availability (ensure authorized access when needed).",
+      "formula": "CIA: Confidentiality, Integrity, Availability. Controls and practices aim to balance and maintain all three.",
+      "worked_example": "Encryption supports confidentiality, checksums/digital signatures support integrity, and redundancy/backups support availability.",
+      "mistakes": [
+        "Thinking cybersecurity is only about confidentiality",
+        "Ignoring availability as a security goal (e.g., DoS impacts availability)",
+        "Assuming one control solves all aspects"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CYB-L2",
+      "title": "Common Threats and Attacks",
+      "concept": "Common threats include malware (viruses, worms, trojans, ransomware), phishing (deceptive messages to steal info/credentials), brute-force/credential attacks, denial-of-service (DoS/DDoS), and SQL injection or other injection attacks against applications. Awareness and layered defenses reduce risk.",
+      "formula": "Threat examples: phishing -> credential theft; ransomware -> encrypts data for ransom; DDoS -> overwhelms availability.",
+      "worked_example": "A phishing email may impersonate a trusted entity and trick a user into revealing a password or clicking a malicious link.",
+      "mistakes": [
+        "Assuming attacks are only technical (social engineering is common)",
+        "Believing antivirus alone prevents all threats",
+        "Underestimating weak passwords and unpatched systems"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CYB-L3",
+      "title": "Basic Security Practices",
+      "concept": "Good practices include strong unique passwords and multi-factor authentication (MFA), regular updates/patching, least privilege access, backups, encryption for sensitive data, secure configurations, and user awareness. Defense in depth uses multiple layers so failure of one control does not compromise everything.",
+      "formula": "Practices: MFA, patching, least privilege, backups, encryption, monitoring, user training.",
+      "worked_example": "MFA requires an additional factor (e.g., OTP/app approval) beyond password, reducing risk if password is stolen.",
+      "mistakes": [
+        "Sharing passwords or reusing them across services",
+        "Disabling updates indefinitely",
+        "Granting excessive permissions by default"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "CYB-PRACTICE-001",
+      "question": "The 'C' in the CIA triad stands for:",
+      "options": {
+        "A": "Control",
+        "B": "Confidentiality",
+        "C": "Connectivity",
+        "D": "Compilation"
+      },
+      "correct_answer": "B",
+      "explanation": "CIA triad stands for Confidentiality, Integrity, and Availability.",
+      "difficulty": "easy",
+      "sub_topic": "principles",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-PRACTICE-002",
+      "question": "Phishing is primarily an attack that:",
+      "options": {
+        "A": "Cools hardware",
+        "B": "Tricks users into revealing sensitive information or taking harmful actions",
+        "C": "Improves encryption automatically",
+        "D": "Defragments disks"
+      },
+      "correct_answer": "B",
+      "explanation": "Phishing uses deceptive communications (email, messages, sites) to steal credentials, data, or deliver malware.",
+      "difficulty": "easy",
+      "sub_topic": "threats",
+      "misconception_tags": [
+        "threat_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-PRACTICE-003",
+      "question": "Which control adds an extra verification factor beyond a password?",
+      "options": {
+        "A": "MFA (Multi-Factor Authentication)",
+        "B": "Screen brightness",
+        "C": "File rename",
+        "D": "Disk format"
+      },
+      "correct_answer": "A",
+      "explanation": "MFA requires two or more factors (something you know/have/are), strengthening authentication beyond passwords alone.",
+      "difficulty": "easy",
+      "sub_topic": "practices",
+      "misconception_tags": [
+        "control_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-PRACTICE-004",
+      "question": "Ransomware typically:",
+      "options": {
+        "A": "Speeds up systems",
+        "B": "Encrypts or blocks access to data and demands payment",
+        "C": "Provides free backups",
+        "D": "Fixes vulnerabilities"
+      },
+      "correct_answer": "B",
+      "explanation": "Ransomware is malware that restricts access to systems/data (often by encryption) and demands ransom for restoration.",
+      "difficulty": "easy",
+      "sub_topic": "threats",
+      "misconception_tags": [
+        "threat_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-PRACTICE-005",
+      "question": "The principle of least privilege means:",
+      "options": {
+        "A": "Give all users admin rights",
+        "B": "Grant only the minimum access needed to perform tasks",
+        "C": "Remove all passwords",
+        "D": "Disable logging"
+      },
+      "correct_answer": "B",
+      "explanation": "Least privilege limits access rights to the minimum necessary, reducing potential impact of compromise or misuse.",
+      "difficulty": "easy",
+      "sub_topic": "practices",
+      "misconception_tags": [
+        "principle_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CYB-001",
+      "question": "Integrity in cybersecurity refers to:",
+      "options": {
+        "A": "Keeping data secret from all",
+        "B": "Ensuring data is accurate and not improperly modified",
+        "C": "Making systems unavailable",
+        "D": "Increasing network speed"
+      },
+      "correct_answer": "B",
+      "explanation": "Integrity means protecting information from unauthorized or accidental alteration and ensuring trustworthiness.",
+      "difficulty": "easy",
+      "sub_topic": "principles",
+      "misconception_tags": [
+        "cia_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-002",
+      "question": "Availability means:",
+      "options": {
+        "A": "Data is encrypted only",
+        "B": "Authorized users can access systems/data when needed",
+        "C": "No one can access data",
+        "D": "Data is deleted regularly"
+      },
+      "correct_answer": "B",
+      "explanation": "Availability ensures reliable and timely access to information and services for authorized users.",
+      "difficulty": "easy",
+      "sub_topic": "principles",
+      "misconception_tags": [
+        "cia_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-003",
+      "question": "A DDoS attack primarily targets:",
+      "options": {
+        "A": "Confidentiality only",
+        "B": "Availability of a service by overwhelming it with traffic",
+        "C": "Code compilation",
+        "D": "Monitor resolution"
+      },
+      "correct_answer": "B",
+      "explanation": "Distributed Denial of Service attacks flood targets with traffic/requests to disrupt or deny legitimate access.",
+      "difficulty": "easy",
+      "sub_topic": "threats",
+      "misconception_tags": [
+        "threat_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-004",
+      "question": "Keeping software updated/patching helps to:",
+      "options": {
+        "A": "Introduce known vulnerabilities",
+        "B": "Fix known security vulnerabilities and bugs",
+        "C": "Disable security features",
+        "D": "Remove backups"
+      },
+      "correct_answer": "B",
+      "explanation": "Patches and updates often address security flaws and bugs, reducing exposure to known exploits.",
+      "difficulty": "easy",
+      "sub_topic": "practices",
+      "misconception_tags": [
+        "practice_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CYB-005",
+      "question": "Defense in depth refers to:",
+      "options": {
+        "A": "A single firewall only",
+        "B": "Using multiple layers of security controls",
+        "C": "No security controls",
+        "D": "Sharing credentials"
+      },
+      "correct_answer": "B",
+      "explanation": "Defense in depth applies layered protections so that if one control fails, others still provide security.",
+      "difficulty": "easy",
+      "sub_topic": "practices",
+      "misconception_tags": [
+        "principle_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

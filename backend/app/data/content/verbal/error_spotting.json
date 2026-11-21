@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-PRACTICE-006",
+      "question": "Identify the error: 'The number of students in the class are increasing.'",
+      "options": {
+        "A": "No error",
+        "B": "'are' should be 'is'",
+        "C": "'number' should be 'amount'",
+        "D": "'class' should be 'classes'"
+      },
+      "correct_answer": "B",
+      "explanation": "'The number of...' is a singular subject referring to one figure, so it takes the singular verb 'is'. (In contrast, 'A number of...' is plural and takes 'are'.)",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "the_number_vs_a_number_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-PRACTICE-007",
+      "question": "Identify the error: 'He is senior than me.'",
+      "options": {
+        "A": "No error",
+        "B": "'senior' should be compared with 'to' not 'than'",
+        "C": "'me' should be 'I'",
+        "D": "'He' should be 'Him'"
+      },
+      "correct_answer": "B",
+      "explanation": "Latin-derived comparatives like senior, junior, superior, and inferior take 'to' rather than 'than' in standard usage: 'He is senior to me.'",
+      "difficulty": "medium",
+      "sub_topic": "comparatives",
+      "misconception_tags": [
+        "senior_to_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-006",
+      "question": "Identify the error: 'One of my friends is a doctor.'",
+      "options": {
+        "A": "No error",
+        "B": "'One of' should be followed by plural noun ('friends' is correct) but verb must be singular - sentence is correct",
+        "C": "'is' should be 'are'",
+        "D": "'my' should be 'the'"
+      },
+      "correct_answer": "B",
+      "explanation": "The construction 'one of + plural noun + singular verb' is correct: 'One of my friends is a doctor.' There is no error in the sentence as given.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "one_of_agreement_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-007",
+      "question": "Identify the error: 'Despite of the rain, they went out.'",
+      "options": {
+        "A": "No error",
+        "B": "'Despite' should not be followed by 'of'",
+        "C": "'rain' should be 'rains'",
+        "D": "'went' should be 'go'"
+      },
+      "correct_answer": "B",
+      "explanation": "'Despite' is followed directly by a noun/gerund without 'of': 'Despite the rain...'. (The alternative is 'in spite of the rain'.)",
+      "difficulty": "medium",
+      "sub_topic": "prepositions",
+      "misconception_tags": [
+        "despite_of_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ERR-008",
+      "question": "Identify the error: 'The furniture in this room are old.'",
+      "options": {
+        "A": "No error",
+        "B": "'are' should be 'is'",
+        "C": "'furniture' should be 'furnitures'",
+        "D": "'room' should be 'rooms'"
+      },
+      "correct_answer": "B",
+      "explanation": "'Furniture' is an uncountable (mass) noun in English, so it takes a singular verb: 'The furniture ... is old.' It also cannot be pluralized as 'furnitures'.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": [
+        "uncountable_noun_agreement_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

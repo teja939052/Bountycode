@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-PRACTICE-006",
+      "question": "Which clause filters groups after aggregation?",
+      "options": {
+        "A": "WHERE",
+        "B": "HAVING",
+        "C": "ORDER BY",
+        "D": "LIMIT"
+      },
+      "correct_answer": "B",
+      "explanation": "HAVING applies conditions to grouped/aggregated results (e.g. HAVING COUNT(*) > 5). WHERE filters rows before grouping and cannot directly use aggregate results in the same way.",
+      "difficulty": "easy",
+      "sub_topic": "groupby_having",
+      "misconception_tags": [
+        "where_vs_having_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-PRACTICE-007",
+      "question": "What does SELECT department, COUNT(*) FROM employees GROUP BY department; do?",
+      "options": {
+        "A": "Counts all employees once",
+        "B": "Returns one row per department with number of employees in that department",
+        "C": "Sorts employees by department only",
+        "D": "Removes duplicate employees"
+      },
+      "correct_answer": "B",
+      "explanation": "GROUP BY department forms groups of rows per department, and COUNT(*) computes the number of rows in each group, producing one summary row per department.",
+      "difficulty": "easy",
+      "sub_topic": "groupby_basics",
+      "misconception_tags": [
+        "groupby_result_interpretation_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-006",
+      "question": "Which aggregate function returns the total of a numeric column?",
+      "options": {
+        "A": "COUNT",
+        "B": "AVG",
+        "C": "SUM",
+        "D": "MAX"
+      },
+      "correct_answer": "C",
+      "explanation": "SUM adds numeric values in a column/group. COUNT returns number of rows/values, AVG returns mean, and MAX returns highest value.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate_functions",
+      "misconception_tags": [
+        "aggregate_function_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-007",
+      "question": "When using GROUP BY, non-aggregated columns in SELECT should generally be:",
+      "options": {
+        "A": "Arbitrary columns not in GROUP BY",
+        "B": "Columns included in the GROUP BY clause (or functionally dependent, per SQL rules)",
+        "C": "Only numeric columns",
+        "D": "Only primary keys"
+      },
+      "correct_answer": "B",
+      "explanation": "Standard SQL requires selected non-aggregated expressions to be in GROUP BY so each group produces a single value for them; otherwise results are undefined/invalid in strict modes.",
+      "difficulty": "medium",
+      "sub_topic": "groupby_basics",
+      "misconception_tags": [
+        "groupby_select_column_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-008",
+      "question": "Which query finds departments having more than 10 employees?",
+      "options": {
+        "A": "SELECT department FROM employees WHERE COUNT(*) > 10 GROUP BY department;",
+        "B": "SELECT department FROM employees GROUP BY department HAVING COUNT(*) > 10;",
+        "C": "SELECT department, COUNT(*) > 10 FROM employees;",
+        "D": "SELECT department FROM employees ORDER BY COUNT(*) > 10;"
+      },
+      "correct_answer": "B",
+      "explanation": "The condition is on an aggregate (COUNT(*) per group), so it must be placed in HAVING after GROUP BY. WHERE cannot filter on aggregate results of the grouped set.",
+      "difficulty": "medium",
+      "sub_topic": "groupby_having",
+      "misconception_tags": [
+        "having_vs_where_aggregate_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

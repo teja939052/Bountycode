@@ -1,0 +1,325 @@
+{
+  "topic": "analogy_basics",
+  "subject": "reasoning",
+  "pattern": "analogy_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "ANAB-L1",
+      "title": "Understanding Analogies",
+      "concept": "An analogy expresses a relationship between a pair of words/items, and you must find another pair with the same relationship. The key is to identify the exact relationship (e.g., part-whole, cause-effect, tool-user, degree, synonym/antonym, category) in the first pair.",
+      "formula": "A : B :: C : ? means A is to B as C is to ?. Identify relation(A,B), apply same to C.",
+      "worked_example": "Bird : Nest :: Lion : ? Bird lives in nest; lion lives in den. Answer: Den.",
+      "mistakes": [
+        "Choosing an option merely associated with C but not sharing the same relation",
+        "Identifying relation too vaguely",
+        "Ignoring order/direction of relationship"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "ANAB-L2",
+      "title": "Common Analogy Relationships",
+      "concept": "Common relationships include: part to whole (wheel:car), whole to part, cause to effect (rain:flood), worker to tool (carpenter:hammer), item to category (apple:fruit), degree/intensity (warm:hot), function/purpose, and sequence.",
+      "formula": "Test relation explicitly: 'A is a part of B' or 'A is used by B' etc., then verify with C and option.",
+      "worked_example": "Pen : Write :: Knife : ? Pen is used to write; knife is used to cut. Relation: tool to function.",
+      "mistakes": [
+        "Confusing similar but different relations (e.g., creator vs user)",
+        "Not checking reverse relation when needed",
+        "Overlooking multiple possible relations and picking first guess"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "ANAB-L3",
+      "title": "Solving Strategy",
+      "concept": "Form a clear sentence describing the relationship in the given pair, then apply that exact sentence structure to the second pair. Eliminate options that do not fit. If multiple options seem possible, refine the relationship to be more specific.",
+      "formula": "Sentence method: 'A does/has/is ... to B' -> 'C does/has/is ... to ?'",
+      "worked_example": "Doctor : Hospital :: Teacher : ? Doctor works in hospital; teacher works in school. Answer: School.",
+      "mistakes": [
+        "Not making relation specific enough",
+        "Selecting based on surface similarity only",
+        "Ignoring word order in the pair"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "ANAB-PRACTICE-001",
+      "question": "Hand : Glove :: Foot : ?",
+      "options": {
+        "A": "Shoe",
+        "B": "Sock",
+        "C": "Leg",
+        "D": "Toe"
+      },
+      "correct_answer": "B",
+      "explanation": "A glove covers the hand; a sock covers the foot. (Shoe also relates, but sock is the closest covering analogy like glove; relationship: covering garment for that body part.)",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "relation_specificity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-PRACTICE-002",
+      "question": "Bird : Fly :: Fish : ?",
+      "options": {
+        "A": "Water",
+        "B": "Swim",
+        "C": "Gill",
+        "D": "Fin"
+      },
+      "correct_answer": "B",
+      "explanation": "A bird moves by flying; a fish moves by swimming. Relation: creature to its mode of movement.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-PRACTICE-003",
+      "question": "Puppy : Dog :: Kitten : ?",
+      "options": {
+        "A": "Lion",
+        "B": "Cat",
+        "C": "Mouse",
+        "D": "Pet"
+      },
+      "correct_answer": "B",
+      "explanation": "A puppy is a young dog; a kitten is a young cat. Relation: young to adult of same species/category.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-PRACTICE-004",
+      "question": "Hot : Cold :: Day : ?",
+      "options": {
+        "A": "Sun",
+        "B": "Night",
+        "C": "Light",
+        "D": "Time"
+      },
+      "correct_answer": "B",
+      "explanation": "Hot and cold are opposites; day and night are opposites. Relation: antonyms.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "antonym_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-PRACTICE-005",
+      "question": "Author : Book :: Painter : ?",
+      "options": {
+        "A": "Brush",
+        "B": "Painting",
+        "C": "Color",
+        "D": "Gallery"
+      },
+      "correct_answer": "B",
+      "explanation": "An author creates a book; a painter creates a painting. Relation: creator to creation.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ANAB-001",
+      "question": "Eye : See :: Ear : ?",
+      "options": {
+        "A": "Sound",
+        "B": "Hear",
+        "C": "Music",
+        "D": "Listen"
+      },
+      "correct_answer": "B",
+      "explanation": "Eye is used to see; ear is used to hear. Relation: organ to its primary function/sense.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-002",
+      "question": "Wheel : Car :: Page : ?",
+      "options": {
+        "A": "Read",
+        "B": "Book",
+        "C": "Paper",
+        "D": "Write"
+      },
+      "correct_answer": "B",
+      "explanation": "A wheel is a part of a car; a page is a part of a book. Relation: part to whole.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "part_whole_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-003",
+      "question": "Fire : Heat :: Ice : ?",
+      "options": {
+        "A": "Water",
+        "B": "Cold",
+        "C": "Winter",
+        "D": "Solid"
+      },
+      "correct_answer": "B",
+      "explanation": "Fire produces/gives heat; ice produces/gives cold. Relation: source to characteristic sensation/property.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-004",
+      "question": "Carpenter : Hammer :: Tailor : ?",
+      "options": {
+        "A": "Cloth",
+        "B": "Needle",
+        "C": "Dress",
+        "D": "Machine"
+      },
+      "correct_answer": "B",
+      "explanation": "A carpenter uses a hammer as a primary tool; a tailor uses a needle. Relation: worker to tool.",
+      "difficulty": "easy",
+      "sub_topic": "relationships",
+      "misconception_tags": [
+        "tool_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANAB-005",
+      "question": "To solve analogies accurately, you should first:",
+      "options": {
+        "A": "Pick a random option",
+        "B": "Identify the precise relationship in the given pair",
+        "C": "Ignore the first pair",
+        "D": "Choose the longest word"
+      },
+      "correct_answer": "B",
+      "explanation": "Determining the exact relationship between the first pair is essential to selecting the option that forms the same relationship with the second term.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "strategy_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

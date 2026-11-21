@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-PRACTICE-006",
+      "question": "Which phase of the SDLC comes first in a traditional waterfall process?",
+      "options": {
+        "A": "Coding",
+        "B": "Design",
+        "C": "Requirement analysis",
+        "D": "Testing"
+      },
+      "correct_answer": "C",
+      "explanation": "Waterfall starts with requirement analysis (understanding what the system must do), followed by design, implementation, testing, and maintenance.",
+      "difficulty": "easy",
+      "sub_topic": "sdlc_phases",
+      "misconception_tags": [
+        "phase_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-PRACTICE-007",
+      "question": "The waterfall model is characterized by:",
+      "options": {
+        "A": "Highly iterative cycles with constant feedback",
+        "B": "Sequential phases where each must complete before the next begins",
+        "C": "No planning or documentation",
+        "D": "Being usable only for hardware projects"
+      },
+      "correct_answer": "B",
+      "explanation": "Waterfall proceeds linearly through ordered phases; requirements are hard to change once a phase is completed, unlike iterative/agile approaches.",
+      "difficulty": "easy",
+      "sub_topic": "sdlc_phases",
+      "misconception_tags": [
+        "model_characteristics_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-006",
+      "question": "Which process model delivers working software in short iterations and welcomes changing requirements?",
+      "options": {
+        "A": "Waterfall",
+        "B": "Agile",
+        "C": "Big-bang",
+        "D": "Code-and-fix only"
+      },
+      "correct_answer": "B",
+      "explanation": "Agile develops in small increments with frequent feedback and responds to changing requirements, in contrast to waterfall's fixed sequential phases.",
+      "difficulty": "medium",
+      "sub_topic": "sdlc_phases",
+      "misconception_tags": [
+        "model_selection_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-007",
+      "question": "A Software Requirement Specification (SRS) document primarily:",
+      "options": {
+        "A": "Describes what the system should do, constraints, and interfaces",
+        "B": "Contains the full source code",
+        "C": "Is written only after production release",
+        "D": "Lists only the hardware to be purchased"
+      },
+      "correct_answer": "A",
+      "explanation": "The SRS captures functional and non-functional requirements, interfaces, and constraints, serving as the agreement basis between stakeholders and developers.",
+      "difficulty": "medium",
+      "sub_topic": "requirements_and_design",
+      "misconception_tags": [
+        "srs_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-008",
+      "question": "Correcting faults discovered in software after release is an example of which type of maintenance?",
+      "options": {
+        "A": "Corrective maintenance",
+        "B": "Adaptive maintenance",
+        "C": "Perfective maintenance",
+        "D": "Preventive maintenance"
+      },
+      "correct_answer": "A",
+      "explanation": "Corrective maintenance fixes reported defects/bugs. Adaptive adjusts to environment changes, perfective adds/improves features, preventive improves maintainability.",
+      "difficulty": "medium",
+      "sub_topic": "testing_and_maintenance",
+      "misconception_tags": [
+        "maintenance_type_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

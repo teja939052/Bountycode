@@ -1,0 +1,325 @@
+{
+  "topic": "boats_streams_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "boats_streams_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "BST-L1",
+      "title": "Downstream and Upstream Speeds",
+      "concept": "In boats and streams, the speed of water current affects effective speed. Downstream means moving with the current, so effective speed increases. Upstream means moving against the current, so effective speed decreases. Let boat speed in still water be b and stream speed be s.",
+      "formula": "Downstream speed = b + s. Upstream speed = b - s (assuming b > s).",
+      "worked_example": "Boat speed in still water 10 km/h, stream 2 km/h. Downstream = 12 km/h, upstream = 8 km/h.",
+      "mistakes": [
+        "Adding stream speed for upstream",
+        "Subtracting in wrong direction",
+        "Assuming stream speed can be greater than boat speed for upstream travel (impossible to move upstream in that case)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "BST-L2",
+      "title": "Finding Boat and Stream Speeds",
+      "concept": "If downstream speed (D) and upstream speed (U) are known, we can find boat speed in still water and stream speed by solving the two equations: b+s=D, b-s=U.",
+      "formula": "b = (D + U)/2. s = (D - U)/2.",
+      "worked_example": "Downstream 15 km/h, upstream 9 km/h. Boat speed = (15+9)/2 = 12 km/h. Stream speed = (15-9)/2 = 3 km/h.",
+      "mistakes": [
+        "Swapping formulas for b and s",
+        "Averaging incorrectly",
+        "Using wrong D/U values"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "BST-L3",
+      "title": "Time, Distance, and Round Trips",
+      "concept": "Use time = distance/speed with effective downstream/upstream speeds. For round trips (same distance downstream and upstream), total time is sum of times for each leg. Average speed for equal distances is not the simple average of speeds.",
+      "formula": "Time downstream = d/(b+s). Time upstream = d/(b-s). Total = d/(b+s) + d/(b-s).",
+      "worked_example": "Distance 24 km, b=10, s=2. Downstream time = 24/12=2 h. Upstream time = 24/8=3 h. Total = 5 h.",
+      "mistakes": [
+        "Using still-water speed for travel time in current",
+        "Taking simple average of speeds for round trip time",
+        "Unit mismatch between distance and speed"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "BST-PRACTICE-001",
+      "question": "Boat speed 12 km/h in still water, stream 3 km/h. Downstream speed is:",
+      "options": {
+        "A": "9 km/h",
+        "B": "12 km/h",
+        "C": "15 km/h",
+        "D": "36 km/h"
+      },
+      "correct_answer": "C",
+      "explanation": "Downstream = b + s = 12 + 3 = 15 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-PRACTICE-002",
+      "question": "Boat speed 10 km/h, stream 4 km/h. Upstream speed is:",
+      "options": {
+        "A": "14 km/h",
+        "B": "6 km/h",
+        "C": "40 km/h",
+        "D": "2.5 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Upstream = b - s = 10 - 4 = 6 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-PRACTICE-003",
+      "question": "Downstream 20 km/h, upstream 12 km/h. Speed in still water is:",
+      "options": {
+        "A": "4 km/h",
+        "B": "8 km/h",
+        "C": "16 km/h",
+        "D": "32 km/h"
+      },
+      "correct_answer": "C",
+      "explanation": "Boat speed = (D + U)/2 = (20 + 12)/2 = 16 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-PRACTICE-004",
+      "question": "Downstream 18 km/h, upstream 10 km/h. Stream speed is:",
+      "options": {
+        "A": "4 km/h",
+        "B": "8 km/h",
+        "C": "14 km/h",
+        "D": "28 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "Stream speed = (D - U)/2 = (18 - 10)/2 = 4 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-PRACTICE-005",
+      "question": "A boat travels 30 km downstream at 15 km/h. Time taken is:",
+      "options": {
+        "A": "1 h",
+        "B": "2 h",
+        "C": "15 h",
+        "D": "45 h"
+      },
+      "correct_answer": "B",
+      "explanation": "Time = distance/speed = 30/15 = 2 hours.",
+      "difficulty": "easy",
+      "sub_topic": "time_distance",
+      "misconception_tags": [
+        "calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "BST-001",
+      "question": "Still water speed 8 km/h, stream 2 km/h. Upstream speed is:",
+      "options": {
+        "A": "4 km/h",
+        "B": "6 km/h",
+        "C": "10 km/h",
+        "D": "16 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Upstream = b - s = 8 - 2 = 6 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-002",
+      "question": "Downstream 14 km/h, upstream 6 km/h. Boat speed in still water:",
+      "options": {
+        "A": "4 km/h",
+        "B": "8 km/h",
+        "C": "10 km/h",
+        "D": "20 km/h"
+      },
+      "correct_answer": "C",
+      "explanation": "b = (14 + 6)/2 = 10 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-003",
+      "question": "Downstream 14 km/h, upstream 6 km/h. Stream speed:",
+      "options": {
+        "A": "4 km/h",
+        "B": "7 km/h",
+        "C": "8 km/h",
+        "D": "10 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "s = (14 - 6)/2 = 4 km/h.",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-004",
+      "question": "If upstream speed is greater than downstream speed, this implies:",
+      "options": {
+        "A": "Normal condition",
+        "B": "An impossible situation given same boat/stream",
+        "C": "Stream is helping more upstream",
+        "D": "Boat speed is zero"
+      },
+      "correct_answer": "B",
+      "explanation": "With a current, downstream (b+s) must be >= upstream (b-s) for s>=0; upstream greater than downstream is not possible under normal assumptions.",
+      "difficulty": "medium",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "concept_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-005",
+      "question": "Distance 20 km upstream at 5 km/h takes:",
+      "options": {
+        "A": "2 h",
+        "B": "4 h",
+        "C": "5 h",
+        "D": "10 h"
+      },
+      "correct_answer": "B",
+      "explanation": "Time = distance/speed = 20/5 = 4 hours.",
+      "difficulty": "easy",
+      "sub_topic": "time_distance",
+      "misconception_tags": [
+        "calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

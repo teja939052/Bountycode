@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-PRACTICE-006",
+      "question": "Which of the following is a primary function of an operating system?",
+      "options": {
+        "A": "Compiling source code only",
+        "B": "Managing hardware resources and providing services to programs",
+        "C": "Designing databases",
+        "D": "Manufacturing processors"
+      },
+      "correct_answer": "B",
+      "explanation": "An OS manages CPU, memory, storage, and I/O devices, and provides abstractions/services (processes, files, system calls) so applications can run efficiently and safely.",
+      "difficulty": "easy",
+      "sub_topic": "os_overview",
+      "misconception_tags": [
+        "os_role_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-PRACTICE-007",
+      "question": "A process is best described as:",
+      "options": {
+        "A": "A program stored on disk",
+        "B": "A program in execution with its own resources/state",
+        "C": "A hardware interrupt",
+        "D": "A compiler directive"
+      },
+      "correct_answer": "B",
+      "explanation": "A process is an active instance of a program, including code, current activity (program counter), stack, heap, and allocated resources. The same program can create multiple processes.",
+      "difficulty": "easy",
+      "sub_topic": "processes",
+      "misconception_tags": [
+        "program_vs_process_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-006",
+      "question": "Which scheduling algorithm may cause starvation for longer processes if short processes keep arriving?",
+      "options": {
+        "A": "First-Come, First-Served (FCFS)",
+        "B": "Shortest Job First / SJF-based with continuously arriving short jobs",
+        "C": "Round Robin with fair quantum always",
+        "D": "None can ever starve"
+      },
+      "correct_answer": "B",
+      "explanation": "SJF/SRTF prioritizes shorter jobs; if shorter jobs continuously arrive, longer jobs may wait indefinitely (starvation). Aging or other policies can mitigate this.",
+      "difficulty": "medium",
+      "sub_topic": "scheduling",
+      "misconception_tags": [
+        "starvation_condition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-007",
+      "question": "Virtual memory allows:",
+      "options": {
+        "A": "Execution of processes without any RAM",
+        "B": "Use of disk space to extend apparent memory and isolate process address spaces",
+        "C": "Permanent storage of CPU registers",
+        "D": "Elimination of page tables"
+      },
+      "correct_answer": "B",
+      "explanation": "Virtual memory maps virtual addresses to physical memory (and can use backing store), enabling larger address spaces, isolation, and efficient memory management via paging/segmentation.",
+      "difficulty": "medium",
+      "sub_topic": "memory_management",
+      "misconception_tags": [
+        "virtual_memory_purpose_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "OS-008",
+      "question": "A deadlock situation requires which necessary conditions (commonly cited)?",
+      "options": {
+        "A": "Only mutual exclusion",
+        "B": "Mutual exclusion, hold and wait, no preemption, circular wait",
+        "C": "Only circular wait and priority",
+        "D": "Preemption and starvation only"
+      },
+      "correct_answer": "B",
+      "explanation": "Coffman conditions for deadlock: mutual exclusion, hold-and-wait, no preemption, and circular wait. All four must hold for deadlock to occur in the classic model.",
+      "difficulty": "medium",
+      "sub_topic": "deadlock",
+      "misconception_tags": [
+        "deadlock_conditions_incomplete"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

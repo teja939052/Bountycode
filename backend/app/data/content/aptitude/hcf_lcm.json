@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "hcf_lcm",
   "subject": "quantitative_aptitude",
   "pattern": "hcf_lcm",
@@ -47,13 +47,24 @@
     {
       "id": "HL-PRACTICE-001",
       "question": "What is the HCF of 18 and 24?",
-      "options": {"A": "2", "B": "3", "C": "6", "D": "12"},
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "6",
+        "D": "12"
+      },
       "correct_answer": "C",
       "explanation": "Factors of 18: 1,2,3,6,9,18. Factors of 24: 1,2,3,4,6,8,12,24. Common factors: 1,2,3,6. Highest is 6. Alternatively 18=2x3^2, 24=2^3x3, HCF=2x3=6.",
       "difficulty": "easy",
       "sub_topic": "hcf_basics",
-      "misconception_tags": ["confusing_hcf_lcm"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "confusing_hcf_lcm"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "HL-PRACTICE-002",
       "question": "What is the LCM of 8 and 12?",
-      "options": {"A": "12", "B": "24", "C": "48", "D": "96"},
+      "options": {
+        "A": "12",
+        "B": "24",
+        "C": "48",
+        "D": "96"
+      },
       "correct_answer": "B",
       "explanation": "Multiples of 8: 8,16,24,... Multiples of 12: 12,24,... Least common multiple is 24. Prime factorization: 8=2^3, 12=2^2x3, LCM=2^3x3=24.",
       "difficulty": "easy",
       "sub_topic": "lcm_basics",
-      "misconception_tags": ["taking_product_instead_of_lcm"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "taking_product_instead_of_lcm"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,23 @@
     {
       "id": "HL-PRACTICE-003",
       "question": "The HCF of two numbers is 5 and their LCM is 60. If one number is 15, the other number is:",
-      "options": {"A": "10", "B": "20", "C": "25", "D": "30"},
+      "options": {
+        "A": "10",
+        "B": "20",
+        "C": "25",
+        "D": "30"
+      },
       "correct_answer": "B",
       "explanation": "For two numbers, a x b = HCF x LCM. So 15 x b = 5 x 60 = 300. Therefore b = 300 / 15 = 20.",
       "difficulty": "medium",
       "sub_topic": "hcf_lcm_relationship_and_applications",
-      "misconception_tags": ["wrong_relation_application"],
-      "company_tags": ["infosys", "wipro"],
+      "misconception_tags": [
+        "wrong_relation_application"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +126,24 @@
     {
       "id": "HL-PRACTICE-004",
       "question": "Three traffic lights change after every 20, 30, and 40 seconds respectively. If they change together now, after how many seconds will they change together again?",
-      "options": {"A": "60", "B": "90", "C": "120", "D": "240"},
+      "options": {
+        "A": "60",
+        "B": "90",
+        "C": "120",
+        "D": "240"
+      },
       "correct_answer": "C",
       "explanation": "They coincide at common multiples of 20, 30, and 40. Find LCM: 20=2^2x5, 30=2x3x5, 40=2^3x5. LCM=2^3x3x5=120 seconds.",
       "difficulty": "medium",
       "sub_topic": "hcf_lcm_relationship_and_applications",
-      "misconception_tags": ["using_hcf_for_cycle"],
-      "company_tags": ["tcs", "cognizant", "capgemini"],
+      "misconception_tags": [
+        "using_hcf_for_cycle"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +153,81 @@
     {
       "id": "HL-PRACTICE-005",
       "question": "What is the greatest length of a tape that can measure exactly 42 m and 70 m?",
-      "options": {"A": "7 m", "B": "14 m", "C": "21 m", "D": "35 m"},
+      "options": {
+        "A": "7 m",
+        "B": "14 m",
+        "C": "21 m",
+        "D": "35 m"
+      },
       "correct_answer": "B",
       "explanation": "We need the largest length that divides both 42 and 70 exactly, so find HCF. 42=2x3x7, 70=2x5x7, HCF=2x7=14 m.",
       "difficulty": "easy",
       "sub_topic": "hcf_lcm_relationship_and_applications",
-      "misconception_tags": ["using_lcm_for_division"],
-      "company_tags": ["wipro", "infosys"],
+      "misconception_tags": [
+        "using_lcm_for_division"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HL-PRACTICE-006",
+      "question": "Find the HCF of 36 and 48.",
+      "options": {
+        "A": "6",
+        "B": "8",
+        "C": "12",
+        "D": "18"
+      },
+      "correct_answer": "C",
+      "explanation": "Factors method or division: 36 = 2^2*3^2, 48 = 2^4*3. Common prime factors with lowest powers: 2^2*3 = 12. So HCF is 12.",
+      "difficulty": "easy",
+      "sub_topic": "hcf_basics",
+      "misconception_tags": [
+        "prime_factorization_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HL-PRACTICE-007",
+      "question": "Find the LCM of 12 and 18.",
+      "options": {
+        "A": "24",
+        "B": "36",
+        "C": "48",
+        "D": "72"
+      },
+      "correct_answer": "B",
+      "explanation": "12 = 2^2*3, 18 = 2*3^2. LCM takes highest powers: 2^2*3^2 = 36.",
+      "difficulty": "easy",
+      "sub_topic": "lcm_basics",
+      "misconception_tags": [
+        "confusing_hcf_lcm_powers"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +235,23 @@
     {
       "id": "HL-001",
       "question": "The HCF and LCM of two numbers are 12 and 180 respectively. If one of the numbers is 36, the other is:",
-      "options": {"A": "48", "B": "60", "C": "72", "D": "90"},
+      "options": {
+        "A": "48",
+        "B": "60",
+        "C": "72",
+        "D": "90"
+      },
       "correct_answer": "B",
       "explanation": "a x b = HCF x LCM => 36 x b = 12 x 180 = 2160 => b = 2160/36 = 60.",
       "difficulty": "easy",
       "sub_topic": "hcf_lcm_relationship_and_applications",
-      "misconception_tags": ["arithmetic_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "arithmetic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +261,24 @@
     {
       "id": "HL-002",
       "question": "Find the least number which when divided by 12, 15, and 20 leaves remainder 5 in each case.",
-      "options": {"A": "55", "B": "60", "C": "65", "D": "125"},
+      "options": {
+        "A": "55",
+        "B": "60",
+        "C": "65",
+        "D": "125"
+      },
       "correct_answer": "C",
       "explanation": "First find LCM of 12, 15, 20. 12=2^2x3, 15=3x5, 20=2^2x5, LCM=2^2x3x5=60. Numbers leaving remainder 5 are of the form 60k+5. Least positive is 60+5=65.",
       "difficulty": "medium",
       "sub_topic": "hcf_lcm_relationship_and_applications",
-      "misconception_tags": ["forgetting_to_add_remainder"],
-      "company_tags": ["tcs", "accenture", "wipro"],
+      "misconception_tags": [
+        "forgetting_to_add_remainder"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +288,23 @@
     {
       "id": "HL-003",
       "question": "The greatest number that divides 43, 91, and 183 leaving the same remainder in each case is:",
-      "options": {"A": "4", "B": "7", "C": "13", "D": "24"},
+      "options": {
+        "A": "4",
+        "B": "7",
+        "C": "13",
+        "D": "24"
+      },
       "correct_answer": "A",
       "explanation": "If numbers leave same remainder, their differences are exactly divisible by the required number. Differences: 91-43=48, 183-91=92, 183-43=140. HCF of 48, 92, 140: 48=2^4x3, 92=2^2x23, 140=2^2x5x7. Common factor 2^2=4. So greatest number is 4.",
       "difficulty": "hard",
       "sub_topic": "hcf_basics",
-      "misconception_tags": ["same_remainder_method_error"],
-      "company_tags": ["infosys", "tcs"],
+      "misconception_tags": [
+        "same_remainder_method_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +314,23 @@
     {
       "id": "HL-004",
       "question": "Two numbers are in the ratio 3:4 and their HCF is 4. Their LCM is:",
-      "options": {"A": "12", "B": "16", "C": "24", "D": "48"},
+      "options": {
+        "A": "12",
+        "B": "16",
+        "C": "24",
+        "D": "48"
+      },
       "correct_answer": "D",
       "explanation": "If numbers are in ratio 3:4 and HCF is 4, numbers are 3x4=12 and 4x4=16. LCM of 12 and 16: 12=2^2x3, 16=2^4, LCM=2^4x3=48. (Also LCM = HCF x product of ratio terms = 4 x 3 x 4 = 48.)",
       "difficulty": "medium",
       "sub_topic": "hcf_lcm_relationship_and_applications",
-      "misconception_tags": ["ratio_hcf_lcm_confusion"],
-      "company_tags": ["wipro", "capgemini"],
+      "misconception_tags": [
+        "ratio_hcf_lcm_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +340,108 @@
     {
       "id": "HL-005",
       "question": "The LCM of 2/3, 3/4, and 4/5 is:",
-      "options": {"A": "12", "B": "1/60", "C": "12/1", "D": "60"},
+      "options": {
+        "A": "12",
+        "B": "1/60",
+        "C": "12/1",
+        "D": "60"
+      },
       "correct_answer": "A",
       "explanation": "For fractions, LCM = LCM of numerators / HCF of denominators. Numerators: 2,3,4 -> LCM 12. Denominators: 3,4,5 -> HCF 1. So LCM = 12/1 = 12.",
       "difficulty": "medium",
       "sub_topic": "lcm_basics",
-      "misconception_tags": ["fraction_lcm_hcf_rule_error"],
-      "company_tags": ["tcs", "infosys"],
+      "misconception_tags": [
+        "fraction_lcm_hcf_rule_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HL-006",
+      "question": "The HCF and LCM of two numbers are 6 and 72 respectively. If one number is 18, what is the other?",
+      "options": {
+        "A": "12",
+        "B": "24",
+        "C": "36",
+        "D": "48"
+      },
+      "correct_answer": "B",
+      "explanation": "For two numbers, a*b = HCF*LCM. So 18*b = 6*72 = 432 => b = 432/18 = 24.",
+      "difficulty": "medium",
+      "sub_topic": "hcf_lcm_relation",
+      "misconception_tags": [
+        "product_formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "infosys"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HL-007",
+      "question": "What is the least number which is exactly divisible by 8, 12, and 15?",
+      "options": {
+        "A": "60",
+        "B": "90",
+        "C": "120",
+        "D": "240"
+      },
+      "correct_answer": "C",
+      "explanation": "We need LCM of 8,12,15. 8=2^3, 12=2^2*3, 15=3*5. LCM = 2^3*3*5 = 120.",
+      "difficulty": "medium",
+      "sub_topic": "lcm_application",
+      "misconception_tags": [
+        "lcm_calculation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HL-008",
+      "question": "Two numbers are in the ratio 3:4 and their HCF is 5. What is their LCM?",
+      "options": {
+        "A": "30",
+        "B": "45",
+        "C": "60",
+        "D": "75"
+      },
+      "correct_answer": "C",
+      "explanation": "If HCF is 5 and ratio 3:4, numbers are 15 and 20. LCM of 15 and 20 is 60. (Alternatively, LCM = HCF*3*4 = 5*12 = 60.)",
+      "difficulty": "medium",
+      "sub_topic": "hcf_ratio_lcm",
+      "misconception_tags": [
+        "ratio_hcf_interpretation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

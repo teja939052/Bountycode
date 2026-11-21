@@ -1,0 +1,325 @@
+{
+  "topic": "figure_series_basics",
+  "subject": "reasoning",
+  "pattern": "figure_series_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "FSB-L1",
+      "title": "Non-Verbal Series: Pattern Recognition",
+      "concept": "Figure/visual series questions present a sequence of shapes or diagrams that change according to a rule. You must identify the pattern (rotation, reflection, number/position of elements, shading, size changes, or combinations) and select the next figure. Since this text pack describes patterns conceptually, focus on common transformation rules.",
+      "formula": "Look for: rotation (clockwise/anticlockwise by fixed angle), movement of elements, addition/removal, shading alternation, mirror images, and count changes.",
+      "worked_example": "If an arrow rotates 90° clockwise in each step: up -> right -> down -> next is left. Pattern is consistent angular rotation.",
+      "mistakes": [
+        "Focusing on only one element when multiple change",
+        "Missing combined rules (e.g., rotate and add a dot)",
+        "Assuming pattern reverses without evidence"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "FSB-L2",
+      "title": "Common Transformations",
+      "concept": "Typical transformations include rotation by 45°/90°, horizontal/vertical flipping, incremental increase/decrease in sides or elements, alternating fill/shade, and positional shifts in a grid. Track each attribute separately to detect simultaneous rules.",
+      "formula": "Check attributes per step: orientation, count, position, fill, size. Rule must hold across all given steps.",
+      "worked_example": "A shape gains one side each step: triangle (3), square (4), pentagon (5), next hexagon (6).",
+      "mistakes": [
+        "Confusing rotation with reflection",
+        "Not verifying rule on all transitions",
+        "Ignoring element-wise changes"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "FSB-L3",
+      "title": "Systematic Solving Approach",
+      "concept": "Solve by comparing consecutive figures: identify what stays same and what changes. Formulate a hypothesis and test it on every transition. For MCQs, eliminate options that violate the observed rule. When patterns combine, ensure every component follows its own consistent rule.",
+      "formula": "Stepwise: observe differences -> hypothesize rule -> verify on all steps -> predict next -> match option.",
+      "worked_example": "If dot moves one corner clockwise each step and shading alternates, next figure must satisfy both: correct corner and correct shading.",
+      "mistakes": [
+        "Jumping to answer after one transition",
+        "Overlooking secondary patterns",
+        "Not eliminating inconsistent options"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "FSB-PRACTICE-001",
+      "question": "In a figure series, an arrow points Up, Right, Down in successive steps (90° clockwise). The next direction is:",
+      "options": {
+        "A": "Up",
+        "B": "Right",
+        "C": "Left",
+        "D": "Down"
+      },
+      "correct_answer": "C",
+      "explanation": "Rotating 90° clockwise from Down gives Left.",
+      "difficulty": "easy",
+      "sub_topic": "transformations",
+      "misconception_tags": [
+        "rotation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-PRACTICE-002",
+      "question": "A series shows shapes with sides: 3, 4, 5, 6. The next shape should have:",
+      "options": {
+        "A": "5 sides",
+        "B": "6 sides",
+        "C": "7 sides",
+        "D": "8 sides"
+      },
+      "correct_answer": "C",
+      "explanation": "The number of sides increases by 1 each step, so after 6 comes 7 (heptagon).",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-PRACTICE-003",
+      "question": "If shading alternates Filled, Unfilled, Filled, Unfilled, the next figure is:",
+      "options": {
+        "A": "Unfilled",
+        "B": "Filled",
+        "C": "Half-filled always",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "B",
+      "explanation": "The pattern alternates every step; after Unfilled comes Filled.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "alternation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-PRACTICE-004",
+      "question": "Best strategy for figure series is to:",
+      "options": {
+        "A": "Guess based on first figure",
+        "B": "Identify and verify the transformation rule across all steps",
+        "C": "Ignore later figures",
+        "D": "Choose most complex option"
+      },
+      "correct_answer": "B",
+      "explanation": "A consistent rule must explain every transition; verifying across all steps prevents wrong hypotheses.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "strategy_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-PRACTICE-005",
+      "question": "A dot moves one position clockwise around a square's corners each step: top-left, top-right, bottom-right. Next position:",
+      "options": {
+        "A": "Top-left",
+        "B": "Top-right",
+        "C": "Bottom-left",
+        "D": "Center"
+      },
+      "correct_answer": "C",
+      "explanation": "Continuing clockwise around corners from bottom-right gives bottom-left.",
+      "difficulty": "easy",
+      "sub_topic": "transformations",
+      "misconception_tags": [
+        "position_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "FSB-001",
+      "question": "A line segment rotates 45° anticlockwise each step. After 4 steps from horizontal-right, it points:",
+      "options": {
+        "A": "Horizontal-right",
+        "B": "Vertical-up",
+        "C": "Horizontal-left",
+        "D": "Vertical-down"
+      },
+      "correct_answer": "C",
+      "explanation": "4 steps × 45° = 180° anticlockwise from horizontal-right gives horizontal-left.",
+      "difficulty": "medium",
+      "sub_topic": "transformations",
+      "misconception_tags": [
+        "rotation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-002",
+      "question": "Number of small circles in figures: 1, 2, 4, 8. Next count is:",
+      "options": {
+        "A": "10",
+        "B": "12",
+        "C": "16",
+        "D": "32"
+      },
+      "correct_answer": "C",
+      "explanation": "Pattern doubles each step (powers of two): 1,2,4,8,16.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "sequence_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-003",
+      "question": "If a figure is mirrored horizontally in each step relative to previous, two consecutive mirrors return:",
+      "options": {
+        "A": "A rotated figure only",
+        "B": "The original orientation (same as before first mirror)",
+        "C": "An inverted color only",
+        "D": "No change possible"
+      },
+      "correct_answer": "B",
+      "explanation": "Applying the same mirror reflection twice restores the original orientation.",
+      "difficulty": "medium",
+      "sub_topic": "transformations",
+      "misconception_tags": [
+        "reflection_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-004",
+      "question": "A series alternates between adding a shape and rotating the whole figure. This is an example of:",
+      "options": {
+        "A": "No pattern",
+        "B": "A combined/multiple rule pattern",
+        "C": "Only rotation",
+        "D": "Only counting"
+      },
+      "correct_answer": "B",
+      "explanation": "Two different operations applied in alternation form a combined rule that must be tracked together.",
+      "difficulty": "easy",
+      "sub_topic": "patterns",
+      "misconception_tags": [
+        "combined_rule_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FSB-005",
+      "question": "When solving figure series, you should:",
+      "options": {
+        "A": "Verify the rule holds for every given transition",
+        "B": "Check only the last two figures",
+        "C": "Ignore element counts",
+        "D": "Assume color never matters"
+      },
+      "correct_answer": "A",
+      "explanation": "A valid pattern must consistently explain all transitions shown, not just one pair.",
+      "difficulty": "easy",
+      "sub_topic": "strategy",
+      "misconception_tags": [
+        "verification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "topic": "clocks_calendars_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "clocks_calendars_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "CCB-L1",
+      "title": "Clock Basics: Angles and Speeds",
+      "concept": "An analog clock has hour and minute hands moving at constant speeds. The minute hand completes 360° in 60 minutes (6° per minute). The hour hand completes 360° in 12 hours (30° per hour or 0.5° per minute). The angle between hands can be found from their positions.",
+      "formula": "Minute hand: 6° per minute. Hour hand: 0.5° per minute (or 30° per hour). Angle = |30*H - 5.5*M| degrees at H hours M minutes (smaller angle can be min(angle, 360-angle)).",
+      "worked_example": "At 3:00, hour hand at 90°, minute at 0°, angle = 90°. At 3:30, hour hand at 105°, minute at 180°, angle = 75°.",
+      "mistakes": [
+        "Forgetting hour hand moves as minutes pass",
+        "Using 30° per minute for hour hand instead of 0.5°",
+        "Not considering the smaller angle when asked"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CCB-L2",
+      "title": "Relative Speed and Coincidence/Right Angles",
+      "concept": "Relative speed of minute hand with respect to hour hand is 5.5° per minute (6 - 0.5). Hands coincide when angle is 0° (every ~65 5/11 minutes in 12 hours, 11 times). They are at right angles (90°) twice in most hour intervals (22 times in 12 hours).",
+      "formula": "Relative speed = 5.5°/min. Time for gain of 360° = 360/5.5 = 720/11 minutes between coincidences.",
+      "worked_example": "Hands coincide at 12:00, and again after 720/11 minutes (~65 5/11 min), i.e. approximately at 1:05 5/11.",
+      "mistakes": [
+        "Assuming hands coincide every 60 minutes",
+        "Counting overlaps incorrectly across 12 hours (11 times, not 12)",
+        "Confusing right angle occurrences"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "CCB-L3",
+      "title": "Calendar Basics: Odd Days and Leap Years",
+      "concept": "Calendar problems use odd days (days beyond complete weeks). Ordinary year has 365 days = 52 weeks + 1 odd day; leap year has 366 days = 2 odd days. Leap year rule (Gregorian): divisible by 4 is leap, except century years must be divisible by 400.",
+      "formula": "Odd days: 365 mod 7 = 1, 366 mod 7 = 2. Leap year: year%400==0 or (year%4==0 and year%100!=0).",
+      "worked_example": "2000 is leap (divisible by 400). 1900 is not leap (century year not divisible by 400). 2024 is leap (divisible by 4, not century).",
+      "mistakes": [
+        "Treating every year divisible by 4 as leap including centuries like 1900",
+        "Off-by-one in counting odd days across ranges",
+        "Forgetting leap day effect for dates after February"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "CCB-PRACTICE-001",
+      "question": "The minute hand of a clock moves how many degrees in 1 minute?",
+      "options": {
+        "A": "0.5°",
+        "B": "5°",
+        "C": "6°",
+        "D": "30°"
+      },
+      "correct_answer": "C",
+      "explanation": "Minute hand completes 360° in 60 minutes, so 360/60 = 6° per minute.",
+      "difficulty": "easy",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "speed_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-PRACTICE-002",
+      "question": "The hour hand moves how many degrees in 1 hour?",
+      "options": {
+        "A": "0.5°",
+        "B": "6°",
+        "C": "30°",
+        "D": "60°"
+      },
+      "correct_answer": "C",
+      "explanation": "Hour hand completes 360° in 12 hours, so 360/12 = 30° per hour.",
+      "difficulty": "easy",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "speed_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-PRACTICE-003",
+      "question": "At 6:00, the angle between hour and minute hands is:",
+      "options": {
+        "A": "0°",
+        "B": "90°",
+        "C": "180°",
+        "D": "360°"
+      },
+      "correct_answer": "C",
+      "explanation": "At 6:00 hour hand points at 6 (180° from 12) and minute hand at 12 (0°), so angle is 180°.",
+      "difficulty": "easy",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "angle_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-PRACTICE-004",
+      "question": "How many odd days are in an ordinary year (365 days)?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "3"
+      },
+      "correct_answer": "B",
+      "explanation": "365 days = 52 weeks + 1 day, so 1 odd day.",
+      "difficulty": "easy",
+      "sub_topic": "calendars",
+      "misconception_tags": [
+        "odd_days_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-PRACTICE-005",
+      "question": "Which of the following is a leap year?",
+      "options": {
+        "A": "1900",
+        "B": "2000",
+        "C": "2100",
+        "D": "1902"
+      },
+      "correct_answer": "B",
+      "explanation": "Century years must be divisible by 400 to be leap years. 2000 is divisible by 400, so it is a leap year.",
+      "difficulty": "easy",
+      "sub_topic": "calendars",
+      "misconception_tags": [
+        "leap_year_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CCB-001",
+      "question": "At 3:00, the angle between the hands is:",
+      "options": {
+        "A": "60°",
+        "B": "90°",
+        "C": "120°",
+        "D": "180°"
+      },
+      "correct_answer": "B",
+      "explanation": "At 3:00 the hour hand is at 3 (90° from 12) and minute hand at 12, so angle = 90°.",
+      "difficulty": "easy",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "angle_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-002",
+      "question": "A leap year has how many odd days?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "0"
+      },
+      "correct_answer": "B",
+      "explanation": "366 days = 52 weeks + 2 days, so 2 odd days.",
+      "difficulty": "easy",
+      "sub_topic": "calendars",
+      "misconception_tags": [
+        "odd_days_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-003",
+      "question": "The relative speed of minute hand with respect to hour hand is:",
+      "options": {
+        "A": "0.5°/min",
+        "B": "5°/min",
+        "C": "5.5°/min",
+        "D": "6°/min"
+      },
+      "correct_answer": "C",
+      "explanation": "Minute hand moves 6°/min and hour hand 0.5°/min in same direction, so relative speed = 5.5°/min.",
+      "difficulty": "medium",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "relative_speed_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-004",
+      "question": "Year 1900 was not a leap year because:",
+      "options": {
+        "A": "It is not divisible by 4",
+        "B": "Century years must be divisible by 400 to be leap years",
+        "C": "It had 366 days",
+        "D": "All century years are leap years"
+      },
+      "correct_answer": "B",
+      "explanation": "1900 is divisible by 100 but not by 400, so by Gregorian rule it is not a leap year.",
+      "difficulty": "easy",
+      "sub_topic": "calendars",
+      "misconception_tags": [
+        "leap_year_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-005",
+      "question": "How many times do clock hands coincide in 12 hours?",
+      "options": {
+        "A": "10",
+        "B": "11",
+        "C": "12",
+        "D": "22"
+      },
+      "correct_answer": "B",
+      "explanation": "Hands coincide once in every ~65 5/11 minutes; in 12 hours they coincide 11 times (they coincide at 12:00 but not again until after 1:00).",
+      "difficulty": "medium",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "coincidence_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

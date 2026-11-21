@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-PRACTICE-006",
+      "question": "Which device primarily forwards packets between different networks using IP addresses?",
+      "options": {
+        "A": "Hub",
+        "B": "Switch (Layer 2 only)",
+        "C": "Router",
+        "D": "Repeater"
+      },
+      "correct_answer": "C",
+      "explanation": "Routers operate at the network layer and use IP addresses/routing tables to forward packets between different networks/subnets. Switches primarily forward frames within a LAN using MAC addresses.",
+      "difficulty": "easy",
+      "sub_topic": "network_devices",
+      "misconception_tags": [
+        "device_layer_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-PRACTICE-007",
+      "question": "What does DNS do?",
+      "options": {
+        "A": "Encrypts all network traffic",
+        "B": "Translates domain names to IP addresses",
+        "C": "Assigns MAC addresses to devices",
+        "D": "Routes packets physically"
+      },
+      "correct_answer": "B",
+      "explanation": "The Domain Name System (DNS) resolves human-readable domain names (e.g. example.com) into IP addresses needed for network communication.",
+      "difficulty": "easy",
+      "sub_topic": "application_protocols",
+      "misconception_tags": [
+        "dns_purpose_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-006",
+      "question": "Which protocol is connection-oriented and provides reliable, ordered delivery?",
+      "options": {
+        "A": "UDP",
+        "B": "IP",
+        "C": "TCP",
+        "D": "ICMP"
+      },
+      "correct_answer": "C",
+      "explanation": "TCP establishes a connection and provides reliability, ordering, and flow/congestion control. UDP is connectionless and does not guarantee delivery or order.",
+      "difficulty": "easy",
+      "sub_topic": "transport_layer",
+      "misconception_tags": [
+        "tcp_vs_udp_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-007",
+      "question": "In the OSI model, which layer is responsible for end-to-end logical addressing and routing?",
+      "options": {
+        "A": "Data Link Layer",
+        "B": "Network Layer",
+        "C": "Transport Layer",
+        "D": "Physical Layer"
+      },
+      "correct_answer": "B",
+      "explanation": "The Network Layer (Layer 3) handles logical addressing (e.g. IP) and routing of packets across networks. Data Link handles node-to-node delivery on the same link.",
+      "difficulty": "medium",
+      "sub_topic": "osi_model",
+      "misconception_tags": [
+        "osi_layer_function_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-008",
+      "question": "An IPv4 address is how many bits long?",
+      "options": {
+        "A": "32 bits",
+        "B": "48 bits",
+        "C": "64 bits",
+        "D": "128 bits"
+      },
+      "correct_answer": "A",
+      "explanation": "IPv4 addresses are 32-bit values typically written in dotted-decimal notation. IPv6 addresses are 128 bits long.",
+      "difficulty": "easy",
+      "sub_topic": "addressing",
+      "misconception_tags": [
+        "ipv4_ipv6_size_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

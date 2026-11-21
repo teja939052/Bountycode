@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-PRACTICE-006",
+      "question": "Which two properties indicate that dynamic programming may be applicable?",
+      "options": {
+        "A": "Greedy choice and sorting",
+        "B": "Overlapping subproblems and optimal substructure",
+        "C": "Divide and conquer with no overlap",
+        "D": "Random access and hashing"
+      },
+      "correct_answer": "B",
+      "explanation": "DP is effective when the same subproblems recur (overlapping subproblems) and an optimal solution can be built from optimal solutions of subproblems (optimal substructure).",
+      "difficulty": "medium",
+      "sub_topic": "dp_properties",
+      "misconception_tags": [
+        "dp_property_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-PRACTICE-007",
+      "question": "Memoization in dynamic programming refers to:",
+      "options": {
+        "A": "Sorting inputs before processing",
+        "B": "Storing results of solved subproblems to avoid recomputation",
+        "C": "Using only iterative loops",
+        "D": "Discarding previous results to save memory"
+      },
+      "correct_answer": "B",
+      "explanation": "Memoization is a top-down technique where computed results for specific subproblem states are cached (e.g. in a map/array) so repeated calls return instantly instead of recomputing.",
+      "difficulty": "easy",
+      "sub_topic": "dp_techniques",
+      "misconception_tags": [
+        "memoization_definition_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-006",
+      "question": "Tabulation in dynamic programming is typically characterized as:",
+      "options": {
+        "A": "Top-down recursion with caching",
+        "B": "Bottom-up iterative filling of a table",
+        "C": "Randomized approximation",
+        "D": "Greedy selection without states"
+      },
+      "correct_answer": "B",
+      "explanation": "Tabulation builds solutions iteratively from base cases up to the target by filling a table/array in dependency order, avoiding recursion overhead.",
+      "difficulty": "easy",
+      "sub_topic": "dp_techniques",
+      "misconception_tags": [
+        "tabulation_vs_memoization_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-007",
+      "question": "Computing Fibonacci numbers with naive recursion has exponential time mainly because of:",
+      "options": {
+        "A": "Lack of base cases",
+        "B": "Overlapping subproblems recomputed many times",
+        "C": "Use of integers",
+        "D": "Iterative loops"
+      },
+      "correct_answer": "B",
+      "explanation": "Naive recursion recomputes the same Fibonacci values repeatedly (e.g. fib(3) many times), creating overlapping subproblems; DP/memoization stores them to reduce time drastically.",
+      "difficulty": "medium",
+      "sub_topic": "dp_motivation",
+      "misconception_tags": [
+        "overlapping_subproblems_missed"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DP-008",
+      "question": "Compared to naive recursion for overlapping subproblems, dynamic programming primarily improves:",
+      "options": {
+        "A": "Correctness only",
+        "B": "Time efficiency by avoiding repeated work",
+        "C": "Input size limits only by compression",
+        "D": "Syntax simplicity"
+      },
+      "correct_answer": "B",
+      "explanation": "DP trades extra memory (for cache/table) to save time by computing each distinct subproblem once, turning exponential or high-polynomial redundant work into efficient solutions.",
+      "difficulty": "easy",
+      "sub_topic": "dp_benefits",
+      "misconception_tags": [
+        "dp_tradeoff_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

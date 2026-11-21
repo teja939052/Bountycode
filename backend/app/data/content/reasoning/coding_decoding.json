@@ -176,6 +176,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-PRACTICE-006",
+      "question": "In a certain code, CAT is written as DBU. How is DOG written in the same code?",
+      "options": {
+        "A": "EPH",
+        "B": "DQH",
+        "C": "ENH",
+        "D": "FQI"
+      },
+      "correct_answer": "A",
+      "explanation": "Each letter is shifted forward by 1: C->D, A->B, T->U gives DBU. Applying the same to DOG: D->E, O->P, G->H = EPH.",
+      "difficulty": "easy",
+      "sub_topic": "letter_shifting",
+      "misconception_tags": [
+        "shift_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-PRACTICE-007",
+      "question": "If APPLE is coded as BQQMF, how is MANGO coded (same +1 shift rule)?",
+      "options": {
+        "A": "NBHPH",
+        "B": "LZFNF",
+        "C": "NBHPH (alternatively 'NBHPG')",
+        "D": "OBHPH"
+      },
+      "correct_answer": "A",
+      "explanation": "Shifting each letter by +1: M->N, A->B, N->O, G->H, O->P gives NBHPH.",
+      "difficulty": "easy",
+      "sub_topic": "letter_shifting",
+      "misconception_tags": [
+        "shift_direction_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -313,6 +367,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-006",
+      "question": "In a code, BLOOD is written as CPOME. What is the code for FLOOD?",
+      "options": {
+        "A": "GPOME",
+        "B": "GPMPF",
+        "C": "FPMEE",
+        "D": "GPNPE"
+      },
+      "correct_answer": "A",
+      "explanation": "The pattern shifts each letter by +1: B->C, L->M, O->P, O->P, D->E gives CPOME. Applying to FLOOD: F->G, L->M, O->P, O->P, D->E = GPOME.",
+      "difficulty": "medium",
+      "sub_topic": "letter_shifting",
+      "misconception_tags": [
+        "letterwise_shift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-007",
+      "question": "If MONKEY is coded as LPNNJX (each letter shifted back by 1), how is TIGER coded?",
+      "options": {
+        "A": "UJHFS",
+        "B": "SHFDQ",
+        "C": "SHFDR",
+        "D": "RGFDQ"
+      },
+      "correct_answer": "B",
+      "explanation": "Each letter shifts back by 1: T->S, I->H, G->F, E->D, R->Q gives SHFDQ.",
+      "difficulty": "medium",
+      "sub_topic": "letter_shifting",
+      "misconception_tags": [
+        "shift_direction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CODE-008",
+      "question": "In a certain code, RAIN is written as SBJO (each letter +1). How is WATER written?",
+      "options": {
+        "A": "XBUFS",
+        "B": "XBUFT",
+        "C": "VZTFQ",
+        "D": "XAVFS"
+      },
+      "correct_answer": "A",
+      "explanation": "Shifting each letter by +1: W->X, A->B, T->U, E->F, R->S gives XBUFS.",
+      "difficulty": "easy",
+      "sub_topic": "letter_shifting",
+      "misconception_tags": [
+        "letterwise_shift_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]
