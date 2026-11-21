@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-PRACTICE-006",
+      "question": "What is the value of the square root of 49?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "49"
+      },
+      "correct_answer": "B",
+      "explanation": "The principal square root of 49 is 7 because 7 * 7 = 49.",
+      "difficulty": "easy",
+      "sub_topic": "surds_basics",
+      "misconception_tags": [
+        "square_root_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-PRACTICE-007",
+      "question": "What is 2^3 multiplied by 2^4?",
+      "options": {
+        "A": "128",
+        "B": "24",
+        "C": "4096",
+        "D": "64"
+      },
+      "correct_answer": "A",
+      "explanation": "Same-base multiplication adds exponents: 2^3 * 2^4 = 2^7 = 128 (24 is adding coefficients, 4096 is multiplying exponents).",
+      "difficulty": "easy",
+      "sub_topic": "laws_of_indices",
+      "misconception_tags": [
+        "index_law_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-006",
+      "question": "Simplify the square root of 50.",
+      "options": {
+        "A": "5 * square root of 2",
+        "B": "25",
+        "C": "10 * square root of 2",
+        "D": "5"
+      },
+      "correct_answer": "A",
+      "explanation": "sqrt(50) = sqrt(25 * 2) = sqrt(25) * sqrt(2) = 5*sqrt(2).",
+      "difficulty": "medium",
+      "sub_topic": "surds_basics",
+      "misconception_tags": [
+        "surds_simplification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-007",
+      "question": "Rationalise the denominator of 1 / sqrt(3).",
+      "options": {
+        "A": "sqrt(3) / 3",
+        "B": "3 * sqrt(3)",
+        "C": "sqrt(3)",
+        "D": "1 / 3"
+      },
+      "correct_answer": "A",
+      "explanation": "Multiply numerator and denominator by sqrt(3): 1/sqrt(3) = sqrt(3) / (sqrt(3)*sqrt(3)) = sqrt(3)/3.",
+      "difficulty": "medium",
+      "sub_topic": "rationalization_intro",
+      "misconception_tags": [
+        "denominator_rationalization_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-008",
+      "question": "What is (2^5) divided by (2^3)?",
+      "options": {
+        "A": "2",
+        "B": "4",
+        "C": "8",
+        "D": "16"
+      },
+      "correct_answer": "B",
+      "explanation": "Same-base division subtracts exponents: 2^(5-3) = 2^2 = 4.",
+      "difficulty": "easy",
+      "sub_topic": "laws_of_indices",
+      "misconception_tags": [
+        "index_law_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

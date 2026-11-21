@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which principle ensures a user receives only the minimum privileges needed to perform a task?",
+      "options": {
+        "A": "Defense in depth",
+        "B": "Principle of least privilege",
+        "C": "Security through obscurity",
+        "D": "Open design"
+      },
+      "correct_answer": "B",
+      "explanation": "Least privilege limits accounts/permissions to exactly what is required, reducing damage if an account is compromised. Defense in depth layers controls; open design says security should not rely on secrecy of the design.",
+      "difficulty": "easy",
+      "sub_topic": "principles",
+      "misconception_tags": [
+        "principle_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CYB-PRACTICE-006"
+    },
+    {
+      "question": "An email that impersonates a bank to trick users into revealing passwords is an example of:",
+      "options": {
+        "A": "Phishing",
+        "B": "SQL injection",
+        "C": "DDoS",
+        "D": "Buffer overflow"
+      },
+      "correct_answer": "A",
+      "explanation": "Phishing uses deceptive messages (often email) to harvest credentials or install malware. SQL injection targets databases, DDoS floods services, and buffer overflow corrupts memory.",
+      "difficulty": "easy",
+      "sub_topic": "threats",
+      "misconception_tags": [
+        "threat_type_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CYB-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which security goal means data has not been altered in transit by an unauthorized party?",
+      "options": {
+        "A": "Confidentiality",
+        "B": "Integrity",
+        "C": "Availability",
+        "D": "Non-repudiation"
+      },
+      "correct_answer": "B",
+      "explanation": "Integrity guarantees accurate and unmodified data (often via hashes/HMAC). Confidentiality hides data (encryption), availability keeps services reachable, non-repudiation prevents denial of an action.",
+      "difficulty": "easy",
+      "sub_topic": "principles",
+      "misconception_tags": [
+        "cia_triangle_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CYB-006"
+    },
+    {
+      "question": "Hashing a password with a unique random salt primarily protects against:",
+      "options": {
+        "A": "Denial-of-service attacks",
+        "B": "Rainbow-table / precomputed hash attacks",
+        "C": "SQL injection",
+        "D": "Man-in-the-middle on the network"
+      },
+      "correct_answer": "B",
+      "explanation": "A unique salt makes each stored hash unique even for identical passwords, so precomputed lookup tables (rainbow tables) and mass cracking of leaked hashes become infeasible.",
+      "difficulty": "medium",
+      "sub_topic": "practices",
+      "misconception_tags": [
+        "salt_purpose_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CYB-007"
+    },
+    {
+      "question": "Which authentication factor is 'something you know'?",
+      "options": {
+        "A": "Fingerprint",
+        "B": "Security token",
+        "C": "Password",
+        "D": "Retina scan"
+      },
+      "correct_answer": "C",
+      "explanation": "The three classic factors are knowledge (password/PIN), possession (token/card/phone) and inherence (biometrics such as fingerprint or retina). A password is a knowledge factor.",
+      "difficulty": "easy",
+      "sub_topic": "principles",
+      "misconception_tags": [
+        "mfa_factor_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CYB-008"
     }
   ]
 }

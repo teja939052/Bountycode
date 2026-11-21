@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which SQL statement adds a new row to a table?",
+      "options": {
+        "A": "UPDATE",
+        "B": "INSERT INTO",
+        "C": "DELETE",
+        "D": "ALTER"
+      },
+      "correct_answer": "B",
+      "explanation": "INSERT INTO adds new rows. UPDATE modifies existing rows, DELETE removes rows, and ALTER changes the table structure.",
+      "difficulty": "easy",
+      "sub_topic": "insert",
+      "misconception_tags": [
+        "crud_verb_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLC-PRACTICE-006"
+    },
+    {
+      "question": "Which statement permanently removes all rows from a table but keeps its structure?",
+      "options": {
+        "A": "DROP TABLE",
+        "B": "DELETE FROM table (no WHERE)",
+        "C": "TRUNCATE/DELETE all rows",
+        "D": "ALTER TABLE"
+      },
+      "correct_answer": "C",
+      "explanation": "DELETE without a WHERE clause removes every row while retaining columns/constraints; DROP removes the table itself. TRUNCATE also empties the table (usually faster, minimally logged).",
+      "difficulty": "easy",
+      "sub_topic": "delete",
+      "misconception_tags": [
+        "delete_vs_drop"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLC-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is the effect of running 'UPDATE students SET marks = marks + 5' with no WHERE clause?",
+      "options": {
+        "A": "Only the first row changes",
+        "B": "Every row in the table gets marks increased by 5",
+        "C": "No rows change",
+        "D": "A syntax error occurs"
+      },
+      "correct_answer": "B",
+      "explanation": "Without WHERE, UPDATE applies to all rows - a classic accidental-mass-update hazard. Always filter with WHERE unless updating the whole table is intended.",
+      "difficulty": "medium",
+      "sub_topic": "update",
+      "misconception_tags": [
+        "missing_where_clause"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLC-006"
+    },
+    {
+      "question": "Which clause filters rows before an UPDATE or DELETE is applied?",
+      "options": {
+        "A": "GROUP BY",
+        "B": "WHERE",
+        "C": "ORDER BY",
+        "D": "HAVING"
+      },
+      "correct_answer": "B",
+      "explanation": "WHERE selects which rows the statement affects. GROUP BY aggregates, ORDER BY sorts results, and HAVING filters groups after aggregation.",
+      "difficulty": "easy",
+      "sub_topic": "update",
+      "misconception_tags": [
+        "missing_where_clause"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLC-007"
+    },
+    {
+      "question": "Why should 'DELETE FROM table' generally be preferred over 'DROP TABLE' when rows must be removed but data may be needed later?",
+      "options": {
+        "A": "DELETE is always faster",
+        "B": "DELETE keeps the table structure and can be rolled back if uncommitted",
+        "C": "DROP deletes only one row",
+        "D": "DELETE creates a backup automatically"
+      },
+      "correct_answer": "B",
+      "explanation": "DELETE removes data but preserves schema and constraints and (in a transaction) can be rolled back; DROP destroys the table definition, so recovery requires recreating structure and redefining constraints.",
+      "difficulty": "medium",
+      "sub_topic": "delete",
+      "misconception_tags": [
+        "delete_vs_drop"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLC-008"
     }
   ]
 }

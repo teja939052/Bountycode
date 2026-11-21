@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which function counts the number of rows?",
+      "options": {
+        "A": "SUM()",
+        "B": "COUNT()",
+        "C": "AVG()",
+        "D": "MAX()"
+      },
+      "correct_answer": "B",
+      "explanation": "COUNT() returns the number of rows (or non-NULL values for COUNT(column)). SUM/AVG/MAX compute numeric aggregates.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate",
+      "misconception_tags": [
+        "aggregate_function_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLF-PRACTICE-006"
+    },
+    {
+      "question": "Which scalar function returns the length of a string in characters?",
+      "options": {
+        "A": "LENGTH() / LEN()",
+        "B": "UPPER()",
+        "C": "TRIM()",
+        "D": "CONCAT()"
+      },
+      "correct_answer": "A",
+      "explanation": "LENGTH (MySQL/PostgreSQL) or LEN (SQL Server) returns string length. UPPER upper-cases, TRIM removes surrounding spaces, CONCAT joins strings.",
+      "difficulty": "easy",
+      "sub_topic": "scalar",
+      "misconception_tags": [
+        "scalar_vs_aggregate_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLF-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What does MAX(salary) return when used with GROUP BY department_id?",
+      "options": {
+        "A": "The maximum salary across the whole company",
+        "B": "The maximum salary within each department",
+        "C": "The sum of salaries per department",
+        "D": "Nothing - GROUP BY ignores aggregates"
+      },
+      "correct_answer": "B",
+      "explanation": "GROUP BY partitions rows into groups; aggregate functions then evaluate per group, so MAX(salary) is computed for each department_id separately.",
+      "difficulty": "medium",
+      "sub_topic": "aggregate",
+      "misconception_tags": [
+        "groupby_aggregate_scope"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLF-006"
+    },
+    {
+      "question": "Which is a scalar (non-aggregate) string function?",
+      "options": {
+        "A": "AVG()",
+        "B": "COUNT()",
+        "C": "UPPER()",
+        "D": "SUM()"
+      },
+      "correct_answer": "C",
+      "explanation": "Scalar functions operate on a single value row by row (UPPER, SUBSTRING, ROUND, COALESCE). AVG/COUNT/SUM collapse many rows into one result and are aggregates.",
+      "difficulty": "easy",
+      "sub_topic": "scalar",
+      "misconception_tags": [
+        "scalar_vs_aggregate_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLF-007"
+    },
+    {
+      "question": "Which aggregate ignores NULL values when computing its result?",
+      "options": {
+        "A": "COUNT(*)",
+        "B": "COUNT(column)",
+        "C": "MAX/MIN/AVG/SUM (all of these)",
+        "D": "None - no aggregate ignores NULL"
+      },
+      "correct_answer": "C",
+      "explanation": "COUNT(*) counts rows including all-NULL rows, but COUNT(column), SUM, AVG, MIN and MAX skip NULLs entirely - the usual cause of 'why is my average higher than expected'.",
+      "difficulty": "medium",
+      "sub_topic": "usage",
+      "misconception_tags": [
+        "null_handling_in_aggregates"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLF-008"
     }
   ]
 }

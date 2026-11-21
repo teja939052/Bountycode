@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-PRACTICE-006",
+      "question": "If today is Monday, what day of the week will it be after 45 days?",
+      "options": {
+        "A": "Tuesday",
+        "B": "Wednesday",
+        "C": "Thursday",
+        "D": "Friday"
+      },
+      "correct_answer": "C",
+      "explanation": "45 mod 7 = 3 (45 = 6*7 + 3). Counting 3 days after Monday gives Thursday.",
+      "difficulty": "easy",
+      "sub_topic": "calendars",
+      "misconception_tags": [
+        "mod_week_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-PRACTICE-007",
+      "question": "What is the angle between the hands of a clock at 10:10?",
+      "options": {
+        "A": "115 degrees",
+        "B": "120 degrees",
+        "C": "135 degrees",
+        "D": "145 degrees"
+      },
+      "correct_answer": "A",
+      "explanation": "Hour hand = 30*10 + 0.5*10 = 305 degrees; minute hand = 6*10 = 60 degrees. Difference = 245 degrees; smaller angle = 360 - 245 = 115 degrees.",
+      "difficulty": "medium",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "minute_hand_ignored"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-006",
+      "question": "If today is Wednesday, what day was it exactly 30 days ago?",
+      "options": {
+        "A": "Sunday",
+        "B": "Monday",
+        "C": "Tuesday",
+        "D": "Thursday"
+      },
+      "correct_answer": "B",
+      "explanation": "30 mod 7 = 2, so go back 2 days from Wednesday: Tuesday then Monday.",
+      "difficulty": "easy",
+      "sub_topic": "calendars",
+      "misconception_tags": [
+        "mod_week_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-007",
+      "question": "How many degrees does the minute hand rotate in 20 minutes?",
+      "options": {
+        "A": "60 degrees",
+        "B": "90 degrees",
+        "C": "120 degrees",
+        "D": "180 degrees"
+      },
+      "correct_answer": "C",
+      "explanation": "The minute hand moves 360 degrees in 60 minutes, i.e. 6 degrees per minute. In 20 minutes: 20*6 = 120 degrees.",
+      "difficulty": "easy",
+      "sub_topic": "clocks",
+      "misconception_tags": [
+        "degree_per_minute_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CCB-008",
+      "question": "Which of the following is a leap year?",
+      "options": {
+        "A": "1900",
+        "B": "2100",
+        "C": "2024",
+        "D": "2023"
+      },
+      "correct_answer": "C",
+      "explanation": "A year divisible by 4 is leap, except century years must also be divisible by 400. 1900 and 2100 are divisible by 100 but not 400 (not leap); 2024 is divisible by 4 and not a century year (leap).",
+      "difficulty": "medium",
+      "sub_topic": "calendars",
+      "misconception_tags": [
+        "century_leap_rule_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which compiler phase converts source code into an abstract syntax tree (or intermediate representation)?",
+      "options": {
+        "A": "Lexical analysis",
+        "B": "Syntax analysis (parsing)",
+        "C": "Code generation",
+        "D": "Linking"
+      },
+      "correct_answer": "B",
+      "explanation": "The parser takes the token stream from the lexer and builds the grammatical structure (AST/IR). Lexical analysis only groups characters into tokens; code generation emits target code later.",
+      "difficulty": "medium",
+      "sub_topic": "phases",
+      "misconception_tags": [
+        "phase_order_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "COMP-PRACTICE-006"
+    },
+    {
+      "question": "A lexical analyser groups source characters into:",
+      "options": {
+        "A": "Machine instructions",
+        "B": "Tokens",
+        "C": "Linker symbols",
+        "D": "Stack frames"
+      },
+      "correct_answer": "B",
+      "explanation": "Lexical analysis (scanning) breaks the character stream into tokens such as identifiers, keywords, operators and literals.",
+      "difficulty": "easy",
+      "sub_topic": "compiler_overview",
+      "misconception_tags": [
+        "token_vs_ast_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "COMP-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is the correct order of the first four classic compiler phases?",
+      "options": {
+        "A": "Parsing -> Lexing -> Code generation -> Optimization",
+        "B": "Lexing -> Parsing -> Intermediate code generation -> Optimization",
+        "C": "Optimization -> Lexing -> Parsing -> Code generation",
+        "D": "Code generation -> Parsing -> Lexing -> Optimization"
+      },
+      "correct_answer": "B",
+      "explanation": "The standard pipeline is lexical analysis, then syntax analysis (parsing), then intermediate code generation, then optimization, followed by target code generation.",
+      "difficulty": "easy",
+      "sub_topic": "phases",
+      "misconception_tags": [
+        "phase_order_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "COMP-006"
+    },
+    {
+      "question": "Which compiler diagnostic reports a violation of the language's grammar rules?",
+      "options": {
+        "A": "Syntax error",
+        "B": "Linker error",
+        "C": "Runtime exception",
+        "D": "Logic error"
+      },
+      "correct_answer": "A",
+      "explanation": "A syntax error means the token sequence does not form a valid parse of the grammar. Linker errors happen after compilation when symbols cannot be resolved; runtime exceptions occur during execution.",
+      "difficulty": "easy",
+      "sub_topic": "errors",
+      "misconception_tags": [
+        "syntax_vs_semantic_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "COMP-007"
+    },
+    {
+      "question": "What is the primary job of the code optimization phase?",
+      "options": {
+        "A": "To make the source code shorter to type",
+        "B": "To improve generated code performance or size without changing behaviour",
+        "C": "To fix syntax errors automatically",
+        "D": "To compress the executable file"
+      },
+      "correct_answer": "B",
+      "explanation": "Optimization rewrites the IR (e.g. constant folding, dead-code elimination, loop-invariant motion) to produce faster or smaller code while preserving the program's observable behaviour.",
+      "difficulty": "medium",
+      "sub_topic": "phases",
+      "misconception_tags": [
+        "optimization_purpose_confusion"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "COMP-008"
     }
   ]
 }

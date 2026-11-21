@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAB-PRACTICE-006",
+      "question": "In alligation, ingredients costing D (dearer) and C (cheaper) are mixed to get mean price M. The ratio of cheaper : dearer is:",
+      "options": {
+        "A": "(D - M) : (M - C)",
+        "B": "(M - C) : (D - M)",
+        "C": "D : C",
+        "D": "M : (C + D)"
+      },
+      "correct_answer": "A",
+      "explanation": "The alligation cross-rule gives cheaper : dearer = (D - M) : (M - C): the quantity of the cheaper ingredient is proportional to how far the dearer price is above the mean.",
+      "difficulty": "medium",
+      "sub_topic": "alligation",
+      "misconception_tags": [
+        "alligation_ratio_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAB-PRACTICE-007",
+      "question": "20 kg of sugar at 30 per kg is mixed with 30 kg at 40 per kg. What is the weighted average price per kg?",
+      "options": {
+        "A": "34",
+        "B": "35",
+        "C": "36",
+        "D": "37"
+      },
+      "correct_answer": "C",
+      "explanation": "Total = 20*30 + 30*40 = 600 + 1200 = 1800 for 50 kg. Average = 1800/50 = 36.",
+      "difficulty": "easy",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "simple_average_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAB-006",
+      "question": "Tea at 300 per kg and tea at 350 per kg are mixed to sell at 320 per kg. In what ratio (first : second) must they be mixed?",
+      "options": {
+        "A": "2:3",
+        "B": "3:2",
+        "C": "1:1",
+        "D": "3:5"
+      },
+      "correct_answer": "B",
+      "explanation": "Alligation: quantity of first (cheaper) : second (dearer) = (350 - 320) : (320 - 300) = 30 : 20 = 3:2.",
+      "difficulty": "medium",
+      "sub_topic": "alligation",
+      "misconception_tags": [
+        "alligation_ratio_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAB-007",
+      "question": "A container has 60 litres of milk. 6 litres are drawn and replaced with water; the process is repeated once. How much milk remains?",
+      "options": {
+        "A": "48 litres",
+        "B": "48.6 litres",
+        "C": "49.2 litres",
+        "D": "50 litres"
+      },
+      "correct_answer": "B",
+      "explanation": "Milk remaining = 60 * (1 - 6/60)^2 = 60 * (0.9)^2 = 60 * 0.81 = 48.6 litres.",
+      "difficulty": "hard",
+      "sub_topic": "replacement",
+      "misconception_tags": [
+        "replacement_formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MAB-008",
+      "question": "A student scores 40 marks in each of 3 tests and 60 marks in each of 2 tests. What is the overall average?",
+      "options": {
+        "A": "45",
+        "B": "48",
+        "C": "50",
+        "D": "52"
+      },
+      "correct_answer": "B",
+      "explanation": "Total = 3*40 + 2*60 = 120 + 120 = 240 over 5 tests. Average = 240/5 = 48.",
+      "difficulty": "medium",
+      "sub_topic": "weighted_average",
+      "misconception_tags": [
+        "simple_average_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

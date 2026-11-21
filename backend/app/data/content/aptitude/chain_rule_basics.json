@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-PRACTICE-006",
+      "question": "If 5 machines take 5 minutes to make 5 parts, how long do 100 machines take to make 100 parts?",
+      "options": {
+        "A": "5 minutes",
+        "B": "20 minutes",
+        "C": "100 minutes",
+        "D": "1000 minutes"
+      },
+      "correct_answer": "A",
+      "explanation": "Each machine makes 1 part in 5 minutes (rate is per machine, not total). 100 machines each make 1 part in the same 5 minutes, so the answer stays 5 minutes.",
+      "difficulty": "medium",
+      "sub_topic": "chain_rule",
+      "misconception_tags": [
+        "total_vs_per_unit_rate_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-PRACTICE-007",
+      "question": "10 workers can finish a job in 12 days. How many days will 15 workers take (same work rate per worker)?",
+      "options": {
+        "A": "8 days",
+        "B": "16 days",
+        "C": "18 days",
+        "D": "24 days"
+      },
+      "correct_answer": "A",
+      "explanation": "Total work = 10*12 = 120 worker-days. With 15 workers: 120/15 = 8 days (inverse proportion).",
+      "difficulty": "easy",
+      "sub_topic": "inverse_proportion",
+      "misconception_tags": [
+        "direct_proportion_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-006",
+      "question": "6 pipes can fill a tank in 8 minutes. How long will 12 identical pipes take?",
+      "options": {
+        "A": "4 minutes",
+        "B": "16 minutes",
+        "C": "12 minutes",
+        "D": "24 minutes"
+      },
+      "correct_answer": "A",
+      "explanation": "Work = 6*8 = 48 pipe-minutes. With 12 pipes: 48/12 = 4 minutes (pipes and time are inversely proportional).",
+      "difficulty": "easy",
+      "sub_topic": "inverse_proportion",
+      "misconception_tags": [
+        "direct_proportion_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-007",
+      "question": "If 3 kg of apples cost 90, what will 7 kg cost at the same rate?",
+      "options": {
+        "A": "180",
+        "B": "210",
+        "C": "240",
+        "D": "270"
+      },
+      "correct_answer": "B",
+      "explanation": "Rate = 90/3 = 30 per kg. Cost of 7 kg = 30*7 = 210 (direct proportion between weight and cost).",
+      "difficulty": "easy",
+      "sub_topic": "direct_proportion",
+      "misconception_tags": [
+        "unit_rate_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CR-008",
+      "question": "A can complete a work in 20 days and B in 30 days. Working together, in how many days will they finish it?",
+      "options": {
+        "A": "10 days",
+        "B": "12 days",
+        "C": "15 days",
+        "D": "25 days"
+      },
+      "correct_answer": "B",
+      "explanation": "Combined rate = 1/20 + 1/30 = 3/60 + 2/60 = 5/60 = 1/12 per day. Together they need 12 days.",
+      "difficulty": "medium",
+      "sub_topic": "chain_rule",
+      "misconception_tags": [
+        "adding_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

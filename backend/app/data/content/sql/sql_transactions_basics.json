@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which ACID property guarantees that a transaction is all-or-nothing?",
+      "options": {
+        "A": "Atomicity",
+        "B": "Consistency",
+        "C": "Isolation",
+        "D": "Durability"
+      },
+      "correct_answer": "A",
+      "explanation": "Atomicity treats the transaction as a single unit: either every operation commits or none do. Consistency preserves rules, Isolation separates concurrent transactions, Durability persists committed results.",
+      "difficulty": "easy",
+      "sub_topic": "acid",
+      "misconception_tags": [
+        "acid_property_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLT-PRACTICE-006"
+    },
+    {
+      "question": "After COMMIT is executed, what happens to the changes?",
+      "options": {
+        "A": "They are discarded",
+        "B": "They are permanently applied and survive a crash",
+        "C": "They stay only in memory until logout",
+        "D": "They are visible only to the DBA"
+      },
+      "correct_answer": "B",
+      "explanation": "COMMIT makes the transaction's changes permanent and durable (written so they survive failures). ROLLBACK discards changes made since the transaction began.",
+      "difficulty": "easy",
+      "sub_topic": "commit_rollback",
+      "misconception_tags": [
+        "commit_vs_rollback"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLT-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "The Isolation property primarily protects against which problem?",
+      "options": {
+        "A": "Disk failure",
+        "B": "Interleaved execution of concurrent transactions corrupting logic",
+        "C": "Wrong data types",
+        "D": "Missing primary keys"
+      },
+      "correct_answer": "B",
+      "explanation": "Isolation ensures concurrent transactions do not interfere with each other (preventing dirty reads, non-repeatable reads and phantom reads via locking/ MVCC and isolation levels).",
+      "difficulty": "medium",
+      "sub_topic": "acid",
+      "misconception_tags": [
+        "acid_property_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLT-006"
+    },
+    {
+      "question": "Which statement undoes changes made during the current uncommitted transaction?",
+      "options": {
+        "A": "COMMIT",
+        "B": "ROLLBACK",
+        "C": "SAVEPOINT only",
+        "D": "GRANT"
+      },
+      "correct_answer": "B",
+      "explanation": "ROLLBACK reverts the database to the state before the transaction began (or to a named SAVEPOINT if specified). COMMIT does the opposite by making changes permanent.",
+      "difficulty": "easy",
+      "sub_topic": "commit_rollback",
+      "misconception_tags": [
+        "commit_vs_rollback"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLT-007"
+    },
+    {
+      "question": "A transaction that reads data another uncommitted transaction has written is performing:",
+      "options": {
+        "A": "Dirty read",
+        "B": "Phantom read",
+        "C": "Lost update only",
+        "D": "Deadlock"
+      },
+      "correct_answer": "A",
+      "explanation": "A dirty read sees uncommitted (possibly later rolled-back) data. Non-repeatable read = same row changes between reads; phantom = new rows appear between reads.",
+      "difficulty": "medium",
+      "sub_topic": "transaction_concept",
+      "misconception_tags": [
+        "isolation_anomaly_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLT-008"
     }
   ]
 }

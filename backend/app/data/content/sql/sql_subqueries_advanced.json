@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "A subquery that references columns from the outer query is called:",
+      "options": {
+        "A": "Derived table",
+        "B": "Correlated subquery",
+        "C": "Scalar constant",
+        "D": "Union subquery"
+      },
+      "correct_answer": "B",
+      "explanation": "A correlated subquery depends on the outer row and is re-evaluated for each row (e.g. in EXISTS or a per-row comparison). A non-correlated subquery runs independently once.",
+      "difficulty": "medium",
+      "sub_topic": "correlated",
+      "misconception_tags": [
+        "correlated_vs_uncorrelated"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLSUBADV-PRACTICE-006"
+    },
+    {
+      "question": "A subquery placed in the FROM clause is also known as:",
+      "options": {
+        "A": "Correlated subquery",
+        "B": "Derived table (inline view)",
+        "C": "Scalar subquery",
+        "D": "CHECK constraint"
+      },
+      "correct_answer": "B",
+      "explanation": "A subquery in FROM produces a temporary result set used like a table - called a derived table or inline view.",
+      "difficulty": "easy",
+      "sub_topic": "derived_scalar",
+      "misconception_tags": [
+        "subquery_position_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLSUBADV-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Where must a scalar subquery appear and what does it return?",
+      "options": {
+        "A": "In FROM; returns many rows",
+        "B": "In a select/where position; returns exactly one value",
+        "C": "Only in GROUP BY; returns groups",
+        "D": "Only in DDL; returns nothing"
+      },
+      "correct_answer": "B",
+      "explanation": "A scalar subquery returns a single row with a single column and is used wherever a single expression is legal (SELECT list, WHERE, HAVING). Returning more than one row causes an error.",
+      "difficulty": "medium",
+      "sub_topic": "derived_scalar",
+      "misconception_tags": [
+        "scalar_subquery_cardinality"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLSUBADV-006"
+    },
+    {
+      "question": "What does 'WHERE EXISTS (subquery)' test?",
+      "options": {
+        "A": "That the subquery returns at least one row",
+        "B": "That the subquery returns exactly one row",
+        "C": "That the subquery returns zero rows",
+        "D": "That all subquery values are distinct"
+      },
+      "correct_answer": "A",
+      "explanation": "EXISTS is true when the subquery produces one or more rows; it stops scanning early, so it is usually written with correlated conditions for efficiency.",
+      "difficulty": "medium",
+      "sub_topic": "exists_in",
+      "misconception_tags": [
+        "exists_vs_any_all"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLSUBADV-007"
+    },
+    {
+      "question": "How does 'IN (subquery)' differ from '= ANY (subquery)'?",
+      "options": {
+        "A": "They are equivalent",
+        "B": "IN matches equality against any returned value; = ANY is the same, while <> ANY means 'differs from at least one'",
+        "C": "IN ignores NULLs always, ANY never does",
+        "D": "IN works only on single values"
+      },
+      "correct_answer": "B",
+      "explanation": "x IN (sub) is logically x = ANY (sub): true if x equals any subquery result. NOT IN and <> ANY behave differently around NULLs, a common source of surprising empty results.",
+      "difficulty": "hard",
+      "sub_topic": "exists_in",
+      "misconception_tags": [
+        "null_semantics_in"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLSUBADV-008"
     }
   ]
 }

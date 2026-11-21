@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-PRACTICE-006",
+      "question": "A boat's speed in still water is 12 km/h and the stream flows at 3 km/h. What is the downstream speed?",
+      "options": {
+        "A": "9 km/h",
+        "B": "15 km/h",
+        "C": "18 km/h",
+        "D": "36 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Downstream = boat + stream = 12 + 3 = 15 km/h (the stream helps the boat).",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "add_subtract_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-PRACTICE-007",
+      "question": "A boat's speed in still water is 12 km/h and the stream flows at 3 km/h. What is the upstream speed?",
+      "options": {
+        "A": "9 km/h",
+        "B": "15 km/h",
+        "C": "18 km/h",
+        "D": "3 km/h"
+      },
+      "correct_answer": "A",
+      "explanation": "Upstream = boat - stream = 12 - 3 = 9 km/h (the stream opposes the boat).",
+      "difficulty": "easy",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "add_subtract_direction_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-006",
+      "question": "A boat travels 40 km downstream in 4 hours. If the stream speed is 2 km/h, what is the boat's speed in still water?",
+      "options": {
+        "A": "6 km/h",
+        "B": "8 km/h",
+        "C": "10 km/h",
+        "D": "12 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Downstream speed = 40/4 = 10 km/h. Boat speed = downstream - stream = 10 - 2 = 8 km/h.",
+      "difficulty": "medium",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "stream_speed_derivation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-007",
+      "question": "How long does a boat take to go 36 km upstream if its still-water speed is 10 km/h and the stream is 4 km/h?",
+      "options": {
+        "A": "4 hours",
+        "B": "6 hours",
+        "C": "9 hours",
+        "D": "12 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Upstream speed = 10 - 4 = 6 km/h. Time = distance/speed = 36/6 = 6 hours.",
+      "difficulty": "medium",
+      "sub_topic": "time_distance",
+      "misconception_tags": [
+        "using_downstream_speed"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BST-008",
+      "question": "A boat goes 24 km downstream in 3 hours and 24 km upstream in 6 hours. What is the speed of the stream?",
+      "options": {
+        "A": "1 km/h",
+        "B": "2 km/h",
+        "C": "3 km/h",
+        "D": "4 km/h"
+      },
+      "correct_answer": "B",
+      "explanation": "Downstream = 8 km/h, upstream = 4 km/h. Stream = (8 - 4)/2 = 2 km/h (boat = (8+4)/2 = 6 km/h).",
+      "difficulty": "medium",
+      "sub_topic": "speeds",
+      "misconception_tags": [
+        "average_formula_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

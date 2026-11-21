@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "clocks_calendars",
   "subject": "quantitative_aptitude",
   "pattern": "clocks_calendars",
@@ -47,13 +47,24 @@
     {
       "id": "CLK-PRACTICE-001",
       "question": "What is the angle between the hour and minute hands of a clock at 3:00?",
-      "options": {"A": "60 degrees", "B": "75 degrees", "C": "90 degrees", "D": "120 degrees"},
+      "options": {
+        "A": "60 degrees",
+        "B": "75 degrees",
+        "C": "90 degrees",
+        "D": "120 degrees"
+      },
       "correct_answer": "C",
       "explanation": "At 3:00, minute hand is at 12 and hour hand is at 3. Each hour mark is 30 degrees (360/12), so difference = 3 * 30 = 90 degrees.",
       "difficulty": "easy",
       "sub_topic": "clock_angle_basics",
-      "misconception_tags": ["hour_mark_angle_error"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "hour_mark_angle_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "CLK-PRACTICE-002",
       "question": "What is the angle between the hour and minute hands at 6:30?",
-      "options": {"A": "0 degrees", "B": "15 degrees", "C": "30 degrees", "D": "45 degrees"},
+      "options": {
+        "A": "0 degrees",
+        "B": "15 degrees",
+        "C": "30 degrees",
+        "D": "45 degrees"
+      },
       "correct_answer": "B",
       "explanation": "Using |30H - 5.5M| = |30*6 - 5.5*30| = |180 - 165| = 15 degrees. Minute hand at 6 (180 degrees), hour hand halfway between 6 and 7 (195 degrees).",
       "difficulty": "easy",
       "sub_topic": "clock_angle_basics",
-      "misconception_tags": ["hour_hand_movement_ignored"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "hour_hand_movement_ignored"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,24 @@
     {
       "id": "CLK-PRACTICE-003",
       "question": "How many times do the hands of a clock coincide in 12 hours?",
-      "options": {"A": "10", "B": "11", "C": "12", "D": "22"},
+      "options": {
+        "A": "10",
+        "B": "11",
+        "C": "12",
+        "D": "22"
+      },
       "correct_answer": "B",
       "explanation": "The hands coincide once in every 65 5/11 minutes, so in 12 hours they coincide 11 times (they coincide at 12:00 but the 11:00-1:00 interval gives one coincidence at 12:00).",
       "difficulty": "easy",
       "sub_topic": "clock_relative_motion",
-      "misconception_tags": ["coincidence_count_error"],
-      "company_tags": ["infosys", "capgemini", "wipro"],
+      "misconception_tags": [
+        "coincidence_count_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "capgemini",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +127,23 @@
     {
       "id": "CLK-PRACTICE-004",
       "question": "How many odd days are there in a normal (non-leap) year?",
-      "options": {"A": "0", "B": "1", "C": "2", "D": "3"},
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "3"
+      },
       "correct_answer": "B",
       "explanation": "A normal year has 365 days = 52 weeks + 1 day. So it has 1 odd day.",
       "difficulty": "easy",
       "sub_topic": "calendar_odd_days",
-      "misconception_tags": ["odd_days_definition_error"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "odd_days_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +153,82 @@
     {
       "id": "CLK-PRACTICE-005",
       "question": "Which of the following years is a leap year?",
-      "options": {"A": "1900", "B": "2001", "C": "2010", "D": "2016"},
+      "options": {
+        "A": "1900",
+        "B": "2001",
+        "C": "2010",
+        "D": "2016"
+      },
       "correct_answer": "D",
       "explanation": "2016 is divisible by 4, so it is a leap year. 1900 is a century year but not divisible by 400, so not a leap year. 2001 and 2010 are not divisible by 4.",
       "difficulty": "easy",
       "sub_topic": "calendar_odd_days",
-      "misconception_tags": ["century_leap_year_error"],
-      "company_tags": ["infosys", "tcs", "wipro"],
+      "misconception_tags": [
+        "century_leap_year_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLK-PRACTICE-006",
+      "question": "What is the angle between the hour and minute hands of a clock at 3:00?",
+      "options": {
+        "A": "60 degrees",
+        "B": "90 degrees",
+        "C": "120 degrees",
+        "D": "45 degrees"
+      },
+      "correct_answer": "B",
+      "explanation": "Each hour mark is 30 degrees apart (360/12). At 3:00 the hands point at 12 and 3: gap = 3*30 = 90 degrees.",
+      "difficulty": "easy",
+      "sub_topic": "clock_angle_basics",
+      "misconception_tags": [
+        "angle_per_hour_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLK-PRACTICE-007",
+      "question": "What is the angle between the hands at 6:00?",
+      "options": {
+        "A": "90 degrees",
+        "B": "120 degrees",
+        "C": "180 degrees",
+        "D": "0 degrees"
+      },
+      "correct_answer": "C",
+      "explanation": "At 6:00 the hands point in opposite directions (12 and 6), forming a straight line of 180 degrees.",
+      "difficulty": "easy",
+      "sub_topic": "clock_angle_basics",
+      "misconception_tags": [
+        "angle_per_hour_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +236,24 @@
     {
       "id": "CLK-001",
       "question": "What is the smaller angle between the hour and minute hands at 4:20?",
-      "options": {"A": "0 degrees", "B": "10 degrees", "C": "20 degrees", "D": "30 degrees"},
+      "options": {
+        "A": "0 degrees",
+        "B": "10 degrees",
+        "C": "20 degrees",
+        "D": "30 degrees"
+      },
       "correct_answer": "B",
       "explanation": "Angle = |30H - 5.5M| = |30*4 - 5.5*20| = |120 - 110| = 10 degrees.",
       "difficulty": "medium",
       "sub_topic": "clock_angle_basics",
-      "misconception_tags": ["hour_hand_movement_ignored"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "hour_hand_movement_ignored"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +263,24 @@
     {
       "id": "CLK-002",
       "question": "If today is Wednesday, what day of the week will it be after 45 days?",
-      "options": {"A": "Friday", "B": "Saturday", "C": "Sunday", "D": "Monday"},
+      "options": {
+        "A": "Friday",
+        "B": "Saturday",
+        "C": "Sunday",
+        "D": "Monday"
+      },
       "correct_answer": "B",
       "explanation": "45 mod 7 = 3 (since 7*6=42, remainder 3). Wednesday + 3 days = Saturday.",
       "difficulty": "easy",
       "sub_topic": "calendar_odd_days",
-      "misconception_tags": ["modulo_day_shift_error"],
-      "company_tags": ["tcs", "wipro", "capgemini"],
+      "misconception_tags": [
+        "modulo_day_shift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +290,24 @@
     {
       "id": "CLK-003",
       "question": "At what time between 5:00 and 6:00 will the hour and minute hands coincide?",
-      "options": {"A": "5:25", "B": "5:27 3/11", "C": "5:30", "D": "5:32 8/11"},
+      "options": {
+        "A": "5:25",
+        "B": "5:27 3/11",
+        "C": "5:30",
+        "D": "5:32 8/11"
+      },
       "correct_answer": "B",
       "explanation": "At 5:00, hour hand is at 150 degrees and minute hand at 0 degrees (gap 150 degrees). Relative speed = 5.5 degrees/minute. Time to coincide = 150/5.5 = 300/11 = 27 3/11 minutes. So hands coincide at 5:27 3/11.",
       "difficulty": "medium",
       "sub_topic": "clock_relative_motion",
-      "misconception_tags": ["relative_speed_error"],
-      "company_tags": ["infosys", "tcs", "accenture"],
+      "misconception_tags": [
+        "relative_speed_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +317,24 @@
     {
       "id": "CLK-004",
       "question": "How many odd days are there in 100 years? (Assume the standard Gregorian pattern where 100 years contain 24 leap years and 76 ordinary years.)",
-      "options": {"A": "3", "B": "5", "C": "6", "D": "2"},
+      "options": {
+        "A": "3",
+        "B": "5",
+        "C": "6",
+        "D": "2"
+      },
       "correct_answer": "B",
       "explanation": "76 ordinary years give 76 odd days and 24 leap years give 48 odd days, total = 124 odd days. 124 mod 7 = 5 (since 7*17=119, remainder 5).",
       "difficulty": "hard",
       "sub_topic": "calendar_odd_days",
-      "misconception_tags": ["leap_year_count_error", "odd_days_modulo_error"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "leap_year_count_error",
+        "odd_days_modulo_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 1,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +344,109 @@
     {
       "id": "CLK-005",
       "question": "What is the angle between the hour and minute hands at 9:15?",
-      "options": {"A": "172.5 degrees", "B": "180 degrees", "C": "187.5 degrees", "D": "165 degrees"},
+      "options": {
+        "A": "172.5 degrees",
+        "B": "180 degrees",
+        "C": "187.5 degrees",
+        "D": "165 degrees"
+      },
       "correct_answer": "A",
       "explanation": "Angle = |30H - 5.5M| = |30*9 - 5.5*15| = |270 - 82.5| = 187.5 degrees. The smaller angle is 360 - 187.5 = 172.5 degrees. The question states 'the angle', and 172.5 degrees is the smaller (commonly asked) angle; option A matches this value.",
       "difficulty": "medium",
       "sub_topic": "clock_angle_basics",
-      "misconception_tags": ["smaller_angle_selection_error"],
-      "company_tags": ["infosys", "wipro", "capgemini"],
+      "misconception_tags": [
+        "smaller_angle_selection_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLK-006",
+      "question": "What is the smaller angle between the hands at 4:00?",
+      "options": {
+        "A": "90 degrees",
+        "B": "100 degrees",
+        "C": "120 degrees",
+        "D": "150 degrees"
+      },
+      "correct_answer": "C",
+      "explanation": "Angle = 4*30 = 120 degrees (hour hand at 4, minute hand at 12).",
+      "difficulty": "easy",
+      "sub_topic": "clock_angle_basics",
+      "misconception_tags": [
+        "angle_per_hour_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLK-007",
+      "question": "How many odd days does a non-leap year have?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "52"
+      },
+      "correct_answer": "B",
+      "explanation": "A non-leap year has 365 days = 52 weeks + 1 day, so it has 1 odd day.",
+      "difficulty": "medium",
+      "sub_topic": "calendar_odd_days",
+      "misconception_tags": [
+        "odd_days_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "CLK-008",
+      "question": "How many times do the hour and minute hands of a clock coincide in 12 hours?",
+      "options": {
+        "A": "10",
+        "B": "11",
+        "C": "12",
+        "D": "24"
+      },
+      "correct_answer": "B",
+      "explanation": "The hands coincide 11 times in 12 hours (they coincide roughly every 65 5/11 minutes; the 11th coincidence falls just before 12, and the 12 o'clock coincidence is counted at the start/end).",
+      "difficulty": "medium",
+      "sub_topic": "clock_relative_motion",
+      "misconception_tags": [
+        "coincidence_count_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

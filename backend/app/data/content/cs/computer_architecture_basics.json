@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which CPU component performs arithmetic and logical operations?",
+      "options": {
+        "A": "Control unit",
+        "B": "ALU",
+        "C": "Cache",
+        "D": "System bus"
+      },
+      "correct_answer": "B",
+      "explanation": "The Arithmetic Logic Unit (ALU) executes arithmetic (+, -, *) and logical (AND, OR, comparison) operations. The control unit coordinates instruction flow, and cache is memory.",
+      "difficulty": "easy",
+      "sub_topic": "cpu_components",
+      "misconception_tags": [
+        "component_role_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CA-PRACTICE-006"
+    },
+    {
+      "question": "Which memory level is fastest and closest to the CPU cores?",
+      "options": {
+        "A": "Hard disk",
+        "B": "Main memory (RAM)",
+        "C": "L1 cache",
+        "D": "SSD"
+      },
+      "correct_answer": "C",
+      "explanation": "Registers and L1 cache sit inside/on the CPU die and have the lowest latency; RAM is slower, and SSD/HDD storage is slowest.",
+      "difficulty": "easy",
+      "sub_topic": "memory_hierarchy",
+      "misconception_tags": [
+        "storage_vs_memory_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CA-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In the instruction cycle, what happens immediately after an instruction is fetched?",
+      "options": {
+        "A": "It is decoded",
+        "B": "Results are written back",
+        "C": "The program terminates",
+        "D": "Cache is flushed"
+      },
+      "correct_answer": "A",
+      "explanation": "The classic cycle is fetch -> decode -> execute -> memory access -> write back. After fetching an instruction the CPU decodes it to determine the required operation and operands.",
+      "difficulty": "easy",
+      "sub_topic": "instruction_cycle",
+      "misconception_tags": [
+        "cycle_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CA-006"
+    },
+    {
+      "question": "What is the main purpose of the memory hierarchy's cache?",
+      "options": {
+        "A": "To permanently archive data",
+        "B": "To reduce average memory access time by exploiting locality",
+        "C": "To replace the CPU's control unit",
+        "D": "To increase disk capacity"
+      },
+      "correct_answer": "B",
+      "explanation": "Caches exploit temporal and spatial locality: frequently used data is kept close to the CPU so average access latency drops even though main memory is large and slow.",
+      "difficulty": "medium",
+      "sub_topic": "memory_hierarchy",
+      "misconception_tags": [
+        "cache_purpose_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CA-007"
+    },
+    {
+      "question": "Which register holds the address of the instruction currently being executed?",
+      "options": {
+        "A": "Accumulator",
+        "B": "Program Counter (PC)",
+        "C": "Memory Address Register",
+        "D": "Stack Pointer"
+      },
+      "correct_answer": "B",
+      "explanation": "The program counter (instruction register pointer) stores the address of the next/current instruction; during fetch the instruction at that address is loaded and the PC advances.",
+      "difficulty": "medium",
+      "sub_topic": "cpu_components",
+      "misconception_tags": [
+        "register_role_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CA-008"
     }
   ]
 }

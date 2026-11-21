@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "mixture_alligation",
   "subject": "quantitative_aptitude",
   "pattern": "mixture_alligation",
@@ -47,13 +47,24 @@
     {
       "id": "MIX-PRACTICE-001",
       "question": "In what ratio must water be mixed with milk costing Rs. 40 per litre so that the mixture is worth Rs. 32 per litre? (Assume water cost is Rs. 0 per litre.)",
-      "options": {"A": "1:4", "B": "4:1", "C": "1:5", "D": "5:1"},
+      "options": {
+        "A": "1:4",
+        "B": "4:1",
+        "C": "1:5",
+        "D": "5:1"
+      },
       "correct_answer": "A",
       "explanation": "Cheaper (water)=0, dearer (milk)=40, mean=32. Ratio of water : milk = (40-32):(32-0) = 8:32 = 1:4.",
       "difficulty": "easy",
       "sub_topic": "alligation_rule",
-      "misconception_tags": ["inverted_alligation_ratio"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "inverted_alligation_ratio"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,23 @@
     {
       "id": "MIX-PRACTICE-002",
       "question": "2 kg of sugar at Rs. 30/kg is mixed with 3 kg of sugar at Rs. 50/kg. What is the price per kg of the mixture?",
-      "options": {"A": "Rs. 38", "B": "Rs. 40", "C": "Rs. 42", "D": "Rs. 44"},
+      "options": {
+        "A": "Rs. 38",
+        "B": "Rs. 40",
+        "C": "Rs. 42",
+        "D": "Rs. 44"
+      },
       "correct_answer": "C",
       "explanation": "Total cost = 2*30 + 3*50 = 60 + 150 = 210. Total quantity = 5 kg. Mean price = 210/5 = Rs. 42/kg.",
       "difficulty": "easy",
       "sub_topic": "weighted_average_mixtures",
-      "misconception_tags": ["simple_average_error"],
-      "company_tags": ["tcs", "accenture"],
+      "misconception_tags": [
+        "simple_average_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +100,24 @@
     {
       "id": "MIX-PRACTICE-003",
       "question": "A 40-litre mixture contains milk and water in the ratio 3:1. How much water must be added to make the ratio 3:2?",
-      "options": {"A": "5 litres", "B": "8 litres", "C": "10 litres", "D": "12 litres"},
+      "options": {
+        "A": "5 litres",
+        "B": "8 litres",
+        "C": "10 litres",
+        "D": "12 litres"
+      },
       "correct_answer": "B",
       "explanation": "In 40 L, milk = (3/4)*40 = 30 L, water = 10 L. Adding water keeps milk at 30 L. For ratio 3:2, 30:water = 3:2 => water = 20 L. Water to add = 20 - 10 = 8 litres.",
       "difficulty": "medium",
       "sub_topic": "weighted_average_mixtures",
-      "misconception_tags": ["changing_both_components_error"],
-      "company_tags": ["infosys", "wipro", "capgemini"],
+      "misconception_tags": [
+        "changing_both_components_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +127,23 @@
     {
       "id": "MIX-PRACTICE-004",
       "question": "In what ratio must tea at Rs. 60/kg be mixed with tea at Rs. 90/kg so that the mixture costs Rs. 70/kg?",
-      "options": {"A": "1:2", "B": "2:1", "C": "2:3", "D": "3:2"},
+      "options": {
+        "A": "1:2",
+        "B": "2:1",
+        "C": "2:3",
+        "D": "3:2"
+      },
       "correct_answer": "B",
       "explanation": "Cheaper=60, dearer=90, mean=70. Ratio (60/kg : 90/kg) = (90-70):(70-60) = 20:10 = 2:1.",
       "difficulty": "easy",
       "sub_topic": "alligation_rule",
-      "misconception_tags": ["inverted_alligation_ratio"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "inverted_alligation_ratio"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +153,81 @@
     {
       "id": "MIX-PRACTICE-005",
       "question": "A container has 20 litres of milk. 4 litres of milk is taken out and replaced with water. How much milk remains in the container?",
-      "options": {"A": "14 litres", "B": "15 litres", "C": "16 litres", "D": "18 litres"},
+      "options": {
+        "A": "14 litres",
+        "B": "15 litres",
+        "C": "16 litres",
+        "D": "18 litres"
+      },
       "correct_answer": "C",
       "explanation": "After removing 4 litres from 20 litres, milk left = 20 - 4 = 16 litres (the removed part was pure milk). Replacing with water keeps total volume 20 litres.",
       "difficulty": "easy",
       "sub_topic": "replacement_problems",
-      "misconception_tags": ["replacement_step_error"],
-      "company_tags": ["infosys", "tcs"],
+      "misconception_tags": [
+        "replacement_step_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-PRACTICE-006",
+      "question": "Rice costing 60 per kg and rice costing 80 per kg are mixed to produce a mixture costing 70 per kg. In what ratio should they be mixed?",
+      "options": {
+        "A": "1:1",
+        "B": "2:3",
+        "C": "3:2",
+        "D": "1:2"
+      },
+      "correct_answer": "A",
+      "explanation": "Alligation: (dearer - mean) : (mean - cheaper) = (80 - 70) : (70 - 60) = 10 : 10 = 1:1.",
+      "difficulty": "easy",
+      "sub_topic": "alligation_rule",
+      "misconception_tags": [
+        "alligation_ratio_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-PRACTICE-007",
+      "question": "3 kg of a commodity at 100 per kg is mixed with 2 kg at 150 per kg. What is the average price per kg of the mixture?",
+      "options": {
+        "A": "110",
+        "B": "120",
+        "C": "125",
+        "D": "130"
+      },
+      "correct_answer": "B",
+      "explanation": "Total value = 3*100 + 2*150 = 300 + 300 = 600 for 5 kg. Average = 600/5 = 120.",
+      "difficulty": "easy",
+      "sub_topic": "weighted_average_mixtures",
+      "misconception_tags": [
+        "simple_average_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +235,24 @@
     {
       "id": "MIX-001",
       "question": "A grocer mixes two varieties of pulses costing Rs. 45/kg and Rs. 60/kg to get a mixture worth Rs. 54/kg. In what ratio should he mix them?",
-      "options": {"A": "2:3", "B": "3:2", "C": "1:2", "D": "2:1"},
+      "options": {
+        "A": "2:3",
+        "B": "3:2",
+        "C": "1:2",
+        "D": "2:1"
+      },
       "correct_answer": "A",
       "explanation": "Cheaper=45, dearer=60, mean=54. Required ratio (45/kg : 60/kg) = (60-54):(54-45) = 6:9 = 2:3.",
       "difficulty": "easy",
       "sub_topic": "alligation_rule",
-      "misconception_tags": ["inverted_alligation_ratio"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "inverted_alligation_ratio"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +262,24 @@
     {
       "id": "MIX-002",
       "question": "A vessel contains 60 litres of milk. 12 litres of milk is drawn out and replaced by water. Then 12 litres of the mixture is drawn out and replaced by water. How much milk is left in the vessel?",
-      "options": {"A": "36 litres", "B": "38.4 litres", "C": "40 litres", "D": "42 litres"},
+      "options": {
+        "A": "36 litres",
+        "B": "38.4 litres",
+        "C": "40 litres",
+        "D": "42 litres"
+      },
       "correct_answer": "B",
       "explanation": "Milk left after n replacements = V*(1 - x/V)^n = 60*(1 - 12/60)^2 = 60*(48/60)^2 = 60*(4/5)^2 = 60*16/25 = 38.4 litres.",
       "difficulty": "medium",
       "sub_topic": "replacement_problems",
-      "misconception_tags": ["repeated_replacement_linear_error"],
-      "company_tags": ["tcs", "accenture", "capgemini"],
+      "misconception_tags": [
+        "repeated_replacement_linear_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +289,24 @@
     {
       "id": "MIX-003",
       "question": "How many kilograms of rice costing Rs. 42/kg must be mixed with 25 kg of rice costing Rs. 30/kg so that the mixture costs Rs. 36/kg?",
-      "options": {"A": "15 kg", "B": "20 kg", "C": "25 kg", "D": "30 kg"},
+      "options": {
+        "A": "15 kg",
+        "B": "20 kg",
+        "C": "25 kg",
+        "D": "30 kg"
+      },
       "correct_answer": "C",
       "explanation": "Using alligation: cheaper=30, dearer=42, mean=36. Ratio (30/kg : 42/kg) = (42-36):(36-30) = 6:6 = 1:1. So quantity of Rs. 42/kg rice = quantity of Rs. 30/kg rice = 25 kg.",
       "difficulty": "medium",
       "sub_topic": "alligation_rule",
-      "misconception_tags": ["ratio_to_quantity_conversion_error"],
-      "company_tags": ["infosys", "wipro", "tcs"],
+      "misconception_tags": [
+        "ratio_to_quantity_conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +316,23 @@
     {
       "id": "MIX-004",
       "question": "A 30-litre solution has acid and water in the ratio 2:1. How much water must be added so that the ratio becomes 1:1?",
-      "options": {"A": "5 litres", "B": "10 litres", "C": "15 litres", "D": "20 litres"},
+      "options": {
+        "A": "5 litres",
+        "B": "10 litres",
+        "C": "15 litres",
+        "D": "20 litres"
+      },
       "correct_answer": "B",
       "explanation": "Acid = (2/3)*30 = 20 L, water = 10 L. Adding only water keeps acid 20 L. For ratio 1:1, water must become 20 L. Water to add = 20 - 10 = 10 litres.",
       "difficulty": "easy",
       "sub_topic": "weighted_average_mixtures",
-      "misconception_tags": ["changing_both_components_error"],
-      "company_tags": ["cognizant", "tcs"],
+      "misconception_tags": [
+        "changing_both_components_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +342,108 @@
     {
       "id": "MIX-005",
       "question": "Two alloys contain copper and zinc in ratios 3:2 and 1:2 respectively. In what ratio should they be mixed so that the resulting alloy has copper and zinc in ratio 2:3?",
-      "options": {"A": "1:1", "B": "1:3", "C": "3:1", "D": "2:3"},
+      "options": {
+        "A": "1:1",
+        "B": "1:3",
+        "C": "3:1",
+        "D": "2:3"
+      },
       "correct_answer": "B",
       "explanation": "Use copper fraction in each alloy. First alloy (Cu:Zn = 3:2): copper = 3/5 = 0.6. Second alloy (Cu:Zn = 1:2): copper = 1/3. Desired mixture (Cu:Zn = 2:3): copper = 2/5 = 0.4. By alligation, quantity of first : quantity of second = (mean - second):(first - mean) = (2/5 - 1/3):(3/5 - 2/5) = (1/15):(1/5) = 1:3. Quick check: 1 part of first gives 0.6 Cu and 3 parts of second give 1.0 Cu, total 1.6 Cu in 4 parts = 0.4, which matches 2:3.",
       "difficulty": "hard",
       "sub_topic": "alligation_rule",
-      "misconception_tags": ["fraction_alligation_error"],
-      "company_tags": ["infosys", "accenture"],
+      "misconception_tags": [
+        "fraction_alligation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 1,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-006",
+      "question": "A 30% acid solution is mixed with a 50% acid solution to obtain a 40% solution. In what ratio (30% : 50%) must they be mixed?",
+      "options": {
+        "A": "1:1",
+        "B": "2:1",
+        "C": "3:1",
+        "D": "1:2"
+      },
+      "correct_answer": "A",
+      "explanation": "Alligation: (50 - 40) : (40 - 30) = 10 : 10 = 1:1.",
+      "difficulty": "easy",
+      "sub_topic": "alligation_rule",
+      "misconception_tags": [
+        "alligation_ratio_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-007",
+      "question": "A container holds 40 litres of milk. 8 litres are drawn off and replaced with water, and then the operation is repeated once. How much milk remains?",
+      "options": {
+        "A": "23.2 litres",
+        "B": "25.6 litres",
+        "C": "28.4 litres",
+        "D": "30 litres"
+      },
+      "correct_answer": "B",
+      "explanation": "Fraction of milk remaining after each replacement = (1 - 8/40) = 0.8. After two operations: 40 * 0.8 * 0.8 = 40 * 0.64 = 25.6 litres.",
+      "difficulty": "hard",
+      "sub_topic": "replacement_problems",
+      "misconception_tags": [
+        "replacement_formula_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MIX-008",
+      "question": "A shopkeeper mixes 5 kg of tea costing 40 per kg with 15 kg costing 60 per kg. What is the average price per kg of the mixture?",
+      "options": {
+        "A": "50",
+        "B": "52",
+        "C": "55",
+        "D": "58"
+      },
+      "correct_answer": "C",
+      "explanation": "Total = 5*40 + 15*60 = 200 + 900 = 1100 for 20 kg. Average = 1100/20 = 55.",
+      "difficulty": "medium",
+      "sub_topic": "weighted_average_mixtures",
+      "misconception_tags": [
+        "simple_average_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

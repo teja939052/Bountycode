@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is a SQL view?",
+      "options": {
+        "A": "A physical copy of a table on disk",
+        "B": "A stored query presented as a virtual table",
+        "C": "An index structure",
+        "D": "A database user account"
+      },
+      "correct_answer": "B",
+      "explanation": "A view is a named SELECT statement saved in the database and treated like a table when queried; rows are computed from underlying tables at query time (unless materialized).",
+      "difficulty": "easy",
+      "sub_topic": "view_concept",
+      "misconception_tags": [
+        "view_vs_table_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLV-PRACTICE-006"
+    },
+    {
+      "question": "Which keyword creates a view?",
+      "options": {
+        "A": "CREATE VIEW ... AS SELECT ...",
+        "B": "MAKE TABLE ... FROM ...",
+        "C": "INSERT VIEW ...",
+        "D": "DEFINE VIEW ..."
+      },
+      "correct_answer": "A",
+      "explanation": "The standard syntax is CREATE VIEW name AS SELECT ...; REPLACE VIEW / CREATE OR REPLACE VIEW redefines an existing one.",
+      "difficulty": "easy",
+      "sub_topic": "syntax",
+      "misconception_tags": [
+        "ddl_verb_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLV-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "A major benefit of views for security is:",
+      "options": {
+        "A": "They encrypt the whole database",
+        "B": "They can restrict column/row exposure to specific users",
+        "C": "They disable all indexes",
+        "D": "They remove the need for authentication"
+      },
+      "correct_answer": "B",
+      "explanation": "A view can expose only permitted columns (and, with a WHERE clause, only permitted rows), so users query the view instead of the base table - column-level access control.",
+      "difficulty": "medium",
+      "sub_topic": "benefits",
+      "misconception_tags": [
+        "view_security_purpose"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLV-006"
+    },
+    {
+      "question": "Which is a limitation of a standard (non-materialized) view?",
+      "options": {
+        "A": "It cannot be queried with JOINs",
+        "B": "It stores no data itself, so complex views can slow queries",
+        "C": "It cannot reference other views",
+        "D": "It must be updated manually after every SELECT"
+      },
+      "correct_answer": "B",
+      "explanation": "A normal view saves definition, not data: each query re-executes the underlying SELECT, which can be costly over large/complex joins. (Some DBMS also restrict updates on non-updatable views.)",
+      "difficulty": "medium",
+      "sub_topic": "limitations",
+      "misconception_tags": [
+        "view_materialization_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLV-007"
+    },
+    {
+      "question": "What happens to a view when its underlying table's column is renamed (in most databases)?",
+      "options": {
+        "A": "The view definition is automatically rewritten correctly",
+        "B": "The view may break because it stores the column reference",
+        "C": "The view converts to a materialized table",
+        "D": "Nothing changes anywhere"
+      },
+      "correct_answer": "B",
+      "explanation": "Views store SQL text, not column positions; renaming a base column invalidates dependent views (and often other dependent objects) until the view is altered or recreated.",
+      "difficulty": "medium",
+      "sub_topic": "limitations",
+      "misconception_tags": [
+        "view_dependency"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SQLV-008"
     }
   ]
 }

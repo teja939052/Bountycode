@@ -176,6 +176,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-PRACTICE-006",
+      "question": "What is the area of a circle with radius 7 cm? (Take pi = 22/7)",
+      "options": {
+        "A": "144 sq cm",
+        "B": "154 sq cm",
+        "C": "156 sq cm",
+        "D": "164 sq cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Area = pi*r^2 = (22/7)*7*7 = 22*7 = 154 sq cm.",
+      "difficulty": "easy",
+      "sub_topic": "circle_basics",
+      "misconception_tags": [
+        "formula_application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-PRACTICE-007",
+      "question": "The two legs of a right triangle are 6 cm and 8 cm. What is the hypotenuse?",
+      "options": {
+        "A": "9 cm",
+        "B": "10 cm",
+        "C": "12 cm",
+        "D": "14 cm"
+      },
+      "correct_answer": "B",
+      "explanation": "By Pythagoras: hypotenuse = sqrt(6^2 + 8^2) = sqrt(36 + 64) = sqrt(100) = 10 cm (6-8-10 triple).",
+      "difficulty": "easy",
+      "sub_topic": "triangle_properties",
+      "misconception_tags": [
+        "pythagoras_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-006",
+      "question": "What is the circumference of a circle with radius 7 cm? (Take pi = 22/7)",
+      "options": {
+        "A": "22 cm",
+        "B": "44 cm",
+        "C": "49 cm",
+        "D": "88 cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Circumference = 2*pi*r = 2*(22/7)*7 = 44 cm.",
+      "difficulty": "easy",
+      "sub_topic": "circle_basics",
+      "misconception_tags": [
+        "diameter_radius_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-007",
+      "question": "A rectangle has length 12 cm and breadth 8 cm. What is its perimeter?",
+      "options": {
+        "A": "20 cm",
+        "B": "40 cm",
+        "C": "96 cm",
+        "D": "56 cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Perimeter = 2*(length + breadth) = 2*(12 + 8) = 40 cm. (96 is the area, not the perimeter.)",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_and_area",
+      "misconception_tags": [
+        "area_vs_perimeter_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GEO-008",
+      "question": "The angles of a triangle are in the ratio 2:3:4. What is the largest angle?",
+      "options": {
+        "A": "60 degrees",
+        "B": "70 degrees",
+        "C": "80 degrees",
+        "D": "90 degrees"
+      },
+      "correct_answer": "C",
+      "explanation": "Sum of angles = 180. Parts = 2 + 3 + 4 = 9, each part = 20. Angles are 40, 60, 80; the largest is 80 degrees.",
+      "difficulty": "medium",
+      "sub_topic": "triangle_properties",
+      "misconception_tags": [
+        "ratio_angle_sum_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

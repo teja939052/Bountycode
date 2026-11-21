@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In the Waterfall model, what happens if a defect is found late in the project?",
+      "options": {
+        "A": "Requirements are automatically rewritten",
+        "B": "The team must backtrack through earlier phases, which is costly",
+        "C": "The defect is ignored until release",
+        "D": "Testing is skipped"
+      },
+      "correct_answer": "B",
+      "explanation": "Waterfall is sequential: discovering a defect late means returning to earlier phases (design/coding), which is far more expensive than catching it early - a key motivation for iterative models.",
+      "difficulty": "medium",
+      "sub_topic": "models",
+      "misconception_tags": [
+        "waterfall_rigidity"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SDLC-PRACTICE-006"
+    },
+    {
+      "question": "Which SDLC phase defines what the software must do, before designing how?",
+      "options": {
+        "A": "Design",
+        "B": "Requirements gathering/analysis",
+        "C": "Deployment",
+        "D": "Maintenance"
+      },
+      "correct_answer": "B",
+      "explanation": "Requirements analysis captures functional and non-functional needs; design then decides the architecture and how those needs will be met.",
+      "difficulty": "easy",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "phase_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SDLC-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is the defining characteristic of an Agile development process?",
+      "options": {
+        "A": "A single long release cycle at the end",
+        "B": "Iterative increments with frequent feedback and working software",
+        "C": "No involvement of the customer",
+        "D": "Complete avoidance of documentation"
+      },
+      "correct_answer": "B",
+      "explanation": "Agile delivers working software in small iterations (sprints) with continuous customer feedback and adaptation, in contrast to up-front, plan-driven Waterfall.",
+      "difficulty": "easy",
+      "sub_topic": "models",
+      "misconception_tags": [
+        "agile_vs_waterfall"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SDLC-006"
+    },
+    {
+      "question": "Which SDLC phase typically has the largest long-term cost share?",
+      "options": {
+        "A": "Requirements",
+        "B": "Design",
+        "C": "Maintenance",
+        "D": "Coding standards"
+      },
+      "correct_answer": "C",
+      "explanation": "Maintenance (bug fixes, enhancements, adaptation) spans the product's remaining lifetime and commonly accounts for the majority (often 60-80%) of total software cost.",
+      "difficulty": "medium",
+      "sub_topic": "maintenance",
+      "misconception_tags": [
+        "maintenance_cost_underestimated"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SDLC-007"
+    },
+    {
+      "question": "In the Incremental model, the first increment normally delivers:",
+      "options": {
+        "A": "The entire finished product",
+        "B": "A core working subset of functionality",
+        "C": "Only documentation",
+        "D": "Only the deployment scripts"
+      },
+      "correct_answer": "B",
+      "explanation": "Incremental development builds the system in pieces: the first increment provides essential core functionality, later increments add further capabilities, each with its own mini-development cycle.",
+      "difficulty": "medium",
+      "sub_topic": "models",
+      "misconception_tags": [
+        "incremental_vs_waterfall"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SDLC-008"
     }
   ]
 }

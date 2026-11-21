@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "The two-pointer technique on a sorted array typically achieves which improvement over the naive nested-loop approach?",
+      "options": {
+        "A": "From O(n^2) to O(n)",
+        "B": "From O(n) to O(log n) always",
+        "C": "From O(n log n) to O(1)",
+        "D": "No improvement"
+      },
+      "correct_answer": "A",
+      "explanation": "Pointers move monotonically through the array once, so each element is processed a constant number of times: O(n) instead of comparing every pair.",
+      "difficulty": "easy",
+      "sub_topic": "pattern_overview",
+      "misconception_tags": [
+        "complexity_underestimate"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TP-PRACTICE-006"
+    },
+    {
+      "question": "For the 'two sum in a sorted array' problem, when target is exceeded by the current sum, which pointer moves?",
+      "options": {
+        "A": "Left pointer moves right",
+        "B": "Right pointer moves left",
+        "C": "Both jump to the middle",
+        "D": "Neither moves"
+      },
+      "correct_answer": "B",
+      "explanation": "The array is sorted, so a too-large sum must be reduced: move the right pointer left to a smaller value (left pointer moves right only when the sum is too small).",
+      "difficulty": "easy",
+      "sub_topic": "opposite_end",
+      "misconception_tags": [
+        "pointer_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TP-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In the same-direction (fast/slow) pattern, what does it mean when two pointers move through an array at different speeds?",
+      "options": {
+        "A": "It always finds a sorted answer",
+        "B": "It can detect cycles (e.g. in a linked list) or compact elements in place",
+        "C": "It performs binary search",
+        "D": "It requires a hash table"
+      },
+      "correct_answer": "B",
+      "explanation": "Same-direction pointers underpin Floyd's cycle detection and in-place compaction (e.g. removing duplicates by writing unique elements behind a slow pointer).",
+      "difficulty": "medium",
+      "sub_topic": "same_direction",
+      "misconception_tags": [
+        "pattern_purpose"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TP-006"
+    },
+    {
+      "question": "Why must the two-pointer opposite-end pattern usually start with a sorted array?",
+      "options": {
+        "A": "To reduce memory usage",
+        "B": "Because moving a pointer is only justified when order guarantees the discarded elements cannot form the answer",
+        "C": "Sorting is required by the function signature",
+        "D": "Pointers cannot index unsorted data"
+      },
+      "correct_answer": "B",
+      "explanation": "Correctness relies on monotonicity: if the sum is too large, every pair containing the largest remaining element is also too large, so it can be safely discarded. Without sorting this reasoning fails.",
+      "difficulty": "hard",
+      "sub_topic": "opposite_end",
+      "misconception_tags": [
+        "invariant_reasoning"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TP-007"
+    },
+    {
+      "question": "Two pointers used to keep a window [left, right] that always satisfies a condition are an instance of:",
+      "options": {
+        "A": "Binary search",
+        "B": "The sliding-window pattern",
+        "C": "Backtracking",
+        "D": "Merge sort"
+      },
+      "correct_answer": "B",
+      "explanation": "Opposite/same-direction pointers maintaining a valid window state are exactly the sliding-window technique - a two-pointer special case with an aggregate to maintain.",
+      "difficulty": "medium",
+      "sub_topic": "pattern_overview",
+      "misconception_tags": [
+        "pattern_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TP-008"
     }
   ]
 }

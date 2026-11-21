@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "A trie (prefix tree) stores strings so that each path from the root represents:",
+      "options": {
+        "A": "A whole sorted list",
+        "B": "A common prefix of the stored keys",
+        "C": "A hash of the key",
+        "D": "A postfix expression"
+      },
+      "correct_answer": "B",
+      "explanation": "Nodes correspond to character prefixes: sharing a path means sharing a prefix, which is why tries make prefix lookups efficient.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "trie_structure"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TRIE-PRACTICE-006"
+    },
+    {
+      "question": "Which operation is a trie classically good at?",
+      "options": {
+        "A": "Finding the median of keys",
+        "B": "Autocomplete / all words with a given prefix",
+        "C": "Sorting floating-point numbers",
+        "D": "Matrix multiplication"
+      },
+      "correct_answer": "B",
+      "explanation": "Walk to the prefix node and enumerate its subtree - autocomplete, spell-checking and word games rely on this.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "data_structure_choice"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TRIE-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is the time complexity of searching for a word of length L in a trie?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(L) - independent of how many words are stored",
+        "C": "O(N) where N = total words",
+        "D": "O(L * N)"
+      },
+      "correct_answer": "B",
+      "explanation": "Lookup follows at most one edge per character: O(L). This beats hash tables when prefixes must also be queried (hashing must be re-run per prefix).",
+      "difficulty": "medium",
+      "sub_topic": "complexity",
+      "misconception_tags": [
+        "complexity_confusion"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TRIE-006"
+    },
+    {
+      "question": "Space drawback of a trie compared with a hash table is:",
+      "options": {
+        "A": "Tries always use less memory",
+        "B": "Pointer/child arrays per node can waste space despite prefix sharing",
+        "C": "Tries cannot store strings",
+        "D": "Hash tables need a trie inside"
+      },
+      "correct_answer": "B",
+      "explanation": "Each node carries child pointers (an array of 26 can be large and sparse); alternatives like compressed/radix tries or hash-based children reduce this overhead.",
+      "difficulty": "medium",
+      "sub_topic": "complexity",
+      "misconception_tags": [
+        "space_tradeoff"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TRIE-007"
+    },
+    {
+      "question": "Which trie node property is typically used to mark the end of a stored word?",
+      "options": {
+        "A": "A depth counter only",
+        "B": "An 'is_end' / terminal flag on the node",
+        "C": "The node's colour",
+        "D": "A negative hash value"
+      },
+      "correct_answer": "B",
+      "explanation": "Because one word can be a prefix of another (e.g. 'car' and 'card'), an explicit end-of-word flag distinguishes complete keys from intermediate prefixes.",
+      "difficulty": "medium",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "prefix_vs_word"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "TRIE-008"
     }
   ]
 }

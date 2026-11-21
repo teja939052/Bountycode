@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-PRACTICE-006",
+      "question": "A pipe fills a tank in 5 hours. What is its filling rate per hour?",
+      "options": {
+        "A": "1/5 of the tank",
+        "B": "5 of the tank",
+        "C": "1/20 of the tank",
+        "D": "25 of the tank"
+      },
+      "correct_answer": "A",
+      "explanation": "Rate = work/time = 1 full tank / 5 hours = 1/5 of the tank per hour.",
+      "difficulty": "easy",
+      "sub_topic": "rates",
+      "misconception_tags": [
+        "rate_vs_time_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-PRACTICE-007",
+      "question": "Two pipes fill a tank in 8 hours and 24 hours respectively. How long together?",
+      "options": {
+        "A": "6 hours",
+        "B": "8 hours",
+        "C": "12 hours",
+        "D": "16 hours"
+      },
+      "correct_answer": "A",
+      "explanation": "Combined rate = 1/8 + 1/24 = 3/24 + 1/24 = 4/24 = 1/6 per hour, so 6 hours.",
+      "difficulty": "medium",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "adding_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-006",
+      "question": "Pipe A fills a tank in 12 hours and Pipe B in 6 hours. Working together, how long do they take?",
+      "options": {
+        "A": "3 hours",
+        "B": "4 hours",
+        "C": "6 hours",
+        "D": "8 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Rate = 1/12 + 1/6 = 1/12 + 2/12 = 3/12 = 1/4 per hour, so 4 hours.",
+      "difficulty": "medium",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "adding_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-007",
+      "question": "Three pipes can fill a tank in 10, 15 and 30 hours respectively. How long together?",
+      "options": {
+        "A": "4 hours",
+        "B": "5 hours",
+        "C": "6 hours",
+        "D": "7.5 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Rate = 1/10 + 1/15 + 1/30 = 3/30 + 2/30 + 1/30 = 6/30 = 1/5 per hour, so 5 hours.",
+      "difficulty": "medium",
+      "sub_topic": "combined",
+      "misconception_tags": [
+        "adding_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PCB-008",
+      "question": "A pipe fills 1/3 of a tank every hour. How many hours to fill the whole tank?",
+      "options": {
+        "A": "1/3 hour",
+        "B": "3 hours",
+        "C": "9 hours",
+        "D": "6 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Time = 1 job / (1/3 per hour) = 3 hours.",
+      "difficulty": "easy",
+      "sub_topic": "rates",
+      "misconception_tags": [
+        "rate_vs_time_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

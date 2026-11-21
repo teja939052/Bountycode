@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which cloud service model removes the most infrastructure management from the customer?",
+      "options": {
+        "A": "IaaS",
+        "B": "PaaS",
+        "C": "SaaS",
+        "D": "On-premises"
+      },
+      "correct_answer": "C",
+      "explanation": "SaaS delivers a finished application over the internet; the provider manages hardware, OS, runtime and usually the app itself. IaaS still leaves OS/middleware management to the customer, and PaaS still leaves application code management to the customer.",
+      "difficulty": "easy",
+      "sub_topic": "service_models",
+      "misconception_tags": [
+        "service_model_confusion"
+      ],
+      "company_tags": [
+        "aws",
+        "microsoft",
+        "google"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOUD-PRACTICE-006"
+    },
+    {
+      "question": "Which cloud deployment model uses dedicated infrastructure for a single organisation?",
+      "options": {
+        "A": "Public cloud",
+        "B": "Private cloud",
+        "C": "Community cloud",
+        "D": "Hybrid cloud"
+      },
+      "correct_answer": "B",
+      "explanation": "A private cloud is provisioned for exclusive use by one organisation, giving more control and isolation than a shared public cloud.",
+      "difficulty": "easy",
+      "sub_topic": "deployment_models",
+      "misconception_tags": [
+        "deployment_model_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOUD-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which cloud computing benefit describes paying only for the resources actually consumed?",
+      "options": {
+        "A": "High availability",
+        "B": "Pay-as-you-go elasticity",
+        "C": "Vendor lock-in",
+        "D": "Static capacity"
+      },
+      "correct_answer": "B",
+      "explanation": "Elastic/usage-based pricing means capacity scales with demand and billing follows actual consumption, converting capex to opex and avoiding over-provisioning.",
+      "difficulty": "easy",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "cost_model_confusion"
+      ],
+      "company_tags": [
+        "aws",
+        "microsoft",
+        "google"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOUD-006"
+    },
+    {
+      "question": "In IaaS, which layer is the customer responsible for managing?",
+      "options": {
+        "A": "Physical datacenter only",
+        "B": "Hypervisor and below only",
+        "C": "Operating system and above",
+        "D": "SaaS application only"
+      },
+      "correct_answer": "C",
+      "explanation": "IaaS provides compute, storage and network; the customer provisions VMs and manages the guest OS, middleware and applications (shared-responsibility model).",
+      "difficulty": "medium",
+      "sub_topic": "service_models",
+      "misconception_tags": [
+        "shared_responsibility_confusion"
+      ],
+      "company_tags": [
+        "aws",
+        "azure",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOUD-007"
+    },
+    {
+      "question": "What is the main technical purpose of auto-scaling in a cloud deployment?",
+      "options": {
+        "A": "To keep servers running permanently at full load",
+        "B": "To add or remove instances based on demand",
+        "C": "To migrate data between regions manually",
+        "D": "To replace encryption keys"
+      },
+      "correct_answer": "B",
+      "explanation": "Auto-scaling adjusts the number of running instances in response to load metrics, maintaining performance during spikes and cutting cost during idle periods.",
+      "difficulty": "medium",
+      "sub_topic": "fundamentals",
+      "misconception_tags": [
+        "scaling_purpose_confusion"
+      ],
+      "company_tags": [
+        "google",
+        "amazon",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "CLOUD-008"
     }
   ]
 }

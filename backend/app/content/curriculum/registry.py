@@ -24,6 +24,11 @@ from app.content.curriculum.cs_debugging import DEBUGGING_LESSON
 from app.content.curriculum.dsa_arrays_strings import ARRAYS_STRINGS_LESSON
 from app.content.curriculum.cs_git_testing import GIT_TESTING_LESSON
 from app.content.curriculum.cs_http_api import HTTP_API_LESSON
+from app.content.curriculum.css_basics import CSS_BASICS_LESSON
+from app.content.curriculum.javascript_basics import JAVASCRIPT_BASICS_LESSON
+from app.content.curriculum.binary_search import BINARY_SEARCH_LESSON
+from app.content.curriculum.sorting_basics import SORTING_BASICS_LESSON
+from app.content.curriculum.linked_list import LINKED_LIST_LESSON
 from app.content.curriculum.python_loops import PYTHON_LOOPS_LESSON
 from app.data.worlds_data import WORLD_REGISTRY
 
@@ -49,7 +54,12 @@ LESSON_REGISTRY: Dict[str, Dict[str, Any]] = {
     "dsa_arrays_strings": ARRAYS_STRINGS_LESSON,
     "cs_git_testing": GIT_TESTING_LESSON,
     "cs_http_api": HTTP_API_LESSON,
-    "python_loops": PYTHON_LOOPS_LESSON,
+    "css_basics_01": CSS_BASICS_LESSON,
+    "javascript_basics_01": JAVASCRIPT_BASICS_LESSON,
+    "python_loops_01": PYTHON_LOOPS_LESSON,
+    "dsa_binary_search_01": BINARY_SEARCH_LESSON,
+    "dsa_sorting_basics_01": SORTING_BASICS_LESSON,
+    "dsa_linked_list_01": LINKED_LIST_LESSON,
     # Sprint-compatible aliases (service_company_sprint.json references these slugs)
     "number_systems": NUMBER_SYSTEMS_LESSON,
     "ratio_proportion": RATIO_PROPORTION_LESSON,

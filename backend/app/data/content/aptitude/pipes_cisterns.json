@@ -1,4 +1,4 @@
-﻿{
+{
   "topic": "pipes_cisterns",
   "subject": "quantitative_aptitude",
   "pattern": "pipes_cisterns",
@@ -47,13 +47,24 @@
     {
       "id": "PIPE-PRACTICE-001",
       "question": "Pipe A can fill a tank in 20 hours and Pipe B can fill it in 30 hours. If both are opened together, in how many hours will the tank be filled?",
-      "options": {"A": "10 hours", "B": "12 hours", "C": "15 hours", "D": "25 hours"},
+      "options": {
+        "A": "10 hours",
+        "B": "12 hours",
+        "C": "15 hours",
+        "D": "25 hours"
+      },
       "correct_answer": "B",
       "explanation": "Combined rate = 1/20 + 1/30 = (3+2)/60 = 5/60 = 1/12 tank/hour. Time = 12 hours.",
       "difficulty": "easy",
       "sub_topic": "inlet_and_outlet_rates",
-      "misconception_tags": ["adding_times_instead_of_rates"],
-      "company_tags": ["tcs", "infosys", "wipro"],
+      "misconception_tags": [
+        "adding_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -63,13 +74,24 @@
     {
       "id": "PIPE-PRACTICE-002",
       "question": "A pipe can fill a tank in 6 hours. Due to a leak, it takes 8 hours to fill the tank. In how many hours can the leak empty the full tank?",
-      "options": {"A": "12 hours", "B": "14 hours", "C": "24 hours", "D": "48 hours"},
+      "options": {
+        "A": "12 hours",
+        "B": "14 hours",
+        "C": "24 hours",
+        "D": "48 hours"
+      },
       "correct_answer": "C",
       "explanation": "Inlet rate = 1/6, net rate with leak = 1/8. Leak rate = 1/6 - 1/8 = (4-3)/24 = 1/24 tank/hour. So leak empties full tank in 24 hours.",
       "difficulty": "medium",
       "sub_topic": "combined_pipes_and_leaks",
-      "misconception_tags": ["leak_rate_sign_error"],
-      "company_tags": ["tcs", "accenture", "capgemini"],
+      "misconception_tags": [
+        "leak_rate_sign_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -79,13 +101,23 @@
     {
       "id": "PIPE-PRACTICE-003",
       "question": "An inlet pipe fills a tank in 10 hours and an outlet pipe empties it in 15 hours. If both are opened together, the tank will be filled in:",
-      "options": {"A": "25 hours", "B": "30 hours", "C": "12.5 hours", "D": "5 hours"},
+      "options": {
+        "A": "25 hours",
+        "B": "30 hours",
+        "C": "12.5 hours",
+        "D": "5 hours"
+      },
       "correct_answer": "B",
       "explanation": "Net rate = 1/10 - 1/15 = (3-2)/30 = 1/30 tank/hour. Time to fill = 30 hours.",
       "difficulty": "easy",
       "sub_topic": "combined_pipes_and_leaks",
-      "misconception_tags": ["subtracting_times_instead_of_rates"],
-      "company_tags": ["infosys", "wipro"],
+      "misconception_tags": [
+        "subtracting_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -95,13 +127,23 @@
     {
       "id": "PIPE-PRACTICE-004",
       "question": "Pipe A can fill a tank in 12 hours and Pipe B can fill it in 18 hours. If both are opened for 4 hours, what fraction of the tank is filled?",
-      "options": {"A": "1/3", "B": "4/9", "C": "5/9", "D": "2/3"},
+      "options": {
+        "A": "1/3",
+        "B": "4/9",
+        "C": "5/9",
+        "D": "2/3"
+      },
       "correct_answer": "C",
       "explanation": "Combined rate = 1/12 + 1/18 = (3+2)/36 = 5/36 tank/hour. In 4 hours, filled = 4 * 5/36 = 20/36 = 5/9.",
       "difficulty": "easy",
       "sub_topic": "sequential_and_partial_filling",
-      "misconception_tags": ["fraction_time_conversion_error"],
-      "company_tags": ["tcs", "cognizant"],
+      "misconception_tags": [
+        "fraction_time_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -111,17 +153,81 @@
     {
       "id": "PIPE-PRACTICE-005",
       "question": "Two pipes can fill a tank in 15 hours and 20 hours respectively. If both are opened together, how long will they take to fill half the tank?",
-      "options": {"A": "4 2/7 hours", "B": "8 4/7 hours", "C": "17.5 hours", "D": "35 hours"},
+      "options": {
+        "A": "4 2/7 hours",
+        "B": "8 4/7 hours",
+        "C": "17.5 hours",
+        "D": "35 hours"
+      },
       "correct_answer": "A",
       "explanation": "Combined rate = 1/15 + 1/20 = (4+3)/60 = 7/60 tank/hour. Time for full tank = 60/7 hours. Time for half tank = (1/2)/(7/60) = 30/7 = 4 2/7 hours.",
       "difficulty": "medium",
       "sub_topic": "sequential_and_partial_filling",
-      "misconception_tags": ["half_tank_scaling_error"],
-      "company_tags": ["infosys", "wipro"],
+      "misconception_tags": [
+        "half_tank_scaling_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PIPE-PRACTICE-006",
+      "question": "Pipe A can fill a tank in 6 hours. What fraction of the tank does it fill in 2 hours?",
+      "options": {
+        "A": "1/2",
+        "B": "1/3",
+        "C": "1/6",
+        "D": "2/3"
+      },
+      "correct_answer": "B",
+      "explanation": "Rate = 1/6 of the tank per hour. In 2 hours it fills 2 * 1/6 = 1/3 of the tank.",
+      "difficulty": "easy",
+      "sub_topic": "inlet_and_outlet_rates",
+      "misconception_tags": [
+        "rate_vs_time_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PIPE-PRACTICE-007",
+      "question": "A leak can empty a full tank in 12 hours. What fraction of the tank does it empty per hour?",
+      "options": {
+        "A": "1/6",
+        "B": "1/12",
+        "C": "12",
+        "D": "1/24"
+      },
+      "correct_answer": "B",
+      "explanation": "Work rate is the reciprocal of time: 1/12 of the tank per hour.",
+      "difficulty": "easy",
+      "sub_topic": "inlet_and_outlet_rates",
+      "misconception_tags": [
+        "rate_vs_time_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ],
@@ -129,13 +235,25 @@
     {
       "id": "PIPE-001",
       "question": "Pipes A and B can fill a tank in 12 hours and 16 hours respectively. Pipe C can empty the full tank in 24 hours. If all three pipes are opened together, in how many hours will the tank be filled?",
-      "options": {"A": "8 hours", "B": "9 3/5 hours", "C": "10 hours", "D": "48/5 hours"},
+      "options": {
+        "A": "8 hours",
+        "B": "9 3/5 hours",
+        "C": "10 hours",
+        "D": "48/5 hours"
+      },
       "correct_answer": "B",
       "explanation": "Net rate = 1/12 + 1/16 - 1/24. LCM of 12,16,24 is 48. So rate = (4 + 3 - 2)/48 = 5/48 tank/hour. Time = 48/5 = 9 3/5 hours.",
       "difficulty": "medium",
       "sub_topic": "combined_pipes_and_leaks",
-      "misconception_tags": ["outlet_sign_error", "lcm_arithmetic_error"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "outlet_sign_error",
+        "lcm_arithmetic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -145,13 +263,24 @@
     {
       "id": "PIPE-002",
       "question": "A tap can fill a cistern in 8 hours. After half the cistern is filled, three more similar taps are opened. What is the total time taken to fill the cistern completely?",
-      "options": {"A": "3 hours", "B": "4 hours", "C": "5 hours", "D": "6 hours"},
+      "options": {
+        "A": "3 hours",
+        "B": "4 hours",
+        "C": "5 hours",
+        "D": "6 hours"
+      },
       "correct_answer": "C",
       "explanation": "One tap fills in 8 hours, so half cistern takes 4 hours. Remaining half is filled by 4 similar taps. Rate of 4 taps = 4/8 = 1/2 cistern/hour. Time for remaining half = (1/2)/(1/2) = 1 hour. Total time = 4 + 1 = 5 hours.",
       "difficulty": "medium",
       "sub_topic": "sequential_and_partial_filling",
-      "misconception_tags": ["not_scaling_rate_for_multiple_pipes"],
-      "company_tags": ["tcs", "wipro", "capgemini"],
+      "misconception_tags": [
+        "not_scaling_rate_for_multiple_pipes"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -161,13 +290,23 @@
     {
       "id": "PIPE-003",
       "question": "Pipe A can fill a tank in 10 hours, Pipe B in 15 hours, and Pipe C in 30 hours. If all are opened together, how long will it take to fill the tank?",
-      "options": {"A": "4 hours", "B": "5 hours", "C": "6 hours", "D": "7.5 hours"},
+      "options": {
+        "A": "4 hours",
+        "B": "5 hours",
+        "C": "6 hours",
+        "D": "7.5 hours"
+      },
       "correct_answer": "B",
       "explanation": "Combined rate = 1/10 + 1/15 + 1/30 = (3 + 2 + 1)/30 = 6/30 = 1/5 tank/hour. Time = 5 hours.",
       "difficulty": "easy",
       "sub_topic": "inlet_and_outlet_rates",
-      "misconception_tags": ["adding_times_instead_of_rates"],
-      "company_tags": ["infosys", "tcs"],
+      "misconception_tags": [
+        "adding_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
       "frequency_tier": 3,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -177,13 +316,23 @@
     {
       "id": "PIPE-004",
       "question": "A pipe can fill a tank in 9 hours. Because of a leak at the bottom, it is filled in 10 hours. If the tank is full, in how much time will the leak empty it?",
-      "options": {"A": "45 hours", "B": "60 hours", "C": "90 hours", "D": "19 hours"},
+      "options": {
+        "A": "45 hours",
+        "B": "60 hours",
+        "C": "90 hours",
+        "D": "19 hours"
+      },
       "correct_answer": "C",
       "explanation": "Fill rate = 1/9, net rate = 1/10. Leak rate = 1/9 - 1/10 = (10-9)/90 = 1/90 tank/hour. So leak empties full tank in 90 hours.",
       "difficulty": "easy",
       "sub_topic": "combined_pipes_and_leaks",
-      "misconception_tags": ["leak_rate_sign_error"],
-      "company_tags": ["wipro", "cognizant"],
+      "misconception_tags": [
+        "leak_rate_sign_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "cognizant"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
@@ -193,17 +342,109 @@
     {
       "id": "PIPE-005",
       "question": "Two pipes A and B can fill a tank in 20 minutes and 30 minutes respectively. If A is opened first and after 5 minutes B is also opened, in how many more minutes will the tank be full?",
-      "options": {"A": "6 minutes", "B": "9 minutes", "C": "10 minutes", "D": "15 minutes"},
+      "options": {
+        "A": "6 minutes",
+        "B": "9 minutes",
+        "C": "10 minutes",
+        "D": "15 minutes"
+      },
       "correct_answer": "B",
       "explanation": "In 5 minutes, A fills 5/20 = 1/4 of tank. Remaining = 3/4. Combined rate of A and B = 1/20 + 1/30 = (3+2)/60 = 1/12 tank/minute. Time for remaining = (3/4)/(1/12) = 9 minutes.",
       "difficulty": "medium",
       "sub_topic": "sequential_and_partial_filling",
-      "misconception_tags": ["using_total_time_instead_of_remaining"],
-      "company_tags": ["tcs", "infosys", "accenture"],
+      "misconception_tags": [
+        "using_total_time_instead_of_remaining"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "accenture"
+      ],
       "frequency_tier": 2,
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PIPE-006",
+      "question": "Pipe A fills a tank in 6 hours and Pipe B in 12 hours. How long do they take together?",
+      "options": {
+        "A": "3 hours",
+        "B": "4 hours",
+        "C": "8 hours",
+        "D": "9 hours"
+      },
+      "correct_answer": "B",
+      "explanation": "Combined rate = 1/6 + 1/12 = 2/12 + 1/12 = 3/12 = 1/4 per hour. Time = 4 hours.",
+      "difficulty": "medium",
+      "sub_topic": "combined_pipes_and_leaks",
+      "misconception_tags": [
+        "adding_times_instead_of_rates"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PIPE-007",
+      "question": "Pipe A can fill a tank in 6 hours while a leak can empty it in 12 hours. If both are open, how long to fill the tank?",
+      "options": {
+        "A": "4 hours",
+        "B": "8 hours",
+        "C": "12 hours",
+        "D": "18 hours"
+      },
+      "correct_answer": "C",
+      "explanation": "Net rate = 1/6 - 1/12 = 1/12 per hour. Time = 12 hours.",
+      "difficulty": "medium",
+      "sub_topic": "combined_pipes_and_leaks",
+      "misconception_tags": [
+        "leak_sign_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PIPE-008",
+      "question": "Pipes A and B fill a cistern in 10 and 15 hours respectively. Both are opened for 3 hours, then A is closed. What fraction of the cistern is filled?",
+      "options": {
+        "A": "1/3",
+        "B": "1/2",
+        "C": "2/3",
+        "D": "3/4"
+      },
+      "correct_answer": "B",
+      "explanation": "Combined rate = 1/10 + 1/15 = 3/30 + 2/30 = 1/6 per hour. In 3 hours they fill 3/6 = 1/2.",
+      "difficulty": "medium",
+      "sub_topic": "sequential_and_partial_filling",
+      "misconception_tags": [
+        "partial_time_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

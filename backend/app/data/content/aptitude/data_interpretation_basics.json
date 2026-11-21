@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-PRACTICE-006",
+      "question": "A table shows Department A has 40 employees, B has 50 and C has 60. What is the average number of employees per department?",
+      "options": {
+        "A": "40",
+        "B": "50",
+        "C": "55",
+        "D": "60"
+      },
+      "correct_answer": "B",
+      "explanation": "Average = (40 + 50 + 60)/3 = 150/3 = 50.",
+      "difficulty": "easy",
+      "sub_topic": "reading_tables",
+      "misconception_tags": [
+        "average_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-PRACTICE-007",
+      "question": "Sales were 200 in January and 250 in February. What was the percentage increase from January to February?",
+      "options": {
+        "A": "20%",
+        "B": "25%",
+        "C": "30%",
+        "D": "50%"
+      },
+      "correct_answer": "B",
+      "explanation": "Increase = 250 - 200 = 50. Percentage increase = 50/200 * 100 = 25% (base is January).",
+      "difficulty": "easy",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "wrong_base_percentage"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-006",
+      "question": "The ratio of employees in teams A and B is 3:4 and the total is 56. How many are in team A?",
+      "options": {
+        "A": "21",
+        "B": "24",
+        "C": "28",
+        "D": "32"
+      },
+      "correct_answer": "B",
+      "explanation": "Parts = 3 + 4 = 7, each part = 56/7 = 8. Team A = 3*8 = 24.",
+      "difficulty": "easy",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "ratio_part_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-007",
+      "question": "Class 1 has 40 students with average 60 and Class 2 has 60 students with average 80. What is the combined average?",
+      "options": {
+        "A": "70",
+        "B": "72",
+        "C": "75",
+        "D": "78"
+      },
+      "correct_answer": "B",
+      "explanation": "Total marks = 40*60 + 60*80 = 2400 + 4800 = 7200. Students = 100. Combined average = 7200/100 = 72.",
+      "difficulty": "medium",
+      "sub_topic": "averages_and_comparisons",
+      "misconception_tags": [
+        "average_of_averages_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DI-008",
+      "question": "Revenue was 500 in 2020, 550 in 2021 and 605 in 2022. What was the year-over-year growth rate in 2022?",
+      "options": {
+        "A": "5%",
+        "B": "10%",
+        "C": "15%",
+        "D": "20%"
+      },
+      "correct_answer": "B",
+      "explanation": "Growth = (605 - 550)/550 * 100 = 55/550 * 100 = 10% (same 10% growth as 2021).",
+      "difficulty": "medium",
+      "sub_topic": "percentage_and_ratio_from_data",
+      "misconception_tags": [
+        "wrong_base_percentage"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

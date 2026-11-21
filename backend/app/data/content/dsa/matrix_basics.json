@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "How many elements are in a 2D array with R rows and C columns?",
+      "options": {
+        "A": "R + C",
+        "B": "R * C",
+        "C": "R / C",
+        "D": "2 * (R + C)"
+      },
+      "correct_answer": "B",
+      "explanation": "A rectangular R x C matrix stores exactly R*C values (row-major or column-major layout).",
+      "difficulty": "easy",
+      "sub_topic": "representation",
+      "misconception_tags": [
+        "matrix_size_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "MAT-PRACTICE-006"
+    },
+    {
+      "question": "In row-major storage, elements of the same _____ are stored contiguously.",
+      "options": {
+        "A": "Column",
+        "B": "Row",
+        "C": "Diagonal",
+        "D": "Submatrix"
+      },
+      "correct_answer": "B",
+      "explanation": "Row-major layout lays out each row's elements adjacently (used by C/C++); column-major does the same per column (used by Fortran/MATLAB).",
+      "difficulty": "easy",
+      "sub_topic": "representation",
+      "misconception_tags": [
+        "layout_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "MAT-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is the time complexity of searching every element of an R x C matrix for a target?",
+      "options": {
+        "A": "O(R + C)",
+        "B": "O(R * C)",
+        "C": "O(log(R*C))",
+        "D": "O(R^2 + C^2)"
+      },
+      "correct_answer": "B",
+      "explanation": "A full scan visits all R*C cells: O(R*C). (Row/column-wise sorted matrices allow faster O(R + C) row-and-binary-search strategies.)",
+      "difficulty": "medium",
+      "sub_topic": "search",
+      "misconception_tags": [
+        "matrix_complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "MAT-006"
+    },
+    {
+      "question": "What is the index of the last element of an R x C matrix in row-major order (0-based)?",
+      "options": {
+        "A": "R*C",
+        "B": "R*C - 1",
+        "C": "R + C - 1",
+        "D": "C - 1"
+      },
+      "correct_answer": "B",
+      "explanation": "There are R*C elements with indices 0..R*C-1, so the final element has index R*C - 1 (the transpose of position (R-1, C-1)).",
+      "difficulty": "medium",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "off_by_one_index"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "MAT-007"
+    },
+    {
+      "question": "Which operation transposes a square matrix in place?",
+      "options": {
+        "A": "Swap element (i, j) with (j, i) for all i < j",
+        "B": "Reverse each row only",
+        "C": "Rotate all elements one column left",
+        "D": "Sort each column"
+      },
+      "correct_answer": "A",
+      "explanation": "The transpose reflects the matrix across its main diagonal: for i < j, swapping a[i][j] with a[j][i] in place produces the transpose (visiting each pair once).",
+      "difficulty": "medium",
+      "sub_topic": "operations",
+      "misconception_tags": [
+        "transpose_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "MAT-008"
     }
   ]
 }

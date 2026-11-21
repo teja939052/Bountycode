@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-PRACTICE-006",
+      "question": "What is the value of log base 2 of 8?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "8"
+      },
+      "correct_answer": "B",
+      "explanation": "log2(8) asks '2 raised to what power equals 8?'. Since 2^3 = 8, the answer is 3.",
+      "difficulty": "easy",
+      "sub_topic": "log_definition",
+      "misconception_tags": [
+        "log_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-PRACTICE-007",
+      "question": "What is the value of log base 10 of 100?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "10",
+        "D": "100"
+      },
+      "correct_answer": "B",
+      "explanation": "10^2 = 100, so log10(100) = 2.",
+      "difficulty": "easy",
+      "sub_topic": "log_definition",
+      "misconception_tags": [
+        "log_definition_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-006",
+      "question": "Which law states that log(x * y) = log(x) + log(y)?",
+      "options": {
+        "A": "Product law",
+        "B": "Quotient law",
+        "C": "Power law",
+        "D": "Change-of-base law"
+      },
+      "correct_answer": "A",
+      "explanation": "The product law converts multiplication inside a log into addition outside. The quotient law handles division (subtraction), and the power law handles exponents (multiplication).",
+      "difficulty": "easy",
+      "sub_topic": "log_laws",
+      "misconception_tags": [
+        "log_law_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-007",
+      "question": "What is the value of log base 3 of 81?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "9"
+      },
+      "correct_answer": "B",
+      "explanation": "3^4 = 81, so log3(81) = 4.",
+      "difficulty": "easy",
+      "sub_topic": "log_definition",
+      "misconception_tags": [
+        "log_definition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "LOG-008",
+      "question": "Using change of base, log base 4 of 64 equals:",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "16"
+      },
+      "correct_answer": "B",
+      "explanation": "log4(64) = log2(64)/log2(4) = 6/2 = 3 (since 4^3 = 64 directly gives the same answer).",
+      "difficulty": "medium",
+      "sub_topic": "change_of_base_intro",
+      "misconception_tags": [
+        "change_of_base_error"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

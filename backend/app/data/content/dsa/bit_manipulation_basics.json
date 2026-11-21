@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is the result of 5 AND 3 (binary 101 & 011)?",
+      "options": {
+        "A": "5",
+        "B": "7",
+        "C": "1",
+        "D": "6"
+      },
+      "correct_answer": "C",
+      "explanation": "101 & 011 = 001 (bits set in both operands), which is 1.",
+      "difficulty": "easy",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "bitwise_operator_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BIT-PRACTICE-006"
+    },
+    {
+      "question": "What is 5 OR 3 (binary 101 | 011)?",
+      "options": {
+        "A": "7",
+        "B": "6",
+        "C": "1",
+        "D": "4"
+      },
+      "correct_answer": "A",
+      "explanation": "101 | 011 = 111 = 7 (bits set in either operand).",
+      "difficulty": "easy",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "bitwise_operator_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BIT-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What does x & (x - 1) == 0 test (for x > 0)?",
+      "options": {
+        "A": "x is even",
+        "B": "x is a power of two",
+        "C": "x is prime",
+        "D": "x is negative"
+      },
+      "correct_answer": "B",
+      "explanation": "x & (x-1) clears the lowest set bit of x. If the result is 0, x had exactly one set bit - i.e. x is a power of two. (This is the classic Brian Kernighan trick.)",
+      "difficulty": "medium",
+      "sub_topic": "tricks",
+      "misconception_tags": [
+        "power_of_two_check"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BIT-006"
+    },
+    {
+      "question": "What is the result of XORing any value with itself, i.e. a ^ a?",
+      "options": {
+        "A": "a",
+        "B": "0",
+        "C": "1",
+        "D": "The original value doubled"
+      },
+      "correct_answer": "B",
+      "explanation": "XOR of identical bits is 0, so a ^ a = 0. This powers swap-without-temp and 'find the unique element' tricks.",
+      "difficulty": "easy",
+      "sub_topic": "xor_properties",
+      "misconception_tags": [
+        "xor_identity_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BIT-007"
+    },
+    {
+      "question": "How do you flip bit k of an integer x (0-indexed) using OR?",
+      "options": {
+        "A": "x | (1 << k)",
+        "B": "x & (1 << k)",
+        "C": "x ^ (1 << k) only",
+        "D": "x >> k"
+      },
+      "correct_answer": "A",
+      "explanation": "OR with a mask having only bit k set turns that bit on while leaving others unchanged. AND clears a bit, XOR flips it, and (1 << k) builds the mask.",
+      "difficulty": "medium",
+      "sub_topic": "operators",
+      "misconception_tags": [
+        "mask_construction"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BIT-008"
     }
   ]
 }

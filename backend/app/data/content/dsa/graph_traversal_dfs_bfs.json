@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which traversal guarantees the shortest path (in unweighted graphs) from a source to every reachable vertex?",
+      "options": {
+        "A": "DFS",
+        "B": "BFS",
+        "C": "Topological sort",
+        "D": "Post-order traversal"
+      },
+      "correct_answer": "B",
+      "explanation": "BFS explores layers by increasing distance, so the first time it reaches a vertex is via a minimum-edge-count path. DFS may dive deep and reach a vertex via a longer route first.",
+      "difficulty": "easy",
+      "sub_topic": "bfs",
+      "misconception_tags": [
+        "bfs_vs_dfs_properties"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "GTB-PRACTICE-006"
+    },
+    {
+      "question": "Which data structure does BFS use?",
+      "options": {
+        "A": "Stack",
+        "B": "Queue",
+        "C": "Heap",
+        "D": "Trie"
+      },
+      "correct_answer": "B",
+      "explanation": "BFS uses a FIFO queue (enqueue neighbours, dequeue next vertex) which produces level-by-level exploration. DFS uses a stack (or recursion).",
+      "difficulty": "easy",
+      "sub_topic": "bfs",
+      "misconception_tags": [
+        "bfs_vs_dfs_properties"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "GTB-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which data structure underpins a recursive DFS implementation?",
+      "options": {
+        "A": "Queue",
+        "B": "Stack (call stack)",
+        "C": "Priority queue",
+        "D": "Deque"
+      },
+      "correct_answer": "B",
+      "explanation": "Recursion maintains an implicit stack of frames; an iterative DFS makes this explicit with a LIFO stack.",
+      "difficulty": "easy",
+      "sub_topic": "dfs",
+      "misconception_tags": [
+        "bfs_vs_dfs_properties"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "GTB-006"
+    },
+    {
+      "question": "What is the time complexity of BFS or DFS on an adjacency list graph with V vertices and E edges?",
+      "options": {
+        "A": "O(V^2)",
+        "B": "O(V + E)",
+        "C": "O(E log V)",
+        "D": "O(V * E)"
+      },
+      "correct_answer": "B",
+      "explanation": "Each vertex is processed once and each edge is examined a constant number of times (twice for undirected), giving O(V + E) with adjacency lists. Adjacency matrices cost O(V^2).",
+      "difficulty": "medium",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "traversal_complexity"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "GTB-007"
+    },
+    {
+      "question": "Why must BFS/DFS mark vertices as visited?",
+      "options": {
+        "A": "To reduce memory usage only",
+        "B": "To avoid infinite loops on cycles and repeated work",
+        "C": "To sort the output",
+        "D": "To make the graph directed"
+      },
+      "correct_answer": "B",
+      "explanation": "Graphs may contain cycles; without a visited set the traversal can revisit a vertex forever (or repeatedly), making runtime exponential and recursion never terminate.",
+      "difficulty": "medium",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "visited_tracking"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "GTB-008"
     }
   ]
 }

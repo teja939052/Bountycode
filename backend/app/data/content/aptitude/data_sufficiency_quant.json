@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-PRACTICE-006",
+      "question": "Is x > 5? Statement 1: x > 7. Statement 2: x < 6. Which statement(s) alone suffice?",
+      "options": {
+        "A": "Statement 1 alone",
+        "B": "Statement 2 alone",
+        "C": "Both together",
+        "D": "Neither"
+      },
+      "correct_answer": "A",
+      "explanation": "If x > 7 then certainly x > 5, so Statement 1 alone suffices. Statement 2 allows x = 4 (answer no) or x = 5.5 (answer yes), so it is insufficient alone.",
+      "difficulty": "medium",
+      "sub_topic": "comparison_questions",
+      "misconception_tags": [
+        "sufficiency_logic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-PRACTICE-007",
+      "question": "What is x? Statement 1: x + y = 10. Statement 2: x - y = 4. Which is sufficient?",
+      "options": {
+        "A": "Statement 1 alone",
+        "B": "Statement 2 alone",
+        "C": "Both statements together",
+        "D": "Neither statement"
+      },
+      "correct_answer": "C",
+      "explanation": "Each equation has two unknowns, so neither alone determines x. Together: adding gives 2x = 14, so x = 7.",
+      "difficulty": "easy",
+      "sub_topic": "value_questions",
+      "misconception_tags": [
+        "single_equation_two_unknowns"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-006",
+      "question": "Who is older, P or Q? Statement 1: P is 3 years older than Q. Statement 2: P is older than 25. Which is sufficient?",
+      "options": {
+        "A": "Statement 1 alone",
+        "B": "Statement 2 alone",
+        "C": "Both together",
+        "D": "Neither"
+      },
+      "correct_answer": "A",
+      "explanation": "Statement 1 directly says P > Q, which answers the comparison. Statement 2 gives no information about Q's age relative to P.",
+      "difficulty": "easy",
+      "sub_topic": "comparison_questions",
+      "misconception_tags": [
+        "irrelevant_statement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-007",
+      "question": "Is x > y? Statement 1: x^2 > y^2. Statement 2: x and y are positive and x > y. Which is sufficient?",
+      "options": {
+        "A": "Statement 1 alone",
+        "B": "Statement 2 alone",
+        "C": "Both together",
+        "D": "Neither"
+      },
+      "correct_answer": "B",
+      "explanation": "Statement 2 explicitly states x > y among positive values, so it suffices. Statement 1 fails with negatives: x = -5, y = 2 gives 25 > 4 but x < y.",
+      "difficulty": "medium",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "squaring_sign_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-008",
+      "question": "What is the value of n? Statement 1: n is a prime number less than 10. Statement 2: n is odd. Which is sufficient?",
+      "options": {
+        "A": "Statement 1 alone",
+        "B": "Statement 2 alone",
+        "C": "Both statements together",
+        "D": "Neither, even together"
+      },
+      "correct_answer": "D",
+      "explanation": "Statement 1 allows n in {2, 3, 5, 7} (not unique). Statement 2 allows any odd number. Together: {3, 5, 7} - still not unique, so neither alone nor together suffices.",
+      "difficulty": "hard",
+      "sub_topic": "value_questions",
+      "misconception_tags": [
+        "not_unique_solution_missed"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

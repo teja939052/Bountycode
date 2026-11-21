@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-PRACTICE-006",
+      "question": "A invests 5000 and B invests 10000 in a business. Profit of 9000 is shared in the ratio of investments. How much does A get?",
+      "options": {
+        "A": "2000",
+        "B": "3000",
+        "C": "4500",
+        "D": "6000"
+      },
+      "correct_answer": "B",
+      "explanation": "Ratio A:B = 5000:10000 = 1:2. A's share = (1/3) * 9000 = 3000.",
+      "difficulty": "easy",
+      "sub_topic": "simple_partnership",
+      "misconception_tags": [
+        "ratio_share_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-PRACTICE-007",
+      "question": "A invests 6000 for 4 months and B invests 8000 for 6 months. Profit is 9000. What is A's share?",
+      "options": {
+        "A": "3000",
+        "B": "4500",
+        "C": "4000",
+        "D": "6000"
+      },
+      "correct_answer": "A",
+      "explanation": "Compound partnership shares by investment*time: A = 6000*4 = 24000, B = 8000*6 = 48000; ratio 1:2. A's share = (1/3)*9000 = 3000.",
+      "difficulty": "medium",
+      "sub_topic": "compound_partnership",
+      "misconception_tags": [
+        "time_ignored_in_sharing"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-006",
+      "question": "A invests 12000 for 6 months and B invests 18000 for 4 months. Profit of 5000 is shared by capital-time. What is A's share?",
+      "options": {
+        "A": "2000",
+        "B": "2400",
+        "C": "2500",
+        "D": "3000"
+      },
+      "correct_answer": "C",
+      "explanation": "A: 12000*6 = 72000; B: 18000*4 = 72000. Ratio 1:1, so each gets 5000/2 = 2500.",
+      "difficulty": "medium",
+      "sub_topic": "compound_partnership",
+      "misconception_tags": [
+        "time_ignored_in_sharing"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-007",
+      "question": "In a partnership, profits are shared in the ratio 3:5 for partners A and B. If the total profit is 4800, what is B's share?",
+      "options": {
+        "A": "1800",
+        "B": "2400",
+        "C": "3000",
+        "D": "3600"
+      },
+      "correct_answer": "C",
+      "explanation": "B's share = (5/8) * 4800 = 3000.",
+      "difficulty": "easy",
+      "sub_topic": "profit_distribution",
+      "misconception_tags": [
+        "ratio_share_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PART-008",
+      "question": "A partner who contributes capital only and does not participate in daily management is called a:",
+      "options": {
+        "A": "Active partner",
+        "B": "Sleeping (dormant) partner",
+        "C": "Managing partner",
+        "D": "General working partner"
+      },
+      "correct_answer": "B",
+      "explanation": "A sleeping/dormant partner invests capital but takes no part in operations; an active/working partner manages the business. Both share profits per agreement.",
+      "difficulty": "easy",
+      "sub_topic": "simple_partnership",
+      "misconception_tags": [
+        "partner_type_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-PRACTICE-006",
+      "question": "What is the area of a square with side 12 cm?",
+      "options": {
+        "A": "24 sq cm",
+        "B": "48 sq cm",
+        "C": "144 sq cm",
+        "D": "12 sq cm"
+      },
+      "correct_answer": "C",
+      "explanation": "Area of a square = side * side = 12 * 12 = 144 sq cm (24 is the perimeter).",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "area_vs_perimeter_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-PRACTICE-007",
+      "question": "What is the volume of a cube with side 5 cm?",
+      "options": {
+        "A": "25 cubic cm",
+        "B": "75 cubic cm",
+        "C": "125 cubic cm",
+        "D": "150 cubic cm"
+      },
+      "correct_answer": "C",
+      "explanation": "Volume of a cube = side^3 = 5^3 = 125 cubic cm.",
+      "difficulty": "easy",
+      "sub_topic": "surface_area_volume_3d",
+      "misconception_tags": [
+        "cube_volume_formula_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -319,6 +373,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-006",
+      "question": "Find the volume of a cylinder with radius 7 cm and height 10 cm. (Take pi = 22/7)",
+      "options": {
+        "A": "1440 cubic cm",
+        "B": "1540 cubic cm",
+        "C": "1580 cubic cm",
+        "D": "1650 cubic cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Volume = pi*r^2*h = (22/7)*49*10 = 22*7*10 = 1540 cubic cm.",
+      "difficulty": "medium",
+      "sub_topic": "surface_area_volume_3d",
+      "misconception_tags": [
+        "formula_application_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-007",
+      "question": "Convert 2.5 kilometres to metres.",
+      "options": {
+        "A": "250 m",
+        "B": "2500 m",
+        "C": "25000 m",
+        "D": "25 m"
+      },
+      "correct_answer": "B",
+      "explanation": "1 km = 1000 m, so 2.5 km = 2.5 * 1000 = 2500 m.",
+      "difficulty": "easy",
+      "sub_topic": "unit_conversion",
+      "misconception_tags": [
+        "decimal_shift_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "MENS-008",
+      "question": "A rectangle has length 15 cm and breadth 10 cm. What is its perimeter?",
+      "options": {
+        "A": "30 cm",
+        "B": "50 cm",
+        "C": "150 cm",
+        "D": "25 cm"
+      },
+      "correct_answer": "B",
+      "explanation": "Perimeter = 2*(l + b) = 2*(15 + 10) = 50 cm. (150 would be the area.)",
+      "difficulty": "easy",
+      "sub_topic": "perimeter_area_2d",
+      "misconception_tags": [
+        "area_vs_perimeter_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "The sliding window technique is primarily used to reduce which brute-force pattern from O(n^2) to O(n)?",
+      "options": {
+        "A": "Sorting an array",
+        "B": "Nested loops over all subarrays/substrings",
+        "C": "Binary search",
+        "D": "Graph traversal"
+      },
+      "correct_answer": "B",
+      "explanation": "Instead of recomputing over every subarray (O(n^2) subarrays), the window moves its edges and updates running state incrementally, giving O(n) for suitable problems.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "window_purpose"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SW-PRACTICE-006"
+    },
+    {
+      "question": "A fixed-size window problem example is:",
+      "options": {
+        "A": "Longest substring with at most k distinct characters",
+        "B": "Maximum sum of any contiguous subarray of size k",
+        "C": "Minimum window covering all characters",
+        "D": "Smallest subarray with sum >= target"
+      },
+      "correct_answer": "B",
+      "explanation": "Fixed-size windows have constant width k (e.g. max/average sum of size k); the others are variable-size windows that grow/shrink by condition.",
+      "difficulty": "easy",
+      "sub_topic": "fixed_size",
+      "misconception_tags": [
+        "fixed_vs_variable_window"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SW-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In a variable-size 'longest subarray where sum <= K' window, what happens when the running sum exceeds K?",
+      "options": {
+        "A": "The window restarts from scratch",
+        "B": "The left edge advances (shrinks) until the sum is within K again",
+        "C": "The right edge stops moving permanently",
+        "D": "Negative numbers are removed"
+      },
+      "correct_answer": "B",
+      "explanation": "Shrinking from the left restores the invariant sum(window) <= K while keeping the window as long as possible; the right edge continues expanding to probe longer candidates.",
+      "difficulty": "medium",
+      "sub_topic": "variable_size",
+      "misconception_tags": [
+        "shrink_condition"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SW-006"
+    },
+    {
+      "question": "Overall time complexity of a standard sliding window that moves left and right pointers at most n times each is:",
+      "options": {
+        "A": "O(1)",
+        "B": "O(n)",
+        "C": "O(n^2)",
+        "D": "O(log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "Each pointer advances monotonically at most n times, and per-move work is O(1) (with a counter/hashtable), so the total is O(n).",
+      "difficulty": "medium",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "complexity_underestimate"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SW-007"
+    },
+    {
+      "question": "Which condition is required for a correct sliding window update?",
+      "options": {
+        "A": "The array must contain distinct elements",
+        "B": "Removing an element from the left must correctly decrement/undo its contribution to the window state",
+        "C": "The window must always be odd-sized",
+        "D": "The array must be sorted"
+      },
+      "correct_answer": "B",
+      "explanation": "The window's aggregate (sum, count map, min/max structure) must be maintained exactly on both edges; forgetting to undo a left-edge contribution is the classic sliding-window bug.",
+      "difficulty": "medium",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "window_state_maintenance"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "SW-008"
     }
   ]
 }

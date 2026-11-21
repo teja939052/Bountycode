@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In a hash table, the key is converted into a bucket index by a:",
+      "options": {
+        "A": "Comparator function",
+        "B": "Hash function",
+        "C": "Binary search",
+        "D": "Topological sort"
+      },
+      "correct_answer": "B",
+      "explanation": "The hash function maps a key to an index in the underlying array; good functions distribute keys uniformly to minimise collisions.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "hash_vs_compare"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HT-PRACTICE-006"
+    },
+    {
+      "question": "A collision in a hash table occurs when:",
+      "options": {
+        "A": "The table is full",
+        "B": "Two distinct keys map to the same index",
+        "C": "The hash function returns a negative number",
+        "D": "A key is deleted twice"
+      },
+      "correct_answer": "B",
+      "explanation": "Collisions happen because the hash function maps many keys to fewer slots; separate chaining or open addressing resolve them.",
+      "difficulty": "easy",
+      "sub_topic": "collisions",
+      "misconception_tags": [
+        "collision_definition"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HT-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Load factor in a hash table is defined as:",
+      "options": {
+        "A": "Number of buckets / number of entries",
+        "B": "Number of entries / number of buckets",
+        "C": "Number of collisions / total keys",
+        "D": "Average key length"
+      },
+      "correct_answer": "B",
+      "explanation": "load factor alpha = n / m (entries over buckets). When alpha exceeds a threshold (commonly 0.75), the table is resized/rehashed to keep operations fast.",
+      "difficulty": "medium",
+      "sub_topic": "load_factor",
+      "misconception_tags": [
+        "load_factor_definition"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HT-006"
+    },
+    {
+      "question": "Average-case time complexity of search/insert/delete in a well-distributed hash table is:",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "A",
+      "explanation": "With a good hash function and controlled load factor, each operation touches a constant number of slots on average: O(1). Worst case (all keys collide) degrades to O(n).",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "average_vs_worst_case"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HT-007"
+    },
+    {
+      "question": "Which real-world task is a hash table's classic application?",
+      "options": {
+        "A": "Finding the median of a stream",
+        "B": "Fast lookups such as counting frequencies or caching",
+        "C": "Merging overlapping intervals",
+        "D": "Topological ordering"
+      },
+      "correct_answer": "B",
+      "explanation": "Hash tables excel at O(1) average membership tests and key-value lookups: frequency counting, caching/memoisation, de-duplication and index building.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "data_structure_choice"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HT-008"
     }
   ]
 }

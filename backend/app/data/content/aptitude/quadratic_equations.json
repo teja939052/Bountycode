@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "QUAD-PRACTICE-006",
+      "question": "Which condition makes ax^2 + bx + c = 0 a quadratic equation?",
+      "options": {
+        "A": "a = 0",
+        "B": "a is not 0",
+        "C": "b = 0",
+        "D": "c = 0"
+      },
+      "correct_answer": "B",
+      "explanation": "A quadratic equation requires a non-zero coefficient for x^2 (the highest degree term); if a = 0 the equation degenerates to linear.",
+      "difficulty": "easy",
+      "sub_topic": "standard_form_and_roots",
+      "misconception_tags": [
+        "leading_coefficient_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "QUAD-PRACTICE-007",
+      "question": "What are the roots of x^2 - 5x + 6 = 0?",
+      "options": {
+        "A": "1 and 6",
+        "B": "2 and 3",
+        "C": "-2 and -3",
+        "D": "3 and 5"
+      },
+      "correct_answer": "B",
+      "explanation": "Factor: x^2 - 5x + 6 = (x - 2)(x - 3) = 0, so x = 2 or x = 3 (check: sum 5, product 6).",
+      "difficulty": "easy",
+      "sub_topic": "factorization_method",
+      "misconception_tags": [
+        "factor_sign_error"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
     }
   ],
   "questions": [
@@ -310,6 +364,87 @@
       "source": "bountycode_original",
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "QUAD-006",
+      "question": "What is the discriminant of x^2 + 4x + 4 = 0 and what does it indicate?",
+      "options": {
+        "A": "0; equal real roots",
+        "B": "16; two distinct real roots",
+        "C": "-16; no real roots",
+        "D": "8; two distinct real roots"
+      },
+      "correct_answer": "A",
+      "explanation": "Discriminant = b^2 - 4ac = 16 - 4*1*4 = 0. A zero discriminant means two equal (repeated) real roots (x = -2 twice).",
+      "difficulty": "medium",
+      "sub_topic": "discriminant_nature",
+      "misconception_tags": [
+        "discriminant_calculation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "QUAD-007",
+      "question": "What are the roots of x^2 - 9 = 0?",
+      "options": {
+        "A": "3 only",
+        "B": "3 and -3",
+        "C": "9 only",
+        "D": "9 and -9"
+      },
+      "correct_answer": "B",
+      "explanation": "x^2 = 9 gives x = +3 or x = -3 (both square to 9).",
+      "difficulty": "easy",
+      "sub_topic": "standard_form_and_roots",
+      "misconception_tags": [
+        "square_root_sign_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "QUAD-008",
+      "question": "If the discriminant b^2 - 4ac of a quadratic equation is positive, the roots are:",
+      "options": {
+        "A": "Equal real roots",
+        "B": "Two distinct real roots",
+        "C": "No real roots",
+        "D": "Always zero"
+      },
+      "correct_answer": "B",
+      "explanation": "Positive discriminant -> two distinct real roots; zero -> equal real roots; negative -> no real roots (complex conjugate pair).",
+      "difficulty": "medium",
+      "sub_topic": "discriminant_nature",
+      "misconception_tags": [
+        "discriminant_sign_confusion"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
     }
   ]

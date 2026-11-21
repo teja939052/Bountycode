@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is the primary purpose of database normalization?",
+      "options": {
+        "A": "To make queries slower but simpler",
+        "B": "To reduce data redundancy and update anomalies",
+        "C": "To increase the number of tables indefinitely",
+        "D": "To replace indexing"
+      },
+      "correct_answer": "B",
+      "explanation": "Normalization decomposes relations so each fact is stored once, eliminating insert/update/delete anomalies at the cost of more joins.",
+      "difficulty": "easy",
+      "sub_topic": "purpose",
+      "misconception_tags": [
+        "normalization_purpose_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "NORM-PRACTICE-006"
+    },
+    {
+      "question": "A relation is in First Normal Form (1NF) when:",
+      "options": {
+        "A": "It has no foreign keys",
+        "B": "Every attribute holds atomic (indivisible) values and rows are unique",
+        "C": "All transitive dependencies are removed",
+        "D": "It contains no candidate keys"
+      },
+      "correct_answer": "B",
+      "explanation": "1NF requires atomic attribute values (no repeating groups/arrays in a cell) and a proper relational structure - the foundation for all higher normal forms.",
+      "difficulty": "easy",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "nf_definition_confusion"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "NORM-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which normal form removes partial dependency of a non-prime attribute on part of a composite primary key?",
+      "options": {
+        "A": "1NF",
+        "B": "2NF",
+        "C": "3NF",
+        "D": "BCNF"
+      },
+      "correct_answer": "B",
+      "explanation": "2NF = 1NF + no partial dependencies (non-key attributes must depend on the whole key). 3NF further removes transitive dependencies (non-key attributes depending on other non-key attributes).",
+      "difficulty": "medium",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "nf_definition_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "NORM-006"
+    },
+    {
+      "question": "A table has columns (student_id, course_id, instructor, instructor_office). If instructor_office depends on instructor (not on the student-course key), this violates:",
+      "options": {
+        "A": "1NF",
+        "B": "2NF",
+        "C": "3NF (transitive dependency)",
+        "D": "No normal form"
+      },
+      "correct_answer": "C",
+      "explanation": "Key -> instructor -> instructor_office is a transitive dependency through a non-key attribute, violating 3NF. Fix: move (instructor, instructor_office) into a separate table.",
+      "difficulty": "medium",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "transitive_dependency_missed"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "NORM-007"
+    },
+    {
+      "question": "Which normal form addresses anomalies caused by overlapping candidate keys (every determinant must be a candidate key)?",
+      "options": {
+        "A": "1NF",
+        "B": "2NF",
+        "C": "3NF",
+        "D": "BCNF"
+      },
+      "correct_answer": "D",
+      "explanation": "Boyce-Codd NF is a stricter 3NF: every determinant must be a candidate key. It handles cases 3NF misses when an attribute is part of some candidate key while functionally determining another key.",
+      "difficulty": "hard",
+      "sub_topic": "normal_forms",
+      "misconception_tags": [
+        "bcnf_vs_3nf"
+      ],
+      "company_tags": [
+        "wipro",
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "NORM-008"
     }
   ]
 }

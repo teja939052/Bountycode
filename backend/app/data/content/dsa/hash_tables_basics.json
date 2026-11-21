@@ -175,6 +175,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Which collision-handling scheme stores colliding entries in a linked list (or bucket) at the same index?",
+      "options": {
+        "A": "Open addressing (linear probing)",
+        "B": "Separate chaining",
+        "C": "Rehashing only",
+        "D": "Tombstone marking"
+      },
+      "correct_answer": "B",
+      "explanation": "Separate chaining keeps a secondary structure (commonly a linked list/tree) per bucket, so multiple keys can share one index.",
+      "difficulty": "easy",
+      "sub_topic": "collisions_and_handling",
+      "misconception_tags": [
+        "chaining_vs_probing"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HASH-PRACTICE-006"
+    },
+    {
+      "question": "In linear probing, a collision is resolved by:",
+      "options": {
+        "A": "Storing the key in a linked list",
+        "B": "Placing the key in the next free slot in the table",
+        "C": "Discarding the key",
+        "D": "Resizing immediately every time"
+      },
+      "correct_answer": "B",
+      "explanation": "Linear probing searches forward (wrapping around) for the next empty slot - open addressing. This keeps everything in one array but can create clustering.",
+      "difficulty": "easy",
+      "sub_topic": "collisions_and_handling",
+      "misconception_tags": [
+        "chaining_vs_probing"
+      ],
+      "company_tags": [
+        "accenture",
+        "cognizant",
+        "infosys"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HASH-PRACTICE-007"
     }
   ],
   "questions": [
@@ -311,6 +365,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "What is 'primary clustering' in linear probing?",
+      "options": {
+        "A": "Keys hashing to the first bucket only",
+        "B": "Long runs of occupied slots that grow as more keys probe into them",
+        "C": "Duplicate keys in the table",
+        "D": "Rehashing during iteration"
+      },
+      "correct_answer": "B",
+      "explanation": "With linear probing, a cluster of occupied slots attracts further insertions, lengthening the run and slowing every nearby operation - motivating quadratic/double hashing.",
+      "difficulty": "medium",
+      "sub_topic": "collisions_and_handling",
+      "misconception_tags": [
+        "clustering"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HASH-006"
+    },
+    {
+      "question": "Why does a hash table usually rehash (resize) when the load factor gets too high?",
+      "options": {
+        "A": "To sort the keys",
+        "B": "To keep average operation time O(1) by reducing collision density",
+        "C": "To make keys unique",
+        "D": "To convert to a tree automatically"
+      },
+      "correct_answer": "B",
+      "explanation": "More entries per bucket means longer chains/probe sequences. Growing the array (typically doubling) and rehashing restores a low load factor and short chains.",
+      "difficulty": "medium",
+      "sub_topic": "load_factor",
+      "misconception_tags": [
+        "rehash_purpose"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HASH-007"
+    },
+    {
+      "question": "Worst-case time complexity of a hash-table lookup when every key collides into one bucket is:",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "C",
+      "explanation": "Degenerate hashing degrades the table to a single list scanned linearly: O(n). (Java's HashMap converts very long bins to balanced trees to soften this to O(log n).)",
+      "difficulty": "medium",
+      "sub_topic": "use_cases_and_complexity",
+      "misconception_tags": [
+        "average_vs_worst_case"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "HASH-008"
     }
   ]
 }

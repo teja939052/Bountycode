@@ -184,6 +184,60 @@
       "question_type": "mcq",
       "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "Backtracking differs from brute force mainly because it:",
+      "options": {
+        "A": "Never examines any candidate",
+        "B": "Abandons a partial solution as soon as it cannot lead to a valid answer",
+        "C": "Requires sorting the input first",
+        "D": "Only works on arrays"
+      },
+      "correct_answer": "B",
+      "explanation": "Backtracking builds solutions step by step and prunes the search space the moment a constraint is violated, so it avoids exploring dead branches that brute force would enumerate fully.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "backtracking_vs_brute_force"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BT-PRACTICE-006"
+    },
+    {
+      "question": "The classic 'N-Queens' problem is an example of which technique?",
+      "options": {
+        "A": "Divide and conquer",
+        "B": "Backtracking",
+        "C": "Greedy",
+        "D": "Dynamic programming"
+      },
+      "correct_answer": "B",
+      "explanation": "N-Queens places queens row by row, undoing (backtracking) whenever two queens attack each other - a textbook constraint-satisfaction backtracking pattern.",
+      "difficulty": "easy",
+      "sub_topic": "use_cases",
+      "misconception_tags": [
+        "technique_classification"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BT-PRACTICE-007"
     }
   ],
   "questions": [
@@ -320,6 +374,87 @@
       "question_type": "mcq",
       "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
       "trust_status": "UNVERIFIED"
+    },
+    {
+      "question": "In backtracking, what does 'undoing a choice' (backtrack step) accomplish?",
+      "options": {
+        "A": "It deletes the input array",
+        "B": "It restores state so the algorithm can try the next alternative at the same level",
+        "C": "It sorts the candidate list",
+        "D": "It terminates the search"
+      },
+      "correct_answer": "B",
+      "explanation": "After exploring a branch, the algorithm reverts the state change (pops the choice) so the same position can be tried with a different candidate - this is what makes the depth-first exploration complete and correct.",
+      "difficulty": "medium",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "missing_backtrack_step"
+      ],
+      "company_tags": [
+        "google",
+        "microsoft",
+        "amazon"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BT-006"
+    },
+    {
+      "question": "Which complexity describes the worst case of a naive backtracking search that explores all subsets?",
+      "options": {
+        "A": "O(n)",
+        "B": "O(n log n)",
+        "C": "O(2^n)",
+        "D": "O(log n)"
+      },
+      "correct_answer": "C",
+      "explanation": "Enumerating all subsets of n elements is 2^n possibilities; without effective pruning, subset-sum/sudoku-style backtracking is exponential in the worst case.",
+      "difficulty": "medium",
+      "sub_topic": "complexity",
+      "misconception_tags": [
+        "complexity_underestimate"
+      ],
+      "company_tags": [
+        "tcs",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BT-007"
+    },
+    {
+      "question": "Which invariant must hold when a backtracking algorithm decides to recurse further?",
+      "options": {
+        "A": "The partial solution must satisfy all constraints checked so far",
+        "B": "The partial solution must already be complete",
+        "C": "All candidates must be exhausted",
+        "D": "The input must be sorted"
+      },
+      "correct_answer": "A",
+      "explanation": "The pruning rule: only extend partial solutions that are still 'promising' (consistent with constraints). Once a constraint fails, the branch is abandoned immediately.",
+      "difficulty": "medium",
+      "sub_topic": "constraints",
+      "misconception_tags": [
+        "pruning_condition"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored for BountyCode as original practice/question item; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED",
+      "id": "BT-008"
     }
   ]
 }
