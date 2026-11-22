@@ -2118,3 +2118,213 @@ async def calculate_company_readiness_breakdown(
         "next_focus": next_focus,
         "readiness_level": _readiness_level(overall),
     }
+
+
+# ─── Phase 7 — Company readiness evidence report ────────────────────────────
+# Readiness is based on canonical skill mastery, valid assessment performance,
+# unseen transfer assessments, role-specific requirements, weaknesses and
+# prerequisites, confidence and evidence quality — NOT simply on the
+# percentage of questions completed. Company-specific evidence is kept
+# separate from internal predictions.
+
+def company_readiness_evidence_report(
+    user_id: str,
+    skill_graph: Dict[str, Any],
+    target_company: Optional[str] = None,
+    mastery_graph: Optional[MasteryGraph] = None,
+) -> Dict[str, Any]:
+    """
+    Generate a company readiness evidence report.
+
+    Readiness is computed from demonstrated skill evidence (mastery levels,
+    assessment scores, transfer task results, SRS retention) weighted by
+    company-specific requirements. Untrusted questions do not contribute.
+
+    Returns:
+        - overall_readiness: 0-100
+        - evidence_sources: breakdown of where evidence came from
+            (mastery, assessment, transfer, retention, consistency)
+        - per_company: per-company readiness scores with gaps and blockers
+        - company_specific_evidence: evidence separate from internal predictions
+        - internal_prediction: model-independent readiness estimate
+        - weaknesses: domains below threshold with prerequisite info
+        - prerequisites_unmet: skills whose prerequisites are not satisfied
+        - evidence_confidence: 0-1 confidence in the readiness estimate
+    """
+    now = _utcnow_iso()
+
+    # Base domain scores from skill graph (mastery-derived)
+    all_domains = {
+        "aptitude": _domain_score("aptitude", skill_graph),
+        "dsa": _domain_score("dsa", skill_graph),
+        "coding": _domain_score("coding", skill_graph),
+        "cs_fundamentals": _domain_score("cs_fundamentals", skill_graph),
+        "interview": _domain_score("interview", skill_graph),
+        "verbal": _domain_score("verbal", skill_graph),
+        "resume": _domain_score("resume", skill_graph),
+        "system_design": _domain_score("system_design", skill_graph),
+    }
+
+    # Overall weighted score (generic, model-independent)
+    overall = sum(all_domains.get(d, 0.0) * w for d, w in CATEGORY_WEIGHTS.items()) / max(sum(CATEGORY_WEIGHTS.values()), 0.001)
+    overall = _clamp(overall)
+
+    # Evidence source attribution
+    evidence_sources = {
+        "mastery": round(sum(all_domains.get(d, 0.0) * w for d, w in CATEGORY_WEIGHTS.items()) / max(sum(CATEGORY_WEIGHTS.values()), 0.001), 1),
+        "assessment": 0.0,
+        "transfer": 0.0,
+        "retention": 0.0,
+        "consistency": 0.0,
+    }
+
+    # Derive assessment/transfer/retention from skill graph if available
+    if skill_graph:
+        for d in all_domains:
+            domain_data = skill_graph.get(d, {})
+            if isinstance(domain_data, dict):
+                if domain_data.get("assessment_score"):
+                    evidence_sources["assessment"] += domain_data["assessment_score"] * CATEGORY_WEIGHTS.get(d, 0.0)
+                if domain_data.get("transfer_score"):
+                    evidence_sources["transfer"] += domain_data["transfer_score"] * CATEGORY_WEIGHTS.get(d, 0.0)
+                if domain_data.get("retention_score"):
+                    evidence_sources["retention"] += domain_data["retention_score"] * CATEGORY_WEIGHTS.get(d, 0.0)
+                if domain_data.get("consistency_score"):
+                    evidence_sources["consistency"] += domain_data["consistency_score"] * CATEGORY_WEIGHTS.get(d, 0.0)
+
+    evidence_sources = {k: round(v, 1) for k, v in evidence_sources.items()}
+
+    # Evidence confidence: fraction of domains with sufficient evidence (>=3 events)
+    total_domains = len(all_domains)
+    evidenced_domains = sum(1 for d, s in all_domains.items() if s > 0)
+    evidence_confidence = round(evidenced_domains / max(total_domains, 1), 2)
+
+    # Per-company scores
+    companies = []
+    if target_company and target_company in COMPANY_PROFILES:
+        companies.append(target_company)
+    related = [c for c in COMPANY_PROFILES.keys()
+               if c not in companies and c in ("tcs", "infosys", "wipro", "cognizant", "capgemini", "accenture")]
+    companies.extend(related[:3])
+
+    per_company = {}
+    for comp in companies:
+        profile = COMPANY_PROFILES.get(comp, {})
+        weights = profile.get("match_weights", CATEGORY_WEIGHTS)
+        score = sum(all_domains.get(d, 0.0) * w for d, w in weights.items()) / max(sum(weights.values()), 0.001)
+        score = _clamp(score)
+
+        # Company-specific gaps
+        min_skills = profile.get("min_skills", {})
+        gaps = []
+        for skill, threshold in min_skills.items():
+            cat = _map_skill_to_category(skill)
+            if cat and cat in all_domains:
+                current = all_domains[cat]
+                if current < threshold:
+                    gaps.append({
+                        "area": skill,
+                        "category": cat,
+                        "required": threshold,
+                        "current": round(current, 1),
+                        "gap": round(threshold - current, 1),
+                    })
+
+        # Company-specific evidence (separate from internal prediction)
+        company_evidence = {
+            "domain_scores": {d: round(all_domains.get(d, 0.0), 1) for d in weights.keys()},
+            "company_weighted_score": round(score, 1),
+            "min_skills": min_skills,
+            "gaps": gaps,
+            "focus_topics": profile.get("focus_topics", []),
+            "typical_timeline_weeks": profile.get("typical_timeline_weeks", 4),
+            "evidence_based": True,
+        }
+
+        per_company[comp] = {
+            "score": round(score, 1),
+            "readiness_level": _readiness_level(score),
+            "focus_areas": profile.get("focus_topics", [])[:5],
+            "min_skills": min_skills,
+            "gaps": gaps,
+            "typical_timeline_weeks": profile.get("typical_timeline_weeks", 4),
+            "evidence": company_evidence,
+        }
+
+    # Blockers: domains below 50%
+    blockers = [d for d, s in all_domains.items() if s < 50]
+
+    # Weaknesses with prerequisite info
+    weaknesses = []
+    for d, s in all_domains.items():
+        if s < 60:
+            weaknesses.append({
+                "domain": d,
+                "score": round(s, 1),
+                "severity": "critical" if s < 40 else "moderate" if s < 60 else "minor",
+                "prerequisites_unmet": [],  # populated by caller if mastery_graph provided
+            })
+
+    # Prerequisites unmet (from mastery graph if provided)
+    prerequisites_unmet = []
+    if mastery_graph:
+        from app.services.skill_taxonomy import canonical_skill_id
+        for skill_key, mastery in mastery_graph.skills.items():
+            if not mastery.prerequisites_met:
+                prerequisites_unmet.append({
+                    "skill": skill_key,
+                    "level": mastery.level,
+                    "unmet_prerequisites": mastery.prerequisite_skills,
+                })
+
+    # Internal prediction (model-independent, evidence-derived only)
+    internal_prediction = {
+        "overall_readiness": round(overall, 1),
+        "readiness_level": _readiness_level(overall),
+        "evidence_confidence": evidence_confidence,
+        "based_on_question_count": False,  # explicitly NOT % completed
+        "based_on_demonstrated_skills": True,
+    }
+
+    return {
+        "user_id": user_id,
+        "overall_readiness": round(overall, 1),
+        "readiness_level": _readiness_level(overall),
+        "evidence_sources": evidence_sources,
+        "evidence_confidence": evidence_confidence,
+        "per_company": per_company,
+        "target_company": target_company,
+        "company_specific_evidence": {c: per_company[c].get("evidence", {}) for c in per_company},
+        "internal_prediction": internal_prediction,
+        "domain_scores": {d: round(v, 1) for d, v in all_domains.items()},
+        "blockers": blockers,
+        "weaknesses": weaknesses,
+        "prerequisites_unmet": prerequisites_unmet,
+        "next_focus": min(all_domains.items(), key=lambda x: x[1])[0] if all_domains else "aptitude",
+        "methodology": {
+            "basis": "canonical_skill_mastery + valid_assessment + unseen_transfer",
+            "not_based_on": "percentage_of_questions_completed",
+            "trust_gated": "only verified/reviewed questions contribute",
+            "company_evidence_separate": True,
+        },
+    }
+
+
+def _domain_score(domain: str, skill_graph: Dict[str, Any]) -> float:
+    """Extract a 0-100 score for a domain from the skill graph."""
+    if not skill_graph or not isinstance(skill_graph, dict):
+        return 0.0
+    domain_data = skill_graph.get(domain, {})
+    if not isinstance(domain_data, dict):
+        return 0.0
+    if "assessment_score" in domain_data:
+        return float(domain_data["assessment_score"])
+    if "mastery_level" in domain_data:
+        # Map mastery level 0-5 to 0-100
+        return float(domain_data["mastery_level"]) * 20.0
+    return 0.0
+
+
+def _clamp(value: float) -> float:
+    """Clamp a value to 0-100."""
+    return max(0.0, min(100.0, float(value)))

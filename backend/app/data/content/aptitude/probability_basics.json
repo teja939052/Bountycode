@@ -1,0 +1,210 @@
+﻿{
+  "topic": "probability_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "probability_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "probability_foundations",
+      "title": "Probability Foundations",
+      "concept": "Probability measures how likely an event is. In equally likely outcomes, probability of event E is the number of favorable outcomes divided by the total number of possible outcomes in the sample space.",
+      "formula": "P(E) = n(E) / n(S), where 0 <= P(E) <= 1",
+      "worked_example": "A fair die is rolled. Sample space S = {1,2,3,4,5,6}, so n(S)=6. Event E = getting an even number = {2,4,6}, n(E)=3. Therefore P(E)=3/6=1/2.",
+      "mistakes": [
+        "Using outcomes that are not equally likely without adjusting the model",
+        "Counting favorable or total outcomes incorrectly",
+        "Reporting probability greater than 1 or less than 0"
+      ]
+    },
+    {
+      "id": "complementary_and_union_events",
+      "title": "Complementary and Union Events",
+      "concept": "The complement of event E (E') means E does not occur. For mutually exclusive events (cannot happen together), probabilities add. For events that can overlap, subtract the intersection once to avoid double counting.",
+      "formula": "P(E') = 1 - P(E); mutually exclusive: P(A or B)=P(A)+P(B); general: P(A or B)=P(A)+P(B)-P(A and B)",
+      "worked_example": "From numbers 1-10, probability of a multiple of 2 is 5/10 and of a multiple of 5 is 2/10; overlap {10} is 1/10. So P(multiple of 2 or 5)=5/10+2/10-1/10=6/10=3/5.",
+      "mistakes": [
+        "Adding probabilities of overlapping events without subtracting intersection",
+        "Confusing 'or' (union) with 'and' (intersection)",
+        "Forgetting complement is often easier when asked for 'at least one' in simple cases"
+      ]
+    },
+    {
+      "id": "independent_and_dependent_events",
+      "title": "Independent and Dependent Events",
+      "concept": "Events are independent if one does not affect the probability of the other. For independent events, multiply probabilities for 'and'. When outcomes affect future probabilities (without replacement), events are dependent and conditional probabilities must be used.",
+      "formula": "Independent: P(A and B)=P(A)*P(B). Dependent: P(A and B)=P(A)*P(B|A)",
+      "worked_example": "A bag has 3 red and 2 blue balls. With replacement, P(red then blue)= (3/5)*(2/5)=6/25. Without replacement, P(red then blue)= (3/5)*(2/4)=6/20=3/10.",
+      "mistakes": [
+        "Treating without-replacement draws as independent",
+        "Not updating total/favorable counts after a dependent draw",
+        "Multiplying when events are mutually exclusive alternatives in a single trial"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "PRB-PRACTICE-001",
+      "question": "A fair coin is tossed once. What is the probability of getting a head?",
+      "options": {"A": "0", "B": "1/4", "C": "1/2", "D": "1"},
+      "correct_answer": "C",
+      "explanation": "Sample space = {Head, Tail}, total outcomes = 2, favorable = 1. Probability = 1/2.",
+      "difficulty": "easy",
+      "sub_topic": "probability_foundations",
+      "misconception_tags": ["sample_space_count_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-PRACTICE-002",
+      "question": "A card is drawn at random from a standard deck of 52 cards. What is the probability of drawing a king?",
+      "options": {"A": "1/52", "B": "1/26", "C": "1/13", "D": "4/13"},
+      "correct_answer": "C",
+      "explanation": "There are 4 kings in 52 cards. Probability = 4/52 = 1/13.",
+      "difficulty": "easy",
+      "sub_topic": "probability_foundations",
+      "misconception_tags": ["favorable_count_error"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-PRACTICE-003",
+      "question": "The probability that it will rain tomorrow is 0.3. What is the probability that it will not rain tomorrow?",
+      "options": {"A": "0.3", "B": "0.5", "C": "0.7", "D": "1.3"},
+      "correct_answer": "C",
+      "explanation": "Not raining is the complement of raining. P(not rain) = 1 - P(rain) = 1 - 0.3 = 0.7.",
+      "difficulty": "easy",
+      "sub_topic": "complementary_and_union_events",
+      "misconception_tags": ["complement_rule_error"],
+      "company_tags": ["infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-PRACTICE-004",
+      "question": "A fair die is rolled once. What is the probability of getting a number less than 5?",
+      "options": {"A": "1/6", "B": "1/3", "C": "1/2", "D": "2/3"},
+      "correct_answer": "D",
+      "explanation": "Numbers less than 5 are {1,2,3,4} = 4 outcomes out of 6. Probability = 4/6 = 2/3.",
+      "difficulty": "easy",
+      "sub_topic": "probability_foundations",
+      "misconception_tags": ["boundary_condition_error"],
+      "company_tags": ["tcs", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-PRACTICE-005",
+      "question": "Two fair coins are tossed together. What is the probability of getting exactly one head?",
+      "options": {"A": "1/4", "B": "1/3", "C": "1/2", "D": "3/4"},
+      "correct_answer": "C",
+      "explanation": "Sample space = {HH, HT, TH, TT}, 4 equally likely outcomes. Exactly one head occurs in {HT, TH} = 2 outcomes. Probability = 2/4 = 1/2.",
+      "difficulty": "easy",
+      "sub_topic": "probability_foundations",
+      "misconception_tags": ["incomplete_sample_space"],
+      "company_tags": ["infosys", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PRB-001",
+      "question": "A bag contains 4 red, 5 blue, and 3 green balls. If one ball is drawn at random, what is the probability that it is blue?",
+      "options": {"A": "1/4", "B": "5/12", "C": "1/3", "D": "7/12"},
+      "correct_answer": "B",
+      "explanation": "Total balls = 4 + 5 + 3 = 12. Favorable (blue) = 5. Probability = 5/12.",
+      "difficulty": "easy",
+      "sub_topic": "probability_foundations",
+      "misconception_tags": ["total_count_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-002",
+      "question": "A number is chosen at random from 1 to 20. What is the probability that it is a prime number?",
+      "options": {"A": "7/20", "B": "2/5", "C": "9/20", "D": "1/2"},
+      "correct_answer": "B",
+      "explanation": "Primes from 1 to 20 are {2,3,5,7,11,13,17,19} = 8 numbers. Total = 20. Probability = 8/20 = 2/5.",
+      "difficulty": "medium",
+      "sub_topic": "probability_foundations",
+      "misconception_tags": ["prime_identification_error"],
+      "company_tags": ["tcs", "accenture", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-003",
+      "question": "Two fair dice are rolled. What is the probability that the sum is 7?",
+      "options": {"A": "1/12", "B": "1/9", "C": "1/6", "D": "5/36"},
+      "correct_answer": "C",
+      "explanation": "Total outcomes = 6 x 6 = 36. Favorable pairs with sum 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 outcomes. Probability = 6/36 = 1/6.",
+      "difficulty": "medium",
+      "sub_topic": "probability_foundations",
+      "misconception_tags": ["dice_sample_space_error"],
+      "company_tags": ["infosys", "tcs", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-004",
+      "question": "A box contains 3 defective and 7 non-defective bulbs. Two bulbs are drawn at random without replacement. What is the probability that both are non-defective?",
+      "options": {"A": "7/15", "B": "21/50", "C": "49/100", "D": "7/10"},
+      "correct_answer": "A",
+      "explanation": "Total bulbs = 10. P(first non-defective)=7/10. Without replacement, remaining non-defective=6 out of 9. P(second non-defective | first non-defective)=6/9. So probability = (7/10)*(6/9)=42/90=7/15.",
+      "difficulty": "medium",
+      "sub_topic": "independent_and_dependent_events",
+      "misconception_tags": ["replacement_assumption_error"],
+      "company_tags": ["wipro", "capgemini", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "PRB-005",
+      "question": "From 1 to 30, a number is selected at random. What is the probability that it is divisible by 3 or 5?",
+      "options": {"A": "1/3", "B": "7/15", "C": "8/15", "D": "2/3"},
+      "correct_answer": "B",
+      "explanation": "Multiples of 3 in 1-30: 10 numbers. Multiples of 5: 6 numbers. Multiples of both (15): 2 numbers {15,30}. Using union: (10 + 6 - 2)/30 = 14/30 = 7/15.",
+      "difficulty": "medium",
+      "sub_topic": "complementary_and_union_events",
+      "misconception_tags": ["double_counting_union"],
+      "company_tags": ["infosys", "tcs", "accenture"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

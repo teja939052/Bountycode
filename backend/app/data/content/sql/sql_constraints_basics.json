@@ -1,0 +1,325 @@
+{
+  "topic": "sql_constraints_basics",
+  "subject": "sql",
+  "pattern": "sql_constraints_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "constraints_overview",
+      "title": "SQL Constraints Overview",
+      "concept": "Constraints are rules enforced on table columns to maintain data integrity and accuracy. Common constraints include NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK, and DEFAULT.",
+      "formula": "Constraint types: NOT NULL (no nulls), UNIQUE (distinct values), PRIMARY KEY (unique + not null), FOREIGN KEY (references another table), CHECK (condition), DEFAULT (fallback value).",
+      "worked_example": "A users table may have id as PRIMARY KEY, email as UNIQUE, and age with CHECK (age >= 0).",
+      "mistakes": [
+        "Confusing UNIQUE with PRIMARY KEY (PRIMARY KEY also implies NOT NULL)",
+        "Assuming FOREIGN KEY values can reference non-existent parent keys",
+        "Thinking constraints are optional for data correctness (they enforce rules)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "sql_keys_and_relationships",
+      "title": "Primary Key and Foreign Key",
+      "concept": "A PRIMARY KEY uniquely identifies each row in a table. A FOREIGN KEY creates a link between two tables by referencing the primary (or unique) key of another table, enforcing referential integrity.",
+      "formula": "PRIMARY KEY: unique identifier per row. FOREIGN KEY (child.col) REFERENCES parent(col): child values must exist in parent (or be NULL if allowed).",
+      "worked_example": "orders.customer_id can be a FOREIGN KEY referencing customers.id. You cannot insert an order with a customer_id that does not exist in customers (if constraint enforced).",
+      "mistakes": [
+        "Using multiple PRIMARY KEY constraints on different columns instead of a composite primary key definition",
+        "Inserting child rows before parent rows exist",
+        "Confusing foreign key with a regular indexed column"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "check_default_notnull",
+      "title": "CHECK, DEFAULT, and NOT NULL",
+      "concept": "NOT NULL prevents missing values in a column. DEFAULT provides an automatic value when none is supplied on insert. CHECK enforces a condition on values in a column (or row-level conditions).",
+      "formula": "NOT NULL: value required. DEFAULT x: use x if omitted. CHECK (condition): value must satisfy condition.",
+      "worked_example": "CREATE TABLE products (name VARCHAR(50) NOT NULL, status VARCHAR(10) DEFAULT 'active', price INT CHECK (price > 0));",
+      "mistakes": [
+        "Expecting DEFAULT to override explicitly provided values",
+        "Writing CHECK conditions that are logically wrong for business rules",
+        "Assuming NULL behaves like 0 or empty string in comparisons"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLCON-PRACTICE-001",
+      "question": "Which constraint ensures that a column cannot have NULL values?",
+      "options": {
+        "A": "UNIQUE",
+        "B": "NOT NULL",
+        "C": "DEFAULT",
+        "D": "CHECK"
+      },
+      "correct_answer": "B",
+      "explanation": "The NOT NULL constraint enforces that every row must have a value for that column (NULL is not allowed).",
+      "difficulty": "easy",
+      "sub_topic": "constraints_overview",
+      "misconception_tags": [
+        "constraint_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-PRACTICE-002",
+      "question": "Which constraint uniquely identifies each record in a table and does not allow NULL values?",
+      "options": {
+        "A": "FOREIGN KEY",
+        "B": "UNIQUE",
+        "C": "PRIMARY KEY",
+        "D": "DEFAULT"
+      },
+      "correct_answer": "C",
+      "explanation": "A PRIMARY KEY uniquely identifies rows in a table and implicitly enforces NOT NULL (and uniqueness).",
+      "difficulty": "easy",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": [
+        "primary_key_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-PRACTICE-003",
+      "question": "A FOREIGN KEY is used to:",
+      "options": {
+        "A": "Automatically increment values",
+        "B": "Enforce a link between data in two tables",
+        "C": "Allow duplicate primary keys",
+        "D": "Store default values"
+      },
+      "correct_answer": "B",
+      "explanation": "A FOREIGN KEY creates and enforces a relationship between a column in one table and a referenced key column in another table (referential integrity).",
+      "difficulty": "easy",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": [
+        "foreign_key_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-PRACTICE-004",
+      "question": "Which constraint can be used to ensure that a column value satisfies a condition like price > 0?",
+      "options": {
+        "A": "CHECK",
+        "B": "UNIQUE",
+        "C": "FOREIGN KEY",
+        "D": "INDEX"
+      },
+      "correct_answer": "A",
+      "explanation": "The CHECK constraint enforces a Boolean condition on values in a column (or row), such as price > 0.",
+      "difficulty": "easy",
+      "sub_topic": "check_default_notnull",
+      "misconception_tags": [
+        "check_constraint_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-PRACTICE-005",
+      "question": "If a column has DEFAULT 'active' and no value is provided during INSERT, what happens?",
+      "options": {
+        "A": "NULL is inserted always",
+        "B": "The insert fails",
+        "C": "The value 'active' is inserted",
+        "D": "A random value is inserted"
+      },
+      "correct_answer": "C",
+      "explanation": "A DEFAULT constraint supplies the specified default value when no explicit value is provided for that column in an INSERT statement.",
+      "difficulty": "easy",
+      "sub_topic": "check_default_notnull",
+      "misconception_tags": [
+        "default_constraint_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLCON-001",
+      "question": "Which statement about PRIMARY KEY is correct?",
+      "options": {
+        "A": "It allows duplicate values but not NULLs",
+        "B": "It allows NULL values but not duplicates",
+        "C": "It does not allow duplicate values and does not allow NULLs",
+        "D": "It is the same as DEFAULT"
+      },
+      "correct_answer": "C",
+      "explanation": "A PRIMARY KEY uniquely identifies each row, so it must be unique and cannot contain NULL values.",
+      "difficulty": "easy",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": [
+        "primary_key_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-002",
+      "question": "Which constraint ensures all values in a column are different (while NULL behavior may depend on DBMS specifics)?",
+      "options": {
+        "A": "UNIQUE",
+        "B": "CHECK",
+        "C": "DEFAULT",
+        "D": "NOT NULL"
+      },
+      "correct_answer": "A",
+      "explanation": "The UNIQUE constraint enforces that no duplicate values appear in the column (details about multiple NULLs can vary by DBMS, but uniqueness of non-null values is the core rule).",
+      "difficulty": "easy",
+      "sub_topic": "constraints_overview",
+      "misconception_tags": [
+        "unique_constraint_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-003",
+      "question": "If orders.customer_id is a FOREIGN KEY referencing customers.id, which insert is typically rejected?",
+      "options": {
+        "A": "An order with customer_id that exists in customers",
+        "B": "An order with customer_id that does not exist in customers",
+        "C": "An order where another non-key column is NULL",
+        "D": "An order with a valid referenced customer_id and valid data"
+      },
+      "correct_answer": "B",
+      "explanation": "Referential integrity requires the foreign key value to match an existing referenced key in the parent table (or be NULL if allowed). A non-existent customer_id violates this.",
+      "difficulty": "medium",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": [
+        "referential_integrity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-004",
+      "question": "Which combination best describes a PRIMARY KEY compared to a UNIQUE constraint?",
+      "options": {
+        "A": "PRIMARY KEY allows NULLs; UNIQUE does not",
+        "B": "PRIMARY KEY = UNIQUE + NOT NULL (and identifies rows)",
+        "C": "UNIQUE allows duplicates; PRIMARY KEY does not",
+        "D": "They are identical in all DBMS behavior and purpose"
+      },
+      "correct_answer": "B",
+      "explanation": "A PRIMARY KEY enforces uniqueness and non-nullability and is used to identify each row. UNIQUE enforces uniqueness but is not the same as the table's primary identifier in all cases.",
+      "difficulty": "medium",
+      "sub_topic": "keys_and_relationships",
+      "misconception_tags": [
+        "primary_vs_unique_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLCON-005",
+      "question": "Which constraint would you use to automatically set a column to 0 when no value is provided?",
+      "options": {
+        "A": "CHECK (value = 0)",
+        "B": "DEFAULT 0",
+        "C": "NOT NULL 0",
+        "D": "UNIQUE 0"
+      },
+      "correct_answer": "B",
+      "explanation": "DEFAULT specifies a value to be used when an INSERT does not provide a value for the column (e.g., DEFAULT 0).",
+      "difficulty": "easy",
+      "sub_topic": "check_default_notnull",
+      "misconception_tags": [
+        "default_constraint_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

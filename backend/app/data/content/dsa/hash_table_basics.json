@@ -1,0 +1,325 @@
+{
+  "topic": "hash_table_basics",
+  "subject": "dsa",
+  "pattern": "hash_table_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "HT-L1",
+      "title": "Hash Table Concept",
+      "concept": "A hash table stores key-value pairs and uses a hash function to compute an index (bucket) for each key, enabling fast average-case lookup, insertion, and deletion. The hash function maps keys to indices in an underlying array.",
+      "formula": "index = hash(key) mod capacity. Average-case search/insert/delete: O(1). Worst-case can degrade (e.g., many collisions) to O(n) depending on implementation.",
+      "worked_example": "Keys 15, 22 with capacity 10 and hash(k)=k: indices 5 and 2. Looking up key 15 computes index 5 and checks that bucket.",
+      "mistakes": [
+        "Assuming hash tables always guarantee O(1) in worst case",
+        "Confusing keys with indices",
+        "Believing order of elements is preserved like an array/list"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "HT-L2",
+      "title": "Collisions and Resolution",
+      "concept": "A collision occurs when different keys hash to the same index. Common resolution strategies include chaining (store multiple entries in a list/structure per bucket) and open addressing (probe for another slot, e.g., linear/quadratic probing, double hashing).",
+      "formula": "Chaining: bucket[i] holds a collection of entries. Open addressing: try index, index+1, ... (linear) until empty slot found (with care for deletion).",
+      "worked_example": "Capacity 10, keys 12 and 22 both hash to 2. With chaining, bucket 2 stores both entries. With linear probing, 22 may go to next available slot after 2.",
+      "mistakes": [
+        "Ignoring collisions in design/analysis",
+        "Confusing chaining with open addressing",
+        "Forgetting that probing sequences must be handled correctly on search/delete"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "HT-L3",
+      "title": "Load Factor and Applications",
+      "concept": "Load factor (entries/capacity) indicates how full a hash table is. High load factors increase collision likelihood and can degrade performance; resizing/rehashing is used to maintain efficiency. Hash tables power dictionaries/maps, sets, frequency counting, and fast membership checks.",
+      "formula": "Load factor α = n / m (n entries, m buckets). Many implementations resize when α exceeds a threshold.",
+      "worked_example": "Counting word frequencies: for each word, increment map[word]. Average O(1) per update makes this efficient for large inputs.",
+      "mistakes": [
+        "Assuming unlimited capacity without resizing cost considerations",
+        "Using mutable objects incorrectly as keys in languages where hash/equality semantics matter",
+        "Expecting sorted iteration without additional structures"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "HT-PRACTICE-001",
+      "question": "A hash table provides average-case O(1) time for:",
+      "options": {
+        "A": "Lookup, insertion, and deletion (on average)",
+        "B": "Sorting all elements",
+        "C": "Finding median in all cases",
+        "D": "Graph traversal"
+      },
+      "correct_answer": "A",
+      "explanation": "With a good hash function and managed load factor, hash tables support average constant-time lookup, insert, and delete operations.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-PRACTICE-002",
+      "question": "A collision in a hash table occurs when:",
+      "options": {
+        "A": "Two different keys map to the same index",
+        "B": "The table is empty",
+        "C": "A key is deleted",
+        "D": "The array is sorted"
+      },
+      "correct_answer": "A",
+      "explanation": "Collisions happen when the hash function produces the same bucket/index for different keys.",
+      "difficulty": "easy",
+      "sub_topic": "collisions",
+      "misconception_tags": [
+        "collision_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-PRACTICE-003",
+      "question": "Which technique stores multiple colliding elements in the same bucket using a list/chain?",
+      "options": {
+        "A": "Linear probing",
+        "B": "Chaining",
+        "C": "Binary search",
+        "D": "Heaping"
+      },
+      "correct_answer": "B",
+      "explanation": "Chaining resolves collisions by keeping a collection (e.g., linked list) of entries at each bucket.",
+      "difficulty": "easy",
+      "sub_topic": "collisions",
+      "misconception_tags": [
+        "resolution_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-PRACTICE-004",
+      "question": "The load factor of a hash table is defined as:",
+      "options": {
+        "A": "capacity / entries",
+        "B": "entries / capacity",
+        "C": "entries * capacity",
+        "D": "hash(key) mod capacity"
+      },
+      "correct_answer": "B",
+      "explanation": "Load factor α = n/m, where n is the number of stored entries and m is the number of buckets/capacity.",
+      "difficulty": "easy",
+      "sub_topic": "load_factor",
+      "misconception_tags": [
+        "formula_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-PRACTICE-005",
+      "question": "A common application of hash tables is:",
+      "options": {
+        "A": "Frequency counting of elements",
+        "B": "Storing data only in sorted order by default",
+        "C": "Depth-first traversal",
+        "D": "Matrix multiplication"
+      },
+      "correct_answer": "A",
+      "explanation": "Hash maps/sets efficiently support counting and membership checks, making them ideal for frequency counting.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "HT-001",
+      "question": "Which component maps a key to a bucket index in a hash table?",
+      "options": {
+        "A": "Comparator",
+        "B": "Hash function",
+        "C": "Stack pointer",
+        "D": "Balancer"
+      },
+      "correct_answer": "B",
+      "explanation": "The hash function computes a hash value from the key, which is then mapped to an index in the table.",
+      "difficulty": "easy",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "component_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-002",
+      "question": "Open addressing resolves collisions by:",
+      "options": {
+        "A": "Storing a linked list in each bucket",
+        "B": "Finding another open slot within the table using probing",
+        "C": "Creating a new table for each key",
+        "D": "Sorting keys"
+      },
+      "correct_answer": "B",
+      "explanation": "In open addressing, all elements are stored in the table itself and collisions are handled by probing for alternative slots.",
+      "difficulty": "easy",
+      "sub_topic": "collisions",
+      "misconception_tags": [
+        "resolution_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-003",
+      "question": "Worst-case time complexity for search in a hash table can become:",
+      "options": {
+        "A": "O(1) always",
+        "B": "O(log n) always",
+        "C": "O(n) in poor collision scenarios",
+        "D": "O(n log n) always"
+      },
+      "correct_answer": "C",
+      "explanation": "With many collisions (e.g., all keys in one bucket), operations may degrade to linear time depending on implementation.",
+      "difficulty": "medium",
+      "sub_topic": "concept",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-004",
+      "question": "Why do hash tables often resize/rehash?",
+      "options": {
+        "A": "To keep elements alphabetically sorted",
+        "B": "To maintain a reasonable load factor and performance",
+        "C": "To convert keys to values",
+        "D": "To remove all collisions permanently"
+      },
+      "correct_answer": "B",
+      "explanation": "Resizing and rehashing redistribute entries into a larger table, helping keep load factor low and operations efficient on average.",
+      "difficulty": "easy",
+      "sub_topic": "load_factor",
+      "misconception_tags": [
+        "rehash_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "HT-005",
+      "question": "Which data structure is best suited for fast key-based lookup of values on average?",
+      "options": {
+        "A": "Hash table (map)",
+        "B": "Unsorted array without indexing",
+        "C": "Stack",
+        "D": "Queue"
+      },
+      "correct_answer": "A",
+      "explanation": "Hash tables provide average O(1) key-based lookup, making them well-suited for dictionary/map operations.",
+      "difficulty": "easy",
+      "sub_topic": "applications",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "topic": "software_engineering_basics",
+  "subject": "cs",
+  "pattern": "software_engineering_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "sdlc_phases",
+      "title": "Software Development Life Cycle (SDLC)",
+      "concept": "SDLC is a structured process for planning, creating, testing, and maintaining software. Common phases include requirements analysis, design, implementation (coding), testing, deployment, and maintenance. Different models (waterfall, iterative, agile) arrange these activities differently.",
+      "formula": "Typical flow: Requirements -> Design -> Implementation -> Testing -> Deployment -> Maintenance.",
+      "worked_example": "For a student portal app: gather requirements (login, grades view), design database/UI, implement features, test for bugs/security, deploy to users, and maintain with updates/fixes.",
+      "mistakes": [
+        "Thinking SDLC ends at deployment (maintenance is ongoing)",
+        "Skipping requirements/design and jumping directly to coding",
+        "Assuming one SDLC model fits every project"
+      ]
+    },
+    {
+      "id": "requirements_and_design",
+      "title": "Requirements and Design Basics",
+      "concept": "Requirements define what the system should do (functional) and how well it should do it (non-functional, e.g., performance, security, usability). Design translates requirements into an architecture and component plan, including data models, interfaces, and modules.",
+      "formula": "Functional: features/behaviors. Non-functional: quality attributes (performance, reliability, security, etc.).",
+      "worked_example": "Functional: 'User can reset password via email.' Non-functional: 'Password reset email should be sent within 1 minute.' Design would specify components/services handling the reset flow.",
+      "mistakes": [
+        "Confusing functional requirements with non-functional requirements",
+        "Leaving requirements ambiguous (unclear acceptance criteria)",
+        "Designing without validating requirements"
+      ]
+    },
+    {
+      "id": "testing_and_maintenance",
+      "title": "Testing and Maintenance",
+      "concept": "Software testing verifies that the system meets requirements and finds defects. Levels include unit, integration, system, and acceptance testing. Maintenance involves correcting defects, adapting to changes, improving performance, and preventing future issues after release.",
+      "formula": "Unit -> Integration -> System -> Acceptance (common progression). Maintenance types: corrective, adaptive, perfective, preventive.",
+      "worked_example": "A unit test checks a single function (e.g., password validation). Integration testing checks that login module works with the database. After release, fixing a reported bug is corrective maintenance.",
+      "mistakes": [
+        "Relying only on system testing and skipping unit/integration tests",
+        "Assuming testing guarantees bug-free software (it reduces risk)",
+        "Ignoring maintenance effort in project planning"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SEB-PRACTICE-001",
+      "question": "What does SDLC stand for in software engineering?",
+      "options": {
+        "A": "Software Design Logic Cycle",
+        "B": "Software Development Life Cycle",
+        "C": "System Data Link Control",
+        "D": "Software Deployment Level Check"
+      },
+      "correct_answer": "B",
+      "explanation": "SDLC stands for Software Development Life Cycle, a process for planning, building, testing, deploying, and maintaining software.",
+      "difficulty": "easy",
+      "sub_topic": "sdlc_phases",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-PRACTICE-002",
+      "question": "Which phase typically comes immediately after requirements analysis in a traditional SDLC flow?",
+      "options": {
+        "A": "Maintenance",
+        "B": "Design",
+        "C": "Deployment",
+        "D": "Retirement"
+      },
+      "correct_answer": "B",
+      "explanation": "After requirements are gathered and analyzed, the next step is usually design, where the solution architecture and components are planned.",
+      "difficulty": "easy",
+      "sub_topic": "sdlc_phases",
+      "misconception_tags": [
+        "phase_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-PRACTICE-003",
+      "question": "Which of the following is a non-functional requirement?",
+      "options": {
+        "A": "User can upload a profile photo",
+        "B": "System should respond within 2 seconds",
+        "C": "User can view order history",
+        "D": "Admin can add new products"
+      },
+      "correct_answer": "B",
+      "explanation": "Response time is a quality/performance attribute, making it a non-functional requirement. The others describe features (functional requirements).",
+      "difficulty": "easy",
+      "sub_topic": "requirements_and_design",
+      "misconception_tags": [
+        "functional_nonfunctional_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-PRACTICE-004",
+      "question": "Testing individual components or functions in isolation is called:",
+      "options": {
+        "A": "System testing",
+        "B": "Acceptance testing",
+        "C": "Unit testing",
+        "D": "Beta deployment"
+      },
+      "correct_answer": "C",
+      "explanation": "Unit testing focuses on verifying the smallest testable parts of an application (such as functions or methods) independently.",
+      "difficulty": "easy",
+      "sub_topic": "testing_and_maintenance",
+      "misconception_tags": [
+        "testing_level_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-PRACTICE-005",
+      "question": "Fixing bugs reported by users after software release is an example of:",
+      "options": {
+        "A": "Corrective maintenance",
+        "B": "Requirements gathering",
+        "C": "Initial design",
+        "D": "Unit compilation"
+      },
+      "correct_answer": "A",
+      "explanation": "Corrective maintenance involves diagnosing and fixing defects discovered after the software has been deployed.",
+      "difficulty": "easy",
+      "sub_topic": "testing_and_maintenance",
+      "misconception_tags": [
+        "maintenance_type_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SEB-001",
+      "question": "Which activity is primarily concerned with defining what the software must do and its constraints?",
+      "options": {
+        "A": "Requirements analysis",
+        "B": "Code compilation",
+        "C": "Deployment scripting",
+        "D": "Log monitoring only"
+      },
+      "correct_answer": "A",
+      "explanation": "Requirements analysis identifies and documents functional needs and constraints/quality attributes that the software must satisfy.",
+      "difficulty": "easy",
+      "sub_topic": "requirements_and_design",
+      "misconception_tags": [
+        "phase_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-002",
+      "question": "Which of the following is a functional requirement?",
+      "options": {
+        "A": "The system must be available 99.9% of the time",
+        "B": "The user must be able to reset their password",
+        "C": "Pages should load within 2 seconds",
+        "D": "The system must support 10,000 concurrent users"
+      },
+      "correct_answer": "B",
+      "explanation": "Password reset is a specific feature/behavior of the system, so it is a functional requirement. The others are non-functional quality attributes.",
+      "difficulty": "easy",
+      "sub_topic": "requirements_and_design",
+      "misconception_tags": [
+        "functional_nonfunctional_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-003",
+      "question": "Which testing level focuses on verifying interactions between integrated modules/components?",
+      "options": {
+        "A": "Unit testing",
+        "B": "Integration testing",
+        "C": "Static analysis only",
+        "D": "Requirement elicitation"
+      },
+      "correct_answer": "B",
+      "explanation": "Integration testing checks that combined modules or components work together correctly after being integrated.",
+      "difficulty": "easy",
+      "sub_topic": "testing_and_maintenance",
+      "misconception_tags": [
+        "testing_level_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-004",
+      "question": "Which statement about software maintenance is correct?",
+      "options": {
+        "A": "Maintenance is not part of SDLC",
+        "B": "Maintenance only happens before deployment",
+        "C": "Maintenance includes fixing defects and adapting software after release",
+        "D": "Maintenance means rewriting all code from scratch"
+      },
+      "correct_answer": "C",
+      "explanation": "Maintenance is a key SDLC phase after deployment and includes corrective, adaptive, perfective, and preventive activities.",
+      "difficulty": "easy",
+      "sub_topic": "testing_and_maintenance",
+      "misconception_tags": [
+        "maintenance_scope_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEB-005",
+      "question": "In a typical SDLC, why is the design phase important?",
+      "options": {
+        "A": "It replaces the need for testing",
+        "B": "It translates requirements into a structured plan/architecture for implementation",
+        "C": "It only documents user manuals",
+        "D": "It deploys the software to production"
+      },
+      "correct_answer": "B",
+      "explanation": "Design converts requirements into a blueprint (architecture, components, data structures, interfaces) that guides implementation and helps manage complexity.",
+      "difficulty": "medium",
+      "sub_topic": "requirements_and_design",
+      "misconception_tags": [
+        "design_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

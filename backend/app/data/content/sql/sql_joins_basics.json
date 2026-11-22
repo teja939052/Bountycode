@@ -1,0 +1,316 @@
+{
+  "topic": "sql_joins_basics",
+  "subject": "sql",
+  "pattern": "sql_joins_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "join_purpose",
+      "title": "Why and How JOINs Work",
+      "concept": "A JOIN combines rows from two or more tables based on a related column (often a key). JOINs let you query related data stored in normalized tables. The join condition (ON clause) determines how rows match.",
+      "formula": "SELECT ... FROM A JOIN B ON A.key = B.key; matching rows are combined according to join type.",
+      "worked_example": "Employees(emp_id, dept_id) and Departments(dept_id, dept_name): JOIN on dept_id returns each employee with their department name where dept_id matches.",
+      "mistakes": [
+        "Omitting or using an incorrect ON condition leading to unintended results",
+        "Confusing which columns belong to which table in the result",
+        "Assuming JOIN always returns all rows from both tables (depends on join type)"
+      ]
+    },
+    {
+      "id": "inner_left_right_joins",
+      "title": "INNER, LEFT, and RIGHT JOINs",
+      "concept": "INNER JOIN returns only rows with matches in both tables. LEFT JOIN returns all rows from the left table and matching rows from the right table (NULLs when no match). RIGHT JOIN returns all rows from the right table and matches from the left.",
+      "formula": "INNER: only matches. LEFT: all left + matches (NULLs on right). RIGHT: all right + matches (NULLs on left).",
+      "worked_example": "If an employee has no department match, INNER JOIN excludes that employee; LEFT JOIN (Employees LEFT JOIN Departments) includes the employee with NULL department fields.",
+      "mistakes": [
+        "Using INNER JOIN when unmatched rows from one side must be preserved",
+        "Confusing left and right table positions and expecting wrong NULL placement",
+        "Misinterpreting NULLs in joined columns as zero/empty string"
+      ]
+    },
+    {
+      "id": "join_cardinality_and_filters",
+      "title": "Join Cardinality and Filtering",
+      "concept": "Joins can multiply rows when relationships are one-to-many or many-to-many (a row in one table matches multiple rows in another). WHERE filters rows after forming the join logic (and can turn an outer join into an effective inner join if it filters out NULLs incorrectly).",
+      "formula": "Result rows depend on matches per key. Be careful: filtering on right-table columns in WHERE with LEFT JOIN may exclude NULL-matched rows.",
+      "worked_example": "One department with 3 employees produces 3 joined rows for that department. A LEFT JOIN keeping departments with no employees yields a row with NULL employee columns; adding WHERE employee.emp_id IS NOT NULL removes it.",
+      "mistakes": [
+        "Unexpected duplicate/multiplied rows due to one-to-many relationships",
+        "Placing conditions in WHERE that negate the effect of LEFT/RIGHT JOIN",
+        "Counting rows without considering join multiplicity"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLJ-PRACTICE-001",
+      "question": "Which JOIN returns only rows that have matching values in both tables?",
+      "options": {
+        "A": "LEFT JOIN",
+        "B": "RIGHT JOIN",
+        "C": "INNER JOIN",
+        "D": "FULL OUTER JOIN"
+      },
+      "correct_answer": "C",
+      "explanation": "INNER JOIN returns only rows where the join condition matches in both tables; non-matching rows are excluded.",
+      "difficulty": "easy",
+      "sub_topic": "inner_left_right_joins",
+      "misconception_tags": [
+        "join_type_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-PRACTICE-002",
+      "question": "In 'SELECT * FROM A LEFT JOIN B ON A.id = B.a_id', which table's rows are all preserved?",
+      "options": {
+        "A": "Table B",
+        "B": "Table A",
+        "C": "Both tables",
+        "D": "Neither table"
+      },
+      "correct_answer": "B",
+      "explanation": "A LEFT JOIN preserves all rows from the left table (A). Rows from B appear when matched; otherwise B's columns are NULL.",
+      "difficulty": "easy",
+      "sub_topic": "inner_left_right_joins",
+      "misconception_tags": [
+        "left_right_table_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-PRACTICE-003",
+      "question": "What is the purpose of the ON clause in a JOIN?",
+      "options": {
+        "A": "To sort the result",
+        "B": "To specify how rows from tables are matched",
+        "C": "To delete unmatched rows from tables",
+        "D": "To create a new table permanently"
+      },
+      "correct_answer": "B",
+      "explanation": "The ON clause defines the join condition, i.e., how rows from the joined tables relate/match to each other.",
+      "difficulty": "easy",
+      "sub_topic": "join_purpose",
+      "misconception_tags": [
+        "on_clause_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-PRACTICE-004",
+      "question": "If a row in the left table has no match in the right table, what happens to right-table columns in a LEFT JOIN result for that row?",
+      "options": {
+        "A": "They contain 0",
+        "B": "They contain empty strings",
+        "C": "They contain NULL",
+        "D": "The row is removed"
+      },
+      "correct_answer": "C",
+      "explanation": "LEFT JOIN keeps the left row and fills columns from the right table with NULL when there is no matching row.",
+      "difficulty": "easy",
+      "sub_topic": "inner_left_right_joins",
+      "misconception_tags": [
+        "null_handling_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-PRACTICE-005",
+      "question": "A department has 1 row and matches 4 employee rows. How many rows will an INNER JOIN on department id produce for that department?",
+      "options": {
+        "A": "1",
+        "B": "4",
+        "C": "5",
+        "D": "0"
+      },
+      "correct_answer": "B",
+      "explanation": "In a one-to-many match, the join produces one output row per matching pair: 1 department row matched with 4 employee rows yields 4 rows.",
+      "difficulty": "medium",
+      "sub_topic": "join_cardinality_and_filters",
+      "misconception_tags": [
+        "join_multiplicity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLJ-001",
+      "question": "Which query shape correctly joins tables Orders and Customers on customer id?",
+      "options": {
+        "A": "SELECT * FROM Orders INNER JOIN Customers WHERE Orders.customer_id = Customers.id;",
+        "B": "SELECT * FROM Orders INNER JOIN Customers ON Orders.customer_id = Customers.id;",
+        "C": "SELECT * FROM Orders, Customers ON Orders.customer_id = Customers.id;",
+        "D": "SELECT * FROM Orders JOIN Customers = Orders.customer_id;"
+      },
+      "correct_answer": "B",
+      "explanation": "The correct modern join syntax uses JOIN ... ON with the matching condition: ON Orders.customer_id = Customers.id.",
+      "difficulty": "easy",
+      "sub_topic": "join_purpose",
+      "misconception_tags": [
+        "join_syntax_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-002",
+      "question": "You want all customers, including those who have not placed any orders, along with their orders if present. Which JOIN is most appropriate (Customers as left table)?",
+      "options": {
+        "A": "Customers INNER JOIN Orders",
+        "B": "Customers LEFT JOIN Orders",
+        "C": "Customers RIGHT JOIN Orders",
+        "D": "Customers CROSS JOIN Orders"
+      },
+      "correct_answer": "B",
+      "explanation": "LEFT JOIN preserves all rows from Customers and includes matching Orders; customers without orders appear with NULL order columns.",
+      "difficulty": "easy",
+      "sub_topic": "inner_left_right_joins",
+      "misconception_tags": [
+        "join_type_selection_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-003",
+      "question": "A LEFT JOIN returns rows with NULLs in right-table columns. This typically indicates:",
+      "options": {
+        "A": "A syntax error occurred",
+        "B": "No matching row was found in the right table for those left-table rows",
+        "C": "The right table is empty of all data always",
+        "D": "The join condition was ignored"
+      },
+      "correct_answer": "B",
+      "explanation": "In a LEFT JOIN, preserved left-table rows without a match in the right table have NULLs for right-table columns.",
+      "difficulty": "easy",
+      "sub_topic": "inner_left_right_joins",
+      "misconception_tags": [
+        "null_handling_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-004",
+      "question": "Table A has 3 rows and Table B has 2 rows. Every row in A matches every row in B on the join condition. How many rows are returned by the JOIN?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "5",
+        "D": "6"
+      },
+      "correct_answer": "D",
+      "explanation": "Each of the 3 rows in A matches 2 rows in B, producing 3 * 2 = 6 joined rows.",
+      "difficulty": "medium",
+      "sub_topic": "join_cardinality_and_filters",
+      "misconception_tags": [
+        "join_multiplicity_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLJ-005",
+      "question": "When using LEFT JOIN, placing a filter on a right-table column in the WHERE clause (e.g., WHERE B.status = 'active') can:",
+      "options": {
+        "A": "Have no effect on results",
+        "B": "Exclude rows where B.status is NULL, potentially behaving like an INNER JOIN for that condition",
+        "C": "Convert the query into a DELETE",
+        "D": "Always return more rows"
+      },
+      "correct_answer": "B",
+      "explanation": "A WHERE condition requiring a non-NULL value from the right table filters out unmatched left rows (which have NULLs), often negating the outer-join behavior for that condition.",
+      "difficulty": "hard",
+      "sub_topic": "join_cardinality_and_filters",
+      "misconception_tags": [
+        "outer_join_filter_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 1,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

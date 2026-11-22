@@ -1,0 +1,321 @@
+{
+  "topic": "trains_problems",
+  "subject": "quantitative_aptitude",
+  "pattern": "trains_problems",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "speed_distance_time_trains",
+      "title": "Speed, Distance, and Time for Trains",
+      "concept": "Train problems use the basic relation distance = speed * time. When a train passes a stationary point object (like a pole or a person standing still), the distance covered is equal to the length of the train. Ensure speed and time units are consistent (km/h vs m/s).",
+      "formula": "Speed = Distance / Time. Conversion: 1 km/h = 5/18 m/s and 1 m/s = 18/5 km/h.",
+      "worked_example": "A train 180 m long passes a pole in 9 seconds. Speed = 180/9 = 20 m/s. In km/h, 20 * 18/5 = 72 km/h.",
+      "mistakes": [
+        "Forgetting to convert between km/h and m/s when units differ",
+        "Using the wrong distance when passing a point object (should be train length)",
+        "Arithmetic errors in 5/18 or 18/5 conversion"
+      ]
+    },
+    {
+      "id": "crossing_platforms_and_objects",
+      "title": "Crossing Platforms, Bridges, and Trains",
+      "concept": "When a train crosses an object with length (platform, bridge, tunnel, or another stationary train), the total distance covered is the sum of the train's length and the object's length. The time taken is based on this total distance at the train's speed.",
+      "formula": "Time to cross platform/bridge = (Length of train + Length of platform/bridge) / Speed of train.",
+      "worked_example": "A 150 m train crosses a 250 m platform at 20 m/s. Total distance = 150 + 250 = 400 m. Time = 400/20 = 20 seconds.",
+      "mistakes": [
+        "Adding only the platform length and ignoring train length",
+        "Adding lengths but using inconsistent units",
+        "Confusing crossing a pole (train length only) with crossing a platform (sum of lengths)"
+      ]
+    },
+    {
+      "id": "relative_speed_two_trains",
+      "title": "Relative Speed of Two Trains",
+      "concept": "When two trains move, their relative speed depends on direction. If moving in opposite directions, relative speed is the sum of speeds. If moving in the same direction, relative speed is the difference of speeds. When they cross each other, distance covered is the sum of their lengths.",
+      "formula": "Opposite directions: relative speed = s1 + s2. Same direction: relative speed = |s1 - s2|. Crossing time = (L1 + L2) / relative speed.",
+      "worked_example": "Two trains of lengths 120 m and 180 m run in opposite directions at 40 km/h and 50 km/h. Relative speed = 90 km/h = 90*5/18 = 25 m/s. Total length = 300 m. Time to cross = 300/25 = 12 seconds.",
+      "mistakes": [
+        "Subtracting speeds for opposite directions or adding for same direction",
+        "Using only one train's length when trains cross each other",
+        "Not converting speeds to common units before applying relative speed"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "TRAIN-PRACTICE-001",
+      "question": "A train 120 m long passes a pole in 6 seconds. What is the speed of the train in m/s?",
+      "options": {
+        "A": "15 m/s",
+        "B": "20 m/s",
+        "C": "24 m/s",
+        "D": "30 m/s"
+      },
+      "correct_answer": "B",
+      "explanation": "When passing a pole, distance = length of train = 120 m. Speed = Distance / Time = 120 / 6 = 20 m/s.",
+      "difficulty": "easy",
+      "sub_topic": "speed_distance_time_trains",
+      "misconception_tags": [
+        "distance_speed_time_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-PRACTICE-002",
+      "question": "Convert 54 km/h to m/s.",
+      "options": {
+        "A": "10 m/s",
+        "B": "12 m/s",
+        "C": "15 m/s",
+        "D": "18 m/s"
+      },
+      "correct_answer": "C",
+      "explanation": "To convert km/h to m/s multiply by 5/18. So 54 * 5/18 = 54/18 * 5 = 3 * 5 = 15 m/s.",
+      "difficulty": "easy",
+      "sub_topic": "speed_distance_time_trains",
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-PRACTICE-003",
+      "question": "A train 200 m long crosses a platform 300 m long in 25 seconds. What is the speed of the train?",
+      "options": {
+        "A": "10 m/s",
+        "B": "12 m/s",
+        "C": "20 m/s",
+        "D": "25 m/s"
+      },
+      "correct_answer": "C",
+      "explanation": "Total distance = length of train + length of platform = 200 + 300 = 500 m. Speed = 500 / 25 = 20 m/s.",
+      "difficulty": "easy",
+      "sub_topic": "crossing_platforms_and_objects",
+      "misconception_tags": [
+        "platform_length_ignored"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-PRACTICE-004",
+      "question": "Two trains move in opposite directions at 30 m/s and 20 m/s. What is their relative speed?",
+      "options": {
+        "A": "10 m/s",
+        "B": "25 m/s",
+        "C": "50 m/s",
+        "D": "600 m/s"
+      },
+      "correct_answer": "C",
+      "explanation": "For opposite directions, relative speed = sum of speeds = 30 + 20 = 50 m/s.",
+      "difficulty": "easy",
+      "sub_topic": "relative_speed_two_trains",
+      "misconception_tags": [
+        "relative_speed_direction_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-PRACTICE-005",
+      "question": "Two trains of lengths 100 m and 150 m are running in the same direction at 20 m/s and 15 m/s respectively. How long will the faster train take to completely cross the slower train?",
+      "options": {
+        "A": "10 seconds",
+        "B": "25 seconds",
+        "C": "50 seconds",
+        "D": "125 seconds"
+      },
+      "correct_answer": "C",
+      "explanation": "Relative speed (same direction) = 20 - 15 = 5 m/s. Total distance to cross = 100 + 150 = 250 m. Time = 250 / 5 = 50 seconds.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed_two_trains",
+      "misconception_tags": [
+        "relative_speed_direction_error",
+        "train_length_sum_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "TRAIN-001",
+      "question": "A train 160 m long is running at 72 km/h. How much time will it take to pass a pole?",
+      "options": {
+        "A": "6 seconds",
+        "B": "8 seconds",
+        "C": "10 seconds",
+        "D": "12 seconds"
+      },
+      "correct_answer": "B",
+      "explanation": "Speed = 72 km/h = 72 * 5/18 = 20 m/s. Distance to pass pole = 160 m. Time = 160 / 20 = 8 seconds.",
+      "difficulty": "easy",
+      "sub_topic": "speed_distance_time_trains",
+      "misconception_tags": [
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-002",
+      "question": "A train 140 m long passes a platform 260 m long in 20 seconds. What is the speed of the train in km/h?",
+      "options": {
+        "A": "54 km/h",
+        "B": "60 km/h",
+        "C": "72 km/h",
+        "D": "90 km/h"
+      },
+      "correct_answer": "C",
+      "explanation": "Total distance = 140 + 260 = 400 m. Speed = 400 / 20 = 20 m/s. Convert to km/h: 20 * 18/5 = 72 km/h.",
+      "difficulty": "medium",
+      "sub_topic": "crossing_platforms_and_objects",
+      "misconception_tags": [
+        "platform_length_ignored",
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-003",
+      "question": "Two trains of lengths 110 m and 90 m are running in opposite directions at speeds 36 km/h and 54 km/h respectively. In how many seconds will they cross each other?",
+      "options": {
+        "A": "5 seconds",
+        "B": "8 seconds",
+        "C": "10 seconds",
+        "D": "12 seconds"
+      },
+      "correct_answer": "B",
+      "explanation": "Relative speed = 36 + 54 = 90 km/h = 90 * 5/18 = 25 m/s. Total length = 110 + 90 = 200 m. Time = 200 / 25 = 8 seconds.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed_two_trains",
+      "misconception_tags": [
+        "relative_speed_direction_error",
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-004",
+      "question": "A train running at 60 km/h crosses a bridge 200 m long in 30 seconds. What is the length of the train?",
+      "options": {
+        "A": "200 m",
+        "B": "250 m",
+        "C": "300 m",
+        "D": "500 m"
+      },
+      "correct_answer": "C",
+      "explanation": "Speed = 60 km/h = 60 * 5/18 = 50/3 m/s. Total distance = speed * time = (50/3) * 30 = 500 m. Train length = total distance - bridge length = 500 - 200 = 300 m.",
+      "difficulty": "medium",
+      "sub_topic": "crossing_platforms_and_objects",
+      "misconception_tags": [
+        "total_distance_decomposition_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "TRAIN-005",
+      "question": "Two trains 130 m and 170 m long are running in the same direction at 72 km/h and 54 km/h. How much time will the faster train take to pass the slower one completely?",
+      "options": {
+        "A": "30 seconds",
+        "B": "45 seconds",
+        "C": "60 seconds",
+        "D": "90 seconds"
+      },
+      "correct_answer": "C",
+      "explanation": "Relative speed = 72 - 54 = 18 km/h = 18 * 5/18 = 5 m/s. Total distance = 130 + 170 = 300 m. Time = 300 / 5 = 60 seconds.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed_two_trains",
+      "misconception_tags": [
+        "relative_speed_direction_error",
+        "unit_conversion_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

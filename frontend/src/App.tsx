@@ -628,6 +628,34 @@ function AnimatedRoutes() {
 
         {/* Gamification Hub Redirects */}
         <Route path="/daily-drill" element={<Navigate to="/tower" replace />}         />
+
+        {/* Removed-page redirects (August 2026 cleanup) — keep old links alive */}
+        <Route path="/academy" element={<Navigate to="/question-bank" replace />} />
+        <Route path="/journey" element={<Navigate to="/learn" replace />} />
+        <Route path="/rank" element={<Navigate to="/leaderboard" replace />} />
+        <Route path="/company-prep" element={<Navigate to="/company-tracks" replace />} />
+        <Route path="/quiz" element={<Navigate to="/question-bank" replace />} />
+        <Route path="/levels" element={<Navigate to="/tower" replace />} />
+        <Route path="/modules" element={<Navigate to="/learn/modules" replace />} />
+        <Route path="/onboarding/diagnostic" element={<Navigate to="/onboarding" replace />} />
+        <Route path="/mass-recruiter" element={<Navigate to="/question-bank" replace />} />
+        <Route path="/admin/content-corpus" element={<Navigate to="/admin-content" replace />} />
+        <Route path="/admin/exam-review" element={<Navigate to="/admin-content" replace />} />
+
+        {/* Six primary navigation hubs (canonical destinations) */}
+        <Route path="/profile" element={<StudentDashboard />} />
+        <Route path="/company-tracks" element={<SkillMap />} />
+
+        {/* Parameterized removed-page redirects */}
+        <Route path="/tracks/:param" element={<Navigate to="/company-tracks" replace />} />
+        <Route path="/question/:param" element={<Navigate to="/question-bank/:param" replace />} />
+        <Route path="/learn/lesson/:param" element={<Navigate to="/learn/:param" replace />} />
+        <Route path="/modules/:param" element={<Navigate to="/learn/modules" replace />} />
+        <Route path="/pattern/:param" element={<Navigate to="/problems/:param" replace />} />
+        <Route path="/worlds/:param" element={<Navigate to="/company-tracks" replace />} />
+        <Route path="/mission/sliding-window" element={<Navigate to="/question-bank" replace />} />
+        <Route path="/mission/sliding-window/result" element={<Navigate to="/question-bank" replace />} />
+        <Route path="/lesson/variables-state" element={<Navigate to="/learn/python" replace />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
@@ -760,7 +788,7 @@ function AppContent() {
               type={celebration.type}
               title={celebration.title}
               subtitle={celebration.subtitle}
-              xp={celebration.xp}
+              diamonds={celebration.xp}
               onClose={() =>
                 setCelebration((prev) => ({ ...prev, show: false }))
               }

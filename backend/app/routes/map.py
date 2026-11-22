@@ -53,6 +53,20 @@ WORLD_ADVENTURE_NAMES = {
     "graphs": "Serpent Sea",
     "dynamic": "Monsoon Delta",
     "alpine": "Kraken Summit",
+    "problem_solver": "Pattern Dojo",
+    "build_systems": "Forge Yard",
+    "work_with_data": "Data Vault",
+    "software_engineering": "Build Bay",
+    "under_pressure": "Stress Chamber",
+    "hiring_arena": "Interview Coliseum",
+    "company_missions": "Client Yard",
+    "ai_engineering": "Neural Forge",
+    "production": "Deploy Zone",
+    "projects": "Portfolio Yard",
+    "creative": "Maker Space",
+    "sql_dbms": "Query Quarter",
+    "cs_fundamentals": "Core Circuit",
+    "communication": "Comms Hub",
 }
 
 WORLD_THEMES = {

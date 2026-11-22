@@ -1,0 +1,316 @@
+{
+  "topic": "analogy",
+  "subject": "reasoning",
+  "pattern": "analogy",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "word_relationships",
+      "title": "Identifying Word Relationships",
+      "concept": "Analogy questions test the relationship between a pair of words and ask you to find another pair with the same relationship. Common relationships include part-whole, tool-user, cause-effect, degree/intensity, and category-member.",
+      "formula": "Approach: define relationship in pair A:B as 'A is to B as...' -> apply same relationship to options to find C:D.",
+      "worked_example": "Finger : Hand :: Toe : ? A finger is a part of a hand; similarly, a toe is a part of a foot. Answer: Foot.",
+      "mistakes": [
+        "Choosing a pair that is merely related by topic but not by the same relationship",
+        "Reversing the relationship direction",
+        "Focusing on surface similarity instead of logical relation"
+      ]
+    },
+    {
+      "id": "function_and_category",
+      "title": "Function, Use, and Category Analogies",
+      "concept": "Many analogies are based on function (what something does or is used for), worker-tool, or category (type-of). Identify precisely how the first item relates to the second before evaluating options.",
+      "formula": "Examples: Pen : Write (tool-function), Carpenter : Wood (worker-material), Apple : Fruit (member-category).",
+      "worked_example": "Knife : Cut :: Pen : ? A knife is used to cut; a pen is used to write. Answer: Write.",
+      "mistakes": [
+        "Confusing function with category (e.g., pen is a stationery item, but relation asked may be function)",
+        "Selecting an option that fits only one word of the pair",
+        "Ignoring the specific role in the relationship"
+      ]
+    },
+    {
+      "id": "degree_and_sequence",
+      "title": "Degree, Sequence, and Opposite Analogies",
+      "concept": "Some analogies involve degree/intensity (warm:hot), sequence/order (seed:plant), or opposites (day:night). The relationship type must be preserved exactly in the correct option pair.",
+      "formula": "Check whether the pair shows increase/decrease in degree, progression/sequence, or opposition; mirror that in the answer.",
+      "worked_example": "Warm : Hot :: Cool : ? Warm to hot shows increasing degree of heat; cool to cold shows increasing degree of cold. Answer: Cold.",
+      "mistakes": [
+        "Picking an opposite when the relation is degree, or vice versa",
+        "Getting sequence order wrong",
+        "Missing intensity direction (mild to strong vs strong to mild)"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "ANA-PRACTICE-001",
+      "question": "Bird : Nest :: Bee : ?",
+      "options": {
+        "A": "Honey",
+        "B": "Hive",
+        "C": "Flower",
+        "D": "Wing"
+      },
+      "correct_answer": "B",
+      "explanation": "A bird lives in a nest; similarly, a bee lives in a hive. The relationship is living place/home.",
+      "difficulty": "easy",
+      "sub_topic": "word_relationships",
+      "misconception_tags": [
+        "relationship_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-PRACTICE-002",
+      "question": "Doctor : Hospital :: Teacher : ?",
+      "options": {
+        "A": "Student",
+        "B": "Book",
+        "C": "School",
+        "D": "Lesson"
+      },
+      "correct_answer": "C",
+      "explanation": "A doctor works in a hospital; a teacher works in a school. The relationship is worker to workplace.",
+      "difficulty": "easy",
+      "sub_topic": "function_and_category",
+      "misconception_tags": [
+        "worker_workplace_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-PRACTICE-003",
+      "question": "Puppy : Dog :: Kitten : ?",
+      "options": {
+        "A": "Lion",
+        "B": "Cat",
+        "C": "Cow",
+        "D": "Mouse"
+      },
+      "correct_answer": "B",
+      "explanation": "A puppy is a young dog; a kitten is a young cat. The relationship is young one to adult animal.",
+      "difficulty": "easy",
+      "sub_topic": "word_relationships",
+      "misconception_tags": [
+        "young_one_relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-PRACTICE-004",
+      "question": "Day : Night :: Light : ?",
+      "options": {
+        "A": "Sun",
+        "B": "Bright",
+        "C": "Dark",
+        "D": "Lamp"
+      },
+      "correct_answer": "C",
+      "explanation": "Day and night are opposites; light and dark are opposites. The relationship is antonym/opposite.",
+      "difficulty": "easy",
+      "sub_topic": "degree_and_sequence",
+      "misconception_tags": [
+        "opposite_relation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-PRACTICE-005",
+      "question": "Author : Book :: Painter : ?",
+      "options": {
+        "A": "Brush",
+        "B": "Color",
+        "C": "Painting",
+        "D": "Gallery"
+      },
+      "correct_answer": "C",
+      "explanation": "An author creates a book; a painter creates a painting. The relationship is creator to creation/work.",
+      "difficulty": "easy",
+      "sub_topic": "function_and_category",
+      "misconception_tags": [
+        "creator_creation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ANA-001",
+      "question": "Fish : Water :: Bird : ?",
+      "options": {
+        "A": "Nest",
+        "B": "Air",
+        "C": "Tree",
+        "D": "Feather"
+      },
+      "correct_answer": "B",
+      "explanation": "A fish lives/moves in water; a bird lives/moves in air (its natural medium). The relationship is creature to its primary medium/habitat.",
+      "difficulty": "easy",
+      "sub_topic": "word_relationships",
+      "misconception_tags": [
+        "habitat_relation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-002",
+      "question": "Eye : See :: Ear : ?",
+      "options": {
+        "A": "Sound",
+        "B": "Listen",
+        "C": "Hear",
+        "D": "Music"
+      },
+      "correct_answer": "C",
+      "explanation": "The eye is used to see; the ear is used to hear. The relationship is organ to its function/sense.",
+      "difficulty": "easy",
+      "sub_topic": "function_and_category",
+      "misconception_tags": [
+        "function_relation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-003",
+      "question": "Leaf : Tree :: Petal : ?",
+      "options": {
+        "A": "Stem",
+        "B": "Flower",
+        "C": "Garden",
+        "D": "Root"
+      },
+      "correct_answer": "B",
+      "explanation": "A leaf is part of a tree; a petal is part of a flower. The relationship is part to whole.",
+      "difficulty": "easy",
+      "sub_topic": "word_relationships",
+      "misconception_tags": [
+        "part_whole_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-004",
+      "question": "Big : Huge :: Small : ?",
+      "options": {
+        "A": "Large",
+        "B": "Little",
+        "C": "Tiny",
+        "D": "Wide"
+      },
+      "correct_answer": "C",
+      "explanation": "Huge is a greater degree of big; tiny is a greater degree of small. The relationship is increasing intensity/degree.",
+      "difficulty": "medium",
+      "sub_topic": "degree_and_sequence",
+      "misconception_tags": [
+        "degree_intensity_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ANA-005",
+      "question": "Seed : Plant :: Egg : ?",
+      "options": {
+        "A": "Nest",
+        "B": "Bird",
+        "C": "Shell",
+        "D": "Hen"
+      },
+      "correct_answer": "B",
+      "explanation": "A seed grows into a plant; an egg develops into a bird. The relationship is origin/early stage to developed form.",
+      "difficulty": "easy",
+      "sub_topic": "degree_and_sequence",
+      "misconception_tags": [
+        "sequence_relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

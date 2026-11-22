@@ -47,6 +47,7 @@ from app.services.gamification import (
     record_practice,
     get_gamification_profile,
 )
+from app.services.path_generator import decide_for_skill
 from app.services.spaced_repetition import get_due_cards, SRSState, ReviewGrade
 from app.services.skill_taxonomy import canonical_skill_id
 from app.models.learning_event import (
@@ -306,6 +307,31 @@ async def _get_practice_tasks(
     tasks: List[Dict[str, Any]] = []
     for area in weak_areas[:limit]:
         domain_id = area["domain_id"]
+        skill_score = float(area.get("score", 0) or 0)
+        skill_accuracy = float(area.get("accuracy", 0) or 0)
+        total_attempts = int(area.get("total_attempts", 0) or 0)
+
+        # Build explainable decision using the deterministic personalization engine.
+        # Mastery is score/100; first_attempt/recent correctness approximate accuracy
+        # since separate first-attempt tracking is not yet stored per skill.
+        decision = decide_for_skill(
+            skill_id=domain_id,
+            mastery=skill_score / 100.0,
+            first_attempt_correctness=skill_accuracy / 100.0,
+            recent_correctness=skill_accuracy / 100.0,
+            company_importance=0.5,  # default; company blueprint weights applied below
+            evidence_freshness_days=0 if total_attempts > 0 else 30,
+            trusted_content_sufficient=True,
+            difficulty="medium",
+            time_taken_seconds=0.0,
+            hint_usage_count=0,
+            repeated_exposure_count=max(0, total_attempts - 1),
+            transfer_performance=0.0,
+            retention_gap_days=0,
+            weakness_tier=area.get("mastery", "weak"),
+            daily_minutes_cap=30,
+        )
+
         topics: List[str] = []
         for tag in (domain_id, area.get("skill", "")):
             if tag:
@@ -322,8 +348,8 @@ async def _get_practice_tasks(
             logger.warning("question-bank fetch failed for %s: %s", domain_id, exc)
             pool = []
 
-        # �� Company-aware filtering: prefer questions tagged with
-        # company-relevant topics when a company track is enrolled ��
+        # Company-aware filtering: prefer questions tagged with
+        # company-relevant topics when a company track is enrolled.
         if company_relevant_topics and pool:
             lowered = [str(t).lower() for t in company_relevant_topics]
 
@@ -348,10 +374,14 @@ async def _get_practice_tasks(
                 "title": area.get("name", domain_id),
                 "emoji": area.get("emoji", "📌"),
                 "skill": domain_id,
-                "reason": area.get("reason"),
-                "mastery": area.get("mastery"),
+                "reason": decision.reason,
+                "reason_codes": decision.reason_codes,
+                "action": decision.action,
+                "retest_after_days": decision.retest_after_days,
+                "estimated_minutes": decision.estimated_minutes,
+                "mastery": decision.mastery,
                 "mastery_label": area.get("mastery_label"),
-                "score": area.get("score", 0),
+                "score": skill_score,
                 "estimated_minutes": 8,
                 "xp_reward": 15,
             })
@@ -375,7 +405,13 @@ async def _get_practice_tasks(
             "title": pick.get("title") or pick.get("question", ""),
             "difficulty": pick.get("difficulty", "medium"),
             "skill": domain_id,
-            "reason": area.get("reason"),
+            "reason": decision.reason,
+            "reason_codes": decision.reason_codes,
+            "action": decision.action,
+            "retest_after_days": decision.retest_after_days,
+            "estimated_minutes": decision.estimated_minutes,
+            "mastery": decision.mastery,
+            "score": skill_score,
             "selection_reason": "stable_daily_rotation",
             "estimated_minutes": pick.get("estimated_minutes", 10),
             "xp_reward": 25,

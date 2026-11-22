@@ -256,9 +256,9 @@ async def run_sde_diagnostic(user_id: str) -> dict:
     """
     from app.services.role_engine.profiles import get_profile
     from app.services.mastery_engine import SkillMastery, MASTERY_LEVELS
-    from app.services.srs_engine import create_card, get_due_cards
+    from app.services.spaced_repetition import create_card, get_due_cards
     from app.services.skill_assessment import initialize_skill_graph, update_skill_score, get_skill_graph
-    from app.services.srs_engine import create_card as srs_create_card
+    from app.services.spaced_repetition import create_card as srs_create_card
     from app.services.role_engine.profiles import get_profile
     
     # Get SDE profile with readiness weights
@@ -366,7 +366,7 @@ async def _calculate_sde_readiness(user_id: str, diagnostic_results: dict) -> di
 
 async def _enroll_diagnostic_concepts_srs(user_id: str, diagnostic_results: dict) -> None:
     """Enroll basic concepts into SRS for review after diagnostic."""
-    from app.services.srs_engine import create_card
+    from app.services.spaced_repetition import create_card
     
     # Enroll basic concepts for review after diagnostic
     basic_concepts = [
@@ -384,10 +384,13 @@ async def _enroll_diagnostic_concepts_srs(user_id: str, diagnostic_results: dict
         try:
             await create_card(
                 user_id=user_id,
-                concept_id=concept["concept_id"],
-                topic=concept["topic"],
-                difficulty=concept["difficulty"],
-                metadata={"source": "diagnostic", "enrollment_reason": "module_1_foundation"}
+                lesson_id=concept["concept_id"],
+                card_data={
+                    "concept_id": concept["concept_id"],
+                    "topic": concept["topic"],
+                    "difficulty": concept["difficulty"],
+                    "metadata": {"source": "diagnostic", "enrollment_reason": "module_1_foundation"},
+                },
             )
         except Exception as e:
             # Log error but don't fail diagnostic

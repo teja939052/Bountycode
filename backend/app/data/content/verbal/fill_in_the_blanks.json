@@ -1,0 +1,325 @@
+{
+  "topic": "fill_in_the_blanks",
+  "subject": "verbal",
+  "pattern": "fill_in_the_blanks",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "context_clues",
+      "title": "Using Context Clues",
+      "concept": "Fill-in-the-blanks questions require choosing a word or phrase that fits the meaning and tone of the sentence. Read the entire sentence to understand context, including cause-effect, contrast, time, and intent clues.",
+      "formula": "Read full sentence -> infer required meaning -> eliminate options that do not fit context -> choose best fit.",
+      "worked_example": "Sentence: 'Although it was raining, he went for a walk _____.' Clues 'Although' and 'raining' suggest unexpected behavior, so an option like 'anyway' fits better than 'because of it'.",
+      "mistakes": [
+        "Choosing a familiar word without checking sentence meaning",
+        "Ignoring contrast/cause connectors (although, because, therefore)",
+        "Not reading the whole sentence before answering"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "grammar_fit",
+      "title": "Grammar and Word-Form Fit",
+      "concept": "The correct option must satisfy grammar rules: subject-verb agreement, tense, articles, prepositions, and correct word form (noun/verb/adjective/adverb). Even a meaningful word is wrong if it breaks grammar.",
+      "formula": "Check subject number/tense cues -> required part of speech -> article/preposition/collocation -> final choice.",
+      "worked_example": "Sentence: 'She has lived here _____ five years.' Duration requires 'for', so 'for five years' is correct (not 'since five years').",
+      "mistakes": [
+        "Confusing 'since' and 'for'",
+        "Using wrong verb form after auxiliaries/modals",
+        "Ignoring singular/plural agreement"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "vocabulary_precision",
+      "title": "Vocabulary Precision and Collocations",
+      "concept": "Some blanks test precise word choice and common collocations (natural word pairings). Consider nuance (e.g., affect/effect, accept/except in concept, or common phrases like 'make a decision', 'take responsibility').",
+      "formula": "Meaning + nuance + collocation = correct choice. Prefer the word that is both semantically accurate and idiomatically natural.",
+      "worked_example": "Sentence: 'The committee will _____ a decision tomorrow.' Correct collocation is 'make a decision', not 'do a decision' or 'take a decision' in many standard test patterns (context/options matter).",
+      "mistakes": [
+        "Selecting near-synonyms with wrong nuance",
+        "Ignoring fixed/common collocations",
+        "Choosing words that fit grammar but not idiomatic usage"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "FIB-PRACTICE-001",
+      "question": "Fill in the blank: 'She has been studying here _____ 2020.'",
+      "options": {
+        "A": "for",
+        "B": "since",
+        "C": "from",
+        "D": "during"
+      },
+      "correct_answer": "B",
+      "explanation": "'Since' is used with a specific point in time (2020). 'For' is used with a period/duration.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "since_for_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-PRACTICE-002",
+      "question": "Fill in the blank: 'He was tired, _____ he finished the work.'",
+      "options": {
+        "A": "because",
+        "B": "so",
+        "C": "but",
+        "D": "unless"
+      },
+      "correct_answer": "C",
+      "explanation": "The sentence expresses contrast (tired vs finished the work), so 'but' is the correct connector.",
+      "difficulty": "easy",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-PRACTICE-003",
+      "question": "Fill in the blank: 'Please pay _____ to the instructions.'",
+      "options": {
+        "A": "notice",
+        "B": "attention",
+        "C": "care",
+        "D": "regard"
+      },
+      "correct_answer": "B",
+      "explanation": "The correct collocation is 'pay attention to'.",
+      "difficulty": "easy",
+      "sub_topic": "vocabulary_precision",
+      "misconception_tags": [
+        "collocation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-PRACTICE-004",
+      "question": "Fill in the blank: 'Each of the students _____ given a notebook.'",
+      "options": {
+        "A": "were",
+        "B": "are",
+        "C": "was",
+        "D": "have"
+      },
+      "correct_answer": "C",
+      "explanation": "'Each' is treated as singular, so the singular verb 'was' is correct: 'Each of the students was given...'",
+      "difficulty": "medium",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "subject_verb_agreement_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-PRACTICE-005",
+      "question": "Fill in the blank: 'The train arrived _____ time.'",
+      "options": {
+        "A": "in",
+        "B": "on",
+        "C": "at",
+        "D": "by"
+      },
+      "correct_answer": "B",
+      "explanation": "The standard expression is 'on time', meaning punctually/scheduled. ('In time' means early enough, which is different.)",
+      "difficulty": "easy",
+      "sub_topic": "vocabulary_precision",
+      "misconception_tags": [
+        "preposition_usage_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "FIB-001",
+      "question": "Fill in the blank: 'I have known him _____ ten years.'",
+      "options": {
+        "A": "since",
+        "B": "for",
+        "C": "from",
+        "D": "by"
+      },
+      "correct_answer": "B",
+      "explanation": "'For' is used with a duration of time (ten years). 'Since' is used with a starting point in time.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "since_for_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-002",
+      "question": "Fill in the blank: 'She did not go to the party _____ she was unwell.'",
+      "options": {
+        "A": "although",
+        "B": "but",
+        "C": "because",
+        "D": "so"
+      },
+      "correct_answer": "C",
+      "explanation": "The sentence gives a reason for not going to the party. 'Because' correctly expresses cause.",
+      "difficulty": "easy",
+      "sub_topic": "context_clues",
+      "misconception_tags": [
+        "connector_logic_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-003",
+      "question": "Fill in the blank: 'He is afraid _____ dogs.'",
+      "options": {
+        "A": "from",
+        "B": "with",
+        "C": "of",
+        "D": "by"
+      },
+      "correct_answer": "C",
+      "explanation": "The correct preposition with 'afraid' in this context is 'of': 'afraid of dogs'.",
+      "difficulty": "easy",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "preposition_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-004",
+      "question": "Fill in the blank: 'The manager asked him to _____ responsibility for the delay.'",
+      "options": {
+        "A": "do",
+        "B": "make",
+        "C": "take",
+        "D": "keep"
+      },
+      "correct_answer": "C",
+      "explanation": "The common collocation is 'take responsibility for'.",
+      "difficulty": "medium",
+      "sub_topic": "vocabulary_precision",
+      "misconception_tags": [
+        "collocation_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "FIB-005",
+      "question": "Fill in the blank: 'Neither the teacher nor the students _____ present yesterday.'",
+      "options": {
+        "A": "was",
+        "B": "is",
+        "C": "were",
+        "D": "has been"
+      },
+      "correct_answer": "C",
+      "explanation": "With 'neither/nor', the verb agrees with the nearer subject ('students' is plural), and the time marker 'yesterday' indicates past tense: 'were'.",
+      "difficulty": "medium",
+      "sub_topic": "grammar_fit",
+      "misconception_tags": [
+        "subject_verb_agreement_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

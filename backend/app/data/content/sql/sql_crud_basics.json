@@ -1,0 +1,325 @@
+{
+  "topic": "sql_crud_basics",
+  "subject": "sql",
+  "pattern": "sql_crud_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "SQLC-L1",
+      "title": "INSERT Basics",
+      "concept": "INSERT adds new rows to a table. You can specify column names and corresponding values, or provide values for all columns in table order (when appropriate). Providing column names is clearer and safer when table structure changes.",
+      "formula": "INSERT INTO table_name (col1, col2) VALUES (val1, val2); or INSERT INTO table_name VALUES (val1, val2, ...);",
+      "worked_example": "INSERT INTO students (id, name) VALUES (1, 'Asha'); adds a new student row with id 1 and name Asha.",
+      "mistakes": [
+        "Mismatch between number/order of columns and values",
+        "Inserting values that violate constraints (NOT NULL, UNIQUE, FK)",
+        "Forgetting quotes around string/date literals in SQL dialects that require them"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLC-L2",
+      "title": "UPDATE Basics",
+      "concept": "UPDATE modifies existing rows in a table. The SET clause specifies new values for columns, and the WHERE clause determines which rows are affected. Without WHERE, all rows in the table are updated.",
+      "formula": "UPDATE table_name SET col1 = val1, col2 = val2 WHERE condition;",
+      "worked_example": "UPDATE students SET name = 'Anita' WHERE id = 1; changes the name only for the row with id 1.",
+      "mistakes": [
+        "Omitting WHERE and unintentionally updating every row",
+        "Using = in WHERE incorrectly for NULL checks (use IS NULL/IS NOT NULL)",
+        "Setting wrong column values due to incorrect condition logic"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "SQLC-L3",
+      "title": "DELETE and Safe Modification Practices",
+      "concept": "DELETE removes rows from a table based on a condition. Like UPDATE, omitting WHERE deletes all rows (table structure remains). It is good practice to verify the target rows with a SELECT using the same WHERE condition before running UPDATE/DELETE.",
+      "formula": "DELETE FROM table_name WHERE condition; (Be careful: DELETE FROM table_name; removes all rows.)",
+      "worked_example": "SELECT * FROM students WHERE id = 1; then DELETE FROM students WHERE id = 1; confirms and removes only that row.",
+      "mistakes": [
+        "Omitting WHERE and deleting all rows by accident",
+        "Confusing DELETE (removes rows) with DROP (removes table/object)",
+        "Not considering foreign key constraints that may block deletion"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLC-PRACTICE-001",
+      "question": "Which SQL command is used to add new rows to a table?",
+      "options": {
+        "A": "UPDATE",
+        "B": "INSERT",
+        "C": "DELETE",
+        "D": "SELECT"
+      },
+      "correct_answer": "B",
+      "explanation": "INSERT adds new records (rows) into a table.",
+      "difficulty": "easy",
+      "sub_topic": "insert",
+      "misconception_tags": [
+        "command_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-PRACTICE-002",
+      "question": "What is the risk of running UPDATE without a WHERE clause?",
+      "options": {
+        "A": "No rows are updated",
+        "B": "All rows in the table are updated",
+        "C": "The table is dropped",
+        "D": "Only the first row is updated"
+      },
+      "correct_answer": "B",
+      "explanation": "Without a WHERE condition, UPDATE applies the SET changes to every row in the table.",
+      "difficulty": "easy",
+      "sub_topic": "update",
+      "misconception_tags": [
+        "where_clause_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-PRACTICE-003",
+      "question": "Which statement correctly updates name to 'Ravi' for id 5 in table users?",
+      "options": {
+        "A": "UPDATE users SET name = 'Ravi' WHERE id = 5;",
+        "B": "INSERT INTO users SET name = 'Ravi' WHERE id = 5;",
+        "C": "UPDATE users WHERE id = 5 SET name = 'Ravi';",
+        "D": "DELETE users SET name = 'Ravi' WHERE id = 5;"
+      },
+      "correct_answer": "A",
+      "explanation": "Correct syntax is UPDATE table SET ... WHERE .... This modifies existing rows matching the condition.",
+      "difficulty": "easy",
+      "sub_topic": "update",
+      "misconception_tags": [
+        "syntax_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-PRACTICE-004",
+      "question": "What does DELETE FROM employees WHERE dept = 'HR'; do?",
+      "options": {
+        "A": "Deletes the employees table",
+        "B": "Deletes all rows from employees",
+        "C": "Deletes rows in employees where dept is 'HR'",
+        "D": "Updates HR rows"
+      },
+      "correct_answer": "C",
+      "explanation": "DELETE removes rows that satisfy the WHERE condition. Only rows with dept = 'HR' are removed.",
+      "difficulty": "easy",
+      "sub_topic": "delete",
+      "misconception_tags": [
+        "command_purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-PRACTICE-005",
+      "question": "Which command removes rows but does not remove the table structure?",
+      "options": {
+        "A": "DROP TABLE",
+        "B": "DELETE",
+        "C": "ALTER TABLE",
+        "D": "CREATE TABLE"
+      },
+      "correct_answer": "B",
+      "explanation": "DELETE removes data rows from a table. DROP TABLE removes the table definition and its data; ALTER/CREATE modify or create structures.",
+      "difficulty": "easy",
+      "sub_topic": "delete",
+      "misconception_tags": [
+        "delete_vs_drop_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLC-001",
+      "question": "Which INSERT syntax explicitly specifies target columns?",
+      "options": {
+        "A": "INSERT table VALUES (1,'A');",
+        "B": "INSERT INTO table (id,name) VALUES (1,'A');",
+        "C": "UPDATE table (id,name) VALUES (1,'A');",
+        "D": "SELECT INTO table (id,name) VALUES (1,'A');"
+      },
+      "correct_answer": "B",
+      "explanation": "INSERT INTO table_name (col1,col2,...) VALUES (...) explicitly lists columns, making the statement clearer and less error-prone.",
+      "difficulty": "easy",
+      "sub_topic": "insert",
+      "misconception_tags": [
+        "syntax_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-002",
+      "question": "To safely modify specific rows, UPDATE and DELETE statements should usually include:",
+      "options": {
+        "A": "ORDER BY only",
+        "B": "WHERE clause",
+        "C": "GROUP BY only",
+        "D": "HAVING without WHERE"
+      },
+      "correct_answer": "B",
+      "explanation": "A WHERE clause limits which rows are affected. Without it, UPDATE changes all rows and DELETE removes all rows.",
+      "difficulty": "easy",
+      "sub_topic": "update",
+      "misconception_tags": [
+        "where_clause_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-003",
+      "question": "What is a good practice before running a DELETE with a complex WHERE condition?",
+      "options": {
+        "A": "Run DROP TABLE first",
+        "B": "Run a SELECT with the same WHERE condition to verify target rows",
+        "C": "Remove the WHERE clause",
+        "D": "Disable all constraints permanently"
+      },
+      "correct_answer": "B",
+      "explanation": "Previewing affected rows with SELECT helps confirm the condition matches intended records, reducing accidental data loss.",
+      "difficulty": "easy",
+      "sub_topic": "delete",
+      "misconception_tags": [
+        "safety_practice_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-004",
+      "question": "Which statement removes all rows from table logs but keeps the table?",
+      "options": {
+        "A": "DROP TABLE logs;",
+        "B": "DELETE FROM logs;",
+        "C": "ALTER TABLE logs DROP;",
+        "D": "REMOVE TABLE logs;"
+      },
+      "correct_answer": "B",
+      "explanation": "DELETE FROM logs; (without WHERE) removes every row while preserving the table structure.",
+      "difficulty": "easy",
+      "sub_topic": "delete",
+      "misconception_tags": [
+        "delete_vs_drop_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLC-005",
+      "question": "If an INSERT violates a UNIQUE constraint, what typically happens?",
+      "options": {
+        "A": "The database ignores constraints",
+        "B": "The insert is rejected with a constraint error",
+        "C": "The table is automatically dropped",
+        "D": "All existing rows are deleted"
+      },
+      "correct_answer": "B",
+      "explanation": "Constraints enforce data integrity; inserting a duplicate value into a UNIQUE-constrained column violates the rule and the operation fails.",
+      "difficulty": "medium",
+      "sub_topic": "insert",
+      "misconception_tags": [
+        "constraint_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

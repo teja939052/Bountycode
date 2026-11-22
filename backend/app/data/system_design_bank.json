@@ -1274,5 +1274,993 @@
     },
     "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
     "review_status": "reviewed"
+  },
+  {
+    "id": "sd-013",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "caching",
+    "difficulty": "hard",
+    "question": "Design a distributed cache for a high-traffic web application.",
+    "rubric": "Consistent hashing to distribute keys across cache nodes. Replication for fault tolerance. Eviction policy (LRU/LFU). Cache warming for hot keys. Cache invalidation strategy (write-through, write-behind, TTL).",
+    "companies": [
+      "amazon",
+      "netflix",
+      "google"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-014",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "database",
+    "difficulty": "hard",
+    "question": "Design a database schema for an e-commerce order system.",
+    "rubric": "Users(user_id, name, email, ...). Products(product_id, name, price, stock, ...). Orders(order_id, user_id, order_date, total, status, ...). OrderItems(order_item_id, order_id, product_id, quantity, price). Foreign keys enforce referential integrity. Index on user_id, order_date.",
+    "companies": [
+      "amazon",
+      "flipkart",
+      "walmart"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-015",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "security",
+    "difficulty": "medium",
+    "question": "How would you secure an API against common attacks?",
+    "rubric": "HTTPS/TLS for encryption. Authentication (JWT/OAuth2). Authorization (RBAC). Rate limiting. Input validation (SQL injection, XSS). CORS configuration. API gateway with WAF.",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-01",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "requirements",
+    "difficulty": "easy",
+    "question": "Design a chat application like WhatsApp. What are the key functional requirements?",
+    "rubric": "Functional: one-to-one messaging, group chats, message delivery status, online/offline presence, media sharing, end-to-end encryption.",
+    "companies": [
+      "meta",
+      "whatsapp",
+      "google"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-02",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "requirements",
+    "difficulty": "medium",
+    "question": "Design a ride-sharing app like Uber. What are the key non-functional requirements?",
+    "rubric": "Non-functional: real-time location tracking, low latency matching, high availability, scalability during peak hours, data consistency for payments.",
+    "companies": [
+      "uber",
+      "lyft",
+      "amazon"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-03",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "requirements",
+    "difficulty": "hard",
+    "question": "Design a video streaming platform like YouTube. How do you handle upload vs view traffic asymmetry?",
+    "rubric": "Upload traffic is bursty and write-heavy; view traffic is read-heavy and steady. Use separate ingestion pipeline (write-optimized) and CDN/distribution (read-optimized).",
+    "companies": [
+      "google",
+      "youtube",
+      "netflix"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-04",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "requirements",
+    "difficulty": "easy",
+    "question": "Design a file storage service like Dropbox. What are the core requirements?",
+    "rubric": "Core: file upload/download, sync across devices, version history, sharing, offline access, storage quota management.",
+    "companies": [
+      "dropbox",
+      "google",
+      "amazon"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-05",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "requirements",
+    "difficulty": "medium",
+    "question": "Design a search engine like Google. What are the key requirements?",
+    "rubric": "Requirements: web crawling, indexing, query processing, ranking, result serving, freshness, relevance, low latency.",
+    "companies": [
+      "google",
+      "microsoft",
+      "amazon"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-06",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "api_design",
+    "difficulty": "easy",
+    "question": "Design the API for a chat application. List key endpoints.",
+    "rubric": "POST /send (sender, receiver, message), GET /messages?user1=&user2=, GET /users?status=online, POST /media (upload), GET /media/{id} (download).",
+    "companies": [
+      "meta",
+      "whatsapp",
+      "google"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-07",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "api_design",
+    "difficulty": "medium",
+    "question": "Design the API for a URL shortening service.",
+    "rubric": "POST /shorten (longUrl, customAlias?) → shortUrl. GET /:shortCode → redirect. GET /analytics/:shortCode → stats. DELETE /:shortCode → deactivate.",
+    "companies": [
+      "google",
+      "amazon",
+      "bitly"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-08",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "api_design",
+    "difficulty": "hard",
+    "question": "Design the API for a ride-sharing app. How do you handle real-time location updates?",
+    "rubric": "Use WebSocket for real-time location streaming. REST for ride requests/matching. POST /ride/request, WebSocket /ride/{id}/location, POST /ride/{id}/accept.",
+    "companies": [
+      "uber",
+      "lyft",
+      "amazon"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-09",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "api_design",
+    "difficulty": "medium",
+    "question": "Design RESTful API for an e-commerce order system.",
+    "rubric": "GET /orders, POST /orders, GET /orders/{id}, PUT /orders/{id}/status, POST /orders/{id}/items, GET /products, POST /products.",
+    "companies": [
+      "amazon",
+      "flipkart",
+      "walmart"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-10",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "api_design",
+    "difficulty": "hard",
+    "question": "How would you version your API?",
+    "rubric": "Use URL versioning (/v1/...), header versioning (Accept: application/vnd.api+json;version=1), or query parameter (?v=1). Maintain backward compatibility, deprecate old versions with notice.",
+    "companies": [
+      "stripe",
+      "twilio",
+      "aws"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-11",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "data_model",
+    "difficulty": "easy",
+    "question": "Design the data model for a URL shortening service.",
+    "rubric": "Table: url_mapping(short_code PK, long_url, created_at, expiry_date, click_count). Index on short_code for fast lookup.",
+    "companies": [
+      "google",
+      "amazon",
+      "bitly"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-12",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "data_model",
+    "difficulty": "medium",
+    "question": "Design the data model for a chat application.",
+    "rubric": "Users(user_id, name, ...), Conversations(conversation_id, type, ...), Messages(message_id, conversation_id, sender_id, content, timestamp, ...), Participants(conversation_id, user_id).",
+    "companies": [
+      "meta",
+      "whatsapp",
+      "google"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-13",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "data_model",
+    "difficulty": "hard",
+    "question": "Design the data model for a ride-sharing app.",
+    "rubric": "Users(user_id, ...), Drivers(driver_id, ...), Rides(ride_id, rider_id, driver_id, status, pickup, dropoff, ...), RideEvents(ride_id, event_type, timestamp, ...), Payments(payment_id, ride_id, amount, ...).",
+    "companies": [
+      "uber",
+      "lyft",
+      "amazon"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-14",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "data_model",
+    "difficulty": "medium",
+    "question": "Design the data model for a file storage service.",
+    "rubric": "Users(user_id, ...), Files(file_id, owner_id, name, size, type, created_at, ...), FileVersions(version_id, file_id, storage_path, ...), Shares(share_id, file_id, shared_with, ...).",
+    "companies": [
+      "dropbox",
+      "google",
+      "amazon"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-15",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "data_model",
+    "difficulty": "hard",
+    "question": "Design the data model for a search engine index.",
+    "rubric": "Documents(doc_id, url, content, ...), Terms(term_id, term, ...), Postings(term_id, doc_id, frequency, positions, ...), InvertedIndex stored as sharded key-value store.",
+    "companies": [
+      "google",
+      "microsoft",
+      "amazon"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-16",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "caching",
+    "difficulty": "easy",
+    "question": "Where would you add caching in a URL shortening service?",
+    "rubric": "Cache hot short URLs in Redis. Most lookups are for popular URLs. Set TTL on cache entries. Invalidate on URL expiry/deletion.",
+    "companies": [
+      "google",
+      "amazon",
+      "bitly"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-17",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "caching",
+    "difficulty": "medium",
+    "question": "What caching strategy for a read-heavy social media feed?",
+    "rubric": "Cache user feeds in Redis. Pre-compute and cache feed for active users. Use write-through: when user posts, update caches of followers. TTL for feed freshness.",
+    "companies": [
+      "meta",
+      "twitter",
+      "google"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-18",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "caching",
+    "difficulty": "hard",
+    "question": "How do you handle cache invalidation in a distributed system?",
+    "rubric": "Use versioned keys, TTL-based expiration, write-through/invalidate pattern, pub/sub for invalidation messages across cache nodes, consistent hashing for cache distribution.",
+    "companies": [
+      "amazon",
+      "netflix",
+      "google"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-19",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "caching",
+    "difficulty": "medium",
+    "question": "When would you use a CDN vs application cache?",
+    "rubric": "CDN for static assets (images, videos, JS/CSS) at edge locations. Application cache (Redis) for dynamic data (user sessions, query results). Use both together.",
+    "companies": [
+      "netflix",
+      "youtube",
+      "cloudflare"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-20",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "caching",
+    "difficulty": "hard",
+    "question": "Design a distributed cache for high throughput.",
+    "rubric": "Consistent hashing to distribute keys, replication for fault tolerance, LRU eviction, cache warming for hot keys, read-through/write-through patterns, circuit breaker for cache failures.",
+    "companies": [
+      "amazon",
+      "netflix",
+      "google"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-21",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "load_balancing",
+    "difficulty": "easy",
+    "question": "Why do you need a load balancer?",
+    "rubric": "Distributes traffic across servers, prevents single point of failure, enables horizontal scaling, provides health checks and failover, handles SSL termination.",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-22",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "load_balancing",
+    "difficulty": "medium",
+    "question": "Which load balancing algorithm for a video streaming service?",
+    "rubric": "Weighted round-robin based on server capacity, least-connections for uneven request sizes, geo-based routing to nearest edge server for latency.",
+    "companies": [
+      "netflix",
+      "youtube",
+      "cloudflare"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-23",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "load_balancing",
+    "difficulty": "hard",
+    "question": "How does a load balancer handle server failure?",
+    "rubric": "Health checks detect unhealthy servers, traffic is rerouted to healthy servers, connection draining for in-flight requests, automatic scaling replaces failed instances.",
+    "companies": [
+      "aws",
+      "google",
+      "amazon"
+    ],
+    "roles": [
+      "sre",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-24",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "load_balancing",
+    "difficulty": "medium",
+    "question": "Difference between Layer 4 and Layer 7 load balancer?",
+    "rubric": "Layer 4 (TCP/UDP): routes based on IP/port, faster, no content inspection. Layer 7 (HTTP): routes based on URL/header/cookie, enables content-based routing, slower but more flexible.",
+    "companies": [
+      "aws",
+      "nginx",
+      "haproxy"
+    ],
+    "roles": [
+      "sre",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-25",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "load_balancing",
+    "difficulty": "easy",
+    "question": "What is a health check in load balancing?",
+    "rubric": "Periodic request to verify server is responding. Unhealthy servers are removed from rotation. Can be TCP ping, HTTP GET, or custom endpoint.",
+    "companies": [
+      "aws",
+      "google",
+      "amazon"
+    ],
+    "roles": [
+      "sre",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-26",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "database",
+    "difficulty": "medium",
+    "question": "SQL vs NoSQL for a chat application: which is better?",
+    "rubric": "SQL for structured data (users, messages with relationships), NoSQL (Cassandra/MongoDB) for high-write message storage and horizontal scaling. Hybrid approach often best.",
+    "companies": [
+      "meta",
+      "whatsapp",
+      "google"
+    ],
+    "roles": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-27",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "database",
+    "difficulty": "hard",
+    "question": "How do you shard a database by user_id?",
+    "rubric": "Hash user_id to determine shard. Use consistent hashing for adding/removing shards. Cross-shard queries require scatter-gather or application-level joins.",
+    "companies": [
+      "amazon",
+      "google",
+      "meta"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-28",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "database",
+    "difficulty": "medium",
+    "question": "When to use read replicas?",
+    "rubric": "For read-heavy workloads, offload read queries to replicas, improve read throughput, reduce primary database load, enable geo-distributed reads.",
+    "companies": [
+      "amazon",
+      "google",
+      "netflix"
+    ],
+    "roles": [
+      "backend-engineer",
+      "data-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-29",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "database",
+    "difficulty": "hard",
+    "question": "How do you handle database schema migrations with zero downtime?",
+    "rubric": "Expand-contract pattern: add new column, dual-write, backfill, switch reads, remove old column. Use online schema change tools (gh-ost, pt-online-schema-change).",
+    "companies": [
+      "google",
+      "amazon",
+      "netflix"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-30",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "database",
+    "difficulty": "medium",
+    "question": "What is eventual consistency?",
+    "rubric": "System guarantees that if no new updates are made, all reads will eventually return the last updated value. Used in distributed systems for availability.",
+    "companies": [
+      "amazon",
+      "cassandra",
+      "dynamodb"
+    ],
+    "roles": [
+      "backend-engineer",
+      "data-engineer"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-31",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "scalability",
+    "difficulty": "medium",
+    "question": "How do you scale a stateless service?",
+    "rubric": "Add more instances behind a load balancer. Store session state externally (Redis/database). Use container orchestration (Kubernetes) for auto-scaling.",
+    "companies": [
+      "google",
+      "amazon",
+      "netflix"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-32",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "scalability",
+    "difficulty": "hard",
+    "question": "How do you handle thundering herd problem?",
+    "rubric": "Use rate limiting, exponential backoff, jitter, circuit breakers, request coalescing, caching popular results, pre-warming caches before traffic spikes.",
+    "companies": [
+      "amazon",
+      "google",
+      "netflix"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-33",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "scalability",
+    "difficulty": "easy",
+    "question": "What is horizontal scaling?",
+    "rubric": "Adding more servers/instances to handle increased load, as opposed to vertical scaling (bigger server). Enables better fault tolerance and cost efficiency.",
+    "companies": [
+      "aws",
+      "google",
+      "amazon"
+    ],
+    "roles": [
+      "sde",
+      "sre"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-34",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "scalability",
+    "difficulty": "medium",
+    "question": "When to use message queues?",
+    "rubric": "For asynchronous processing, decoupling services, handling traffic spikes, task distribution, reliable message delivery, event-driven architecture.",
+    "companies": [
+      "amazon",
+      "rabbitmq",
+      "kafka"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "sd-b2-35",
+    "type": "system_design",
+    "topic": "System Design",
+    "sub_topic": "scalability",
+    "difficulty": "hard",
+    "question": "Design a rate limiter for an API.",
+    "rubric": "Token bucket or sliding window per API key/IP. Use Redis for distributed counters. Return 429 when limit exceeded. Different limits for anonymous vs authenticated.",
+    "companies": [
+      "stripe",
+      "aws",
+      "google"
+    ],
+    "roles": [
+      "backend-engineer",
+      "sde"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "system_design_bank",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "10-15 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.824965+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
   }
 ]

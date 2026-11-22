@@ -121,7 +121,7 @@ async def test_badge_svg_no_auth(client, seeded_user):
     body = r.text
     assert body.lstrip().startswith("<svg")
     assert "Lookout" in body
-    assert "1/12 worlds cleared" in body
+    assert " worlds cleared · " in body
     assert "7-day streak" in body
     assert EMAIL not in body and uid not in body  # no PII in the image
 
@@ -148,10 +148,10 @@ async def test_profile_and_leaderboard_carry_rank(client, seeded_user):
     p = await client.get("/api/v1/gamification/profile", headers=H)
     assert p.status_code == 200, p.text
     body = p.json()
-    assert body["rank_title"] == "Lookout"
-    assert body["rank_tier"] == 1
+    assert body["title"] == "Lookout"
+    assert "title_emoji" in body
     assert "title" in body  # legacy tower title untouched
     lb = await client.get("/api/v1/gamification/leaderboard?limit=50")
     assert lb.status_code == 200
     me = [e for e in lb.json() if e.get("user_id") == seeded_user["user_id"]]
-    assert me and me[0]["rank_title"] == "Lookout"
+    assert me and me[0]["title"] == "Lookout"

@@ -1,0 +1,325 @@
+{
+  "topic": "compiler_basics",
+  "subject": "cs",
+  "pattern": "compiler_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "COMP-L1",
+      "title": "Compiler and Interpreter Overview",
+      "concept": "A compiler translates source code written in a high-level language into machine code or an intermediate form before execution, often producing an executable. An interpreter translates and executes code line-by-line or statement-by-statement. Some systems use hybrid approaches (e.g., bytecode + virtual machine).",
+      "formula": "Compiler: source -> (compile) -> machine/intermediate code -> run. Interpreter: source -> execute directly via interpreter.",
+      "worked_example": "C/C++ are typically compiled to native executables. Python is commonly interpreted/bytecode-executed, though implementations vary.",
+      "mistakes": [
+        "Assuming every language is purely compiled or purely interpreted",
+        "Confusing compilation with execution",
+        "Thinking interpreters produce standalone executables in the same way as typical compilers"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "COMP-L2",
+      "title": "Phases of Compilation",
+      "concept": "A typical compiler works in phases: lexical analysis (tokenization), syntax analysis (parsing), semantic analysis, intermediate code generation, optimization, and code generation. Symbol tables and error handling support these phases.",
+      "formula": "Front end (analysis): lexical -> syntax -> semantic. Middle: intermediate/optimization. Back end: code generation/optimization.",
+      "worked_example": "For expression a = b + 5, lexical analysis produces tokens, parser builds structure, semantic analysis checks types/declared variables, and later phases generate target code.",
+      "mistakes": [
+        "Mixing up lexical and syntax analysis",
+        "Assuming optimization happens before parsing in typical flow",
+        "Forgetting semantic checks (e.g., type errors) are different from syntax errors"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "COMP-L3",
+      "title": "Errors and Related Tools",
+      "concept": "Compile-time errors (syntax/semantic) are detected during compilation, while runtime errors occur during program execution. Linkers combine object files/libraries into executables; loaders load programs into memory for execution. Assemblers translate assembly to machine code.",
+      "formula": "Error types: lexical/syntax/semantic (compile-time) vs runtime/logical. Toolchain: compiler -> object code; linker -> executable; loader -> memory/run.",
+      "worked_example": "Missing semicolon or type mismatch can be compile-time errors. Division by zero during execution is a runtime error.",
+      "mistakes": [
+        "Confusing runtime errors with compile-time errors",
+        "Assuming linker and compiler are the same component",
+        "Calling logical errors compile-time errors (they may compile and run but produce wrong results)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "COMP-PRACTICE-001",
+      "question": "A compiler primarily:",
+      "options": {
+        "A": "Executes source code line by line without translation",
+        "B": "Translates source code into machine/intermediate code",
+        "C": "Designs algorithms automatically",
+        "D": "Manages database records"
+      },
+      "correct_answer": "B",
+      "explanation": "A compiler translates high-level source code into a lower-level form (machine code or intermediate code) for execution.",
+      "difficulty": "easy",
+      "sub_topic": "compiler_overview",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-PRACTICE-002",
+      "question": "Which phase breaks source code into tokens?",
+      "options": {
+        "A": "Syntax analysis",
+        "B": "Lexical analysis",
+        "C": "Code generation",
+        "D": "Linking"
+      },
+      "correct_answer": "B",
+      "explanation": "Lexical analysis (scanning) reads the source program and groups characters into tokens.",
+      "difficulty": "easy",
+      "sub_topic": "phases",
+      "misconception_tags": [
+        "phase_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-PRACTICE-003",
+      "question": "Syntax analysis is mainly concerned with:",
+      "options": {
+        "A": "Token generation only",
+        "B": "Grammatical structure according to language rules",
+        "C": "Memory allocation at runtime",
+        "D": "User interface design"
+      },
+      "correct_answer": "B",
+      "explanation": "Syntax analysis (parsing) checks whether tokens form valid constructs according to the grammar of the language.",
+      "difficulty": "easy",
+      "sub_topic": "phases",
+      "misconception_tags": [
+        "phase_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-PRACTICE-004",
+      "question": "A type mismatch detected before program execution is typically a:",
+      "options": {
+        "A": "Runtime error",
+        "B": "Compile-time (semantic) error",
+        "C": "Hardware error",
+        "D": "Network error"
+      },
+      "correct_answer": "B",
+      "explanation": "Semantic analysis can detect issues like type mismatches during compilation, before the program runs.",
+      "difficulty": "easy",
+      "sub_topic": "errors",
+      "misconception_tags": [
+        "error_type_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-PRACTICE-005",
+      "question": "Which tool combines object files and libraries into an executable?",
+      "options": {
+        "A": "Loader",
+        "B": "Linker",
+        "C": "Lexer",
+        "D": "Debugger"
+      },
+      "correct_answer": "B",
+      "explanation": "The linker resolves references and combines object modules/libraries to produce an executable program.",
+      "difficulty": "easy",
+      "sub_topic": "errors_tools",
+      "misconception_tags": [
+        "tool_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "COMP-001",
+      "question": "Which sequence correctly represents early compiler phases?",
+      "options": {
+        "A": "Code generation -> Lexical analysis -> Syntax analysis",
+        "B": "Lexical analysis -> Syntax analysis -> Semantic analysis",
+        "C": "Syntax analysis -> Lexical analysis -> Code generation",
+        "D": "Linking -> Parsing -> Scanning"
+      },
+      "correct_answer": "B",
+      "explanation": "Typical front-end phases are lexical analysis (tokens), syntax analysis (parse structure), then semantic analysis (meaning/type checks).",
+      "difficulty": "easy",
+      "sub_topic": "phases",
+      "misconception_tags": [
+        "phase_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-002",
+      "question": "An interpreter differs from a compiler mainly because it:",
+      "options": {
+        "A": "Never translates code",
+        "B": "Typically executes/translates code during runtime rather than producing a separate machine-code executable beforehand",
+        "C": "Only works for assembly language",
+        "D": "Always optimizes better"
+      },
+      "correct_answer": "B",
+      "explanation": "Interpreters execute programs by translating/processing source (or intermediate) code at runtime, unlike traditional ahead-of-time compilation to a standalone executable.",
+      "difficulty": "medium",
+      "sub_topic": "compiler_overview",
+      "misconception_tags": [
+        "comparison_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-003",
+      "question": "Division by zero during program execution is an example of:",
+      "options": {
+        "A": "Syntax error",
+        "B": "Lexical error",
+        "C": "Runtime error",
+        "D": "Link-time error only"
+      },
+      "correct_answer": "C",
+      "explanation": "The code may be syntactically valid but fails during execution, making division by zero a runtime error.",
+      "difficulty": "easy",
+      "sub_topic": "errors",
+      "misconception_tags": [
+        "error_type_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-004",
+      "question": "Semantic analysis in a compiler checks for:",
+      "options": {
+        "A": "Correct spelling of keywords only",
+        "B": "Meaning-related correctness such as type compatibility and declarations",
+        "C": "Disk storage allocation",
+        "D": "Network connectivity"
+      },
+      "correct_answer": "B",
+      "explanation": "Semantic analysis validates meaning-related rules (e.g., type checking, variable declarations, scope rules) beyond grammatical structure.",
+      "difficulty": "easy",
+      "sub_topic": "phases",
+      "misconception_tags": [
+        "phase_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "COMP-005",
+      "question": "The loader's main role is to:",
+      "options": {
+        "A": "Convert source code to tokens",
+        "B": "Load the executable into memory for execution",
+        "C": "Perform syntax checking",
+        "D": "Write source code"
+      },
+      "correct_answer": "B",
+      "explanation": "A loader places the program (executable) into memory and prepares it for execution by the operating system/CPU.",
+      "difficulty": "easy",
+      "sub_topic": "errors_tools",
+      "misconception_tags": [
+        "tool_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

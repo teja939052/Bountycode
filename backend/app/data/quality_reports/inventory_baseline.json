@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-11-18T07:49:14.666323+00:00",
+  "total_loaded": 15882,
+  "unique_ids": 15845,
+  "duplicate_id_records": 37,
+  "trust_breakdown": {
+    "verified": 948,
+    "quarantined": 121,
+    "automated_checked": 10581,
+    "reviewed": 574,
+    "needs_review": 2965,
+    "unverified": 693
+  },
+  "type_breakdown": {
+    "coding": 8363,
+    "aptitude": 4022,
+    "logical": 1065,
+    "verbal": 535,
+    "cs_fundamentals": 453,
+    "sql": 950,
+    "interview": 148,
+    "system_design": 62,
+    "debugging": 209,
+    "pseudocode": 10,
+    "puzzle": 10,
+    "written_communication": 20,
+    "reasoning": 25,
+    "cs": 10
+  },
+  "servable_count": 1403,
+  "servable_rate": 8.8,
+  "servable_by_trust": {
+    "verified": 829,
+    "reviewed": 574
+  },
+  "servable_by_type": {
+    "coding": 942,
+    "aptitude": 50,
+    "logical": 15,
+    "verbal": 15,
+    "cs_fundamentals": 43,
+    "sql": 109,
+    "interview": 148,
+    "system_design": 12,
+    "debugging": 4,
+    "pseudocode": 10,
+    "puzzle": 10,
+    "written_communication": 20,
+    "reasoning": 25
+  },
+  "duplicate_clusters": 117,
+  "skill_mapped": 11753,
+  "skill_unmapped": 4129
+}

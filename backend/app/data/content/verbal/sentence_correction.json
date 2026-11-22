@@ -1,0 +1,250 @@
+{
+  "topic": "sentence_correction",
+  "subject": "verbal",
+  "pattern": "sentence_correction",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "subject_verb_agreement",
+      "title": "Subject-Verb Agreement",
+      "concept": "The verb in a sentence must agree with its subject in number (singular/plural) and person. A singular subject takes a singular verb, and a plural subject takes a plural verb. Identify the true subject, not words in between like prepositional phrases.",
+      "formula": "Singular subject -> singular verb (is/has/does/verb+s); Plural subject -> plural verb (are/have/do/base verb).",
+      "worked_example": "Incorrect: 'The list of items are on the table.' Correct: 'The list of items is on the table.' The subject is 'list' (singular), not 'items'.",
+      "mistakes": [
+        "Matching verb with a nearby noun instead of the actual subject",
+        "Treating collective or indefinite subjects incorrectly in context",
+        "Confusing compound subjects joined by 'and' (usually plural) vs 'or/nor' (agree with nearest subject in common usage rules)"
+      ]
+    },
+    {
+      "id": "tense_consistency",
+      "title": "Tense Consistency and Clarity",
+      "concept": "Tenses should be consistent within a sentence or passage unless there is a clear reason to show a change in time. Mixing past and present without reason can confuse meaning. Choose tense based on when the action happens and its relationship to other actions.",
+      "formula": "Keep same time frame -> keep tense consistent; time shift -> change tense logically (e.g., past action before another past action may use past perfect).",
+      "worked_example": "Incorrect: 'She walked to the store and buys milk.' Correct: 'She walked to the store and bought milk.' Both actions happened in the past.",
+      "mistakes": [
+        "Switching tenses unnecessarily in the same context",
+        "Using present tense for completed past events in narrative",
+        "Confusing past perfect and simple past when sequence matters"
+      ]
+    },
+    {
+      "id": "pronouns_modifiers_articles",
+      "title": "Pronouns, Modifiers, and Articles",
+      "concept": "Pronouns must clearly refer to a specific noun and agree in number/gender where applicable. Modifiers should be placed near the words they describe to avoid dangling or misplaced meaning. Articles (a/an/the) and basic prepositions should fit the noun and intended meaning.",
+      "formula": "Clear reference: pronoun -> unambiguous antecedent. Placement: modifier next to what it modifies. 'A/An' for non-specific singular countable nouns, 'the' for specific/known nouns.",
+      "worked_example": "Incorrect: 'Running to catch the bus, the bag fell from Rahul's hand.' Correct: 'Running to catch the bus, Rahul dropped the bag from his hand.' The modifier should describe Rahul, not the bag.",
+      "mistakes": [
+        "Ambiguous pronoun references (unclear what 'it/they/this' refers to)",
+        "Dangling modifiers that do not logically modify the subject",
+        "Using wrong article or omitting required articles in standard usage"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SENC-PRACTICE-001",
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "The bouquet of roses are beautiful.",
+        "B": "The bouquet of roses is beautiful.",
+        "C": "The bouquet of roses were beautiful.",
+        "D": "The bouquet of roses be beautiful."
+      },
+      "correct_answer": "B",
+      "explanation": "The subject is 'bouquet' (singular), so the singular verb 'is' is correct. 'Of roses' is a prepositional phrase and does not determine the verb.",
+      "difficulty": "easy",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": ["nearby_noun_agreement_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-PRACTICE-002",
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "She finished her homework and goes to bed.",
+        "B": "She finished her homework and went to bed.",
+        "C": "She finishes her homework and went to bed.",
+        "D": "She finish her homework and went to bed."
+      },
+      "correct_answer": "B",
+      "explanation": "Both actions are completed in the past and should use consistent past tense: 'finished' and 'went'.",
+      "difficulty": "easy",
+      "sub_topic": "tense_consistency",
+      "misconception_tags": ["tense_shift_error"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-PRACTICE-003",
+      "question": "Choose the sentence with the clearest meaning.",
+      "options": {
+        "A": "While driving to work, the traffic delayed Sam.",
+        "B": "While driving to work, Sam was delayed by traffic.",
+        "C": "While driving to work, Sam's delay happened by traffic.",
+        "D": "While driving to work, traffic was delaying."
+      },
+      "correct_answer": "B",
+      "explanation": "The introductory modifier 'While driving to work' should describe Sam. Option B correctly makes Sam the subject being delayed while driving.",
+      "difficulty": "medium",
+      "sub_topic": "pronouns_modifiers_articles",
+      "misconception_tags": ["dangling_modifier"],
+      "company_tags": ["infosys", "wipro", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-PRACTICE-004",
+      "question": "Choose the correct option: 'Each of the students ___ submitted the assignment.'",
+      "options": {"A": "have", "B": "has", "C": "are", "D": "were"},
+      "correct_answer": "B",
+      "explanation": "'Each' is singular, so it takes the singular verb 'has': 'Each of the students has submitted the assignment.'",
+      "difficulty": "easy",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": ["indefinite_pronoun_agreement_error"],
+      "company_tags": ["tcs", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-PRACTICE-005",
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "He is interested on learning new skills.",
+        "B": "He is interested in learning new skills.",
+        "C": "He is interested at learning new skills.",
+        "D": "He is interested for learning new skills."
+      },
+      "correct_answer": "B",
+      "explanation": "The correct preposition in this expression is 'interested in'. Preposition choice depends on standard usage with specific adjectives/verbs.",
+      "difficulty": "easy",
+      "sub_topic": "pronouns_modifiers_articles",
+      "misconception_tags": ["preposition_usage_error"],
+      "company_tags": ["infosys", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SENC-001",
+      "question": "Identify the correct sentence.",
+      "options": {
+        "A": "Neither the teacher nor the students was late.",
+        "B": "Neither the teacher nor the students were late.",
+        "C": "Neither the teacher nor the students is late yesterday.",
+        "D": "Neither the teacher nor the students has were late."
+      },
+      "correct_answer": "B",
+      "explanation": "With 'neither/nor', the verb agrees with the nearer subject. 'Students' is plural and nearest to the verb, so 'were' is correct.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": ["nearer_subject_rule_error"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-002",
+      "question": "Choose the sentence with correct tense usage.",
+      "options": {
+        "A": "By the time we arrived, the movie started.",
+        "B": "By the time we arrived, the movie had started.",
+        "C": "By the time we arrive, the movie had started.",
+        "D": "By the time we had arrived, the movie starts."
+      },
+      "correct_answer": "B",
+      "explanation": "The movie starting happened before another past event (our arrival). Past perfect 'had started' correctly shows the earlier past action.",
+      "difficulty": "medium",
+      "sub_topic": "tense_consistency",
+      "misconception_tags": ["past_perfect_sequence_error"],
+      "company_tags": ["wipro", "capgemini", "tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-003",
+      "question": "Choose the correct sentence.",
+      "options": {
+        "A": "The committee have reached its decision.",
+        "B": "The committee has reached its decision.",
+        "C": "The committee has reached their decision.",
+        "D": "The committee have reached their decision."
+      },
+      "correct_answer": "B",
+      "explanation": "When treated as a single unit, 'committee' takes a singular verb and singular pronoun: 'has reached its decision'.",
+      "difficulty": "medium",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": ["collective_noun_agreement_error", "pronoun_agreement_error"],
+      "company_tags": ["infosys", "accenture"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-004",
+      "question": "Choose the sentence that correctly fixes the modifier.",
+      "options": {
+        "A": "Covered in chocolate, the children enjoyed the strawberries.",
+        "B": "The children enjoyed the strawberries covered in chocolate.",
+        "C": "Covered in chocolate, enjoyed the children the strawberries.",
+        "D": "The children, covered in chocolate, the strawberries enjoyed."
+      },
+      "correct_answer": "B",
+      "explanation": "The phrase 'covered in chocolate' describes the strawberries, so it should be placed next to 'strawberries'. Option B removes the misplaced-modifier ambiguity.",
+      "difficulty": "easy",
+      "sub_topic": "pronouns_modifiers_articles",
+      "misconception_tags": ["misplaced_modifier"],
+      "company_tags": ["tcs", "wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SENC-005",
+      "question": "Choose the correct option: 'Ramesh, along with his friends, ___ going to the seminar.'",
+      "options": {"A": "are", "B": "were", "C": "is", "D": "have been"},
+      "correct_answer": "C",
+      "explanation": "The main subject is 'Ramesh' (singular). The phrase 'along with his friends' does not make the subject plural, so the singular verb 'is' is correct.",
+      "difficulty": "easy",
+      "sub_topic": "subject_verb_agreement",
+      "misconception_tags": ["interrupting_phrase_agreement_error"],
+      "company_tags": ["infosys", "cognizant", "tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

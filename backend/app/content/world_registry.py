@@ -29,6 +29,11 @@ from app.content.world_aptitude_clocks_calendars import CLOCKS_CALENDARS_TOWN
 from app.content.world_aptitude_si_ci import SI_CI_TOWN
 from app.content.world_aptitude_probability import PROBABILITY_TOWN
 from app.content.world_aptitude_di import DI_TOWN
+from app.content.world_sql_dbms import WORLD_SQL_DBMS
+from app.content.world_cs_fundamentals import WORLD_CS_FUNDAMENTALS
+from app.content.world_communication import WORLD_COMMUNICATION
+from app.content.world_sdlc import WORLD_SDLC
+from app.content.world_resume import WORLD_RESUME
 
 # Attach quant depth towns
 _quant_ids = {t.id for t in WORLD_APTITUDE_QUANT.towns}
@@ -70,6 +75,12 @@ ALL_WORLDS: Dict[str, WorldDefinition] = {
     WORLD_APTITUDE_QUANT.id: WORLD_APTITUDE_QUANT,
     WORLD_APTITUDE_REASONING.id: WORLD_APTITUDE_REASONING,
     WORLD_APTITUDE_VERBAL.id: WORLD_APTITUDE_VERBAL,
+    # New foundation worlds
+    WORLD_SQL_DBMS.id: WORLD_SQL_DBMS,
+    WORLD_CS_FUNDAMENTALS.id: WORLD_CS_FUNDAMENTALS,
+    WORLD_COMMUNICATION.id: WORLD_COMMUNICATION,
+    WORLD_SDLC.id: WORLD_SDLC,
+    WORLD_RESUME.id: WORLD_RESUME,
 }
 
 

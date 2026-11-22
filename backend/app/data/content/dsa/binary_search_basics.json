@@ -1,0 +1,325 @@
+{
+  "topic": "binary_search_basics",
+  "subject": "dsa",
+  "pattern": "binary_search_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "binary_search_concept",
+      "title": "Binary Search Concept",
+      "concept": "Binary search is an efficient algorithm to find a target value in a sorted array by repeatedly dividing the search interval in half. It compares the target with the middle element and discards one half of the remaining elements each step.",
+      "formula": "Precondition: array sorted. Steps: low=0, high=n-1; while low<=high compute mid=(low+high)//2; if arr[mid]==target return mid; if arr[mid]<target low=mid+1 else high=mid-1.",
+      "worked_example": "Array [1,3,5,7,9], target 7: mid=5 -> 5<7 so search right half [7,9], mid=7 -> found.",
+      "mistakes": [
+        "Applying binary search on an unsorted array",
+        "Updating boundaries incorrectly (infinite loop or missed element)",
+        "Off-by-one errors in loop condition or mid updates"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "iterative_vs_recursive",
+      "title": "Iterative and Recursive Approaches",
+      "concept": "Binary search can be implemented iteratively using a loop or recursively by calling the function on the selected half. Both follow the same divide-and-conquer logic; iterative form avoids recursion overhead and call stack usage.",
+      "formula": "Iterative: while low<=high adjust bounds. Recursive: base case low>high return -1; else compare mid and recurse on left/right half.",
+      "worked_example": "Recursive search for 3 in [1,3,5,7]: mid is 3 -> return index. If searching 6, mid 3 < 6 search [5,7], mid 5 < 6 search [7], mid 7 > 6 search empty -> not found.",
+      "mistakes": [
+        "Missing base case in recursive implementation",
+        "Passing incorrect low/high bounds in recursive calls",
+        "Assuming recursion is always faster (it has call overhead)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "complexity_and_use_cases",
+      "title": "Complexity and Use Cases",
+      "concept": "Binary search reduces the search space by half each step, giving logarithmic time complexity. It is ideal for lookups in sorted arrays/lists and for problems involving monotonic conditions (binary search on answer).",
+      "formula": "Time: O(log n). Space: O(1) iterative, O(log n) recursive (call stack).",
+      "worked_example": "In an array of 1024 sorted elements, binary search needs at most about 10 comparisons (since 2^10 = 1024) in the worst case.",
+      "mistakes": [
+        "Confusing binary search O(log n) with linear search O(n)",
+        "Forgetting sort precondition cost if data is unsorted",
+        "Using it where random access is inefficient (e.g., linked list without indexing)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "BS-PRACTICE-001",
+      "question": "Binary search works correctly on which type of array?",
+      "options": {
+        "A": "Any unsorted array",
+        "B": "Only a sorted array",
+        "C": "Only arrays with unique elements but unsorted",
+        "D": "Only arrays of even length"
+      },
+      "correct_answer": "B",
+      "explanation": "Binary search relies on ordering to discard half the elements after each comparison, so the array must be sorted (by the search key/order).",
+      "difficulty": "easy",
+      "sub_topic": "binary_search_concept",
+      "misconception_tags": [
+        "precondition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-PRACTICE-002",
+      "question": "What is the time complexity of binary search on an array of n elements?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n log n)"
+      },
+      "correct_answer": "B",
+      "explanation": "Binary search halves the search interval each step, resulting in O(log n) time complexity.",
+      "difficulty": "easy",
+      "sub_topic": "complexity_and_use_cases",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-PRACTICE-003",
+      "question": "In binary search, if arr[mid] is less than the target, what should be done next (ascending sorted array)?",
+      "options": {
+        "A": "Search left half by setting high = mid - 1",
+        "B": "Search right half by setting low = mid + 1",
+        "C": "Return mid",
+        "D": "Restart from index 0"
+      },
+      "correct_answer": "B",
+      "explanation": "If the middle element is smaller than the target in an ascending array, the target can only be in the right half, so set low = mid + 1.",
+      "difficulty": "easy",
+      "sub_topic": "binary_search_concept",
+      "misconception_tags": [
+        "boundary_update_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-PRACTICE-004",
+      "question": "What is the auxiliary space complexity of an iterative binary search?",
+      "options": {
+        "A": "O(1)",
+        "B": "O(log n)",
+        "C": "O(n)",
+        "D": "O(n^2)"
+      },
+      "correct_answer": "A",
+      "explanation": "Iterative binary search uses a constant amount of extra space for variables like low, high, and mid, so auxiliary space is O(1).",
+      "difficulty": "easy",
+      "sub_topic": "iterative_vs_recursive",
+      "misconception_tags": [
+        "space_complexity_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-PRACTICE-005",
+      "question": "For array [2, 4, 6, 8, 10] (0-based), searching for 8: first mid index is (0+4)//2 = 2 (value 6). What is the next search range?",
+      "options": {
+        "A": "Indices 0 to 1",
+        "B": "Indices 3 to 4",
+        "C": "Indices 2 to 4",
+        "D": "Indices 0 to 4"
+      },
+      "correct_answer": "B",
+      "explanation": "6 < 8, so search the right half by moving low to mid+1 = 3. New range is indices 3 to 4 ([8,10]).",
+      "difficulty": "easy",
+      "sub_topic": "binary_search_concept",
+      "misconception_tags": [
+        "trace_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "BS-001",
+      "question": "Which condition is typically used in an iterative binary search loop (when low and high are inclusive bounds)?",
+      "options": {
+        "A": "while (low < high)",
+        "B": "while (low <= high)",
+        "C": "while (low == high)",
+        "D": "while (mid != target)"
+      },
+      "correct_answer": "B",
+      "explanation": "With inclusive bounds, the search continues while there is at least one element in range, i.e., low <= high. Using low < high can miss the case where low == high.",
+      "difficulty": "medium",
+      "sub_topic": "binary_search_concept",
+      "misconception_tags": [
+        "loop_condition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-002",
+      "question": "Binary search on 1,000,000 sorted elements takes at most about how many comparisons (order of magnitude)?",
+      "options": {
+        "A": "20",
+        "B": "1,000",
+        "C": "10,000",
+        "D": "1,000,000"
+      },
+      "correct_answer": "A",
+      "explanation": "Binary search is O(log2 n). log2(1,000,000) is about 20 comparisons in the worst case.",
+      "difficulty": "easy",
+      "sub_topic": "complexity_and_use_cases",
+      "misconception_tags": [
+        "complexity_intuition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-003",
+      "question": "In a recursive binary search, what happens when low becomes greater than high?",
+      "options": {
+        "A": "The target is at mid",
+        "B": "The search continues on the right half",
+        "C": "The target is not found (base case)",
+        "D": "The array is sorted automatically"
+      },
+      "correct_answer": "C",
+      "explanation": "If low > high, the search interval is empty, meaning the target does not exist in the array; this is the not-found base case.",
+      "difficulty": "easy",
+      "sub_topic": "iterative_vs_recursive",
+      "misconception_tags": [
+        "base_case_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-004",
+      "question": "Why is binary search generally not efficient for a singly linked list (even if sorted)?",
+      "options": {
+        "A": "Linked lists cannot be sorted",
+        "B": "Finding the middle element requires traversal, losing random access benefit",
+        "C": "Binary search only works on numbers",
+        "D": "Linked lists have no nodes"
+      },
+      "correct_answer": "B",
+      "explanation": "Binary search needs efficient access to the middle element. In a singly linked list, reaching mid requires O(n) traversal, making overall performance poor compared to arrays.",
+      "difficulty": "medium",
+      "sub_topic": "complexity_and_use_cases",
+      "misconception_tags": [
+        "data_structure_fit_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "BS-005",
+      "question": "For sorted array [1, 2, 4, 4, 5, 7], standard binary search is primarily designed to:",
+      "options": {
+        "A": "Always return the first occurrence of a duplicate target",
+        "B": "Find an index of the target if present (occurrence not specified by basic form)",
+        "C": "Count all duplicates automatically",
+        "D": "Sort duplicates"
+      },
+      "correct_answer": "B",
+      "explanation": "Basic binary search checks equality at mid and returns that index when found; it does not guarantee first/last occurrence for duplicates without modification.",
+      "difficulty": "medium",
+      "sub_topic": "binary_search_concept",
+      "misconception_tags": [
+        "duplicate_handling_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

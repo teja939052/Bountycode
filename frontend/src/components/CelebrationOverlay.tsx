@@ -164,7 +164,7 @@ function LevelUpContent({ title, subtitle, diamonds, reduced }: { title?: string
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0 }}
           >
-            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+{diamonds} Diamonds</span>
           </motion.div>
         )}
 
@@ -296,7 +296,7 @@ function SolveContent({ title, subtitle, diamonds, reduced }: { title?: string; 
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-green-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-green-600 text-xl font-bold">+{diamonds} Diamonds</span>
           </motion.div>
         )}
 
@@ -375,7 +375,7 @@ function StreakContent({ title, subtitle, diamonds, reduced }: { title?: string;
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-orange-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-orange-600 text-xl font-bold">+{diamonds} Diamonds</span>
           </motion.div>
         )}
 
@@ -456,7 +456,7 @@ function AchievementContent({ title, subtitle, diamonds, reduced }: { title?: st
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+{diamonds} Diamonds</span>
           </motion.div>
         )}
 
@@ -498,7 +498,7 @@ function BossContent({ title, subtitle, diamonds, reduced }: { title?: string; s
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+{diamonds} Diamonds</span>
           </motion.div>
         )}
         <ParticleBurst count={24} colors={["#fbbf24", "#f59e0b", "#ef4444", "#ec4899"]} />
@@ -563,7 +563,7 @@ function DailyLoginContent({ title, subtitle, diamonds, reduced }: { title?: str
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+{diamonds} Diamonds</span>
           </motion.div>
         )}
         <ParticleBurst count={16} colors={["#fbbf24", "#f59e0b", "#fde68a"]} />

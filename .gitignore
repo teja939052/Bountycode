@@ -122,3 +122,16 @@ Desktop.ini
 
 # Large audit artifacts (exceed GitHub file size limit)
 docs/audits/
+
+# Generated research/inventory reports (not question content)
+backend/docs/research/question_inventory.json
+backend/docs/research/*_inventory.json
+backend/docs/research/*_audit.json
+
+# Pytest output logs
+backend/test_out.txt
+backend/test_output.txt
+backend/test_*.txt
+
+# Inventory output
+backend/inventory_output.txt

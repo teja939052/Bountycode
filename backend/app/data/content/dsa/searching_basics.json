@@ -1,0 +1,210 @@
+﻿{
+  "topic": "searching_basics",
+  "subject": "dsa",
+  "pattern": "searching_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "linear_search",
+      "title": "Linear Search",
+      "concept": "Linear search checks elements one by one from start to end until the target is found or the collection is exhausted. It works on unsorted data and requires no special structure, but may inspect every element in the worst case.",
+      "formula": "Time: O(n) worst/average for n elements, O(1) best when target is first. Space: O(1) iterative.",
+      "worked_example": "Array [7, 3, 9, 2], target 9. Check 7 (no), 3 (no), 9 (found at index 2). If target were 5, all 4 elements would be checked and search would report not found.",
+      "mistakes": [
+        "Assuming linear search requires sorted input (it does not).",
+        "Off-by-one errors in loop bounds causing missed last element or out-of-range access.",
+        "Returning the value instead of index (or vice versa) without matching problem requirements."
+      ]
+    },
+    {
+      "id": "binary_search",
+      "title": "Binary Search",
+      "concept": "Binary search finds a target in a sorted collection by repeatedly halving the search range. Compare target with the middle element: if equal return it; if target is smaller search left half; if larger search right half. This eliminates half the remaining elements each step.",
+      "formula": "Precondition: data sorted (by the search key). Time: O(log n). Space: O(1) iterative, O(log n) recursive call stack.",
+      "worked_example": "Sorted array [2, 5, 8, 12, 16, 23], target 16. low=0, high=5, mid=2 (value 8) -> target>8 so low=3. mid=4 (value 16) -> found at index 4. Only 2 comparisons instead of up to 6.",
+      "mistakes": [
+        "Applying binary search to unsorted data (produces wrong results).",
+        "Integer overflow in mid calculation in some languages; prefer mid = low + (high-low)//2.",
+        "Incorrect boundary updates (using mid instead of mid+1/mid-1) causing infinite loops or missed elements."
+      ]
+    },
+    {
+      "id": "search_strategy_selection",
+      "title": "Choosing a Search Strategy",
+      "concept": "Use linear search for small or unsorted collections, or when data changes frequently and sorting cost is not justified. Use binary search when data is sorted and random access is available (arrays). For repeated lookups, consider preprocessing (sorting, hash maps, indexes) based on constraints.",
+      "formula": "Unsorted + few searches: linear. Sorted array: binary. Many key lookups with hashing available: average O(1) hash table lookup (different structure, not a comparison search on array order).",
+      "worked_example": "Searching once in an unsorted list of 20 items: linear scan is simple and fine. Searching 10,000 times in a fixed list of 1,000,000 sorted IDs: binary search per query or a hash/index structure is far better than linear scans.",
+      "mistakes": [
+        "Sorting data just for one search without considering sorting cost O(n log n).",
+        "Forgetting that binary search needs both sorted order and efficient mid access.",
+        "Confusing 'faster in big-O' with 'always better' regardless of input size/constants."
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SRCH-PRACTICE-001",
+      "question": "What is the worst-case time complexity of linear search in an array of n elements?",
+      "options": {"A": "O(1)", "B": "O(log n)", "C": "O(n)", "D": "O(n log n)"},
+      "correct_answer": "C",
+      "explanation": "In the worst case (target not present or at the last position), linear search checks every element once, resulting in O(n) time.",
+      "difficulty": "easy",
+      "sub_topic": "linear_search",
+      "misconception_tags": ["search_complexity_confusion"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-PRACTICE-002",
+      "question": "Binary search can be correctly applied when the array is:",
+      "options": {"A": "Unsorted", "B": "Sorted", "C": "Only reverse sorted in all implementations", "D": "Containing duplicates only"},
+      "correct_answer": "B",
+      "explanation": "Binary search relies on ordering to decide whether to go left or right after comparing with the middle element. Standard binary search requires a sorted array (ascending or descending, with comparison adjusted accordingly).",
+      "difficulty": "easy",
+      "sub_topic": "binary_search",
+      "misconception_tags": ["binary_search_precondition_error"],
+      "company_tags": ["tcs", "infosys", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-PRACTICE-003",
+      "question": "In binary search on 16 sorted elements, what is the maximum number of comparisons needed in the worst case (approximately)?",
+      "options": {"A": "2", "B": "4", "C": "8", "D": "16"},
+      "correct_answer": "B",
+      "explanation": "Binary search halves the search space each step: 16 -> 8 -> 4 -> 2 -> 1, which takes at most 4 comparisons to reach a single element (log2(16)=4).",
+      "difficulty": "easy",
+      "sub_topic": "binary_search",
+      "misconception_tags": ["log_steps_miscalculation"],
+      "company_tags": ["wipro", "cognizant"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-PRACTICE-004",
+      "question": "You need to find one element in a small unsorted list exactly once. Which is the most straightforward choice?",
+      "options": {"A": "Binary search without sorting", "B": "Sort with merge sort and skip search", "C": "Linear search", "D": "Always build a balanced BST first"},
+      "correct_answer": "C",
+      "explanation": "For a single lookup in unsorted data, linear search is simple and avoids preprocessing overhead. Binary search requires sorted data, and sorting/building complex structures adds unnecessary cost for one query on a small list.",
+      "difficulty": "easy",
+      "sub_topic": "search_strategy_selection",
+      "misconception_tags": ["overengineering_search"],
+      "company_tags": ["tcs", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-PRACTICE-005",
+      "question": "During binary search, if target is greater than the middle element in an ascending-sorted array, the next search range should be:",
+      "options": {"A": "Left half including middle", "B": "Right half after middle", "C": "Entire array again", "D": "Only the middle element"},
+      "correct_answer": "B",
+      "explanation": "In an ascending-sorted array, all elements left of middle are <= middle (and middle < target here), so target cannot be in the left half or at middle. Search continues in the right half (indices mid+1 to high).",
+      "difficulty": "easy",
+      "sub_topic": "binary_search",
+      "misconception_tags": ["binary_search_range_error"],
+      "company_tags": ["infosys", "wipro", "tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SRCH-001",
+      "question": "An array [4, 8, 15, 16, 23, 42] is sorted in ascending order. Using binary search with mid = (low + high) // 2, how many middle-element comparisons are needed to find 23 (counting each check of the middle element as one comparison)?",
+      "options": {"A": "1", "B": "2", "C": "3", "D": "4"},
+      "correct_answer": "B",
+      "explanation": "Indices 0..5 hold [4, 8, 15, 16, 23, 42], target 23. 1st comparison: low=0, high=5, mid=2, value 15 != 23 and 23 > 15 so search right half (low=3). 2nd comparison: low=3, high=5, mid=4, value 23 == 23, target found. Total comparisons = 2.",
+      "difficulty": "medium",
+      "sub_topic": "binary_search",
+      "misconception_tags": ["binary_search_trace_error"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-002",
+      "question": "What is the best-case time complexity of linear search?",
+      "options": {"A": "O(1)", "B": "O(log n)", "C": "O(n)", "D": "O(n^2)"},
+      "correct_answer": "A",
+      "explanation": "In the best case, the target element is at the first position checked, so linear search finds it in constant time O(1). Worst and average cases are O(n) when the element is near the end or not present.",
+      "difficulty": "easy",
+      "sub_topic": "linear_search",
+      "misconception_tags": ["best_vs_worst_case_confusion"],
+      "company_tags": ["wipro", "accenture", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-003",
+      "question": "Which condition is necessary for standard binary search to work correctly on an array?",
+      "options": {"A": "The array must contain unique elements only", "B": "The array must be sorted according to the search key", "C": "The array size must be a power of two", "D": "The array must store integers only"},
+      "correct_answer": "B",
+      "explanation": "Binary search decides whether to move left or right based on order. Therefore the array must be sorted by the key being searched. Duplicates, non-power-of-two sizes, and non-integer comparable keys can still work if ordering and comparisons are defined correctly.",
+      "difficulty": "easy",
+      "sub_topic": "binary_search",
+      "misconception_tags": ["binary_search_precondition_error"],
+      "company_tags": ["tcs", "infosys", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-004",
+      "question": "A sorted array has 1,024 elements. In the worst case, binary search needs at most how many comparisons?",
+      "options": {"A": "8", "B": "10", "C": "32", "D": "1024"},
+      "correct_answer": "B",
+      "explanation": "Each comparison halves the search space: 1024 -> 512 -> 256 -> 128 -> 64 -> 32 -> 16 -> 8 -> 4 -> 2 -> 1. This is 10 halving steps, and log2(1024) = 10, so at most 10 comparisons are needed in the worst case.",
+      "difficulty": "medium",
+      "sub_topic": "binary_search",
+      "misconception_tags": ["log_steps_miscalculation"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SRCH-005",
+      "question": "You have an unsorted array and need to perform many search queries over time while the data rarely changes. Which approach is generally most efficient?",
+      "options": {"A": "Use linear search for every query without preprocessing", "B": "Sort once and use binary search for queries", "C": "Reverse the array before each query", "D": "Shuffle the array to improve average search time"},
+      "correct_answer": "B",
+      "explanation": "Sorting once costs O(n log n), but each subsequent binary search query costs O(log n). For many repeated queries on mostly static data, this is usually better than doing O(n) linear searches every time. Reversing or shuffling does not provide the ordered structure needed for efficient searching.",
+      "difficulty": "medium",
+      "sub_topic": "search_strategy_selection",
+      "misconception_tags": ["ignoring_preprocessing_tradeoff"],
+      "company_tags": ["accenture", "capgemini", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "topic": "series_completion",
+  "subject": "reasoning",
+  "pattern": "series_completion",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "number_series_patterns",
+      "title": "Number Series Patterns",
+      "concept": "Number series questions present a sequence of numbers following a rule. Common patterns include constant differences (arithmetic progression), constant ratios (geometric progression), increasing/decreasing differences, squares/cubes, or alternating operations. Identify the pattern by examining differences or ratios between consecutive terms.",
+      "formula": "Check: difference (a2-a1, a3-a2...), ratio (a2/a1...), squares/cubes, or alternating patterns.",
+      "worked_example": "Series: 2, 5, 8, 11, ? Differences are +3, +3, +3. Next term = 11 + 3 = 14.",
+      "mistakes": [
+        "Checking only the first two terms and assuming the pattern",
+        "Confusing additive and multiplicative patterns",
+        "Missing alternating or two-step patterns (e.g., +2, +4, +6)"
+      ]
+    },
+    {
+      "id": "letter_series_patterns",
+      "title": "Letter Series Patterns",
+      "concept": "Letter series use alphabetical positions to form patterns. Convert letters to positions (A=1..Z=26) or observe shifts between consecutive letters. Patterns may involve constant shifts, increasing shifts, or alternating sequences.",
+      "formula": "Map letters to positions; find step pattern (+1, +2, +3 or +2, +2, +2 etc.), apply to get next letter(s).",
+      "worked_example": "Series: A, C, E, G, ? Positions 1,3,5,7 with step +2. Next is 9 -> I.",
+      "mistakes": [
+        "Miscounting alphabet positions",
+        "Ignoring wrap-around when applicable",
+        "Assuming a constant step when steps themselves change"
+      ]
+    },
+    {
+      "id": "mixed_and_alternating_series",
+      "title": "Mixed and Alternating Series",
+      "concept": "Some series alternate between two independent sub-series or combine different operations. To solve, split the series into odd-positioned and even-positioned terms and analyze each sub-series separately, or look for alternating operations (+, -, x).",
+      "formula": "Try splitting: terms at positions 1,3,5 form one series; positions 2,4,6 form another. Or identify alternating operations.",
+      "worked_example": "Series: 2, 3, 4, 6, 6, 9, ? Odd positions: 2,4,6,8? (+2). Even positions: 3,6,9 (+3). Next is 7th term (odd position) = 8.",
+      "mistakes": [
+        "Trying to force a single pattern on an alternating series",
+        "Splitting into wrong sub-series groups",
+        "Missing combined operation patterns (e.g., x2 then +1)"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SER-PRACTICE-001",
+      "question": "Find the next number in the series: 3, 6, 9, 12, ?",
+      "options": {
+        "A": "14",
+        "B": "15",
+        "C": "16",
+        "D": "18"
+      },
+      "correct_answer": "B",
+      "explanation": "Each term increases by 3 (arithmetic progression with difference +3). Next term = 12 + 3 = 15.",
+      "difficulty": "easy",
+      "sub_topic": "number_series_patterns",
+      "misconception_tags": [
+        "difference_pattern_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-PRACTICE-002",
+      "question": "Find the next number in the series: 2, 4, 8, 16, ?",
+      "options": {
+        "A": "18",
+        "B": "24",
+        "C": "32",
+        "D": "64"
+      },
+      "correct_answer": "C",
+      "explanation": "Each term is multiplied by 2 (geometric progression). Next term = 16 * 2 = 32.",
+      "difficulty": "easy",
+      "sub_topic": "number_series_patterns",
+      "misconception_tags": [
+        "add_vs_multiply_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-PRACTICE-003",
+      "question": "Find the next letter in the series: B, D, F, H, ?",
+      "options": {
+        "A": "I",
+        "B": "J",
+        "C": "K",
+        "D": "L"
+      },
+      "correct_answer": "B",
+      "explanation": "Letters correspond to positions 2,4,6,8 with a constant step of +2. Next position is 10, which is J.",
+      "difficulty": "easy",
+      "sub_topic": "letter_series_patterns",
+      "misconception_tags": [
+        "letter_position_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-PRACTICE-004",
+      "question": "Find the next number in the series: 1, 4, 9, 16, ?",
+      "options": {
+        "A": "20",
+        "B": "23",
+        "C": "25",
+        "D": "36"
+      },
+      "correct_answer": "C",
+      "explanation": "The series consists of perfect squares: 1^2, 2^2, 3^2, 4^2. Next term is 5^2 = 25.",
+      "difficulty": "easy",
+      "sub_topic": "number_series_patterns",
+      "misconception_tags": [
+        "pattern_identification_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-PRACTICE-005",
+      "question": "Find the next number in the series: 5, 10, 7, 14, 11, 22, ?",
+      "options": {
+        "A": "19",
+        "B": "20",
+        "C": "24",
+        "D": "44"
+      },
+      "correct_answer": "A",
+      "explanation": "The pattern alternates: x2, -3, x2, -3, x2, -3. 5*2=10, 10-3=7, 7*2=14, 14-3=11, 11*2=22, 22-3=19.",
+      "difficulty": "medium",
+      "sub_topic": "mixed_and_alternating_series",
+      "misconception_tags": [
+        "alternating_pattern_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SER-001",
+      "question": "Find the next number in the series: 7, 14, 21, 28, ?",
+      "options": {
+        "A": "30",
+        "B": "33",
+        "C": "35",
+        "D": "42"
+      },
+      "correct_answer": "C",
+      "explanation": "The series increases by 7 each time: 7, 14, 21, 28. Next term = 28 + 7 = 35.",
+      "difficulty": "easy",
+      "sub_topic": "number_series_patterns",
+      "misconception_tags": [
+        "difference_pattern_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-002",
+      "question": "Find the next number in the series: 2, 6, 12, 20, ?",
+      "options": {
+        "A": "28",
+        "B": "30",
+        "C": "32",
+        "D": "24"
+      },
+      "correct_answer": "B",
+      "explanation": "Differences are +4, +6, +8 (increasing by 2). Next difference is +10, so next term = 20 + 10 = 30.",
+      "difficulty": "medium",
+      "sub_topic": "number_series_patterns",
+      "misconception_tags": [
+        "second_difference_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-003",
+      "question": "Find the next letter in the series: C, F, I, L, ?",
+      "options": {
+        "A": "M",
+        "B": "N",
+        "C": "O",
+        "D": "P"
+      },
+      "correct_answer": "C",
+      "explanation": "Positions are C(3), F(6), I(9), L(12), increasing by 3 each time. Next is 15, which corresponds to O.",
+      "difficulty": "easy",
+      "sub_topic": "letter_series_patterns",
+      "misconception_tags": [
+        "letter_position_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-004",
+      "question": "Find the next number in the series: 3, 9, 27, 81, ?",
+      "options": {
+        "A": "162",
+        "B": "243",
+        "C": "324",
+        "D": "729"
+      },
+      "correct_answer": "B",
+      "explanation": "Each term is multiplied by 3: 3, 9, 27, 81. Next term = 81 * 3 = 243.",
+      "difficulty": "easy",
+      "sub_topic": "number_series_patterns",
+      "misconception_tags": [
+        "add_vs_multiply_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SER-005",
+      "question": "Find the next number in the series: 1, 2, 4, 7, 11, ?",
+      "options": {
+        "A": "15",
+        "B": "16",
+        "C": "17",
+        "D": "18"
+      },
+      "correct_answer": "B",
+      "explanation": "Differences are +1, +2, +3, +4, increasing by 1 each time. Next difference is +5, so next term = 11 + 5 = 16.",
+      "difficulty": "medium",
+      "sub_topic": "mixed_and_alternating_series",
+      "misconception_tags": [
+        "increasing_difference_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

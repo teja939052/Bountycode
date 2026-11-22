@@ -193,6 +193,7 @@ def _build_web_language(lang_id, lang_name, icon, color, desc):
                 "id": f"{lang_id}-{raw['id']}-{j+1:02d}",
                 "title": l["title"],
                 "diamonds": l["diamonds"],
+                "xp": l["diamonds"],
                 "difficulty": l["difficulty"],
                 "type": l["type"],
             })

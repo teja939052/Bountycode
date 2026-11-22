@@ -1,0 +1,6317 @@
+[
+  {
+    "id": "verbal-001",
+    "type": "verbal",
+    "topic": "vocabulary",
+    "sub_topic": "synonyms",
+    "difficulty": "easy",
+    "question": "Choose the word that best expresses the meaning of 'ABUNDANT'.",
+    "options": {
+      "A": "Scarce",
+      "B": "Plentiful",
+      "C": "Rare",
+      "D": "Limited"
+    },
+    "correct_answer": "B",
+    "explanation": "Abundant means existing or available in large quantities; plentiful.",
+    "hints": [
+      "Abundant = more than enough; plentiful",
+      "Opposite: scarce, rare"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 10,
+    "estimated_time": "1-2 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.788978+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-002",
+    "type": "verbal",
+    "topic": "vocabulary",
+    "sub_topic": "antonyms",
+    "difficulty": "easy",
+    "question": "Choose the word that is most opposite in meaning to 'PROSPER'.",
+    "options": {
+      "A": "Succeed",
+      "B": "Fail",
+      "C": "Grow",
+      "D": "Thrive"
+    },
+    "correct_answer": "B",
+    "explanation": "Prosper means to be successful or thrive. The opposite is fail or struggle.",
+    "hints": [
+      "Prosper = succeed, thrive",
+      "Opposite: fail"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 10,
+    "estimated_time": "1-2 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.788978+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-003",
+    "type": "verbal",
+    "topic": "grammar",
+    "sub_topic": "error_spotting",
+    "difficulty": "easy",
+    "question": "Identify the error: 'She don't like coffee.'",
+    "options": {
+      "A": "She",
+      "B": "don't",
+      "C": "like",
+      "D": "coffee"
+    },
+    "correct_answer": "B",
+    "explanation": "With third person singular subject 'She', the correct form is 'doesn't' not 'don't'. Should be: 'She doesn't like coffee.'",
+    "hints": [
+      "Third person singular: doesn't",
+      "Don't is for I/you/we/they",
+      "Subject-verb agreement error"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 10,
+    "estimated_time": "1-2 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-004",
+    "type": "verbal",
+    "topic": "grammar",
+    "sub_topic": "prepositions",
+    "difficulty": "easy",
+    "question": "The meeting is scheduled ___ Monday ___ 10 AM.",
+    "options": {
+      "A": "on, at",
+      "B": "in, at",
+      "C": "at, on",
+      "D": "on, in"
+    },
+    "correct_answer": "A",
+    "explanation": "Use 'on' for days (Monday) and 'at' for specific times (10 AM).",
+    "hints": [
+      "On for days: on Monday",
+      "At for specific times: at 10 AM"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 10,
+    "estimated_time": "1-2 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-005",
+    "type": "verbal",
+    "topic": "sentence_correction",
+    "sub_topic": "subject_verb_agreement",
+    "difficulty": "medium",
+    "question": "Choose the correct sentence:",
+    "options": {
+      "A": "The list of items are on the table.",
+      "B": "The list of items is on the table.",
+      "C": "The list of items were on the table.",
+      "D": "The list of items have been on the table."
+    },
+    "correct_answer": "B",
+    "explanation": "The subject is 'list' (singular), not 'items' (plural). So the verb should be 'is' not 'are'.",
+    "hints": [
+      "Subject is 'list' (singular)",
+      "Ignore prepositional phrase 'of items'",
+      "Singular subject takes singular verb: is"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-006",
+    "type": "verbal",
+    "topic": "reading_comprehension",
+    "sub_topic": "passage_based",
+    "difficulty": "medium",
+    "question": "Passage: The Industrial Revolution, which began in Britain in the late 18th century, marked a major turning point in history. It transformed agrarian societies into industrial ones, with factories replacing workshops and steam power replacing human and animal labor.\n\nQuestion: What was the primary effect of the Industrial Revolution according to the passage?",
+    "options": {
+      "A": "It made Britain the richest country",
+      "B": "It transformed agrarian societies into industrial ones",
+      "C": "It eliminated all workshops",
+      "D": "It ended human labor completely"
+    },
+    "correct_answer": "B",
+    "explanation": "The passage states: 'It transformed agrarian societies into industrial ones.' This is the primary effect described.",
+    "hints": [
+      "Look for the main transformation described",
+      "Passage: 'transformed agrarian societies into industrial ones'",
+      "Option B matches this directly"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "3-4 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-007",
+    "type": "verbal",
+    "topic": "sentence_completion",
+    "sub_topic": "fill_in_blanks",
+    "difficulty": "medium",
+    "question": "Despite the heavy rains, the match continued ___.",
+    "options": {
+      "A": "as scheduled",
+      "B": "in scheduled",
+      "C": "on scheduled",
+      "D": "at scheduled"
+    },
+    "correct_answer": "A",
+    "explanation": "The correct idiom is 'as scheduled' meaning according to the planned timetable.",
+    "hints": [
+      "Idiom: 'as scheduled'",
+      "Means according to plan"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 10,
+    "estimated_time": "1-2 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-008",
+    "type": "verbal",
+    "topic": "para_jumbles",
+    "sub_topic": "sentence_ordering",
+    "difficulty": "hard",
+    "question": "Arrange the sentences in logical order:\n1. Finally, the results were announced.\n2. The students waited anxiously.\n3. The examination was conducted smoothly.\n4. The teachers evaluated the answer sheets.",
+    "options": {
+      "A": "2, 3, 4, 1",
+      "B": "3, 2, 4, 1",
+      "C": "2, 1, 3, 4",
+      "D": "4, 3, 2, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Logical sequence: Students wait → Exam conducted → Teachers evaluate → Results announced.",
+    "hints": [
+      "Chronological order of events",
+      "Waiting → Exam → Evaluation → Results"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "4-6 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-009",
+    "type": "verbal",
+    "topic": "error_identification",
+    "sub_topic": "spotting_errors",
+    "difficulty": "medium",
+    "question": "Identify the part with error: 'Neither of the candidates have submitted their application.'",
+    "options": {
+      "A": "Neither of the candidates",
+      "B": "have submitted",
+      "C": "their application",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "'Neither' is singular and takes a singular verb. Should be 'has submitted' not 'have submitted'.",
+    "hints": [
+      "Neither = singular subject",
+      "Singular subject takes singular verb: has"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "verbal-010",
+    "type": "verbal",
+    "topic": "critical_reasoning",
+    "sub_topic": "assumption",
+    "difficulty": "hard",
+    "question": "Argument: All students who study regularly get good grades. John got good grades, so John must study regularly.\n\nThe argument assumes that:",
+    "options": {
+      "A": "Only students who study regularly get good grades",
+      "B": "All students get good grades",
+      "C": "John studies every day",
+      "D": "Good grades guarantee regular study"
+    },
+    "correct_answer": "A",
+    "explanation": "The argument assumes that good grades can only come from studying regularly. If other factors could also produce good grades, the conclusion doesn't follow.",
+    "hints": [
+      "Assumption: no other way to get good grades",
+      "If other factors exist, conclusion fails"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "4-6 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-syn-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to 'EBULLIENT'.",
+    "options": {
+      "A": "Quiet",
+      "B": "Energetic",
+      "C": "Sad",
+      "D": "Confused"
+    },
+    "correct_answer": "B",
+    "explanation": "Ebullient means cheerful, energetic, and enthusiastic.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-syn-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word closest in meaning to 'EPHEMERAL'.",
+    "options": {
+      "A": "Eternal",
+      "B": "Short-lived",
+      "C": "Heavy",
+      "D": "Clear"
+    },
+    "correct_answer": "B",
+    "explanation": "Ephemeral means lasting for a very short time.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-ant-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose the word most opposite to 'CANDID'.",
+    "options": {
+      "A": "Honest",
+      "B": "Deceitful",
+      "C": "Open",
+      "D": "Direct"
+    },
+    "correct_answer": "B",
+    "explanation": "Candid means truthful and straightforward. The opposite is deceitful.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-ant-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word most opposite to 'FEBLE'.",
+    "options": {
+      "A": "Weak",
+      "B": "Strong",
+      "C": "Sick",
+      "D": "Old"
+    },
+    "correct_answer": "B",
+    "explanation": "Feeble means weak. The opposite is strong.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-gram-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Identify the error: 'Each of the students have submitted their assignment.'",
+    "options": {
+      "A": "Each",
+      "B": "of the students",
+      "C": "have submitted",
+      "D": "their assignment"
+    },
+    "correct_answer": "C",
+    "explanation": "Each is singular and takes a singular verb. Should be 'has submitted' not 'have submitted'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-gram-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Choose the correct sentence:",
+    "options": {
+      "A": "Neither of the options are correct.",
+      "B": "Neither of the options is correct.",
+      "C": "Neither of the options were correct.",
+      "D": "Neither of the options be correct."
+    },
+    "correct_answer": "B",
+    "explanation": "Neither is singular and takes a singular verb. 'Is' is correct.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-sc-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the correct version: 'The committee members was divided in their opinion.'",
+    "options": {
+      "A": "The committee members was divided in their opinion.",
+      "B": "The committee members were divided in their opinion.",
+      "C": "The committee members are divided in their opinion.",
+      "D": "The committee members has divided in their opinion."
+    },
+    "correct_answer": "B",
+    "explanation": "Members is plural, so the verb should be 'were' not 'was'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-sc-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "hard",
+    "question": "Choose the correct version: 'Scarcely had he reached the station when the train left.'",
+    "options": {
+      "A": "Scarcely had he reached the station when the train left.",
+      "B": "Scarcely he had reached the station when the train left.",
+      "C": "Scarcely had he reached the station than the train left.",
+      "D": "Scarcely did he reach the station when the train left."
+    },
+    "correct_answer": "A",
+    "explanation": "The correct correlative pair is 'Scarcely...when'. The inversion 'had he reached' is correct after 'Scarcely'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-rc-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "medium",
+    "question": "Passage: The Industrial Revolution, beginning in 18th century Britain, shifted economies from agrarian to industrial. Factories replaced workshops, and machines replaced hand tools.\n\nWhat does the passage say replaced workshops?",
+    "options": {
+      "A": "Farms",
+      "B": "Factories",
+      "C": "Machines",
+      "D": "Hand tools"
+    },
+    "correct_answer": "B",
+    "explanation": "The passage states: 'Factories replaced workshops'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-rc-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "hard",
+    "question": "Passage: While renewable energy sources are growing, fossil fuels still account for over 80% of global energy consumption. Transitioning fully will require decades of investment and infrastructure change.\n\nWhat can be inferred from the passage?",
+    "options": {
+      "A": "Renewable energy is already dominant",
+      "B": "Fossil fuel transition will take time",
+      "C": "Renewable energy is not viable",
+      "D": "Fossil fuels will disappear soon"
+    },
+    "correct_answer": "B",
+    "explanation": "The passage states fossil fuels are 80%+ and transition requires decades - implying it will take time.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "accenture"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-pj-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "medium",
+    "question": "Arrange in logical order:\n1. The results were declared.\n2. Students appeared for the exam.\n3. Answer sheets were evaluated.\n4. Students filled the application form.",
+    "options": {
+      "A": "4, 2, 3, 1",
+      "B": "2, 4, 3, 1",
+      "C": "4, 3, 2, 1",
+      "D": "1, 2, 3, 4"
+    },
+    "correct_answer": "A",
+    "explanation": "Chronological order: fill application → appear for exam → evaluate sheets → declare results.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-pj-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "hard",
+    "question": "Arrange in logical order:\n1. He received the award.\n2. He published his research.\n3. He conducted the experiment.\n4. He formulated the hypothesis.",
+    "options": {
+      "A": "4, 3, 2, 1",
+      "B": "3, 4, 2, 1",
+      "C": "1, 2, 3, 4",
+      "D": "4, 2, 3, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Scientific process: formulate hypothesis → conduct experiment → publish research → receive award.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-scomp-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "medium",
+    "question": "The jury ______ divided in their opinion about the verdict.",
+    "options": {
+      "A": "was",
+      "B": "were",
+      "C": "is",
+      "D": "has"
+    },
+    "correct_answer": "B",
+    "explanation": "Jury when referring to members individually takes a plural verb 'were'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-scomp-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "hard",
+    "question": "Hardly ______ the sun risen when the clouds gathered.",
+    "options": {
+      "A": "had",
+      "B": "has",
+      "C": "does",
+      "D": "did"
+    },
+    "correct_answer": "A",
+    "explanation": "The correlative pair is 'Hardly...when' with inversion: 'Hardly had the sun risen when...'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-ei-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Identify the error: 'The news are spreading fast.'",
+    "options": {
+      "A": "The",
+      "B": "news",
+      "C": "are spreading",
+      "D": "fast"
+    },
+    "correct_answer": "C",
+    "explanation": "News is singular and takes a singular verb. Should be 'is spreading' not 'are spreading'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-ei-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "hard",
+    "question": "Identify the error: 'One of the boys who were absent has been fined.'",
+    "options": {
+      "A": "One of the boys",
+      "B": "who were absent",
+      "C": "has been fined",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "The verb 'were' should agree with 'One' (singular), not 'boys'. Should be 'who was absent'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-cr-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "medium",
+    "question": "Argument: All students who attend coaching classes get good marks. Therefore, attending coaching classes causes good marks.\n\nThe argument assumes that:",
+    "options": {
+      "A": "Only coaching classes lead to good marks",
+      "B": "All students get good marks",
+      "C": "Good marks guarantee coaching attendance",
+      "D": "Coaching is free"
+    },
+    "correct_answer": "A",
+    "explanation": "The argument assumes coaching is the sole cause of good marks, ignoring other factors like self-study.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "accenture"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-cr-003",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "hard",
+    "question": "Argument: The city installed cameras and crime dropped. Therefore, cameras reduce crime.\n\nWhich weakens the argument most?",
+    "options": {
+      "A": "Cameras are expensive",
+      "B": "Crime also dropped in nearby cities without cameras",
+      "C": "Some cameras are broken",
+      "D": "Police hired more officers"
+    },
+    "correct_answer": "B",
+    "explanation": "If crime dropped in cities without cameras, the drop may not be caused by cameras - weakening the causal claim.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-si-001",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "easy",
+    "question": "Choose the best replacement for the underlined part: 'He is more taller than his brother.'",
+    "options": {
+      "A": "more tall",
+      "B": "taller",
+      "C": "more tallest",
+      "D": "tallest"
+    },
+    "correct_answer": "B",
+    "explanation": "Taller is already comparative; 'more' is redundant. Correct: 'He is taller than his brother.'",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-si-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the correct preposition: 'She is good ______ painting.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "on",
+      "D": "with"
+    },
+    "correct_answer": "B",
+    "explanation": "The correct collocation is 'good at' + gerund/noun.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-analogy-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "medium",
+    "question": "Doctor is to Hospital as Teacher is to ?",
+    "options": {
+      "A": "Student",
+      "B": "School",
+      "C": "Class",
+      "D": "Book"
+    },
+    "correct_answer": "B",
+    "explanation": "A doctor works in a hospital. A teacher works in a school.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-spell-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "spelling",
+    "difficulty": "easy",
+    "question": "Choose the correctly spelled word:",
+    "options": {
+      "A": "Accomodate",
+      "B": "Accommodate",
+      "C": "Acommodate",
+      "D": "Accomodat"
+    },
+    "correct_answer": "B",
+    "explanation": "Accommodate has two c's and two m's.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-idiom-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "idioms",
+    "difficulty": "medium",
+    "question": "What does 'to bite the bullet' mean?",
+    "options": {
+      "A": "To eat a bullet",
+      "B": "To face a difficult situation bravely",
+      "C": "To refuse something",
+      "D": "To run away"
+    },
+    "correct_answer": "B",
+    "explanation": "To bite the bullet means to face a painful or difficult situation with courage.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-ow-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "one_word",
+    "difficulty": "medium",
+    "question": "One who walks in sleep:",
+    "options": {
+      "A": "Somnambulist",
+      "B": "Insomniac",
+      "C": "Nocturnal",
+      "D": "Hypnotist"
+    },
+    "correct_answer": "A",
+    "explanation": "Somnambulist is one who walks in sleep (sleepwalker). Insomniac is one who cannot sleep.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-fib-001",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "easy",
+    "question": "The teacher asked the students to ______ their assignments by Friday.",
+    "options": {
+      "A": "submit",
+      "B": "submits",
+      "C": "submitted",
+      "D": "submitting"
+    },
+    "correct_answer": "A",
+    "explanation": "After 'to', use the base form of the verb: submit.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-spot-002",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "easy",
+    "question": "Identify the error: 'She is more smarter than her sister.'",
+    "options": {
+      "A": "She",
+      "B": "more smarter",
+      "C": "than",
+      "D": "her sister"
+    },
+    "correct_answer": "B",
+    "explanation": "Smarter is already comparative; 'more' is redundant. Correct: 'She is smarter than her sister.'",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to 'BENEVOLENT'.",
+    "options": {
+      "A": "Kind",
+      "B": "Cruel",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "A",
+    "explanation": "Benevolent means well-meaning and kindly.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word closest in meaning to 'EBULLIENT'.",
+    "options": {
+      "A": "Quiet",
+      "B": "Energetic",
+      "C": "Sad",
+      "D": "Confused"
+    },
+    "correct_answer": "B",
+    "explanation": "Ebullient means cheerful and full of energy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word closest in meaning to 'EPHEMERAL'.",
+    "options": {
+      "A": "Eternal",
+      "B": "Short-lived",
+      "C": "Heavy",
+      "D": "Clear"
+    },
+    "correct_answer": "B",
+    "explanation": "Ephemeral means lasting for a very short time.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Choose the word closest in meaning to 'VERACITY'.",
+    "options": {
+      "A": "Truthfulness",
+      "B": "Lying",
+      "C": "Speed",
+      "D": "Weight"
+    },
+    "correct_answer": "A",
+    "explanation": "Veracity means conformity to facts; truthfulness.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose the word closest in meaning to 'HOSTILE'.",
+    "options": {
+      "A": "Friendly",
+      "B": "Unfriendly",
+      "C": "Neutral",
+      "D": "Warm"
+    },
+    "correct_answer": "B",
+    "explanation": "Hostile means unfriendly or antagonistic.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word closest in meaning to 'LUCID'.",
+    "options": {
+      "A": "Clear",
+      "B": "Confusing",
+      "C": "Dark",
+      "D": "Heavy"
+    },
+    "correct_answer": "A",
+    "explanation": "Lucid means expressed clearly; easy to understand.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Choose the word closest in meaning to 'MERCURIAL'.",
+    "options": {
+      "A": "Changeable",
+      "B": "Stable",
+      "C": "Heavy",
+      "D": "Metallic"
+    },
+    "correct_answer": "A",
+    "explanation": "Mercurial means subject to sudden or unpredictable changes of mood.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-syn-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word closest in meaning to 'PROFOUND'.",
+    "options": {
+      "A": "Superficial",
+      "B": "Deep",
+      "C": "Simple",
+      "D": "Short"
+    },
+    "correct_answer": "B",
+    "explanation": "Profound means having deep insight or understanding.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose the word most opposite to 'CANDID'.",
+    "options": {
+      "A": "Honest",
+      "B": "Deceitful",
+      "C": "Open",
+      "D": "Direct"
+    },
+    "correct_answer": "B",
+    "explanation": "Candid means truthful and straightforward. Opposite is deceitful.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word most opposite to 'FEBLE'.",
+    "options": {
+      "A": "Weak",
+      "B": "Strong",
+      "C": "Sick",
+      "D": "Old"
+    },
+    "correct_answer": "B",
+    "explanation": "Feeble means weak. Opposite is strong.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word most opposite to 'GENEROUS'.",
+    "options": {
+      "A": "Kind",
+      "B": "Stingy",
+      "C": "Helpful",
+      "D": "Warm"
+    },
+    "correct_answer": "B",
+    "explanation": "Generous means giving freely. Opposite is stingy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Choose the word most opposite to 'EPHEMERAL'.",
+    "options": {
+      "A": "Short-lived",
+      "B": "Eternal",
+      "C": "Heavy",
+      "D": "Clear"
+    },
+    "correct_answer": "B",
+    "explanation": "Ephemeral means short-lived. Opposite is eternal.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose the word most opposite to 'HOSTILE'.",
+    "options": {
+      "A": "Unfriendly",
+      "B": "Friendly",
+      "C": "Neutral",
+      "D": "Cold"
+    },
+    "correct_answer": "B",
+    "explanation": "Hostile means unfriendly. Opposite is friendly.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word most opposite to 'LUCID'.",
+    "options": {
+      "A": "Clear",
+      "B": "Confusing",
+      "C": "Bright",
+      "D": "Simple"
+    },
+    "correct_answer": "B",
+    "explanation": "Lucid means clear. Opposite is confusing.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Choose the word most opposite to 'PROFOUND'.",
+    "options": {
+      "A": "Deep",
+      "B": "Superficial",
+      "C": "Intense",
+      "D": "Serious"
+    },
+    "correct_answer": "B",
+    "explanation": "Profound means deep. Opposite is superficial.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ant-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose the word most opposite to 'MERCURIAL'.",
+    "options": {
+      "A": "Changeable",
+      "B": "Stable",
+      "C": "Unpredictable",
+      "D": "Moody"
+    },
+    "correct_answer": "B",
+    "explanation": "Mercurial means changeable. Opposite is stable.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Identify the error: 'She don't like coffee.'",
+    "options": {
+      "A": "She",
+      "B": "don't",
+      "C": "like",
+      "D": "coffee"
+    },
+    "correct_answer": "B",
+    "explanation": "With third person singular subject 'She', use 'doesn't' not 'don't'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Choose the correct sentence:",
+    "options": {
+      "A": "Neither of the options are correct.",
+      "B": "Neither of the options is correct.",
+      "C": "Neither of the options were correct.",
+      "D": "Neither of the options be correct."
+    },
+    "correct_answer": "B",
+    "explanation": "Neither is singular and takes a singular verb 'is'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Choose the correct preposition: 'She is good ______ painting.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "on",
+      "D": "with"
+    },
+    "correct_answer": "B",
+    "explanation": "Correct collocation is 'good at' + gerund.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "hard",
+    "question": "Identify the error: 'One of the boys who were absent has been fined.'",
+    "options": {
+      "A": "One of the boys",
+      "B": "who were absent",
+      "C": "has been fined",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "The verb should agree with 'One' (singular): 'who was absent'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Identify the error: 'The news are spreading fast.'",
+    "options": {
+      "A": "The",
+      "B": "news",
+      "C": "are spreading",
+      "D": "fast"
+    },
+    "correct_answer": "C",
+    "explanation": "News is singular: 'is spreading' not 'are spreading'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Choose the correct sentence:",
+    "options": {
+      "A": "Each of the students have submitted.",
+      "B": "Each of the students has submitted.",
+      "C": "Each of the students was submitted.",
+      "D": "Each of the students are submitted."
+    },
+    "correct_answer": "B",
+    "explanation": "Each is singular: 'has submitted'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "hard",
+    "question": "Identify the error: 'Neither of the candidates have submitted their application.'",
+    "options": {
+      "A": "Neither of the candidates",
+      "B": "have submitted",
+      "C": "their application",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "Neither is singular: 'has submitted' not 'have submitted'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-gram-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Choose the correct preposition: 'The meeting is scheduled ___ Monday ___ 10 AM.'",
+    "options": {
+      "A": "on, at",
+      "B": "in, at",
+      "C": "at, on",
+      "D": "on, in"
+    },
+    "correct_answer": "A",
+    "explanation": "Use 'on' for days and 'at' for specific times.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the correct version: 'The committee members was divided in their opinion.'",
+    "options": {
+      "A": "The committee members was divided.",
+      "B": "The committee members were divided.",
+      "C": "The committee members are divided.",
+      "D": "The committee members has divided."
+    },
+    "correct_answer": "B",
+    "explanation": "Members is plural: 'were' not 'was'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "hard",
+    "question": "Choose the correct version: 'Scarcely had he reached the station when the train left.'",
+    "options": {
+      "A": "Scarcely had he reached the station when the train left.",
+      "B": "Scarcely he had reached the station when the train left.",
+      "C": "Scarcely had he reached the station than the train left.",
+      "D": "Scarcely did he reach the station when the train left."
+    },
+    "correct_answer": "A",
+    "explanation": "Correct correlative pair is 'Scarcely...when' with inversion.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the best replacement: 'He is more taller than his brother.'",
+    "options": {
+      "A": "more tall",
+      "B": "taller",
+      "C": "more tallest",
+      "D": "tallest"
+    },
+    "correct_answer": "B",
+    "explanation": "Taller is already comparative; 'more' is redundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "easy",
+    "question": "Choose the correct preposition: 'She is good ______ painting.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "on",
+      "D": "with"
+    },
+    "correct_answer": "B",
+    "explanation": "Correct collocation is 'good at'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "hard",
+    "question": "Choose the correct version: 'Hardly had the sun risen when the clouds gathered.'",
+    "options": {
+      "A": "Hardly had the sun risen when the clouds gathered.",
+      "B": "Hardly the sun had risen when the clouds gathered.",
+      "C": "Hardly did the sun rise when the clouds gathered.",
+      "D": "Hardly has the sun risen when the clouds gathered."
+    },
+    "correct_answer": "A",
+    "explanation": "Correct pair is 'Hardly...when' with inversion.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Identify the error: 'She is more smarter than her sister.'",
+    "options": {
+      "A": "She",
+      "B": "more smarter",
+      "C": "than",
+      "D": "her sister"
+    },
+    "correct_answer": "B",
+    "explanation": "Smarter is already comparative; 'more' is redundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Choose the correct sentence:",
+    "options": {
+      "A": "The list of items are on the table.",
+      "B": "The list of items is on the table.",
+      "C": "The list of items were on the table.",
+      "D": "The list of items have been on the table."
+    },
+    "correct_answer": "B",
+    "explanation": "Subject is 'list' (singular): 'is' not 'are'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-sc-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "hard",
+    "question": "Choose the correct version: 'No sooner had he entered the hall when the bell rang.'",
+    "options": {
+      "A": "No sooner had he entered the hall when the bell rang.",
+      "B": "No sooner had he entered the hall than the bell rang.",
+      "C": "No sooner he had entered the hall than the bell rang.",
+      "D": "No sooner did he enter the hall than the bell rang."
+    },
+    "correct_answer": "B",
+    "explanation": "Correct pair is 'No sooner...than'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "medium",
+    "question": "Passage: The Industrial Revolution, beginning in 18th century Britain, shifted economies from agrarian to industrial. Factories replaced workshops.\n\nWhat replaced workshops according to the passage?",
+    "options": {
+      "A": "Farms",
+      "B": "Factories",
+      "C": "Machines",
+      "D": "Hand tools"
+    },
+    "correct_answer": "B",
+    "explanation": "The passage states: 'Factories replaced workshops'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "hard",
+    "question": "Passage: While renewable energy sources are growing, fossil fuels still account for over 80% of global energy consumption.\n\nWhat can be inferred?",
+    "options": {
+      "A": "Renewable energy is already dominant",
+      "B": "Fossil fuel transition will take time",
+      "C": "Renewable energy is not viable",
+      "D": "Fossil fuels will disappear soon"
+    },
+    "correct_answer": "B",
+    "explanation": "Fossil fuels are 80%+ and transition requires decades - implying it will take time.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "easy",
+    "question": "Passage: The cat sat on the mat.\n\nWhere did the cat sit?",
+    "options": {
+      "A": "On the mat",
+      "B": "On the chair",
+      "C": "On the floor",
+      "D": "On the bed"
+    },
+    "correct_answer": "A",
+    "explanation": "The passage states: 'The cat sat on the mat'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "medium",
+    "question": "Passage: Exercise improves both physical health and mental well-being. Regular activity reduces stress and anxiety.\n\nWhat is the main benefit of exercise mentioned?",
+    "options": {
+      "A": "Physical health only",
+      "B": "Mental well-being only",
+      "C": "Both physical health and mental well-being",
+      "D": "Weight loss only"
+    },
+    "correct_answer": "C",
+    "explanation": "The passage mentions both physical health and mental well-being.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "hard",
+    "question": "Passage: Despite the heavy rains, the match continued as scheduled.\n\nWhat does 'as scheduled' mean?",
+    "options": {
+      "A": "According to plan",
+      "B": "Delayed",
+      "C": "Cancelled",
+      "D": "Rescheduled"
+    },
+    "correct_answer": "A",
+    "explanation": "'As scheduled' means according to the planned timetable.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "medium",
+    "question": "Passage: The library contains books on history, science, and literature.\n\nWhat subjects are covered?",
+    "options": {
+      "A": "History only",
+      "B": "Science only",
+      "C": "History, science, and literature",
+      "D": "Literature only"
+    },
+    "correct_answer": "C",
+    "explanation": "The passage lists history, science, and literature.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "easy",
+    "question": "Passage: John goes to school every day.\n\nHow often does John go to school?",
+    "options": {
+      "A": "Every day",
+      "B": "Once a week",
+      "C": "Never",
+      "D": "On weekends"
+    },
+    "correct_answer": "A",
+    "explanation": "The passage states: 'every day'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-rc-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "hard",
+    "question": "Passage: While some argue that technology brings people together, others believe it creates isolation.\n\nWhat is the passage discussing?",
+    "options": {
+      "A": "Technology is good",
+      "B": "Technology is bad",
+      "C": "Different views on technology's social impact",
+      "D": "Technology history"
+    },
+    "correct_answer": "C",
+    "explanation": "The passage presents contrasting views on technology's social impact.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "medium",
+    "question": "Arrange logically:\n1. Results declared.\n2. Students appeared.\n3. Answer sheets evaluated.\n4. Application filled.",
+    "options": {
+      "A": "4, 2, 3, 1",
+      "B": "2, 4, 3, 1",
+      "C": "4, 3, 2, 1",
+      "D": "1, 2, 3, 4"
+    },
+    "correct_answer": "A",
+    "explanation": "Chronological: fill application → appear → evaluate → declare results.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "hard",
+    "question": "Arrange logically:\n1. Received award.\n2. Published research.\n3. Conducted experiment.\n4. Formulated hypothesis.",
+    "options": {
+      "A": "4, 3, 2, 1",
+      "B": "3, 4, 2, 1",
+      "C": "1, 2, 3, 4",
+      "D": "4, 2, 3, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Scientific process: hypothesis → experiment → publish → award.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "easy",
+    "question": "Arrange logically:\n1. Dinner.\n2. Wake up.\n3. Breakfast.\n4. Lunch.",
+    "options": {
+      "A": "2, 3, 4, 1",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "3, 2, 4, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Daily routine: wake up → breakfast → lunch → dinner.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "medium",
+    "question": "Arrange logically:\n1. Graduation.\n2. Enrollment.\n3. Classes.\n4. Degree.",
+    "options": {
+      "A": "2, 3, 1, 4",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "4, 3, 2, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Education journey: enroll → attend classes → graduate → get degree.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "hard",
+    "question": "Arrange logically:\n1. Book published.\n2. Manuscript written.\n3. Editor reviews.\n4. Book printed.",
+    "options": {
+      "A": "2, 3, 4, 1",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "4, 3, 2, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Publishing: write manuscript → editor reviews → print → publish.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "easy",
+    "question": "Arrange logically:\n1. Night.   2. Morning.   3. Afternoon.   4. Evening.",
+    "options": {
+      "A": "2, 3, 4, 1",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "3, 2, 4, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Time of day: morning → afternoon → evening → night.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "medium",
+    "question": "Arrange logically:\n1. Seed grows.\n2. Flower blooms.\n3. Seed planted.\n4. Plant matures.",
+    "options": {
+      "A": "3, 1, 4, 2",
+      "B": "1, 2, 3, 4",
+      "C": "3, 4, 1, 2",
+      "D": "4, 3, 2, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Plant lifecycle: plant seed → grows → matures → blooms.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-pj-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "hard",
+    "question": "Arrange logically:\n1. Decision made.\n2. Problem identified.\n3. Solutions evaluated.\n4. Solution implemented.",
+    "options": {
+      "A": "2, 3, 1, 4",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "4, 3, 2, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Decision process: identify problem → evaluate solutions → make decision → implement.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "medium",
+    "question": "The jury ______ divided in their opinion about the verdict.",
+    "options": {
+      "A": "was",
+      "B": "were",
+      "C": "is",
+      "D": "has"
+    },
+    "correct_answer": "B",
+    "explanation": "Jury referring to members individually takes plural verb 'were'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "hard",
+    "question": "Hardly ______ the sun risen when the clouds gathered.",
+    "options": {
+      "A": "had",
+      "B": "has",
+      "C": "does",
+      "D": "did"
+    },
+    "correct_answer": "A",
+    "explanation": "Correlative pair 'Hardly...when' with inversion: 'Hardly had...'",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "easy",
+    "question": "The teacher asked students to ______ assignments by Friday.",
+    "options": {
+      "A": "submit",
+      "B": "submits",
+      "C": "submitted",
+      "D": "submitting"
+    },
+    "correct_answer": "A",
+    "explanation": "After 'to', use base form: submit.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "medium",
+    "question": "Despite the heavy rains, the match continued ______.",
+    "options": {
+      "A": "as scheduled",
+      "B": "in scheduled",
+      "C": "on scheduled",
+      "D": "at scheduled"
+    },
+    "correct_answer": "A",
+    "explanation": "Correct idiom is 'as scheduled' meaning according to plan.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "hard",
+    "question": "No sooner ______ he entered the hall than the bell rang.",
+    "options": {
+      "A": "had",
+      "B": "has",
+      "C": "does",
+      "D": "did"
+    },
+    "correct_answer": "A",
+    "explanation": "Correlative pair 'No sooner...than' with inversion: 'No sooner had...'",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "medium",
+    "question": "The results ______ announced yesterday.",
+    "options": {
+      "A": "was",
+      "B": "were",
+      "C": "is",
+      "D": "has"
+    },
+    "correct_answer": "B",
+    "explanation": "Results is plural: 'were announced'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "easy",
+    "question": "I ______ to school every day.",
+    "options": {
+      "A": "go",
+      "B": "goes",
+      "C": "going",
+      "D": "gone"
+    },
+    "correct_answer": "A",
+    "explanation": "With subject 'I', use base form: go.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-scomp-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "hard",
+    "question": "Scarcely ______ the bell rung when the students rushed out.",
+    "options": {
+      "A": "had",
+      "B": "has",
+      "C": "does",
+      "D": "did"
+    },
+    "correct_answer": "A",
+    "explanation": "Correlative pair 'Scarcely...when' with inversion: 'Scarcely had...'",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Identify the error: 'Neither of the candidates have submitted their application.'",
+    "options": {
+      "A": "Neither of the candidates",
+      "B": "have submitted",
+      "C": "their application",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "Neither is singular: 'has submitted' not 'have submitted'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "hard",
+    "question": "Identify the error: 'One of the boys who were absent has been fined.'",
+    "options": {
+      "A": "One of the boys",
+      "B": "who were absent",
+      "C": "has been fined",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "Verb should agree with 'One' (singular): 'who was absent'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Identify the error: 'The news are spreading fast.'",
+    "options": {
+      "A": "The",
+      "B": "news",
+      "C": "are spreading",
+      "D": "fast"
+    },
+    "correct_answer": "C",
+    "explanation": "News is singular: 'is spreading' not 'are spreading'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "easy",
+    "question": "Identify the error: 'She don't like coffee.'",
+    "options": {
+      "A": "She",
+      "B": "don't",
+      "C": "like",
+      "D": "coffee"
+    },
+    "correct_answer": "B",
+    "explanation": "Third person singular: 'doesn't' not 'don't'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "hard",
+    "question": "Identify the error: 'Each of the students have submitted their assignment.'",
+    "options": {
+      "A": "Each",
+      "B": "of the students",
+      "C": "have submitted",
+      "D": "their assignment"
+    },
+    "correct_answer": "C",
+    "explanation": "Each is singular: 'has submitted' not 'have submitted'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Identify the error: 'The committee members was divided in their opinion.'",
+    "options": {
+      "A": "The committee members",
+      "B": "was divided",
+      "C": "in their opinion",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "Members is plural: 'were divided' not 'was divided'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "easy",
+    "question": "Identify the error: 'She is more smarter than her sister.'",
+    "options": {
+      "A": "She",
+      "B": "more smarter",
+      "C": "than",
+      "D": "her sister"
+    },
+    "correct_answer": "B",
+    "explanation": "Smarter is already comparative; 'more' is redundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-ei-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Identify the error: 'The list of items are on the table.'",
+    "options": {
+      "A": "The list",
+      "B": "of items",
+      "C": "are on the table",
+      "D": "No error"
+    },
+    "correct_answer": "C",
+    "explanation": "Subject is 'list' (singular): 'is on the table' not 'are'.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "medium",
+    "question": "Argument: All students who attend coaching classes get good marks. Therefore, coaching causes good marks.\n\nThe argument assumes that:",
+    "options": {
+      "A": "Only coaching leads to good marks",
+      "B": "All students get good marks",
+      "C": "Good marks guarantee coaching",
+      "D": "Coaching is free"
+    },
+    "correct_answer": "A",
+    "explanation": "The argument assumes coaching is the sole cause, ignoring self-study etc.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "hard",
+    "question": "Argument: The city installed cameras and crime dropped. Therefore cameras reduce crime.\n\nWhich weakens most?",
+    "options": {
+      "A": "Cameras are expensive",
+      "B": "Crime also dropped in cities without cameras",
+      "C": "Some cameras are broken",
+      "D": "Police hired more officers"
+    },
+    "correct_answer": "B",
+    "explanation": "If crime dropped without cameras, the causal claim is weakened.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "medium",
+    "question": "Argument: Eating vegetables improves health. John eats vegetables. Therefore John is healthy.\n\nThe argument assumes that:",
+    "options": {
+      "A": "Vegetables are the only health factor",
+      "B": "All people eat vegetables",
+      "C": "Healthy people eat vegetables",
+      "D": "John eats only vegetables"
+    },
+    "correct_answer": "A",
+    "explanation": "Assumes vegetables alone determine health, ignoring other factors.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "easy",
+    "question": "All mammals are warm-blooded. Whales are mammals. Therefore whales are warm-blooded. This argument is:",
+    "options": {
+      "A": "Valid",
+      "B": "Invalid",
+      "C": "Unsound",
+      "D": "Irrelevant"
+    },
+    "correct_answer": "A",
+    "explanation": "Valid deductive argument: premises guarantee conclusion.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "hard",
+    "question": "Argument: Students who study regularly pass exams. Mary passed. Therefore Mary studied regularly.\n\nThis commits the fallacy of:",
+    "options": {
+      "A": "Affirming the consequent",
+      "B": "Denying the antecedent",
+      "C": "Circular reasoning",
+      "D": "False dilemma"
+    },
+    "correct_answer": "A",
+    "explanation": "The argument affirms the consequent (passing) to conclude the antecedent (studying).",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "medium",
+    "question": "Argument: The new policy reduced complaints. Therefore the policy is effective.\n\nWhich strengthens most?",
+    "options": {
+      "A": "Complaints were high before",
+      "B": "The policy was expensive",
+      "C": "Other factors also changed",
+      "D": "Staff disliked the policy"
+    },
+    "correct_answer": "A",
+    "explanation": "High complaints before the policy supports that the reduction is due to the policy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "easy",
+    "question": "If it rains, the ground gets wet. The ground is wet. Therefore it rained. This is:",
+    "options": {
+      "A": "Valid reasoning",
+      "B": "Affirming the consequent",
+      "C": "Denying the antecedent",
+      "D": "Sound reasoning"
+    },
+    "correct_answer": "B",
+    "explanation": "Wet ground could have other causes; affirming the consequent is a fallacy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-cr-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "hard",
+    "question": "Argument: All observed swans are white. Therefore all swans are white.\n\nThis is an example of:",
+    "options": {
+      "A": "Deductive reasoning",
+      "B": "Inductive reasoning",
+      "C": "Abductive reasoning",
+      "D": "Fallacious reasoning"
+    },
+    "correct_answer": "B",
+    "explanation": "Generalizing from specific observations is inductive reasoning.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "medium",
+    "question": "Doctor is to Hospital as Teacher is to?",
+    "options": {
+      "A": "Student",
+      "B": "School",
+      "C": "Class",
+      "D": "Book"
+    },
+    "correct_answer": "B",
+    "explanation": "A doctor works in a hospital; a teacher works in a school.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "easy",
+    "question": "Book is to Page as Tree is to?",
+    "options": {
+      "A": "Leaf",
+      "B": "Root",
+      "C": "Trunk",
+      "D": "Branch"
+    },
+    "correct_answer": "A",
+    "explanation": "A book contains pages; a tree contains leaves.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "hard",
+    "question": "Writer is to Pen as Chef is to?",
+    "options": {
+      "A": "Knife",
+      "B": "Oven",
+      "C": "Plate",
+      "D": "Food"
+    },
+    "correct_answer": "A",
+    "explanation": "A writer uses a pen; a chef uses a knife.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "medium",
+    "question": "Hot is to Cold as Up is to?",
+    "options": {
+      "A": "Down",
+      "B": "High",
+      "C": "Low",
+      "D": "Top"
+    },
+    "correct_answer": "A",
+    "explanation": "Hot and cold are opposites; up and down are opposites.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "easy",
+    "question": "Dog is to Bark as Cat is to?",
+    "options": {
+      "A": "Meow",
+      "B": "Roar",
+      "C": "Chirp",
+      "D": "Moo"
+    },
+    "correct_answer": "A",
+    "explanation": "A dog barks; a cat meows.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "hard",
+    "question": "Wheel is to Car as Page is to?",
+    "options": {
+      "A": "Book",
+      "B": "Pen",
+      "C": "Desk",
+      "D": "Paper"
+    },
+    "correct_answer": "A",
+    "explanation": "A wheel is part of a car; a page is part of a book.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "medium",
+    "question": "Fish is to Water as Bird is to?",
+    "options": {
+      "A": "Air",
+      "B": "Land",
+      "C": "Tree",
+      "D": "Nest"
+    },
+    "correct_answer": "A",
+    "explanation": "A fish lives in water; a bird lives in air/sky.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b2-analogy-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "easy",
+    "question": "Hand is to Glove as Foot is to?",
+    "options": {
+      "A": "Sock",
+      "B": "Shoe",
+      "C": "Leg",
+      "D": "Toe"
+    },
+    "correct_answer": "A",
+    "explanation": "A hand wears a glove; a foot wears a sock.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose word closest to 'BENIGN'.",
+    "options": {
+      "A": "Harmful",
+      "B": "Kind",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Benign means gentle and kind.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose word closest to 'CANDOR'.",
+    "options": {
+      "A": "Dishonesty",
+      "B": "Frankness",
+      "C": "Anger",
+      "D": "Silence"
+    },
+    "correct_answer": "B",
+    "explanation": "Candor means the quality of being open and honest.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose word closest to 'DELICATE'.",
+    "options": {
+      "A": "Rough",
+      "B": "Fragile",
+      "C": "Strong",
+      "D": "Heavy"
+    },
+    "correct_answer": "B",
+    "explanation": "Delicate means easily damaged or fragile.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Choose word closest to 'ELOQUENT'.",
+    "options": {
+      "A": "Fluent",
+      "B": "Silent",
+      "C": "Confused",
+      "D": "Angry"
+    },
+    "correct_answer": "A",
+    "explanation": "Eloquent means fluent and persuasive in speaking.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose word closest to 'FERVENT'.",
+    "options": {
+      "A": "Passionate",
+      "B": "Cold",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "A",
+    "explanation": "Fervent means having intense passion.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose word closest to 'GARRULOUS'.",
+    "options": {
+      "A": "Talkative",
+      "B": "Quiet",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "A",
+    "explanation": "Garrulous means excessively talkative.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Choose word closest to 'HALLOWED'.",
+    "options": {
+      "A": "Holy",
+      "B": "Unholy",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "A",
+    "explanation": "Hallowed means holy or consecrated.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Choose word closest to 'IGNITE'.",
+    "options": {
+      "A": "Extinguish",
+      "B": "Burn",
+      "C": "Cool",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Ignite means to catch fire or burn.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-09",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Choose word closest to 'JEOPARDY'.",
+    "options": {
+      "A": "Danger",
+      "B": "Safety",
+      "C": "Anger",
+      "D": "Silence"
+    },
+    "correct_answer": "A",
+    "explanation": "Jeopardy means danger of loss or harm.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-syn-10",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Choose word closest to 'KINDLE'.",
+    "options": {
+      "A": "Extinguish",
+      "B": "Ignite",
+      "C": "Cool",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Kindle means to set on fire or ignite.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Opposite of 'BENIGN'.",
+    "options": {
+      "A": "Kind",
+      "B": "Harmful",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Benign means gentle. Opposite is harmful.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Opposite of 'CANDOR'.",
+    "options": {
+      "A": "Frankness",
+      "B": "Dishonesty",
+      "C": "Anger",
+      "D": "Silence"
+    },
+    "correct_answer": "B",
+    "explanation": "Candor means honesty. Opposite is dishonesty.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Opposite of 'DELICATE'.",
+    "options": {
+      "A": "Fragile",
+      "B": "Rough",
+      "C": "Strong",
+      "D": "Heavy"
+    },
+    "correct_answer": "B",
+    "explanation": "Delicate means fragile. Opposite is rough/strong.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Opposite of 'ELOQUENT'.",
+    "options": {
+      "A": "Fluent",
+      "B": "Inarticulate",
+      "C": "Confused",
+      "D": "Angry"
+    },
+    "correct_answer": "B",
+    "explanation": "Eloquent means fluent. Opposite is inarticulate.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Opposite of 'FERVENT'.",
+    "options": {
+      "A": "Passionate",
+      "B": "Cold",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Fervent means passionate. Opposite is cold.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Opposite of 'GARRULOUS'.",
+    "options": {
+      "A": "Talkative",
+      "B": "Quiet",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Garrulous means talkative. Opposite is quiet.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Opposite of 'HALLOWED'.",
+    "options": {
+      "A": "Holy",
+      "B": "Unholy",
+      "C": "Angry",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Hallowed means holy. Opposite is unholy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Opposite of 'IGNITE'.",
+    "options": {
+      "A": "Burn",
+      "B": "Extinguish",
+      "C": "Cool",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Ignite means to burn. Opposite is extinguish.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-09",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "medium",
+    "question": "Opposite of 'JEOPARDY'.",
+    "options": {
+      "A": "Danger",
+      "B": "Safety",
+      "C": "Anger",
+      "D": "Silence"
+    },
+    "correct_answer": "B",
+    "explanation": "Jeopardy means danger. Opposite is safety.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ant-10",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "hard",
+    "question": "Opposite of 'KINDLE'.",
+    "options": {
+      "A": "Ignite",
+      "B": "Extinguish",
+      "C": "Cool",
+      "D": "Silent"
+    },
+    "correct_answer": "B",
+    "explanation": "Kindle means to ignite. Opposite is extinguish.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Error: 'She don't like coffee.'",
+    "options": {
+      "A": "She",
+      "B": "don't",
+      "C": "like",
+      "D": "coffee"
+    },
+    "correct_answer": "B",
+    "explanation": "Third person singular: doesn't not don't.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Correct: 'Neither of the options ___ correct.'",
+    "options": {
+      "A": "are",
+      "B": "is",
+      "C": "were",
+      "D": "be"
+    },
+    "correct_answer": "B",
+    "explanation": "Neither is singular: is correct.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Preposition: 'Good ___ painting.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "on",
+      "D": "with"
+    },
+    "correct_answer": "B",
+    "explanation": "Good at painting.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "hard",
+    "question": "Error: 'One of the boys who were absent has been fined.'",
+    "options": {
+      "A": "One of the boys",
+      "B": "who were absent",
+      "C": "has been fined",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "One is singular: who was absent.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Error: 'The news are spreading fast.'",
+    "options": {
+      "A": "The",
+      "B": "news",
+      "C": "are spreading",
+      "D": "fast"
+    },
+    "correct_answer": "C",
+    "explanation": "News is singular: is spreading.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Correct: 'Each of the students ___ submitted.'",
+    "options": {
+      "A": "have",
+      "B": "has",
+      "C": "were",
+      "D": "are"
+    },
+    "correct_answer": "B",
+    "explanation": "Each is singular: has submitted.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "hard",
+    "question": "Error: 'Neither of the candidates have submitted their application.'",
+    "options": {
+      "A": "Neither of the candidates",
+      "B": "have submitted",
+      "C": "their application",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "Neither is singular: has submitted.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Preposition: 'Scheduled ___ Monday ___ 10 AM.'",
+    "options": {
+      "A": "on, at",
+      "B": "in, at",
+      "C": "at, on",
+      "D": "on, in"
+    },
+    "correct_answer": "A",
+    "explanation": "On Monday, at 10 AM.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-09",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "medium",
+    "question": "Error: 'She is more smarter than her sister.'",
+    "options": {
+      "A": "She",
+      "B": "more smarter",
+      "C": "than",
+      "D": "her sister"
+    },
+    "correct_answer": "B",
+    "explanation": "Smarter is comparative; more is redundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-gram-10",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Error: 'The list of items are on the table.'",
+    "options": {
+      "A": "The list",
+      "B": "of items",
+      "C": "are on the table",
+      "D": "No error"
+    },
+    "correct_answer": "C",
+    "explanation": "List is singular: is on the table.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Correct: 'The committee members was divided.'",
+    "options": {
+      "A": "was divided",
+      "B": "were divided",
+      "C": "are divided",
+      "D": "has divided"
+    },
+    "correct_answer": "B",
+    "explanation": "Members is plural: were divided.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "hard",
+    "question": "Correct: 'Scarcely had he reached the station when the train left.'",
+    "options": {
+      "A": "Scarcely had he reached... when",
+      "B": "Scarcely he had reached... when",
+      "C": "Scarcely had he reached... than",
+      "D": "Scarcely did he reach... when"
+    },
+    "correct_answer": "A",
+    "explanation": "Scarcely...when with inversion.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Replace: 'He is more taller than his brother.'",
+    "options": {
+      "A": "more tall",
+      "B": "taller",
+      "C": "more tallest",
+      "D": "tallest"
+    },
+    "correct_answer": "B",
+    "explanation": "Taller is comparative; more is redundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "easy",
+    "question": "Preposition: 'She is good ___ painting.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "on",
+      "D": "with"
+    },
+    "correct_answer": "B",
+    "explanation": "Good at painting.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "hard",
+    "question": "Correct: 'Hardly had the sun risen when the clouds gathered.'",
+    "options": {
+      "A": "Hardly had the sun risen... when",
+      "B": "Hardly the sun had risen... when",
+      "C": "Hardly did the sun rise... when",
+      "D": "Hardly has the sun risen... when"
+    },
+    "correct_answer": "A",
+    "explanation": "Hardly...when with inversion.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Error: 'She is more smarter than her sister.'",
+    "options": {
+      "A": "She",
+      "B": "more smarter",
+      "C": "than",
+      "D": "her sister"
+    },
+    "correct_answer": "B",
+    "explanation": "Smarter is comparative; more is redundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Correct: 'The list of items is on the table.'",
+    "options": {
+      "A": "are on",
+      "B": "is on",
+      "C": "were on",
+      "D": "have been on"
+    },
+    "correct_answer": "B",
+    "explanation": "List is singular: is on.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "hard",
+    "question": "Correct: 'No sooner had he entered the hall than the bell rang.'",
+    "options": {
+      "A": "No sooner had he entered... when",
+      "B": "No sooner had he entered... than",
+      "C": "No sooner he had entered... than",
+      "D": "No sooner did he enter... than"
+    },
+    "correct_answer": "B",
+    "explanation": "No sooner...than.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-09",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "easy",
+    "question": "Preposition: 'She is good ___ painting.'",
+    "options": {
+      "A": "in",
+      "B": "at",
+      "C": "on",
+      "D": "with"
+    },
+    "correct_answer": "B",
+    "explanation": "Good at painting.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-sc-10",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "medium",
+    "question": "Error: 'She is more smarter than her sister.'",
+    "options": {
+      "A": "She",
+      "B": "more smarter",
+      "C": "than",
+      "D": "her sister"
+    },
+    "correct_answer": "B",
+    "explanation": "Smarter is comparative; more redundant.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-rc-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "medium",
+    "question": "Passage: The Industrial Revolution shifted economies from agrarian to industrial. Factories replaced workshops.\n\nWhat replaced workshops?",
+    "options": {
+      "A": "Farms",
+      "B": "Factories",
+      "C": "Machines",
+      "D": "Hand tools"
+    },
+    "correct_answer": "B",
+    "explanation": "Passage states: Factories replaced workshops.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-rc-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "hard",
+    "question": "Passage: Fossil fuels account for over 80% of global energy consumption. Transitioning fully will require decades.\n\nWhat can be inferred?",
+    "options": {
+      "A": "Renewable energy is dominant",
+      "B": "Fossil fuel transition will take time",
+      "C": "Renewable energy is not viable",
+      "D": "Fossil fuels will disappear soon"
+    },
+    "correct_answer": "B",
+    "explanation": "Fossil fuels are 80%+ and transition requires decades.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-rc-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "easy",
+    "question": "Passage: The cat sat on the mat.\n\nWhere did the cat sit?",
+    "options": {
+      "A": "On the mat",
+      "B": "On the chair",
+      "C": "On the floor",
+      "D": "On the bed"
+    },
+    "correct_answer": "A",
+    "explanation": "Passage states: cat sat on the mat.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-rc-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "medium",
+    "question": "Passage: Exercise improves both physical health and mental well-being.\n\nWhat is the main benefit?",
+    "options": {
+      "A": "Physical health only",
+      "B": "Mental well-being only",
+      "C": "Both physical health and mental well-being",
+      "D": "Weight loss only"
+    },
+    "correct_answer": "C",
+    "explanation": "Passage mentions both physical health and mental well-being.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-rc-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "hard",
+    "question": "Passage: Despite the heavy rains, the match continued as scheduled.\n\nWhat does 'as scheduled' mean?",
+    "options": {
+      "A": "According to plan",
+      "B": "Delayed",
+      "C": "Cancelled",
+      "D": "Rescheduled"
+    },
+    "correct_answer": "A",
+    "explanation": "As scheduled means according to plan.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-pj-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "medium",
+    "question": "Arrange: 1. Results declared. 2. Students appeared. 3. Answer sheets evaluated. 4. Application filled.",
+    "options": {
+      "A": "4, 2, 3, 1",
+      "B": "2, 4, 3, 1",
+      "C": "4, 3, 2, 1",
+      "D": "1, 2, 3, 4"
+    },
+    "correct_answer": "A",
+    "explanation": "Fill application -> appear -> evaluate -> declare results.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-pj-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "hard",
+    "question": "Arrange: 1. Received award. 2. Published research. 3. Conducted experiment. 4. Formulated hypothesis.",
+    "options": {
+      "A": "4, 3, 2, 1",
+      "B": "3, 4, 2, 1",
+      "C": "1, 2, 3, 4",
+      "D": "4, 2, 3, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Hypothesis -> experiment -> publish -> award.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-pj-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "easy",
+    "question": "Arrange: 1. Dinner. 2. Wake up. 3. Breakfast. 4. Lunch.",
+    "options": {
+      "A": "2, 3, 4, 1",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "3, 2, 4, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Wake up -> breakfast -> lunch -> dinner.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-pj-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "medium",
+    "question": "Arrange: 1. Graduation. 2. Enrollment. 3. Classes. 4. Degree.",
+    "options": {
+      "A": "2, 3, 1, 4",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "4, 3, 2, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Enroll -> classes -> graduate -> degree.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-pj-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "para_jumbles",
+    "difficulty": "hard",
+    "question": "Arrange: 1. Book published. 2. Manuscript written. 3. Editor reviews. 4. Book printed.",
+    "options": {
+      "A": "2, 3, 4, 1",
+      "B": "1, 2, 3, 4",
+      "C": "2, 1, 3, 4",
+      "D": "4, 3, 2, 1"
+    },
+    "correct_answer": "A",
+    "explanation": "Write manuscript -> editor reviews -> print -> publish.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-scomp-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "medium",
+    "question": "The jury ___ divided in their opinion about the verdict.",
+    "options": {
+      "A": "was",
+      "B": "were",
+      "C": "is",
+      "D": "has"
+    },
+    "correct_answer": "B",
+    "explanation": "Jury referring to members individually takes plural verb were.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-scomp-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "hard",
+    "question": "Hardly ___ the sun risen when the clouds gathered.",
+    "options": {
+      "A": "had",
+      "B": "has",
+      "C": "does",
+      "D": "did"
+    },
+    "correct_answer": "A",
+    "explanation": "Hardly...when with inversion: Hardly had...",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-scomp-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "easy",
+    "question": "The teacher asked students to ___ assignments by Friday.",
+    "options": {
+      "A": "submit",
+      "B": "submits",
+      "C": "submitted",
+      "D": "submitting"
+    },
+    "correct_answer": "A",
+    "explanation": "After to, use base form: submit.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-scomp-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "medium",
+    "question": "Despite the heavy rains, the match continued ___.",
+    "options": {
+      "A": "as scheduled",
+      "B": "in scheduled",
+      "C": "on scheduled",
+      "D": "at scheduled"
+    },
+    "correct_answer": "A",
+    "explanation": "Idiom: as scheduled.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-scomp-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_completion",
+    "difficulty": "hard",
+    "question": "No sooner ___ he entered the hall than the bell rang.",
+    "options": {
+      "A": "had",
+      "B": "has",
+      "C": "does",
+      "D": "did"
+    },
+    "correct_answer": "A",
+    "explanation": "No sooner...than with inversion: No sooner had...",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ei-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Error: 'Neither of the candidates have submitted their application.'",
+    "options": {
+      "A": "Neither of the candidates",
+      "B": "have submitted",
+      "C": "their application",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "Neither is singular: has submitted.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ei-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "hard",
+    "question": "Error: 'One of the boys who were absent has been fined.'",
+    "options": {
+      "A": "One of the boys",
+      "B": "who were absent",
+      "C": "has been fined",
+      "D": "No error"
+    },
+    "correct_answer": "B",
+    "explanation": "Verb should agree with One: who was absent.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ei-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Error: 'The news are spreading fast.'",
+    "options": {
+      "A": "The",
+      "B": "news",
+      "C": "are spreading",
+      "D": "fast"
+    },
+    "correct_answer": "C",
+    "explanation": "News is singular: is spreading.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ei-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "easy",
+    "question": "Error: 'She don't like coffee.'",
+    "options": {
+      "A": "She",
+      "B": "don't",
+      "C": "like",
+      "D": "coffee"
+    },
+    "correct_answer": "B",
+    "explanation": "Third person singular: doesn't.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-ei-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "error_identification",
+    "difficulty": "medium",
+    "question": "Error: 'Each of the students have submitted their assignment.'",
+    "options": {
+      "A": "Each",
+      "B": "of the students",
+      "C": "have submitted",
+      "D": "their assignment"
+    },
+    "correct_answer": "C",
+    "explanation": "Each is singular: has submitted.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-cr-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "medium",
+    "question": "Argument: All students who attend coaching classes get good marks. Therefore, coaching causes good marks.\n\nThe argument assumes that:",
+    "options": {
+      "A": "Only coaching leads to good marks",
+      "B": "All students get good marks",
+      "C": "Good marks guarantee coaching",
+      "D": "Coaching is free"
+    },
+    "correct_answer": "A",
+    "explanation": "Assumes coaching is sole cause, ignoring self-study etc.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-cr-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "hard",
+    "question": "Argument: The city installed cameras and crime dropped. Therefore cameras reduce crime.\n\nWhich weakens most?",
+    "options": {
+      "A": "Cameras are expensive",
+      "B": "Crime also dropped in cities without cameras",
+      "C": "Some cameras are broken",
+      "D": "Police hired more officers"
+    },
+    "correct_answer": "B",
+    "explanation": "If crime dropped without cameras, causal claim is weakened.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-cr-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "medium",
+    "question": "Argument: Eating vegetables improves health. John eats vegetables. Therefore John is healthy.\n\nThe argument assumes that:",
+    "options": {
+      "A": "Vegetables are the only health factor",
+      "B": "All people eat vegetables",
+      "C": "Healthy people eat vegetables",
+      "D": "John eats only vegetables"
+    },
+    "correct_answer": "A",
+    "explanation": "Assumes vegetables alone determine health.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-cr-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "easy",
+    "question": "All mammals are warm-blooded. Whales are mammals. Therefore whales are warm-blooded. This argument is:",
+    "options": {
+      "A": "Valid",
+      "B": "Invalid",
+      "C": "Unsound",
+      "D": "Irrelevant"
+    },
+    "correct_answer": "A",
+    "explanation": "Valid deductive argument.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-cr-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "critical_reasoning",
+    "difficulty": "hard",
+    "question": "Argument: Students who study regularly pass exams. Mary passed. Therefore Mary studied regularly.\n\nThis commits the fallacy of:",
+    "options": {
+      "A": "Affirming the consequent",
+      "B": "Denying the antecedent",
+      "C": "Circular reasoning",
+      "D": "False dilemma"
+    },
+    "correct_answer": "A",
+    "explanation": "Affirming the consequent fallacy.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-analogy-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "medium",
+    "question": "Doctor is to Hospital as Teacher is to?",
+    "options": {
+      "A": "Student",
+      "B": "School",
+      "C": "Class",
+      "D": "Book"
+    },
+    "correct_answer": "B",
+    "explanation": "Doctor works in hospital; teacher works in school.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-analogy-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "easy",
+    "question": "Book is to Page as Tree is to?",
+    "options": {
+      "A": "Leaf",
+      "B": "Root",
+      "C": "Trunk",
+      "D": "Branch"
+    },
+    "correct_answer": "A",
+    "explanation": "Book contains pages; tree contains leaves.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-analogy-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "hard",
+    "question": "Writer is to Pen as Chef is to?",
+    "options": {
+      "A": "Knife",
+      "B": "Oven",
+      "C": "Plate",
+      "D": "Food"
+    },
+    "correct_answer": "A",
+    "explanation": "Writer uses pen; chef uses knife.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-analogy-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "medium",
+    "question": "Hot is to Cold as Up is to?",
+    "options": {
+      "A": "Down",
+      "B": "High",
+      "C": "Low",
+      "D": "Top"
+    },
+    "correct_answer": "A",
+    "explanation": "Hot and cold are opposites; up and down are opposites.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b3-analogy-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "easy",
+    "question": "Dog is to Bark as Cat is to?",
+    "options": {
+      "A": "Meow",
+      "B": "Roar",
+      "C": "Chirp",
+      "D": "Moo"
+    },
+    "correct_answer": "A",
+    "explanation": "Dog barks; cat meows.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-01",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Opposite of 'HAPPY'.",
+    "options": {
+      "A": "Sad",
+      "B": "Angry",
+      "C": "Excited",
+      "D": "Joyful"
+    },
+    "correct_answer": "A",
+    "explanation": "Happy means joyful. Opposite is sad.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-02",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Opposite of 'GOOD'.",
+    "options": {
+      "A": "Bad",
+      "B": "Great",
+      "C": "Excellent",
+      "D": "Wonderful"
+    },
+    "correct_answer": "A",
+    "explanation": "Good means excellent. Opposite is bad.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-03",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "vocabulary",
+    "difficulty": "easy",
+    "question": "Opposite of 'BIG'.",
+    "options": {
+      "A": "Small",
+      "B": "Large",
+      "C": "Huge",
+      "D": "Giant"
+    },
+    "correct_answer": "A",
+    "explanation": "Big means large. Opposite is small.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-04",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Error: 'He go to school every day.'",
+    "options": {
+      "A": "He",
+      "B": "go",
+      "C": "to",
+      "D": "school"
+    },
+    "correct_answer": "B",
+    "explanation": "Third person singular: goes not go.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-05",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "grammar",
+    "difficulty": "easy",
+    "question": "Error: 'They is playing in the park.'",
+    "options": {
+      "A": "They",
+      "B": "is",
+      "C": "playing",
+      "D": "park"
+    },
+    "correct_answer": "B",
+    "explanation": "They is plural: are playing.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.789486+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-06",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "easy",
+    "question": "Correct: 'She goes to school every day.'",
+    "options": {
+      "A": "She go",
+      "B": "She goes",
+      "C": "She going",
+      "D": "She gone"
+    },
+    "correct_answer": "B",
+    "explanation": "Third person singular: goes.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.790493+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-07",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "sentence_correction",
+    "difficulty": "easy",
+    "question": "Correct: 'They are playing in the park.'",
+    "options": {
+      "A": "They is playing",
+      "B": "They are playing",
+      "C": "They playing",
+      "D": "They played"
+    },
+    "correct_answer": "B",
+    "explanation": "Plural subject: are playing.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.790493+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-08",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "easy",
+    "question": "Passage: The sun rises in the east.\n\nWhere does the sun rise?",
+    "options": {
+      "A": "East",
+      "B": "West",
+      "C": "North",
+      "D": "South"
+    },
+    "correct_answer": "A",
+    "explanation": "Passage states: sun rises in the east.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.790493+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-09",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "reading_comprehension",
+    "difficulty": "easy",
+    "question": "Passage: Birds can fly.\n\nWhat can birds do?",
+    "options": {
+      "A": "Fly",
+      "B": "Swim",
+      "C": "Run",
+      "D": "Jump"
+    },
+    "correct_answer": "A",
+    "explanation": "Passage states: birds can fly.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.790493+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  },
+  {
+    "id": "ver-b4-10",
+    "type": "verbal",
+    "topic": "Verbal Ability",
+    "sub_topic": "analogy",
+    "difficulty": "easy",
+    "question": "Cat is to Meow as Dog is to?",
+    "options": {
+      "A": "Bark",
+      "B": "Roar",
+      "C": "Chirp",
+      "D": "Moo"
+    },
+    "correct_answer": "A",
+    "explanation": "Cat meows; dog barks.",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "roles": [
+      "student"
+    ],
+    "provenance": "bountycode-original-2026",
+    "source_bank": "verified_verbal",
+    "trust_status": "automated_checked",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "2-3 minutes",
+    "trust_transitioned_at": "2026-11-17T06:30:19.790493+00:00",
+    "trust_transition_reason": "Automated validation passed; human review pending"
+  }
+]

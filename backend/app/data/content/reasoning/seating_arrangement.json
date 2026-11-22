@@ -1,0 +1,316 @@
+{
+  "topic": "seating_arrangement",
+  "subject": "reasoning",
+  "pattern": "seating_arrangement",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "linear_arrangement_basics",
+      "title": "Linear Seating Arrangement Basics",
+      "concept": "Linear arrangement problems place people/objects in a row. Clues describe relative positions (left/right, immediate left/right, between). Draw a row of slots and place fixed or most certain information first, then use relative clues step by step.",
+      "formula": "Approach: identify total positions -> fix direct clues -> apply relative clues -> check consistency with all conditions.",
+      "worked_example": "If A sits to the immediate left of B in a row facing north, A and B occupy adjacent seats with A on B's left side. Place B, then put A immediately to its left.",
+      "mistakes": [
+        "Confusing left and right when direction faced is not specified or changes",
+        "Assuming 'left of' means 'immediate left of'",
+        "Not verifying the final arrangement against every clue"
+      ]
+    },
+    {
+      "id": "circular_arrangement_basics",
+      "title": "Circular Seating Arrangement Basics",
+      "concept": "In circular arrangements, people sit around a table facing center or facing outward. Left/right depends on facing direction: facing center, left is clockwise and right is anticlockwise; facing outward, it reverses. Fix one person as reference to break rotational symmetry.",
+      "formula": "Fix one position as reference. Facing center: left = clockwise, right = anticlockwise. Facing outward: left = anticlockwise, right = clockwise.",
+      "worked_example": "Five friends face the center around a table. If B is to the immediate right of A, then moving anticlockwise from A gives B (because facing center, right is anticlockwise).",
+      "mistakes": [
+        "Applying left/right without considering facing direction",
+        "Treating circular positions like a straight line at the ends",
+        "Forgetting that positions are relative around the circle (no fixed 'first' unless stated)"
+      ]
+    },
+    {
+      "id": "deduction_strategies",
+      "title": "Deduction Strategies and Common Clues",
+      "concept": "Common clues include immediate neighbors, 'between', 'second to the left/right', and 'not adjacent'. Use elimination and combine clues. When multiple possibilities exist, test each against all clues and discard inconsistent ones.",
+      "formula": "Use strongest clues first (exact positions/immediate neighbors) -> combine with between/second-to clues -> eliminate impossible cases.",
+      "worked_example": "If C is between A and B, possible orders include A, C, B or B, C, A in that block. Use other clues (e.g., A at an end) to determine the exact order.",
+      "mistakes": [
+        "Assuming only one order for 'between' clues",
+        "Ignoring 'immediate' vs general adjacency/position",
+        "Stopping after placing some people without satisfying all clues"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SEAT-PRACTICE-001",
+      "question": "Five people A, B, C, D, E sit in a row facing north. A is at the left end. B is immediately to the right of A. Who is second from the left?",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D"
+      },
+      "correct_answer": "B",
+      "explanation": "Left end (1st) is A. Immediately to the right of A is B, so B is 2nd from the left.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "position_counting_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-PRACTICE-002",
+      "question": "In a row facing north, P sits to the immediate left of Q, and R sits to the immediate right of Q. What is the order of P, Q, R from left to right?",
+      "options": {
+        "A": "Q, P, R",
+        "B": "P, R, Q",
+        "C": "P, Q, R",
+        "D": "R, Q, P"
+      },
+      "correct_answer": "C",
+      "explanation": "P is immediately left of Q, so P, Q. R is immediately right of Q, so Q, R. Combined order from left to right is P, Q, R.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "left_right_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-PRACTICE-003",
+      "question": "Four friends sit around a circular table facing the center. If B is immediately to the right of A, in which direction from A (around the table) is B located?",
+      "options": {
+        "A": "Clockwise",
+        "B": "Anticlockwise",
+        "C": "Opposite",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "B",
+      "explanation": "When facing the center of a circle, a person's right side is in the anticlockwise direction around the table. So B is anticlockwise from A.",
+      "difficulty": "easy",
+      "sub_topic": "circular_arrangement_basics",
+      "misconception_tags": [
+        "facing_direction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-PRACTICE-004",
+      "question": "In a row of 5 seats facing north (positions 1 to 5 from left to right), M sits at position 3. N sits immediately to the left of M. At which position is N?",
+      "options": {
+        "A": "Position 1",
+        "B": "Position 2",
+        "C": "Position 4",
+        "D": "Position 5"
+      },
+      "correct_answer": "B",
+      "explanation": "Immediately to the left of position 3 is position 2. Therefore N sits at position 2.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "immediate_position_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-PRACTICE-005",
+      "question": "Three people X, Y, Z sit in a row facing north. Y is between X and Z. X is at the left end. What is the order from left to right?",
+      "options": {
+        "A": "X, Z, Y",
+        "B": "Y, X, Z",
+        "C": "X, Y, Z",
+        "D": "Z, Y, X"
+      },
+      "correct_answer": "C",
+      "explanation": "X is at the left end. Y is between X and Z, so Y must be in the middle and Z at the right end. Order is X, Y, Z.",
+      "difficulty": "medium",
+      "sub_topic": "deduction_strategies",
+      "misconception_tags": [
+        "between_clue_interpretation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SEAT-001",
+      "question": "Four students P, Q, R, S sit in a row facing north. P is at the right end. Q is immediately to the left of P. Who is at the 3rd position from the left if the row has 4 positions total?",
+      "options": {
+        "A": "P",
+        "B": "Q",
+        "C": "R",
+        "D": "S"
+      },
+      "correct_answer": "B",
+      "explanation": "With 4 positions from left to right (1-4), P is at position 4 (right end). Q is immediately left of P, so Q is at position 3.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "position_counting_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-002",
+      "question": "In a row facing north, A is to the immediate right of B, and C is to the immediate right of A. Which person is in the middle of these three?",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "Cannot be determined"
+      },
+      "correct_answer": "A",
+      "explanation": "A is immediately right of B gives B, A. C is immediately right of A gives B, A, C. So A is in the middle.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "left_right_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-003",
+      "question": "Four people sit around a circular table facing the center. D is immediately to the left of A. In which direction from A is D located?",
+      "options": {
+        "A": "Clockwise",
+        "B": "Anticlockwise",
+        "C": "Opposite",
+        "D": "Same position"
+      },
+      "correct_answer": "A",
+      "explanation": "When facing the center, a person's left side corresponds to the clockwise direction around the table. Therefore D is clockwise from A.",
+      "difficulty": "easy",
+      "sub_topic": "circular_arrangement_basics",
+      "misconception_tags": [
+        "facing_direction_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-004",
+      "question": "Five people sit in a row facing north in positions 1 to 5 from left to right. T sits at position 4. U sits immediately to the right of T. What is U's position?",
+      "options": {
+        "A": "Position 3",
+        "B": "Position 4",
+        "C": "Position 5",
+        "D": "Position 2"
+      },
+      "correct_answer": "C",
+      "explanation": "Immediately to the right of position 4 is position 5. So U sits at position 5.",
+      "difficulty": "easy",
+      "sub_topic": "linear_arrangement_basics",
+      "misconception_tags": [
+        "immediate_position_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SEAT-005",
+      "question": "In a row facing north, L, M, N sit such that M is between L and N. N is at the right end of these three. What is the order from left to right?",
+      "options": {
+        "A": "N, M, L",
+        "B": "L, N, M",
+        "C": "M, L, N",
+        "D": "L, M, N"
+      },
+      "correct_answer": "D",
+      "explanation": "M is between L and N, so M is in the middle. N is at the right end, so L must be at the left end. Order is L, M, N.",
+      "difficulty": "medium",
+      "sub_topic": "deduction_strategies",
+      "misconception_tags": [
+        "between_clue_interpretation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

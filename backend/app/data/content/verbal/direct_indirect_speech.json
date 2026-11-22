@@ -1,0 +1,325 @@
+{
+  "topic": "direct_indirect_speech",
+  "subject": "verbal",
+  "pattern": "direct_indirect_speech",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "direct_vs_indirect",
+      "title": "Direct and Indirect Speech",
+      "concept": "Direct speech reports the exact words spoken, usually inside quotation marks. Indirect (reported) speech conveys the meaning of what was said without quoting the exact words, often requiring changes in pronouns, tense, and time/place expressions.",
+      "formula": "Direct: He said, \"I am busy.\" Indirect: He said that he was busy.",
+      "worked_example": "Direct: Rina said, \"I like coffee.\" Indirect: Rina said that she liked coffee.",
+      "mistakes": [
+        "Keeping quotation marks in indirect speech",
+        "Not changing pronouns to match the reporting context",
+        "Forgetting to adjust tense when reporting verb is in past"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "tense_and_pronoun_changes",
+      "title": "Tense and Pronoun Changes",
+      "concept": "When the reporting verb is in the past (e.g., said), the tense in the reported clause often shifts back (present -> past, present perfect -> past perfect, etc.) in indirect speech. Pronouns and possessives also change based on speaker/listener perspective.",
+      "formula": "Common backshift: am/is -> was, are -> were, have/has -> had, will -> would, can -> could. Pronouns change by context (I -> he/she, my -> his/her).",
+      "worked_example": "Direct: He said, \"I have finished my work.\" Indirect: He said that he had finished his work.",
+      "mistakes": [
+        "Applying backshift when it is not required (e.g., universal truths in some contexts)",
+        "Changing pronouns mechanically without considering meaning",
+        "Mixing tense backshift inconsistently within one sentence"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "questions_and_commands",
+      "title": "Reporting Questions and Commands",
+      "concept": "Reported questions use reporting verbs like asked/inquired and usually do not keep question word order or question marks. Yes/no questions use if/whether; wh-questions keep the wh-word. Commands/requests use told/asked/ordered + to-infinitive (or not to).",
+      "formula": "Yes/no: asked if/whether + statement order. Wh-: asked + wh-word + statement order. Command: told/asked + object + to/not to + verb.",
+      "worked_example": "Direct: She asked, \"Where do you live?\" Indirect: She asked where I lived. Direct: He said, \"Close the door.\" Indirect: He told me to close the door.",
+      "mistakes": [
+        "Keeping question mark or interrogative word order in reported questions",
+        "Using 'that' instead of if/whether for yes/no questions",
+        "Using 'said to' incorrectly for commands instead of 'told/asked/ordered'"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "DIS-PRACTICE-001",
+      "question": "Change to indirect speech: He said, \"I am tired.\"",
+      "options": {
+        "A": "He said that he is tired.",
+        "B": "He said that he was tired.",
+        "C": "He said that I was tired.",
+        "D": "He told that he was tired."
+      },
+      "correct_answer": "B",
+      "explanation": "With past reporting verb 'said', present 'am' backshifts to 'was' and pronoun 'I' changes to 'he': He said that he was tired.",
+      "difficulty": "easy",
+      "sub_topic": "tense_and_pronoun_changes",
+      "misconception_tags": [
+        "backshift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-PRACTICE-002",
+      "question": "Change to indirect speech: She said, \"I have finished my homework.\"",
+      "options": {
+        "A": "She said that she has finished her homework.",
+        "B": "She said that she had finished her homework.",
+        "C": "She said that I had finished my homework.",
+        "D": "She told that she had finished her homework."
+      },
+      "correct_answer": "B",
+      "explanation": "Present perfect 'have finished' backshifts to past perfect 'had finished', and pronouns/possessives change appropriately.",
+      "difficulty": "easy",
+      "sub_topic": "tense_and_pronoun_changes",
+      "misconception_tags": [
+        "backshift_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-PRACTICE-003",
+      "question": "Change to indirect speech: He asked, \"Are you coming?\"",
+      "options": {
+        "A": "He asked that I was coming.",
+        "B": "He asked if I was coming.",
+        "C": "He asked was I coming.",
+        "D": "He said if I am coming."
+      },
+      "correct_answer": "B",
+      "explanation": "Yes/no questions in indirect speech use 'if/whether' and statement word order: He asked if I was coming.",
+      "difficulty": "easy",
+      "sub_topic": "questions_and_commands",
+      "misconception_tags": [
+        "reported_question_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-PRACTICE-004",
+      "question": "Change to indirect speech: The teacher said, \"Open your books.\"",
+      "options": {
+        "A": "The teacher said to open your books.",
+        "B": "The teacher told us open our books.",
+        "C": "The teacher told us to open our books.",
+        "D": "The teacher asked that we open your books."
+      },
+      "correct_answer": "C",
+      "explanation": "Commands are reported with 'told/asked/ordered + object + to-infinitive'. Pronoun 'your' changes to 'our' in this context.",
+      "difficulty": "medium",
+      "sub_topic": "questions_and_commands",
+      "misconception_tags": [
+        "reported_command_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-PRACTICE-005",
+      "question": "Identify the form: Ravi said that he would call later.",
+      "options": {
+        "A": "Direct speech",
+        "B": "Indirect speech",
+        "C": "Active voice only",
+        "D": "Interrogative sentence"
+      },
+      "correct_answer": "B",
+      "explanation": "The sentence reports Ravi's message without quotation marks and with backshifted modal 'would', which indicates indirect speech.",
+      "difficulty": "easy",
+      "sub_topic": "direct_vs_indirect",
+      "misconception_tags": [
+        "form_identification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "DIS-001",
+      "question": "Change to indirect speech: Meena said, \"I will go to Delhi tomorrow.\"",
+      "options": {
+        "A": "Meena said that she will go to Delhi tomorrow.",
+        "B": "Meena said that she would go to Delhi the next day.",
+        "C": "Meena said that I would go to Delhi the next day.",
+        "D": "Meena told that she would go to Delhi tomorrow."
+      },
+      "correct_answer": "B",
+      "explanation": "Backshift 'will' -> 'would', pronoun 'I' -> 'she', and time expression 'tomorrow' -> 'the next day' in reported speech.",
+      "difficulty": "medium",
+      "sub_topic": "tense_and_pronoun_changes",
+      "misconception_tags": [
+        "time_expression_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-002",
+      "question": "Change to indirect speech: He asked, \"Where is the station?\"",
+      "options": {
+        "A": "He asked where the station was.",
+        "B": "He asked where was the station.",
+        "C": "He asked that where the station is.",
+        "D": "He said where the station was."
+      },
+      "correct_answer": "A",
+      "explanation": "Wh-questions keep the wh-word but use statement word order in indirect speech: 'where the station was'.",
+      "difficulty": "easy",
+      "sub_topic": "questions_and_commands",
+      "misconception_tags": [
+        "reported_question_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-003",
+      "question": "Change to indirect speech: She said, \"I can solve this problem.\"",
+      "options": {
+        "A": "She said that she can solve that problem.",
+        "B": "She said that she could solve that problem.",
+        "C": "She said that I could solve this problem.",
+        "D": "She told that she could solve this problem."
+      },
+      "correct_answer": "B",
+      "explanation": "Modal 'can' backshifts to 'could', 'this' often becomes 'that', and pronoun 'I' becomes 'she'.",
+      "difficulty": "easy",
+      "sub_topic": "tense_and_pronoun_changes",
+      "misconception_tags": [
+        "modal_backshift_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-004",
+      "question": "Change to indirect speech: The manager said to the team, \"Please submit the report today.\"",
+      "options": {
+        "A": "The manager requested the team to submit the report that day.",
+        "B": "The manager said the team to submit the report today.",
+        "C": "The manager requested that the team submits the report today.",
+        "D": "The manager told to the team to submit the report that day."
+      },
+      "correct_answer": "A",
+      "explanation": "A polite request is reported with 'requested/asked + object + to-infinitive'. 'Today' changes to 'that day' in indirect speech.",
+      "difficulty": "medium",
+      "sub_topic": "questions_and_commands",
+      "misconception_tags": [
+        "reported_request_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DIS-005",
+      "question": "Change to indirect speech: He said, \"I bought this book yesterday.\"",
+      "options": {
+        "A": "He said that he bought that book yesterday.",
+        "B": "He said that he had bought that book the previous day.",
+        "C": "He said that he has bought this book the previous day.",
+        "D": "He said that I had bought that book the previous day."
+      },
+      "correct_answer": "B",
+      "explanation": "Simple past often backshifts to past perfect in reported speech: 'bought' -> 'had bought'; 'this' -> 'that'; 'yesterday' -> 'the previous day'.",
+      "difficulty": "medium",
+      "sub_topic": "tense_and_pronoun_changes",
+      "misconception_tags": [
+        "time_expression_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

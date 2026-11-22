@@ -95,6 +95,11 @@ def _load_questions() -> List[Dict[str, Any]]:
     return unique
 
 
+def _servable_questions() -> List[Dict[str, Any]]:
+    """Compatibility seam backed exclusively by the canonical question store."""
+    return _load_questions()
+
+
 def get_question_by_id(qid: str) -> Optional[Dict[str, Any]]:
     _load_questions()
     return _questions_by_id.get(qid)
@@ -185,7 +190,7 @@ def build_quiz(
     target_skills: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     """Build a quiz session based on mode and filters."""
-    questions = _load_questions()
+    questions = _servable_questions()
     # Seeded attempts remain varied across seeds but reproducible on retry.
     # A local RNG avoids mutating process-global random state.
     rng = random.Random(selection_seed) if selection_seed else random

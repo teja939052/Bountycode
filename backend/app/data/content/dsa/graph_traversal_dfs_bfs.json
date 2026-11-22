@@ -1,0 +1,325 @@
+{
+  "topic": "graph_traversal_dfs_bfs",
+  "subject": "dsa",
+  "pattern": "graph_traversal_dfs_bfs",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "GTB-L1",
+      "title": "Graph Traversal Overview",
+      "concept": "Graph traversal means visiting nodes/vertices of a graph in a systematic way. The two fundamental traversals are Breadth-First Search (BFS) and Depth-First Search (DFS). Traversals are used for searching, connectivity checks, path finding (unweighted for BFS shortest path in edges), and many graph algorithms. A visited set/array is needed to avoid revisiting nodes in graphs with cycles.",
+      "formula": "Maintain visited to prevent infinite loops in cyclic graphs. Time depends on representation: O(V+E) with adjacency list for BFS/DFS.",
+      "worked_example": "In a connected undirected graph, starting BFS/DFS from one node with visited tracking will reach all nodes; in a disconnected graph, repeat from unvisited nodes to cover all components.",
+      "mistakes": [
+        "Forgetting visited tracking in cyclic/undirected graphs",
+        "Confusing graph traversal with tree traversal where no cycles exist",
+        "Not handling disconnected graphs when full coverage is required"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "GTB-L2",
+      "title": "Breadth-First Search (BFS)",
+      "concept": "BFS explores neighbors level by level from a starting node using a queue (FIFO). It first visits all nodes at distance 1, then distance 2, etc. In an unweighted graph, BFS finds the shortest path in terms of number of edges from the source to reachable nodes.",
+      "formula": "BFS: enqueue start, mark visited; while queue not empty: u=dequeue, process u, for each unvisited neighbor v enqueue and mark visited. Uses queue.",
+      "worked_example": "Graph edges 1-2,1-3,2-4 from source 1: BFS order can be 1,2,3,4 (level 0:1, level 1:2,3, level 2:4).",
+      "mistakes": [
+        "Using a stack instead of a queue for BFS",
+        "Marking visited when dequeued instead of when enqueued (can cause duplicates in queue)",
+        "Assuming BFS gives shortest path in weighted graphs without modification"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "GTB-L3",
+      "title": "Depth-First Search (DFS)",
+      "concept": "DFS explores as far as possible along one branch before backtracking. It can be implemented recursively (using call stack) or iteratively using an explicit stack. DFS is useful for cycle detection, topological sorting (on DAGs), connectivity, and exploring components.",
+      "formula": "DFS: visit node, mark visited, recursively/stack-visit each unvisited neighbor. Uses stack/recursion (LIFO behavior).",
+      "worked_example": "Same graph from source 1: DFS order could be 1,2,4,3 (go deep via 2 to 4, backtrack to visit 3) depending on neighbor order.",
+      "mistakes": [
+        "Assuming DFS traversal order is unique without specifying neighbor order",
+        "Stack overflow risk for very deep recursion in some environments",
+        "Confusing DFS with BFS level-order behavior"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "GTB-PRACTICE-001",
+      "question": "BFS uses which data structure to manage traversal order?",
+      "options": {
+        "A": "Stack",
+        "B": "Queue",
+        "C": "Heap only",
+        "D": "Hash set only"
+      },
+      "correct_answer": "B",
+      "explanation": "Breadth-First Search processes nodes in FIFO order using a queue to explore level by level.",
+      "difficulty": "easy",
+      "sub_topic": "bfs",
+      "misconception_tags": [
+        "data_structure_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-PRACTICE-002",
+      "question": "DFS can be implemented using:",
+      "options": {
+        "A": "Recursion or an explicit stack",
+        "B": "Queue only",
+        "C": "Sorting only",
+        "D": "Binary search"
+      },
+      "correct_answer": "A",
+      "explanation": "DFS follows LIFO behavior and can be implemented via recursive calls (implicit stack) or an explicit stack.",
+      "difficulty": "easy",
+      "sub_topic": "dfs",
+      "misconception_tags": [
+        "data_structure_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-PRACTICE-003",
+      "question": "In an unweighted graph, BFS from a source node finds:",
+      "options": {
+        "A": "Longest path always",
+        "B": "Shortest path in number of edges to reachable nodes",
+        "C": "Minimum spanning tree directly",
+        "D": "Topological order always"
+      },
+      "correct_answer": "B",
+      "explanation": "Because BFS explores in increasing order of edge distance from the source, it yields shortest paths (fewest edges) in unweighted graphs.",
+      "difficulty": "medium",
+      "sub_topic": "bfs",
+      "misconception_tags": [
+        "property_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-PRACTICE-004",
+      "question": "Why is a visited structure important in graph traversal?",
+      "options": {
+        "A": "To sort nodes",
+        "B": "To avoid revisiting nodes and infinite loops in cyclic graphs",
+        "C": "To increase edge count",
+        "D": "To remove all edges"
+      },
+      "correct_answer": "B",
+      "explanation": "Graphs can contain cycles; tracking visited nodes prevents repeated processing and non-terminating traversal.",
+      "difficulty": "easy",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "visited_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-PRACTICE-005",
+      "question": "Time complexity of BFS/DFS using adjacency list representation is:",
+      "options": {
+        "A": "O(V)",
+        "B": "O(E)",
+        "C": "O(V+E)",
+        "D": "O(V*E*E)"
+      },
+      "correct_answer": "C",
+      "explanation": "Each vertex is visited once and each edge is explored (once or twice depending on directed/undirected), giving O(V+E).",
+      "difficulty": "medium",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "complexity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "GTB-001",
+      "question": "Which traversal explores neighbors before going deeper to next level?",
+      "options": {
+        "A": "DFS",
+        "B": "BFS",
+        "C": "Inorder always",
+        "D": "Binary search"
+      },
+      "correct_answer": "B",
+      "explanation": "BFS visits all immediate neighbors (current level) before moving to nodes at the next distance level.",
+      "difficulty": "easy",
+      "sub_topic": "bfs",
+      "misconception_tags": [
+        "traversal_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-002",
+      "question": "Which traversal goes deep along a path before backtracking?",
+      "options": {
+        "A": "BFS",
+        "B": "DFS",
+        "C": "Level order in same sense as BFS queue only? No, DFS",
+        "D": "None"
+      },
+      "correct_answer": "B",
+      "explanation": "Depth-First Search explores as far as possible along each branch before backtracking to explore other branches.",
+      "difficulty": "easy",
+      "sub_topic": "dfs",
+      "misconception_tags": [
+        "traversal_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-003",
+      "question": "In a cyclic graph, traversal without a visited check can lead to:",
+      "options": {
+        "A": "Faster completion",
+        "B": "Infinite loop/repeated visits",
+        "C": "Automatic cycle removal",
+        "D": "Sorted output"
+      },
+      "correct_answer": "B",
+      "explanation": "Without tracking visited nodes, traversal can revisit nodes indefinitely by following cycle edges.",
+      "difficulty": "easy",
+      "sub_topic": "overview",
+      "misconception_tags": [
+        "visited_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-004",
+      "question": "BFS is particularly suitable for finding shortest path in:",
+      "options": {
+        "A": "Unweighted graphs (by number of edges)",
+        "B": "Any negatively weighted graph",
+        "C": "All weighted graphs without changes",
+        "D": "Graphs with no edges only"
+      },
+      "correct_answer": "A",
+      "explanation": "BFS guarantees shortest path in terms of edge count in unweighted graphs; weighted graphs require algorithms like Dijkstra (non-negative) or others.",
+      "difficulty": "medium",
+      "sub_topic": "bfs",
+      "misconception_tags": [
+        "application_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "GTB-005",
+      "question": "A recursive DFS uses which implicit structure?",
+      "options": {
+        "A": "Queue",
+        "B": "Call stack",
+        "C": "Hash map only",
+        "D": "Heap"
+      },
+      "correct_answer": "B",
+      "explanation": "Recursive DFS relies on the program's call stack to remember the path and backtrack when needed.",
+      "difficulty": "easy",
+      "sub_topic": "dfs",
+      "misconception_tags": [
+        "data_structure_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

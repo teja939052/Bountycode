@@ -1,5 +1,6 @@
-import { useState, useEffect, useReducedMotion } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import useReducedMotion from "../hooks/useReducedMotion";
 
 export default function BadgeCard({
   userId,

@@ -1,0 +1,316 @@
+{
+  "topic": "sql_aggregation_groupby",
+  "subject": "sql",
+  "pattern": "sql_aggregation_groupby",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "aggregate_functions",
+      "title": "Aggregate Functions",
+      "concept": "Aggregate functions perform calculations on a set of rows and return a single value. Common aggregates are COUNT (number of rows/values), SUM (total), AVG (average), MIN (minimum), and MAX (maximum). Aggregates ignore NULLs in most cases (except COUNT(*) which counts rows).",
+      "formula": "COUNT(*) counts rows; COUNT(col) counts non-NULL values; SUM(col), AVG(col), MIN(col), MAX(col) operate on column values.",
+      "worked_example": "For values 10, NULL, 20 in a column, COUNT(*) over 3 rows returns 3, COUNT(col) returns 2, SUM(col) returns 30, AVG(col) returns 15.",
+      "mistakes": [
+        "Confusing COUNT(*) with COUNT(column)",
+        "Assuming NULLs are treated as 0 in SUM/AVG",
+        "Expecting aggregates to return one value per row without GROUP BY"
+      ]
+    },
+    {
+      "id": "group_by_clause",
+      "title": "GROUP BY Clause",
+      "concept": "GROUP BY groups rows that share the same values in specified columns so aggregate functions can be applied per group. When GROUP BY is used, selected non-aggregated columns must appear in the GROUP BY clause (in standard SQL).",
+      "formula": "SELECT group_col, AGG_FUNC(col) FROM table GROUP BY group_col; one result row per group.",
+      "worked_example": "SELECT dept_id, COUNT(*) FROM employees GROUP BY dept_id; returns the number of employees in each department.",
+      "mistakes": [
+        "Selecting non-aggregated columns that are not in GROUP BY",
+        "Grouping by the wrong column for the intended summary",
+        "Confusing WHERE (filters rows before grouping) with HAVING (filters groups)"
+      ]
+    },
+    {
+      "id": "having_clause",
+      "title": "Filtering Groups with HAVING",
+      "concept": "HAVING filters groups after aggregation, often using aggregate conditions (e.g., COUNT(*) > 5). WHERE cannot use aggregate functions on grouped results; HAVING is used for conditions on aggregates or grouped outcomes.",
+      "formula": "SELECT group_col, COUNT(*) FROM table GROUP BY group_col HAVING COUNT(*) > n;",
+      "worked_example": "SELECT dept_id, AVG(salary) FROM employees GROUP BY dept_id HAVING AVG(salary) > 50000; returns only departments whose average salary exceeds 50000.",
+      "mistakes": [
+        "Using WHERE with aggregate conditions instead of HAVING",
+        "Placing HAVING before GROUP BY in syntax",
+        "Applying conditions that should filter individual rows in HAVING instead of WHERE"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLAGG-PRACTICE-001",
+      "question": "Which aggregate function returns the number of rows in a result set, including rows with NULL values?",
+      "options": {
+        "A": "COUNT(column_name)",
+        "B": "COUNT(*)",
+        "C": "SUM(*)",
+        "D": "TOTAL(*)"
+      },
+      "correct_answer": "B",
+      "explanation": "COUNT(*) counts all rows in the result set. COUNT(column_name) counts only non-NULL values in that column.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate_functions",
+      "misconception_tags": [
+        "count_star_vs_column_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-PRACTICE-002",
+      "question": "What does the AVG function return?",
+      "options": {
+        "A": "The total of values",
+        "B": "The number of values",
+        "C": "The average of values",
+        "D": "The middle value"
+      },
+      "correct_answer": "C",
+      "explanation": "AVG(column) computes the arithmetic mean of the non-NULL values in that column.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate_functions",
+      "misconception_tags": [
+        "aggregate_function_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-PRACTICE-003",
+      "question": "Which clause is used to group rows that have the same values in specified columns?",
+      "options": {
+        "A": "ORDER BY",
+        "B": "GROUP BY",
+        "C": "WHERE",
+        "D": "HAVING"
+      },
+      "correct_answer": "B",
+      "explanation": "GROUP BY groups rows sharing the same values in the specified column(s), typically so aggregate functions can produce per-group results.",
+      "difficulty": "easy",
+      "sub_topic": "group_by_clause",
+      "misconception_tags": [
+        "clause_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-PRACTICE-004",
+      "question": "Which clause is used to filter groups based on aggregate conditions (e.g., COUNT(*) > 3)?",
+      "options": {
+        "A": "WHERE",
+        "B": "ORDER BY",
+        "C": "HAVING",
+        "D": "LIMIT"
+      },
+      "correct_answer": "C",
+      "explanation": "HAVING filters groups after aggregation and can use aggregate functions in its condition. WHERE filters individual rows before grouping and cannot use aggregates on grouped results.",
+      "difficulty": "easy",
+      "sub_topic": "having_clause",
+      "misconception_tags": [
+        "where_vs_having_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-PRACTICE-005",
+      "question": "Given table Sales(region, amount) with rows (North, 100), (South, 200), (North, 150), what does 'SELECT region, SUM(amount) FROM Sales GROUP BY region' return for North?",
+      "options": {
+        "A": "100",
+        "B": "150",
+        "C": "250",
+        "D": "450"
+      },
+      "correct_answer": "C",
+      "explanation": "Rows for North have amounts 100 and 150. SUM(amount) for North = 100 + 150 = 250.",
+      "difficulty": "easy",
+      "sub_topic": "group_by_clause",
+      "misconception_tags": [
+        "group_aggregation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLAGG-001",
+      "question": "Which SQL function returns the largest value in a column?",
+      "options": {
+        "A": "HIGH()",
+        "B": "MAX()",
+        "C": "TOP()",
+        "D": "LARGEST()"
+      },
+      "correct_answer": "B",
+      "explanation": "MAX(column) is the aggregate function that returns the maximum (largest) value from the specified column.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate_functions",
+      "misconception_tags": [
+        "aggregate_function_name_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-002",
+      "question": "In a query using GROUP BY, which statement is true?",
+      "options": {
+        "A": "Non-aggregated columns in SELECT should be in GROUP BY",
+        "B": "GROUP BY must come after ORDER BY",
+        "C": "HAVING cannot be used with GROUP BY",
+        "D": "Aggregate functions cannot be used with GROUP BY"
+      },
+      "correct_answer": "A",
+      "explanation": "In standard SQL, columns in the SELECT list that are not aggregated must appear in the GROUP BY clause so each result row represents a well-defined group.",
+      "difficulty": "medium",
+      "sub_topic": "group_by_clause",
+      "misconception_tags": [
+        "group_by_rule_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-003",
+      "question": "You want to show departments having more than 10 employees. Which query fragment is correct?",
+      "options": {
+        "A": "WHERE COUNT(*) > 10",
+        "B": "HAVING COUNT(*) > 10",
+        "C": "GROUP BY COUNT(*) > 10",
+        "D": "ORDER BY COUNT(*) > 10"
+      },
+      "correct_answer": "B",
+      "explanation": "Conditions on aggregate results (like COUNT(*) per group) must be specified in the HAVING clause after GROUP BY, not in WHERE.",
+      "difficulty": "easy",
+      "sub_topic": "having_clause",
+      "misconception_tags": [
+        "where_vs_having_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-004",
+      "question": "A column has values 5, NULL, 15. What is the result of SUM of that column (ignoring non-numeric issues)?",
+      "options": {
+        "A": "20",
+        "B": "NULL",
+        "C": "0",
+        "D": "15"
+      },
+      "correct_answer": "A",
+      "explanation": "Aggregate functions like SUM ignore NULL values. SUM of 5 and 15 is 20.",
+      "difficulty": "easy",
+      "sub_topic": "aggregate_functions",
+      "misconception_tags": [
+        "null_in_aggregate_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLAGG-005",
+      "question": "Which is the correct logical order for these clauses in a SELECT query: WHERE, GROUP BY, HAVING?",
+      "options": {
+        "A": "GROUP BY, WHERE, HAVING",
+        "B": "WHERE, HAVING, GROUP BY",
+        "C": "WHERE, GROUP BY, HAVING",
+        "D": "HAVING, WHERE, GROUP BY"
+      },
+      "correct_answer": "C",
+      "explanation": "Rows are filtered by WHERE, then grouped by GROUP BY, then groups are filtered by HAVING. So the order is WHERE, GROUP BY, HAVING.",
+      "difficulty": "medium",
+      "sub_topic": "having_clause",
+      "misconception_tags": [
+        "clause_order_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

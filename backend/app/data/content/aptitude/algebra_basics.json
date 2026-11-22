@@ -1,0 +1,318 @@
+{
+  "topic": "algebra_basics",
+  "subject": "quantitative_aptitude",
+  "pattern": "algebra_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "linear_equations",
+      "title": "Linear Equations and Simplification",
+      "concept": "A linear equation in one variable has the form ax + b = c, where a != 0. Solving means isolating the variable using inverse operations while keeping the equation balanced. Simplify by combining like terms and clearing parentheses before solving.",
+      "formula": "If ax + b = c then x = (c - b) / a (a != 0).",
+      "worked_example": "Solve 3x - 7 = 11. Add 7 to both sides: 3x = 18. Divide by 3: x = 6. Check: 3*6 - 7 = 11.",
+      "mistakes": [
+        "Changing only one side of the equation instead of both",
+        "Sign errors when moving terms across the equals sign",
+        "Dividing before correctly combining like terms"
+      ]
+    },
+    {
+      "id": "algebraic_identities",
+      "title": "Common Algebraic Identities",
+      "concept": "Algebraic identities are equalities true for all values of variables. They help expand, factor, and simplify expressions quickly, especially in aptitude problems involving squares and products.",
+      "formula": "(a+b)^2 = a^2 + 2ab + b^2; (a-b)^2 = a^2 - 2ab + b^2; (a+b)(a-b) = a^2 - b^2.",
+      "worked_example": "Compute 103^2 using (100+3)^2 = 100^2 + 2*100*3 + 3^2 = 10000 + 600 + 9 = 10609.",
+      "mistakes": [
+        "Writing (a+b)^2 as a^2 + b^2 and missing the 2ab term",
+        "Sign mistakes in (a-b)^2 expansion",
+        "Applying difference of squares when signs/terms do not match"
+      ]
+    },
+    {
+      "id": "word_to_equation",
+      "title": "Translating Word Problems to Equations",
+      "concept": "Many aptitude questions describe relationships in words. Define variables clearly, translate phrases into algebraic expressions, form an equation, solve, and interpret the result in context (including units and feasibility).",
+      "formula": "Identify unknown -> assign variable -> translate statements -> solve -> verify in original context.",
+      "worked_example": "A number increased by 8 is 3 times the number decreased by 4. Let number be x: x + 8 = 3(x - 4). So x + 8 = 3x - 12 => 20 = 2x => x = 10. Check: 18 = 3*6 = 18.",
+      "mistakes": [
+        "Misreading phrases like 'decreased by' or 'times' in the wrong order",
+        "Not defining what the variable represents",
+        "Accepting an algebraic solution that is invalid in context (e.g., negative quantity when not allowed)"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "ALG-PRACTICE-001",
+      "question": "Solve for x: 5x + 3 = 28.",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "7"
+      },
+      "correct_answer": "B",
+      "explanation": "Subtract 3 from both sides: 5x = 25. Divide by 5: x = 5.",
+      "difficulty": "easy",
+      "sub_topic": "linear_equations",
+      "misconception_tags": [
+        "inverse_operation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-PRACTICE-002",
+      "question": "What is the value of (a + b)^2 when a = 7 and b = 3?",
+      "options": {
+        "A": "49",
+        "B": "58",
+        "C": "100",
+        "D": "109"
+      },
+      "correct_answer": "C",
+      "explanation": "(a+b)^2 = a^2 + 2ab + b^2 = 49 + 42 + 9 = 100. Alternatively (7+3)^2 = 10^2 = 100.",
+      "difficulty": "easy",
+      "sub_topic": "algebraic_identities",
+      "misconception_tags": [
+        "missing_middle_term"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-PRACTICE-003",
+      "question": "Simplify: (x + 5)(x - 5).",
+      "options": {
+        "A": "x^2 - 25",
+        "B": "x^2 + 25",
+        "C": "x^2 - 10x - 25",
+        "D": "x^2 + 10x - 25"
+      },
+      "correct_answer": "A",
+      "explanation": "Using difference of squares identity: (x+5)(x-5) = x^2 - 5^2 = x^2 - 25.",
+      "difficulty": "easy",
+      "sub_topic": "algebraic_identities",
+      "misconception_tags": [
+        "difference_of_squares_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-PRACTICE-004",
+      "question": "If 2x - 4 = x + 9, what is x?",
+      "options": {
+        "A": "5",
+        "B": "9",
+        "C": "13",
+        "D": "15"
+      },
+      "correct_answer": "C",
+      "explanation": "Subtract x from both sides: x - 4 = 9. Add 4: x = 13. Check: 2*13 - 4 = 22 and 13 + 9 = 22.",
+      "difficulty": "easy",
+      "sub_topic": "linear_equations",
+      "misconception_tags": [
+        "sign_error_transposition"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-PRACTICE-005",
+      "question": "The sum of a number and 12 is equal to twice the number. What is the number?",
+      "options": {
+        "A": "6",
+        "B": "10",
+        "C": "12",
+        "D": "24"
+      },
+      "correct_answer": "C",
+      "explanation": "Let the number be n. Then n + 12 = 2n. Subtract n from both sides: 12 = n. So the number is 12.",
+      "difficulty": "easy",
+      "sub_topic": "word_to_equation",
+      "misconception_tags": [
+        "translation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ALG-001",
+      "question": "Solve for x: 4(x - 2) = 2x + 6.",
+      "options": {
+        "A": "5",
+        "B": "7",
+        "C": "8",
+        "D": "10"
+      },
+      "correct_answer": "B",
+      "explanation": "Expand left side: 4x - 8 = 2x + 6. Subtract 2x: 2x - 8 = 6. Add 8: 2x = 14. Divide by 2: x = 7.",
+      "difficulty": "easy",
+      "sub_topic": "linear_equations",
+      "misconception_tags": [
+        "distribution_error",
+        "sign_error_transposition"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-002",
+      "question": "Using identities, what is the value of 99^2?",
+      "options": {
+        "A": "9801",
+        "B": "9901",
+        "C": "9810",
+        "D": "9701"
+      },
+      "correct_answer": "A",
+      "explanation": "99^2 = (100 - 1)^2 = 100^2 - 2*100*1 + 1^2 = 10000 - 200 + 1 = 9801.",
+      "difficulty": "medium",
+      "sub_topic": "algebraic_identities",
+      "misconception_tags": [
+        "sign_error_in_identity"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-003",
+      "question": "If (x + y) = 12 and (x - y) = 4, what is the value of x^2 - y^2?",
+      "options": {
+        "A": "16",
+        "B": "32",
+        "C": "48",
+        "D": "64"
+      },
+      "correct_answer": "C",
+      "explanation": "Use identity x^2 - y^2 = (x + y)(x - y). Substituting values: 12 * 4 = 48.",
+      "difficulty": "medium",
+      "sub_topic": "algebraic_identities",
+      "misconception_tags": [
+        "identity_application_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-004",
+      "question": "Three times a number minus 5 equals 16. What is the number?",
+      "options": {
+        "A": "5",
+        "B": "7",
+        "C": "9",
+        "D": "11"
+      },
+      "correct_answer": "B",
+      "explanation": "Let the number be n: 3n - 5 = 16. Add 5: 3n = 21. Divide by 3: n = 7.",
+      "difficulty": "easy",
+      "sub_topic": "word_to_equation",
+      "misconception_tags": [
+        "translation_error",
+        "inverse_operation_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "ALG-005",
+      "question": "If 3x + 2y = 16 and x = 2, what is the value of y?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6"
+      },
+      "correct_answer": "C",
+      "explanation": "Substitute x = 2: 3*2 + 2y = 16 => 6 + 2y = 16 => 2y = 10 => y = 5.",
+      "difficulty": "easy",
+      "sub_topic": "linear_equations",
+      "misconception_tags": [
+        "substitution_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

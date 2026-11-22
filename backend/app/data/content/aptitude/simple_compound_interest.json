@@ -1,0 +1,210 @@
+﻿{
+  "topic": "simple_compound_interest",
+  "subject": "quantitative_aptitude",
+  "pattern": "simple_compound_interest",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "simple_interest",
+      "title": "Simple Interest",
+      "concept": "Simple Interest (SI) is calculated only on the original principal for the entire time period. The interest amount stays the same each year when rate and principal are constant.",
+      "formula": "SI = (P x R x T) / 100, where P = principal, R = rate % per annum, T = time in years. Amount A = P + SI.",
+      "worked_example": "Find SI on Rs. 8,000 at 5% per annum for 3 years. SI = (8000 x 5 x 3)/100 = 1200. Amount = 8000 + 1200 = Rs. 9,200.",
+      "mistakes": [
+        "Forgetting to divide by 100 when rate is given as a percentage.",
+        "Using time in months without converting to years (months/12).",
+        "Adding interest to principal before applying SI formula (SI uses original principal)."
+      ]
+    },
+    {
+      "id": "compound_interest",
+      "title": "Compound Interest",
+      "concept": "Compound Interest (CI) is calculated on principal plus accumulated interest. Each period, interest is added to the amount and future interest is computed on this increased amount (compounding).",
+      "formula": "Amount A = P(1 + R/100)^T (compounded annually). CI = A - P = P[(1 + R/100)^T - 1].",
+      "worked_example": "Find CI on Rs. 10,000 at 10% per annum for 2 years, compounded annually. A = 10000(1 + 10/100)^2 = 10000(1.1)^2 = 10000 x 1.21 = Rs. 12,100. CI = 12100 - 10000 = Rs. 2,100.",
+      "mistakes": [
+        "Using SI formula for compound interest problems.",
+        "Forgetting that CI for 1 year equals SI for 1 year (when compounded annually), but differs for more than 1 year.",
+        "Not adjusting rate/time when compounding is half-yearly or quarterly (rate becomes R/2 or R/4, time becomes 2T or 4T)."
+      ]
+    },
+    {
+      "id": "difference_and_comparison",
+      "title": "Difference and Comparison (SI vs CI)",
+      "concept": "For the same principal, rate, and time (>1 year), CI is greater than SI because CI earns interest on interest. The difference comes from interest on the first year's interest in the second year, and so on.",
+      "formula": "For 2 years (annual compounding): Difference = CI - SI = P(R/100)^2. For 3 years: Difference = P(R/100)^2(3 + R/100).",
+      "worked_example": "P = Rs. 5,000, R = 8% per annum, T = 2 years. SI = (5000x8x2)/100 = 800. CI = 5000[(1.08)^2 - 1] = 5000(1.1664 - 1) = 832. Difference = 32. Using formula: 5000 x (8/100)^2 = 5000 x 0.0064 = 32.",
+      "mistakes": [
+        "Assuming CI is always double SI (not true; depends on rate and time).",
+        "Using the 2-year difference formula for 3 years.",
+        "Comparing SI and CI when compounding frequency differs without adjusting terms."
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SCI-PRACTICE-001",
+      "question": "What is the simple interest on Rs. 6,000 at 4% per annum for 5 years?",
+      "options": {"A": "Rs. 1,000", "B": "Rs. 1,200", "C": "Rs. 1,400", "D": "Rs. 1,500"},
+      "correct_answer": "B",
+      "explanation": "SI = (P x R x T) / 100 = (6000 x 4 x 5) / 100 = 120000 / 100 = Rs. 1,200.",
+      "difficulty": "easy",
+      "sub_topic": "simple_interest",
+      "misconception_tags": ["percentage_division_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-PRACTICE-002",
+      "question": "A sum of Rs. 2,000 amounts to Rs. 2,400 in 4 years at simple interest. The rate of interest per annum is:",
+      "options": {"A": "4%", "B": "5%", "C": "6%", "D": "8%"},
+      "correct_answer": "B",
+      "explanation": "SI = Amount - Principal = 2400 - 2000 = Rs. 400. Using SI = (P x R x T)/100: 400 = (2000 x R x 4)/100 = 80R. So R = 400/80 = 5% per annum.",
+      "difficulty": "easy",
+      "sub_topic": "simple_interest",
+      "misconception_tags": ["using_amount_as_principal"],
+      "company_tags": ["tcs", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-PRACTICE-003",
+      "question": "The compound interest on Rs. 5,000 for 2 years at 10% per annum, compounded annually, is:",
+      "options": {"A": "Rs. 1,000", "B": "Rs. 1,025", "C": "Rs. 1,050", "D": "Rs. 1,100"},
+      "correct_answer": "C",
+      "explanation": "Amount = 5000(1 + 10/100)^2 = 5000(1.1)^2 = 5000 x 1.21 = Rs. 6,050. CI = Amount - Principal = 6050 - 5000 = Rs. 1,050.",
+      "difficulty": "easy",
+      "sub_topic": "compound_interest",
+      "misconception_tags": ["using_simple_interest_formula"],
+      "company_tags": ["infosys", "wipro", "capgemini"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-PRACTICE-004",
+      "question": "The difference between compound interest and simple interest on Rs. 4,000 for 2 years at 5% per annum is:",
+      "options": {"A": "Rs. 5", "B": "Rs. 10", "C": "Rs. 20", "D": "Rs. 25"},
+      "correct_answer": "B",
+      "explanation": "For 2 years, Difference = P(R/100)^2 = 4000 x (5/100)^2 = 4000 x (1/400) = Rs. 10.",
+      "difficulty": "medium",
+      "sub_topic": "difference_and_comparison",
+      "misconception_tags": ["manual_ci_si_subtraction_error"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-PRACTICE-005",
+      "question": "In how many years will Rs. 1,000 amount to Rs. 1,331 at 10% compound interest per annum, compounded annually?",
+      "options": {"A": "2 years", "B": "3 years", "C": "4 years", "D": "5 years"},
+      "correct_answer": "B",
+      "explanation": "Amount = P(1 + R/100)^T => 1331 = 1000(1.1)^T => (1.1)^T = 1.331. Since 1.1^3 = 1.331, T = 3 years.",
+      "difficulty": "medium",
+      "sub_topic": "compound_interest",
+      "misconception_tags": ["exponent_calculation_error"],
+      "company_tags": ["cognizant", "wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SCI-001",
+      "question": "At what rate percent per annum will Rs. 2,500 amount to Rs. 3,000 in 4 years at simple interest?",
+      "options": {"A": "4%", "B": "5%", "C": "6%", "D": "8%"},
+      "correct_answer": "B",
+      "explanation": "SI = 3000 - 2500 = 500. R = (SI x 100)/(P x T) = (500 x 100)/(2500 x 4) = 50000/10000 = 5% per annum.",
+      "difficulty": "easy",
+      "sub_topic": "simple_interest",
+      "misconception_tags": ["rate_formula_error"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-002",
+      "question": "The simple interest on a certain sum for 2 years at 6% per annum is Rs. 240. The compound interest on the same sum for the same period and rate is:",
+      "options": {"A": "Rs. 247.20", "B": "Rs. 246.00", "C": "Rs. 248.40", "D": "Rs. 252.00"},
+      "correct_answer": "A",
+      "explanation": "SI for 2 years = 240 => SI for 1 year = 120. So P = (SI x 100)/(R x T) = (240 x 100)/(6 x 2) = 2000. CI = 2000[(1.06)^2 - 1] = 2000(1.1236 - 1) = 2000 x 0.1236 = Rs. 247.20. (Alternatively, CI = SI + P(R/100)^2 = 240 + 2000x0.0036 = 247.20.)",
+      "difficulty": "medium",
+      "sub_topic": "difference_and_comparison",
+      "misconception_tags": ["principal_recovery_error"],
+      "company_tags": ["tcs", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-003",
+      "question": "A sum becomes Rs. 1,210 in 2 years at 10% per annum compound interest, compounded annually. The principal is:",
+      "options": {"A": "Rs. 900", "B": "Rs. 1,000", "C": "Rs. 1,050", "D": "Rs. 1,100"},
+      "correct_answer": "B",
+      "explanation": "A = P(1 + R/100)^T => 1210 = P(1.1)^2 = P(1.21). So P = 1210/1.21 = Rs. 1,000.",
+      "difficulty": "easy",
+      "sub_topic": "compound_interest",
+      "misconception_tags": ["reverse_ci_error"],
+      "company_tags": ["infosys", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-004",
+      "question": "If the simple interest on a sum for 3 years at 8% per annum is Rs. 720, the principal is:",
+      "options": {"A": "Rs. 2,500", "B": "Rs. 3,000", "C": "Rs. 3,200", "D": "Rs. 3,600"},
+      "correct_answer": "B",
+      "explanation": "P = (SI x 100)/(R x T) = (720 x 100)/(8 x 3) = 72000/24 = Rs. 3,000.",
+      "difficulty": "easy",
+      "sub_topic": "simple_interest",
+      "misconception_tags": ["principal_formula_error"],
+      "company_tags": ["wipro", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SCI-005",
+      "question": "The amount on Rs. 8,000 at 5% compound interest per annum for 3 years (compounded annually) is closest to:",
+      "options": {"A": "Rs. 9,200", "B": "Rs. 9,261", "C": "Rs. 9,300", "D": "Rs. 9,331"},
+      "correct_answer": "B",
+      "explanation": "A = 8000(1.05)^3. Compute stepwise: 1.05^2 = 1.1025, 1.05^3 = 1.1025 x 1.05 = 1.157625. A = 8000 x 1.157625 = Rs. 9,261 (approximately).",
+      "difficulty": "medium",
+      "sub_topic": "compound_interest",
+      "misconception_tags": ["compounding_arithmetic_error"],
+      "company_tags": ["tcs", "cognizant"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

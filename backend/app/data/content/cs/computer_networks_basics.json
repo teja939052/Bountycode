@@ -1,0 +1,316 @@
+{
+  "topic": "computer_networks_basics",
+  "subject": "cs",
+  "pattern": "computer_networks_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "networking_fundamentals",
+      "title": "Networking Fundamentals",
+      "concept": "A computer network connects devices to share data and resources. Key elements include nodes (hosts/devices), links, protocols (rules for communication), and addressing (identifying devices). Networks can be classified by scale such as LAN (local) and WAN (wide area).",
+      "formula": "Communication requires: sender + receiver + medium + message + protocol + addressing.",
+      "worked_example": "In an office LAN, computers connect via switches and use protocols like Ethernet/IP to exchange files and access shared printers within the same local network.",
+      "mistakes": [
+        "Confusing a protocol with a physical device",
+        "Assuming LAN and WAN differ only by speed (they primarily differ by geographic scope/ownership/technology)",
+        "Mixing up the roles of addressing and routing"
+      ]
+    },
+    {
+      "id": "osi_tcpip_models",
+      "title": "OSI and TCP/IP Layered Models",
+      "concept": "Layered models organize networking functions. The OSI model has 7 layers (Physical to Application) as a conceptual reference. The TCP/IP model has practical layers (Link/Network/Internet, Internet, Transport, Application in common descriptions) used on the Internet. Each layer provides services to the layer above and uses services below.",
+      "formula": "OSI (top to bottom): Application, Presentation, Session, Transport, Network, Data Link, Physical. TCP/IP common view: Application, Transport, Internet, Network Access/Link.",
+      "worked_example": "When loading a web page, the application layer uses HTTP/HTTPS, transport layer uses TCP for reliable delivery, internet layer uses IP for addressing/routing, and link/physical layers handle local transmission over Wi-Fi/Ethernet.",
+      "mistakes": [
+        "Memorizing layer names without associating basic responsibilities",
+        "Confusing transport-layer responsibilities (TCP/UDP) with network-layer responsibilities (IP routing)",
+        "Assuming OSI and TCP/IP layer counts map one-to-one in all representations"
+      ]
+    },
+    {
+      "id": "common_protocols_and_addressing",
+      "title": "Common Protocols and Addressing Basics",
+      "concept": "IP addresses identify devices on networks; IPv4 uses 32-bit addresses commonly written in dotted decimal form. DNS maps human-readable names to IP addresses. HTTP/HTTPS are application protocols for web communication; TCP provides reliable, ordered delivery while UDP is connectionless with lower overhead.",
+      "formula": "DNS: name -> IP. TCP: reliable/ordered. UDP: connectionless/best-effort. IP: logical addressing and routing.",
+      "worked_example": "Typing a URL triggers DNS to resolve the domain to an IP address. The browser then uses HTTPS over TCP to request the page from the server at that IP.",
+      "mistakes": [
+        "Thinking DNS is used to assign MAC addresses (it resolves names to IPs)",
+        "Assuming UDP guarantees delivery/order like TCP",
+        "Confusing IP addresses (logical, network layer) with MAC addresses (link layer)"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "NET-PRACTICE-001",
+      "question": "Which network type typically covers a small geographic area like a home, office, or campus building?",
+      "options": {
+        "A": "WAN",
+        "B": "LAN",
+        "C": "MAN",
+        "D": "PAN only at global scale"
+      },
+      "correct_answer": "B",
+      "explanation": "A LAN (Local Area Network) typically spans a limited area such as a home, office, or building.",
+      "difficulty": "easy",
+      "sub_topic": "networking_fundamentals",
+      "misconception_tags": [
+        "network_scope_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-PRACTICE-002",
+      "question": "How many layers are there in the OSI model?",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "7",
+        "D": "8"
+      },
+      "correct_answer": "C",
+      "explanation": "The OSI reference model consists of 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.",
+      "difficulty": "easy",
+      "sub_topic": "osi_tcpip_models",
+      "misconception_tags": [
+        "layer_count_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-PRACTICE-003",
+      "question": "Which protocol is primarily responsible for translating domain names to IP addresses?",
+      "options": {
+        "A": "HTTP",
+        "B": "FTP",
+        "C": "DNS",
+        "D": "SMTP"
+      },
+      "correct_answer": "C",
+      "explanation": "DNS (Domain Name System) resolves human-readable domain names into IP addresses.",
+      "difficulty": "easy",
+      "sub_topic": "common_protocols_and_addressing",
+      "misconception_tags": [
+        "protocol_purpose_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-PRACTICE-004",
+      "question": "Which transport protocol provides reliable, ordered delivery of data?",
+      "options": {
+        "A": "UDP",
+        "B": "IP",
+        "C": "TCP",
+        "D": "ICMP"
+      },
+      "correct_answer": "C",
+      "explanation": "TCP (Transmission Control Protocol) provides connection-oriented, reliable, and ordered data delivery with retransmission and flow control mechanisms.",
+      "difficulty": "easy",
+      "sub_topic": "common_protocols_and_addressing",
+      "misconception_tags": [
+        "tcp_udp_confusion"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-PRACTICE-005",
+      "question": "At which OSI layer does IP (Internet Protocol) primarily operate?",
+      "options": {
+        "A": "Data Link layer",
+        "B": "Network layer",
+        "C": "Transport layer",
+        "D": "Application layer"
+      },
+      "correct_answer": "B",
+      "explanation": "IP provides logical addressing and routing, which are functions of the Network layer (Layer 3) in the OSI model.",
+      "difficulty": "easy",
+      "sub_topic": "osi_tcpip_models",
+      "misconception_tags": [
+        "layer_protocol_mapping_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "NET-001",
+      "question": "What is the primary role of a protocol in a computer network?",
+      "options": {
+        "A": "To increase the physical size of the network",
+        "B": "To define rules for communication between devices",
+        "C": "To store user passwords permanently",
+        "D": "To replace all hardware components"
+      },
+      "correct_answer": "B",
+      "explanation": "Protocols are sets of rules and conventions that govern how devices format, transmit, and receive data so they can communicate correctly.",
+      "difficulty": "easy",
+      "sub_topic": "networking_fundamentals",
+      "misconception_tags": [
+        "protocol_definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-002",
+      "question": "Which OSI layer is responsible for end-to-end transport services such as segmentation and reliability (as provided by TCP)?",
+      "options": {
+        "A": "Network layer",
+        "B": "Session layer",
+        "C": "Transport layer",
+        "D": "Physical layer"
+      },
+      "correct_answer": "C",
+      "explanation": "The Transport layer (Layer 4) provides end-to-end communication services; TCP at this layer offers reliable, ordered delivery and flow control.",
+      "difficulty": "medium",
+      "sub_topic": "osi_tcpip_models",
+      "misconception_tags": [
+        "layer_responsibility_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-003",
+      "question": "Which statement correctly contrasts TCP and UDP?",
+      "options": {
+        "A": "Both guarantee ordered delivery",
+        "B": "TCP is connection-oriented and reliable; UDP is connectionless and does not guarantee delivery",
+        "C": "UDP is used for logical addressing, TCP for name resolution",
+        "D": "TCP and UDP are application-layer protocols for web browsing only"
+      },
+      "correct_answer": "B",
+      "explanation": "TCP establishes connections and provides reliable, ordered delivery. UDP is connectionless with lower overhead but does not guarantee delivery or order.",
+      "difficulty": "medium",
+      "sub_topic": "common_protocols_and_addressing",
+      "misconception_tags": [
+        "tcp_udp_confusion"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-004",
+      "question": "An IPv4 address is commonly represented as:",
+      "options": {
+        "A": "A 48-bit hexadecimal value separated by colons",
+        "B": "Four decimal numbers (0-255) separated by dots",
+        "C": "A single binary digit",
+        "D": "A domain name like example.com"
+      },
+      "correct_answer": "B",
+      "explanation": "IPv4 addresses are 32-bit addresses typically written in dotted-decimal notation as four octets (e.g., 192.168.1.1).",
+      "difficulty": "easy",
+      "sub_topic": "common_protocols_and_addressing",
+      "misconception_tags": [
+        "address_format_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NET-005",
+      "question": "Which layer of the OSI model is closest to the end user and provides network services to applications like web browsers and email clients?",
+      "options": {
+        "A": "Physical layer",
+        "B": "Transport layer",
+        "C": "Network layer",
+        "D": "Application layer"
+      },
+      "correct_answer": "D",
+      "explanation": "The Application layer (Layer 7) is the top OSI layer and interfaces directly with end-user applications, providing network services such as HTTP, FTP, and SMTP.",
+      "difficulty": "easy",
+      "sub_topic": "osi_tcpip_models",
+      "misconception_tags": [
+        "layer_order_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

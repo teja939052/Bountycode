@@ -1,0 +1,325 @@
+{
+  "topic": "sql_indexes_basics",
+  "subject": "sql",
+  "pattern": "sql_indexes_basics",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "index_concept",
+      "title": "What Is an Index",
+      "concept": "An index is a database structure that improves the speed of data retrieval operations on a table at the cost of additional storage and slower writes (INSERT/UPDATE/DELETE) because the index must also be maintained. Indexes work like a lookup structure for column values.",
+      "formula": "Benefit: faster SELECT/WHERE/JOIN/ORDER BY lookups (in many cases). Cost: extra space + write overhead.",
+      "worked_example": "If a users table has many rows and queries frequently filter by email, an index on email can help the database locate matching rows faster than scanning the entire table.",
+      "mistakes": [
+        "Assuming indexes always make every query faster",
+        "Ignoring write-performance and storage overhead",
+        "Creating indexes on every column without considering query patterns"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "index_types_and_usage",
+      "title": "Types and Common Usage",
+      "concept": "Common index concepts include single-column and composite (multi-column) indexes, and unique indexes that also enforce uniqueness. Indexes are most useful on columns frequently used in WHERE clauses, JOIN conditions, and sometimes ORDER BY/GROUP BY, depending on the query and DBMS.",
+      "formula": "Single-column: index(col). Composite: index(col1, col2) (order matters). Unique index: enforces unique values.",
+      "worked_example": "A composite index on (last_name, first_name) can help queries filtering by last_name, or by last_name and first_name, but may be less useful for queries filtering only by first_name (depending on DBMS/optimizer).",
+      "mistakes": [
+        "Assuming column order in composite indexes does not matter",
+        "Expecting an index to be used regardless of query selectivity or optimizer choice",
+        "Confusing unique index with primary key (related but not identical in all contexts)"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "when_not_to_index",
+      "title": "When Indexes May Not Help",
+      "concept": "Indexes may provide little benefit on very small tables, columns with very low selectivity (many repeated values), or when queries read most of the table. Over-indexing can degrade write performance and increase maintenance complexity.",
+      "formula": "Consider: table size, selectivity, read/write ratio, query patterns. Measure with execution plans where possible.",
+      "worked_example": "Indexing a boolean column like is_active in a table where values are almost evenly split may not significantly speed up queries that return many rows.",
+      "mistakes": [
+        "Indexing low-selectivity columns expecting large gains",
+        "Adding indexes without checking actual query workloads",
+        "Forgetting that indexes must be updated on data modifications"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQLIDX-PRACTICE-001",
+      "question": "What is the primary purpose of an index in a database table?",
+      "options": {
+        "A": "To store table backups",
+        "B": "To speed up data retrieval operations",
+        "C": "To replace primary keys",
+        "D": "To prevent all duplicate rows automatically"
+      },
+      "correct_answer": "B",
+      "explanation": "Indexes are designed to improve the speed of data retrieval (e.g., SELECT queries with filters/joins), though they add storage and write overhead.",
+      "difficulty": "easy",
+      "sub_topic": "index_concept",
+      "misconception_tags": [
+        "purpose_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-PRACTICE-002",
+      "question": "Which of the following is a common trade-off of adding indexes?",
+      "options": {
+        "A": "Faster reads and faster writes with no extra storage",
+        "B": "Slower reads but no storage cost",
+        "C": "Faster reads but extra storage and slower writes",
+        "D": "No effect on performance"
+      },
+      "correct_answer": "C",
+      "explanation": "Indexes can speed up reads but consume additional storage and require maintenance during INSERT/UPDATE/DELETE operations, which can slow writes.",
+      "difficulty": "easy",
+      "sub_topic": "index_concept",
+      "misconception_tags": [
+        "tradeoff_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-PRACTICE-003",
+      "question": "An index created on multiple columns together is called:",
+      "options": {
+        "A": "Single-column index",
+        "B": "Composite index",
+        "C": "Foreign index",
+        "D": "Default index"
+      },
+      "correct_answer": "B",
+      "explanation": "A composite (multi-column) index is defined on two or more columns, and the order of columns in the index matters.",
+      "difficulty": "easy",
+      "sub_topic": "index_types_and_usage",
+      "misconception_tags": [
+        "index_type_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-PRACTICE-004",
+      "question": "Indexes are generally most useful on columns that are:",
+      "options": {
+        "A": "Never used in queries",
+        "B": "Frequently used in WHERE/JOIN conditions",
+        "C": "Always containing the same value for all rows",
+        "D": "Only storing NULLs"
+      },
+      "correct_answer": "B",
+      "explanation": "Columns frequently used for filtering (WHERE), joining (JOIN), or sometimes sorting/grouping are common candidates for indexing.",
+      "difficulty": "easy",
+      "sub_topic": "index_types_and_usage",
+      "misconception_tags": [
+        "usage_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-PRACTICE-005",
+      "question": "Why might an index on a very low-selectivity column (many repeated values) be less effective?",
+      "options": {
+        "A": "Because indexes only work on text",
+        "B": "Because the query may still need to read many rows",
+        "C": "Because the table becomes unsorted",
+        "D": "Because primary keys stop working"
+      },
+      "correct_answer": "B",
+      "explanation": "If many rows share the same value, an index lookup may still return a large portion of the table, reducing the performance benefit compared to selective columns.",
+      "difficulty": "medium",
+      "sub_topic": "when_not_to_index",
+      "misconception_tags": [
+        "selectivity_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQLIDX-001",
+      "question": "Which operation is most likely to become slower after adding many indexes to a table?",
+      "options": {
+        "A": "SELECT with indexed filter",
+        "B": "INSERT",
+        "C": "Reading metadata only",
+        "D": "Creating a database"
+      },
+      "correct_answer": "B",
+      "explanation": "INSERT (and also UPDATE/DELETE) operations may become slower because each relevant index must be updated in addition to the table data.",
+      "difficulty": "easy",
+      "sub_topic": "index_concept",
+      "misconception_tags": [
+        "tradeoff_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-002",
+      "question": "In a composite index on (col1, col2), which statement is generally true?",
+      "options": {
+        "A": "Column order never matters",
+        "B": "Column order can affect how the index is used by queries",
+        "C": "It can only be used if col2 is filtered alone",
+        "D": "It replaces the need for all other indexes"
+      },
+      "correct_answer": "B",
+      "explanation": "Composite index column order matters because the index is organized by leading columns; query patterns and optimizer behavior determine effective usage.",
+      "difficulty": "medium",
+      "sub_topic": "index_types_and_usage",
+      "misconception_tags": [
+        "composite_order_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-003",
+      "question": "A unique index on a column primarily helps to:",
+      "options": {
+        "A": "Allow duplicate values for faster grouping",
+        "B": "Enforce uniqueness and support lookups on that column",
+        "C": "Disable constraints",
+        "D": "Store rows in random order only"
+      },
+      "correct_answer": "B",
+      "explanation": "A unique index enforces unique values in the indexed column(s) and can also be used by the database to speed up searches on those columns.",
+      "difficulty": "easy",
+      "sub_topic": "index_types_and_usage",
+      "misconception_tags": [
+        "unique_index_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-004",
+      "question": "Which scenario is least likely to benefit from adding an index?",
+      "options": {
+        "A": "A large table with frequent searches on a highly selective column",
+        "B": "A small table that is fully scanned quickly",
+        "C": "Frequent JOINs on a key column",
+        "D": "Frequent WHERE filters on a selective column"
+      },
+      "correct_answer": "B",
+      "explanation": "On very small tables, a full table scan can already be fast, so the overhead of maintaining and using an index may provide little or no benefit.",
+      "difficulty": "easy",
+      "sub_topic": "when_not_to_index",
+      "misconception_tags": [
+        "index_use_case_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SQLIDX-005",
+      "question": "What should be considered before creating an index?",
+      "options": {
+        "A": "Only the column name length",
+        "B": "Query patterns, read/write ratio, selectivity, and storage/maintenance cost",
+        "C": "Only whether the column is numeric",
+        "D": "Indexes require no maintenance after creation"
+      },
+      "correct_answer": "B",
+      "explanation": "Effective indexing depends on how data is queried and modified, how selective the column is, and the costs of extra storage and index maintenance.",
+      "difficulty": "medium",
+      "sub_topic": "when_not_to_index",
+      "misconception_tags": [
+        "design_consideration_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

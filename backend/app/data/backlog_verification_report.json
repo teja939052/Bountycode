@@ -1,0 +1,1400 @@
+{
+ "generated_by": "scripts/verify_backlog.py",
+ "engine": "deterministic exec + schema gate (no LLM, no network)",
+ "bank": "questions_bank.json",
+ "total": 11776,
+ "verdicts": {
+  "PASS": 5971,
+  "FAIL": 5500,
+  "SKIP": 305
+ },
+ "pass_rate": 50.7,
+ "elapsed_seconds": 6.36,
+ "by_type": {
+  "aptitude": {
+   "FAIL": 1041
+  },
+  "coding": {
+   "PASS": 5679,
+   "FAIL": 2483
+  },
+  "cs": {
+   "FAIL": 10
+  },
+  "cs_fundamentals": {
+   "PASS": 189,
+   "FAIL": 5
+  },
+  "debugging": {
+   "SKIP": 133
+  },
+  "interview": {
+   "SKIP": 148
+  },
+  "logical": {
+   "FAIL": 792
+  },
+  "sql": {
+   "PASS": 103,
+   "FAIL": 829
+  },
+  "system_design": {
+   "SKIP": 24
+  },
+  "verbal": {
+   "FAIL": 340
+  }
+ },
+ "reasons": {
+  "PLACEHOLDER:all_options_placeholder": 2173,
+  "TypeError": 1323,
+  "CONTENT_BROKEN:not_a_query": 618,
+  "NO_ORACLE": 305,
+  "CONTENT_MISSING:no_sql": 211,
+  "NO_TESTS": 155,
+  "MISMATCH exp='0' got='leetcode'": 50,
+  "MISMATCH exp='4' got='[1,-1,5,-2,3], k=3'": 50,
+  "MISMATCH exp='result' got='tokens'": 50,
+  "MISMATCH exp='[[1], [3, 2]]' got='tree'": 50,
+  "MISMATCH exp='true' got='anagram, nagaram'": 50,
+  "MISMATCH exp='2' got='[1,1,1], k=2'": 50,
+  "MISMATCH exp='2' got='[-1,2,1,-4], target=1'": 50,
+  "MISMATCH exp='node' got='root, p, q'": 50,
+  "MISMATCH exp='5' got='hit -> cog'": 50,
+  "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'": 50,
+  "AttributeError": 49,
+  "NameError": 37,
+  "MISMATCH exp='3' got='0'": 31,
+  "MISMATCH exp='node' got='root + p + q'": 30,
+  "MISMATCH exp='12.75' got='[1,12,-5,-6,50,3], k=4'": 30,
+  "MISMATCH exp='sum' got='nums + l + r'": 30,
+  "MISMATCH exp='true' got='A man, a plan, a canal": 30,
+  "MISMATCH exp='1219' got=\"'1432219', k=3\"": 30,
+  "MISMATCH exp='true' got='tree + target'": 30,
+  "MISMATCH exp='count' got='coins + amount'": 30,
+  "MISMATCH exp='distance' got='grid'": 25,
+  "MISMATCH exp='chunked reverse' got='list + k'": 25,
+  "MISMATCH exp='updated image' got='image + sr + sc + color'": 25,
+  "MISMATCH exp='combinatorial count' got='m x n grid'": 25,
+  "NO_FUNC": 21,
+  "EXEC_FAIL": 17,
+  "MISMATCH exp='result' got='[]'": 10,
+  "SCHEMA_BROKEN:option_count_0": 9,
+  "SyntaxError": 7,
+  "IndexError": 5,
+  "SCHEMA_BROKEN:options_unparseable": 5,
+  "ValueError": 4,
+  "SCHEMA_BROKEN:answer_key_option_mismatch": 1,
+  "MISMATCH exp=\"['((()))', '(()())', '(())()', '()(())', '()()()']\" got='3'": 1,
+  "MISMATCH exp='[0, 1, 1]' got='2'": 1,
+  "MISMATCH exp='[1,3,12,0,0]' got='None'": 1,
+  "MISMATCH exp='[5,6,7,1,2,3,4]' got='None'": 1,
+  "MISMATCH exp='[0,0,1,1,2,2]' got='None'": 1,
+  "MISMATCH exp=\"[['a', 'a', 'b'], ['aa', 'b']]\" got='\"aab\"'": 1,
+  "MISMATCH exp='wertf' got=''": 1,
+  "MISMATCH exp='7' got='0'": 1,
+  "MISMATCH exp=\"[['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]\" got='4'": 1,
+  "MISMATCH exp='None' got='23'": 1,
+  "MISMATCH exp='[9, 7, 8]' got='\"ababcbacadefegdehijhklij\"'": 1,
+  "MISMATCH exp='0' got='\"0\"'": 1,
+  "MISMATCH exp='true' got='false'": 1,
+  "MISMATCH exp='[[-12, -10], [19, 23], [23, 27]]' got='[[-12, -10]]'": 1
+ },
+ "sample_failures": {
+  "PLACEHOLDER": [
+   {
+    "id": "apt-001",
+    "type": "aptitude",
+    "reason": "PLACEHOLDER:all_options_placeholder",
+    "question": "(Successive percent) A price is raised by 20% then reduced by 20%. The net change is:"
+   },
+   {
+    "id": "apt-002",
+    "type": "aptitude",
+    "reason": "PLACEHOLDER:all_options_placeholder",
+    "question": "(Time & Work) A completes a job in 12 days, B in 18 days. Working together, they finish in:"
+   },
+   {
+    "id": "apt-003",
+    "type": "aptitude",
+    "reason": "PLACEHOLDER:all_options_placeholder",
+    "question": "(Profit & Loss) Bought for Rs 500, sold for Rs 575. The profit percentage is:"
+   },
+   {
+    "id": "apt-004",
+    "type": "aptitude",
+    "reason": "PLACEHOLDER:all_options_placeholder",
+    "question": "(Ratio) A invests Rs 2000, B invests Rs 3000 in a venture. Profit of Rs 5000 is shared as:"
+   },
+   {
+    "id": "apt-005",
+    "type": "aptitude",
+    "reason": "PLACEHOLDER:all_options_placeholder",
+    "question": "(Speed) A train travels 120 km at 40 km/h, then 120 km at 60 km/h. Average speed for the whole trip is:"
+   }
+  ],
+  "SCHEMA_BROKEN": [
+   {
+    "id": "cs-034",
+    "type": "cs_fundamentals",
+    "reason": "SCHEMA_BROKEN:answer_key_option_mismatch",
+    "question": "(OS) In paging, memory is divided into:"
+   },
+   {
+    "id": "apt_359420281",
+    "type": "cs",
+    "reason": "SCHEMA_BROKEN:option_count_0",
+    "question": "What is the IP address class if the first octet is 192?"
+   },
+   {
+    "id": "apt_647693166",
+    "type": "cs",
+    "reason": "SCHEMA_BROKEN:option_count_0",
+    "question": "What is the difference between DELETE and TRUNCATE?"
+   },
+   {
+    "id": "apt_731983367",
+    "type": "cs",
+    "reason": "SCHEMA_BROKEN:option_count_0",
+    "question": "What is the difference between process and thread?"
+   },
+   {
+    "id": "apt_482181718",
+    "type": "cs",
+    "reason": "SCHEMA_BROKEN:option_count_0",
+    "question": "What is the difference between RAM and ROM?"
+   }
+  ],
+  "NO_ORACLE": [
+   {
+    "id": "int-001",
+    "type": "interview",
+    "reason": "NO_ORACLE",
+    "question": "Tell me about a time you led a team through a difficult project. What was your approach and what was the outco"
+   },
+   {
+    "id": "q_03301",
+    "type": "interview",
+    "reason": "NO_ORACLE",
+    "question": "Describe a time you had a disagreement with a teammate. How did you resolve it?"
+   },
+   {
+    "id": "q_03302",
+    "type": "interview",
+    "reason": "NO_ORACLE",
+    "question": "Tell me about a time you failed at something. What did you learn?"
+   },
+   {
+    "id": "int-004",
+    "type": "interview",
+    "reason": "NO_ORACLE",
+    "question": "Design a URL shortening service like bit.ly. How would you handle 100M URLs with 10M daily active users?"
+   },
+   {
+    "id": "int-005",
+    "type": "interview",
+    "reason": "NO_ORACLE",
+    "question": "Design a database schema for a ride-sharing app like Uber. Include drivers, riders, trips, and payments."
+   }
+  ],
+  "NameError": [
+   {
+    "id": "pp-add-strings",
+    "type": "coding",
+    "reason": "NameError",
+    "question": "Add Strings"
+   },
+   {
+    "id": "pp-zigzag-conversion",
+    "type": "coding",
+    "reason": "NameError",
+    "question": "Zigzag Conversion"
+   },
+   {
+    "id": "pp-greatest-common-divisor-of-strings",
+    "type": "coding",
+    "reason": "NameError",
+    "question": "Greatest Common Divisor of Strings"
+   },
+   {
+    "id": "pp-clone-graph",
+    "type": "coding",
+    "reason": "NameError",
+    "question": "Clone Graph"
+   },
+   {
+    "id": "st-find-first-last",
+    "type": "coding",
+    "reason": "NameError",
+    "question": "Find First and Last Position of Element in Sorted Array"
+   }
+  ],
+  "TypeError": [
+   {
+    "id": "draft-01994",
+    "type": "coding",
+    "reason": "TypeError",
+    "question": "Return 0! -> 1."
+   },
+   {
+    "id": "nc-sliding-window-maximum",
+    "type": "coding",
+    "reason": "TypeError",
+    "question": "Sliding Window Maximum"
+   },
+   {
+    "id": "nc-daily-temperatures",
+    "type": "coding",
+    "reason": "TypeError",
+    "question": "Daily Temperatures"
+   },
+   {
+    "id": "nc-3sum",
+    "type": "coding",
+    "reason": "TypeError",
+    "question": "3Sum"
+   },
+   {
+    "id": "nc-two-sum",
+    "type": "coding",
+    "reason": "TypeError",
+    "question": "Two Sum"
+   }
+  ],
+  "CONTENT_BROKEN": [
+   {
+    "id": "draft-07918",
+    "type": "sql",
+    "reason": "CONTENT_BROKEN:not_a_query",
+    "question": "What is 1NF?"
+   },
+   {
+    "id": "draft-07908",
+    "type": "sql",
+    "reason": "CONTENT_BROKEN:not_a_query",
+    "question": "What is a subquery?"
+   },
+   {
+    "id": "draft-07083",
+    "type": "sql",
+    "reason": "CONTENT_BROKEN:not_a_query",
+    "question": "Table emp(id, sal) rows [{'id': 16, 'sal': 44}, {'id': 18, 'sal': 94}, {'id': 21, 'sal': 60}]. Query: SELECT i"
+   },
+   {
+    "id": "draft-07086",
+    "type": "sql",
+    "reason": "CONTENT_BROKEN:not_a_query",
+    "question": "Table emp(id, sal) rows [{'id': 9, 'sal': 97}, {'id': 13, 'sal': 38}, {'id': 33, 'sal': 31}]. Query: SELECT id"
+   },
+   {
+    "id": "draft-07087",
+    "type": "sql",
+    "reason": "CONTENT_BROKEN:not_a_query",
+    "question": "Table emp(id, sal) rows [{'id': 17, 'sal': 72}, {'id': 30, 'sal': 97}, {'id': 48, 'sal': 68}]. Query: SELECT i"
+   }
+  ],
+  "CONTENT_MISSING": [
+   {
+    "id": "draft-07084",
+    "type": "sql",
+    "reason": "CONTENT_MISSING:no_sql",
+    "question": "Table emp(id, sal) rows [{'id': 16, 'sal': 75}, {'id': 17, 'sal': 39}, {'id': 23, 'sal': 71}]. Query: SELECT i"
+   },
+   {
+    "id": "draft-07085",
+    "type": "sql",
+    "reason": "CONTENT_MISSING:no_sql",
+    "question": "Table emp(id, sal) rows [{'id': 18, 'sal': 87}, {'id': 24, 'sal': 45}, {'id': 35, 'sal': 36}]. Query: SELECT i"
+   },
+   {
+    "id": "draft-07088",
+    "type": "sql",
+    "reason": "CONTENT_MISSING:no_sql",
+    "question": "Table emp(id, sal) rows [{'id': 2, 'sal': 81}, {'id': 33, 'sal': 53}, {'id': 48, 'sal': 88}]. Query: SELECT id"
+   },
+   {
+    "id": "draft-07090",
+    "type": "sql",
+    "reason": "CONTENT_MISSING:no_sql",
+    "question": "Table emp(id, sal) rows [{'id': 12, 'sal': 55}, {'id': 28, 'sal': 68}, {'id': 31, 'sal': 92}]. Query: SELECT i"
+   },
+   {
+    "id": "draft-07096",
+    "type": "sql",
+    "reason": "CONTENT_MISSING:no_sql",
+    "question": "Table emp(id, sal) rows [{'id': 13, 'sal': 85}, {'id': 14, 'sal': 51}, {'id': 24, 'sal': 50}]. Query: SELECT i"
+   }
+  ],
+  "MISMATCH exp=\"['((()))', '(()())', '(())()', '()(())', '()()()']\" got='3'": [
+   {
+    "id": "nc-generate-parentheses",
+    "type": "coding",
+    "reason": "MISMATCH exp=\"['((()))', '(()())', '(())()', '()(())', '()()()']\" got='3'",
+    "question": "Generate Parentheses"
+   }
+  ],
+  "ValueError": [
+   {
+    "id": "pp-course-schedule",
+    "type": "coding",
+    "reason": "ValueError",
+    "question": "Course Schedule"
+   },
+   {
+    "id": "pp-best-time-to-buy-sell-stock-iv",
+    "type": "coding",
+    "reason": "ValueError",
+    "question": "Best Time to Buy and Sell Stock IV"
+   },
+   {
+    "id": "pp-course-schedule-ii",
+    "type": "coding",
+    "reason": "ValueError",
+    "question": "Course Schedule II"
+   },
+   {
+    "id": "pp-graph-valid-tree",
+    "type": "coding",
+    "reason": "ValueError",
+    "question": "Graph Valid Tree"
+   }
+  ],
+  "SyntaxError": [
+   {
+    "id": "pp-combination-sum",
+    "type": "coding",
+    "reason": "SyntaxError",
+    "question": "Combination Sum"
+   },
+   {
+    "id": "pp-combination-sum-ii",
+    "type": "coding",
+    "reason": "SyntaxError",
+    "question": "Combination Sum II"
+   },
+   {
+    "id": "pp-maximum-length-repeated-subarray",
+    "type": "coding",
+    "reason": "SyntaxError",
+    "question": "Maximum Length of Repeated Subarray"
+   },
+   {
+    "id": "pp-max-sum-3-non-overlapping-subarrays",
+    "type": "coding",
+    "reason": "SyntaxError",
+    "question": "Maximum Sum of 3 Non-Overlapping Subarrays"
+   },
+   {
+    "id": "pp-word-search-ii",
+    "type": "coding",
+    "reason": "SyntaxError",
+    "question": "Word Search II"
+   }
+  ],
+  "MISMATCH exp='[0, 1, 1]' got='2'": [
+   {
+    "id": "nc-counting-bits",
+    "type": "coding",
+    "reason": "MISMATCH exp='[0, 1, 1]' got='2'",
+    "question": "Counting Bits"
+   }
+  ],
+  "IndexError": [
+   {
+    "id": "pp-distinct-subsequences",
+    "type": "coding",
+    "reason": "IndexError",
+    "question": "Distinct Subsequences"
+   },
+   {
+    "id": "pp-minimum-window-subsequence",
+    "type": "coding",
+    "reason": "IndexError",
+    "question": "Minimum Window Subsequence"
+   },
+   {
+    "id": "pp-word-ladder",
+    "type": "coding",
+    "reason": "IndexError",
+    "question": "Word Ladder"
+   },
+   {
+    "id": "pp-permutation-in-string",
+    "type": "coding",
+    "reason": "IndexError",
+    "question": "Permutation in String"
+   },
+   {
+    "id": "pp-find-all-anagrams-in-a-string",
+    "type": "coding",
+    "reason": "IndexError",
+    "question": "Find All Anagrams in a String"
+   }
+  ],
+  "MISMATCH exp='result' got='[]'": [
+   {
+    "id": "bc4c7b0f-e554-40e7-811f-37e4a16253fb",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='[]'",
+    "question": "Advanced Array Problem 1: Complex subarray/segment tree problem."
+   },
+   {
+    "id": "9a03f17f-6eb5-4130-8672-2bc43d0000de",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='[]'",
+    "question": "Advanced Array Problem 2: Complex subarray/segment tree problem."
+   },
+   {
+    "id": "b9fa8997-9b72-4525-baf0-2e34b7a1f9cd",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='[]'",
+    "question": "Advanced Array Problem 3: Complex subarray/segment tree problem."
+   },
+   {
+    "id": "c78eff7d-068b-4aa7-b8f1-d050e9c51b05",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='[]'",
+    "question": "Advanced Array Problem 4: Complex subarray/segment tree problem."
+   },
+   {
+    "id": "e04a3e73-33c7-41bb-b339-3f477a2abdcf",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='[]'",
+    "question": "Advanced Array Problem 5: Complex subarray/segment tree problem."
+   }
+  ],
+  "AttributeError": [
+   {
+    "id": "f27cb421-2506-4810-92c3-1144deb3913a",
+    "type": "coding",
+    "reason": "AttributeError",
+    "question": "Tree Problem 1: Binary tree traversal problem."
+   },
+   {
+    "id": "3a607c38-d84d-49cb-8c65-1c0d3b922294",
+    "type": "coding",
+    "reason": "AttributeError",
+    "question": "Tree Problem 2: Binary tree depth calculation problem."
+   },
+   {
+    "id": "b53c431d-0a7d-4a80-bc51-0fc1e3035685",
+    "type": "coding",
+    "reason": "AttributeError",
+    "question": "Tree Problem 3: Binary tree LCA problem."
+   },
+   {
+    "id": "a261090c-577c-4f67-8cd9-bcf12f962cdf",
+    "type": "coding",
+    "reason": "AttributeError",
+    "question": "Tree Problem 4: Binary tree path sum problem."
+   },
+   {
+    "id": "7013e486-472e-4524-8c83-1d13d8fea991",
+    "type": "coding",
+    "reason": "AttributeError",
+    "question": "Tree Problem 5: Binary tree traversal problem."
+   }
+  ],
+  "MISMATCH exp='distance' got='grid'": [
+   {
+    "id": "bulk2-0007",
+    "type": "coding",
+    "reason": "MISMATCH exp='distance' got='grid'",
+    "question": "Shortest Path in Binary Matrix Variant 1"
+   },
+   {
+    "id": "bulk2-0017",
+    "type": "coding",
+    "reason": "MISMATCH exp='distance' got='grid'",
+    "question": "Shortest Path in Binary Matrix Variant 2"
+   },
+   {
+    "id": "bulk2-0027",
+    "type": "coding",
+    "reason": "MISMATCH exp='distance' got='grid'",
+    "question": "Shortest Path in Binary Matrix Variant 3"
+   },
+   {
+    "id": "bulk2-0037",
+    "type": "coding",
+    "reason": "MISMATCH exp='distance' got='grid'",
+    "question": "Shortest Path in Binary Matrix Variant 4"
+   },
+   {
+    "id": "bulk2-0047",
+    "type": "coding",
+    "reason": "MISMATCH exp='distance' got='grid'",
+    "question": "Shortest Path in Binary Matrix Variant 5"
+   }
+  ],
+  "MISMATCH exp='node' got='root + p + q'": [
+   {
+    "id": "bulk3-0097",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root + p + q'",
+    "question": "Lowest Common Ancestor in BST Variant 10"
+   },
+   {
+    "id": "bulk3-0107",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root + p + q'",
+    "question": "Lowest Common Ancestor in BST Variant 11"
+   },
+   {
+    "id": "bulk3-0117",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root + p + q'",
+    "question": "Lowest Common Ancestor in BST Variant 12"
+   },
+   {
+    "id": "bulk3-0127",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root + p + q'",
+    "question": "Lowest Common Ancestor in BST Variant 13"
+   },
+   {
+    "id": "bulk3-0137",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root + p + q'",
+    "question": "Lowest Common Ancestor in BST Variant 14"
+   }
+  ],
+  "MISMATCH exp='0' got='leetcode'": [
+   {
+    "id": "bulk4-0004",
+    "type": "coding",
+    "reason": "MISMATCH exp='0' got='leetcode'",
+    "question": "First Unique Character in a String Variant 1"
+   },
+   {
+    "id": "bulk4-0014",
+    "type": "coding",
+    "reason": "MISMATCH exp='0' got='leetcode'",
+    "question": "First Unique Character in a String Variant 2"
+   },
+   {
+    "id": "bulk4-0024",
+    "type": "coding",
+    "reason": "MISMATCH exp='0' got='leetcode'",
+    "question": "First Unique Character in a String Variant 3"
+   },
+   {
+    "id": "bulk4-0034",
+    "type": "coding",
+    "reason": "MISMATCH exp='0' got='leetcode'",
+    "question": "First Unique Character in a String Variant 4"
+   },
+   {
+    "id": "bulk4-0044",
+    "type": "coding",
+    "reason": "MISMATCH exp='0' got='leetcode'",
+    "question": "First Unique Character in a String Variant 5"
+   }
+  ],
+  "MISMATCH exp='4' got='[1,-1,5,-2,3], k=3'": [
+   {
+    "id": "bulk5-0001",
+    "type": "coding",
+    "reason": "MISMATCH exp='4' got='[1,-1,5,-2,3], k=3'",
+    "question": "Maximum Size Subarray Sum Equals k Variant 1"
+   },
+   {
+    "id": "bulk5-0011",
+    "type": "coding",
+    "reason": "MISMATCH exp='4' got='[1,-1,5,-2,3], k=3'",
+    "question": "Maximum Size Subarray Sum Equals k Variant 2"
+   },
+   {
+    "id": "bulk5-0021",
+    "type": "coding",
+    "reason": "MISMATCH exp='4' got='[1,-1,5,-2,3], k=3'",
+    "question": "Maximum Size Subarray Sum Equals k Variant 3"
+   },
+   {
+    "id": "bulk5-0031",
+    "type": "coding",
+    "reason": "MISMATCH exp='4' got='[1,-1,5,-2,3], k=3'",
+    "question": "Maximum Size Subarray Sum Equals k Variant 4"
+   },
+   {
+    "id": "bulk5-0041",
+    "type": "coding",
+    "reason": "MISMATCH exp='4' got='[1,-1,5,-2,3], k=3'",
+    "question": "Maximum Size Subarray Sum Equals k Variant 5"
+   }
+  ],
+  "MISMATCH exp='result' got='tokens'": [
+   {
+    "id": "bulk5-0005",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='tokens'",
+    "question": "Evaluate Reverse Polish Notation Variant 1"
+   },
+   {
+    "id": "bulk5-0015",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='tokens'",
+    "question": "Evaluate Reverse Polish Notation Variant 2"
+   },
+   {
+    "id": "bulk5-0025",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='tokens'",
+    "question": "Evaluate Reverse Polish Notation Variant 3"
+   },
+   {
+    "id": "bulk5-0035",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='tokens'",
+    "question": "Evaluate Reverse Polish Notation Variant 4"
+   },
+   {
+    "id": "bulk5-0045",
+    "type": "coding",
+    "reason": "MISMATCH exp='result' got='tokens'",
+    "question": "Evaluate Reverse Polish Notation Variant 5"
+   }
+  ],
+  "MISMATCH exp='[[1], [3, 2]]' got='tree'": [
+   {
+    "id": "bulk5-0007",
+    "type": "coding",
+    "reason": "MISMATCH exp='[[1], [3, 2]]' got='tree'",
+    "question": "Binary Tree Zigzag Level Order Traversal Variant 1"
+   },
+   {
+    "id": "bulk5-0017",
+    "type": "coding",
+    "reason": "MISMATCH exp='[[1], [3, 2]]' got='tree'",
+    "question": "Binary Tree Zigzag Level Order Traversal Variant 2"
+   },
+   {
+    "id": "bulk5-0027",
+    "type": "coding",
+    "reason": "MISMATCH exp='[[1], [3, 2]]' got='tree'",
+    "question": "Binary Tree Zigzag Level Order Traversal Variant 3"
+   },
+   {
+    "id": "bulk5-0037",
+    "type": "coding",
+    "reason": "MISMATCH exp='[[1], [3, 2]]' got='tree'",
+    "question": "Binary Tree Zigzag Level Order Traversal Variant 4"
+   },
+   {
+    "id": "bulk5-0047",
+    "type": "coding",
+    "reason": "MISMATCH exp='[[1], [3, 2]]' got='tree'",
+    "question": "Binary Tree Zigzag Level Order Traversal Variant 5"
+   }
+  ],
+  "MISMATCH exp='[1,3,12,0,0]' got='None'": [
+   {
+    "id": "lc_283",
+    "type": "coding",
+    "reason": "MISMATCH exp='[1,3,12,0,0]' got='None'",
+    "question": "Move Zeroes: move all zeros to the end, preserving order of non-zeros."
+   }
+  ],
+  "MISMATCH exp='[5,6,7,1,2,3,4]' got='None'": [
+   {
+    "id": "lc_189",
+    "type": "coding",
+    "reason": "MISMATCH exp='[5,6,7,1,2,3,4]' got='None'",
+    "question": "Rotate Array: rotate elements to the right by k steps (in-place)."
+   }
+  ],
+  "MISMATCH exp='[0,0,1,1,2,2]' got='None'": [
+   {
+    "id": "lc_75",
+    "type": "coding",
+    "reason": "MISMATCH exp='[0,0,1,1,2,2]' got='None'",
+    "question": "Sort Colors: sort 0/1/2 in-place (Dutch National Flag)."
+   }
+  ],
+  "NO_FUNC": [
+   {
+    "id": "nc-maximum-product-subarray",
+    "type": "coding",
+    "reason": "NO_FUNC",
+    "question": "Maximum Product Subarray"
+   },
+   {
+    "id": "nc-median-two-sorted-arrays",
+    "type": "coding",
+    "reason": "NO_FUNC",
+    "question": "Median of Two Sorted Arrays"
+   },
+   {
+    "id": "nc-longest-repeating-char-replacement",
+    "type": "coding",
+    "reason": "NO_FUNC",
+    "question": "Longest Repeating Character Replacement"
+   },
+   {
+    "id": "nc-hand-of-straights",
+    "type": "coding",
+    "reason": "NO_FUNC",
+    "question": "Hand of Straights"
+   },
+   {
+    "id": "nc-cheapest-flights-k-stops",
+    "type": "coding",
+    "reason": "NO_FUNC",
+    "question": "Cheapest Flights Within K Stops"
+   }
+  ],
+  "MISMATCH exp=\"[['a', 'a', 'b'], ['aa', 'b']]\" got='\"aab\"'": [
+   {
+    "id": "nc-palindrome-partitioning",
+    "type": "coding",
+    "reason": "MISMATCH exp=\"[['a', 'a', 'b'], ['aa', 'b']]\" got='\"aab\"'",
+    "question": "Palindrome Partitioning"
+   }
+  ],
+  "EXEC_FAIL": [
+   {
+    "id": "nc-pow",
+    "type": "coding",
+    "reason": "EXEC_FAIL",
+    "question": "Pow(x, n)"
+   },
+   {
+    "id": "apt_637594763",
+    "type": "coding",
+    "reason": "EXEC_FAIL",
+    "question": "Write a SQL query to find the second highest salary from the Employee table."
+   },
+   {
+    "id": "apt_7266407",
+    "type": "coding",
+    "reason": "EXEC_FAIL",
+    "question": "Write a Python function to reverse a string."
+   },
+   {
+    "id": "apt_67932588",
+    "type": "coding",
+    "reason": "EXEC_FAIL",
+    "question": "Write a Java program to find the sum of digits of a given number."
+   },
+   {
+    "id": "apt_778295151",
+    "type": "coding",
+    "reason": "EXEC_FAIL",
+    "question": "Write a program to find the factorial of a number using recursion."
+   }
+  ],
+  "MISMATCH exp='wertf' got=''": [
+   {
+    "id": "graph-dp-02",
+    "type": "coding",
+    "reason": "MISMATCH exp='wertf' got=''",
+    "question": "Alien Dictionary"
+   }
+  ],
+  "MISMATCH exp='7' got='0'": [
+   {
+    "id": "graph-dp-08",
+    "type": "coding",
+    "reason": "MISMATCH exp='7' got='0'",
+    "question": "Minimum Path Sum"
+   }
+  ],
+  "NO_TESTS": [
+   {
+    "id": "q_000000",
+    "type": "coding",
+    "reason": "NO_TESTS",
+    "question": "Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a giv"
+   },
+   {
+    "id": "q_000002",
+    "type": "coding",
+    "reason": "NO_TESTS",
+    "question": "Given an integer array nums, return true if any value appears at least twice, else false.\n\nExample: nums=[1,2,"
+   },
+   {
+    "id": "q_000004",
+    "type": "coding",
+    "reason": "NO_TESTS",
+    "question": "Given an array of strings strs, group the anagrams together.\n\nExample: strs=['eat','tea','tan','ate','nat','ba"
+   },
+   {
+    "id": "q_000008",
+    "type": "coding",
+    "reason": "NO_TESTS",
+    "question": "Given an integer array nums, return an array answer such that answer[i] equals product of all elements except "
+   },
+   {
+    "id": "q_000010",
+    "type": "coding",
+    "reason": "NO_TESTS",
+    "question": "Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence. O(n)"
+   }
+  ],
+  "MISMATCH exp='true' got='anagram, nagaram'": [
+   {
+    "id": "bulk5-0004",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='anagram, nagaram'",
+    "question": "Valid Anagram Variant 1"
+   },
+   {
+    "id": "bulk5-0014",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='anagram, nagaram'",
+    "question": "Valid Anagram Variant 2"
+   },
+   {
+    "id": "bulk5-0024",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='anagram, nagaram'",
+    "question": "Valid Anagram Variant 3"
+   },
+   {
+    "id": "bulk5-0034",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='anagram, nagaram'",
+    "question": "Valid Anagram Variant 4"
+   },
+   {
+    "id": "bulk5-0044",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='anagram, nagaram'",
+    "question": "Valid Anagram Variant 5"
+   }
+  ],
+  "MISMATCH exp='3' got='0'": [
+   {
+    "id": "bulk-0010",
+    "type": "coding",
+    "reason": "MISMATCH exp='3' got='0'",
+    "question": "Number of Islands Variant 1"
+   },
+   {
+    "id": "bulk-0026",
+    "type": "coding",
+    "reason": "MISMATCH exp='3' got='0'",
+    "question": "Number of Islands Variant 2"
+   },
+   {
+    "id": "bulk-0042",
+    "type": "coding",
+    "reason": "MISMATCH exp='3' got='0'",
+    "question": "Number of Islands Variant 3"
+   },
+   {
+    "id": "bulk-0058",
+    "type": "coding",
+    "reason": "MISMATCH exp='3' got='0'",
+    "question": "Number of Islands Variant 4"
+   },
+   {
+    "id": "bulk-0074",
+    "type": "coding",
+    "reason": "MISMATCH exp='3' got='0'",
+    "question": "Number of Islands Variant 5"
+   }
+  ],
+  "MISMATCH exp='chunked reverse' got='list + k'": [
+   {
+    "id": "bulk2-0005",
+    "type": "coding",
+    "reason": "MISMATCH exp='chunked reverse' got='list + k'",
+    "question": "Reverse Nodes in K Group Variant 1"
+   },
+   {
+    "id": "bulk2-0015",
+    "type": "coding",
+    "reason": "MISMATCH exp='chunked reverse' got='list + k'",
+    "question": "Reverse Nodes in K Group Variant 2"
+   },
+   {
+    "id": "bulk2-0025",
+    "type": "coding",
+    "reason": "MISMATCH exp='chunked reverse' got='list + k'",
+    "question": "Reverse Nodes in K Group Variant 3"
+   },
+   {
+    "id": "bulk2-0035",
+    "type": "coding",
+    "reason": "MISMATCH exp='chunked reverse' got='list + k'",
+    "question": "Reverse Nodes in K Group Variant 4"
+   },
+   {
+    "id": "bulk2-0045",
+    "type": "coding",
+    "reason": "MISMATCH exp='chunked reverse' got='list + k'",
+    "question": "Reverse Nodes in K Group Variant 5"
+   }
+  ],
+  "MISMATCH exp='updated image' got='image + sr + sc + color'": [
+   {
+    "id": "bulk2-0008",
+    "type": "coding",
+    "reason": "MISMATCH exp='updated image' got='image + sr + sc + color'",
+    "question": "Flood Fill Variant 1"
+   },
+   {
+    "id": "bulk2-0018",
+    "type": "coding",
+    "reason": "MISMATCH exp='updated image' got='image + sr + sc + color'",
+    "question": "Flood Fill Variant 2"
+   },
+   {
+    "id": "bulk2-0028",
+    "type": "coding",
+    "reason": "MISMATCH exp='updated image' got='image + sr + sc + color'",
+    "question": "Flood Fill Variant 3"
+   },
+   {
+    "id": "bulk2-0038",
+    "type": "coding",
+    "reason": "MISMATCH exp='updated image' got='image + sr + sc + color'",
+    "question": "Flood Fill Variant 4"
+   },
+   {
+    "id": "bulk2-0048",
+    "type": "coding",
+    "reason": "MISMATCH exp='updated image' got='image + sr + sc + color'",
+    "question": "Flood Fill Variant 5"
+   }
+  ],
+  "MISMATCH exp='combinatorial count' got='m x n grid'": [
+   {
+    "id": "bulk2-0009",
+    "type": "coding",
+    "reason": "MISMATCH exp='combinatorial count' got='m x n grid'",
+    "question": "Unique Paths Variant 1"
+   },
+   {
+    "id": "bulk2-0019",
+    "type": "coding",
+    "reason": "MISMATCH exp='combinatorial count' got='m x n grid'",
+    "question": "Unique Paths Variant 2"
+   },
+   {
+    "id": "bulk2-0029",
+    "type": "coding",
+    "reason": "MISMATCH exp='combinatorial count' got='m x n grid'",
+    "question": "Unique Paths Variant 3"
+   },
+   {
+    "id": "bulk2-0039",
+    "type": "coding",
+    "reason": "MISMATCH exp='combinatorial count' got='m x n grid'",
+    "question": "Unique Paths Variant 4"
+   },
+   {
+    "id": "bulk2-0049",
+    "type": "coding",
+    "reason": "MISMATCH exp='combinatorial count' got='m x n grid'",
+    "question": "Unique Paths Variant 5"
+   }
+  ],
+  "MISMATCH exp='12.75' got='[1,12,-5,-6,50,3], k=4'": [
+   {
+    "id": "bulk3-0001",
+    "type": "coding",
+    "reason": "MISMATCH exp='12.75' got='[1,12,-5,-6,50,3], k=4'",
+    "question": "Maximum Average Subarray Variant 1"
+   },
+   {
+    "id": "bulk3-0011",
+    "type": "coding",
+    "reason": "MISMATCH exp='12.75' got='[1,12,-5,-6,50,3], k=4'",
+    "question": "Maximum Average Subarray Variant 2"
+   },
+   {
+    "id": "bulk3-0021",
+    "type": "coding",
+    "reason": "MISMATCH exp='12.75' got='[1,12,-5,-6,50,3], k=4'",
+    "question": "Maximum Average Subarray Variant 3"
+   },
+   {
+    "id": "bulk3-0031",
+    "type": "coding",
+    "reason": "MISMATCH exp='12.75' got='[1,12,-5,-6,50,3], k=4'",
+    "question": "Maximum Average Subarray Variant 4"
+   },
+   {
+    "id": "bulk3-0041",
+    "type": "coding",
+    "reason": "MISMATCH exp='12.75' got='[1,12,-5,-6,50,3], k=4'",
+    "question": "Maximum Average Subarray Variant 5"
+   }
+  ],
+  "MISMATCH exp='sum' got='nums + l + r'": [
+   {
+    "id": "bulk3-0002",
+    "type": "coding",
+    "reason": "MISMATCH exp='sum' got='nums + l + r'",
+    "question": "Range Sum Query Variant 1"
+   },
+   {
+    "id": "bulk3-0012",
+    "type": "coding",
+    "reason": "MISMATCH exp='sum' got='nums + l + r'",
+    "question": "Range Sum Query Variant 2"
+   },
+   {
+    "id": "bulk3-0022",
+    "type": "coding",
+    "reason": "MISMATCH exp='sum' got='nums + l + r'",
+    "question": "Range Sum Query Variant 3"
+   },
+   {
+    "id": "bulk3-0032",
+    "type": "coding",
+    "reason": "MISMATCH exp='sum' got='nums + l + r'",
+    "question": "Range Sum Query Variant 4"
+   },
+   {
+    "id": "bulk3-0042",
+    "type": "coding",
+    "reason": "MISMATCH exp='sum' got='nums + l + r'",
+    "question": "Range Sum Query Variant 5"
+   }
+  ],
+  "MISMATCH exp='true' got='A man, a plan, a canal": [
+   {
+    "id": "bulk3-0003",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='A man, a plan, a canal",
+    "question": "Valid Palindrome Variant 1"
+   },
+   {
+    "id": "bulk3-0013",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='A man, a plan, a canal",
+    "question": "Valid Palindrome Variant 2"
+   },
+   {
+    "id": "bulk3-0023",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='A man, a plan, a canal",
+    "question": "Valid Palindrome Variant 3"
+   },
+   {
+    "id": "bulk3-0033",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='A man, a plan, a canal",
+    "question": "Valid Palindrome Variant 4"
+   },
+   {
+    "id": "bulk3-0043",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='A man, a plan, a canal",
+    "question": "Valid Palindrome Variant 5"
+   }
+  ],
+  "MISMATCH exp='1219' got=\"'1432219', k=3\"": [
+   {
+    "id": "bulk3-0005",
+    "type": "coding",
+    "reason": "MISMATCH exp='1219' got=\"'1432219', k=3\"",
+    "question": "Remove K Digits Variant 1"
+   },
+   {
+    "id": "bulk3-0015",
+    "type": "coding",
+    "reason": "MISMATCH exp='1219' got=\"'1432219', k=3\"",
+    "question": "Remove K Digits Variant 2"
+   },
+   {
+    "id": "bulk3-0025",
+    "type": "coding",
+    "reason": "MISMATCH exp='1219' got=\"'1432219', k=3\"",
+    "question": "Remove K Digits Variant 3"
+   },
+   {
+    "id": "bulk3-0035",
+    "type": "coding",
+    "reason": "MISMATCH exp='1219' got=\"'1432219', k=3\"",
+    "question": "Remove K Digits Variant 4"
+   },
+   {
+    "id": "bulk3-0045",
+    "type": "coding",
+    "reason": "MISMATCH exp='1219' got=\"'1432219', k=3\"",
+    "question": "Remove K Digits Variant 5"
+   }
+  ],
+  "MISMATCH exp='true' got='tree + target'": [
+   {
+    "id": "bulk3-0006",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='tree + target'",
+    "question": "Path Sum Variant 1"
+   },
+   {
+    "id": "bulk3-0016",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='tree + target'",
+    "question": "Path Sum Variant 2"
+   },
+   {
+    "id": "bulk3-0026",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='tree + target'",
+    "question": "Path Sum Variant 3"
+   },
+   {
+    "id": "bulk3-0036",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='tree + target'",
+    "question": "Path Sum Variant 4"
+   },
+   {
+    "id": "bulk3-0046",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='tree + target'",
+    "question": "Path Sum Variant 5"
+   }
+  ],
+  "MISMATCH exp='count' got='coins + amount'": [
+   {
+    "id": "bulk3-0010",
+    "type": "coding",
+    "reason": "MISMATCH exp='count' got='coins + amount'",
+    "question": "Coin Change II Variant 1"
+   },
+   {
+    "id": "bulk3-0020",
+    "type": "coding",
+    "reason": "MISMATCH exp='count' got='coins + amount'",
+    "question": "Coin Change II Variant 2"
+   },
+   {
+    "id": "bulk3-0030",
+    "type": "coding",
+    "reason": "MISMATCH exp='count' got='coins + amount'",
+    "question": "Coin Change II Variant 3"
+   },
+   {
+    "id": "bulk3-0040",
+    "type": "coding",
+    "reason": "MISMATCH exp='count' got='coins + amount'",
+    "question": "Coin Change II Variant 4"
+   },
+   {
+    "id": "bulk3-0050",
+    "type": "coding",
+    "reason": "MISMATCH exp='count' got='coins + amount'",
+    "question": "Coin Change II Variant 5"
+   }
+  ],
+  "MISMATCH exp='2' got='[1,1,1], k=2'": [
+   {
+    "id": "bulk4-0001",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[1,1,1], k=2'",
+    "question": "Subarray Sum Equals K Variant 1"
+   },
+   {
+    "id": "bulk4-0011",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[1,1,1], k=2'",
+    "question": "Subarray Sum Equals K Variant 2"
+   },
+   {
+    "id": "bulk4-0021",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[1,1,1], k=2'",
+    "question": "Subarray Sum Equals K Variant 3"
+   },
+   {
+    "id": "bulk4-0031",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[1,1,1], k=2'",
+    "question": "Subarray Sum Equals K Variant 4"
+   },
+   {
+    "id": "bulk4-0041",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[1,1,1], k=2'",
+    "question": "Subarray Sum Equals K Variant 5"
+   }
+  ],
+  "MISMATCH exp='2' got='[-1,2,1,-4], target=1'": [
+   {
+    "id": "bulk4-0002",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[-1,2,1,-4], target=1'",
+    "question": "3Sum Closest Variant 1"
+   },
+   {
+    "id": "bulk4-0012",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[-1,2,1,-4], target=1'",
+    "question": "3Sum Closest Variant 2"
+   },
+   {
+    "id": "bulk4-0022",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[-1,2,1,-4], target=1'",
+    "question": "3Sum Closest Variant 3"
+   },
+   {
+    "id": "bulk4-0032",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[-1,2,1,-4], target=1'",
+    "question": "3Sum Closest Variant 4"
+   },
+   {
+    "id": "bulk4-0042",
+    "type": "coding",
+    "reason": "MISMATCH exp='2' got='[-1,2,1,-4], target=1'",
+    "question": "3Sum Closest Variant 5"
+   }
+  ],
+  "MISMATCH exp='node' got='root, p, q'": [
+   {
+    "id": "bulk4-0008",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root, p, q'",
+    "question": "Lowest Common Ancestor Variant 1"
+   },
+   {
+    "id": "bulk4-0018",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root, p, q'",
+    "question": "Lowest Common Ancestor Variant 2"
+   },
+   {
+    "id": "bulk4-0028",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root, p, q'",
+    "question": "Lowest Common Ancestor Variant 3"
+   },
+   {
+    "id": "bulk4-0038",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root, p, q'",
+    "question": "Lowest Common Ancestor Variant 4"
+   },
+   {
+    "id": "bulk4-0048",
+    "type": "coding",
+    "reason": "MISMATCH exp='node' got='root, p, q'",
+    "question": "Lowest Common Ancestor Variant 5"
+   }
+  ],
+  "MISMATCH exp='5' got='hit -> cog'": [
+   {
+    "id": "bulk5-0008",
+    "type": "coding",
+    "reason": "MISMATCH exp='5' got='hit -> cog'",
+    "question": "Word Ladder Variant 1"
+   },
+   {
+    "id": "bulk5-0018",
+    "type": "coding",
+    "reason": "MISMATCH exp='5' got='hit -> cog'",
+    "question": "Word Ladder Variant 2"
+   },
+   {
+    "id": "bulk5-0028",
+    "type": "coding",
+    "reason": "MISMATCH exp='5' got='hit -> cog'",
+    "question": "Word Ladder Variant 3"
+   },
+   {
+    "id": "bulk5-0038",
+    "type": "coding",
+    "reason": "MISMATCH exp='5' got='hit -> cog'",
+    "question": "Word Ladder Variant 4"
+   },
+   {
+    "id": "bulk5-0048",
+    "type": "coding",
+    "reason": "MISMATCH exp='5' got='hit -> cog'",
+    "question": "Word Ladder Variant 5"
+   }
+  ],
+  "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'": [
+   {
+    "id": "bulk5-0009",
+    "type": "coding",
+    "reason": "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'",
+    "question": "Course Schedule II Variant 1"
+   },
+   {
+    "id": "bulk5-0019",
+    "type": "coding",
+    "reason": "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'",
+    "question": "Course Schedule II Variant 2"
+   },
+   {
+    "id": "bulk5-0029",
+    "type": "coding",
+    "reason": "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'",
+    "question": "Course Schedule II Variant 3"
+   },
+   {
+    "id": "bulk5-0039",
+    "type": "coding",
+    "reason": "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'",
+    "question": "Course Schedule II Variant 4"
+   },
+   {
+    "id": "bulk5-0049",
+    "type": "coding",
+    "reason": "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'",
+    "question": "Course Schedule II Variant 5"
+   }
+  ],
+  "MISMATCH exp=\"[['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]\" got='4'": [
+   {
+    "id": "nc-n-queens",
+    "type": "coding",
+    "reason": "MISMATCH exp=\"[['.Q..', '...Q', 'Q...', '..Q.'], ['..Q.', 'Q...', '...Q', '.Q..']]\" got='4'",
+    "question": "N-Queens"
+   }
+  ],
+  "MISMATCH exp='None' got='23'": [
+   {
+    "id": "nc-letter-combinations-phone",
+    "type": "coding",
+    "reason": "MISMATCH exp='None' got='23'",
+    "question": "Letter Combinations of a Phone Number"
+   }
+  ],
+  "MISMATCH exp='[9, 7, 8]' got='\"ababcbacadefegdehijhklij\"'": [
+   {
+    "id": "nc-partition-labels",
+    "type": "coding",
+    "reason": "MISMATCH exp='[9, 7, 8]' got='\"ababcbacadefegdehijhklij\"'",
+    "question": "Partition Labels"
+   }
+  ],
+  "MISMATCH exp='0' got='\"0\"'": [
+   {
+    "id": "pp-add-binary",
+    "type": "coding",
+    "reason": "MISMATCH exp='0' got='\"0\"'",
+    "question": "Add Binary"
+   }
+  ],
+  "MISMATCH exp='true' got='false'": [
+   {
+    "id": "pp-stone-game",
+    "type": "coding",
+    "reason": "MISMATCH exp='true' got='false'",
+    "question": "Stone Game"
+   }
+  ],
+  "MISMATCH exp='[[-12, -10], [19, 23], [23, 27]]' got='[[-12, -10]]'": [
+   {
+    "id": "pp-minimum-absolute-difference",
+    "type": "coding",
+    "reason": "MISMATCH exp='[[-12, -10], [19, 23], [23, 27]]' got='[[-12, -10]]'",
+    "question": "Minimum Absolute Difference"
+   }
+  ]
+ },
+ "trust_policy": {
+  "written_trust_status": "automated_checked",
+  "servable": false,
+  "note": "automated_checked is refused by question_store._is_servable(); promotion to verified/reviewed requires human review."
+ }
+}

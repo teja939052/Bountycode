@@ -1,0 +1,316 @@
+{
+  "topic": "surds_indices",
+  "subject": "quantitative_aptitude",
+  "pattern": "surds_indices",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "laws_of_indices",
+      "title": "Laws of Indices (Exponents)",
+      "concept": "Indices (exponents) represent repeated multiplication. Laws of indices help simplify expressions involving powers of the same base, including multiplication, division, power of a power, zero exponent, and negative exponents.",
+      "formula": "a^m * a^n = a^(m+n); a^m / a^n = a^(m-n) (a!=0); (a^m)^n = a^(mn); a^0 = 1 (a!=0); a^(-n) = 1/a^n (a!=0).",
+      "worked_example": "Simplify 2^3 * 2^4 = 2^(3+4) = 2^7 = 128. Also, 5^0 = 1 and 2^(-3) = 1/2^3 = 1/8.",
+      "mistakes": [
+        "Adding bases instead of adding exponents when multiplying same-base powers",
+        "Applying a^m * b^n = (ab)^(m+n) incorrectly (exponents add only for same base in that rule)",
+        "Forgetting that a^0 = 1 only when a != 0"
+      ]
+    },
+    {
+      "id": "surds_basics",
+      "title": "Surds and Simplification",
+      "concept": "A surd is an irrational root that cannot be simplified to remove the root completely (e.g., sqrt(2), sqrt(3)). Surds can be simplified by factoring out perfect square factors and can be added/subtracted only when they are like surds (same irrational part).",
+      "formula": "sqrt(ab) = sqrt(a)*sqrt(b) (for non-negative a,b). Simplify: sqrt(50)=sqrt(25*2)=5*sqrt(2). Like surds: x*sqrt(k) + y*sqrt(k) = (x+y)*sqrt(k).",
+      "worked_example": "Simplify sqrt(18): sqrt(18)=sqrt(9*2)=3*sqrt(2). Also, 2*sqrt(3)+5*sqrt(3)=7*sqrt(3), but sqrt(2)+sqrt(3) cannot be combined into a single surd term.",
+      "mistakes": [
+        "Adding unlike surds as if sqrt(a)+sqrt(b)=sqrt(a+b)",
+        "Not extracting the largest perfect square factor",
+        "Treating sqrt(a^2) incorrectly with sign (in basic aptitude, usually principal root context)"
+      ]
+    },
+    {
+      "id": "rationalization_intro",
+      "title": "Rationalization of Denominators (Intro)",
+      "concept": "Rationalization removes a surd from the denominator of a fraction to write an equivalent expression with a rational denominator. For a simple denominator like sqrt(a), multiply numerator and denominator by sqrt(a).",
+      "formula": "1/sqrt(a) = sqrt(a)/a (a > 0). More generally, k/sqrt(a) = (k*sqrt(a))/a.",
+      "worked_example": "Rationalize 3/sqrt(5): multiply numerator and denominator by sqrt(5) to get 3*sqrt(5)/5.",
+      "mistakes": [
+        "Multiplying only the denominator by the surd (must multiply numerator and denominator by same value)",
+        "Arithmetic/sign errors after multiplying",
+        "Forgetting to simplify the resulting fraction if possible"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SURD-PRACTICE-001",
+      "question": "Simplify: 2^3 * 2^2",
+      "options": {
+        "A": "2^5",
+        "B": "2^6",
+        "C": "4^5",
+        "D": "2^9"
+      },
+      "correct_answer": "A",
+      "explanation": "For same base, add exponents when multiplying: 2^3 * 2^2 = 2^(3+2) = 2^5.",
+      "difficulty": "easy",
+      "sub_topic": "laws_of_indices",
+      "misconception_tags": [
+        "exponent_law_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-PRACTICE-002",
+      "question": "What is the value of 7^0 (for non-zero base)?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "7",
+        "D": "Undefined"
+      },
+      "correct_answer": "B",
+      "explanation": "Any non-zero number raised to the power 0 equals 1, so 7^0 = 1.",
+      "difficulty": "easy",
+      "sub_topic": "laws_of_indices",
+      "misconception_tags": [
+        "zero_exponent_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-PRACTICE-003",
+      "question": "Simplify: sqrt(50)",
+      "options": {
+        "A": "5*sqrt(2)",
+        "B": "2*sqrt(5)",
+        "C": "25*sqrt(2)",
+        "D": "10*sqrt(5)"
+      },
+      "correct_answer": "A",
+      "explanation": "sqrt(50)=sqrt(25*2)=sqrt(25)*sqrt(2)=5*sqrt(2).",
+      "difficulty": "easy",
+      "sub_topic": "surds_basics",
+      "misconception_tags": [
+        "surd_simplification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-PRACTICE-004",
+      "question": "Simplify: 3*sqrt(2) + 4*sqrt(2)",
+      "options": {
+        "A": "7*sqrt(4)",
+        "B": "12*sqrt(2)",
+        "C": "7*sqrt(2)",
+        "D": "sqrt(14)"
+      },
+      "correct_answer": "C",
+      "explanation": "Like surds can be added by combining coefficients: 3*sqrt(2) + 4*sqrt(2) = (3+4)*sqrt(2) = 7*sqrt(2).",
+      "difficulty": "easy",
+      "sub_topic": "surds_basics",
+      "misconception_tags": [
+        "like_surds_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-PRACTICE-005",
+      "question": "Rationalize the denominator: 1/sqrt(3)",
+      "options": {
+        "A": "sqrt(3)/3",
+        "B": "3/sqrt(3)",
+        "C": "1/3",
+        "D": "sqrt(3)"
+      },
+      "correct_answer": "A",
+      "explanation": "Multiply numerator and denominator by sqrt(3): 1/sqrt(3) = sqrt(3)/(sqrt(3)*sqrt(3)) = sqrt(3)/3.",
+      "difficulty": "easy",
+      "sub_topic": "rationalization_intro",
+      "misconception_tags": [
+        "rationalization_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SURD-001",
+      "question": "Simplify: (3^4) / (3^2)",
+      "options": {
+        "A": "3^2",
+        "B": "3^6",
+        "C": "3^8",
+        "D": "1^2"
+      },
+      "correct_answer": "A",
+      "explanation": "For same base division, subtract exponents: 3^4 / 3^2 = 3^(4-2) = 3^2.",
+      "difficulty": "easy",
+      "sub_topic": "laws_of_indices",
+      "misconception_tags": [
+        "exponent_law_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-002",
+      "question": "What is the value of 2^(-3)?",
+      "options": {
+        "A": "-8",
+        "B": "-6",
+        "C": "1/8",
+        "D": "8"
+      },
+      "correct_answer": "C",
+      "explanation": "A negative exponent means reciprocal: 2^(-3) = 1 / 2^3 = 1/8.",
+      "difficulty": "easy",
+      "sub_topic": "laws_of_indices",
+      "misconception_tags": [
+        "negative_exponent_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-003",
+      "question": "Simplify: sqrt(72)",
+      "options": {
+        "A": "6*sqrt(2)",
+        "B": "3*sqrt(8)",
+        "C": "12*sqrt(2)",
+        "D": "2*sqrt(18)"
+      },
+      "correct_answer": "A",
+      "explanation": "sqrt(72)=sqrt(36*2)=6*sqrt(2). (Other options can be simplified further but 6*sqrt(2) is fully simplified with largest perfect square factor.)",
+      "difficulty": "medium",
+      "sub_topic": "surds_basics",
+      "misconception_tags": [
+        "surd_simplification_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-004",
+      "question": "Rationalize the denominator: 5/sqrt(2)",
+      "options": {
+        "A": "5*sqrt(2)/2",
+        "B": "sqrt(2)/10",
+        "C": "5/2",
+        "D": "10*sqrt(2)"
+      },
+      "correct_answer": "A",
+      "explanation": "Multiply numerator and denominator by sqrt(2): 5/sqrt(2) = (5*sqrt(2))/(sqrt(2)*sqrt(2)) = 5*sqrt(2)/2.",
+      "difficulty": "easy",
+      "sub_topic": "rationalization_intro",
+      "misconception_tags": [
+        "rationalization_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "SURD-005",
+      "question": "Which expression is equal to (a^2)^3 for any real a?",
+      "options": {
+        "A": "a^5",
+        "B": "a^6",
+        "C": "a^8",
+        "D": "a^9"
+      },
+      "correct_answer": "B",
+      "explanation": "Power of a power rule: (a^m)^n = a^(m*n). So (a^2)^3 = a^(2*3) = a^6.",
+      "difficulty": "easy",
+      "sub_topic": "laws_of_indices",
+      "misconception_tags": [
+        "exponent_law_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

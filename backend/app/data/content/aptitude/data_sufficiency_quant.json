@@ -1,0 +1,325 @@
+{
+  "topic": "data_sufficiency_quant",
+  "subject": "quantitative_aptitude",
+  "pattern": "data_sufficiency_quant",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "DSQ-L1",
+      "title": "Quantitative Data Sufficiency Basics",
+      "concept": "Quantitative data sufficiency asks whether given statements provide enough information to answer a quantitative question (value, comparison, ratio, etc.). The focus is on sufficiency, not necessarily on performing full calculations. Evaluate each statement alone, then together if needed.",
+      "formula": "Standard method: test Statement I alone; test Statement II alone; if neither sufficient, test I and II together. Avoid assuming unstated conditions (e.g., positive, integer) unless implied.",
+      "worked_example": "Question: What is the value of a+b? I: a=5. II: b=3. I alone not sufficient, II alone not sufficient, together sufficient (a+b=8).",
+      "mistakes": [
+        "Computing when not necessary instead of checking sufficiency",
+        "Assuming numbers are positive or integers without basis",
+        "Combining statements while evaluating them individually"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "DSQ-L2",
+      "title": "Sufficiency in Value and Comparison Questions",
+      "concept": "For value questions, a statement is sufficient if it yields a unique value. For comparison/yes-no questions (e.g., Is x > y?), a statement is sufficient if it gives a definite answer (always yes or always no). If multiple outcomes are possible, it is not sufficient.",
+      "formula": "Unique value => sufficient. Definite yes/no => sufficient. Multiple possible answers => not sufficient.",
+      "worked_example": "Question: Is x > 0? I: x = -2 gives definite No, so I alone is sufficient. II: x^2 = 4 gives x=2 or -2, so II alone not sufficient.",
+      "mistakes": [
+        "Treating definite No as insufficient",
+        "Thinking a range is sufficient for a unique-value question",
+        "Not testing boundary/alternative cases"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    },
+    {
+      "id": "DSQ-L3",
+      "title": "Common Quantitative Traps",
+      "concept": "Common traps include missing multiple solutions (quadratics), sign ambiguity, assuming non-zero denominators or distinct values, and ignoring that together statements may still be insufficient. Always verify whether the information uniquely determines the answer.",
+      "formula": "Check for: multiple roots, positive/negative cases, zero cases, integer/non-integer cases as relevant.",
+      "worked_example": "Question: What is x? I: x^2 - 5x + 6 = 0 gives x=2 or 3 (not sufficient). II: x > 2 gives many values (not sufficient). Together x=3 (sufficient).",
+      "mistakes": [
+        "Taking only one root of a quadratic",
+        "Ignoring constraints implied by combining statements correctly",
+        "Assuming variables are integers unless stated"
+      ],
+      "source": "bountycode_original",
+      "trust_status": "UNVERIFIED",
+      "provenance": "Authored original lesson; not scraped. Requires independent verification before TRUSTED promotion."
+    }
+  ],
+  "practice": [
+    {
+      "id": "DSQ-PRACTICE-001",
+      "question": "Question: What is the value of x? I: x + 4 = 9. II: x > 0. Which is sufficient?",
+      "options": {
+        "A": "I alone",
+        "B": "II alone",
+        "C": "Both together",
+        "D": "Neither"
+      },
+      "correct_answer": "A",
+      "explanation": "Statement I gives x = 5 uniquely, so it is sufficient. Statement II alone allows many values.",
+      "difficulty": "easy",
+      "sub_topic": "value_questions",
+      "misconception_tags": [
+        "sufficiency_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-PRACTICE-002",
+      "question": "Question: Is p even? I: p = 2k where k is an integer. Statement I alone is:",
+      "options": {
+        "A": "Sufficient (Yes)",
+        "B": "Sufficient (No)",
+        "C": "Not sufficient",
+        "D": "Invalid"
+      },
+      "correct_answer": "A",
+      "explanation": "If p = 2k for some integer k, p is a multiple of 2 and therefore even. This gives a definite Yes.",
+      "difficulty": "easy",
+      "sub_topic": "comparison_questions",
+      "misconception_tags": [
+        "definition_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-PRACTICE-003",
+      "question": "Question: What is the value of n? I: n^2 = 25. I alone is:",
+      "options": {
+        "A": "Sufficient",
+        "B": "Not sufficient",
+        "C": "Sufficient only if n positive assumed",
+        "D": "Always 5"
+      },
+      "correct_answer": "B",
+      "explanation": "n^2 = 25 implies n = 5 or n = -5. Without additional information, value is not uniquely determined.",
+      "difficulty": "easy",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "multiple_roots_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-PRACTICE-004",
+      "question": "Question: What is area of a circle? I: Radius is 7 cm. II: Diameter is 14 cm. Which is correct?",
+      "options": {
+        "A": "I alone sufficient, II alone not",
+        "B": "II alone sufficient, I alone not",
+        "C": "Each alone sufficient",
+        "D": "Both together needed"
+      },
+      "correct_answer": "C",
+      "explanation": "Area = πr^2 and diameter gives radius (r=d/2). Either statement alone determines the circle size and area.",
+      "difficulty": "easy",
+      "sub_topic": "value_questions",
+      "misconception_tags": [
+        "geometry_relation_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "cognizant"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-PRACTICE-005",
+      "question": "In quantitative data sufficiency, a statement is sufficient for a 'find the value' question when:",
+      "options": {
+        "A": "It gives at least one possible value",
+        "B": "It gives a unique value",
+        "C": "It gives a formula only",
+        "D": "It is long"
+      },
+      "correct_answer": "B",
+      "explanation": "A value question is answered only when the information determines exactly one value.",
+      "difficulty": "easy",
+      "sub_topic": "value_questions",
+      "misconception_tags": [
+        "uniqueness_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "DSQ-001",
+      "question": "Question: What is x? I: 2x = 10. II: x + y = 7. Which is correct?",
+      "options": {
+        "A": "I alone sufficient",
+        "B": "II alone sufficient",
+        "C": "Both together sufficient",
+        "D": "Even together not sufficient"
+      },
+      "correct_answer": "A",
+      "explanation": "Statement I gives x=5 uniquely. Statement II has two unknowns and cannot determine x alone; together still not needed.",
+      "difficulty": "easy",
+      "sub_topic": "value_questions",
+      "misconception_tags": [
+        "sufficiency_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-002",
+      "question": "Question: Is x > y? I: x - y = 3. I alone is:",
+      "options": {
+        "A": "Sufficient (Yes)",
+        "B": "Sufficient (No)",
+        "C": "Not sufficient",
+        "D": "Sufficient only if positive"
+      },
+      "correct_answer": "A",
+      "explanation": "x - y = 3 means x is 3 greater than y, so x > y is definitely true.",
+      "difficulty": "easy",
+      "sub_topic": "comparison_questions",
+      "misconception_tags": [
+        "comparison_error"
+      ],
+      "company_tags": [
+        "tcs",
+        "accenture",
+        "capgemini"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-003",
+      "question": "Question: What is the value of x? I: x^2 - 5x + 6 = 0. II: x > 2. Which is correct?",
+      "options": {
+        "A": "I alone sufficient",
+        "B": "II alone sufficient",
+        "C": "Both together sufficient, neither alone",
+        "D": "Even together not sufficient"
+      },
+      "correct_answer": "C",
+      "explanation": "I gives x=2 or 3. II alone not unique. Together x must be 3, so both statements together are sufficient.",
+      "difficulty": "medium",
+      "sub_topic": "traps",
+      "misconception_tags": [
+        "combined_eval_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "wipro",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-004",
+      "question": "Question: Is n = 0? I: n^2 = 0. I alone is:",
+      "options": {
+        "A": "Sufficient (Yes)",
+        "B": "Sufficient (No)",
+        "C": "Not sufficient",
+        "D": "Invalid"
+      },
+      "correct_answer": "A",
+      "explanation": "n^2 = 0 implies n = 0, giving a definite Yes.",
+      "difficulty": "easy",
+      "sub_topic": "comparison_questions",
+      "misconception_tags": [
+        "algebra_error"
+      ],
+      "company_tags": [
+        "cognizant",
+        "tcs"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "DSQ-005",
+      "question": "Question: What is the perimeter of square S? I: Side of S is 6 cm. II: Area of S is 36 cm^2. Which is correct?",
+      "options": {
+        "A": "I alone sufficient, II alone not",
+        "B": "II alone sufficient, I alone not",
+        "C": "Each alone sufficient",
+        "D": "Even together not sufficient"
+      },
+      "correct_answer": "C",
+      "explanation": "From I, perimeter = 4*6 = 24 cm. From II, side = sqrt(36)=6 cm (length positive), perimeter = 24 cm. Each alone sufficient.",
+      "difficulty": "easy",
+      "sub_topic": "value_questions",
+      "misconception_tags": [
+        "geometry_relation_error"
+      ],
+      "company_tags": [
+        "infosys",
+        "accenture",
+        "wipro"
+      ],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped. Requires independent verification before TRUSTED promotion.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}

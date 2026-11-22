@@ -1,0 +1,222 @@
+﻿{
+  "topic": "number_systems",
+  "subject": "quantitative_aptitude",
+  "pattern": "number_systems",
+  "source": "bountycode_original",
+  "provenance": "Authored for BountyCode by content team; not scraped from third-party sources. Requires independent verification before TRUSTED promotion.",
+  "trust_status": "UNVERIFIED",
+  "lessons": [
+    {
+      "id": "number_types_and_place_value",
+      "title": "Number Types and Place Value",
+      "concept": "Numbers are classified by the values they can represent. Natural numbers (1, 2, 3, ...) count objects. Whole numbers include 0. Integers extend to negatives. Rational numbers can be written as p/q with q != 0. Place value means each digit's value depends on its position (ones, tens, hundreds, ...).",
+      "formula": "Value of digit = digit x place multiplier; Example: in 4,582, 5 is in hundreds place so value = 5 x 100 = 500.",
+      "worked_example": "Classify -7, 0, 3/4, and 12. -7 is an integer (not a whole number). 0 is a whole number and integer. 3/4 is rational. 12 is natural, whole, integer, and rational. Place value: in 7,304, the digit 3 means 3 hundreds = 300.",
+      "mistakes": [
+        "Treating 0 as a natural number in definitions that start natural numbers at 1 (definitions vary; state the convention used).",
+        "Confusing face value (the digit itself) with place value (digit x position).",
+        "Assuming every decimal is irrational; terminating and repeating decimals are rational."
+      ]
+    },
+    {
+      "id": "divisibility_rules",
+      "title": "Divisibility Rules",
+      "concept": "A number a is divisible by b if a divided by b leaves remainder 0. Divisibility rules give quick tests without full division by checking digit patterns.",
+      "formula": "Divisible by 2 if last digit even; by 3 if sum of digits divisible by 3; by 4 if last two digits divisible by 4; by 5 if last digit 0 or 5; by 6 if divisible by 2 and 3; by 8 if last three digits divisible by 8; by 9 if sum of digits divisible by 9; by 11 if (sum of digits in odd positions - sum in even positions) is 0 or a multiple of 11.",
+      "worked_example": "Test 5,346. Last digit 6 is even -> divisible by 2. Digit sum 5+3+4+6 = 18, divisible by 3 and 9 -> divisible by 3, 6, and 9. Last two digits 46 not divisible by 4. Alternating sum for 11: (6+3) - (4+5) = 0 -> divisible by 11.",
+      "mistakes": [
+        "Using the digit-sum rule for 4 or 8 (those rules use last two/three digits).",
+        "Checking only one condition for 6; both 2 and 3 must hold.",
+        "For 11, mixing position order; be consistent about counting positions from left or right but apply the alternating-sum rule correctly."
+      ]
+    },
+    {
+      "id": "remainders_and_modular_thinking",
+      "title": "Remainders and Modular Thinking",
+      "concept": "When N is divided by d, N = d x q + r where q is quotient and r is remainder with 0 <= r < d. Remainders are useful for cycles, last digits, and divisibility questions.",
+      "formula": "Dividend = Divisor x Quotient + Remainder, with 0 <= Remainder < Divisor",
+      "worked_example": "Find remainder when 58 is divided by 9. 9 x 6 = 54, remainder = 58 - 54 = 4. Check: 58 = 9x6 + 4 and 0 <= 4 < 9. Last digit of a number is its remainder when divided by 10.",
+      "mistakes": [
+        "Allowing remainder >= divisor (if so, quotient can be increased).",
+        "Forgetting remainder can be 0 when the number is exactly divisible.",
+        "Confusing quotient with remainder in word problems."
+      ]
+    },
+    {
+      "id": "factors_multiples_primes",
+      "title": "Factors, Multiples, and Primes",
+      "concept": "A factor divides a number exactly. A multiple is produced by multiplying a number by an integer. A prime number greater than 1 has exactly two positive factors: 1 and itself. A composite number has more than two positive factors. 1 is neither prime nor composite.",
+      "formula": "If a x b = N, then a and b are factors of N and N is a multiple of a and b. Prime factorization expresses N as a product of primes.",
+      "worked_example": "Factors of 12: 1,2,3,4,6,12. Multiples of 12: 12,24,36,... Prime factorization of 60: 60 = 2^2 x 3 x 5. This helps in HCF/LCM and counting factors.",
+      "mistakes": [
+        "Calling 1 a prime number.",
+        "Missing factor pairs by stopping too early (check factors up to sqrt(N)).",
+        "Confusing factors (divide into N) with multiples (N divides into them)."
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "NS-PRACTICE-001",
+      "question": "What is the place value of 7 in 47,382?",
+      "options": {"A": "7", "B": "70", "C": "700", "D": "7,000"},
+      "correct_answer": "D",
+      "explanation": "In 47,382 the digits are 4 (ten-thousands), 7 (thousands), 3 (hundreds), 8 (tens), 2 (ones). So the place value of 7 is 7 x 1,000 = 7,000.",
+      "difficulty": "easy",
+      "sub_topic": "number_types_and_place_value",
+      "misconception_tags": ["face_value_vs_place_value"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-PRACTICE-002",
+      "question": "Which of the following numbers is divisible by 9?",
+      "options": {"A": "4,523", "B": "5,274", "C": "6,145", "D": "7,321"},
+      "correct_answer": "B",
+      "explanation": "A number is divisible by 9 if the sum of its digits is divisible by 9. 4,523: 4+5+2+3=14. 5,274: 5+2+7+4=18 (divisible by 9). 6,145: 6+1+4+5=16. 7,321: 7+3+2+1=13. So 5,274 is divisible by 9.",
+      "difficulty": "easy",
+      "sub_topic": "divisibility_rules",
+      "misconception_tags": ["wrong_divisibility_test"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-PRACTICE-003",
+      "question": "When 125 is divided by 11, what is the remainder?",
+      "options": {"A": "2", "B": "3", "C": "4", "D": "5"},
+      "correct_answer": "C",
+      "explanation": "11 x 11 = 121. Remainder = 125 - 121 = 4. Check: 125 = 11 x 11 + 4 and 0 <= 4 < 11.",
+      "difficulty": "easy",
+      "sub_topic": "remainders_and_modular_thinking",
+      "misconception_tags": ["remainder_greater_than_divisor"],
+      "company_tags": ["wipro", "accenture"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-PRACTICE-004",
+      "question": "How many distinct prime factors does 84 have?",
+      "options": {"A": "2", "B": "3", "C": "4", "D": "5"},
+      "correct_answer": "B",
+      "explanation": "Prime factorize 84: 84 = 2 x 42 = 2^2 x 21 = 2^2 x 3 x 7. The distinct prime factors are 2, 3, and 7, so there are 3 distinct prime factors.",
+      "difficulty": "medium",
+      "sub_topic": "factors_multiples_primes",
+      "misconception_tags": ["counting_repeated_prime_powers"],
+      "company_tags": ["tcs", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-PRACTICE-005",
+      "question": "A number is divisible by 6 if it is divisible by:",
+      "options": {"A": "2 and 4", "B": "2 and 3", "C": "3 and 9", "D": "1 and 6 only"},
+      "correct_answer": "B",
+      "explanation": "6 = 2 x 3 and 2 and 3 are coprime. Therefore a number is divisible by 6 if and only if it is divisible by both 2 and 3.",
+      "difficulty": "easy",
+      "sub_topic": "divisibility_rules",
+      "misconception_tags": ["incomplete_divisibility_condition"],
+      "company_tags": ["infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original practice item; not scraped.",
+      "trust_status": "UNVERIFIED"
+    }
+  ],
+  "questions": [
+    {
+      "id": "NS-001",
+      "question": "The smallest 4-digit number exactly divisible by 36 is:",
+      "options": {"A": "1000", "B": "1004", "C": "1008", "D": "1026"},
+      "correct_answer": "C",
+      "explanation": "Smallest 4-digit number is 1000. Divide 1000 by 36: 36 x 27 = 972, remainder = 28. To reach the next multiple of 36, add (36 - 28) = 8. So 1000 + 8 = 1008. Check: 1008 / 36 = 28.",
+      "difficulty": "medium",
+      "sub_topic": "divisibility_rules",
+      "misconception_tags": ["nearest_multiple_error"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-002",
+      "question": "What is the unit digit of 7^103? (Find the last digit.)",
+      "options": {"A": "1", "B": "3", "C": "7", "D": "9"},
+      "correct_answer": "B",
+      "explanation": "Unit digits of powers of 7 cycle every 4: 7^1->7, 7^2->9, 7^3->3, 7^4->1, then repeats. Find remainder of 103 divided by 4: 4 x 25 = 100, remainder 3. So unit digit is same as 7^3, which is 3.",
+      "difficulty": "medium",
+      "sub_topic": "remainders_and_modular_thinking",
+      "misconception_tags": ["cycle_length_error"],
+      "company_tags": ["tcs", "accenture", "cognizant"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-003",
+      "question": "If a number leaves remainder 5 when divided by 8, what remainder can it leave when divided by 4?",
+      "options": {"A": "0", "B": "1", "C": "2", "D": "3"},
+      "correct_answer": "B",
+      "explanation": "Let N = 8k + 5. Write 8k as 4(2k), so N = 4(2k) + 5 = 4(2k) + 4 + 1 = 4(2k + 1) + 1. Therefore remainder when divided by 4 is 1.",
+      "difficulty": "medium",
+      "sub_topic": "remainders_and_modular_thinking",
+      "misconception_tags": ["remainder_transfer_error"],
+      "company_tags": ["infosys", "capgemini"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-004",
+      "question": "The sum of all factors of 28 is:",
+      "options": {"A": "28", "B": "56", "C": "56 minus 28", "D": "56"},
+      "correct_answer": "B",
+      "explanation": "Factors of 28 are 1, 2, 4, 7, 14, 28. Their sum is 1+2+4+7+14+28 = 56. (28 is a perfect number because the sum of its proper factors 1+2+4+7+14 equals 28, but the question asks for sum of all factors.)",
+      "difficulty": "easy",
+      "sub_topic": "factors_multiples_primes",
+      "misconception_tags": ["proper_vs_all_factors"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    },
+    {
+      "id": "NS-005",
+      "question": "Which statement is true?",
+      "options": {"A": "1 is a prime number", "B": "2 is the only even prime number", "C": "All odd numbers are prime", "D": "9 is a prime number"},
+      "correct_answer": "B",
+      "explanation": "A prime number has exactly two positive factors: 1 and itself. 1 has only one factor, so it is not prime. 2 has factors 1 and 2 and is even; every other even number is divisible by 2 and thus not prime. 9 = 3x3 is composite, and many odd numbers (9, 15, 21, ...) are composite.",
+      "difficulty": "easy",
+      "sub_topic": "factors_multiples_primes",
+      "misconception_tags": ["prime_definition_error"],
+      "company_tags": ["tcs", "infosys", "wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq",
+      "provenance": "Authored original question; not scraped.",
+      "trust_status": "UNVERIFIED"
+    }
+  ]
+}
