@@ -149,24 +149,38 @@ def compose_quiz(
     candidates.sort(key=lambda item: (-item[0], item[1]))
     selected: list[dict[str, Any]] = []
     skill_counts: Counter[str] = Counter()
-    for base_score, rank, question, reason in candidates:
+
+    def _dominant_skill(question: dict[str, Any]) -> str:
         skills = question_skills(question)
-        # Greedy diversity: do not exhaust one concept while another viable
-        # concept has not appeared in the form.
-        dominant = max(skills, key=lambda skill: (skill_scores.get(skill, 0.5), skill))
-        diversity_penalty = skill_counts[dominant] * 0.28
-        effective_score = base_score - diversity_penalty
-        if len(selected) < requested:
-            selected.append({"question": question, "score": effective_score, "reason": reason, "rank": rank})
-            skill_counts[dominant] += 1
-        else:
-            weakest_index = min(range(len(selected)), key=lambda index: (selected[index]["score"], selected[index]["rank"]))
-            if effective_score > selected[weakest_index]["score"]:
-                replaced = selected[weakest_index]
-                old_skill = max(question_skills(replaced["question"]), key=lambda skill: (skill_scores.get(skill, 0.5), skill))
-                skill_counts[old_skill] -= 1
-                selected[weakest_index] = {"question": question, "score": effective_score, "reason": reason, "rank": rank}
-                skill_counts[dominant] += 1
+        return max(skills, key=lambda skill: (skill_scores.get(skill, 0.5), skill))
+
+    def _add(candidate: tuple[float, str, dict[str, Any], dict[str, Any]]) -> None:
+        base_score, rank, question, reason = candidate
+        dominant = _dominant_skill(question)
+        effective_score = base_score - (skill_counts[dominant] * 0.28)
+        selected.append({"question": question, "score": effective_score, "reason": reason, "rank": rank})
+        skill_counts[dominant] += 1
+
+    # Coverage pass: first expose every viable weak/due/target skill once.
+    # This makes a short diagnostic or daily quiz informative rather than a
+    # collection of near-duplicates from the highest-scoring skill.
+    for candidate in candidates:
+        if len(selected) >= requested:
+            break
+        dominant = _dominant_skill(candidate[2])
+        if dominant not in skill_counts:
+            candidate[3]["coverage_gain"] = True
+            _add(candidate)
+
+    # Fill remaining slots with the strongest candidates while retaining the
+    # diversity penalty for repeated concepts.
+    for candidate in candidates:
+        if len(selected) >= requested:
+            break
+        if candidate[2].get("id") in {item["question"].get("id") for item in selected}:
+            continue
+        candidate[3]["coverage_gain"] = False
+        _add(candidate)
 
     selected.sort(key=lambda item: item["rank"])
     return {
@@ -176,6 +190,7 @@ def compose_quiz(
             for item in selected
         ],
         "skill_distribution": dict(skill_counts),
+        "covered_skills": sorted(skill_counts),
         "strategy": "evidence_first_deterministic_v1",
         "seed": seed,
         "evidence_summary": {

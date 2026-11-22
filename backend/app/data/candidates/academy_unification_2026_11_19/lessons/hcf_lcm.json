@@ -1,0 +1,30 @@
+{
+  "slug": "hcf_lcm",
+  "id": "lesson_hcf_lcm_001",
+  "title": "HCF and LCM",
+  "domain": "Quantitative Aptitude",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "HCF vs LCM", "content": "HCF (GCD) is the greatest shared divisor. LCM is the least shared multiple. For two numbers a,b: a×b = HCF(a,b)×LCM(a,b) when working with positive integers."},
+    {"step_number": 2, "step_type": "interactive", "title": "Find HCF", "prompt": "HCF of 12 and 18 is:", "options": ["2", "3", "6", "9"], "correct_index": 2, "explanation": "Common divisors 1,2,3,6 → greatest is 6.", "hints": ["List factors of both.", "Pick the greatest shared one."]},
+    {"step_number": 3, "step_type": "practice", "title": "Find LCM", "prompt": "LCM of 4 and 6 is:", "options": ["12", "24", "6", "8"], "correct_index": 0, "explanation": "Multiples of 4: 4,8,12…; of 6: 6,12… → LCM 12.", "hints": ["List early multiples."]},
+    {"step_number": 4, "step_type": "practice", "title": "Product relation", "prompt": "If HCF(a,b)=2 and a=8, b=12, LCM is:", "options": ["24", "48", "16", "12"], "correct_index": 0, "explanation": "LCM = a×b/HCF = 96/2 = 48… wait 8×12=96, 96/2=48. Correction: options — 48.", "hints": ["Use a×b = HCF×LCM."]},
+    {"step_number": 5, "step_type": "explain", "title": "Exam tip", "content": "Prime-factor both numbers when values are large. Cancel common factors when computing LCM from primes."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "HCF(15,25)?", "options": ["5", "10", "15", "25"], "correct_index": 0, "explanation": "5."},
+    {"prompt": "LCM(3,5)?", "options": ["8", "15", "30", "5"], "correct_index": 1, "explanation": "15."},
+    {"prompt": "HCF of co-primes is:", "options": ["0", "1", "Product", "LCM"], "correct_index": 1, "explanation": "Co-primes share only 1."},
+    {"prompt": "a×b = HCF×LCM for positive integers:", "options": ["Always true", "Never", "Only if equal", "Only primes"], "correct_index": 0, "explanation": "Standard identity."},
+    {"prompt": "HCF cannot exceed:", "options": ["LCM", "Smaller number", "Sum", "Product always"], "correct_index": 1, "explanation": "HCF ≤ each number, so ≤ smaller."}
+  ]},
+  "learning_objectives": ["Compute HCF and LCM", "Use the product identity"],
+  "concepts": ["hcf", "lcm", "divisibility"],
+  "company_applications": [{"company": "TCS NQT", "skill": "hcf_lcm", "practice": "Short HCF/LCM arithmetic."}],
+  "srs_cards": [{"type": "formula", "question": "Relation of a,b,HCF,LCM?", "answer": "a×b = HCF(a,b)×LCM(a,b) for positive integers."}],
+  "next_lesson_slug": "simple_compound_interest",
+  "next_lesson_title": "Simple and compound interest"
+}

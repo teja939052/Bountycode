@@ -14,6 +14,7 @@ from app.database import (
     get_db,
 )
 from app.services.ai_core import chat_completion, parse_json
+from app.services.code_executor import CodeExecutionEngine
 
 router = APIRouter(prefix="/api/v1/company-mocks", tags=["company-mocks"])
 

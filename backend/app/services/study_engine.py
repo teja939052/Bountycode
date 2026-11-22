@@ -27,6 +27,7 @@ than duplicating their logic.  The existing
 from __future__ import annotations
 
 import logging
+import hashlib
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from dataclasses import asdict
@@ -88,6 +89,16 @@ def _now() -> datetime:
 
 def _today_key() -> str:
     return _now().strftime("%Y-%m-%d")
+
+
+def _stable_choice_key(seed: str, value: Any) -> str:
+    """Return a stable ordering key for a recommendation candidate.
+
+    Recommendations are cached, audited, and shown as learner commitments.
+    Random selection made a page refresh silently change today's work, so all
+    equivalent candidates are now ordered by a deterministic hash instead.
+    """
+    return hashlib.sha256(f"{seed}:{value}".encode("utf-8")).hexdigest()
 
 
 async def invalidate_daily_plan(user_id: str) -> None:
@@ -376,8 +387,16 @@ async def _get_practice_tasks(
             })
             continue
 
-        import random as _random
-        pick = _random.sample(pool, min(1, len(pool)))[0]
+        # Keep the same recommendation for the same learner/day/skill while
+        # still rotating fairly across candidates on a later day.
+        selection_seed = f"{user_id}:{_today_key()}:{domain_id}"
+        pick = min(
+            pool,
+            key=lambda question: _stable_choice_key(
+                selection_seed,
+                question.get("id") or question.get("_id") or question.get("question", ""),
+            ),
+        )
         tasks.append({
             "type": "practice",
             "kind": "question",
@@ -393,6 +412,7 @@ async def _get_practice_tasks(
             "estimated_minutes": decision.estimated_minutes,
             "mastery": decision.mastery,
             "score": skill_score,
+            "selection_reason": "stable_daily_rotation",
             "estimated_minutes": pick.get("estimated_minutes", 10),
             "xp_reward": 25,
         })
@@ -416,8 +436,11 @@ async def _get_optional_challenge(
     if len(mastered) < 3:
         return None
 
-    import random as _random
-    pick = _random.choice(mastered)
+    # Deterministic rotation prevents the challenge from changing on refresh.
+    pick = min(
+        mastered,
+        key=lambda skill: _stable_choice_key(f"{user_id}:{_today_key()}:challenge", skill),
+    )
     return {
         "type": "challenge",
         "kind": "timed_debug",
@@ -426,6 +449,7 @@ async def _get_optional_challenge(
         "estimated_minutes": 12,
         "xp_reward": 60,
         "skill": pick,
+        "selection_reason": "stable_daily_rotation",
     }
 
 

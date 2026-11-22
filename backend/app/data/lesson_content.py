@@ -8,6 +8,7 @@ Example: c-l01-01 = C, level 1, lesson 1
 """
 
 from typing import Any
+import copy
 import re
 
 
@@ -3511,3 +3512,28 @@ def get_lesson_content(
         ],
         "next_steps": f"Continue practicing {lesson_title} in your own projects.",
     }
+
+
+# ---------------------------------------------------------------------------
+# Backward-compatible public lesson helpers
+# ---------------------------------------------------------------------------
+
+def lesson_quizzes(content: dict) -> list:
+    """Return every quiz a lesson presents, in display order."""
+    quizzes = []
+    first = content.get("quiz")
+    if isinstance(first, dict):
+        quizzes.append(first)
+    for quiz in content.get("quizzes") or []:
+        if isinstance(quiz, dict) and all(quiz is not known for known in quizzes):
+            quizzes.append(quiz)
+    return quizzes
+
+
+def public_lesson_content(content: dict) -> dict:
+    """Deep-copy lesson content and strip answer keys before it reaches clients."""
+    clean = copy.deepcopy(content)
+    for quiz in lesson_quizzes(clean):
+        quiz.pop("correct", None)
+        quiz.pop("explanation", None)
+    return clean

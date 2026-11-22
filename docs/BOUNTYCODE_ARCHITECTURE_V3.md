@@ -1,6 +1,6 @@
 # BOUNTYCODE_ARCHITECTURE_V3.md
 **Version:** 3.0 (Launch Spec)  
-**Effective Date:** October 16, 2026  
+**Effective Date:** October 17, 2026  
 **Governed By:** `/docs/BOUNTYCODE_VISION_LOCK.md`  
 
 ## Decision Log (binding resolutions, 2026-09-21)

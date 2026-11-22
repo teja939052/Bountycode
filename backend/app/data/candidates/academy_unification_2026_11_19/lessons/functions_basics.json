@@ -1,0 +1,33 @@
+{
+  "slug": "functions_basics",
+  "id": "lesson_functions_basics_001",
+  "title": "Functions and parameters",
+  "domain": "Programming Logic",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Functions package logic", "content": "A function has a name, parameters (inputs), a body, and often a return value. Callers pass arguments."},
+    {"step_number": 2, "step_type": "interactive", "title": "Return value", "prompt": "def double(n): return n*2. What is double(5)?", "options": ["5", "10", "25", "None"], "correct_index": 1, "explanation": "5*2 = 10.", "hints": ["Substitute n = 5."]},
+    {"step_number": 3, "step_type": "explain", "title": "Parameters vs arguments", "content": "Parameters are names in the definition. Arguments are actual values at the call site."},
+    {"step_number": 4, "step_type": "practice", "title": "Multiple parameters", "prompt": "def add(a,b): return a+b. add(2,3) is:", "options": ["23", "5", "6", "Error"], "correct_index": 1, "explanation": "2+3 = 5.", "hints": ["Add the two arguments."]},
+    {"step_number": 5, "step_type": "practice", "title": "Side effect vs return", "prompt": "A function prints 3 but returns nothing. The caller that uses its value gets:", "options": ["3", "Usually None/undefined", "0", "True"], "correct_index": 1, "explanation": "Printing is a side effect; without return the value is empty/None.", "hints": ["Is print the same as return?"]}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Parameters are:", "options": ["Values at call site", "Names in the definition", "Always integers", "Global only"], "correct_index": 1, "explanation": "Parameters are definition names."},
+    {"prompt": "return stops:", "options": ["The whole program only", "The function and sends a value back", "Only loops", "Nothing"], "correct_index": 1, "explanation": "return exits the function."},
+    {"prompt": "def f(x): return x-1; f(f(3)) =", "options": ["1", "2", "3", "0"], "correct_index": 0, "explanation": "f(3)=2; f(2)=1."},
+    {"prompt": "Why use functions?", "options": ["To slow code", "Reuse and structure logic", "Avoid variables", "Remove conditions"], "correct_index": 1, "explanation": "Reuse and clarity."},
+    {"prompt": "add(1,2,3) for def add(a,b) typically:", "options": ["Runs", "Arity/argument error", "Returns 6", "Returns 3"], "correct_index": 1, "explanation": "Wrong number of arguments."}
+  ]},
+  "learning_objectives": ["Define functions with parameters", "Use return values", "Trace nested calls"],
+  "prerequisites": ["loops_basics"],
+  "concepts": ["function", "parameter", "return"],
+  "common_misconceptions": [{"misconception": "print returns a value to the caller", "correction": "print displays; return sends a value to the caller."}],
+  "company_applications": [{"company": "Accenture", "skill": "coding", "practice": "Predict outputs of small function snippets."}],
+  "srs_cards": [{"type": "trace", "question": "def f(x): return x+1; f(4)?", "answer": "5"}],
+  "quest": {"chapter": "Programming Logic", "mission": "Functions and parameters", "success_criteria": ["Define functions with parameters", "Use return values", "Trace nested calls"]},
+  "next_lesson_slug": "arrays_basics",
+  "next_lesson_title": "Arrays and lists"
+}

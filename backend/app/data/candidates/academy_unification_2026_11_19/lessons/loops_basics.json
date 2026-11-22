@@ -1,0 +1,33 @@
+{
+  "slug": "loops_basics",
+  "id": "lesson_loops_basics_001",
+  "title": "Loops and repetition",
+  "domain": "Programming Logic",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Why loops?", "content": "Loops repeat a block while a condition holds or for a fixed count. They avoid copy-pasting the same lines."},
+    {"step_number": 2, "step_type": "interactive", "title": "Loop count", "prompt": "for i from 1 to 3 inclusive, how many times does the body run?", "options": ["2", "3", "4", "1"], "correct_index": 1, "explanation": "i = 1,2,3 → three times.", "hints": ["List each value of i."]},
+    {"step_number": 3, "step_type": "explain", "title": "While vs for", "content": "for is ideal when the number of iterations is known. while is ideal when you stop based on a condition."},
+    {"step_number": 4, "step_type": "practice", "title": "Trace a sum", "prompt": "s = 0; for i in 1..4: s = s + i. Final s?", "options": ["4", "6", "10", "24"], "correct_index": 2, "explanation": "1+2+3+4 = 10.", "hints": ["Add step by step."]},
+    {"step_number": 5, "step_type": "practice", "title": "Infinite loop risk", "prompt": "Which while condition is most likely infinite if the body never changes x?", "options": ["while x < 10 and x increases each time", "while True", "while x == 0 after x set to 1", "while False"], "correct_index": 1, "explanation": "while True never ends unless you break.", "hints": ["Which condition stays true forever?"]}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "A loop that runs 0 times:", "options": ["for i in 1..5", "while False", "while True", "for i in 0..0 inclusive 2 times"], "correct_index": 1, "explanation": "while False skips the body."},
+    {"prompt": "1+2+...+5 =", "options": ["10", "15", "20", "25"], "correct_index": 1, "explanation": "Sum is 15."},
+    {"prompt": "Best for fixed 10 iterations:", "options": ["while with complex exit", "for loop 10 times", "10 separate ifs", "recursion only"], "correct_index": 1, "explanation": "for fits fixed counts."},
+    {"prompt": "i goes 0,1,2. Body runs:", "options": ["2", "3", "4", "1"], "correct_index": 1, "explanation": "Three values."},
+    {"prompt": "To stop early you often:", "options": ["delete the loop", "use break", "use == only", "rename i"], "correct_index": 1, "explanation": "break exits the loop."}
+  ]},
+  "learning_objectives": ["Trace for/while loops", "Compute simple loop totals", "Avoid infinite loops"],
+  "prerequisites": ["conditions_basics"],
+  "concepts": ["for", "while", "iteration"],
+  "common_misconceptions": [{"misconception": "for i in 1..n runs n-1 times", "correction": "Inclusive ranges run n times if both ends are included."}],
+  "company_applications": [{"company": "Wipro", "skill": "coding fundamentals", "practice": "Dry-run small loops on paper."}],
+  "srs_cards": [{"type": "trace", "question": "s=0; for i in 1..3: s+=i. s=?", "answer": "6"}],
+  "quest": {"chapter": "Programming Logic", "mission": "Loops and repetition", "success_criteria": ["Trace for/while loops", "Compute simple loop totals", "Avoid infinite loops"]},
+  "next_lesson_slug": "functions_basics",
+  "next_lesson_title": "Functions and parameters"
+}

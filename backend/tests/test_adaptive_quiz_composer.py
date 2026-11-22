@@ -119,3 +119,22 @@ def test_explicit_difficulty_overrides_adaptive_skill_difficulty():
         item["recommended_difficulty"] == "medium"
         for item in result["selection_evidence"]
     )
+
+
+def test_short_form_covers_each_available_skill_before_repeating_one():
+    questions = [
+        _question("arrays-1", "arrays"),
+        _question("arrays-2", "arrays"),
+        _question("sql-1", "sql"),
+        _question("graphs-1", "graphs"),
+    ]
+    result = compose_quiz(
+        questions,
+        num_questions=3,
+        seed="coverage-first",
+        evidence={"skill_scores": {"arrays": 0.1, "sql": 0.2, "graphs": 0.3}},
+    )
+
+    assert len(result["covered_skills"]) == 3
+    assert set(result["covered_skills"]) == {"arrays", "sql", "graphs"}
+    assert sum(item["coverage_gain"] for item in result["selection_evidence"]) == 3

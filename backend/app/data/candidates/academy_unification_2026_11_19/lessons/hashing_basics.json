@@ -1,0 +1,30 @@
+{
+  "slug": "hashing_basics",
+  "id": "lesson_hashing_basics_001",
+  "title": "Hashing basics",
+  "domain": "DSA",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {"step_number": 1, "step_type": "explain", "title": "Key to bucket", "content": "A hash function maps a key to a bucket index. Average lookup is O(1) when the distribution is good. Collisions happen when two keys map to the same bucket."},
+    {"step_number": 2, "step_type": "interactive", "title": "Use case", "prompt": "Fast check whether an ID was seen before suggests:", "options": ["Only sorted array scan always", "Hash set / hash map", "Only recursion", "Bubble sort"], "correct_index": 1, "explanation": "Hash set/map optimises membership and key lookup.", "hints": ["Which structure is built for keys?"]},
+    {"step_number": 3, "step_type": "practice", "title": "Collision idea", "prompt": "Two different keys, same bucket means:", "options": ["Impossible", "A collision", "Sorted order", "Stack overflow"], "correct_index": 1, "explanation": "That is a collision.", "hints": ["Same index, different keys."]},
+    {"step_number": 4, "step_type": "practice", "title": "OA pattern", "prompt": "Count frequencies of array elements is often solved with:", "options": ["Hash map counts", "Only binary search on unsorted", "Selection sort only", "Hard-coded ifs"], "correct_index": 0, "explanation": "Map value → count.", "hints": ["Need key → frequency."]},
+    {"step_number": 5, "step_type": "explain", "title": "Service OA tip", "content": "Prefer clear hash-map solutions for frequency and pair-sum patterns over fragile micro-optimisations."}
+  ],
+  "assessment": {"mastery_threshold": 0.7, "duration_sec": 300, "questions": [
+    {"prompt": "Average hash lookup:", "options": ["O(n)", "O(1)", "O(n^2)", "O(n log n) always"], "correct_index": 1, "explanation": "Average O(1)."},
+    {"prompt": "Collision means:", "options": ["No keys", "Keys share a bucket", "Sorted keys", "Empty map"], "correct_index": 1, "explanation": "Shared bucket."},
+    {"prompt": "Frequency counting fits:", "options": ["Hash map", "Only queue", "Only stack", "Only DFS"], "correct_index": 0, "explanation": "Hash map."},
+    {"prompt": "Hash maps store:", "options": ["Only integers", "Key-value associations", "Only sorted pairs", "Pixels"], "correct_index": 1, "explanation": "Key-value."},
+    {"prompt": "In OA prefer:", "options": ["Obscure bit hacks first", "Correct clear map logic", "Undefined behavior", "Ignore collisions conceptually"], "correct_index": 1, "explanation": "Clear correct logic."}
+  ]},
+  "learning_objectives": ["Explain hashing purpose", "Choose maps for frequency/membership"],
+  "concepts": ["hash", "collision", "map"],
+  "company_applications": [{"company": "Infosys", "skill": "hashing", "practice": "Frequency and pair problems."}],
+  "srs_cards": [{"type": "concept", "question": "Why hash maps?", "answer": "Average fast key-based insert/lookup."}],
+  "next_lesson_slug": "algorithms_basics",
+  "next_lesson_title": "Algorithms basics"
+}
