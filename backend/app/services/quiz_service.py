@@ -47,6 +47,9 @@ def _servable_questions() -> List[Dict[str, Any]]:
     """
     _qs.load_all()
     return [q for q in _qs._questions if _qs._is_servable(q)]
+
+
+def get_question_by_id(qid: str) -> Optional[Dict[str, Any]]:
     """Fetch one complete question from the canonical store (verified only)."""
     return _qs.find_one_verified({"id": str(qid)})
 
@@ -171,11 +174,11 @@ def build_quiz(
             if str(q.get("difficulty") or "medium").lower() == difficulty.lower()
         ]
     if company:
-        requested_company = _normalize_company_tag(company)
+        requested_company = _question_companies(company)
         filtered = [
             q for q in filtered
             if requested_company in {
-                _normalize_company_tag(item) for item in _question_companies(q)
+                item.lower() for item in _question_companies(q)
             }
         ]
 
@@ -258,7 +261,7 @@ def build_quiz(
         selected = rng.sample(filtered, min(num_questions, len(filtered)))
         time_limit = time_limit_seconds or 10 * 60
     else:  # practice or quiz
-        selected = rng.sample(filtered, min(num_questions, len(filtered)))
+        selected = random.sample(_servable_questions(), min(num_questions, len(_servable_questions())))
         time_limit = time_limit_seconds
 
     # Build quiz session
