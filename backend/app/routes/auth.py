@@ -3,15 +3,15 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from typing import Optional
+from uuid import UUID
+from sqlalchemy.ext.asyncio import AsyncSession
 import secrets
 import logging
 import asyncio
 import httpx
 from app.services.email import send_email, welcome_email, password_reset_email
 from app.models.user import UserCreate, UserLogin, UpdateProfileRequest, ChangePasswordRequest
-from app.database import users_collection
-from bson import ObjectId
-from bson import ObjectId as _ObjectId
+from app.database import get_session, get_session_no_commit
 from app.middleware.auth import (
     hash_password,
     verify_password,
@@ -25,6 +25,7 @@ from app.middleware.auth import (
     clear_auth_cookie,
 )
 from app.services.audit_log import log_audit
+from app.services.postgres_auth import PostgresAuthService
 from app.middleware.rate_limiter import (
     check_login_rate_limit,
     record_login_failure,
@@ -54,8 +55,15 @@ class VerifyEmailRequest(BaseModel):
 
 
 @router.post("/register")
-async def register(req: UserCreate, response: Response, request: Request = None):
-    existing = await users_collection.find_one({"email": req.email})
+async def register(
+    req: UserCreate,
+    response: Response,
+    request: Request = None,
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
+
+    existing = await auth_service.get_user_by_email(req.email)
     if existing:
         raise HTTPException(status_code=400, detail="Email already registered")
 
@@ -77,28 +85,14 @@ async def register(req: UserCreate, response: Response, request: Request = None)
             or (request.client.host if request.client else None)
         )
 
-    now = datetime.now(timezone.utc)
-    user_doc = {
-        "email": req.email,
-        "name": req.name,
-        "password_hash": hash_password(req.password),
-        "plan": "free",
-        "country": country,
-        "ip": client_ip,
-        "paypal_customer_id": None,
-        "email_verified": False,
-        "email_verification_token": secrets.token_urlsafe(32),
-        "email_verification_expires": now + timedelta(hours=24),
-        "interviews_used": 0,
-        "resumes_used": 0,
-        "aptitude_used": 0,
-        "monthly_reset_date": now,
-        "created_at": now,
-        "last_active": now,
-    }
-
-    result = await users_collection.insert_one(user_doc)
-    user_id = str(result.inserted_id)
+    user, created = await auth_service.create_user(
+        email=req.email,
+        password_hash=hash_password(req.password),
+        name=req.name,
+        country=country,
+        ip=client_ip,
+    )
+    user_id = str(user.id)
 
     # Fire-and-forget lifecycle email (must not block or fail the signup).
     try:
@@ -111,6 +105,8 @@ async def register(req: UserCreate, response: Response, request: Request = None)
     set_auth_cookie(response, token)
     set_auth_cookie(response, refresh_token, cookie_name="pp_refresh_token", max_age=settings.JWT_REFRESH_EXPIRY_DAYS * 86400)
 
+    await auth_service.set_refresh_jti(user.id, refresh_jti)
+
     # Beta funnel: track signup completion
     try:
         from app.services.analytics_service import track_event
@@ -122,10 +118,6 @@ async def register(req: UserCreate, response: Response, request: Request = None)
         ))
     except Exception:
         pass
-    await users_collection.update_one(
-        {"_id": result.inserted_id},
-        {"$set": {"refresh_jti": refresh_jti}},
-    )
 
     return {
         "token": token,
@@ -134,26 +126,29 @@ async def register(req: UserCreate, response: Response, request: Request = None)
 
 
 @router.post("/login")
-async def login(req: UserLogin, response: Response, request: Request):
+async def login(
+    req: UserLogin,
+    response: Response,
+    request: Request,
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
     check_login_rate_limit(req.email)
 
-    user = await users_collection.find_one({"email": req.email})
-    pw_hash = user.get("password_hash") if user else None
+    user = await auth_service.get_user_by_email(req.email)
+    pw_hash = user.password_hash if user else None
     if not user or not pw_hash or not verify_password(req.password, pw_hash):
         record_login_failure(req.email)
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
     try:
         clear_login_attempts(req.email)
-        user_id = str(user["_id"])
+        user_id = str(user.id)
         token = create_access_token(user_id)
         refresh_token, refresh_jti = create_refresh_token(user_id)
         set_auth_cookie(response, token)
         set_auth_cookie(response, refresh_token, cookie_name="pp_refresh_token", max_age=settings.JWT_REFRESH_EXPIRY_DAYS * 86400)
-        await users_collection.update_one(
-            {"_id": user["_id"]},
-            {"$set": {"refresh_jti": refresh_jti, "last_active": datetime.now(timezone.utc)}},
-        )
+        await auth_service.set_refresh_jti(user.id, refresh_jti)
         await log_audit(user_id, "auth.login", "session", ip_address=(request.client.host if request.client else None))
     except Exception as e:
         logger.exception("login error: %s", repr(e))
@@ -163,15 +158,20 @@ async def login(req: UserLogin, response: Response, request: Request):
         "token": token,
         "user": {
             "id": user_id,
-            "email": user.get("email") or "",
-            "name": user.get("name") or "",
-            "plan": user.get("plan", "free"),
+            "email": user.email or "",
+            "name": user.name or "",
+            "plan": user.plan,
         },
     }
 
 
 @router.post("/refresh")
-async def refresh_token(request: Request, response: Response):
+async def refresh_token(
+    request: Request,
+    response: Response,
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
 
     refresh_token = request.cookies.get("pp_refresh_token")
     if not refresh_token:
@@ -190,17 +190,14 @@ async def refresh_token(request: Request, response: Response):
         # The issued jti must match the server-tracked current refresh jti.
         # This makes stolen refresh tokens unusable once the user rotates them
         # (logout / password change / next refresh).
-        user = await users_collection.find_one({"_id": ObjectId(user_id)})
-        if not user or not user.get("refresh_jti") or user["refresh_jti"] != jti:
+        user = await auth_service.get_user_by_id(UUID(user_id))
+        if not user or not user.refresh_jti or user.refresh_jti != jti:
             raise HTTPException(status_code=401, detail="Invalid or revoked refresh token")
 
         # Rotate: mint a new jti and invalidate the old one.
         new_access_token = create_access_token(user_id)
         new_refresh_token, new_jti = create_refresh_token(user_id)
-        await users_collection.update_one(
-            {"_id": ObjectId(user_id)},
-            {"$set": {"refresh_jti": new_jti, "last_active": datetime.now(timezone.utc)}},
-        )
+        await auth_service.set_refresh_jti(user.id, new_jti)
         set_auth_cookie(response, new_access_token)
         set_auth_cookie(response, new_refresh_token, cookie_name="pp_refresh_token", max_age=settings.JWT_REFRESH_EXPIRY_DAYS * 86400)
         await log_audit(user_id, "auth.refresh", "session", ip_address=(request.client.host if request.client else None))
@@ -212,15 +209,17 @@ async def refresh_token(request: Request, response: Response):
 
 
 @router.post("/logout")
-async def logout(response: Response, user=Depends(optional_get_current_user)):
+async def logout(
+    response: Response,
+    user=Depends(optional_get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
     # Revoke the server-side refresh jti so a stolen refresh token can no
     # longer be rotated. Done best-effort: if there's no valid access token
     # we still clear the cookies client-side.
     if user:
-        await users_collection.update_one(
-            {"_id": _ObjectId(user["id"])},
-            {"$unset": {"refresh_jti": ""}},
-        )
+        await auth_service.clear_refresh_jti(UUID(user["id"]))
         await log_audit(user["id"], "auth.logout", "session")
 
     clear_auth_cookie(response)
@@ -330,76 +329,95 @@ _MISSION_BY_CATEGORY = {
 
 
 @router.post("/update-profile")
-async def update_profile(req: UpdateProfileRequest, user=Depends(get_current_user)):
+async def update_profile(
+    req: UpdateProfileRequest,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
     updates = {}
     if req.name:
         updates["name"] = req.name
     if req.email:
-        existing = await users_collection.find_one({"email": req.email, "_id": {"$ne": ObjectId(user["id"])}})
-        if existing:
+        existing = await auth_service.get_user_by_email(req.email)
+        if existing and str(existing.id) != user["id"]:
             raise HTTPException(status_code=400, detail="Email already in use")
         updates["email"] = req.email
 
     if not updates:
         raise HTTPException(status_code=400, detail="No fields to update")
 
-    await users_collection.update_one({"_id": ObjectId(user["id"])}, {"$set": updates})
+    await auth_service.update_user(UUID(user["id"]), updates)
     return {"message": "Profile updated", "updates": updates}
 
 
 @router.post("/change-password")
-async def change_password(req: ChangePasswordRequest, user=Depends(get_current_user)):
+async def change_password(
+    req: ChangePasswordRequest,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
     valid, msg = PasswordValidator.validate(req.new_password)
     if not valid:
         raise HTTPException(status_code=400, detail=msg)
 
-    db_user = await users_collection.find_one({"_id": ObjectId(user["id"])})
+    db_user = await auth_service.get_user_by_id(UUID(user["id"]))
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
 
-    if not verify_password(req.current_password, db_user["password_hash"]):
+    if not verify_password(req.current_password, db_user.password_hash):
         raise HTTPException(status_code=400, detail="Current password is incorrect")
 
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {"$set": {"password_hash": hash_password(req.new_password)},
-         "$unset": {"refresh_jti": ""}},
+    await auth_service.update_user(
+        UUID(user["id"]),
+        {
+            "password_hash": hash_password(req.new_password),
+            "refresh_jti": None,
+        },
     )
     await log_audit(user["id"], "auth.change_password", "user")
     return {"message": "Password changed successfully", "relogin_required": True}
 
 
 @router.post("/forgot-password")
-async def forgot_password(req: ForgotPasswordRequest):
-    user = await users_collection.find_one({"email": req.email})
+async def forgot_password(
+    req: ForgotPasswordRequest,
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
+
+    user = await auth_service.get_user_by_email(req.email)
     if not user:
         return {"message": "If an account exists with this email, a reset link has been sent."}
 
     token = secrets.token_urlsafe(32)
     expires_at = datetime.now(timezone.utc) + timedelta(minutes=15)
 
-    await users_collection.update_one(
-        {"_id": user["_id"]},
-        {"$set": {"reset_token": token, "reset_token_expires": expires_at}},
-    )
+    await auth_service.set_reset_token(user.id, token, expires_at)
 
     frontend_origin = settings.CORS_ORIGINS.split(",")[0].strip().rstrip("/")
     reset_link = f"{frontend_origin}/reset-password?token={token}&email={req.email}"
 
-    subject, html = password_reset_email(user.get("name"), reset_link)
+    subject, html = password_reset_email(user.name, reset_link)
     await send_email(req.email, subject, html)
 
     return {"message": "If an account exists with this email, a reset link has been sent."}
 
 
 @router.post("/reset-password")
-async def reset_password(req: ResetPasswordRequest):
-    user = await users_collection.find_one({"email": req.email})
+async def reset_password(
+    req: ResetPasswordRequest,
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
+
+    user = await auth_service.get_user_by_email(req.email)
     if not user:
         raise HTTPException(status_code=400, detail="Invalid request")
 
-    stored_token = user.get("reset_token")
-    expires_at = user.get("reset_token_expires")
+    stored_token = user.reset_token
+    expires_at = user.reset_token_expires
 
     if not stored_token or stored_token != req.token:
         raise HTTPException(status_code=400, detail="Invalid or expired reset token")
@@ -414,12 +432,16 @@ async def reset_password(req: ResetPasswordRequest):
     if not valid:
         raise HTTPException(status_code=400, detail=msg)
 
-    await users_collection.update_one(
-        {"_id": user["_id"]},
-        {"$set": {"password_hash": hash_password(req.new_password)},
-         "$unset": {"reset_token": "", "reset_token_expires": "", "refresh_jti": ""}},
+    await auth_service.update_user(
+        user.id,
+        {
+            "password_hash": hash_password(req.new_password),
+            "reset_token": None,
+            "reset_token_expires": None,
+            "refresh_jti": None,
+        },
     )
-    await log_audit(str(user["_id"]), "auth.reset_password", "user")
+    await log_audit(str(user.id), "auth.reset_password", "user")
 
     return {"message": "Password reset successful. You can now log in."}
 
@@ -433,9 +455,13 @@ class OnboardingData(BaseModel):
 
 
 @router.get("/onboarding-status")
-async def onboarding_status(user=Depends(get_current_user)):
-    db_user = await users_collection.find_one({"_id": ObjectId(user["id"])})
-    onboarding = db_user.get("onboarding", {}) if db_user else {}
+async def onboarding_status(
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session_no_commit),
+):
+    auth_service = PostgresAuthService(session)
+    db_user = await auth_service.get_user_by_id(UUID(user["id"]))
+    onboarding = db_user.onboarding if db_user else {}
     return {
         "completed": onboarding.get("completed", False),
         "class": onboarding.get("class"),
@@ -445,7 +471,12 @@ async def onboarding_status(user=Depends(get_current_user)):
 
 
 @router.post("/onboarding-complete")
-async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user)):
+async def onboarding_complete(
+    req: OnboardingData,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
     onboarding = {
         "completed": True,
         "class": req.klass,
@@ -455,10 +486,7 @@ async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user
         "tech_interests": req.tech_interests,
         "completed_at": datetime.now(timezone.utc),
     }
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {"$set": {"onboarding": onboarding}}
-    )
+    await auth_service.update_onboarding(UUID(user["id"]), onboarding)
 
     # Beta funnel: track onboarding completion
     try:
@@ -476,19 +504,17 @@ async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user
 
 
 @router.post("/verify-email")
-async def verify_email(req: VerifyEmailRequest):
-    user = await users_collection.find_one({"email_verification_token": req.token})
+async def verify_email(
+    req: VerifyEmailRequest,
+    session: AsyncSession = Depends(get_session),
+):
+    auth_service = PostgresAuthService(session)
+
+    user = await auth_service.verify_email_token(req.token)
     if not user:
         raise HTTPException(status_code=400, detail="Invalid or expired verification token")
 
-    expires_at = user.get("email_verification_expires")
-    if expires_at and datetime.now(timezone.utc) > expires_at.replace(tzinfo=timezone.utc):
-        raise HTTPException(status_code=400, detail="Verification token has expired")
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["_id"])},
-        {"$set": {"email_verified": True, "email_verification_token": None, "email_verification_expires": None}},
-    )
+    await auth_service.mark_email_verified(user.id)
     return {"message": "Email verified successfully"}
 
 
@@ -512,8 +538,13 @@ async def google_login():
 
 
 @router.get("/google/callback")
-async def google_callback(request: Request, response: Response):
+async def google_callback(
+    request: Request,
+    response: Response,
+    session: AsyncSession = Depends(get_session),
+):
     """Handle Google OAuth callback — exchange code, find/create user, set cookies, redirect."""
+    auth_service = PostgresAuthService(session)
     if not settings.GOOGLE_CLIENT_ID or not settings.GOOGLE_CLIENT_SECRET:
         raise HTTPException(status_code=501, detail="Google OAuth not configured")
     code = request.query_params.get("code")
@@ -549,43 +580,31 @@ async def google_callback(request: Request, response: Response):
     google_name = google_user.get("name", google_email.split("@")[0])
     if not google_email:
         raise HTTPException(status_code=400, detail="Google account has no email")
-    existing = await users_collection.find_one({"email": google_email})
+
+    existing = await auth_service.get_user_by_email(google_email)
     now = datetime.now(timezone.utc)
     if existing:
-        user_id = str(existing["_id"])
-        await users_collection.update_one(
-            {"_id": existing["_id"]},
-            {"$set": {"last_active": now, "google_id": google_user.get("id")}},
+        user_id = str(existing.id)
+        await auth_service.update_user(
+            existing.id,
+            {"last_active": now, "google_id": google_user.get("id")},
         )
     else:
-        result = await users_collection.insert_one({
-            "email": google_email,
-            "name": google_name,
-            "password_hash": None,
-            "plan": "free",
-            "country": "unknown",
-            "ip": None,
-            "paypal_customer_id": None,
-            "email_verified": True,
-            "email_verification_token": None,
-            "email_verification_expires": None,
-            "interviews_used": 0,
-            "resumes_used": 0,
-            "aptitude_used": 0,
-            "monthly_reset_date": now,
-            "created_at": now,
-            "last_active": now,
-            "google_id": google_user.get("id"),
-        })
-        user_id = str(result.inserted_id)
+        user, created = await auth_service.create_user(
+            email=google_email,
+            password_hash=None,
+            name=google_name,
+            google_id=google_user.get("id"),
+            country="unknown",
+            ip=None,
+        )
+        user_id = str(user.id)
+
     access_token_jwt = create_access_token(user_id)
     refresh_token, refresh_jti = create_refresh_token(user_id)
     set_auth_cookie(response, access_token_jwt)
     set_auth_cookie(response, refresh_token, cookie_name="pp_refresh_token", max_age=settings.JWT_REFRESH_EXPIRY_DAYS * 86400)
-    await users_collection.update_one(
-        {"_id": ObjectId(user_id)},
-        {"$set": {"refresh_jti": refresh_jti}}
-    )
+    await auth_service.set_refresh_jti(UUID(user_id), refresh_jti)
     frontend_origin = settings.CORS_ORIGINS.split(",")[0].strip()
     redirect = RedirectResponse(
         url=f"{frontend_origin}/?auth=success",

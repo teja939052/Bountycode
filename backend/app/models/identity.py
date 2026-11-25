@@ -51,6 +51,17 @@ class User(Base):
     all_time_usage: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"), nullable=False)
     honor: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     uid: Mapped[Optional[str]] = mapped_column(String(255), unique=True, nullable=True, index=True)
+    country: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    ip: Mapped[Optional[str]] = mapped_column(String(45), nullable=True)
+    last_active: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    refresh_jti: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
+    reset_token: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    reset_token_expires: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    email_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    email_verification_token: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    email_verification_expires: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    google_id: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
+    onboarding: Mapped[Optional[dict]] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
