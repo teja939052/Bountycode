@@ -2,8 +2,9 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query
 from pydantic import BaseModel
 from typing import Optional
+from uuid import UUID, uuid4
 from app.models.resume import GenerateResume, OptimizeRequest
-from app.database import users_collection, resumes_collection, get_session
+from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.ai_resume import analyze_resume, optimize_ats, generate_resume_content
 from app.services.resume_parser import extract_text_from_pdf
@@ -11,8 +12,8 @@ from app.services.export import export_to_docx, export_to_pdf
 from app.services.ats_semantic import semantic_score, section_scores, semantic_gaps
 from app.services.ats_enhanced import calculate_ats_score as keyword_ats_score
 from app.services.postgres_gamification import record_practice as pg_record_practice
+from app.compat.mongo_adapter import MongoCompatCollection
 from app.config import get_settings
-from bson import ObjectId
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -131,6 +132,7 @@ async def upload_resume(
     analysis = await analyze_resume(text)
 
     resume_doc = {
+        "_id": str(uuid4()),
         "user_id": user["id"],
         "original_text": text,
         "analysis": analysis,
@@ -140,11 +142,17 @@ async def upload_resume(
         "source": "upload",
         "created_at": datetime.now(timezone.utc),
     }
-    result = await resumes_collection.insert_one(resume_doc)
 
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {"$inc": {"resumes_used": 1}},
+    resumes = MongoCompatCollection(session, "resumes")
+    result = await resumes.insert_one(resume_doc)
+
+    # Increment resumes_used counter
+    from sqlalchemy import update
+    from app.models.identity import User
+    await session.execute(
+        update(User)
+        .where(User.id == UUID(user["id"]))
+        .values(resumes_used=(User.resumes_used or 0) + 1)
     )
 
     # Gamification Law: record resume activity through the canonical pipeline.
