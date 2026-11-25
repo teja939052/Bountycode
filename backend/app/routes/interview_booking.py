@@ -1,6 +1,6 @@
 from datetime import datetime, timezone, timedelta
 from typing import Optional, List
-from uuid import UUID
+from uuid import UUID, uuid4
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -10,10 +10,16 @@ from app.middleware.auth import get_current_user
 from app.services.ai_interview import evaluate_answer
 from app.services.postgres_assessments import PostgresAssessmentService
 from app.services.postgres_gamification import record_practice as pg_record_practice
+from app.compat.mongo_adapter import MongoCompatCollection
 from app.config import get_settings
 from app.services.usage import can_use_feature, mark_feature_used
 
 settings = get_settings()
+
+# Compatibility adapters for remaining MongoDB collections
+# These route operations to PostgreSQL — NOT Motor
+_interview_bookings = lambda: MongoCompatCollection(None, "interview_bookings")
+_interviews = lambda: MongoCompatCollection(None, "interviews")
 
 router = APIRouter(prefix="/api/v1/interview-booking", tags=["interview-booking"])
 
@@ -103,7 +109,11 @@ def _check_slot_overlap(user_id: str, scheduled_at: datetime, duration_minutes: 
 
 
 @router.post("/book")
-async def book_interview(req: BookInterviewRequest, user=Depends(get_current_user)):
+async def book_interview(
+    req: BookInterviewRequest,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     booking_type = _validate_booking_type(req.type)
     duration = _validate_duration(req.duration_minutes)
 
@@ -129,6 +139,7 @@ async def book_interview(req: BookInterviewRequest, user=Depends(get_current_use
         raise HTTPException(status_code=403, detail=msg)
 
     booking_doc = {
+        "_id": str(uuid4()),
         "user_id": user["id"],
         "type": booking_type,
         "status": "scheduled",
@@ -147,7 +158,8 @@ async def book_interview(req: BookInterviewRequest, user=Depends(get_current_use
         "updated_at": now,
     }
 
-    result = await interview_bookings_collection.insert_one(booking_doc)
+    bookings = MongoCompatCollection(session, "interview_bookings")
+    result = await bookings.insert_one(booking_doc)
     booking_id = str(result.inserted_id)
 
     await mark_feature_used(user["id"], "interview_booking")
@@ -165,25 +177,30 @@ async def book_interview(req: BookInterviewRequest, user=Depends(get_current_use
 
 
 @router.get("/upcoming")
-async def get_upcoming_bookings(user=Depends(get_current_user)):
+async def get_upcoming_bookings(
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     now = datetime.now(timezone.utc)
-    cursor = interview_bookings_collection.find(
+    bookings = MongoCompatCollection(session, "interview_bookings")
+    cursor = await bookings.find(
         {
             "user_id": user["id"],
             "status": {"$in": ["scheduled", "in_progress"]},
             "scheduled_at": {"$gte": now},
         },
-        {"_id": 0},
-    ).sort("scheduled_at", 1)
+        sort=[("scheduled_at", 1)],
+    )
+    bookings_list = await cursor.to_list()
 
-    bookings = []
-    async for doc in cursor:
-        doc["id"] = str(doc["_id"])
-        doc["scheduled_at"] = doc["scheduled_at"].isoformat() if isinstance(doc["scheduled_at"], datetime) else doc["scheduled_at"]
-        del doc["_id"]
-        bookings.append(doc)
+    out = []
+    for doc in bookings_list:
+        doc["id"] = str(doc.get("_id", doc.get("id", "")))
+        if "_id" in doc:
+            del doc["_id"]
+        out.append(doc)
 
-    return {"bookings": bookings, "total": len(bookings)}
+    return {"bookings": out, "total": len(out)}
 
 
 @router.get("/history")
