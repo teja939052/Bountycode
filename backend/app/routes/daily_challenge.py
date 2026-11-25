@@ -6,15 +6,10 @@ import random
 from datetime import datetime, timezone, timedelta
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
+from uuid import UUID, uuid4
 from app.middleware.auth import get_current_user
-from app.database import (
-    solved_problems_collection,
-    question_answers_collection,
-    gamification_collection,
-    users_collection,
-    daily_challenges_users_collection,
-    get_session,
-)
+from app.database import get_session
+from app.compat.mongo_adapter import MongoCompatCollection
 from app.services.cache import cache
 from app.services.postgres_gamification import record_practice as pg_record_practice
 from sqlalchemy.ext.asyncio import AsyncSession
