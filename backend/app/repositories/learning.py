@@ -19,15 +19,18 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import RepositoryBase
 from app.models.learning import (
+    DailyChallengeUser,
     Skill,
     SkillPrerequisite,
     LearnerSkillState,
     LearningAttempt,
     LearningEvidence,
     MasterySnapshot,
-    ReviewCard,
-    RepairMission,
     RemediationAttempt,
+    RepairMission,
+    ReviewCard,
+    Skill,
+    SkillPrerequisite,
 )
 from app.models.identity import User
 
@@ -489,3 +492,66 @@ class RemediationAttemptRepository(RepositoryBase):
             )
         )
         return result.scalar_one()
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# DAILY CHALLENGE USER REPOSITORY
+# ══════════════════════════════════════════════════════════════════════════════
+
+class DailyChallengeUserRepository(RepositoryBase):
+    """Repository for per-user daily challenge state.
+
+    Migrated from MongoDB `daily_challenges_users` collection.
+    """
+
+    async def get_by_id(self, dcu_id: UUID) -> Optional[DailyChallengeUser]:
+        result = await self.session.execute(
+            select(DailyChallengeUser).where(DailyChallengeUser.id == dcu_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def get_by_user_and_date(
+        self,
+        user_id: UUID,
+        challenge_date,
+    ) -> Optional[DailyChallengeUser]:
+        result = await self.session.execute(
+            select(DailyChallengeUser)
+            .where(DailyChallengeUser.user_id == user_id)
+            .where(DailyChallengeUser.challenge_date == challenge_date)
+        )
+        return result.scalar_one_or_none()
+
+    async def list_by_user(
+        self,
+        user_id: UUID,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> List[DailyChallengeUser]:
+        result = await self.session.execute(
+            select(DailyChallengeUser)
+            .where(DailyChallengeUser.user_id == user_id)
+            .order_by(desc(DailyChallengeUser.challenge_date))
+            .limit(limit)
+            .offset(offset)
+        )
+        return list(result.scalars().all())
+
+    async def create(self, dcu_data: dict) -> DailyChallengeUser:
+        dcu = DailyChallengeUser(**dcu_data)
+        self.session.add(dcu)
+        await self.flush()
+        return dcu
+
+    async def update(
+        self,
+        dcu_id: UUID,
+        updates: dict,
+    ) -> Optional[DailyChallengeUser]:
+        result = await self.session.execute(
+            update(DailyChallengeUser)
+            .where(DailyChallengeUser.id == dcu_id)
+            .values(**updates)
+            .returning(DailyChallengeUser)
+        )
+        return result.scalar_one_or_none()

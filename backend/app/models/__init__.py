@@ -6,9 +6,12 @@ from app.models.assessments import (
     CodingSubmission,
     CompanyAssessmentMetadata,
     ExecutionResult,
+    InterviewBooking,
     InterviewSession,
     OASession,
+    QuestionAnswer,
     Response,
+    SolvedProblem,
 )
 from app.models.base import Base
 from app.models.career import CareerProfile, PortfolioProject, ResumeMetadata, UploadedFile
@@ -23,6 +26,7 @@ from app.models.content import (
 from app.models.gamification import Badge, GamificationProfile, StreakRecord, UserBadge, XPEventLedger
 from app.models.identity import RefreshToken, User, UserIdentityMap, UserProfile, UserSession
 from app.models.learning import (
+    DailyChallengeUser,
     LearnerSkillState,
     LearningAttempt,
     LearningEvidence,
@@ -47,6 +51,7 @@ __all__ = [
     "Skill",
     "SkillPrerequisite",
     "LearnerSkillState",
+    "DailyChallengeUser",
     "LearningAttempt",
     "LearningEvidence",
     "MasterySnapshot",
@@ -67,7 +72,10 @@ __all__ = [
     "CodingSubmission",
     "ExecutionResult",
     "OASession",
+    "InterviewBooking",
     "InterviewSession",
+    "QuestionAnswer",
+    "SolvedProblem",
     "CompanyAssessmentMetadata",
     # Gamification
     "GamificationProfile",

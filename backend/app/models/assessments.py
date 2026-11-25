@@ -192,3 +192,115 @@ class CompanyAssessmentMetadata(Base):
     __table_args__ = (
         UniqueConstraint("company", "role", "assessment_type", name="uq_company_assessment"),
     )
+
+
+class InterviewBooking(Base):
+    """Scheduled mock interview booking.
+
+    Migrated from MongoDB `interview_bookings` collection.
+    """
+
+    __tablename__ = "interview_bookings"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    company: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    role: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    interview_type: Mapped[str] = mapped_column(
+        String(50), nullable=False, default="technical"
+    )
+    status: Mapped[str] = mapped_column(
+        String(50), nullable=False, default="scheduled"
+    )  # scheduled, completed, cancelled, no_show
+    scheduled_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    duration_minutes: Mapped[int] = mapped_column(Integer, nullable=False, default=30)
+    score: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    notes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
+    )
+
+    user: Mapped["User"] = relationship()
+
+
+class SolvedProblem(Base):
+    """Daily challenge / problem solve history.
+
+    Migrated from MongoDB `solved_problems` collection.
+    """
+
+    __tablename__ = "solved_problems"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    problem_id: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    problem_type: Mapped[str] = mapped_column(
+        String(50), nullable=False, default="coding"
+    )  # coding, aptitude, sql
+    status: Mapped[str] = mapped_column(
+        String(50), nullable=False, default="solved"
+    )  # solved, attempted, failed
+    score: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)  # 0-100
+    language: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    time_taken_seconds: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    attempts: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    user: Mapped["User"] = relationship()
+
+
+class QuestionAnswer(Base):
+    """Question answer record.
+
+    Migrated from MongoDB `question_answers` collection.
+    """
+
+    __tablename__ = "question_answers"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    question_id: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    answer: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    is_correct: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True)
+    score: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    time_taken_seconds: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    user: Mapped["User"] = relationship()

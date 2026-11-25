@@ -233,3 +233,40 @@ class RemediationAttempt(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
     repair_mission: Mapped["RepairMission"] = relationship(back_populates="remediation_attempts")
+
+
+class DailyChallengeUser(Base):
+    """Per-user daily challenge state.
+
+    Migrated from MongoDB `daily_challenges_users` collection.
+    """
+
+    __tablename__ = "daily_challenges_users"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    challenge_date: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    challenge_type: Mapped[str] = mapped_column(String(50), nullable=False, default="coding")
+    status: Mapped[str] = mapped_column(
+        String(50), nullable=False, default="in_progress"
+    )  # in_progress, completed, abandoned
+    score: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    __table_args__ = (
+        UniqueConstraint("user_id", "challenge_date", name="uq_daily_challenges_user_date"),
+    )
+
+    user: Mapped["User"] = relationship()

@@ -99,15 +99,25 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
 
     @event.listens_for(Pool, "checkout")
     def _on_checkout(dbapi_connection, connection_record, checkout_pool):
-        # The checkout_pool argument is the Pool object, not a connection proxy.
+        # checkout_pool is the DBAPI connection proxy, not the Pool.
+        # Pool stats are available via checkout_pool._pool when present.
         rid = request_id_var.get("")
+        pool_size = None
+        checked_out = None
+        try:
+            pool = getattr(checkout_pool, "_pool", None)
+            if pool is not None:
+                pool_size = pool.size()
+                checked_out = pool.checkedout()
+        except Exception:
+            pass
         logger.debug(
             "db.pool.checkout",
             extra=log_context(
                 event="db.pool.checkout",
                 request_id=rid,
-                pool_size=checkout_pool.size(),
-                checked_out=checkout_pool.checkedout(),
+                pool_size=pool_size,
+                checked_out=checked_out,
             ),
         )
 

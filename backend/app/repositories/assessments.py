@@ -27,12 +27,15 @@ from app.database import RepositoryBase
 from app.models.assessments import (
     AssessmentAttempt,
     AssessmentSection,
-    Response,
     CodingSubmission,
-    ExecutionResult,
-    OASession,
-    InterviewSession,
     CompanyAssessmentMetadata,
+    ExecutionResult,
+    InterviewBooking,
+    InterviewSession,
+    OASession,
+    QuestionAnswer,
+    Response,
+    SolvedProblem,
 )
 from app.models.career import ResumeMetadata
 from app.models.content import AssessmentDefinition, AssessmentVariant
@@ -808,3 +811,159 @@ class ResumeMetadataRepository(RepositoryBase):
             .returning(ResumeMetadata)
         )
         return result.scalar_one_or_none()
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# INTERVIEW BOOKING REPOSITORY
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class InterviewBookingRepository(RepositoryBase):
+    """Repository for scheduled interview bookings.
+
+    Migrated from MongoDB `interview_bookings` collection.
+    """
+
+    async def get_by_id(self, booking_id: UUID) -> Optional[InterviewBooking]:
+        result = await self.session.execute(
+            select(InterviewBooking).where(InterviewBooking.id == booking_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def list_by_user(
+        self,
+        user_id: UUID,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> List[InterviewBooking]:
+        result = await self.session.execute(
+            select(InterviewBooking)
+            .where(InterviewBooking.user_id == user_id)
+            .order_by(desc(InterviewBooking.scheduled_at))
+            .limit(limit)
+            .offset(offset)
+        )
+        return list(result.scalars().all())
+
+    async def list_by_user_and_status(
+        self,
+        user_id: UUID,
+        status: str,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> List[InterviewBooking]:
+        result = await self.session.execute(
+            select(InterviewBooking)
+            .where(InterviewBooking.user_id == user_id)
+            .where(InterviewBooking.status == status)
+            .order_by(desc(InterviewBooking.scheduled_at))
+            .limit(limit)
+            .offset(offset)
+        )
+        return list(result.scalars().all())
+
+    async def create(self, booking_data: dict) -> InterviewBooking:
+        booking = InterviewBooking(**booking_data)
+        self.session.add(booking)
+        await self.flush()
+        return booking
+
+    async def update(
+        self,
+        booking_id: UUID,
+        updates: dict,
+    ) -> Optional[InterviewBooking]:
+        result = await self.session.execute(
+            update(InterviewBooking)
+            .where(InterviewBooking.id == booking_id)
+            .values(**updates)
+            .returning(InterviewBooking)
+        )
+        return result.scalar_one_or_none()
+
+    async def count_by_user_and_status(
+        self,
+        user_id: UUID,
+        status: str,
+    ) -> int:
+        result = await self.session.execute(
+            select(func.count(InterviewBooking.id))
+            .where(InterviewBooking.user_id == user_id)
+            .where(InterviewBooking.status == status)
+        )
+        return result.scalar_one()
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SOLVED PROBLEM REPOSITORY
+# ══════════════════════════════════════════════════════════════════════════════
+
+class SolvedProblemRepository(RepositoryBase):
+    """Repository for daily challenge / problem solve history.
+
+    Migrated from MongoDB `solved_problems` collection.
+    """
+
+    async def get_by_id(self, problem_id: UUID) -> Optional[SolvedProblem]:
+        result = await self.session.execute(
+            select(SolvedProblem).where(SolvedProblem.id == problem_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def list_by_user(
+        self,
+        user_id: UUID,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> List[SolvedProblem]:
+        result = await self.session.execute(
+            select(SolvedProblem)
+            .where(SolvedProblem.user_id == user_id)
+            .order_by(desc(SolvedProblem.created_at))
+            .limit(limit)
+            .offset(offset)
+        )
+        return list(result.scalars().all())
+
+    async def create(self, problem_data: dict) -> SolvedProblem:
+        problem = SolvedProblem(**problem_data)
+        self.session.add(problem)
+        await self.flush()
+        return problem
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# QUESTION ANSWER REPOSITORY
+# ══════════════════════════════════════════════════════════════════════════════
+
+class QuestionAnswerRepository(RepositoryBase):
+    """Repository for question answer records.
+
+    Migrated from MongoDB `question_answers` collection.
+    """
+
+    async def get_by_id(self, answer_id: UUID) -> Optional[QuestionAnswer]:
+        result = await self.session.execute(
+            select(QuestionAnswer).where(QuestionAnswer.id == answer_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def list_by_user(
+        self,
+        user_id: UUID,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> List[QuestionAnswer]:
+        result = await self.session.execute(
+            select(QuestionAnswer)
+            .where(QuestionAnswer.user_id == user_id)
+            .order_by(desc(QuestionAnswer.created_at))
+            .limit(limit)
+            .offset(offset)
+        )
+        return list(result.scalars().all())
+
+    async def create(self, answer_data: dict) -> QuestionAnswer:
+        answer = QuestionAnswer(**answer_data)
+        self.session.add(answer)
+        await self.flush()
+        return answer
