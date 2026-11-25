@@ -1,17 +1,17 @@
 from datetime import datetime, timezone, timedelta
 from typing import Optional, List
+from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
-from bson import ObjectId
-from app.database import (
-    interview_bookings_collection, interviews_collection, users_collection, get_session
-)
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.ai_interview import evaluate_answer
+from app.services.postgres_assessments import PostgresAssessmentService
 from app.services.postgres_gamification import record_practice as pg_record_practice
 from app.config import get_settings
 from app.services.usage import can_use_feature, mark_feature_used
-from sqlalchemy.ext.asyncio import AsyncSession
 
 settings = get_settings()
 

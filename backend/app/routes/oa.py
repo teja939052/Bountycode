@@ -18,11 +18,12 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional, Any
 from dataclasses import asdict
-from bson import ObjectId
+from uuid import UUID
 import logging
 
 from app.middleware.auth import get_current_user
-from app.database import oa_sessions_collection, integrity_events_collection, coding_challenges_collection, usage_collection, skill_graph_collection
+from app.database import get_session
+from app.services.postgres_assessments import PostgresAssessmentService
 from app.data.aptitude_question_bank import (
     get_questions_by_category,
     get_random_questions,
@@ -38,6 +39,7 @@ except Exception:
 from app.services.readiness_report import generate_readiness_pdf
 from app.services.readiness_engine import compute_readiness
 from app.services.observability import record_event
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/oa", tags=["oa"])
 settings = get_settings()
@@ -1198,14 +1200,26 @@ async def list_trusted_packs():
 
 
 @router.post("/{company}/start")
-async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_user)):
+async def start_oa(
+    company: str,
+    req: StartOARequest,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Start a company OA simulation. Returns the full question set + timer config."""
     if user.get("plan") == "free":
         # count this month's OA attempts
         start_month = datetime.now(timezone.utc).replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        used = await oa_sessions_collection.count_documents({
-            "user_id": user["id"], "created_at": {"$gte": start_month}
-        })
+        # Count via PostgreSQL
+        from sqlalchemy import select, func
+        from app.models.assessments import OASession
+        result = await session.execute(
+            select(func.count(OASession.id))
+            .where(OASession.user_id == UUID(user["id"]))
+            .where(OASession.company == company.lower())
+            .where(OASession.started_at >= start_month)
+        )
+        used = result.scalar() or 0
         if used >= OA_FREE_LIMIT:
             raise HTTPException(
                 status_code=403,
@@ -1303,13 +1317,29 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
         "score_breakdown": {},
         "review_metadata": {},
     }
-    res = await oa_sessions_collection.insert_one(session_doc)
-    session_id = str(res.inserted_id)
-    # Mirror the public session_id onto the document so lookups by
-    # session_id (rather than Mongo _id) work consistently.
-    await oa_sessions_collection.update_one(
-        {"_id": res.inserted_id},
-        {"$set": {"session_id": session_id}},
+    # Store session in PostgreSQL via OASession
+    assessment_service = PostgresAssessmentService(session)
+    oa_session = await assessment_service.oa_session_repo.create({
+        "user_id": UUID(user["id"]),
+        "company": company.lower(),
+        "role": req.role,
+        "blueprint": blueprint,
+        "mode": req.mode,
+        "integrity_enabled": req.integrity,
+        "status": "in_progress",
+        "questions": safe_questions,
+    })
+    session_id = str(oa_session.id)
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.attempt.started",
+        extra=log_context(
+            event="assessment.attempt.started",
+            assessment_type="oa",
+            company=company.lower(),
+            session_id=session_id,
+            request_id=rid,
+        ),
     )
 
     # Build client-safe payload (no answer keys exposed)
@@ -1377,35 +1407,38 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
 
 
 @router.post("/answer")
-async def submit_oa_answer(req: SubmitOABatch, user=Depends(get_current_user)):
+async def submit_oa_answer(
+    req: SubmitOABatch,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Submit one or more OA answers. Records answers + timing for scoring at completion."""
     try:
-        object_id = ObjectId(req.session_id)
+        attempt_id = UUID(req.session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
-    sess = await oa_sessions_collection.find_one({"_id": object_id})
-    if not sess:
-        # Fallback: try lookup by session_id string field
-        sess = await oa_sessions_collection.find_one({"session_id": req.session_id})
-    if not sess:
+
+    assessment_service = PostgresAssessmentService(session)
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
         raise HTTPException(status_code=404, detail="OA session not found")
-    if sess["user_id"] != user["id"]:
+    if str(attempt.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
-    if sess.get("status") == "completed":
+    if attempt.status == "completed":
         raise HTTPException(status_code=400, detail="OA already completed")
 
     # Late-submit guard: past ends_at the window is closed. Mark expired and
     # refuse (410); the client should call complete to score answered items.
-    ends_at = sess.get("ends_at")
-    if ends_at:
+    ends_at = attempt.completed_at  # OASession doesn't have ends_at, use metadata
+    metadata = attempt.attempt_metadata or {}
+    if metadata.get("ends_at"):
         try:
-            end = ends_at if isinstance(ends_at, datetime) else datetime.fromisoformat(str(ends_at))
+            end = datetime.fromisoformat(str(metadata["ends_at"]))
             if end.tzinfo is None:
                 end = end.replace(tzinfo=timezone.utc)
             if datetime.now(timezone.utc) > end:
-                await oa_sessions_collection.update_one(
-                    {"_id": ObjectId(req.session_id)},
-                    {"$set": {"status": "expired"}},
+                await assessment_service.oa_session_repo.update(
+                    attempt.id, {"status": "expired"}
                 )
                 raise HTTPException(
                     status_code=410,
@@ -1417,8 +1450,8 @@ async def submit_oa_answer(req: SubmitOABatch, user=Depends(get_current_user)):
             pass
 
     # Index question defs by uid
-    qdefs = {q["question_uid"]: q for q in sess["questions"]}
-    stored = dict(sess.get("answers", {}))
+    qdefs = {q["question_uid"]: q for q in attempt.attempt_metadata.get("questions", []) if isinstance(q, dict)}
+    stored = dict(attempt.attempt_metadata.get("answers", {}))
     for item in req.items:
         qdef = qdefs.get(item.question_uid)
         if not qdef:
@@ -1433,67 +1466,97 @@ async def submit_oa_answer(req: SubmitOABatch, user=Depends(get_current_user)):
             "difficulty": qdef.get("difficulty", "medium"),
             "topic": qdef.get("topic", ""),
         }
-    await oa_sessions_collection.update_one(
-        {"_id": ObjectId(req.session_id)},
-        {"$set": {"answers": stored, "updated_at": datetime.now(timezone.utc)}},
+
+    # Update answers in metadata
+    metadata = attempt.attempt_metadata or {}
+    metadata["answers"] = stored
+    metadata["updated_at"] = datetime.now(timezone.utc).isoformat()
+
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == attempt.id)
+        .values(attempt_metadata=metadata)
     )
     return {"received": len(req.items), "session_id": req.session_id}
 
 
 @router.post("/integrity")
-async def record_integrity_signal(req: IntegritySignal, user=Depends(get_current_user)):
+async def record_integrity_signal(
+    req: IntegritySignal,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Opt-in integrity signal recording (tab visibility, fullscreen, copy/paste, blur)."""
     try:
-        sess = await oa_sessions_collection.find_one({"_id": ObjectId(req.session_id)})
+        attempt_id = UUID(req.session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
-    if not sess or sess["user_id"] != user["id"]:
+
+    assessment_service = PostgresAssessmentService(session)
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
         raise HTTPException(status_code=404, detail="Session not found")
-    if not sess.get("integrity_enabled"):
+    if str(attempt.user_id) != user["id"]:
+        raise HTTPException(status_code=403, detail="Not authorized")
+
+    metadata = attempt.attempt_metadata or {}
+    if not metadata.get("integrity_enabled"):
         return {"recorded": False, "note": "integrity mode not enabled for this session"}
+
     signal = {
         "event": req.event,
         "at": req.at,
         "detail": req.detail,
         "user_id": user["id"],
         "session_id": req.session_id,
-        "created_at": datetime.now(timezone.utc),
+        "created_at": datetime.now(timezone.utc).isoformat(),
     }
-    await integrity_events_collection.insert_one(signal)
-    await oa_sessions_collection.update_one(
-        {"_id": ObjectId(req.session_id)},
-        {"$push": {"integrity_signals": signal}},
-    )
+
+    integrity_signals = metadata.get("integrity_signals", [])
+    integrity_signals.append(signal)
+    metadata["integrity_signals"] = integrity_signals
+
     # Increment counters for tab switches and fullscreen exits
+    tab_switch_count = metadata.get("tab_switch_count", 0)
+    fullscreen_exits = metadata.get("fullscreen_exits", 0)
     if req.event in ("tab_hidden", "blur"):
-        await oa_sessions_collection.update_one(
-            {"_id": ObjectId(req.session_id)},
-            {"$inc": {"tab_switch_count": 1}},
-        )
+        tab_switch_count += 1
     elif req.event in ("fullscreen_exit",):
-        await oa_sessions_collection.update_one(
-            {"_id": ObjectId(req.session_id)},
-            {"$inc": {"fullscreen_exits": 1}},
-        )
+        fullscreen_exits += 1
+    metadata["tab_switch_count"] = tab_switch_count
+    metadata["fullscreen_exits"] = fullscreen_exits
+
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == attempt.id)
+        .values(attempt_metadata=metadata)
+    )
     return {"recorded": True}
 
 
 @router.post("/{session_id}/complete")
-async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(default=None), user=Depends(get_current_user)):
+async def complete_oa(
+    session_id: str,
+    body: Optional[CompleteOABody] = Body(default=None),
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Grade the OA, produce the scorecard, update readiness, and surface next missions."""
     try:
-        object_id = ObjectId(session_id)
+        attempt_id = UUID(session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
-    sess = await oa_sessions_collection.find_one({"_id": object_id})
-    if not sess:
-        sess = await oa_sessions_collection.find_one({"session_id": session_id})
-    if not sess:
+
+    assessment_service = PostgresAssessmentService(session)
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
         raise HTTPException(status_code=404, detail="OA session not found")
-    if sess["user_id"] != user["id"]:
+    if str(attempt.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    qdefs = {q["question_uid"]: q for q in sess["questions"]}
+    metadata = attempt.attempt_metadata or {}
+    sess = metadata  # Use metadata as the session data store
+    qdefs = {q["question_uid"]: q for q in sess.get("questions", []) if isinstance(q, dict)}
     answers = sess.get("answers", {})
     marking = _marking_for(sess.get("company", ""))
 
@@ -1641,9 +1704,19 @@ async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(def
         "review_metadata": review_metadata,
     }
 
-    await oa_sessions_collection.update_one(
-        {"_id": ObjectId(session_id)},
-        {"$set": {"status": "completed", "result": result, "review_metadata": review_metadata, "completed_at": datetime.now(timezone.utc)}},
+    # Store result in PostgreSQL
+    metadata["status"] = "completed"
+    metadata["result"] = result
+    metadata["review_metadata"] = review_metadata
+    metadata["completed_at"] = datetime.now(timezone.utc).isoformat()
+
+    await assessment_service.attempt_repo.complete(
+        attempt_id, overall, completed_at=datetime.now(timezone.utc)
+    )
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == attempt_id)
+        .values(attempt_metadata=metadata)
     )
 
     # Feed readiness (best-effort, non-blocking)
@@ -1669,9 +1742,14 @@ async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(def
         if diagnosis:
             result["diagnosis"] = diagnosis.get("diagnosis", {})
             result["repair_missions"] = diagnosis.get("repair_missions", [])
-            await oa_sessions_collection.update_one(
-                {"_id": ObjectId(session_id)},
-                {"$set": {"result": result, "diagnosis": result.get("diagnosis"), "repair_missions": result.get("repair_missions") or []}},
+            # Update PostgreSQL with diagnosis
+            metadata["result"] = result
+            metadata["diagnosis"] = result.get("diagnosis")
+            metadata["repair_missions"] = result.get("repair_missions") or []
+            await session.execute(
+                update(attempt.__class__)
+                .where(attempt.__class__.id == attempt_id)
+                .values(attempt_metadata=metadata)
             )
     except Exception:
         pass
@@ -1768,44 +1846,55 @@ async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(def
 
 
 @router.get("/{session_id}/result")
-async def get_oa_result(session_id: str, user=Depends(get_current_user)):
+async def get_oa_result(
+    session_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
-        object_id = ObjectId(session_id)
+        attempt_id = UUID(session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
-    sess = await oa_sessions_collection.find_one({"_id": object_id})
-    if not sess:
-        sess = await oa_sessions_collection.find_one({"session_id": session_id})
-    if not sess:
+
+    assessment_service = PostgresAssessmentService(session)
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
         raise HTTPException(status_code=404, detail="OA session not found")
-    if sess["user_id"] != user["id"]:
+    if str(attempt.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
-    if sess.get("status") != "completed":
+    metadata = attempt.attempt_metadata or {}
+    if metadata.get("status") != "completed":
         raise HTTPException(status_code=400, detail="OA not completed yet")
-    return sess.get("result", {})
+    return metadata.get("result", {})
 
 
 @router.get("/{session_id}/readiness-report")
-async def download_readiness_report(session_id: str, user=Depends(get_current_user)):
+async def download_readiness_report(
+    session_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
-        object_id = ObjectId(session_id)
+        attempt_id = UUID(session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
-    sess = await oa_sessions_collection.find_one({"_id": object_id})
-    if not sess:
-        sess = await oa_sessions_collection.find_one({"session_id": session_id})
-    if not sess:
+
+    assessment_service = PostgresAssessmentService(session)
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
         raise HTTPException(status_code=404, detail="OA session not found")
-    if sess["user_id"] != user["id"]:
+    if str(attempt.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
-    if sess.get("status") != "completed":
+
+    metadata = attempt.attempt_metadata or {}
+    company = metadata.get("company")
+    if metadata.get("status") != "completed":
         raise HTTPException(status_code=400, detail="OA not completed yet")
 
-    company = sess.get("company")
     try:
         readiness = await compute_readiness(user["id"], company=company)
     except Exception:
-        readiness = sess.get("result") or {}
+        readiness = metadata.get("result") or {}
 
     user_name = user.get("name") or user.get("email") or "Candidate"
     user_email = user.get("email") or ""
@@ -1823,16 +1912,27 @@ async def download_readiness_report(session_id: str, user=Depends(get_current_us
 
 
 @router.get("/history")
-async def get_oa_history(user=Depends(get_current_user)):
-    cursor = oa_sessions_collection.find(
-        {"user_id": user["id"]},
-        {"questions": 0, "answers": 0, "integrity_signals": 0},
-    ).sort("created_at", -1).limit(20)
+async def get_oa_history(
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    assessment_service = PostgresAssessmentService(session)
+    attempts = await assessment_service.get_user_attempts(
+        UUID(user["id"]), limit=20, offset=0
+    )
+
     out = []
-    async for doc in cursor:
-        doc["id"] = str(doc["_id"])
-        del doc["_id"]
-        out.append(doc)
+    for attempt in attempts:
+        metadata = attempt.attempt_metadata or {}
+        out.append({
+            "id": str(attempt.id),
+            "company": metadata.get("company"),
+            "status": metadata.get("status"),
+            "started_at": metadata.get("started_at"),
+            "completed_at": metadata.get("completed_at"),
+            "overall_readiness": (metadata.get("result") or {}).get("overall_readiness"),
+            "result": metadata.get("result"),
+        })
     return {"sessions": out}
 
 
@@ -1941,32 +2041,22 @@ def _section_trust_ratios(questions: List[dict]) -> Dict[str, float]:
 
 
 async def _update_readiness(user_id: str, company: str, overall: float, section_avg: Dict[str, float], section_trust: Optional[Dict[str, float]] = None):
-    """Best-effort: store OA outcomes as a readiness signal for the existing readiness engine."""
-    col = skill_graph_collection()
-    doc = await col.find_one({"user_id": user_id})
-    if not doc:
-        doc = {"user_id": user_id, "categories": {}, "oa_outcomes": []}
-    outcomes = doc.get("oa_outcomes", [])
-    outcomes.append({
-        "company": company,
-        "overall": overall,
-        "sections": section_avg,
-        "section_trust": section_trust or {},
-        "at": datetime.now(timezone.utc).isoformat(),
-    })
-    # Keep last 20
-    outcomes = outcomes[-20:]
-    cats = doc.get("categories", {})
-    for sec, score in section_avg.items():
-        key = sec
-        prev = cats.get(key, {})
-        prev_score = prev.get("score", 0)
-        trust = (section_trust or {}).get(sec, 1.0)
-        weighted = score * trust
-        new_score = round(prev_score * 0.6 + weighted * 0.4, 1)
-        cats[key] = {"score": new_score, "source": "oa", "trust": trust}
-    await col.update_one(
-        {"user_id": user_id},
-        {"$set": {"categories": cats, "oa_outcomes": outcomes}},
-        upsert=True,
+    """Best-effort: store OA outcomes as a readiness signal for the existing readiness engine.
+
+    Stores outcomes as metadata on the OA session attempt in PostgreSQL.
+    The readiness engine can recompute from assessment_attempts if needed.
+    """
+    # OA outcomes are already stored in the attempt metadata (result, sections, etc.)
+    # Log for observability
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.readiness.updated",
+        extra=log_context(
+            event="assessment.readiness.updated",
+            user_id=user_id,
+            company=company,
+            overall=overall,
+            section_avg=section_avg,
+            request_id=rid,
+        ),
     )

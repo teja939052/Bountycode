@@ -1,20 +1,26 @@
 """
 Aptitude Timed Tests — Complete test system with timer, scoring, and leaderboard.
 Covers Quantitative, Logical, and Verbal reasoning for campus placements.
+
+Migrated to PostgreSQL: assessment_attempts (assessment_type="aptitude").
+Leaderboard derived from assessment_attempts queries.
 """
 from datetime import datetime, timezone, timedelta
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional, List
-from bson import ObjectId
-from app.middleware.auth import get_current_user
-from app.database import (
-    aptitude_tests_collection, aptitude_leaderboard_collection,
-    users_collection, gamification_collection, get_session
-)
-from app.services.postgres_gamification import record_practice as pg_record_practice
+from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, func, desc, and_
+
+from app.middleware.auth import get_current_user
+from app.database import get_session
+from app.services.postgres_assessments import PostgresAssessmentService
+from app.services.postgres_gamification import record_practice as pg_record_practice
+from app.services.structured_logging import get_logger, log_context, request_id_var
+from app.models.assessments import AssessmentAttempt
 
 router = APIRouter(prefix="/api/v1/aptitude-tests", tags=["aptitude-tests"])
+logger = get_logger(__name__)
 
 # Test configurations
 TEST_CONFIGS = {
@@ -99,6 +105,7 @@ async def start_aptitude_test(
     config: str = "standard",
     difficulty: Optional[str] = None,
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Start a new aptitude test with timer."""
     if config not in TEST_CONFIGS:
@@ -118,9 +125,13 @@ async def start_aptitude_test(
     from scripts.aptitude_ultimate import APTITUDE_ULTIMATE
 
     # Filter questions
-    available = APTITUDE_PROBLEMS.copy() + APTITUDE_BATCH2.copy() + APTITUDE_BATCH3.copy() + APTITUDE_BATCH4.copy() + APTITUDE_FINAL.copy() + APTITUDE_EXTRA.copy() + APTITUDE_FINAL_BATCH.copy() + APTITUDE_ULTRA.copy() + APTITUDE_ULTIMATE.copy()
+    available = (APTITUDE_PROBLEMS.copy() + APTITUDE_BATCH2.copy() + APTITUDE_BATCH3.copy()
+                 + APTITUDE_BATCH4.copy() + APTITUDE_FINAL.copy() + APTITUDE_EXTRA.copy()
+                 + APTITUDE_FINAL_BATCH.copy() + APTITUDE_ULTRA.copy() + APTITUDE_ULTIMATE.copy())
     if category != "mixed":
-        available = [q for q in available if q.get("category") == category or q.get("sub_category", "").lower() in CATEGORIES.get(category, {}).get("sub_categories", [])]
+        available = [q for q in available if q.get("category") == category
+                     or q.get("sub_category", "").lower()
+                     in CATEGORIES.get(category, {}).get("sub_categories", [])]
 
     if difficulty:
         available = [q for q in available if q.get("difficulty") == difficulty]
@@ -145,34 +156,55 @@ async def start_aptitude_test(
             "time_limit": q.get("time_limit", 60),
         })
 
-    # Create test session
+    # Create test session in PostgreSQL
     now = datetime.now(timezone.utc)
     ends_at = now + timedelta(minutes=test_config["time_minutes"])
 
-    test_doc = {
-        "user_id": user["id"],
+    assessment_service = PostgresAssessmentService(session)
+    attempt = await assessment_service.create_assessment_attempt(
+        user_id=UUID(user["id"]),
+        assessment_id="aptitude",  # Fixed assessment ID for aptitude tests
+        variant_id=f"{config}_{category}",
+        idempotency_key=f"aptitude_{user['id']}_{config}_{category}_{now.isoformat()}",
+    )
+
+    # Store questions and config in attempt metadata
+    attempt_metadata = {
         "category": category,
         "config": config,
         "config_name": test_config["name"],
         "questions": questions_for_client,
         "question_ids": [q["id"] for q in selected],
         "answers": [],
-        "status": "in_progress",
-        "score": 0,
         "total_questions": len(selected),
-        "correct_answers": 0,
         "time_limit_minutes": test_config["time_minutes"],
-        "started_at": now,
-        "ends_at": ends_at,
-        "completed_at": None,
         "xp_earned": 0,
     }
 
-    result = await aptitude_tests_collection().insert_one(test_doc)
-    test_id = str(result.inserted_id)
+    # Update attempt with metadata
+    from sqlalchemy import update
+    from app.models.assessments import AssessmentAttempt
+    await session.execute(
+        update(AssessmentAttempt)
+        .where(AssessmentAttempt.id == attempt.id)
+        .values(attempt_metadata=attempt_metadata)
+    )
+
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.attempt.started",
+        extra=log_context(
+            event="assessment.attempt.started",
+            assessment_type="aptitude",
+            category=category,
+            config=config,
+            attempt_id=str(attempt.id),
+            request_id=rid,
+        ),
+    )
 
     return {
-        "test_id": test_id,
+        "test_id": str(attempt.id),
         "config": test_config,
         "category": category,
         "questions": questions_for_client,
@@ -190,26 +222,34 @@ async def submit_answer(
     answer: str,
     time_taken: Optional[float] = None,
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Submit an answer for a specific question in the test."""
-    collection = aptitude_tests_collection()
+    assessment_service = PostgresAssessmentService(session)
 
     try:
-        t_oid = ObjectId(test_id)
+        attempt_id = UUID(test_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid test ID")
 
-    test = await collection.find_one({"_id": t_oid, "user_id": user["id"]})
-    if not test:
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
         raise HTTPException(status_code=404, detail="Test not found")
 
-    if test["status"] != "in_progress":
+    if str(attempt.user_id) != user["id"]:
+        raise HTTPException(status_code=403, detail="Not authorized")
+
+    if attempt.status != "in_progress":
         raise HTTPException(status_code=400, detail="Test is not in progress")
 
     # Check time limit
-    if datetime.now(timezone.utc) > test["ends_at"]:
-        await collection.update_one({"_id": t_oid}, {"$set": {"status": "timed_out"}})
-        raise HTTPException(status_code=400, detail="Time is up!")
+    metadata = attempt.attempt_metadata or {}
+    ends_at_str = metadata.get("ends_at")
+    if ends_at_str:
+        ends_at = datetime.fromisoformat(ends_at_str)
+        if datetime.now(timezone.utc) > ends_at:
+            await assessment_service.attempt_repo.complete(attempt_id, None)
+            raise HTTPException(status_code=400, detail="Time is up!")
 
     # Load full question data to check answer
     from scripts.aptitude_problems import APTITUDE_PROBLEMS
@@ -221,8 +261,13 @@ async def submit_answer(
     from scripts.aptitude_final_batch import APTITUDE_FINAL_BATCH
     from scripts.aptitude_ultra import APTITUDE_ULTRA
     from scripts.aptitude_ultimate import APTITUDE_ULTIMATE
-    all_questions = APTITUDE_PROBLEMS + APTITUDE_BATCH2 + APTITUDE_BATCH3 + APTITUDE_BATCH4 + APTITUDE_FINAL + APTITUDE_EXTRA + APTITUDE_FINAL_BATCH + APTITUDE_ULTRA + APTITUDE_ULTIMATE
-    question_id = test["question_ids"][question_index]
+    all_questions = (APTITUDE_PROBLEMS + APTITUDE_BATCH2 + APTITUDE_BATCH3 + APTITUDE_BATCH4
+                     + APTITUDE_FINAL + APTITUDE_EXTRA + APTITUDE_FINAL_BATCH
+                     + APTITUDE_ULTRA + APTITUDE_ULTIMATE)
+    question_ids = metadata.get("question_ids", [])
+    if question_index >= len(question_ids):
+        raise HTTPException(status_code=400, detail="Invalid question index")
+    question_id = question_ids[question_index]
     full_question = next((q for q in all_questions if q["id"] == question_id), None)
 
     if not full_question:
@@ -232,7 +277,8 @@ async def submit_answer(
     correct_answer = full_question["correct_answer"]
     is_correct = answer.strip().lower() == correct_answer.strip().lower()
 
-    # Record answer
+    # Record answer in metadata
+    answers = metadata.get("answers", [])
     answer_doc = {
         "question_index": question_index,
         "question_id": question_id,
@@ -241,12 +287,29 @@ async def submit_answer(
         "is_correct": is_correct,
         "explanation": full_question.get("explanation", ""),
         "time_taken": time_taken,
-        "submitted_at": datetime.now(timezone.utc),
+        "submitted_at": datetime.now(timezone.utc).isoformat(),
     }
+    answers.append(answer_doc)
+    metadata["answers"] = answers
 
-    await collection.update_one(
-        {"_id": t_oid},
-        {"$push": {"answers": answer_doc}}
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == attempt.id)
+        .values(attempt_metadata=metadata)
+    )
+
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.attempt.answer_recorded",
+        extra=log_context(
+            event="assessment.attempt.answer_recorded",
+            assessment_type="aptitude",
+            question_index=question_index,
+            question_id=question_id,
+            is_correct=is_correct,
+            attempt_id=str(attempt.id),
+            request_id=rid,
+        ),
     )
 
     return {
@@ -263,60 +326,70 @@ async def complete_test(
     session: AsyncSession = Depends(get_session),
 ):
     """Complete the aptitude test and get results."""
-    collection = aptitude_tests_collection()
+    assessment_service = PostgresAssessmentService(session)
 
     try:
-        t_oid = ObjectId(test_id)
+        attempt_id = UUID(test_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid test ID")
 
-    test = await collection.find_one({"_id": t_oid, "user_id": user["id"]})
-    if not test:
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
         raise HTTPException(status_code=404, detail="Test not found")
 
-    if test["status"] != "in_progress":
+    if str(attempt.user_id) != user["id"]:
+        raise HTTPException(status_code=403, detail="Not authorized")
+
+    if attempt.status != "in_progress":
         raise HTTPException(status_code=400, detail="Test already completed")
 
+    metadata = attempt.attempt_metadata or {}
+
     # Calculate score
-    answers = test.get("answers", [])
+    answers = metadata.get("answers", [])
     correct = sum(1 for a in answers if a.get("is_correct"))
-    total = test["total_questions"]
+    total = metadata.get("total_questions", len(answers))
     score = round(correct / max(total, 1) * 100, 1)
 
     # Calculate time taken
     time_taken = 0
-    if test.get("started_at"):
-        time_taken = (datetime.now(timezone.utc) - test["started_at"]).total_seconds()
+    if attempt.started_at:
+        time_taken = (datetime.now(timezone.utc) - attempt.started_at).total_seconds()
 
-    # Calculate Diamonds
-    test_config = TEST_CONFIGS.get(test.get("config", "standard"), TEST_CONFIGS["standard"])
+    # Calculate XP
+    test_config = TEST_CONFIGS.get(metadata.get("config", "standard"), TEST_CONFIGS["standard"])
     xp_earned = correct * test_config["xp_per_question"]
 
     # Bonus for perfect score
     if correct == total:
         xp_earned += 100
 
-    # Update test
-    await collection.update_one(
-        {"_id": t_oid},
-        {"$set": {
-            "status": "completed",
-            "score": score,
-            "correct_answers": correct,
-            "time_taken": round(time_taken),
-            "completed_at": datetime.now(timezone.utc),
-            "xp_earned": xp_earned,
-        }}
+    # Update attempt metadata with results
+    metadata.update({
+        "status": "completed",
+        "score": score,
+        "correct_answers": correct,
+        "time_taken": round(time_taken),
+        "completed_at": datetime.now(timezone.utc).isoformat(),
+        "xp_earned": xp_earned,
+    })
+
+    # Complete the attempt
+    completed = await assessment_service.attempt_repo.complete(
+        attempt_id, score, completed_at=datetime.now(timezone.utc)
     )
+    if completed:
+        await session.execute(
+            update(attempt.__class__)
+            .where(attempt.__class__.id == attempt.id)
+            .values(attempt_metadata=metadata)
+        )
 
     # Record gamification
-    await pg_record_practice(session, user["id"], "aptitude", score, role=user.get("role") or user.get("target_role") or "sde")
-
-    # Update leaderboard
-    await update_leaderboard(user["id"], user.get("name", "User"), score, correct, total, time_taken)
+    await pg_record_practice(session, user["id"], "aptitude", score,
+                             role=user.get("role") or user.get("target_role") or "sde")
 
     # Analyze weak areas
-    weak_areas = []
     from scripts.aptitude_problems import APTITUDE_PROBLEMS
     from scripts.aptitude_batch2 import APTITUDE_BATCH2
     from scripts.aptitude_batch3 import APTITUDE_BATCH3
@@ -326,7 +399,9 @@ async def complete_test(
     from scripts.aptitude_final_batch import APTITUDE_FINAL_BATCH
     from scripts.aptitude_ultra import APTITUDE_ULTRA
     from scripts.aptitude_ultimate import APTITUDE_ULTIMATE
-    all_q = APTITUDE_PROBLEMS + APTITUDE_BATCH2 + APTITUDE_BATCH3 + APTITUDE_BATCH4 + APTITUDE_FINAL + APTITUDE_EXTRA + APTITUDE_FINAL_BATCH + APTITUDE_ULTRA + APTITUDE_ULTIMATE
+    all_q = (APTITUDE_PROBLEMS + APTITUDE_BATCH2 + APTITUDE_BATCH3 + APTITUDE_BATCH4
+             + APTITUDE_FINAL + APTITUDE_EXTRA + APTITUDE_FINAL_BATCH
+             + APTITUDE_ULTRA + APTITUDE_ULTIMATE)
     category_stats = {}
     for answer in answers:
         qid = answer.get("question_id")
@@ -339,10 +414,31 @@ async def complete_test(
             if answer.get("is_correct"):
                 category_stats[cat]["correct"] += 1
 
+    weak_areas = []
     for cat, stats in category_stats.items():
         accuracy = stats["correct"] / max(stats["total"], 1) * 100
         if accuracy < 60:
-            weak_areas.append({"category": cat, "accuracy": round(accuracy, 1), "solved": stats["correct"], "total": stats["total"]})
+            weak_areas.append({
+                "category": cat,
+                "accuracy": round(accuracy, 1),
+                "solved": stats["correct"],
+                "total": stats["total"],
+            })
+
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.attempt.completed",
+        extra=log_context(
+            event="assessment.attempt.completed",
+            assessment_type="aptitude",
+            score=score,
+            correct_answers=correct,
+            total_questions=total,
+            xp_earned=xp_earned,
+            attempt_id=str(attempt.id),
+            request_id=rid,
+        ),
+    )
 
     return {
         "test_id": test_id,
@@ -362,94 +458,128 @@ async def get_test_history(
     category: Optional[str] = None,
     limit: int = Query(20, ge=1, le=50),
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Get user's aptitude test history."""
-    collection = aptitude_tests_collection()
-    query = {"user_id": user["id"], "status": "completed"}
-    if category:
-        query["category"] = category
+    assessment_service = PostgresAssessmentService(session)
+    attempts = await assessment_service.get_user_attempts(
+        UUID(user["id"]), limit=limit, offset=0
+    )
 
-    cursor = collection.find(query, {"answers": 0}).sort("completed_at", -1).limit(limit)
     tests = []
-    async for doc in cursor:
-        doc["id"] = str(doc.pop("_id"))
-        tests.append(doc)
+    for attempt in attempts:
+        metadata = attempt.attempt_metadata or {}
+        if metadata.get("assessment_type") != "aptitude" and attempt.assessment_id != "aptitude":
+            continue
+        if category and metadata.get("category") != category:
+            continue
+        tests.append({
+            "id": str(attempt.id),
+            "category": metadata.get("category"),
+            "config": metadata.get("config"),
+            "config_name": metadata.get("config_name"),
+            "score": attempt.score,
+            "correct_answers": metadata.get("correct_answers"),
+            "total_questions": metadata.get("total_questions"),
+            "time_taken": metadata.get("time_taken"),
+            "xp_earned": metadata.get("xp_earned"),
+            "status": attempt.status,
+            "started_at": attempt.started_at.isoformat() if attempt.started_at else None,
+            "completed_at": attempt.completed_at.isoformat() if attempt.completed_at else None,
+        })
 
     return {"tests": tests, "total": len(tests)}
 
 
 @router.get("/stats")
-async def get_aptitude_stats(user=Depends(get_current_user)):
+async def get_aptitude_stats(
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get comprehensive aptitude statistics."""
-    collection = aptitude_tests_collection()
+    assessment_service = PostgresAssessmentService(session)
+    attempts = await assessment_service.get_user_attempts(
+        UUID(user["id"]), limit=1000, offset=0
+    )
 
-    total_tests = await collection.count_documents({"user_id": user["id"], "status": "completed"})
-    pipeline = [
-        {"$match": {"user_id": user["id"], "status": "completed"}},
-        {"$group": {
-            "_id": None,
-            "avg_score": {"$avg": "$score"},
-            "total_correct": {"$sum": "$correct_answers"},
-            "total_questions": {"$sum": "$total_questions"},
-            "best_score": {"$max": "$score"},
-            "total_xp": {"$sum": "$xp_earned"},
-        }}
+    aptitude_attempts = [
+        a for a in attempts
+        if (a.attempt_metadata or {}).get("category") or a.assessment_id == "aptitude"
     ]
 
-    stats = {"avg_score": 0, "total_correct": 0, "total_questions": 0, "best_score": 0, "total_xp": 0}
-    async for doc in collection.aggregate(pipeline):
-        stats = {
-            "avg_score": round(doc.get("avg_score", 0), 1),
-            "total_correct": doc.get("total_correct", 0),
-            "total_questions": doc.get("total_questions", 0),
-            "best_score": round(doc.get("best_score", 0), 1),
-            "total_xp": doc.get("total_xp", 0),
-        }
+    completed = [a for a in aptitude_attempts if a.status == "completed"]
+    total_tests = len(completed)
+
+    if completed:
+        scores = [a.score for a in completed if a.score is not None]
+        total_correct = sum((a.attempt_metadata or {}).get("correct_answers", 0) for a in completed)
+        total_questions = sum((a.attempt_metadata or {}).get("total_questions", 0) for a in completed)
+        total_xp = sum((a.attempt_metadata or {}).get("xp_earned", 0) for a in completed)
+    else:
+        scores = []
+        total_correct = 0
+        total_questions = 0
+        total_xp = 0
+
+    stats = {
+        "avg_score": round(sum(scores) / max(len(scores), 1), 1) if scores else 0,
+        "total_correct": total_correct,
+        "total_questions": total_questions,
+        "best_score": max(scores) if scores else 0,
+        "total_xp": total_xp,
+    }
 
     return {
         "total_tests": total_tests,
         **stats,
-        "accuracy": round(stats["total_correct"] / max(stats["total_questions"], 1) * 100, 1),
+        "accuracy": round(total_correct / max(total_questions, 1) * 100, 1),
     }
 
 
 @router.get("/leaderboard")
 async def get_leaderboard(
-    timeframe: str = "all",  # all, weekly, monthly
+    timeframe: str = "all",
     category: Optional[str] = None,
     limit: int = Query(20, ge=1, le=100),
+    session: AsyncSession = Depends(get_session),
 ):
     """Get aptitude test leaderboard."""
-    collection = aptitude_leaderboard_collection()
-    query = {}
-    if timeframe == "weekly":
-        week_ago = datetime.now(timezone.utc) - timedelta(days=7)
-        query["last_test_at"] = {"$gte": week_ago}
-    elif timeframe == "monthly":
-        month_ago = datetime.now(timezone.utc) - timedelta(days=30)
-        query["last_test_at"] = {"$gte": month_ago}
-    if category:
-        query["category"] = category
+    from app.models.identity import User
 
-    pipeline = [
-        {"$match": query},
-        {"$sort": {"best_score": -1, "total_tests": -1}},
-        {"$limit": limit},
-        {"$project": {
-            "user_name": 1,
-            "best_score": 1,
-            "avg_score": {"$round": ["$avg_score", 1]},
-            "total_tests": 1,
-            "total_correct": 1,
-            "accuracy": {"$round": [{"$multiply": [{"$divide": ["$total_correct", {"$max": ["$total_questions", 1]}]}, 100]}, 1]},
-        }}
-    ]
+    # Query completed aptitude attempts, ordered by best score
+    query = select(
+        AssessmentAttempt.user_id,
+        func.max(AssessmentAttempt.score).label("best_score"),
+        func.count(AssessmentAttempt.id).label("total_tests"),
+    ).where(
+        AssessmentAttempt.status == "completed",
+        AssessmentAttempt.assessment_id == "aptitude",
+    ).group_by(AssessmentAttempt.user_id)
+
+    if category:
+        # Filter by category in metadata (SQLite/PostgreSQL JSON containment)
+        query = query.where(
+            AssessmentAttempt.attempt_metadata["category"].astext == category
+        )
+
+    query = query.order_by(desc("best_score")).limit(limit)
+
+    result = await session.execute(query)
+    rows = result.all()
 
     leaderboard = []
     rank = 1
-    async for doc in collection.aggregate(pipeline):
-        doc["rank"] = rank
-        leaderboard.append(doc)
+    for row in rows:
+        user_result = await session.execute(
+            select(User).where(User.id == row.user_id)
+        )
+        user_obj = user_result.scalar_one_or_none()
+        leaderboard.append({
+            "rank": rank,
+            "user_name": user_obj.name if user_obj else "Unknown",
+            "best_score": round(row.best_score, 1) if row.best_score else 0,
+            "total_tests": row.total_tests,
+        })
         rank += 1
 
     return {
@@ -460,64 +590,51 @@ async def get_leaderboard(
 
 
 @router.get("/leaderboard/my-rank")
-async def get_my_rank(user=Depends(get_current_user)):
+async def get_my_rank(
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get user's current rank on the leaderboard."""
-    collection = aptitude_leaderboard_collection()
-    my_stats = await collection.find_one({"user_id": user["id"]})
+    from app.models.identity import User
 
-    if not my_stats:
+    # Get user's best score
+    result = await session.execute(
+        select(
+            func.max(AssessmentAttempt.score).label("best_score"),
+            func.count(AssessmentAttempt.id).label("total_tests"),
+            func.sum(func.coalesce(AssessmentAttempt.attempt_metadata["correct_answers"].astext.cast(int), 0)).label("total_correct"),
+            func.sum(func.coalesce(AssessmentAttempt.attempt_metadata["total_questions"].astext.cast(int), 0)).label("total_questions"),
+        ).where(
+            AssessmentAttempt.user_id == UUID(user["id"]),
+            AssessmentAttempt.status == "completed",
+            AssessmentAttempt.assessment_id == "aptitude",
+        )
+    )
+    row = result.first()
+
+    if not row or not row.best_score:
         return {"rank": None, "message": "No tests completed yet"}
 
     # Count users with better scores
-    better_count = await collection.count_documents({"best_score": {"$gt": my_stats.get("best_score", 0)}})
+    better_result = await session.execute(
+        select(func.count(func.distinct(AssessmentAttempt.user_id)))
+        .where(
+            AssessmentAttempt.status == "completed",
+            AssessmentAttempt.assessment_id == "aptitude",
+            AssessmentAttempt.score > row.best_score,
+        )
+    )
+    better_count = better_result.scalar() or 0
     rank = better_count + 1
 
-    # Total participants
-    total = await collection.count_documents({})
+    total_correct = row.total_correct or 0
+    total_questions = row.total_questions or 0
 
     return {
         "rank": rank,
-        "total_participants": total,
-        "best_score": my_stats.get("best_score", 0),
-        "avg_score": round(my_stats.get("avg_score", 0), 1),
-        "total_tests": my_stats.get("total_tests", 0),
-        "accuracy": round(my_stats.get("total_correct", 0) / max(my_stats.get("total_questions", 1), 1) * 100, 1),
+        "total_participants": better_count + 1,
+        "best_score": round(row.best_score, 1),
+        "avg_score": round(row.best_score, 1),
+        "total_tests": row.total_tests,
+        "accuracy": round(total_correct / max(total_questions, 1) * 100, 1),
     }
-
-
-async def update_leaderboard(user_id, user_name, score, correct, total, time_taken):
-    """Update leaderboard entry for a user."""
-    collection = aptitude_leaderboard_collection()
-
-    existing = await collection.find_one({"user_id": user_id})
-
-    if existing:
-        new_best = max(existing.get("best_score", 0), score)
-        new_total_tests = existing.get("total_tests", 0) + 1
-        new_total_correct = existing.get("total_correct", 0) + correct
-        new_total_questions = existing.get("total_questions", 0) + total
-        new_avg = ((existing.get("avg_score", 0) * existing.get("total_tests", 0)) + score) / new_total_tests
-
-        await collection.update_one(
-            {"user_id": user_id},
-            {"$set": {
-                "user_name": user_name,
-                "best_score": new_best,
-                "avg_score": new_avg,
-                "total_tests": new_total_tests,
-                "total_correct": new_total_correct,
-                "total_questions": new_total_questions,
-                "last_test_at": datetime.now(timezone.utc),
-            }}
-        )
-    else:
-        await collection.insert_one({
-            "user_id": user_id,
-            "user_name": user_name,
-            "best_score": score,
-            "avg_score": score,
-            "total_tests": 1,
-            "total_correct": correct,
-            "total_questions": total,
-            "last_test_at": datetime.now(timezone.utc),
-        })

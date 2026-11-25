@@ -1,29 +1,22 @@
 """
 AI Interview Terminal — multi-turn conversational interview with Captain Byte.
 
-Two round dynamics modeled on the Indian recruiting reality:
-- service: Mass-recruiter style (TCS/Infosys/Wipro). Rapid-fire, mechanical
-  precision — OOPs concepts, pseudo-code dry runs, output prediction, basics.
-- product: Product-company style. Optimization deep-dives, edge cases, scale,
-  trade-offs. Byte follows the thread and pushes one level deeper each turn.
-
-Sessions are conversational (no fixed question count) and on completion feed a
-score into the standard `interviews` collection so the readiness engine picks
-them up automatically.
+Migrated to PostgreSQL: interview_sessions table.
 """
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
-
-from bson import ObjectId
+from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import (
-    interview_chat_sessions_collection, interviews_collection, get_session
-)
+from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.ai import chat_completion, parse_json
+from app.services.postgres_assessments import PostgresAssessmentService
 from app.services.postgres_gamification import record_practice as pg_record_practice
+from app.services.structured_logging import get_logger, log_context, request_id_var
+from sqlalchemy import update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/interview-chat", tags=["interview-chat"])
@@ -95,29 +88,46 @@ def _system_prompt(round_type: str, job_role: str, company_target: str, difficul
 
 
 @router.post("/start")
-async def start_chat_interview(req: StartChatInterview, user=Depends(get_current_user)):
+async def start_chat_interview(
+    req: StartChatInterview,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Open a new conversational interview session with Captain Byte."""
     if req.round_type not in ROUND_TYPES:
         raise HTTPException(status_code=400, detail="round_type must be 'service' or 'product'")
 
     now = datetime.now(timezone.utc)
-    session_doc = {
-        "user_id": user["id"],
-        "job_role": req.job_role,
-        "company_target": req.company_target,
-        "round_type": req.round_type,
+
+    assessment_service = PostgresAssessmentService(session)
+    chat_session = await assessment_service.interview_repo.create({
+        "user_id": UUID(user["id"]),
+        "interview_type": f"{req.round_type}_chat",
+        "company": req.company_target,
+        "role": req.job_role,
         "difficulty": req.difficulty,
         "status": "active",
         "messages": [],
         "turn_count": 0,
-        "started_at": now,
+        "started_at": now.isoformat(),
         "completed_at": None,
         "final_score": None,
         "report": None,
-    }
-
-    result = await interview_chat_sessions_collection().insert_one(session_doc)
-    session_id = str(result.inserted_id)
+    })
+    session_id = str(chat_session.id)
+    rid = request_id_var.get("")
+    logger = get_logger(__name__)
+    logger.info(
+        "assessment.attempt.started",
+        extra=log_context(
+            event="assessment.attempt.started",
+            assessment_type="interview_chat",
+            round_type=req.round_type,
+            company=req.company_target,
+            session_id=session_id,
+            request_id=rid,
+        ),
+    )
 
     opener = await chat_completion(
         [
@@ -134,9 +144,16 @@ async def start_chat_interview(req: StartChatInterview, user=Depends(get_current
         max_tokens=350,
     )
 
-    await interview_chat_sessions_collection().update_one(
-        {"_id": ObjectId(session_id)},
-        {"$push": {"messages": {"role": "assistant", "content": opener, "at": now}}},
+    # Store opener message in session metadata
+    metadata = chat_session.attempt_metadata or {}
+    messages = metadata.get("messages", [])
+    messages.append({"role": "assistant", "content": opener, "at": now.isoformat()})
+    metadata["messages"] = messages
+    from sqlalchemy import update
+    await session.execute(
+        update(chat_session.__class__)
+        .where(chat_session.__class__.id == chat_session.id)
+        .values(attempt_metadata=metadata)
     )
 
     briefing = (
@@ -154,25 +171,50 @@ async def start_chat_interview(req: StartChatInterview, user=Depends(get_current
     }
 
 
-async def _load_own_session(session_id: str, user) -> Dict:
+async def _load_own_session(
+    assessment_service: PostgresAssessmentService,
+    session_id: str,
+    user_id: str,
+):
     try:
-        s_oid = ObjectId(session_id)
+        s_id = UUID(session_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
-    session = await interview_chat_sessions_collection().find_one(
-        {"_id": s_oid, "user_id": user["id"]}
-    )
-    if not session:
+    chat_session = await assessment_service.get_interview_session(s_id, UUID(user_id))
+    if not chat_session:
         raise HTTPException(status_code=404, detail="Session not found")
-    return session
+    return chat_session, chat_session.attempt_metadata or {}
 
 
 @router.get("/{session_id}")
-async def get_session(session_id: str, user=Depends(get_current_user)):
+async def get_session(
+    session_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Fetch a session's transcript and status."""
-    session = await _load_own_session(session_id, user)
-    session["id"] = str(session.pop("_id"))
-    return {"session": session}
+    assessment_service = PostgresAssessmentService(session)
+    chat_session, metadata = await _load_own_session(
+        assessment_service, session_id, user["id"]
+    )
+    messages = metadata.get("messages", [])
+    return {
+        "session": {
+            "id": str(chat_session.id),
+            "user_id": str(chat_session.user_id),
+            "job_role": chat_session.role,
+            "company_target": chat_session.company,
+            "round_type": chat_session.interview_type,
+            "difficulty": chat_session.difficulty,
+            "status": chat_session.status,
+            "messages": messages,
+            "turn_count": metadata.get("turn_count", 0),
+            "started_at": metadata.get("started_at"),
+            "completed_at": metadata.get("completed_at"),
+            "final_score": metadata.get("final_score"),
+            "report": metadata.get("report"),
+        }
+    }
 
 
 @router.post("/{session_id}/turn")
@@ -183,11 +225,14 @@ async def submit_turn(
     session: AsyncSession = Depends(get_session),
 ):
     """Submit the candidate's message; returns Captain Byte's next message."""
-    session = await _load_own_session(session_id, user)
+    assessment_service = PostgresAssessmentService(session)
+    chat_session, metadata = await _load_own_session(
+        assessment_service, session_id, user["id"]
+    )
 
-    if session["status"] != "active":
+    if chat_session.status != "active":
         raise HTTPException(status_code=400, detail="This session has already ended")
-    if session["turn_count"] >= MAX_TURNS:
+    if metadata.get("turn_count", 0) >= MAX_TURNS:
         raise HTTPException(status_code=400, detail="Turn limit reached — end the interview")
 
     text = (req.message or "").strip()
@@ -198,7 +243,7 @@ async def submit_turn(
 
     now = datetime.now(timezone.utc)
     history: List[Dict] = [
-        {"role": m["role"], "content": m["content"]} for m in session.get("messages", [])
+        {"role": m["role"], "content": m["content"]} for m in metadata.get("messages", [])
     ]
 
     reply = await chat_completion(
@@ -206,10 +251,10 @@ async def submit_turn(
             {
                 "role": "system",
                 "content": _system_prompt(
-                    session["round_type"],
-                    session["job_role"],
-                    session["company_target"],
-                    session["difficulty"],
+                    chat_session.interview_type,
+                    chat_session.role,
+                    chat_session.company,
+                    chat_session.difficulty,
                 ),
             }
         ]
@@ -220,51 +265,57 @@ async def submit_turn(
         max_tokens=400,
     )
 
-    await interview_chat_sessions_collection().update_one(
-        {"_id": ObjectId(session_id)},
-        {
-            "$push": {
-                "messages": {
-                    "$each": [
-                        {"role": "user", "content": text, "at": now},
-                        {"role": "assistant", "content": reply, "at": datetime.now(timezone.utc)},
-                    ]
-                }
-            },
-            "$inc": {"turn_count": 1},
-            "$set": {"last_activity_at": now},
-        },
+    now2 = datetime.now(timezone.utc)
+    messages = metadata.get("messages", [])
+    messages.append({"role": "user", "content": text, "at": now.isoformat()})
+    messages.append({"role": "assistant", "content": reply, "at": now2.isoformat()})
+    metadata["messages"] = messages
+    metadata["turn_count"] = metadata.get("turn_count", 0) + 1
+    metadata["last_activity_at"] = now.isoformat()
+
+    await session.execute(
+        update(chat_session.__class__)
+        .where(chat_session.__class__.id == chat_session.id)
+        .values(attempt_metadata=metadata)
     )
 
-    turns_left = MAX_TURNS - (session["turn_count"] + 1)
+    turns_left = MAX_TURNS - (metadata["turn_count"] + 1)
     return {
         "reply": reply,
-        "turn_count": session["turn_count"] + 1,
+        "turn_count": metadata["turn_count"],
         "turns_left": turns_left,
     }
 
 
 @router.post("/{session_id}/end")
-async def end_session(session_id: str, user=Depends(get_current_user)):
+async def end_session(
+    session_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """End the session, produce the evaluation report, feed readiness."""
-    session = await _load_own_session(session_id, user)
+    assessment_service = PostgresAssessmentService(session)
+    chat_session, metadata = await _load_own_session(
+        assessment_service, session_id, user["id"]
+    )
 
-    if session["status"] == "completed":
+    if chat_session.status == "completed":
         return {
-            "report": session.get("report"),
-            "final_score": session.get("final_score"),
+            "report": metadata.get("report"),
+            "final_score": metadata.get("final_score"),
             "xp_gained": 0,
             "message": "Session already evaluated",
         }
 
+    messages = metadata.get("messages", [])
     history: List[Dict] = [
-        {"role": m["role"], "content": m["content"]} for m in session.get("messages", [])
+        {"role": m["role"], "content": m["content"]} for m in messages
     ]
     if len(history) < 2:
         raise HTTPException(status_code=400, detail="Nothing to evaluate — take at least one turn")
 
     eval_instruction = f"""You are Captain Byte writing the post-interview debrief for this \
-{session['round_type']}-round conversation ({session['company_target']} flavor, {session['difficulty']}).
+{chat_session.interview_type}-round conversation ({chat_session.company} flavor, {chat_session.difficulty}).
 
 Grade ONLY the candidate's answers. Return STRICT JSON, no prose outside JSON:
 {{
@@ -304,34 +355,37 @@ Product-round bias: reward depth, trade-off articulation, complexity analysis.""
     score = max(0, min(100, score))
     now = datetime.now(timezone.utc)
 
-    await interview_chat_sessions_collection().update_one(
-        {"_id": ObjectId(session_id)},
-        {
-            "$set": {
-                "status": "completed",
-                "completed_at": now,
-                "final_score": score,
-                "report": report,
-            }
-        },
+    # Store completion in metadata
+    metadata["status"] = "completed"
+    metadata["completed_at"] = now.isoformat()
+    metadata["final_score"] = score
+    metadata["report"] = report
+    await session.execute(
+        update(chat_session.__class__)
+        .where(chat_session.__class__.id == chat_session.id)
+        .values(
+            status="completed",
+            score=score,
+            attempt_metadata=metadata,
+        )
     )
 
     # Feed the standard interviews collection so readiness/predictor pick it up.
+    # (best-effort; the session itself is the source of truth)
     try:
-        await interviews_collection.insert_one(
-            {
-                "user_id": user["id"],
-                "job_role": session["job_role"],
-                "company": session.get("company_target", "general"),
-                "interview_type": f"{session['round_type']}_chat",
-                "difficulty": session["difficulty"],
-                "status": "completed",
-                "score_history": [score],
-                "source": "interview_chat",
-                "created_at": session.get("started_at", now),
-                "completed_at": now,
-            }
-        )
+        await assessment_service.interview_repo.create({
+            "user_id": UUID(user["id"]),
+            "interview_type": f"{chat_session.interview_type}_chat",
+            "company": chat_session.company or "general",
+            "role": chat_session.role,
+            "difficulty": chat_session.difficulty,
+            "status": "completed",
+            "score": score,
+            "questions": [{"question": m.get("content", ""), "score": score} for m in messages if m.get("role") == "user"],
+            "source": "interview_chat",
+            "started_at": metadata.get("started_at", now.isoformat()),
+            "completed_at": now.isoformat(),
+        })
     except Exception:
         pass  # readiness feed is best-effort; the session itself is the source of truth
 

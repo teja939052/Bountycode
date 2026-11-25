@@ -1,22 +1,25 @@
 """
 Company-Specific Mock Portals — Real interview simulation for specific companies.
 Each company has its own format, difficulty, and focus areas.
+
+Migrated to PostgreSQL: assessment_attempts (assessment_type="company_mock").
 """
 from datetime import datetime, timezone, timedelta
 import random
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
-from bson import ObjectId
+from uuid import UUID
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import update
+
 from app.middleware.auth import get_current_user
-from app.database import (
-    solved_problems_collection,
-    company_mock_tests_collection,
-    get_db,
-)
-from app.services.ai_core import chat_completion, parse_json
+from app.database import get_session
+from app.services.postgres_assessments import PostgresAssessmentService
+from app.services.structured_logging import get_logger, log_context, request_id_var
 from app.services.code_executor import CodeExecutionEngine
 
 router = APIRouter(prefix="/api/v1/company-mocks", tags=["company-mocks"])
+logger = get_logger(__name__)
 
 # Company-specific mock test configurations
 COMPANY_MOCK_CONFIGS = {
@@ -216,10 +219,6 @@ COMPANY_MOCK_CONFIGS = {
             "Ask thoughtful questions about the team",
         ],
     },
-    # TCS NQT — two-stage structure (Foundation + Advanced). Fixed duplicate
-    # `tcs` keys (the second silently overwrote the first); this is now a
-    # single accurate "pattern-relevant" config mirroring TCS_NQT_STRUCTURE in
-    # routes/oa.py (per public exam-pattern analysis, not exact verified counts).
     "tcs": {
         "name": "TCS NQT Simulation",
         "description": "TCS National Qualifier Test — two-stage simulation (Foundation aptitude + Advanced programming). Pattern-relevant.",
@@ -314,6 +313,7 @@ async def start_company_mock(
     company_id: str,
     round_name: Optional[str] = None,
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Start a company-specific mock test."""
     config = COMPANY_MOCK_CONFIGS.get(company_id.lower())
@@ -330,7 +330,6 @@ async def start_company_mock(
         rounds_to_run = config["rounds"]
 
     # Only coding rounds have a trusted grading path in this service today.
-    # Do not advertise unsupported round types as runnable questions.
     all_questions = []
     executable_rounds = []
     unsupported_rounds = []
@@ -367,9 +366,20 @@ async def start_company_mock(
             detail="No verified coding questions are currently available for this company mock.",
         )
 
-    # Create mock test session
-    session = {
-        "user_id": user["id"],
+    # Create mock test session in PostgreSQL
+    now = datetime.now(timezone.utc)
+    ends_at = now + timedelta(minutes=config["total_time_minutes"])
+
+    assessment_service = PostgresAssessmentService(session)
+    attempt = await assessment_service.create_assessment_attempt(
+        user_id=UUID(user["id"]),
+        assessment_id="company_mock",
+        variant_id=f"{company_id}",
+        idempotency_key=f"company_mock_{user['id']}_{company_id}_{now.isoformat()}",
+    )
+
+    # Store session data in attempt metadata
+    attempt_metadata = {
         "company": company_id,
         "config": config,
         "rounds": executable_rounds,
@@ -379,15 +389,28 @@ async def start_company_mock(
         "current_round": 0,
         "current_question": 0,
         "status": "in_progress",
-        "started_at": datetime.now(timezone.utc),
-        "ends_at": datetime.now(timezone.utc) + timedelta(minutes=config["total_time_minutes"]),
+        "started_at": now.isoformat(),
+        "ends_at": ends_at.isoformat(),
         "total_score": 0,
-        "completed_at": None,
     }
 
-    db = get_db()
-    result = await db["company_mock_tests"].insert_one(session)
-    session_id = str(result.inserted_id)
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == attempt.id)
+        .values(attempt_metadata=attempt_metadata)
+    )
+
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.attempt.started",
+        extra=log_context(
+            event="assessment.attempt.started",
+            assessment_type="company_mock",
+            company=company_id,
+            attempt_id=str(attempt.id),
+            request_id=rid,
+        ),
+    )
 
     # Do not send answer keys or hidden test cases to the browser.
     safe_questions = [
@@ -409,24 +432,54 @@ async def start_company_mock(
         for q in all_questions
     ]
     return {
-        "session_id": session_id,
+        "session_id": str(attempt.id),
         "company": company_id,
         "config": config,
         "rounds": executable_rounds,
         "unsupported_rounds": unsupported_rounds,
         "questions": safe_questions,
-        "ends_at": session["ends_at"].isoformat(),
+        "ends_at": ends_at.isoformat(),
     }
 
 
-def _load_owned_mock_session(session_id: str, user_id: str):
+def _safe_question_dict(q: dict) -> dict:
+    """Return a client-safe question dict (no answer keys/hidden tests)."""
+    return {
+        "id": q.get("id"),
+        "question": q.get("question") or q.get("question_title", ""),
+        "title": q.get("title") or q.get("question_title", ""),
+        "difficulty": q.get("difficulty", "medium"),
+        "topic": q.get("topic", "General"),
+        "round": q.get("round"),
+        "description": q.get("description", ""),
+        "examples": q.get("examples", []),
+        "constraints": q.get("constraints", []),
+        "starter_code": q.get("starter_code", {}),
+        "function_name": q.get("function_name", ""),
+        "time_limit_seconds": q.get("time_limit_seconds", 10),
+        "memory_limit_mb": q.get("memory_limit_mb", 256),
+    }
+
+
+async def _load_owned_mock_session(
+    assessment_service: PostgresAssessmentService,
+    session_id: str,
+    user_id: str,
+):
     """Load a company mock session while enforcing authenticated ownership."""
-    if not ObjectId.is_valid(session_id):
+    try:
+        attempt_id = UUID(session_id)
+    except Exception:
         raise HTTPException(status_code=400, detail="Invalid session ID")
-    return get_db()["company_mock_tests"].find_one({
-        "_id": ObjectId(session_id),
-        "user_id": user_id,
-    })
+
+    attempt = await assessment_service.get_assessment_attempt(attempt_id)
+    if not attempt:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    if str(attempt.user_id) != user_id:
+        raise HTTPException(status_code=403, detail="Not authorized")
+
+    return attempt, attempt.attempt_metadata or {}
 
 
 @router.post("/{session_id}/answer")
@@ -434,14 +487,17 @@ async def submit_company_mock_answer(
     session_id: str,
     payload: dict,
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Grade an owned mock coding question with the existing hidden-test judge."""
-    session = await _load_owned_mock_session(session_id, user["id"])
-    if not session:
-        raise HTTPException(status_code=404, detail="Session not found")
-    if session.get("status") != "in_progress":
+    assessment_service = PostgresAssessmentService(session)
+    attempt, metadata = await _load_owned_mock_session(
+        assessment_service, session_id, user["id"]
+    )
+
+    if metadata.get("status") != "in_progress":
         raise HTTPException(status_code=409, detail="Mock session is not in progress")
-    if datetime.now(timezone.utc) >= session.get("ends_at", datetime.now(timezone.utc)):
+    if datetime.now(timezone.utc) >= datetime.fromisoformat(metadata.get("ends_at", datetime.now(timezone.utc).isoformat())):
         raise HTTPException(status_code=409, detail="Mock session has expired")
 
     question_id = str(payload.get("question_id") or "").strip()
@@ -454,13 +510,14 @@ async def submit_company_mock_answer(
     if len(code) > 120000:
         raise HTTPException(status_code=413, detail="Code submission is too large")
 
+    questions = metadata.get("questions", [])
     question = next(
-        (q for q in session.get("questions", []) if str(q.get("id")) == question_id),
+        (q for q in questions if str(q.get("id")) == question_id),
         None,
     )
     if not question:
         raise HTTPException(status_code=404, detail="Question is not part of this session")
-    if any(str(a.get("question_id")) == question_id for a in session.get("answers", [])):
+    if any(str(a.get("question_id")) == question_id for a in metadata.get("answers", [])):
         raise HTTPException(status_code=409, detail="Question already submitted")
 
     from app.services import question_store
@@ -501,23 +558,24 @@ async def submit_company_mock_answer(
         "passed_count": passed_count,
         "total_cases": total_count,
         "score": score,
-        "submitted_at": datetime.now(timezone.utc),
+        "submitted_at": datetime.now(timezone.utc).isoformat(),
     }
-    result = await get_db()["company_mock_tests"].update_one(
-        {
-            "_id": ObjectId(session_id),
-            "user_id": user["id"],
-            "status": "in_progress",
-            "answers.question_id": {"$ne": question_id},
-        },
-        {
-            "$push": {"answers": answer},
-            "$inc": {"total_score": score / max(len(session.get("questions", [])), 1)},
-            "$set": {"updated_at": datetime.now(timezone.utc)},
-        },
+
+    answers = metadata.get("answers", [])
+    answers.append(answer)
+
+    total_questions = len(questions)
+    total_score = metadata.get("total_score", 0) + score / max(total_questions, 1)
+
+    metadata["answers"] = answers
+    metadata["total_score"] = total_score
+    metadata["updated_at"] = datetime.now(timezone.utc).isoformat()
+
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == attempt.id)
+        .values(attempt_metadata=metadata)
     )
-    if result.modified_count != 1:
-        raise HTTPException(status_code=409, detail="Question already submitted or session ended")
 
     # Evidence emission is best-effort after authoritative grading/persistence.
     try:
@@ -535,7 +593,7 @@ async def submit_company_mock_answer(
             "attempt_number": 1,
             "metadata": {
                 "company_mock_session_id": session_id,
-                "company": session.get("company"),
+                "company": metadata.get("company"),
                 "difficulty": trusted_question.get("difficulty", "medium"),
                 "passed_count": passed_count,
                 "total": total_count,
@@ -556,64 +614,57 @@ async def submit_company_mock_answer(
 
 
 @router.post("/{session_id}/complete")
-async def complete_company_mock(session_id: str, user=Depends(get_current_user)):
+async def complete_company_mock(
+    session_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Complete a company mock session idempotently."""
-    session = await _load_owned_mock_session(session_id, user["id"])
-    if not session:
-        raise HTTPException(status_code=404, detail="Session not found")
-    if session.get("status") == "completed":
-        return await get_mock_results(session_id, user)
+    assessment_service = PostgresAssessmentService(session)
+    attempt, metadata = await _load_owned_mock_session(
+        assessment_service, session_id, user["id"]
+    )
+
+    if metadata.get("status") == "completed":
+        return await get_mock_results(assessment_service, attempt, metadata)
 
     now = datetime.now(timezone.utc)
-    result = await get_db()["company_mock_tests"].update_one(
-        {"_id": ObjectId(session_id), "user_id": user["id"], "status": "in_progress"},
-        {"$set": {"status": "completed", "completed_at": now, "updated_at": now}},
+    metadata["status"] = "completed"
+    metadata["completed_at"] = now.isoformat()
+    metadata["updated_at"] = now.isoformat()
+
+    await assessment_service.attempt_repo.complete(
+        attempt.id, metadata.get("total_score", 0), completed_at=now
     )
-    if result.modified_count != 1:
-        current = await _load_owned_mock_session(session_id, user["id"])
-        if current and current.get("status") == "completed":
-            return await get_mock_results(session_id, user)
-        raise HTTPException(status_code=409, detail="Mock session could not be completed")
-    return await get_mock_results(session_id, user)
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == attempt.id)
+        .values(attempt_metadata=metadata)
+    )
+
+    return await get_mock_results(assessment_service, attempt, metadata)
 
 
 @router.get("/{session_id}/status")
-async def get_mock_status(session_id: str, user=Depends(get_current_user)):
+async def get_mock_status(
+    session_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get current mock test status."""
-    db = get_db()
-
-    try:
-        session = await db["company_mock_tests"].find_one({
-            "_id": ObjectId(session_id),
-            "user_id": user["id"],
-        })
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid session ID")
-
-    if not session:
-        raise HTTPException(status_code=404, detail="Session not found")
+    assessment_service = PostgresAssessmentService(session)
+    attempt, metadata = await _load_owned_mock_session(
+        assessment_service, session_id, user["id"]
+    )
 
     now = datetime.now(timezone.utc)
-    time_remaining = max(0, (session["ends_at"] - now).total_seconds())
+    ends_at = datetime.fromisoformat(metadata.get("ends_at", now.isoformat()))
+    time_remaining = max(0, (ends_at - now).total_seconds())
 
-    safe_questions = [
-        {
-            "id": q.get("id"),
-            "question": q.get("question") or q.get("question_title", ""),
-            "title": q.get("title") or q.get("question_title", ""),
-            "difficulty": q.get("difficulty", "medium"),
-            "topic": q.get("topic", "General"),
-            "round": q.get("round"),
-            "description": q.get("description", ""),
-            "examples": q.get("examples", []),
-            "constraints": q.get("constraints", ""),
-            "starter_code": q.get("starter_code", {}),
-            "function_name": q.get("function_name", ""),
-            "time_limit_seconds": q.get("time_limit_seconds", 10),
-            "memory_limit_mb": q.get("memory_limit_mb", 256),
-        }
-        for q in session.get("questions", [])
-    ]
+    questions = metadata.get("questions", [])
+    answers = metadata.get("answers", [])
+
+    safe_questions = [_safe_question_dict(q) for q in questions]
     safe_answers = [
         {
             "question_id": answer.get("question_id"),
@@ -625,43 +676,40 @@ async def get_mock_status(session_id: str, user=Depends(get_current_user)):
             "score": answer.get("score", 0),
             "summary": f"{answer.get('passed_count', 0)}/{answer.get('total_cases', 0)} hidden tests passed",
         }
-        for answer in session.get("answers", [])
+        for answer in answers
     ]
+
     return {
         "session_id": session_id,
-        "status": session["status"],
-        "company": session.get("company"),
+        "status": metadata.get("status"),
+        "company": metadata.get("company"),
         "time_remaining_seconds": int(time_remaining),
-        "current_round": session.get("current_round", 0),
-        "questions_answered": len(session.get("answers", [])),
-        "total_questions": len(session.get("questions", [])),
-        "started_at": session.get("started_at").isoformat() if session.get("started_at") else None,
-        "ends_at": session.get("ends_at").isoformat() if session.get("ends_at") else None,
-        "unsupported_rounds": session.get("unsupported_rounds", []),
+        "current_round": metadata.get("current_round", 0),
+        "questions_answered": len(answers),
+        "total_questions": len(questions),
+        "started_at": metadata.get("started_at"),
+        "ends_at": metadata.get("ends_at"),
+        "unsupported_rounds": metadata.get("unsupported_rounds", []),
         "answers": safe_answers,
         "questions": safe_questions,
     }
 
 
 @router.get("/{session_id}/results")
-async def get_mock_results(session_id: str, user=Depends(get_current_user)):
+async def get_mock_results(
+    session_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Get complete mock test results."""
-    db = get_db()
-
-    try:
-        session = await db["company_mock_tests"].find_one({
-            "_id": ObjectId(session_id),
-            "user_id": user["id"],
-        })
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid session ID")
-
-    if not session:
-        raise HTTPException(status_code=404, detail="Session not found")
+    assessment_service = PostgresAssessmentService(session)
+    attempt, metadata = await _load_owned_mock_session(
+        assessment_service, session_id, user["id"]
+    )
 
     # Calculate round-wise scores
     round_scores = {}
-    for answer in session.get("answers", []):
+    for answer in metadata.get("answers", []):
         round_name = answer.get("round", "Unknown")
         if round_name not in round_scores:
             round_scores[round_name] = {"total": 0, "score": 0, "count": 0}
@@ -670,17 +718,17 @@ async def get_mock_results(session_id: str, user=Depends(get_current_user)):
         round_scores[round_name]["count"] += 1
 
     # Calculate overall score
-    total_score = session.get("total_score", 0)
-    passing_score = session["config"].get("passing_score", 70)
+    total_score = metadata.get("total_score", 0)
+    passing_score = metadata.get("config", {}).get("passing_score", 70)
     passed = total_score >= passing_score
 
     return {
         "session_id": session_id,
-        "company": session["company"],
+        "company": metadata.get("company"),
         "total_score": total_score,
         "passing_score": passing_score,
         "passed": passed,
         "round_scores": round_scores,
-        "completed_at": (session.get("completed_at") or datetime.now(timezone.utc)).isoformat(),
-        "interview_tips": session["config"].get("interview_tips", []),
+        "completed_at": (metadata.get("completed_at") or datetime.now(timezone.utc)).isoformat(),
+        "interview_tips": metadata.get("config", {}).get("interview_tips", []),
     }

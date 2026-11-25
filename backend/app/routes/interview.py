@@ -2,12 +2,10 @@ from datetime import datetime, timezone
 import logging
 import random
 from typing import List
+from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
 from app.models.interview import StartInterview, SubmitAnswer
-from app.database import (
-    users_collection, interviews_collection, career_profiles_collection,
-    oa_sessions_collection, skill_graph_collection, get_session
-)
+from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.ai_interview import (
     generate_interview_question,
@@ -21,12 +19,13 @@ from app.services.interview_enhanced import (
     generate_dynamic_difficulty,
 )
 from app.services.behavioral_enhanced import evaluate_star_answer
+from app.services.postgres_assessments import PostgresAssessmentService
 from app.services.postgres_gamification import record_practice as pg_record_practice
+from app.services.structured_logging import get_logger, log_context, request_id_var
 from app.config import get_settings
-from bson import ObjectId
 from sqlalchemy.ext.asyncio import AsyncSession
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 router = APIRouter(prefix="/api/v1/interview", tags=["interview"])
 settings = get_settings()
@@ -37,7 +36,11 @@ MAX_FOLLOW_UPS_PER_QUESTION = 1
 
 
 @router.post("/start")
-async def start_interview(req: StartInterview, user=Depends(get_current_user)):
+async def start_interview(
+    req: StartInterview,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     if user.get("plan") == "free" and user.get("interviews_used", 0) >= settings.FREE_TIER_INTERVIEW_LIMIT:
         raise HTTPException(
             status_code=403,
@@ -53,13 +56,18 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
     # (best-effort; empty when no profile exists — never blocks the interview).
     candidate_context = ""
     try:
-        prof = await career_profiles_collection.find_one({"user_id": user["id"]}) or {}
+        from app.models.career import CareerProfile
+        from sqlalchemy import select
+        prof_result = await session.execute(
+            select(CareerProfile).where(CareerProfile.user_id == UUID(user["id"]))
+        )
+        prof = prof_result.scalar_one_or_none()
         bits = []
-        if prof.get("summary"):
-            bits.append(f"Summary: {prof['summary'][:500]}")
-        if prof.get("skills"):
-            bits.append("Skills: " + ", ".join(prof["skills"][:20]))
-        exp = prof.get("experience") or []
+        if prof and prof.summary:
+            bits.append(f"Summary: {prof.summary[:500]}")
+        if prof and prof.skills:
+            bits.append("Skills: " + ", ".join(prof.skills[:20]))
+        exp = prof.experience if prof else []
         if exp and isinstance(exp[0], dict):
             bits.append(
                 "Latest experience: "
@@ -72,11 +80,19 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
     # Pull latest OA diagnosis for adaptive questioning (moat: interview probes real weaknesses)
     oa_context = {}
     try:
-        latest_oa = await oa_sessions_collection.find_one(
-            {"user_id": user["id"], "status": "completed"}, sort=[("completed_at", -1)]
+        from app.models.assessments import OASession
+        from sqlalchemy import select, desc
+        latest_oa_result = await session.execute(
+            select(OASession)
+            .where(OASession.user_id == UUID(user["id"]))
+            .where(OASession.status == "completed")
+            .order_by(desc(OASession.completed_at))
+            .limit(1)
         )
+        latest_oa = latest_oa_result.scalar_one_or_none()
         if latest_oa:
-            res = latest_oa.get("result", {}) or {}
+            metadata = latest_oa.attempt_metadata or {}
+            res = metadata.get("result", {}) or {}
             diag = res.get("diagnosis", {}) or {}
             if diag.get("skill_weaknesses") or diag.get("weaknesses"):
                 oa_context = diag
@@ -96,8 +112,31 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
         "oa_context": oa_context,
         "created_at": datetime.now(timezone.utc),
     }
-    result = await interviews_collection.insert_one(interview_doc)
-    interview_id = str(result.inserted_id)
+
+    assessment_service = PostgresAssessmentService(session)
+    interview_session = await assessment_service.interview_repo.create({
+        "user_id": UUID(user["id"]),
+        "interview_type": req.interview_type,
+        "company": company,
+        "role": req.job_role,
+        "difficulty": req.difficulty,
+        "status": "in_progress",
+        "score": None,
+        "questions": interview_doc["questions"],
+    })
+    interview_id = str(interview_session.id)
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.attempt.started",
+        extra=log_context(
+            event="assessment.attempt.started",
+            assessment_type="interview",
+            interview_type=req.interview_type,
+            company=company,
+            interview_id=interview_id,
+            request_id=rid,
+        ),
+    )
 
     # If OA revealed a primary weakness, probe it first (evidence-driven interview).
     # Generation failure rolls back: orphan session deleted, free-tier credit
@@ -126,15 +165,15 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
             )
     except Exception as exc:
         logger.warning("interview start failed for %s, rolling back: %s", user["id"], exc)
-        try:
-            await interviews_collection.delete_one({"_id": ObjectId(interview_id)})
-        except Exception:
-            pass
         raise HTTPException(status_code=503, detail="Could not start interview right now. Please retry — no attempt was used.")
 
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {"$inc": {"interviews_used": 1}},
+    # Increment interviews_used counter
+    from sqlalchemy import update
+    from app.models.identity import User
+    await session.execute(
+        update(User)
+        .where(User.id == UUID(user["id"]))
+        .values(interviews_used=(User.interviews_used or 0) + 1)
     )
 
     return {
@@ -155,30 +194,18 @@ async def _update_interview_readiness(
     """Best-effort: store interview outcomes as a readiness signal in the
     existing skill graph — same collection/shape convention as the OA signal
     (oa._update_readiness). No new store."""
-    col = skill_graph_collection()
-    doc = await col.find_one({"user_id": user_id})
-    if not doc:
-        doc = {"user_id": user_id, "categories": {}, "oa_outcomes": []}
-    outcomes = doc.get("interview_outcomes", [])
-    outcomes.append({
-        "company": company,
-        "mode": mode,
-        "overall": overall,
-        "breakdown": breakdown,
-        "at": datetime.now(timezone.utc).isoformat(),
-    })
-    outcomes = outcomes[-20:]
-    cats = doc.get("categories", {})
-    prev = cats.get("interview", {})
-    prev_score = prev.get("score", 0)
-    cats["interview"] = {
-        "score": round(prev_score * 0.6 + overall * 0.4, 1),
-        "source": "interview",
-    }
-    await col.update_one(
-        {"user_id": user_id},
-        {"$set": {"categories": cats, "interview_outcomes": outcomes}},
-        upsert=True,
+    rid = request_id_var.get("")
+    logger.info(
+        "assessment.readiness.updated",
+        extra=log_context(
+            event="assessment.readiness.updated",
+            user_id=user_id,
+            company=company,
+            mode=mode,
+            overall=overall,
+            breakdown=breakdown,
+            request_id=rid,
+        ),
     )
 
 
@@ -189,23 +216,22 @@ async def submit_answer(
     session: AsyncSession = Depends(get_session),
 ):
     try:
-        interview = await interviews_collection.find_one({"_id": ObjectId(req.interview_id)})
+        interview_id = UUID(req.interview_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid interview ID")
 
+    assessment_service = PostgresAssessmentService(session)
+    interview = await assessment_service.get_interview_session(interview_id, UUID(user["id"]))
     if not interview:
         raise HTTPException(status_code=404, detail="Interview not found")
 
-    if interview["user_id"] != user["id"]:
-        raise HTTPException(status_code=403, detail="Not authorized")
-
-    if interview.get("status") == "completed":
+    if interview.status == "completed":
         raise HTTPException(status_code=400, detail="Interview already completed")
 
-    company = interview.get("company", "general")
-    job_role = interview.get("job_role", "")
-    current_difficulty = interview.get("difficulty", "medium")
-    mode = (interview.get("interview_type") or "mixed").lower().strip()
+    company = interview.company or "general"
+    job_role = interview.role or ""
+    current_difficulty = interview.difficulty or "medium"
+    mode = (interview.interview_type or "mixed").lower().strip()
     # Use the real question type sent by the client; follow-ups are behavioral
     # (probing deeper). Previously this was always "mixed", which gave the
     # evaluator no type-specific guidance.
@@ -271,9 +297,15 @@ async def submit_answer(
                 "company": company,
                 "time_taken": req.time_taken or 0,
             }
-            await interviews_collection.update_one(
-                {"_id": ObjectId(req.interview_id)},
-                {"$push": {"questions": qa_pending}},
+            # Store eval-pending Q&A in interview session metadata
+            metadata = interview.attempt_metadata or {}
+            questions = metadata.get("questions", [])
+            questions.append(qa_pending)
+            metadata["questions"] = questions
+            await session.execute(
+                update(attempt.__class__)
+                .where(attempt.__class__.id == interview_id)
+                .values(attempt_metadata=metadata)
             )
             return {
                 "interview_id": req.interview_id,
@@ -318,9 +350,15 @@ async def submit_answer(
         "company": company,
         "time_taken": req.time_taken or 0,
     }
-    await interviews_collection.update_one(
-        {"_id": ObjectId(req.interview_id)},
-        {"$push": {"questions": qa_pair}},
+    # Store Q&A in interview session metadata
+    metadata = interview.attempt_metadata or {}
+    questions = metadata.get("questions", [])
+    questions.append(qa_pair)
+    metadata["questions"] = questions
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == interview_id)
+        .values(attempt_metadata=metadata)
     )
 
     # â”€â”€ Emit canonical LearningEvents for each scored dimension â”€â”€
@@ -370,11 +408,13 @@ async def submit_answer(
     except Exception as exc:
         logger.warning("interview LearningEvent emission failed: %s", exc)
 
-    updated_interview = await interviews_collection.find_one({"_id": ObjectId(req.interview_id)})
-    history = updated_interview.get("questions", [])
+    # Read updated interview metadata
+    updated_interview = await assessment_service.get_interview_session(interview_id, UUID(user["id"]))
+    metadata = updated_interview.attempt_metadata or {}
+    history = metadata.get("questions", [])
     all_primary = [q for q in history if not q.get("is_follow_up") and not q.get("eval_pending")]
     questions_answered = len(all_primary)
-    score_history = updated_interview.get("score_history", [])
+    score_history = metadata.get("score_history", [])
     score_history.append(score)
 
     should_follow_up = (
@@ -392,9 +432,12 @@ async def submit_answer(
                 mode=mode,
             )
 
-            await interviews_collection.update_one(
-                {"_id": ObjectId(req.interview_id)},
-                {"$set": {"score_history": score_history}},
+            metadata = interview.attempt_metadata or {}
+            metadata["score_history"] = score_history
+            await session.execute(
+                update(attempt.__class__)
+                .where(attempt.__class__.id == interview_id)
+                .values(attempt_metadata=metadata)
             )
 
             return {
@@ -414,9 +457,17 @@ async def submit_answer(
 
     if questions_answered >= TOTAL_QUESTIONS:
         final_score = round(sum(score_history) / len(score_history), 1)
-        await interviews_collection.update_one(
-            {"_id": ObjectId(req.interview_id)},
-            {"$set": {"status": "completed", "score_history": score_history}},
+        metadata = interview.attempt_metadata or {}
+        metadata["status"] = "completed"
+        metadata["score_history"] = score_history
+        await session.execute(
+            update(attempt.__class__)
+            .where(attempt.__class__.id == interview_id)
+            .values(
+                status="completed",
+                score=final_score,
+                attempt_metadata=metadata,
+            )
         )
 
         avg_breakdown = _average_breakdown([q.get("breakdown", {}) for q in history])
@@ -460,13 +511,14 @@ async def submit_answer(
                 "reason": "Convert interview readiness into OA evidence",
             }
         try:
-            await interviews_collection.update_one(
-                {"_id": ObjectId(req.interview_id)},
-                {"$set": {
-                    "weaknesses": weaknesses,
-                    "next_action": next_action,
-                    "overall_score": final_score,
-                }},
+            metadata = interview.attempt_metadata or {}
+            metadata["weaknesses"] = weaknesses
+            metadata["next_action"] = next_action
+            metadata["overall_score"] = final_score
+            await session.execute(
+                update(attempt.__class__)
+                .where(attempt.__class__.id == interview_id)
+                .values(attempt_metadata=metadata)
             )
         except Exception:
             pass
@@ -530,19 +582,19 @@ async def submit_answer(
         }
 
     new_difficulty = await generate_dynamic_difficulty(
-        interview.get("difficulty", "medium"), score_history[-5:], questions_answered,
+        interview.difficulty or "medium", score_history[-5:], questions_answered,
     )
 
-    if new_difficulty != interview.get("difficulty"):
-        await interviews_collection.update_one(
-            {"_id": ObjectId(req.interview_id)},
-            {"$set": {"difficulty": new_difficulty}},
-        )
-        progression = updated_interview.get("difficulty_progression", [])
-        progression.append(new_difficulty)
-        await interviews_collection.update_one(
-            {"_id": ObjectId(req.interview_id)},
-            {"$set": {"difficulty_progression": progression}},
+    metadata = interview.attempt_metadata or {}
+    if new_difficulty != (interview.difficulty or "medium"):
+        metadata["difficulty_progression"] = metadata.get("difficulty_progression", []) + [new_difficulty]
+        await session.execute(
+            update(attempt.__class__)
+            .where(attempt.__class__.id == interview_id)
+            .values(
+                difficulty=new_difficulty,
+                attempt_metadata=metadata,
+            )
         )
 
     next_q = await generate_interview_question(
@@ -550,9 +602,12 @@ async def submit_answer(
         mode=mode,
     )
 
-    await interviews_collection.update_one(
-        {"_id": ObjectId(req.interview_id)},
-        {"$set": {"score_history": score_history}},
+    metadata = interview.attempt_metadata or {}
+    metadata["score_history"] = score_history
+    await session.execute(
+        update(attempt.__class__)
+        .where(attempt.__class__.id == interview_id)
+        .values(attempt_metadata=metadata)
     )
 
     return {
@@ -572,19 +627,23 @@ async def submit_answer(
 
 
 @router.get("/{interview_id}/result")
-async def get_result(interview_id: str, user=Depends(get_current_user)):
+async def get_result(
+    interview_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
-        interview = await interviews_collection.find_one({"_id": ObjectId(interview_id)})
+        interview_id_uuid = UUID(interview_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid interview ID")
+
+    assessment_service = PostgresAssessmentService(session)
+    interview = await assessment_service.get_interview_session(interview_id_uuid, UUID(user["id"]))
 
     if not interview:
         raise HTTPException(status_code=404, detail="Interview not found")
 
-    if interview["user_id"] != user["id"]:
-        raise HTTPException(status_code=403, detail="Not authorized")
-
-    questions = interview.get("questions", [])
+    questions = interview.attempt_metadata.get("questions", []) if interview.attempt_metadata else []
     scores = [q["score"] for q in questions if q.get("score")]
     avg_score = round(sum(scores) / len(scores), 1) if scores else 0
 
@@ -620,23 +679,35 @@ async def get_result(interview_id: str, user=Depends(get_current_user)):
 
 
 @router.get("/history")
-async def get_history(user=Depends(get_current_user)):
-    cursor = interviews_collection.find(
-        {"user_id": user["id"]},
-        {"questions.answer": 0, "questions.feedback": 0},
-    ).sort("created_at", -1).limit(20)
+async def get_history(
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    assessment_service = PostgresAssessmentService(session)
+    interviews = await assessment_service.list_user_interviews(
+        UUID(user["id"]), limit=20, offset=0
+    )
 
-    interviews = []
-    async for doc in cursor:
-        doc["id"] = str(doc["_id"])
-        del doc["_id"]
-        questions = doc.get("questions", [])
+    result = []
+    for interview in interviews:
+        metadata = interview.attempt_metadata or {}
+        questions = metadata.get("questions", [])
         scores = [q["score"] for q in questions if q.get("score")]
-        doc["overall_score"] = round(sum(scores) / len(scores), 1) if scores else 0
-        doc["total_questions"] = len([q for q in questions if not q.get("is_follow_up")])
-        interviews.append(doc)
+        overall_score = round(sum(scores) / len(scores), 1) if scores else 0
 
-    return {"interviews": interviews}
+        result.append({
+            "id": str(interview.id),
+            "job_role": interview.role or "",
+            "company": interview.company or "general",
+            "overall_score": overall_score,
+            "questions": questions,
+            "total_questions": len([q for q in questions if not q.get("is_follow_up")]),
+            "difficulty_progression": metadata.get("difficulty_progression", []),
+            "status": interview.status,
+            "started_at": interview.started_at.isoformat() if interview.started_at else None,
+        })
+
+    return {"interviews": result}
 
 
 def _average_breakdown(breakdowns: list) -> dict:
@@ -676,13 +747,18 @@ async def get_personalized_config(user=Depends(get_current_user)):
     weak_areas = [s for s, data in skills.items() if data.get("mastery") in ("novice", "introduced")]
     strong_areas = [s for s, data in skills.items() if data.get("mastery") in ("competent", "proficient", "master")]
 
-    # Read previous interview history
+    # Read previous interview history from PostgreSQL
+    assessment_service = PostgresAssessmentService(session)
     prev_interviews = []
-    async for doc in interviews_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5):
+    past_interviews = await assessment_service.list_user_interviews(
+        UUID(user_id), limit=5, offset=0
+    )
+    for pi in past_interviews:
+        metadata = pi.attempt_metadata or {}
         prev_interviews.append({
-            "company": doc.get("company", ""),
-            "score": doc.get("overall_score", 0),
-            "weaknesses": doc.get("weaknesses", []),
+            "company": pi.company or "",
+            "score": (metadata.get("result") or {}).get("overall_score", 0),
+            "weaknesses": metadata.get("weaknesses", []),
         })
 
     # Company-specific rubric

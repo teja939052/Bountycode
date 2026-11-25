@@ -122,9 +122,12 @@ class HumanReadableFormatter(logging.Formatter):
 
 
 def _should_use_json() -> bool:
-    """Decide whether to emit JSON (production) or human-readable (development)."""
+    """Decide whether to emit JSON (production) or human-readable (development).
+
+    Based on the application environment, not Sentry environment.
+    """
     settings = get_settings()
-    env = settings.SENTRY_ENVIRONMENT or "development"
+    env = settings.APP_ENVIRONMENT or settings.SENTRY_ENVIRONMENT or "development"
     # Force JSON in production/staging; human-readable in local development
     return env not in ("development", "local", "dev")
 
@@ -156,11 +159,15 @@ def setup_structured_logging():
     root.addHandler(console_handler)
 
     # ── Rotating file handler ──
-    log_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
+    # backend/app/services/structured_logging.py -> backend/.. -> backend/logs/
+    backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    log_dir = os.path.join(backend_dir, "logs")
     try:
         os.makedirs(log_dir, exist_ok=True)
     except OSError:
         # If we cannot create the log directory, continue with console only
+        import logging as _logging
+        _logging.warning("Cannot create log directory %s — file logging disabled", log_dir)
         pass
 
     log_path = os.path.join(log_dir, settings.LOG_FILE)
@@ -173,9 +180,10 @@ def setup_structured_logging():
         )
         file_handler.setFormatter(StructuredFormatter())
         root.addHandler(file_handler)
-    except OSError:
+    except OSError as exc:
         # If we cannot open the log file, continue with console only
-        pass
+        import logging as _logging
+        _logging.warning("Cannot open log file %s — file logging disabled: %s", log_path, exc)
 
 
 def set_request_id(rid: Optional[str] = None) -> str:
@@ -227,8 +235,11 @@ def init_sentry() -> None:
     """Initialize Sentry SDK if enabled and a DSN is configured.
 
     Safe to call even when Sentry is not configured — it silently no-ops.
-    Sentry failures never crash the application.
+    Sentry initialization failures are logged as warnings but never crash
+    the application.
     """
+    import logging as _logging
+
     settings = get_settings()
     if not settings.SENTRY_ENABLED or not settings.SENTRY_BACKEND_DSN:
         return
@@ -255,18 +266,33 @@ def init_sentry() -> None:
             ],
             send_default_pii=False,
             # Never attach request bodies or private data
-            before_send=lambda event, hint: _scrub_sentry_event(event),
+            before_send=_scrub_sentry_event,
         )
-    except Exception:
+        _logging.getLogger(__name__).info("Sentry initialized successfully")
+    except ImportError as exc:
+        _logging.getLogger(__name__).warning(
+            "Sentry SDK not installed — run: pip install sentry-sdk[%s]",
+            "fastapi",
+        )
+    except Exception as exc:
         # Sentry is optional — never crash the app because of it
-        pass
+        _logging.getLogger(__name__).warning(
+            "Sentry initialization failed: %s", exc
+        )
 
 
 def _scrub_sentry_event(event: dict, hint: dict | None = None) -> dict | None:
-    """Scrub sensitive data from Sentry events before transmission."""
+    """Scrub sensitive data from Sentry events before transmission.
+
+    Recursively scrubs:
+    - Request bodies, headers, URL query parameters
+    - Extra/context data at any nesting depth
+    - Exception values and stack frame variables
+    - Breadcrumbs data
+    """
     # Remove request bodies that may contain passwords, tokens, etc.
     request = event.get("request", {})
-    if request:
+    if isinstance(request, dict):
         request.pop("data", None)  # request body
         headers = request.get("headers", {})
         if isinstance(headers, dict):
@@ -274,13 +300,81 @@ def _scrub_sentry_event(event: dict, hint: dict | None = None) -> dict | None:
             for h in list(headers.keys()):
                 if h.lower() in sensitive_headers:
                     headers[h] = "[REDACTED]"
+        # Scrub URL query parameters
+        url = request.get("url", "")
+        if isinstance(url, str):
+            try:
+                from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
+                parsed = urlparse(url)
+                params = parse_qsl(parsed.query)
+                scrubbed_params = [
+                    (k, "[REDACTED]") if any(s in k.lower() for s in ("password", "token", "secret", "cookie", "auth", "jwt", "email", "session")) else (k, v)
+                    for k, v in params
+                ]
+                new_query = urlencode(scrubbed_params)
+                request["url"] = urlunparse(parsed._replace(query=new_query))
+            except Exception:
+                pass
 
-    # Remove extra/context that might contain PII
+    # Remove extra/context that might contain PII — recursive scrub
     extra = event.get("extra", {})
     if isinstance(extra, dict):
-        for key in list(extra.keys()):
-            key_lower = key.lower()
-            if any(s in key_lower for s in ("password", "token", "secret", "cookie", "auth", "email")):
-                extra[key] = "[REDACTED]"
+        event["extra"] = _recursive_redact(extra)
+
+    # Scrub exception values and stack frame variables
+    exception = event.get("exception", {})
+    if isinstance(exception, dict):
+        values = exception.get("values", [])
+        if isinstance(values, list):
+            for exc_val in values:
+                if not isinstance(exc_val, dict):
+                    continue
+                msg = exc_val.get("value")
+                if isinstance(msg, str) and len(msg) > 500:
+                    exc_val["value"] = msg[:500] + "...[TRUNCATED]"
+                stacktrace = exc_val.get("stacktrace")
+                if isinstance(stacktrace, dict):
+                    frames = stacktrace.get("frames", [])
+                    if isinstance(frames, list):
+                        for frame in frames:
+                            if not isinstance(frame, dict):
+                                continue
+                            vars_map = frame.get("vars")
+                            if isinstance(vars_map, dict):
+                                frame["vars"] = _recursive_redact(vars_map)
+
+    # Scrub breadcrumbs
+    breadcrumbs = event.get("breadcrumbs", {})
+    if isinstance(breadcrumbs, dict):
+        crumbs = breadcrumbs.get("values", [])
+        if isinstance(crumbs, list):
+            for crumb in crumbs:
+                if not isinstance(crumb, dict):
+                    continue
+                data = crumb.get("data")
+                if isinstance(data, dict):
+                    crumb["data"] = _recursive_redact(data)
 
     return event
+
+
+def _recursive_redact(value: Any, depth: int = 0) -> Any:
+    """Recursively redact sensitive keys from a dict/list structure."""
+    if depth > 8:
+        return "[REDACTED]"
+    if isinstance(value, dict):
+        redacted = {}
+        for key, item in value.items():
+            key_str = str(key).lower()
+            if key_str in SENSITIVE_KEYS or any(s in key_str for s in ("password", "token", "secret", "cookie", "auth", "jwt", "session", "email")):
+                redacted[key] = "[REDACTED]"
+            else:
+                redacted[key] = _recursive_redact(item, depth + 1)
+        return redacted
+    if isinstance(value, list):
+        return [_recursive_redact(item, depth + 1) for item in value]
+    if isinstance(value, str):
+        if len(value) > 2000:
+            return value[:2000] + "...[TRUNCATED]"
+        return value
+    return value

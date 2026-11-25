@@ -1,7 +1,7 @@
 import { Component, type ReactNode, type ErrorInfo } from "react";
 import { AlertTriangle, RefreshCw, Copy } from "lucide-react";
 import { trackError } from "../services/errorTracker";
-import { captureException, setUser } from "../observability/sentry";
+import { captureException } from "../observability/sentry";
 
 interface ErrorBoundaryProps {
   children?: ReactNode;
@@ -28,12 +28,16 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     const errorId = crypto.randomUUID?.() || Math.random().toString(36).slice(2);
-    console.error("ErrorBoundary caught:", error, errorInfo);
+    // Development-only console diagnostics — never shown to students
+    if (import.meta.env.DEV) {
+      console.error("ErrorBoundary caught:", error, errorInfo);
+    }
     try {
       trackError(error, "ErrorBoundary");
     } catch {}
     try {
-      captureException(error, { errorId, componentStack: errorInfo.componentStack });
+      // Send to Sentry with only the error ID as context (no raw stack/component stack)
+      captureException(error, { errorId });
     } catch {}
     this.setState({ errorId });
     if (typeof this.props.onError === "function") {
@@ -44,7 +48,8 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   }
 
   copyDetails = () => {
-    const text = `Error ID: ${this.state.errorId}\n\n${this.state.error?.message || ""}\n\n${this.state.errorInfo?.componentStack || ""}`;
+    // Copy only the safe error reference ID — never raw stack or component stack
+    const text = `Error reference: ${this.state.errorId}`;
     try {
       void navigator.clipboard?.writeText(text);
     } catch {}
@@ -98,7 +103,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
               </button>
             </div>
             <p className="mt-4 text-sm text-gray-500">
-              Internal stack traces are never shown to students. Use the error
+              Internal diagnostics are never shown to students. Use the error
               reference ID when contacting support.
             </p>
           </div>
