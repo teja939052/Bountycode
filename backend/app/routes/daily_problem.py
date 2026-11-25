@@ -1,16 +1,22 @@
-"""
-Problem of the Day — a single curated coding challenge per day.
+"""Problem of the Day — a single curated coding challenge per day.
 Reads from the in-memory question store so it never depends on MongoDB
 being pre-seeded. Selection is deterministic by UTC date.
+Persistence now uses PostgreSQL tables:
+- solved_problems → SolvedProblemRepository
+- gamification_profiles → GamificationProfileRepository (via pg_record_practice)
 """
 import hashlib
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date as date_type
 from fastapi import APIRouter, Depends, HTTPException
+from typing import Optional
+from uuid import UUID
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.middleware.auth import get_current_user
+from app.database import get_session
 from app.services.question_store import find, find_one
 from app.services.code_executor import CodeExecutionEngine
-from app.database import solved_problems_collection, gamification_collection, get_session
+from app.repositories.assessments import SolvedProblemRepository
 from app.services.postgres_gamification import record_practice as pg_record_practice
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -83,7 +89,7 @@ def _pick_problem(config: dict, day_key: str):
 
 
 @router.get("/today")
-async def get_today_problem(user=Depends(get_current_user)):
+async def get_today_problem(user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
     """Get today's Problem of the Day."""
     day_key = _today_key()
     config = _today_config()
@@ -99,15 +105,11 @@ async def get_today_problem(user=Depends(get_current_user)):
     title = problem.get("question_title") or problem.get("title") or ""
     statement = problem.get("statement") or problem.get("question") or problem.get("description") or ""
 
-    solved_col = solved_problems_collection()
-    existing = await solved_col.find_one({
-        "user_id": user["id"],
-        "daily_problem_date": day_key,
-    })
-
-    gam_col = gamification_collection()
-    gam_doc = await gam_col.find_one({"user_id": user["id"]})
-    diamonds = gam_doc.get("diamonds", 0) if gam_doc else 0
+    solved_repo = SolvedProblemRepository(session)
+    existing = await solved_repo.list_by_user(UUID(user["id"]), limit=1000, offset=0)
+    already_completed = any(
+        s.problem_id == problem.get("id") for s in existing
+    )
 
     return {
         "date": day_key,
@@ -126,7 +128,7 @@ async def get_today_problem(user=Depends(get_current_user)):
             "hints": problem.get("hints", []),
             "type": problem.get("type", "coding"),
         },
-        "already_completed": existing is not None,
+        "already_completed": already_completed,
         "xp_reward": 50,
         "user_league": {"key": "bronze", "name": "Bronze", "emoji": "🥉", "color": "#CD7F32", "min_xp": 0, "max_xp": 999},
         "leaderboard": [],
@@ -144,16 +146,19 @@ async def submit_daily_problem(
 ):
     """Submit solution for today's Problem of the Day."""
     day_key = _today_key()
-    solved_col = solved_problems_collection()
+    solved_repo = SolvedProblemRepository(session)
 
-    existing = await solved_col.find_one({
-        "user_id": user["id"],
-        "daily_problem_date": day_key,
-    })
-    if existing:
+    # Check if already completed today (by problem_id, user_id)
+    existing_list = await solved_repo.list_by_user(UUID(user["id"]), limit=1000, offset=0)
+    today_start = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+    already = any(
+        s.problem_id == problem_id and s.created_at and s.created_at >= today_start
+        for s in existing_list
+    )
+    if already:
         raise HTTPException(status_code=400, detail="Already completed today's problem")
 
-    problem = find_one_verified({"id": problem_id})
+    problem = find_one({"id": problem_id})
     if not problem:
         raise HTTPException(status_code=404, detail="Problem not found")
 
@@ -173,21 +178,18 @@ async def submit_daily_problem(
     all_passed = total == 0 or passed == total
     xp_gained = 50 if all_passed else max(0, 25 - (total - passed) * 5)
 
-    await solved_col.insert_one({
-        "user_id": user["id"],
-        "daily_problem_date": day_key,
+    await solved_repo.create({
+        "user_id": UUID(user["id"]),
         "problem_id": problem_id,
-        "code": code,
+        "problem_type": "coding",
+        "status": "solved",
+        "score": int(xp_gained / 5),  # 0-10 score
         "language": language,
-        "passed": passed,
-        "total": total,
-        "xp_gained": xp_gained,
-        "completed_at": datetime.now(timezone.utc),
+        "time_taken_seconds": 0,
+        "attempts": 1,
     })
 
-    # Canonical reward (LAW): 0-10 score from the pass rate. The old path
-    # $inc'd diamonds + a write-only daily_streak directly (nothing ever read
-    # daily_streak); streak/combo/badges/league now come from the engine.
+    # Canonical reward (LAW): 0-10 score from the pass rate.
     score_10 = round(passed / total * 10, 1) if total > 0 else 10.0
     result = await pg_record_practice(
         session,
@@ -211,12 +213,24 @@ async def submit_daily_problem(
 
 
 @router.get("/history")
-async def get_problem_history(user=Depends(get_current_user)):
+async def get_problem_history(user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
     """Get past problems the user has attempted."""
-    solved_col = solved_problems_collection()
-    cursor = solved_col.find({"user_id": user["id"]}).sort("daily_problem_date", -1).limit(30)
-    history = []
-    async for doc in cursor:
-        doc["id"] = str(doc.pop("_id"))
-        history.append(doc)
-    return {"history": history}
+    solved_repo = SolvedProblemRepository(session)
+    problems = await solved_repo.list_by_user(UUID(user["id"]), limit=30, offset=0)
+
+    return {
+        "history": [
+            {
+                "id": str(p.id),
+                "problem_id": p.problem_id,
+                "problem_type": p.problem_type,
+                "status": p.status,
+                "score": p.score,
+                "language": p.language,
+                "time_taken_seconds": p.time_taken_seconds,
+                "attempts": p.attempts,
+                "created_at": p.created_at.isoformat() if p.created_at else None,
+            }
+            for p in problems
+        ]
+    }
