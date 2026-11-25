@@ -140,6 +140,22 @@ class XPEventLedgerRepository(RepositoryBase):
         )
         return list(result.scalars().all())
 
+    async def get_by_idempotency_key(
+        self,
+        user_id: UUID,
+        idempotency_key: str,
+    ) -> Optional[XPEventLedger]:
+        """Look up an XP event by user and idempotency key (stored in metadata)."""
+        result = await self.session.execute(
+            select(XPEventLedger)
+            .where(XPEventLedger.user_id == user_id)
+        )
+        for event in result.scalars().all():
+            event_meta = event.event_metadata or {}
+            if event_meta.get("idempotency_key") == idempotency_key:
+                return event
+        return None
+
 
 class BadgeRepository(RepositoryBase):
     """Repository for badges."""

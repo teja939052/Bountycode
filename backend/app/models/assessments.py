@@ -95,6 +95,7 @@ class CodingSubmission(Base):
     code: Mapped[str] = mapped_column(Text, nullable=False)
     language: Mapped[str] = mapped_column(String(50), nullable=False)
     status: Mapped[str] = mapped_column(String(50), default="pending", nullable=False)  # pending, accepted, wrong_answer, error
+    score: Mapped[Optional[float]] = mapped_column(Integer, nullable=True)  # 0-100 percent
     idempotency_key: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
     execution_result: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"), nullable=False)
     submitted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
@@ -139,6 +140,7 @@ class OASession(Base):
     integrity_enabled: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     status: Mapped[str] = mapped_column(String(50), default="in_progress", nullable=False)  # in_progress, completed, abandoned
     questions: Mapped[list[dict]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    idempotency_key: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
     started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
 
@@ -161,6 +163,7 @@ class InterviewSession(Base):
     difficulty: Mapped[str] = mapped_column(String(50), default="medium", nullable=False)
     status: Mapped[str] = mapped_column(String(50), default="in_progress", nullable=False)  # in_progress, completed, abandoned
     score: Mapped[Optional[float]] = mapped_column(Integer, nullable=True)  # 0-100
+    idempotency_key: Mapped[Optional[str]] = mapped_column(String(255), nullable=True, index=True)
     started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
 
