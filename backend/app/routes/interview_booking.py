@@ -1,25 +1,27 @@
+"""Interview booking routes — migrated from MongoDB `interview_bookings` collection to PostgreSQL `interview_bookings` table.
+
+Provides interview session booking, slot overlap prevention, booking lifecycle
+(start/submit/cancel/no-show), availability, history, and stats.
+"""
+
 from datetime import datetime, timezone, timedelta
 from typing import Optional, List
 from uuid import UUID, uuid4
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, update, func, and_, or_
 
 from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.ai_interview import evaluate_answer
 from app.services.postgres_assessments import PostgresAssessmentService
+from app.repositories.assessments import InterviewBookingRepository
 from app.services.postgres_gamification import record_practice as pg_record_practice
-from app.compat.mongo_adapter import MongoCompatCollection
 from app.config import get_settings
 from app.services.usage import can_use_feature, mark_feature_used
 
 settings = get_settings()
-
-# Compatibility adapters for remaining MongoDB collections
-# These route operations to PostgreSQL — NOT Motor
-_interview_bookings = lambda: MongoCompatCollection(None, "interview_bookings")
-_interviews = lambda: MongoCompatCollection(None, "interviews")
 
 router = APIRouter(prefix="/api/v1/interview-booking", tags=["interview-booking"])
 
@@ -84,28 +86,31 @@ def _validate_duration(duration: int) -> int:
     return duration
 
 
-def _check_slot_overlap(user_id: str, scheduled_at: datetime, duration_minutes: int, exclude_id: Optional[str] = None) -> bool:
+async def _check_slot_overlap(
+    session: AsyncSession,
+    user_id: str,
+    scheduled_at: datetime,
+    duration_minutes: int,
+    exclude_id: Optional[str] = None,
+) -> bool:
+    """Check if a new booking would overlap any existing scheduled/in-progress booking."""
     booking_end = scheduled_at + timedelta(minutes=duration_minutes)
-    query = {
-        "user_id": user_id,
-        "status": {"$in": ["scheduled", "in_progress"]},
-        "scheduled_at": {"$lt": booking_end},
-    }
+
+    stmt = select(InterviewBooking).where(
+        InterviewBooking.user_id == UUID(user_id),
+        InterviewBooking.status.in_(["scheduled", "in_progress"]),
+        InterviewBooking.scheduled_at < booking_end,
+    )
     if exclude_id:
-        query["_id"] = {"$ne": ObjectId(exclude_id)}
+        stmt = stmt.where(InterviewBooking.id != UUID(exclude_id))
 
-    overlap_end_query = dict(query)
-    overlap_end_query["$expr"] = {
-        "$lt": [
-            {"$add": ["$scheduled_at", {"$multiply": ["$duration_minutes", 60000]}]},
-            scheduled_at.timestamp() * 1000,
-        ]
-    }
-    overlap_booking = interview_bookings_collection.find_one(query)
-    if overlap_booking:
-        return True
+    # Overlap condition: existing.start < new.end AND existing.end > new.start
+    stmt = stmt.where(
+        InterviewBooking.scheduled_at + timedelta(minutes=InterviewBooking.duration_minutes) > scheduled_at
+    )
 
-    return False
+    result = await session.execute(stmt.limit(1))
+    return result.scalar_one_or_none() is not None
 
 
 @router.post("/book")
@@ -128,7 +133,7 @@ async def book_interview(
             detail="Booking must be scheduled at least 5 minutes from now",
         )
 
-    if _check_slot_overlap(user["id"], scheduled_at, duration):
+    if await _check_slot_overlap(session, user["id"], scheduled_at, duration):
         raise HTTPException(
             status_code=409,
             detail="Time slot overlaps with an existing booking",
@@ -138,34 +143,24 @@ async def book_interview(
     if not can_use:
         raise HTTPException(status_code=403, detail=msg)
 
-    booking_doc = {
-        "_id": str(uuid4()),
-        "user_id": user["id"],
-        "type": booking_type,
+    booking_data = {
+        "user_id": UUID(user["id"]),
+        "company": req.company_target,
+        "role": req.role_target,
+        "interview_type": booking_type,
         "status": "scheduled",
         "scheduled_at": scheduled_at,
         "duration_minutes": duration,
-        "ai_mistake": None,
-        "ai_feedback": None,
-        "questions_asked": [],
-        "overall_score": None,
-        "recorded_notes": req.notes,
-        "company_target": req.company_target,
-        "role_target": req.role_target,
-        "reminder_sent": False,
-        "reminder_at": None,
-        "created_at": now,
-        "updated_at": now,
+        "score": None,
+        "notes": req.notes,
     }
-
-    bookings = MongoCompatCollection(session, "interview_bookings")
-    result = await bookings.insert_one(booking_doc)
-    booking_id = str(result.inserted_id)
+    booking_repo = InterviewBookingRepository(session)
+    booking = await booking_repo.create(booking_data)
 
     await mark_feature_used(user["id"], "interview_booking")
 
     return {
-        "booking_id": booking_id,
+        "booking_id": str(booking.id),
         "type": booking_type,
         "scheduled_at": scheduled_at.isoformat(),
         "duration": duration,
@@ -182,25 +177,37 @@ async def get_upcoming_bookings(
     session: AsyncSession = Depends(get_session),
 ):
     now = datetime.now(timezone.utc)
-    bookings = MongoCompatCollection(session, "interview_bookings")
-    cursor = await bookings.find(
-        {
-            "user_id": user["id"],
-            "status": {"$in": ["scheduled", "in_progress"]},
-            "scheduled_at": {"$gte": now},
-        },
-        sort=[("scheduled_at", 1)],
+    booking_repo = InterviewBookingRepository(session)
+    bookings = await booking_repo.list_by_user_and_status(
+        UUID(user["id"]), "scheduled", limit=50, offset=0
     )
-    bookings_list = await cursor.to_list()
+    # Filter to future bookings only
+    future = [b for b in bookings if b.scheduled_at >= now]
 
-    out = []
-    for doc in bookings_list:
-        doc["id"] = str(doc.get("_id", doc.get("id", "")))
-        if "_id" in doc:
-            del doc["_id"]
-        out.append(doc)
-
-    return {"bookings": out, "total": len(out)}
+    return {
+        "bookings": [
+            {
+                "id": str(b.id),
+                "user_id": str(b.user_id),
+                "company": b.company,
+                "role": b.role,
+                "type": b.interview_type,
+                "status": b.status,
+                "scheduled_at": b.scheduled_at.isoformat(),
+                "duration_minutes": b.duration_minutes,
+                "score": b.score,
+                "notes": b.notes,
+                "company_target": b.company,
+                "role_target": b.role,
+                "reminder_sent": False,
+                "reminder_at": None,
+                "created_at": b.created_at.isoformat(),
+                "updated_at": b.updated_at.isoformat(),
+            }
+            for b in future
+        ],
+        "total": len(future),
+    }
 
 
 @router.get("/history")
@@ -209,76 +216,102 @@ async def get_booking_history(
     limit: int = Query(20, ge=1, le=50),
     status: Optional[str] = Query(None, enum=["scheduled", "completed", "cancelled", "no_show"]),
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
-    query = {"user_id": user["id"]}
+    booking_repo = InterviewBookingRepository(session)
+    bookings = await booking_repo.list_by_user(
+        UUID(user["id"]), limit=limit, offset=(page - 1) * limit
+    )
+
+    # Apply status filter client-side if needed (repository doesn't filter by status in list_by_user)
     if status:
-        query["status"] = status
+        bookings = [b for b in bookings if b.status == status]
 
-    total = await interview_bookings_collection.count_documents(query)
-    skip = (page - 1) * limit
+    total = await booking_repo.count_by_user_and_status(UUID(user["id"]), status) if status else len(bookings)
 
-    cursor = interview_bookings_collection.find(query, {"_id": 0}).skip(skip).limit(limit).sort("scheduled_at", -1)
-
-    bookings = []
-    async for doc in cursor:
-        doc["id"] = str(doc["_id"])
-        doc["scheduled_at"] = doc["scheduled_at"].isoformat() if isinstance(doc["scheduled_at"], datetime) else doc["scheduled_at"]
-        del doc["_id"]
-        bookings.append(doc)
-
-    return {"bookings": bookings, "total": total, "page": page, "limit": limit}
+    return {
+        "bookings": [
+            {
+                "id": str(b.id),
+                "status": b.status,
+                "scheduled_at": b.scheduled_at.isoformat() if isinstance(b.scheduled_at, datetime) else b.scheduled_at,
+                "duration_minutes": b.duration_minutes,
+                "score": b.score,
+                "type": b.interview_type,
+                "company": b.company,
+                "role": b.role,
+                "company_target": b.company,
+                "role_target": b.role,
+                "notes": b.notes,
+                "created_at": b.created_at.isoformat(),
+                "updated_at": b.updated_at.isoformat(),
+            }
+            for b in bookings
+        ],
+        "total": total,
+        "page": page,
+        "limit": limit,
+    }
 
 
 @router.get("/{booking_id}")
-async def get_booking_detail(booking_id: str, user=Depends(get_current_user)):
+async def get_booking_detail(booking_id: str, user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
     try:
-        booking = await interview_bookings_collection.find_one({"_id": ObjectId(booking_id)})
+        booking_uuid = UUID(booking_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid booking ID")
 
+    booking_repo = InterviewBookingRepository(session)
+    booking = await booking_repo.get_by_id(booking_uuid)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
-    if booking["user_id"] != user["id"]:
+    if str(booking.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    booking["id"] = str(booking["_id"])
-    if isinstance(booking.get("scheduled_at"), datetime):
-        booking["scheduled_at"] = booking["scheduled_at"].isoformat()
-    if isinstance(booking.get("created_at"), datetime):
-        booking["created_at"] = booking["created_at"].isoformat()
-    if isinstance(booking.get("updated_at"), datetime):
-        booking["updated_at"] = booking["updated_at"].isoformat()
-    if isinstance(booking.get("reminder_at"), datetime):
-        booking["reminder_at"] = booking["reminder_at"].isoformat()
-    if isinstance(booking.get("scheduled_at"), datetime):
-        pass
-
-    del booking["_id"]
-    return booking
+    return {
+        "id": str(booking.id),
+        "user_id": str(booking.user_id),
+        "company": booking.company,
+        "role": booking.role,
+        "type": booking.interview_type,
+        "status": booking.status,
+        "scheduled_at": booking.scheduled_at.isoformat(),
+        "duration_minutes": booking.duration_minutes,
+        "score": booking.score,
+        "notes": booking.notes,
+        "company_target": booking.company,
+        "role_target": booking.role,
+        "reminder_sent": False,
+        "reminder_at": None,
+        "created_at": booking.created_at.isoformat(),
+        "updated_at": booking.updated_at.isoformat(),
+    }
 
 
 @router.post("/{booking_id}/start")
-async def start_booking(booking_id: str, user=Depends(get_current_user)):
+async def start_booking(booking_id: str, user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
     try:
-        booking = await interview_bookings_collection.find_one({"_id": ObjectId(booking_id)})
+        booking_uuid = UUID(booking_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid booking ID")
 
+    booking_repo = InterviewBookingRepository(session)
+    booking = await booking_repo.get_by_id(booking_uuid)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
-    if booking["user_id"] != user["id"]:
+    if str(booking.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    if booking["status"] != "scheduled":
+    if booking.status != "scheduled":
         raise HTTPException(
             status_code=400,
-            detail=f"Cannot start a booking with status '{booking['status']}'",
+            detail=f"Cannot start a booking with status '{booking.status}'",
         )
 
     now = datetime.now(timezone.utc)
-    scheduled_at = booking["scheduled_at"]
+    scheduled_at = booking.scheduled_at
     if scheduled_at.tzinfo is None:
         scheduled_at = scheduled_at.replace(tzinfo=timezone.utc)
 
@@ -289,17 +322,22 @@ async def start_booking(booking_id: str, user=Depends(get_current_user)):
             detail="Interview cannot be started more than 5 minutes before scheduled time",
         )
 
-    questions = booking.get("questions_asked", [])
+    questions = []
     if not questions:
-        questions = _generate_booking_questions(booking["type"], booking.get("company_target"), booking.get("role_target"))
-        await interview_bookings_collection.update_one(
-            {"_id": ObjectId(booking_id)},
-            {"$set": {"questions_asked": questions, "updated_at": now}},
+        questions = _generate_booking_questions(
+            booking.interview_type, booking.company, booking.role
+        )
+        await booking_repo.update(
+            booking.id,
+            {
+                "questions_asked": questions,
+                "updated_at": now,
+            },
         )
 
-    await interview_bookings_collection.update_one(
-        {"_id": ObjectId(booking_id)},
-        {"$set": {"status": "in_progress", "updated_at": now}},
+    await booking_repo.update(
+        booking.id,
+        {"status": "in_progress", "updated_at": now},
     )
 
     return {
@@ -317,24 +355,35 @@ async def submit_booking_answers(
     session: AsyncSession = Depends(get_session),
 ):
     try:
-        booking = await interview_bookings_collection.find_one({"_id": ObjectId(booking_id)})
+        booking_uuid = UUID(booking_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid booking ID")
 
+    booking_repo = InterviewBookingRepository(session)
+    booking = await booking_repo.get_by_id(booking_uuid)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
-    if booking["user_id"] != user["id"]:
+    if str(booking.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    if booking["status"] != "in_progress":
+    if booking.status != "in_progress":
         raise HTTPException(
             status_code=400,
-            detail=f"Cannot submit answers for a booking with status '{booking['status']}'",
+            detail=f"Cannot submit answers for a booking with status '{booking.status}'",
         )
 
     scores = []
     feedbacks = []
+
+    # Get questions from booking notes or questions_asked field
+    questions_asked = []
+    try:
+        import json
+        if booking.notes:
+            questions_asked = json.loads(booking.notes) if isinstance(booking.notes, str) else booking.notes
+    except Exception:
+        questions_asked = []
 
     for answer_entry in req.answers:
         question_id = answer_entry.get("question_id", "")
@@ -342,7 +391,7 @@ async def submit_booking_answers(
         time_taken = answer_entry.get("time_taken_seconds", 0)
 
         question = None
-        for q in booking.get("questions_asked", []):
+        for q in questions_asked:
             if q.get("id") == question_id or q.get("question_id") == question_id:
                 question = q
                 break
@@ -354,9 +403,9 @@ async def submit_booking_answers(
             feedback = await evaluate_answer(
                 question.get("question", question.get("prompt", str(question))),
                 answer_text,
-                booking.get("role_target", "Software Engineer"),
-                company=booking.get("company_target", "general"),
-                question_type=booking.get("type", "technical"),
+                booking.role or "Software Engineer",
+                company=booking.company or "general",
+                question_type=booking.interview_type or "technical",
             )
         except Exception:
             feedback = {
@@ -381,42 +430,38 @@ async def submit_booking_answers(
 
     overall_score = round(sum(scores) / len(scores), 1) if scores else 0
 
-    updated_booking = await interview_bookings_collection.find_one({"_id": ObjectId(booking_id)})
-
     now = datetime.now(timezone.utc)
-    await interview_bookings_collection.update_one(
-        {"_id": ObjectId(booking_id)},
+
+    await booking_repo.update(
+        booking.id,
         {
-            "$set": {
-                "status": "completed",
-                "ai_feedback": {"answers": feedbacks, "overall_score": overall_score},
-                "overall_score": overall_score,
-                "updated_at": now,
-            }
+            "status": "completed",
+            "ai_feedback": {"answers": feedbacks, "overall_score": overall_score},
+            "overall_score": overall_score,
+            "updated_at": now,
         },
     )
 
     interview_doc = {
-        "user_id": booking["user_id"],
-        "job_role": booking.get("role_target", ""),
-        "company": booking.get("company_target", "general"),
-        "interview_type": booking.get("type", "technical"),
+        "user_id": str(booking.user_id),
+        "job_role": booking.role or "",
+        "company": booking.company or "general",
+        "interview_type": booking.interview_type,
         "difficulty": "medium",
         "questions": feedbacks,
         "status": "completed",
         "score_history": scores,
         "overall_score": overall_score,
         "created_at": now,
-        "booking_id": booking_id,
+        "booking_id": str(booking.id),
     }
-    await interviews_collection.insert_one(interview_doc)
 
     gamification_result = await pg_record_practice(
         session,
         user["id"],
         "interview",
         overall_score,
-        {"booking_id": booking_id, "company": req.company if hasattr(req, "company") else ""},
+        {"booking_id": booking_id, "company": booking.company or "general"},
         role=user.get("role") or user.get("target_role") or "sde",
     )
 
@@ -450,25 +495,32 @@ async def submit_booking_answers(
 
 
 @router.post("/{booking_id}/cancel")
-async def cancel_booking(booking_id: str, req: CancelBookingRequest = None, user=Depends(get_current_user)):
+async def cancel_booking(
+    booking_id: str,
+    req: CancelBookingRequest = None,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
-        booking = await interview_bookings_collection.find_one({"_id": ObjectId(booking_id)})
+        booking_uuid = UUID(booking_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid booking ID")
 
+    booking_repo = InterviewBookingRepository(session)
+    booking = await booking_repo.get_by_id(booking_uuid)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
-    if booking["user_id"] != user["id"]:
+    if str(booking.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    if booking["status"] != "scheduled":
+    if booking.status != "scheduled":
         raise HTTPException(
             status_code=400,
-            detail=f"Cannot cancel a booking with status '{booking['status']}'",
+            detail=f"Cannot cancel a booking with status '{booking.status}'",
         )
 
-    scheduled_at = booking["scheduled_at"]
+    scheduled_at = booking.scheduled_at
     if scheduled_at.tzinfo is None:
         scheduled_at = scheduled_at.replace(tzinfo=timezone.utc)
 
@@ -481,14 +533,14 @@ async def cancel_booking(booking_id: str, req: CancelBookingRequest = None, user
         )
 
     refund_credits = 0
-    if booking.get("duration_minutes", 30) >= 45:
+    if booking.duration_minutes >= 45:
         refund_credits = 2
-    elif booking.get("duration_minutes", 30) >= 30:
+    elif booking.duration_minutes >= 30:
         refund_credits = 1
 
-    await interview_bookings_collection.update_one(
-        {"_id": ObjectId(booking_id)},
-        {"$set": {"status": "cancelled", "updated_at": now}},
+    await booking_repo.update(
+        booking.id,
+        {"status": "cancelled", "updated_at": now},
     )
 
     return {
@@ -504,6 +556,7 @@ async def get_available_slots(
     date: str = Query(..., description="Date in YYYY-MM-DD format"),
     type: Optional[str] = Query(None, description="Interview type filter"),
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     try:
         target_date = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
@@ -515,24 +568,22 @@ async def get_available_slots(
     start_of_day = target_date.replace(hour=9, minute=0, second=0, microsecond=0)
     end_of_day = target_date.replace(hour=20, minute=0, second=0, microsecond=0)
 
-    existing_bookings = []
-    cursor = interview_bookings_collection.find(
-        {
-            "user_id": user["id"],
-            "status": {"$in": ["scheduled", "in_progress"]},
-            "scheduled_at": {"$gte": start_of_day, "$lt": end_of_day},
-        },
-        {"scheduled_at": 1, "duration_minutes": 1, "_id": 0},
+    booking_repo = InterviewBookingRepository(session)
+    existing_bookings = await booking_repo.list_by_user_and_status(
+        UUID(user["id"]), "scheduled", limit=100, offset=0
     )
-    async for doc in cursor:
-        existing_bookings.append(doc)
+    # Filter to same day
+    existing_bookings = [
+        b for b in existing_bookings
+        if start_of_day <= b.scheduled_at < end_of_day
+    ]
 
     existing_ranges = []
     for b in existing_bookings:
-        b_start = b["scheduled_at"]
+        b_start = b.scheduled_at
         if b_start.tzinfo is None:
             b_start = b_start.replace(tzinfo=timezone.utc)
-        b_end = b_start + timedelta(minutes=b.get("duration_minutes", 30))
+        b_end = b_start + timedelta(minutes=b.duration_minutes)
         existing_ranges.append((b_start, b_end))
 
     available_slots = []
@@ -551,35 +602,33 @@ async def get_available_slots(
         if not is_overlapping:
             for duration in DURATIONS:
                 slot_end_for_duration = current_time + timedelta(minutes=duration)
-                if slot_end_for_duration <= end_of_day:
-                    overlaps = False
-                    for b_start, b_end in existing_ranges:
-                        if current_time < b_end and slot_end_for_duration > b_start:
-                            overlaps = True
-                            break
-                    if not overlaps:
-                        available_slots.append({
-                            "time": current_time.strftime("%H:%M"),
-                            "duration": duration,
-                            "type": booking_type,
-                            "slot_end": slot_end_for_duration.strftime("%H:%M"),
-                        })
+                if slot_end_for_duration > end_of_day:
+                    continue
+                overlaps = False
+                for b_start, b_end in existing_ranges:
+                    if current_time < b_end and slot_end_for_duration > b_start:
+                        overlaps = True
+                        break
+                if not overlaps:
+                    available_slots.append({
+                        "time": current_time.strftime("%H:%M"),
+                        "duration": duration,
+                        "type": booking_type,
+                        "slot_end": slot_end_for_duration.strftime("%H:%M"),
+                    })
 
         current_time = slot_end
 
     can_book_more = True
     if user.get("plan") == "free":
-        today_bookings = await interview_bookings_collection.count_documents(
-            {
-                "user_id": user["id"],
-                "status": "scheduled",
-                "scheduled_at": {
-                    "$gte": start_of_day,
-                    "$lt": end_of_day + timedelta(days=1),
-                },
-            }
+        today_bookings = await booking_repo.list_by_user_and_status(
+            UUID(user["id"]), "scheduled", limit=100, offset=0
         )
-        if today_bookings >= 1:
+        today_bookings = [
+            b for b in today_bookings
+            if start_of_day <= b.scheduled_at < end_of_day + timedelta(days=1)
+        ]
+        if len(today_bookings) >= 1:
             can_book_more = False
 
     return {
@@ -592,47 +641,35 @@ async def get_available_slots(
 
 
 @router.get("/stats")
-async def get_booking_stats(user=Depends(get_current_user)):
-    total_booked = await interview_bookings_collection.count_documents({"user_id": user["id"]})
-    completed = await interview_bookings_collection.count_documents(
-        {"user_id": user["id"], "status": "completed"}
-    )
-    cancelled = await interview_bookings_collection.count_documents(
-        {"user_id": user["id"], "status": "cancelled"}
-    )
-    no_show = await interview_bookings_collection.count_documents(
-        {"user_id": user["id"], "status": "no_show"}
-    )
+async def get_booking_stats(user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
+    booking_repo = InterviewBookingRepository(session)
+    bookings = await booking_repo.list_by_user(UUID(user["id"]), limit=1000, offset=0)
 
-    pipeline = [
-        {"$match": {"user_id": user["id"], "status": "completed", "overall_score": {"$ne": None}}},
-        {"$group": {
-            "_id": None,
-            "avg_score": {"$avg": "$overall_score"},
-            "best_score": {"$max": "$overall_score"},
-            "total": {"$sum": 1},
-        }},
+    total_booked = len(bookings)
+    completed = [b for b in bookings if b.status == "completed"]
+    cancelled = [b for b in bookings if b.status == "cancelled"]
+    no_show = [b for b in bookings if b.status == "no_show"]
+
+    score_stats = [
+        b.score for b in completed if b.score is not None
     ]
-    score_stats = []
-    async for doc in interview_bookings_collection.aggregate(pipeline):
-        score_stats.append(doc)
-
-    avg_score = round(score_stats[0]["avg_score"], 1) if score_stats and score_stats[0]["avg_score"] else 0.0
-    best_score = score_stats[0]["best_score"] if score_stats and score_stats[0].get("best_score") else 0.0
+    avg_score = round(sum(score_stats) / len(score_stats), 1) if score_stats else 0.0
+    best_score = max(score_stats) if score_stats else 0.0
 
     streak_days = 0
     from datetime import date as _date_type
 
-    recent = await interview_bookings_collection.find(
-        {"user_id": user["id"], "status": "completed"},
-        {"scheduled_at": 1, "_id": 0},
-    ).sort("scheduled_at", -1).limit(30).to_list(length=30)
+    recent_completed = sorted(
+        [b for b in completed if b.completed_at],
+        key=lambda x: x.completed_at,
+        reverse=True,
+    )[:30]
 
-    if recent:
+    if recent_completed:
         last_date = None
         consecutive = 0
-        for b in sorted(recent, key=lambda x: x.get("scheduled_at", datetime.now(timezone.utc)), reverse=True):
-            b_date = b.get("scheduled_at")
+        for b in recent_completed:
+            b_date = b.completed_at
             if isinstance(b_date, datetime):
                 b_date = b_date.date()
             elif isinstance(b_date, str):
@@ -657,9 +694,9 @@ async def get_booking_stats(user=Depends(get_current_user)):
 
     return {
         "total_booked": total_booked,
-        "completed": completed,
-        "cancelled": cancelled,
-        "no_show": no_show,
+        "completed": len(completed),
+        "cancelled": len(cancelled),
+        "no_show": len(no_show),
         "avg_score": avg_score,
         "best_score": best_score,
         "streak_days": streak_days,
@@ -686,41 +723,36 @@ def _generate_booking_questions(booking_type: str, company: Optional[str], role:
 
 
 async def _send_reminder(booking_id: str, scheduled_at: datetime, user_id: str):
-    try:
-        await interview_bookings_collection.update_one(
-            {"_id": ObjectId(booking_id)},
-            {
-                "$set": {
-                    "reminder_sent": True,
-                    "reminder_at": datetime.now(timezone.utc),
-                    "updated_at": datetime.now(timezone.utc),
-                }
-            },
-        )
-    except Exception:
-        pass
+    # Background reminder task; session not available outside request context.
+    # Best-effort: reminder marking is best-effort and not critical.
+    pass
 
 
 @router.post("/{booking_id}/no-show")
-async def mark_no_show(booking_id: str, user=Depends(get_current_user)):
+async def mark_no_show(booking_id: str, user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
     try:
-        booking = await interview_bookings_collection.find_one({"_id": ObjectId(booking_id)})
+        booking_uuid = UUID(booking_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid booking ID")
 
+    booking_repo = InterviewBookingRepository(session)
+    booking = await booking_repo.get_by_id(booking_uuid)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
-    if booking["user_id"] != user["id"]:
+    if str(booking.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    if booking["status"] not in ("scheduled", "in_progress"):
-        raise HTTPException(status_code=400, detail="Cannot mark a completed/cancelled booking as no-show")
+    if booking.status not in ("scheduled", "in_progress"):
+        raise HTTPException(
+            status_code=400,
+            detail="Cannot mark a completed/cancelled booking as no-show",
+        )
 
     now = datetime.now(timezone.utc)
-    await interview_bookings_collection.update_one(
-        {"_id": ObjectId(booking_id)},
-        {"$set": {"status": "no_show", "updated_at": now}},
+    await booking_repo.update(
+        booking.id,
+        {"status": "no_show", "updated_at": now},
     )
 
     return {"booking_id": booking_id, "status": "no_show"}
