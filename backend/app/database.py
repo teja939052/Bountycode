@@ -1,18 +1,17 @@
-"""Database layer supporting both Motor (MongoDB, legacy) and SQLAlchemy async + asyncpg (PostgreSQL, new).
+"""PostgreSQL database layer for BountyCode.
 
-During the MongoDB→PostgreSQL migration, both databases coexist:
-- Motor client: connects to existing MongoDB (used by routes not yet migrated)
-- SQLAlchemy engine: connects to new PostgreSQL (used by migrated routes)
+Uses SQLAlchemy 2.x async engine with asyncpg driver. This is the sole
+database layer for the application — no MongoDB/Motor dependency remains.
 
-Connection string: SUPABASE_DB_URL (asyncpg format: postgresql+asyncpg://user:pass@host:5432/db)
+Connection string: SUPABASE_DB_URL (asyncpg format:
+postgresql+asyncpg://user:pass@host:5432/db)
+
 If using Supabase transaction pooler (port 6543), set statement_cache_size=0.
 """
 
 import logging
 from typing import AsyncGenerator, Optional
-from uuid import UUID
 
-from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
@@ -21,6 +20,7 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import text
+
 from app.config import get_settings
 from app.models.base import Base
 from app.observability.db_instrumentation import instrument_sqlalchemy_engine
@@ -28,74 +28,11 @@ from app.observability.db_instrumentation import instrument_sqlalchemy_engine
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
-# ════════════════════════════════════════════════════════════════════════════════
-# MOTOR / MONGODB (LEGACY — kept during migration for routes not yet migrated)
-# ════════════════════════════════════════════════════════════════════════════════
-
-_motor_client: Optional[AsyncIOMotorClient] = None
-_motor_db: Optional[AsyncIOMotorDatabase] = None
-_motor_collections: dict = {}
-
-
-def get_motor_client() -> AsyncIOMotorClient:
-    """Get or create the singleton AsyncIOMotorClient instance (legacy MongoDB)."""
-    global _motor_client, _motor_db
-    if _motor_client is None:
-        _motor_client = AsyncIOMotorClient(
-            settings.MONGODB_URL,
-            maxPoolSize=settings.MONGODB_MAX_POOL_SIZE,
-            minPoolSize=settings.MONGODB_MIN_POOL_SIZE,
-            maxIdleTimeMS=settings.MONGODB_MAX_IDLE_TIME_MS,
-            serverSelectionTimeoutMS=15000,
-            connectTimeoutMS=10000,
-            socketTimeoutMS=30000,
-        )
-        _motor_db = _motor_client[settings.DATABASE_NAME]
-    return _motor_client
-
-
-def get_motor_db() -> AsyncIOMotorDatabase:
-    """Get or create the singleton AsyncIOMotorDatabase instance (legacy MongoDB)."""
-    if _motor_db is None:
-        get_motor_client()
-    return _motor_db
-
-
-def get_motor_collection(name: str):
-    """Get a Motor collection by name, caching it (legacy MongoDB)."""
-    if name not in _motor_collections:
-        _motor_collections[name] = get_motor_db()[name]
-    return _motor_collections[name]
-
-
-# Lazy collection proxies — backward compatibility for routes not yet migrated.
-# These delegate to Motor collections. New code should use SQLAlchemy repositories.
-class _LazyCollection:
-    """Proxy that lazily resolves to a motor collection on first attribute access."""
-
-    __slots__ = ("_name",)
-
-    def __init__(self, name: str):
-        object.__setattr__(self, "_name", name)
-
-    def _resolve(self):
-        return get_motor_collection(object.__getattribute__(self, "_name"))
-
-    def __getattr__(self, item):
-        return getattr(self._resolve(), item)
-
-    def __call__(self):
-        return self._resolve()
-
-    def __repr__(self):
-        return f"<_LazyCollection '{object.__getattribute__(self, '_name')}'>"
-
-
-# ════════════════════════════════════════════════════════════════════════════════
-# SQLALCHEMY ASYNC + ASYNCPG (POSTGRESQL — new, migrated routes use this)
+# ═════════════════════════════════════════════════════════════════════════════════
+# POSTGRESQL — PostgreSQL (PRIMARY — the only database backend)
 # ════════════════════════════════════════════════════════════════════════════════
 
-# Optional SUPABASE_DB_URL overrides MONGODB_URL for PostgreSQL
+# Optional SUPABASE_DB_URL overrides the localhost fallback for PostgreSQL
 SUPABASE_DB_URL: Optional[str] = getattr(settings, "SUPABASE_DB_URL", None) or None
 
 _engine: Optional[AsyncEngine] = None
@@ -121,13 +58,15 @@ def get_engine() -> AsyncEngine:
         pool_kwargs = {}
         if ":6543" in database_url:
             pool_kwargs["statement_cache_size"] = 0
-            logger.info("Detected Supabase transaction pooler — disabling prepared statement cache")
+            logger.info(
+                "Detected Supabase transaction pooler — disabling prepared statement cache"
+            )
 
         _engine = create_async_engine(
             database_url,
             echo=False,
-            pool_size=settings.MONGODB_MAX_POOL_SIZE if hasattr(settings, "MONGODB_MAX_POOL_SIZE") else 20,
-            max_overflow=settings.MONGODB_MAX_POOL_SIZE if hasattr(settings, "MONGODB_MAX_POOL_SIZE") else 10,
+            pool_size=20,
+            max_overflow=10,
             pool_timeout=30,
             pool_recycle=1800,
             **pool_kwargs,
@@ -186,17 +125,6 @@ async def ping_db() -> bool:
         return False
 
 
-async def ping_motor() -> bool:
-    """Health check — verify MongoDB connectivity."""
-    try:
-        client = get_motor_client()
-        await client.admin.command("ping")
-        return True
-    except Exception as exc:
-        logger.error("MongoDB health check failed: %s", exc)
-        return False
-
-
 async def init_db() -> None:
     """Initialize database — create tables if they don't exist (dev only).
 
@@ -210,34 +138,12 @@ async def init_db() -> None:
 
 async def close_db() -> None:
     """Dispose all engines — call on application shutdown."""
-    global _engine, _session_factory, _motor_client, _motor_db, _motor_collections
+    global _engine, _session_factory
     if _engine is not None:
         await _engine.dispose()
         _engine = None
         _session_factory = None
-    if _motor_client is not None:
-        _motor_client.close()
-        _motor_client = None
-        _motor_db = None
-        _motor_collections.clear()
-    logger.info("Database engines disposed")
-
-
-# Compatibility shims — get_client() and get_db() were the Motor accessors.
-# During migration, these return Motor client/db so existing code continues to work.
-def get_client():
-    """Compatibility shim — returns the Motor client (legacy MongoDB)."""
-    return get_motor_client()
-
-
-def get_db():
-    """Compatibility shim — returns the Motor database (legacy MongoDB)."""
-    return get_motor_db()
-
-
-def get_collection(name: str):
-    """Compatibility shim — returns a Motor collection (legacy MongoDB)."""
-    return get_motor_collection(name)
+    logger.info("Database engine disposed")
 
 
 class RepositoryBase:
@@ -260,106 +166,193 @@ class RepositoryBase:
         await self.session.rollback()
 
 
-# ════════════════════════════════════════════════════════════════════════════════
-# LAZY COLLECTION PROXIES (backward compatibility)
-# ════════════════════════════════════════════════════════════════════════════════
+# Compatibility wrapper — get_collection() routes to PostgreSQL repositories
+# via the compat adapter. This is a transitional shim; routes should be
+# migrated to use repositories directly via dependency injection.
+# No Motor/MongoDB is involved — all operations go to PostgreSQL tables.
+def get_collection(name: str):
+    """Get a PostgreSQL-backed collection wrapper by name.
 
-users_collection = _LazyCollection("users")
-interviews_collection = _LazyCollection("interviews")
-resumes_collection = _LazyCollection("resumes")
-aptitude_collection = _LazyCollection("aptitude_tests")
-cover_letters_collection = _LazyCollection("cover_letters")
-progress_collection = _LazyCollection("progress")
-system_design_collection = _LazyCollection("system_design")
-offers_collection = _LazyCollection("offers")
-company_prep_collection = _LazyCollection("company_prep")
-coding_challenges_collection = _LazyCollection("coding_challenges")
-skill_graph_collection = _LazyCollection("skill_graphs")
-gamification_collection = _LazyCollection("gamification")
-gamification_events_collection = _LazyCollection("gamification_events")
-usage_collection = _LazyCollection("usage_tracking")
-predictions_collection = _LazyCollection("predictions")
-prediction_outcomes_collection = _LazyCollection("prediction_outcomes")
-curated_questions_collection = _LazyCollection("curated_questions")
-question_answers_collection = _LazyCollection("question_answers")
-company_mock_tests_collection = _LazyCollection("company_mock_tests")
-alumni_experiences_collection = _LazyCollection("alumni_experiences")
-placement_drives_collection = _LazyCollection("placement_drives")
-career_profiles_collection = _LazyCollection("career_profiles")
-practice_sessions_collection = _LazyCollection("practice_sessions")
-mock_tests_collection = _LazyCollection("mock_tests")
-trials_collection = _LazyCollection("trials")
-discounts_collection = _LazyCollection("discounts")
-solved_problems_collection = _LazyCollection("solved_problems")
-submissions_collection = _LazyCollection("submissions")
-learning_progress_collection = _LazyCollection("learning_progress")
-analytics_events_collection = _LazyCollection("analytics_events")
-analytics_rollups_collection = _LazyCollection("analytics_rollups")
-service_metrics_collection = _LazyCollection("service_metrics")
-applications_collection = _LazyCollection("applications")
-study_groups_collection = _LazyCollection("study_groups")
-contests_collection = _LazyCollection("contests")
-contest_entries_collection = _LazyCollection("contest_entries")
-playlists_collection = _LazyCollection("playlists")
-discussions_collection = _LazyCollection("discussions")
-community_posts_collection = _LazyCollection("community_posts")
-battles_collection = _LazyCollection("battles")
-bookmarks_collection = _LazyCollection("bookmarks")
-notes_collection = _LazyCollection("notes")
-aptitude_leaderboard_collection = _LazyCollection("aptitude_leaderboard")
-aptitude_tests_collection = _LazyCollection("aptitude_tests")
-system_design_leaderboard_collection = _LazyCollection("system_design_leaderboard")
-system_design_tests_collection = _LazyCollection("system_design_tests")
-matchmaking_queue_collection = _LazyCollection("matchmaking_queue")
-ranks_collection = _LazyCollection("ranks")
-daily_challenges_users_collection = _LazyCollection("daily_challenges_users")
-generated_projects_collection = _LazyCollection("generated_projects")
-learning_modules_collection = _LazyCollection("learning_modules")
-user_learning_progress_collection = _LazyCollection("user_learning_progress")
-interview_bookings_collection = _LazyCollection("interview_bookings")
-language_modules_collection = _LazyCollection("language_modules")
-language_levels_collection = _LazyCollection("language_levels")
-language_progress_collection = _LazyCollection("language_progress")
-content_modules_collection = _LazyCollection("content_modules")
-assignments_collection = _LazyCollection("assignments")
-assignment_submissions_collection = _LazyCollection("assignment_submissions")
-question_explanations_collection = _LazyCollection("question_explanations")
-interview_chat_sessions_collection = _LazyCollection("interview_chat_sessions")
-user_deadlines_collection = _LazyCollection("user_deadlines")
-payments_collection = _LazyCollection("payments")
-revenue_events_collection = _LazyCollection("revenue_events")
-billing_metrics_collection = _LazyCollection("billing_metrics")
-coupons_collection = _LazyCollection("coupons")
-referrals_collection = _LazyCollection("referrals")
-chat_messages_collection = _LazyCollection("chat_messages")
-gd_rooms_collection = _LazyCollection("gd_rooms")
-gd_ratings_collection = _LazyCollection("gd_ratings")
-cgpa_calculations_collection = _LazyCollection("cgpa_calculations")
-drive_trackers_collection = _LazyCollection("drive_trackers")
-peer_reviews_collection = _LazyCollection("peer_reviews")
-study_squads_collection = _LazyCollection("study_squads")
-achievements_collection = _LazyCollection("achievements")
-shares_collection = _LazyCollection("shares")
-pulse_battles_collection = _LazyCollection("pulse_battles")
-pulse_daily_collection = _LazyCollection("pulse_daily")
-debug_logs_collection = _LazyCollection("debug_logs")
-srs_collection = _LazyCollection("srs_states")
-srs_cards_collection = _LazyCollection("srs_cards")
-audit_logs_collection = _LazyCollection("audit_logs")
-friend_requests_collection = _LazyCollection("friend_requests")
-friends_collection = _LazyCollection("friends")
-oa_sessions_collection = _LazyCollection("oa_sessions")
-integrity_events_collection = _LazyCollection("integrity_events")
-daily_quests_collection = _LazyCollection("daily_quests")
-content_tranches_collection = _LazyCollection("content_tranches")
-exam_memories_collection = _LazyCollection("exam_memories")
-invoices_collection = _LazyCollection("invoices")
-learning_events_collection = _LazyCollection("learning_events")
-gamification_events_collection = _LazyCollection("gamification_events")
-question_reports_collection = _LazyCollection("question_reports")
-repair_missions_collection = _LazyCollection("repair_missions")
-season_xp_collection = _LazyCollection("season_xp")
-served_quarantine_collection = _LazyCollection("served_quarantine")
-user_company_tracks_collection = _LazyCollection("user_company_tracks")
-user_learning_paths_collection = _LazyCollection("user_learning_paths")
-user_weaknesses_collection = _LazyCollection("user_weaknesses")
+    This is a transitional compatibility shim. Routes should migrate to using
+    repositories directly via dependency injection.
+    No Motor/MongoDB is involved — all operations go to PostgreSQL tables.
+    """
+    from app.compat.mongo_adapter import MongoCompatCollection
+
+    return MongoCompatCollection(name)
+
+
+# Collection name aliases for backward compatibility with existing route imports.
+# These are PostgreSQL-backed wrappers via get_collection(). Routes should
+# migrate to using repositories directly.
+users_collection = get_collection("users")
+interviews_collection = get_collection("interviews")
+interview_bookings_collection = get_collection("interview_bookings")
+interview_sessions_collection = get_collection("interview_sessions")
+oa_sessions_collection = get_collection("oa_sessions")
+coding_challenges_collection = get_collection("coding_challenges")
+submissions_collection = get_collection("submissions")
+resumes_collection = get_collection("resumes")
+aptitude_tests_collection = get_collection("aptitude_tests")
+cover_letters_collection = get_collection("cover_letters")
+progress_collection = get_collection("progress")
+system_design_collection = get_collection("system_design")
+offers_collection = get_collection("offers")
+company_prep_collection = get_collection("company_prep")
+skill_graph_collection = get_collection("skill_graphs")
+gamification_collection = get_collection("gamification")
+gamification_events_collection = get_collection("gamification_events")
+usage_collection = get_collection("usage_tracking")
+predictions_collection = get_collection("predictions")
+prediction_outcomes_collection = get_collection("prediction_outcomes")
+curated_questions_collection = get_collection("curated_questions")
+question_answers_collection = get_collection("question_answers")
+company_mock_tests_collection = get_collection("company_mock_tests")
+alumni_experiences_collection = get_collection("alumni_experiences")
+placement_drives_collection = get_collection("placement_drives")
+career_profiles_collection = get_collection("career_profiles")
+practice_sessions_collection = get_collection("practice_sessions")
+mock_tests_collection = get_collection("mock_tests")
+trials_collection = get_collection("trials")
+discounts_collection = get_collection("discounts")
+solved_problems_collection = get_collection("solved_problems")
+learning_progress_collection = get_collection("learning_progress")
+analytics_events_collection = get_collection("analytics_events")
+analytics_rollups_collection = get_collection("analytics_rollups")
+service_metrics_collection = get_collection("service_metrics")
+applications_collection = get_collection("applications")
+study_groups_collection = get_collection("study_groups")
+contests_collection = get_collection("contests")
+contest_entries_collection = get_collection("contest_entries")
+playlists_collection = get_collection("playlists")
+discussions_collection = get_collection("discussions")
+community_posts_collection = get_collection("community_posts")
+battles_collection = get_collection("battles")
+bookmarks_collection = get_collection("bookmarks")
+notes_collection = get_collection("notes")
+aptitude_leaderboard_collection = get_collection("aptitude_leaderboard")
+system_design_leaderboard_collection = get_collection("system_design_leaderboard")
+system_design_tests_collection = get_collection("system_design_tests")
+matchmaking_queue_collection = get_collection("matchmaking_queue")
+ranks_collection = get_collection("ranks")
+daily_challenges_users_collection = get_collection("daily_challenges_users")
+generated_projects_collection = get_collection("generated_projects")
+learning_modules_collection = get_collection("learning_modules")
+user_learning_progress_collection = get_collection("user_learning_progress")
+language_modules_collection = get_collection("language_modules")
+language_levels_collection = get_collection("language_levels")
+language_progress_collection = get_collection("language_progress")
+content_modules_collection = get_collection("content_modules")
+assignments_collection = get_collection("assignments")
+assignment_submissions_collection = get_collection("assignment_submissions")
+question_explanations_collection = get_collection("question_explanations")
+interview_chat_sessions_collection = get_collection("interview_chat_sessions")
+user_deadlines_collection = get_collection("user_deadlines")
+payments_collection = get_collection("payments")
+revenue_events_collection = get_collection("revenue_events")
+billing_metrics_collection = get_collection("billing_metrics")
+coupons_collection = get_collection("coupons")
+referrals_collection = get_collection("referrals")
+chat_messages_collection = get_collection("chat_messages")
+gd_rooms_collection = get_collection("gd_rooms")
+gd_ratings_collection = get_collection("gd_ratings")
+cgpa_calculations_collection = get_collection("cgpa_calculations")
+drive_trackers_collection = get_collection("drive_trackers")
+peer_reviews_collection = get_collection("peer_reviews")
+study_squads_collection = get_collection("study_squads")
+achievements_collection = get_collection("achievements")
+shares_collection = get_collection("shares")
+pulse_battles_collection = get_collection("pulse_battles")
+pulse_daily_collection = get_collection("pulse_daily")
+debug_logs_collection = get_collection("debug_logs")
+srs_collection = get_collection("srs_states")
+srs_cards_collection = get_collection("srs_cards")
+audit_logs_collection = get_collection("audit_logs")
+friend_requests_collection = get_collection("friend_requests")
+friends_collection = get_collection("friends")
+integrity_events_collection = get_collection("integrity_events")
+daily_quests_collection = get_collection("daily_quests")
+content_tranches_collection = get_collection("content_tranches")
+exam_memories_collection = get_collection("exam_memories")
+invoices_collection = get_collection("invoices")
+learning_events_collection = get_collection("learning_events")
+question_reports_collection = get_collection("question_reports")
+repair_missions_collection = get_collection("repair_missions")
+season_xp_collection = get_collection("season_xp")
+served_quarantine_collection = get_collection("served_quarantine")
+user_company_tracks_collection = get_collection("user_company_tracks")
+user_learning_paths_collection = get_collection("user_learning_paths")
+user_weaknesses_collection = get_collection("user_weaknesses")
+
+
+# Compatibility wrapper — get_collection() routes to PostgreSQL repositories
+# via the compat adapter. This is a transitional shim; routes should be
+# migrated to use repositories directly via dependency injection.
+# No Motor/MongoDB is involved — all operations go to PostgreSQL tables.
+def get_collection(name: str):
+    """Get a PostgreSQL-backed collection wrapper by name.
+
+    This is a transitional compatibility shim. Routes should migrate to using
+    repositories directly via dependency injection.
+    No Motor/MongoDB is involved — all operations go to PostgreSQL tables.
+    """
+    from app.compat.mongo_adapter import MongoCompatCollection
+
+    return MongoCompatCollection(name)
+
+
+# Compatibility shims for code that imports get_client, get_db, etc.
+# These return PostgreSQL-backed wrappers via get_collection.
+def get_client():
+    """Compatibility shim — returns a wrapper that supports [db_name] indexing
+    to access PostgreSQL-backed collections."""
+    return _MongoClientCompat()
+
+
+def get_db():
+    """Compatibility shim — returns a wrapper that provides collection access."""
+    return get_collection("users")
+
+
+def get_motor_client():
+    """Compatibility shim — returns a wrapper that supports [db_name] indexing."""
+    return get_client()
+
+
+def get_motor_db():
+    """Compatibility shim — returns a wrapper that provides collection access."""
+    return get_db()
+
+
+def get_motor_collection(name: str):
+    """Compatibility shim — returns a PostgreSQL-backed collection wrapper."""
+    return get_collection(name)
+
+
+class _MongoClientCompat:
+    """Wrapper that mimics Motor client's [db_name] indexing."""
+
+    def __getitem__(self, db_name: str):
+        return _MongoDatabaseCompat(db_name)
+
+
+class _MongoDatabaseCompat:
+    """Wrapper that mimics Motor database's collection access."""
+
+    def __init__(self, name: str):
+        self._name = name
+
+    def __getitem__(self, collection_name: str):
+        return get_collection(collection_name)
+
+    def __call__(self, collection_name: str):
+        return get_collection(collection_name)
+
+
+# Module-level __getattr__ for any collection name not explicitly defined above.
+# Routes that import e.g. `from app.database import aptitude_collection` will
+# get a PostgreSQL-backed wrapper via get_collection().
+def __getattr__(name: str):
+    if name.startswith("_"):
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    return get_collection(name)

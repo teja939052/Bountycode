@@ -28,7 +28,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 import httpx
 
 from app.config import get_settings
-from app.database import init_db, close_db, ping_db, get_client
+from app.database import init_db, close_db, ping_db
 from app.services.cache import init_cache, cache
 from app.services.ai import close_http_client
 from app.services.analytics_service import refresh_rollups
@@ -180,43 +180,43 @@ async def lifespan(app: FastAPI):
             logger.info("Curated content loaded: %d files, %d questions", content_result["files"], sum(x["inserted"] for x in content_result["results"]))
         except Exception as e:
             logger.warning(f"Content initialization failed: {e}")
-        
-        # Get database client for remaining initialization
-        db = get_client()[settings.DATABASE_NAME]
-        
-        # Run schema migrations
+
+        # Initialize PostgreSQL health checker
         try:
-            await run_migrations()
+            db_ok = await ping_db()
+            if db_ok:
+                logger.info("Database health check passed")
+            else:
+                logger.warning("Database health check failed - retrying on next request")
         except Exception as e:
-            logger.warning(f"Migration failed (continuing in degraded mode): {e}")
-        
-        # Create database indexes for optimal query performance
+            logger.warning(f"Database health check initialization failed: {e}")
+
+        # Initialize feature flags (in-memory, no DB dependency)
         try:
-            await create_all_indexes(db)
-            logger.info("Database indexes created successfully")
-        except Exception as e:
-            logger.warning(f"Index creation failed (non-fatal): {e}")
-        
-        # Initialize health checker
-        try:
-            await init_health_checker(db)
-            logger.info("Health checker initialized")
-        except Exception as e:
-            logger.warning(f"Health checker initialization failed: {e}")
-        
-        # Initialize feature flags
-        try:
-            await init_feature_flags(db)
+            await init_feature_flags(None)
             logger.info("Feature flags initialized")
         except Exception as e:
             logger.warning(f"Feature flags initialization failed: {e}")
-        
-        # Initialize idempotency manager
+
+        # Idempotency manager is PostgreSQL-backed via per-repository unique constraints;
+        # no separate initialization needed.
+        logger.info("Idempotency manager ready (PostgreSQL unique constraints)")
+
+        # Run schema migrations (PostgreSQL migrations managed by Supabase CLI)
         try:
-            await init_idempotency_manager(db)
-            logger.info("Idempotency manager initialized")
+            await run_migrations()
         except Exception as e:
-            logger.warning(f"Idempotency manager initialization failed: {e}")
+            logger.warning(f"Migration check failed (continuing in degraded mode): {e}")
+
+        # Verify database connectivity
+        try:
+            from app.database import ping_db
+            if await ping_db():
+                logger.info("PostgreSQL connectivity verified")
+            else:
+                logger.warning("PostgreSQL connectivity check failed")
+        except Exception as e:
+            logger.warning(f"PostgreSQL connectivity verification failed: {e}")
         
         # Initialize cache
         redis_url = getattr(settings, 'REDIS_URL', '')

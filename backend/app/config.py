@@ -41,15 +41,6 @@ class Settings(BaseSettings):
     # API Versioning
     API_VERSION: str = "v1"
 
-    # MongoDB (kept during migration — removed only after all dependencies migrated)
-    MONGODB_URL: str = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
-    # Live database is `placementpro`. Never rename it in code — operators
-    # point here via DATABASE_NAME; the default matches production reality.
-    DATABASE_NAME: str = os.getenv("DATABASE_NAME", "placementpro")
-    MONGODB_MAX_POOL_SIZE: int = 50
-    MONGODB_MIN_POOL_SIZE: int = 10
-    MONGODB_MAX_IDLE_TIME_MS: int = 10000
-
     # Supabase PostgreSQL (new primary database during migration)
     SUPABASE_DB_URL: str = os.getenv("SUPABASE_DB_URL", "")
     REDIS_URL: str = os.getenv("REDIS_URL", "")

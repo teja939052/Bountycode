@@ -8,7 +8,6 @@ from app.utils.timeutil import utcnow
 from typing import Dict, Any, Optional
 import logging
 import httpx
-from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 
 logger = logging.getLogger(__name__)
 
@@ -16,30 +15,30 @@ logger = logging.getLogger(__name__)
 class HealthChecker:
     """Comprehensive health check system for all critical services."""
 
-    def __init__(self, db: Optional[AsyncIOMotorDatabase] = None):
+    def __init__(self, db=None):
         self.db = db
         self.last_check = {}
         self.check_interval = 30  # seconds
 
     async def check_database(self) -> Dict[str, Any]:
-        """Check MongoDB connectivity and performance."""
+        """Check PostgreSQL connectivity and performance."""
         start = time.time()
         try:
-            # Ping database
-            await self.db.command("ping")
-            duration = (time.time() - start) * 1000  # ms
-            
+            from app.database import ping_db
+            healthy = await ping_db()
+            duration = (time.time() - start) * 1000
+
             return {
                 "status": "healthy" if duration < 100 else "degraded",
                 "latency_ms": round(duration, 2),
-                "message": "MongoDB responding normally" if duration < 100 else "Database slow",
+                "message": "PostgreSQL responding normally" if healthy else "PostgreSQL not responding",
             }
         except Exception as e:
             logger.error(f"Database health check failed: {e}")
             return {
                 "status": "unhealthy",
                 "error": str(e),
-                "message": "Cannot connect to MongoDB",
+                "message": "Cannot connect to PostgreSQL",
             }
 
     async def check_ai_service(self) -> Dict[str, Any]:
@@ -50,7 +49,7 @@ class HealthChecker:
                 # Simple health check ping to OpenRouter
                 response = await client.get("https://openrouter.ai/api/v1/models")
                 duration = (time.time() - start) * 1000
-                
+
                 if response.status_code == 200:
                     return {
                         "status": "healthy",
@@ -81,14 +80,14 @@ class HealthChecker:
         """Check Redis cache connectivity."""
         try:
             from app.services.cache import cache
-            
+
             start = time.time()
             # Test set/get operation
             test_key = f"health_check_{int(time.time())}"
             await cache.set(test_key, "ok", 10)
             value = await cache.get(test_key)
             duration = (time.time() - start) * 1000
-            
+
             if value == "ok":
                 return {
                     "status": "healthy",
@@ -113,17 +112,17 @@ class HealthChecker:
         try:
             import psutil
             import os
-            
+
             process = psutil.Process(os.getpid())
             memory_info = process.memory_info()
             memory_percent = process.memory_percent()
-            
+
             status = "healthy"
             if memory_percent > 80:
                 status = "warning"
             elif memory_percent > 90:
                 status = "critical"
-            
+
             return {
                 "status": status,
                 "memory_mb": round(memory_info.rss / 1024 / 1024, 2),
@@ -142,15 +141,15 @@ class HealthChecker:
         """Check if request queue is healthy."""
         try:
             from app.services.job_queue import job_queue
-            
-            queue_size = len(job_queue.queue) if hasattr(job_queue, 'queue') else 0
+
+            queue_size = len(job_queue.queue) if hasattr(job_queue, "queue") else 0
             status = "healthy"
-            
+
             if queue_size > 100:
                 status = "warning"
             if queue_size > 500:
                 status = "critical"
-            
+
             return {
                 "status": status,
                 "queue_size": queue_size,
@@ -217,7 +216,7 @@ class HealthChecker:
 _health_checker: Optional[HealthChecker] = None
 
 
-async def init_health_checker(db: AsyncIOMotorDatabase):
+async def init_health_checker(db=None):
     """Initialize global health checker."""
     global _health_checker
     _health_checker = HealthChecker(db)
