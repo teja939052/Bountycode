@@ -34,6 +34,7 @@ from app.models.assessments import (
     InterviewSession,
     CompanyAssessmentMetadata,
 )
+from app.models.career import ResumeMetadata
 from app.models.content import AssessmentDefinition, AssessmentVariant
 from app.models.identity import User
 
@@ -753,5 +754,57 @@ class CompanyAssessmentMetadataRepository(RepositoryBase):
             .where(CompanyAssessmentMetadata.id == metadata_id)
             .values(**updates, updated_at=datetime.now(timezone.utc))
             .returning(CompanyAssessmentMetadata)
+        )
+        return result.scalar_one_or_none()
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+# RESUME METADATA REPOSITORY
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class ResumeMetadataRepository(RepositoryBase):
+    """Repository for resume metadata — migrated from MongoDB `resumes` collection.
+
+    Actual resume file bytes live in Supabase Storage; this table holds metadata
+    and extracted text/analysis results.
+    """
+
+    async def get_by_id(self, resume_id: UUID) -> Optional[ResumeMetadata]:
+        result = await self.session.execute(
+            select(ResumeMetadata).where(ResumeMetadata.id == resume_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def list_by_user(
+        self,
+        user_id: UUID,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> List[ResumeMetadata]:
+        result = await self.session.execute(
+            select(ResumeMetadata)
+            .where(ResumeMetadata.user_id == user_id)
+            .order_by(desc(ResumeMetadata.created_at))
+            .limit(limit)
+            .offset(offset)
+        )
+        return list(result.scalars().all())
+
+    async def create(self, resume_data: dict) -> ResumeMetadata:
+        resume = ResumeMetadata(**resume_data)
+        self.session.add(resume)
+        await self.flush()
+        return resume
+
+    async def update(
+        self,
+        resume_id: UUID,
+        updates: dict,
+    ) -> Optional[ResumeMetadata]:
+        result = await self.session.execute(
+            update(ResumeMetadata)
+            .where(ResumeMetadata.id == resume_id)
+            .values(**updates)
+            .returning(ResumeMetadata)
         )
         return result.scalar_one_or_none()

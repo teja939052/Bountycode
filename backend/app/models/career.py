@@ -68,12 +68,20 @@ class ResumeMetadata(Base):
         primary_key=True,
         server_default=text("gen_random_uuid()"),
     )
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
+    )
     storage_path: Mapped[str] = mapped_column(String(500), nullable=False)  # Supabase Storage path
     file_name: Mapped[str] = mapped_column(String(255), nullable=False)
     file_size: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     ats_score: Mapped[Optional[float]] = mapped_column(Integer, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    # Resume content fields (stored in PostgreSQL for migrated routes)
+    original_text: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    analysis: Mapped[Optional[dict]] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"), nullable=False)
+    optimized_text: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    optimization_details: Mapped[Optional[dict]] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"), nullable=False)
+    source: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)  # upload | generated
 
     user: Mapped["User"] = relationship(back_populates="resume_metadata")
 

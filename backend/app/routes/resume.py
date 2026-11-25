@@ -1,21 +1,30 @@
+"""Resume routes — migrated from MongoDB `resumes` collection to PostgreSQL `resume_metadata` table.
+
+Actual resume file bytes live in Supabase Storage; this layer owns metadata,
+extracted text, ATS analysis results and optimization history.
+"""
+
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query
 from pydantic import BaseModel
 from typing import Optional
 from uuid import UUID, uuid4
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import update
+
 from app.models.resume import GenerateResume, OptimizeRequest
 from app.database import get_session
 from app.middleware.auth import get_current_user
+from app.models.identity import User
 from app.services.ai_resume import analyze_resume, optimize_ats, generate_resume_content
 from app.services.resume_parser import extract_text_from_pdf
 from app.services.export import export_to_docx, export_to_pdf
 from app.services.ats_semantic import semantic_score, section_scores, semantic_gaps
 from app.services.ats_enhanced import calculate_ats_score as keyword_ats_score
 from app.services.postgres_gamification import record_practice as pg_record_practice
-from app.compat.mongo_adapter import MongoCompatCollection
+from app.repositories.assessments import ResumeMetadataRepository
 from app.config import get_settings
 from fastapi.responses import StreamingResponse
-from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
 settings = get_settings()
@@ -59,47 +68,6 @@ async def analyze_resume_rulebased(req: RuleBasedATSRequest, user=Depends(get_cu
         "keyword_analysis": result.get("keyword_analysis"),
         "critical_issues": result.get("critical_issues", []),
         "recommendations": result.get("recommendations", []),
-        "line_fixes": result.get("line_fixes", []),
-        "engine": "rulebased",
-    }
-
-
-@router.post("/semantic-score")
-async def semantic_ats_score(req: SemanticScoreRequest, user=Depends(get_current_user)):
-    jd = req.job_description or ""
-    resume_text = req.resume_text or ""
-    overall = semantic_score(resume_text, jd)
-    sections = section_scores(resume_text, jd)
-    gaps = semantic_gaps(resume_text, jd)
-    keyword = keyword_ats_score(resume_text, jd)
-    
-    # Build explainable breakdown
-    total_keywords = len(keyword.get("present_keywords", []) + keyword.get("missing_keywords", []))
-    keyword_match_pct = (len(keyword.get("present_keywords", [])) / total_keywords * 100) if total_keywords > 0 else 0
-    
-    # Section completeness based on standard headers found
-    found_headers = sections.get("found_headers", 0)
-    section_pct = (found_headers / 6) * 100  # 6 standard resume headers
-    
-    # Formatting score from the semantic analysis
-    formatting_score = sections.get("formatting", {}).get("score", 0) if sections else 0
-    
-    # Impact score from the overall semantic score
-    impact_score = overall.get("score", 0) if overall else 0
-    
-    return {
-        "ats_score": overall.get("overall_score", 0) if overall else 0,
-        "keyword_match_pct": round(keyword_match_pct),
-        "section_completeness_pct": round(section_pct),
-        "formatting_score": formatting_score,
-        "impact_score": impact_score,
-        "keyword_analysis": {
-            "present_keywords": keyword.get("present_keywords", [])[:10],
-            "missing_keywords": keyword.get("missing_keywords", [])[:10],
-            "total_jt_keywords": total_keywords,
-        },
-        "section_scores": sections,
-        "semantic_gaps": gaps,
     }
 
 
@@ -131,24 +99,21 @@ async def upload_resume(
 
     analysis = await analyze_resume(text)
 
-    resume_doc = {
-        "_id": str(uuid4()),
-        "user_id": user["id"],
+    resume_data = {
+        "user_id": UUID(user["id"]),
+        "file_name": file.filename,
         "original_text": text,
         "analysis": analysis,
         "ats_score": None,
         "optimized_text": None,
         "optimization_details": None,
         "source": "upload",
-        "created_at": datetime.now(timezone.utc),
+        "storage_path": "",  # file bytes not persisted to Supabase Storage in this flow
     }
-
-    resumes = MongoCompatCollection(session, "resumes")
-    result = await resumes.insert_one(resume_doc)
+    resume_repo = ResumeMetadataRepository(session)
+    resume = await resume_repo.create(resume_data)
 
     # Increment resumes_used counter
-    from sqlalchemy import update
-    from app.models.identity import User
     await session.execute(
         update(User)
         .where(User.id == UUID(user["id"]))
@@ -161,7 +126,7 @@ async def upload_resume(
     await pg_record_practice(session, user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
-        "resume_id": str(result.inserted_id),
+        "resume_id": str(resume.id),
         "text": text,
         "analysis": analysis,
     }
@@ -183,28 +148,31 @@ async def generate_resume(
         req.name, req.email, req.target_role, req.experience, req.education, req.skills
     )
 
-    resume_doc = {
-        "user_id": user["id"],
+    resume_data = {
+        "user_id": UUID(user["id"]),
+        "file_name": f"{req.name or 'resume'}.pdf",
         "original_text": content,
         "analysis": None,
         "ats_score": None,
         "optimized_text": None,
         "optimization_details": None,
         "source": "generated",
-        "created_at": datetime.now(timezone.utc),
+        "storage_path": "",
     }
-    result = await resumes_collection.insert_one(resume_doc)
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {"$inc": {"resumes_used": 1}},
-    )
+    resume_repo = ResumeMetadataRepository(session)
+    resume = await resume_repo.create(resume_data)
 
     # Same canonical resume counter as upload (no ATS score yet).
+    await session.execute(
+        update(User)
+        .where(User.id == UUID(user["id"]))
+        .values(resumes_used=(User.resumes_used or 0) + 1)
+    )
+
     await pg_record_practice(session, user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
-        "resume_id": str(result.inserted_id),
+        "resume_id": str(resume.id),
         "content": content,
     }
 
@@ -216,25 +184,27 @@ async def optimize_resume(
     session: AsyncSession = Depends(get_session),
 ):
     try:
-        resume = await resumes_collection.find_one({"_id": ObjectId(req.resume_id)})
+        resume_id = UUID(req.resume_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid resume ID")
 
+    resume_repo = ResumeMetadataRepository(session)
+    resume = await resume_repo.get_by_id(resume_id)
     if not resume:
         raise HTTPException(status_code=404, detail="Resume not found")
 
-    if resume["user_id"] != user["id"]:
+    if str(resume.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    optimization = await optimize_ats(resume["original_text"], req.job_description)
+    optimization = await optimize_ats(resume.original_text or "", req.job_description)
 
-    await resumes_collection.update_one(
-        {"_id": ObjectId(req.resume_id)},
-        {"$set": {
+    await resume_repo.update(
+        resume_id,
+        {
             "ats_score": optimization.get("ats_score", 0),
             "optimized_text": optimization.get("optimized_resume", ""),
             "optimization_details": optimization,
-        }},
+        },
     )
 
     # Real ATS score exists here — feeds ats_master (90+) / ats_95 (95+).
@@ -251,19 +221,25 @@ async def optimize_resume(
 
 
 @router.get("/{resume_id}/export/docx")
-async def download_docx(resume_id: str, user=Depends(get_current_user)):
+async def download_docx(
+    resume_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
-        resume = await resumes_collection.find_one({"_id": ObjectId(resume_id)})
+        resume_uuid = UUID(resume_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid resume ID")
 
+    resume_repo = ResumeMetadataRepository(session)
+    resume = await resume_repo.get_by_id(resume_uuid)
     if not resume:
         raise HTTPException(status_code=404, detail="Resume not found")
 
-    if resume["user_id"] != user["id"]:
+    if str(resume.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    text = resume.get("optimized_text") or resume.get("original_text", "")
+    text = resume.optimized_text or resume.original_text or ""
     docx_bytes = export_to_docx(text)
 
     return StreamingResponse(
@@ -274,19 +250,25 @@ async def download_docx(resume_id: str, user=Depends(get_current_user)):
 
 
 @router.get("/{resume_id}/export/pdf")
-async def download_pdf(resume_id: str, user=Depends(get_current_user)):
+async def download_pdf(
+    resume_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
-        resume = await resumes_collection.find_one({"_id": ObjectId(resume_id)})
+        resume_uuid = UUID(resume_id)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid resume ID")
 
+    resume_repo = ResumeMetadataRepository(session)
+    resume = await resume_repo.get_by_id(resume_uuid)
     if not resume:
         raise HTTPException(status_code=404, detail="Resume not found")
 
-    if resume["user_id"] != user["id"]:
+    if str(resume.user_id) != user["id"]:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    text = resume.get("optimized_text") or resume.get("original_text", "")
+    text = resume.optimized_text or resume.original_text or ""
     pdf_bytes = export_to_pdf(text)
 
     return StreamingResponse(
@@ -297,18 +279,22 @@ async def download_pdf(resume_id: str, user=Depends(get_current_user)):
 
 
 @router.get("/history")
-async def get_resume_history(user=Depends(get_current_user)):
-    cursor = resumes_collection.find(
-        {"user_id": user["id"]}
-    ).sort("created_at", -1).limit(20)
+async def get_resume_history(
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
+    resume_repo = ResumeMetadataRepository(session)
+    resumes = await resume_repo.list_by_user(UUID(user["id"]), limit=20, offset=0)
 
-    resumes = []
-    async for doc in cursor:
-        resumes.append({
-            "id": str(doc["_id"]),
-            "source": doc.get("source", "upload"),
-            "ats_score": doc.get("ats_score"),
-            "created_at": doc.get("created_at"),
-        })
-
-    return {"resumes": resumes}
+    return {
+        "resumes": [
+            {
+                "id": str(r.id),
+                "source": r.source or "upload",
+                "ats_score": r.ats_score,
+                "created_at": r.created_at.isoformat() if r.created_at else None,
+                "file_name": r.file_name,
+            }
+            for r in resumes
+        ]
+    }
