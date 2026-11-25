@@ -599,9 +599,15 @@ async def test_xp_idempotency(session, test_user, test_skill, learning_service):
 @pytest.mark.asyncio
 async def test_transaction_rollback(session, test_user, test_skill):
     """Test transaction rollback behavior."""
-    # Create a skill successfully
+    from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+    from sqlalchemy.orm import sessionmaker
+
+    DATABASE_URL = 'postgresql+asyncpg://postgres:postgres@127.0.0.1:54322/postgres'
+
+    # Create and commit skill1
+    skill_name = f'test_rollback_skill_{uuid4().hex[:8]}'
     skill = Skill(
-        name=f'test_rollback_skill_{uuid4().hex[:8]}',
+        name=skill_name,
         topic='test',
         difficulty='easy',
         prerequisites=[],
@@ -610,31 +616,39 @@ async def test_transaction_rollback(session, test_user, test_skill):
     session.add(skill)
     await session.commit()
 
-    # Verify it exists
-    result = await session.execute(select(Skill).where(Skill.name == skill.name))
+    # Verify skill1 exists
+    result = await session.execute(select(Skill).where(Skill.name == skill_name))
     assert result.scalar_one_or_none() is not None
 
-    # Now attempt a transaction that fails
-    try:
-        async with session.begin():
-            # Add another skill
-            skill2 = Skill(
-                name=f'test_rollback_skill_2_{uuid4().hex[:8]}',
-                topic='test',
-                difficulty='easy',
-                prerequisites=[],
-                is_active=True,
-            )
-            session.add(skill2)
-            await session.flush()
-            # Force an error
-            raise Exception('Forced rollback')
-    except Exception:
-        pass
+    # Attempt a transaction that fails with skill2 — separate session
+    skill2_name = f'test_rollback_skill_2_{uuid4().hex[:8]}'
+    engine = create_async_engine(DATABASE_URL)
+    async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    async with async_session() as tx_session:
+        try:
+            async with tx_session.begin():
+                skill2 = Skill(
+                    name=skill2_name,
+                    topic='test',
+                    difficulty='easy',
+                    prerequisites=[],
+                    is_active=True,
+                )
+                tx_session.add(skill2)
+                await tx_session.flush()
+                # Force an error → transaction rolled back, skill2 undone
+                raise Exception('Forced rollback')
+        except Exception:
+            pass
+    await engine.dispose()
 
-    # skill2 should not exist
-    result = await session.execute(select(Skill).where(Skill.name.like('test_rollback_skill_2%')))
+    # skill2 should not exist (transaction rolled back)
+    result = await session.execute(select(Skill).where(Skill.name == skill2_name))
     assert result.scalar_one_or_none() is None
+
+    # skill1 should still exist (committed earlier)
+    result = await session.execute(select(Skill).where(Skill.name == skill_name))
+    assert result.scalar_one_or_none() is not None
 
 
 # ════════════════════════════════════════════════════════════════════════════════
