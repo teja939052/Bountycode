@@ -16,8 +16,10 @@ from app.services.cache import cache
 from app.services.request_metrics import metrics as request_metrics
 from app.services.resilience import call_with_resilience
 from app.services.circuit_breaker import ai_breaker
+from app.services.structured_logging import get_logger, log_context, request_id_var
 
 logger = logging.getLogger(__name__)
+ai_logger = get_logger(__name__)
 settings = get_settings()
 
 MAX_RETRIES = settings.OPENROUTER_MAX_RETRIES
@@ -244,16 +246,46 @@ async def chat_completion(
             remains open after recovery attempts.
     """
     primary_model = model or settings.OPENROUTER_MODEL
+    rid = request_id_var.get("")
 
     if use_cache:
         cache_key = _make_cache_key(messages, primary_model)
         cached = await cache.get("ai", cache_key)
         if cached:
-            logger.debug(f"Cache hit for {primary_model}")
+            ai_logger.info(
+                "ai.request.completed",
+                extra=log_context(
+                    event="ai.request.completed",
+                    provider="openrouter",
+                    model=primary_model,
+                    cached=True,
+                    duration_ms=0,
+                    request_id=rid,
+                ),
+            )
             await request_metrics.record("ai", "cache_hit")
             return cached
 
+    ai_logger.info(
+        "ai.request.started",
+        extra=log_context(
+            event="ai.request.started",
+            provider="openrouter",
+            model=primary_model,
+            request_id=rid,
+        ),
+    )
+
     if not await _check_circuit_breaker():
+        ai_logger.warning(
+            "ai.circuit_breaker.open",
+            extra=log_context(
+                event="ai.circuit_breaker.open",
+                provider="openrouter",
+                model=primary_model,
+                request_id=rid,
+            ),
+        )
         for fallback in FALLBACK_MODELS:
             if fallback != primary_model:
                 try:
@@ -273,10 +305,40 @@ async def chat_completion(
                     if use_cache:
                         cache_key = _make_cache_key(messages, primary_model)
                         await cache.set("ai", cache_key, result, ttl=3600)
+                    ai_logger.info(
+                        "ai.request.completed",
+                        extra=log_context(
+                            event="ai.request.completed",
+                            provider="openrouter",
+                            model=fallback,
+                            cached=False,
+                            fallback=True,
+                            request_id=rid,
+                        ),
+                    )
                     return result
                 except Exception as e:
-                    logger.warning(f"Fallback model {fallback} failed: {e}")
+                    ai_logger.warning(
+                        "ai.provider.failed",
+                        extra=log_context(
+                            event="ai.provider.failed",
+                            provider="openrouter",
+                            model=fallback,
+                            error_category="fallback_error",
+                            error_message=str(e)[:200],
+                            request_id=rid,
+                        ),
+                    )
                     continue
+        ai_logger.error(
+            "ai.all_providers_failed",
+            extra=log_context(
+                event="ai.all_providers_failed",
+                provider="openrouter",
+                model=primary_model,
+                request_id=rid,
+            ),
+        )
         raise Exception("AI service temporarily unavailable (circuit breaker open)")
 
     models_to_try = [primary_model] + [m for m in FALLBACK_MODELS if m != primary_model]
@@ -299,11 +361,41 @@ async def chat_completion(
             if use_cache:
                 cache_key = _make_cache_key(messages, primary_model)
                 await cache.set("ai", cache_key, result, ttl=3600)
+            ai_logger.info(
+                "ai.request.completed",
+                extra=log_context(
+                    event="ai.request.completed",
+                    provider="openrouter",
+                    model=model_to_use,
+                    cached=False,
+                    fallback=model_to_use != primary_model,
+                    request_id=rid,
+                ),
+            )
             return result
         except Exception as e:
-            logger.error(f"AI call failed for {model_to_use}: {e}")
+            ai_logger.warning(
+                "ai.provider.failed",
+                extra=log_context(
+                    event="ai.provider.failed",
+                    provider="openrouter",
+                    model=model_to_use,
+                    error_category="provider_error",
+                    error_message=str(e)[:200],
+                    request_id=rid,
+                ),
+            )
             continue
 
+    ai_logger.error(
+        "ai.all_providers_failed",
+        extra=log_context(
+            event="ai.all_providers_failed",
+            provider="openrouter",
+            model=primary_model,
+            request_id=rid,
+        ),
+    )
     raise Exception("AI service temporarily unavailable")
 
 

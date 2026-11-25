@@ -1,6 +1,7 @@
 import { Component, type ReactNode, type ErrorInfo } from "react";
 import { AlertTriangle, RefreshCw, Copy } from "lucide-react";
 import { trackError } from "../services/errorTracker";
+import { captureException, setUser } from "../observability/sentry";
 
 interface ErrorBoundaryProps {
   children?: ReactNode;
@@ -12,12 +13,13 @@ interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
   errorInfo: ErrorInfo | null;
+  errorId: string | null;
 }
 
 export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false, error: null, errorInfo: null };
+    this.state = { hasError: false, error: null, errorInfo: null, errorId: null };
   }
 
   static getDerivedStateFromError(error: Error) {
@@ -25,10 +27,15 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    const errorId = crypto.randomUUID?.() || Math.random().toString(36).slice(2);
     console.error("ErrorBoundary caught:", error, errorInfo);
     try {
       trackError(error, "ErrorBoundary");
     } catch {}
+    try {
+      captureException(error, { errorId, componentStack: errorInfo.componentStack });
+    } catch {}
+    this.setState({ errorId });
     if (typeof this.props.onError === "function") {
       try {
         this.props.onError(error, errorInfo);
@@ -37,7 +44,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   }
 
   copyDetails = () => {
-    const text = `${this.state.error?.stack || this.state.error?.message || ""}\n\n${this.state.errorInfo?.componentStack || ""}`;
+    const text = `Error ID: ${this.state.errorId}\n\n${this.state.error?.message || ""}\n\n${this.state.errorInfo?.componentStack || ""}`;
     try {
       void navigator.clipboard?.writeText(text);
     } catch {}
@@ -59,26 +66,20 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
               Something went wrong
             </h2>
             <p className="text-gray-600 mb-4">
-              An unexpected error occurred. The details are below — please copy and share them.
+              An unexpected error occurred. Your work has not been lost — please
+              try again or contact support with the error reference below.
             </p>
-            {this.state.error?.message && (              <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-left">
-                <p className="break-words font-mono text-xs text-red-700">{this.state.error.message}</p>
-                {this.state.error?.stack && (
-                  <pre className="mt-2 max-h-48 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-red-600">
-                    {this.state.error.stack}
-                  </pre>
-                )}
-                {this.state.errorInfo?.componentStack && (
-                  <pre className="mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-red-600">
-                    {this.state.errorInfo.componentStack}
-                  </pre>
-                )}
+            {this.state.errorId && (
+              <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-left">
+                <p className="font-mono text-xs text-amber-700 break-all">
+                  Error reference: {this.state.errorId}
+                </p>
               </div>
             )}
             <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
               <button
                 onClick={() => {
-                  this.setState({ hasError: false, error: null, errorInfo: null });
+                  this.setState({ hasError: false, error: null, errorInfo: null, errorId: null });
                   if (typeof window !== "undefined") {
                     window.location.reload();
                   }
@@ -93,9 +94,13 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
               >
                 <Copy size={16} />
-                Copy Error Details
+                Copy Error ID
               </button>
             </div>
+            <p className="mt-4 text-sm text-gray-500">
+              Internal stack traces are never shown to students. Use the error
+              reference ID when contacting support.
+            </p>
           </div>
         </div>
       );

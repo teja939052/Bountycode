@@ -40,6 +40,7 @@ from app.services.structured_logging import (
     request_id_var,
     new_request_id,
     log_context,
+    init_sentry,
 )
 from app.services.request_metrics import metrics as request_metrics
 from app.services.circuit_breaker import ai_breaker, compiler_breaker
@@ -106,6 +107,9 @@ def _register_routers(app: FastAPI) -> None:
 
 # Setup structured logging (JSON format with correlation IDs)
 setup_structured_logging()
+
+# Initialize Sentry (optional, env-gated — no-op if not configured)
+init_sentry()
 
 logger = logging.getLogger(__name__)
 settings = get_settings()

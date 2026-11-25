@@ -4,6 +4,7 @@ import "./index.css";
 import "./styles/candy.css";
 import { registerServiceWorker } from "./pwa";
 import { installGlobalErrorTracker } from "./services/errorTracker";
+import { initSentry } from "./observability/sentry";
 
 function renderBootShell(rootEl: HTMLElement) {
   rootEl.innerHTML = `
@@ -43,6 +44,12 @@ async function bootstrap() {
     installGlobalErrorTracker();
   } catch (error) {
     console.error("Global error tracker failed to install:", error);
+  }
+
+  try {
+    initSentry();
+  } catch (error) {
+    console.error("Sentry failed to initialize:", error);
   }
 
   try {

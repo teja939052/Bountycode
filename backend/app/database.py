@@ -23,6 +23,7 @@ from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import text
 from app.config import get_settings
 from app.models.base import Base
+from app.observability.db_instrumentation import instrument_sqlalchemy_engine
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
@@ -131,6 +132,7 @@ def get_engine() -> AsyncEngine:
             pool_recycle=1800,
             **pool_kwargs,
         )
+        instrument_sqlalchemy_engine(_engine.sync_engine)
         logger.info("SQLAlchemy async engine created for PostgreSQL")
     return _engine
 

@@ -223,6 +223,15 @@ class Settings(BaseSettings):
     # Logging
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
     LOG_FILE: str = os.getenv("LOG_FILE", "BountyCode.log")
+    LOG_ROTATION_MAX_BYTES: int = int(os.getenv("LOG_ROTATION_MAX_BYTES", "10485760"))  # 10 MB
+    LOG_ROTATION_BACKUP_COUNT: int = int(os.getenv("LOG_ROTATION_BACKUP_COUNT", "5"))
+
+    # Sentry (optional, env-gated — app runs without it)
+    SENTRY_BACKEND_DSN: str = os.getenv("SENTRY_BACKEND_DSN", "")
+    SENTRY_FRONTEND_DSN: str = os.getenv("SENTRY_FRONTEND_DSN", "")
+    SENTRY_ENVIRONMENT: str = os.getenv("SENTRY_ENVIRONMENT", "development")
+    SENTRY_TRACES_SAMPLE_RATE: float = float(os.getenv("SENTRY_TRACES_SAMPLE_RATE", "0.1"))
+    SENTRY_ENABLED: bool = os.getenv("SENTRY_ENABLED", "false").lower() == "true"
 
     # Security
     PASSWORD_MIN_LENGTH: int = 8
