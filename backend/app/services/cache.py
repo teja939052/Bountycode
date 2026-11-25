@@ -13,6 +13,10 @@ from typing import Optional, Any
 from collections import OrderedDict
 import asyncio
 
+from app.services.structured_logging import get_logger
+
+logger = get_logger(__name__)
+
 
 class InMemoryCache:
     """In-memory cache with TTL and LRU eviction. Fallback when Redis is unavailable.
@@ -136,7 +140,7 @@ class RedisCache:
             await self.client.ping()
             self.connected = True
         except Exception as e:
-            print(f"Redis connection failed: {e}. Using in-memory fallback.")
+            logger.warning("Redis connection failed, using in-memory fallback", extra={"error": str(e)[:200]})
             self.connected = False
 
     async def disconnect(self):

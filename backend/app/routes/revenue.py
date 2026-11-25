@@ -6,7 +6,6 @@ approximate MRR, so the business can be optimized toward $1M ARR.
 """
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends
-from motor.motor_asyncio import AsyncIOMotorClientSession
 
 from app.middleware.auth import get_current_user, require_admin
 from app.database import users_collection, trials_collection

@@ -7,6 +7,10 @@ Runs in the BROWSER, not on the server. Server only provides the worker code.
 # Backend provides worker initialization code
 # ──────────────────────────────────────────────────────────────────
 
+from app.services.structured_logging import get_logger
+
+logger = get_logger(__name__)
+
 PYODIDE_WORKER_JS = r"""
 // Pyodide Worker for Python Execution
 // This runs in a dedicated Web Worker
@@ -381,9 +385,9 @@ async def get_pyodide_file(path: str):
     return RedirectResponse(url=f"https://cdn.jsdelivr.net/pyodide/v0.25.1/full/{path}")
 '''
 
-print("Local Runtime service created.")
-print("Files needed:")
-print("  - backend/app/services/local_runtime.py (this file)")
-print("  - backend/app/routes/runtime.py (serves worker files)")
-print("  - frontend/src/services/localRuntime.ts (TypeScript client)")
-print("  - frontend/public/pyodide/ (Pyodide files for offline)")
+logger.info("Local Runtime service created.")
+logger.info("Files needed:")
+logger.info("  - backend/app/services/local_runtime.py (this file)")
+logger.info("  - backend/app/routes/runtime.py (serves worker files)")
+logger.info("  - frontend/src/services/localRuntime.ts (TypeScript client)")
+logger.info("  - frontend/public/pyodide/ (Pyodide files for offline)")

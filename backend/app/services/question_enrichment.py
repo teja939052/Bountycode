@@ -20,6 +20,10 @@ import os
 import re
 from typing import Dict, Any, Optional, List
 
+from app.services.structured_logging import get_logger
+
+logger = get_logger(__name__)
+
 
 # =============================================================
 # PATTERN-SPECIFIC ENRICHMENT KNOWLEDGE BASE
@@ -439,4 +443,4 @@ if __name__ == "__main__":
     for f in files:
         if os.path.exists(f):
             result = enrich_file(f)
-            print(f"{f}: {result}")
+            logger.info("Question enrichment result", extra={"file": f, "result": result})

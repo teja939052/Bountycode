@@ -2,6 +2,10 @@ from typing import Dict, List, Any, Optional, Tuple
 import json
 import re
 
+from app.services.structured_logging import get_logger
+
+logger = get_logger(__name__)
+
 
 # ──────────────────────────────────────────────────────────────────
 # Behavioral Judge — Precomputed Test Comparison
@@ -156,7 +160,8 @@ class BehavioralJudge:
                 for i, (s, e) in enumerate(zip(stu_list, exp_list)):
                     if s != e:
                         return f"Index {i}: got {s}, expected {e}"
-            except:
+            except Exception:
+                logger.warning("Behavioral judge list comparison failed", extra={"error": "comparison_error"})
                 pass
 
         if len(student) > 100 or len(expected) > 100:

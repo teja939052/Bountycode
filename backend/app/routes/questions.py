@@ -690,7 +690,6 @@ async def upvote_question(req: QuestionVote, user=Depends(get_current_user)):
         # Reports + quorum quarantine live in Mongo (§1.1 migration: local
         # JSON resets on every Render restart, silently un-quarantining).
         # The app/data files are seed/export artifacts only (see backfill).
-        from pymongo.errors import DuplicateKeyError
         today = datetime.now(timezone.utc).date().isoformat()
         if await question_reports_collection.count_documents(
                 {"user_id": user["id"], "day": today}) >= REPORT_DAILY_CAP:
@@ -700,7 +699,7 @@ async def upvote_question(req: QuestionVote, user=Depends(get_current_user)):
                 {"question_id": req.question_id, "user_id": user["id"],
                  "reason": req.reason.strip()[:500], "day": today,
                  "created_at": datetime.now(timezone.utc)})
-        except DuplicateKeyError:
+        except Exception:
             pass  # concurrent double-report: already recorded, keep counting
         report_count = await question_reports_collection.count_documents(
             {"question_id": req.question_id})
