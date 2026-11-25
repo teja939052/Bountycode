@@ -7,16 +7,16 @@ Provides the canonical assessment persistence flow:
   4. Store coding submissions and execution results
   5. Complete assessment with scoring
   6. Emit learning evidence (via PostgresLearningService)
-  7. Award XP (via record_practice, gated by xp_event_ledger idempotency)
+  7. Award XP (via PostgresGamificationService.record_practice, gated by
+     xp_event_ledger idempotency)
 
 All assessment writes use the injected AsyncSession within a single
 PostgreSQL transaction owned by the caller. No Motor fallback for
 assessment-owned operations.
 
-Dual-database safety: XP is awarded through record_practice() which still
-writes to MongoDB. This crosses the PostgreSQL↔MongoDB boundary and is
-NOT wrapped in a PostgreSQL transaction. The xp_event_ledger table is used
-as a database-enforced idempotency gate to prevent double XP awards.
+XP is awarded through PostgresGamificationService.record_practice() which
+writes to PostgreSQL gamification_profiles and xp_event_ledger. No MongoDB
+fallback.
 """
 
 from datetime import datetime, timezone
@@ -54,7 +54,7 @@ from app.models.assessments import (
 )
 from app.models.identity import User
 from app.services.postgres_learning import PostgresLearningService
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
 
 logger = logging.getLogger(__name__)
 
@@ -531,18 +531,21 @@ class PostgresAssessmentService:
                 "result": None,
             }
 
-        # Step 2: Award XP via record_practice (MongoDB — crosses boundary)
+        # Step 2: Award XP via PostgreSQL gamification service (single writer,
+        # database-enforced idempotency via xp_event_ledger)
         xp_result = None
         try:
-            xp_result = await record_practice(
+            xp_result = await pg_record_practice(
+                self.session,
                 str(user_id),
                 activity_type=activity_type,
                 score=score,
                 metadata=metadata or {},
                 role=role,
+                idempotency_key=idempotency_key,
             )
         except Exception as exc:
-            logger.error("XP award via record_practice failed for %s: %s", user_id, exc)
+            logger.error("XP award via pg_record_practice failed for %s: %s", user_id, exc)
             return {
                 "deduplicated": False,
                 "xp_awarded": 0,
@@ -550,31 +553,11 @@ class PostgresAssessmentService:
                 "error": str(exc),
             }
 
-        # Step 3: Record idempotency in PostgreSQL ledger
+        # Step 3: pg_record_practice already recorded idempotency in the
+        # xp_event_ledger. Return the result directly.
         xp_awarded = int((xp_result or {}).get("xp_gained", 0) or 0)
-        try:
-            await self.xp_ledger_repo.create(
-                user_id=user_id,
-                activity_type=activity_type,
-                score=score,
-                xp_awarded=xp_awarded,
-                diamonds_awarded=0,
-                metadata={(metadata or {}) | {"idempotency_key": idempotency_key}},
-                reward_policy_version="v1",
-            )
-        except IntegrityError:
-            await self.session.rollback()
-            # Concurrent request already recorded this idempotency key.
-            # XP was awarded once by record_practice — that's acceptable.
-            logger.info("XP ledger idempotency race: %s / %s", user_id, idempotency_key)
-            return {
-                "deduplicated": True,
-                "xp_awarded": xp_awarded,
-                "result": xp_result,
-            }
-
         return {
-            "deduplicated": False,
+            "deduplicated": xp_result.get("deduplicated", False),
             "xp_awarded": xp_awarded,
             "result": xp_result,
         }

@@ -3,17 +3,18 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query
 from pydantic import BaseModel
 from typing import Optional
 from app.models.resume import GenerateResume, OptimizeRequest
-from app.database import users_collection, resumes_collection
+from app.database import users_collection, resumes_collection, get_session
 from app.middleware.auth import get_current_user
 from app.services.ai_resume import analyze_resume, optimize_ats, generate_resume_content
 from app.services.resume_parser import extract_text_from_pdf
 from app.services.export import export_to_docx, export_to_pdf
 from app.services.ats_semantic import semantic_score, section_scores, semantic_gaps
 from app.services.ats_enhanced import calculate_ats_score as keyword_ats_score
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
 from app.config import get_settings
 from bson import ObjectId
 from fastapi.responses import StreamingResponse
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
 settings = get_settings()
@@ -102,7 +103,11 @@ async def semantic_ats_score(req: SemanticScoreRequest, user=Depends(get_current
 
 
 @router.post("/upload")
-async def upload_resume(file: UploadFile = File(...), user=Depends(get_current_user)):
+async def upload_resume(
+    file: UploadFile = File(...),
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     if user.get("plan") == "free" and user.get("resumes_used", 0) >= settings.FREE_TIER_RESUME_LIMIT:
         raise HTTPException(
             status_code=403,
@@ -145,7 +150,7 @@ async def upload_resume(file: UploadFile = File(...), user=Depends(get_current_u
     # Gamification Law: record resume activity through the canonical pipeline.
     # A created resume carries no ATS score yet, so score 0 — the ats_master /
     # ats_95 badges fire later from /optimize where the real ATS score exists.
-    await record_practice(user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
+    await pg_record_practice(session, user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
         "resume_id": str(result.inserted_id),
@@ -155,7 +160,11 @@ async def upload_resume(file: UploadFile = File(...), user=Depends(get_current_u
 
 
 @router.post("/generate")
-async def generate_resume(req: GenerateResume, user=Depends(get_current_user)):
+async def generate_resume(
+    req: GenerateResume,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     if user.get("plan") == "free" and user.get("resumes_used", 0) >= settings.FREE_TIER_RESUME_LIMIT:
         raise HTTPException(
             status_code=403,
@@ -184,7 +193,7 @@ async def generate_resume(req: GenerateResume, user=Depends(get_current_user)):
     )
 
     # Same canonical resume counter as upload (no ATS score yet).
-    await record_practice(user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
+    await pg_record_practice(session, user["id"], "resume", 0, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
         "resume_id": str(result.inserted_id),
@@ -193,7 +202,11 @@ async def generate_resume(req: GenerateResume, user=Depends(get_current_user)):
 
 
 @router.post("/optimize")
-async def optimize_resume(req: OptimizeRequest, user=Depends(get_current_user)):
+async def optimize_resume(
+    req: OptimizeRequest,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
         resume = await resumes_collection.find_one({"_id": ObjectId(req.resume_id)})
     except Exception:
@@ -217,7 +230,8 @@ async def optimize_resume(req: OptimizeRequest, user=Depends(get_current_user)):
     )
 
     # Real ATS score exists here — feeds ats_master (90+) / ats_95 (95+).
-    await record_practice(
+    await pg_record_practice(
+        session,
         user["id"],
         "resume",
         optimization.get("ats_score", 0),

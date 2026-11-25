@@ -13,9 +13,11 @@ from app.database import (
     gamification_collection,
     users_collection,
     daily_challenges_users_collection,
+    get_session,
 )
 from app.services.cache import cache
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/daily", tags=["daily-challenge"])
 
@@ -222,6 +224,7 @@ async def submit_daily_challenge(
     code: str,
     language: str,
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Submit solution for daily challenge."""
     from app.services.code_executor import CodeExecutionEngine
@@ -297,7 +300,7 @@ async def submit_daily_challenge(
     total_xp = base_xp + streak_bonus
 
     # Record gamification (score normalization lives in record_practice)
-    await record_practice(uid, "daily_challenge", score, role=user.get("role") or user.get("target_role") or "sde")
+    await pg_record_practice(session, uid, "daily_challenge", score, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
         "score": score,
@@ -742,10 +745,9 @@ async def get_today_quest(user=Depends(get_current_user)):
 async def complete_day(
     quest_ids_completed: list,
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Mark today as completed."""
-    from app.services.gamification import record_practice
-
     uid = user["id"]
     col = daily_challenges_users_collection()
 
@@ -846,7 +848,7 @@ async def complete_day(
     # Score is 10.0: reaching this line means every required quest verified
     # complete (400 otherwise). Passing total_xp_gained here used to mint
     # perfect bonuses for any completion — same LAW violation as above.
-    practice_result = await record_practice(uid, "daily_challenge_30day", 10.0, role=user.get("role") or user.get("target_role") or "sde")
+    practice_result = await pg_record_practice(session, uid, "daily_challenge_30day", 10.0, role=user.get("role") or user.get("target_role") or "sde")
 
     result = {
         "day_completed": current_day,

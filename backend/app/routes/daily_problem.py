@@ -10,7 +10,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.middleware.auth import get_current_user
 from app.services.question_store import find, find_one
 from app.services.code_executor import CodeExecutionEngine
-from app.database import solved_problems_collection, gamification_collection
+from app.database import solved_problems_collection, gamification_collection, get_session
+from app.services.postgres_gamification import record_practice as pg_record_practice
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/daily-problem", tags=["daily-problem"])
 
@@ -138,6 +140,7 @@ async def submit_daily_problem(
     code: str,
     language: str = "python",
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     """Submit solution for today's Problem of the Day."""
     day_key = _today_key()
@@ -185,10 +188,12 @@ async def submit_daily_problem(
     # Canonical reward (LAW): 0-10 score from the pass rate. The old path
     # $inc'd diamonds + a write-only daily_streak directly (nothing ever read
     # daily_streak); streak/combo/badges/league now come from the engine.
-    from app.services.gamification import record_practice
     score_10 = round(passed / total * 10, 1) if total > 0 else 10.0
-    result = await record_practice(
-        user["id"], "coding", score_10,
+    result = await pg_record_practice(
+        session,
+        user["id"],
+        "coding",
+        score_10,
         {"problem_id": problem_id, "language": language,
          "skill_id": "coding.daily", "passed": passed, "total": total},
         role=user.get("role") or user.get("target_role") or "sde",

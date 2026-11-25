@@ -4,7 +4,10 @@ import random
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from app.models.interview import StartInterview, SubmitAnswer
-from app.database import users_collection, interviews_collection, career_profiles_collection, oa_sessions_collection, skill_graph_collection
+from app.database import (
+    users_collection, interviews_collection, career_profiles_collection,
+    oa_sessions_collection, skill_graph_collection, get_session
+)
 from app.middleware.auth import get_current_user
 from app.services.ai_interview import (
     generate_interview_question,
@@ -18,9 +21,10 @@ from app.services.interview_enhanced import (
     generate_dynamic_difficulty,
 )
 from app.services.behavioral_enhanced import evaluate_star_answer
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
 from app.config import get_settings
 from bson import ObjectId
+from sqlalchemy.ext.asyncio import AsyncSession
 
 logger = logging.getLogger(__name__)
 
@@ -179,7 +183,11 @@ async def _update_interview_readiness(
 
 
 @router.post("/answer")
-async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
+async def submit_answer(
+    req: SubmitAnswer,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
         interview = await interviews_collection.find_one({"_id": ObjectId(req.interview_id)})
     except Exception:
@@ -469,8 +477,8 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
         except Exception:
             pass
 
-        gamification_result = await record_practice(
-            user["id"], "interview",
+        gamification_result = await pg_record_practice(
+            session, user["id"], "interview",
             final_score,
             role=user.get("role") or user.get("target_role") or "sde",
         )

@@ -18,10 +18,13 @@ from bson import ObjectId
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.database import interview_chat_sessions_collection, interviews_collection
+from app.database import (
+    interview_chat_sessions_collection, interviews_collection, get_session
+)
 from app.middleware.auth import get_current_user
 from app.services.ai import chat_completion, parse_json
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/interview-chat", tags=["interview-chat"])
 
@@ -173,7 +176,12 @@ async def get_session(session_id: str, user=Depends(get_current_user)):
 
 
 @router.post("/{session_id}/turn")
-async def submit_turn(session_id: str, req: ChatTurn, user=Depends(get_current_user)):
+async def submit_turn(
+    session_id: str,
+    req: ChatTurn,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Submit the candidate's message; returns Captain Byte's next message."""
     session = await _load_own_session(session_id, user)
 
@@ -329,7 +337,7 @@ Product-round bias: reward depth, trade-off articulation, complexity analysis.""
 
     gamification_result = {"xp_gained": 0}
     try:
-        gamification_result = await record_practice(user["id"], "interview", float(score))
+        gamification_result = await pg_record_practice(session, user["id"], "interview", float(score))
     except Exception:
         pass
 

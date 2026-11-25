@@ -3,12 +3,15 @@ from typing import Optional, List
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 from bson import ObjectId
-from app.database import interview_bookings_collection, interviews_collection, users_collection
+from app.database import (
+    interview_bookings_collection, interviews_collection, users_collection, get_session
+)
 from app.middleware.auth import get_current_user
 from app.services.ai_interview import evaluate_answer
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
 from app.config import get_settings
 from app.services.usage import can_use_feature, mark_feature_used
+from sqlalchemy.ext.asyncio import AsyncSession
 
 settings = get_settings()
 
@@ -290,7 +293,12 @@ async def start_booking(booking_id: str, user=Depends(get_current_user)):
 
 
 @router.post("/{booking_id}/submit")
-async def submit_booking_answers(booking_id: str, req: SubmitAnswersRequest, user=Depends(get_current_user)):
+async def submit_booking_answers(
+    booking_id: str,
+    req: SubmitAnswersRequest,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
         booking = await interview_bookings_collection.find_one({"_id": ObjectId(booking_id)})
     except Exception:
@@ -386,8 +394,11 @@ async def submit_booking_answers(booking_id: str, req: SubmitAnswersRequest, use
     }
     await interviews_collection.insert_one(interview_doc)
 
-    gamification_result = await record_practice(
-        user["id"], "interview", overall_score,
+    gamification_result = await pg_record_practice(
+        session,
+        user["id"],
+        "interview",
+        overall_score,
         {"booking_id": booking_id, "company": req.company if hasattr(req, "company") else ""},
         role=user.get("role") or user.get("target_role") or "sde",
     )

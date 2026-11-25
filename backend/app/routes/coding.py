@@ -2,17 +2,18 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
-from app.database import users_collection, coding_challenges_collection
+from app.database import users_collection, coding_challenges_collection, get_session
 from app.middleware.auth import get_current_user
 from app.services import question_store
 from app.services.ai_coding import generate_coding_challenge
 from app.services.coding_engine import CodingEngine
 from app.services.code_executor import CodeExecutionEngine
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
 from app.services.question_quality import score_question
 from app.services.mastery_engine import record_solve
 from app.config import get_settings
 from bson import ObjectId
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/coding", tags=["coding"])
 settings = get_settings()
@@ -121,7 +122,11 @@ async def start_coding_challenge(req: StartCodingChallenge, user=Depends(get_cur
 
 
 @router.post("/submit")
-async def submit_coding_answer(req: SubmitCodingAnswer, user=Depends(get_current_user)):
+async def submit_coding_answer(
+    req: SubmitCodingAnswer,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     try:
         challenge = await coding_challenges_collection.find_one({"_id": ObjectId(req.challenge_id)})
     except Exception:
@@ -180,7 +185,7 @@ async def submit_coding_answer(req: SubmitCodingAnswer, user=Depends(get_current
         question_quality_score = quality_result["score"]
         quality_tier = quality_result["quality_tier"]
 
-    gamification_result = await record_practice(user["id"], "coding", score, role=user.get("role") or user.get("target_role") or "sde")
+    gamification_result = await pg_record_practice(session, user["id"], "coding", score, role=user.get("role") or user.get("target_role") or "sde")
 
     mastery_result = None
     if question:

@@ -295,8 +295,9 @@ class PostgresLearningService:
         xp_awarded = 0
         if award_reward:
             try:
-                from app.services.gamification import record_practice
-                prac_result = await record_practice(
+                from app.services.postgres_gamification import record_practice as pg_record_practice
+                prac_result = await pg_record_practice(
+                    self.session,
                     str(user_id),
                     activity_type=activity_type,
                     score=score,

@@ -9,9 +9,10 @@ from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
     aptitude_tests_collection, aptitude_leaderboard_collection,
-    users_collection, gamification_collection
+    users_collection, gamification_collection, get_session
 )
-from app.services.gamification import record_practice
+from app.services.postgres_gamification import record_practice as pg_record_practice
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/aptitude-tests", tags=["aptitude-tests"])
 
@@ -256,7 +257,11 @@ async def submit_answer(
 
 
 @router.post("/{test_id}/complete")
-async def complete_test(test_id: str, user=Depends(get_current_user)):
+async def complete_test(
+    test_id: str,
+    user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
+):
     """Complete the aptitude test and get results."""
     collection = aptitude_tests_collection()
 
@@ -305,7 +310,7 @@ async def complete_test(test_id: str, user=Depends(get_current_user)):
     )
 
     # Record gamification
-    await record_practice(user["id"], "aptitude", score, role=user.get("role") or user.get("target_role") or "sde")
+    await pg_record_practice(session, user["id"], "aptitude", score, role=user.get("role") or user.get("target_role") or "sde")
 
     # Update leaderboard
     await update_leaderboard(user["id"], user.get("name", "User"), score, correct, total, time_taken)
