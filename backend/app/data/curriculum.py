@@ -50,6 +50,8 @@ C_LEVELS = [
         _L("Type Sizes with sizeof", 15, 2), _L("scanf() Input", 15, 1, "practice"),
         _L("Type Casting", 20, 2), _L("Practice: Temperature Converter", 20, 2, "practice"),
         _L("Challenge: Swap Two Numbers", 25, 2, "challenge"),
+        # Brilliant-style deep dive added
+        _L("Variables Deep Discovery", 50, 3, "discovery"),
         _L("Project: Memory-Safe Calculator with History Logging", 60, 3, "project",
            "A calculator application with memory-safe practices, featuring history logging and robust error handling for reliable daily use."),
     ]},

@@ -940,6 +940,196 @@ VARIABLE_DISCOVERY_CONTENT = {
 
 
 # ============================================================================
+# BRILLIANT-STYLE: VARIABLES DEEP DIVE
+# ============================================================================
+# Added brilliant-inspired interactive variable content following the
+# "Thinking in Code" / "Programming with Variables" pattern:
+#   - Theory + analogy + discovery steps + code sandbox + transfer challenge
+#   - Scaffolded hints at 3 levels
+#   - Mastery + SRS + XP reward pipeline
+# ============================================================================
+
+VARIABLES_DEEP_DISCOVERY = {
+    "story_world": {
+        "title": "The Variable Workshop",
+        "emoji": "🔧",
+        "narration": [
+            "Welcome to the Variable Workshop! Every good inventor needs labels.",
+            "Without labels, parts just sit in bins collecting dust.",
+            "Today you will create NAMES for memory locations — these are VARIABLES.",
+            "You will DECLARE, ASSIGN, REASSIGN, and COMBINE variables.",
+            "By the end, you will write programs that actually DO something useful.",
+        ],
+        "character": {
+            "name": "Ada the Inventor",
+            "emoji": "👓",
+            "quote": "A place for everything, and everything in its place!",
+        },
+    },
+    "discovery": {
+        "title": "First Principle: Variables as Labeled Memory",
+        "steps": [
+            {
+                "type": "observation",
+                "prompt": "Here is a memory grid with 16 slots (addresses 0-15). Slot 5 holds the value 99. Can you find it?",
+                "memory_state": [0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "question": "Which address holds 99?",
+                "correct_answer": 5,
+                "hint_level_1": "Count: 0,1,2,3,4,5 — slot 5!",
+                "hint_level_2": "Address = index. memory[5] == 99.",
+                "hint_level_3": "In C: int x = 99; declares a variable at address 5.",
+            },
+            {
+                "type": "manipulation",
+                "prompt": "Now CREATE a variable. Name it 'score', assign it the value 99 at address 5.",
+                "question": "After creating 'score', what does score evaluate to?",
+                "correct_answer": 99,
+                "hint_level_1": "The name 'score' now refers to address 5.",
+                "hint_level_2": "Variable lookup: name → address → value. score → addr 5 → 99.",
+                "hint_level_3": "In C: int score = 99; declares and initializes the variable.",
+            },
+            {
+                "type": "mutation",
+                "prompt": "Variables can change! Reassign 'score' to 42.",
+                "question": "After reassignment, what does score evaluate to?",
+                "correct_answer": 42,
+                "hint_level_1": "Reassignment overwrites the value at the same address.",
+                "hint_level_2": "score = 42; writes 42 to address 5. The name stays the same.",
+                "hint_level_3": "Variables are mutable bindings — name constant, value changes.",
+            },
+            {
+                "type": "bulb_reveal",
+                "prompt": "You just discovered: a variable is a NAME bound to a MEMORY ADDRESS.",
+                "insight": (
+                    "A declaration like 'int score = 99;' does three things:\n"
+                    "1. Allocates memory (a slot) of the right size\n"
+                    "2. Stores the value (99) in that slot\n"
+                    "3. Labels the slot with the name 'score'\n\n"
+                    "From then on, 'score' is a shortcut to that slot's address."
+                ),
+            },
+        ],
+    },
+    "code_sandbox": {
+        "language": "c",
+        "starter_code": (
+            '#include <stdio.h>\n'
+            '\n'
+            'int main() {\n'
+            '    // TODO: Declare an int variable named "score" and set it to 99\n'
+            '    // TODO: Print "My score is %d"\n'
+            '    // TODO: Reassign score to 42 and print again\n'
+            '    return 0;\n'
+            '}'
+        ),
+        "test_cases": [
+            {
+                "description": "Score starts at 99, then changes to 42",
+                "expected_output": "My score is 99\nMy score is 42",
+            },
+        ],
+        "scaffolded_hints": [
+            {
+                "level": 1,
+                "text": "Use 'int score = 99;' to declare and initialize the variable.",
+            },
+            {
+                "level": 2,
+                "text": "Use printf(\"My score is %d\\n\", score); to print. Then assign 'score = 42;' and print again.",
+            },
+            {
+                "level": 3,
+                "text": "The full solution: declare score=99, print, reassign score=42, print. Two printf calls.",
+            },
+        ],
+    },
+    "transfer_challenge": {
+        "title": "Robot Inventory (Transfer Challenge)",
+        "description": (
+            "A robot has an array of 8 inventory slots. Write a function that "
+            "finds the slot with the highest value using only variable assignments "
+            "and a for loop — no built-in functions."
+        ),
+        "difficulty": "medium",
+        "starter_code": (
+            '#include <stdio.h>\n'
+            '\n'
+            'int main() {\n'
+            '    int inventory[8] = {10, 50, 30, 80, 20, 90, 40, 60};\n'
+            '    int best_index = 0;\n'
+            '    int best_value = inventory[0];\n'
+            '    // TODO: Loop through inventory, update best_index & best_value\n'
+            '    // TODO: Print "Slot X has the highest value: Y"\n'
+            '    return 0;\n'
+            '}'
+        ),
+        "expected_output": "Slot 5 has the highest value: 90",
+        "scaffolded_hints": [
+            {
+                "level": 1,
+                "text": "Use a for loop. If inventory[i] > best_value, update both variables.",
+            },
+            {
+                "level": 2,
+                "text": "Remember: best_index tracks the position, best_value tracks the amount.",
+            },
+            {
+                "level": 3,
+                "text": "After the loop, slot 5 (value 90) should be the winner.",
+            },
+        ],
+    },
+    "boss_battle": {
+        "title": "The Variable Mutation Boss",
+        "emoji": "🧟",
+        "description": (
+            "The boss starts with 5 health. You have 5 variables (a, b, c, d, e). "
+            "Each correct answer reduces its health by 1. All 5 must be used correctly to win."
+        ),
+        "health": 5,
+        "rounds": [
+            {
+                "question": "A variable named 'a' holds 10. You do 'a = a + 5'. What is a now?",
+                "correct_answer": 15,
+                "explanation": "Variables store state that evolves. a + 5 reads a, adds 5, writes back.",
+            },
+            {
+                "question": "If 'int a = 3, b = 7;' then 'a = b; b = a;', what are a and b?",
+                "correct_answer": "a=7, b=7",
+                "explanation": "Assignment copies values. After a=b, both are 7. b=a doesn't swap!",
+            },
+            {
+                "question": "What is wrong with: 'int x; x = x + 1;' when x was just declared?",
+                "correct_answer": "x has no defined value (garbage), so the result is unpredictable",
+                "explanation": "Always initialize variables before using them.",
+            },
+            {
+                "question": "If 'int a = 10, b = 20;' then 'tmp = a; a = b; b = tmp;', what are a and b?",
+                "correct_answer": "a=20, b=10",
+                "explanation": "A temporary variable is needed to swap correctly.",
+            },
+            {
+                "question": "What does 'int a = 7; int b = a * 2;' declare and initialize?",
+                "correct_answer": "a holds 7, b holds 14",
+                "explanation": "Variable declaration with initialization.",
+            },
+        ],
+        "reward_xp": 150,
+        "reward_badge": "variable_master",
+    },
+    "srs_concept": "variables:basics",
+    "mastery_concept": "variables:declaration_assignment",
+    "xp_reward": 100,
+    "next_steps": (
+        "Excellent! You now understand variables as named memory locations with "
+        "declaration, assignment, and reassignment. Next: learn about constants and #define."
+    ),
+}
+
+# End brilliant-style variables deep dive
+
+
+# ============================================================================
 # LEVEL 2: VARIABLES
 # ============================================================================
 
