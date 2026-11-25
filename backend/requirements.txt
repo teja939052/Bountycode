@@ -18,3 +18,5 @@ aiofiles==24.1.0
 websockets==13.0
 docker==7.0.0
 bleach==6.1.0
+sqlalchemy[asyncio]==2.0.29
+asyncpg==0.29.0

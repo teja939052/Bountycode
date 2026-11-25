@@ -14,12 +14,13 @@ Intended modular split (follow-up refactor):
 - gamification_challenges.py: weekly/monthly challenge logic
 """
 from datetime import datetime, timezone, timedelta
-from app.database import users_collection, gamification_collection, gamification_events_collection, get_client
+from app.database import users_collection, gamification_collection, gamification_events_collection, get_client, AsyncSession
 from bson import ObjectId
 import math
 import logging
 from app.services.usage import can_use_feature, mark_feature_used
 from app.services.gamification_core import normalize_badge_ids, voyage_rank_for_level
+from app.models.gamification import GamificationProfile
 
 logger = logging.getLogger(__name__)
 
@@ -1021,9 +1022,9 @@ def compute_forest_state(level: int, xp: int, streak: int, badges: list, bosses_
     }
 
 
-async def get_forest_state(user_id: str) -> dict:
+async def get_forest_state(user_id: str, session: AsyncSession = None) -> dict:
     """Lightweight forest-journey payload for a user."""
-    profile = await get_gamification_profile(user_id)
+    profile = await get_gamification_profile(user_id, session)
     if "forest_state" in profile:
         return profile["forest_state"]
     return compute_forest_state(
@@ -1296,11 +1297,40 @@ async def _update_challenge_progress(user_id: str, activity_type: str, score: fl
             await gamification_collection.update_one({"user_id": user_id}, {"$set": update_ops})
 
 
-async def ensure_tower_fields(user_id: str):
-    """Add missing tower fields to existing users (migration)."""
-    profile = await gamification_collection.find_one({"user_id": user_id})
+async def ensure_tower_fields(user_id: str, session: AsyncSession = None):
+    """Add missing tower fields to existing users (migration).
+
+    When session is provided, uses PostgreSQL gamification_profiles.
+    Otherwise falls back to Motor gamification_collection (legacy).
+    """
+    from uuid import UUID as _UUID
+    from app.repositories.gamification import GamificationProfileRepository
+
+    # Resolve legacy MongoDB ObjectId → PostgreSQL UUID if needed
+    resolved_user_id = user_id
+    postgres_uuid = None
+    if session is not None:
+        try:
+            parsed_uuid = _UUID(str(user_id))
+            from app.repositories.identity import UserIdentityMapRepository
+            legacy_id = await UserIdentityMapRepository(session).get_postgres_id(str(user_id))
+            if legacy_id:
+                resolved_user_id = str(legacy_id)
+            else:
+                resolved_user_id = str(parsed_uuid)
+            postgres_uuid = parsed_uuid
+        except (ValueError, AttributeError):
+            resolved_user_id = user_id
+
+        # Use PostgreSQL repository
+        profile_repo = GamificationProfileRepository(session)
+        profile = await profile_repo.get_or_create(postgres_uuid)
+        return profile
+
+    # Fall back to Motor (legacy MongoDB)
+    profile = await gamification_collection.find_one({"user_id": resolved_user_id})
     if not profile:
-        return await initialize_gamification(user_id)
+        return await initialize_gamification(resolved_user_id)
 
     defaults = {
         "stars_total": 0,
@@ -1316,7 +1346,7 @@ async def ensure_tower_fields(user_id: str):
     missing = {k: v for k, v in defaults.items() if k not in profile}
     if missing:
         await gamification_collection.update_one(
-            {"user_id": user_id},
+            {"user_id": resolved_user_id},
             {"$set": missing},
         )
 
@@ -1379,16 +1409,60 @@ async def award_lesson_xp(user_id: str, lesson_id: str, lesson_xp_reward: int) -
     return int((result or {}).get("xp_gained", 0) or 0)
 
 
-async def get_gamification_profile(user_id: str) -> dict:
-    """Get the full gamification profile with tower data."""
-    profile = await gamification_collection.find_one({"user_id": user_id})
+def _profile_model_to_dict(profile: GamificationProfile) -> dict:
+    """Convert a GamificationProfile SQLAlchemy model to a dict for API response."""
+    return {
+        "id": str(profile.user_id),
+        "user_id": str(profile.user_id),
+        "xp": profile.xp,
+        "diamonds": profile.diamonds,
+        "coins": profile.coins,
+        "stars": profile.stars,
+        "streak": profile.streak,
+        "level": profile.level,
+        "badges": profile.badges,
+        "created_at": profile.created_at.isoformat() if profile.created_at else None,
+        "updated_at": profile.updated_at.isoformat() if profile.updated_at else None,
+    }
+
+
+async def get_gamification_profile(user_id: str, session: AsyncSession = None) -> dict:
+    """Get the full gamification profile with tower data.
+
+    Reads from PostgreSQL gamification_profiles when session is provided,
+    otherwise falls back to Motor gamification_collection (legacy).
+    """
+    from uuid import UUID as _UUID
+    from app.database import get_session
+    from app.repositories.gamification import GamificationProfileRepository
+
+    # Resolve legacy MongoDB ObjectId → PostgreSQL UUID if needed
+    resolved_user_id = user_id
+    if session is not None:
+        try:
+            parsed_uuid = _UUID(str(user_id))
+            # Check identity map for legacy→UUID mapping
+            from app.repositories.identity import UserIdentityMapRepository
+            legacy_id = await UserIdentityMapRepository(session).get_postgres_id(str(user_id))
+            if legacy_id:
+                resolved_user_id = str(legacy_id)
+            else:
+                resolved_user_id = str(parsed_uuid)
+        except (ValueError, AttributeError):
+            resolved_user_id = user_id  # Already a legacy ObjectId string
+
+        # Read from PostgreSQL
+        profile_repo = GamificationProfileRepository(session)
+        profile = await profile_repo.get_by_user_id(resolved_user_id)
+        if profile:
+            return _profile_model_to_dict(profile)
+
+    # Fall back to Motor (legacy MongoDB)
+    profile = await gamification_collection.find_one({"user_id": resolved_user_id})
     if not profile:
-        profile = await initialize_gamification(user_id)
+        profile = await initialize_gamification(resolved_user_id)
 
     profile.setdefault("lesson_xp_awards", [])
-    # Law #6: badges are stored as string IDs and hydrated on read. Legacy
-    # profiles can still hold object entries (older daily-bonus path), which
-    # used to raise `TypeError: unhashable type: 'dict'` on the membership test.
     profile["badges"] = normalize_badge_ids(profile.get("badges", []))
 
     xp_val = profile.get("xp", 0)
@@ -1397,7 +1471,6 @@ async def get_gamification_profile(user_id: str) -> dict:
     title, emoji, _tier = voyage_rank_for_level(level)
     mult, bonus = calculate_streak_multiplier(profile.get("streak", 0))
 
-    # Current boss info
     boss_level = level if level % 10 == 0 and level <= 100 else None
     current_boss = None
     if boss_level and boss_level not in (profile.get("bosses_defeated") or []):
@@ -1431,8 +1504,6 @@ async def get_gamification_profile(user_id: str) -> dict:
     today = now.date()
     daily_goal_date = profile.get("daily_goal_date")
     if daily_goal_date:
-        # record_practice persists this as an ISO string, older profiles wrote
-        # a datetime — normalise both so the response matches the stored doc.
         dg_date = (
             daily_goal_date.date()
             if isinstance(daily_goal_date, datetime)

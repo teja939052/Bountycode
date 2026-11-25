@@ -44,7 +44,7 @@ from app.services.skill_assessment import (
 )
 from app.services.readiness_engine import compute_readiness
 from app.services.response_cache import cached
-from app.database import gamification_collection
+from app.database import gamification_collection, get_session, AsyncSession
 
 router = APIRouter(prefix="/api/v1/gamification", tags=["gamification"])
 settings = get_settings()
@@ -57,9 +57,9 @@ VALID_CHALLENGE_TYPES = {"weekly", "monthly"}
 
 
 @router.get("/profile")
-async def get_profile(user=Depends(get_current_user)):
-    await ensure_tower_fields(user["id"])
-    profile = await get_gamification_profile(user["id"])
+async def get_profile(user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
+    await ensure_tower_fields(user["id"], session)
+    profile = await get_gamification_profile(user["id"], session)
     return profile
 
 
@@ -67,6 +67,7 @@ async def get_profile(user=Depends(get_current_user)):
 async def set_target_company(
     payload: dict = Body(...),
     user=Depends(get_current_user),
+    session: AsyncSession = Depends(get_session),
 ):
     company = (payload.get("company") or "").strip()
     if not company:
@@ -79,9 +80,9 @@ async def set_target_company(
 
 
 @router.get("/profile/title-progression")
-async def title_progression(user=Depends(get_current_user)):
-    await ensure_tower_fields(user["id"])
-    profile = await get_gamification_profile(user["id"])
+async def title_progression(user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
+    await ensure_tower_fields(user["id"], session)
+    profile = await get_gamification_profile(user["id"], session)
     company = profile.get("target_company")
     if not company:
         return {"company": None, "bands": {}}
@@ -92,8 +93,8 @@ async def title_progression(user=Depends(get_current_user)):
 
 
 @router.get("/readiness")
-async def readiness_score(user=Depends(get_current_user)):
-    profile = await get_gamification_profile(user["id"])
+async def readiness_score(user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
+    profile = await get_gamification_profile(user["id"], session)
     target_company = profile.get("target_company")
     from app.services.readiness_engine import calculate_company_readiness_breakdown
     result = await calculate_company_readiness_breakdown(user["id"], {}, target_company)
@@ -101,11 +102,11 @@ async def readiness_score(user=Depends(get_current_user)):
 
 
 @router.get("/forest")
-async def forest_state(user=Depends(get_current_user)):
+async def forest_state(user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
     """Nature-themed journey state: current zone, tree stage, sunlight (Diamonds),
     watering (streak), seeds (badges) and the next seasonal storm."""
-    await ensure_tower_fields(user["id"])
-    return await get_forest_state(user["id"])
+    await ensure_tower_fields(user["id"], session)
+    return await get_forest_state(user["id"], session)
 
 
 @router.post("/record")
@@ -419,7 +420,6 @@ async def my_leaderboard_position(
     numbers derive from the same period counters the boards sort on —
     no client math, no second interpretation.
     """
-    from app.database import gamification_collection
     tf = (timeframe or "weekly").lower()
     field = {"weekly": "weekly_league_xp", "monthly": "monthly_league_xp"}.get(tf, "diamonds")
     doc = await gamification_collection.find_one({"user_id": user["id"]}) or {}

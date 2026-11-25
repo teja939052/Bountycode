@@ -1,0 +1,197 @@
+
+===============================================================================
+                          BOUNTYCODE - POSTGRESQL ER DIAGRAM
+===============================================================================
+
+IDENTITY DOMAIN
+---------------------------------------------------------------------------
+users (PK: id UUID)
+  |- email (UK), password_hash, name, plan, uid (UK)
+  |- daily_usage (JSONB), all_time_usage (JSONB)
+  |- interviews_used, resumes_used, aptitude_used, mock_interviews_used
+  |- monthly_reset_date, honor, created_at, updated_at
+  |
+  +-1-----+-- user_profiles (PK: id, UK: user_id)
+  |         +- bio, skills (JSONB), experience, portfolio_urls (JSONB)
+  |         +- github_username, leetcode_username, target_company, target_role
+  |
+  +-1-----+-- user_sessions (PK: id)
+  |         +- expires_at, created_at, revoked_at
+  |
+  +-1-----+-- refresh_tokens (PK: jti)
+  |         +- token_hash, expires_at, revoked_at, replaced_by_jti
+  |
+  +-1-----+-- user_identity_map (PK: legacy_mongo_id)
+            +- postgres_user_id (UK -> users.id)
+
+LEARNING DOMAIN
+---------------------------------------------------------------------------
+skills (PK: id UUID)
+  |- name (UK), topic, sub_topic, difficulty, prerequisites (JSONB)
+  |- content_version, is_active, created_at
+  |
+  +-1-----+-- skill_prerequisites (PK: id, UK: skill_id+prerequisite_skill_id)
+  |         +- prerequisite_skill_id -> skills.id
+  |
+  +-1-----+-- learner_skill_state (PK: id, UK: user_id+skill_id)
+  |         +- user_id -> users.id
+  |         +- score, mastery_level, total_attempts, last_practiced
+  |
+  +-1-----+-- learning_attempts (PK: id)
+            +- user_id -> users.id
+            +- skill_id -> skills.id (nullable)
+            +- question_id, activity_type, score (0-10), evidence_type
+            +- passing_score, max_attempts, attempt_number, passed
+            +- attempt_metadata (JSONB), created_at
+            |
+            +-1-----+-- learning_evidence (PK: id)
+            |         +- attempt_id -> learning_attempts.id
+            |         +- user_id -> users.id
+            |         +- skill_id -> skills.id (nullable)
+            |         +- evidence_data (JSONB), evidence_type, created_at
+            |
+            +-1-----+-- mastery_snapshots (PK: id)
+                      +- user_id -> users.id
+                      +- skill_id -> skills.id
+                      +- mastery_level, evidence_count, score_at_snapshot, created_at
+
+review_cards (PK: id, UK: user_id+problem_id)
+  +- user_id -> users.id
+  +- problem_id, next_review, difficulty, interval, repetitions, ease_factor
+
+repair_missions (PK: id)
+  +- user_id -> users.id
+  +- skill_id -> skills.id
+  +- title, description, status, tier, estimated_minutes
+  +- created_at, completed_at
+  |
+  +-1-----+-- remediation_attempts (PK: id)
+            +- repair_mission_id -> repair_missions.id
+            +- user_id -> users.id
+            +- score (0-10), passed, created_at
+
+CONTENT DOMAIN
+---------------------------------------------------------------------------
+content_packages (PK: id, UK: name)
+  +- description, version, is_active, created_at
+  |
+  +-1-----+-- content_versions (PK: id, UK: package_id+version)
+            +- content_hash, file_paths (JSONB), created_at
+
+question_metadata (PK: id, UK: question_id)
+  +- topic, sub_topic, difficulty, companies (JSONB)
+  +- provenance, trust_status, quality_score, is_active
+  +- created_at, updated_at
+  |
+  +-1-----+-- trust_records (PK: id)
+            +- question_id -> question_metadata.question_id
+            +- from_status, to_status, reviewed_by, review_notes, created_at
+
+assessment_definitions (PK: id)
+  +- name, assessment_type, company_tags (JSONB), topic_tags (JSONB)
+  +- difficulty, time_limit_minutes, question_count, is_active
+  |
+  +-1-----+-- assessment_variants (PK: id, UK: variant_id)
+            +- definition_id -> assessment_definitions.id
+            +- question_ids (JSONB), content_snapshot (JSONB), created_at
+
+ASSESSMENTS DOMAIN
+---------------------------------------------------------------------------
+assessment_attempts (PK: id)
+  +- user_id -> users.id
+  +- assessment_id -> assessment_definitions.id
+  +- variant_id, score, status, started_at, completed_at
+  |
+  +-1-----+-- assessment_sections (PK: id)
+            +- attempt_id -> assessment_attempts.id
+            +- section_type, score, started_at, completed_at
+            |
+            +-1-----+-- responses (PK: id)
+                      +- section_id -> assessment_sections.id
+                      +- question_id, answer, is_correct, score, time_taken_seconds
+
+coding_submissions (PK: id)
+  +- user_id -> users.id
+  +- question_id, code, language, status, execution_result (JSONB), submitted_at
+  |
+  +-1-----+-- execution_results (PK: id)
+            +- submission_id -> coding_submissions.id
+            +- test_case_id, passed, expected, actual, execution_time_ms
+
+oa_sessions (PK: id)
+  +- user_id -> users.id
+  +- company, role, blueprint (JSONB), mode, integrity_enabled, status
+  +- questions (JSONB), started_at, completed_at
+
+interview_sessions (PK: id)
+  +- user_id -> users.id
+  +- interview_type, company, difficulty, status, score
+  +- started_at, completed_at
+
+company_assessment_metadata (PK: id, UK: company+role+assessment_type)
+  +- metadata (JSONB), created_at, updated_at
+
+GAMIFICATION DOMAIN
+---------------------------------------------------------------------------
+gamification_profiles (PK: user_id -> users.id)
+  +- xp, diamonds, coins, stars, streak, level
+  +- badges (JSONB), created_at, updated_at
+  |
+  +-1-----+-- xp_event_ledger (PK: id)
+            +- user_id -> gamification_profiles.user_id
+            +- activity_type, score (0-10), xp_awarded, diamonds_awarded
+            +- event_metadata (JSONB), reward_policy_version, created_at
+
+badges (PK: id, UK: badge_id)
+  +- name, description, criteria (JSONB), is_active, created_at
+  |
+  +-1-----+-- user_badges (PK: id, UK: user_id+badge_id)
+            +- user_id -> users.id
+            +- badge_id -> badges.badge_id, earned_at
+
+streak_records (PK: user_id -> users.id)
+  +- current_streak, longest_streak, last_practice_date
+  +- created_at, updated_at
+
+CAREER DOMAIN
+---------------------------------------------------------------------------
+career_profiles (PK: user_id -> users.id)
+  +- bio, skills (JSONB), experience, portfolio_urls (JSONB)
+  +- target_company, target_role, created_at, updated_at
+
+portfolio_projects (PK: id)
+  +- user_id -> users.id
+  +- name, description, url, created_at
+
+resume_metadata (PK: id)
+  +- user_id -> users.id
+  +- storage_path, file_name, file_size, ats_score, created_at
+
+uploaded_files (PK: id)
+  +- user_id -> users.id
+  +- storage_path, file_name, file_type, file_size, created_at
+
+OPERATIONS DOMAIN
+---------------------------------------------------------------------------
+analytics_events (PK: id)
+  +- event, path, user_id -> users.id (nullable)
+  +- meta (JSONB), timestamp, date, hour
+
+analytics_rollups (PK: id, UK: bucket+date)
+  +- bucket, date, count, unique_users, created_at
+
+audit_logs (PK: id)
+  +- action, user_id -> users.id (nullable)
+  +- timestamp, ip_address, metadata (JSONB)
+
+billing_records (PK: id)
+  +- user_id -> users.id
+  +- plan, status, amount, currency, paypal_order_id
+  +- created_at, updated_at
+
+===============================================================================
+  41 tables | 42 foreign keys | 36 UUID PKs | 24 JSONB columns | 145 indexes
+  Identity: 5 tables | Learning: 10 tables | Content: 6 tables
+  Assessments: 9 tables | Gamification: 5 tables | Career: 4 tables | Operations: 5 tables
+===============================================================================
+    

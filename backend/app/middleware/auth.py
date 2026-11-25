@@ -2,21 +2,29 @@
 
 Provides JWT-based authentication with httpOnly cookies, password hashing,
 WebSocket auth, and plan-based access control dependencies.
+
+Migrated to PostgreSQL via SQLAlchemy async + UserRepository.
+Legacy MongoDB ObjectId → PostgreSQL UUID mapping is supported via
+UserIdentityMap for backward-compatible auth resolution during transition.
 """
 import logging
 from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any
+from uuid import UUID
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, Request, Response, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import WebSocket
 from app.config import get_settings
-from app.database import users_collection
+from app.database import get_session, RepositoryBase
+from app.database import AsyncSession
 from app.services.cache import cache
-from bson import ObjectId
-import re
-import secrets
+from app.repositories.identity import (
+    UserRepository,
+    UserIdentityMapRepository,
+)
+from app.models.identity import User
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
@@ -39,7 +47,7 @@ def _admin_emails() -> set:
     return {e.strip().lower() for e in emails.split(",") if e.strip()}
 
 
-def _finalize_user(user: Dict[str, Any]) -> Dict[str, Any]:
+def _finalize_user(user: User) -> Dict[str, Any]:
     """Strip sensitive fields and compute server-authoritative role/is_admin.
 
     Admin status is derived ONLY from ADMIN_EMAILS (the owner). Subscription
@@ -47,18 +55,25 @@ def _finalize_user(user: Dict[str, Any]) -> Dict[str, Any]:
     to admin. Role/is_admin is recomputed on every request (never cached).
 
     Args:
-        user: Raw user document from MongoDB.
+        user: SQLAlchemy User model instance.
 
     Returns:
         Dict[str, Any]: Sanitized user dict with 'id', 'is_admin', and 'role' fields.
     """
-    user["id"] = str(user["_id"])
-    if "password_hash" in user:
-        user["password_hash"] = None
-    is_admin = user.get("email", "").lower() in _admin_emails()
-    user["is_admin"] = is_admin
-    user["role"] = "admin" if is_admin else None
-    return user
+    user_dict = {
+        "id": str(user.id),
+        "email": user.email,
+        "name": user.name,
+        "plan": user.plan,
+        "uid": user.uid,
+        "honor": user.honor,
+        "created_at": user.created_at.isoformat() if user.created_at else None,
+        "password_hash": None,  # Never expose password hash
+    }
+    is_admin = user.email.lower() in _admin_emails()
+    user_dict["is_admin"] = is_admin
+    user_dict["role"] = "admin" if is_admin else None
+    return user_dict
 
 
 class PasswordValidator:
@@ -186,11 +201,19 @@ def decode_token(token: str) -> Dict[str, Any]:
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
 
-async def _user_from_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
-    """Fetch a user document from an authenticated payload, or raise 401.
+async def _user_from_payload(
+    payload: Dict[str, Any],
+    session: AsyncSession,
+) -> Dict[str, Any]:
+    """Fetch a user from an authenticated JWT payload, or raise 401.
+
+    Resolves the user_id from the JWT. First tries PostgreSQL UUID lookup,
+    then falls back to legacy MongoDB ObjectId → UUID mapping via
+    UserIdentityMap for backward compatibility during migration.
 
     Args:
         payload: Decoded JWT payload dict.
+        session: SQLAlchemy async session.
 
     Returns:
         Dict[str, Any]: Sanitized user document with id, is_admin, and role.
@@ -204,10 +227,23 @@ async def _user_from_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
     user_id = payload.get("user_id")
     if not user_id:
         raise HTTPException(status_code=401, detail="Invalid token payload")
+
+    user_repo = UserRepository(session)
+
+    # Try PostgreSQL UUID lookup first
     try:
-        user = await users_collection().find_one({"_id": ObjectId(user_id)})
-    except Exception:
-        raise HTTPException(status_code=401, detail="Invalid user ID")
+        parsed_uuid = UUID(str(user_id))
+        user = await user_repo.get_by_id(parsed_uuid)
+    except (ValueError, AttributeError):
+        parsed_uuid = None
+        user = None
+
+    # Fall back to legacy MongoDB ObjectId → UUID mapping
+    if user is None:
+        legacy_id = await UserIdentityMapRepository(session).get_postgres_id(str(user_id))
+        if legacy_id:
+            user = await user_repo.get_by_id(legacy_id)
+
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
     return _finalize_user(user)
@@ -232,7 +268,8 @@ async def get_current_user_ws(
     if not raw:
         raise HTTPException(status_code=401, detail="Missing token")
     payload = decode_token(raw)
-    return await _user_from_payload(payload)
+    async for session in get_session():
+        return await _user_from_payload(payload, session)
 
 
 def set_auth_cookie(response: Response, token: str, max_age: int = None, cookie_name: str = COOKIE_NAME):
@@ -291,6 +328,7 @@ def _extract_token(request: Request, credentials: HTTPAuthorizationCredentials =
 async def get_current_user(
     request: Request,
     credentials: HTTPAuthorizationCredentials = Depends(security),
+    session: AsyncSession = Depends(get_session),
 ):
     """Get current authenticated user with caching.
 
@@ -300,6 +338,7 @@ async def get_current_user(
     Args:
         request: Incoming FastAPI Request.
         credentials: HTTPBearer credentials from the Authorization header.
+        session: SQLAlchemy async session (injected via Depends).
 
     Returns:
         Dict[str, Any]: Sanitized user document with id, is_admin, and role.
@@ -319,26 +358,18 @@ async def get_current_user(
         if not user_id:
             raise HTTPException(status_code=401, detail="Invalid token payload")
 
-        # Check cache first (raw doc only — no derived privileges cached)
+        # Check cache first (sanitized user dict only — no derived privileges cached)
         cache_key = f"user:{user_id}"
         cached_user = await cache.get("auth", cache_key)
         if cached_user:
-            return _finalize_user(cached_user)
+            return cached_user
 
-        # Fetch from database
-        try:
-            user = await users_collection().find_one({"_id": ObjectId(user_id)})
-        except Exception:
-            raise HTTPException(status_code=401, detail="Invalid user ID")
+        # Fetch from database via repository
+        user_dict = await _user_from_payload(payload, session)
 
-        if not user:
-            raise HTTPException(status_code=401, detail="User not found")
-
-        # Null the password hash before caching
-        if "password_hash" in user:
-            user["password_hash"] = None
-        await cache.set("auth", cache_key, user, ttl=USER_CACHE_TTL)
-        return _finalize_user(user)
+        # Cache the sanitized user dict
+        await cache.set("auth", cache_key, user_dict, ttl=USER_CACHE_TTL)
+        return user_dict
 
     except HTTPException:
         raise
@@ -350,6 +381,7 @@ async def get_current_user(
 async def optional_get_current_user(
     request: Request,
     credentials: HTTPAuthorizationCredentials = Depends(security),
+    session: AsyncSession = Depends(get_session),
 ):
     """Get current user if authenticated, otherwise None.
 
@@ -358,12 +390,13 @@ async def optional_get_current_user(
     Args:
         request: Incoming FastAPI Request.
         credentials: Optional HTTPBearer credentials.
+        session: SQLAlchemy async session (injected via Depends).
 
     Returns:
         Dict[str, Any] | None: Sanitized user document, or None if not authenticated.
     """
     try:
-        return await get_current_user(request, credentials)
+        return await get_current_user(request, credentials, session)
     except HTTPException:
         return None
 

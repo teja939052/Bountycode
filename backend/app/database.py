@@ -1,204 +1,46 @@
-"""Async MongoDB database layer using Motor with lazy collection proxies.
+"""Database layer supporting both Motor (MongoDB, legacy) and SQLAlchemy async + asyncpg (PostgreSQL, new).
 
-Provides:
-- Connection pooling via AsyncIOMotorClient
-- Lazy collection resolution to avoid import-time DB access
-- Index creation for 50+ collections
-- Connection health checking (ping)
+During the MongoDB→PostgreSQL migration, both databases coexist:
+- Motor client: connects to existing MongoDB (used by routes not yet migrated)
+- SQLAlchemy engine: connects to new PostgreSQL (used by migrated routes)
+
+Connection string: SUPABASE_DB_URL (asyncpg format: postgresql+asyncpg://user:pass@host:5432/db)
+If using Supabase transaction pooler (port 6543), set statement_cache_size=0.
 """
-import asyncio
+
 import logging
+from typing import AsyncGenerator, Optional
+from uuid import UUID
+
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
+from sqlalchemy.ext.asyncio import (
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+    AsyncEngine,
+)
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy import text
 from app.config import get_settings
-from app.services.cache import cache
+from app.models.base import Base
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
-_client: AsyncIOMotorClient | None = None
-_db: AsyncIOMotorDatabase | None = None
-_collections: dict = {}
+# ════════════════════════════════════════════════════════════════════════════════
+# MOTOR / MONGODB (LEGACY — kept during migration for routes not yet migrated)
+# ════════════════════════════════════════════════════════════════════════════════
+
+_motor_client: Optional[AsyncIOMotorClient] = None
+_motor_db: Optional[AsyncIOMotorDatabase] = None
+_motor_collections: dict = {}
 
 
-class _LazyCollection:
-    """Proxy that lazily resolves to a motor collection on first attribute access.
-
-    Supports both `collection.find_one(...)` and `collection()` call styles.
-    Also supports `collection[key]`, `del collection[key]`, and `key in collection`.
-
-    Args:
-        name: The MongoDB collection name to proxy.
-    """
-    __slots__ = ("_name",)
-
-    _KNOWN_METHODS = frozenset({
-        "find_one", "find", "insert_one", "insert_many", "update_one", "update_many",
-        "replace_one", "delete_one", "delete_many", "count_documents",
-        "estimated_document_count", "aggregate", "watch", "bulk_write",
-        "create_index", "create_indexes", "drop_index", "drop_indexes",
-        "index_information", "list_indexes", "rename", "find_one_and_delete",
-        "find_one_and_replace", "find_one_and_update", "distinct",
-        "map_reduce", "group", "inline_map_reduce", "options",
-    })
-
-    def __init__(self, name: str):
-        object.__setattr__(self, "_name", name)
-
-    def _resolve(self):
-        """Resolve the lazy proxy to the actual Motor collection.
-
-        Returns:
-            AsyncIOMotorCollection: The resolved collection from the current database.
-        """
-        name = object.__getattribute__(self, "_name")
-        return get_db()[name]
-
-    def __getattr__(self, item):
-        """Proxy attribute access to the underlying Motor collection.
-
-        Known Motor collection methods are validated upfront to catch typos.
-        Unknown attributes raise AttributeError with a helpful suggestion.
-
-        Args:
-            item: Attribute name to forward.
-
-        Returns:
-            Any: The attribute from the resolved collection.
-
-        Raises:
-            AttributeError: If the attribute is not found, with a typo suggestion.
-        """
-        if item in self._KNOWN_METHODS or item.startswith("_"):
-            return getattr(self._resolve(), item)
-
-        resolved = self._resolve()
-        if hasattr(resolved, item):
-            return getattr(resolved, item)
-
-        suggestions = [m for m in self._KNOWN_METHODS if m.startswith(item[:3]) and m != item]
-        suggestion = f" Did you mean {suggestions[0]}?" if suggestions else ""
-        raise AttributeError(
-            f"'{type(self).__name__}' object has no attribute '{item}'.{suggestion}"
-        )
-
-    def __setattr__(self, name, value):
-        """Prevent setting attributes on the proxy except for the internal name.
-
-        Args:
-            name: Attribute name.
-            value: Value to set.
-
-        Raises:
-            AttributeError: If trying to set any attribute other than '_name'.
-        """
-        if name == "_name":
-            object.__setattr__(self, "_name", value)
-        else:
-            raise AttributeError(f"Cannot set attribute '{name}' on _LazyCollection proxy")
-
-    def __call__(self):
-        """Allow `collection()` — returns the underlying motor collection.
-
-        Returns:
-            AsyncIOMotorCollection: The resolved Motor collection.
-        """
-        return self._resolve()
-
-    def __getitem__(self, key):
-        """Support dictionary-style access to collection documents.
-
-        Args:
-            key: Document key or index.
-
-        Returns:
-            Any: The value at the given key in the collection.
-        """
-        return self._resolve()[key]
-
-    def __setitem__(self, key, value):
-        """Support dictionary-style assignment to collection documents.
-
-        Args:
-            key: Document key or index.
-            value: Value to set.
-        """
-        self._resolve()[key] = value
-
-    def __delitem__(self, key):
-        """Support dictionary-style deletion of collection documents.
-
-        Args:
-            key: Document key or index to delete.
-
-        Raises:
-            KeyError: If the key does not exist in the collection.
-        """
-        del self._resolve()[key]
-
-    def __contains__(self, key):
-        """Support `in` operator for collection membership checks.
-
-        Args:
-            key: Key or value to check for existence.
-
-        Returns:
-            bool: True if the key exists in the collection, False otherwise.
-        """
-        return key in self._resolve()
-
-    def __repr__(self):
-        """Return a human-readable representation of the lazy collection.
-
-        Returns:
-            str: Representation string including the collection name.
-        """
-        return f"<_LazyCollection '{object.__getattribute__(self, '_name')}'>"
-
-    def __dir__(self):
-        """Return available attributes including known Motor methods for IDE support.
-
-        Returns:
-            list: Sorted list of known method names plus standard Python attributes.
-        """
-        return sorted(set(super().__dir__()) | self._KNOWN_METHODS)
-
-
-def get_client() -> AsyncIOMotorClient:
-    """Get or create the singleton AsyncIOMotorClient instance.
-
-    Validates the existing client's I/O loop; recreates the client if the loop
-    is closed or the client was never initialized. Uses connection pool settings
-    from application config.
-
-    Returns:
-        AsyncIOMotorClient: The active Motor database client.
-    """
-    global _client, _db
-    if _client is not None:
-        try:
-            loop = _client.get_io_loop()
-            if loop.is_closed():
-                _client = None
-                _db = None
-                _collections.clear()
-            else:
-                # Recreate if the running loop differs from the client's IO loop
-                # (e.g. pytest-asyncio uses a fresh loop per test). Safe for
-                # production where uvicorn runs a single long-lived loop.
-                try:
-                    if loop is not asyncio.get_running_loop():
-                        _client = None
-                        _db = None
-                        _collections.clear()
-                except RuntimeError:
-                    pass  # no running loop; keep existing client
-        except Exception:
-            _client = None
-            _db = None
-            _collections.clear()
-
-    if _client is None:
-        _client = AsyncIOMotorClient(
+def get_motor_client() -> AsyncIOMotorClient:
+    """Get or create the singleton AsyncIOMotorClient instance (legacy MongoDB)."""
+    global _motor_client, _motor_db
+    if _motor_client is None:
+        _motor_client = AsyncIOMotorClient(
             settings.MONGODB_URL,
             maxPoolSize=settings.MONGODB_MAX_POOL_SIZE,
             minPoolSize=settings.MONGODB_MIN_POOL_SIZE,
@@ -207,37 +49,219 @@ def get_client() -> AsyncIOMotorClient:
             connectTimeoutMS=10000,
             socketTimeoutMS=30000,
         )
-    return _client
+        _motor_db = _motor_client[settings.DATABASE_NAME]
+    return _motor_client
 
 
-def get_db() -> AsyncIOMotorDatabase:
-    """Get or create the singleton AsyncIOMotorDatabase instance.
+def get_motor_db() -> AsyncIOMotorDatabase:
+    """Get or create the singleton AsyncIOMotorDatabase instance (legacy MongoDB)."""
+    if _motor_db is None:
+        get_motor_client()
+    return _motor_db
 
-    Returns:
-        AsyncIOMotorDatabase: The active Motor database handle.
+
+def get_motor_collection(name: str):
+    """Get a Motor collection by name, caching it (legacy MongoDB)."""
+    if name not in _motor_collections:
+        _motor_collections[name] = get_motor_db()[name]
+    return _motor_collections[name]
+
+
+# Lazy collection proxies — backward compatibility for routes not yet migrated.
+# These delegate to Motor collections. New code should use SQLAlchemy repositories.
+class _LazyCollection:
+    """Proxy that lazily resolves to a motor collection on first attribute access."""
+
+    __slots__ = ("_name",)
+
+    def __init__(self, name: str):
+        object.__setattr__(self, "_name", name)
+
+    def _resolve(self):
+        return get_motor_collection(object.__getattribute__(self, "_name"))
+
+    def __getattr__(self, item):
+        return getattr(self._resolve(), item)
+
+    def __call__(self):
+        return self._resolve()
+
+    def __repr__(self):
+        return f"<_LazyCollection '{object.__getattribute__(self, '_name')}'>"
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+# SQLALCHEMY ASYNC + ASYNCPG (POSTGRESQL — new, migrated routes use this)
+# ════════════════════════════════════════════════════════════════════════════════
+
+# Optional SUPABASE_DB_URL overrides MONGODB_URL for PostgreSQL
+SUPABASE_DB_URL: Optional[str] = getattr(settings, "SUPABASE_DB_URL", None) or None
+
+_engine: Optional[AsyncEngine] = None
+_session_factory: Optional[async_sessionmaker[AsyncSession]] = None
+
+
+def _build_database_url() -> str:
+    """Build the async PostgreSQL URL.
+
+    Priority: SUPABASE_DB_URL > localhost fallback.
+    If using Supabase transaction pooler (port 6543), set statement_cache_size=0.
     """
-    global _db
-    client = get_client()
-    if _db is None:
-        _db = client[settings.DATABASE_NAME]
-    return _db
+    if SUPABASE_DB_URL:
+        return SUPABASE_DB_URL
+    return "postgresql+asyncpg://postgres:postgres@localhost:5432/bountycode"
+
+
+def get_engine() -> AsyncEngine:
+    """Get or create the singleton async SQLAlchemy engine."""
+    global _engine
+    if _engine is None:
+        database_url = _build_database_url()
+        pool_kwargs = {}
+        if ":6543" in database_url:
+            pool_kwargs["statement_cache_size"] = 0
+            logger.info("Detected Supabase transaction pooler — disabling prepared statement cache")
+
+        _engine = create_async_engine(
+            database_url,
+            echo=False,
+            pool_size=settings.MONGODB_MAX_POOL_SIZE if hasattr(settings, "MONGODB_MAX_POOL_SIZE") else 20,
+            max_overflow=settings.MONGODB_MAX_POOL_SIZE if hasattr(settings, "MONGODB_MAX_POOL_SIZE") else 10,
+            pool_timeout=30,
+            pool_recycle=1800,
+            **pool_kwargs,
+        )
+        logger.info("SQLAlchemy async engine created for PostgreSQL")
+    return _engine
+
+
+def get_session_factory() -> async_sessionmaker[AsyncSession]:
+    """Get or create the async session factory."""
+    global _session_factory
+    if _session_factory is None:
+        _session_factory = async_sessionmaker(
+            bind=get_engine(),
+            class_=AsyncSession,
+            expire_on_commit=False,
+            autoflush=False,
+        )
+    return _session_factory
+
+
+async def get_session() -> AsyncGenerator[AsyncSession, None]:
+    """FastAPI dependency — yields an async SQLAlchemy session with auto-rollback on error."""
+    factory = get_session_factory()
+    async with factory() as session:
+        try:
+            yield session
+            await session.commit()
+        except Exception:
+            await session.rollback()
+            raise
+        finally:
+            await session.close()
+
+
+async def get_session_no_commit() -> AsyncGenerator[AsyncSession, None]:
+    """FastAPI dependency — yields a session without auto-commit (read-only or manual control)."""
+    factory = get_session_factory()
+    async with factory() as session:
+        try:
+            yield session
+        finally:
+            await session.close()
+
+
+async def ping_db() -> bool:
+    """Health check — verify PostgreSQL connectivity."""
+    try:
+        engine = get_engine()
+        async with engine.connect() as conn:
+            result = await conn.execute(text("SELECT 1"))
+            return result.scalar() == 1
+    except Exception as exc:
+        logger.error("Database health check failed: %s", exc)
+        return False
+
+
+async def ping_motor() -> bool:
+    """Health check — verify MongoDB connectivity."""
+    try:
+        client = get_motor_client()
+        await client.admin.command("ping")
+        return True
+    except Exception as exc:
+        logger.error("MongoDB health check failed: %s", exc)
+        return False
+
+
+async def init_db() -> None:
+    """Initialize database — create tables if they don't exist (dev only).
+
+    In production, schema is managed by Supabase CLI migrations.
+    """
+    engine = get_engine()
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    logger.info("Database tables initialized (dev mode)")
+
+
+async def close_db() -> None:
+    """Dispose all engines — call on application shutdown."""
+    global _engine, _session_factory, _motor_client, _motor_db, _motor_collections
+    if _engine is not None:
+        await _engine.dispose()
+        _engine = None
+        _session_factory = None
+    if _motor_client is not None:
+        _motor_client.close()
+        _motor_client = None
+        _motor_db = None
+        _motor_collections.clear()
+    logger.info("Database engines disposed")
+
+
+# Compatibility shims — get_client() and get_db() were the Motor accessors.
+# During migration, these return Motor client/db so existing code continues to work.
+def get_client():
+    """Compatibility shim — returns the Motor client (legacy MongoDB)."""
+    return get_motor_client()
+
+
+def get_db():
+    """Compatibility shim — returns the Motor database (legacy MongoDB)."""
+    return get_motor_db()
 
 
 def get_collection(name: str):
-    """Get a Motor collection by name, caching it for future calls.
+    """Compatibility shim — returns a Motor collection (legacy MongoDB)."""
+    return get_motor_collection(name)
 
-    Args:
-        name: The name of the MongoDB collection.
 
-    Returns:
-        AsyncIOMotorCollection: The requested collection handle.
+class RepositoryBase:
+    """Base class for domain repositories using SQLAlchemy async session.
+
+    Domain repositories should inherit and add domain-specific methods.
+    Avoid creating a giant generic repository that hides domain rules.
     """
-    if name not in _collections:
-        _collections[name] = get_db()[name]
-    return _collections[name]
+
+    def __init__(self, session: AsyncSession):
+        self.session = session
+
+    async def flush(self) -> None:
+        await self.session.flush()
+
+    async def commit(self) -> None:
+        await self.session.commit()
+
+    async def rollback(self) -> None:
+        await self.session.rollback()
 
 
-# Lazy collection proxies — work as both `collection.find_one()` and `collection()`
+# ════════════════════════════════════════════════════════════════════════════════
+# LAZY COLLECTION PROXIES (backward compatibility)
+# ════════════════════════════════════════════════════════════════════════════════
+
 users_collection = _LazyCollection("users")
 interviews_collection = _LazyCollection("interviews")
 resumes_collection = _LazyCollection("resumes")
@@ -325,8 +349,6 @@ friends_collection = _LazyCollection("friends")
 oa_sessions_collection = _LazyCollection("oa_sessions")
 integrity_events_collection = _LazyCollection("integrity_events")
 daily_quests_collection = _LazyCollection("daily_quests")
-# Restored after the f659ebf merge dropped parent 2's declarations while
-# keeping its routes (16 route modules failed to import without these).
 content_tranches_collection = _LazyCollection("content_tranches")
 exam_memories_collection = _LazyCollection("exam_memories")
 invoices_collection = _LazyCollection("invoices")
@@ -339,327 +361,3 @@ served_quarantine_collection = _LazyCollection("served_quarantine")
 user_company_tracks_collection = _LazyCollection("user_company_tracks")
 user_learning_paths_collection = _LazyCollection("user_learning_paths")
 user_weaknesses_collection = _LazyCollection("user_weaknesses")
-
-
-async def init_db():
-    db = get_db()
-
-    async def _safe_create_index(collection, keys, **kwargs):
-        """Create an index, silently ignoring conflicts with existing indexes."""
-        try:
-            await collection.create_index(keys, **kwargs)
-        except Exception as e:
-            msg = str(e).lower()
-            if ("already exists" in msg
-                    or "indexoptionsconflict" in msg
-                    or "indexkeyspecsconflict" in msg
-                    or "same name" in msg):
-                pass  # Index exists with different options — safe to ignore
-            elif "duplicate key" in msg or "e11000" in msg:
-                logger.warning("Index build skipped due to duplicate key conflict: %s", e)
-            else:
-                raise
-
-    # NOTE: uid index is managed separately via migrations.sparse_uid_index()
-    # to avoid E11000 conflict when all existing users have uid=null.
-    # Authentication uses email + password, not uid.
-    await _safe_create_index(db["users"], "email", unique=True)
-    await _safe_create_index(db["users"], "plan")
-    await _safe_create_index(db["users"], "created_at")
-    await _safe_create_index(db["users"], [("email", 1), ("plan", 1)])
-
-    await _safe_create_index(db["interviews"], "user_id")
-    await _safe_create_index(db["interviews"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["interviews"], "status")
-    await _safe_create_index(db["interviews"], [("user_id", 1), ("status", 1)])
-
-    await _safe_create_index(db["resumes"], "user_id")
-    await _safe_create_index(db["resumes"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["resumes"], "ats_score")
-
-    await _safe_create_index(db["aptitude_tests"], "user_id")
-    await _safe_create_index(db["aptitude_tests"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["aptitude_tests"], "category")
-    await _safe_create_index(db["aptitude_tests"], "status")
-    await _safe_create_index(db["aptitude_tests"], [("user_id", 1), ("category", 1)])
-
-    await _safe_create_index(db["cover_letters"], "user_id")
-    await _safe_create_index(db["cover_letters"], [("user_id", 1), ("created_at", -1)])
-
-    await _safe_create_index(db["system_design"], "user_id")
-    await _safe_create_index(db["system_design"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["system_design"], "difficulty")
-
-    await _safe_create_index(db["coding_challenges"], "user_id")
-    await _safe_create_index(db["coding_challenges"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["coding_challenges"], "topic")
-    await _safe_create_index(db["coding_challenges"], "difficulty")
-    await _safe_create_index(db["coding_challenges"], [("topic", 1), ("difficulty", 1)])
-
-    await _safe_create_index(db["skill_graphs"], "user_id", unique=True)
-
-    await _safe_create_index(db["gamification"], "user_id", unique=True)
-    await _safe_create_index(db["gamification"], [("xp", -1)])
-    await _safe_create_index(db["gamification"], [("level", -1), ("xp", -1)])
-
-    await _safe_create_index(db["offers"], "user_id")
-    await _safe_create_index(db["offers"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["offers"], "status")
-
-    await _safe_create_index(db["progress"], "user_id")
-    await _safe_create_index(db["progress"], [("user_id", 1), ("topic", 1)])
-
-    await _safe_create_index(db["company_prep"], "user_id")
-    await _safe_create_index(db["company_prep"], [("user_id", 1), ("company", 1)])
-
-    await _safe_create_index(db["usage_tracking"], "user_id")
-    await _safe_create_index(db["usage_tracking"], [("user_id", 1), ("feature", 1)])
-    await _safe_create_index(db["usage_tracking"], [("user_id", 1), ("period", 1)])
-
-    await _safe_create_index(db["predictions"], "user_id")
-    await _safe_create_index(db["predictions"], [("user_id", 1), ("created_at", -1)])
-
-    # curated_questions is file-based (see question_store.py); only index for user submissions
-    await _safe_create_index(db["curated_questions"], [("submitted_by", 1)])
-
-    await _safe_create_index(db["question_answers"], "user_id")
-    await _safe_create_index(db["question_answers"], [("user_id", 1), ("question_id", 1)])
-    await _safe_create_index(db["question_answers"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["question_answers"], "question_id")
-
-    await _safe_create_index(db["company_mock_tests"], "user_id")
-    await _safe_create_index(db["company_mock_tests"], [("user_id", 1), ("company", 1)])
-    await _safe_create_index(db["company_mock_tests"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["company_mock_tests"], "status")
-
-    await _safe_create_index(db["alumni_experiences"], "company")
-    await _safe_create_index(db["alumni_experiences"], [("company", 1), ("year", -1)])
-    await _safe_create_index(db["alumni_experiences"], "role")
-
-    await _safe_create_index(db["placement_drives"], "company")
-    await _safe_create_index(db["placement_drives"], "deadline")
-    await _safe_create_index(db["placement_drives"], [("is_active", 1), ("deadline", 1)])
-    await _safe_create_index(db["placement_drives"], "tier")
-
-    await _safe_create_index(db["career_profiles"], "user_id", unique=True)
-    await _safe_create_index(db["career_profiles"], "updated_at")
-
-    await _safe_create_index(db["practice_sessions"], "user_id")
-    await _safe_create_index(db["practice_sessions"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["practice_sessions"], "status")
-
-    await _safe_create_index(db["mock_tests"], "user_id")
-    await _safe_create_index(db["mock_tests"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["mock_tests"], "status")
-
-    # OA simulation sessions
-    await _safe_create_index(db["oa_sessions"], "user_id")
-    await _safe_create_index(db["oa_sessions"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["oa_sessions"], "status")
-    await _safe_create_index(db["oa_sessions"], [("user_id", 1), ("company", 1)])
-
-    # Integrity events (opt-in browser signals)
-    await _safe_create_index(db["integrity_events"], [("user_id", 1), ("session_id", 1)])
-    await _safe_create_index(db["integrity_events"], "created_at", expireAfterSeconds=60 * 60 * 24 * 30)
-
-    await _safe_create_index(db["trials"], "user_id")
-    await _safe_create_index(db["trials"], [("user_id", 1), ("status", 1)])
-
-    await _safe_create_index(db["discounts"], "user_id")
-    await _safe_create_index(db["discounts"], [("user_id", 1), ("type", 1), ("status", 1)])
-
-    await _safe_create_index(db["solved_problems"], "user_id")
-    await _safe_create_index(db["solved_problems"], [("user_id", 1), ("question_id", 1)], unique=True)
-    await _safe_create_index(db["solved_problems"], [("user_id", 1), ("solved_at", -1)])
-
-    await _safe_create_index(db["submissions"], "user_id")
-    await _safe_create_index(db["submissions"], [("user_id", 1), ("question_id", 1)])
-    await _safe_create_index(db["submissions"], [("user_id", 1), ("submitted_at", -1)])
-    await _safe_create_index(db["submissions"], "status")
-    await _safe_create_index(db["submissions"], [("question_id", 1), ("status", 1)])
-
-    await _safe_create_index(db["cards"], "user_id")
-    await _safe_create_index(db["cards"], [("user_id", 1), ("rarity", 1)])
-    await _safe_create_index(db["cards"], [("user_id", 1), ("topic", 1)])
-    await _safe_create_index(db["cards"], [("user_id", 1), ("question_id", 1)])
-
-    await _safe_create_index(db["learning_progress"], "user_id", unique=True)
-    await _safe_create_index(db["learning_progress"], "total_xp")
-    await _safe_create_index(db["learning_progress"], "daily_date")
-    await _safe_create_index(db["learning_progress"], "daily_goal_bonus_date")
-    await _safe_create_index(db["learning_progress"], "updated_at")
-
-    await _safe_create_index(db["analytics_events"], "event")
-    await _safe_create_index(db["analytics_events"], "date")
-    # TTL index for auto-cleanup (180 days)
-    await _safe_create_index(db["analytics_events"], [("timestamp_dt", 1)], expireAfterSeconds=60 * 60 * 24 * 180)
-    await _safe_create_index(db["analytics_events"], [("event", 1), ("date", 1)])
-    await _safe_create_index(db["analytics_events"], [("path", 1), ("date", 1)])
-    await _safe_create_index(db["analytics_events"], [("event", 1), ("timestamp_dt", -1)])
-
-    await _safe_create_index(db["analytics_rollups"], [("bucket", 1), ("date", 1)], unique=True)
-    await _safe_create_index(db["analytics_rollups"], "date")
-    # TTL indexes for transient data (auto-cleanup to save storage)
-    await _safe_create_index(db["submissions"], [("submitted_at", 1)], expireAfterSeconds=60 * 60 * 24 * 90)
-    await _safe_create_index(db["practice_sessions"], [("created_at", 1)], expireAfterSeconds=60 * 60 * 24 * 90)
-    await _safe_create_index(db["service_metrics"], [("timestamp", 1)], expireAfterSeconds=60 * 60 * 24 * 30)
-
-    await _safe_create_index(db["analytics_rollups"], "bucket")
-
-    await _safe_create_index(db["community_posts"], "user_id")
-    await _safe_create_index(db["community_posts"], [("created_at", -1)])
-    await _safe_create_index(db["community_posts"], [("user_id", 1), ("created_at", -1)])
-
-    # Battles indexes
-    await _safe_create_index(db["battles"], [("player1_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["battles"], [("player2_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["battles"], "status")
-    await _safe_create_index(db["battles"], [("status", 1), ("created_at", -1)])
-    await _safe_create_index(db["battles"], "winner_id")
-    await _safe_create_index(db["battles"], [("winner_id", 1), ("status", 1)])
-
-    # Matchmaking queue indexes
-    await _safe_create_index(db["matchmaking_queue"], "user_id", unique=True)
-    await _safe_create_index(db["matchmaking_queue"], [("mode", 1), ("difficulty", 1), ("language", 1)])
-    await _safe_create_index(db["matchmaking_queue"], "joined_at", expireAfterSeconds=3600)
-
-    # Ranks / leaderboard cache
-    await _safe_create_index(db["ranks"], "user_id", unique=True)
-    await _safe_create_index(db["ranks"], [("honor", -1)])
-
-    # Daily challenges users indexes
-    await _safe_create_index(db["daily_challenges_users"], "user_id", unique=True)
-    await _safe_create_index(db["daily_challenges_users"], [("total_xp_earned", -1)])
-    await _safe_create_index(db["daily_challenges_users"], [("enrolled", 1), ("current_day", 1)])
-
-    # Generated projects indexes
-    await _safe_create_index(db["generated_projects"], "user_id")
-    await _safe_create_index(db["generated_projects"], [("user_id", 1), ("created_at", -1)])
-    await _safe_create_index(db["generated_projects"], "project_id", unique=True)
-
-    # User honor field index for leaderboard
-    await _safe_create_index(db["users"], [("honor", -1)])
-
-    # Learning modules indexes
-    await _safe_create_index(db["learning_modules"], "question_id", unique=True)
-    await _safe_create_index(db["learning_modules"], "difficulty")
-    await _safe_create_index(db["learning_modules"], "topic")
-    await _safe_create_index(db["learning_modules"], "company_tags")
-
-    # User learning progress indexes
-    await _safe_create_index(db["user_learning_progress"], [("user_id", 1), ("module_id", 1)], unique=True)
-    await _safe_create_index(db["user_learning_progress"], "user_id")
-    await _safe_create_index(db["user_learning_progress"], "completed_at")
-
-    await _safe_create_index(db["interview_bookings"], "user_id")
-    await _safe_create_index(db["interview_bookings"], [("user_id", 1), ("scheduled_at", -1)])
-    await _safe_create_index(db["interview_bookings"], "status")
-    await _safe_create_index(db["interview_bookings"], [("user_id", 1), ("status", 1)])
-    await _safe_create_index(db["interview_bookings"], [("user_id", 1), ("scheduled_at", 1), ("status", 1)])
-
-    # Language learning path indexes
-    await _safe_create_index(db["language_modules"], "language_id")
-    await _safe_create_index(db["language_modules"], [("language_id", 1), ("module_index", 1)], unique=True)
-    await _safe_create_index(db["language_modules"], "difficulty")
-    await _safe_create_index(db["language_modules"], [("language_id", 1), ("tier", 1)])
-
-    await _safe_create_index(db["language_levels"], "language_id")
-    await _safe_create_index(db["language_levels"], [("language_id", 1), ("level", 1)], unique=True)
-
-    await _safe_create_index(db["language_progress"], [("user_id", 1), ("language_id", 1)], unique=True)
-    await _safe_create_index(db["language_progress"], "user_id")
-    await _safe_create_index(db["language_progress"], "language_id")
-
-    # Content modules + assignments indexes
-    await _safe_create_index(db["content_modules"], [("order", 1)])
-    await _safe_create_index(db["content_modules"], "category")
-    await _safe_create_index(db["content_modules"], "difficulty")
-
-    await _safe_create_index(db["assignments"], [("created_at", -1)])
-    await _safe_create_index(db["assignments"], "assigned_to")
-    await _safe_create_index(db["assignments"], "content_id")
-
-    await _safe_create_index(db["assignment_submissions"], [("assignment_id", 1), ("user_id", 1)], unique=True)
-    await _safe_create_index(db["assignment_submissions"], "user_id")
-    await _safe_create_index(db["assignment_submissions"], "assignment_id")
-    await _safe_create_index(db["assignment_submissions"], "status")
-    await _safe_create_index(db["assignment_submissions"], [("assignment_id", 1), ("status", 1)])
-
-    # Chat messages — TTL 7 days keeps storage bounded on the 500MB cluster
-    await _safe_create_index(db["chat_messages"], "created_at", expireAfterSeconds=604800)
-    await _safe_create_index(db["chat_messages"], [("room_type", 1), ("room_id", 1), ("created_at", -1)])
-
-    # Shareable achievements TTL (cards expire after 30 days)
-    await _safe_create_index(db["shares"], [("user_id", 1), ("date", 1)], unique=True)
-    await _safe_create_index(db["shares"], [("created_at", -1)], expireAfterSeconds=604800)
-
-    # Pulse daily TTL (1 doc/user/day, expires after 7 days)
-    await _safe_create_index(db["pulse_daily"], [("user_id", 1), ("date", 1)], unique=True)
-    await _safe_create_index(db["pulse_daily"], [("created_at", -1)], expireAfterSeconds=604800)
-
-    # Client-side error logs — auto-cleanup after 30 days
-    await _safe_create_index(db["debug_logs"], [("created_at", -1)])
-    await _safe_create_index(db["debug_logs"], [("created_at", 1)], expireAfterSeconds=60 * 60 * 24 * 30)
-
-    # Audit logs — TTL 1 year for compliance
-    await _safe_create_index(db["audit_logs"], [("timestamp", -1)])
-    await _safe_create_index(db["audit_logs"], [("user_id", 1), ("timestamp", -1)])
-    await _safe_create_index(db["audit_logs"], [("action", 1), ("timestamp", -1)])
-
-    # Daily quests — adaptive quest engine (one doc per user per day)
-    await _safe_create_index(db["daily_quests"], "user_id")
-    await _safe_create_index(db["daily_quests"], [("user_id", 1), ("date", 1)], unique=True)
-    await _safe_create_index(db["daily_quests"], [("user_id", 1), ("date", -1)])
-    # TTL index: auto-cleanup quest docs older than 90 days
-    await _safe_create_index(db["daily_quests"], [("created_at", 1)], expireAfterSeconds=60 * 60 * 24 * 90)
-
-    # SRS cards — problem-based spaced repetition
-    await _safe_create_index(db["srs_cards"], "user_id")
-    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("problem_id", 1)], unique=True)
-    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("next_review", 1)])
-    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("difficulty", 1)])
-    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("next_review", 1), ("difficulty", 1)])
-
-    # Skill mastery — per-skill tracking
-    await _safe_create_index(db["skill_graphs"], [("user_id", 1), ("topic", 1), ("sub_topic", 1)], unique=True)
-    await _safe_create_index(db["skill_graphs"], [("user_id", 1), ("current_level", -1)])
-    await _safe_create_index(db["skill_graphs"], [("user_id", 1), ("last_practiced", -1)])
-
-    # Friend system — unique chat IDs + friend graph
-    await _safe_create_index(db["users"], "uid", unique=True, sparse=True)
-    await _safe_create_index(db["friend_requests"], [("from_id", 1), ("status", 1)])
-    await _safe_create_index(db["friend_requests"], [("to_id", 1), ("status", 1)])
-    await _safe_create_index(db["friend_requests"], [("created_at", -1)])
-    await _safe_create_index(db["friends"], [("user_ids", 1)])
-
-    logger.info("Database indexes created successfully")
-
-
-async def close_db():
-    """Close the Motor client and reset all cached state.
-
-    Clears the client, database handle, and collection proxy cache.
-    Logs the closure for observability.
-    """
-    global _client, _db
-    if _client:
-        _client.close()
-        _client = None
-        _db = None
-        _collections.clear()
-        logger.info("Database connection closed")
-
-
-async def ping_db() -> bool:
-    """Check database connectivity by sending an admin ping command.
-
-    Returns:
-        bool: True if the database responds to ping, False otherwise.
-    """
-    try:
-        client = get_client()
-        await client.admin.command("ping")
-        return True
-    except Exception as e:
-        logger.error(f"Database ping failed: {e}")
-        return False
