@@ -248,6 +248,6 @@ Evaluate this STAR answer."""},
         return result.get("questions", [])
 
 
-async def BehavioralEngine(user_id: str) -> dict:
+async def behavioral_engine_stub(user_id: str) -> dict:
     """Stub for BehavioralEngine."""
     return {"user_id": user_id}

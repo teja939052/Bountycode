@@ -34,7 +34,7 @@ from app.models.learning import (
     Skill,
     SkillPrerequisite,
 )
-from app.models.identity import User, AcademyDiagnosticSession, AcademyLearningPlan, AcademyLearnerProfile
+from app.models.academy import AcademyDiagnosticSession, AcademyLearningPlan, AcademyLearnerProfile
 
 
 # ════════════════════════════════════════════════════════════════════════════════

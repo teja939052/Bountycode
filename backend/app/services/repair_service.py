@@ -21,3 +21,8 @@ async def complete_repair_mission(
 async def create_repair_mission(user_id: str) -> dict:
     """Stub for create_repair_mission."""
     return {"user_id": user_id}
+
+
+def _find_quizzes_for_skills(skills: List[str]) -> List[dict]:
+    """Find quizzes for given skills."""
+    return []

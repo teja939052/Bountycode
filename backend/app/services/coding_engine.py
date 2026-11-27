@@ -221,6 +221,6 @@ Give me a level {hint_level} hint."""},
         return parse_json(response)
 
 
-async def CodingEngine(user_id: str) -> dict:
+async def coding_engine_stub(user_id: str) -> dict:
     """Stub for CodingEngine."""
     return {"user_id": user_id}

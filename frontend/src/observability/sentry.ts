@@ -1,9 +1,10 @@
-"""Frontend Sentry integration — optional, env-gated.
-
-Initializes @sentry/react only when VITE_SENTRY_DSN is set.
-Never crashes the app if Sentry is unavailable.
-Scrubs sensitive data before transmission.
-"""
+/**
+ * Frontend Sentry integration — optional, env-gated.
+ *
+ * Initializes @sentry/react only when VITE_SENTRY_DSN is set.
+ * Never crashes the app if Sentry is unavailable.
+ * Scrubs sensitive data before transmission.
+ */
 
 import * as Sentry from "@sentry/react";
 import { browserTracingIntegration } from "@sentry/react";

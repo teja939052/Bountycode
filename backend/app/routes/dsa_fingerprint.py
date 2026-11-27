@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.middleware.auth import get_current_user
 from app.database import get_session
 from sqlalchemy import select
-from app.models.skill_assessment import LearnerSkillState
+from app.models.learning import LearnerSkillState
 
 router = APIRouter(prefix="/api/v1/dsa-fingerprint", tags=["dsa-fingerprint"])
 

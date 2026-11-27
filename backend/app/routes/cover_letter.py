@@ -7,7 +7,7 @@ from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.ai_cover_letter import generate_linkedin_about
 from app.config import get_settings
-from app.models.resume import ResumeMetadata
+from app.models.career import ResumeMetadata
 from sqlalchemy import select
 
 router = APIRouter(prefix="/api/v1/tools", tags=["tools"])

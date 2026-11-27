@@ -1071,6 +1071,6 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
         return {}
 
 
-async def CodeExecutionEngine(user_id: str) -> dict:
+async def code_execution_engine_stub(user_id: str) -> dict:
     """Stub for CodeExecutionEngine."""
     return {"user_id": user_id}
