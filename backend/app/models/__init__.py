@@ -16,6 +16,7 @@ from app.models.assessments import (
 from app.models.academy import AcademyDiagnosticSession, AcademyLearnerProfile, AcademyLearningPlan
 from app.models.base import Base
 from app.models.career import CareerProfile, PortfolioProject, ResumeMetadata, UploadedFile
+from app.models.exam import PracticeExamAttempt
 from app.models.content import (
     AssessmentDefinition,
     AssessmentVariant,
@@ -46,6 +47,7 @@ __all__ = [
     "AcademyLearnerProfile",
     "AcademyDiagnosticSession",
     "AcademyLearningPlan",
+    "PracticeExamAttempt",
     # Identity
     "User",
     "UserProfile",

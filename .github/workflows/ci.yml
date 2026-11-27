@@ -65,7 +65,7 @@ jobs:
       - name: Compile check
         run: python -m compileall app/ -q
       - name: PostgreSQL migration tests
-        run: pytest -q tests/test_postgres_learning.py tests/test_postgres_assessments.py
+        run: pytest -q tests/test_postgres_learning.py tests/test_postgres_assessments.py tests/test_postgres_academy.py tests/test_postgres_exam.py
       - name: MongoDB absence gate
         run: pytest -q tests/test_mongodb_absence.py
       - name: Content and pure backend tests

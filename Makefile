@@ -38,7 +38,7 @@ test-backend-unit:
 # ── Integration stage ───────────────────────────────────────────────────
 # Integration tests requiring a real PostgreSQL schema.
 test-backend-integration:
-	cd $(BACKEND_DIR) && $(PYTEST) tests/test_compiler_service.py tests/test_oa_repair_loop_evidence.py tests/test_world_complete_xp.py -q --tb=short
+	cd $(BACKEND_DIR) && $(PYTEST) tests/test_compiler_service.py tests/test_oa_repair_loop_evidence.py tests/test_world_complete_xp.py tests/test_postgres_academy.py tests/test_postgres_exam.py -q --tb=short
 
 # ── E2E stage ───────────────────────────────────────────────────────────
 # The definitive learner lifecycle test. Runs in its own pytest process

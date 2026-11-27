@@ -1,20 +1,72 @@
-﻿"""Unified Exam Engine — reusable timed MCQ assessment infrastructure."""
-import logging
+﻿"""Unified deterministic practice exam engine backed by PostgreSQL."""
+
 import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from app.database import get_collection
+from app.database import get_session_factory
+from app.repositories.exam import PracticeExamAttemptRepository
 from app.services.assessment_blueprint import select_questions
+from app.services.question_store import get_question_for_serving
 from app.services.scoring import score_question
-
-logger = logging.getLogger(__name__)
-
-COLLECTION = get_collection("exam_attempts")
 
 
 def _now() -> datetime:
     return datetime.now(timezone.utc)
+
+
+def _uuid(value: str) -> uuid.UUID:
+    try:
+        return uuid.UUID(str(value))
+    except (ValueError, TypeError, AttributeError) as exc:
+        raise ValueError("invalid exam or user id") from exc
+
+
+def _safe_question(question: dict) -> dict:
+    return {
+        "id": question.get("id") or question.get("_id"),
+        "question": question.get("question") or question.get("text"),
+        "options": question.get("options"),
+        "difficulty": question.get("difficulty"),
+        "topic": question.get("topic"),
+        "category": question.get("category"),
+    }
+
+
+def _trusted_questions(ids: list[str]) -> list[dict]:
+    questions = []
+    for question_id in ids:
+        question = get_question_for_serving(str(question_id))
+        if question is not None:
+            questions.append(question)
+    return questions
+
+
+def _report(attempt, questions: list[dict]) -> Dict[str, Any]:
+    answers = attempt.answers or {}
+    correct = 0
+    review = []
+    for question in questions:
+        question_id = str(question.get("id") or question.get("_id"))
+        user_answer = answers.get(question_id)
+        scored = score_question(question, user_answer)
+        if scored["is_correct"]:
+            correct += 1
+        review.append({
+            "id": question_id,
+            "question": question.get("question") or question.get("text"),
+            "your_answer": user_answer,
+            "correct_answer": scored["correct_answer"],
+            "correct": scored["is_correct"],
+            "explanation": question.get("explanation"),
+        })
+    return {
+        "attempt_id": str(attempt.id),
+        "score": attempt.score,
+        "correct": correct,
+        "total": len(questions),
+        "review": review,
+    }
 
 
 async def start_exam(
@@ -28,140 +80,93 @@ async def start_exam(
     seed: Optional[int] = None,
 ) -> Dict[str, Any]:
     if difficulty_mix:
-        questions = select_questions(topic=topic, category=category,
-                                     difficulty_mix=difficulty_mix, total=count, seed=seed)
+        questions = select_questions(topic=topic, category=category, difficulty_mix=difficulty_mix, total=count, seed=seed)
     elif difficulty:
-        questions = select_questions(topic=topic, category=category,
-                                     difficulty_mix={difficulty: count}, total=count, seed=seed)
+        questions = select_questions(topic=topic, category=category, difficulty_mix={difficulty: count}, total=count, seed=seed)
     else:
         questions = select_questions(topic=topic, category=category, total=count, seed=seed)
-    safe_qs = []
-    for q in questions:
-        safe_qs.append({
-            "id": q.get("id") or q.get("_id"),
-            "question": q.get("question") or q.get("text"),
-            "options": q.get("options"),
-            "difficulty": q.get("difficulty"),
-            "topic": q.get("topic"),
-            "category": q.get("category"),
-        })
-    attempt_id = str(uuid.uuid4())
-    doc = {
-        "attempt_id": attempt_id,
-        "user_id": user_id,
+    question_ids = [str(q.get("id") or q.get("_id")) for q in questions]
+    data = {
+        "user_id": _uuid(user_id),
         "topic": topic,
         "category": category,
         "difficulty": difficulty,
         "duration_minutes": duration_minutes,
-        "question_ids": [q.get("id") for q in questions],
-        "questions": questions,
+        "question_ids": question_ids,
         "answers": {},
         "started_at": _now(),
-        "completed_at": None,
-        "score": None,
-        "total": len(questions),
     }
-    await COLLECTION.insert_one(doc)
-    return {
-        "attempt_id": attempt_id,
-        "duration_minutes": duration_minutes,
-        "total": len(safe_qs),
-        "questions": safe_qs,
-    }
+    async with get_session_factory()() as session:
+        attempt = await PracticeExamAttemptRepository(session).create(data)
+        await session.commit()
+        return {
+            "attempt_id": str(attempt.id),
+            "duration_minutes": duration_minutes,
+            "total": len(question_ids),
+            "questions": [_safe_question(q) for q in questions],
+        }
 
 
 async def submit_answer(attempt_id: str, user_id: str, question_id: str, answer: Any) -> Dict[str, Any]:
-    attempt = await COLLECTION.find_one({"attempt_id": attempt_id, "user_id": user_id})
-    if not attempt:
-        raise ValueError("attempt not found")
-    if attempt.get("completed_at"):
-        raise ValueError("attempt already completed")
-    answers = attempt.get("answers") or {}
-    answers[question_id] = answer
-    await COLLECTION.update_one(
-        {"attempt_id": attempt_id},
-        {"$set": {"answers": answers}},
-    )
+    async with get_session_factory()() as session:
+        repo = PracticeExamAttemptRepository(session)
+        attempt = await repo.get_by_id_and_user(_uuid(attempt_id), _uuid(user_id))
+        if not attempt:
+            raise ValueError("attempt not found")
+        if attempt.status != "in_progress":
+            raise ValueError("attempt already completed")
+        if str(question_id) not in {str(q) for q in (attempt.question_ids or [])}:
+            raise ValueError("question is not part of this attempt")
+        answers = dict(attempt.answers or {})
+        answers[str(question_id)] = answer
+        if not await repo.set_answers(attempt.id, attempt.user_id, answers):
+            raise ValueError("attempt already completed")
+        await session.commit()
     return {"saved": True}
 
 
 async def complete_exam(attempt_id: str, user_id: str) -> Dict[str, Any]:
-    attempt = await COLLECTION.find_one({"attempt_id": attempt_id, "user_id": user_id})
-    if not attempt:
-        raise ValueError("attempt not found")
-    if attempt.get("completed_at"):
-        return _report(attempt)
-    questions = attempt.get("questions") or []
-    answers = attempt.get("answers") or {}
-    correct = 0
-    review = []
-    for q in questions:
-        qid = q.get("id")
-        ua = answers.get(qid)
-        sr = score_question(q, ua, time_spent=None)
-        if sr["is_correct"]:
-            correct += 1
-        review.append({
-            "id": qid,
-            "question": q.get("question") or q.get("text"),
-            "your_answer": ua,
-            "correct_answer": sr["correct_answer"],
-            "correct": sr["is_correct"],
-            "explanation": q.get("explanation"),
-        })
-    score_pct = round((correct / len(questions)) * 100, 2) if questions else 0.0
-    await COLLECTION.update_one(
-        {"attempt_id": attempt_id},
-        {"$set": {"completed_at": _now(), "score": score_pct, "correct": correct}},
-    )
-    return {
-        "attempt_id": attempt_id,
-        "score": score_pct,
-        "correct": correct,
-        "total": len(questions),
-        "review": review,
-    }
-
-
-def _report(attempt: Dict[str, Any]) -> Dict[str, Any]:
-    questions = attempt.get("questions") or []
-    answers = attempt.get("answers") or {}
-    correct = 0
-    review = []
-    for q in questions:
-        qid = q.get("id")
-        ua = answers.get(qid)
-        sr = score_question(q, ua)
-        if sr["is_correct"]:
-            correct += 1
-        review.append({"id": qid, "question": q.get("question") or q.get("text"),
-                      "your_answer": ua, "correct_answer": sr["correct_answer"], "correct": sr["is_correct"],
-                      "explanation": q.get("explanation")})
-    return {"attempt_id": attempt["attempt_id"], "score": attempt.get("score"),
-            "correct": correct, "total": len(questions), "review": review}
+    async with get_session_factory()() as session:
+        repo = PracticeExamAttemptRepository(session)
+        attempt = await repo.get_by_id_and_user(_uuid(attempt_id), _uuid(user_id))
+        if not attempt:
+            raise ValueError("attempt not found")
+        questions = _trusted_questions(attempt.question_ids or [])
+        if attempt.status == "completed":
+            return _report(attempt, questions)
+        answers = attempt.answers or {}
+        correct = sum(
+            1 for question in questions
+            if score_question(question, answers.get(str(question.get("id") or question.get("_id"))))["is_correct"]
+        )
+        score_pct = round((correct / len(questions)) * 100, 2) if questions else 0.0
+        completed = await repo.complete(attempt.id, attempt.user_id, score_pct, correct)
+        if not completed:
+            raise ValueError("attempt already completed")
+        await session.commit()
+        return _report(completed, questions)
 
 
 async def get_report(attempt_id: str, user_id: str) -> Dict[str, Any]:
-    attempt = await COLLECTION.find_one({"attempt_id": attempt_id, "user_id": user_id})
-    if not attempt:
-        raise ValueError("attempt not found")
-    if not attempt.get("completed_at"):
-        raise ValueError("attempt not completed")
-    return _report(attempt)
+    async with get_session_factory()() as session:
+        attempt = await PracticeExamAttemptRepository(session).get_by_id_and_user(_uuid(attempt_id), _uuid(user_id))
+        if not attempt:
+            raise ValueError("attempt not found")
+        if attempt.status != "completed":
+            raise ValueError("attempt not completed")
+        return _report(attempt, _trusted_questions(attempt.question_ids or []))
 
 
 async def list_attempts(user_id: str, limit: int = 20) -> List[Dict[str, Any]]:
-    cursor = COLLECTION.find({"user_id": user_id}).sort("started_at", -1).limit(limit)
-    out = []
-    async for d in cursor:
-        out.append({
-            "attempt_id": d.get("attempt_id"),
-            "topic": d.get("topic"),
-            "category": d.get("category"),
-            "difficulty": d.get("difficulty"),
-            "score": d.get("score"),
-            "total": d.get("total"),
-            "started_at": d.get("started_at"),
-            "completed_at": d.get("completed_at"),
-        })
-    return out
+    async with get_session_factory()() as session:
+        attempts = await PracticeExamAttemptRepository(session).list_by_user(_uuid(user_id), limit)
+        return [{
+            "attempt_id": str(a.id),
+            "topic": a.topic,
+            "category": a.category,
+            "difficulty": a.difficulty,
+            "score": a.score,
+            "total": len(a.question_ids or []),
+            "started_at": a.started_at,
+            "completed_at": a.completed_at,
+        } for a in attempts]
