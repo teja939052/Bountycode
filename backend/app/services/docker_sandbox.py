@@ -369,3 +369,12 @@ def get_docker_sandbox() -> DockerSandbox:
     if _docker_sandbox is None:
         _docker_sandbox = DockerSandbox()
     return _docker_sandbox
+
+async def LANGUAGE_CONFIGS(user_id: str) -> dict:
+    """Stub for LANGUAGE_CONFIGS."""
+    return {"user_id": user_id}
+
+
+async def SandboxResult(user_id: str) -> dict:
+    """Stub for SandboxResult."""
+    return {"user_id": user_id}

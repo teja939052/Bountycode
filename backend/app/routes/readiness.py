@@ -1,16 +1,16 @@
-﻿from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
-from app.middleware.auth import get_current_user
 from app.database import get_session
+from app.middleware.auth import get_current_user
 from app.services.readiness import compute_readiness as _compute_basic_readiness
 from app.services.observability import record_event
-from app.repositories.academy import AcademyLearnerProfileRepository, model_dict
+from app.repositories.learning import AcademyLearnerProfileRepository
 
 router = APIRouter(prefix="/api/v1/readiness", tags=["readiness"])
 
 
 @router.get("/score")
-async def score(user=Depends(get_current_user), session=Depends(get_session)):
+async def score(user=Depends(get_current_user)):
     """Return the learner's readiness score with components, drivers, and
     evidence-backed blockers + next action from the deterministic readiness
     engine."""
@@ -22,13 +22,16 @@ async def score(user=Depends(get_current_user), session=Depends(get_session)):
             calculate_target_readiness,
             collect_target_evidence,
         )
-        profile_model = await AcademyLearnerProfileRepository(session).get_by_user(user["id"])
-        profile_doc = model_dict(profile_model) if profile_model else None
-        if profile_doc:
+        from app.database import get_session
+
+        profile_repo = AcademyLearnerProfileRepository()
+        async with get_session() as session:
+            profile = await profile_repo.get_by_user(user["id"])
+        if profile:
             profile = {
-                "role": profile_doc.get("target_role", "sde"),
-                "company": profile_doc.get("target_company", "tcs"),
-                "skills": profile_doc.get("skills", []),
+                "role": profile.target_role,
+                "company": profile.target_companies[0] if profile.target_companies else "tcs",
+                "skills": [],
             }
             evidence = await collect_target_evidence(user["id"], profile)
             target = calculate_target_readiness(profile, evidence)

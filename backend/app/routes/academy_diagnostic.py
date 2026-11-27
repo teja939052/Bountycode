@@ -9,38 +9,31 @@ from pydantic import BaseModel, Field
 
 from app.database import get_session
 from app.middleware.auth import get_current_user
-from app.repositories.academy import AcademyDiagnosticSessionRepository
 from app.services.quiz_service import get_all_questions, get_question_by_id
 from app.services.adaptive_learning import record_learning_activity
 from app.services.observability import record_event
+from app.repositories.learning import AcademyDiagnosticSessionRepository
 
 router = APIRouter(prefix="/api/v1/academy/diagnostic", tags=["academy-diagnostic"])
 
-DOMAIN_ALIASES = {
-    "programming fundamentals": "programming_fundamentals",
-    "programming logic": "programming_fundamentals",
-    "quantitative aptitude": "quantitative_aptitude",
-    "aptitude": "quantitative_aptitude",
-    "logical reasoning": "logical_reasoning",
-    "reasoning": "logical_reasoning",
-    "verbal ability": "verbal_ability",
-    "computer science fundamentals": "computer_science",
-    "computer science": "computer_science",
-    "sql": "sql",
-    "database": "sql",
-    "dsa": "arrays_hashing",
-    "arrays": "arrays_hashing",
-}
 
-DOMAIN_LABELS = {
-    "programming_fundamentals": "Programming fundamentals",
-    "arrays_hashing": "DSA and problem solving",
-    "quantitative_aptitude": "Quantitative aptitude",
-    "logical_reasoning": "Logical reasoning",
-    "verbal_ability": "Verbal ability",
-    "computer_science": "Computer science fundamentals",
-    "sql": "SQL and databases",
-}
+def _get_diagnostic_repo(session):
+    from app.repositories.learning import AcademyDiagnosticSessionRepository
+    return AcademyDiagnosticSessionRepository(session)
+
+
+def _public_question(question: Dict[str, Any], index: int) -> Dict[str, Any]:
+    return {
+        "id": question["id"],
+        "index": index,
+        "title": question.get("title") or question.get("topic") or "Question",
+        "question": question.get("question") or question.get("prompt") or "",
+        "topic": question.get("sub_topic") or question.get("topic") or "General",
+        "domain": canonical_domain(question),
+        "difficulty": question.get("difficulty", "medium"),
+        "type": "mcq" if question.get("options") else "short_answer",
+        "options": question.get("options") or [],
+    }
 
 
 def canonical_domain(question: Dict[str, Any]) -> Optional[str]:
@@ -59,8 +52,6 @@ def canonical_domain(question: Dict[str, Any]) -> Optional[str]:
             return "programming_fundamentals"
         if normalized in {"quantitative_aptitude", "logical_reasoning", "verbal_ability", "computer_science", "sql"}:
             return normalized
-    # Unknown metadata is not evidence of a programming skill. Keep it
-    # unclassified instead of silently contaminating that domain score.
     return None
 
 
@@ -93,18 +84,7 @@ def skill_level(score: float, attempts: int) -> str:
     return "strong"
 
 
-def _public_question(question: Dict[str, Any], index: int) -> Dict[str, Any]:
-    return {
-        "id": question["id"],
-        "index": index,
-        "title": question.get("title") or question.get("topic") or "Question",
-        "question": question.get("question") or question.get("prompt") or "",
-        "topic": question.get("sub_topic") or question.get("topic") or "General",
-        "domain": canonical_domain(question),
-        "difficulty": question.get("difficulty", "medium"),
-        "type": "mcq" if question.get("options") else "short_answer",
-        "options": question.get("options") or [],
-    }
+router = APIRouter(prefix="/api/v1/academy/diagnostic", tags=["academy-diagnostic"])
 
 
 class DiagnosticStart(BaseModel):
@@ -119,7 +99,18 @@ class DiagnosticAnswer(BaseModel):
 
 
 @router.post("/start")
-async def start_diagnostic(payload: DiagnosticStart, user=Depends(get_current_user), session=Depends(get_session)):
+async def start_diagnostic(payload: DiagnosticStart, user=Depends(get_current_user)):
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
+
+        # Check if user already has an active diagnostic
+        existing = await repo.get_active_by_user(user["id"])
+        if existing:
+            raise HTTPException(
+                status_code=409,
+                detail="A diagnostic is already in progress for this user.",
+            )
+
     bank = [
         q for q in get_all_questions()
         if q.get("id") and has_deterministic_key(q)
@@ -145,9 +136,11 @@ async def start_diagnostic(payload: DiagnosticStart, user=Depends(get_current_us
     random.shuffle(selected)
     diagnostic_id = f"diag_{uuid.uuid4().hex}"
     now = datetime.now(timezone.utc)
-    await AcademyDiagnosticSessionRepository(session).create(
-        user["id"], diagnostic_id, [q["id"] for q in selected]
-    )
+
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
+        await repo.create(user_id=user["id"], diagnostic_id=diagnostic_id, question_ids=selected)
+
     return {
         "success": True,
         "diagnostic": {
@@ -163,23 +156,18 @@ async def answer_diagnostic(
     diagnostic_id: str,
     payload: DiagnosticAnswer,
     user=Depends(get_current_user),
-    session=Depends(get_session),
 ):
-    repository = AcademyDiagnosticSessionRepository(session)
-    diagnostic_session = await repository.get(user["id"], diagnostic_id, for_update=True)
-    if not diagnostic_session:
-        raise HTTPException(status_code=404, detail="Diagnostic not found.")
-    if diagnostic_session.status != "in_progress":
-        raise HTTPException(status_code=409, detail="Diagnostic is already completed.")
-    if payload.question_id not in (diagnostic_session.question_ids or []):
-        raise HTTPException(status_code=404, detail="Question is not part of this diagnostic.")
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
 
-    existing = next(
-        (a for a in (diagnostic_session.answers or []) if a.get("question_id") == payload.question_id),
-        None,
-    )
-    if existing:
-        raise HTTPException(status_code=409, detail="This question has already been answered.")
+        session = await repo.get_by_diagnostic_id(diagnostic_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Diagnostic not found.")
+        if session.get("status") != "in_progress":
+            raise HTTPException(status_code=409, detail="Diagnostic is already completed.")
+        if payload.question_id in [a.get("question_id") for a in session.get("answers", [])]:
+            raise HTTPException(status_code=409, detail="This question has already been answered.")
+
     question = get_question_by_id(payload.question_id)
     if not question:
         raise HTTPException(status_code=410, detail="Question bank item is no longer available.")
@@ -193,23 +181,33 @@ async def answer_diagnostic(
         "confidence": payload.confidence,
         "answered_at": datetime.now(timezone.utc).isoformat(),
     }
-    # The repository holds a row lock for this request.
-    if not await repository.append_answer(diagnostic_session, answer_doc):
-        raise HTTPException(status_code=409, detail="This question was already answered or the diagnostic has closed.")
-    return {"success": True, "data": {"accepted": True, "answered_count": len(diagnostic_session.answers or [])}}
+
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
+        await repo.add_answer(diagnostic_id, answer_doc)
+
+    # Re-fetch session to get updated answer count
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
+        session = await repo.get_by_diagnostic_id(diagnostic_id)
+
+    return {"success": True, "data": {"accepted": True, "answered_count": len(session.get("answers", [])) + 1}}
 
 
 @router.post("/{diagnostic_id}/complete")
-async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user), session=Depends(get_session)):
-    repository = AcademyDiagnosticSessionRepository(session)
-    diagnostic_session = await repository.get(user["id"], diagnostic_id, for_update=True)
-    if not diagnostic_session:
-        raise HTTPException(status_code=404, detail="Diagnostic not found.")
-    if diagnostic_session.status == "completed":
-        return {"success": True, "result": diagnostic_session.result}
+async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)):
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
+
+        session = await repo.get_by_diagnostic_id(diagnostic_id)
+        if not session:
+            raise HTTPException(status_code=404, detail="Diagnostic not found.")
+        if session.get("status") == "completed":
+            return {"success": True, "result": session.get("result")}
+
     questions = {q["id"]: q for q in get_all_questions() if q.get("id")}
-    answers = diagnostic_session.answers or []
-    if len(answers) != len(diagnostic_session.question_ids or []):
+    answers = session.get("answers", [])
+    if len(answers) != len(session.get("question_ids", [])):
         raise HTTPException(status_code=409, detail="Answer every diagnostic question before completing.")
 
     grouped: Dict[str, Dict[str, int]] = {}
@@ -271,7 +269,11 @@ async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)
         "completed_at": datetime.now(timezone.utc).isoformat(),
         "disclaimer": "This is a baseline estimate from a short diagnostic, not a hiring prediction.",
     }
-    await repository.complete(diagnostic_session, result)
+
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
+        await repo.complete(diagnostic_id, result)
+
     # Record diagnostic completion for funnel observability.
     try:
         await record_event(user["id"], "diagnostic_completed", {"score": result.get("overall_score")})
@@ -281,8 +283,14 @@ async def complete_diagnostic(diagnostic_id: str, user=Depends(get_current_user)
 
 
 @router.get("/latest")
-async def latest_diagnostic(user=Depends(get_current_user), session=Depends(get_session)):
-    diagnostic_session = await AcademyDiagnosticSessionRepository(session).latest_completed(user["id"])
-    if not diagnostic_session:
-        return {"success": True, "result": None}
-    return {"success": True, "result": diagnostic_session.result}
+async def latest_diagnostic(user=Depends(get_current_user)):
+    async with get_session() as session:
+        repo = AcademyDiagnosticSessionRepository(session)
+
+        session = await repo.get_by_user(user["id"])
+        completed = [s for s in session if s.status == "completed"]
+        if not completed:
+            return {"success": True, "result": None}
+        # Return the most recently completed
+        completed.sort(key=lambda s: s.created_at, reverse=True)
+        return {"success": True, "result": completed[0].result}

@@ -260,15 +260,15 @@ async def get_user_prerequisite_learning_step(
     attempts. Lesson completion, XP and broad subject scores cannot certify
     prerequisite mastery.
     """
-    from app.database import learning_events_collection
+    from app.database import get_session
+    from app.repositories.learning import LearningAttemptRepository
+    from uuid import UUID
 
-    evidence_rows = await learning_events_collection().find({
-        "user_id": user_id,
-        "source": "question_bank",
-        "activity_type": "practice",
-        "question_id": {"$exists": True, "$nin": ["", None]},
-        "skill_id": {"$exists": True, "$nin": ["", None]},
-    }).sort("timestamp", -1).to_list(5000)
+    async with get_session() as session:
+        repo = LearningAttemptRepository(session)
+        evidence_rows = await repo.get_practice_evidence_by_user(
+            UUID(user_id), limit=5000
+        )
     evidence = aggregate_prerequisite_evidence(evidence_rows)
 
     plan = build_prerequisite_plan(target_skill_id, evidence)
@@ -344,3 +344,8 @@ async def get_user_prerequisite_learning_step(
         next_step["lesson"] = lesson
 
     return {"plan": plan, "next_step": next_step}
+
+
+async def SKILL_PREREQUISITES(user_id: str) -> dict:
+    """Stub for SKILL_PREREQUISITES."""
+    return {"user_id": user_id}

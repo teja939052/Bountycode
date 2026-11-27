@@ -209,3 +209,7 @@ class PrecomputedTestStore:
 
     def get_hidden_tests(self, problem_id: str) -> List[Dict[str, Any]]:
         return [tc for tc in self.get_tests(problem_id) if tc.get("is_hidden", False)]
+
+async def BehavioralJudge(user_id: str) -> dict:
+    """Stub for BehavioralJudge."""
+    return {"user_id": user_id}

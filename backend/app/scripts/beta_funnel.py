@@ -5,16 +5,19 @@ Run with::
     cd backend
     python -m app.scripts.beta_funnel
 
-Outputs funnel metrics from MongoDB analytics_events.
+Outputs funnel metrics from PostgreSQL analytics_events.
 """
 
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from collections import defaultdict
 
-from app.database import analytics_events_collection
+from sqlalchemy import select, func, and_
+
+from app.database import get_session
+from app.models.operations import AnalyticsEvent
 
 
 FUNNEL_EVENTS = [
@@ -29,35 +32,30 @@ FUNNEL_EVENTS = [
 
 async def get_funnel(days: int = 14) -> dict:
     since = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    since = since - __import__("datetime").timedelta(days=days)
+    since = since - timedelta(days=days)
 
-    pipeline = [
-        {"$match": {
-            "event": {"$in": FUNNEL_EVENTS},
-            "timestamp_dt": {"$gte": since},
-        }},
-        {"$sort": {"timestamp_dt": 1}},
-        {"$group": {
-            "_id": {"user_id": "$user_id", "event": "$event"},
-            "first_at": {"$min": "$timestamp_dt"},
-            "count": {"$sum": 1},
-        }},
-        {"$group": {
-            "_id": "$_id.event",
-            "users": {"$addToSet": "$_id.user_id"},
-            "total_occurrences": {"$sum": "$count"},
-        }},
-    ]
+    async with get_session() as session:
+        result = await session.execute(
+            select(
+                AnalyticsEvent.event_type,
+                func.count(func.distinct(AnalyticsEvent.user_id)).label("users"),
+                func.count(AnalyticsEvent.id).label("total_occurrences"),
+            )
+            .where(and_(
+                AnalyticsEvent.event_type.in_(FUNNEL_EVENTS),
+                AnalyticsEvent.created_at >= since,
+            ))
+            .group_by(AnalyticsEvent.event_type)
+        )
+        rows = result.all()
 
-    cursor = analytics_events_collection.aggregate(pipeline)
     results = {}
-    async for doc in cursor:
-        results[doc["_id"]] = {
-            "users": len(doc.get("users", [])),
-            "total_occurrences": doc.get("total_occurrences", 0),
+    for event_type, users, total_occurrences in rows:
+        results[event_type] = {
+            "users": users or 0,
+            "total_occurrences": total_occurrences or 0,
         }
 
-    # Build ordered funnel
     funnel = {}
     for event in FUNNEL_EVENTS:
         funnel[event] = results.get(event, {"users": 0, "total_occurrences": 0})
@@ -67,22 +65,24 @@ async def get_funnel(days: int = 14) -> dict:
 
 async def get_daily_signups(days: int = 14) -> dict:
     since = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    since = since - __import__("datetime").timedelta(days=days)
+    since = since - timedelta(days=days)
 
-    pipeline = [
-        {"$match": {
-            "event": "beta_signup_complete",
-            "timestamp_dt": {"$gte": since},
-        }},
-        {"$group": {
-            "_id": {"$dateToString": {"format": "%Y-%m-%d", "date": "$timestamp_dt"}},
-            "count": {"$sum": 1},
-        }},
-        {"$sort": {"_id": 1}},
-    ]
+    async with get_session() as session:
+        result = await session.execute(
+            select(
+                func.date(AnalyticsEvent.created_at).label("day"),
+                func.count(AnalyticsEvent.id).label("count"),
+            )
+            .where(and_(
+                AnalyticsEvent.event_type == "beta_signup_complete",
+                AnalyticsEvent.created_at >= since,
+            ))
+            .group_by(func.date(AnalyticsEvent.created_at))
+            .order_by(func.date(AnalyticsEvent.created_at))
+        )
+        rows = result.all()
 
-    cursor = analytics_events_collection.aggregate(pipeline)
-    return {doc["_id"]: doc["count"] async for doc in cursor}
+    return {str(row.day): row.count for row in rows}
 
 
 async def main():

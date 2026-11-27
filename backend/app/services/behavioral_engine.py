@@ -246,3 +246,8 @@ Evaluate this STAR answer."""},
         response = await chat_completion(messages)
         result = parse_json(response)
         return result.get("questions", [])
+
+
+async def BehavioralEngine(user_id: str) -> dict:
+    """Stub for BehavioralEngine."""
+    return {"user_id": user_id}

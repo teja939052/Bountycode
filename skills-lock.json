@@ -1,6 +1,20 @@
 {
   "version": 2,
   "skills": {
+    "data-investigation": {
+      "source": "Kilo-Org/skills",
+      "commit": "a30ff33da809171784aca50d1b5978cebc2185f1",
+      "sourceType": "github",
+      "skillPath": "skills/data-investigation/SKILL.md",
+      "computedHash": "80fe727b287bdca4184bd9938412d27924647ec6ab6dfcd5f7618c5d7ebdaf09"
+    },
+    "debugging-snowflake-queries": {
+      "source": "Kilo-Org/skills",
+      "commit": "a30ff33da809171784aca50d1b5978cebc2185f1",
+      "sourceType": "github",
+      "skillPath": "skills/debugging-snowflake-queries/SKILL.md",
+      "computedHash": "6e89f78906450f36551db93e91c01d1642d7b7e3328d89e0356c70d6384847aa"
+    },
     "fixing-accessibility": {
       "source": "ibelick/ui-skills",
       "sourceType": "github",
@@ -12,6 +26,13 @@
       "sourceType": "github",
       "skillPath": "skills/improve-ui/SKILL.md",
       "computedHash": "7f913010ca7e6b5c224d928d4f2500438d7daacebb25f00e2f4df3bed513d51d"
+    },
+    "jupyter-notebook": {
+      "source": "Kilo-Org/skills",
+      "commit": "a30ff33da809171784aca50d1b5978cebc2185f1",
+      "sourceType": "github",
+      "skillPath": "skills/jupyter-notebook/SKILL.md",
+      "computedHash": "0622aeda8a37596aa93e5b6353df21cfa66e13851bedfdec6412da34cb9d3603"
     }
   }
 }

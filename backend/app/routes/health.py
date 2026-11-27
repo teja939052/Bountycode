@@ -3,7 +3,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.middleware.auth import get_current_user, require_admin
 from app.services.health_checker import get_health_checker, init_health_checker
-from app.database import get_db
+from app.database import get_session
 
 router = APIRouter(prefix="/api/v1/health", tags=["health"])
 

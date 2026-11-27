@@ -7,20 +7,29 @@ import { ExternalLink, Send, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOp
 import useReducedMotion from "../hooks/useReducedMotion";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import SubmitReveal from "../components/SubmitReveal";
+import { Card, SectionHeader } from "../design-system/Card";
+import { Button } from "../design-system/Button";
+
+const DIFFICULTY_COLORS: Record<string, string> = {
+  easy: "bg-subject-verbal/10 text-subject-verbal border border-subject-verbal/20",
+  medium: "bg-subject-aptitude/10 text-subject-aptitude border border-subject-aptitude/20",
+  hard: "bg-subject-boss/10 text-subject-boss border border-subject-boss/20",
+  expert: "bg-subject-interview/10 text-subject-interview border border-subject-interview/20",
+};
 
 export default function PracticeMode() {
   const { questionId } = useParams();
   const navigate = useNavigate();
-  const [question, setQuestion] = useState(null);
+  const [question, setQuestion] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [answer, setAnswer] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [feedback, setFeedback] = useState(null);
+  const [feedback, setFeedback] = useState<any>(null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [showSubmitReveal, setShowSubmitReveal] = useState(false);
-  const [startTime, setStartTime] = useState(null);
+  const [startTime, setStartTime] = useState<number | null>(null);
   const reduced = useReducedMotion();
-  const textareaRef = useRef(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     loadQuestion();
@@ -72,133 +81,138 @@ export default function PracticeMode() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600" />
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
       </div>
     );
   }
 
   if (!question) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="card text-center py-12">
-          <BookOpen size={48} className="mx-auto text-brand-secondary mb-4" />
-          <p className="text-gray-500 mb-4">Question not found</p>
-          <Link to="/question-bank" className="text-primary-600 font-semibold hover:text-primary-700">
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
+        <Card tone="default" className="text-center py-12">
+          <BookOpen size={48} className="mx-auto text-text-muted mb-4" />
+          <p className="text-text-muted mb-4">Question not found</p>
+          <Link to="/question-bank" className="text-primary font-semibold hover:text-primary-dark">
             Back to Question Bank
           </Link>
-        </div>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-12 px-4">
+    <div className="min-h-screen bg-canvas py-6 px-3 sm:px-4">
       <div className="max-w-3xl mx-auto">
         <CelebrationOverlay show={showCelebration} type="perfect" message="Great Answer!" />
 
         <Link
           to="/question-bank"
-          className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-primary-600 mb-6"
+          className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:text-primary-dark mb-4 uppercase tracking-wider"
         >
           ← Back to Question Bank
         </Link>
 
         {/* Question Card */}
         <motion.div
-          className="card mb-6"
+          className="mb-4"
           initial={reduced ? {} : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 bg-surface-card/50 text-brand-secondary">
-                  {question.company}
-                </span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">
-                  {question.type}
-                </span>
-                <span className={`text-xs px-2 py-0.5 rounded-full ${
-                  question.difficulty === "easy" ? "bg-green-100 text-green-700"
-                  : question.difficulty === "medium" ? "bg-yellow-100 text-yellow-700"
-                  : "bg-red-100 text-red-700"
-                }`}>
-                  {question.difficulty}
-                </span>
+          <Card tone="default" interactive className="group">
+            <div className="flex items-start justify-between mb-3">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="text-[10px] px-2 py-0.5 rounded-full border border-border/50 text-text-secondary">
+                    {question.company}
+                  </span>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full border border-border/50 text-text-secondary ${TYPE_COLORS[question.type] || ""}`}>
+                    {question.type}
+                  </span>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full border border-border/50 text-text-secondary ${DIFFICULTY_COLORS[question.difficulty] || ""}`}>
+                    {question.difficulty}
+                  </span>
+                </div>
+                <h2 className="text-lg font-black text-text">{question.question_title}</h2>
               </div>
-              <h2 className="text-xl font-bold">{question.question_title}</h2>
             </div>
-          </div>
-
-          <a
-            href={question.question_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700 mt-2"
-          >
-            Open question on {question.source} <ExternalLink size={14} />
-          </a>
+            <a
+              href={question.question_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-dark mt-2"
+            >
+              Open question on {question.source} <ExternalLink size={14} />
+            </a>
+          </Card>
         </motion.div>
 
         {/* Write & Run Code */}
         {!feedback && (
           <motion.div
-            className="mb-6"
+            className="mb-4"
             initial={reduced ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
           >
-            <div className="flex items-center gap-2 mb-2">
-              <Terminal size={16} className="text-cyber-green" />
-              <h3 className="font-semibold text-brand-primary">Write & Run Code</h3>
-            </div>
-            <PracticeConsole
-              height={280}
-              title="Code Playground"
-              onResult={() => {}}
-            />
+            <Card pad="md" className="relative overflow-hidden">
+              <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
+              <div className="relative z-10 flex items-center gap-2 mb-3">
+                <Terminal size={16} className="text-primary" />
+                <h3 className="font-bold text-text">Write & Run Code</h3>
+              </div>
+              <PracticeConsole
+                height={280}
+                title="Code Playground"
+                onResult={() => {}}
+              />
+            </Card>
           </motion.div>
         )}
 
         {/* Answer Input */}
         {!feedback && (
           <motion.div
-            className="card mb-6"
+            className="mb-4"
             initial={reduced ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <label className="block text-sm font-medium text-brand-primary mb-2">
-              Your Answer / Approach
-            </label>
-            <textarea
-              ref={textareaRef}
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              placeholder="Write your approach, code, or answer here. Be as detailed as possible..."
-              className="w-full px-4 py-3 border border-brand-primary/20 border-brand-primary/15 rounded-lg focus:ring-2 focus:ring-primary-500 bg-surface-card bg-surface-card min-h-[200px] resize-y"
-              rows={8}
-            />
-            <div className="flex items-center justify-between mt-4">
-              <p className="text-sm text-gray-500">
-                {answer.length > 0 ? `${answer.length} characters` : "Be specific for better feedback"}
-              </p>
-              <button
+            <Card pad="md">
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-text-muted mb-1">
+                    Your Answer / Approach
+                  </label>
+                </div>
+                <span className="text-[10px] font-mono text-text-muted">
+                  {answer.length > 0 ? `${answer.length} characters` : "Be specific for better feedback"}
+                </span>
+              </div>
+              <textarea
+                ref={textareaRef}
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                placeholder="Write your approach, code, or answer here. Be as detailed as possible..."
+                className="w-full px-3 py-2 border border-border/50 rounded-xl bg-surfaceHover focus:border-primary focus:ring-1 focus:ring-primary text-text text-sm placeholder-text-text-muted min-h-[200px] resize-y"
+                rows={8}
+              />
+              <Button
+                variant="primary"
                 onClick={handleSubmit}
                 disabled={!answer.trim() || submitting}
-                className="flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 disabled:opacity-50 transition-colors"
+                className="w-full mt-4 text-sm font-bold shadow-primary"
               >
                 {submitting ? (
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-slate-200" />
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white/40" />
                 ) : (
                   <>
                     <Send size={18} />
                     Get Feedback
                   </>
                 )}
-              </button>
-            </div>
+              </Button>
+            </Card>
           </motion.div>
         )}
 
@@ -211,39 +225,42 @@ export default function PracticeMode() {
               animate={{ opacity: 1, y: 0 }}
             >
               {/* Score Card */}
-              <div className={`card text-center py-8 ${
-                feedback.score >= 7 ? "bg-gradient-to-r from-green-500 to-emerald-600" :
-                feedback.score >= 4 ? "bg-gradient-to-r from-yellow-500 to-orange-500" :
-                "bg-gradient-to-r from-red-500 to-pink-500"
-              } text-text-primary`}>
+              <div className={`text-center py-8 rounded-2xl border border-border/50 ${
+                feedback.score >= 7 ? "bg-subject-verbal/10 border-subject-verbal/30" :
+                feedback.score >= 4 ? "bg-subject-aptitude/10 border-subject-aptitude/30" :
+                "bg-subject-boss/10 border-subject-boss/30"
+              } shadow-card`}>
                 <motion.p
-                  className="text-6xl font-bold mb-2"
+                  className="text-5xl font-black mb-2"
                   initial={reduced ? {} : { scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
                 >
                   {feedback.score}/10
                 </motion.p>
-                <p className="text-lg">
+                <p className="text-lg font-semibold text-text">
                   {feedback.score >= 8 ? "Excellent work!" : feedback.score >= 5 ? "Good attempt!" : "Keep practicing!"}
                 </p>
                 {feedback.xp_gained > 0 && (
-                  <p className="text-sm mt-2 text-text-primary/80">+{feedback.xp_gained} Diamonds earned</p>
+                  <p className="text-sm text-primary mt-2 font-bold">+{feedback.xp_gained} XP earned</p>
                 )}
               </div>
 
               {/* Feedback Details */}
-              <div className="card">
-                <h3 className="font-bold mb-3">AI Feedback</h3>
-                <p className="text-brand-secondary mb-4">{feedback.feedback}</p>
+              <Card pad="md">
+                <h3 className="font-black mb-3 text-text">AI Feedback</h3>
+                <p className="text-text-secondary mb-4 leading-relaxed">{feedback.feedback}</p>
 
                 {feedback.strengths?.length > 0 && (
                   <div className="mb-4">
-                    <h4 className="font-semibold text-sm text-green-600 mb-2">Strengths</h4>
+                    <h4 className="font-bold text-xs uppercase tracking-wider text-subject-verbal mb-2 flex items-center gap-1">
+                      <CheckCircle size={12} className="text-subject-verbal" />
+                      Strengths
+                    </h4>
                     <ul className="space-y-1">
-                      {feedback.strengths.map((s, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-brand-secondary">
-                          <CheckCircle size={14} className="text-green-500 mt-0.5 shrink-0" />
+                      {feedback.strengths.map((s: string, i: number) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
+                          <CheckCircle size={14} className="text-subject-verbal mt-0.5 shrink-0" />
                           {s}
                         </li>
                       ))}
@@ -253,11 +270,14 @@ export default function PracticeMode() {
 
                 {feedback.improvements?.length > 0 && (
                   <div className="mb-4">
-                    <h4 className="font-semibold text-sm text-orange-600 mb-2">Areas to Improve</h4>
+                    <h4 className="font-bold text-xs uppercase tracking-wider text-subject-boss mb-2 flex items-center gap-1">
+                      <XCircle size={12} className="text-subject-boss" />
+                      Areas to Improve
+                    </h4>
                     <ul className="space-y-1">
-                      {feedback.improvements.map((s, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-brand-secondary">
-                          <XCircle size={14} className="text-orange-500 mt-0.5 shrink-0" />
+                      {feedback.improvements.map((s: string, i: number) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-text-secondary">
+                          <XCircle size={14} className="text-subject-boss mt-0.5 shrink-0" />
                           {s}
                         </li>
                       ))}
@@ -266,65 +286,68 @@ export default function PracticeMode() {
                 )}
 
                 {feedback.better_approach && (
-                  <div className="bg-blue-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-sm text-blue-600 mb-2">Better Approach</h4>
-                    <p className="text-sm text-brand-secondary">{feedback.better_approach}</p>
+                  <div className="bg-primary/10 border border-primary/20 rounded-xl p-4">
+                    <h4 className="font-bold text-xs uppercase tracking-wider text-primary mb-2">Better Approach</h4>
+                    <p className="text-sm text-text-secondary">{feedback.better_approach}</p>
                   </div>
                 )}
 
                 {feedback.explanation && (
-                  <div className="bg-emerald-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-sm text-emerald-600 mb-2">Concept Explained</h4>
-                    <p className="text-sm text-brand-secondary mb-2">{feedback.explanation.approach}</p>
+                  <div className="bg-subject-verbal/10 border border-subject-verbal/20 rounded-xl p-4">
+                    <h4 className="font-bold text-xs uppercase tracking-wider text-subject-verbal mb-2">Concept Explained</h4>
+                    <p className="text-sm text-text-secondary mb-2">{feedback.explanation.approach}</p>
                     {feedback.explanation.steps?.length > 0 && (
-                      <ol className="list-decimal list-inside space-y-1 mb-2">
-                        {feedback.explanation.steps.map((step, i) => (
-                          <li key={i} className="text-sm text-brand-secondary">{step}</li>
+                      <ol className="list-decimal list-inside space-y-1 mb-2 text-sm text-text-secondary">
+                        {feedback.explanation.steps.map((step: string, i: number) => (
+                          <li key={i}>{step}</li>
                         ))}
                       </ol>
                     )}
                     {feedback.explanation.common_mistakes?.length > 0 && (
                       <ul className="space-y-1">
-                        {feedback.explanation.common_mistakes.map((m, i) => (
-                          <li key={i} className="text-sm text-red-500">• {m}</li>
+                        {feedback.explanation.common_mistakes.map((m: string, i: number) => (
+                          <li key={i} className="text-sm text-subject-boss">• {m}</li>
                         ))}
                       </ul>
                     )}
                   </div>
                 )}
-              </div>
+              </Card>
 
               {/* Actions */}
-              <div className="flex gap-3">
-                <button
-                  onClick={handleTryAgain}
-                  className="flex items-center gap-2 bg-surface-card/50 bg-surface-card text-brand-secondary px-6 py-3 rounded-lg font-semibold hover:bg-surface-card/50 transition-colors"
-                >
-                  <RotateCcw size={18} />
+              <div className="flex gap-2">
+                <Button variant="outline" onClick={handleTryAgain} size="md" leftIcon={<RotateCcw size={18} />}>
                   Try Again
-                </button>
+                </Button>
                 <Link
                   to="/question-bank"
-                  className="flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+                  className="flex items-center gap-2 bg-primary text-text-primary px-4 py-3 rounded-xl font-bold hover:bg-primary-dark shadow-primary transition-all"
                 >
-                  Next Question
-                  <ArrowRight size={18} />
+                  Next Question <ArrowRight size={18} />
                 </Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
 
-      {showSubmitReveal && feedback && (
-        <SubmitReveal
-          result={feedback}
-          question={question}
-          onClose={() => setShowSubmitReveal(false)}
-          onTryAgain={handleTryAgain}
-          onNext={handleNextProblem}
-        />
-      )}
+        {showSubmitReveal && feedback && (
+          <SubmitReveal
+            result={feedback}
+            question={question}
+            onClose={() => setShowSubmitReveal(false)}
+            onTryAgain={handleTryAgain}
+            onNext={handleNextProblem}
+          />
+        )}
+      </div>
     </div>
   );
 }
+
+const TYPE_COLORS: Record<string, string> = {
+  coding: "bg-subject-coding/10 text-subject-coding border border-subject-coding/20",
+  aptitude: "bg-subject-aptitude/10 text-subject-aptitude border border-subject-aptitude/20",
+  behavioral: "bg-subject-reasoning/10 text-subject-reasoning border border-subject-reasoning/20",
+  system_design: "bg-subject-interview/10 text-subject-interview border border-subject-interview/20",
+  hr: "bg-subject-reasoning/10 text-subject-reasoning border border-subject-reasoning/20",
+};

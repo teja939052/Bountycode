@@ -1,4 +1,4 @@
-﻿"""Deterministic personalization engine.
+"""Deterministic personalization engine.
 
 Produces explainable next-action recommendations from measured learner evidence.
 Every recommendation carries reason codes so the learner understands *why* they

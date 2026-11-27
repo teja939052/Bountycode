@@ -157,3 +157,97 @@ class UserIdentityMap(Base):
         PG_UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), unique=True, nullable=False
     )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+
+class AcademyDiagnosticSession(Base):
+    """Academy diagnostic session records — migrated from MongoDB academy_diagnostic_sessions."""
+
+    __tablename__ = "academy_diagnostic_sessions"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    diagnostic_id: Mapped[str] = mapped_column(String(120), nullable=False, unique=True)
+    question_ids: Mapped[list[str]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    answers: Mapped[list[dict]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    status: Mapped[str] = mapped_column(String(50), default="in_progress", nullable=False)
+    result: Mapped[Optional[dict]] = mapped_column(JSONB, default=None, nullable=True)
+    completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
+    )
+
+    user: Mapped["User"] = relationship(back_populates="skill_states", cascade="all, delete-orphan")
+
+
+class AcademyLearnerProfile(Base):
+    """Academy learner profile — migrated from MongoDB academy_learner_profiles."""
+
+    __tablename__ = "academy_learner_profiles"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        unique=True,
+        index=True,
+    )
+    target_role: Mapped[str] = mapped_column(String(50), default="undecided", nullable=False)
+    target_companies: Mapped[list[str]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    assessment_track: Mapped[str] = mapped_column(String(50), default="service_company_core", nullable=False)
+    assessment_date: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    experience_level: Mapped[str] = mapped_column(String(50), default="absolute_beginner", nullable=False)
+    preferred_language: Mapped[str] = mapped_column(String(20), default="cpp", nullable=False)
+    daily_minutes: Mapped[int] = mapped_column(Integer, default=60, nullable=False)
+    weekly_days: Mapped[int] = mapped_column(Integer, default=5, nullable=False)
+    device_type: Mapped[str] = mapped_column(String(20), default="laptop", nullable=False)
+    local_runtime_available: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    accessibility_needs: Mapped[str] = mapped_column(String(240), default="", nullable=False)
+    placement_date: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    learning_preference: Mapped[str] = mapped_column(String(20), default="mixed", nullable=False)
+    timezone: Mapped[str] = mapped_column(String(50), default="Asia/Kolkata", nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
+    )
+
+    user: Mapped["User"] = relationship(back_populates="skill_states", cascade="all, delete-orphan")
+
+
+class AcademyLearningPlan(Base):
+    """Academy learning plan records — migrated from MongoDB academy_learning_plans."""
+
+    __tablename__ = "academy_learning_plans"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    plan: Mapped[dict] = mapped_column(JSONB, default=dict, server_default=text("'{}'::jsonb"), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
+    )
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+    user: Mapped["User"] = relationship(back_populates="skill_states", cascade="all, delete-orphan")

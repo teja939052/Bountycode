@@ -3,32 +3,22 @@
 The profile is learner-owned configuration, not a score or a placement guarantee.
 Only authenticated users can read or update their own profile.
 """
-from datetime import date
+from datetime import date, datetime, timezone
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field, field_validator
 
-from app.middleware.auth import get_current_user
 from app.database import get_session
-from app.repositories.academy import AcademyLearnerProfileRepository, model_dict
+from app.middleware.auth import get_current_user
+from app.repositories.learning import AcademyLearnerProfileRepository
 
 router = APIRouter(prefix="/api/v1/academy/profile", tags=["academy-profile"])
 
-ALLOWED_ROLES = {
-    "software_engineer", "full_stack_developer", "backend_developer",
-    "frontend_developer", "qa_engineer", "data_analyst", "devops_engineer",
-    "support_engineer", "undecided",
-}
-ALLOWED_LEVELS = {"absolute_beginner", "beginner", "intermediate", "advanced"}
-ALLOWED_LANGUAGES = {"c", "cpp", "java", "python", "javascript"}
-ALLOWED_PREFERENCES = {"visual", "reading", "hands_on", "examples_first", "mixed"}
-ALLOWED_ASSESSMENT_TRACKS = {
-    "service_company_core", "tcs_foundation", "tcs_advanced", "infosys_infytq",
-    "hackwithinfy", "wipro", "accenture", "cognizant",
-}
-ALLOWED_DEVICES = {"laptop", "desktop", "mobile_only"}
 
+def _get_profile_repo(session):
+    from app.repositories.learning import AcademyLearnerProfileRepository
+    return AcademyLearnerProfileRepository(session)
 
 class LearnerProfileInput(BaseModel):
     target_role: str = "undecided"
@@ -121,9 +111,22 @@ class LearnerProfileInput(BaseModel):
         return value
 
 
+ALLOWED_ROLES = {
+    "software_engineer", "full_stack_developer", "backend_developer",
+    "frontend_developer", "qa_engineer", "data_analyst", "devops_engineer",
+    "support_engineer", "undecided",
+}
+ALLOWED_LEVELS = {"absolute_beginner", "beginner", "intermediate", "advanced"}
+ALLOWED_LANGUAGES = {"c", "cpp", "java", "python", "javascript"}
+ALLOWED_PREFERENCES = {"visual", "reading", "hands_on", "examples_first", "mixed"}
+ALLOWED_ASSESSMENT_TRACKS = {
+    "service_company_core", "tcs_foundation", "tcs_advanced", "infosys_infytq",
+    "hackwithinfy", "wipro", "accenture", "cognizant",
+}
+ALLOWED_DEVICES = {"laptop", "desktop", "mobile_only"}
+
+
 def _serialize(doc: Optional[dict]) -> dict:
-    if doc is not None and not isinstance(doc, dict):
-        doc = model_dict(doc)
     if not doc:
         return {"profile": None, "onboarding_complete": False}
     result = {key: value for key, value in doc.items() if key not in {"_id", "user_id"}}
@@ -131,16 +134,23 @@ def _serialize(doc: Optional[dict]) -> dict:
 
 
 @router.get("")
-async def get_learner_profile(user=Depends(get_current_user), session=Depends(get_session)):
-    doc = await AcademyLearnerProfileRepository(session).get_by_user(user["id"])
-    return {"success": True, "data": _serialize(doc)}
+async def get_learner_profile(user=Depends(get_current_user)):
+    async with get_session() as session:
+        profile = await _get_profile_repo(session).get_by_user(user["id"])
+    if not profile:
+        raise HTTPException(status_code=404, detail="Profile not found. Complete onboarding first.")
+    return {"success": True, "data": _serialize(vars(profile))}
 
 
 @router.put("")
-async def save_learner_profile(payload: LearnerProfileInput, user=Depends(get_current_user), session=Depends(get_session)):
+async def save_learner_profile(payload: LearnerProfileInput, user=Depends(get_current_user)):
+    now = datetime.now(timezone.utc).isoformat()
     profile = payload.model_dump(mode="json")
     profile.update({
+        "user_id": user["id"],
         "onboarding_complete": True,
+        "updated_at": now,
     })
-    saved = await AcademyLearnerProfileRepository(session).upsert(user["id"], profile)
-    return {"success": True, "data": _serialize(saved)}
+    async with get_session() as session:
+        await _get_profile_repo(session).update(user["id"], profile)
+    return {"success": True, "data": _serialize(profile.model_dump(mode="json"))}

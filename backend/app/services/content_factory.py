@@ -50,7 +50,7 @@ from app.services.content_corpus import (
 from app.services.ai_core import chat_completion
 from app.services.content_verification import ContentVerifier
 from app.services.gamification import record_practice
-from app.database import users_collection
+from app.database import get_session
 
 logger = logging.getLogger(__name__)
 
@@ -1051,3 +1051,13 @@ def validate_generation_readonly() -> Dict[str, Any]:
         "checks": checks,
         "note": "Production mode must be explicitly enabled to write generated content.",
     }
+
+
+async def MODE_DRY_RUN(user_id: str) -> dict:
+    """Stub for MODE_DRY_RUN."""
+    return {"user_id": user_id}
+
+
+async def MODE_PRODUCTION(user_id: str) -> dict:
+    """Stub for MODE_PRODUCTION."""
+    return {"user_id": user_id}

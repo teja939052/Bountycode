@@ -1,15 +1,15 @@
-﻿from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Any, Optional
+
+from app.database import get_session
+from sqlalchemy import select
 
 from app.middleware.auth import get_current_user
 from app.services.exam_engine import (
     start_exam, submit_answer, complete_exam, get_report, list_attempts,
 )
 from app.services.diagnostic import diagnose_exam
-from app.database import get_session
-from app.repositories.exam import PracticeExamAttemptRepository
-from app.services.question_store import get_question_for_serving
 
 router = APIRouter(prefix="/api/v1/exam", tags=["exam"])
 
@@ -98,25 +98,21 @@ async def reassess(topic: str, count: int = 5, user=Depends(get_current_user)):
 
 @router.post("/diagnose/{attempt_id}")
 async def diagnose(attempt_id: str, user=Depends(get_current_user)):
-    from uuid import UUID
-    try:
-        attempt_uuid = UUID(attempt_id)
-        user_uuid = UUID(str(user["id"]))
-    except (ValueError, TypeError) as exc:
-        raise HTTPException(status_code=400, detail="invalid attempt id") from exc
-    async for session in get_session():
-        attempt = await PracticeExamAttemptRepository(session).get_by_id_and_user(
-            attempt_uuid, user_uuid
+    async with get_session() as session:
+        from sqlalchemy import select
+        from app.models.assessments import InterviewSession
+        result = await session.execute(
+            select(InterviewSession).where(
+                InterviewSession.id == attempt_id,
+                InterviewSession.user_id == user["id"],
+            )
         )
-        if not attempt:
-            raise HTTPException(status_code=404, detail="attempt not found")
-        if attempt.status != "completed":
-            raise HTTPException(status_code=400, detail="attempt not completed")
-        questions = [
-            question for question_id in (attempt.question_ids or [])
-            if (question := get_question_for_serving(str(question_id))) is not None
-        ]
-        results = diagnose_exam(
-            questions, attempt.answers or {}, {}, attempt_id, activity_id=None
-        )
-        return {"attempt_id": attempt_id, "diagnostics": results}
+        attempt = result.scalar_one_or_none()
+    if not attempt:
+        raise HTTPException(status_code=404, detail="attempt not found")
+    if not attempt.completed_at:
+        raise HTTPException(status_code=400, detail="attempt not completed")
+    prev = {}
+    results = diagnose_exam(attempt.questions, attempt.get("answers") or {},
+                            prev, attempt_id, activity_id=None)
+    return {"attempt_id": attempt_id, "diagnostics": results}

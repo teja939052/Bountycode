@@ -96,3 +96,12 @@ __all__ = [
     "improve_code",
     "generate_setup_instructions",
 ]
+
+async def chat_completion(user_id: str) -> dict:
+    """Stub for chat_completion."""
+    return {"user_id": user_id}
+
+
+async def parse_json(user_id: str) -> dict:
+    """Stub for parse_json."""
+    return {"user_id": user_id}

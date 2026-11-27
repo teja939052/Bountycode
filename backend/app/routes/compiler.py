@@ -9,7 +9,7 @@ from app.config import get_settings
 from app.services.feature_flags import is_feature_enabled
 
 router = APIRouter(prefix="/api/v1/compiler", tags=["compiler"])
-engine = CodeExecutionEngine()
+engine = CodeExecutionEngine(user_id="system")
 job_queue = get_job_queue()
 ws_manager = get_connection_manager()
 settings = get_settings()

@@ -180,3 +180,13 @@ def rank_actions(
         "policy_version": weights.version,
         "policy_note": "Heuristic v1; validate against a fixed-curriculum baseline.",
     }
+
+
+async def DEFAULT_PLANNER_WEIGHTS(user_id: str) -> dict:
+    """Stub for DEFAULT_PLANNER_WEIGHTS."""
+    return {"user_id": user_id}
+
+
+async def PlannerWeights(user_id: str) -> dict:
+    """Stub for PlannerWeights."""
+    return {"user_id": user_id}

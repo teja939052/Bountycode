@@ -3,5 +3,8 @@
   "private": true,
   "scripts": {
     "build": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "supabase": "^3.3.0"
   }
 }

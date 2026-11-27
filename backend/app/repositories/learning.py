@@ -20,6 +20,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import RepositoryBase
 from app.models.learning import (
     DailyChallengeUser,
+    LearningModule,
+    UserLearningProgress,
     Skill,
     SkillPrerequisite,
     LearnerSkillState,
@@ -32,7 +34,7 @@ from app.models.learning import (
     Skill,
     SkillPrerequisite,
 )
-from app.models.identity import User
+from app.models.identity import User, AcademyDiagnosticSession, AcademyLearningPlan, AcademyLearnerProfile
 
 
 # ════════════════════════════════════════════════════════════════════════════════
@@ -220,6 +222,39 @@ class LearningAttemptRepository(RepositoryBase):
             query = query.where(LearningAttempt.passed == True)  # noqa: E712
         result = await self.session.execute(query)
         return result.scalar_one()
+
+    async def get_practice_evidence_by_user(
+        self,
+        user_id: UUID,
+        limit: int = 5000,
+    ) -> List[dict]:
+        """Return practice evidence rows for prerequisite evaluation.
+
+        Each row is a dict with question_id, skill_id (str), score (float),
+        ordered newest first — mirrors the old learning_events_collection shape.
+        """
+        result = await self.session.execute(
+            select(
+                LearningAttempt.question_id,
+                LearningAttempt.skill_id,
+                LearningAttempt.score,
+            )
+            .where(LearningAttempt.user_id == user_id)
+            .where(LearningAttempt.activity_type == "practice")
+            .where(LearningAttempt.question_id.is_not(None))
+            .where(LearningAttempt.question_id != "")
+            .where(LearningAttempt.skill_id.is_not(None))
+            .order_by(desc(LearningAttempt.created_at))
+            .limit(limit)
+        )
+        return [
+            {
+                "question_id": row.question_id,
+                "skill_id": str(row.skill_id) if row.skill_id else "",
+                "score": float(row.score or 0),
+            }
+            for row in result.all()
+        ]
 
 
 # ════════════════════════════════════════════════════════════════════════════════
@@ -555,3 +590,323 @@ class DailyChallengeUserRepository(RepositoryBase):
             .returning(DailyChallengeUser)
         )
         return result.scalar_one_or_none()
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# LEARNING MODULE REPOSITORY
+# ══════════════════════════════════════════════════════════════════════════════
+
+class LearningModuleRepository(RepositoryBase):
+    """Repository for learning module definitions — replaces learning_modules."""
+
+    async def get_by_id(self, module_id: UUID) -> Optional[LearningModule]:
+        result = await self.session.execute(
+            select(LearningModule).where(LearningModule.id == module_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def list(
+        self,
+        filters: dict = None,
+        skip: int = 0,
+        limit: int = 50,
+    ) -> List[LearningModule]:
+        query = select(LearningModule)
+        if filters:
+            for key, value in filters.items():
+                if hasattr(LearningModule, key):
+                    query = query.where(getattr(LearningModule, key) == value)
+        result = await self.session.execute(query.offset(skip).limit(limit))
+        return result.scalars().all()
+
+    async def count(self, filters: dict = None) -> int:
+        query = select(func.count(LearningModule.id))
+        if filters:
+            for key, value in filters.items():
+                if hasattr(LearningModule, key):
+                    query = query.where(getattr(LearningModule, key) == value)
+        result = await self.session.execute(query)
+        return result.scalar_one()
+
+    async def create(self, module_data: dict) -> LearningModule:
+        module = LearningModule(**module_data)
+        self.session.add(module)
+        await self.flush()
+        return module
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# USER LEARNING PROGRESS REPOSITORY
+# ══════════════════════════════════════════════════════════════════════════════
+
+class UserLearningProgressRepository(RepositoryBase):
+    """Repository for user learning progress — migrated from user_learning_progress."""
+
+    async def get_by_user_and_module(
+        self, user_id: UUID, module_id: UUID
+    ) -> Optional[UserLearningProgress]:
+        result = await self.session.execute(
+            select(UserLearningProgress).where(
+                UserLearningProgress.user_id == user_id,
+                UserLearningProgress.module_id == module_id,
+            )
+        )
+        return result.scalar_one_or_none()
+
+    async def list_by_user(
+        self, user_id: UUID, limit: int = 50, offset: int = 0
+    ) -> List[UserLearningProgress]:
+        result = await self.session.execute(
+            select(UserLearningProgress)
+            .where(UserLearningProgress.user_id == user_id)
+            .order_by(desc(UserLearningProgress.created_at))
+            .limit(limit)
+            .offset(offset)
+        )
+        return result.scalars().all()
+
+    async def create(self, data: dict) -> UserLearningProgress:
+        progress = UserLearningProgress(**data)
+        self.session.add(progress)
+        await self.flush()
+        return progress
+
+    async def update(
+        self,
+        module_id: UUID,
+        updates: dict,
+    ) -> Optional[UserLearningProgress]:
+        result = await self.session.execute(
+            update(UserLearningProgress)
+            .where(UserLearningProgress.module_id == module_id)
+            .values(**updates)
+            .returning(UserLearningProgress)
+        )
+        return result.scalar_one_or_none()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ACADEMY LEARNING PLAN REPOSITORY
+# ══════════════════════════════════════════════════════════════════════════
+
+class AcademyLearningPlanRepository(RepositoryBase):
+    """Repository for academy learning plans — replaces academy_learning_plans."""
+
+    async def get_by_user(self, user_id: UUID) -> Optional[AcademyLearningPlan]:
+        result = await self.session.execute(
+            select(AcademyLearningPlan).where(AcademyLearningPlan.user_id == user_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def get_active(self, user_id: UUID) -> Optional[AcademyLearningPlan]:
+        result = await self.session.execute(
+            select(AcademyLearningPlan).where(
+                AcademyLearningPlan.user_id == user_id,
+                AcademyLearningPlan.plan.has_key("generated_at"),
+            )
+        )
+        return result.scalar_one_or_none()
+
+    async def create(
+        self,
+        user_id: UUID,
+        plan: dict,
+    ) -> AcademyLearningPlan:
+        plan_doc = AcademyLearningPlan(
+            user_id=user_id,
+            plan=plan,
+        )
+        self.session.add(plan_doc)
+        await self.flush()
+        return plan_doc
+
+    async def update(
+        self,
+        user_id: UUID,
+        plan: dict,
+    ) -> Optional[AcademyLearningPlan]:
+        plan_doc = await self.get_by_user(user_id)
+        if not plan_doc:
+            return None
+        plan_doc.plan = plan
+        plan_doc.updated_at = datetime.now(timezone.utc)
+        await self.flush()
+        return plan_doc
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# ACADEMY LEARNER PROFILE REPOSITORY
+# ══════════════════════════════════════════════════════════════════════════
+
+class AcademyLearnerProfileRepository(RepositoryBase):
+    """Repository for academy learner profiles — replaces academy_learner_profiles."""
+
+    async def get_by_user(self, user_id: UUID) -> Optional[AcademyLearnerProfile]:
+        result = await self.session.execute(
+            select(AcademyLearnerProfile).where(AcademyLearnerProfile.user_id == user_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def get_active_by_user(self, user_id: UUID) -> Optional[AcademyLearnerProfile]:
+        result = await self.session.execute(
+            select(AcademyLearnerProfile).where(AcademyLearnerProfile.user_id == user_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def create(
+        self,
+        user_id: UUID,
+        profile_data: dict,
+    ) -> AcademyLearnerProfile:
+        profile = AcademyLearnerProfile(
+            user_id=user_id,
+            **profile_data,
+        )
+        self.session.add(profile)
+        await self.flush()
+        return profile
+
+    async def update(
+        self,
+        user_id: UUID,
+        profile_data: dict,
+    ) -> Optional[AcademyLearnerProfile]:
+        profile = await self.get_by_user(user_id)
+        if not profile:
+            return None
+        for key, value in profile_data.items():
+            setattr(profile, key, value)
+        profile.updated_at = datetime.now(timezone.utc)
+        await self.flush()
+        return profile
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# ACADEMY DIAGNOSTIC SESSION REPOSITORY
+# ════════════════════════════════════════════════════════════════════════════
+
+class AcademyDiagnosticSessionRepository(RepositoryBase):
+    """Repository for academy diagnostic sessions — replaces academy_diagnostic_sessions."""
+
+    async def get_by_user(self, user_id: UUID) -> List[AcademyDiagnosticSession]:
+        result = await self.session.execute(
+            select(AcademyDiagnosticSession).where(AcademyDiagnosticSession.user_id == user_id)
+        )
+        return result.scalars().all()
+
+    async def get_by_diagnostic_id(self, diagnostic_id: str) -> Optional[AcademyDiagnosticSession]:
+        result = await self.session.execute(
+            select(AcademyDiagnosticSession).where(AcademyDiagnosticSession.diagnostic_id == diagnostic_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def get_active_by_user(self, user_id: UUID) -> Optional[AcademyDiagnosticSession]:
+        result = await self.session.execute(
+            select(AcademyDiagnosticSession)
+            .where(AcademyDiagnosticSession.user_id == user_id, AcademyDiagnosticSession.status == "in_progress")
+        )
+        return result.scalar_one_or_none()
+
+    async def create(
+        self,
+        user_id: UUID,
+        diagnostic_id: str,
+        question_ids: list,
+    ) -> AcademyDiagnosticSession:
+        session = AcademyDiagnosticSession(
+            user_id=user_id,
+            diagnostic_id=diagnostic_id,
+            question_ids=question_ids,
+            answers=[],
+            status="in_progress",
+        )
+        self.session.add(session)
+        await self.flush()
+        return session
+
+    async def add_answer(
+        self,
+        diagnostic_id: str,
+        answer: dict,
+    ) -> Optional[AcademyDiagnosticSession]:
+        session = await self.get_by_diagnostic_id(diagnostic_id)
+        if not session:
+            return None
+        session.answers.append(answer)
+        await self.flush()
+        return session
+
+    async def complete(
+        self,
+        diagnostic_id: str,
+        result: dict,
+    ) -> Optional[AcademyDiagnosticSession]:
+        session = await self.get_by_diagnostic_id(diagnostic_id)
+        if not session:
+            return None
+        session.status = "completed"
+        session.result = result
+        session.completed_at = datetime.now(timezone.utc)
+        await self.flush()
+        return session
+
+    async def update_answers(
+        self,
+        diagnostic_id: str,
+        answers: list,
+    ) -> Optional[AcademyDiagnosticSession]:
+        session = await self.get_by_diagnostic_id(diagnostic_id)
+        if not session:
+            return None
+        session.answers = answers
+        await self.flush()
+        return session
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ACADEMY LEARNING PLAN REPOSITORY
+# ═══════════════════════════════════════════════════════════════════════════
+
+class AcademyLearningPlanRepository(RepositoryBase):
+    """Repository for academy learning plans — replaces academy_learning_plans."""
+
+    async def get_by_user(self, user_id: UUID) -> Optional[AcademyLearningPlan]:
+        result = await self.session.execute(
+            select(AcademyLearningPlan).where(AcademyLearningPlan.user_id == user_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def get_active(self, user_id: UUID) -> Optional[AcademyLearningPlan]:
+        result = await self.session.execute(
+            select(AcademyLearningPlan).where(
+                AcademyLearningPlan.user_id == user_id,
+                AcademyLearningPlan.plan.has_key("generated_at"),
+            )
+        )
+        return result.scalar_one_or_none()
+
+    async def create(
+        self,
+        user_id: UUID,
+        plan: dict,
+    ) -> AcademyLearningPlan:
+        plan_doc = AcademyLearningPlan(
+            user_id=user_id,
+            plan=plan,
+        )
+        self.session.add(plan_doc)
+        await self.flush()
+        return plan_doc
+
+    async def update(
+        self,
+        user_id: UUID,
+        plan: dict,
+    ) -> Optional[AcademyLearningPlan]:
+        plan_doc = await self.get_by_user(user_id)
+        if not plan_doc:
+            return None
+        plan_doc.plan = plan
+        plan_doc.updated_at = datetime.now(timezone.utc)
+        await self.flush()
+        return plan_doc

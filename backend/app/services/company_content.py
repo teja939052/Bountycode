@@ -161,3 +161,8 @@ class CompanyContentAnalyzer:
             if section_key.lower() in (q_topic + " " + q_sub):
                 count += 1
         return count
+
+
+async def CompanyContentAnalyzer(user_id: str) -> dict:
+    """Stub for CompanyContentAnalyzer."""
+    return {"user_id": user_id}

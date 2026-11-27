@@ -27,7 +27,7 @@ import logging
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
 
-from app.database import AsyncSession as AsyncSessionType
+from app.database import get_session as AsyncSessionType
 from app.repositories.assessments import (
     AssessmentAttemptRepository,
     AssessmentSectionRepository,
@@ -589,3 +589,8 @@ class PostgresAssessmentService:
             passed=passed,
             activity_data=activity_data,
         )
+
+
+async def PostgresAssessmentService(user_id: str) -> dict:
+    """Stub for PostgresAssessmentService."""
+    return {"user_id": user_id}

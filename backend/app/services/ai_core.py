@@ -507,3 +507,22 @@ def parse_json(text: str) -> Dict[str, Any]:
 
     logger.error(f"Failed to parse JSON from: {original[:200]}...")
     raise ValueError(f"Could not parse JSON from AI response: {original[:200]}...")
+
+async def COMPANY_TAGS(user_id: str) -> dict:
+    """Stub for COMPANY_TAGS."""
+    return {"user_id": user_id}
+
+
+async def FALLBACK_MODELS(user_id: str) -> dict:
+    """Stub for FALLBACK_MODELS."""
+    return {"user_id": user_id}
+
+
+async def MAX_RETRIES(user_id: str) -> dict:
+    """Stub for MAX_RETRIES."""
+    return {"user_id": user_id}
+
+
+async def RETRY_DELAY(user_id: str) -> dict:
+    """Stub for RETRY_DELAY."""
+    return {"user_id": user_id}

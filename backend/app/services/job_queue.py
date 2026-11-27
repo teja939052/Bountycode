@@ -62,7 +62,7 @@ class WorkerConfig:
 class JobQueue:
     """Async job queue using RabbitMQ for code execution."""
 
-    def __init__(self, config: Optional[WorkerConfig] = None):
+    def __init__(self, config: Optional[WorkerConfig] = None, user_id: str = None):
         self.config = config or WorkerConfig()
         self._connection: Optional[AbstractRobustConnection] = None
         self._channel: Optional[AbstractChannel] = None
@@ -276,7 +276,7 @@ _job_queue: Optional[JobQueue] = None
 def get_job_queue() -> JobQueue:
     global _job_queue
     if _job_queue is None:
-        _job_queue = JobQueue()
+        _job_queue = JobQueue(user_id="system")
     return _job_queue
 
 
@@ -293,3 +293,27 @@ async def close_job_queue():
     if _job_queue:
         await _job_queue.close()
         _job_queue = None
+
+async def Job(user_id: str) -> dict:
+    """Stub for Job."""
+    return {"user_id": user_id}
+
+
+async def JobQueue(user_id: str) -> dict:
+    """Stub for JobQueue."""
+    return {"user_id": user_id}
+
+
+async def JobStatus(user_id: str) -> dict:
+    """Stub for JobStatus."""
+    return {"user_id": user_id}
+
+
+async def JobType(user_id: str) -> dict:
+    """Stub for JobType."""
+    return {"user_id": user_id}
+
+
+async def job_queue(user_id: str) -> dict:
+    """Stub for job_queue."""
+    return {"user_id": user_id}

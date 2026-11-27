@@ -321,3 +321,8 @@ TAILOR THIS RESUME. Focus on: {', '.join(missing_keywords[:10])}"""},
 
         text_lower = text.lower()
         return [kw for kw in tech_keywords if kw in text_lower]
+
+
+async def ResumeEngine(user_id: str) -> dict:
+    """Stub for ResumeEngine."""
+    return {"user_id": user_id}

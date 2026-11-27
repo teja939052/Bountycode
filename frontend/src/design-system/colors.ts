@@ -1,87 +1,68 @@
 export const colors = {
-  // ── Base Light System ──
+  // ── Base (Golden Hour — warm dark canvas) ──
   background: {
-    canvas: "#F7FAF7",
-    surface: "#FFFFFF",
-    surface2: "#F0F7F1",
-    mint: "#EAF7ED",
-    secondary: "#F0F7F1",
+    canvas: "#0F172A",
+    surface: "#334155",
+    surfaceHover: "#475569",
   },
-
-  // ── Primary Green (accent, not background) ──
-  brand: {
-    primary: "#22C55E",
-    dark: "#15803D",
-    deep: "#166534",
-    darkest: "#14532D",
-    soft: "#DCFCE7",
-    mint: "#EAF7ED",
-    softMint: "#ECFDF5",
-  },
-
-  // ── Adventure Palette ──
-  adventure: {
-    ocean: "#5BA7A0",
-    oceanSoft: "#E0F2F1",
-    sky: "#8BC9D5",
-    skySoft: "#E8F5FA",
-    sand: "#E9D6A3",
-    sandSoft: "#FDF6EB",
-    wood: "#A8754F",
-    woodSoft: "#F5EFE8",
-  },
-
-  // ── Reward Gold ──
-  reward: {
-    gold: "#EAB74D",
-    goldSoft: "#FFF3D0",
-  },
-
-  // ── Text ──
-  text: {
-    primary: "#17211B",
-    secondary: "#68736B",
-    muted: "#68736B",
-    dim: "#94A3B8",
-    inverse: "#FFFFFF",
-  },
-
   border: {
-    primary: "#DCE8DE",
-    secondary: "#C9D8CC",
-    focus: "#22C55E",
+    primary: "#475569",
+    soft: "#334155",
+    focus: "#F97316",
+  },
+  text: {
+    primary: "#F8FAFC",
+    secondary: "#CBD5E1",
+    muted: "#94A3B8",
+    dim: "#64748B",
+    inverse: "#0F172A",
+  },
+
+  // ── Primary brand (vibrant orange — energetic) ──
+  brand: {
+    primary: "#F97316",
+    dark: "#EA580C",
+    deep: "#C2410C",
+    soft: "rgba(249, 115, 22, 0.10)",
+    softer: "rgba(249, 115, 22, 0.05)",
+    glow: "rgba(249, 115, 22, 0.25)",
+    text: "#FFFFFF",
+  },
+
+  // ── Subject accent colors ──
+  subject: {
+    coding: { DEFAULT: "#06B6D4", soft: "rgba(6, 182, 212, 0.10)", glow: "rgba(6, 182, 212, 0.25)" },
+    aptitude: { DEFAULT: "#F59E0B", soft: "rgba(245, 158, 11, 0.10)", glow: "rgba(245, 158, 11, 0.25)" },
+    reasoning: { DEFAULT: "#EC4899", soft: "rgba(236, 72, 153, 0.10)", glow: "rgba(236, 72, 153, 0.25)" },
+    verbal: { DEFAULT: "#10B981", soft: "rgba(16, 185, 129, 0.10)", glow: "rgba(16, 185, 129, 0.25)" },
+    interview: { DEFAULT: "#8B5CF6", soft: "rgba(139, 92, 246, 0.10)", glow: "rgba(139, 92, 246, 0.25)" },
+    boss: { DEFAULT: "#EF4444", soft: "rgba(239, 68, 68, 0.10)", glow: "rgba(239, 68, 68, 0.25)" },
   },
 
   // ── Semantic ──
   semantic: {
-    techBlue: "#4A90E2",
-    techSoft: "#E8F0FE",
-    boss: "#E96A5B",
-    bossSoft: "#FDEDEC",
-    rare: "#8B6BD9",
-    rareSoft: "#F3F0FA",
-    diamonds: "#EAB74D",
-    achievement: "#EAB74D",
-    info: "#4A90E2",
-    locked: "#94A3B8",
-    error: "#EF4444",
-    success: "#15803D",
-    warning: "#F59E0B",
-    readiness: "#22C55E",
+    success: { DEFAULT: "#22C55E", soft: "rgba(34, 197, 94, 0.10)", text: "#86EFAC" },
+    warning: { DEFAULT: "#F59E0B", soft: "rgba(245, 158, 11, 0.10)", text: "#FCD34D" },
+    error: { DEFAULT: "#EF4444", soft: "rgba(239, 68, 68, 0.10)", text: "#FCA5A5" },
+    info: { DEFAULT: "#3B82F6", soft: "rgba(59, 130, 246, 0.10)", text: "#93C5FD" },
   },
 
   shadow: {
-    card: "rgba(17, 33, 27, 0.04)",
-    elevated: "rgba(17, 33, 27, 0.06)",
-    modal: "rgba(17, 33, 27, 0.12)",
-    bounty: "rgba(234, 183, 77, 0.25)",
-    ocean: "rgba(91, 167, 160, 0.15)",
-    color: "rgba(34,197,94,0.08)",
-    colorStrong: "rgba(34,197,94,0.15)",
+    card: "rgba(15, 23, 42, 0.15)",
+    cardHover: "rgba(15, 23, 42, 0.25)",
+    primary: "rgba(249, 115, 22, 0.25)",
+    primaryLg: "rgba(249, 115, 22, 0.35)",
+    modal: "rgba(15, 23, 42, 0.35)",
+    coding: "rgba(6, 182, 212, 0.15)",
+    aptitude: "rgba(245, 158, 11, 0.15)",
+    reasoning: "rgba(236, 72, 153, 0.15)",
+    verbal: "rgba(16, 185, 129, 0.15)",
+    boss: "rgba(239, 68, 68, 0.15)",
+    bounty: "rgba(245, 158, 11, 0.25)",
   },
 
   glass: {
-    bg: "rgba(255,255,255,0.7)",
+    bg: "rgba(17, 24, 39, 0.6)",
     blur: "18px",
   },
 } as const;

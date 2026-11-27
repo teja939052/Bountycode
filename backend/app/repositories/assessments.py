@@ -16,7 +16,7 @@ operations.
 """
 
 from datetime import datetime, timezone, timedelta
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Set
 from uuid import UUID
 
 from sqlalchemy import select, update, delete, func, desc, asc, and_, or_
@@ -364,6 +364,26 @@ class CodingSubmissionRepository(RepositoryBase):
             )
             .order_by(desc(CodingSubmission.submitted_at))
         )
+        return list(result.scalars().all())
+
+    async def list_by_question(
+        self,
+        question_id: str,
+        status: Optional[str] = None,
+        language: Optional[str] = None,
+        limit: Optional[int] = None,
+    ) -> List[CodingSubmission]:
+        query = select(CodingSubmission).where(
+            CodingSubmission.question_id == question_id
+        )
+        if status:
+            query = query.where(CodingSubmission.status == status)
+        if language:
+            query = query.where(CodingSubmission.language == language)
+        query = query.order_by(desc(CodingSubmission.submitted_at))
+        if limit is not None:
+            query = query.limit(limit)
+        result = await self.session.execute(query)
         return list(result.scalars().all())
 
     async def get_by_idempotency_key(
@@ -930,6 +950,18 @@ class SolvedProblemRepository(RepositoryBase):
         await self.flush()
         return problem
 
+    async def get_solved_problem_ids(
+        self,
+        user_id: UUID,
+        problem_ids: List[str],
+    ) -> Set[str]:
+        result = await self.session.execute(
+            select(SolvedProblem.problem_id)
+            .where(SolvedProblem.user_id == user_id)
+            .where(SolvedProblem.problem_id.in_(problem_ids))
+        )
+        return {str(row[0]) for row in result.all()}
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # QUESTION ANSWER REPOSITORY
@@ -967,3 +999,16 @@ class QuestionAnswerRepository(RepositoryBase):
         self.session.add(answer)
         await self.flush()
         return answer
+
+    async def get_best_scores_by_user_and_questions(
+        self,
+        user_id: UUID,
+        question_ids: List[str],
+    ) -> Dict[str, float]:
+        result = await self.session.execute(
+            select(QuestionAnswer.question_id, func.max(QuestionAnswer.score))
+            .where(QuestionAnswer.user_id == user_id)
+            .where(QuestionAnswer.question_id.in_(question_ids))
+            .group_by(QuestionAnswer.question_id)
+        )
+        return {str(row[0]): float(row[1] or 0) for row in result.all()}

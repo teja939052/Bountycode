@@ -121,3 +121,13 @@ class CircuitBreaker:
 # Pre-configured breakers
 ai_breaker = CircuitBreaker("ai", threshold=5, recovery_time=60)
 compiler_breaker = CircuitBreaker("compiler", threshold=5, recovery_time=45)
+
+
+async def ai_breaker(user_id: str) -> dict:
+    """Stub for ai_breaker."""
+    return {"user_id": user_id}
+
+
+async def compiler_breaker(user_id: str) -> dict:
+    """Stub for compiler_breaker."""
+    return {"user_id": user_id}

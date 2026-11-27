@@ -86,3 +86,7 @@ Return ONLY the JSON object. No markdown, no explanation."""
     parsed.setdefault("time_limit_seconds", TIME_LIMITS.get(difficulty, 1800))
 
     return parsed
+
+async def evaluate_coding_answer(user_id: str) -> dict:
+    """Stub for evaluate_coding_answer."""
+    return {"user_id": user_id}

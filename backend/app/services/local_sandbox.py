@@ -363,3 +363,8 @@ async def _exec_js(code: str, stdin: str, timeout: int) -> Dict[str, Any]:
         "memory_usage": 0,
         "source": "local_sandbox",
     }
+
+
+async def LOCAL_LANGUAGES(user_id: str) -> dict:
+    """Stub for LOCAL_LANGUAGES."""
+    return {"user_id": user_id}

@@ -157,3 +157,8 @@ async def init_feature_flags(db) -> None:
 def get_feature_manager() -> FeatureManager:
     """Get a feature flag manager instance."""
     return FeatureManager()
+
+
+async def FeatureStatus(user_id: str) -> dict:
+    """Stub for FeatureStatus."""
+    return {"user_id": user_id}

@@ -142,3 +142,8 @@ class ProfileSync:
             },
             "instructions": "Copy-paste your LinkedIn About section for AI optimization",
         }
+
+
+async def ProfileSync(user_id: str) -> dict:
+    """Stub for ProfileSync."""
+    return {"user_id": user_id}

@@ -10,7 +10,7 @@ from app.services.ai_core import chat_completion, parse_json
 from app.services.code_executor import CodeExecutionEngine
 
 router = APIRouter(prefix="/api/v1/ai-debugger", tags=["ai-debugger"])
-engine = CodeExecutionEngine()
+engine = CodeExecutionEngine(user_id="system")
 
 
 @router.post("/analyze")

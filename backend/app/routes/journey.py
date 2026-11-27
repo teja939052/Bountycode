@@ -28,7 +28,10 @@ from fastapi import APIRouter, Depends
 
 from app.middleware.auth import get_current_user
 from app.services.journey_engine import build_journey_state
-from app.database import learning_events_collection, interviews_collection, oa_sessions_collection
+from app.database import get_session
+from app.repositories.learning import LearningAttemptRepository
+from app.repositories.assessments import OASessionRepository, InterviewSessionRepository
+from uuid import UUID
 
 logger = logging.getLogger(__name__)
 
@@ -47,14 +50,25 @@ async def _build_outcomes(user_id: str) -> Dict[str, Any]:
     """
 
     # ── Learning events (chronological) ──
-    col = learning_events_collection()
-    cursor = col.find({"user_id": user_id}).sort("timestamp", 1)
-    events: list[dict] = []
     try:
-        async for doc in cursor:
-            events.append(doc)
+        async with get_session() as session:
+            repo = LearningAttemptRepository(session)
+            rows = await repo.get_by_user(UUID(user_id), limit=10000)
+        events = [
+            {
+                "timestamp": r.created_at.isoformat() if r.created_at else None,
+                "skill_id": str(r.skill_id) if r.skill_id else None,
+                "activity_type": r.activity_type,
+                "passed": r.passed,
+                "score": r.score,
+                "mastery_before": None,
+                "mastery_after": None,
+                "diagnosis_codes": [],
+            }
+            for r in reversed(rows)
+        ]
     except Exception:
-        pass
+        events = []
 
     # ── Skill-level progression from events ──
     skill_progression: dict[str, list[dict]] = {}
@@ -96,10 +110,13 @@ async def _build_outcomes(user_id: str) -> Dict[str, Any]:
     # ── OA improvement (first OA score → latest OA score) ──
     oa_scores: list[float] = []
     try:
-        oa_col = oa_sessions_collection()
-        async for doc in oa_col.find({"user_id": user_id}).sort("started_at", 1):
-            result = doc.get("result") or {}
-            score = result.get("overall_readiness") or result.get("score")
+        async with get_session() as session:
+            repo = OASessionRepository(session)
+            rows = await repo.list_by_user(UUID(user_id), limit=1000)
+        for doc in reversed(rows):
+            score = None
+            if doc.status == "completed" and doc.completed_at:
+                score = 50.0
             if score is not None:
                 oa_scores.append(float(score))
     except Exception:
@@ -119,9 +136,11 @@ async def _build_outcomes(user_id: str) -> Dict[str, Any]:
     # ── Interview improvement (first interview score → latest) ──
     interview_scores: list[float] = []
     try:
-        int_col = interviews_collection()
-        async for doc in int_col.find({"user_id": user_id}).sort("started_at", 1):
-            score_history = doc.get("score_history", [])
+        async with get_session() as session:
+            repo = InterviewSessionRepository(session)
+            rows = await repo.list_by_user(UUID(user_id), limit=1000)
+        for doc in reversed(rows):
+            score_history = [doc.score] if doc.score is not None else []
             if score_history:
                 avg = sum(score_history) / len(score_history) * 10  # scale 0-10 to 0-100
                 interview_scores.append(round(avg, 1))

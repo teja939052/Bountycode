@@ -14,8 +14,6 @@ from app.services.postgres_gamification import record_practice as pg_record_prac
 from app.services.question_quality import score_question
 from app.services.mastery_engine import record_solve
 from app.config import get_settings
-from bson import ObjectId
-from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/api/v1/coding", tags=["coding"])
 settings = get_settings()

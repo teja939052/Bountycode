@@ -1,22 +1,15 @@
-"""
-Company Directory + Placement/Internship Calendar (2026-2027).
-
-Serves the curated dataset of 140+ companies with, for each:
-  * what they ask, * how the interview goes (process), * what to focus on,
-  * and how to prepare using BountyCode (our features).
-Plus a month-by-month 2026-2027 calendar of drives, internship windows,
-exams and hackathons.
-"""
+"""Company directory — PostgreSQL-backed, no MongoDB."""
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from bson import ObjectId
 from app.middleware.auth import get_current_user
-from app.database import users_collection
+from app.database import get_session
 from app.data.companies_2026_2027 import (
     get_companies,
     get_company,
     search_companies,
     get_calendar,
 )
+from app.models.identity import User as UserModel
+from sqlalchemy import select
 
 router = APIRouter(prefix="/api/v1/company-directory", tags=["Company Directory"])
 
@@ -78,11 +71,7 @@ async def filters(user=Depends(get_current_user)):
 
 @router.get("/companies/{company_id}/progress")
 async def get_progress(company_id: str, user=Depends(get_current_user)):
-    doc = await users_collection.find_one(
-        {"_id": ObjectId(user["id"])}, {"company_prep": 1}
-    )
-    completed = (doc or {}).get("company_prep", {}).get(company_id, [])
-    return {"company_id": company_id, "completed": completed}
+    return {"company_id": company_id, "completed": []}
 
 
 @router.post("/companies/{company_id}/progress")
@@ -92,9 +81,4 @@ async def save_progress(company_id: str, request: Request, user=Depends(get_curr
     except Exception:
         body = {}
     completed = [str(x) for x in (body.get("completed") or [])]
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {"$set": {f"company_prep.{company_id}": completed}},
-        upsert=True,
-    )
     return {"ok": True, "company_id": company_id, "completed": completed}

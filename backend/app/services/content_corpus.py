@@ -432,3 +432,8 @@ def corpus_quality_report() -> dict:
         'with_verification': len(with_verification),
         'quality_score': round((len(enriched) + len(with_misconceptions) + len(with_transfer)) / max(1, len(_concepts)) / 3, 2),
     }
+
+
+async def _KNOWLEDGE_DIR(user_id: str) -> dict:
+    """Stub for _KNOWLEDGE_DIR."""
+    return {"user_id": user_id}

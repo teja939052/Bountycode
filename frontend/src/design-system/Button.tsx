@@ -1,8 +1,9 @@
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 
 /**
- * Button — V2 design system primitive.
- * Flat colors, subtle borders, no gradients. Primary green used sparingly.
+ * Button — V3 design system primitive.
+ * Golden Hour Academy: dark canvas surface, vibrant orange primary,
+ * subject-coded accents, crisp hover states, mobile-friendly touch targets.
  */
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,20 +16,27 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const VARIANT_CLASS: Record<NonNullable<ButtonProps["variant"]>, string> = {
-  primary: "btn-primary",
-  secondary: "btn-secondary",
-  ghost: "btn-ghost",
-  outline: "btn-outline",
-  danger: "btn-danger",
-  gold: "btn font-bold bg-reward text-slate-900 hover:brightness-105 active:scale-[0.97]",
-  ocean: "btn-adventure",
+  primary:
+    "btn-primary bg-primary text-primary-text shadow-primary hover:bg-primary-dark hover:shadow-primary-lg active:scale-[0.97]",
+  secondary:
+    "bg-surface border border-border text-text hover:bg-surface-hover hover:border-primary/50 active:scale-[0.97]",
+  ghost:
+    "text-text hover:bg-primary/10 active:scale-[0.97]",
+  outline:
+    "border border-border text-text hover:bg-primary/5 hover:border-primary focus:ring-2 focus:ring-primary/20 active:scale-[0.97]",
+  danger:
+    "bg-subject-boss text-white shadow-boss hover:bg-red-600 active:scale-[0.97]",
+  gold:
+    "bg-subject-aptitude text-text shadow-aptitude hover:bg-amber-500 active:scale-[0.97]",
+  ocean:
+    "bg-subject-coding text-text shadow-coding hover:bg-cyan-500 active:scale-[0.97]",
 };
 
 const SIZE_CLASS = {
-  sm: "px-3 py-1.5 text-xs gap-1.5",
-  md: "px-4 py-2 text-sm gap-2",
-  lg: "px-5 py-2.5 text-sm gap-2",
-  xl: "px-7 py-3.5 text-base gap-2.5",
+  sm: "px-3 py-1.5 text-xs gap-1.5 rounded-xl",
+  md: "px-4 py-2 text-sm gap-2 rounded-xl",
+  lg: "px-5 py-2.5 text-sm gap-2 rounded-xl",
+  xl: "px-7 py-3.5 text-base gap-2.5 rounded-xl",
 } as const;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(

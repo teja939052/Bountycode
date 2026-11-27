@@ -580,3 +580,8 @@ class RealATSScanner:
                 break
 
         return rewritten
+
+
+async def RealATSScanner(user_id: str) -> dict:
+    """Stub for RealATSScanner."""
+    return {"user_id": user_id}

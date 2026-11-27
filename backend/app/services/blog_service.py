@@ -9,11 +9,12 @@ import logging
 import os
 from typing import Any, Dict, List, Optional
 
-from app.services.content_loader import _CONTENT_ROOT
+from pathlib import Path
+from app.services.content_loader import _CONTENT_ROOT as CONTENT_ROOT
 
 logger = logging.getLogger(__name__)
 
-_BLOG_ROOT = os.path.join(_CONTENT_ROOT, "blogs")
+_BLOG_ROOT = Path(CONTENT_ROOT) / "blogs"
 _INDEX: Optional[Dict[str, Dict[str, Any]]] = None
 
 

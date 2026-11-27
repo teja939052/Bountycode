@@ -270,3 +270,100 @@ class DailyChallengeUser(Base):
     )
 
     user: Mapped["User"] = relationship()
+
+
+class LearningModule(Base):
+    """Learning module definition — migrated from MongoDB `learning_modules` collection."""
+
+    __tablename__ = "learning_modules"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    question_id: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    title: Mapped[str] = mapped_column(String(255), nullable=False)
+    description: Mapped[str] = mapped_column(Text, default="", nullable=False)
+    difficulty: Mapped[str] = mapped_column(String(50), nullable=False, default="beginner")
+    estimated_time_minutes: Mapped[int] = mapped_column(Integer, default=15, nullable=False)
+    steps: Mapped[list] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    xp_reward: Mapped[int] = mapped_column(Integer, default=50, nullable=False)
+    badge_reward: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    company_tags: Mapped[list] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    topic: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+    """Per-user per-module progress — migrated from MongoDB `user_learning_progress` collection."""
+
+    __tablename__ = "user_learning_progress"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    module_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("learning_modules.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    completed_steps: Mapped[list] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    current_step: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
+    xp_earned: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    badge_unlocked: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    __table_args__ = (
+        UniqueConstraint("user_id", "module_id", name="uq_user_learning_progress"),
+        {"extend_existing": True},
+    )
+
+    user: Mapped["User"] = relationship()
+    module: Mapped["LearningModule"] = relationship()
+
+
+class UserLearningProgress(Base):
+    """Per-user per-module progress — migrated from MongoDB `user_learning_progress` collection."""
+
+    __tablename__ = "user_learning_progress"
+
+    id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        primary_key=True,
+        server_default=text("gen_random_uuid()"),
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    module_id: Mapped[UUID] = mapped_column(
+        PG_UUID(as_uuid=True),
+        ForeignKey("learning_modules.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    completed_steps: Mapped[list] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"), nullable=False)
+    current_step: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
+    xp_earned: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    badge_unlocked: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    __table_args__ = (
+        UniqueConstraint("user_id", "module_id", name="uq_user_learning_progress"),
+        {"extend_existing": True},
+    )
+
+    user: Mapped["User"] = relationship()
+    module: Mapped["LearningModule"] = relationship()

@@ -123,7 +123,7 @@ class CodeExecutionEngine:
     MAX_TIMEOUT = 30
     MAX_TEST_CASES = 50
 
-    def __init__(self):
+    def __init__(self, user_id: str = None):
         self._client: Optional[httpx.AsyncClient] = None
         self._client_lock = None
         self._semaphore = None
@@ -1069,3 +1069,8 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
         except Exception:
             return {}
         return {}
+
+
+async def CodeExecutionEngine(user_id: str) -> dict:
+    """Stub for CodeExecutionEngine."""
+    return {"user_id": user_id}

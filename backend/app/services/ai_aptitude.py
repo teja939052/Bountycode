@@ -246,3 +246,7 @@ Return ONLY the JSON object."""
     parsed.setdefault("explanation", f"The correct answer is {correct_answer}.")
 
     return parsed
+
+async def APTITUDE_SUB_CATEGORY_GUIDELINES(user_id: str) -> dict:
+    """Stub for APTITUDE_SUB_CATEGORY_GUIDELINES."""
+    return {"user_id": user_id}

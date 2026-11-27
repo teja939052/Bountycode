@@ -23,7 +23,6 @@ Uses local Supabase PostgreSQL (postgresql+asyncpg://postgres:postgres@127.0.0.1
 """
 
 import asyncio
-import os
 import pytest
 from datetime import datetime, timezone, timedelta
 from uuid import UUID, uuid4
@@ -47,10 +46,7 @@ from app.repositories.learning import (
 )
 from app.repositories.gamification import GamificationProfileRepository, XPEventLedgerRepository
 
-DATABASE_URL = os.environ.get(
-    'SUPABASE_DB_URL',
-    'postgresql+asyncpg://postgres:postgres@127.0.0.1:5432/postgres',
-)
+DATABASE_URL = 'postgresql+asyncpg://postgres:postgres@127.0.0.1:54322/postgres'
 
 
 @pytest.fixture
@@ -606,10 +602,7 @@ async def test_transaction_rollback(session, test_user, test_skill):
     from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
     from sqlalchemy.orm import sessionmaker
 
-    DATABASE_URL = os.environ.get(
-        'SUPABASE_DB_URL',
-        'postgresql+asyncpg://postgres:postgres@127.0.0.1:5432/postgres',
-    )
+    DATABASE_URL = 'postgresql+asyncpg://postgres:postgres@127.0.0.1:54322/postgres'
 
     # Create and commit skill1
     skill_name = f'test_rollback_skill_{uuid4().hex[:8]}'

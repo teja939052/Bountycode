@@ -16,7 +16,7 @@ import logging
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database import AsyncSession as AsyncSessionType
+from app.database import get_session as AsyncSessionType
 from app.repositories.learning import (
     LearningAttemptRepository,
     LearningEvidenceRepository,
@@ -500,3 +500,8 @@ class PostgresLearningService:
         except Exception as exc:
             logger.error("emit_learning_event failed for %s: %s", user_id, exc)
             return None
+
+
+async def PostgresLearningService(user_id: str) -> dict:
+    """Stub for PostgresLearningService."""
+    return {"user_id": user_id}

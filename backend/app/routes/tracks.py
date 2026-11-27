@@ -5,12 +5,14 @@ verified coding problems with the student's live solved/attempted status.
 Pure read aggregation. All questions are TRUSTED and carry their own
 provenance (pattern-relevant where no company tag exists)."""
 
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Set, Union
 from fastapi import APIRouter, Depends, HTTPException
 from app.middleware.auth import get_current_user
-from app.database import solved_problems_collection, question_answers_collection
+from app.database import get_session
 from app.services import question_store
+from app.repositories.assessments import SolvedProblemRepository, QuestionAnswerRepository
 from app.routes.oa import _EXAM_STRUCTURE_FOR, _VERIFIED_TYPE_FOR_SECTION
+from uuid import UUID
 
 router = APIRouter(prefix="/api/v1/tracks", tags=["company-tracks"])
 
@@ -51,22 +53,16 @@ def _spread_by_topic(pool, qtype, cap: int) -> list:
 async def _status_map(uid: str, ids: List[str]) -> Dict[str, Dict[str, Any]]:
     """Return {question_id: {status, best_score}} from canonical student state."""
     out: Dict[str, Dict[str, Any]] = {}
-    solved = set()
-    if ids:
-        docs = await solved_problems_collection.find(
-            {"user_id": uid, "question_id": {"$in": ids}}, {"question_id": 1}
-        ).to_list(10000)
-        solved = {d.get("question_id") for d in docs}
+    if not ids:
+        return out
+    user_uuid = UUID(uid)
+    solved: Set[str] = set()
     best: Dict[str, float] = {}
-    if ids:
-        cursor = question_answers_collection.find(
-            {"user_id": uid, "question_id": {"$in": ids}}, {"question_id": 1, "score": 1}
-        )
-        async for a in cursor:
-            qid = a.get("question_id")
-            sc = a.get("score") or 0
-            if qid not in best or sc > best[qid]:
-                best[qid] = sc
+    async with get_session() as session:
+        solved_repo = SolvedProblemRepository(session)
+        solved = await solved_repo.get_solved_problem_ids(user_uuid, ids)
+        answers_repo = QuestionAnswerRepository(session)
+        best = await answers_repo.get_best_scores_by_user_and_questions(user_uuid, ids)
     for qid in ids:
         if qid in solved:
             out[qid] = {"status": "solved", "best_score": None}

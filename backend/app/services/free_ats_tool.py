@@ -220,3 +220,8 @@ class FreeATSTool:
         lines.append("*Powered by BountyCode - Free ATS Checker*")
 
         return "\n".join(lines)
+
+
+async def FreeATSTool(user_id: str) -> dict:
+    """Stub for FreeATSTool."""
+    return {"user_id": user_id}

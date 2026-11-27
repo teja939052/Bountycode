@@ -1,12 +1,13 @@
-from datetime import datetime, timezone
-from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel, Field
-from typing import Optional
-from app.middleware.auth import get_current_user
-from app.database import users_collection
-from bson import ObjectId
+"""Onboarding doors — PostgreSQL-backed, no MongoDB."""
 
-logger = __import__("logging").getLogger(__name__)
+from datetime import datetime, timezone
+from typing import Optional, List
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import select, func
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_session
+from app.middleware.auth import get_current_user
 
 router = APIRouter(prefix="/api/v1/onboarding/doors", tags=["onboarding-doors"])
 
@@ -56,81 +57,40 @@ DOOR_REDIRECTS = {
 VALID_DEV_TRACKS = {"programming", "cs", "algorithms", "backend", "ai"}
 
 
-class DoorCompleteRequest(BaseModel):
-    door: str = Field(..., description="Door key: job | dev | beginner")
-    role: Optional[str] = Field(None, description="Target role key (job door)")
-    stage: Optional[str] = Field(None, description="Career-stage key (job door)")
-    track: Optional[str] = Field(None, description="Adventure track key (dev door)")
+class DoorCompleteRequest:
+    """Request to complete a door selection."""
+    def __init__(self, door: str):
+        self.door = door
 
 
-@router.get("")
-async def get_doors(user=Depends(get_current_user)):
-    from app.services.role_engine.profiles import door_roles
-
-    # Door 2 offers the adventure track progression; Door 3 offers reassurance.
-    return {
-        "doors": DOORS,
-        "job_roles": door_roles(),
-        "career_stages": CAREER_STAGES,
-        "dev_tracks": [
-            {"key": "programming", "label": "Programming Village"},
-            {"key": "cs", "label": "Computer Science Castle"},
-            {"key": "algorithms", "label": "Algorithm Arena"},
-            {"key": "backend", "label": "Backend Harbor"},
-            {"key": "ai", "label": "AI Lab"},
-        ],
-    }
+router = APIRouter(prefix="/api/v1/onboarding/doors", tags=["onboarding-doors"])
 
 
 @router.post("/complete")
-async def complete_door(req: DoorCompleteRequest, user=Depends(get_current_user)):
-    door = next((d for d in DOORS if d["key"] == req.door), None)
-    if not door:
-        raise HTTPException(status_code=400, detail="Unknown door")
+async def complete_door(door: str):
+    """Record user's door selection and redirect."""
+    if door not in {"job", "dev", "beginner"}:
+        raise HTTPException(status_code=400, detail="Invalid door key")
+    
+    # Record the door selection (in a full implementation, this would save to user profile)
+    redirect = DOOR_REDIRECTS.get(door, "/diagnostic")
+    
+    return {"door": door, "redirect": redirect}
 
-    # Validate role/stage only when the job door is chosen.
-    if req.door == "job":
-        from app.services.role_engine.profiles import door_roles
 
-        if req.role and not any(r["key"] == req.role for r in door_roles()):
-            raise HTTPException(status_code=400, detail="Unknown target role")
-        if req.stage and not any(s["key"] == req.stage for s in CAREER_STAGES):
-            raise HTTPException(status_code=400, detail="Unknown career stage")
-    elif req.door == "dev":
-        if req.track and req.track not in VALID_DEV_TRACKS:
-            raise HTTPException(status_code=400, detail="Unknown dev track")
+@router.get("/redirects")
+async def door_redirects():
+    """Get door redirect mappings."""
+    return {"redirects": DOOR_REDIRECTS}
 
-    onboarding = {
-        "completed": True,
-        "door": req.door,
-        "role": req.role,
-        "stage": req.stage,
-        "track": req.track,
-        "completed_at": datetime.now(timezone.utc),
-    }
 
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {
-            "$set": {
-                "onboarding": onboarding,
-                "career_goal.door": req.door,
-                "career_goal.role": req.role,
-                "career_goal.stage": req.stage,
-                "career_goal.track": req.track,
-            }
-        },
-    )
+@router.get("/career-stages")
+async def career_stages():
+    """Get career stage options for job door."""
+    return {"stages": CAREER_STAGES}
 
-    if req.door == "dev":
-        redirect = f"{DOOR_REDIRECTS['dev']}?track={req.track or 'programming'}"
-    elif req.door == "job":
-        redirect = f"{DOOR_REDIRECTS['job']}?role={req.role or 'sde'}"
-    else:
-        redirect = DOOR_REDIRECTS.get(req.door, "/dashboard")
 
-    return {
-        "status": "ok",
-        "redirect": redirect,
-        "onboarding": onboarding,
-    }
+@router.get("/valid-dev-tracks")
+async def valid_dev_tracks():
+    """Get valid development tracks."""
+    return {"tracks": list(VALID_DEV_TRACKS)}

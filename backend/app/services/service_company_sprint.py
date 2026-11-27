@@ -208,3 +208,8 @@ def daily_focus_plan(
 
 def lesson_for_domain(domain: str) -> Optional[str]:
     return DOMAIN_ENTRY_LESSON.get(domain)
+
+
+async def DOMAIN_ENTRY_LESSON(user_id: str) -> dict:
+    """Stub for DOMAIN_ENTRY_LESSON."""
+    return {"user_id": user_id}

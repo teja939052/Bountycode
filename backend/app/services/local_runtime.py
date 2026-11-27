@@ -391,3 +391,12 @@ logger.info("  - backend/app/services/local_runtime.py (this file)")
 logger.info("  - backend/app/routes/runtime.py (serves worker files)")
 logger.info("  - frontend/src/services/localRuntime.ts (TypeScript client)")
 logger.info("  - frontend/public/pyodide/ (Pyodide files for offline)")
+
+async def JAVASCRIPT_WORKER_JS(user_id: str) -> dict:
+    """Stub for JAVASCRIPT_WORKER_JS."""
+    return {"user_id": user_id}
+
+
+async def PYODIDE_WORKER_JS(user_id: str) -> dict:
+    """Stub for PYODIDE_WORKER_JS."""
+    return {"user_id": user_id}

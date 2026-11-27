@@ -6,10 +6,9 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
 from app.middleware.auth import get_current_user
-from app.database import (
-    submissions_collection,
-    solved_problems_collection
-)
+from app.database import get_session
+from app.repositories.assessments import CodingSubmissionRepository
+from uuid import UUID
 
 router = APIRouter(prefix="/api/v1/distributions", tags=["distributions"])
 
@@ -24,25 +23,25 @@ async def get_runtime_distribution(
     # Question existence from the in-memory canonical store (Residency Rule);
     # runtimes from student-state submissions (unchanged).
     from app.services import question_store
-    submissions_col = submissions_collection()
 
     question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
     # Get all accepted submissions for this problem
-    query = {"question_id": question_id, "status": "Accepted"}
-    if language:
-        query["language"] = language
+    async with get_session() as session:
+        repo = CodingSubmissionRepository(session)
+        rows = await repo.list_by_question(question_id, status="Accepted", language=language)
 
     runtimes = []
-    async for doc in submissions_col.find(query, {"execution_time": 1, "language": 1, "user_id": 1}):
-        rt = doc.get("execution_time", 0)
+    for doc in rows:
+        er = doc.execution_result or {}
+        rt = er.get("execution_time", 0)
         if rt and rt > 0:
             runtimes.append({
                 "runtime": round(rt * 1000, 2),  # Convert to ms
-                "language": doc.get("language", "unknown"),
-                "is_user": doc["user_id"] == user["id"],
+                "language": doc.language,
+                "is_user": str(doc.user_id) == user["id"],
             })
 
     if not runtimes:
@@ -110,20 +109,19 @@ async def get_memory_distribution(
     user=Depends(get_current_user),
 ):
     """Get memory distribution for a problem."""
-    submissions_col = submissions_collection()
-
-    query = {"question_id": question_id, "status": "Accepted"}
-    if language:
-        query["language"] = language
+    async with get_session() as session:
+        repo = CodingSubmissionRepository(session)
+        rows = await repo.list_by_question(question_id, status="Accepted", language=language)
 
     memories = []
-    async for doc in submissions_col.find(query, {"memory_usage": 1, "language": 1, "user_id": 1}):
-        mem = doc.get("memory_usage", 0)
+    for doc in rows:
+        er = doc.execution_result or {}
+        mem = er.get("memory_usage", 0)
         if mem and mem > 0:
             memories.append({
-                "memory": round(mem / 1024, 2),  # Convert to MB
-                "language": doc.get("language", "unknown"),
-                "is_user": doc["user_id"] == user["id"],
+                "memory": round(mem / 1024, 2),
+                "language": doc.language,
+                "is_user": str(doc.user_id) == user["id"],
             })
 
     if not memories:
@@ -176,32 +174,32 @@ async def get_submission_comparison(
     user=Depends(get_current_user),
 ):
     """Get a comprehensive comparison of user's submission vs others."""
-    submissions_col = submissions_collection()
+    user_uuid = UUID(user["id"])
+    async with get_session() as session:
+        repo = CodingSubmissionRepository(session)
+        user_rows = await repo.list_by_user_and_question(user_uuid, question_id, limit=5)
+        all_rows = await repo.list_by_question(question_id, status="Accepted")
 
-    # Get user's submissions
     user_subs = []
-    async for doc in submissions_col.find(
-        {"question_id": question_id, "user_id": user["id"]}
-    ).sort("submitted_at", -1).limit(5):
+    for doc in user_rows:
+        er = doc.execution_result or {}
         user_subs.append({
-            "runtime": round(doc.get("execution_time", 0) * 1000, 2),
-            "memory": round(doc.get("memory_usage", 0) / 1024, 2),
-            "language": doc.get("language", "unknown"),
-            "status": doc.get("status", "Unknown"),
-            "submitted_at": doc.get("submitted_at", datetime.now(timezone.utc)).isoformat(),
+            "runtime": round(er.get("execution_time", 0) * 1000, 2),
+            "memory": round(er.get("memory_usage", 0) / 1024, 2),
+            "language": doc.language,
+            "status": doc.status,
+            "submitted_at": doc.submitted_at.isoformat() if doc.submitted_at else datetime.now(timezone.utc).isoformat(),
         })
 
-    # Get all accepted submissions stats
     all_subs = []
-    async for doc in submissions_col.find(
-        {"question_id": question_id, "status": "Accepted"}
-    ):
-        rt = doc.get("execution_time", 0)
+    for doc in all_rows:
+        er = doc.execution_result or {}
+        rt = er.get("execution_time", 0)
         if rt and rt > 0:
             all_subs.append({
                 "runtime": round(rt * 1000, 2),
-                "memory": round(doc.get("memory_usage", 0) / 1024, 2),
-                "language": doc.get("language", "unknown"),
+                "memory": round(er.get("memory_usage", 0) / 1024, 2),
+                "language": doc.language,
             })
 
     # Calculate stats

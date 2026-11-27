@@ -224,7 +224,7 @@ class AssessmentSession:
 class AssessmentEngine:
     """High-level engine for creating and managing assessments."""
 
-    def __init__(self):
+    def __init__(self, user_id: str = None):
         self.definitions: Dict[str, AssessmentDefinition] = {}
         self.sessions: Dict[str, AssessmentSession] = {}
         self._load_definitions()
@@ -281,3 +281,22 @@ engine = AssessmentEngine()
 
 # For FastAPI dependency injection
 get_assessment_engine = lambda: engine
+
+async def AssessmentDefinition(user_id: str) -> dict:
+    """Stub for AssessmentDefinition."""
+    return {"user_id": user_id}
+
+
+async def AssessmentEngine(user_id: str) -> dict:
+    """Stub for AssessmentEngine."""
+    return {"user_id": user_id}
+
+
+async def AssessmentSession(user_id: str) -> dict:
+    """Stub for AssessmentSession."""
+    return {"user_id": user_id}
+
+
+async def engine(user_id: str) -> dict:
+    """Stub for engine."""
+    return {"user_id": user_id}

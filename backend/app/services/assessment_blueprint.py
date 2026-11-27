@@ -1,4 +1,4 @@
-﻿"""Assessment blueprint + weighted sampling with largest-remainder allocation."""
+"""Assessment blueprint + weighted sampling with largest-remainder allocation."""
 import random
 from typing import Any, Dict, List, Optional
 

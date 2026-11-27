@@ -585,3 +585,8 @@ def _difficulty_label(difficulty: int) -> str:
     if difficulty <= 4:
         return "medium"
     return "hard"
+
+
+async def ClassBQuestion(user_id: str) -> dict:
+    """Stub for ClassBQuestion."""
+    return {"user_id": user_id}

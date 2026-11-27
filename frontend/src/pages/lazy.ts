@@ -34,6 +34,7 @@ const routeImportFns = {
   CareerProfile: () => import("./CareerProfile"),
   ApplicationTracker: () => import("./ApplicationTracker"),
   Analytics: () => import("./Analytics"),
+  ReadinessPage: () => import("./ReadinessPage"),
   Enterprise: () => import("./Enterprise"),
   Compiler: () => import("./Compiler"),
   SolveProblem: () => import("./SolveProblem"),
@@ -166,6 +167,7 @@ const CareerProfile = lazy(() => import("./CareerProfile"));
 const ApplicationTracker = lazy(() => import("./ApplicationTracker"));
 const Analytics = lazy(() => import("./Analytics"));
 const Enterprise = lazy(() => import("./Enterprise"));
+const ReadinessPage = lazy(() => import("./ReadinessPage"));
 const Compiler = lazy(() => import("./Compiler"));
 const SolveProblem = lazy(() => import("./SolveProblem"));
 const ForgotPassword = lazy(() => import("./ForgotPassword"));
@@ -188,6 +190,7 @@ const PersonalDashboard = lazy(() => import("./PersonalDashboard"));
 const StudentDashboard = lazy(() => import("./StudentDashboard"));
 const AdaptivePath = lazy(() => import("./AdaptivePath"));
 const LearningModules = lazy(() => import("./LearningModules"));
+const RepairMission = lazy(() => import("./RepairMission"));
 const ProblemOfTheDay = lazy(() => import('./ProblemOfTheDay'));
 const DailyChallenge = lazy(() => import('./DailyChallenge'));
 const DSAVisualizer = lazy(() => import('./DSAVisualizer'));
@@ -265,6 +268,7 @@ export {
   ApplicationTracker,
   Analytics,
   Enterprise,
+  ReadinessPage,
   Compiler,
   SolveProblem,
   ForgotPassword,
@@ -287,6 +291,7 @@ export {
   StudentDashboard,
   AdaptivePath,
   LearningModules,
+  RepairMission,
   CodePlayground,
   LanguageLearning,
   OnboardingQuest,

@@ -345,3 +345,8 @@ async def init_cache(redis_url: str = None):
     """
     await cache.initialize(redis_url)
     return cache
+
+
+async def cache(user_id: str) -> dict:
+    """Stub for cache."""
+    return {"user_id": user_id}

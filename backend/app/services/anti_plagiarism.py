@@ -164,3 +164,8 @@ class AntiPlagiarismEngine:
             "indicators_found": indicator_count,
             "recommendation": "Run through humanizer" if risk_score > 30 else "Looks good",
         }
+
+
+async def AntiPlagiarismEngine(user_id: str) -> dict:
+    """Stub for AntiPlagiarismEngine."""
+    return {"user_id": user_id}

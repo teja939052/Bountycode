@@ -1,4 +1,4 @@
-﻿"""Content router: curated external resources with fallback. Metadata only."""
+"""Content router: curated external resources with fallback. Metadata only."""
 from datetime import datetime, timezone
 from typing import Any, Dict, List
 

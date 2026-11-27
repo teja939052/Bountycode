@@ -181,3 +181,13 @@ def estimate_skill_state(
         "trace": trace,
         "model_note": "Initial BKT parameters; calibrate on held-out Bountycode outcomes.",
     }
+
+
+async def BKTParameters(user_id: str) -> dict:
+    """Stub for BKTParameters."""
+    return {"user_id": user_id}
+
+
+async def DEFAULT_BKT_PARAMETERS(user_id: str) -> dict:
+    """Stub for DEFAULT_BKT_PARAMETERS."""
+    return {"user_id": user_id}

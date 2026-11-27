@@ -13,10 +13,8 @@ from app.models.assessments import (
     Response,
     SolvedProblem,
 )
-from app.models.academy import AcademyDiagnosticSession, AcademyLearnerProfile, AcademyLearningPlan
 from app.models.base import Base
 from app.models.career import CareerProfile, PortfolioProject, ResumeMetadata, UploadedFile
-from app.models.exam import PracticeExamAttempt
 from app.models.content import (
     AssessmentDefinition,
     AssessmentVariant,
@@ -26,28 +24,26 @@ from app.models.content import (
     TrustRecord,
 )
 from app.models.gamification import Badge, GamificationProfile, StreakRecord, UserBadge, XPEventLedger
+from app.models.enterprise import Cohort, SkillGraph, Gamification
 from app.models.identity import RefreshToken, User, UserIdentityMap, UserProfile, UserSession
 from app.models.learning import (
     DailyChallengeUser,
     LearnerSkillState,
     LearningAttempt,
     LearningEvidence,
+    LearningModule,
     MasterySnapshot,
     RemediationAttempt,
     RepairMission,
     ReviewCard,
     Skill,
     SkillPrerequisite,
+    UserLearningProgress,
 )
-from app.models.operations import AnalyticsEvent, AnalyticsRollup, AuditLog, BillingRecord
+from app.models.operations import AnalyticsEvent, AnalyticsRollup, AuditLog, BillingRecord, RevenueEvent
 
 __all__ = [
     "Base",
-    # Academy onboarding and diagnostic state
-    "AcademyLearnerProfile",
-    "AcademyDiagnosticSession",
-    "AcademyLearningPlan",
-    "PracticeExamAttempt",
     # Identity
     "User",
     "UserProfile",
@@ -61,10 +57,11 @@ __all__ = [
     "DailyChallengeUser",
     "LearningAttempt",
     "LearningEvidence",
+    "LearningModule",
     "MasterySnapshot",
-    "ReviewCard",
-    "RepairMission",
     "RemediationAttempt",
+    "ReviewCard",
+    "UserLearningProgress",
     # Content
     "ContentPackage",
     "ContentVersion",
@@ -90,6 +87,9 @@ __all__ = [
     "Badge",
     "UserBadge",
     "StreakRecord",
+    "Cohort",
+    "SkillGraph",
+    "Gamification",
     # Career
     "CareerProfile",
     "PortfolioProject",
@@ -100,4 +100,5 @@ __all__ = [
     "AnalyticsRollup",
     "AuditLog",
     "BillingRecord",
+    "RevenueEvent",
 ]

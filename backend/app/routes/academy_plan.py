@@ -1,146 +1,42 @@
 """Deterministic personalized learning plan built from profile + diagnostic evidence."""
 from datetime import datetime, timezone
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.database import get_session
 from app.middleware.auth import get_current_user
-from app.repositories.academy import (
-    AcademyDiagnosticSessionRepository,
-    AcademyLearnerProfileRepository,
-    AcademyLearningPlanRepository,
-    as_uuid,
-    model_dict,
-)
-from app.repositories.learning import ReviewCardRepository
 from app.services.learning_paths import get_all_company_tracks
 from app.services.adaptive_learning import assess_user_skills
 from app.services.spaced_repetition import deserialize_state, get_due_cards
 from app.services.service_company_sprint import DOMAIN_ENTRY_LESSON, daily_focus_plan
 from app.services.observability import record_event
+from app.repositories.identity import UserRepository
+from app.repositories.learning import (
+    AcademyDiagnosticSessionRepository,
+    AcademyLearningPlanRepository,
+    UserLearningProgressRepository,
+    LearningModuleRepository,
+)
+from app.models.identity import User as UserModel
 
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
 
-# Prefer sprint entry lessons so Academy plan and Study Engine stay aligned.
-LESSON_BY_DOMAIN = {
-    **DOMAIN_ENTRY_LESSON,
-    "programming_fundamentals": "variables_basics",
-    "arrays_hashing": "arrays_basics",
-    "quantitative_aptitude": "number_systems",
-    "logical_reasoning": "number_series",
-    "verbal_ability": "vocabulary_cloze",
-    "computer_science": "oops_basics",
-    "sql": "dbms_basics",
-}
-DOMAIN_PREREQUISITES = {
-    "arrays_hashing": ["programming_fundamentals"],
-    "sql": ["programming_fundamentals"],
-    "computer_science": ["programming_fundamentals"],
-}
-ROLE_SKILLS = {
-    "software_engineer": ["programming_fundamentals", "arrays_hashing", "computer_science", "sql"],
-    "full_stack_developer": ["programming_fundamentals", "arrays_hashing", "sql", "computer_science"],
-    "backend_developer": ["programming_fundamentals", "arrays_hashing", "sql", "computer_science"],
-    "frontend_developer": ["programming_fundamentals", "arrays_hashing", "verbal_ability"],
-    "qa_engineer": ["programming_fundamentals", "sql", "logical_reasoning", "computer_science"],
-    "data_analyst": ["sql", "quantitative_aptitude", "programming_fundamentals"],
-    "devops_engineer": ["programming_fundamentals", "computer_science", "logical_reasoning"],
-    "support_engineer": ["programming_fundamentals", "logical_reasoning", "verbal_ability"],
-    # Service-company default spine for campus placement aspirants.
-    "undecided": ["programming_fundamentals", "quantitative_aptitude", "logical_reasoning", "verbal_ability", "arrays_hashing"],
-}
-ASSESSMENT_TRACK_LABELS = {
-    "service_company_core": "Service-company core",
-    "tcs_foundation": "TCS Foundation",
-    "tcs_advanced": "TCS Advanced",
-    "infosys_infytq": "Infosys InfyTQ",
-    "hackwithinfy": "HackWithInfy",
-    "wipro": "Wipro WILP / NTH",
-    "accenture": "Accenture campus",
-    "cognizant": "Cognizant GenC",
-}
-ASSESSMENT_BLUEPRINTS = {
-    "service_company_core": {
-        "sections": ["Numerical Ability", "Logical Reasoning", "Verbal Ability", "Programming and SQL"],
-        "duration_minutes": None,
-        "confidence": "Product recommendation",
-        "source_label": "Shared service-company foundation",
-        "source_url": None,
-        "notice": "Use your current employer invitation for the exact sections, timing and eligibility.",
-    },
-    "tcs_foundation": {
-        "sections": ["Numerical Ability", "Verbal Ability", "Reasoning Ability"],
-        "duration_minutes": 75,
-        "confidence": "Official drive pattern",
-        "source_label": "TCS All India NQT drive",
-        "source_url": "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
-        "notice": "The 75-minute Foundation pattern belongs to the cited TCS drive; verify the current hall ticket.",
-    },
-    "tcs_advanced": {
-        "sections": ["Advanced Quantitative and Reasoning Ability", "Advanced Coding"],
-        "duration_minutes": 115,
-        "confidence": "Official drive pattern",
-        "source_label": "TCS All India NQT drive",
-        "source_url": "https://www.tcs.com/careers/india/tcs-all-india-nqt-hiring",
-        "notice": "The 115-minute Advanced pattern belongs to the cited TCS drive; verify the current hall ticket.",
-    },
-    "infosys_infytq": {
-        "sections": ["Programming", "DBMS and SQL", "Aptitude", "OOP and DSA"],
-        "duration_minutes": None,
-        "confidence": "Edition-dependent",
-        "source_label": "Infosys InfyTQ",
-        "source_url": "https://www.infosys.com/insights/human-potential/industry-grade-certification.html",
-        "notice": "InfyTQ patterns change by certification cycle. Use the live Infosys notice as the source of truth.",
-    },
-    "hackwithinfy": {
-        "sections": ["Timed Coding Round", "Constraints and Efficiency"],
-        "duration_minutes": 180,
-        "confidence": "Official 2026 terms",
-        "source_label": "HackWithInfy 2026",
-        "source_url": "https://www.infosys.com/careers/hackwithinfy/2026/hwi-terms-conditions.pdf",
-        "notice": "The three-hour coding round is specific to the cited 2026 terms and is not a universal Infosys pattern.",
-    },
-    "wipro": {
-        "sections": ["Verbal Ability", "Analytical Ability", "Quantitative Ability", "Written Communication", "Voice Assessment"],
-        "duration_minutes": 100,
-        "confidence": "Official cohort pattern",
-        "source_label": "Wipro WILP cohort listing",
-        "source_url": "https://app.joinsuperset.com/company/wipro/wilp.html",
-        "notice": "The cited WILP cohort lists 80 minutes online plus a 20-minute voice assessment; verify your cohort invitation.",
-    },
-    "accenture": {
-        "sections": ["Cognitive and Logical Reasoning", "Technical Skills", "Coding", "Communication"],
-        "duration_minutes": None,
-        "confidence": "Invitation-dependent",
-        "source_label": "Accenture India assessment guidance",
-        "source_url": "https://www.accenture.com/in-en/careers/explore-careers/area-of-interest/journey-to-accenture",
-        "notice": "Accenture sections and duration depend on the role and invitation; do not treat this as a guaranteed pattern.",
-    },
-    "cognizant": {
-        "sections": ["Communication", "Aptitude", "Role-based Technical Skills"],
-        "duration_minutes": None,
-        "confidence": "Role-dependent",
-        "source_label": "Cognizant GenC process",
-        "source_url": "https://careers.cognizant.com/india-en/pathways-to-cognizant/genc-program/",
-        "notice": "Cognizant says assessments vary by role. Verify the current candidate-platform communication.",
-    },
-}
-LEVEL_PATH = [
-    {"id": 0, "title": "Orientation", "focus": "Profile, diagnostic and exam readiness", "unlock": "Start here"},
-    {"id": 1, "title": "Foundations", "focus": "Numerical, verbal, reasoning and programming basics", "unlock": "Build reliable fundamentals"},
-    {"id": 2, "title": "Core skills", "focus": "DSA, SQL, OOP, CS concepts and debugging", "unlock": "Apply concepts to varied problems"},
-    {"id": 3, "title": "Applied readiness", "focus": "Mixed practice, edge cases and role-specific tasks", "unlock": "Transfer skills across formats"},
-    {"id": 4, "title": "Timed performance", "focus": "Sectional drills and employer-style online assessments", "unlock": "Prove speed and accuracy"},
-    {"id": 5, "title": "Interview ready", "focus": "Communication, projects, behavioural and technical interviews", "unlock": "Explain and defend your work"},
-]
+
+def _get_diagnostic_repo(session):
+    from app.repositories.learning import AcademyDiagnosticSessionRepository
+    return AcademyDiagnosticSessionRepository(session)
+
+def _get_plan_repo(session):
+    from app.repositories.learning import AcademyLearningPlanRepository
+    return AcademyLearningPlanRepository(session)
 
 
 def _level_path(diagnostic: Dict[str, Any] | None, scores: Dict[str, int]) -> tuple[int, List[dict]]:
     observed = [score for score in scores.values() if score >= 0]
     overall = (diagnostic or {}).get("overall_score")
     average = int(overall) if overall is not None else (sum(observed) // len(observed) if observed else -1)
-    current = 0 if average < 0 else 1 if average < 35 else 2 if average < 60 else 3 if average < 75 else 4 if average < 85 else 5
+    current = 0 if average < 0 else 1 if average < 35 else 2 if average < 60 else 3 if average < 75 else 5
     return current, [
         {**level, "status": "complete" if level["id"] < current else "current" if level["id"] == current else "locked"}
         for level in LEVEL_PATH
@@ -295,7 +191,7 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "assessment_track_label": ASSESSMENT_TRACK_LABELS.get(assessment_track, ASSESSMENT_TRACK_LABELS["service_company_core"]),
         "assessment_date": profile.get("assessment_date"),
         "assessment_blueprint": assessment_blueprint,
-        "assessment_readiness": {
+        "readiness_actions": {
             "stage": "diagnostic" if current_level == 0 else "build" if current_level < 3 else "timed" if current_level < 5 else "interview",
             "action": readiness_actions[current_level],
             "mock_ready": current_level >= 3,
@@ -326,29 +222,56 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
 
 
 @router.get("")
-async def get_personalized_plan(user=Depends(get_current_user), session=Depends(get_session)):
-    profile_model = await AcademyLearnerProfileRepository(session).get_by_user(user["id"])
-    profile_doc = model_dict(profile_model) if profile_model else None
-    if not profile_doc or not profile_doc.get("onboarding_complete"):
+async def get_personalized_plan(user=Depends(get_current_user)):
+    # Get user profile from PostgreSQL
+    async with get_session() as session:
+        result = await session.execute(select(UserModel).where(UserModel.id == user["id"]))
+        user = result.scalar_one_or_none()
+
+    if not user or not getattr(user, "profile", None) or not getattr(user.profile, "onboarding_complete", False):
         raise HTTPException(status_code=409, detail="Complete your learner profile first.")
-    diagnostic_model = await AcademyDiagnosticSessionRepository(session).latest_completed(user["id"])
-    diagnostic = diagnostic_model.result if diagnostic_model else None
-    skill_assessment = await assess_user_skills(user["id"])
-    plan = build_plan(profile_doc, diagnostic, get_all_company_tracks(), skill_assessment.get("skills", {}))
-    plan["overall_mastery"] = skill_assessment.get("overall_mastery_label")
-    plan["overall_accuracy"] = skill_assessment.get("overall_accuracy")
-    review_repo = ReviewCardRepository(session)
-    user_uuid = as_uuid(user["id"])
-    due_cards = await review_repo.get_due_cards(user_uuid, limit=5)
+
+    # Get active diagnostic
+    async with get_session() as session:
+        diagnostic = await _get_diagnostic_repo(session).get_active_by_user(user.id)
+
+    # Get or create learning plan
+    async with get_session() as session:
+        plan = await _get_plan_repo(session).get_by_user(user.id)
+    if not plan:
+        plan = {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "curriculum": [],
+            "sprint_focus": {"focus": "Start with diagnostic"},
+            "weekly_minutes": 300,
+        }
+        async with get_session() as session:
+            _get_plan_repo(session).create(user.id, plan)
+
+    skill_assessment = await assess_user_skills(user.id)
+
+    # Get SRS review cards from PostgreSQL
+    from app.services.spaced_repetition import get_all_review_cards
+    stored_cards = await get_all_review_cards(user.id)
+    review_states = []
+    for card in stored_cards:
+        try:
+            review_states.append(deserialize_state(card))
+        except Exception:
+            continue
+    due_cards = get_due_cards(review_states, limit=5)
     plan["revision"] = {
-        "due_count": await review_repo.count_due(user_uuid),
-        "sample_problem_ids": [card.problem_id for card in due_cards],
+        "due_count": len(get_due_cards([], limit=500)),
+        "sample_problem_ids": [card.concept_id for card in due_cards],
     }
+
     plan["generated_at"] = datetime.now(timezone.utc).isoformat()
-    await AcademyLearningPlanRepository(session).upsert(user["id"], plan)
+    async with get_session() as session:
+        await _get_plan_repo(session).update(user.id, plan)
+
     # Record plan view for funnel observability.
     try:
-        await record_event(user["id"], "first_plan_viewed", {"task_count": len(plan.get("curriculum", []))})
+        await record_event(user.id, "first_plan_viewed", {"task_count": len(plan.get("curriculum", []))})
     except Exception:
         pass
     return {"success": True, "plan": plan}

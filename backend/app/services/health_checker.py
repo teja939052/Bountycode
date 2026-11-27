@@ -24,7 +24,7 @@ class HealthChecker:
         """Check PostgreSQL connectivity and performance."""
         start = time.time()
         try:
-            from app.database import ping_db
+            from app.database import get_session
             healthy = await ping_db()
             duration = (time.time() - start) * 1000
 

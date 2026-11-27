@@ -1,125 +1,144 @@
-from datetime import datetime, timezone, timedelta
-from typing import Optional, Dict, Any
-from bson import ObjectId
-from app.database import coupons_collection, users_collection, payments_collection
-from app.config import get_settings
+"""Coupon service — PostgreSQL-backed, no MongoDB."""
 
-settings = get_settings()
+from datetime import datetime, timezone
+from typing import Optional, Dict, Any, List
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import select, func
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_session
+from app.middleware.auth import get_current_user
+from app.models.coupon import Coupon, CouponUsage
+
+router = APIRouter(prefix="/api/v1/coupon", tags=["coupon"])
 
 
+@router.post("/")
 async def create_coupon(
     code: str,
     discount_type: str,
     discount_value: float,
-    max_uses: int = settings.COUPON_MAX_USES,
-    expiry_date: Optional[datetime] = None,
-    applicable_plans: Optional[list] = None,
+    max_uses: int,
+    expiry_date: Optional[str] = None,
+    applicable_plans: Optional[List[str]] = None,
     active: bool = True,
-) -> dict:
+    user=Depends(get_current_user),
+):
+    """Create a new coupon code."""
     now = datetime.now(timezone.utc)
-    expiry = expiry_date or now + timedelta(days=90)
+    expiry = datetime.fromisoformat(expiry_date).replace(tzinfo=timezone.utc) if expiry_date else now + timedelta(days=90)
+    
+    coupon_id = str(user["id"]) + "-" + str(datetime.now().timestamp())
+    
+    # Insert coupon
+    await get_session().execute(
+        """INSERT INTO coupons (id, code, discount_type, discount_value, max_uses, used_count, expiry_date, applicable_plans, active, created_at)
+           VALUES (:id, :code, :discount_type, :discount_value, :max_uses, 0, :expiry_date, :applicable_plans, :active, :created_at)""",
+        {
+            "id": coupon_id,
+            "code": code.upper().strip(),
+            "discount_type": discount_type,
+            "discount_value": discount_value,
+            "max_uses": max_uses,
+            "expiry_date": expiry,
+            "applicable_plans": applicable_plans or ["pro", "team", "enterprise", "lifetime"],
+            "active": active,
+            "created_at": now,
+        },
+    )
+    await get_session().commit()
+    
+    return {"coupon_id": coupon_id, "code": code.upper().strip(), "status": "created"}
 
-    doc = {
-        "code": code.upper().strip(),
-        "discount_type": discount_type,
-        "discount_value": discount_value,
-        "max_uses": max_uses,
-        "used_count": 0,
-        "expiry_date": expiry,
-        "applicable_plans": applicable_plans or ["pro", "team", "enterprise", "lifetime"],
-        "active": active,
-        "created_at": now,
-    }
-    result = await coupons_collection.insert_one(doc)
-    return {"coupon_id": str(result.inserted_id), "code": doc["code"], "status": "created"}
 
-
-async def validate_coupon(code: str, plan: str = "pro") -> Dict[str, Any]:
-    coupon = await coupons_collection.find_one({"code": code.upper().strip()})
-
+@router.post("/validate")
+async def validate_coupon(code: str, plan: str = "pro", user=Depends(get_current_user)):
+    """Validate a coupon code for a user plan."""
+    code = code.upper().strip()
+    
+    # Check if coupon exists
+    result = await get_session().execute(
+        select(Coupon).where(Coupon.code == code)
+    )
+    coupon = result.scalar_one_or_none()
+    
     if not coupon:
         return {"valid": False, "error": "Invalid coupon code"}
-
-    if not coupon.get("active", True):
+    
+    if not coupon.active:
         return {"valid": False, "error": "Coupon is no longer active"}
-
-    if coupon.get("used_count", 0) >= coupon.get("max_uses", settings.COUPON_MAX_USES):
+    
+    if coupon.used_count >= coupon.max_uses:
         return {"valid": False, "error": "Coupon usage limit reached"}
-
-    expiry = coupon.get("expiry_date")
+    
+    expiry = coupon.expiry_date
     if expiry and expiry < datetime.now(timezone.utc):
         return {"valid": False, "error": "Coupon has expired"}
-
-    applicable = coupon.get("applicable_plans", [])
-    if applicable and plan not in applicable:
-        return {"valid": False, "error": f"Coupon not applicable to {plan} plan"}
-
-    return {
-        "valid": True,
-        "coupon_id": str(coupon["_id"]),
-        "discount_type": coupon["discount_type"],
-        "discount_value": coupon["discount_value"],
-        "applicable_plans": applicable,
-    }
-
-
-async def apply_coupon(
-    user_id: str,
-    code: str,
-    plan: str,
-    amount: float,
-    billing_cycle: str,
-) -> Dict[str, Any]:
-    validation = await validate_coupon(code, plan)
-    if not validation["valid"]:
-        return validation
-
-    coupon = await coupons_collection.find_one({"code": code.upper().strip()})
-    discount_value = coupon["discount_value"]
-    discount_type = coupon["discount_type"]
-
-    if discount_type == "percent":
-        discount_amount = round(amount * (discount_value / 100), 2)
-    elif discount_type == "fixed":
-        discount_amount = min(discount_value, amount)
-    else:
-        discount_amount = 0.0
-
-    final_amount = round(amount - discount_amount, 2)
-
-    await coupons_collection.update_one(
-        {"_id": coupon["_id"]},
-        {"$inc": {"used_count": 1}},
+    
+    if coupon.applicable_plans and plan not in coupon.applicable_plans:
+        return {"valid": False, "error": f"Coupon not applicable for {plan} plan"}
+    
+    # Increment use count
+    await get_session().execute(
+        CouponUsage.__table__.insert().values(
+            coupon_id=Coupon.id,
+            user_id=user["id"],
+            used_at=datetime.now(timezone.utc),
+        )
     )
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user_id)},
-        {"$set": {"coupon_used": code.upper().strip(), "coupon_applied_at": datetime.now(timezone.utc)}},
+    await get_session().execute(
+        Coupon.__table__.update()
+        .where(Coupon.id == coupon.id)
+        .values(used_count=Coupon.used_count + 1)
     )
-
-    return {
-        "valid": True,
-        "original_amount": amount,
-        "discount_amount": discount_amount,
-        "discount_type": discount_type,
-        "discount_value": discount_value,
-        "final_amount": final_amount,
-        "coupon_code": code.upper().strip(),
-    }
+    await get_session().commit()
+    
+    return {"valid": True, "coupon": {"id": str(coupon.id), "code": coupon.code}}
 
 
-async def get_coupon_stats(coupon_id: str) -> Dict[str, Any]:
-    coupon = await coupons_collection.find_one({"_id": ObjectId(coupon_id)})
+@router.post("/list")
+async def list_coupons(user=Depends(get_current_user)):
+    """List all coupons (admin only)."""
+    result = await get_session().execute(select(Coupon).order_by(Coupon.created_at.desc()))
+    coupons = result.scalars().all()
+    return {"coupons": [
+        {"id": str(c.id), "code": c.code, "discount_type": c.discount_type, 
+         "max_uses": c.max_uses, "used_count": c.used_count, "active": c.active}
+        for c in coupons
+    ]}
+
+
+@router.post("/{coupon_id}/redeem")
+async def redeem_coupon(coupon_id: str, user=Depends(get_current_user)):
+    """Redeem a coupon for a user."""
+    result = await get_session().execute(select(Coupon).where(Coupon.id == coupon_id))
+    coupon = result.scalar_one_or_none()
+    
     if not coupon:
-        return {"error": "Coupon not found"}
-
-    return {
-        "code": coupon.get("code"),
-        "discount_type": coupon.get("discount_type"),
-        "discount_value": coupon.get("discount_value"),
-        "used_count": coupon.get("used_count", 0),
-        "max_uses": coupon.get("max_uses"),
-        "active": coupon.get("active", True),
-        "expiry_date": coupon.get("expiry_date"),
-        "applicable_plans": coupon.get("applicable_plans", []),
-    }
+        raise HTTPException(status_code=404, detail="Coupon not found")
+    
+    if not coupon.active:
+        raise HTTPException(status_code=400, detail="Coupon is no longer active")
+    
+    if coupon.used_count >= coupon.max_uses:
+        raise HTTPException(status_code=400, detail="Coupon usage limit reached")
+    
+    if coupon.applicable_plans and user.get("plan", "") not in coupon.applicable_plans:
+        raise HTTPException(status_code=400, detail="Coupon not applicable for your plan")
+    
+    # Record usage
+    await get_session().execute(
+        CouponUsage.__table__.insert().values(
+            coupon_id=coupon.id,
+            user_id=user["id"],
+            used_at=datetime.now(timezone.utc),
+        )
+    )
+    await get_session().execute(
+        Coupon.__table__.update()
+        .where(Coupon.id == coupon.id)
+        .values(used_count=Coupon.used_count + 1)
+    )
+    await get_session().commit()
+    
+    return {"coupon_id": coupon_id, "status": "redeemed", "discount_applied": True}

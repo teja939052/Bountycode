@@ -1,4 +1,4 @@
-﻿"""Deterministic scoring engine. Pure functions: normalize then score."""
+"""Deterministic scoring engine. Pure functions: normalize then score."""
 import re
 from typing import Any, Dict, Optional
 

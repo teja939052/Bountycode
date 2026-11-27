@@ -180,3 +180,8 @@ Include:
             topic: self.TOPIC_IMPLEMENTATIONS.get(topic, {}).get("template", "")
             for topic in topics
         }
+
+
+async def CheatSheetGenerator(user_id: str) -> dict:
+    """Stub for CheatSheetGenerator."""
+    return {"user_id": user_id}

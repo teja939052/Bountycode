@@ -6,6 +6,8 @@ import ForestJourney from '../components/tower/ForestJourney';
 import DailyBonusCalendar from '../components/DailyBonusCalendar';
 import { useToast } from '../components/Toast';
 import { useGamificationData } from '../hooks/useGamificationData';
+import { Card, SectionHeader } from '../design-system/Card';
+import { Button } from '../design-system/Button';
 import {
   Trophy, Flame, Coins, Star, Zap, Target, Crown, Calendar, Clock, Timer, Medal,
   Award, Sword, Users, BookOpen, Sparkles, Play, Code2, Globe, Gift, GitBranch,
@@ -13,16 +15,16 @@ import {
 } from 'lucide-react';
 
 const TOWER_COLORS: Record<string, { from: string; to: string; glow: string }> = {
-  seedling:  { from: '#a7f3d0', to: '#6ee7b7', glow: 'rgba(167,243,208,0.3)' },
-  sapling:   { from: '#86efac', to: '#4ade80', glow: 'rgba(134,239,172,0.3)' },
-  young:     { from: '#4ade80', to: '#22c55e', glow: 'rgba(74,222,128,0.3)' },
-  canopy:    { from: '#22c55e', to: '#16a34a', glow: 'rgba(34,197,94,0.3)' },
-  fruiting:  { from: '#16a34a', to: '#15803d', glow: 'rgba(22,163,74,0.3)' },
-  ancient:   { from: '#15803d', to: '#166534', glow: 'rgba(21,128,61,0.3)' },
-  summit:    { from: '#166534', to: '#14532d', glow: 'rgba(22,101,52,0.3)' },
-  crown:     { from: '#14532d', to: '#0f766e', glow: 'rgba(20,83,45,0.3)' },
-  legend:    { from: '#0f766e', to: '#065f46', glow: 'rgba(15,118,110,0.3)' },
-  world:     { from: '#065f46', to: '#064e3b', glow: 'rgba(6,95,70,0.3)' },
+  seedling:  { from: '#fde047', to: '#facc15', glow: 'rgba(251, 191, 36, 0.3)' },
+  sapling:   { from: '#fbbf24', to: '#d97706', glow: 'rgba(217, 119, 6, 0.3)' },
+  young:     { from: '#f59e0b', to: '#ea580c', glow: 'rgba(234, 88, 12, 0.3)' },
+  canopy:    { from: '#ea580c', to: '#c2410c', glow: 'rgba(194, 65, 12, 0.3)' },
+  fruiting:  { from: '#c2410c', to: '#9a3412', glow: 'rgba(154, 52, 18, 0.3)' },
+  ancient:   { from: '#9a3412', to: '#7c2d12', glow: 'rgba(124, 45, 18, 0.3)' },
+  summit:    { from: '#7c2d12', to: '#451a03', glow: 'rgba(69, 26, 3, 0.3)' },
+  crown:     { from: '#f97316', to: '#ea580c', glow: 'rgba(249, 115, 22, 0.3)' },
+  legend:    { from: '#ec4899', to: '#db2777', glow: 'rgba(236, 72, 153, 0.3)' },
+  world:     { from: '#8b5cf6', to: '#7c3aed', glow: 'rgba(139, 92, 246, 0.3)' },
 };
 
 const FOREST_ZONES = [
@@ -110,18 +112,18 @@ export default function TowerDashboard() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#050a08]">
-        <div className="w-12 h-12 rounded-full border-3 border-emerald-500 border-t-transparent animate-spin" />
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
+        <div className="w-12 h-12 rounded-full border-3 border-primary border-t-transparent animate-spin" />
       </div>
     );
   }
 
   if (isError || !tower) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#050a08]">
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
         <div className="text-center p-8">
-          <p className="text-gray-500 font-mono text-sm mb-4">Failed to load tower data</p>
-          <button onClick={() => window.location.reload()} className="px-4 py-2 rounded-lg bg-emerald-500/20 text-emerald-400 text-sm font-mono">Retry</button>
+          <p className="text-text-muted font-mono text-sm mb-4">Failed to load tower data</p>
+          <button onClick={() => window.location.reload()} className="px-4 py-2 rounded-xl bg-surface border border-border text-primary text-sm font-medium hover:bg-surface-hover transition-colors">Retry</button>
         </div>
       </div>
     );
@@ -136,33 +138,33 @@ export default function TowerDashboard() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-[#050a08] text-text-primary">
+    <div className="min-h-screen bg-canvas text-text">
       <div className="max-w-6xl mx-auto px-4 py-6">
 
         {/* ── Header: Player Plate ── */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
-          className="relative rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5 mb-6 overflow-hidden">
+          className="relative rounded-2xl border border-border bg-surface shadow-card backdrop-blur p-5 mb-6 overflow-hidden">
           {/* Background glow */}
           <div className="absolute inset-0 pointer-events-none" style={{
             background: `radial-gradient(ellipse at 30% 50%, ${zoneColors.glow} 0%, transparent 60%)`
           }} />
-          <div className="relative flex items-center gap-5">
+          <div className="relative flex items-center gap-4">
             <div className="shrink-0">
-              <div className="w-[72px] h-[72px] rounded-full bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 border border-white/10 flex items-center justify-center text-3xl">
+              <div className="w-[72px] h-[72px] rounded-full bg-surfaceHover border border-border flex items-center justify-center text-3xl shadow-card">
                 {emoji}
               </div>
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-xl">{emoji}</span>
-                <h1 className="text-lg font-display font-black text-text-primary">{title}</h1>
+                <h1 className="text-lg font-display font-black text-text">{title}</h1>
               </div>
-              <p className="text-xs font-mono text-gray-500 mb-2">
+              <p className="text-xs font-mono text-text-muted mb-2">
                 {currentZone.emoji} {currentZone.name} · Level {tower.level}
               </p>
               {/* XP Bar */}
               <div className="flex items-center gap-3">
-                <div className="flex-1 h-2.5 rounded-full bg-white border-border shadow-card overflow-hidden">
+                <div className="flex-1 h-2.5 rounded-full bg-surfaceHover shadow-card overflow-hidden border border-border">
                   <motion.div
                     className="h-full rounded-full"
                     style={{ background: `linear-gradient(90deg, ${zoneColors.from}, ${zoneColors.to})` }}
@@ -171,7 +173,7 @@ export default function TowerDashboard() {
                     transition={{ duration: 0.8, ease: 'easeOut' }}
                   />
                 </div>
-                <span className="text-[10px] font-mono text-gray-500 shrink-0">
+                <span className="text-[10px] font-mono text-text-muted shrink-0">
                   {tower.xp?.toLocaleString()} XP
                 </span>
               </div>
@@ -179,15 +181,15 @@ export default function TowerDashboard() {
             {/* Quick Stats */}
             <div className="hidden md:flex items-center gap-3 shrink-0">
               {[
-                { icon: Flame, value: `${tower.streak_freezes ?? 0}d`, color: 'text-orange-400', label: 'Streak' },
-                { icon: Coins, value: tower.coins, color: 'text-yellow-300', label: 'Coins' },
-                { icon: Zap, value: `1x`, color: 'text-emerald-400', label: 'Multi' },
-                { icon: Swords, value: `${tower.bosses_beaten}/10`, color: 'text-red-400', label: 'Bosses' },
+                { icon: Flame, value: `${tower.streak_freezes ?? 0}d`, color: 'text-subject-aptitude', label: 'Streak' },
+                { icon: Coins, value: tower.coins, color: 'text-primary', label: 'Coins' },
+                { icon: Zap, value: `1x`, color: 'text-subject-coding', label: 'Multi' },
+                { icon: Swords, value: `${tower.bosses_beaten}/10`, color: 'text-subject-boss', label: 'Bosses' },
               ].map((s) => (
                 <div key={s.label} className="text-center px-2">
                   <s.icon size={14} className={`${s.color} mx-auto mb-0.5`} />
-                  <div className="text-xs font-bold text-text-primary">{s.value}</div>
-                  <div className="text-[8px] font-mono text-gray-600">{s.label}</div>
+                  <div className="text-xs font-bold text-text">{s.value}</div>
+                  <div className="text-[8px] font-mono text-text-muted">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -195,7 +197,7 @@ export default function TowerDashboard() {
         </motion.div>
 
         {/* ── Tabs ── */}
-        <div className="flex gap-1 mb-6 bg-white border-border shadow-card rounded-xl p-1 overflow-x-auto">
+        <div className="flex gap-1 mb-6 bg-surface border border-border shadow-card rounded-xl p-1 overflow-x-auto">
           {[
             { id: 'tower', label: 'Tower', icon: Crown },
             { id: 'forest', label: 'Forest', icon: Trees },
@@ -203,10 +205,10 @@ export default function TowerDashboard() {
             { id: 'challenges', label: 'Quests', icon: Target },
           ].map((tab) => (
             <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-medium uppercase tracking-wider transition-all whitespace-nowrap ${
                 activeTab === tab.id
-                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                  : 'text-gray-500 hover:text-gray-300'
+                  ? 'bg-primary/10 text-primary border border-primary/20 shadow-primary'
+                  : 'text-text-muted hover:text-text hover:bg-surfaceHover'
               }`}>
               <tab.icon size={14} />
               {tab.label}
@@ -218,23 +220,12 @@ export default function TowerDashboard() {
           {/* ═══════ TOWER TAB ═══════ */}
           {activeTab === 'tower' && (
             <motion.div key="tower" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
-              {/* Boss Battle Alert */}
-              {false && (
-                <BossBattle
-                  boss={null as any}
-                  level={0}
-                  onFight={() => {}}
-                  canSkip={Boolean(tower.power_ups?.find(p => p.id === "skip_boss")?.owned)}
-                  onSkip={() => handleUsePowerUp('skip_boss')}
-                />
-              )}
-
               {/* ── Visual Tower ── */}
-              <div className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent p-4 overflow-hidden">
+              <Card tone="default" className="relative rounded-2xl border border-border p-4 overflow-hidden">
                 {/* Background stars */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                   {Array.from({ length: 30 }).map((_, i) => (
-                    <div key={i} className="absolute w-px h-px bg-white rounded-full"
+                    <div key={i} className="absolute w-px h-px bg-text rounded-full"
                       style={{ left: `${(i * 37 + 13) % 100}%`, top: `${(i * 23 + 7) % 100}%`, opacity: 0.1 + (i % 4) * 0.05 }} />
                   ))}
                 </div>
@@ -244,12 +235,12 @@ export default function TowerDashboard() {
                   <svg viewBox="0 0 200 620" className="w-full max-w-md h-auto relative z-10" style={{ minHeight: 500 }}>
                     <defs>
                       <linearGradient id="towerBody" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#14532d" stopOpacity="0.8" />
-                        <stop offset="100%" stopColor="#064e3b" stopOpacity="0.4" />
+                        <stop offset="0%" stopColor="#451a03" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#7c2d12" stopOpacity="0.4" />
                       </linearGradient>
                       <linearGradient id="climbedGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#22c55e" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#16a34a" stopOpacity="0.3" />
+                        <stop offset="0%" stopColor="#f97316" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="#ea580c" stopOpacity="0.3" />
                       </linearGradient>
                       <filter id="floorGlow">
                         <feGaussianBlur stdDeviation="2" result="blur" />
@@ -262,7 +253,7 @@ export default function TowerDashboard() {
                     </defs>
 
                     {/* Tower body — tapered column */}
-                    <path d="M 70 580 L 80 50 L 120 50 L 130 580 Z" fill="url(#towerBody)" stroke="#22c55e" strokeWidth="0.5" opacity="0.6" />
+                    <path d="M 70 580 L 80 50 L 120 50 L 130 580 Z" fill="url(#towerBody)" stroke="#f97316" strokeWidth="0.5" opacity="0.6" />
 
                     {/* Climbed portion */}
                     {tower.level > 0 && (
@@ -285,13 +276,13 @@ export default function TowerDashboard() {
                         <g key={floorLevel}>
                           {/* Floor platform */}
                           <line x1={xLeft - 2} y1={y} x2={xRight + 2} y2={y}
-                            stroke={isDefeated ? '#22c55e' : isCurrent ? '#eab308' : '#374151'}
+                            stroke={isDefeated ? '#22c55e' : isCurrent ? '#f97316' : '#475569'}
                             strokeWidth={isBossLevel ? 1.5 : 0.5}
                             opacity={tower.level >= floorLevel ? 0.8 : 0.3} />
 
                           {/* Floor number */}
                           <text x={xRight + 8} y={y + 3} fontSize="8" fontFamily="monospace"
-                            fill={tower.level >= floorLevel ? '#9ca3af' : '#4b5563'} opacity="0.7">
+                            fill={tower.level >= floorLevel ? '#94a3b8' : '#64748b'} opacity="0.7">
                             {floorLevel}
                           </text>
 
@@ -300,8 +291,8 @@ export default function TowerDashboard() {
                             <g>
                               {/* Gate shape */}
                               <rect x={xLeft - 3} y={y - 10} width={xRight - xLeft + 6} height={10} rx="2"
-                                fill={isDefeated ? '#166534' : isCurrent ? '#854d0e' : '#1f2937'}
-                                stroke={isDefeated ? '#22c55e' : isCurrent ? '#eab308' : '#374151'}
+                                fill={isDefeated ? '#15803d' : isCurrent ? '#c2410c' : '#1e293b'}
+                                stroke={isDefeated ? '#22c55e' : isCurrent ? '#f97316' : '#475569'}
                                 strokeWidth="0.5"
                                 filter={isCurrent ? 'url(#bossGlow)' : undefined}
                                 opacity={tower.level >= floorLevel - 9 ? 1 : 0.4} />
@@ -312,7 +303,7 @@ export default function TowerDashboard() {
                               {/* Boss name */}
                               {isCurrent && (
                                 <text x={xLeft - 4} y={y - 4} textAnchor="end" fontSize="7" fontFamily="monospace"
-                                  fill="#eab308" fontWeight="bold">
+                                  fill="#f97316" fontWeight="bold">
                                   {boss?.name}
                                 </text>
                               )}
@@ -331,7 +322,7 @@ export default function TowerDashboard() {
                       const xRight = 130 - (1 - level / 100) * 5;
                       return (
                         <line key={level} x1={xLeft} y1={y} x2={xRight} y2={y}
-                          stroke={tower.level >= level ? '#22c55e' : '#374151'} strokeWidth="0.3"
+                          stroke={tower.level >= level ? '#22c55e' : '#475569'} strokeWidth="0.3"
                           opacity={tower.level >= level ? 0.4 : 0.15} />
                       );
                     })}
@@ -356,7 +347,7 @@ export default function TowerDashboard() {
                           </text>
                           {/* Level label */}
                           <rect x={markerX + 10} y={markerY - 7} width={30} height={14} rx="3"
-                            fill="rgba(0,0,0,0.7)" stroke={zoneColors.from} strokeWidth="0.5" />
+                            fill="rgba(15, 23, 42, 0.8)" stroke={zoneColors.from} strokeWidth="0.5" />
                           <text x={markerX + 25} y={markerY + 2} textAnchor="middle" fontSize="8" fontWeight="bold"
                             fill="white" fontFamily="monospace">
                             LV {tower.level}
@@ -375,14 +366,14 @@ export default function TowerDashboard() {
                       return (
                         <text key={zone.name} x={xLeft - 5} y={y + 2} textAnchor="end" fontSize="7"
                           fontFamily="monospace" fontWeight={inZone ? 'bold' : 'normal'}
-                          fill={inZone ? colors.from : '#6b7280'} opacity={inZone ? 1 : 0.4}>
+                          fill={inZone ? colors.from : '#64748b'} opacity={inZone ? 1 : 0.4}>
                           {zone.emoji} {zone.name}
                         </text>
                       );
                     })}
                   </svg>
                 </div>
-              </div>
+              </Card>
 
               {/* ── Zone Cards Row ── */}
               <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 mt-4">
@@ -391,11 +382,11 @@ export default function TowerDashboard() {
                   const inZone = tower.level >= zone.levelMin && tower.level <= zone.levelMax;
                   const completed = tower.level > zone.levelMax;
                   return (
-                    <div key={zone.name} className={`text-center rounded-lg p-2 border transition-all ${
-                      inZone ? 'border-white/20 bg-white border-border/10' : completed ? 'border-white/5 bg-white/[0.02]' : 'border-transparent opacity-40'
+                    <div key={zone.name} className={`text-center rounded-xl p-2 border transition-all ${
+                      inZone ? 'border-primary/30 bg-primary/5' : completed ? 'border-border/5 bg-surface/[0.3]' : 'border-transparent opacity-40'
                     }`}>
                       <span className="text-lg">{zone.emoji}</span>
-                      <p className="text-[8px] font-mono text-gray-500 mt-1 leading-tight">{zone.levelMin}-{zone.levelMax}</p>
+                      <p className="text-[8px] font-mono text-text-muted mt-1 leading-tight">{zone.levelMin}-{zone.levelMax}</p>
                     </div>
                   );
                 })}
@@ -416,7 +407,7 @@ export default function TowerDashboard() {
 
               {/* ── Boss Gallery ── */}
               <div className="mt-6">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-500 mb-3">Boss Gallery</h3>
+                <h3 className="text-xs font-mono uppercase tracking-widest text-text-muted mb-3">Boss Gallery</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                   {BOSS_LEVELS.map((lvl) => {
                     const boss = BOSS_DATA[lvl];
@@ -424,15 +415,15 @@ export default function TowerDashboard() {
                     const available = tower.level >= lvl - 9;
                     return (
                       <div key={lvl} className={`rounded-xl border p-3 text-center transition-all ${
-                        defeated ? 'border-emerald-500/30 bg-emerald-500/5' :
-                        available ? 'border-amber-500/30 bg-amber-500/5' :
-                        'border-white/5 bg-white/[0.02] opacity-50'
+                        defeated ? 'border-subject-verbal/30 bg-subject-verbal/5' :
+                        available ? 'border-primary/30 bg-primary/5' :
+                        'border-border/5 bg-surface/[0.3] opacity-50'
                       }`}>
                         <div className={`text-2xl mb-1 ${defeated ? '' : available ? '' : 'grayscale opacity-40'}`}>{boss.emoji}</div>
-                        <p className="text-[10px] font-mono text-gray-400 truncate">{boss.name}</p>
-                        <p className="text-[8px] font-mono text-gray-600 mt-0.5">Level {lvl}</p>
-                        {defeated && <span className="text-[8px] font-mono text-emerald-400 mt-1 block">⚔️ Defeated</span>}
-                        {available && !defeated && <span className="text-[8px] font-mono text-amber-400 mt-1 block">⚡ Ready</span>}
+                        <p className="text-[10px] font-mono text-text-muted truncate">{boss.name}</p>
+                        <p className="text-[8px] font-mono text-text-dim mt-0.5">Level {lvl}</p>
+                        {defeated && <span className="text-[8px] font-mono text-subject-verbal mt-1 block">⚔️ Defeated</span>}
+                        {available && !defeated && <span className="text-[8px] font-mono text-primary mt-1 block">⚡ Ready</span>}
                       </div>
                     );
                   })}
@@ -440,8 +431,8 @@ export default function TowerDashboard() {
               </div>
 
               {/* ── Quick Links ── */}
-              <div className="mt-6 rounded-2xl border border-white/5 bg-white/[0.02] p-4">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-600 mb-3">Continue Your Journey</h3>
+              <Card tone="default" className="mt-6 p-4">
+                <h3 className="text-xs font-mono uppercase tracking-widest text-text-muted mb-3">Continue Your Journey</h3>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                   {[
                     { to: '/daily-challenge', icon: Calendar, label: 'Daily Challenge' },
@@ -452,13 +443,13 @@ export default function TowerDashboard() {
                     { to: '/leaderboard', icon: Trophy, label: 'Leaderboard' },
                   ].map((item) => (
                     <Link key={item.label} to={item.to}
-                      className="flex flex-col items-center gap-1.5 rounded-xl border border-white/5 bg-white/[0.02] p-3 hover:bg-white border-border shadow-card transition-all">
-                      <item.icon size={16} className="text-gray-500" />
-                      <span className="text-[9px] font-mono text-gray-500 text-center">{item.label}</span>
+                      className="flex flex-col items-center gap-1.5 rounded-xl border border-border bg-surfaceHover p-3 hover:bg-primary/10 hover:border-primary/50 transition-all">
+                      <item.icon size={16} className="text-text-muted" />
+                      <span className="text-[9px] font-mono text-text-muted text-center">{item.label}</span>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </Card>
             </motion.div>
           )}
 
@@ -480,28 +471,28 @@ export default function TowerDashboard() {
           {activeTab === 'challenges' && challenges && (
             <motion.div key="challenges" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
               <div className="space-y-4">
-                <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5">
-                  <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">Weekly Challenges</h3>
+                <Card tone="default">
+                  <h3 className="text-xs font-mono uppercase tracking-widest text-text-muted mb-3">Weekly Challenges</h3>
                   <div className="space-y-2">
                     {tower.challenges?.filter((ch: any) => ch.type === 'weekly')?.map((ch: any) => (
                       <ChallengeRow key={ch.id} challenge={ch} type="weekly" onClaim={handleClaimChallenge} />
                     ))}
                     {!tower.challenges?.some((c: any) => c.type === 'weekly') && (
-                      <p className="text-xs text-gray-500 text-center py-4 font-mono">No weekly challenges yet</p>
+                      <p className="text-xs text-text-muted text-center py-4 font-mono">No weekly challenges yet</p>
                     )}
                   </div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5">
-                  <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">Monthly Challenges</h3>
+                </Card>
+                <Card tone="default">
+                  <h3 className="text-xs font-mono uppercase tracking-widest text-text-muted mb-3">Monthly Challenges</h3>
                   <div className="space-y-2">
                     {tower.challenges?.filter((ch: any) => ch.type === 'monthly')?.map((ch: any) => (
                       <ChallengeRow key={ch.id} challenge={ch} type="monthly" onClaim={handleClaimChallenge} />
                     ))}
                     {!tower.challenges?.some((c: any) => c.type === 'monthly') && (
-                      <p className="text-xs text-gray-500 text-center py-4 font-mono">No monthly challenges yet</p>
+                      <p className="text-xs text-text-muted text-center py-4 font-mono">No monthly challenges yet</p>
                     )}
                   </div>
-                </div>
+                </Card>
               </div>
             </motion.div>
           )}
@@ -518,29 +509,29 @@ function ChallengeRow({ challenge, type, onClaim }: { challenge: any; type: stri
   const isClaimed = challenge.claimed;
 
   return (
-    <div className={`flex items-center gap-3 p-3 rounded-lg border transition-all ${
-      isClaimed ? 'bg-emerald-500/5 border-emerald-500/15 opacity-60' :
-      isComplete ? 'bg-amber-500/5 border-amber-500/20' :
-      'bg-white/[0.02] border-white/5'
+    <div className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${
+      isClaimed ? 'bg-subject-verbal/5 border-subject-verbal/15 opacity-60' :
+      isComplete ? 'bg-primary/5 border-primary/20' :
+      'bg-surface border-border/5'
     }`}>
       <div className="flex-1 min-w-0">
-        <p className="text-xs font-mono text-gray-300 truncate">{challenge.name}</p>
+        <p className="text-xs font-mono text-text-secondary truncate">{challenge.name}</p>
         <div className="flex items-center gap-2 mt-1">
-          <div className="flex-1 h-1.5 rounded bg-white border-border shadow-card overflow-hidden">
-            <div className="h-full rounded bg-emerald-500 transition-all" style={{ width: `${progress}%` }} />
+          <div className="flex-1 h-1.5 rounded-full bg-surfaceHover overflow-hidden border border-border">
+            <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${progress}%` }} />
           </div>
-          <span className="text-[9px] font-mono text-gray-500">{challenge.progress || 0}/{challenge.target}</span>
+          <span className="text-[9px] font-mono text-text-muted">{challenge.progress || 0}/{challenge.target}</span>
         </div>
       </div>
       <div className="text-right shrink-0">
-        <span className="text-[10px] font-mono text-amber-400">+{challenge.xp_reward} XP</span>
+        <span className="text-[10px] font-mono text-primary">+{challenge.xp_reward} XP</span>
         {isComplete && !isClaimed && (
           <button onClick={() => onClaim(type, challenge.id)}
-            className="block mt-1 px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25">
+            className="block mt-1 px-2 py-0.5 rounded-xl text-[9px] font-bold text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors">
             Claim
           </button>
         )}
-        {isClaimed && <span className="block mt-1 text-[9px] font-mono text-emerald-400">✓ Claimed</span>}
+        {isClaimed && <span className="block mt-1 text-[9px] font-mono text-subject-verbal">✓ Claimed</span>}
       </div>
     </div>
   );

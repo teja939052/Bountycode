@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from app.middleware.auth import get_current_user, require_admin
-from app.services.coupon import create_coupon, validate_coupon, apply_coupon as apply_coupon_service
+from app.services.coupon import create_coupon, validate_coupon
 
 router = APIRouter(prefix="/api/v1/coupon", tags=["coupon"])
 

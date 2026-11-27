@@ -11,68 +11,113 @@
 
 @layer base {
   :root {
-    /* ── Base Light System ── */
-    --pp-canvas: #F7FAF7;
-    --pp-surface: #FFFFFF;
-    --pp-surface-2: #F0F7F1;
-    --pp-mint: #EAF7ED;
-    --pp-border: #DCE8DE;
+    /* ── Base (Golden Hour — warm dark canvas) ── */
+    --pp-canvas: #0F172A;
+    --pp-surface: #334155;
+    --pp-surface-hover: #64748B;
+    --pp-border: #64748B;
+    --pp-border-soft: #334155;
+    --pp-border-focus: #F97316;
 
-    /* ── Text ── */
-    --pp-text: #17211B;
-    --pp-text-muted: #68736B;
+    /* ── Text ── WCAG AA contrast on all surfaces ── */
+    --pp-text: #F8FAFC;
+    --pp-text-secondary: #E2E8F0;
+    --pp-text-muted: #CBD5E1;
+    --pp-text-dim: #94A3B8;
+    --pp-text-inverse: #0F172A;
 
-    /* ── Primary Green (accent, not background) ── */
-    --pp-primary: #22C55E;
-    --pp-primary-dark: #15803D;
-    --pp-primary-soft: #DCFCE7;
+    /* ── Primary brand (vibrant orange — energetic) ── */
+    --pp-primary: #F97316;
+    --pp-primary-dark: #EA580C;
+    --pp-primary-deep: #C2410C;
+    --pp-primary-soft: rgba(249, 115, 22, 0.10);
+    --pp-primary-glow: rgba(249, 115, 22, 0.25);
+    --pp-primary-text: #FFFFFF;
 
-    /* ── Triquetra Cyan ── */
-    --pp-cyan: #28D3C5;
-    --pp-cyan-dark: #14B8A6;
-    --pp-cyan-soft: #CCFBF1;
+    /* ── Subject accent colors ── */
+    --pp-subject-coding: #06B6D4;
+    --pp-subject-coding-soft: rgba(6, 182, 212, 0.10);
+    --pp-subject-coding-glow: rgba(6, 182, 212, 0.25);
 
-    /* ── Adventure Palette ── */
-    --pp-ocean: #5BA7A0;
-    --pp-ocean-soft: #E0F2F1;
-    --pp-sky: #8BC9D5;
-    --pp-sky-soft: #E8F5FA;
-    --pp-sand: #E9D6A3;
-    --pp-sand-soft: #FDF6EB;
-    --pp-wood: #A8754F;
-    --pp-wood-soft: #F5EFE8;
+    --pp-subject-aptitude: #F59E0B;
+    --pp-subject-aptitude-soft: rgba(245, 158, 11, 0.10);
+    --pp-subject-aptitude-glow: rgba(245, 158, 11, 0.25);
 
-    /* ── Reward Gold ── */
-    --pp-reward-gold: #EAB74D;
-    --pp-reward-gold-soft: #FFF3D0;
+    --pp-subject-reasoning: #EC4899;
+    --pp-subject-reasoning-soft: rgba(236, 72, 153, 0.10);
+    --pp-subject-reasoning-glow: rgba(236, 72, 153, 0.25);
+
+    --pp-subject-verbal: #10B981;
+    --pp-subject-verbal-soft: rgba(16, 185, 129, 0.10);
+    --pp-subject-verbal-glow: rgba(16, 185, 129, 0.25);
+
+    --pp-subject-interview: #8B5CF6;
+    --pp-subject-interview-soft: rgba(139, 92, 246, 0.10);
+    --pp-subject-interview-glow: rgba(139, 92, 246, 0.25);
+
+    --pp-subject-boss: #EF4444;
+    --pp-subject-boss-soft: rgba(239, 68, 68, 0.10);
+    --pp-subject-boss-glow: rgba(239, 68, 68, 0.25);
 
     /* ── Semantic ── */
-    --pp-tech: #4A90E2;
-    --pp-tech-soft: #E8F0FE;
-    --pp-boss-coral: #E96A5B;
-    --pp-boss-coral-soft: #FDEDEC;
-    --pp-rare-purple: #8B6BD9;
-    --pp-rare-purple-soft: #F3F0FA;
+    --pp-success: #22C55E;
+    --pp-success-soft: rgba(34, 197, 94, 0.10);
+    --pp-warning: #F59E0B;
+    --pp-warning-soft: rgba(245, 158, 11, 0.10);
+    --pp-error: #EF4444;
+    --pp-error-soft: rgba(239, 68, 68, 0.10);
+    --pp-info: #3B82F6;
+    --pp-info-soft: rgba(59, 130, 246, 0.10);
 
-    /* ── Legacy aliases (backward compat) ── */
-    --pp-blue: #4A90E2;
-    --pp-blue-soft: #E8F0FE;
-    --pp-gold: #EAB74D;
-    --pp-gold-soft: #FFF3D0;
-    --pp-purple: #8B6BD9;
-    --pp-purple-soft: #F3F0FA;
-    --pp-red: #E96A5B;
-    --pp-red-soft: #FDEDEC;
-    --pp-navy: #17211B;
-    --pp-smoke: #68736B;
-    --pp-cream: #FDF6EB;
+    /* ── Legacy aliases ── */
+    --pp-blue: #3B82F6;
+    --pp-blue-soft: rgba(59, 130, 246, 0.10);
+    --pp-gold: #F59E0B;
+    --pp-gold-soft: rgba(245, 158, 11, 0.10);
+    --pp-purple: #8B5CF6;
+    --pp-purple-soft: rgba(139, 92, 246, 0.10);
+    --pp-red: #EF4444;
+    --pp-red-soft: rgba(239, 68, 68, 0.10);
+
+    /* ── Coddy compat ── */
+    --pp-coddy: #29ABE2;
+    --pp-coddy-dark: #34B4E4;
+    --pp-coddy-button: #0077FF;
+    --pp-coddy-button-shadow: #005DC8;
+    --pp-coddy-deep: #007ACCC;
+    --pp-coddy-dark-theme: #1B78A0;
+    --pp-streak: #E85A18;
+    --pp-streak-light: #F4C4B4;
+    --pp-score: #FCAD00;
+    --pp-score-light: #FDE6A5;
+    --pp-energy: #3E39B8;
+    --pp-energy-light: #D6D4EC;
+    --pp-bugsy: #D31D65;
+    --pp-bugsy-light: #F4A9C4;
+    --pp-pro: #CF7F26;
+    --pp-pro-light: #EAC89C;
+    --pp-hearts: #FF4B4B;
+    --pp-hearts-light: #FFCCCC;
+    --pp-streak-freeze: #69AEFF;
+    --pp-streak-freeze-light: #D3E3FF;
+    --pp-mist: #F1F5F9;
+    --pp-sky-wash: #DDF4FF;
+    --pp-charcoal: #252627;
+    --pp-graphite: #2D2E2F;
+    --pp-editor: #1E1E1E;
 
     /* ── Shadows ── */
-    --pp-shadow-card: 0 1px 3px rgba(17, 33, 27, 0.04), 0 2px 8px rgba(17, 33, 27, 0.02);
-    --pp-shadow-elevated: 0 4px 16px rgba(17, 33, 27, 0.06), 0 8px 30px rgba(17, 33, 27, 0.04);
-    --pp-shadow-modal: 0 20px 60px rgba(17, 33, 27, 0.12);
-    --pp-shadow-bounty: 0 4px 20px rgba(234, 183, 77, 0.25);
-    --pp-shadow-ocean: 0 4px 20px rgba(91, 167, 160, 0.15);
+    --pp-shadow-card: 0 1px 3px rgba(15, 23, 42, 0.15), 0 2px 8px rgba(15, 23, 42, 0.10);
+    --pp-shadow-card-hover: 0 12px 32px rgba(15, 23, 42, 0.25), 0 6px 16px rgba(15, 23, 42, 0.12);
+    --pp-shadow-primary: 0 0 20px rgba(249, 115, 22, 0.25);
+    --pp-shadow-primary-lg: 0 0 40px rgba(249, 115, 22, 0.35);
+    --pp-shadow-modal: 0 20px 60px rgba(15, 23, 42, 0.35);
+    --pp-shadow-coding: 0 0 20px rgba(6, 182, 212, 0.15);
+    --pp-shadow-aptitude: 0 0 20px rgba(245, 158, 11, 0.15);
+    --pp-shadow-reasoning: 0 0 20px rgba(236, 72, 153, 0.15);
+    --pp-shadow-verbal: 0 0 20px rgba(16, 185, 129, 0.15);
+    --pp-shadow-boss: 0 0 20px rgba(239, 68, 68, 0.15);
+    --pp-shadow-bounty: 0 0 40px rgba(245, 158, 11, 0.25);
 
     /* ── Radii ── */
     --pp-radius-card: 16px;
@@ -91,18 +136,18 @@
     --text-primary: var(--pp-text);
     --text-muted: var(--pp-text-muted);
 
-    color-scheme: light;
+    color-scheme: dark;
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(34, 197, 94, 0.28) transparent;
+    scrollbar-color: rgba(249, 115, 22, 0.28) transparent;
   }
 
   *::-webkit-scrollbar { width: 6px; }
   *::-webkit-scrollbar-track { background: transparent; }
   *::-webkit-scrollbar-thumb {
-    background: rgba(34, 197, 94, 0.28);
+    background: rgba(249, 115, 22, 0.28);
     border-radius: 3px;
   }
 
@@ -143,17 +188,17 @@
   }
 
   a {
-    color: var(--pp-primary-dark);
+    color: var(--pp-primary);
     text-decoration: none;
     transition: color var(--pp-transition-fast);
   }
 
-  a:hover { color: var(--pp-primary); }
+  a:hover { color: var(--pp-primary-dark); }
 
   button { font-family: inherit; }
 
   ::selection {
-    background: rgba(34, 197, 94, 0.18);
+    background: rgba(249, 115, 22, 0.18);
     color: var(--pp-text);
   }
 
@@ -171,8 +216,8 @@
    .text-white is NOT remapped — it's used on primary buttons. */
 .text-gray-300 { color: var(--pp-text-muted) !important; }
 .text-gray-400 { color: var(--pp-text-muted) !important; }
-.text-gray-200 { color: #9CA3AF !important; }
-.text-gray-100 { color: #9CA3AF !important; }
+.text-gray-200 { color: #E2E8F0 !important; }
+.text-gray-100 { color: #F1F5F9 !important; }
 .text-muted { color: var(--pp-text-muted) !important; }
 
 /* ── Utility classes ── */
@@ -186,8 +231,20 @@
 .radius-card { border-radius: var(--pp-radius-card); }
 .radius-button { border-radius: var(--pp-radius-button); }
 .shadow-card { box-shadow: var(--pp-shadow-card); }
-.shadow-elevated { box-shadow: var(--pp-shadow-elevated); }
+.shadow-card-hover { box-shadow: var(--pp-shadow-card-hover); }
 .shadow-modal { box-shadow: var(--pp-shadow-modal); }
+
+/* ── Input visibility ── */
+input::placeholder, textarea::placeholder {
+  color: var(--pp-text-dim);
+  opacity: 0.85;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--pp-border-focus);
+  ring-color: var(--pp-border-focus);
+}
 
 /* ══════════════════════════════════════════════════════════════════
    COMPONENTS

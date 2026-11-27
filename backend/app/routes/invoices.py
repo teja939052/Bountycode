@@ -1,10 +1,17 @@
+"""Invoice generation — PostgreSQL-backed, no MongoDB."""
+
+from datetime import datetime, timezone
+from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from typing import Optional, List
-from app.database import users_collection
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.invoice import InvoiceService
-from bson import ObjectId
+from app.services.email import send_email, limit_reached_email
+from app.config import get_settings
 
 router = APIRouter(prefix="/api/v1/invoices", tags=["invoices"])
 invoice_service = InvoiceService()
@@ -18,54 +25,50 @@ class GenerateInvoiceRequest(BaseModel):
 
 
 @router.post("/generate")
-async def generate_invoice(req: GenerateInvoiceRequest, user: dict = Depends(get_current_user)):
+async def generate_invoice(req: GenerateInvoiceRequest, user=Depends(get_current_user)):
     """Generate an invoice for a payment."""
-    try:
-        user_obj = await users_collection.find_one({"_id": ObjectId(user["id"])})
-        if not user_obj:
-            raise HTTPException(status_code=404, detail="User not found")
+    # Use the PostgreSQL-backed invoice service
+    result = await invoice_service.generate_invoice(
+        user_id=user["id"],
+        plan=req.plan,
+        amount=req.amount,
+        currency=req.currency,
+        transaction_id=req.transaction_id,
+    )
+    return result
 
-        class SimpleUser:
-            def __init__(self, data):
-                self.id = str(data["_id"])
-                self.name = data.get("name", "")
-                self.email = data.get("email", "")
 
-        invoice = await invoice_service.generate_invoice(
-            user=SimpleUser(user_obj),
-            plan=req.plan,
-            amount=req.amount,
-            currency=req.currency,
-            transaction_id=req.transaction_id
+@router.post("/usage/stats")
+async def usage_stats_endpoint(user=Depends(get_current_user)):
+    """Get user usage statistics for tier gating."""
+    async with get_session() as session:
+        from app.services.usage import get_usage_stats
+        stats = await get_usage_stats(user["id"])
+    return {"success": True, "data": stats}
+
+
+@router.post("/plan/upgrade")
+async def upgrade_plan(payload: dict, user=Depends(get_current_user)):
+    """Handle plan upgrade (pro/lifetime)."""
+    new_plan = payload.get("plan")
+    if new_plan not in ("pro", "lifetime"):
+        raise HTTPException(status_code=400, detail="Invalid plan")
+
+    async with get_session() as session:
+        from app.repositories.identity import UserRepository
+        user_repo = UserRepository(session)
+        user = await user_repo.get_by_id(user["id"])
+
+        # Update plan
+        await user_repo.update(user["id"], {"plan": new_plan})
+
+        # Record revenue event
+        await invoice_service.record_revenue_event(
+            user_id=user["id"],
+            event_type="plan_upgrade",
+            amount=29.0 if new_plan == "pro" else 399.0,
+            currency="USD",
+            metadata={"plan": new_plan, "upgraded_from": user.plan},
         )
-        return {"success": True, "invoice": invoice}
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
-
-@router.get("/my-invoices")
-async def get_my_invoices(user: dict = Depends(get_current_user)):
-    """Get all invoices for the current user."""
-    try:
-        invoices = await invoice_service.get_user_invoices(user["id"])
-        return {"success": True, "invoices": invoices}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/{invoice_id}")
-async def get_invoice(invoice_id: str, user: dict = Depends(get_current_user)):
-    """Get a specific invoice by ID."""
-    try:
-        invoice = await invoice_service.get_invoice(invoice_id)
-        if not invoice:
-            raise HTTPException(status_code=404, detail="Invoice not found")
-        if invoice.get("customer", {}).get("user_id") != str(user["id"]):
-            raise HTTPException(status_code=403, detail="Access denied")
-        return {"success": True, "invoice": invoice}
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    return {"success": True, "new_plan": new_plan}

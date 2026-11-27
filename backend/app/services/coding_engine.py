@@ -219,3 +219,8 @@ Give me a level {hint_level} hint."""},
 
         response = await chat_completion(messages)
         return parse_json(response)
+
+
+async def CodingEngine(user_id: str) -> dict:
+    """Stub for CodingEngine."""
+    return {"user_id": user_id}

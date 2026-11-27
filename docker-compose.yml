@@ -1,23 +1,22 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:16
-    container_name: BountyCode-postgres
+  mongodb:
+    image: mongo:7
+    container_name: BountyCode-mongodb
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "27017:27017"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-bountycode}
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-securepassword}
+      MONGO_INITDB_DATABASE: BountyCode
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./backend/supabase/migrations:/docker-entrypoint-initdb.d:ro
+      - mongodb_data:/data/db
     networks:
       - BountyCode-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d $${POSTGRES_DB:-bountycode}"]
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -47,7 +46,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      SUPABASE_DB_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-bountycode}
+      MONGODB_URL: mongodb://admin:${MONGO_ROOT_PASSWORD:-securepassword}@mongodb:27017
+      DATABASE_NAME: BountyCode
       REDIS_URL: redis://redis:6379
       JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
@@ -57,7 +57,7 @@ services:
       PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET:-}
       PAYPAL_MODE: ${PAYPAL_MODE:-sandbox}
     depends_on:
-      postgres:
+      mongodb:
         condition: service_healthy
       redis:
         condition: service_healthy
@@ -95,7 +95,7 @@ services:
       retries: 3
 
 volumes:
-  postgres_data:
+  mongodb_data:
     driver: local
   redis_data:
     driver: local

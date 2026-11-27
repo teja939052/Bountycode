@@ -274,3 +274,8 @@ class ContentVerifier:
         if passed >= total * 0.7:
             return "HUMAN_REVIEW"
         return "REJECT"
+
+
+async def ContentVerifier(user_id: str) -> dict:
+    """Stub for ContentVerifier."""
+    return {"user_id": user_id}

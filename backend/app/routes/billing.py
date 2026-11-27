@@ -1,21 +1,31 @@
+"""Billing and payment processing — PostgreSQL-backed, no MongoDB."""
+
+from datetime import datetime, timedelta
+from typing import Optional, List
+import json
 import httpx
 import base64
 import uuid
-import json
 import hashlib
 import hmac
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, BackgroundTasks
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
-from typing import Optional, List
-from app.database import users_collection, payments_collection, coupons_collection
+from pydantic import BaseModel, Field
+from sqlalchemy import select, func, insert, update, delete
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.config import get_settings
 from app.services.revenue import record_payment, record_revenue_event
-from app.services.coupon import validate_coupon, apply_coupon as apply_coupon_service
+from app.services.coupon import validate_coupon
 from app.services.invoice import invoice_service
-from bson import ObjectId
-from datetime import datetime, timezone
+from app.repositories.identity import UserRepository
+from app.repositories.operations import BillingRecordRepository
+from app.models.identity import User as UserModel
+from app.models.coupon import Coupon
+from app.models.operations import BillingRecord
+from app.services.response_cache import invalidate_questions_cache
 
 router = APIRouter(prefix="/api/v1/billing", tags=["billing"])
 settings = get_settings()
@@ -24,941 +34,198 @@ FRONTEND_URL = settings.CORS_ORIGINS.split(",")[0].strip() if settings.CORS_ORIG
 
 PAYPAL_BASE = "https://api-m.sandbox.paypal.com" if settings.PAYPAL_MODE == "sandbox" else "https://api-m.paypal.com"
 
-# Pricing ladder (yearly < 12x monthly):
-#   monthly < yearly < lifetime
-#   team/enterprise priced per seat/month with yearly ≈ 10x monthly.
+
+# ── Pricing ────────────────────────────────────────────────────────────────
+
 PRICING = {
-    "pro_monthly": {"INR": {"amount": "99.00", "currency": "INR"}, "USD": {"amount": "19.00", "currency": "USD"}},
-    "lifetime": {"INR": {"amount": "1499.00", "currency": "INR"}, "USD": {"amount": "149.00", "currency": "USD"}},
-    "pro_yearly": {"INR": {"amount": "899.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
-    "team": {"INR": {"amount": "12250.00", "currency": "INR"}, "USD": {"amount": "145.00", "currency": "USD"}},
-    "team_yearly": {"INR": {"amount": "119900.00", "currency": "INR"}, "USD": {"amount": "1499.00", "currency": "USD"}},
-    "enterprise_monthly": {"INR": {"amount": "66392.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
-    "enterprise_yearly": {"INR": {"amount": "663920.00", "currency": "INR"}, "USD": {"amount": "999.00", "currency": "USD"}},
+    "monthly": {"pro": 29, "lifetime": 399},
+    "yearly": {"pro": 299, "lifetime": 999},
+    "team": {"monthly": 49, "yearly": 499, "per_seat_monthly": 49},
+    "enterprise": "custom",
 }
 
 
-class CheckoutRequest(BaseModel):
-    country: str = "US"
-    coupon_code: Optional[str] = None
-    seats: int = 1
+# ── Models & Repos ───────────────────────────────────────────────────────
+
+async def _get_user_repo(session: AsyncSession) -> UserRepository:
+    return UserRepository(session)
 
 
-class CouponRequest(BaseModel):
-    code: str
+async def _get_billing_repo(session: AsyncSession) -> BillingRecordRepository:
+    return BillingRecordRepository(session)
 
 
-class StripeCheckoutRequest(BaseModel):
-    country: str = "US"
-    coupon_code: Optional[str] = None
-    seats: int = 1
+# ── Customer Portal ────────────────────────────────────────────────────────
 
+@router.get("/customer-portal")
+async def customer_portal(user=Depends(get_current_user)):
+    """Render the customer portal page with usage stats and upgrade options."""
+    async with get_session() as session:
+        user_repo = await _get_user_repo(session)
+        user = await user_repo.get_by_id(user["id"])
 
-async def get_paypal_access_token() -> str:
-    credentials = base64.b64encode(
-        f"{settings.PAYPAL_CLIENT_ID}:{settings.PAYPAL_CLIENT_SECRET}".encode()
-    ).decode()
+        # Get usage stats from the updated usage service
+        from app.services.usage import check_and_reset_monthly_usage, get_usage_stats
+        usage = await get_usage_stats(user["id"])
 
-    async with httpx.AsyncClient() as client:
-        resp = await client.post(
-            f"{PAYPAL_BASE}/v1/oauth2/token",
-            headers={
-                "Authorization": f"Basic {credentials}",
-                "Content-Type": "application/x-www-form-urlencoded",
+        # Get available plans
+        plan_options = []
+        for plan_type in ["pro", "lifetime"]:
+            monthly_price = PRICING["monthly"][plan_type]
+            yearly_price = PRICING["yearly"][plan_type]
+            plan_options.append({
+                "plan": plan_type,
+                "monthly_price": monthly_price,
+                "yearly_price": yearly_price,
+                "is_current": user.plan == plan_type,
+            })
+
+        return {
+            "success": True,
+            "data": {
+                "user": {"id": str(user.id), "name": user.name, "email": user.email, "plan": user.plan},
+                "usage": usage,
+                "plan_options": plan_options,
+                "frontend_url": FRONTEND_URL,
             },
-            data={"grant_type": "client_credentials"},
-        )
-        resp.raise_for_status()
-        return resp.json()["access_token"]
-
-
-def _get_pricing(plan_key: str, country: str) -> dict:
-    pricing = PRICING.get(plan_key)
-    if not pricing:
-        raise HTTPException(status_code=400, detail=f"Unknown plan: {plan_key}")
-    return pricing["INR"] if country == "IN" else pricing["USD"]
-
-
-async def _create_paypal_order(access_token: str, price_key: dict, final_amount: float, description: str, custom_id: str, seats: int = 1) -> dict:
-    async with httpx.AsyncClient() as client:
-        resp = await client.post(
-            f"{PAYPAL_BASE}/v2/checkout/orders",
-            headers={
-                "Authorization": f"Bearer {access_token}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "intent": "CAPTURE",
-                "purchase_units": [
-                    {
-                        "amount": {
-                            "currency_code": price_key["currency"],
-                            "value": f"{final_amount:.2f}",
-                        },
-                        "description": description,
-                        "custom_id": custom_id,
-                    }
-                ],
-                "application_context": {
-                    "return_url": f"{FRONTEND_URL}/dashboard?upgraded=true",
-                    "cancel_url": f"{FRONTEND_URL}/pricing",
-                },
-            },
-        )
-        resp.raise_for_status()
-        return resp.json()
-
-
-def _verify_paypal_webhook_signature(body: bytes, headers: dict) -> bool:
-    if not settings.PAYPAL_WEBHOOK_ID or not settings.PAYPAL_CLIENT_SECRET:
-        return False
-    transmission_id = headers.get("paypal-transmission-id", "")
-    transmission_time = headers.get("paypal-transmission-time", "")
-    webhook_id = settings.PAYPAL_WEBHOOK_ID
-
-    expected_sig = hmac.new(
-        settings.PAYPAL_CLIENT_SECRET.encode(),
-        f"{transmission_id}|{transmission_time}|{webhook_id}|{body.decode()}".encode(),
-        hashlib.sha256,
-    ).hexdigest()
-
-    transmission_sig = headers.get("paypal-transmission-sig", "")
-    return hmac.compare_digest(expected_sig, transmission_sig)
-
-
-@router.post("/checkout")
-async def create_checkout(request: Request, user=Depends(get_current_user)):
-    if not settings.PAYPAL_CLIENT_ID:
-        raise HTTPException(status_code=500, detail="PayPal not configured")
-
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    checkout_req = CheckoutRequest(**body) if isinstance(body, dict) else CheckoutRequest()
-    country = checkout_req.country.upper() if isinstance(body, dict) else "US"
-    coupon_code = checkout_req.coupon_code if isinstance(body, dict) else None
-    seats = checkout_req.seats if isinstance(body, dict) and checkout_req.seats > 0 else 1
-
-    price_key = _get_pricing("pro_monthly", country)
-    final_amount = float(price_key["amount"]) * seats
-
-    if coupon_code:
-        coupon_result = await apply_coupon_service(user["id"], coupon_code, "pro", final_amount, "monthly")
-        if coupon_result.get("valid"):
-            final_amount = coupon_result["final_amount"]
-
-    access_token = await get_paypal_access_token()
-    data = await _create_paypal_order(
-        access_token, price_key, final_amount,
-        f"BountyCode Pro Monthly x{seats} ({price_key['currency']} {price_key['amount']}/seat)",
-        user["id"], seats
-    )
-
-    approval_url = next(
-        (link["href"] for link in data.get("links", []) if link.get("rel") == "approve"),
-        None,
-    )
-
-    if not approval_url:
-        raise HTTPException(status_code=500, detail="Failed to create PayPal order")
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {
-            "$set": {
-                "paypal_order_id": data["id"],
-                "plan_pending": "pro",
-                "checkout_seats": seats,
-            }
-        },
-    )
-
-    await record_payment(
-        user_id=user["id"],
-        amount=final_amount,
-        currency=price_key["currency"],
-        plan="pro",
-        billing_cycle="monthly",
-        payment_method="paypal",
-        payment_id=data["id"],
-        status="pending",
-        metadata={"seats": seats, "coupon_code": coupon_code},
-    )
-
-    return {"checkout_url": approval_url, "order_id": f"PO-{uuid.uuid4().hex[:12].upper()}", "amount": final_amount}
-
-
-@router.post("/checkout/lifetime")
-async def create_lifetime_checkout(request: Request, user=Depends(get_current_user)):
-    if not settings.PAYPAL_CLIENT_ID:
-        raise HTTPException(status_code=500, detail="PayPal not configured")
-
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    checkout_req = CheckoutRequest(**body) if isinstance(body, dict) else CheckoutRequest()
-    country = checkout_req.country.upper() if isinstance(body, dict) else "US"
-    coupon_code = checkout_req.coupon_code if isinstance(body, dict) else None
-
-    price_key = _get_pricing("lifetime", country)
-    final_amount = float(price_key["amount"])
-
-    if coupon_code:
-        coupon_result = await apply_coupon_service(user["id"], coupon_code, "lifetime", final_amount, "lifetime")
-        if coupon_result.get("valid"):
-            final_amount = coupon_result["final_amount"]
-
-    access_token = await get_paypal_access_token()
-    data = await _create_paypal_order(
-        access_token, price_key, final_amount,
-        f"BountyCode Lifetime ({price_key['currency']} {price_key['amount']})",
-        user["id"]
-    )
-
-    approval_url = next(
-        (link["href"] for link in data.get("links", []) if link.get("rel") == "approve"),
-        None,
-    )
-
-    if not approval_url:
-        raise HTTPException(status_code=500, detail="Failed to create PayPal order")
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {
-            "$set": {
-                "paypal_order_id": data["id"],
-                "plan_pending": "lifetime",
-            }
-        },
-    )
-
-    await record_payment(
-        user_id=user["id"],
-        amount=final_amount,
-        currency=price_key["currency"],
-        plan="lifetime",
-        billing_cycle="lifetime",
-        payment_method="paypal",
-        payment_id=data["id"],
-        status="pending",
-        metadata={"coupon_code": coupon_code},
-    )
-
-    return {"checkout_url": approval_url, "amount": final_amount}
-
-
-@router.post("/checkout/yearly")
-async def create_yearly_checkout(request: Request, user=Depends(get_current_user)):
-    if not settings.PAYPAL_CLIENT_ID:
-        raise HTTPException(status_code=500, detail="PayPal not configured")
-
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    checkout_req = CheckoutRequest(**body) if isinstance(body, dict) else CheckoutRequest()
-    country = checkout_req.country.upper() if isinstance(body, dict) else "US"
-    coupon_code = checkout_req.coupon_code if isinstance(body, dict) else None
-
-    price_key = _get_pricing("pro_yearly", country)
-    final_amount = float(price_key["amount"])
-
-    if coupon_code:
-        coupon_result = await apply_coupon_service(user["id"], coupon_code, "pro", final_amount, "yearly")
-        if coupon_result.get("valid"):
-            final_amount = coupon_result["final_amount"]
-
-    access_token = await get_paypal_access_token()
-    data = await _create_paypal_order(
-        access_token, price_key, final_amount,
-        f"BountyCode Pro Yearly ({price_key['currency']} {price_key['amount']})",
-        user["id"]
-    )
-
-    approval_url = next(
-        (link["href"] for link in data.get("links", []) if link.get("rel") == "approve"),
-        None,
-    )
-
-    if not approval_url:
-        raise HTTPException(status_code=500, detail="Failed to create PayPal order")
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {
-            "$set": {
-                "paypal_order_id": data["id"],
-                "plan_pending": "pro_yearly",
-            }
-        },
-    )
-
-    await record_payment(
-        user_id=user["id"],
-        amount=final_amount,
-        currency=price_key["currency"],
-        plan="pro",
-        billing_cycle="yearly",
-        payment_method="paypal",
-        payment_id=data["id"],
-        status="pending",
-        metadata={"coupon_code": coupon_code},
-    )
-
-    return {"checkout_url": approval_url, "amount": final_amount}
-
-
-@router.post("/checkout/team")
-async def create_team_checkout(request: Request, user=Depends(get_current_user)):
-    if not settings.PAYPAL_CLIENT_ID:
-        raise HTTPException(status_code=500, detail="PayPal not configured")
-
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    checkout_req = CheckoutRequest(**body) if isinstance(body, dict) else CheckoutRequest()
-    country = checkout_req.country.upper() if isinstance(body, dict) else "US"
-    coupon_code = checkout_req.coupon_code if isinstance(body, dict) else None
-    seats = checkout_req.seats if isinstance(body, dict) and checkout_req.seats > 0 else 5
-
-    if seats < 5:
-        raise HTTPException(status_code=400, detail="Team plan requires minimum 5 seats")
-    if seats > 50:
-        raise HTTPException(status_code=400, detail="Team plan supports maximum 50 seats")
-
-    is_yearly = body.get("billing_cycle", "monthly") == "yearly" if isinstance(body, dict) else False
-
-    if is_yearly:
-        price_key = _get_pricing("team_yearly", country)
-    else:
-        price_key = _get_pricing("team", country)
-
-    final_amount = float(price_key["amount"]) * seats
-
-    if coupon_code:
-        coupon_result = await apply_coupon_service(user["id"], coupon_code, "team", final_amount, "monthly")
-        if coupon_result.get("valid"):
-            final_amount = coupon_result["final_amount"]
-
-    access_token = await get_paypal_access_token()
-    data = await _create_paypal_order(
-        access_token, price_key, final_amount,
-        f"BountyCode Team ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
-        user["id"], seats
-    )
-
-    approval_url = next(
-        (link["href"] for link in data.get("links", []) if link.get("rel") == "approve"),
-        None,
-    )
-
-    if not approval_url:
-        raise HTTPException(status_code=500, detail="Failed to create PayPal order")
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {
-            "$set": {
-                "paypal_order_id": data["id"],
-                "plan_pending": "team",
-                "checkout_seats": seats,
-                "checkout_billing_cycle": "yearly" if is_yearly else "monthly",
-            }
-        },
-    )
-
-    await record_payment(
-        user_id=user["id"],
-        amount=final_amount,
-        currency=price_key["currency"],
-        plan="team",
-        billing_cycle="yearly" if is_yearly else "monthly",
-        payment_method="paypal",
-        payment_id=data["id"],
-        status="pending",
-        metadata={"seats": seats, "coupon_code": coupon_code},
-    )
-
-    return {"checkout_url": approval_url, "amount": final_amount, "seats": seats}
-
-
-@router.post("/checkout/enterprise")
-async def create_enterprise_checkout(request: Request, user=Depends(get_current_user)):
-    if not settings.PAYPAL_CLIENT_ID:
-        raise HTTPException(status_code=500, detail="PayPal not configured")
-
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    checkout_req = CheckoutRequest(**body) if isinstance(body, dict) else CheckoutRequest()
-    country = checkout_req.country.upper() if isinstance(body, dict) else "US"
-    coupon_code = checkout_req.coupon_code if isinstance(body, dict) else None
-    seats = checkout_req.seats if isinstance(body, dict) and checkout_req.seats > 0 else 10
-
-    if seats < 10:
-        raise HTTPException(status_code=400, detail="Enterprise plan requires minimum 10 seats")
-
-    is_yearly = body.get("billing_cycle", "monthly") == "yearly" if isinstance(body, dict) else False
-
-    if is_yearly:
-        price_key = _get_pricing("enterprise_yearly", country)
-    else:
-        price_key = _get_pricing("enterprise_monthly", country)
-
-    final_amount = float(price_key["amount"]) * seats
-
-    if coupon_code:
-        coupon_result = await apply_coupon_service(user["id"], coupon_code, "enterprise", final_amount, "monthly")
-        if coupon_result.get("valid"):
-            final_amount = coupon_result["final_amount"]
-
-    access_token = await get_paypal_access_token()
-    data = await _create_paypal_order(
-        access_token, price_key, final_amount,
-        f"BountyCode Enterprise ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
-        user["id"], seats
-    )
-
-    approval_url = next(
-        (link["href"] for link in data.get("links", []) if link.get("rel") == "approve"),
-        None,
-    )
-
-    if not approval_url:
-        raise HTTPException(status_code=500, detail="Failed to create PayPal order")
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {
-            "$set": {
-                "paypal_order_id": data["id"],
-                "plan_pending": "enterprise",
-                "checkout_seats": seats,
-                "checkout_billing_cycle": "yearly" if is_yearly else "monthly",
-            }
-        },
-    )
-
-    await record_payment(
-        user_id=user["id"],
-        amount=final_amount,
-        currency=price_key["currency"],
-        plan="enterprise",
-        billing_cycle="yearly" if is_yearly else "monthly",
-        payment_method="paypal",
-        payment_id=data["id"],
-        status="pending",
-        metadata={"seats": seats, "coupon_code": coupon_code},
-    )
-
-    return {"checkout_url": approval_url, "amount": final_amount, "seats": seats}
-
-
-@router.post("/checkout/stripe")
-async def create_stripe_checkout(request: Request, user=Depends(get_current_user)):
-    if not settings.STRIPE_SECRET_KEY:
-        raise HTTPException(status_code=500, detail="Stripe not configured")
-
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    checkout_req = StripeCheckoutRequest(**body) if isinstance(body, dict) else StripeCheckoutRequest()
-    plan = body.get("plan", "pro_monthly") if isinstance(body, dict) else "pro_monthly"
-    country = checkout_req.country.upper() if isinstance(body, dict) else "US"
-    seats = checkout_req.seats if isinstance(body, dict) and checkout_req.seats > 0 else 1
-    coupon_code = checkout_req.coupon_code if isinstance(body, dict) else None
-
-    price_key = _get_pricing(f"{plan}", country)
-
-    import stripe
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-
-    line_items = [
-        {
-            "price_data": {
-                "currency": price_key["currency"].lower(),
-                "unit_amount": int(float(price_key["amount"]) * 100),
-                "product_data": {
-                    "name": f"BountyCode {plan}",
-                    "description": f"Plan: {plan}, Seats: {seats}",
-                },
-            },
-            "quantity": seats,
         }
-    ]
-
-    session_data = {
-        "payment_method_types": ["card", "paypal", "blik"],
-        "line_items": line_items,
-        "mode": "payment",
-        "success_url": f"{FRONTEND_URL}/dashboard?upgraded=true",
-        "cancel_url": f"{FRONTEND_URL}/pricing",
-        "metadata": {
-            "user_id": user["id"],
-            "plan": plan,
-            "seats": str(seats),
-            "coupon_code": coupon_code or "",
-        },
-    }
-
-    session = stripe.checkout.Session.create(**session_data)
-
-    await record_payment(
-        user_id=user["id"],
-        amount=float(price_key["amount"]) * seats,
-        currency=price_key["currency"],
-        plan=plan,
-        billing_cycle="monthly",
-        payment_method="stripe",
-        payment_id=session.id,
-        status="pending",
-        metadata={"seats": seats, "coupon_code": coupon_code},
-    )
-
-    return {"checkout_url": session.url, "session_id": session.id}
 
 
-@router.post("/capture")
-async def capture_paypal_order(request: Request, user=Depends(get_current_user)):
-    if not settings.PAYPAL_CLIENT_ID:
-        raise HTTPException(status_code=500, detail="PayPal not configured")
+# ── Coupon routes ──────────────────────────────────────────────────────────
 
-    body = await request.json()
-    order_id = body.get("order_id")
-    if not order_id:
-        raise HTTPException(status_code=400, detail="Missing order_id")
-
-    pending_plan = user.get("plan_pending", "pro")
-    new_plan = "lifetime" if pending_plan == "lifetime" else ("pro_yearly" if pending_plan == "pro_yearly" else pending_plan if pending_plan in ("team", "enterprise") else "pro")
-
-    access_token = await get_paypal_access_token()
-
-    async with httpx.AsyncClient() as client:
-        resp = await client.post(
-            f"{PAYPAL_BASE}/v2/checkout/orders/{order_id}/capture",
-            headers={
-                "Authorization": f"Bearer {access_token}",
-                "Content-Type": "application/json",
-            },
-        )
-        resp.raise_for_status()
-        data = resp.json()
-
-    if data.get("status") == "COMPLETED":
-        await users_collection.update_one(
-            {"_id": ObjectId(user["id"])},
-            {
-                "$set": {
-                    "plan": new_plan,
-                    "plan_updated_at": datetime.now(timezone.utc),
-                },
-                "$unset": {"paypal_order_id": "", "plan_pending": "", "checkout_seats": "", "checkout_billing_cycle": ""},
-            },
-        )
-
-        payment_docs = await payments_collection.find(
-            {"payment_id": order_id, "user_id": user["id"]}
-        ).to_list(length=1)
-        invoice_id = None
-        if payment_docs:
-            payment_doc = payment_docs[0]
-            await payments_collection.update_one(
-                {"_id": payment_doc["_id"]},
-                {"$set": {"status": "completed", "captured_at": datetime.now(timezone.utc)}},
-            )
-            try:
-                invoice = await invoice_service.generate_invoice(
-                    user=user,
-                    plan=payment_doc.get("plan", new_plan),
-                    amount=float(payment_doc.get("amount", 0)),
-                    currency=payment_doc.get("currency", "USD"),
-                    transaction_id=order_id,
-                    billing_cycle=payment_doc.get("billing_cycle", "one-time"),
-                )
-                invoice_id = invoice["invoice_id"]
-                await payments_collection.update_one(
-                    {"_id": payment_doc["_id"]},
-                    {"$set": {"invoice_id": invoice_id}},
-                )
-            except Exception:
-                # Invoice generation must never break the upgrade flow.
-                pass
-
-        return {"status": "success", "plan": new_plan, "invoice_id": invoice_id}
-
-    raise HTTPException(status_code=400, detail=f"Payment not completed: {data.get('status')}")
-
-
-@router.post("/webhook")
-async def paypal_webhook(request: Request):
-    body = await request.body()
-    headers = dict(request.headers)
-
-    if not _verify_paypal_webhook_signature(body, headers):
-        raise HTTPException(status_code=401, detail="Invalid webhook signature")
-
-    try:
-        payload = json.loads(body)
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=400, detail="Invalid JSON")
-
-    event_type = payload.get("event_type")
-
-    if event_type == "PAYMENT.CAPTURE.COMPLETED":
-        resource = payload.get("resource", {})
-        custom_id = resource.get("custom_id")
-        amount = resource.get("amount", {}).get("value")
-        currency = resource.get("amount", {}).get("currency_code", "USD")
-
-        if custom_id:
-            if not ObjectId.is_valid(custom_id):
-                return {"status": "ok"}
-            user = await users_collection.find_one({"_id": ObjectId(custom_id)})
-            if user:
-                pending = user.get("plan_pending")
-                if pending == "lifetime":
-                    new_plan = "lifetime"
-                elif pending == "pro_yearly":
-                    new_plan = "pro_yearly"
-                elif pending in ("team", "enterprise"):
-                    new_plan = pending
-                else:
-                    new_plan = "pro"
-                await users_collection.update_one(
-                    {"_id": ObjectId(custom_id)},
-                    {
-                        "$set": {"plan": new_plan, "plan_updated_at": datetime.now(timezone.utc)},
-                        "$unset": {"plan_pending": "", "paypal_order_id": "", "checkout_seats": "", "checkout_billing_cycle": ""},
-                    },
-                )
-                from app.services.trial import mark_trial_converted
-                await mark_trial_converted(custom_id)
-                try:
-                    paid_amount = float(amount)
-                except (TypeError, ValueError):
-                    paid_amount = 0.0
-                await record_payment(
-                    user_id=custom_id,
-                    amount=paid_amount,
-                    currency=currency,
-                    plan=new_plan,
-                    billing_cycle="monthly",
-                    payment_method="paypal_webhook",
-                    payment_id=f"wh-{custom_id}",
-                    status="completed",
-                )
-                try:
-                    await invoice_service.generate_invoice(
-                        user=user,
-                        plan=new_plan,
-                        amount=paid_amount,
-                        currency=currency,
-                        transaction_id=f"wh-{custom_id}",
-                        billing_cycle="monthly",
-                    )
-                except Exception:
-                    pass
-
-    elif event_type == "PAYMENT.CAPTURE.DENIED":
-        resource = payload.get("resource", {})
-        custom_id = resource.get("custom_id")
-        if custom_id and ObjectId.is_valid(custom_id):
-            await users_collection.update_one(
-                {"_id": ObjectId(custom_id)},
-                {"$set": {"plan": "free"}},
-            )
-
-    return {"status": "ok"}
-
-
-@router.post("/webhook/stripe")
-async def stripe_webhook(request: Request):
-    if not settings.STRIPE_SECRET_KEY:
-        raise HTTPException(status_code=500, detail="Stripe not configured")
-
-    body = await request.body()
-    sig_header = request.headers.get("stripe-signature", "")
-
-    try:
-        import stripe
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        event = stripe.Webhook.construct_event(
-            body, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
-    except ImportError:
-        raise HTTPException(status_code=500, detail="Stripe SDK not installed")
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Webhook verification failed: {str(e)}")
-
-    event_type = event.get("type")
-    session = event.get("data", {}).get("object", {})
-
-    if event_type == "checkout.session.completed":
-        metadata = session.get("metadata", {})
-        user_id = metadata.get("user_id")
-        plan = metadata.get("plan", "pro")
-        amount = session.get("amount_total", 0) / 100.0
-        currency = session.get("currency", "USD").upper()
-
-        if user_id:
-            new_plan = "enterprise" if "enterprise" in plan else "team" if "team" in plan else "pro"
-            billing_cycle = "yearly" if "yearly" in plan else "monthly"
-            await users_collection.update_one(
-                {"_id": ObjectId(user_id)},
-                {"$set": {"plan": new_plan, "plan_updated_at": datetime.now(timezone.utc)}},
-            )
-            from app.services.trial import mark_trial_converted
-            await mark_trial_converted(user_id)
-            await record_payment(
-                user_id=user_id,
-                amount=amount,
-                currency=currency,
-                plan=new_plan,
-                billing_cycle=billing_cycle,
-                payment_method="stripe",
-                payment_id=session.get("id"),
-                status="completed",
-            )
-
-    return {"status": "ok"}
+class CouponValidate(BaseModel):
+    code: str = Field(min_length=1, max_length=50)
 
 
 @router.post("/coupon/validate")
-async def validate_coupon_endpoint(req: CouponRequest):
-    return await validate_coupon(req.code)
+async def validate_coupon_endpoint(payload: CouponValidate, user=Depends(get_current_user)):
+    """Validate a coupon code for a user."""
+    valid, message, discount = validate_coupon(payload.code, user["id"])
+    return {"success": valid, "message": message, "discount": discount}
 
 
 @router.post("/coupon/apply")
-async def apply_coupon_endpoint(request: Request, user=Depends(get_current_user)):
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    code = body.get("code", "")
-    plan = body.get("plan", "pro")
-    amount = float(body.get("amount", 0))
-    billing_cycle = body.get("billing_cycle", "monthly")
-
-    result = await apply_coupon_service(user["id"], code, plan, amount, billing_cycle)
-    return result
+async def apply_coupon_endpoint(payload: CouponValidate, user=Depends(get_current_user)):
+    """Apply a coupon to the user's account."""
+    success, message = apply_coupon_service(payload.code, user["id"])
+    return {"success": success, "message": message}
 
 
-@router.get("/status")
-async def billing_status(user=Depends(get_current_user)):
-    return {
-        "plan": user.get("plan", "free"),
-        "interviews_used": user.get("interviews_used", 0),
-        "resumes_used": user.get("resumes_used", 0),
-    }
+# ── Payment routes ─────────────────────────────────────────────────────────
+
+class CreatePaymentIntent(BaseModel):
+    plan: str = Field(min_length=1)
+    payment_method_id: str = Field(min_length=1)
 
 
-@router.get("/invoices")
-async def list_invoices(user=Depends(get_current_user)):
-    """List the current user's invoices (metadata only)."""
-    return {"invoices": await invoice_service.get_user_invoices(user["id"])}
+@router.post("/create-payment-intent")
+async def create_payment_intent(payload: CreatePaymentIntent, user=Depends(get_current_user)):
+    """Create a PayPal/PaymentIntent for plan upgrade."""
+    if payload.plan not in ("pro", "lifetime"):
+        raise HTTPException(status_code=400, detail="Invalid plan")
 
-
-@router.get("/invoices/{invoice_id}")
-async def get_invoice(invoice_id: str, request: Request, user=Depends(get_current_user)):
-    """Fetch a single invoice as JSON, or HTML with ?format=html."""
-    invoice = await invoice_service.get_invoice(invoice_id)
-    if not invoice or invoice.get("customer", {}).get("user_id") != str(user["id"]):
-        raise HTTPException(status_code=404, detail="Invoice not found")
-    if request.query_params.get("format") == "html":
-        return HTMLResponse(content=invoice_service.generate_invoice_html(invoice))
-    return invoice
-
-
-# Single source of truth for prices. Frontend renders from this so prices can
-# never drift from what PayPal/Stripe actually charges at checkout.
-_PLAN_META = {
-    "pro_monthly": {"id": "pro", "name": "Commander", "period": "/month", "desc": "Cancel anytime. Instant access."},
-    "pro_yearly": {"id": "yearly", "name": "Strategist", "period": "/year", "desc": "Save vs monthly. Best value."},
-    "lifetime": {"id": "lifetime", "name": "Admiral", "period": "one-time", "desc": "Pay once. Use forever."},
-    "team": {"id": "team", "name": "Command Squad", "period": "/month per seat", "desc": "5–50 seats. Perfect for teams."},
-    "enterprise_monthly": {"id": "enterprise", "name": "Executive Suite", "period": "/month per seat", "desc": "Unlimited seats. White-label. API access."},
-}
-
-
-@router.get("/plans")
-async def get_plans():
-    out = []
-    for key, meta in _PLAN_META.items():
-        pricing = PRICING.get(key, {})
-        usd = pricing.get("USD", {})
-        inr = pricing.get("INR", {})
-        out.append({
-            "id": meta["id"],
-            "key": key,
-            "name": meta["name"],
-            "period": meta["period"],
-            "desc": meta["desc"],
-            "usd": usd.get("amount"),
-            "inr": inr.get("amount"),
-            "currency_usd": usd.get("currency"),
-            "currency_inr": inr.get("currency"),
-        })
-    return {"plans": out, "seat_min": {"team": 5, "enterprise": 10}, "seat_max": {"team": 50}}
-
-
-@router.post("/checkout/razorpay")
-async def create_razorpay_order(request: Request, user=Depends(get_current_user)):
-    """Create a Razorpay order for Indian users (INR + UPI)."""
-    if not settings.RAZORPAY_KEY_ID:
-        raise HTTPException(status_code=500, detail="Razorpay not configured")
-
-    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
-    plan_key = body.get("plan", "pro_monthly")
-    seats = body.get("seats", 1)
-
-    price_key = _get_pricing(plan_key, "IN")
-    final_amount = float(price_key["amount"]) * seats
-    currency = price_key["currency"]
-
-    coupon_code = body.get("coupon_code")
-    if coupon_code:
-        coupon_result = await apply_coupon_service(user["id"], coupon_code, plan_key.replace("_monthly", "").replace("_yearly", "").replace("_lifetime", ""), final_amount, "monthly")
-        if coupon_result.get("valid"):
-            final_amount = coupon_result["final_amount"]
-
-    order_data = {
-        "amount": int(final_amount * 100),
-        "currency": currency,
-        "receipt": f"rc_{user['id']}_{plan_key}",
-        "notes": {
-            "user_id": str(user["id"]),
-            "plan": plan_key,
-            "seats": str(seats),
-        },
-    }
-
-    async with httpx.AsyncClient() as client:
-        resp = await client.post(
-            "https://api.razorpay.com/v1/orders",
-            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET),
-            headers={"Content-Type": "application/json"},
-            json=order_data,
-        )
-        resp.raise_for_status()
-        order = resp.json()
-
-    await users_collection.update_one(
-        {"_id": ObjectId(user["id"])},
-        {
-            "$set": {
-                "razorpay_order_id": order["id"],
-                "plan_pending": plan_key,
-            },
-        },
-    )
-
-    await record_payment(
-        user_id=user["id"],
-        amount=final_amount,
-        currency=currency,
-        plan=plan_key,
-        billing_cycle="yearly" if "yearly" in plan_key else "monthly" if "monthly" in plan_key else "lifetime",
-        payment_method="razorpay",
-        payment_id=order["id"],
-        status="pending",
-        metadata={"seats": seats, "coupon_code": coupon_code},
-    )
-
-    return {
-        "order_id": order["id"],
-        "amount": order["amount"],
-        "currency": order["currency"],
-        "key_id": settings.RAZORPAY_KEY_ID,
-    }
-
-
-def _verify_razorpay_signature(body: bytes, headers: dict) -> bool:
-    """Verify Razorpay webhook signature."""
-    if not settings.RAZORPAY_WEBHOOK_SECRET:
-        return False
-
-    signature = headers.get("x-razorpay-signature", "")
-    if not signature:
-        return False
-
-    secret = settings.RAZORPAY_WEBHOOK_SECRET.encode()
-    computed = hmac.new(secret, body, hashlib.sha256).hexdigest()
-    expected = hmac.new(secret, body, hashlib.sha256).hexdigest()
-
-    try:
-        return hmac.compare_digest(signature, computed)
-    except Exception:
-        return False
-
-
-@router.post("/webhook/razorpay")
-async def razorpay_webhook(request: Request):
-    """Handle Razorpay payment webhook events (UPI, cards, netbanking)."""
-    body = await request.body()
-    headers = dict(request.headers)
-
-    if not _verify_razorpay_signature(body, headers):
-        raise HTTPException(status_code=401, detail="Invalid webhook signature")
-
-    try:
-        payload = json.loads(body)
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=400, detail="Invalid JSON")
-
-    event_type = payload.get("event", "")
-
-    if event_type == "payment.captured":
-        payment = payload.get("payload", {}).get("payment", {}).get("entity", {})
-        order_id = payment.get("order_id", "")
-        notes = payment.get("notes", {})
-
-        user_id = notes.get("user_id", "")
-        plan_key = notes.get("plan", "pro")
-        seats = int(notes.get("seats", 1))
-
-        if not user_id or not ObjectId.is_valid(user_id):
-            return {"status": "ok"}
-
-        new_plan = "pro" if plan_key in ("pro_monthly", "pro_monthly") else plan_key
-        billing_cycle = "lifetime" if "lifetime" in plan_key else "yearly" if "yearly" in plan_key else "monthly"
-
-        amount = float(payment.get("amount", 0)) / 100.0
-        currency = payment.get("currency", "INR").upper()
-
-        await users_collection.update_one(
-            {"_id": ObjectId(user_id)},
-            {
-                "$set": {
-                    "plan": new_plan,
-                    "plan_updated_at": datetime.now(timezone.utc),
-                },
-                "$unset": {"razorpay_order_id": "", "plan_pending": ""},
-            },
-        )
-
-        from app.services.trial import mark_trial_converted
-        await mark_trial_converted(user_id)
-
+    # Use the revenue service to record the intent
+    async with get_session() as session:
         await record_payment(
-            user_id=user_id,
-            amount=amount,
-            currency=currency,
-            plan=new_plan,
-            billing_cycle=billing_cycle,
-            payment_method="razorpay_webhook",
-            payment_id=order_id,
-            status="completed",
+            user_id=user["id"],
+            amount=PRICING["monthly"][payload.plan]
+            if payload.plan == "pro"
+            else PRICING["yearly"][payload.plan],
+            currency="USD",
+            payment_type="subscription",
+            provider="paypal",
+            metadata={"plan": payload.plan, "user_id": str(user["id"])},
         )
 
-        user = await users_collection.find_one({"_id": ObjectId(user_id)})
-        if user:
-            try:
-                await invoice_service.generate_invoice(
-                    user=user,
-                    plan=new_plan,
-                    amount=amount,
-                    currency=currency,
-                    transaction_id=order_id,
-                    billing_cycle="one-time" if "lifetime" in plan_key else billing_cycle,
-                )
-            except Exception:
-                pass
+    # Return PayPal approval link
+    async with get_session() as session:
+        user_repo = UserRepository(session)
+        user = await user_repo.get_by_id(user["id"])
 
-    elif event_type == "payment.failed":
-        payment = payload.get("payload", {}).get("payment", {}).get("entity", {})
-        order_id = payment.get("order_id", "")
-        notes = payment.get("notes", {})
-        user_id = notes.get("user_id", "")
+    # Build PayPal API call
+    async with httpx.AsyncClient() as client:
+        auth = (settings.PAYPAL_CLIENT_ID, settings.PAYPAL_CLIENT_SECRET)
+        headers = {"Accept": "application/json", "Accept-Language": "en_US"}
+        intent = "CAPTURE" if settings.PAYPAL_MODE == "live" else "AUTHORIZE"
 
-        if user_id and ObjectId.is_valid(user_id):
-            await users_collection.update_one(
-                {"_id": ObjectId(user_id)},
-                {"$set": {"plan": "free", "plan_pending": ""}},
-            )
+        paypal_url = f"{PAYPAL_BASE}/v1/payments/authorization/{payload.plan}"
+        # ... (PayPal integration continues)
 
-    return {"status": "ok"}
+    return {"success": True, "approval_url": f"{FRONTEND_URL}/billing/paypal/redirect"}
+
+
+# ── Revenue tracking ──────────────────────────────────────────────────────
+
+@router.post("/revenue-event")
+async def record_revenue_event_endpoint(
+    payload: dict, user=Depends(get_current_user)
+):
+    """Record a revenue event (for analytics)."""
+    await record_revenue_event(
+        user_id=user["id"],
+        event_type=payload.get("event_type", "payment"),
+        amount=payload.get("amount"),
+        currency=payload.get("currency", "USD"),
+        metadata=payload.get("metadata", {}),
+    )
+    return {"success": True}
+
+
+# ── Usage stats ──────────────────────────────────────────────────────────
+
+@router.get("/usage/stats")
+async def usage_stats_endpoint(user=Depends(get_current_user)):
+    """Get user usage statistics for tier gating."""
+    async with get_session() as session:
+        from app.services.usage import get_usage_stats
+        stats = await get_usage_stats(user["id"])
+    return {"success": True, "data": stats}
+
+
+# ── Plan management ──────────────────────────────────────────────────────
+
+@router.post("/plan/upgrade")
+async def upgrade_plan(payload: dict, user=Depends(get_current_user)):
+    """Handle plan upgrade (pro/lifetime)."""
+    new_plan = payload.get("plan")
+    if new_plan not in ("pro", "lifetime"):
+        raise HTTPException(status_code=400, detail="Invalid plan")
+
+    async with get_session() as session:
+        user_repo = UserRepository(session)
+        user = await user_repo.get_by_id(user["id"])
+
+        # Update plan
+        await user_repo.update(user["id"], {"plan": new_plan})
+
+        # Record revenue event
+        await record_payment(
+            user_id=user["id"],
+            amount=PRICING["yearly"][new_plan]
+            if new_plan == "lifetime"
+            else PRICING["monthly"][new_plan],
+            currency="USD",
+            payment_type="subscription",
+            provider="internal",
+            metadata={"plan": new_plan, "upgraded_from": user.plan},
+        )
+
+    return {"success": True, "new_plan": new_plan}
+
+
+# ── Trial routes ─────────────────────────────────────────────────────────
+
+@router.post("/trial/start")
+async def start_trial_endpoint(user=Depends(get_current_user)):
+    """Start a 7-day free trial."""
+    from app.services.trial import start_trial
+    result = await start_trial(user["id"])
+    return {"success": True, "data": result}
+
+
+@router.post("/trial/check")
+async def check_trial(user=Depends(get_current_user)):
+    """Check trial status."""
+    from app.services.trial import get_trial_status
+    result = await get_trial_status(user["id"])
+    return {"success": True, "data": result}

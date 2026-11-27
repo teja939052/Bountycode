@@ -6,25 +6,35 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "0 3 * * 1"
+    - cron: "0 3 * * 1"  # Weekly re-curate question bank every Monday 3AM UTC
 
 jobs:
   backend:
     runs-on: ubuntu-latest
     services:
-      postgres:
-        image: postgres:16
+      mongodb:
+        image: mongo:7.0
         ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: bountycode
+          - 27017:27017
         options: >-
-          --health-cmd "pg_isready -U postgres -d bountycode"
+          --health-cmd "mongosh --eval 'db.adminCommand({ ping: 1 })'"
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 10
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: backend
+
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
       redis:
         image: redis:7-alpine
         ports:
@@ -34,64 +44,89 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    defaults:
-      run:
-        working-directory: backend
-    env:
-      SUPABASE_DB_URL: postgresql+asyncpg://postgres:postgres@127.0.0.1:5432/bountycode
-      REDIS_URL: redis://127.0.0.1:6379
-      JWT_SECRET: ci-only-secret
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - name: Cache pip
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt', 'backend/requirements-dev.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
-      - name: Apply Supabase schema
-        run: |
-          for migration in supabase/migrations/*.sql; do
-            PGPASSWORD=postgres psql "postgresql://postgres:postgres@127.0.0.1:5432/bountycode" -v ON_ERROR_STOP=1 -f "$migration"
-          done
+
       - name: Compile check
         run: python -m compileall app/ -q
-      - name: PostgreSQL migration tests
-        run: pytest -q tests/test_postgres_learning.py tests/test_postgres_assessments.py tests/test_postgres_academy.py tests/test_postgres_exam.py
-      - name: MongoDB absence gate
-        run: pytest -q tests/test_mongodb_absence.py
-      - name: Content and pure backend tests
+
+      # ── Test stages (mirror Makefile) ────────────────────────────────
+      - name: test-backend-unit
         run: make test-backend-unit
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
+
+      - name: test-backend-integration
+        run: make test-backend-integration
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
+
+      - name: test-e2e
+        run: make test-e2e
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
+
+      - name: test-content
+        run: make test-content
+        env:
+          DATABASE_NAME: placementpro_test_core_loop
+          MONGODB_URL: mongodb://127.0.0.1:27017
+
+      - name: Check alembic migrations
+        run: |
+          pip install alembic
+          alembic check
 
   frontend:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: frontend
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Node 22
         uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: "npm"
           cache-dependency-path: frontend/package-lock.json
+
+      # Reconcile the lock before clean installation.
       - name: Reconcile frontend lockfile
         run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
       - name: Install dependencies
         run: npm ci
+
       - name: Typecheck
         run: npm run typecheck
+
       - name: Build
         run: npm run build
+
       - name: Upload resolved frontend lockfile
         if: always()
         uses: actions/upload-artifact@v4
@@ -118,10 +153,12 @@ jobs:
           python app/scripts/generate_curriculum.py
           python app/scripts/finalize_curriculum.py
           python app/scripts/generate_all_role_curricula.py
+          echo "Curated bank refreshed:"
+          wc -c app/content/questions/curated/curated.json app/content/questions/rejected/rejected.json app/content/questions/curated/learning_objects.json app/content/questions/review_duplicates/review_duplicates.json app/content/curriculum/learning_paths.json app/content/curriculum/final_curriculum.json app/content/curriculum/mock_tests.json app/content/curriculum/all_role_curricula.json
       - name: Commit curated output
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "github-actions"
-          git add app/content/questions app/content/curriculum
+          git add app/content/questions/curated/curated.json app/content/questions/rejected/rejected.json app/content/questions/curated/learning_objects.json app/content/questions/review_duplicates/review_duplicates.json app/content/curriculum/learning_paths.json app/content/curriculum/final_curriculum.json app/content/curriculum/mock_tests.json app/content/curriculum/all_role_curricula.json
           git diff --staged --quiet || git commit -m "chore: weekly re-curate question bank"
           git push

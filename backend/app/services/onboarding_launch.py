@@ -234,22 +234,20 @@ async def run_dev_launch(user_id: str, track: str, answers: Dict[str, Any]) -> D
     }
 
     try:
-        from bson import ObjectId
-        from app.database import users_collection
-
-        await users_collection.update_one(
-            {"_id": ObjectId(user_id)},
-            {"$set": {
-                "career_goal.door": "dev",
-                "career_goal.dev_track": track,
-                "career_goal.launch": {
+        from app.database import get_session
+        from app.repositories.identity import UserRepository
+        async with get_session() as session:
+            repo = UserRepository(session)
+            await repo.update(user_id, {"career_goal": {
+                "door": "dev",
+                "dev_track": track,
+                "launch": {
                     "completed": True,
                     "completed_at": datetime.now(timezone.utc),
                     "start_world": data["start_world"]["world_id"],
                     "first_missions": result["first_missions"],
                 },
-            }},
-        )
+            }})
     except Exception:
         pass
 
@@ -286,21 +284,19 @@ def get_beginner_go() -> Dict[str, Any]:
 async def run_beginner_go(user_id: str) -> Dict[str, Any]:
     data = get_beginner_go()
     try:
-        from bson import ObjectId
-        from app.database import users_collection
-
-        await users_collection.update_one(
-            {"_id": ObjectId(user_id)},
-            {"$set": {
-                "career_goal.door": "beginner",
-                "career_goal.launch": {
+        from app.database import get_session
+        from app.repositories.identity import UserRepository
+        async with get_session() as session:
+            repo = UserRepository(session)
+            await repo.update(user_id, {"career_goal": {
+                "door": "beginner",
+                "launch": {
                     "completed": True,
                     "completed_at": datetime.now(timezone.utc),
                     "start_world": "code_foundations",
                     "first_module": "code_foundations/validator",
                 },
-            }},
-        )
+            }})
     except Exception:
         pass
     return data

@@ -267,3 +267,8 @@ class PostgresAuthService:
     ) -> Optional[User]:
         """Update onboarding data for a user."""
         return await self.update_user(user_id, {"onboarding": onboarding})
+
+
+async def PostgresAuthService(user_id: str) -> dict:
+    """Stub for PostgresAuthService."""
+    return {"user_id": user_id}

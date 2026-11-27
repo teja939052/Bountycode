@@ -8,10 +8,9 @@ probabilities, improvement roadmaps, and peer comparisons.
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 from typing import Optional
-from app.database import users_collection
+from app.database import get_session
 from app.middleware.auth import get_current_user
 from app.services.placement_engine import PlacementEngine
-from bson import ObjectId
 
 router = APIRouter(prefix="/api/v1/predictor", tags=["predictor"])
 engine = PlacementEngine()

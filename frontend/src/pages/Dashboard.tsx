@@ -1,6 +1,7 @@
 import { useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import api from "../services/api";
 import {
@@ -9,7 +10,7 @@ import {
   Rocket, Brain, ShieldCheck, Target, Calendar, BookOpen,
 } from "lucide-react";
 import { Button } from "../design-system/Button";
-import { Card } from "../design-system/Card";
+import { Card, SectionHeader } from "../design-system/Card";
 import { ReadinessRing } from "../design-system/Progress";
 import { placementRank } from "../lib/placementRank";
 import { journeyApi } from "../services/api/journey";
@@ -127,10 +128,10 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-emerald-600 mx-auto mb-3" />
-          <p className="text-sm text-slate-500">Building your plan for today…</p>
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto mb-3" />
+          <p className="text-sm text-text-muted">Building your plan for today…</p>
         </div>
       </div>
     );
@@ -138,13 +139,13 @@ export default function Dashboard() {
 
   if (pErr) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-canvas flex items-center justify-center px-4">
         <div className="text-center max-w-md">
-          <AlertCircle className="mx-auto text-rose-500 mb-3" size={32} />
-          <h2 className="text-lg font-bold text-slate-900">Could not load your dashboard</h2>
+          <AlertCircle className="mx-auto text-subject-boss mb-3" size={32} />
+          <h2 className="text-lg font-bold text-text">Could not load your dashboard</h2>
           <button
             onClick={() => { void refetchPlan(); }}
-            className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold"
+            className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface text-primary text-sm font-semibold border border-border"
           >
             <RefreshCw size={16} /> Retry
           </button>
@@ -160,52 +161,52 @@ export default function Dashboard() {
   })();
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-canvas text-text">
       <div className="mx-auto max-w-5xl px-4 py-6 sm:py-10">
         {/* ===== GREETING + READINESS ===== */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-text-muted">
               {greeting}, {firstName}
             </p>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight mt-1">
               Today's mission
             </h1>
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="mt-1 text-sm text-text-secondary">
               Build one skill at a time. Every action is evidence toward readiness.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <div className="rounded-2xl border border-emerald-200/80 bg-white p-3 shadow-sm">
-              <ReadinessRing value={Number(readiness ?? 0)} size={72} />
-            </div>
-            <div className="flex flex-col gap-1 text-right text-xs text-slate-500">
-              <span className="inline-flex items-center justify-end gap-1 font-semibold text-orange-600">
-                <Flame size={14} /> {streak} day habit
+            <Card tone="default" pad="sm" className="w-24 h-24 flex items-center justify-center shrink-0">
+              <ReadinessRing value={Number(readiness ?? 0)} size={48} strokeWidth={6} />
+            </Card>
+            <div className="flex flex-col gap-1 text-right text-xs">
+              <span className="inline-flex items-center justify-end gap-1 font-semibold text-subject-coding">
+                <Flame size={14} /> {streak} day streak
               </span>
-              <span className="font-semibold text-slate-800">{rank.title}</span>
+              <span className="font-semibold text-text-primary">{rank.title}</span>
             </div>
           </div>
         </div>
 
         {/* ===== TODAY'S MISSION - ONE PRIMARY ACTION ===== */}
-        <Card className="border border-emerald-100 bg-gradient-to-br from-white via-emerald-50/40 to-emerald-100 p-5 sm:p-6 shadow-sm mb-6">
+        <Card tone="default" interactive className="mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex-1">
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">
+              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-primary mb-1">
                 <Rocket size={14} /> Today's mission
               </div>
-              <h2 className="mt-1 text-xl font-black">
+              <h2 className="text-xl font-black text-text">
                 {sortedTasks.length > 0
                   ? sortedTasks[0].title || sortedTasks[0].label || "Continue learning"
                   : "All caught up — take a break or explore"}
               </h2>
-              <p className="mt-1 text-sm text-slate-600">
+              <p className="mt-1 text-sm text-text-secondary">
                 {sortedTasks[0]?.reason || sortedTasks[0]?.description || "You're all caught up for today."}
-                <span className="ml-2 text-xs text-emerald-600 font-semibold">
+                <span className="ml-2 text-xs text-primary font-semibold">
                   {totalMinutes > 0 ? `~${totalMinutes} min` : ""}
                 </span>
-              </div>
+              </p>
             </div>
             <div className="flex gap-2 sm:flex-col w-full sm:w-auto">
               {sortedTasks.length > 0 ? (
@@ -221,7 +222,7 @@ export default function Dashboard() {
                     else if (t.type === "lesson" || t.type === "lesson_complete") window.location.href = `/lessons/${t.question_id || ""}`;
                     else window.location.href = "/academy";
                   }}
-                  className="w-full sm:w-auto min-h-11 bg-emerald-600 text-white px-6 py-3 text-lg font-bold shadow-lg shadow-emerald-200 hover:bg-emerald-700"
+                  className="w-full sm:w-auto min-h-11 px-6 py-3 text-lg font-bold"
                 >
                   {sortedTasks[0].type === "repair" ? "Start repair mission" : sortedTasks[0].type === "retest" ? "Start retest" : "Continue today's mission"}
                   <ArrowRight size={16} className="ml-2" />
@@ -241,15 +242,15 @@ export default function Dashboard() {
                 <Link
                   key={t.question_id || t.title || i}
                   to={taskHref(t)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border bg-surface-hover text-sm font-medium text-text-secondary hover:bg-surface-hover hover:border-primary/30 transition-all"
                 >
-                  <ArrowRight size={14} className="text-slate-400" />
+                  <ArrowRight size={14} className="text-text-muted" />
                   <span>{t.title || t.label}</span>
-                  <span className="ml-auto text-[10px] text-slate-400">{taskMinutes(t)} min</span>
+                  <span className="ml-auto text-[10px] text-text-muted">{taskMinutes(t)} min</span>
                 </Link>
               ))}
               {sortedTasks.length > 4 && (
-                <div className="px-3 py-2 flex items-center text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                <div className="px-3 py-2 flex items-center text-[10px] font-bold text-text-muted uppercase tracking-wider">
                   +{sortedTasks.length - 4} more
                 </div>
               )}
@@ -261,22 +262,22 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Weak skills quick repair */}
           {weakSkills.length > 0 && (
-            <Card className="border border-amber-100 bg-amber-50 p-4 sm:p-6 shadow-sm">
+            <Card tone="aptitude" interactive className="group">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700 flex items-center gap-2">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-subject-aptitude flex items-center gap-2">
                     <AlertCircle size={14} /> Repair weak skills
                   </p>
-                  <h3 className="mt-1 text-sm font-semibold text-slate-900">
+                  <h3 className="mt-1 text-sm font-semibold text-text">
                     Focus on {weakSkills[0].id.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
                   </h3>
-                  <p className="mt-0.5 text-xs text-amber-700">
+                  <p className="mt-0.5 text-xs text-subject-aptitude">
                     Accuracy: {(weakSkills[0].score ?? 0)}% — repair recommended
                   </p>
                 </div>
                 <Link
                   to="/practice"
-                  className="inline-flex items-center gap-2 rounded-md bg-amber-600 px-3 py-2 text-xs font-semibold text-white hover:bg-amber-700"
+                  className="inline-flex items-center gap-2 rounded-xl bg-subject-aptitude px-3 py-2 text-[11px] font-bold text-text-inverse hover:bg-amber-500 transition-all"
                 >
                   Start practice <ArrowRight size={14} />
                 </Link>
@@ -284,44 +285,44 @@ export default function Dashboard() {
             </Card>
           )}
 
-          <Card className="border border-blue-100 bg-blue-50 p-4 sm:p-6 shadow-sm">
+          <Card tone="coding" interactive className="group">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-700 flex items-center gap-2">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-subject-coding flex items-center gap-2">
                   <Target size={14} /> Readiness checkpoint
                 </p>
-                <h3 className="mt-1 text-sm font-semibold text-slate-900">
+                <h3 className="mt-1 text-sm font-semibold text-text">
                   {Math.round(readiness ?? 0)}% readiness
                 </h3>
-                <p className="mt-0.5 text-xs text-blue-700">
+                <p className="mt-0.5 text-xs text-subject-coding">
                   Evidence-based — not just lesson completion
                 </p>
               </div>
               <Link
                 to="/readiness"
-                className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-700"
+                className="inline-flex items-center gap-2 rounded-xl bg-subject-coding px-3 py-2 text-[11px] font-bold text-text-inverse hover:bg-cyan-500 transition-all"
               >
                 View report <ArrowRight size={14} />
               </Link>
             </div>
           </Card>
 
-          <Card className="border border-purple-100 bg-purple-50 p-4 sm:p-6 shadow-sm">
+          <Card tone="interview" interactive className="group">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-purple-700 flex items-center gap-2">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-subject-interview flex items-center gap-2">
                   <BookOpen size={14} /> Next lesson
                 </p>
-                <h3 className="mt-1 text-sm font-semibold text-slate-900">
+                <h3 className="mt-1 text-sm font-semibold text-text">
                   Continue curriculum
                 </h3>
-                <p className="mt-0.5 text-xs text-purple-700">
+                <p className="mt-0.5 text-xs text-subject-interview">
                   Mastery through practice, not just watching
                 </p>
               </div>
               <Link
                 to="/academy"
-                className="inline-flex items-center gap-2 rounded-md bg-purple-600 px-3 py-2 text-xs font-semibold text-white hover:bg-purple-700"
+                className="inline-flex items-center gap-2 rounded-xl bg-subject-interview px-3 py-2 text-[11px] font-bold text-text-inverse hover:bg-violet-600 transition-all"
               >
                 Browse lessons <ArrowRight size={14} />
               </Link>
@@ -332,21 +333,24 @@ export default function Dashboard() {
         {/* ===== SKILL HEATMAP (small) ===== */}
         <div className="mt-8">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-bold text-slate-900">Skill evidence</h3>
-            <Link to="/skills" className="text-xs font-semibold text-emerald-600 hover:underline">
+            <h3 className="text-sm font-bold text-text">Skill evidence</h3>
+            <Link to="/skills" className="text-xs font-bold text-primary hover:text-primary-dark underline-offset-4">
               View full skill graph <ArrowRight size={14} />
             </Link>
           </div>
           <div className="grid grid-cols-5 gap-2">
             {Object.entries(skills).slice(0, 5).map(([id, s]) => (
-              <div key={id} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white border border-slate-200 shadow-sm">
+              <div key={id} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-surface border border-border shadow-card">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-1 text-xs font-bold"
-                  style={{ backgroundColor: (s.score ?? 0) >= 70 ? "#dcfce7" : (s.score ?? 0) >= 40 ? "#fef3c7" : "#fee2e2" }}
+                  style={{
+                    backgroundColor: (s.score ?? 0) >= 70 ? "rgba(34, 197, 94, 0.15)" : (s.score ?? 0) >= 40 ? "rgba(245, 158, 11, 0.15)" : "rgba(239, 68, 68, 0.15)",
+                    color: (s.score ?? 0) >= 70 ? "#22C55E" : (s.score ?? 0) >= 40 ? "#F59E0B" : "#EF4444",
+                  }}
                 >
                   {(s.score ?? 0) >= 70 ? "✓" : (s.score ?? 0) >= 40 ? "⚡" : "●"}
                 </div>
-                <span className="text-xs font-semibold text-slate-900 truncate" title={id}>{id.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}</span>
-                <span className="text-[10px] text-slate-500">{s.score ?? 0}%</span>
+                <span className="text-xs font-semibold text-text truncate" title={id}>{id.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}</span>
+                <span className="text-[10px] text-text-muted">{s.score ?? 0}%</span>
               </div>
             ))}
           </div>

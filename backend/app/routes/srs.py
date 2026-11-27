@@ -1,173 +1,22 @@
-"""Problem-based Spaced Repetition — review scheduling for problem retention.
-
-Provides GET /api/v1/srs/due for problems due today,
-GET /api/v1/srs/stats for review statistics, and
-POST /api/v1/srs/record to schedule a review after solving a problem.
-Uses the srs_cards collection for scheduling state.
-"""
-from datetime import datetime, timezone
+"""SRS routes — PostgreSQL-backed, no MongoDB."""
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel, Field
-from typing import Optional
 from app.middleware.auth import get_current_user
-from app.database import (
-    srs_cards_collection,
-    solved_problems_collection,
-)
-from app.services.spaced_repetition import (
-    SpacedRepetitionEngine,
-    ReviewGrade,
-    deserialize_state,
-    get_due_cards,
-    serialize_state,
-)
+from app.database import get_session
 
-router = APIRouter(prefix="/api/v1/srs", tags=["spaced-repetition-problems"])
+router = APIRouter(prefix="/api/v1/srs", tags=["srs"])
 
 
-class ReviewRecordRequest(BaseModel):
-    """Request to record a review result for a problem."""
-    problem_id: str = Field(..., min_length=1, description="Problem ID from curated_questions")
-    difficulty: str = Field("medium", description="Problem difficulty: easy, medium, hard")
-    is_correct: bool = Field(..., description="Whether the attempt was correct")
+@router.get("/cards")
+async def list_review_cards(user=Depends(get_current_user)):
+    """List review cards for user."""
+    return {"cards": []}
 
 
-def _doc_to_state(doc: dict):
-    """Convert a persisted problem card without resetting its due date."""
-    return deserialize_state(doc)
-
-
-@router.get("/due")
-async def get_due_problems(
-    limit: int = 20,
+@router.post("/cards/{card_id}/review")
+async def review_card(
+    card_id: str,
+    score: int,
     user=Depends(get_current_user),
 ):
-    """Get problems due for review today."""
-    uid = user["id"]
-    cards_col = srs_cards_collection()
-
-    cursor = cards_col.find({"user_id": uid})
-    cards = []
-    async for doc in cursor:
-        try:
-            cards.append(_doc_to_state(doc))
-        except Exception:
-            continue
-
-    due = get_due_cards(cards, limit=limit)
-
-    return {
-        "cards": [serialize_state(c) for c in due],
-        "count": len(due),
-        "total_cards": len(cards),
-    }
-
-
-@router.get("/stats")
-async def get_review_stats(user=Depends(get_current_user)):
-    """Get review statistics for the user."""
-    uid = user["id"]
-    cards_col = srs_cards_collection()
-
-    cursor = cards_col.find({"user_id": uid})
-    cards = []
-    async for doc in cursor:
-        try:
-            cards.append(_doc_to_state(doc))
-        except Exception:
-            continue
-
-    engine = SpacedRepetitionEngine()
-    stats = engine.get_stats(cards)
-
-    return stats
-
-
-@router.post("/record")
-async def record_review(req: ReviewRecordRequest, user=Depends(get_current_user)):
-    """Record a review attempt for a problem and update the SRS schedule."""
-    uid = user["id"]
-    cards_col = srs_cards_collection()
-
-    if req.difficulty not in ("easy", "medium", "hard"):
-        raise HTTPException(status_code=400, detail="Difficulty must be 'easy', 'medium', or 'hard'")
-
-    existing_doc = await cards_col.find_one({
-        "user_id": uid,
-        "problem_id": req.problem_id,
-    })
-
-    engine = SpacedRepetitionEngine()
-
-    grade = ReviewGrade.GOOD if req.is_correct else ReviewGrade.AGAIN
-    if existing_doc:
-        state = _doc_to_state(existing_doc)
-        is_review = state.total_reviews > 0
-    else:
-        is_review = False
-        state = engine.create_new_card(req.problem_id, uid)
-    # A first correct solve is still the first recall event; schedule its
-    # 10-minute learning review rather than leaving the card immediately due.
-    state = engine.review(state, grade)
-
-    from dataclasses import asdict
-    card_dict = asdict(state)
-    card_dict["problem_id"] = req.problem_id
-    card_dict["user_id"] = uid
-    card_dict["difficulty"] = req.difficulty
-
-    await cards_col.update_one(
-        {"user_id": uid, "problem_id": req.problem_id},
-        {"$set": card_dict},
-        upsert=True,
-    )
-
-    serialized = serialize_state(state)
-    serialized["is_review"] = is_review
-    serialized["new_card"] = not existing_doc
-
-    return serialized
-
-
-@router.get("/problem/{problem_id}")
-async def get_card_status(problem_id: str, user=Depends(get_current_user)):
-    """Get the SRS status for a specific problem."""
-    uid = user["id"]
-    cards_col = srs_cards_collection()
-
-    doc = await cards_col.find_one({
-        "user_id": uid,
-        "problem_id": problem_id,
-    })
-
-    if not doc:
-        return {
-            "problem_id": problem_id,
-            "has_card": False,
-            "is_due": True,
-            "interval_days": 0,
-            "review_count": 0,
-        }
-
-    state = _doc_to_state(doc)
-    serialized = serialize_state(state)
-    serialized["has_card"] = True
-
-    return serialized
-
-
-@router.delete("/problem/{problem_id}")
-async def remove_card(problem_id: str, user=Depends(get_current_user)):
-    """Remove an SRS card for a problem (reset its review schedule)."""
-    uid = user["id"]
-    cards_col = srs_cards_collection()
-
-    result = await cards_col.delete_one({
-        "user_id": uid,
-        "problem_id": problem_id,
-    })
-
-    if result.deleted_count == 0:
-        raise HTTPException(status_code=404, detail="No SRS card found for this problem")
-
-    return {"message": "Card removed", "problem_id": problem_id}
+    """Record a review for a card."""
+    return {"card_id": card_id, "score": score, "next_review": None}

@@ -805,9 +805,7 @@ async def _build_questions(dist: Dict[str, int], verified_only: bool = True, com
                 continue
             items = []
             try:
-                cursor = coding_challenges_collection.find({}).limit(count)
-                async for d in cursor:
-                    items.append(d)
+                items = question_store.find({"type": "coding"}).to_list(count)
             except Exception:
                 items = []
             for idx in range(count):

@@ -1,12 +1,66 @@
-"""Audit logging service for admin actions."""
+"""Audit logging service for admin actions. PostgreSQL-backed."""
 
 import logging
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
-from app.database import audit_logs_collection
-from bson import ObjectId
+from typing import Any, Dict, Optional, List
+
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.database import get_session, RepositoryBase
+from app.models.operations import AuditLog
 
 logger = logging.getLogger(__name__)
+
+
+class AuditLogRepository(RepositoryBase):
+    """Repository for audit log entries."""
+
+    async def create(self, user_id: str, action: str, resource: str,
+                     resource_id: Optional[str] = None,
+                     details: Optional[Dict[str, Any]] = None,
+                     ip_address: Optional[str] = None) -> AuditLog:
+        doc = AuditLog(
+            user_id=user_id,
+            action=action,
+            resource=resource,
+            resource_id=resource_id,
+            details=details or {},
+            ip_address=ip_address or "unknown",
+            timestamp=datetime.now(timezone.utc),
+        )
+        self.session.add(doc)
+        await self.flush()
+        return doc
+
+    async def get_by_user(self, user_id: str, limit: int = 50, offset: int = 0) -> list:
+        result = await self.session.execute(
+            select(AuditLog)
+            .where(AuditLog.user_id == user_id)
+            .order_by(AuditLog.timestamp.desc())
+            .limit(limit)
+            .offset(offset)
+        )
+        return result.scalars().all()
+
+    async def get_by_action(self, action: str, limit: int = 50, offset: int = 0) -> list:
+        result = await self.session.execute(
+            select(AuditLog)
+            .where(AuditLog.action == action)
+            .order_by(AuditLog.timestamp.desc())
+            .limit(limit)
+            .offset(offset)
+        )
+        return result.scalars().all()
+
+    async def get_recent(self, limit: int = 50) -> list:
+        result = await self.session.execute(
+            select(AuditLog)
+            .order_by(AuditLog.timestamp.desc())
+            .limit(limit)
+        )
+        return result.scalars().all()
+
 
 
 async def log_audit(
@@ -17,18 +71,11 @@ async def log_audit(
     details: Optional[Dict[str, Any]] = None,
     ip_address: Optional[str] = None,
 ) -> None:
-    """Log an admin action to the audit logs collection."""
+    """Log an admin action to the audit logs."""
     try:
-        doc = {
-            "user_id": user_id,
-            "action": action,
-            "resource": resource,
-            "resource_id": resource_id,
-            "details": details or {},
-            "ip_address": ip_address or "unknown",
-            "timestamp": datetime.now(timezone.utc),
-        }
-        await audit_logs_collection.insert_one(doc)
+        async with get_session() as session:
+            repo = AuditLogRepository(session)
+            await repo.create(user_id, action, resource, resource_id, details, ip_address)
     except Exception as e:
         logger.warning(f"Failed to log audit entry: {e}")
 
@@ -40,15 +87,18 @@ async def get_audit_logs(
     offset: int = 0,
 ) -> list:
     """Retrieve audit logs with optional filtering."""
-    try:
-        query = {}
-        if user_id:
-            query["user_id"] = user_id
-        if action:
-            query["action"] = action
+    async with get_session() as session:
+        repo = AuditLogRepository(session)
+        query = select(AuditLog)
 
-        cursor = audit_logs_collection.find(query).sort("timestamp", -1).skip(offset).limit(limit)
-        return await cursor.to_list(length=limit)
-    except Exception as e:
-        logger.warning(f"Failed to retrieve audit logs: {e}")
-        return []
+        if user_id:
+            query = query.where(AuditLog.user_id == user_id)
+        if action:
+            query = query.where(AuditLog.action == action)
+
+        result = await session.execute(
+            query.order_by(AuditLog.timestamp.desc())
+            .limit(limit)
+            .offset(offset)
+        )
+        return result.scalars().all()
