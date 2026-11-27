@@ -4,8 +4,16 @@ from typing import Any, Dict, List
 
 from fastapi import APIRouter, Depends, HTTPException
 
-from app.database import get_collection, srs_cards_collection
+from app.database import get_session
 from app.middleware.auth import get_current_user
+from app.repositories.academy import (
+    AcademyDiagnosticSessionRepository,
+    AcademyLearnerProfileRepository,
+    AcademyLearningPlanRepository,
+    as_uuid,
+    model_dict,
+)
+from app.repositories.learning import ReviewCardRepository
 from app.services.learning_paths import get_all_company_tracks
 from app.services.adaptive_learning import assess_user_skills
 from app.services.spaced_repetition import deserialize_state, get_due_cards
@@ -13,9 +21,6 @@ from app.services.service_company_sprint import DOMAIN_ENTRY_LESSON, daily_focus
 from app.services.observability import record_event
 
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
-_profiles = lambda: get_collection("academy_learner_profiles")
-_diagnostics = lambda: get_collection("academy_diagnostic_sessions")
-_plans = lambda: get_collection("academy_learning_plans")
 
 # Prefer sprint entry lessons so Academy plan and Study Engine stay aligned.
 LESSON_BY_DOMAIN = {
@@ -321,37 +326,26 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
 
 
 @router.get("")
-async def get_personalized_plan(user=Depends(get_current_user)):
-    profile_doc = await _profiles().find_one({"user_id": user["id"]})
+async def get_personalized_plan(user=Depends(get_current_user), session=Depends(get_session)):
+    profile_model = await AcademyLearnerProfileRepository(session).get_by_user(user["id"])
+    profile_doc = model_dict(profile_model) if profile_model else None
     if not profile_doc or not profile_doc.get("onboarding_complete"):
         raise HTTPException(status_code=409, detail="Complete your learner profile first.")
-    diagnostic_doc = await _diagnostics().find_one(
-        {"user_id": user["id"], "status": "completed"},
-        sort=[("completed_at", -1)],
-    )
-    diagnostic = (diagnostic_doc or {}).get("result")
+    diagnostic_model = await AcademyDiagnosticSessionRepository(session).latest_completed(user["id"])
+    diagnostic = diagnostic_model.result if diagnostic_model else None
     skill_assessment = await assess_user_skills(user["id"])
     plan = build_plan(profile_doc, diagnostic, get_all_company_tracks(), skill_assessment.get("skills", {}))
     plan["overall_mastery"] = skill_assessment.get("overall_mastery_label")
     plan["overall_accuracy"] = skill_assessment.get("overall_accuracy")
-    stored_cards = await srs_cards_collection().find({"user_id": user["id"]}).to_list(500)
-    review_states = []
-    for card in stored_cards:
-        try:
-            review_states.append(deserialize_state(card))
-        except Exception:
-            continue
-    due_cards = get_due_cards(review_states, limit=5)
+    review_repo = ReviewCardRepository(session)
+    user_uuid = as_uuid(user["id"])
+    due_cards = await review_repo.get_due_cards(user_uuid, limit=5)
     plan["revision"] = {
-        "due_count": len(get_due_cards(review_states, limit=500)),
-        "sample_problem_ids": [card.concept_id for card in due_cards],
+        "due_count": await review_repo.count_due(user_uuid),
+        "sample_problem_ids": [card.problem_id for card in due_cards],
     }
     plan["generated_at"] = datetime.now(timezone.utc).isoformat()
-    await _plans().update_one(
-        {"user_id": user["id"]},
-        {"$set": {"user_id": user["id"], "plan": plan, "updated_at": datetime.now(timezone.utc)}},
-        upsert=True,
-    )
+    await AcademyLearningPlanRepository(session).upsert(user["id"], plan)
     # Record plan view for funnel observability.
     try:
         await record_event(user["id"], "first_plan_viewed", {"task_count": len(plan.get("curriculum", []))})

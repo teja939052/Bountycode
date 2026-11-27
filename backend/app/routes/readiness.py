@@ -1,15 +1,16 @@
 ﻿from fastapi import APIRouter, Depends, HTTPException
 
 from app.middleware.auth import get_current_user
-from app.database import get_collection
+from app.database import get_session
 from app.services.readiness import compute_readiness as _compute_basic_readiness
 from app.services.observability import record_event
+from app.repositories.academy import AcademyLearnerProfileRepository, model_dict
 
 router = APIRouter(prefix="/api/v1/readiness", tags=["readiness"])
 
 
 @router.get("/score")
-async def score(user=Depends(get_current_user)):
+async def score(user=Depends(get_current_user), session=Depends(get_session)):
     """Return the learner's readiness score with components, drivers, and
     evidence-backed blockers + next action from the deterministic readiness
     engine."""
@@ -21,9 +22,8 @@ async def score(user=Depends(get_current_user)):
             calculate_target_readiness,
             collect_target_evidence,
         )
-        from app.database import academy_learner_profiles
-
-        profile_doc = await get_collection("academy_learner_profiles").find_one({"user_id": user["id"]})
+        profile_model = await AcademyLearnerProfileRepository(session).get_by_user(user["id"])
+        profile_doc = model_dict(profile_model) if profile_model else None
         if profile_doc:
             profile = {
                 "role": profile_doc.get("target_role", "sde"),

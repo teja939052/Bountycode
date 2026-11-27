@@ -13,6 +13,7 @@ from app.models.assessments import (
     Response,
     SolvedProblem,
 )
+from app.models.academy import AcademyDiagnosticSession, AcademyLearnerProfile, AcademyLearningPlan
 from app.models.base import Base
 from app.models.career import CareerProfile, PortfolioProject, ResumeMetadata, UploadedFile
 from app.models.content import (
@@ -41,6 +42,10 @@ from app.models.operations import AnalyticsEvent, AnalyticsRollup, AuditLog, Bil
 
 __all__ = [
     "Base",
+    # Academy onboarding and diagnostic state
+    "AcademyLearnerProfile",
+    "AcademyDiagnosticSession",
+    "AcademyLearningPlan",
     # Identity
     "User",
     "UserProfile",

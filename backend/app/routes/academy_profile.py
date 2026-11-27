@@ -3,17 +3,17 @@
 The profile is learner-owned configuration, not a score or a placement guarantee.
 Only authenticated users can read or update their own profile.
 """
-from datetime import date, datetime, timezone
+from datetime import date
 from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field, field_validator
 
 from app.middleware.auth import get_current_user
-from app.database import get_collection
+from app.database import get_session
+from app.repositories.academy import AcademyLearnerProfileRepository, model_dict
 
 router = APIRouter(prefix="/api/v1/academy/profile", tags=["academy-profile"])
-_profiles = lambda: get_collection("academy_learner_profiles")
 
 ALLOWED_ROLES = {
     "software_engineer", "full_stack_developer", "backend_developer",
@@ -122,6 +122,8 @@ class LearnerProfileInput(BaseModel):
 
 
 def _serialize(doc: Optional[dict]) -> dict:
+    if doc is not None and not isinstance(doc, dict):
+        doc = model_dict(doc)
     if not doc:
         return {"profile": None, "onboarding_complete": False}
     result = {key: value for key, value in doc.items() if key not in {"_id", "user_id"}}
@@ -129,23 +131,16 @@ def _serialize(doc: Optional[dict]) -> dict:
 
 
 @router.get("")
-async def get_learner_profile(user=Depends(get_current_user)):
-    doc = await _profiles().find_one({"user_id": user["id"]})
+async def get_learner_profile(user=Depends(get_current_user), session=Depends(get_session)):
+    doc = await AcademyLearnerProfileRepository(session).get_by_user(user["id"])
     return {"success": True, "data": _serialize(doc)}
 
 
 @router.put("")
-async def save_learner_profile(payload: LearnerProfileInput, user=Depends(get_current_user)):
-    now = datetime.now(timezone.utc).isoformat()
+async def save_learner_profile(payload: LearnerProfileInput, user=Depends(get_current_user), session=Depends(get_session)):
     profile = payload.model_dump(mode="json")
     profile.update({
-        "user_id": user["id"],
         "onboarding_complete": True,
-        "updated_at": now,
     })
-    await _profiles().update_one(
-        {"user_id": user["id"]},
-        {"$set": profile, "$setOnInsert": {"created_at": now}},
-        upsert=True,
-    )
-    return {"success": True, "data": _serialize(profile)}
+    saved = await AcademyLearnerProfileRepository(session).upsert(user["id"], profile)
+    return {"success": True, "data": _serialize(saved)}
