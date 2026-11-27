@@ -247,6 +247,6 @@ Return ONLY the JSON object."""
 
     return parsed
 
-async def APTITUDE_SUB_CATEGORY_GUIDELINES(user_id: str) -> dict:
+async def APTITUDE_SUB_CATEGORY_GUIDELINES_stub(user_id: str) -> dict:
     """Stub for APTITUDE_SUB_CATEGORY_GUIDELINES."""
     return {"user_id": user_id}

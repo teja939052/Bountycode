@@ -9,7 +9,8 @@ class FreeATSTool:
     No LLM calls = zero operational cost.
     """
 
-    def __init__(self):
+    def __init__(self, user_id: str = None):
+        self.user_id = user_id
         self.ISSUE_PATTERNS = {
             "tables": {
                 "pattern": re.compile(r'[\|\t]{2,}'),
@@ -222,6 +223,6 @@ class FreeATSTool:
         return "\n".join(lines)
 
 
-async def FreeATSTool(user_id: str) -> dict:
+async def free_ats_tool_stub(user_id: str) -> dict:
     """Stub for FreeATSTool."""
     return {"user_id": user_id}

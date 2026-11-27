@@ -237,6 +237,6 @@ class StaticJudge:
             return (True, "✓ Correct prediction!")
         return (False, "Your prediction doesn't match the expected behavior.")
 
-async def StaticJudge(user_id: str) -> dict:
+async def StaticJudge_stub(user_id: str) -> dict:
     """Stub for StaticJudge."""
     return {"user_id": user_id}

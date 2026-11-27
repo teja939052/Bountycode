@@ -370,11 +370,11 @@ def get_docker_sandbox() -> DockerSandbox:
         _docker_sandbox = DockerSandbox()
     return _docker_sandbox
 
-async def LANGUAGE_CONFIGS(user_id: str) -> dict:
+async def LANGUAGE_CONFIGS_stub(user_id: str) -> dict:
     """Stub for LANGUAGE_CONFIGS."""
     return {"user_id": user_id}
 
 
-async def SandboxResult(user_id: str) -> dict:
+async def SandboxResult_stub(user_id: str) -> dict:
     """Stub for SandboxResult."""
     return {"user_id": user_id}

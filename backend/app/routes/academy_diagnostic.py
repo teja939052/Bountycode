@@ -17,6 +17,74 @@ from app.repositories.learning import AcademyDiagnosticSessionRepository
 router = APIRouter(prefix="/api/v1/academy/diagnostic", tags=["academy-diagnostic"])
 
 
+from app.repositories.learning import AcademyDiagnosticSessionRepository
+
+DOMAIN_ALIASES: Dict[str, str] = {
+    "arrays": "arrays_hashing",
+    "array": "arrays_hashing",
+    "hashing": "arrays_hashing",
+    "two_pointer": "two_pointers",
+    "sliding_window": "sliding_window",
+    "binary_search": "binary_search",
+    "linked_list": "linked_list",
+    "tree": "trees",
+    "trie": "tries",
+    "graph": "graph",
+    "dp": "dp",
+    "dynamic_programming": "dp",
+    "greedy": "greedy",
+    "backtracking": "backtracking",
+    "math": "math_geometry",
+    "geometry": "math_geometry",
+    "bit": "bit_manipulation",
+    "system_design": "system_design",
+    "behavioral": "behavioral",
+    "aptitude": "aptitude",
+    "quantitative_aptitude": "quantitative_aptitude",
+    "logical_reasoning": "logical_reasoning",
+    "verbal_ability": "verbal_ability",
+    "programming_fundamentals": "programming_fundamentals",
+    "programming_logic": "programming_fundamentals",
+    "computer_science": "computer_science",
+    "sql": "sql",
+    "c": "language_c",
+    "cpp": "language_cpp",
+    "java": "language_java",
+    "python": "language_python",
+}
+
+DOMAIN_LABELS: Dict[str, str] = {
+    "arrays_hashing": "Arrays & Hashing",
+    "two_pointers": "Two Pointers",
+    "sliding_window": "Sliding Window",
+    "stack": "Stacks",
+    "binary_search": "Binary Search",
+    "linked_list": "Linked Lists",
+    "trees": "Trees",
+    "tries": "Tries",
+    "heap": "Heaps",
+    "graph": "Graphs",
+    "dp": "Dynamic Programming",
+    "greedy": "Greedy",
+    "backtracking": "Backtracking",
+    "math_geometry": "Math & Geometry",
+    "bit_manipulation": "Bit Manipulation",
+    "system_design": "System Design",
+    "behavioral": "Behavioral",
+    "aptitude": "Aptitude",
+    "quantitative_aptitude": "Quantitative Aptitude",
+    "logical_reasoning": "Logical Reasoning",
+    "verbal_ability": "Verbal Ability",
+    "programming_fundamentals": "Programming Fundamentals",
+    "computer_science": "Computer Science Fundamentals",
+    "sql": "SQL & Databases",
+    "language_c": "C Programming",
+    "language_cpp": "C++",
+    "language_java": "Java",
+    "language_python": "Python",
+}
+
+
 def _get_diagnostic_repo(session):
     from app.repositories.learning import AcademyDiagnosticSessionRepository
     return AcademyDiagnosticSessionRepository(session)

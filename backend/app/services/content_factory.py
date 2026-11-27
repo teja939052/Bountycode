@@ -1053,11 +1053,11 @@ def validate_generation_readonly() -> Dict[str, Any]:
     }
 
 
-async def MODE_DRY_RUN(user_id: str) -> dict:
+async def MODE_DRY_RUN_stub(user_id: str) -> dict:
     """Stub for MODE_DRY_RUN."""
     return {"user_id": user_id}
 
 
-async def MODE_PRODUCTION(user_id: str) -> dict:
+async def MODE_PRODUCTION_stub(user_id: str) -> dict:
     """Stub for MODE_PRODUCTION."""
     return {"user_id": user_id}

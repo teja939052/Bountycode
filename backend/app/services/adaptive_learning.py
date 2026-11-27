@@ -108,6 +108,33 @@ async def generate_learning_path(user_id: str, skill_id: str) -> list:
     """Generate a learning path for a user skill."""
     return await get_learning_path(user_id, skill_id)
 
-async def SKILL_DOMAINS(user_id: str) -> dict:
+async def SKILL_DOMAINS_stub(user_id: str) -> dict:
     """Stub for SKILL_DOMAINS."""
     return {"user_id": user_id}
+
+
+def _activity_score_delta(prev: float, curr: float) -> float:
+    """Calculate activity score delta."""
+    return curr - prev
+
+
+def _assessment_summary(scores: list) -> dict:
+    """Summarize assessment scores."""
+    if not scores:
+        return {"avg": 0.0, "max": 0.0, "min": 0.0, "count": 0}
+    return {
+        "avg": sum(scores) / len(scores),
+        "max": max(scores),
+        "min": min(scores),
+        "count": len(scores),
+    }
+
+
+def _calculate_mastery_score(evidence: dict) -> float:
+    """Calculate mastery score from evidence dict."""
+    return float(evidence.get("score", 0))
+
+
+def _is_mastery_evidence_activity(activity_type: str) -> bool:
+    """Check if an activity type counts as mastery evidence."""
+    return activity_type in {"practice", "quiz", "diagnostic", "assessment"}

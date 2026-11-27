@@ -182,11 +182,11 @@ def rank_actions(
     }
 
 
-async def DEFAULT_PLANNER_WEIGHTS(user_id: str) -> dict:
+async def DEFAULT_PLANNER_WEIGHTS_stub(user_id: str) -> dict:
     """Stub for DEFAULT_PLANNER_WEIGHTS."""
     return {"user_id": user_id}
 
 
-async def PlannerWeights(user_id: str) -> dict:
+async def PlannerWeights_stub(user_id: str) -> dict:
     """Stub for PlannerWeights."""
     return {"user_id": user_id}

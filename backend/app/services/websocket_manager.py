@@ -421,11 +421,11 @@ class WSEvents:
     def notification(user_id: str, title: str, body: str, type: str = "info", action_url: str = "") -> WSMessage:
         return WSMessage(type=MessageType.NOTIFICATION, payload={"title": title, "body": body, "type": type, "action_url": action_url})
 
-async def MessageType(user_id: str) -> dict:
+async def MessageType_stub(user_id: str) -> dict:
     """Stub for MessageType."""
     return {"user_id": user_id}
 
 
-async def WSEvents(user_id: str) -> dict:
+async def WSEvents_stub(user_id: str) -> dict:
     """Stub for WSEvents."""
     return {"user_id": user_id}

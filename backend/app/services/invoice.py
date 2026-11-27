@@ -34,7 +34,7 @@ async def list_invoices(
     """List user's invoices."""
     return []
 
-async def InvoiceService(user_id: str) -> dict:
+async def InvoiceService(user_id: str = None) -> dict:
     """Stub for InvoiceService."""
     return {"user_id": user_id}
 

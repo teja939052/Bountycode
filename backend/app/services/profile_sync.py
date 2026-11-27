@@ -144,6 +144,6 @@ class ProfileSync:
         }
 
 
-async def ProfileSync(user_id: str) -> dict:
+async def ProfileSync_stub(user_id: str) -> dict:
     """Stub for ProfileSync."""
     return {"user_id": user_id}

@@ -146,6 +146,27 @@ async def close_db() -> None:
     logger.info("Database engine disposed")
 
 
+class Database:
+    """Compatibility wrapper for tests."""
+
+    def __init__(self, session=None):
+        self.session = session
+
+
+def get_db() -> Database:
+    """Return a Database wrapper (for test compatibility)."""
+    return Database()
+
+
+# Collection-compat shims for test backward compatibility
+users_collection = None
+learning_events_collection = None
+learning_progress_collection = None
+oa_sessions_collection = None
+repair_missions_collection = None
+skill_graph_collection = None
+
+
 class RepositoryBase:
     """Base class for domain repositories using SQLAlchemy async session.
 

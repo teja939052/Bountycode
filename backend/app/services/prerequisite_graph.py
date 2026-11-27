@@ -346,6 +346,6 @@ async def get_user_prerequisite_learning_step(
     return {"plan": plan, "next_step": next_step}
 
 
-async def SKILL_PREREQUISITES(user_id: str) -> dict:
+async def SKILL_PREREQUISITES_stub(user_id: str) -> dict:
     """Stub for SKILL_PREREQUISITES."""
     return {"user_id": user_id}

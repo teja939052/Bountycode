@@ -10,6 +10,20 @@ metrics = {
     "errors": 0,
 }
 
+class RequestMetrics:
+    """Compatibility wrapper for request metrics."""
+
+    async def record(self, feature: str, status: str, **kwargs) -> None:
+        """Record a request metric."""
+        metrics["requests"] += 1
+        if status == "failure":
+            metrics["errors"] += 1
+
+
+# Module-level instance for backward compatibility
+request_metrics = RequestMetrics()
+
+
 async def get_request_metrics(
     user_id: str,
 ) -> dict:
@@ -27,6 +41,7 @@ async def record_request_metric(
     metrics["requests"] += 1
     if status_code >= 400:
         metrics["errors"] += 1
+
 
 async def metrics(user_id: str) -> dict:
     """Stub for metrics."""

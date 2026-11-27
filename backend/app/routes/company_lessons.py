@@ -5,6 +5,9 @@ from app.database import get_session
 from app.data.company_blueprints import get_blueprint
 from sqlalchemy import select
 
+# Collection-compat shim for test backward compatibility
+learning_progress_collection = None
+
 router = APIRouter(prefix="/api/v1/company-lessons", tags=["company-lessons"])
 
 

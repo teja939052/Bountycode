@@ -20,6 +20,49 @@ from app.repositories.learning import (
 )
 from app.models.identity import User as UserModel
 
+ROLE_SKILLS: Dict[str, List[str]] = {
+    "sde": ["programming_fundamentals", "arrays_hashing", "sql", "system_design", "debugging", "testing"],
+    "software_engineer": ["programming_fundamentals", "arrays_hashing", "sql", "system_design", "debugging", "testing"],
+    "undecided": ["programming_fundamentals", "arrays_hashing", "computer_science"],
+}
+
+LEVEL_PATH: List[dict] = [
+    {"id": 0, "label": "Foundation", "min_score": 0},
+    {"id": 1, "label": "Beginner", "min_score": 35},
+    {"id": 2, "label": "Developing", "min_score": 60},
+    {"id": 3, "label": "Competent", "min_score": 75},
+    {"id": 4, "label": "Proficient", "min_score": 90},
+    {"id": 5, "label": "Master", "min_score": 100},
+]
+
+LESSON_BY_DOMAIN: Dict[str, str] = {
+    "programming_fundamentals": "c-l01-01",
+    "arrays_hashing": "c-l05-01",
+    "sql": "c-l09-01",
+    "system_design": "system_design_basics",
+    "debugging": "debugging_intro",
+    "testing": "testing_intro",
+    "computer_science": "cs_intro",
+}
+
+DOMAIN_PREREQUISITES: Dict[str, List[str]] = {
+    "arrays_hashing": ["programming_fundamentals"],
+    "sql": ["programming_fundamentals"],
+    "system_design": ["arrays_hashing", "computer_science"],
+    "debugging": ["programming_fundamentals"],
+    "testing": ["programming_fundamentals"],
+}
+
+ASSESSMENT_BLUEPRINTS: Dict[str, dict] = {
+    "service_company_core": {"sections": ["aptitude", "logical", "verbal", "coding"], "total_questions": 50},
+    "product_company": {"sections": ["coding", "system_design", "behavioral"], "total_questions": 30},
+}
+
+ASSESSMENT_TRACK_LABELS: Dict[str, str] = {
+    "service_company_core": "Service Company Core",
+    "product_company": "Product Company",
+}
+
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
 
 

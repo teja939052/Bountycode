@@ -294,22 +294,22 @@ async def close_job_queue():
         await _job_queue.close()
         _job_queue = None
 
-async def Job(user_id: str) -> dict:
+async def Job_stub(user_id: str) -> dict:
     """Stub for Job."""
     return {"user_id": user_id}
 
 
-async def JobQueue(user_id: str) -> dict:
+async def JobQueue_stub(user_id: str) -> dict:
     """Stub for JobQueue."""
     return {"user_id": user_id}
 
 
-async def JobStatus(user_id: str) -> dict:
+async def JobStatus_stub(user_id: str) -> dict:
     """Stub for JobStatus."""
     return {"user_id": user_id}
 
 
-async def JobType(user_id: str) -> dict:
+async def JobType_stub(user_id: str) -> dict:
     """Stub for JobType."""
     return {"user_id": user_id}
 

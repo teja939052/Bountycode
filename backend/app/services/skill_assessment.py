@@ -18,7 +18,7 @@ async def get_user_skills(
     """Get user's skills."""
     return []
 
-async def SKILL_CATEGORIES(user_id: str) -> dict:
+async def SKILL_CATEGORIES_stub(user_id: str) -> dict:
     """Stub for SKILL_CATEGORIES."""
     return {"user_id": user_id}
 

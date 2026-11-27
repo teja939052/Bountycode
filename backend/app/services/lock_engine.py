@@ -409,11 +409,11 @@ class UnifiedJudge:
     def get_next_due(self, student_id: str, limit: int = 5) -> List[SRSEntry]:
         return self.srs.get_due_problems(student_id, limit)
 
-async def LockEngine(user_id: str) -> dict:
+async def LockEngine_stub(user_id: str) -> dict:
     """Stub for LockEngine."""
     return {"user_id": user_id}
 
 
-async def UnifiedJudge(user_id: str) -> dict:
+async def UnifiedJudge_stub(user_id: str) -> dict:
     """Stub for UnifiedJudge."""
     return {"user_id": user_id}

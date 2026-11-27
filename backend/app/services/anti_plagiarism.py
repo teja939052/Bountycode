@@ -166,6 +166,6 @@ class AntiPlagiarismEngine:
         }
 
 
-async def AntiPlagiarismEngine(user_id: str) -> dict:
+async def AntiPlagiarismEngine_stub(user_id: str) -> dict:
     """Stub for AntiPlagiarismEngine."""
     return {"user_id": user_id}

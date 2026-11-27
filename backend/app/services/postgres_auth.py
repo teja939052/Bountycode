@@ -269,6 +269,6 @@ class PostgresAuthService:
         return await self.update_user(user_id, {"onboarding": onboarding})
 
 
-async def PostgresAuthService(user_id: str) -> dict:
+async def PostgresAuthService_stub(user_id: str) -> dict:
     """Stub for PostgresAuthService."""
     return {"user_id": user_id}

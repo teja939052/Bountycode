@@ -38,6 +38,16 @@ def _question_companies(question: Dict[str, Any]) -> List[str]:
     return [str(item).strip() for item in raw if str(item).strip()]
 
 
+def _load_questions() -> List[Dict[str, Any]]:
+    """Load all servable questions from the question store."""
+    return _qs.load_all()
+
+
+def _normalize_company_tag(company: str) -> str:
+    """Normalize a company name to a canonical tag."""
+    return company.strip().lower().replace(" ", "_").replace("-", "_")
+
+
 def _servable_questions() -> List[Dict[str, Any]]:
     """Return the canonical, trust-gated question pool from question_store.
 

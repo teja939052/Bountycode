@@ -27,6 +27,6 @@ async def record_lesson_progress(
     """Record lesson progress."""
     return {"user_id": user_id, "lesson_id": lesson_id, "completed": True, "score": score}
 
-async def LessonService(user_id: str) -> dict:
+async def LessonService(user_id: str = None) -> dict:
     """Stub for LessonService."""
     return {"user_id": user_id}

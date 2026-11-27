@@ -17,6 +17,6 @@ async def apply_to_job(
     """Apply to a job."""
     return {"user_id": user_id, "job_id": job_id, "company": company, "status": "applied"}
 
-async def PlacementEngine(user_id: str) -> dict:
+async def PlacementEngine(user_id: str = None) -> dict:
     """Stub for PlacementEngine."""
     return {"user_id": user_id}

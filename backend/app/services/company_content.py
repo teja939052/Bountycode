@@ -163,6 +163,6 @@ class CompanyContentAnalyzer:
         return count
 
 
-async def CompanyContentAnalyzer(user_id: str) -> dict:
+async def CompanyContentAnalyzer_stub(user_id: str) -> dict:
     """Stub for CompanyContentAnalyzer."""
     return {"user_id": user_id}

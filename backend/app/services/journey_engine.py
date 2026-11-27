@@ -31,3 +31,8 @@ async def get_learning_path(user_id: str, skill_id: str) -> List[dict]:
         repo = UserLearningProgressRepository(session)
         # Return simplified path
         return [{"skill_id": skill_id, "status": "not_started"}]
+
+
+def _has_mastery_evidence(skills: dict) -> bool:
+    """Check if user has mastery evidence for skills."""
+    return any(s.get("score", 0) >= 70 for s in skills.values())

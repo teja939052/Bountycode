@@ -12,6 +12,8 @@ from typing import Any, Dict, List, Optional
 BACKEND_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _CONTENT_ROOT = os.path.join(BACKEND_ROOT, "data", "content")
 
+_SEEN_IDS: set = set()
+
 
 def load_question(id_: str) -> Optional[dict]:
     """Load a single question by ID from versioned files."""

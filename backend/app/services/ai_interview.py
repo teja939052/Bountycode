@@ -172,7 +172,7 @@ async def generate_interview_tips(
         ],
     }
 
-async def COMPANY_PROFILES(user_id: str) -> dict:
+async def COMPANY_PROFILES_stub(user_id: str) -> dict:
     """Stub for COMPANY_PROFILES."""
     return {"user_id": user_id}
 

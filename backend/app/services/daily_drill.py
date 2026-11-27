@@ -17,6 +17,6 @@ async def submit_daily_drill(
     """Submit daily drill answers."""
     return {"user_id": user_id, "drill_id": drill_id, "score": 0}
 
-async def DailyDrill(user_id: str) -> dict:
+async def DailyDrill_stub(user_id: str) -> dict:
     """Stub for DailyDrill."""
     return {"user_id": user_id}

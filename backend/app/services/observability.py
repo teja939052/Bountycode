@@ -23,12 +23,12 @@ async def get_metrics(user_id: str) -> dict:
     """Get observability metrics for user."""
     return {"user_id": user_id, "metrics": {}}
 
-async def ALGO_HEALTH_EVENTS(user_id: str) -> dict:
+async def ALGO_HEALTH_EVENTS_stub(user_id: str) -> dict:
     """Stub for ALGO_HEALTH_EVENTS."""
     return {"user_id": user_id}
 
 
-async def FUNNEL_EVENTS(user_id: str) -> dict:
+async def FUNNEL_EVENTS_stub(user_id: str) -> dict:
     """Stub for FUNNEL_EVENTS."""
     return {"user_id": user_id}
 

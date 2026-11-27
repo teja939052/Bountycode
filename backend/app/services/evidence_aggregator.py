@@ -4,6 +4,10 @@ from typing import Dict, List, Optional
 
 from app.database import get_session
 
+# In-memory cache for test compatibility
+_SEEN_IDS: set = set()
+
+
 async def aggregate_evidence(user_id: str) -> dict:
     """Aggregate learning evidence for user."""
     async with get_session() as session:
@@ -37,3 +41,26 @@ async def record_evidence(
         session.add(evidence)
         await session.commit()
     return {"user_id": user_id, "evidence_id": str(evidence.id), "recorded": True}
+
+
+def pattern_heatmap(events: list) -> dict:
+    """Build a heatmap pattern from events."""
+    heatmap = {}
+    for event in events:
+        day = event.get("day", "unknown")
+        heatmap[day] = heatmap.get(day, 0) + 1
+    return heatmap
+
+
+def failure_breakdown(evidence: list) -> dict:
+    """Break down failures by type."""
+    breakdown = {}
+    for ev in evidence:
+        ftype = ev.get("failure_type", "unknown")
+        breakdown[ftype] = breakdown.get(ftype, 0) + 1
+    return breakdown
+
+
+def solve_time_trend(times: list) -> list:
+    """Calculate solve time trend."""
+    return sorted(times) if times else []

@@ -282,17 +282,17 @@ engine = AssessmentEngine()
 # For FastAPI dependency injection
 get_assessment_engine = lambda: engine
 
-async def AssessmentDefinition(user_id: str) -> dict:
+async def AssessmentDefinition_stub(user_id: str) -> dict:
     """Stub for AssessmentDefinition."""
     return {"user_id": user_id}
 
 
-async def AssessmentEngine(user_id: str) -> dict:
+async def AssessmentEngine_stub(user_id: str) -> dict:
     """Stub for AssessmentEngine."""
     return {"user_id": user_id}
 
 
-async def AssessmentSession(user_id: str) -> dict:
+async def AssessmentSession_stub(user_id: str) -> dict:
     """Stub for AssessmentSession."""
     return {"user_id": user_id}
 

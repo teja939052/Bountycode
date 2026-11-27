@@ -70,3 +70,38 @@ async def init_sentry() -> None:
 
 # Backwards-compatible exports
 request_id_var = _request_id_var
+trace_id_var = _request_id_var
+
+
+def redact_sensitive_data(data: dict) -> dict:
+    """Redact sensitive fields from a dict for logging."""
+    sensitive_keys = {"password", "token", "secret", "api_key", "access_token", "refresh_token"}
+    redacted = {}
+    for k, v in data.items():
+        if k.lower() in sensitive_keys:
+            redacted[k] = "[REDACTED]"
+        elif isinstance(v, dict):
+            redacted[k] = redact_sensitive_data(v)
+        else:
+            redacted[k] = v
+    return redacted
+
+
+class StructuredFormatter(logging.Formatter):
+    """JSON structured log formatter."""
+
+    def format(self, record: logging.LogRecord) -> str:
+        import json
+        log_entry = {
+            "level": record.levelname,
+            "message": record.getMessage(),
+            "logger": record.name,
+        }
+        return json.dumps(log_entry)
+
+
+class HumanReadableFormatter(logging.Formatter):
+    """Human-readable log formatter."""
+
+    def format(self, record: logging.LogRecord) -> str:
+        return f"[{record.levelname}] {record.name}: {record.getMessage()}"

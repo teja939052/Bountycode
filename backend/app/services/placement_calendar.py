@@ -20,7 +20,7 @@ async def add_placement_event(
     """Add a placement event."""
     return {"user_id": user_id, "event_id": str(user_id) + "-event-1", "event_type": event_type, "event_date": event_date, "status": "created"}
 
-async def COMPANY_SEASON_PATTERNS(user_id: str) -> dict:
+async def COMPANY_SEASON_PATTERNS_stub(user_id: str) -> dict:
     """Stub for COMPANY_SEASON_PATTERNS."""
     return {"user_id": user_id}
 

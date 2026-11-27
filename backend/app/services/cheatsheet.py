@@ -182,6 +182,6 @@ Include:
         }
 
 
-async def CheatSheetGenerator(user_id: str) -> dict:
+async def CheatSheetGenerator_stub(user_id: str) -> dict:
     """Stub for CheatSheetGenerator."""
     return {"user_id": user_id}

@@ -587,6 +587,6 @@ def _difficulty_label(difficulty: int) -> str:
     return "hard"
 
 
-async def ClassBQuestion(user_id: str) -> dict:
+async def ClassBQuestion_stub(user_id: str) -> dict:
     """Stub for ClassBQuestion."""
     return {"user_id": user_id}

@@ -65,3 +65,24 @@ async def search_lessons(user_id: str) -> dict:
 async def submit_exercise(user_id: str) -> dict:
     """Stub for submit_exercise."""
     return {"user_id": user_id}
+
+
+async def grade_quiz(user_id: str, answers: dict) -> dict:
+    """Grade a quiz."""
+    return {"user_id": user_id, "score": 0, "answers": answers}
+
+
+def skill_for_lesson(lesson_id: str) -> str:
+    """Return the skill domain for a lesson."""
+    return lesson_id
+
+
+def weakness_tier_for(score: float) -> str:
+    """Return weakness tier for a score."""
+    if score < 35:
+        return "critical"
+    if score < 60:
+        return "high"
+    if score < 80:
+        return "medium"
+    return "low"

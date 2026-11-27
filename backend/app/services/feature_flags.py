@@ -159,6 +159,6 @@ def get_feature_manager() -> FeatureManager:
     return FeatureManager()
 
 
-async def FeatureStatus(user_id: str) -> dict:
+async def FeatureStatus_stub(user_id: str) -> dict:
     """Stub for FeatureStatus."""
     return {"user_id": user_id}

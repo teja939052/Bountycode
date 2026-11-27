@@ -365,6 +365,6 @@ async def _exec_js(code: str, stdin: str, timeout: int) -> Dict[str, Any]:
     }
 
 
-async def LOCAL_LANGUAGES(user_id: str) -> dict:
+async def LOCAL_LANGUAGES_stub(user_id: str) -> dict:
     """Stub for LOCAL_LANGUAGES."""
     return {"user_id": user_id}

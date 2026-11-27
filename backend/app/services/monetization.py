@@ -4,6 +4,9 @@ from typing import Dict, List, Optional
 
 from app.database import get_session
 
+FREE_TIER = {"name": "free", "price": 0, "currency": "USD"}
+PRO_TIER = {"name": "pro", "price": 9, "currency": "USD"}
+
 async def get_pricing(
     product_id: str,
 ) -> dict:

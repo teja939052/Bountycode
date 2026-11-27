@@ -276,6 +276,6 @@ class ContentVerifier:
         return "REJECT"
 
 
-async def ContentVerifier(user_id: str) -> dict:
+async def ContentVerifier_stub(user_id: str) -> dict:
     """Stub for ContentVerifier."""
     return {"user_id": user_id}

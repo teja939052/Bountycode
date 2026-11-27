@@ -123,11 +123,11 @@ class ApplicationTracker:
     async def delete_application(self, application_id, user_id):
         return await delete_application(user_id, application_id)
 
-async def ApplicationTracker(user_id: str) -> dict:
+async def ApplicationTracker_stub(user_id: str) -> dict:
     """Stub for ApplicationTracker."""
     return {"user_id": user_id}
 
 
-async def PIPELINE_STAGES(user_id: str) -> dict:
+async def PIPELINE_STAGES_stub(user_id: str) -> dict:
     """Stub for PIPELINE_STAGES."""
     return {"user_id": user_id}
