@@ -80,7 +80,7 @@ class User(Base):
     assessment_attempts: Mapped[list["AssessmentAttempt"]] = relationship(back_populates="user", cascade="all, delete-orphan")
     career_profile: Mapped[Optional["CareerProfile"]] = relationship(back_populates="user", uselist=False, cascade="all, delete-orphan")
     resume_metadata: Mapped[list["ResumeMetadata"]] = relationship(back_populates="user", cascade="all, delete-orphan")
-    analytics_events: Mapped[list["AnalyticsEvent"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    analytics_events: Mapped[list["AnalyticsEvent"]] = relationship(cascade="all, delete-orphan")
 
 
 class UserProfile(Base):
@@ -186,7 +186,7 @@ class AcademyDiagnosticSession(Base):
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
     )
 
-    user: Mapped["User"] = relationship(back_populates="skill_states", cascade="all, delete-orphan")
+    user: Mapped["User"] = relationship()
 
 
 class AcademyLearnerProfile(Base):
@@ -225,7 +225,7 @@ class AcademyLearnerProfile(Base):
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
     )
 
-    user: Mapped["User"] = relationship(back_populates="skill_states", cascade="all, delete-orphan")
+    user: Mapped["User"] = relationship()
 
 
 class AcademyLearningPlan(Base):
@@ -250,4 +250,4 @@ class AcademyLearningPlan(Base):
     )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
-    user: Mapped["User"] = relationship(back_populates="skill_states", cascade="all, delete-orphan")
+    user: Mapped["User"] = relationship()

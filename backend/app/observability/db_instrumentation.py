@@ -80,10 +80,10 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         rid = request_id_var.get("")
         logger.info(
             "db.connection.opened",
-            extra=log_context(
-                event="db.connection.opened",
-                request_id=rid,
-            ),
+            extra={
+                "event": "db.connection.opened",
+                "request_id": rid,
+            },
         )
 
     @event.listens_for(engine, "close")
@@ -91,10 +91,10 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         rid = request_id_var.get("")
         logger.info(
             "db.connection.closed",
-            extra=log_context(
-                event="db.connection.closed",
-                request_id=rid,
-            ),
+            extra={
+                "event": "db.connection.closed",
+                "request_id": rid,
+            },
         )
 
     @event.listens_for(Pool, "checkout")
@@ -113,12 +113,12 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
             pass
         logger.debug(
             "db.pool.checkout",
-            extra=log_context(
-                event="db.pool.checkout",
-                request_id=rid,
-                pool_size=pool_size,
-                checked_out=checked_out,
-            ),
+            extra={
+                "event": "db.pool.checkout",
+                "request_id": rid,
+                "pool_size": pool_size,
+                "checked_out": checked_out,
+            },
         )
 
     @event.listens_for(Pool, "checkin")
@@ -126,10 +126,10 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         rid = request_id_var.get("")
         logger.debug(
             "db.pool.checkin",
-            extra=log_context(
-                event="db.pool.checkin",
-                request_id=rid,
-            ),
+            extra={
+                "event": "db.pool.checkin",
+                "request_id": rid,
+            },
         )
 
     @event.listens_for(Engine, "before_cursor_execute")
@@ -151,21 +151,21 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         if duration_ms >= SLOW_QUERY_THRESHOLD_MS:
             logger.warning(
                 "db.slow_query",
-                extra=log_context(
-                    event="db.slow_query",
-                    duration_ms=round(duration_ms, 2),
-                    query_fingerprint=_safe_query_fingerprint(statement or ""),
-                    request_id=rid,
-                ),
+                extra={
+                    "event": "db.slow_query",
+                    "duration_ms": round(duration_ms, 2),
+                    "query_fingerprint": _safe_query_fingerprint(statement or ""),
+                    "request_id": rid,
+                },
             )
         else:
             logger.debug(
                 "db.query.executed",
-                extra=log_context(
-                    event="db.query.executed",
-                    duration_ms=round(duration_ms, 2),
-                    request_id=rid,
-                ),
+                extra={
+                    "event": "db.query.executed",
+                    "duration_ms": round(duration_ms, 2),
+                    "request_id": rid,
+                },
             )
 
     @event.listens_for(Engine, "handle_error")
@@ -173,12 +173,12 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         rid = request_id_var.get("")
         logger.error(
             "db.error",
-            extra=log_context(
-                event="db.error",
-                error_category=_safe_error_category(exc),
-                error_type=type(exc).__name__,
-                request_id=rid,
-            ),
+            extra={
+                "event": "db.error",
+                "error_category": _safe_error_category(exc),
+                "error_type": type(exc).__name__,
+                "request_id": rid,
+            },
         )
 
     # ── Transaction lifecycle listeners ──
@@ -187,10 +187,10 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         rid = request_id_var.get("")
         logger.info(
             "db.transaction.begin",
-            extra=log_context(
-                event="db.transaction.begin",
-                request_id=rid,
-            ),
+            extra={
+                "event": "db.transaction.begin",
+                "request_id": rid,
+            },
         )
 
     @event.listens_for(Engine, "commit")
@@ -198,10 +198,10 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         rid = request_id_var.get("")
         logger.info(
             "db.transaction.commit",
-            extra=log_context(
-                event="db.transaction.commit",
-                request_id=rid,
-            ),
+            extra={
+                "event": "db.transaction.commit",
+                "request_id": rid,
+            },
         )
 
     @event.listens_for(Engine, "rollback")
@@ -209,10 +209,10 @@ def instrument_sqlalchemy_engine(engine: Engine) -> None:
         rid = request_id_var.get("")
         logger.warning(
             "db.transaction.rollback",
-            extra=log_context(
-                event="db.transaction.rollback",
-                request_id=rid,
-            ),
+            extra={
+                "event": "db.transaction.rollback",
+                "request_id": rid,
+            },
         )
 
 
@@ -234,11 +234,11 @@ def log_transaction_begin(operation: str = "unknown") -> None:
     rid = request_id_var.get("")
     logger.info(
         "db.transaction.begin",
-        extra=log_context(
-            event="db.transaction.begin",
-            operation=operation,
-            request_id=rid,
-        ),
+        extra={
+            "event": "db.transaction.begin",
+            "operation": operation,
+            "request_id": rid,
+        },
     )
 
 
@@ -247,11 +247,11 @@ def log_transaction_commit(operation: str = "unknown") -> None:
     rid = request_id_var.get("")
     logger.info(
         "db.transaction.commit",
-        extra=log_context(
-            event="db.transaction.commit",
-            operation=operation,
-            request_id=rid,
-        ),
+        extra={
+            "event": "db.transaction.commit",
+            "operation": operation,
+            "request_id": rid,
+        },
     )
 
 
@@ -260,10 +260,10 @@ def log_transaction_rollback(operation: str = "unknown", reason: Optional[str] =
     rid = request_id_var.get("")
     logger.warning(
         "db.transaction.rollback",
-        extra=log_context(
-            event="db.transaction.rollback",
-            operation=operation,
-            reason=reason,
-            request_id=rid,
-        ),
+        extra={
+            "event": "db.transaction.rollback",
+            "operation": operation,
+            "reason": reason,
+            "request_id": rid,
+        },
     )

@@ -591,6 +591,6 @@ class PostgresAssessmentService:
         )
 
 
-async def PostgresAssessmentService(user_id: str) -> dict:
+async def postgres_assessment_service_stub(user_id: str) -> dict:
     """Stub for PostgresAssessmentService."""
     return {"user_id": user_id}

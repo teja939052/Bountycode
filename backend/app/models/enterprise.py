@@ -45,10 +45,7 @@ class Cohort(Base):
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
-    admin: Mapped["User"] = relationship(back_populates="cohorts")
-    students: Mapped[List["User"]] = relationship(
-        "User", secondary="cohort_students", back_populates="cohorts"
-    )
+    admin: Mapped["User"] = relationship(foreign_keys=[admin_id])
 
 
 class SkillGraph(Base):
@@ -75,7 +72,7 @@ class SkillGraph(Base):
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
-    user: Mapped["User"] = relationship(back_populates="skill_graph")
+    user: Mapped["User"] = relationship()
 
 
 class Gamification(Base):
@@ -102,4 +99,4 @@ class Gamification(Base):
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
-    user: Mapped["User"] = relationship(back_populates="gamification")
+    user: Mapped["User"] = relationship()

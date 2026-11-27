@@ -502,6 +502,6 @@ class PostgresLearningService:
             return None
 
 
-async def PostgresLearningService(user_id: str) -> dict:
+async def postgres_learning_service_stub(user_id: str) -> dict:
     """Stub for PostgresLearningService."""
     return {"user_id": user_id}

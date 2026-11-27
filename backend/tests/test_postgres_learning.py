@@ -602,8 +602,6 @@ async def test_transaction_rollback(session, test_user, test_skill):
     from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
     from sqlalchemy.orm import sessionmaker
 
-    DATABASE_URL = 'postgresql+asyncpg://postgres:postgres@127.0.0.1:54322/postgres'
-
     # Create and commit skill1
     skill_name = f'test_rollback_skill_{uuid4().hex[:8]}'
     skill = Skill(
