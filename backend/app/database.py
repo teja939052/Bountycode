@@ -47,7 +47,7 @@ def _build_database_url() -> str:
     """
     if SUPABASE_DB_URL:
         return SUPABASE_DB_URL
-    return "postgresql+asyncpg://postgres:postgres@localhost:5432/bountycode"
+    return "postgresql+asyncpg://postgres:postgres@127.0.0.1:5432/bountycode"
 
 
 def get_engine() -> AsyncEngine:

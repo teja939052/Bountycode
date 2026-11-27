@@ -13,29 +13,6 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from uuid import UUID
 
-from app.database import get_session_factory
-from app.repositories.assessments import (
-    InterviewBookingRepository,
-    SolvedProblemRepository,
-    QuestionAnswerRepository,
-    ResumeMetadataRepository,
-    AssessmentAttemptRepository,
-    OASessionRepository,
-    InterviewSessionRepository,
-    CodingSubmissionRepository,
-    ResponseRepository,
-    AssessmentSectionRepository,
-    AssessmentAttemptRepository,
-    CompanyAssessmentMetadataRepository,
-)
-from app.repositories.learning import (
-    DailyChallengeUserRepository,
-    LearningAttemptRepository,
-    LearningEvidenceRepository,
-    LearnerSkillStateRepository,
-)
-from app.repositories.identity import UserRepository
-
 logger = logging.getLogger(__name__)
 
 
@@ -71,16 +48,43 @@ class MongoCompatCollection:
         # Get or create a session
         session = self._session
         if session is None:
+            # Import lazily: app.database exposes compatibility aliases that
+            # instantiate this class during module import.
+            from app.database import get_session_factory
+
             factory = get_session_factory()
             session = factory()
 
-        repo = self._get_repo(collection_name, session)
+        repo = self._get_repo(self.collection_name, session)
         self._repo = repo
         self._session = session
         return repo
 
     def _get_repo(self, collection_name: str, session) -> Any:
         """Map collection name to repository instance."""
+        # Repositories import RepositoryBase from app.database, which exposes
+        # compatibility aliases. Resolve them lazily to avoid an import cycle.
+        from app.repositories.assessments import (
+            InterviewBookingRepository,
+            SolvedProblemRepository,
+            QuestionAnswerRepository,
+            ResumeMetadataRepository,
+            AssessmentAttemptRepository,
+            OASessionRepository,
+            InterviewSessionRepository,
+            CodingSubmissionRepository,
+            ResponseRepository,
+            AssessmentSectionRepository,
+            CompanyAssessmentMetadataRepository,
+        )
+        from app.repositories.learning import (
+            DailyChallengeUserRepository,
+            LearningAttemptRepository,
+            LearningEvidenceRepository,
+            LearnerSkillStateRepository,
+        )
+        from app.repositories.identity import UserRepository
+
         mapping = {
             "users": UserRepository(session),
             "interviews": InterviewSessionRepository(session),
@@ -105,14 +109,20 @@ class MongoCompatCollection:
             "skill_graphs": LearnerSkillStateRepository(session),
             "company_assessment_metadata": CompanyAssessmentMetadataRepository(session),
         }
-        return mapping.get(collection_name)
+        repo = mapping.get(collection_name)
+        if repo is None:
+            raise NotImplementedError(
+                f"PostgreSQL repository is not implemented for collection "
+                f"{collection_name!r}; refusing to silently discard data"
+            )
+        return repo
 
     async def find_one(self, query: dict) -> Optional[dict]:
         if not query:
             return None
         repo = await self._ensure_repo()
         if not repo:
-            return None
+            raise AssertionError("repository resolution returned no repository")
         # Most queries filter by _id or user_id. Map to repository get_by_id.
         if "_id" in query:
             try:
@@ -138,27 +148,21 @@ class MongoCompatCollection:
                     result = await getattr(repo, method_name)(value)
                     if result:
                         return self._model_to_dict(result)
-                except Exception:
-                    pass
+                except AttributeError:
+                    continue
         return None
 
     async def insert_one(self, doc: dict) -> "InsertOneResult":
         repo = await self._ensure_repo()
-        if not repo:
-            return InsertOneResult(inserted_id=str(doc.get("_id", "")))
-        try:
-            result = await repo.create(doc)
-            return InsertOneResult(
-                inserted_id=str(result.id) if hasattr(result, "id") else str(doc.get("_id", ""))
-            )
-        except Exception as e:
-            logger.warning(f"Insert failed for {self.collection_name}: {e}")
-            return InsertOneResult(inserted_id=str(doc.get("_id", "")))
+        result = await repo.create(doc)
+        return InsertOneResult(
+            inserted_id=str(result.id) if hasattr(result, "id") else str(doc.get("_id", ""))
+        )
 
     async def update_one(self, query: dict, update: dict) -> "UpdateResult":
         repo = await self._ensure_repo()
         if not repo:
-            return UpdateResult(modified_count=0)
+            raise AssertionError("repository resolution returned no repository")
         # Extract _id from query
         uid = None
         if "_id" in query:
@@ -175,19 +179,17 @@ class MongoCompatCollection:
             else:
                 updates_dict.update(update)
 
-            try:
-                result = await repo.update(uid, updates_dict)
-                return UpdateResult(modified_count=1 if result else 0)
-            except Exception as e:
-                logger.warning(f"Update failed for {self.collection_name}: {e}")
-                return UpdateResult(modified_count=0)
+            result = await repo.update(uid, updates_dict)
+            return UpdateResult(modified_count=1 if result else 0)
 
-        return UpdateResult(modified_count=0)
+        raise NotImplementedError(
+            f"update_one without a UUID _id is not implemented for {self.collection_name!r}"
+        )
 
     async def delete_one(self, query: dict) -> "DeleteResult":
         repo = await self._ensure_repo()
         if not repo:
-            return DeleteResult(deleted_count=0)
+            raise AssertionError("repository resolution returned no repository")
         uid = None
         if "_id" in query:
             try:
@@ -195,38 +197,39 @@ class MongoCompatCollection:
             except (ValueError, TypeError):
                 pass
         if uid:
-            try:
-                # Most repos don't have delete; mark as deleted if possible
-                result = await repo.update(uid, {"status": "deleted"})
-                return DeleteResult(deleted_count=1 if result else 0)
-            except Exception:
-                pass
-        return DeleteResult(deleted_count=0)
+            if not hasattr(repo, "update"):
+                raise NotImplementedError(
+                    f"delete_one is not implemented for {self.collection_name!r}"
+                )
+            result = await repo.update(uid, {"status": "deleted"})
+            return DeleteResult(deleted_count=1 if result else 0)
+        raise NotImplementedError(
+            f"delete_one without a UUID _id is not implemented for {self.collection_name!r}"
+        )
 
     async def count_documents(self, query: dict) -> int:
         repo = await self._ensure_repo()
         if not repo:
-            return 0
-        # Count is not well-supported by individual repos; return 0 as fallback
-        return 0
+            raise AssertionError("repository resolution returned no repository")
+        raise NotImplementedError(
+            f"count_documents is not implemented for {self.collection_name!r}"
+        )
 
     async def find(self, query: dict, **kwargs):
         repo = await self._ensure_repo()
         if not repo:
-            return _AsyncCursor([])
-        # Simple find: return all results (limited)
-        try:
-            results = await repo.list_by_user(UUID("00000000-0000-0000-0000-000000000000"), limit=1000, offset=0)
-            return _AsyncCursor([self._model_to_dict(r) for r in results])
-        except Exception:
-            return _AsyncCursor([])
+            raise AssertionError("repository resolution returned no repository")
+        raise NotImplementedError(
+            f"find is not implemented for {self.collection_name!r}; use a domain repository"
+        )
 
     async def aggregate(self, pipeline: list) -> list:
         repo = await self._ensure_repo()
         if not repo:
-            return []
-        # Basic aggregation support - return empty for complex pipelines
-        return []
+            raise AssertionError("repository resolution returned no repository")
+        raise NotImplementedError(
+            f"aggregate is not implemented for {self.collection_name!r}; use a domain query"
+        )
 
     def _model_to_dict(self, obj) -> dict:
         """Convert a model instance to a dict."""

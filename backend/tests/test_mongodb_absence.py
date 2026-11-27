@@ -37,6 +37,9 @@ from pathlib import Path
 import pytest
 
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
 # Directories that are allowed to reference MongoDB (migration tooling only)
 ALLOWED_DIRS = {
     "backend/app/scripts/migration/",
@@ -135,7 +138,7 @@ def _scan_file_for_motor(filepath: str) -> list:
 def _collect_python_files(root: str) -> list:
     """Collect all Python files under root, excluding allowed directories."""
     results = []
-    for dirpath, dirnames, filenames in os.walk(root):
+    for dirpath, dirnames, filenames in os.walk(REPO_ROOT / root):
         # Skip allowed directories entirely
         if any(dirpath.startswith(p) for p in ALLOWED_DIRS):
             dirnames.clear()
@@ -189,7 +192,7 @@ def test_no_motor_in_models():
 def test_no_motor_in_database():
     """database.py must not import Motor or expose Motor clients."""
     findings = []
-    with open("backend/app/database.py", "r", encoding="utf-8") as f:
+    with open(REPO_ROOT / "backend/app/database.py", "r", encoding="utf-8") as f:
         content = f.read()
     for pat in MOTOR_IMPORTS + MOTOR_PATTERNS:
         if pat in content:
@@ -217,7 +220,7 @@ def test_no_motor_in_database():
 def test_no_motor_in_config():
     """config.py should not define MONGODB_URL or MongoDB pool settings."""
     findings = []
-    with open("backend/app/config.py", "r", encoding="utf-8") as f:
+    with open(REPO_ROOT / "backend/app/config.py", "r", encoding="utf-8") as f:
         content = f.read()
     for pat in MOTOR_IMPORTS + ["MONGODB_URL", "MONGODB_MAX_POOL", "MONGODB_MIN_POOL", "MONGODB_MAX_IDLE", "DATABASE_NAME"]:
         for i, line in enumerate(content.split("\n"), 1):
@@ -242,7 +245,11 @@ def test_no_mongo_compat_collection_outside_adapter():
             continue
         # Normalize path for cross-platform comparison
         fp_norm = fp.replace("\\", "/")
-        if "MongoCompatCollection" in content and not _is_compat_adapter(fp) and fp_norm != "backend/app/database.py":
+        if (
+            "MongoCompatCollection" in content
+            and not _is_compat_adapter(fp)
+            and Path(fp).resolve() != (REPO_ROOT / "backend/app/database.py").resolve()
+        ):
             findings.append(fp)
     assert not findings, (
         "MongoCompatCollection references found outside compat adapter:\n"
@@ -252,7 +259,7 @@ def test_no_mongo_compat_collection_outside_adapter():
 
 def test_requirements_no_motor_runtime():
     """requirements.txt should not list motor or pymongo as runtime deps."""
-    with open("backend/requirements.txt", "r", encoding="utf-8") as f:
+    with open(REPO_ROOT / "backend/requirements.txt", "r", encoding="utf-8") as f:
         content = f.read().lower()
     assert "motor" not in content, "motor found in requirements.txt"
     assert "pymongo" not in content, "pymongo found in requirements.txt"

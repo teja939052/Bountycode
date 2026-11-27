@@ -29,6 +29,7 @@ All tests write to real PostgreSQL tables — no mocked repositories.
 """
 
 import asyncio
+import os
 import pytest
 from datetime import datetime, timezone, timedelta
 from uuid import UUID, uuid4
@@ -56,7 +57,10 @@ from app.repositories.gamification import XPEventLedgerRepository
 from app.services.postgres_assessments import PostgresAssessmentService
 from app.services.postgres_learning import PostgresLearningService
 
-DATABASE_URL = 'postgresql+asyncpg://postgres:postgres@127.0.0.1:54322/postgres'
+DATABASE_URL = os.environ.get(
+    'SUPABASE_DB_URL',
+    'postgresql+asyncpg://postgres:postgres@127.0.0.1:5432/postgres',
+)
 
 
 @pytest.fixture

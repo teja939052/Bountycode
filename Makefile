@@ -17,10 +17,8 @@ NPM ?= npm
 BACKEND_DIR := backend
 FRONTEND_DIR := frontend
 
-# Isolated test database for the core-loop E2E suite.
-TEST_DB_NAME := placementpro_test_core_loop
-export DATABASE_NAME := $(TEST_DB_NAME)
-export MONGODB_URL := mongodb://127.0.0.1:27017
+# PostgreSQL database used by local migration tests.
+export SUPABASE_DB_URL := postgresql+asyncpg://postgres:postgres@127.0.0.1:5432/bountycode
 
 .PHONY: test test-backend-unit test-backend-integration test-e2e test-frontend test-content test-backend clean
 
@@ -28,7 +26,7 @@ test: test-backend-unit test-backend-integration test-e2e test-content
 	@echo "=== All backend stages passed ==="
 
 # ── Unit stage ──────────────────────────────────────────────────────────
-# Fast, deterministic tests that run against mongomock / in-memory state.
+# Fast, deterministic tests that do not require an external database.
 test-backend-unit:
 	cd $(BACKEND_DIR) && $(PYTEST) tests/ -q --tb=short \
 		--ignore=tests/test_e2e_learner_journey.py \
@@ -38,7 +36,7 @@ test-backend-unit:
 		--ignore=tests/test_world_complete_xp.py
 
 # ── Integration stage ───────────────────────────────────────────────────
-# Integration tests requiring a real MongoDB (compiler, OA, world progression).
+# Integration tests requiring a real PostgreSQL schema.
 test-backend-integration:
 	cd $(BACKEND_DIR) && $(PYTEST) tests/test_compiler_service.py tests/test_oa_repair_loop_evidence.py tests/test_world_complete_xp.py -q --tb=short
 

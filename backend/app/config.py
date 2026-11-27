@@ -1,7 +1,7 @@
 """Configuration management using Pydantic Settings.
 
 Loads environment variables from .env with fallback defaults for all
-BountyCode services: MongoDB, JWT, OpenRouter AI, PayPal, Stripe,
+BountyCode services: Supabase PostgreSQL, JWT, OpenRouter AI, PayPal, Stripe,
 Redis, RabbitMQ, Docker sandbox, WebSocket, CORS, and more.
 """
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables and .env file.
 
     Attributes are organized by domain:
-        - MongoDB / Database connection
+        - Supabase PostgreSQL / Database connection
         - JWT authentication
         - OpenRouter AI configuration
         - PayPal / Stripe billing

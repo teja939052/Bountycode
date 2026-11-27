@@ -1,17 +1,16 @@
 import asyncio
-import os
-import sys
 from logging.config import fileConfig
 
 from alembic import context
 from app.config import get_settings
-from app.database import get_client, get_db
+from app.database import get_engine
+from app.models import Base
 
 config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-target_metadata = None
+target_metadata = Base.metadata
 
 
 def do_run_migrations(connection):
@@ -26,20 +25,15 @@ def do_run_migrations(connection):
 
 
 async def run_migrations_online():
-    settings = get_settings()
-    client = get_client()
-    db = get_db()
-    connection = await db.client.start_session()
-    try:
-        await connection.start()
-        do_run_migrations(connection)
-    finally:
-        await connection.end_session()
+    engine = get_engine()
+    async with engine.connect() as connection:
+        await connection.run_sync(do_run_migrations)
+    await engine.dispose()
 
 
 async def run_migrations_offline():
     settings = get_settings()
-    url = settings.MONGODB_URL
+    url = settings.SUPABASE_DB_URL or config.get_main_option("sqlalchemy.url")
     context.configure(
         url=url,
         target_metadata=target_metadata,
