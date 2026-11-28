@@ -28,7 +28,7 @@ This is a design document. No implementation is authorized.
 | A3 | Five learner concepts defined | Document 02 defines context, evidence, state, mastery, readiness |
 | 4 | Four mastery models reconciled | Document 02 shows no automatic conversion |
 | 5 | Content trust pipeline defined | Document 03 shows 4-level pipeline |
-| 6 | Only verified content servable | Document 03 shows UNVERIFIED never served |
+| 6 | Only TRUSTED content servable | Document 03 shows UNVERIFIED never served |
 | 7 | Interaction contract defined | Document 01 defines 9 interaction templates |
 | 8 | Seven-beat framework mapped | Document 01 maps Feel→Discover→Predict→Build→Break→Debug→Retrieve→Transfer |
 | 9 | Misconception taxonomy defined | Document 08 defines 5 misconception IDs |
@@ -193,7 +193,7 @@ must explain:
 
 ---
 
-## 7. Go/No-Go Criteria for Phase 3
+## 7. Go/No-Go Criteria for Pilot → Phase 3 Scaling
 
 | Criterion | Go Signal | No-Go Signal |
 |-----------|-----------|--------------|

@@ -87,11 +87,11 @@ This is a design document. No implementation is authorized.
 | Binary Search | Basics | `dsa.binary_search` | Sorting | Medium | Predict | Index/output | SRS | Different target | V1 |
 | Stack/Queue Basics | Basics | `dsa.stack_queue` | Arrays | Easy | Manipulate | Output order | SRS | Different ops | V1 |
 | Linked List Basics | Basics | `dsa.linked_list` | Arrays | Medium | Trace | Traversal | SRS | Different list | V1 |
-| Tree Basics | Basics | `dsa.trees` | Linked List | Medium | Trace | Traversal | SRS | Different tree | V1 |
+| Tree Basics | Basics | `dsa.trees` | Arrays | Medium | Trace | Traversal | SRS | Different tree | V1 |
 | Heap | Basics | `dsa.heap` | Trees | Hard | Trace | Heapify | SRS | Different heap | Roadmap |
 | Graph | Basics | `dsa.graph` | Trees | Hard | Trace | Traversal | SRS | Different graph | Roadmap |
 | Recursion | Basics | `dsa.recursion` | Pseudo Recursion | Hard | Trace | Call stack | SRS | Different recursion | Roadmap |
-| Greedy | Basics | `dsa.greedy` | Graph | Hard | Fill | Greedy choice | SRS | Different problem | Roadmap |
+| Greedy | Basics | `dsa.greedy` | Arrays | Hard | Fill | Greedy choice | SRS | Different problem | Roadmap |
 | Backtracking | Basics | `dsa.backtracking` | Recursion | Hard | Arrange | Solution path | SRS | Different problem | Roadmap |
 | Dynamic Programming | Basics | `dsa.dp` | Recursion | Hard | Fill | DP table | SRS | Different problem | Roadmap |
 
@@ -149,7 +149,7 @@ This is a design document. No implementation is authorized.
 
 | Concept | Skill ID | Prerequisite | Difficulty | Interaction | Assessment | Evidence | Revision/Transfer | Release |
 |---------|----------|--------------|------------|-------------|------------|----------|-------------------|---------|
-| C++ Fundamentals | `cpp.fundamentals` | C fundamentals | Easy | Fill | Exact match | SRS | Different values | Roadmap |
+| C++ Fundamentals | `coding.cpp.fundamentals` | None | Easy | Fill | Exact match | SRS | Different values | Roadmap |
 | References | `cpp.fundamentals.references` | Pointers | Medium | Trace | Address/output | SRS | Different refs | Roadmap |
 | OOP Classes | `cpp.oop.classes` | Functions | Medium | Fill | Class output | SRS | Different class | Roadmap |
 | Constructors/Destructors | `cpp.oop.constructors` | Classes | Medium | Trace | Lifecycle | SRS | Different class | Roadmap |

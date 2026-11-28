@@ -67,21 +67,19 @@ skill with no prerequisites).
 
 | Time | Activity | Interaction | Evidence |
 |------|----------|-------------|----------|
-| 0–10 min | Arrays: feel | `select` | Finds pair summing to 10 |
-| 10–20 min | Arrays: discover | `manipulate` | Traverses array with pointer |
-| 20–30 min | Arrays: predict | `predict` | Predicts pointer movement |
-| 30–40 min | Arrays: predict | `predict` | Predicts pointer movement (second question) |
-| 40–45 min | Arrays: predict | `predict` | Predicts pointer movement (third question) |
+| 0–15 min | Loops: predict | `predict` | Predicts loop termination (question 4) |
+| 15–25 min | Loops: build | `fill` | Completes loop to sum array (questions 5-6) |
+| 25–45 min | Loops: practice | `predict` | Predicts loop execution on new problems (questions 7-8) |
 
-**Orchestrator decision:** Arjun has completed 3 distinct questions on arrays with mixed results. BKT state: `emerging` (BKT 0.45). Next action = `practice` → arrays predict exercise.
+**Orchestrator decision:** Loops now at level 3 (Competent) with 6 distinct questions. Prerequisite met for arrays. Next action = `learn` → `dsa.arrays` lesson (feel stage).
 
 ### 2.4 Progress After Week 1
 
 | Skill | BKT State | Mastery Level | Evidence |
 |-------|-----------|---------------|----------|
-| `coding.variables` | `independent` | 3 (Competent) | 4 distinct questions, 75% accuracy |
-| `coding.loops` | `inconsistent` | 2 (Practicing) | 3 distinct questions, 50% accuracy |
-| `dsa.arrays` | `emerging` | 1 (Introduced) | 3 distinct questions, 33% accuracy |
+| `coding.variables` | `independent` | 2 (Practicing) | 4 distinct questions, 75% accuracy |
+| `coding.loops` | `independent` | 3 (Competent) | 6 distinct questions, 75% accuracy |
+| `dsa.arrays` | `unknown` | 1 (Introduced) | 0 distinct questions |
 
 ### 2.5 Captain Byte Interactions
 
@@ -144,7 +142,7 @@ Priya has prior programming evidence. The Orchestrator skips `coding.variables` 
 |-------|-----------|---------------|----------|
 | `coding.variables` | `transfer_capable` | 4 (Strong) | 12 distinct questions, 88% accuracy |
 | `coding.loops` | `independent` | 3 (Competent) | 7 distinct questions, 72% accuracy |
-| `dsa.arrays` | `transfer_capable` | 4 (Strong) | 8 distinct questions, 85% accuracy |
+| `dsa.arrays` | `transfer_capable` | 3 (Competent) | 8 distinct questions, 85% accuracy |
 | `dsa.binary_search` | `emerging` | 2 (Practicing) | 3 distinct questions, 67% accuracy |
 
 ### 2.5 Captain Byte Interactions
@@ -205,7 +203,7 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 | Skill | BKT State | Mastery Level | Evidence |
 |-------|-----------|---------------|----------|
 | `dsa.arrays` | `transfer_capable` | 4 (Strong) | 15 distinct questions |
-| `dsa.two_pointers` | `independent` | 3 (Competent) | 5 distinct questions |
+| `dsa.two_pointers` | `independent` | 2 (Practicing) | 5 distinct questions |
 | `dsa.sliding_window` | `emerging` | 1 (Introduced) | 3 distinct questions, 67% accuracy |
 
 ### 2.5 Captain Byte Interactions
@@ -235,16 +233,15 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 
 ```
 1. Student context: beginner, 45 min budget, target TCS
-2. Learner state: arrays=emerging, loops=inconsistent, variables=independent
+2. Learner state: arrays=unknown, loops=inconsistent, variables=independent
 3. Prerequisite check: coding.loops not yet at level 3
 4. Active misconceptions: none
 5. Due SRS reviews: none
 6. Candidate actions:
-   - learn coding.loops (prerequisite not met for arrays)
-   - practice arrays predict (loops not ready)
+   - learn coding.loops (prerequisite not yet met for arrays)
    - learn dsa.arrays (prerequisite not met)
 7. Selected: learn coding.loops
-   Reason: "Prerequisite for arrays not yet met. Build foundations in order."
+   Reason: "Loops prerequisite not yet at level 3. Continue building foundations."
    Confidence: high
 ```
 
@@ -290,16 +287,16 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 Day 1, 10:03 — Arrays: build (fill)
   Event: {skill_id: dsa.arrays, interaction_type: fill, correct: true,
           hints_used: 0, scaffolding_level: partial, server_graded: true}
-  → BKT update: 0.50 → 0.62
-  → Mastery: unique_questions=2, accuracy=100%, level=2→3
-  
+  → BKT update: 0.72 → 0.76
+  → Mastery: unique_questions=12, accuracy=88%, level=4 (Strong)
+
 Day 1, 10:20 — Arrays: break (debug)
   Event: {skill_id: dsa.arrays, interaction_type: debug, correct: true,
           hints_used: 0, scaffolding_level: none, server_graded: true}
-  → BKT update: 0.62 → 0.75
-  → Mastery: unique_questions=3, accuracy=100%, level=3→4
-  
-Orchestrator: BKT 0.75 ≥ 0.65, no hints → state=independent
+  → BKT update: 0.76 → 0.79
+  → Mastery: unique_questions=13, accuracy=88%, level=4 (Strong)
+
+Orchestrator: BKT 0.79 ≥ 0.65, no hints → state=independent
               Mastery level 4 → Strong
               Next action: transfer → container problem
 ```

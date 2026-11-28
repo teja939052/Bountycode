@@ -331,9 +331,10 @@ def two_sum(nums, target):
 {
   "interaction_type": "manipulate",
   "passes": [
-    {"pass": 1, "array": [3, 4, 2, 5, 8]},
-    {"pass": 2, "array": [3, 2, 4, 5, 8]},
-    {"pass": 3, "array": [2, 3, 4, 5, 8]}
+    {"pass": 1, "array": [3, 5, 4, 2, 8]},
+    {"pass": 2, "array": [3, 4, 2, 5, 8]},
+    {"pass": 3, "array": [3, 2, 4, 5, 8]},
+    {"pass": 4, "array": [2, 3, 4, 5, 8]}
   ],
   "correct": true,
   "hints_used": 0
@@ -344,16 +345,16 @@ def two_sum(nums, target):
 
 | Case | Input | Target | Expected | Reason |
 |------|-------|--------|----------|--------|
-| Normal pair | `[1, 2, 4, 6, 8]` | 10 | `[2, 3]` (values 4, 6) | 4+6=10 |
-| Negative values | `[-8, -3, 1, 5, 9]` | 6 | `[1, 4]` (values -3, 9) or `[2, 3]` (values 1, 5) | Negatives handled |
+| Normal pair | `[1, 2, 4, 6, 8]` | 10 | `[1, 4]` (values 2, 8) | 2+8=10 |
+| Negative values | `[-8, -3, 1, 5, 9]` | 6 | `[2, 4]` (values 1, 5) | 1+5=6 |
 | Duplicates | `[1, 3, 3, 7]` | 6 | `[1, 2]` (distinct indices) | Same value, different indices |
 | No possible pair | `[1, 2, 4, 8]` | 20 | `None` | Sum never reaches target |
 | Empty input | `[]` | 5 | `None` | Safe handling |
 | Single element | `[5]` | 10 | `None` | Can't form pair |
 | Two-element success | `[2, 8]` | 10 | `[0, 1]` | Both elements used |
 | Pair at boundaries | `[1, 4, 6, 9]` | 10 | `[0, 3]` | First and last |
-| Unsorted input | `[4, 1, 8, 2]` | 3 | Algorithm returns `None` but `[1, 2]` sums to 3 | Precondition violated: algorithm fails on unsorted input |
-| Negative target | `[-9, -4, -1]` | -5 | `[1, 2]` (values -4, -1) | Negative target works |
+| Unsorted input | `[4, 1, 8, 2]` | 6 | Raises `ValueError` | Array not sorted; precondition violated |
+| Negative target | `[-9, -4, -1]` | -5 | `[1, 2]` (values -4, -1) | -4+-1=-5 |
 | Target below all sums | `[10, 20, 30]` | 5 | `None` | All sums > target |
 | Target above all sums | `[1, 2, 3]` | 100 | `None` | All sums < target |
 | Multiple valid pairs | `[1, 2, 3, 4, 5]` | 5 | `[0, 3]` or `[1, 2]` | Either acceptable |

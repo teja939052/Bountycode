@@ -113,7 +113,7 @@ A candidate action is eligible only when ALL of the following are true:
 
 | Constraint | Check |
 |------------|-------|
-| Content trust | Content is `verified` or `reviewed` (not UNVERIFIED) |
+| Content trust | Content is `TRUSTED` (not UNVERIFIED) |
 | Prerequisites | All prerequisite skills at Competent (level 3+) or action is diagnostic/repair |
 | Time budget | `estimated_minutes <= remaining_minutes` |
 | Content quality | `content_quality >= 0.55` (per Adaptive Action Planner) |

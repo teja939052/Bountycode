@@ -199,7 +199,7 @@ Mastery Engine (`app/services/mastery_engine.py`).
    Only unique validated question IDs count.
 2. Unseen transfer questions contribute meaningful evidence (harder questions
    weight more; transfer questions count double).
-3. Invalid or untrusted questions (trust_status not in `{verified, reviewed}`)
+3. Invalid or untrusted questions (trust_status not in `{TRUSTED}`)
    do NOT contribute to mastery evidence.
 4. Difficulty influences evidence: hard > medium > easy weighting.
 5. Prerequisite skills must be respected: a skill cannot be Mastered (level 5)
@@ -279,7 +279,7 @@ Readiness Engine (`app/services/readiness_engine.py`).
 | `overall_readiness` | float 0–100 | Weighted skill score |
 | `coverage` | float 0–1 | Evidence coverage across skills |
 | `coverage_message` | string | Human-readable coverage status |
-| `next_action` | object | Orchestrator recommendation |
+| `recommendation` | object | Advisory suggestion for Orchestrator consideration (not authoritative) |
 | `target_weights` | object | Skill weight mapping |
 | `skills` | array | Per-skill scored breakdown |
 

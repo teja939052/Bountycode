@@ -132,7 +132,7 @@ Captain Byte receives a context object with every interaction. All fields are se
 | Context Field | Source | Trust Level |
 |---------------|--------|-------------|
 | Student profile | Onboarding service | Server-authoritative |
-| Lesson content | Question Store / Content Loader | Trusted (verified/reviewed only) |
+| Lesson content | Question Store / Content Loader | TRUSTED only |
 | Concept definition | Skill Taxonomy | Server-authoritative |
 | Learner state | BKT / Mastery Engine | Server-authoritative |
 | Current interaction | Lesson service | Server-graded |
@@ -304,7 +304,7 @@ Captain Byte appears as a dockable panel alongside the lesson content, not as a 
 #### Context Grounding
 
 All Captain Byte responses are grounded in:
-- The current lesson content (which is TRUSTED or HUMAN_REVIEWED)
+- The current lesson content (which is TRUSTED only)
 - The student's actual evidence events (not assumptions)
 - The canonical skill taxonomy
 - Authored hint ladders and worked examples

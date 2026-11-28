@@ -182,7 +182,7 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 - Prerequisite chain (which levels must be complete)
 - Lesson cards with lock state
 - Estimated time per lesson
-- XP reward per lesson
+- Diamond reward per lesson
 
 **Mobile rules:**
 - Lesson cards as full-width rows
@@ -391,7 +391,7 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 
 | Variant | Usage |
 |---------|-------|
-| Lesson card | Lesson title, time, XP, lock state |
+| Lesson card | Lesson title, time, Diamonds, lock state |
 | Skill card | Skill name, level, accuracy, trend |
 | Company card | Company name, blueprint, readiness |
 | Badge card | Badge icon, name, earned date |
@@ -596,7 +596,7 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 | Captain Byte | Tutor character | Optional; doesn't block content |
 | Missions | Voyage/map framing | Clear objective; not decorative |
 | Unlocks | Island/town unlocking | Clear prerequisite chain |
-| XP/Diamonds | Treasure theme | Server-authoritative; no client calculation |
+| Diamonds | Treasure theme | Server-authoritative; no client calculation |
 | Streak | Voyage continuity | No streak-guilt; no fake scarcity |
 | Leaderboards | Fleet ranking | Optional; not paywall |
 

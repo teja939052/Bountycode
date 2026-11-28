@@ -56,7 +56,7 @@ This is a design document. No implementation is authorized.
 | R3 | **Duplicate prevention**: The same `question_id` + `user_id` counts once for `distinct_questions`. Repeated attempts increment `total_attempts` but not `distinct_questions`. |
 | R4 | **Immutable**: Evidence events are append-only. Corrections create new events with `corrected_from` referencing the original. |
 | R5 | **No client write**: Evidence events are written only by the server after grading. |
-| R6 | **Trust required**: Questions with `trust_status` not in `{verified, reviewed}` do not contribute to mastery evidence (they increment `total_attempts` only). |
+| R6 | **Trust required**: Questions with `trust_status` not in `{TRUSTED}` do not contribute to mastery evidence (they increment `total_attempts` only). |
 | R7 | **Version recorded**: Both `content_version` and `grading_version` must be recorded for reproducibility. |
 
 ### 2.3 What Counts as Evidence vs. What Doesn't
@@ -69,7 +69,7 @@ This is a design document. No implementation is authorized.
 | Transfer task success | Same-context repetition |
 | SRS retrieval after delay | Immediate repetition |
 | Unique question ID | Same question retried |
-| Verified/reviewed trust status | Unverified/quarantined content |
+| TRUSTED trust status | Unverified/quarantined content |
 
 ---
 
@@ -180,7 +180,7 @@ count as unique evidence.
 | Update rule | Bayesian per observation | Unique question count + accuracy |
 | Prerequisite gating | No | Yes (cap at level 2) |
 | Transfer weighting | Via `transfer_tasks` field | Transfer questions count double |
-| Trust filter | Server-graded only | `{verified, reviewed}` only |
+| Trust filter | Server-graded only | `{TRUSTED}` only |
 
 ---
 

@@ -325,7 +325,7 @@ Phase 3 may add one.
   "companies": ["tcs", "infosys"],
   "provenance": "curated_pattern-relevant",
   "test_cases": [
-    {"input": {"nums": [1,2,4,6,8], "target": 10}, "expected": [1,3]},
+    {"input": {"nums": [1,2,4,6,8], "target": 10}, "expected": [1,4]},
     {"input": {"nums": [1,2,4,8], "target": 20}, "expected": null}
   ],
   "function_name": "two_sum",
