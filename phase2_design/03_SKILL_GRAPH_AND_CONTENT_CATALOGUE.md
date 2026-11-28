@@ -64,14 +64,14 @@ Content must pass through four trust levels before being served in graded flows:
 |-------|---------|--------------------------|
 | `UNVERIFIED` | Raw imported content | No |
 | `AUTOMATED_CHECKED` | Passes automated validation | No |
-| `HUMAN_REVIEWED` | Human verified correctness and relevance | Yes (with restrictions) |
+| `HUMAN_REVIEWED` | Human verified correctness and relevance | No |
 | `TRUSTED` | Fully verified with independent expected outputs and reasoning verification | Yes |
 
 ### 4.1 Content Trust Rules (Binding)
 
 - **Never serve UNVERIFIED content to students.**
 - **Never serve AUTOMATED_CHECKED content as placement-quality.**
-- **`HUMAN_REVIEWED` content may be served only with restrictions and explicit disclosure.**
+- **`HUMAN_REVIEWED` content may NOT be served to students; only `TRUSTED` content is servable.**
 - **Only `TRUSTED` content may be used in graded flows, placement-quality assessments, or mastery determination.**
 - **Human review is not automatically equivalent to TRUSTED.**
 - **Question content lives in versioned files under `backend/app/data/` and `backend/app/content/`.**
@@ -371,7 +371,7 @@ Phase 3 may add one.
 |---|----------|--------|
 | 1 | Canonical skill ID system defined? | Yes (skill_taxonomy.py) |
 | 2 | Content trust pipeline defined? | Yes (4 levels) |
-| 3 | Only verified content served? | Yes |
+| 3 | Only TRUSTED content served? | Yes |
 | 4 | Content contract covers all types? | Yes (lesson, coding, aptitude, transfer, repair) |
 | 5 | Interaction templates defined? | Yes (9 templates) |
 | 6 | Skill graph has prerequisites? | Yes (21 skills with explicit deps) |

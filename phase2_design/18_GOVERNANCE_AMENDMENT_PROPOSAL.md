@@ -70,7 +70,7 @@ Doc 03 originally used `verified/reviewed` terminology, which created ambiguity 
 
 **BOUNTYCODE_VISION_LOCK.md:** Add explicit language:
 
-> "Content trust pipeline: UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED. Only TRUSTED content may be served in graded flows or placement-quality assessments. HUMAN_REVIEWED content may be served only with restrictions and explicit disclosure. Human review is not automatically equivalent to TRUSTED."
+> "Content trust pipeline: UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED. Only TRUSTED content may be served to students or used in graded flows. HUMAN_REVIEWED content must not be served; human review alone does not confer trust status."
 
 **AGENTS.md:** Add the same language to the Content Trust Pipeline section.
 

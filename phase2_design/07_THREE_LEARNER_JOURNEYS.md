@@ -79,13 +79,13 @@ skill with no prerequisites).
 |-------|-----------|---------------|----------|
 | `coding.variables` | `independent` | 2 (Practicing) | 4 distinct questions, 75% accuracy |
 | `coding.loops` | `independent` | 3 (Competent) | 6 distinct questions, 75% accuracy |
-| `dsa.arrays` | `unknown` | 1 (Introduced) | 0 distinct questions |
+| `dsa.arrays` | `unknown` | 0 (Unknown) | 0 distinct questions |
 
 ### 2.5 Captain Byte Interactions
 
 - Day 1: "Great start! You understood variables on your first try."
 - Day 2: "Loops take practice. Let's trace through this together."
-- Day 3: "You're getting the hang of arrays. Notice how the left pointer moves when the sum is too small?"
+- Day 3: "Loops mastered. Now let's start arrays - watch how the left pointer moves when the sum is too small?"
 
 ---
 
@@ -186,7 +186,7 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 | 10–20 min | Two Pointers: build | `fill` | Two-sum implementation |
 | 20–30 min | Two Pointers: assess | `transfer` | Container problem |
 
-**Orchestrator decision:** Rahul scores 85% on diagnostic. Arrays prerequisite met. Two Pointers at `independent` (BKT 0.68).
+**Orchestrator decision:** Rahul scores 85% on diagnostic. Arrays prerequisite met. Two Pointers at `independent` (BKT 0.85).
 
 #### Day 2 (30 minutes)
 

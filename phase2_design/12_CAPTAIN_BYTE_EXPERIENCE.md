@@ -39,7 +39,7 @@ This is a design document. No implementation is authorized.
 | Write readiness score | Readiness is placement-only | Readiness Engine |
 | Award XP | Gamification Law violation | `record_practice()` only |
 | Unlock progression | Would bypass verified outcomes | Server-verified completion |
-| Generate unvetted content | Content trust gate violation | Human-reviewed content only |
+| Generate unvetted content | Content trust gate violation | TRUSTED-only content required |
 | Make high-stakes claims | Readiness/trust must be deterministic | Platform systems |
 
 ### 2.3 AI Usage Policy
@@ -73,7 +73,7 @@ Captain Byte receives a context object with every interaction. All fields are se
   "tutor_id": "captain_byte",
   "context_version": "tutor-v1",
   "student": {
-    "user_id": "uuid",
+    "user_id_hash": "sha256(user_id + salt)",
     "experience_level": "absolute_beginner",
     "target_company": "tcs",
     "preferred_language": "python",
@@ -438,7 +438,7 @@ mission_intro → concept_explain → before_predict → after_correct/after_inc
 | Network failure | Captain Byte unavailable; lesson continues without narration |
 | Misconception not mapped | Generic "Let's review this together" without specific label |
 | Context missing | Generic tutor behavior without personalization |
-| Content not verified | Captain Byte does not reference the content; uses general principle |
+| Non-TRUSTED content | Captain Byte does not reference the content; uses general principle |
 
 ---
 
@@ -464,6 +464,32 @@ mission_intro → concept_explain → before_predict → after_correct/after_inc
 | Student errors | Yes (evidence events) | PostgreSQL | Pilot duration + 30 days |
 
 Captain Byte does not store conversation history separately. All learning evidence flows through the standard evidence event contract.
+
+### 9.1 External Provider Data Policy
+
+Captain Byte may optionally use an external AI model for paraphrasing authored content. When AI is used:
+
+- **No student identifiers** are sent to the external model. `user_id` is replaced with a hashed, salted identifier before transmission.
+- **No lesson content** is sent unless it is already TRUSTED and authorized for the student's current lesson.
+- **No secrets or keys** are ever included in AI prompts.
+- **No instruction data** is mixed with student input. User input is treated strictly as data, never as executable instructions.
+- **Prompt injection protection**: Student input is never interpreted as commands. It is always treated as data to be displayed or evaluated, never as instructions to Captain Byte or the system.
+
+### 9.2 Consent and Retention
+
+- **Consent**: Students must consent to AI-assisted tutoring before it is enabled. Consent can be withdrawn at any time.
+- **Retention**: AI-generated paraphrases are not stored. Ephemeral session context is cleared when the session ends. Evidence events (student answers, correctness) are retained per the standard evidence retention policy (30 days post-pilot).
+- **Redaction**: Student-identifying information in AI prompts is hashed before transmission. No raw PII leaves the system.
+
+### 9.3 Failure Disclosure
+
+When AI is unavailable or returns an error:
+- Captain Byte falls back to authored text only.
+- The student is not informed of the AI failure (they see the same authored content).
+- No error details are exposed to the student.
+- The session continues without degradation.
+
+---
 
 ---
 

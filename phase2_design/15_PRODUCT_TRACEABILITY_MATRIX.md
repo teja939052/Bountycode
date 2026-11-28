@@ -23,7 +23,7 @@ This is a design document. No implementation is authorized.
 | Percentages, ratios, profit/loss | Vision Lock World 1 | 10_CURRICULUM_COVERAGE.md | 8 concepts, all with lessons + interactions + assessments |
 | Averages, time/work, speed/distance | Vision Lock World 1 | 10_CURRICULUM_COVERAGE.md | 8 concepts, all V1 |
 | SI/CI, number series | Vision Lock World 1 | 10_CURRICULUM_COVERAGE.md | 2 concepts, all V1 |
-| Content trust gate | Vision Lock §10 | 03_SKILL_GRAPH_AND_CONTENT_CATALOGUE.md | UNVERIFIED never served; verified/reviewed only |
+| Content trust gate | Vision Lock §10 | 03_SKILL_GRAPH_AND_CONTENT_CATALOGUE.md | UNVERIFIED never served; TRUSTED only |
 | Five excellent patterns | PRD §4.1 | 10_CURRICULUM_COVERAGE.md | Percentages, ratios, profit/loss, time/work, time/speed/distance |
 
 ### 2.2 Domain: Logical Reasoning

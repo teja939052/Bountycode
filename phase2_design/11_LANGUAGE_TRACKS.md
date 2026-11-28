@@ -58,8 +58,8 @@ The design explicitly distinguishes between:
 |------------|-----------------|-------------|
 | Conceptual understanding | `dsa.*` (domain-level) | Understanding of a DSA pattern independent of language (e.g., how two pointers work on sorted data) |
 | C implementation | `coding.c.dsa_implementations` | Ability to implement the pattern in C |
-| C++ implementation | `cpp.dsa_implementations` | Ability to implement the pattern in C++ |
-| Python implementation | `python.dsa_implementations` | Ability to implement the pattern in Python |
+| C++ implementation | `coding.cpp.dsa_implementations` | Ability to implement the pattern in C++ |
+| Python implementation | `coding.python.dsa_implementations` | Ability to implement the pattern in Python |
 | Java implementation | `coding.java.dsa_implementations` | Ability to implement the pattern in Java |
 
 These are related capabilities, not interchangeable mastery claims. A learner who demonstrates `dsa.two_pointers` conceptual understanding has NOT automatically demonstrated `coding.c.dsa_implementations` or `cpp.dsa_implementations`. Each language implementation must be assessed independently.

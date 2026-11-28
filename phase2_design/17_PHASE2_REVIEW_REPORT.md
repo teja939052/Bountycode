@@ -42,7 +42,7 @@ All 15 design documents in `phase2_design/` were reviewed:
 
 | Finding | Document(s) | Resolution |
 |---------|-------------|------------|
-| Content trust terminology mismatch | 03, 08, 09, 15 | Aligned all documents to `UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED` pipeline. Only `TRUSTED` content is servable in graded flows. |
+| Content trust terminology | 03, 08, 09, 15, 17, 18 | Aligned all documents to `UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED` pipeline. Only `TRUSTED` content is servable in graded flows. `HUMAN_REVIEWED` content is NOT servable to students. |
 | Readiness Engine as next-action owner | 01, 02, 04 | Readiness Engine outputs readiness score and coverage only. Orchestrator is the sole next-action decision owner. Readiness output contains `recommendation` (advisory), not `next_action`. |
 | Evidence contract missing question_id | 01, 02, 08 | Evidence schema now includes `question_id`, `language`, `final_response`, `test_case_results`, `execution_time_ms`, `compiler_exit_code`, `stderr`, `trust_status_at_time`. |
 | Learner state evidence violations | 02, 07 | All learner journey examples now require minimum 3 distinct questions for non-`unknown` BKT state. Profile 1 arrays state shows 3 distinct questions (not 1). Profile 2 binary_search shows 3 distinct questions (not 2). Profile 3 sliding_window shows 3 distinct questions (not 1). |
@@ -58,7 +58,7 @@ All 15 design documents in `phase2_design/` were reviewed:
 | Canonical skill ID conflicts | 03, 06, 07, 10, 11, 14 | All documents use `domain.subskill` format from `skill_taxonomy.py`. C++ fundamentals no longer requires C fundamentals. |
 | Conceptual vs language-specific skills | 11 | Explicit distinction added: conceptual skills (`dsa.*`) vs language-specific implementations (`coding.c.*`, `coding.cpp.*`, `coding.python.*`, `coding.java.*`). C++ does not require C as prerequisite. |
 | Curriculum concept count mismatches | 10, 11, 14, 15 | Counts reconciled: C=16, C++=18, Python=20, Java=18. SQL=11 concepts. All counts match across documents. |
-| Two Pointers algorithm errors | 06 | All test cases verified against reference implementation. `[1,2,4,6,8]`, target 10 → `[2,3]` (values 4,6). Negative target `[-9,-4,-1]`, target -5 → `[1,2]` (values -4,-1). Unsorted array `[4,1,8,2]`, target 3 → algorithm returns `None` but `[1,2]` sums to 3 (precondition violation demonstrated correctly). Reference implementation includes sorted-input validation (O(n), not O(n log n)). |
+| Two Pointers algorithm errors | 06 | All test cases verified against reference implementation. `[1,2,4,6,8]`, target 10 → `[1,4]` (values 2, 8). Negative target `[-9,-4,-1]`, target -5 → `[1,2]` (values -4, -1). Unsorted array `[4,1,8,2]`, target 3 → algorithm returns `None` but `[1,3]` (values 1, 2) sums to 3 (precondition violation demonstrated correctly). Reference implementation includes sorted-input validation (O(n), not O(n log n)). |
 | Sorting not taught in "Arrays and Sorting" | 06 | Bubble sort added as separate skill domain (`dsa.sorting`), not part of seven-beat framework. Clearly labeled as separate domain. |
 | Learner journey evidence violations | 07 | All three learner profiles now comply with minimum 3 distinct questions for non-`unknown` BKT state. No mastery claimed from single build exercise. No transfer-capable claim without actual transfer task. |
 | Captain Byte as conversational tutor | 12 | Expanded to cover multi-turn conversations, chat panel behavior, context grounding, conversation continuity, safe handling of unknown questions, privacy considerations, AI failure handling, prompt injection prevention. |
@@ -90,7 +90,7 @@ These gaps are all Roadmap items, not V1 blockers. V1 scope (Worlds 1-5 + TCS/Ac
 | Area | Consistency Status | Notes |
 |------|-------------------|-------|
 | Skill ID naming | Consistent | All documents use `domain.subskill` from `skill_taxonomy.py` |
-| Content trust terminology | Consistent | All documents use `UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED` |
+| Content trust terminology | Consistent | All documents use `UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED`. Only `TRUSTED` content is servable to students. |
 | Readiness vs Orchestrator | Consistent | All documents agree Readiness = placement only, Orchestrator = next-action owner |
 | Evidence schema | Consistent | Docs 01, 02, 08 all use identical evidence event schema |
 | Concept counts | Consistent | C=16, C++=18, Python=20, Java=18, SQL=11 across all documents |
@@ -129,7 +129,7 @@ These gaps are all Roadmap items, not V1 blockers. V1 scope (Worlds 1-5 + TCS/Ac
 
 ## 7. Phase 3 Recommendation
 
-**CONDITIONALLY APPROVED** with the following conditions:
+**CONDITIONALLY APPROVED with reservations.** The following items must be resolved before Phase 3 implementation begins:
 
 1. All P0 issues in this report must be resolved (they are, in this document set)
 2. Phase 3 implementation must begin with question store fixes (`_questions` population, `find_one_verified()`)

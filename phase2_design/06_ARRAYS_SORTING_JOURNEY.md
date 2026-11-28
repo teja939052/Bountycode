@@ -269,7 +269,7 @@ def two_sum(nums, target):
 - Student uses O(n²) approach → correct answer but not transfer of technique (note: technique not applied)
 - Student can't solve → incorrect, needs more practice
 
-**Captain Byte:** "Same idea, new problem. Two pointers on sorted data helped before. Here the data isn't sorted, but the idea of converging pointers still works. Show me."
+**Captain Byte:** "Same idea, new problem. Two pointers on sorted data helped before. Here the data isn't sorted, but the converging-pointer idea still works. The key difference: you don't know the order, so you move the shorter line inward — because moving the taller line can never increase the area (it's bounded by the shorter line, and the width only shrinks). Only moving the shorter line has any chance of finding a taller line that compensates for the lost width. Show me."
 
 **Evidence emitted:**
 ```json
@@ -317,7 +317,7 @@ def two_sum(nums, target):
 
 **Student action:** Move adjacent elements that are out of order, bubbling the largest element to the rightmost position in each pass.
 
-**Validation:** Each pass correctly bubbles the largest unsorted element to its final position. After pass 1: `[3, 4, 2, 5, 8]`. After pass 2: `[3, 2, 4, 5, 8]`. After pass 3: `[2, 3, 4, 5, 8]`.
+**Validation:** Each pass correctly bubbles the largest unsorted element to its final position. After pass 1: `[3, 5, 4, 2, 8]`. After pass 2: `[3, 4, 2, 5, 8]`. After pass 3: `[3, 2, 4, 5, 8]`. After pass 4: `[2, 3, 4, 5, 8]`.
 
 **Expected outcomes:**
 - Student correctly identifies adjacent out-of-order pairs → correct
@@ -353,7 +353,7 @@ def two_sum(nums, target):
 | Single element | `[5]` | 10 | `None` | Can't form pair |
 | Two-element success | `[2, 8]` | 10 | `[0, 1]` | Both elements used |
 | Pair at boundaries | `[1, 4, 6, 9]` | 10 | `[0, 3]` | First and last |
-| Unsorted input | `[4, 1, 8, 2]` | 6 | Raises `ValueError` | Array not sorted; precondition violated |
+| Unsorted input | `[4, 1, 8, 2]` | 3 | Returns `None` | Array not sorted; raw algorithm misses valid pair `[1, 3]` (1+2=3) |
 | Negative target | `[-9, -4, -1]` | -5 | `[1, 2]` (values -4, -1) | -4+-1=-5 |
 | Target below all sums | `[10, 20, 30]` | 5 | `None` | All sums > target |
 | Target above all sums | `[1, 2, 3]` | 100 | `None` | All sums < target |
