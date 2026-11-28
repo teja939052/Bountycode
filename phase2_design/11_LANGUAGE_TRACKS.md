@@ -58,11 +58,11 @@ The design explicitly distinguishes between:
 |------------|-----------------|-------------|
 | Conceptual understanding | `dsa.*` (domain-level) | Understanding of a DSA pattern independent of language (e.g., how two pointers work on sorted data) |
 | C implementation | `coding.c.dsa_implementations` | Ability to implement the pattern in C |
-| C++ implementation | `coding.cpp.dsa_implementations` | Ability to implement the pattern in C++ |
-| Python implementation | `coding.python.dsa_implementations` | Ability to implement the pattern in Python |
-| Java implementation | `coding.java.dsa_implementations` | Ability to implement the pattern in Java |
+| C++ implementation | `coding.coding.cpp.dsa_implementations` | Ability to implement the pattern in C++ |
+| Python implementation | `coding.coding.python.dsa_implementations` | Ability to implement the pattern in Python |
+| Java implementation | `coding.coding.java.dsa_implementations` | Ability to implement the pattern in Java |
 
-These are related capabilities, not interchangeable mastery claims. A learner who demonstrates `dsa.two_pointers` conceptual understanding has NOT automatically demonstrated `coding.c.dsa_implementations` or `cpp.dsa_implementations`. Each language implementation must be assessed independently.
+These are related capabilities, not interchangeable mastery claims. A learner who demonstrates `dsa.two_pointers` conceptual understanding has NOT automatically demonstrated `coding.c.dsa_implementations` or `coding.cpp.dsa_implementations`. Each language implementation must be assessed independently.
 
 **Rule:** A learner's capability in Java must not automatically imply capability in C or Python. Each language track maintains independent evidence.
 
@@ -112,23 +112,23 @@ These are related capabilities, not interchangeable mastery claims. A learner wh
 | Concept | Skill ID | Prerequisite | Difficulty | Interaction | Assessment | V1/Roadmap |
 |---------|----------|--------------|------------|-------------|------------|------------|
 | C++ fundamentals | `coding.cpp.fundamentals` | None | Easy | Fill | Exact match | Roadmap |
-| References | `coding.cpp.fundamentals.references` | Pointers | Medium | Trace | Address/output | Roadmap |
+| References | `coding.coding.cpp.fundamentals.references` | Pointers | Medium | Trace | Address/output | Roadmap |
 | OOP | `coding.cpp.oop` | Functions | Medium | Fill | Class output | Roadmap |
-| Classes/Objects | `coding.cpp.oop.classes` | OOP | Medium | Fill | Object state | Roadmap |
-| Constructors/Destructors | `coding.cpp.oop.constructors` | Classes | Medium | Trace | Lifecycle output | Roadmap |
-| Inheritance | `coding.cpp.oop.inheritance` | Classes | Hard | Fill | Output match | Roadmap |
-| Polymorphism | `coding.cpp.oop.polymorphism` | Inheritance | Hard | Trace | Virtual dispatch | Roadmap |
-| Encapsulation | `coding.cpp.oop.encapsulation` | Classes | Medium | Select | Access match | Roadmap |
-| STL containers | `coding.cpp.stl.containers` | OOP | Medium | Manipulate | Output match | Roadmap |
-| STL algorithms | `coding.cpp.stl.algorithms` | Containers | Medium | Fill | Output match | Roadmap |
-| Smart pointers | `coding.cpp.stl.smart_pointers` | Pointers | Hard | Trace | Lifecycle output | Roadmap |
-| Templates | `coding.cpp.templates` | OOP | Hard | Fill | Instantiation | Roadmap |
-| Exception handling | `coding.cpp.exceptions` | OOP | Medium | Fill | Output match | Roadmap |
-| Move semantics | `coding.cpp.move_semantics` | Smart pointers | Hard | Trace | Lifecycle output | Roadmap |
-| Debugging C++ | `coding.cpp.debugging` | OOP + STL | Hard | Debug | Test cases pass | Roadmap |
-| DSA in C++ | `coding.cpp.dsa_implementations` | STL + OOP | Hard | Implement | Test cases pass | Roadmap |
-| Algorithms in C++ | `coding.cpp.algo_implementations` | DSA in C++ | Hard | Implement | Test cases pass | Roadmap |
-| Timed C++ practice | `coding.cpp.timed_practice` | DSA in C++ | Hard | Implement | Hidden tests pass | Roadmap |
+| Classes/Objects | `coding.coding.cpp.oop.classes` | OOP | Medium | Fill | Object state | Roadmap |
+| Constructors/Destructors | `coding.coding.cpp.oop.constructors` | Classes | Medium | Trace | Lifecycle output | Roadmap |
+| Inheritance | `coding.coding.cpp.oop.inheritance` | Classes | Hard | Fill | Output match | Roadmap |
+| Polymorphism | `coding.coding.cpp.oop.polymorphism` | Inheritance | Hard | Trace | Virtual dispatch | Roadmap |
+| Encapsulation | `coding.coding.cpp.oop.encapsulation` | Classes | Medium | Select | Access match | Roadmap |
+| STL containers | `coding.coding.cpp.stl.containers` | OOP | Medium | Manipulate | Output match | Roadmap |
+| STL algorithms | `coding.coding.cpp.stl.algorithms` | Containers | Medium | Fill | Output match | Roadmap |
+| Smart pointers | `coding.coding.cpp.stl.smart_pointers` | Pointers | Hard | Trace | Lifecycle output | Roadmap |
+| Templates | `coding.coding.cpp.templates` | OOP | Hard | Fill | Instantiation | Roadmap |
+| Exception handling | `coding.coding.cpp.exceptions` | OOP | Medium | Fill | Output match | Roadmap |
+| Move semantics | `coding.coding.cpp.move_semantics` | Smart pointers | Hard | Trace | Lifecycle output | Roadmap |
+| Debugging C++ | `coding.coding.cpp.debugging` | OOP + STL | Hard | Debug | Test cases pass | Roadmap |
+| DSA in C++ | `coding.coding.cpp.dsa_implementations` | STL + OOP | Hard | Implement | Test cases pass | Roadmap |
+| Algorithms in C++ | `coding.coding.cpp.algo_implementations` | DSA in C++ | Hard | Implement | Test cases pass | Roadmap |
+| Timed C++ practice | `coding.coding.cpp.timed_practice` | DSA in C++ | Hard | Implement | Hidden tests pass | Roadmap |
 
 ### 4.2 C++-Specific Features
 
@@ -150,26 +150,26 @@ These are related capabilities, not interchangeable mastery claims. A learner wh
 
 | Concept | Skill ID | Prerequisite | Difficulty | Interaction | Assessment | V1/Roadmap |
 |---------|----------|--------------|------------|-------------|------------|------------|
-| Python fundamentals | `coding.python.fundamentals` | None | Easy | Fill | Exact match | Roadmap |
-| Dynamic typing | `coding.python.fundamentals.dynamic_types` | Fundamentals | Easy | Manipulate | Type output | Roadmap |
-| Conditions | `coding.python.fundamentals.conditions` | Dynamic types | Easy | Select | Branch match | Roadmap |
-| Loops | `coding.python.fundamentals.loops` | Conditions | Medium | Trace | Loop output | Roadmap |
-| Functions | `coding.python.fundamentals.functions` | Loops | Medium | Fill | Return value | Roadmap |
-| Lists | `coding.python.collections.lists` | Functions | Medium | Manipulate | List output | Roadmap |
-| Dictionaries | `coding.python.collections.dicts` | Lists | Medium | Manipulate | Dict output | Roadmap |
-| Sets | `coding.python.collections.sets` | Dictionaries | Easy | Manipulate | Set output | Roadmap |
-| Tuples | `coding.python.collections.tuples` | Lists | Easy | Select | Immutable match | Roadmap |
-| String methods | `coding.python.collections.strings` | Lists | Easy | Manipulate | Output match | Roadmap |
-| Exceptions | `coding.python.exceptions` | Functions | Medium | Fill | Output match | Roadmap |
-| Classes/OOP | `coding.python.oop` | Functions | Medium | Fill | Class output | Roadmap |
-| List comprehensions | `coding.python.collections.comprehensions` | Lists | Medium | Fill | List output | Roadmap |
-| Generators | `coding.python.generators` | Functions | Hard | Trace | Yield output | Roadmap |
-| Decorators | `coding.python.decorators` | Functions | Hard | Fill | Wrapper output | Roadmap |
-| File I/O | `coding.python.file_io` | Functions | Easy | Fill | Output match | Roadmap |
-| Debugging Python | `coding.python.debugging` | OOP + Exceptions | Hard | Debug | Test cases pass | Roadmap |
-| DSA in Python | `coding.python.dsa_implementations` | Collections + OOP | Hard | Implement | Test cases pass | Roadmap |
-| Algorithms in Python | `coding.python.algo_implementations` | DSA in Python | Hard | Implement | Test cases pass | Roadmap |
-| Timed Python practice | `coding.python.timed_practice` | DSA in Python | Hard | Implement | Hidden tests pass | Roadmap |
+| Python fundamentals | `coding.coding.python.fundamentals` | None | Easy | Fill | Exact match | Roadmap |
+| Dynamic typing | `coding.coding.coding.python.fundamentals.dynamic_types` | Fundamentals | Easy | Manipulate | Type output | Roadmap |
+| Conditions | `coding.coding.coding.python.fundamentals.conditions` | Dynamic types | Easy | Select | Branch match | Roadmap |
+| Loops | `coding.coding.coding.python.fundamentals.loops` | Conditions | Medium | Trace | Loop output | Roadmap |
+| Functions | `coding.coding.coding.python.fundamentals.functions` | Loops | Medium | Fill | Return value | Roadmap |
+| Lists | `coding.coding.python.collections.lists` | Functions | Medium | Manipulate | List output | Roadmap |
+| Dictionaries | `coding.coding.python.collections.dicts` | Lists | Medium | Manipulate | Dict output | Roadmap |
+| Sets | `coding.coding.python.collections.sets` | Dictionaries | Easy | Manipulate | Set output | Roadmap |
+| Tuples | `coding.coding.python.collections.tuples` | Lists | Easy | Select | Immutable match | Roadmap |
+| String methods | `coding.coding.python.collections.strings` | Lists | Easy | Manipulate | Output match | Roadmap |
+| Exceptions | `coding.coding.python.exceptions` | Functions | Medium | Fill | Output match | Roadmap |
+| Classes/OOP | `coding.coding.python.oop` | Functions | Medium | Fill | Class output | Roadmap |
+| List comprehensions | `coding.coding.python.collections.comprehensions` | Lists | Medium | Fill | List output | Roadmap |
+| Generators | `coding.coding.python.generators` | Functions | Hard | Trace | Yield output | Roadmap |
+| Decorators | `coding.coding.python.decorators` | Functions | Hard | Fill | Wrapper output | Roadmap |
+| File I/O | `coding.coding.python.file_io` | Functions | Easy | Fill | Output match | Roadmap |
+| Debugging Python | `coding.coding.python.debugging` | OOP + Exceptions | Hard | Debug | Test cases pass | Roadmap |
+| DSA in Python | `coding.coding.python.dsa_implementations` | Collections + OOP | Hard | Implement | Test cases pass | Roadmap |
+| Algorithms in Python | `coding.coding.python.algo_implementations` | DSA in Python | Hard | Implement | Test cases pass | Roadmap |
+| Timed Python practice | `coding.coding.python.timed_practice` | DSA in Python | Hard | Implement | Hidden tests pass | Roadmap |
 
 ### 5.2 Python-Specific Features
 
@@ -190,24 +190,24 @@ These are related capabilities, not interchangeable mastery claims. A learner wh
 
 | Concept | Skill ID | Prerequisite | Difficulty | Interaction | Assessment | V1/Roadmap |
 |---------|----------|--------------|------------|-------------|------------|------------|
-| Java fundamentals | `coding.java.fundamentals` | None | Easy | Fill | Exact match | Roadmap |
+| Java fundamentals | `coding.coding.java.fundamentals` | None | Easy | Fill | Exact match | Roadmap |
 | Classes/Objects | `coding.coding.java.oop.classes` | Fundamentals | Medium | Fill | Object state | Roadmap |
-| Constructors | `coding.java.oop.constructors` | Classes | Medium | Trace | Lifecycle output | Roadmap |
-| Inheritance | `coding.java.oop.inheritance` | Classes | Hard | Fill | Output match | Roadmap |
-| Polymorphism | `coding.java.oop.polymorphism` | Inheritance | Hard | Trace | Virtual dispatch | Roadmap |
-| Interfaces | `coding.java.oop.interfaces` | Polymorphism | Medium | Fill | Contract match | Roadmap |
-| Abstract classes | `coding.java.oop.abstract` | Inheritance | Medium | Fill | Instantiation rule | Roadmap |
-| Encapsulation | `coding.java.oop.encapsulation` | Classes | Medium | Select | Access match | Roadmap |
-| Exceptions | `coding.java.exceptions` | OOP | Medium | Fill | Output match | Roadmap |
-| Collections Framework | `coding.java.collections` | OOP | Medium | Manipulate | Output match | Roadmap |
-| ArrayList/LinkedList | `coding.coding.java.collections.list` | Collections | Medium | Manipulate | Output match | Roadmap |
-| HashMap/HashSet | `coding.coding.java.collections.map_set` | Collections | Medium | Manipulate | Output match | Roadmap |
-| Streams | `coding.java.streams` | Collections | Hard | Fill | Pipeline output | Roadmap |
-| File I/O | `coding.java.file_io` | OOP | Easy | Fill | Output match | Roadmap |
-| Debugging Java | `coding.java.debugging` | OOP + Collections | Hard | Debug | Test cases pass | Roadmap |
-| DSA in Java | `coding.java.dsa_implementations` | Collections + OOP | Hard | Implement | Test cases pass | Roadmap |
-| Algorithms in Java | `coding.java.algo_implementations` | DSA in Java | Hard | Implement | Test cases pass | Roadmap |
-| Timed Java practice | `coding.java.timed_practice` | DSA in Java | Hard | Implement | Hidden tests pass | Roadmap |
+| Constructors | `coding.coding.java.oop.constructors` | Classes | Medium | Trace | Lifecycle output | Roadmap |
+| Inheritance | `coding.coding.java.oop.inheritance` | Classes | Hard | Fill | Output match | Roadmap |
+| Polymorphism | `coding.coding.java.oop.polymorphism` | Inheritance | Hard | Trace | Virtual dispatch | Roadmap |
+| Interfaces | `coding.coding.java.oop.interfaces` | Polymorphism | Medium | Fill | Contract match | Roadmap |
+| Abstract classes | `coding.coding.java.oop.abstract` | Inheritance | Medium | Fill | Instantiation rule | Roadmap |
+| Encapsulation | `coding.coding.java.oop.encapsulation` | Classes | Medium | Select | Access match | Roadmap |
+| Exceptions | `coding.coding.java.exceptions` | OOP | Medium | Fill | Output match | Roadmap |
+| Collections Framework | `coding.coding.java.collections` | OOP | Medium | Manipulate | Output match | Roadmap |
+| ArrayList/LinkedList | `coding.coding.coding.java.collections.list` | Collections | Medium | Manipulate | Output match | Roadmap |
+| HashMap/HashSet | `coding.coding.coding.java.collections.map_set` | Collections | Medium | Manipulate | Output match | Roadmap |
+| Streams | `coding.coding.java.streams` | Collections | Hard | Fill | Pipeline output | Roadmap |
+| File I/O | `coding.coding.java.file_io` | OOP | Easy | Fill | Output match | Roadmap |
+| Debugging Java | `coding.coding.java.debugging` | OOP + Collections | Hard | Debug | Test cases pass | Roadmap |
+| DSA in Java | `coding.coding.java.dsa_implementations` | Collections + OOP | Hard | Implement | Test cases pass | Roadmap |
+| Algorithms in Java | `coding.coding.java.algo_implementations` | DSA in Java | Hard | Implement | Test cases pass | Roadmap |
+| Timed Java practice | `coding.coding.java.timed_practice` | DSA in Java | Hard | Implement | Hidden tests pass | Roadmap |
 
 ### 6.2 Java-Specific Features
 

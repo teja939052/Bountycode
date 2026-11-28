@@ -351,14 +351,14 @@ def two_sum(nums, target):
 | Case | Input | Target | Expected | Reason |
 |------|-------|--------|----------|--------|
 | Normal pair | `[1, 2, 4, 6, 8]` | 10 | `[1, 4]` (values 2, 8) | 2+8=10 |
-| Negative values | `[-8, -3, 1, 5, 9]` | 6 | `[2, 4]` (values 1, 5) | 1+5=6 |
+| Negative values | `[-8, -3, 1, 5, 9]` | 6 | `[2, 3]` (values 1, 5) | 1+5=6 |
 | Duplicates | `[1, 3, 3, 7]` | 6 | `[1, 2]` (distinct indices) | Same value, different indices |
 | No possible pair | `[1, 2, 4, 8]` | 20 | `None` | Sum never reaches target |
 | Empty input | `[]` | 5 | `None` | Safe handling |
 | Single element | `[5]` | 10 | `None` | Can't form pair |
 | Two-element success | `[2, 8]` | 10 | `[0, 1]` | Both elements used |
 | Pair at boundaries | `[1, 4, 6, 9]` | 10 | `[0, 3]` | First and last |
-| Unsorted input | `[4, 1, 8, 2]` | 3 | Returns `None` | Array not sorted; raw algorithm misses valid pair `[1, 3]` (1+2=3) |
+| Unsorted input | `[4, 1, 8, 2]` | 3 | Returns `None` | Raw algorithm misses valid pair `[1, 3]` (1+2=3) |
 | Negative target | `[-9, -4, -1]` | -5 | `[1, 2]` (values -4, -1) | -4+-1=-5 |
 | Target below all sums | `[10, 20, 30]` | 5 | `None` | All sums > target |
 | Target above all sums | `[1, 2, 3]` | 100 | `None` | All sums < target |

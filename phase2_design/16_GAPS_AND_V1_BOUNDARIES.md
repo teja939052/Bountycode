@@ -86,7 +86,7 @@ Per `BOUNTYCODE_VISION_LOCK.md` §210 and PRD §279:
 | Learner state model | Complete (doc 02) | None | Covers 5 concepts, BKT, mastery, readiness |
 | Skill graph and content catalogue | Complete (doc 03) | None | Covers skills, content, trust gate, templates |
 | Plan orchestrator policies | Complete (doc 04) | None | Covers one decision owner, horizons, policies |
-| Captain Byte experience | Complete (doc 05) | None | Covers tutor spec, boundaries, AI policy |
+| Captain Byte experience | Complete (doc 12) | None | Covers tutor spec, boundaries, AI policy |
 | Arrays/sorting journey | Complete (doc 06) | None | Covers one skill domain end-to-end |
 | Three learner journeys | Complete (doc 07) | None | Covers 3 profiles, decision traces |
 | Evidence and mastery contract | Complete (doc 08) | None | Covers evidence, mastery, misconceptions |

@@ -77,7 +77,7 @@ skill with no prerequisites).
 
 | Skill | BKT State | Mastery Level | Evidence |
 |-------|-----------|---------------|----------|
-| `coding.variables` | `independent` | 2 (Practicing) | 4 distinct questions, 75% accuracy |
+| `coding.variables` | `independent` | 2 (Practicing) | 3 distinct questions, 75% accuracy |
 | `coding.loops` | `independent` | 3 (Competent) | 6 distinct questions, 75% accuracy |
 | `dsa.arrays` | `unknown` | 0 (Unknown) | 0 distinct questions |
 
@@ -140,9 +140,10 @@ Priya has prior programming evidence. The Orchestrator skips `coding.variables` 
 
 | Skill | BKT State | Mastery Level | Evidence |
 |-------|-----------|---------------|----------|
+| `dsa.arrays` | `independent` | 3 (Competent) | 8 distinct questions, 85% accuracy |
 | `coding.variables` | `transfer_capable` | 4 (Strong) | 12 distinct questions, 88% accuracy |
 | `coding.loops` | `independent` | 3 (Competent) | 7 distinct questions, 72% accuracy |
-| `dsa.arrays` | `transfer_capable` | 3 (Competent) | 8 distinct questions, 85% accuracy |
+| `dsa.binary_search` | `emerging` | 2 (Practicing) | 3 distinct questions, 67% accuracy |
 | `dsa.binary_search` | `emerging` | 2 (Practicing) | 3 distinct questions, 67% accuracy |
 
 ### 2.5 Captain Byte Interactions
@@ -164,7 +165,7 @@ Priya has prior programming evidence. The Orchestrator skips `coding.variables` 
 | Experience level | `experienced` |
 | Preferred language | `cpp` |
 | Daily time budget | 30 minutes |
-| Arrays state | `transfer_capable` |
+| Arrays state | `independent` (BKT 0.72) |
 | Two Pointers state | `unknown` (never assessed) |
 | Sliding Window state | `unknown` |
 
@@ -186,7 +187,7 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 | 10–20 min | Two Pointers: build | `fill` | Two-sum implementation |
 | 20–30 min | Two Pointers: assess | `transfer` | Container problem |
 
-**Orchestrator decision:** Rahul scores 85% on diagnostic. Arrays prerequisite met. Two Pointers at `independent` (BKT 0.85).
+**Orchestrator decision:** Rahul scores 85% on diagnostic. Arrays prerequisite met. Two Pointers at `transfer_capable` (BKT 0.85).
 
 #### Day 2 (30 minutes)
 
@@ -202,7 +203,7 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 
 | Skill | BKT State | Mastery Level | Evidence |
 |-------|-----------|---------------|----------|
-| `dsa.arrays` | `transfer_capable` | 4 (Strong) | 15 distinct questions |
+| `dsa.arrays` | `independent` | 3 (Competent) | 8 distinct questions, 85% accuracy |
 | `dsa.two_pointers` | `independent` | 2 (Practicing) | 5 distinct questions |
 | `dsa.sliding_window` | `emerging` | 1 (Introduced) | 3 distinct questions, 67% accuracy |
 
@@ -266,14 +267,14 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 
 ```
 1. Student context: experienced, 30 min budget, target Wipro
-2. Learner state: arrays=transfer_capable, two_pointers=unknown
-3. Prerequisite check: dsa.arrays met (level 4)
+2. Learner state: arrays=independent (BKT 0.72), two_pointers=unknown
+3. Prerequisite check: dsa.arrays met (level 3)
 4. Active misconceptions: none
 5. Due SRS reviews: none
 6. Candidate actions:
    - diagnostic dsa.two_pointers (prerequisite met, unassessed)
    - learn dsa.sliding_window (prerequisite two_pointers not met)
-   - practice dsa.arrays (already transfer_capable)
+   - practice dsa.arrays (already independent)
 7. Selected: diagnostic dsa.two_pointers
    Reason: "Prerequisite met. Skill unassessed. Determine current level."
    Confidence: high
