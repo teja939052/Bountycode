@@ -64,13 +64,16 @@ Content must pass through four trust levels before being served in graded flows:
 |-------|---------|--------------------------|
 | `UNVERIFIED` | Raw imported content | No |
 | `AUTOMATED_CHECKED` | Passes automated validation | No |
-| `HUMAN_REVIEWED` | Human verified correctness | Yes (with restrictions) |
-| `TRUSTED` | Fully verified, safe for placement | Yes |
+| `HUMAN_REVIEWED` | Human verified correctness and relevance | Yes (with restrictions) |
+| `TRUSTED` | Fully verified with independent expected outputs and reasoning verification | Yes |
 
 ### 4.1 Content Trust Rules (Binding)
 
 - **Never serve UNVERIFIED content to students.**
 - **Never serve AUTOMATED_CHECKED content as placement-quality.**
+- **`HUMAN_REVIEWED` content may be served only with restrictions and explicit disclosure.**
+- **Only `TRUSTED` content may be used in graded flows, placement-quality assessments, or mastery determination.**
+- **Human review is not automatically equivalent to TRUSTED.**
 - **Question content lives in versioned files under `backend/app/data/` and `backend/app/content/`.**
 - **Never write question content to MongoDB.**
 - **No LLM involvement in question bank** — not in authoring, tagging, grading keys, company attribution, or promotion.
@@ -82,7 +85,7 @@ A question is servable only when ALL of the following are true:
 
 | Requirement | Description |
 |-------------|-------------|
-| trust_status | `"verified"` or `"reviewed"` |
+| trust_status | `"TRUSTED"` |
 | content_review_status | not `"quarantined"` |
 | has_answer_key | For MCQ: `correct_index` is valid; For coding: `test_cases` present |
 | has_explanation | `explanation` field present and >= 35 chars |
@@ -106,7 +109,7 @@ All content types share this base schema:
 | `estimated_minutes` | number | Estimated time to complete |
 | `interaction_template` | string | Template ID from Section 7 |
 | `learning_objective` | string | What student should be able to do |
-| `trust_status` | string | `"verified"` / `"reviewed"` / `"human_reviewed"` / `"unverified"` |
+| `trust_status` | string | `"TRUSTED"` / `"HUMAN_REVIEWED"` / `"AUTOMATED_CHECKED"` / `"UNVERIFIED"` |
 | `content_version` | string | Content version for change tracking |
 | `evidence_eligible` | boolean | Whether completion generates evidence events |
 | `prerequisite_skill_ids` | array | Canonical skill IDs that must be met first |
@@ -296,7 +299,7 @@ Phase 3 may add one.
 1. `question_store.py` loads content from versioned JSON files at startup
    (adopting `content_loader.py` patterns or replacing with direct file reads).
 2. `find_one_verified()` is added to `question_store.py` — returns only
-   `trust_status == "verified"` questions.
+   `trust_status == "TRUSTED"` questions.
 3. `load_all()` becomes async or is called with `await`.
 4. `quiz_service.py` uses `question_store.find_one_verified()` for
    `get_question_by_id()`.
@@ -314,7 +317,7 @@ Phase 3 may add one.
   "estimated_minutes": 15,
   "interaction_template": "manipulate",
   "learning_objective": "Apply convergent two-pointer technique to find a pair summing to target",
-  "trust_status": "verified",
+  "trust_status": "TRUSTED",
   "content_version": "1.0",
   "evidence_eligible": true,
   "prerequisite_skill_ids": ["coding.loops", "dsa.arrays"],

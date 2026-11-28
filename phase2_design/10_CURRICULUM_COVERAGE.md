@@ -68,7 +68,7 @@ Everything in the founder's full list that does not fit V1 launch scope goes to 
 | Time & Work | `aptitude.quantitative.time_work` | Ratios | Medium | Interactive lesson | Manipulate | Deterministic | SRS | Pipe/cistern variants | V1 |
 | Time Speed Distance | `aptitude.quantitative.tsd` | Averages | Medium | Interactive lesson | Manipulate | Deterministic | SRS | Upstream/downstream variants | V1 |
 | Simple/Compound Interest | `aptitude.quantitative.si_ci` | Percentages | Medium | Interactive lesson | Manipulate | Deterministic | SRS | Varying periods variants | V1 |
-| Number Series | `aptitude.logical.number_series` | None | Easy | Interactive lesson | Arrange | Pattern match | SRS | Different series family | V1 |
+| Number Series | `aptitude.quantitative.number_series` | None | Easy | Interactive lesson | Arrange | Pattern match | SRS | Different series family | V1 |
 
 ### 3.2 World 2 — Logical Reasoning
 

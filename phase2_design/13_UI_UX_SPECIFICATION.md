@@ -100,8 +100,9 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 | Readiness dashboard | `/companies/:slug/readiness` | Loading, insufficient, ready | V1 |
 | Profile | `/profile` | Loading, empty, error | V1 |
 | Settings | `/profile/settings` | Idle, saving, error | V1 |
-| Repair mission | `/repair/:skill` | Loading, idle, correct, incorrect | Roadmap |
-| AI Interview | `/interview` | Loading, in-progress, complete, feedback | Roadmap |
+| Repair mission | `/repair/:skill` | Loading, idle, correct, incorrect | V1 |
+| AI Interview | `/interview` | Loading, in-progress, complete, feedback | Roadmap (top-level hub visible, feature gated) |
+| SQL editor | `/compiler/sql` | Loading, idle, correct, incorrect, query-error | Roadmap |
 | Resume builder | `/resume` | Idle, generating, error | Roadmap |
 | ATS optimizer | `/ats` | Idle, analyzing, result | Roadmap |
 
@@ -129,7 +130,8 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 3. Target company (or "not sure yet")
 4. Preferred language (if supported)
 5. Current preparation level / baseline
-6. First mission recommendation
+6. Daily time budget (minutes available per day)
+7. First mission recommendation
 
 **Mobile rules:**
 - One question per screen
@@ -382,6 +384,9 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 | Textarea | Long answers | Auto-resize |
 | Code | Code editor | Syntax highlighting, lint |
 
+**Code editor language support:** The editor supports C, C++, Python, and Java syntax highlighting. However, language-specific learning tracks (beyond pseudocode) are Roadmap per the Vision Lock. The editor is available for practice but language-specific lesson content is Roadmap.
+
+
 ### 5.3 Cards
 
 | Variant | Usage |
@@ -401,7 +406,6 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 | Error | Red banner + retry | Retry action visible |
 | Success | Green check + message | Auto-dismiss or dismissible |
 | Offline | Banner + cached content | Limited functionality |
-| Offline | Offline banner + cached content | Limited functionality |
 
 ---
 
@@ -464,6 +468,31 @@ Resume/ATS/Applications live under Profile, not top-level. Admin/auth/legal are 
 - Character is decorative (aria-hidden)
 - Text bubble has sufficient contrast
 - No animation as only information channel
+
+### 7.4 Conversational Chat UI
+
+| Element | Behavior |
+|---------|----------|
+| Chat panel | Dockable bottom-right panel, dismissible |
+| Message bubble | Student messages left-aligned, tutor messages right-aligned with avatar |
+| Typing indicator | Shows when Captain Byte is generating a response |
+| Message history | Scrollable within current lesson session only |
+| Input field | Bottom of chat panel, Enter to send |
+| Submit button | Disabled when input is empty |
+| Error state | Red border + inline error message |
+| Empty state | "Start a conversation" placeholder text |
+
+### 7.5 Optimistic vs Server-Confirmed Feedback
+
+| Interaction | UI Behavior | Server Confirmation |
+|-------------|-------------|---------------------|
+| Answer submission | Immediate visual feedback (green/red/amber) | Server verdict overrides client prediction |
+| Code execution | Loading state → result display | Server result replaces optimistic prediction |
+| Hint request | Immediate hint display | Server-validated hint content |
+| Lesson completion | Celebration animation | Server-confirmed completion unlocks next lesson |
+| Mastery achievement | Confetti + badge | Server-verified mastery claim |
+
+**Rule:** Optimistic UI feedback is allowed for responsiveness, but all final decisions (correctness, mastery, readiness, next action) must be server-confirmed. The client never unilaterally declares correctness or mastery.
 
 ---
 

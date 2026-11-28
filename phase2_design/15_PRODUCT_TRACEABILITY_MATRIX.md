@@ -69,10 +69,10 @@ This is a design document. No implementation is authorized.
 
 | Founder Requirement | Source | Design Document | Acceptance Criteria |
 |---------------------|--------|-----------------|---------------------|
-| Query writing, joins, grouping | Founder list | 10_CURRICULUM_COVERAGE.md | 5 concepts, Roadmap |
+| Query writing, joins, aggregations | Founder list | 10_CURRICULUM_COVERAGE.md | 3 concepts, Roadmap |
 | Subqueries, CTEs, window functions | Founder list | 10_CURRICULUM_COVERAGE.md | 3 concepts, Roadmap |
-| Data modification, keys, constraints | Founder list | 10_CURRICULUM_COVERAGE.md | 3 concepts, Roadmap |
-| Normalization, indexes, transactions | Founder list | 10_CURRICULUM_COVERAGE.md | 4 concepts, Roadmap |
+| Data modification, constraints/keys | Founder list | 10_CURRICULUM_COVERAGE.md | 2 concepts, Roadmap |
+| Normalization, indexes, transactions | Founder list | 10_CURRICULUM_COVERAGE.md | 3 concepts, Roadmap |
 | SQL query writing separate from DB theory | Founder list | 10_CURRICULUM_COVERAGE.md | Explicitly separated |
 
 ### 2.7 Domain: Computer Science Fundamentals
@@ -89,10 +89,10 @@ This is a design document. No implementation is authorized.
 
 | Founder Requirement | Source | Design Document | Acceptance Criteria |
 |---------------------|--------|-----------------|---------------------|
-| C programming | Founder list | 11_LANGUAGE_TRACKS.md | 17 concepts, Roadmap |
+| C programming | Founder list | 11_LANGUAGE_TRACKS.md | 16 concepts, Roadmap |
 | C++ programming | Founder list | 11_LANGUAGE_TRACKS.md | 18 concepts, Roadmap |
-| Python programming | Founder list | 11_LANGUAGE_TRACKS.md | 21 concepts, Roadmap |
-| Java programming | Founder list | 11_LANGUAGE_TRACKS.md | 20 concepts, Roadmap |
+| Python programming | Founder list | 11_LANGUAGE_TRACKS.md | 20 concepts, Roadmap |
+| Java programming | Founder list | 11_LANGUAGE_TRACKS.md | 18 concepts, Roadmap |
 | Independent evidence per language | Founder list | 11_LANGUAGE_TRACKS.md | Independence rule enforced |
 | Compilation/execution per language | Founder list | 11_LANGUAGE_TRACKS.md | Test case schema defined |
 
@@ -167,7 +167,7 @@ This is a design document. No implementation is authorized.
 | 02_LEARNER_STATE_MODEL.md | Learner state, evidence, mastery, readiness | Complete |
 | 03_SKILL_GRAPH_AND_CONTENT_CATALOGUE.md | Skills, content, trust gate, interaction templates | Complete |
 | 04_PLAN_ORCHESTRATOR_POLICIES.md | Next-action owner, horizons, policies | Complete |
-| 05_CAPTAIN_BYTE_EXPERIENCE.md | Tutor specification, boundaries, AI policy | Complete |
+| 05_CAPTAIN_BYTE_EXPERIENCE.md | Superseded by 12_CAPTAIN_BYTE_EXPERIENCE.md | Superseded |
 | 06_ARRAYS_SORTING_JOURNEY.md | Seven-beat example, Two Pointers test matrix | Complete |
 | 07_THREE_LEARNER_JOURNEYS.md | Three learner profiles, decision traces | Complete |
 | 08_EVIDENCE_AND_MASTERY_CONTRACT.md | Evidence contract, mastery models, misconceptions | Complete |
@@ -179,6 +179,8 @@ This is a design document. No implementation is authorized.
 | 14_CURRICULUM_COVERAGE_MATRIX.md | Coverage matrix | Complete |
 | 15_PRODUCT_TRACEABILITY_MATRIX.md | This document | Complete |
 | 16_GAPS_AND_V1_BOUNDARIES.md | Gaps, risks, V1 vs roadmap | Next |
+| 17_PHASE2_REVIEW_REPORT.md | Review findings, consistency results, acceptance status | Complete |
+| 18_GOVERNANCE_AMENDMENT_PROPOSAL.md | Proposed updates to Vision Lock, PRD, AGENTS | Proposed |
 
 ---
 

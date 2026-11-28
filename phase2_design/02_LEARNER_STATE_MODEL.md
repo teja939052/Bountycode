@@ -69,10 +69,13 @@ select blueprint, and by content system to select language-specific examples.
 |-------|------|-------------|
 | `event_id` | UUID | Unique, generated server-side |
 | `user_id` | UUID | References user |
+| `question_id` | string | Required | Question/content identifier |
 | `skill_id` | string | Canonical skill ID (`dsa.two_pointers`) |
 | `lesson_id` | string | Lesson identifier |
+| `language` | string | Optional | Programming language for coding attempts (`c`, `cpp`, `python`, `java`) |
 | `interaction_type` | string | `select` / `manipulate` / `predict` / `trace` / `arrange` / `fill` / `debug` / `explain` / `transfer` |
 | `first_committed_answer` | string | Student's first committed answer (before hints) |
+| `final_response` | string | Required | Student's final response after any hints or retries |
 | `hints_used` | integer | 0 or more |
 | `scaffolding_level` | string | `"none"` / `"partial"` / `"full"` |
 | `task_novelty` | string | `"guided"` / `"independent"` / `"transfer"` |
@@ -81,6 +84,11 @@ select blueprint, and by content system to select language-specific examples.
 | `content_version` | string | Version of lesson/question content |
 | `grading_version` | string | Version of grading logic |
 | `time_spent_seconds` | number | Time on task |
+| `test_case_results` | array | Required for coding attempts | Array of `{passed: boolean, input, expected, actual}` |
+| `execution_time_ms` | number | Optional | Code execution time in milliseconds |
+| `compiler_exit_code` | integer | Optional | Compiler exit code for coding attempts |
+| `stderr` | string | Optional | Compiler/runtime error message |
+| `trust_status_at_time` | string | Required | Content trust status at the time of the attempt (`TRUSTED`, `HUMAN_REVIEWED`, `AUTOMATED_CHECKED`, `UNVERIFIED`) |
 | `created_at` | timestamp | Server time |
 
 ### 4.2 Evidence Rules
@@ -210,7 +218,7 @@ Mastery Engine (`app/services/mastery_engine.py`).
 
 ### 6.5 Trust Statuses That Contribute
 
-`MASTERED_TRUST_STATUSES = {"verified", "reviewed"}`
+`MASTERED_TRUST_STATUSES = {"TRUSTED"}`
 
 ### 6.6 Prerequisite Gating
 

@@ -35,7 +35,7 @@ This is a design document. No implementation is authorized.
 | Time & Work | Basics | `aptitude.quantitative.time_work` | Ratios | Medium | Manipulate | Deterministic | SRS | Pipe/cistern | V1 |
 | Time Speed Distance | Basics | `aptitude.quantitative.tsd` | Averages | Medium | Manipulate | Deterministic | SRS | Upstream/downstream | V1 |
 | SI/CI | Basics | `aptitude.quantitative.si_ci` | Percentages | Medium | Manipulate | Deterministic | SRS | Varying periods | V1 |
-| Number Series | Basics | `aptitude.logical.number_series` | None | Easy | Arrange | Pattern match | SRS | Different family | V1 |
+| Number Series | Basics | `aptitude.quantitative.number_series` | None | Easy | Arrange | Pattern match | SRS | Different series family | V1 |
 
 ### 2.2 Domain: Logical Reasoning (World 2 — V1)
 

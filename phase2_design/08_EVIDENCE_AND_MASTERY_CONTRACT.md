@@ -25,10 +25,13 @@ This is a design document. No implementation is authorized.
 |-------|------|------------|-------------|
 | `event_id` | UUID | Required, server-generated | Unique event identifier |
 | `user_id` | UUID | Required | Student identifier |
+| `question_id` | string | Required | Question/content identifier |
 | `skill_id` | string | Required | Canonical skill ID (`dsa.two_pointers`) |
 | `lesson_id` | string | Required | Lesson identifier |
+| `language` | string | Optional | Programming language for coding attempts (`c`, `cpp`, `python`, `java`) |
 | `interaction_type` | string | Required | `select` / `manipulate` / `predict` / `trace` / `arrange` / `fill` / `debug` / `explain` / `transfer` |
-| `first_committed_answer` | string | Required | Student's answer before any hint |
+| `first_committed_answer` | string | Required | Student's first committed answer (before hints) |
+| `final_response` | string | Required | Student's final response after any hints or retries |
 | `hints_used` | integer | Required, ≥ 0 | Number of hints requested |
 | `scaffolding_level` | string | Required | `"none"` / `"partial"` / `"full"` |
 | `task_novelty` | string | Required | `"guided"` / `"independent"` / `"transfer"` |
@@ -37,6 +40,11 @@ This is a design document. No implementation is authorized.
 | `content_version` | string | Required | Version of lesson/question content |
 | `grading_version` | string | Required | Version of grading logic |
 | `time_spent_seconds` | number | Required, ≥ 0 | Time on task |
+| `test_case_results` | array | Required for coding attempts | Array of `{passed: boolean, input, expected, actual}` |
+| `execution_time_ms` | number | Optional | Code execution time in milliseconds |
+| `compiler_exit_code` | integer | Optional | Compiler exit code for coding attempts |
+| `stderr` | string | Optional | Compiler/runtime error message |
+| `trust_status_at_time` | string | Required | Content trust status at the time of the attempt (`TRUSTED`, `HUMAN_REVIEWED`, `AUTOMATED_CHECKED`, `UNVERIFIED`) |
 | `created_at` | timestamp | Required | Server timestamp |
 
 ### 2.2 Evidence Rules (Binding)
@@ -146,7 +154,7 @@ shown to users as a guaranteed fact.
 
 ### 4.3 Trust Statuses That Count as Evidence
 
-`MASTERED_TRUST_STATUSES = {"verified", "reviewed"}`
+`MASTERED_TRUST_STATUSES = {"TRUSTED"}`
 
 Questions with any other trust status increment `total_attempts` but do NOT
 count as unique evidence.
@@ -206,7 +214,7 @@ count as unique evidence.
   "overall_readiness": 78.5,
   "coverage": 0.85,
   "coverage_message": "Sufficient evidence: 85.0% coverage",
-  "next_action": { ... },
+  "recommendation": { ... },
   "target_weights": {"dsa.arrays": 0.35, "coding.loops": 0.25, ...},
   "skills": [
     {"skill_id": "dsa.arrays", "score": 82.0, "weight": 0.35, "critical": true}

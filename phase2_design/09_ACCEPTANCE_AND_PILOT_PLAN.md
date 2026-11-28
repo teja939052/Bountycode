@@ -44,7 +44,7 @@ This is a design document. No implementation is authorized.
 | # | Criterion | How Verified |
 |---|-----------|--------------|
 | B1 | Question store serves verified content | `question_store.find()` returns non-empty list from versioned files |
-| B2 | `find_one_verified()` exists and works | Returns only `trust_status == "verified"` questions |
+| B2 | `find_one_verified()` exists and works | Returns only `trust_status == "TRUSTED"` questions |
 | 3 | Lesson service wired to repositories | `get_public_lesson()` returns actual lesson content |
 | 4 | Orchestrator makes next-action decisions | Returns a `next_action` object with `kind` and `skill_id` |
 | 5 | Evidence events persisted to PostgreSQL | `learning_attempts` table populated after student action |
@@ -210,17 +210,22 @@ not automatically.**
 
 ## 8. Phase 3 Recommendation
 
-If the pilot shows positive directional signals, Phase 3 should:
+The correct implementation sequence is:
+
+**Design approval → Phase 3 implementation → Internal end-to-end validation → Real-student pilot → Evaluate results → Decide what to scale or revise**
+
+The pilot requires the Phase 3 implementation to exist first (question store fixed, lesson service wired to repositories, SRS serving connected, Orchestrator implemented, one complete lesson built). Pilot results cannot gate Phase 3 because the pilot depends on Phase 3 output.
+
+If the Phase 3 implementation passes internal end-to-end validation, Phase 3 should:
 
 1. Fix the question store (`_questions` population, `find_one_verified()`)
 2. Wire lesson service to repositories
 3. Wire SRS serving to `ReviewCardRepository`
 4. Implement the Learning Plan Orchestrator (logical, not new service)
 5. Build one complete interactive lesson (Arrays: Two Pointers)
-6. Test end-to-end with real students
+6. Test end-to-end with real students (pilot)
 
-If the pilot shows negative signals, revisit the design before
-implementation.
+If the pilot shows negative signals, revisit the design before scaling to additional lessons.
 
 ---
 
@@ -232,7 +237,7 @@ implementation.
 | 02_LEARNER_STATE_MODEL.md | Five concepts, BKT, mastery, readiness |
 | 03_SKILL_GRAPH_AND_CONTENT_CATALOGUE.md | Skills, content, interaction templates |
 | 04_PLAN_ORCHESTRATOR_POLICIES.md | One decision owner, three horizons |
-| 05_CAPTAIN_BYTE_EXPERIENCE.md | Tutor, state machine, boundaries |
+| 12_CAPTAIN_BYTE_EXPERIENCE.md | Tutor, state machine, boundaries |
 | 06_ARRAYS_SORTING_JOURNEY.md | Seven-beat example, test matrix |
 | 07_THREE_LEARNER_JOURNEYS.md | Three profiles, decision traces |
 | 08_EVIDENCE_AND_MASTERY_CONTRACT.md | Evidence, mastery, misconceptions |

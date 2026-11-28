@@ -50,6 +50,22 @@ Each language track maintains independent evidence:
 - Mastery claims are language-specific
 - A learner must complete each language track independently
 
+### 2.4 Conceptual Skills vs Language-Specific Implementation Skills
+
+The design explicitly distinguishes between:
+
+| Capability | Skill ID Pattern | Description |
+|------------|-----------------|-------------|
+| Conceptual understanding | `dsa.*` (domain-level) | Understanding of a DSA pattern independent of language (e.g., how two pointers work on sorted data) |
+| C implementation | `coding.c.dsa_implementations` | Ability to implement the pattern in C |
+| C++ implementation | `cpp.dsa_implementations` | Ability to implement the pattern in C++ |
+| Python implementation | `python.dsa_implementations` | Ability to implement the pattern in Python |
+| Java implementation | `java.dsa_implementations` | Ability to implement the pattern in Java |
+
+These are related capabilities, not interchangeable mastery claims. A learner who demonstrates `dsa.two_pointers` conceptual understanding has NOT automatically demonstrated `coding.c.dsa_implementations` or `cpp.dsa_implementations`. Each language implementation must be assessed independently.
+
+**Rule:** A learner's capability in Java must not automatically imply capability in C or Python. Each language track maintains independent evidence.
+
 ---
 
 ## 3. C Programming Track (`coding.c.*`)
@@ -95,7 +111,7 @@ Each language track maintains independent evidence:
 
 | Concept | Skill ID | Prerequisite | Difficulty | Interaction | Assessment | V1/Roadmap |
 |---------|----------|--------------|------------|-------------|------------|------------|
-| C++ fundamentals | `cpp.fundamentals` | C fundamentals | Easy | Fill | Exact match | Roadmap |
+| C++ fundamentals | `cpp.fundamentals` | None | Easy | Fill | Exact match | Roadmap |
 | References | `cpp.fundamentals.references` | Pointers | Medium | Trace | Address/output | Roadmap |
 | OOP | `cpp.oop` | Functions | Medium | Fill | Class output | Roadmap |
 | Classes/Objects | `cpp.oop.classes` | OOP | Medium | Fill | Object state | Roadmap |

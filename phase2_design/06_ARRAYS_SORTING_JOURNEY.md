@@ -51,6 +51,7 @@ This is a design document. No implementation is authorized.
 | Debug | Fix buggy code | `debug` | Fix the boundary condition in broken code | All test cases pass | "You found the bug. Now fix it." |
 | Transfer | Changed context | `transfer` | Apply two-pointer to container-with-most-water problem | Independent solution | "Same idea, different problem. Show me." |
 | Retrieve | SRS review | `select` / `predict` | Review two-pointer rule after 1 day and 1 week | Correct without hints | "Remember this from earlier?" |
+| Sort | Bubble sort | `manipulate` | Move adjacent elements to sort ascending | Each pass bubbles largest to end | "Watch how the largest bubbles to the right." |
 
 ---
 
@@ -296,6 +297,8 @@ def two_sum(nums, target):
 
 **Captain Byte:** "Remember this from earlier? When the sum is too small, which pointer moves?"
 
+**Captain Byte:** "Remember this from earlier? When the sum is too small, which pointer moves?"
+
 **Evidence emitted:**
 ```json
 {
@@ -308,22 +311,49 @@ def two_sum(nums, target):
 }
 ```
 
----
+### 4.9 Additional Domain — Bubble Sort (Separate Skill Domain)
 
-## 5. Test Matrix for Two-Pointer Algorithm
+**Setup:** Array `[5, 3, 8, 4, 2]`, unsorted.
+
+**Student action:** Move adjacent elements that are out of order, bubbling the largest element to the rightmost position in each pass.
+
+**Validation:** Each pass correctly bubbles the largest unsorted element to its final position. After pass 1: `[3, 4, 2, 5, 8]`. After pass 2: `[3, 2, 4, 5, 8]`. After pass 3: `[2, 3, 4, 5, 8]`.
+
+**Expected outcomes:**
+- Student correctly identifies adjacent out-of-order pairs → correct
+- Student swaps non-adjacent elements → incorrect
+- Student stops before array is fully sorted → incomplete
+
+**Captain Byte:** "Compare adjacent elements. If they're out of order, swap them. The largest element will bubble to the end on each pass."
+
+**Evidence emitted:**
+```json
+{
+  "interaction_type": "manipulate",
+  "passes": [
+    {"pass": 1, "array": [3, 4, 2, 5, 8]},
+    {"pass": 2, "array": [3, 2, 4, 5, 8]},
+    {"pass": 3, "array": [2, 3, 4, 5, 8]}
+  ],
+  "correct": true,
+  "hints_used": 0
+}
+```
+
+**Note:** Bubble sort is a separate skill domain (`dsa.sorting`), not part of the seven-beat teaching framework. It follows the same interaction patterns (manipulate) but is assessed independently of the two-pointer journey.
 
 | Case | Input | Target | Expected | Reason |
 |------|-------|--------|----------|--------|
-| Normal pair | `[1, 2, 4, 6, 8]` | 10 | `[1, 3]` (values 2, 8) | Standard case |
-| Negative values | `[-8, -3, 1, 5, 9]` | 6 | `[0, 4]` (values -8, 9) or `[1, 3]` | Negatives handled |
+| Normal pair | `[1, 2, 4, 6, 8]` | 10 | `[2, 3]` (values 4, 6) | 4+6=10 |
+| Negative values | `[-8, -3, 1, 5, 9]` | 6 | `[1, 4]` (values -3, 9) or `[2, 3]` (values 1, 5) | Negatives handled |
 | Duplicates | `[1, 3, 3, 7]` | 6 | `[1, 2]` (distinct indices) | Same value, different indices |
 | No possible pair | `[1, 2, 4, 8]` | 20 | `None` | Sum never reaches target |
 | Empty input | `[]` | 5 | `None` | Safe handling |
 | Single element | `[5]` | 10 | `None` | Can't form pair |
 | Two-element success | `[2, 8]` | 10 | `[0, 1]` | Both elements used |
 | Pair at boundaries | `[1, 4, 6, 9]` | 10 | `[0, 3]` | First and last |
-| Unsorted input | `[4, 1, 8, 2]` | 6 | Reject precondition | Precondition violated |
-| Negative target | `[-9, -4, -1]` | -5 | `[0, 2]` (values -9, -1) | Negative target works |
+| Unsorted input | `[4, 1, 8, 2]` | 3 | Algorithm returns `None` but `[1, 2]` sums to 3 | Precondition violated: algorithm fails on unsorted input |
+| Negative target | `[-9, -4, -1]` | -5 | `[1, 2]` (values -4, -1) | Negative target works |
 | Target below all sums | `[10, 20, 30]` | 5 | `None` | All sums > target |
 | Target above all sums | `[1, 2, 3]` | 100 | `None` | All sums < target |
 | Multiple valid pairs | `[1, 2, 3, 4, 5]` | 5 | `[0, 3]` or `[1, 2]` | Either acceptable |
@@ -335,6 +365,12 @@ The reference implementation:
 
 ```python
 def two_sum(nums, target):
+    # Precondition check: array must be sorted in non-decreasing order
+    # O(n) check - one pass through the array
+    for i in range(len(nums) - 1):
+        if nums[i] > nums[i + 1]:
+            raise ValueError("Array must be sorted in non-decreasing order")
+    
     left = 0
     right = len(nums) - 1
     while left < right:
@@ -348,13 +384,14 @@ def two_sum(nums, target):
     return None
 ```
 
-**Precondition check:** If `nums` is not sorted in non-decreasing order, raise `ValueError("Array must be sorted")`.
+**Precondition check:** If `nums` is not sorted in non-decreasing order, raise `ValueError("Array must be sorted")`. The check itself is O(n) — a single pass through the array.
 
 ### 5.2 Complexity
 
-- Time: O(n) — each element visited at most once
+- Time: O(n) — each element visited at most once by the two pointers
 - Space: O(1) — two pointers only
-- With precondition validation (sort check): O(n log n) or O(n)
+- Precondition validation (sort check): O(n) — one pass to verify sorted order
+- Total with validation: O(n) — not O(n log n); no sorting is performed, only a linear scan to verify the precondition
 
 ---
 

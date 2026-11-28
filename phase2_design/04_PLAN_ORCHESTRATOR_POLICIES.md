@@ -221,7 +221,7 @@ AI may paraphrase approved educational content but must be optional.
 
 - Read from all engine outputs
 - Read from learner state, mastery, readiness, SRS, repair, prerequisite graph
-- Write ONE decision record to `gamification_events` (inputs, outputs, reward_policy_version)
+- Write ONE decision record to `orchestrator_logs` (inputs, outputs, policy_version, decision_trace)
 - Write ONE decision record to learner context (current next action)
 - Return the next action to the frontend
 
@@ -231,6 +231,7 @@ AI may paraphrase approved educational content but must be optional.
 - Write mastery levels (only Mastery Engine)
 - Write readiness scores (only Readiness Engine)
 - Write lesson completion (only Lesson Service after student action)
+- Write to `gamification_events` (only `record_practice()` writes reward ledger)
 - Modify content trust status (only human review)
 - Modify question bank content (only versioned files)
 

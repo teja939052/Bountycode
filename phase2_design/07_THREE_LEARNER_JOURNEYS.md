@@ -67,11 +67,13 @@ skill with no prerequisites).
 
 | Time | Activity | Interaction | Evidence |
 |------|----------|-------------|----------|
-| 0–15 min | Arrays: feel | `select` | Finds pair summing to 10 |
-| 15–30 min | Arrays: discover | `manipulate` | Traverses array with pointer |
-| 30–45 min | Arrays: predict | `predict` | Predicts pointer movement |
+| 0–10 min | Arrays: feel | `select` | Finds pair summing to 10 |
+| 10–20 min | Arrays: discover | `manipulate` | Traverses array with pointer |
+| 20–30 min | Arrays: predict | `predict` | Predicts pointer movement |
+| 30–40 min | Arrays: predict | `predict` | Predicts pointer movement (second question) |
+| 40–45 min | Arrays: predict | `predict` | Predicts pointer movement (third question) |
 
-**Orchestrator decision:** Arjun is at `inconsistent` state for arrays (BKT 0.45). Next action = `practice` → arrays predict exercise.
+**Orchestrator decision:** Arjun has completed 3 distinct questions on arrays with mixed results. BKT state: `emerging` (BKT 0.45). Next action = `practice` → arrays predict exercise.
 
 ### 2.4 Progress After Week 1
 
@@ -79,7 +81,7 @@ skill with no prerequisites).
 |-------|-----------|---------------|----------|
 | `coding.variables` | `independent` | 3 (Competent) | 4 distinct questions, 75% accuracy |
 | `coding.loops` | `inconsistent` | 2 (Practicing) | 3 distinct questions, 50% accuracy |
-| `dsa.arrays` | `emerging` | 1 (Introduced) | 1 distinct question |
+| `dsa.arrays` | `emerging` | 1 (Introduced) | 3 distinct questions, 33% accuracy |
 
 ### 2.5 Captain Byte Interactions
 
@@ -143,7 +145,7 @@ Priya has prior programming evidence. The Orchestrator skips `coding.variables` 
 | `coding.variables` | `transfer_capable` | 4 (Strong) | 12 distinct questions, 88% accuracy |
 | `coding.loops` | `independent` | 3 (Competent) | 7 distinct questions, 72% accuracy |
 | `dsa.arrays` | `transfer_capable` | 4 (Strong) | 8 distinct questions, 85% accuracy |
-| `dsa.binary_search` | `emerging` | 2 (Practicing) | 2 distinct questions |
+| `dsa.binary_search` | `emerging` | 2 (Practicing) | 3 distinct questions, 67% accuracy |
 
 ### 2.5 Captain Byte Interactions
 
@@ -204,7 +206,7 @@ Orchestrator sees `dsa.two_pointers` as unassessed with prerequisite
 |-------|-----------|---------------|----------|
 | `dsa.arrays` | `transfer_capable` | 4 (Strong) | 15 distinct questions |
 | `dsa.two_pointers` | `independent` | 3 (Competent) | 5 distinct questions |
-| `dsa.sliding_window` | `emerging` | 1 (Introduced) | 1 distinct question |
+| `dsa.sliding_window` | `emerging` | 1 (Introduced) | 3 distinct questions, 67% accuracy |
 
 ### 2.5 Captain Byte Interactions
 

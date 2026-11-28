@@ -89,7 +89,7 @@ Captain Byte receives a context object with every interaction. All fields are se
     "skill_id": "aptitude.quantitative.percentages",
     "lesson_type": "interactive",
     "content_version": "lesson_v2",
-    "trust_status": "verified"
+    "trust_status": "TRUSTED"
   },
   "concept": {
     "concept_id": "percentages.increase_decrease",
@@ -280,6 +280,76 @@ Captain Byte receives a context object with every interaction. All fields are se
 
 **Example:**
 > "I noticed you're having trouble with loop boundaries. Let's do a focused repair exercise on that before we move on."
+
+### 4.12 Conversational Tutor Experience
+
+Captain Byte operates as a conversational tutor within a dedicated chat panel, not just as scripted lesson events.
+
+#### Multi-turn Conversations
+
+Captain Byte maintains conversation context across multiple turns within a lesson session. Each turn references previous student answers, hints used, and misconceptions detected. The tutor remembers:
+- What the student has attempted in the current lesson
+- Which misconceptions have been identified and addressed
+- Which hints have already been offered
+- Which transfer tasks have been attempted
+
+#### Chat Panel Behavior
+
+Captain Byte appears as a dockable panel alongside the lesson content, not as a full-screen takeover. The student can:
+- Minimize the chat to focus on the lesson
+- Expand the chat to read previous messages
+- Scroll through conversation history within the current session
+- Dismiss the tutor entirely (lesson continues without narration)
+
+#### Context Grounding
+
+All Captain Byte responses are grounded in:
+- The current lesson content (which is TRUSTED or HUMAN_REVIEWED)
+- The student's actual evidence events (not assumptions)
+- The canonical skill taxonomy
+- Authored hint ladders and worked examples
+
+Captain Byte never invents company information, never claims unverified answers are correct, and never presents pattern-relevant content as "asked at X".
+
+#### Conversation Continuity
+
+Conversation context persists within a lesson session. If the student navigates away and returns:
+- Previous answers and hints are visible in the chat history
+- The student's current position in the lesson is preserved
+- The tutor resumes where the lesson left off, not from the beginning
+
+Conversation history does NOT persist across separate lesson sessions. Each lesson starts with a fresh conversation context.
+
+#### Safe Handling of Unknown Questions
+
+If a student asks a question Captain Byte cannot answer from authored content:
+1. Acknowledge the question honestly
+2. State that the answer is not in the approved content
+3. Suggest the student ask their instructor or continue with the lesson
+4. Never fabricate an answer or claim authority
+
+Example:
+> "I don't have that information in my lesson materials. Let's continue with the current exercise, or you can ask your instructor about that topic."
+
+#### Privacy Considerations
+
+Captain Byte conversations are NOT stored separately from evidence events. All learning evidence flows through the standard evidence event contract. Tutor context is session-memory only (ephemeral) and is not retained after the session ends.
+
+#### AI Failure and Rate Limits
+
+If the AI service is unavailable:
+- Circuit breaker opens automatically
+- Captain Byte falls back to authored text only
+- No degradation in lesson functionality
+- Student is not notified of AI failure (they see the same authored content)
+
+#### Prompt Injection and Untrusted Content
+
+Student input is never treated as trusted. Captain Byte:
+- Never executes student input as code
+- Never includes student input in responses without sanitization
+- Never presents student input as authoritative content
+- Treats all student input as potentially malicious
 
 ---
 
