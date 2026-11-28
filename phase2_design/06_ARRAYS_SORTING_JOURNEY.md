@@ -10,8 +10,13 @@
 
 Design a complete interactive learning journey for Arrays and Sorting using the
 seven-beat instructional framework (Feel → Discover → Predict → Build → Break →
-Debug → Retrieve → Transfer). This is a reference example demonstrating how the
-architecture works for one skill domain.
+Retrieve → Transfer). This is ONE worked example within the larger algorithm
+curriculum defined in `19_ALGORITHM_CURRICULUM_INVENTORY.md`.
+
+The Two Pointers technique taught here is one algorithmic pattern among many
+covered in the V1 curriculum. Other patterns include Sliding Window, Binary
+Search, Sorting, Stack/Queue, and Linked List operations — each with its own
+lesson journey following the same seven-beat structure.
 
 This is a design document. No implementation is authorized.
 

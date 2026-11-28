@@ -115,20 +115,20 @@ These are related capabilities, not interchangeable mastery claims. A learner wh
 | References | `coding.cpp.fundamentals.references` | Pointers | Medium | Trace | Address/output | Roadmap |
 | OOP | `coding.cpp.oop` | Functions | Medium | Fill | Class output | Roadmap |
 | Classes/Objects | `coding.cpp.oop.classes` | OOP | Medium | Fill | Object state | Roadmap |
-| Constructors/Destructors | `cpp.oop.constructors` | Classes | Medium | Trace | Lifecycle output | Roadmap |
-| Inheritance | `cpp.oop.inheritance` | Classes | Hard | Fill | Output match | Roadmap |
-| Polymorphism | `cpp.oop.polymorphism` | Inheritance | Hard | Trace | Virtual dispatch | Roadmap |
-| Encapsulation | `cpp.oop.encapsulation` | Classes | Medium | Select | Access match | Roadmap |
-| STL containers | `cpp.stl.containers` | OOP | Medium | Manipulate | Output match | Roadmap |
-| STL algorithms | `cpp.stl.algorithms` | Containers | Medium | Fill | Output match | Roadmap |
-| Smart pointers | `cpp.stl.smart_pointers` | Pointers | Hard | Trace | Lifecycle output | Roadmap |
-| Templates | `cpp.templates` | OOP | Hard | Fill | Instantiation | Roadmap |
-| Exception handling | `cpp.exceptions` | OOP | Medium | Fill | Output match | Roadmap |
-| Move semantics | `cpp.move_semantics` | Smart pointers | Hard | Trace | Lifecycle output | Roadmap |
-| Debugging C++ | `cpp.debugging` | OOP + STL | Hard | Debug | Test cases pass | Roadmap |
-| DSA in C++ | `cpp.dsa_implementations` | STL + OOP | Hard | Implement | Test cases pass | Roadmap |
-| Algorithms in C++ | `cpp.algo_implementations` | DSA in C++ | Hard | Implement | Test cases pass | Roadmap |
-| Timed C++ practice | `cpp.timed_practice` | DSA in C++ | Hard | Implement | Hidden tests pass | Roadmap |
+| Constructors/Destructors | `coding.cpp.oop.constructors` | Classes | Medium | Trace | Lifecycle output | Roadmap |
+| Inheritance | `coding.cpp.oop.inheritance` | Classes | Hard | Fill | Output match | Roadmap |
+| Polymorphism | `coding.cpp.oop.polymorphism` | Inheritance | Hard | Trace | Virtual dispatch | Roadmap |
+| Encapsulation | `coding.cpp.oop.encapsulation` | Classes | Medium | Select | Access match | Roadmap |
+| STL containers | `coding.cpp.stl.containers` | OOP | Medium | Manipulate | Output match | Roadmap |
+| STL algorithms | `coding.cpp.stl.algorithms` | Containers | Medium | Fill | Output match | Roadmap |
+| Smart pointers | `coding.cpp.stl.smart_pointers` | Pointers | Hard | Trace | Lifecycle output | Roadmap |
+| Templates | `coding.cpp.templates` | OOP | Hard | Fill | Instantiation | Roadmap |
+| Exception handling | `coding.cpp.exceptions` | OOP | Medium | Fill | Output match | Roadmap |
+| Move semantics | `coding.cpp.move_semantics` | Smart pointers | Hard | Trace | Lifecycle output | Roadmap |
+| Debugging C++ | `coding.cpp.debugging` | OOP + STL | Hard | Debug | Test cases pass | Roadmap |
+| DSA in C++ | `coding.cpp.dsa_implementations` | STL + OOP | Hard | Implement | Test cases pass | Roadmap |
+| Algorithms in C++ | `coding.cpp.algo_implementations` | DSA in C++ | Hard | Implement | Test cases pass | Roadmap |
+| Timed C++ practice | `coding.cpp.timed_practice` | DSA in C++ | Hard | Implement | Hidden tests pass | Roadmap |
 
 ### 4.2 C++-Specific Features
 

@@ -45,20 +45,20 @@ This is a design document. No implementation is authorized.
 | Syllogism | Basics | `aptitude.logical.syllogism` | None | Medium | Arrange | Venn match | Hidden test cases | New premises | V1 |
 | Coding-Decoding | Basics | `aptitude.logical.coding_decoding` | None | Medium | Fill | Decode exact | Hidden test cases | Different cipher | V1 |
 | Directions | Basics | `aptitude.logical.directions` | None | Easy | Manipulate | Coordinate | Hidden test cases | Multi-step path | V1 |
-| Seating | Basics | `aptitude.logical.seating` | None | Hard | Arrange | Constraint | Hidden test cases | Circular vs linear | V1 |
-| Series | Basics | `aptitude.logical.series` | None | Medium | Predict | Next element | Hidden test cases | Alternate pattern | V1 |
-| Data Sufficiency | Basics | `aptitude.logical.data_sufficiency` | None | Hard | Select | Sufficient/Not | Hidden test cases | New statements | V1 |
+| Seating | Basics | `aptitude.logical.seating` | None | Hard | Arrange | Constraint | Multiple choice | Circular vs linear | V1 |
+| Series | Basics | `aptitude.logical.series` | None | Medium | Predict | Next element | Multiple choice | Alternate pattern | V1 |
+| Data Sufficiency | Basics | `aptitude.logical.data_sufficiency` | None | Hard | Select | Sufficient/Not | Multiple choice | New statements | V1 |
 
 ### 2.3 Domain: Verbal Ability (World 3 — V1)
 
 | Subject | Concept | Skill ID | Prerequisite | Lesson | Interaction | Assessment | Evidence | Revision/Transfer | Release |
 |---------|---------|----------|--------------|--------|-------------|------------|----------|-------------------|---------|
-| Grammar | Basics | `aptitude.verbal.grammar` | None | Easy | Fill | Exact match | Hidden test cases | New sentence | V1 |
-| Reading Comprehension | Basics | `aptitude.verbal.reading` | None | Medium | Select | Answer key | Hidden test cases | New passage | V1 |
-| Para Jumble | Basics | `aptitude.verbal.para_jumble` | None | Medium | Arrange | Order match | Hidden test cases | New set | V1 |
-| Sentence Correction | Basics | `aptitude.verbal.sentence_correction` | Grammar | Medium | Select | Corrected | Hidden test cases | New errors | V1 |
-| Vocabulary | Basics | `aptitude.verbal.vocabulary` | None | Easy | Select | Synonym | Hidden test cases | New words | V1 |
-| Email Format | Basics | `aptitude.verbal.email_format` | None | Easy | Fill | Structure | Hidden test cases | Different email | V1 |
+| Grammar | Basics | `aptitude.verbal.grammar` | None | Easy | Fill | Exact match | Multiple choice | New sentence | V1 |
+| Reading Comprehension | Basics | `aptitude.verbal.reading` | None | Medium | Select | Answer key | Multiple choice | New passage | V1 |
+| Para Jumble | Basics | `aptitude.verbal.para_jumble` | None | Medium | Arrange | Order match | Multiple choice | New set | V1 |
+| Sentence Correction | Basics | `aptitude.verbal.sentence_correction` | Grammar | Medium | Select | Corrected | Multiple choice | New errors | V1 |
+| Vocabulary | Basics | `aptitude.verbal.vocabulary` | None | Easy | Select | Synonym | Multiple choice | New words | V1 |
+| Email Format | Basics | `aptitude.verbal.email_format` | None | Easy | Fill | Structure | Multiple choice | Different email | V1 |
 
 ### 2.4 Domain: Programming Logic / Pseudocode (World 4 — V1 Differentiator)
 
@@ -71,7 +71,7 @@ This is a design document. No implementation is authorized.
 | Arrays | Basics | `pseudo.arrays` | Nested Loops | Easy | Manipulate | Index output | Hidden test cases | Different array | V1 |
 | Conditions | Basics | `pseudo.conditions` | Arrays | Easy | Select | Branch output | Hidden test cases | Different conditions | V1 |
 | Functions | Basics | `pseudo.functions` | Conditions | Medium | Fill | Return value | Hidden test cases | Different params | V1 |
-| Recursion Basics | Basics | `pseudo.recursion` | Functions | Hard | Trace | Call stack | Hidden test cases | Different recursion | V1 |
+| Recursion Basics | Basics | `pseudo.recursion` | `pseudo.functions` | Hard | Trace | Call stack | Hidden test cases | Different recursion | V1 |
 | Debugging | Basics | `pseudo.debugging` | Recursion | Medium | Debug | Test cases | Hidden test cases | Different bug | V1 |
 
 ### 2.5 Domain: Data Structures & Algorithms (World 5 — Service-Level Only, V1)
@@ -87,11 +87,11 @@ This is a design document. No implementation is authorized.
 | Binary Search | Basics | `dsa.binary_search` | Sorting | Medium | Predict | Index/output | Hidden test cases | Different target | V1 |
 | Stack/Queue Basics | Basics | `dsa.stack_queue` | Arrays | Easy | Manipulate | Output order | Hidden test cases | Different ops | V1 |
 | Linked List Basics | Basics | `dsa.linked_list` | Arrays | Medium | Trace | Traversal | Hidden test cases | Different list | V1 |
-| Tree Basics | Basics | `dsa.trees` | Arrays | Medium | Trace | Traversal | Hidden test cases | Different tree | V1 |
+| Tree Basics | Basics | `dsa.trees` | None | Medium | Trace | Traversal | Hidden test cases | Different tree | V1 |
 | Heap | Basics | `dsa.heap` | Trees | Hard | Trace | Heapify | Hidden test cases | Different heap | Roadmap |
-| Graph | Basics | `dsa.graph` | Trees | Hard | Trace | Traversal | Hidden test cases | Different graph | Roadmap |
-| Recursion | Basics | `dsa.recursion` | Pseudo Recursion | Hard | Trace | Call stack | Hidden test cases | Different recursion | Roadmap |
-| Greedy | Basics | `dsa.greedy` | Arrays | Hard | Fill | Greedy choice | Hidden test cases | Different problem | Roadmap |
+| Graph | Basics | `dsa.graph` | None | Hard | Trace | Traversal | Hidden test cases | Different graph | Roadmap |
+| Recursion | Basics | `dsa.recursion` | `pseudo.functions` | Hard | Trace | Call stack | Hidden test cases | Different recursion | Roadmap |
+| Greedy | Basics | `dsa.greedy` | `dsa.sorting` | Hard | Fill | Greedy choice | Hidden test cases | Different problem | Roadmap |
 | Backtracking | Basics | `dsa.backtracking` | Recursion | Hard | Arrange | Solution path | Hidden test cases | Different problem | Roadmap |
 | Dynamic Programming | Basics | `dsa.dp` | Recursion | Hard | Fill | DP table | Hidden test cases | Different problem | Roadmap |
 
@@ -99,28 +99,28 @@ This is a design document. No implementation is authorized.
 
 | Subject | Concept | Skill ID | Prerequisite | Lesson | Interaction | Assessment | Evidence | Revision/Transfer | Release |
 |---------|---------|----------|--------------|--------|-------------|------------|----------|-------------------|---------|
-| Query Writing | SELECT | `cs_fundamentals.databases.sql.query` | None | Easy | Fill | Exact output | Hidden test cases | Different table | Roadmap |
-| Joins | INNER/LEFT/RIGHT | `cs_fundamentals.databases.sql.joins` | Query | Medium | Manipulate | Join result | Hidden test cases | Different join | Roadmap |
-| Aggregations | GROUP BY | `cs_fundamentals.databases.sql.aggregations` | Query | Easy | Select | Aggregate | Hidden test cases | Different group | Roadmap |
-| Subqueries | Nested SELECT | `cs_fundamentals.databases.sql.subqueries` | Aggregations | Medium | Fill | Subquery output | Hidden test cases | Different nesting | Roadmap |
-| CTEs | WITH clause | `cs_fundamentals.databases.sql.ctes` | Subqueries | Hard | Fill | CTE output | Hidden test cases | Different CTE | Roadmap |
-| Window Functions | ROW_NUMBER/RANK | `cs_fundamentals.databases.sql.window` | CTEs | Hard | Fill | Window output | Hidden test cases | Different window | Roadmap |
-| Data Modification | INSERT/UPDATE/DELETE | `cs_fundamentals.databases.sql.dml` | Query | Easy | Fill | Row count | Hidden test cases | Different data | Roadmap |
-| Constraints/Keys | PK/FK/CHECK | `cs_fundamentals.databases.sql.constraints` | DML | Easy | Select | Constraint match | Hidden test cases | Different schema | Roadmap |
-| Normalization | 1NF/2NF/3NF | `cs_fundamentals.databases.sql.normalization` | Constraints | Medium | Select | Normal form | Hidden test cases | Different schema | Roadmap |
-| Indexes | B-tree/Hash | `cs_fundamentals.databases.sql.indexes` | Normalization | Medium | Select | Index match | Hidden test cases | Different index | Roadmap |
-| Transactions | ACID | `cs_fundamentals.databases.sql.transactions` | Indexes | Hard | Select | Commit/rollback | Hidden test cases | Different scenario | Roadmap |
+| Query Writing | SELECT | `cs_fundamentals.databases.sql.query` | None | Easy | Fill | Query output verification | Query output | Different table | Roadmap |
+| Joins | INNER/LEFT/RIGHT | `cs_fundamentals.databases.sql.joins` | Query | Medium | Manipulate | Query output verification | Join result | Different join | Roadmap |
+| Aggregations | GROUP BY | `cs_fundamentals.databases.sql.aggregations` | Query | Easy | Select | Query output verification | Aggregate | Different group | Roadmap |
+| Subqueries | Nested SELECT | `cs_fundamentals.databases.sql.subqueries` | Aggregations | Medium | Fill | Query output verification | Subquery output | Different nesting | Roadmap |
+| CTEs | WITH clause | `cs_fundamentals.databases.sql.ctes` | Subqueries | Hard | Fill | Query output verification | CTE output | Different CTE | Roadmap |
+| Window Functions | ROW_NUMBER/RANK | `cs_fundamentals.databases.sql.window` | CTEs | Hard | Fill | Query output verification | Window output | Different window | Roadmap |
+| Data Modification | INSERT/UPDATE/DELETE | `cs_fundamentals.databases.sql.dml` | Query | Easy | Fill | Query output verification | Row count | Different data | Roadmap |
+| Constraints/Keys | PK/FK/CHECK | `cs_fundamentals.databases.sql.constraints` | DML | Easy | Select | Query output verification | Constraint match | Different schema | Roadmap |
+| Normalization | 1NF/2NF/3NF | `cs_fundamentals.databases.sql.normalization` | Constraints | Medium | Select | Query output verification | Normal form | Different schema | Roadmap |
+| Indexes | B-tree/Hash | `cs_fundamentals.databases.sql.indexes` | Normalization | Medium | Select | Query output verification | Index match | Different index | Roadmap |
+| Transactions | ACID | `cs_fundamentals.databases.sql.transactions` | Indexes | Hard | Select | Query output verification | Commit/rollback | Different scenario | Roadmap |
 
 ### 2.7 Domain: Computer Science Fundamentals (Roadmap)
 
 | Subject | Concept | Skill ID | Prerequisite | Lesson | Interaction | Assessment | Evidence | Revision/Transfer | Release |
 |---------|---------|----------|--------------|--------|-------------|------------|----------|-------------------|---------|
-| OOP | Basics | `cs_fundamentals.oop` | Programming fundamentals | Medium | MCQ + code | Test cases | Hidden test cases | Different language | Roadmap |
-| DBMS | Basics | `cs_fundamentals.databases.theory` | None | Easy | MCQ | Concept match | Hidden test cases | Different scenario | Roadmap |
-| Operating Systems | Basics | `cs_fundamentals.os` | None | Medium | MCQ | Concept match | Hidden test cases | Different scenario | Roadmap |
-| Computer Networks | Basics | `cs_fundamentals.networks` | OS | Medium | MCQ | Concept match | Hidden test cases | Different scenario | Roadmap |
-| Software Engineering | Basics | `cs_fundamentals.se` | None | Easy | MCQ + case | Case match | Hidden test cases | Different case | Roadmap |
-| Testing | Basics | `cs_fundamentals.testing` | SE | Medium | MCQ + code | Test cases | Hidden test cases | Different code | Roadmap |
+| OOP | Basics | `cs_fundamentals.oop` | Programming fundamentals | Medium | MCQ + code | Multiple choice | Different language | Roadmap |
+| DBMS | Basics | `cs_fundamentals.databases.theory` | None | Easy | MCQ | Multiple choice | Different scenario | Roadmap |
+| Operating Systems | Basics | `cs_fundamentals.os` | None | Medium | MCQ | Multiple choice | Different scenario | Roadmap |
+| Computer Networks | Basics | `cs_fundamentals.networks` | OS | Medium | MCQ | Multiple choice | Different scenario | Roadmap |
+| Software Engineering | Basics | `cs_fundamentals.se` | None | Easy | MCQ + case | Multiple choice | Different case | Roadmap |
+| Testing | Basics | `cs_fundamentals.testing` | SE | Medium | MCQ + code | Multiple choice | Different code | Roadmap |
 
 ### 2.8 Domain: Four Programming Languages (Roadmap)
 
